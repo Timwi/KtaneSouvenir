@@ -16,7 +16,7 @@ namespace Souvenir;
 ///         having to write out the entire list.</para>
 ///     <para>
 ///         To use an answer generator, add an attribute which is a subclass of <see cref="AnswerGeneratorAttribute"/> to the
-///         <see cref="Question"/> enum value. <see cref="SouvenirQuestionAttribute.AllAnswers"/> should be null when using an
+///         <see cref="TextQuestion"/> enum value. <see cref="SouvenirQuestionAttribute.AllAnswers"/> should be null when using an
 ///         answer generator. When the question is generated, any answer generator will be used to effectively append as many
 ///         randomly selected answers as needed to <see cref="SouvenirQuestionAttribute.AllAnswers"/>. Preferred wrong answers
 ///         may still be specified in addition to an answer generator, or instead of one as was done previously.</para>
@@ -462,7 +462,7 @@ public static class AnswerGenerator
         public override int Count => _generators.Select(g => g.Count).Aggregate((a, b) => a * b);
     }
 
-    /// <summary>An answer generator used for <see cref="Question.WumboNumber"/>.</summary>
+    /// <summary>An answer generator used for <see cref="TextQuestion.WumboNumber"/>.</summary>
     public sealed class Wumbo : AnswerGeneratorAttribute<string>
     {
         public override IEnumerable<string> GetAnswers(SouvenirModule module)
@@ -480,7 +480,7 @@ public static class AnswerGenerator
         public override int Count => 15625;
     }
 
-    /// <summary>An answer generator used for <see cref="Question.ChineseRemainderTheoremEquations"/>.</summary>
+    /// <summary>An answer generator used for <see cref="TextQuestion.ChineseRemainderTheoremEquations"/>.</summary>
     public sealed class ChineseRemainderTheorem : AnswerGeneratorAttribute<string>
     {
         public override IEnumerable<string> GetAnswers(SouvenirModule module)

@@ -12,8 +12,6 @@ namespace Souvenir;
 
 public static class Ut
 {
-    public static Vector3 SetX(this Vector3 orig, float x) => new(x, orig.y, orig.z);
-
     /// <summary>
     ///     Returns all fields contained in the specified type, including private fields inherited from base classes.</summary>
     /// <param name="type">
@@ -113,7 +111,7 @@ public static class Ut
         if (key == null)
             throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.");
         if (!dic.ContainsKey(key))
-            dic[key] = new List<V>();
+            dic[key] = [];
         dic[key].Add(value);
     }
 
@@ -130,11 +128,10 @@ public static class Ut
     ///     The amount by which to increment the integer.</param>
     /// <returns>
     ///     The new value at the specified key.</returns>
-    public static int IncSafe<K>(this IDictionary<K, int> dic, K key, int amount = 1) => dic == null
-            ? throw new ArgumentNullException("dic")
-            : key == null
-            ? throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.")
-            : !dic.ContainsKey(key) ? (dic[key] = amount) : (dic[key] = dic[key] + amount);
+    public static int IncSafe<K>(this IDictionary<K, int> dic, K key, int amount = 1) =>
+        dic == null ? throw new ArgumentNullException("dic") :
+        key == null ? throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.") :
+        !dic.ContainsKey(key) ? (dic[key] = amount) : (dic[key] = dic[key] + amount);
 
     /// <summary>
     ///     Gets a value from a dictionary by key. If the key does not exist in the dictionary, the default value is returned
@@ -145,11 +142,10 @@ public static class Ut
     ///     Key to look up.</param>
     /// <param name="defaultVal">
     ///     Value to return if key is not contained in the dictionary.</param>
-    public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultVal = default) => dict == null
-            ? throw new ArgumentNullException("dict")
-            : key == null
-            ? throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.")
-            : dict.TryGetValue(key, out var value) ? value : defaultVal;
+    public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultVal = default) =>
+        dict == null ? throw new ArgumentNullException("dict") :
+        key == null ? throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.") :
+        dict.TryGetValue(key, out var value) ? value : defaultVal;
 
     public static T[] NewArray<T>(params T[] array) => array;
     public static List<T> NewList<T>(params T[] array) => array.ToList();
@@ -436,29 +432,37 @@ public static class Ut
         value = source.Value;
     }
 
+    public static Dictionary<string, SouvenirHandlerAttribute> ModuleHandlers = [];
+    private static Dictionary<Enum, (SouvenirHandlerAttribute h, SouvenirQuestionAttribute q, SouvenirDiscriminatorAttribute d)> _attributes = new(EnumEqualityComparer.Default);
+    public static (SouvenirHandlerAttribute h, SouvenirQuestionAttribute q, SouvenirDiscriminatorAttribute d) GetAttributes(this Enum value) => _attributes.Get(value, default);
+    public static SouvenirHandlerAttribute GetHandlerAttribute(this Enum questionOrDiscriminator) => GetAttributes(questionOrDiscriminator).h;
+    public static SouvenirQuestionAttribute GetQuestionAttribute(this Enum question) => GetAttributes(question).q;
+    public static SouvenirDiscriminatorAttribute GetDiscriminatorAttribute(this Enum discriminator) => GetAttributes(discriminator).d;
+
+    private static Dictionary<Type, SouvenirHandlerAttribute> _handlerAttributes = [];
+    public static SouvenirHandlerAttribute GetHandlerAttribute(this Type moduleEnumType) => _handlerAttributes.Get(moduleEnumType);
+
     static Ut()
     {
-        Attributes = typeof(Question).GetFields(BindingFlags.Public | BindingFlags.Static)
-            .Select(f => Ut.KeyValuePair((Question) f.GetValue(null), GetQuestionAttribute(f)))
-            .Where(kvp => kvp.Value != null)
-            .ToDictionary();
+        foreach (var method in typeof(SouvenirModule).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic))
+            if (method.GetCustomAttribute<SouvenirHandlerAttribute>() is { } hAttr)
+            {
+                hAttr.Handler = (Func<ModuleData, IEnumerator<SouvenirInstruction>>) Delegate.CreateDelegate(typeof(Func<ModuleData, IEnumerator<SouvenirInstruction>>), method);
+                ModuleHandlers[hAttr.ModuleId] = hAttr;
+                _handlerAttributes[hAttr.EnumType] = hAttr;
+                foreach (var field in hAttr.EnumType.GetFields(BindingFlags.Public | BindingFlags.Static))
+                {
+                    if (field.GetCustomAttribute<SouvenirQuestionAttribute>() is { } qAttr)
+                    {
+                        if (field.GetCustomAttributes(typeof(AnswerGeneratorAttribute), false) is AnswerGeneratorAttribute[] agAttrs)
+                            qAttr.AnswerGenerators = agAttrs.Length == 0 ? null : agAttrs;
+                        _attributes.Add((Enum) field.GetValue(null), (hAttr, qAttr, null));
+                    }
+                    else if (field.GetCustomAttribute<SouvenirDiscriminatorAttribute>() is { } dAttr)
+                        _attributes.Add((Enum) field.GetValue(null), (hAttr, null, dAttr));
+                }
+            }
     }
-
-    private static SouvenirQuestionAttribute GetQuestionAttribute(FieldInfo field)
-    {
-        var attribute = field.GetCustomAttribute<SouvenirQuestionAttribute>();
-        if (attribute != null)
-        {
-            attribute.AnswerGenerators = field.GetCustomAttributes(typeof(AnswerGeneratorAttribute), false) as AnswerGeneratorAttribute[];
-            if (attribute.AnswerGenerators.Length is 0)
-                attribute.AnswerGenerators = null;
-        }
-        return attribute;
-    }
-
-    public static Dictionary<Question, SouvenirQuestionAttribute> Attributes;
-    public static bool TryGetAttribute(this Question question, out SouvenirQuestionAttribute attr) => Attributes.TryGetValue(question, out attr);
-    public static SouvenirQuestionAttribute GetAttribute(this Question question) => Attributes[question];
 
     public static string Stringify(this object value) => value switch
     {
@@ -500,7 +504,7 @@ public static class Ut
         if (selectable != null && _copySettingsFromProxyMethod != null)
             _copySettingsFromProxyMethod.Invoke(
                 selectable.GetComponent(_modSelectableType) ?? selectable.gameObject.AddComponent(_modSelectableType),
-                new object[0]);
+                []);
     }
     private static void InitializeUpdateSettings()
     {
@@ -549,25 +553,25 @@ public static class Ut
         }
     }
 
-    public static string[] GetAnswers(this Question question) => !TryGetAttribute(question, out var attr)
-        ? throw new InvalidOperationException($"Question {question} is missing from the Attributes dictionary.")
+    public static string[] GetAnswers(this Enum question) => GetQuestionAttribute(question) is not { } attr
+        ? throw new InvalidOperationException($"Question {question.GetType().Name}.{question} is missing from the Attributes dictionary.")
         : attr.AllAnswers;
 
-    public static string[] GetExampleAnswers(this Question question) => !TryGetAttribute(question, out var attr)
-        ? throw new InvalidOperationException($"Question {question} is missing from the Attributes dictionary.")
+    public static string[] GetExampleAnswers(this Enum question) => GetQuestionAttribute(question) is not { } attr
+        ? throw new InvalidOperationException($"Question {question.GetType().Name}.{question} is missing from the Attributes dictionary.")
         : attr.ExampleAnswers;
 
-    public static Sprite[] GetAllSprites(this Question question, SouvenirModule souv)
+    public static Sprite[] GetAllSprites(this Enum question, SouvenirModule souv)
     {
-        var attr = question.GetAttribute();
+        var attr = question.GetQuestionAttribute();
         return attr.Type != AnswerType.Sprites
             ? throw new AbandonModuleException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.")
             : attr.SpriteFieldName == null ? null : (Sprite[]) attr.SpriteField.GetValue(souv);
     }
 
-    public static AudioClip[] GetAllSounds(this Question question, SouvenirModule souv)
+    public static AudioClip[] GetAllSounds(this Enum question, SouvenirModule souv)
     {
-        var attr = question.GetAttribute();
+        var attr = question.GetQuestionAttribute();
         return attr.Type != AnswerType.Audio || attr.AudioFieldName == null
             ? throw new AbandonModuleException("GetAllSounds() was called on a question that doesn’t use sounds or doesn’t have an associated sounds field.")
             : (AudioClip[]) attr.AudioField.GetValue(souv);

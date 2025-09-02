@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using static Souvenir.Translation_ru.Conjugation;
 
 namespace Souvenir;
@@ -44,7 +44,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         DativePlural,
     }
 
-    public override string FormatModuleName(Question question, bool addSolveCount, int numSolved) => _translations.Get(question) is not TranslationInfo_ru tr
+    public override string FormatModuleName(TextQuestion question, bool addSolveCount, int numSolved) => _translations.Get(question) is not TranslationInfo_ru tr
             ? base.FormatModuleName(question, addSolveCount, numSolved)
             : addSolveCount
             ? tr.Conjugation switch
@@ -79,13 +79,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
     public override string Ordinal(int number) => number.ToString();
 
-    protected override Dictionary<Question, TranslationInfo_ru> _translations => new()
+    protected override Dictionary<TextQuestion, TranslationInfo_ru> _translations => new()
     {
         #region Translatable strings
         // .--/---/.--.
         // What was the display in the {1} stage on {0}?
         // What was the display in the first stage on .--/---/.--.?
-        [Question.MorseWoFDisplays] = new()
+        [TextQuestion.MorseWoFDisplays] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the display in the {1} stage on {0}?",
@@ -94,7 +94,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 0
         // What was the initially displayed number in {0}?
         // What was the initially displayed number in 0?
-        [Question._0Number] = new()
+        [TextQuestion._0Number] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое число было изначально показано на {0}?",
@@ -103,7 +103,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 1000 Words
         // What was the {1} word shown in {0}?
         // What was the first word shown in 1000 Words?
-        [Question._1000WordsWords] = new()
+        [TextQuestion._1000WordsWords] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какое было {1}-е показанное слово {0}?",
@@ -113,7 +113,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 100 Levels of Defusal
         // What was the {1} displayed letter in {0}?
         // What was the first displayed letter in 100 Levels of Defusal?
-        [Question._100LevelsOfDefusalLetters] = new()
+        [TextQuestion._100LevelsOfDefusalLetters] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какая была {1}-я показанная буква {0}?",
@@ -123,13 +123,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The 1, 2, 3 Game
         // Who was the opponent in {0}?
         // Who was the opponent in The 1, 2, 3 Game?
-        [Question._123GameProfile] = new()
+        [TextQuestion._123GameProfile] = new()
         {
             QuestionText = "Кто был вашим оппонентом {0}?",
         },
         // Who was the opponent in {0}?
         // Who was the opponent in The 1, 2, 3 Game?
-        [Question._123GameName] = new()
+        [TextQuestion._123GameName] = new()
         {
             QuestionText = "Кто был вашим оппонентом {0}?",
         },
@@ -137,7 +137,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 1D Chess
         // What was {1} in {0}?
         // What was your first move in 1D Chess?
-        [Question._1DChessMoves] = new()
+        [TextQuestion._1DChessMoves] = new()
         {
             QuestionText = "Каким был {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -164,7 +164,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 21
         // What was the displayed number in {0}?
         // What was the displayed number in 21?
-        [Question._21DisplayedNumber] = new()
+        [TextQuestion._21DisplayedNumber] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the displayed number in {0}?",
@@ -173,7 +173,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 3D Maze
         // What were the markings in {0}?
         // What were the markings in 3D Maze?
-        [Question._3DMazeMarkings] = new()
+        [TextQuestion._3DMazeMarkings] = new()
         {
             Conjugation = Conjugation.NominativeMasculine,
             QuestionText = "Какими буквами был обозначен ваш {0}?",
@@ -181,7 +181,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the cardinal direction in {0}?
         // What was the cardinal direction in 3D Maze?
-        [Question._3DMazeBearing] = new()
+        [TextQuestion._3DMazeBearing] = new()
         {
             QuestionText = "Какое было направление нужной стены {0}?",
             ModuleName = "3D лабиринте",
@@ -197,7 +197,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 3D Tap Code
         // What was the received word in {0}?
         // What was the received word in 3D Tap Code?
-        [Question._3DTapCodeWord] = new()
+        [TextQuestion._3DTapCodeWord] = new()
         {
             QuestionText = "Какое слово было получено {0}?",
         },
@@ -205,7 +205,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 3D Tunnels
         // What was the {1} goal node in {0}?
         // What was the first goal node in 3D Tunnels?
-        [Question._3DTunnelsTargetNode] = new()
+        [TextQuestion._3DTunnelsTargetNode] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какой символ был вашей {1}-й целью {0}?",
@@ -215,7 +215,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 3 LEDs
         // What was the initial state of the LEDs in {0} (in reading order)?
         // What was the initial state of the LEDs in 3 LEDs (in reading order)?
-        [Question._3LEDsInitialState] = new()
+        [TextQuestion._3LEDsInitialState] = new()
         {
             Conjugation = Conjugation.GenitivePlural,
             QuestionText = "Какое было исходное состояние у {0} (в порядке чтения)?",
@@ -235,7 +235,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 3N+1
         // What number was initially displayed in {0}?
         // What number was initially displayed in 3N+1?
-        [Question._3NPlus1] = new()
+        [TextQuestion._3NPlus1] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое число было изначально показано на {0}?",
@@ -244,7 +244,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 64
         // What was the displayed number in {0}?
         // What was the displayed number in 64?
-        [Question._64DisplayedNumber] = new()
+        [TextQuestion._64DisplayedNumber] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое число было показано на {0}?",
@@ -253,7 +253,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 7
         // What was the {1} channel’s initial value in {0}?
         // What was the red channel’s initial value in 7?
-        [Question._7InitialValues] = new()
+        [TextQuestion._7InitialValues] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое было начальное значение {1} канала у {0}?",
@@ -266,7 +266,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What LED color was shown in stage {1} of {0}?
         // What LED color was shown in stage 0 of 7?
-        [Question._7LedColors] = new()
+        [TextQuestion._7LedColors] = new()
         {
             QuestionText = "Какой цвет был у светодиода на {1}-м этапе {0}?",
             Answers = new Dictionary<string, string>
@@ -281,13 +281,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 9-Ball
         // What was the number of ball {1} in {0}?
         // What was the number of ball A in 9-Ball?
-        [Question._9BallLetters] = new()
+        [TextQuestion._9BallLetters] = new()
         {
             QuestionText = "Какой был номер у шара \"{1}\" {0}?",
         },
         // What was the letter of ball {1} in {0}?
         // What was the letter of ball 2 in 9-Ball?
-        [Question._9BallNumbers] = new()
+        [TextQuestion._9BallNumbers] = new()
         {
             QuestionText = "Какая была буква у шара \"{1}\" {0}?",
         },
@@ -295,7 +295,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Abyss
         // What was the {1} character displayed on {0}?
         // What was the first character displayed on Abyss?
-        [Question.AbyssSeed] = new()
+        [TextQuestion.AbyssSeed] = new()
         {
             QuestionText = "Какой был {1}-й показанный символ {0}?",
         },
@@ -303,7 +303,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Accumulation
         // What was the background color on the {1} stage in {0}?
         // What was the background color on the first stage in Accumulation?
-        [Question.AccumulationBackgroundColor] = new()
+        [TextQuestion.AccumulationBackgroundColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была подложка на {1}-м этапе {0}?",
@@ -324,7 +324,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the border color in {0}?
         // What was the border color in Accumulation?
-        [Question.AccumulationBorderColor] = new()
+        [TextQuestion.AccumulationBorderColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета было обрамление у {0}?",
@@ -347,14 +347,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Adventure Game
         // Which item was the {1} correct item you used in {0}?
         // Which item was the first correct item you used in Adventure Game?
-        [Question.AdventureGameCorrectItem] = new()
+        [TextQuestion.AdventureGameCorrectItem] = new()
         {
             QuestionText = "Какой был {1}-й правильный предмет, который вы использовали {0}?",
             ModuleName = "Приключении",
         },
         // What enemy were you fighting in {0}?
         // What enemy were you fighting in Adventure Game?
-        [Question.AdventureGameEnemy] = new()
+        [TextQuestion.AdventureGameEnemy] = new()
         {
             QuestionText = "С каким врагом вы сражались {0}?",
             ModuleName = "Приключении",
@@ -363,14 +363,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Affine Cycle
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Affine Cycle?
-        [Question.AffineCycleDialDirections] = new()
+        [TextQuestion.AffineCycleDialDirections] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // What letter was written on the {1} dial in {0}?
         // What letter was written on the first dial in Affine Cycle?
-        [Question.AffineCycleDialLabels] = new()
+        [TextQuestion.AffineCycleDialLabels] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What letter was written on the {1} dial in {0}?",
@@ -379,7 +379,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Alcoholic Rampage
         // Who was the {1} mercenary displayed in {0}?
         // Who was the first mercenary displayed in Alcoholic Rampage?
-        [Question.AlcoholicRampageMercenaries] = new()
+        [TextQuestion.AlcoholicRampageMercenaries] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Who was the {1} mercenary you killed in {0}?",
@@ -388,7 +388,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // A Letter
         // What was the initial letter in {0}?
         // What was the initial letter in A Letter?
-        [Question.ALetterInitialLetter] = new()
+        [TextQuestion.ALetterInitialLetter] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какая была начальная буква {0}?",
@@ -397,25 +397,25 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Alfa-Bravo
         // Which letter was pressed in {0}?
         // Which letter was pressed in Alfa-Bravo?
-        [Question.AlfaBravoPressedLetter] = new()
+        [TextQuestion.AlfaBravoPressedLetter] = new()
         {
             QuestionText = "Какая буква была нажата {0}?",
         },
         // Which letter was to the left of the pressed one in {0}?
         // Which letter was to the left of the pressed one in Alfa-Bravo?
-        [Question.AlfaBravoLeftPressedLetter] = new()
+        [TextQuestion.AlfaBravoLeftPressedLetter] = new()
         {
             QuestionText = "Какая буква была слева от нажатой {0}?",
         },
         // Which letter was to the right of the pressed one in {0}?
         // Which letter was to the right of the pressed one in Alfa-Bravo?
-        [Question.AlfaBravoRightPressedLetter] = new()
+        [TextQuestion.AlfaBravoRightPressedLetter] = new()
         {
             QuestionText = "Какая буква была справа от нажатой {0}?",
         },
         // What was the last digit on the small display in {0}?
         // What was the last digit on the small display in Alfa-Bravo?
-        [Question.AlfaBravoDigit] = new()
+        [TextQuestion.AlfaBravoDigit] = new()
         {
             QuestionText = "Какая была последняя цифра на маленьком экране {0}?",
         },
@@ -423,7 +423,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Algebra
         // What was the first equation in {0}?
         // What was the first equation in Algebra?
-        [Question.AlgebraEquation1] = new()
+        [TextQuestion.AlgebraEquation1] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какое было первое уравнение {0}?",
@@ -431,7 +431,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the second equation in {0}?
         // What was the second equation in Algebra?
-        [Question.AlgebraEquation2] = new()
+        [TextQuestion.AlgebraEquation2] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какое было второе уравнение {0}?",
@@ -441,7 +441,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Algorithmia
         // Which position was the {1} position in {0}?
         // Which position was the starting position in Algorithmia?
-        [Question.AlgorithmiaPositions] = new()
+        [TextQuestion.AlgorithmiaPositions] = new()
         {
             QuestionText = "Какая позиция была {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -452,13 +452,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the color of the colored bulb in {0}?
         // What was the color of the colored bulb in Algorithmia?
-        [Question.AlgorithmiaColor] = new()
+        [TextQuestion.AlgorithmiaColor] = new()
         {
             QuestionText = "Какого цвета была цветная лампочка {0}?",
         },
         // Which number was present in the seed in {0}?
         // Which number was present in the seed in Algorithmia?
-        [Question.AlgorithmiaSeed] = new()
+        [TextQuestion.AlgorithmiaSeed] = new()
         {
             QuestionText = "Какое число присутствовало в зерне {0}?",
         },
@@ -466,14 +466,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Alphabetical Ruling
         // What was the letter displayed in the {1} stage of {0}?
         // What was the letter displayed in the first stage of Alphabetical Ruling?
-        [Question.AlphabeticalRulingLetter] = new()
+        [TextQuestion.AlphabeticalRulingLetter] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая буква была показана на {1}-м этапе {0}?",
         },
         // What was the number displayed in the {1} stage of {0}?
         // What was the number displayed in the first stage of Alphabetical Ruling?
-        [Question.AlphabeticalRulingNumber] = new()
+        [TextQuestion.AlphabeticalRulingNumber] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое число было показано на {1}-м этапе {0}?",
@@ -482,7 +482,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Alphabet Numbers
         // Which of these numbers was on one of the buttons in the {1} stage of {0}?
         // Which of these numbers was on one of the buttons in the first stage of Alphabet Numbers?
-        [Question.AlphabetNumbersDisplayedNumbers] = new()
+        [TextQuestion.AlphabetNumbersDisplayedNumbers] = new()
         {
             QuestionText = "Какое из этих чисел было на одной из кнопок на {1}-м этапе {0}?",
         },
@@ -490,14 +490,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Alphabet Tiles
         // What was the {1} letter shown during the cycle in {0}?
         // What was the first letter shown during the cycle in Alphabet Tiles?
-        [Question.AlphabetTilesCycle] = new()
+        [TextQuestion.AlphabetTilesCycle] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "В цикле {0}, какая была {1}-я буква?",
         },
         // What was the missing letter in {0}?
         // What was the missing letter in Alphabet Tiles?
-        [Question.AlphabetTilesMissingLetter] = new()
+        [TextQuestion.AlphabetTilesMissingLetter] = new()
         {
             QuestionText = "Какая буква отсутствовала {0}?",
         },
@@ -505,7 +505,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Alpha-Bits
         // What character was displayed on the {1} screen on the {2} in {0}?
         // What character was displayed on the first screen on the left in Alpha-Bits?
-        [Question.AlphaBitsDisplayedCharacters] = new()
+        [TextQuestion.AlphaBitsDisplayedCharacters] = new()
         {
             QuestionText = "Какой символ был на {1}-м экране {2} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -518,7 +518,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // A Message
         // What was the initial message in {0}?
         // What was the initial message in A Message?
-        [Question.AMessageAMessage] = new()
+        [TextQuestion.AMessageAMessage] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the initial message in {0}?",
@@ -527,7 +527,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Amusement Parks
         // Which ride was available in {0}?
         // Which ride was available in Amusement Parks?
-        [Question.AmusementParksRides] = new()
+        [TextQuestion.AmusementParksRides] = new()
         {
             QuestionText = "Какой аттракцион был доступен {0}?",
         },
@@ -535,7 +535,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Ángel Hernández
         // What letter was shown by the raised buttons on the {1} stage on {0}?
         // What letter was shown by the raised buttons on the first stage on Ángel Hernández?
-        [Question.AngelHernandezMainLetter] = new()
+        [TextQuestion.AngelHernandezMainLetter] = new()
         {
             QuestionText = "Какая буква была показана поднятой кнопкой на {1}-м этапе {0}?",
         },
@@ -543,19 +543,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Arena
         // What was the maximum weapon damage of the attack phase in {0}?
         // What was the maximum weapon damage of the attack phase in The Arena?
-        [Question.ArenaDamage] = new()
+        [TextQuestion.ArenaDamage] = new()
         {
             QuestionText = "Какой был максимальный урон оружия в фазе атаки {0}?",
         },
         // Which enemy was present in the defend phase of {0}?
         // Which enemy was present in the defend phase of The Arena?
-        [Question.ArenaEnemies] = new()
+        [TextQuestion.ArenaEnemies] = new()
         {
             QuestionText = "Какой враг присутствовал в фазе защиты {0}?",
         },
         // Which was a number present in the grab phase of {0}?
         // Which was a number present in the grab phase of The Arena?
-        [Question.ArenaNumbers] = new()
+        [TextQuestion.ArenaNumbers] = new()
         {
             QuestionText = "Какое число присутствовало в фазе захвата {0}?",
         },
@@ -563,13 +563,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Arithmelogic
         // What was the symbol on the submit button in {0}?
         // What was the symbol on the submit button in Arithmelogic?
-        [Question.ArithmelogicSubmit] = new()
+        [TextQuestion.ArithmelogicSubmit] = new()
         {
             QuestionText = "Какой символ был на кнопке отправки ответа {0}?",
         },
         // Which number was selectable, but not the solution, in the {1} screen on {0}?
         // Which number was selectable, but not the solution, in the left screen on Arithmelogic?
-        [Question.ArithmelogicNumbers] = new()
+        [TextQuestion.ArithmelogicNumbers] = new()
         {
             QuestionText = "Какое число присутствовало (но не являлось решением) на {1} экране {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -583,7 +583,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // ASCII Maze
         // What was the {1} character displayed on {0}?
         // What was the first character displayed on ASCII Maze?
-        [Question.ASCIIMazeCharacters] = new()
+        [TextQuestion.ASCIIMazeCharacters] = new()
         {
             QuestionText = "Какой был {1}-й символ, отображённый {0}?",
         },
@@ -591,13 +591,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // A Square
         // Which of these was an index color in {0}?
         // Which of these was an index color in A Square?
-        [Question.ASquareIndexColors] = new()
+        [TextQuestion.ASquareIndexColors] = new()
         {
             QuestionText = "Какой из этих цветов был индексным {0}?",
         },
         // Which color was submitted {1} in {0}?
         // Which color was submitted first in A Square?
-        [Question.ASquareCorrectColors] = new()
+        [TextQuestion.ASquareCorrectColors] = new()
         {
             QuestionText = "Какой цвет был отправлен {1}-м {0}?",
         },
@@ -605,7 +605,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Audio Morse
         // What was signaled in {0}?
         // What was signaled in Audio Morse?
-        [Question.AudioMorseSound] = new()
+        [TextQuestion.AudioMorseSound] = new()
         {
             QuestionText = "Что было в сигнале {0}?",
         },
@@ -613,7 +613,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Azure Button
         // What was T in {0}?
         // What was T in The Azure Button?
-        [Question.AzureButtonT] = new()
+        [TextQuestion.AzureButtonT] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Какое была карта T {0}?",
@@ -635,25 +635,25 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which of these cards was shown in Stage 1, but not T, in {0}?
         // Which of these cards was shown in Stage 1, but not T, in The Azure Button?
-        [Question.AzureButtonNotT] = new()
+        [TextQuestion.AzureButtonNotT] = new()
         {
             QuestionText = "Какая из этих карт была показана на первом этапе (но не T) {0}?",
         },
         // What was M in {0}?
         // What was M in The Azure Button?
-        [Question.AzureButtonM] = new()
+        [TextQuestion.AzureButtonM] = new()
         {
             QuestionText = "Какое значение было у M {0}?",
         },
         // What was the {1} direction in the decoy arrow in {0}?
         // What was the first direction in the decoy arrow in The Azure Button?
-        [Question.AzureButtonDecoyArrowDirection] = new()
+        [TextQuestion.AzureButtonDecoyArrowDirection] = new()
         {
             QuestionText = "Какое было {1}-е направление у стрелки-ловушки {0}?",
         },
         // What was the {1} direction in the {2} non-decoy arrow in {0}?
         // What was the first direction in the first non-decoy arrow in The Azure Button?
-        [Question.AzureButtonNonDecoyArrowDirection] = new()
+        [TextQuestion.AzureButtonNonDecoyArrowDirection] = new()
         {
             QuestionText = "Какое было {1}-е направление у {2}-й стрелки (не ловушки) {0}?",
         },
@@ -661,7 +661,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bakery
         // Which menu item was present in {0}?
         // Which menu item was present in Bakery?
-        [Question.BakeryItems] = new()
+        [TextQuestion.BakeryItems] = new()
         {
             QuestionText = "Какая позиция меню присутствовала {0}?",
         },
@@ -669,7 +669,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bamboozled Again
         // What color was the {1} correct button in {0}?
         // What color was the first correct button in Bamboozled Again?
-        [Question.BamboozledAgainButtonColor] = new()
+        [TextQuestion.BamboozledAgainButtonColor] = new()
         {
             QuestionText = "Какого цвета была {1}-я правильная кнопка {0}?",
             ModuleName = "Повторном надувательстве",
@@ -694,28 +694,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the text on the {1} correct button in {0}?
         // What was the text on the first correct button in Bamboozled Again?
-        [Question.BamboozledAgainButtonText] = new()
+        [TextQuestion.BamboozledAgainButtonText] = new()
         {
             QuestionText = "Какая была надпись на {1}-й правильной кнопке {0}?",
             ModuleName = "Повторном надувательстве",
         },
         // What was the {1} decrypted text on the display in {0}?
         // What was the first decrypted text on the display in Bamboozled Again?
-        [Question.BamboozledAgainDisplayTexts1] = new()
+        [TextQuestion.BamboozledAgainDisplayTexts1] = new()
         {
             QuestionText = "Какой был {1}-й расшифрованный текст на экране {0}?",
             ModuleName = "Повторном надувательстве",
         },
         // What was the {1} decrypted text on the display in {0}?
         // What was the first decrypted text on the display in Bamboozled Again?
-        [Question.BamboozledAgainDisplayTexts2] = new()
+        [TextQuestion.BamboozledAgainDisplayTexts2] = new()
         {
             QuestionText = "Какой был {1}-й расшифрованный текст на экране {0}?",
             ModuleName = "Повторном надувательстве",
         },
         // What color was the {1} text on the display in {0}?
         // What color was the first text on the display in Bamboozled Again?
-        [Question.BamboozledAgainDisplayColor] = new()
+        [TextQuestion.BamboozledAgainDisplayColor] = new()
         {
             QuestionText = "Какого цвета был {1}-й текст на экране {0}?",
             ModuleName = "Повторном надувательстве",
@@ -741,7 +741,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bamboozling Button
         // What color was the button in the {1} stage of {0}?
         // What color was the button in the first stage of Bamboozling Button?
-        [Question.BamboozlingButtonColor] = new()
+        [TextQuestion.BamboozlingButtonColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была кнопка на {1}-м этапе {0}?",
@@ -766,7 +766,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {2} label on the button in the {1} stage of {0}?
         // What was the top label on the button in the first stage of Bamboozling Button?
-        [Question.BamboozlingButtonLabel] = new()
+        [TextQuestion.BamboozlingButtonLabel] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была {2} надпись на кнопке на {1}-м этапе {0}?",
@@ -778,14 +778,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {2} display in the {1} stage of {0}?
         // What was the first display in the first stage of Bamboozling Button?
-        [Question.BamboozlingButtonDisplay] = new()
+        [TextQuestion.BamboozlingButtonDisplay] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был {2}-й экран на {1}-м этапе {0}?",
         },
         // What was the color of the {2} display in the {1} stage of {0}?
         // What was the color of the first display in the first stage of Bamboozling Button?
-        [Question.BamboozlingButtonDisplayColor] = new()
+        [TextQuestion.BamboozlingButtonDisplayColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета был {2}-й экран на {1}-м этапе {0}?",
@@ -811,14 +811,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bar Charts
         // What was the category of {0}?
         // What was the category of Bar Charts?
-        [Question.BarChartsCategory] = new()
+        [TextQuestion.BarChartsCategory] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была категория у {0}?",
         },
         // What was the color of the {1} bar in {0}?
         // What was the color of the first bar in Bar Charts?
-        [Question.BarChartsColor] = new()
+        [TextQuestion.BarChartsColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета был {1}-й столбец {0}?",
@@ -832,7 +832,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the position of the {1} bar in {0}?
         // What was the position of the shortest bar in Bar Charts?
-        [Question.BarChartsHeight] = new()
+        [TextQuestion.BarChartsHeight] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Где находился {1} столбец {0}?",
@@ -846,14 +846,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the label of the {1} bar in {0}?
         // What was the label of the first bar in Bar Charts?
-        [Question.BarChartsLabel] = new()
+        [TextQuestion.BarChartsLabel] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая надпись была у {1}-го столбца {0}?",
         },
         // What was the unit of {0}?
         // What was the unit of Bar Charts?
-        [Question.BarChartsUnit] = new()
+        [TextQuestion.BarChartsUnit] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была единица измерения у {0}?",
@@ -862,13 +862,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Barcode Cipher
         // What was the screen number in {0}?
         // What was the screen number in Barcode Cipher?
-        [Question.BarcodeCipherScreenNumber] = new()
+        [TextQuestion.BarcodeCipherScreenNumber] = new()
         {
             QuestionText = "Какой был номер экрана {0}?",
         },
         // What was the edgework represented by the {1} barcode in {0}?
         // What was the edgework represented by the first barcode in Barcode Cipher?
-        [Question.BarcodeCipherBarcodeEdgework] = new()
+        [TextQuestion.BarcodeCipherBarcodeEdgework] = new()
         {
             QuestionText = "Какой компонент бомбы был представлен {1}-м штрихкодом {0}?",
             Answers = new Dictionary<string, string>
@@ -885,7 +885,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the answer for the {1} barcode in {0}?
         // What was the answer for the first barcode in Barcode Cipher?
-        [Question.BarcodeCipherBarcodeAnswers] = new()
+        [TextQuestion.BarcodeCipherBarcodeAnswers] = new()
         {
             QuestionText = "Какой был ответ на {1}-й штрихкод {0}?",
         },
@@ -893,7 +893,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bartending
         // Which ingredient was in the {1} position on {0}?
         // Which ingredient was in the first position on Bartending?
-        [Question.BartendingIngredients] = new()
+        [TextQuestion.BartendingIngredients] = new()
         {
             QuestionText = "Какой ингредиент был на {1}-й позиции {0}?",
             Answers = new Dictionary<string, string>
@@ -909,7 +909,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Beans
         // What was this bean in {0}?
         // What was this bean in Beans?
-        [Question.BeansColors] = new()
+        [TextQuestion.BeansColors] = new()
         {
             QuestionText = "Каким был данный боб {0}?",
             Answers = new Dictionary<string, string>
@@ -926,7 +926,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bean Sprouts
         // What was sprout {1} in {0}?
         // What was sprout 1 in Bean Sprouts?
-        [Question.BeanSproutsColors] = new()
+        [TextQuestion.BeanSproutsColors] = new()
         {
             QuestionText = "Каким был росток {1} {0}?",
             Answers = new Dictionary<string, string>
@@ -939,7 +939,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What bean was on sprout {1} in {0}?
         // What bean was on sprout 1 in Bean Sprouts?
-        [Question.BeanSproutsBeans] = new()
+        [TextQuestion.BeanSproutsBeans] = new()
         {
             QuestionText = "Какой боб был на {1}-м ростке {0}?",
             Answers = new Dictionary<string, string>
@@ -954,7 +954,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Big Bean
         // What was the bean in {0}?
         // What was the bean in Big Bean?
-        [Question.BigBeanColor] = new()
+        [TextQuestion.BigBeanColor] = new()
         {
             QuestionText = "Каким был боб {0}?",
             Answers = new Dictionary<string, string>
@@ -971,7 +971,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Big Circle
         // What color was {1} in the solution to {0}?
         // What color was first in the solution to Big Circle?
-        [Question.BigCircleColors] = new()
+        [TextQuestion.BigCircleColors] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой правильный цвет был {1}-м на {0}?",
@@ -992,7 +992,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Binary LEDs
         // At which numeric value did you cut the correct wire in {0}?
         // At which numeric value did you cut the correct wire in Binary LEDs?
-        [Question.BinaryLEDsValue] = new()
+        [TextQuestion.BinaryLEDsValue] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "На каком числе вы перерезали верный провод {0}?",
@@ -1002,7 +1002,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Binary Shift
         // What was the {1} initial number in {0}?
         // What was the top-left initial number in Binary Shift?
-        [Question.BinaryShiftInitialNumber] = new()
+        [TextQuestion.BinaryShiftInitialNumber] = new()
         {
             QuestionText = "Какое было начальное число {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1020,7 +1020,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What number was selected at stage {1} in {0}?
         // What number was selected at stage 0 in Binary Shift?
-        [Question.BinaryShiftSelectedNumberPossition] = new()
+        [TextQuestion.BinaryShiftSelectedNumberPossition] = new()
         {
             QuestionText = "Какое число было выбрано на {1}-м этапе {0}?",
             Answers = new Dictionary<string, string>
@@ -1038,7 +1038,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What number was not selected at stage {1} in {0}?
         // What number was not selected at stage 0 in Binary Shift?
-        [Question.BinaryShiftNotSelectedNumberPossition] = new()
+        [TextQuestion.BinaryShiftNotSelectedNumberPossition] = new()
         {
             QuestionText = "Какое число не было выбрано на {1}-м этапе {0}?",
             Answers = new Dictionary<string, string>
@@ -1058,7 +1058,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Binary
         // What word was displayed in {0}?
         // What word was displayed in Binary?
-        [Question.BinaryWord] = new()
+        [TextQuestion.BinaryWord] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое слово было отображено на {0}?",
@@ -1067,7 +1067,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bitmaps
         // How many pixels were {1} in the {2} quadrant in {0}?
         // How many pixels were white in the top left quadrant in Bitmaps?
-        [Question.Bitmaps] = new()
+        [TextQuestion.Bitmaps] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Сколько было {1} пикселей в {2} квадранте {0}?",
@@ -1086,7 +1086,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Black Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Black Cipher?
-        [Question.BlackCipherScreen] = new()
+        [TextQuestion.BlackCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1100,7 +1100,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Blindfolded Yahtzee
         // What roll did the module claim in the {1} stage of {0}?
         // What roll did the module claim in the first stage of Blindfolded Yahtzee?
-        [Question.BlindfoldedYahtzeeClaim] = new()
+        [TextQuestion.BlindfoldedYahtzeeClaim] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What roll did the module claim in the {1} stage of {0}?",
@@ -1125,7 +1125,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Blind Maze
         // What color was the {1} button in {0}?
         // What color was the north button in Blind Maze?
-        [Question.BlindMazeColors] = new()
+        [TextQuestion.BlindMazeColors] = new()
         {
             QuestionText = "Какого цвета была {1} кнопка {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1146,7 +1146,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which maze did you solve {0} on?
         // Which maze did you solve Blind Maze on?
-        [Question.BlindMazeMaze] = new()
+        [TextQuestion.BlindMazeMaze] = new()
         {
             QuestionText = "Какой лабиринт вы прошли {0}?",
         },
@@ -1154,7 +1154,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Blinking Notes
         // What song was flashed in {0}?
         // What song was flashed in Blinking Notes?
-        [Question.BlinkingNotesSong] = new()
+        [TextQuestion.BlinkingNotesSong] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая песня мигала на {0}?",
@@ -1163,13 +1163,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Blinkstop
         // How many times did the LED flash in {0}?
         // How many times did the LED flash in Blinkstop?
-        [Question.BlinkstopNumberOfFlashes] = new()
+        [TextQuestion.BlinkstopNumberOfFlashes] = new()
         {
             QuestionText = "Сколько раз мигал светодиод {0}?",
         },
         // Which color did the LED flash the fewest times in {0}?
         // Which color did the LED flash the fewest times in Blinkstop?
-        [Question.BlinkstopFewestFlashedColor] = new()
+        [TextQuestion.BlinkstopFewestFlashedColor] = new()
         {
             QuestionText = "Каким цветом светодиод мигал наименьшее количество раз {0}?",
             Answers = new Dictionary<string, string>
@@ -1184,7 +1184,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Blockbusters
         // What was the last letter pressed on {0}?
         // What was the last letter pressed on Blockbusters?
-        [Question.BlockbustersLastLetter] = new()
+        [TextQuestion.BlockbustersLastLetter] = new()
         {
             QuestionText = "Какая буква была нажата последней {0}?",
         },
@@ -1192,7 +1192,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Blue Arrows
         // What were the characters on the screen in {0}?
         // What were the characters on the screen in Blue Arrows?
-        [Question.BlueArrowsInitialCharacters] = new()
+        [TextQuestion.BlueArrowsInitialCharacters] = new()
         {
             QuestionText = "Какие символы были на экране {0}?",
         },
@@ -1200,7 +1200,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Blue Button
         // What was D in {0}?
         // What was D in The Blue Button?
-        [Question.BlueButtonD] = new()
+        [TextQuestion.BlueButtonD] = new()
         {
             NeedsTranslation = true,
             Conjugation = Conjugation.PrepositiveMascNeuter,
@@ -1218,35 +1218,35 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was {1} in {0}?
         // What was E in The Blue Button?
-        [Question.BlueButtonEFGH] = new()
+        [TextQuestion.BlueButtonEFGH] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое значение было у {1} на {0}?",
         },
         // What was M in {0}?
         // What was M in The Blue Button?
-        [Question.BlueButtonM] = new()
+        [TextQuestion.BlueButtonM] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое значение было у M на {0}?",
         },
         // What was N in {0}?
         // What was N in The Blue Button?
-        [Question.BlueButtonN] = new()
+        [TextQuestion.BlueButtonN] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое значение было у N на {0}?",
         },
         // What was P in {0}?
         // What was P in The Blue Button?
-        [Question.BlueButtonP] = new()
+        [TextQuestion.BlueButtonP] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое значение было у P на {0}?",
         },
         // What was Q in {0}?
         // What was Q in The Blue Button?
-        [Question.BlueButtonQ] = new()
+        [TextQuestion.BlueButtonQ] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое значение было у Q на {0}?",
@@ -1262,7 +1262,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was X in {0}?
         // What was X in The Blue Button?
-        [Question.BlueButtonX] = new()
+        [TextQuestion.BlueButtonX] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое значение было у X на {0}?",
@@ -1271,7 +1271,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Blue Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Blue Cipher?
-        [Question.BlueCipherScreen] = new()
+        [TextQuestion.BlueCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1285,7 +1285,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bob Barks
         // What was the {1} indicator label in {0}?
         // What was the top left indicator label in Bob Barks?
-        [Question.BobBarksIndicators] = new()
+        [TextQuestion.BobBarksIndicators] = new()
         {
             QuestionText = "Какая была надпись {1} индикатора {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1298,7 +1298,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which button flashed {1} in sequence in {0}?
         // Which button flashed first in sequence in Bob Barks?
-        [Question.BobBarksPositions] = new()
+        [TextQuestion.BobBarksPositions] = new()
         {
             QuestionText = "Какая кнопка была {1}-й в последовательности вспышек {0}?",
             Answers = new Dictionary<string, string>
@@ -1313,7 +1313,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Boggle
         // What letter was initially visible on {0}?
         // What letter was initially visible on Boggle?
-        [Question.BoggleLetters] = new()
+        [TextQuestion.BoggleLetters] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая буква была изначально видна на {0}?",
@@ -1322,7 +1322,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bomb Diffusal
         // What was the license number in {0}?
         // What was the license number in Bomb Diffusal?
-        [Question.BombDiffusalLicenseNumber] = new()
+        [TextQuestion.BombDiffusalLicenseNumber] = new()
         {
             QuestionText = "Какой был номер лицензии {0}?",
         },
@@ -1330,7 +1330,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bone Apple Tea
         // Which phrase was shown on {0}?
         // Which phrase was shown on Bone Apple Tea?
-        [Question.BoneAppleTeaPhrase] = new()
+        [TextQuestion.BoneAppleTeaPhrase] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая фраза была показана на {0}?",
@@ -1340,7 +1340,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Boob Tube
         // Which word was shown on {0}?
         // Which word was shown on Boob Tube?
-        [Question.BoobTubeWord] = new()
+        [TextQuestion.BoobTubeWord] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое слово было показано на {0}?",
@@ -1349,13 +1349,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Book of Mario
         // Who said the {1} quote in {0}?
         // Who said the first quote in Book of Mario?
-        [Question.BookOfMarioPictures] = new()
+        [TextQuestion.BookOfMarioPictures] = new()
         {
             QuestionText = "Кто сказал {1}-ю цитату {0}?",
         },
         // What did {1} say in the {2} stage of {0}?
         // What did Goombell say in the first stage of Book of Mario?
-        [Question.BookOfMarioQuotes] = new()
+        [TextQuestion.BookOfMarioQuotes] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Что сказал {1} на {2}-м этапе {0}?",
@@ -1364,7 +1364,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Boolean Wires
         // Which operator did you submit in the {1} stage of {0}?
         // Which operator did you submit in the first stage of Boolean Wires?
-        [Question.BooleanWiresEnteredOperators] = new()
+        [TextQuestion.BooleanWiresEnteredOperators] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой оператор был ответом на {1}-м этапе {0}?",
@@ -1373,7 +1373,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Boomtar the Great
         // What was rule {1} in {0}?
         // What was rule one in Boomtar the Great?
-        [Question.BoomtarTheGreatRules] = new()
+        [TextQuestion.BoomtarTheGreatRules] = new()
         {
             QuestionText = "Какое было {1} правило {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1386,7 +1386,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bordered Keys
         // What was the {1} key’s border color when it was pressed in {0}?
         // What was the first key’s border color when it was pressed in Bordered Keys?
-        [Question.BorderedKeysBorderColor] = new()
+        [TextQuestion.BorderedKeysBorderColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была рамка, когда вы нажали {1}-ю клавишу {0}?",
@@ -1402,14 +1402,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the digit displayed when the {1} key was pressed in {0}?
         // What was the digit displayed when the first key was pressed in Bordered Keys?
-        [Question.BorderedKeysDigit] = new()
+        [TextQuestion.BorderedKeysDigit] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая цифра отображалась на дисплее, когда вы нажали {1}-ю клавишу {0}?",
         },
         // What was the {1} key’s key color when it was pressed in {0}?
         // What was the first key’s key color when it was pressed in Bordered Keys?
-        [Question.BorderedKeysKeyColor] = new()
+        [TextQuestion.BorderedKeysKeyColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была клавиша, когда вы нажали {1}-ю клавишу {0}?",
@@ -1425,14 +1425,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} key’s label when it was pressed in {0}?
         // What was the first key’s label when it was pressed in Bordered Keys?
-        [Question.BorderedKeysLabel] = new()
+        [TextQuestion.BorderedKeysLabel] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была надпись, когда вы нажали {1}-ю клавишу {0}?",
         },
         // What was the {1} key’s label color when it was pressed in {0}?
         // What was the first key’s label color when it was pressed in Bordered Keys?
-        [Question.BorderedKeysLabelColor] = new()
+        [TextQuestion.BorderedKeysLabelColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была надпись, когда вы нажали {1}-ю клавишу {0}?",
@@ -1450,7 +1450,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bottom Gear
         // What tweet was shown in {0}?
         // What tweet was shown in Bottom Gear?
-        [Question.BottomGearTweet] = new()
+        [TextQuestion.BottomGearTweet] = new()
         {
             QuestionText = "Какой твит был показан {0}?",
         },
@@ -1458,7 +1458,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Boxing
         // Which {1} appeared on {0}?
         // Which contestant’s first name appeared on Boxing?
-        [Question.BoxingNames] = new()
+        [TextQuestion.BoxingNames] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "{1} было показано на {0}?",
@@ -1472,7 +1472,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} of the contestant with strength rating {2} on {0}?
         // What was the first name of the contestant with strength rating 0 on Boxing?
-        [Question.BoxingContestantByStrength] = new()
+        [TextQuestion.BoxingContestantByStrength] = new()
         {
             QuestionText = "{1} участника с оценкой силы {2} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1485,7 +1485,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was {1}’s strength rating on {0}?
         // What was Muhammad’s strength rating on Boxing?
-        [Question.BoxingStrengthByContestant] = new()
+        [TextQuestion.BoxingStrengthByContestant] = new()
         {
             QuestionText = "Какая была оценка силы у {1} {0}?",
         },
@@ -1493,7 +1493,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Braille
         // What was the {1} pattern in {0}?
         // What was the first pattern in Braille?
-        [Question.BraillePattern] = new()
+        [TextQuestion.BraillePattern] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был {1}-й паттерн {0}?",
@@ -1503,7 +1503,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Breakfast Egg
         // Which color appeared on the egg in {0}?
         // Which color appeared on the egg in Breakfast Egg?
-        [Question.BreakfastEggColor] = new()
+        [TextQuestion.BreakfastEggColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был цвет у {0}?",
@@ -1522,7 +1522,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Broken Buttons
         // What was the {1} correct button you pressed in {0}?
         // What was the first correct button you pressed in Broken Buttons?
-        [Question.BrokenButtons] = new()
+        [TextQuestion.BrokenButtons] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какая была {1}-я правильная нажатая кнопка {0}?",
@@ -1532,14 +1532,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Broken Guitar Chords
         // What was the displayed chord in {0}?
         // What was the displayed chord in Broken Guitar Chords?
-        [Question.BrokenGuitarChordsDisplayedChord] = new()
+        [TextQuestion.BrokenGuitarChordsDisplayedChord] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой аккорд был показан на {0}?",
         },
         // In which position, from left to right, was the broken string in {0}?
         // In which position, from left to right, was the broken string in Broken Guitar Chords?
-        [Question.BrokenGuitarChordsMutedString] = new()
+        [TextQuestion.BrokenGuitarChordsMutedString] = new()
         {
             QuestionText = "На какой позиции (слева направо) была сломанная струна {0}?",
         },
@@ -1547,7 +1547,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Brown Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Brown Cipher?
-        [Question.BrownCipherScreen] = new()
+        [TextQuestion.BrownCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1561,7 +1561,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Brush Strokes
         // What was the color of the middle contact point in {0}?
         // What was the color of the middle contact point in Brush Strokes?
-        [Question.BrushStrokesMiddleColor] = new()
+        [TextQuestion.BrushStrokesMiddleColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была центральная точка {0}?",
@@ -1588,7 +1588,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Bulb
         // Was the bulb initially lit in {0}?
         // Was the bulb initially lit in The Bulb?
-        [Question.BulbInitialState] = new()
+        [TextQuestion.BulbInitialState] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Was the bulb initially lit in {0}?",
@@ -1597,13 +1597,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Burger Alarm
         // What was the {1} displayed digit in {0}?
         // What was the first displayed digit in Burger Alarm?
-        [Question.BurgerAlarmDigits] = new()
+        [TextQuestion.BurgerAlarmDigits] = new()
         {
             QuestionText = "Какая была {1}-я цифра {0}?",
         },
         // What was the {1} order number in {0}?
         // What was the first order number in Burger Alarm?
-        [Question.BurgerAlarmOrderNumbers] = new()
+        [TextQuestion.BurgerAlarmOrderNumbers] = new()
         {
             QuestionText = "Какой был номер {1}-го заказа {0}?",
         },
@@ -1611,7 +1611,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Burglar Alarm
         // What was the {1} displayed digit in {0}?
         // What was the first displayed digit in Burglar Alarm?
-        [Question.BurglarAlarmDigits] = new()
+        [TextQuestion.BurglarAlarmDigits] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какая была {1}-я цифра {0}?",
@@ -1621,7 +1621,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Button
         // What color did the light glow in {0}?
         // What color did the light glow in The Button?
-        [Question.ButtonLightColor] = new()
+        [TextQuestion.ButtonLightColor] = new()
         {
             Conjugation = Conjugation.GenitiveFeminine,
             QuestionText = "Каким цветом горела цветная полоска {0}?",
@@ -1638,7 +1638,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Buttonage
         // How many {1} buttons were there on {0}?
         // How many red buttons were there on Buttonage?
-        [Question.ButtonageButtons] = new()
+        [TextQuestion.ButtonageButtons] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Сколько {1} было на {0}?",
@@ -1663,7 +1663,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Button Sequence
         // How many of the buttons in {0} were {1}?
         // How many of the buttons in Button Sequence were red?
-        [Question.ButtonSequencesColorOccurrences] = new()
+        [TextQuestion.ButtonSequencesColorOccurrences] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Сколько было {1} кнопок {0}?",
@@ -1680,7 +1680,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cacti’s Conundrum
         // What color was the LED in the {1} stage of {0}?
         // What color was the LED in the first stage of Cacti’s Conundrum?
-        [Question.CactisConundrumColor] = new()
+        [TextQuestion.CactisConundrumColor] = new()
         {
             QuestionText = "Какого цвета был светодиод на {1}-м этапе {0}?",
             Answers = new Dictionary<string, string>
@@ -1695,14 +1695,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Caesar Cycle
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Caesar Cycle?
-        [Question.CaesarCycleDialDirections] = new()
+        [TextQuestion.CaesarCycleDialDirections] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // What letter was written on the {1} dial in {0}?
         // What letter was written on the first dial in Caesar Cycle?
-        [Question.CaesarCycleDialLabels] = new()
+        [TextQuestion.CaesarCycleDialLabels] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What letter was written on the {1} dial in {0}?",
@@ -1711,13 +1711,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Caesar Psycho
         // What text was on the top display in the {1} stage of {0}?
         // What text was on the top display in the first stage of Caesar Psycho?
-        [Question.CaesarPsychoScreenTexts] = new()
+        [TextQuestion.CaesarPsychoScreenTexts] = new()
         {
             QuestionText = "Какой текст был на верхнем экране на {1}-м этапе {0}?",
         },
         // What color was the text on the top display in the second stage of {0}?
         // What color was the text on the top display in the second stage of Caesar Psycho?
-        [Question.CaesarPsychoScreenColor] = new()
+        [TextQuestion.CaesarPsychoScreenColor] = new()
         {
             QuestionText = "Какого цвета был текст на верхнем экране на втором этапе {0}?",
         },
@@ -1725,7 +1725,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Calendar
         // What was the LED color in {0}?
         // What was the LED color in Calendar?
-        [Question.CalendarLedColor] = new()
+        [TextQuestion.CalendarLedColor] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какого цвета был индикатор на {0}?",
@@ -1742,7 +1742,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // CA-RPS
         // What color was this cell initially in {0}?
         // What color was this cell initially in CA-RPS?
-        [Question.CARPSCell] = new()
+        [TextQuestion.CARPSCell] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была эта клетка в начале {0}?",
@@ -1758,7 +1758,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cartinese
         // What color was the {1} button in {0}?
         // What color was the up button in Cartinese?
-        [Question.CartineseButtonColors] = new()
+        [TextQuestion.CartineseButtonColors] = new()
         {
             QuestionText = "Какого цвета была кнопка \"{1}\" {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1778,7 +1778,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What lyric was played by the {1} button in {0}?
         // What lyric was played by the up button in Cartinese?
-        [Question.CartineseLyrics] = new()
+        [TextQuestion.CartineseLyrics] = new()
         {
             QuestionText = "Какая лирика прозвучала при нажатии кнопки \"{1}\" {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1793,7 +1793,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Catchphrase
         // What was the colour of the {1} panel in {0}?
         // What was the colour of the top-left panel in Catchphrase?
-        [Question.CatchphraseColour] = new()
+        [TextQuestion.CatchphraseColour] = new()
         {
             QuestionText = "Какого цвета была панель {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1817,7 +1817,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Challenge & Contact
         // What was the {1} submitted answer in {0}?
         // What was the first submitted answer in Challenge & Contact?
-        [Question.ChallengeAndContactAnswers] = new()
+        [TextQuestion.ChallengeAndContactAnswers] = new()
         {
             QuestionText = "Какой был {1}-й введённый ответ {0}?",
         },
@@ -1825,7 +1825,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Character Codes
         // What was the {1} character in {0}?
         // What was the first character in Character Codes?
-        [Question.CharacterCodesCharacter] = new()
+        [TextQuestion.CharacterCodesCharacter] = new()
         {
             QuestionText = "Какой был {1}-й символ {0}?",
         },
@@ -1833,13 +1833,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Character Shift
         // Which letter was present but not submitted on the left slider of {0}?
         // Which letter was present but not submitted on the left slider of Character Shift?
-        [Question.CharacterShiftLetters] = new()
+        [TextQuestion.CharacterShiftLetters] = new()
         {
             QuestionText = "Какой символ присутствовал, но не был введён на левом ползунке {0}?",
         },
         // Which digit was present but not submitted on the right slider of {0}?
         // Which digit was present but not submitted on the right slider of Character Shift?
-        [Question.CharacterShiftDigits] = new()
+        [TextQuestion.CharacterShiftDigits] = new()
         {
             QuestionText = "Какая цифра присутствовала, но не была введён на правом ползунке {0}?",
         },
@@ -1847,7 +1847,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Character Slots
         // Who was displayed in the {1} slot in the {2} stage of {0}?
         // Who was displayed in the first slot in the first stage of Character Slots?
-        [Question.CharacterSlotsDisplayedCharacters] = new()
+        [TextQuestion.CharacterSlotsDisplayedCharacters] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Кто был показан в {1}-м слоте на {2}-м этапе {0}?",
@@ -1856,7 +1856,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cheap Checkout
         // What was {1} in {0}?
         // What was the paid amount in Cheap Checkout?
-        [Question.CheapCheckoutPaid] = new()
+        [TextQuestion.CheapCheckoutPaid] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "{1} {0}?",
@@ -1872,21 +1872,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cheat Checkout
         // What was the cryptocurrency of {0}?
         // What was the cryptocurrency of Cheat Checkout?
-        [Question.CheatCheckoutCurrency] = new()
+        [TextQuestion.CheatCheckoutCurrency] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the cryptocurrency of {0}?",
         },
         // What was the hack method for the {1} hack of {0}?
         // What was the hack method for the first hack of Cheat Checkout?
-        [Question.CheatCheckoutHack] = new()
+        [TextQuestion.CheatCheckoutHack] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the hack method for the {1} hack of {0}?",
         },
         // What was the site for the {1} hack of {0}?
         // What was the site for the first hack of Cheat Checkout?
-        [Question.CheatCheckoutSite] = new()
+        [TextQuestion.CheatCheckoutSite] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the site for the {1} hack of {0}?",
@@ -1895,7 +1895,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cheep Checkout
         // Which bird {1} present in {0}?
         // Which bird was present in Cheep Checkout?
-        [Question.CheepCheckoutBirds] = new()
+        [TextQuestion.CheepCheckoutBirds] = new()
         {
             QuestionText = "Какая птица {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1937,7 +1937,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Chess
         // What was the {1} coordinate in {0}?
         // What was the first coordinate in Chess?
-        [Question.ChessCoordinate] = new()
+        [TextQuestion.ChessCoordinate] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какие были {1}-е координаты {0}?",
@@ -1947,7 +1947,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Chinese Counting
         // What color was the {1} LED in {0}?
         // What color was the left LED in Chinese Counting?
-        [Question.ChineseCountingLED] = new()
+        [TextQuestion.ChineseCountingLED] = new()
         {
             QuestionText = "Какой был цвет {1} светодиода {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -1967,7 +1967,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Chinese Remainder Theorem
         // Which equation was used in {0}?
         // Which equation was used in Chinese Remainder Theorem?
-        [Question.ChineseRemainderTheoremEquations] = new()
+        [TextQuestion.ChineseRemainderTheoremEquations] = new()
         {
             QuestionText = "Какое уравнение было использовано {0}?",
         },
@@ -1975,7 +1975,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Chord Qualities
         // Which note was part of the given chord in {0}?
         // Which note was part of the given chord in Chord Qualities?
-        [Question.ChordQualitiesNotes] = new()
+        [TextQuestion.ChordQualitiesNotes] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какая нота присутствовала в начальном аккорде {0}?",
@@ -1985,7 +1985,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // ↻↺
         // Which arrow was shown in {0}?
         // Which arrow was shown in ↻↺?
-        [Question.ClockCounterArrows] = new()
+        [TextQuestion.ClockCounterArrows] = new()
         {
             QuestionText = "Какая стрелка была показана {0}?",
         },
@@ -1993,7 +1993,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Code
         // What was the displayed number in {0}?
         // What was the displayed number in The Code?
-        [Question.CodeDisplayNumber] = new()
+        [TextQuestion.CodeDisplayNumber] = new()
         {
             QuestionText = "Какое было показанное число {0}?",
             ModuleName = "Коде",
@@ -2002,7 +2002,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Codenames
         // Which of these words was submitted in {0}?
         // Which of these words was submitted in Codenames?
-        [Question.CodenamesAnswers] = new()
+        [TextQuestion.CodenamesAnswers] = new()
         {
             QuestionText = "Какое из слов было введено {0}?",
         },
@@ -2010,7 +2010,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Coffee Beans
         // What was the {1} movement in {0}?
         // What was the first movement in Coffee Beans?
-        [Question.CoffeeBeansMovements] = new()
+        [TextQuestion.CoffeeBeansMovements] = new()
         {
             QuestionText = "Какое было {1}-е движение {0}?",
             Answers = new Dictionary<string, string>
@@ -2025,7 +2025,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Coffeebucks
         // What was the last served coffee in {0}?
         // What was the last served coffee in Coffeebucks?
-        [Question.CoffeebucksCoffee] = new()
+        [TextQuestion.CoffeebucksCoffee] = new()
         {
             QuestionText = "Какое было последне поданное кофе {0}?",
         },
@@ -2033,7 +2033,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Coinage
         // Which coin was flipped in {0}?
         // Which coin was flipped in Coinage?
-        [Question.CoinageFlip] = new()
+        [TextQuestion.CoinageFlip] = new()
         {
             QuestionText = "Какая монета была перевёрнута {0}?",
         },
@@ -2041,7 +2041,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Color Addition
         // What was {1}’s number in {0}?
         // What was red’s number in Color Addition?
-        [Question.ColorAdditionNumbers] = new()
+        [TextQuestion.ColorAdditionNumbers] = new()
         {
             QuestionText = "Какое было {1} число {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2055,7 +2055,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Color Braille
         // What color was this dot in {0}?
         // What color was this dot in Color Braille?
-        [Question.ColorBrailleColor] = new()
+        [TextQuestion.ColorBrailleColor] = new()
         {
             QuestionText = "Какого цвета была эта точка {0}?",
             Answers = new Dictionary<string, string>
@@ -2074,7 +2074,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Color Decoding
         // What was the {1}-stage indicator pattern in {0}?
         // What was the first-stage indicator pattern in Color Decoding?
-        [Question.ColorDecodingIndicatorPattern] = new()
+        [TextQuestion.ColorDecodingIndicatorPattern] = new()
         {
             Conjugation = Conjugation.GenitiveFeminine,
             QuestionText = "Какой был узор индикатора на {1}-м этапе {0}?",
@@ -2089,7 +2089,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which color {1} in the {2}-stage indicator pattern in {0}?
         // Which color appeared in the first-stage indicator pattern in Color Decoding?
-        [Question.ColorDecodingIndicatorColors] = new()
+        [TextQuestion.ColorDecodingIndicatorColors] = new()
         {
             Conjugation = Conjugation.GenitiveFeminine,
             QuestionText = "Какой цвет {1} на узоре индикатора на {2}-м этапе {0}?",
@@ -2112,7 +2112,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Colored Keys
         // What was the displayed word in {0}?
         // What was the displayed word in Colored Keys?
-        [Question.ColoredKeysDisplayWord] = new()
+        [TextQuestion.ColoredKeysDisplayWord] = new()
         {
             Conjugation = Conjugation.PrepositivePlural,
             QuestionText = "Какое слово было отображено на дисплее на {0}?",
@@ -2129,7 +2129,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the displayed word’s color in {0}?
         // What was the displayed word’s color in Colored Keys?
-        [Question.ColoredKeysDisplayWordColor] = new()
+        [TextQuestion.ColoredKeysDisplayWordColor] = new()
         {
             QuestionText = "Какого цвета было отображённое слово {0}?",
             Answers = new Dictionary<string, string>
@@ -2144,7 +2144,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the color of the {1} key in {0}?
         // What was the color of the top-left key in Colored Keys?
-        [Question.ColoredKeysKeyColor] = new()
+        [TextQuestion.ColoredKeysKeyColor] = new()
         {
             QuestionText = "Какого цвета была {1} кнопка {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2166,7 +2166,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What letter was on the {1} key in {0}?
         // What letter was on the top-left key in Colored Keys?
-        [Question.ColoredKeysKeyLetter] = new()
+        [TextQuestion.ColoredKeysKeyLetter] = new()
         {
             QuestionText = "Какая буква была на {1} кнопке на {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2181,7 +2181,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Colored Squares
         // What was the first color group in {0}?
         // What was the first color group in Colored Squares?
-        [Question.ColoredSquaresFirstGroup] = new()
+        [TextQuestion.ColoredSquaresFirstGroup] = new()
         {
             Conjugation = Conjugation.PrepositivePlural,
             QuestionText = "Какого цвета была первая группа на {0}?",
@@ -2200,7 +2200,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Colored Switches
         // What was the initial position of the switches in {0}?
         // What was the initial position of the switches in Colored Switches?
-        [Question.ColoredSwitchesInitialPosition] = new()
+        [TextQuestion.ColoredSwitchesInitialPosition] = new()
         {
             Conjugation = Conjugation.GenitivePlural,
             QuestionText = "Какое было начальное положение {0}?",
@@ -2208,7 +2208,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the position of the switches when the LEDs came on in {0}?
         // What was the position of the switches when the LEDs came on in Colored Switches?
-        [Question.ColoredSwitchesWhenLEDsCameOn] = new()
+        [TextQuestion.ColoredSwitchesWhenLEDsCameOn] = new()
         {
             Conjugation = Conjugation.GenitivePlural,
             QuestionText = "Какое было положение у {0}, когда загорелись светодиоды?",
@@ -2218,7 +2218,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Color Morse
         // What was the color of the {1} LED in {0}?
         // What was the color of the first LED in Color Morse?
-        [Question.ColorMorseColor] = new()
+        [TextQuestion.ColorMorseColor] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какой был цвет {1}-го светодиода {0}?",
@@ -2236,7 +2236,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What character was flashed by the {1} LED in {0}?
         // What character was flashed by the first LED in Color Morse?
-        [Question.ColorMorseCharacter] = new()
+        [TextQuestion.ColorMorseCharacter] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какой символ передавался через Морзе {1}-м светодиодом {0}?",
@@ -2246,7 +2246,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Color One Two
         // What color was the {1} LED in {0}?
         // What color was the left LED in Color One Two?
-        [Question.ColorOneTwoColor] = new()
+        [TextQuestion.ColorOneTwoColor] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какого цвета был {1} светодиод на {0}?",
@@ -2268,7 +2268,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Colors Maximization
         // How many buttons were {1} in {0}?
         // How many buttons were red in Colors Maximization?
-        [Question.ColorsMaximizationColorCount] = new()
+        [TextQuestion.ColorsMaximizationColorCount] = new()
         {
             QuestionText = "Сколько было {1} кнопок {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2282,7 +2282,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Coloured Cubes
         // What was the colour of this {1} in the {2} stage of {0}?
         // What was the colour of this cube in the first stage of Coloured Cubes?
-        [Question.ColouredCubesColours] = new()
+        [TextQuestion.ColouredCubesColours] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был цвет данного {1} на {2}-м этапе {0}?",
@@ -2326,7 +2326,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Coloured Cylinder
         // What was the {1} colour flashed on the cylinder in {0}?
         // What was the first colour flashed on the cylinder in Coloured Cylinder?
-        [Question.ColouredCylinderColours] = new()
+        [TextQuestion.ColouredCylinderColours] = new()
         {
             QuestionText = "Какой цвет мигал {1}-м на цилиндре {0}?",
             Answers = new Dictionary<string, string>
@@ -2344,7 +2344,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Colour Flash
         // What was the color of the last word in the sequence in {0}?
         // What was the color of the last word in the sequence in Colour Flash?
-        [Question.ColourFlashLastColor] = new()
+        [TextQuestion.ColourFlashLastColor] = new()
         {
             Conjugation = Conjugation.GenitiveFeminine,
             QuestionText = "Какого цвета было последнее слово в последовательности {0}?",
@@ -2363,7 +2363,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Concentration
         // What number began here in {0}?
         // What number began here in Concentration?
-        [Question.ConcentrationStartingDigit] = new()
+        [TextQuestion.ConcentrationStartingDigit] = new()
         {
             QuestionText = "Какое число было здесь изначально {0}?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
@@ -2375,7 +2375,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Conditional Buttons
         // What was the color of this button in {0}?
         // What was the color of this button in Conditional Buttons?
-        [Question.ConditionalButtonsColors] = new()
+        [TextQuestion.ConditionalButtonsColors] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какого цвета была эта кнопка на {0}?",
@@ -2397,13 +2397,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Connected Monitors
         // What number was initially displayed on this screen in {0}?
         // What number was initially displayed on this screen in Connected Monitors?
-        [Question.ConnectedMonitorsNumber] = new()
+        [TextQuestion.ConnectedMonitorsNumber] = new()
         {
             QuestionText = "Какое число было изначально отображено на данном экране {0}?",
         },
         // What colour was the indicator on this screen in {0}?
         // What colour was the indicator on this screen in Connected Monitors?
-        [Question.ConnectedMonitorsSingleIndicator] = new()
+        [TextQuestion.ConnectedMonitorsSingleIndicator] = new()
         {
             QuestionText = "Какого цвета был индикатор на данном экране {0}?",
             Answers = new Dictionary<string, string>
@@ -2418,7 +2418,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What colour was the {1} indicator on this screen in {0}?
         // What colour was the first indicator on this screen in Connected Monitors?
-        [Question.ConnectedMonitorsOrdinalIndicator] = new()
+        [TextQuestion.ConnectedMonitorsOrdinalIndicator] = new()
         {
             QuestionText = "Какого цвета был {1}-й индикатор на данном экране {0}?",
             Answers = new Dictionary<string, string>
@@ -2435,7 +2435,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Connection Check
         // What pair of numbers was present in {0}?
         // What pair of numbers was present in Connection Check?
-        [Question.ConnectionCheckNumbers] = new()
+        [TextQuestion.ConnectionCheckNumbers] = new()
         {
             NeedsTranslation = true,
             Conjugation = Conjugation.в_PrepositiveFeminine,
@@ -2454,7 +2454,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Coordinates
         // What was the solution you selected first in {0}?
         // What was the solution you selected first in Coordinates?
-        [Question.CoordinatesFirstSolution] = new()
+        [TextQuestion.CoordinatesFirstSolution] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какую координату вы выбрали первой {0}?",
@@ -2462,7 +2462,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the grid size in {0}?
         // What was the grid size in Coordinates?
-        [Question.CoordinatesSize] = new()
+        [TextQuestion.CoordinatesSize] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "В каком формате был указан размер сетки {0}?",
@@ -2472,14 +2472,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Coordination
         // What was the label of the starting coordinate in {0}?
         // What was the label of the starting coordinate in Coordination?
-        [Question.CoordinationLabel] = new()
+        [TextQuestion.CoordinationLabel] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the label of the starting coordinate in {0}?",
         },
         // Where was the starting coordinate in {0}?
         // Where was the starting coordinate in Coordination?
-        [Question.CoordinationPosition] = new()
+        [TextQuestion.CoordinationPosition] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Where was the starting coordinate in {0}?",
@@ -2488,7 +2488,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Coral Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Coral Cipher?
-        [Question.CoralCipherScreen] = new()
+        [TextQuestion.CoralCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2502,7 +2502,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Corners
         // What was the color of the {1} corner in {0}?
         // What was the color of the top-left corner in Corners?
-        [Question.CornersColors] = new()
+        [TextQuestion.CornersColors] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какого цвета был {1} угол {0}?",
@@ -2524,7 +2524,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // How many corners in {0} were {1}?
         // How many corners in Corners were red?
-        [Question.CornersColorCount] = new()
+        [TextQuestion.CornersColorCount] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Сколько было {1} углов {0}?",
@@ -2541,7 +2541,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cornflower Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Cornflower Cipher?
-        [Question.CornflowerCipherScreen] = new()
+        [TextQuestion.CornflowerCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2555,7 +2555,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cosmic
         // What was the number initially shown in {0}?
         // What was the number initially shown in Cosmic?
-        [Question.CosmicNumber] = new()
+        [TextQuestion.CosmicNumber] = new()
         {
             QuestionText = "Какое число было изначально показано {0}?",
         },
@@ -2563,7 +2563,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Crazy Hamburger
         // What was the {1} ingredient shown in {0}?
         // What was the first ingredient shown in Crazy Hamburger?
-        [Question.CrazyHamburgerIngredient] = new()
+        [TextQuestion.CrazyHamburgerIngredient] = new()
         {
             QuestionText = "Какой был {1}-й показанный ингредиент {0}?",
         },
@@ -2571,7 +2571,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Crazy Maze
         // What was the {1} location in {0}?
         // What was the starting location in Crazy Maze?
-        [Question.CrazyMazeStartOrGoal] = new()
+        [TextQuestion.CrazyMazeStartOrGoal] = new()
         {
             QuestionText = "Какая была {1} позиция {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2584,7 +2584,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cream Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Cream Cipher?
-        [Question.CreamCipherScreen] = new()
+        [TextQuestion.CreamCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2598,7 +2598,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Creation
         // What were the weather conditions on the {1} day in {0}?
         // What were the weather conditions on the first day in Creation?
-        [Question.CreationWeather] = new()
+        [TextQuestion.CreationWeather] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая погода была на {1}-м дне {0}?",
@@ -2616,7 +2616,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Crimson Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Crimson Cipher?
-        [Question.CrimsonCipherScreen] = new()
+        [TextQuestion.CrimsonCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2630,7 +2630,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Critters
         // What was the color in {0}?
         // What was the color in Critters?
-        [Question.CrittersColor] = new()
+        [TextQuestion.CrittersColor] = new()
         {
             QuestionText = "Какой цвет использовался {0}?",
             Answers = new Dictionary<string, string>
@@ -2645,7 +2645,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cruel Binary
         // What was the displayed word in {0}?
         // What was the displayed word in Cruel Binary?
-        [Question.CruelBinaryDisplayedWord] = new()
+        [TextQuestion.CruelBinaryDisplayedWord] = new()
         {
             QuestionText = "Какое слово было показано {0}?",
         },
@@ -2653,14 +2653,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cruel Keypads
         // Which of these characters appeared in the {1} stage of {0}?
         // Which of these characters appeared in the first stage of Cruel Keypads?
-        [Question.CruelKeypadsDisplayedSymbols] = new()
+        [TextQuestion.CruelKeypadsDisplayedSymbols] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой из этих символов появился на {1}-м этапе {0}?",
         },
         // What was the color of the bar in the {1} stage of {0}?
         // What was the color of the bar in the first stage of Cruel Keypads?
-        [Question.CruelKeypadsColors] = new()
+        [TextQuestion.CruelKeypadsColors] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была шкала на {1}-м этапе {0}?",
@@ -2678,26 +2678,26 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The cRule
         // Which cell was pre-filled at the start of {0}?
         // Which cell was pre-filled at the start of The cRule?
-        [Question.CRulePrefilled] = new()
+        [TextQuestion.CRulePrefilled] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая клетка была уже заполнена в начале {0}?",
         },
         // Which symbol pair was here in {0}?
         // Which symbol pair was here in The cRule?
-        [Question.CRuleSymbolPair] = new()
+        [TextQuestion.CRuleSymbolPair] = new()
         {
             QuestionText = "Какая пара символов была здесь {0}?",
         },
         // Which symbol pair was present on {0}?
         // Which symbol pair was present on The cRule?
-        [Question.CRuleSymbolPairPresent] = new()
+        [TextQuestion.CRuleSymbolPairPresent] = new()
         {
             QuestionText = "Какая пара символов присутствовала {0}?",
         },
         // Where was {1} in {0}?
         // Where was ♤♤ in The cRule?
-        [Question.CRuleSymbolPairCell] = new()
+        [TextQuestion.CRuleSymbolPairCell] = new()
         {
             QuestionText = "Где находилось {1} {0}?",
         },
@@ -2705,14 +2705,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cryptic Cycle
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Cryptic Cycle?
-        [Question.CrypticCycleDialDirections] = new()
+        [TextQuestion.CrypticCycleDialDirections] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // What letter was written on the {1} dial in {0}?
         // What letter was written on the first dial in Cryptic Cycle?
-        [Question.CrypticCycleDialLabels] = new()
+        [TextQuestion.CrypticCycleDialLabels] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What letter was written on the {1} dial in {0}?",
@@ -2721,7 +2721,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cryptic Keypad
         // What was the label of the {1} key in {0}?
         // What was the label of the top-left key in Cryptic Keypad?
-        [Question.CrypticKeypadLabels] = new()
+        [TextQuestion.CrypticKeypadLabels] = new()
         {
             QuestionText = "Какой был символ на {1} кнопке {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2734,7 +2734,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which cardinal direction was the {1} key rotated to in {0}?
         // Which cardinal direction was the top-left key rotated to in Cryptic Keypad?
-        [Question.CrypticKeypadRotations] = new()
+        [TextQuestion.CrypticKeypadRotations] = new()
         {
             QuestionText = "В какую сторону света была повёрнута {1} кнопка {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2756,7 +2756,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Cube
         // What was the {1} cube rotation in {0}?
         // What was the first cube rotation in The Cube?
-        [Question.CubeRotations] = new()
+        [TextQuestion.CubeRotations] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое было {1}-е вращение у {0}?",
@@ -2775,7 +2775,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Cursed Double-Oh
         // What was the first digit of the initially displayed number in {0}?
         // What was the first digit of the initially displayed number in Cursed Double-Oh?
-        [Question.CursedDoubleOhInitialPosition] = new()
+        [TextQuestion.CursedDoubleOhInitialPosition] = new()
         {
             QuestionText = "Какая была первая цифра изначально отображённого числа {0}?",
         },
@@ -2783,7 +2783,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Customer Identification
         // Who was the {1} customer in {0}?
         // Who was the first customer in Customer Identification?
-        [Question.CustomerIdentificationCustomer] = new()
+        [TextQuestion.CustomerIdentificationCustomer] = new()
         {
             QuestionText = "Кто был {1}-м посетителем {0}?",
         },
@@ -2791,7 +2791,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Cyan Button
         // Where was the button at the {1} stage in {0}?
         // Where was the button at the first stage in The Cyan Button?
-        [Question.CyanButtonPositions] = new()
+        [TextQuestion.CyanButtonPositions] = new()
         {
             Conjugation = Conjugation.NominativeMasculine,
             QuestionText = "Где был {0} на своём {1}-м этапе?",
@@ -2809,7 +2809,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // DACH Maze
         // Which region did you depart from in {0}?
         // Which region did you depart from in DACH Maze?
-        [Question.DACHMazeOrigin] = new()
+        [TextQuestion.DACHMazeOrigin] = new()
         {
             QuestionText = "Откуда вы отправились {0}?",
             Answers = new Dictionary<string, string>
@@ -2873,7 +2873,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Deaf Alley
         // What was the shape generated in {0}?
         // What was the shape generated in Deaf Alley?
-        [Question.DeafAlleyShape] = new()
+        [TextQuestion.DeafAlleyShape] = new()
         {
             QuestionText = "Какой символ был сгенерирован {0}?",
         },
@@ -2881,7 +2881,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Deck of Many Things
         // What deck did the first card of {0} belong to?
         // What deck did the first card of The Deck of Many Things belong to?
-        [Question.DeckOfManyThingsFirstCard] = new()
+        [TextQuestion.DeckOfManyThingsFirstCard] = new()
         {
             QuestionText = "Какой колоде принадлежала первая карта {0}?",
         },
@@ -2889,7 +2889,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Decolored Squares
         // What was the starting {1} defining color in {0}?
         // What was the starting column defining color in Decolored Squares?
-        [Question.DecoloredSquaresStartingPos] = new()
+        [TextQuestion.DecoloredSquaresStartingPos] = new()
         {
             Conjugation = Conjugation.PrepositivePlural,
             QuestionText = "Какой цвет определил {1} схемы на {0}?",
@@ -2913,7 +2913,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Decolour Flash
         // What was the {1} of the {2} goal in {0}?
         // What was the colour of the first goal in Decolour Flash?
-        [Question.DecolourFlashGoal] = new()
+        [TextQuestion.DecolourFlashGoal] = new()
         {
             QuestionText = "{1} у {2}-й цели {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2935,7 +2935,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Denial Displays
         // What number was initially shown on display {1} in {0}?
         // What number was initially shown on display A in Denial Displays?
-        [Question.DenialDisplaysDisplays] = new()
+        [TextQuestion.DenialDisplaysDisplays] = new()
         {
             QuestionText = "Какое число было показано на экране {1} {0}?",
         },
@@ -2943,7 +2943,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // DetoNATO
         // What was the {1} display in {0}?
         // What was the first display in DetoNATO?
-        [Question.DetoNATODisplay] = new()
+        [TextQuestion.DetoNATODisplay] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Что было на дисплее на {1}-м этапе {0}?",
@@ -2952,7 +2952,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Devilish Eggs
         // What was the {1} egg’s {2} rotation in {0}?
         // What was the top egg’s first rotation in Devilish Eggs?
-        [Question.DevilishEggsRotations] = new()
+        [TextQuestion.DevilishEggsRotations] = new()
         {
             QuestionText = "Какой был {2}-й поворот у {1} яйца {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -2963,14 +2963,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} digit in the string of numbers on {0}?
         // What was the first digit in the string of numbers on Devilish Eggs?
-        [Question.DevilishEggsNumbers] = new()
+        [TextQuestion.DevilishEggsNumbers] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая была {1}-я цифра в строке чисел на {0}?",
         },
         // What was the {1} letter in the string of letters on {0}?
         // What was the first letter in the string of letters on Devilish Eggs?
-        [Question.DevilishEggsLetters] = new()
+        [TextQuestion.DevilishEggsLetters] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая была {1}-я буква в строке букв на {0}?",
@@ -2979,7 +2979,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Dialtones
         // What dialtones were heard in {0}?
         // What dialtones were heard in Dialtones?
-        [Question.DialtonesDialtones] = new()
+        [TextQuestion.DialtonesDialtones] = new()
         {
             QuestionText = "Какие тональные сигналы играли {0}?",
         },
@@ -2987,7 +2987,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Digisibility
         // What was the number on the {1} button in {0}?
         // What was the number on the first button in Digisibility?
-        [Question.DigisibilityDisplayedNumber] = new()
+        [TextQuestion.DigisibilityDisplayedNumber] = new()
         {
             QuestionText = "Какое число было на {1}-й кнопке {0}?",
         },
@@ -2995,7 +2995,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Digit String
         // What was the initial number in {0}?
         // What was the initial number in Digit String?
-        [Question.DigitStringInitialNumber] = new()
+        [TextQuestion.DigitStringInitialNumber] = new()
         {
             QuestionText = "Какое было исходное число {0}?",
         },
@@ -3003,7 +3003,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Dimension Disruption
         // Which of these was a visible character in {0}?
         // Which of these was a visible character in Dimension Disruption?
-        [Question.DimensionDisruptionVisibleLetters] = new()
+        [TextQuestion.DimensionDisruptionVisibleLetters] = new()
         {
             QuestionText = "Что из этого было видимым символом {0}?",
         },
@@ -3011,7 +3011,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Directional Button
         // How many times did you press the button in the {1} stage of {0}?
         // How many times did you press the button in the first stage of Directional Button?
-        [Question.DirectionalButtonButtonCount] = new()
+        [TextQuestion.DirectionalButtonButtonCount] = new()
         {
             Conjugation = Conjugation.GenitiveFeminine,
             QuestionText = "Сколько раз вы нажали кнопку на {1}-м этапе {0}?",
@@ -3021,7 +3021,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Discolored Squares
         // What was {1}’s remembered position in {0}?
         // What was Blue’s remembered position in Discolored Squares?
-        [Question.DiscoloredSquaresRememberedPositions] = new()
+        [TextQuestion.DiscoloredSquaresRememberedPositions] = new()
         {
             Conjugation = Conjugation.PrepositivePlural,
             QuestionText = "В какой позиции находился {1} квадрат в самом начале на {0}?",
@@ -3039,7 +3039,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Disordered Keys
         // What was the missing information for the {1} key in {0}?
         // What was the missing information for the first key in Disordered Keys?
-        [Question.DisorderedKeysMissingInfo] = new()
+        [TextQuestion.DisorderedKeysMissingInfo] = new()
         {
             QuestionText = "Какой информации недоставало {1}-й клавише {0}?",
             Answers = new Dictionary<string, string>
@@ -3051,7 +3051,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the revealed key color for the {1} key in {0}?
         // What was the revealed key color for the first key in Disordered Keys?
-        [Question.DisorderedKeysRevealedKeyColor] = new()
+        [TextQuestion.DisorderedKeysRevealedKeyColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Каким был раскрытый цвет {1}-й клавиши {0}?",
@@ -3067,13 +3067,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the revealed label for the {1} key in {0}?
         // What was the revealed label for the first key in Disordered Keys?
-        [Question.DisorderedKeysRevealedLabel] = new()
+        [TextQuestion.DisorderedKeysRevealedLabel] = new()
         {
             QuestionText = "Какая была раскрытая надпись {1}-й клавиши {0}?",
         },
         // What was the revealed label color for the {1} key in {0}?
         // What was the revealed label color for the first key in Disordered Keys?
-        [Question.DisorderedKeysRevealedLabelColor] = new()
+        [TextQuestion.DisorderedKeysRevealedLabelColor] = new()
         {
             QuestionText = "Каким был раскрытый цвет надписи {1}-й клавиши {0}?",
             Answers = new Dictionary<string, string>
@@ -3088,7 +3088,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the unrevealed key color for the {1} key in {0}?
         // What was the unrevealed key color for the first key in Disordered Keys?
-        [Question.DisorderedKeysUnrevealedKeyColor] = new()
+        [TextQuestion.DisorderedKeysUnrevealedKeyColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Каким был нераскрытый цвет {1}-й клавиши {0}?",
@@ -3104,14 +3104,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the unrevealed label for the {1} key in {0}?
         // What was the unrevealed label for the first key in Disordered Keys?
-        [Question.DisorderedKeysUnrevealedKeyLabel] = new()
+        [TextQuestion.DisorderedKeysUnrevealedKeyLabel] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была нераскрытая надпись {1}-й клавиши {0}?",
         },
         // What was the unrevealed label color for the {1} key in {0}?
         // What was the unrevealed label color for the first key in Disordered Keys?
-        [Question.DisorderedKeysUnrevealedLabelColor] = new()
+        [TextQuestion.DisorderedKeysUnrevealedLabelColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Каким был нераскрытый цвет надписи {1}-й клавиши {0}?",
@@ -3129,7 +3129,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Divided Squares
         // What color was {1} while pressing it in {0}?
         // What color was the square while pressing it in Divided Squares?
-        [Question.DividedSquaresColor] = new()
+        [TextQuestion.DividedSquaresColor] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What color was {1} while pressing it in {0}?",
@@ -3152,7 +3152,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Divisible Numbers
         // What was the {1} stage’s number in {0}?
         // What was the first stage’s number in Divisible Numbers?
-        [Question.DivisibleNumbersNumbers] = new()
+        [TextQuestion.DivisibleNumbersNumbers] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое было число {1}-го этапа {0}?",
@@ -3161,14 +3161,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Doofenshmirtz Evil Inc.
         // What jingle played in {0}?
         // What jingle played in Doofenshmirtz Evil Inc.?
-        [Question.DoofenshmirtzEvilIncJingles] = new()
+        [TextQuestion.DoofenshmirtzEvilIncJingles] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What jingle played in {0}?",
         },
         // Which image was shown in {0}?
         // Which image was shown in Doofenshmirtz Evil Inc.?
-        [Question.DoofenshmirtzEvilIncInators] = new()
+        [TextQuestion.DoofenshmirtzEvilIncInators] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which image was shown in {0}?",
@@ -3177,7 +3177,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Double Arrows
         // What was the starting position in {0}?
         // What was the starting position in Double Arrows?
-        [Question.DoubleArrowsStart] = new()
+        [TextQuestion.DoubleArrowsStart] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какая была начальная позиция {0}?",
@@ -3185,7 +3185,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which {1} arrow moved {2} in the grid in {0}?
         // Which inner arrow moved up in the grid in Double Arrows?
-        [Question.DoubleArrowsArrow] = new()
+        [TextQuestion.DoubleArrowsArrow] = new()
         {
             QuestionText = "Которая стрелка {1} переместила вас {2} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -3207,7 +3207,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which direction in the grid did the {1} arrow move in {0}?
         // Which direction in the grid did the inner up arrow move in Double Arrows?
-        [Question.DoubleArrowsMovement] = new()
+        [TextQuestion.DoubleArrowsMovement] = new()
         {
             QuestionText = "В какую сторону вас переместила стрелка {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -3233,7 +3233,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Double Color
         // What was the screen color on the {1} stage of {0}?
         // What was the screen color on the first stage of Double Color?
-        [Question.DoubleColorColors] = new()
+        [TextQuestion.DoubleColorColors] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета был экран на {1}-м этапе {0}?",
@@ -3250,7 +3250,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Double Digits
         // What was the digit on the {1} display in {0}?
         // What was the digit on the left display in Double Digits?
-        [Question.DoubleDigitsDisplays] = new()
+        [TextQuestion.DoubleDigitsDisplays] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая цифра была на {1} дисплее {0}?",
@@ -3264,13 +3264,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Double Expert
         // What was the starting key number in {0}?
         // What was the starting key number in Double Expert?
-        [Question.DoubleExpertStartingKeyNumber] = new()
+        [TextQuestion.DoubleExpertStartingKeyNumber] = new()
         {
             QuestionText = "Какое было начальное ключевое число {0}?",
         },
         // What was the word you submitted in {0}?
         // What was the word you submitted in Double Expert?
-        [Question.DoubleExpertSubmittedWord] = new()
+        [TextQuestion.DoubleExpertSubmittedWord] = new()
         {
             QuestionText = "Какое было отправленное слово {0}?",
         },
@@ -3278,7 +3278,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Double Listening
         // What clip was played in {0}?
         // What clip was played in Double Listening?
-        [Question.DoubleListeningSounds] = new()
+        [TextQuestion.DoubleListeningSounds] = new()
         {
             QuestionText = "Какой звук был воспроизведён {0}?",
         },
@@ -3286,7 +3286,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Double-Oh
         // Which button was the submit button in {0}?
         // Which button was the submit button in Double-Oh?
-        [Question.DoubleOhSubmitButton] = new()
+        [TextQuestion.DoubleOhSubmitButton] = new()
         {
             QuestionText = "Какая кнопка была кнопкой отправки {0}?",
             ModuleName = "Агент Ноль-ноль",
@@ -3295,7 +3295,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Double Screen
         // What color was the {1} screen in the {2} stage of {0}?
         // What color was the top screen in the first stage of Double Screen?
-        [Question.DoubleScreenColors] = new()
+        [TextQuestion.DoubleScreenColors] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета был {1} экран на {2}-м этапе {0}?",
@@ -3316,13 +3316,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Dr. Doctor
         // Which of these symptoms was listed on {0}?
         // Which of these symptoms was listed on Dr. Doctor?
-        [Question.DrDoctorSymptoms] = new()
+        [TextQuestion.DrDoctorSymptoms] = new()
         {
             QuestionText = "Какой из этих симптомов присутствовал {0}?",
         },
         // Which of these diseases was listed on {0}, but not the one treated?
         // Which of these diseases was listed on Dr. Doctor, but not the one treated?
-        [Question.DrDoctorDiseases] = new()
+        [TextQuestion.DrDoctorDiseases] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая из этих болезней присутствовала на {0}, но не была вылечена?",
@@ -3331,7 +3331,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Dreamcipher
         // What was the decrypted word in {0}?
         // What was the decrypted word in Dreamcipher?
-        [Question.DreamcipherWord] = new()
+        [TextQuestion.DreamcipherWord] = new()
         {
             QuestionText = "Какое было расшифрованное слово {0}?",
         },
@@ -3339,7 +3339,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Duck
         // What was the color of the curtain in {0}?
         // What was the color of the curtain in The Duck?
-        [Question.DuckCurtainColor] = new()
+        [TextQuestion.DuckCurtainColor] = new()
         {
             QuestionText = "Какого цвета был занавески {0}?",
             Answers = new Dictionary<string, string>
@@ -3355,7 +3355,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Dumb Waiters
         // Which player {1} present in {0}?
         // Which player was present in Dumb Waiters?
-        [Question.DumbWaitersPlayerAvailable] = new()
+        [TextQuestion.DumbWaitersPlayerAvailable] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой игрок {1} на {0}?",
@@ -3369,14 +3369,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Earthbound
         // What was the background in {0}?
         // What was the background in Earthbound?
-        [Question.EarthboundBackground] = new()
+        [TextQuestion.EarthboundBackground] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой был фон на {0}?",
         },
         // Which monster was displayed in {0}?
         // Which monster was displayed in Earthbound?
-        [Question.EarthboundMonster] = new()
+        [TextQuestion.EarthboundMonster] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой монстр был показан на {0}?",
@@ -3385,7 +3385,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // eeB gnillepS
         // What word was asked to be spelled in {0}?
         // What word was asked to be spelled in eeB gnillepS?
-        [Question.eeBgnillepSWord] = new()
+        [TextQuestion.eeBgnillepSWord] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое слово нужно было прописать на {0}?",
@@ -3394,25 +3394,25 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Eight
         // What was the last digit on the small display in {0}?
         // What was the last digit on the small display in Eight?
-        [Question.EightLastSmallDisplayDigit] = new()
+        [TextQuestion.EightLastSmallDisplayDigit] = new()
         {
             QuestionText = "Какая была последняя цифра на малом экране {0}?",
         },
         // What was the position of the last broken digit in {0}?
         // What was the position of the last broken digit in Eight?
-        [Question.EightLastBrokenDigitPosition] = new()
+        [TextQuestion.EightLastBrokenDigitPosition] = new()
         {
             QuestionText = "Какая была позиция последней сломанной цифры {0}?",
         },
         // What were the last resulting digits in {0}?
         // What were the last resulting digits in Eight?
-        [Question.EightLastResultingDigits] = new()
+        [TextQuestion.EightLastResultingDigits] = new()
         {
             QuestionText = "Какие были посление цифры перед отправкой {0}?",
         },
         // What was the last displayed number in {0}?
         // What was the last displayed number in Eight?
-        [Question.EightLastDisplayedNumber] = new()
+        [TextQuestion.EightLastDisplayedNumber] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какие были последние отображённые цифры на {0}?",
@@ -3421,7 +3421,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Elder Futhark
         // What was the {1} rune shown on {0}?
         // What was the first rune shown on Elder Futhark?
-        [Question.ElderFutharkRunes] = new()
+        [TextQuestion.ElderFutharkRunes] = new()
         {
             QuestionText = "Какая была {1}-я показанная руна {0}?",
         },
@@ -3429,7 +3429,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Emoji
         // What was the {1} emoji in {0}?
         // What was the left emoji in Emoji?
-        [Question.EmojiEmoji] = new()
+        [TextQuestion.EmojiEmoji] = new()
         {
             QuestionText = "Какой был {1} эмодзи {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -3442,19 +3442,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // ƎNA Cipher
         // What was the {1} keyword in {0}?
         // What was the first keyword in ƎNA Cipher?
-        [Question.EnaCipherKeywordAnswer] = new()
+        [TextQuestion.EnaCipherKeywordAnswer] = new()
         {
             QuestionText = "Какое было {1}-е ключевое слово {0}?",
         },
         // What was the transposition key in {0}?
         // What was the transposition key in ƎNA Cipher?
-        [Question.EnaCipherExtAnswer] = new()
+        [TextQuestion.EnaCipherExtAnswer] = new()
         {
             QuestionText = "Какой был ключ перестановки {0}?",
         },
         // What was the encrypted word in {0}?
         // What was the encrypted word in ƎNA Cipher?
-        [Question.EnaCipherEncryptedAnswer] = new()
+        [TextQuestion.EnaCipherEncryptedAnswer] = new()
         {
             QuestionText = "Какое слово было зашифрованно {0}",
         },
@@ -3462,7 +3462,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Encrypted Dice
         // Which of these numbers appeared on a die in the {1} stage of {0}?
         // Which of these numbers appeared on a die in the first stage of Encrypted Dice?
-        [Question.EncryptedDice] = new()
+        [TextQuestion.EncryptedDice] = new()
         {
             QuestionText = "Какие из этих чисел были на костях на {1}-м этапе {0}?",
         },
@@ -3470,7 +3470,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Encrypted Equations
         // Which shape was the {1} operand in {0}?
         // Which shape was the first operand in Encrypted Equations?
-        [Question.EncryptedEquationsShapes] = new()
+        [TextQuestion.EncryptedEquationsShapes] = new()
         {
             QuestionText = "Какая фигура была {1}-й переменной {0}?",
         },
@@ -3478,7 +3478,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Encrypted Hangman
         // What method of encryption was used by {0}?
         // What method of encryption was used by Encrypted Hangman?
-        [Question.EncryptedHangmanEncryptionMethod] = new()
+        [TextQuestion.EncryptedHangmanEncryptionMethod] = new()
         {
             QuestionText = "Какой метод шифрования был применён {0}?",
             Answers = new Dictionary<string, string>
@@ -3494,7 +3494,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What module name was encrypted by {0}?
         // What module name was encrypted by Encrypted Hangman?
-        [Question.EncryptedHangmanModule] = new()
+        [TextQuestion.EncryptedHangmanModule] = new()
         {
             QuestionText = "Какое название модуля было зашифрованно {0}?",
         },
@@ -3502,7 +3502,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Encrypted Maze
         // Which symbol on {0} was spinning {1}?
         // Which symbol on Encrypted Maze was spinning clockwise?
-        [Question.EncryptedMazeSymbols] = new()
+        [TextQuestion.EncryptedMazeSymbols] = new()
         {
             QuestionText = "Какой символ {0} крутился {1}?",
             FormatArgs = new Dictionary<string, string>
@@ -3515,7 +3515,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Encrypted Morse
         // What was the {1} on {0}?
         // What was the received call on Encrypted Morse?
-        [Question.EncryptedMorseCallResponse] = new()
+        [TextQuestion.EncryptedMorseCallResponse] = new()
         {
             QuestionText = "Какое было {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -3528,7 +3528,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Encryption Bingo
         // What was the first encoding used in {0}?
         // What was the first encoding used in Encryption Bingo?
-        [Question.EncryptionBingoEncoding] = new()
+        [TextQuestion.EncryptionBingoEncoding] = new()
         {
             QuestionText = "Какая шифровка была первой {0}?",
             Answers = new Dictionary<string, string>
@@ -3558,28 +3558,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Enigma Cycle
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Enigma Cycle?
-        [Question.EnigmaCycleDialDirectionsThree] = new()
+        [TextQuestion.EnigmaCycleDialDirectionsThree] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Enigma Cycle?
-        [Question.EnigmaCycleDialDirectionsTwelve] = new()
+        [TextQuestion.EnigmaCycleDialDirectionsTwelve] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Enigma Cycle?
-        [Question.EnigmaCycleDialDirectionsEight] = new()
+        [TextQuestion.EnigmaCycleDialDirectionsEight] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // What letter was written on the {1} dial in {0}?
         // What letter was written on the first dial in Enigma Cycle?
-        [Question.EnigmaCycleDialLabels] = new()
+        [TextQuestion.EnigmaCycleDialLabels] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What letter was written on the {1} dial in {0}?",
@@ -3588,7 +3588,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // English Entries
         // What was the displayed quote on {0}?
         // What was the displayed quote on English Entries?
-        [Question.EnglishEntriesDisplay] = new()
+        [TextQuestion.EnglishEntriesDisplay] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the displayed quote on {0}?",
@@ -3597,7 +3597,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Entry Number Four
         // What was the {1} digit in the {2} number shown in {0}?
         // What was the first digit in the first number shown in Entry Number Four?
-        [Question.EntryNumberFourDigits] = new()
+        [TextQuestion.EntryNumberFourDigits] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} digit in the {2} number shown in {0}?",
@@ -3606,7 +3606,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Entry Number One
         // What was the {1} digit in the {2} number shown in {0}?
         // What was the first digit in the first number shown in Entry Number One?
-        [Question.EntryNumberOneDigits] = new()
+        [TextQuestion.EntryNumberOneDigits] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the{1} digit in the {2} number shown in {0}?",
@@ -3615,7 +3615,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Épelle-moi Ça
         // What word was asked to be spelled in {0}?
         // What word was asked to be spelled in Épelle-moi Ça?
-        [Question.ÉpelleMoiÇaWord] = new()
+        [TextQuestion.ÉpelleMoiÇaWord] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое слово нужно было написать на {0}?",
@@ -3624,7 +3624,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Equations X
         // What was the displayed symbol in {0}?
         // What was the displayed symbol in Equations X?
-        [Question.EquationsXSymbols] = new()
+        [TextQuestion.EquationsXSymbols] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой символ был показан на {0}?",
@@ -3633,7 +3633,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Error Codes
         // What was the active error code in {0}?
         // What was the active error code in Error Codes?
-        [Question.ErrorCodesActiveError] = new()
+        [TextQuestion.ErrorCodesActiveError] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой код был активным на {0}?",
@@ -3642,7 +3642,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Etterna
         // What was the beat for the {1} arrow from the bottom in {0}?
         // What was the beat for the first arrow from the bottom in Etterna?
-        [Question.EtternaNumber] = new()
+        [TextQuestion.EtternaNumber] = new()
         {
             QuestionText = "Какой бит был у {1}-й стрелки снизу вверх {0}?",
         },
@@ -3650,7 +3650,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Exoplanets
         // What was the starting target planet in {0}?
         // What was the starting target planet in Exoplanets?
-        [Question.ExoplanetsStartingTargetPlanet] = new()
+        [TextQuestion.ExoplanetsStartingTargetPlanet] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была начальная целевая планета из {0}?",
@@ -3664,13 +3664,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the starting target digit in {0}?
         // What was the starting target digit in Exoplanets?
-        [Question.ExoplanetsStartingTargetDigit] = new()
+        [TextQuestion.ExoplanetsStartingTargetDigit] = new()
         {
             QuestionText = "Какая была начальная целевая цифра {0}?",
         },
         // What was the final target planet in {0}?
         // What was the final target planet in Exoplanets?
-        [Question.ExoplanetsTargetPlanet] = new()
+        [TextQuestion.ExoplanetsTargetPlanet] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была финальная целевая планета из {0}?",
@@ -3684,7 +3684,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the final target digit in {0}?
         // What was the final target digit in Exoplanets?
-        [Question.ExoplanetsTargetDigit] = new()
+        [TextQuestion.ExoplanetsTargetDigit] = new()
         {
             QuestionText = "Какая была финальная целевая цифра {0}?",
         },
@@ -3692,7 +3692,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Factoring Maze
         // What was one of the prime numbers chosen in {0}?
         // What was one of the prime numbers chosen in Factoring Maze?
-        [Question.FactoringMazeChosenPrimes] = new()
+        [TextQuestion.FactoringMazeChosenPrimes] = new()
         {
             QuestionText = "Какое из простых чисел было выбрано {0}?",
         },
@@ -3700,7 +3700,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Factory Maze
         // What room did you start in in {0}?
         // What room did you start in in Factory Maze?
-        [Question.FactoryMazeStartRoom] = new()
+        [TextQuestion.FactoryMazeStartRoom] = new()
         {
             QuestionText = "Какая была начальная комната {0}?",
         },
@@ -3708,14 +3708,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Faerie Fires
         // What pitch did the {1} faerie sing in {0}?
         // What pitch did the first faerie sing in Faerie Fires?
-        [Question.FaerieFiresPitchOrdinal] = new()
+        [TextQuestion.FaerieFiresPitchOrdinal] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What pitch did the {1} faerie sing in {0}?",
         },
         // What pitch did the {1} faerie sing in {0}?
         // What pitch did the red faerie sing in Faerie Fires?
-        [Question.FaerieFiresPitchColor] = new()
+        [TextQuestion.FaerieFiresPitchColor] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What pitch did the {1} faerie sing in {0}?",
@@ -3731,7 +3731,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What color was the {1} faerie in {0}?
         // What color was the first faerie in Faerie Fires?
-        [Question.FaerieFiresColor] = new()
+        [TextQuestion.FaerieFiresColor] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What color was the {1} faerie in {0}?",
@@ -3749,7 +3749,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Fast Math
         // What was the last pair of letters in {0}?
         // What was the last pair of letters in Fast Math?
-        [Question.FastMathLastLetters] = new()
+        [TextQuestion.FastMathLastLetters] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какая пара букв была последней {0}?",
@@ -3759,7 +3759,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Fast Playfair Cipher
         // What was the last displayed message in {0}?
         // What was the last displayed message in Fast Playfair Cipher?
-        [Question.FastPlayfairCipherLastMessage] = new()
+        [TextQuestion.FastPlayfairCipherLastMessage] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the last displayed message in {0}?",
@@ -3768,13 +3768,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Faulty Buttons
         // Which button referred to the {1} button in reading order in {0}?
         // Which button referred to the first button in reading order in Faulty Buttons?
-        [Question.FaultyButtonsReferredToThisButton] = new()
+        [TextQuestion.FaultyButtonsReferredToThisButton] = new()
         {
             QuestionText = "Какая кнопка ссылалась на {1}-ю кнопку в порядке чтения {0}?",
         },
         // Which button did the {1} button in reading order refer to in {0}?
         // Which button did the first button in reading order refer to in Faulty Buttons?
-        [Question.FaultyButtonsThisButtonReferredTo] = new()
+        [TextQuestion.FaultyButtonsThisButtonReferredTo] = new()
         {
             QuestionText = "На какую кнопку ссылалась {1}-я кнопка в порядке чтения {0}?",
         },
@@ -3782,13 +3782,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Faulty RGB Maze
         // What was the exit coordinate in {0}?
         // What was the exit coordinate in Faulty RGB Maze?
-        [Question.FaultyRGBMazeExit] = new()
+        [TextQuestion.FaultyRGBMazeExit] = new()
         {
             QuestionText = "На каких координатах был выход {0}?",
         },
         // Where was the {1} key in {0}?
         // Where was the red key in Faulty RGB Maze?
-        [Question.FaultyRGBMazeKeys] = new()
+        [TextQuestion.FaultyRGBMazeKeys] = new()
         {
             QuestionText = "Где был {1} ключ {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -3800,7 +3800,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which maze number was the {1} maze in {0}?
         // Which maze number was the red maze in Faulty RGB Maze?
-        [Question.FaultyRGBMazeNumber] = new()
+        [TextQuestion.FaultyRGBMazeNumber] = new()
         {
             QuestionText = "Какой {1} лабиринт был {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -3814,19 +3814,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Find The Date
         // What was the day displayed in the {1} stage of {0}?
         // What was the day displayed in the first stage of Find The Date?
-        [Question.FindTheDateDay] = new()
+        [TextQuestion.FindTheDateDay] = new()
         {
             QuestionText = "Какой день был показан на {1}-м этапе {0}?",
         },
         // What was the month displayed in the {1} stage of {0}?
         // What was the month displayed in the first stage of Find The Date?
-        [Question.FindTheDateMonth] = new()
+        [TextQuestion.FindTheDateMonth] = new()
         {
             QuestionText = "Какой месяц был показан на {1}-м этапе {0}?",
         },
         // What was the year displayed in the {1} stage of {0}?
         // What was the year displayed in the first stage of Find The Date?
-        [Question.FindTheDateYear] = new()
+        [TextQuestion.FindTheDateYear] = new()
         {
             QuestionText = "Какой год был показан на {1}-м этапе {0}?",
         },
@@ -3834,7 +3834,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Five Letter Words
         // Which of these words was on the display in {0}?
         // Which of these words was on the display in Five Letter Words?
-        [Question.FiveLetterWordsDisplayedWords] = new()
+        [TextQuestion.FiveLetterWordsDisplayedWords] = new()
         {
             QuestionText = "Какое из этих слов было на экране {0}?",
         },
@@ -3842,7 +3842,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // FizzBuzz
         // What was the {1} digit on the {2} display of {0}?
         // What was the first digit on the top display of FizzBuzz?
-        [Question.FizzBuzzDisplayedNumbers] = new()
+        [TextQuestion.FizzBuzzDisplayedNumbers] = new()
         {
             QuestionText = "Какая была {1}-я цифра на {2} экране {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -3856,19 +3856,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Flags
         // What was the displayed number in {0}?
         // What was the displayed number in Flags?
-        [Question.FlagsDisplayedNumber] = new()
+        [TextQuestion.FlagsDisplayedNumber] = new()
         {
             QuestionText = "Какое число было показано на экране {0}?",
         },
         // What was the main country flag in {0}?
         // What was the main country flag in Flags?
-        [Question.FlagsMainCountry] = new()
+        [TextQuestion.FlagsMainCountry] = new()
         {
             QuestionText = "Какой главный флаг отображался {0}?",
         },
         // Which of these country flags was shown, but not the main country flag, in {0}?
         // Which of these country flags was shown, but not the main country flag, in Flags?
-        [Question.FlagsCountries] = new()
+        [TextQuestion.FlagsCountries] = new()
         {
             QuestionText = "Какой из этих флагов был показан (но не являлся главным) {0}?",
         },
@@ -3876,13 +3876,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Flashing Arrows
         // What number was displayed on {0}?
         // What number was displayed on Flashing Arrows?
-        [Question.FlashingArrowsDisplayedValue] = new()
+        [TextQuestion.FlashingArrowsDisplayedValue] = new()
         {
             QuestionText = "Какое число было показано {0}?",
         },
         // What color flashed {1} black on the relevant arrow in {0}?
         // What color flashed before black on the relevant arrow in Flashing Arrows?
-        [Question.FlashingArrowsReferredArrow] = new()
+        [TextQuestion.FlashingArrowsReferredArrow] = new()
         {
             QuestionText = "Какой цвет мигнул {1} на соответствующей стрелке {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -3905,7 +3905,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Flashing Lights
         // How many times did the {1} LED flash {2} on {0}?
         // How many times did the top LED flash cyan on Flashing Lights?
-        [Question.FlashingLightsLEDFrequency] = new()
+        [TextQuestion.FlashingLightsLEDFrequency] = new()
         {
             QuestionText = "Сколько раз {1} светодиод мигал {2} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -3923,7 +3923,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Flavor Text
         // Which module’s flavor text was shown in {0}?
         // Which module’s flavor text was shown in Flavor Text?
-        [Question.FlavorTextModule] = new()
+        [TextQuestion.FlavorTextModule] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "К какому модулю был показан флейвор текст на {0}?",
@@ -3932,7 +3932,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Flavor Text EX
         // Which module’s flavor text was shown in the {1} stage of {0}?
         // Which module’s flavor text was shown in the first stage of Flavor Text EX?
-        [Question.FlavorTextEXModule] = new()
+        [TextQuestion.FlavorTextEXModule] = new()
         {
             QuestionText = "К какому модулю был показан флейвор текст на {1}-м этапе {0}?",
         },
@@ -3940,7 +3940,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Flyswatting
         // Which fly was present, but not in the solution in {0}?
         // Which fly was present, but not in the solution in Flyswatting?
-        [Question.FlyswattingUnpressed] = new()
+        [TextQuestion.FlyswattingUnpressed] = new()
         {
             QuestionText = "Какая муха присутствовала, но не была частью решения {0}?",
         },
@@ -3948,7 +3948,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Follow Me
         // What was the {1} flashing direction in {0}?
         // What was the first flashing direction in Follow Me?
-        [Question.FollowMeDisplayedPath] = new()
+        [TextQuestion.FollowMeDisplayedPath] = new()
         {
             QuestionText = "Какое было {1}-е мигающее направление {0}?",
             Answers = new Dictionary<string, string>
@@ -3963,7 +3963,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forest Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Forest Cipher?
-        [Question.ForestCipherScreen] = new()
+        [TextQuestion.ForestCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -3977,7 +3977,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forget Any Color
         // What colors were the cylinders during the {1} stage of {0}?
         // What colors were the cylinders during the first stage of Forget Any Color?
-        [Question.ForgetAnyColorCylinder] = new()
+        [TextQuestion.ForgetAnyColorCylinder] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какие были цилиндры на {1}-м этапе {0}?",
@@ -4001,7 +4001,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which figure was used during the {1} stage of {0}?
         // Which figure was used during the first stage of Forget Any Color?
-        [Question.ForgetAnyColorSequence] = new()
+        [TextQuestion.ForgetAnyColorSequence] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая строка была применена на {1}-м этапе {0}?",
@@ -4010,7 +4010,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forget Everything
         // What was the {1} displayed digit in the first stage of {0}?
         // What was the first displayed digit in the first stage of Forget Everything?
-        [Question.ForgetEverythingStageOneDisplay] = new()
+        [TextQuestion.ForgetEverythingStageOneDisplay] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была {1}-я отображённая цифра на первом этапе {0}?",
@@ -4024,7 +4024,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forget Me
         // What number was in the {1} position of the initial puzzle in {0}?
         // What number was in the top-left position of the initial puzzle in Forget Me?
-        [Question.ForgetMeInitialState] = new()
+        [TextQuestion.ForgetMeInitialState] = new()
         {
             QuestionText = "Какое число было на {1} кнопке изначального пазла {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -4044,7 +4044,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forget Me Not
         // What was the digit displayed in the {1} stage of {0}?
         // What was the digit displayed in the first stage of Forget Me Not?
-        [Question.ForgetMeNotDisplayedDigits] = new()
+        [TextQuestion.ForgetMeNotDisplayedDigits] = new()
         {
             Conjugation = Conjugation.GenitiveFeminine,
             QuestionText = "Какая цифра была отображена на {1}-м этапе {0}?",
@@ -4058,7 +4058,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forget Me Now
         // What was the {1} displayed digit in {0}?
         // What was the first displayed digit in Forget Me Now?
-        [Question.ForgetMeNowDisplayedDigits] = new()
+        [TextQuestion.ForgetMeNowDisplayedDigits] = new()
         {
             Conjugation = Conjugation.PrepositiveFeminine,
             QuestionText = "Какая была {1}-я отображённая цифра на {0}?",
@@ -4068,7 +4068,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forget Our Voices
         // What was played in the {1} stage of {0}?
         // What was played in the first stage of Forget Our Voices?
-        [Question.ForgetOurVoicesVoice] = new()
+        [TextQuestion.ForgetOurVoicesVoice] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was played in the {1} stage of {0}?",
@@ -4106,7 +4106,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forget’s Ultimate Showdown
         // What was the {1} digit of the answer in {0}?
         // What was the first digit of the answer in Forget’s Ultimate Showdown?
-        [Question.ForgetsUltimateShowdownAnswer] = new()
+        [TextQuestion.ForgetsUltimateShowdownAnswer] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какая была {1}-я цифра финального кода {0}?",
@@ -4114,7 +4114,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} digit of the initial number in {0}?
         // What was the first digit of the initial number in Forget’s Ultimate Showdown?
-        [Question.ForgetsUltimateShowdownInitial] = new()
+        [TextQuestion.ForgetsUltimateShowdownInitial] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какая была {1}-я цифра изначального кодового числа {0}?",
@@ -4122,7 +4122,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} digit of the bottom number in {0}?
         // What was the first digit of the bottom number in Forget’s Ultimate Showdown?
-        [Question.ForgetsUltimateShowdownBottom] = new()
+        [TextQuestion.ForgetsUltimateShowdownBottom] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какая была {1}-я цифра нижнего числа {0}?",
@@ -4130,7 +4130,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} method used in {0}?
         // What was the first method used in Forget’s Ultimate Showdown?
-        [Question.ForgetsUltimateShowdownMethod] = new()
+        [TextQuestion.ForgetsUltimateShowdownMethod] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какой был {1}-й использованный метод {0}?",
@@ -4151,7 +4151,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forget The Colors
         // What number was on the gear during stage {1} of {0}?
         // What number was on the gear during stage 0 of Forget The Colors?
-        [Question.ForgetTheColorsGearNumber] = new()
+        [TextQuestion.ForgetTheColorsGearNumber] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое число было на шестерёнке на {1}-м этапе {0}?",
@@ -4167,7 +4167,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What number was on the large display during stage {1} of {0}?
         // What number was on the large display during stage 0 of Forget The Colors?
-        [Question.ForgetTheColorsLargeDisplay] = new()
+        [TextQuestion.ForgetTheColorsLargeDisplay] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое число было на большом экране на {1}-м этапе {0}?",
@@ -4175,7 +4175,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the last decimal in the sine number received during stage {1} of {0}?
         // What was the last decimal in the sine number received during stage 0 of Forget The Colors?
-        [Question.ForgetTheColorsSineNumber] = new()
+        [TextQuestion.ForgetTheColorsSineNumber] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была последняя дробная цифра полученного числа синуса на {1}-м этапе {0}?",
@@ -4183,7 +4183,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What color was the gear during stage {1} of {0}?
         // What color was the gear during stage 0 of Forget The Colors?
-        [Question.ForgetTheColorsGearColor] = new()
+        [TextQuestion.ForgetTheColorsGearColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была шестерёнка на {1}-м этапе {0}?",
@@ -4205,7 +4205,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?
         // Which edgework-based rule was applied to the sum of nixies and gear during stage 0 of Forget The Colors?
-        [Question.ForgetTheColorsRuleColor] = new()
+        [TextQuestion.ForgetTheColorsRuleColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета было правило, по которому вы сложили числа на лампах и шестерёнках на {1}-м этапе {0}?",
@@ -4229,7 +4229,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forget This
         // What color was the LED in the {1} stage of {0}?
         // What color was the LED in the first stage of Forget This?
-        [Question.ForgetThisColors] = new()
+        [TextQuestion.ForgetThisColors] = new()
         {
             QuestionText = "Какого цвета был светодиод на {1}-м этапе {0}?",
             Answers = new Dictionary<string, string>
@@ -4249,7 +4249,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the digit displayed in the {1} stage of {0}?
         // What was the digit displayed in the first stage of Forget This?
-        [Question.ForgetThisDigits] = new()
+        [TextQuestion.ForgetThisDigits] = new()
         {
             QuestionText = "Какая цифра была показана на {1}-м этапе {0}?",
         },
@@ -4257,7 +4257,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Forget Us Not
         // Which module name was used for stage {1} in {0}?
         // Which module name was used for stage 1 in Forget Us Not?
-        [Question.ForgetUsNotStage] = new()
+        [TextQuestion.ForgetUsNotStage] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which module name was used for stage {1} in {0}?",
@@ -4270,7 +4270,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Free Parking
         // What was the player token in {0}?
         // What was the player token in Free Parking?
-        [Question.FreeParkingToken] = new()
+        [TextQuestion.FreeParkingToken] = new()
         {
             QuestionText = "Какой был жетон игрока {0}?",
             Answers = new Dictionary<string, string>
@@ -4288,25 +4288,25 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Functions
         // What was the last digit of your first query’s result in {0}?
         // What was the last digit of your first query’s result in Functions?
-        [Question.FunctionsLastDigit] = new()
+        [TextQuestion.FunctionsLastDigit] = new()
         {
             QuestionText = "Какая была последняя цифра результата вашего первого запроса {0}?",
         },
         // What number was to the left of the displayed letter in {0}?
         // What number was to the left of the displayed letter in Functions?
-        [Question.FunctionsLeftNumber] = new()
+        [TextQuestion.FunctionsLeftNumber] = new()
         {
             QuestionText = "Какое число было слева от отображённой буквы {0}?",
         },
         // What letter was displayed in {0}?
         // What letter was displayed in Functions?
-        [Question.FunctionsLetter] = new()
+        [TextQuestion.FunctionsLetter] = new()
         {
             QuestionText = "Какая буква была отображена {0}?",
         },
         // What number was to the right of the displayed letter in {0}?
         // What number was to the right of the displayed letter in Functions?
-        [Question.FunctionsRightNumber] = new()
+        [TextQuestion.FunctionsRightNumber] = new()
         {
             QuestionText = "Какое число было справа от отображённой буквы {0}?",
         },
@@ -4315,14 +4315,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // What color flashed {1} in {0}?
         // What color flashed first in The Fuse Box?
         // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
-        [Question.FuseBoxFlashes] = new()
+        [TextQuestion.FuseBoxFlashes] = new()
         {
             QuestionText = "Какой цвет горел {1}-м {0}?",
         },
         // What arrow was shown {1} in {0}?
         // What arrow was shown first in The Fuse Box?
         // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
-        [Question.FuseBoxArrows] = new()
+        [TextQuestion.FuseBoxArrows] = new()
         {
             QuestionText = "Какая стрелка была показана {1}-й {0}?",
         },
@@ -4330,13 +4330,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Gadgetron Vendor
         // What was your current weapon in {0}?
         // What was your current weapon in Gadgetron Vendor?
-        [Question.GadgetronVendorCurrentWeapon] = new()
+        [TextQuestion.GadgetronVendorCurrentWeapon] = new()
         {
             QuestionText = "Какое оружие было текущим {0}?",
         },
         // What was the weapon up for sale in {0}?
         // What was the weapon up for sale in Gadgetron Vendor?
-        [Question.GadgetronVendorWeaponForSale] = new()
+        [TextQuestion.GadgetronVendorWeaponForSale] = new()
         {
             QuestionText = "Какое оружие продавалось {0}?",
         },
@@ -4344,7 +4344,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Game of Life Cruel
         // Which of these was a color combination that occurred in {0}?
         // Which of these was a color combination that occurred in Game of Life Cruel?
-        [Question.GameOfLifeCruelColors] = new()
+        [TextQuestion.GameOfLifeCruelColors] = new()
         {
             QuestionText = "Какие комбинации цветов присутствовали {0}?",
         },
@@ -4352,7 +4352,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Gamepad
         // What were the numbers on {0}?
         // What were the numbers on The Gamepad?
-        [Question.GamepadNumbers] = new()
+        [TextQuestion.GamepadNumbers] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какие числа были на экране {0}?",
@@ -4362,14 +4362,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Garfield Kart
         // How many puzzle pieces did {0} have?
         // How many puzzle pieces did Garfield Kart have?
-        [Question.GarfieldKartPuzzleCount] = new()
+        [TextQuestion.GarfieldKartPuzzleCount] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Сколько было частей пазла на {0}?",
         },
         // What was the track in {0}?
         // What was the track in Garfield Kart?
-        [Question.GarfieldKartTrack] = new()
+        [TextQuestion.GarfieldKartTrack] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая была трасса на {0}?",
@@ -4378,7 +4378,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Garnet Thief
         // Which faction did {1} claim to be in {0}?
         // Which faction did Jungmoon claim to be in The Garnet Thief?
-        [Question.GarnetThiefClaim] = new()
+        [TextQuestion.GarnetThiefClaim] = new()
         {
             QuestionText = "К какой фракции {1} заявлял, что он принадлежит {0}?",
         },
@@ -4386,7 +4386,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Ghost Movement
         // Where was {1} in {0}?
         // Where was Inky in Ghost Movement?
-        [Question.GhostMovementPosition] = new()
+        [TextQuestion.GhostMovementPosition] = new()
         {
             QuestionText = "Где был {1} {0}?",
         },
@@ -4394,7 +4394,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Girlfriend
         // What was the language sung in {0}?
         // What was the language sung in Girlfriend?
-        [Question.GirlfriendLanguage] = new()
+        [TextQuestion.GirlfriendLanguage] = new()
         {
             QuestionText = "На каком языке была песня {0}?",
         },
@@ -4402,7 +4402,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Glitched Button
         // What was the cycling bit sequence in {0}?
         // What was the cycling bit sequence in The Glitched Button?
-        [Question.GlitchedButtonSequence] = new()
+        [TextQuestion.GlitchedButtonSequence] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая последовательность битов повторялась на {0}?",
@@ -4411,7 +4411,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Goofy’s Game
         // What number was flashed by the {1} LED in {0}?
         // What number was flashed by the left LED in Goofy’s Game?
-        [Question.GoofysGameNumber] = new()
+        [TextQuestion.GoofysGameNumber] = new()
         {
             QuestionText = "Какое число мигало на {1} светодиоде {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -4425,14 +4425,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Grand Piano
         // Which key was part of the {1} set in {0}?
         // Which key was part of the first set in Grand Piano?
-        [Question.GrandPianoKey] = new()
+        [TextQuestion.GrandPianoKey] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which key was part of the {1} set in {0}?",
         },
         // Which key was the fifth set in {0}?
         // Which key was the fifth set in Grand Piano?
-        [Question.GrandPianoFinalKey] = new()
+        [TextQuestion.GrandPianoFinalKey] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which key made up the fifth set in {0}?",
@@ -4441,7 +4441,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Gray Button
         // What was the {1} coordinate on the display in {0}?
         // What was the horizontal coordinate on the display in The Gray Button?
-        [Question.GrayButtonCoordinates] = new()
+        [TextQuestion.GrayButtonCoordinates] = new()
         {
             QuestionText = "Какие были {1} координаты на экране {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -4454,7 +4454,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Gray Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Gray Cipher?
-        [Question.GrayCipherScreen] = new()
+        [TextQuestion.GrayCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -4468,7 +4468,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Great Void
         // What was the {1} color in {0}?
         // What was the first color in The Great Void?
-        [Question.GreatVoidColor] = new()
+        [TextQuestion.GreatVoidColor] = new()
         {
             QuestionText = "Какой был {1}-й цвет {0}?",
             Answers = new Dictionary<string, string>
@@ -4484,7 +4484,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} digit in {0}?
         // What was the first digit in The Great Void?
-        [Question.GreatVoidDigit] = new()
+        [TextQuestion.GreatVoidDigit] = new()
         {
             QuestionText = "Какая была {1}-я цифра {0}?",
         },
@@ -4492,7 +4492,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Green Arrows
         // What was the last number on the display on {0}?
         // What was the last number on the display on Green Arrows?
-        [Question.GreenArrowsLastScreen] = new()
+        [TextQuestion.GreenArrowsLastScreen] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какое последнее число было показано на экране {0}?",
@@ -4502,7 +4502,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Green Button
         // What was the word submitted in {0}?
         // What was the word submitted in The Green Button?
-        [Question.GreenButtonWord] = new()
+        [TextQuestion.GreenButtonWord] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое слово было введено на {0}?",
@@ -4511,7 +4511,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Green Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Green Cipher?
-        [Question.GreenCipherScreen] = new()
+        [TextQuestion.GreenCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -4525,19 +4525,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Gridlock
         // What was the starting location in {0}?
         // What was the starting location in Gridlock?
-        [Question.GridLockStartingLocation] = new()
+        [TextQuestion.GridLockStartingLocation] = new()
         {
             QuestionText = "Какая была начальная позиция {0}?",
         },
         // What was the ending location in {0}?
         // What was the ending location in Gridlock?
-        [Question.GridLockEndingLocation] = new()
+        [TextQuestion.GridLockEndingLocation] = new()
         {
             QuestionText = "Какая была конечная позиция {0}?",
         },
         // What was the starting color in {0}?
         // What was the starting color in Gridlock?
-        [Question.GridLockStartingColor] = new()
+        [TextQuestion.GridLockStartingColor] = new()
         {
             QuestionText = "Какой был начальный цвет {0}?",
             Answers = new Dictionary<string, string>
@@ -4552,7 +4552,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Grocery Store
         // What was the first item shown in {0}?
         // What was the first item shown in Grocery Store?
-        [Question.GroceryStoreFirstItem] = new()
+        [TextQuestion.GroceryStoreFirstItem] = new()
         {
             QuestionText = "Какой товар был показан первым {0}?",
         },
@@ -4560,20 +4560,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Gryphons
         // What was the gryphon’s name in {0}?
         // What was the gryphon’s name in Gryphons?
-        [Question.GryphonsName] = new()
+        [TextQuestion.GryphonsName] = new()
         {
             QuestionText = "Какое было имя у грифона {0}?",
         },
         // What was the gryphon’s age in {0}?
         // What was the gryphon’s age in Gryphons?
-        [Question.GryphonsAge] = new()
+        [TextQuestion.GryphonsAge] = new()
         {
             QuestionText = "Сколько лет было грифону {0}?",
         },
 
         // Guess Who?
         // Did {1} flash “YES” in {0}?
-        [Question.GuessWhoColors] = new()
+        [TextQuestion.GuessWhoColors] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Did {1} flash “YES” in {0}?",
@@ -4582,7 +4582,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Gyromaze
         // What color was the {1} LED in {0}?
         // What color was the top LED in Gyromaze?
-        [Question.GyromazeLEDColor] = new()
+        [TextQuestion.GyromazeLEDColor] = new()
         {
             QuestionText = "Какого цвета был {1} светодиод {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -4602,7 +4602,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // h
         // What was the transmitted letter in {0}?
         // What was the transmitted letter in h?
-        [Question.HLetter] = new()
+        [TextQuestion.HLetter] = new()
         {
             QuestionText = "Какая буква передавалась в \"{0}\"?",
         },
@@ -4610,7 +4610,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Halli Galli
         // Which fruit were there five of in {0}?
         // Which fruit were there five of in Halli Galli?
-        [Question.HalliGalliFruit] = new()
+        [TextQuestion.HalliGalliFruit] = new()
         {
             QuestionText = "Каких фруктов было пять {0}?",
             Answers = new Dictionary<string, string>
@@ -4624,7 +4624,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What were the relevant counts in {0}?
         // What were the relevant counts in Halli Galli?
-        [Question.HalliGalliCounts] = new()
+        [TextQuestion.HalliGalliCounts] = new()
         {
             QuestionText = "Какие количества имели значение в {0}?",
         },
@@ -4632,7 +4632,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Hereditary Base Notation
         // What was the given number in {0}?
         // What was the given number in Hereditary Base Notation?
-        [Question.HereditaryBaseNotationInitialNumber] = new()
+        [TextQuestion.HereditaryBaseNotationInitialNumber] = new()
         {
             QuestionText = "Какое число было дано {0}?",
         },
@@ -4640,7 +4640,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Hexabutton
         // What label was printed on {0}?
         // What label was printed on The Hexabutton?
-        [Question.HexabuttonLabel] = new()
+        [TextQuestion.HexabuttonLabel] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая была надпись на {0}?",
@@ -4649,7 +4649,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Hexamaze
         // What was the color of the pawn in {0}?
         // What was the color of the pawn in Hexamaze?
-        [Question.HexamazePawnColor] = new()
+        [TextQuestion.HexamazePawnColor] = new()
         {
             QuestionText = "Какого цвета была фигурка {0}?",
             ModuleName = "Гексабиринте",
@@ -4667,7 +4667,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // hexOrbits
         // What was the {1} shape for the {2} display in {0}?
         // What was the fast shape for the first display in hexOrbits?
-        [Question.HexOrbitsShape] = new()
+        [TextQuestion.HexOrbitsShape] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} shape for the {2} display in {0}?",
@@ -4681,25 +4681,25 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // hexOS
         // What were the deciphered letters in {0}?
         // What were the deciphered letters in hexOS?
-        [Question.HexOSCipher] = new()
+        [TextQuestion.HexOSCipher] = new()
         {
             QuestionText = "Какие буквы были расшифрованны {0}?",
         },
         // What was the deciphered phrase in {0}?
         // What was the deciphered phrase in hexOS?
-        [Question.HexOSOctCipher] = new()
+        [TextQuestion.HexOSOctCipher] = new()
         {
             QuestionText = "Какая фраза была расшифрованна {0}?",
         },
         // What was the {1} 3-digit number cycled by the screen in {0}?
         // What was the first 3-digit number cycled by the screen in hexOS?
-        [Question.HexOSScreen] = new()
+        [TextQuestion.HexOSScreen] = new()
         {
             QuestionText = "Какое было {1}-е трёхзначное число в последовательности на экране {0}?",
         },
         // What were the rhythm values in {0}?
         // What were the rhythm values in hexOS?
-        [Question.HexOSSum] = new()
+        [TextQuestion.HexOSSum] = new()
         {
             QuestionText = "Какие были значения ритмов {0}?",
         },
@@ -4707,7 +4707,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Hickory Dickory Dock
         // What time was shown when the clock struck {1} on {0}?
         // What time was shown when the clock struck 1:00 on Hickory Dickory Dock?
-        [Question.HickoryDickoryDockTime] = new()
+        [TextQuestion.HickoryDickoryDockTime] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What time was shown when the clock struck {1} on {0}?",
@@ -4720,7 +4720,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Hidden Colors
         // What was the color of the main LED in {0}?
         // What was the color of the main LED in Hidden Colors?
-        [Question.HiddenColorsLED] = new()
+        [TextQuestion.HiddenColorsLED] = new()
         {
             QuestionText = "Какого цвета был главный светодиод {0}?",
             Answers = new Dictionary<string, string>
@@ -4739,7 +4739,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Hidden Value
         // What was displayed on {0}?
         // What was displayed on The Hidden Value?
-        [Question.HiddenValueDisplay] = new()
+        [TextQuestion.HiddenValueDisplay] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Что было отображено на {0}?",
@@ -4759,13 +4759,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The High Score
         // What was the position of the player in {0}?
         // What was the position of the player in The High Score?
-        [Question.HighScorePosition] = new()
+        [TextQuestion.HighScorePosition] = new()
         {
             QuestionText = "На котором месте был игрок {0}?",
         },
         // What was the score of the player in {0}?
         // What was the score of the player in The High Score?
-        [Question.HighScoreScore] = new()
+        [TextQuestion.HighScoreScore] = new()
         {
             QuestionText = "Какой был счёт у игрока {0}?",
         },
@@ -4773,14 +4773,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Hill Cycle
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Hill Cycle?
-        [Question.HillCycleDialDirections] = new()
+        [TextQuestion.HillCycleDialDirections] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // What letter was written on the {1} dial in {0}?
         // What letter was written on the first dial in Hill Cycle?
-        [Question.HillCycleDialLabels] = new()
+        [TextQuestion.HillCycleDialLabels] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What letter was written on the {1} dial in {0}?",
@@ -4789,7 +4789,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Hinges
         // Which of these hinges was initially {1} {0}?
         // Which of these hinges was initially present on Hinges?
-        [Question.HingesInitialHinges] = new()
+        [TextQuestion.HingesInitialHinges] = new()
         {
             NeedsTranslation = true,
             Conjugation = Conjugation.в_PrepositivePlural,
@@ -4810,7 +4810,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Hogwarts
         // Which House was {1} solved for in {0}?
         // Which House was Binary Puzzle solved for in Hogwarts?
-        [Question.HogwartsHouse] = new()
+        [TextQuestion.HogwartsHouse] = new()
         {
             QuestionText = "Какому дому зачли обезвреживание модуля \"{1}\" {0}?",
             Answers = new Dictionary<string, string>
@@ -4823,7 +4823,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which module was solved for {1} in {0}?
         // Which module was solved for Gryffindor in Hogwarts?
-        [Question.HogwartsModule] = new()
+        [TextQuestion.HogwartsModule] = new()
         {
             QuestionText = "Обезвреживание какого модуля зачли {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -4838,7 +4838,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Hold Ups
         // What was the name of the {1} shadow shown in {0}?
         // What was the name of the first shadow shown in Hold Ups?
-        [Question.HoldUpsShadows] = new()
+        [TextQuestion.HoldUpsShadows] = new()
         {
             QuestionText = "Какое было имя у {1}-й тени {0}?",
         },
@@ -4846,7 +4846,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Homophones
         // What was the {1} displayed phrase in {0}?
         // What was the first displayed phrase in Homophones?
-        [Question.HomophonesDisplayedPhrases] = new()
+        [TextQuestion.HomophonesDisplayedPhrases] = new()
         {
             QuestionText = "Какая была {1}-я показанная фраза {0}?",
         },
@@ -4854,21 +4854,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Horrible Memory
         // In what position was the button pressed on the {1} stage of {0}?
         // In what position was the button pressed on the first stage of Horrible Memory?
-        [Question.HorribleMemoryPositions] = new()
+        [TextQuestion.HorribleMemoryPositions] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая позиция была нажата на {1}-м этапе {0}?",
         },
         // What was the label of the button pressed on the {1} stage of {0}?
         // What was the label of the button pressed on the first stage of Horrible Memory?
-        [Question.HorribleMemoryLabels] = new()
+        [TextQuestion.HorribleMemoryLabels] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была надпись у нажатой кнопки на {1}-м этапе {0}?",
         },
         // What color was the button pressed on the {1} stage of {0}?
         // What color was the button pressed on the first stage of Horrible Memory?
-        [Question.HorribleMemoryColors] = new()
+        [TextQuestion.HorribleMemoryColors] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была нажатая кнопка на {1}-м этапе {0}?",
@@ -4886,7 +4886,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Human Resources
         // Which was a descriptor shown in {1} in {0}?
         // Which was a descriptor shown in red in Human Resources?
-        [Question.HumanResourcesDescriptors] = new()
+        [TextQuestion.HumanResourcesDescriptors] = new()
         {
             QuestionText = "Какие описания {0} были показаны {1} цветом?",
             FormatArgs = new Dictionary<string, string>
@@ -4897,7 +4897,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Who was {1} in {0}?
         // Who was fired in Human Resources?
-        [Question.HumanResourcesHiredFired] = new()
+        [TextQuestion.HumanResourcesHiredFired] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Кто из {0} был {1}?",
@@ -4911,7 +4911,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Hunting
         // Which of the first three stages of {0} had the {1} symbol {2}?
         // Which of the first three stages of Hunting had the column symbol first?
-        [Question.HuntingColumnsRows] = new()
+        [TextQuestion.HuntingColumnsRows] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "На каком из первых трёх этапов {0} символ {1} был {2}-м?",
@@ -4936,7 +4936,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Hypercube
         // What was the {1} rotation in {0}?
         // What was the first rotation in The Hypercube?
-        [Question.HypercubeRotations] = new()
+        [TextQuestion.HypercubeRotations] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Каким было {1}-е вращение {0}?",
@@ -4946,7 +4946,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // HyperForget
         // What was the rotation for the {1} stage in {0}?
         // What was the rotation for the first stage in HyperForget?
-        [Question.HyperForgetRotations] = new()
+        [TextQuestion.HyperForgetRotations] = new()
         {
             QuestionText = "Какое было вращение на {1}-м этапе {0}?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
@@ -4958,13 +4958,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Hyperlink
         // What was the {1} character of the hyperlink in {0}?
         // What was the first character of the hyperlink in The Hyperlink?
-        [Question.HyperlinkCharacters] = new()
+        [TextQuestion.HyperlinkCharacters] = new()
         {
             QuestionText = "Какой был {1}-й символ ссылки {0}?",
         },
         // Which module was referenced on {0}?
         // Which module was referenced on The Hyperlink?
-        [Question.HyperlinkAnswer] = new()
+        [TextQuestion.HyperlinkAnswer] = new()
         {
             Conjugation = Conjugation.NominativeMasculine,
             QuestionText = "На какой модуль ссылался {0}?",
@@ -4973,7 +4973,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Ice Cream
         // Which one of these flavours {1} to the {2} customer in {0}?
         // Which one of these flavours was on offer, but not sold, to the first customer in Ice Cream?
-        [Question.IceCreamFlavour] = new()
+        [TextQuestion.IceCreamFlavour] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой из этих вкусов {0} {1} {2}-му посетителю?",
@@ -4986,7 +4986,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Who was the {1} customer in {0}?
         // Who was the first customer in Ice Cream?
-        [Question.IceCreamCustomer] = new()
+        [TextQuestion.IceCreamCustomer] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Кто был {1}-м посетителем {0}?",
@@ -4996,13 +4996,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Identification Crisis
         // What was the {1} shape used in {0}?
         // What was the first shape used in Identification Crisis?
-        [Question.IdentificationCrisisShape] = new()
+        [TextQuestion.IdentificationCrisisShape] = new()
         {
             QuestionText = "Какая была {1}-я фигура {0}?",
         },
         // What was the {1} identification module used in {0}?
         // What was the first identification module used in Identification Crisis?
-        [Question.IdentificationCrisisDataset] = new()
+        [TextQuestion.IdentificationCrisisDataset] = new()
         {
             QuestionText = "Какой был {1}-й использованный модуль {0}?",
             Answers = new Dictionary<string, string>
@@ -5023,7 +5023,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Identity Parade
         // Which hair color {1} listed in {0}?
         // Which hair color was listed in Identity Parade?
-        [Question.IdentityParadeHairColors] = new()
+        [TextQuestion.IdentityParadeHairColors] = new()
         {
             QuestionText = "Какой цвет волос {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5034,7 +5034,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which build {1} listed in {0}?
         // Which build was listed in Identity Parade?
-        [Question.IdentityParadeBuilds] = new()
+        [TextQuestion.IdentityParadeBuilds] = new()
         {
             QuestionText = "Какое телосложение {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5045,7 +5045,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which attire {1} listed in {0}?
         // Which attire was listed in Identity Parade?
-        [Question.IdentityParadeAttires] = new()
+        [TextQuestion.IdentityParadeAttires] = new()
         {
             QuestionText = "Какой наряд {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5058,7 +5058,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Impostor
         // Which module was {0} pretending to be?
         // Which module was The Impostor pretending to be?
-        [Question.ImpostorDisguise] = new()
+        [TextQuestion.ImpostorDisguise] = new()
         {
             Conjugation = Conjugation.NominativeMasculine,
             QuestionText = "Каким модулем притворялся {0}?",
@@ -5067,7 +5067,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Indigo Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Indigo Cipher?
-        [Question.IndigoCipherScreen] = new()
+        [TextQuestion.IndigoCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5081,7 +5081,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Infinite Loop
         // What was the selected word in {0}?
         // What was the selected word in Infinite Loop?
-        [Question.InfiniteLoopSelectedWord] = new()
+        [TextQuestion.InfiniteLoopSelectedWord] = new()
         {
             QuestionText = "Какое слово было выбрано {0}?",
         },
@@ -5089,13 +5089,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Ingredients
         // Which ingredient was used in {0}?
         // Which ingredient was used in Ingredients?
-        [Question.IngredientsIngredients] = new()
+        [TextQuestion.IngredientsIngredients] = new()
         {
             QuestionText = "Какие ингредиенты были использованны {0}?",
         },
         // Which ingredient was listed but not used in {0}?
         // Which ingredient was listed but not used in Ingredients?
-        [Question.IngredientsNonIngredients] = new()
+        [TextQuestion.IngredientsNonIngredients] = new()
         {
             QuestionText = "Какие ингредиенты были указаны, но не были использованы {0}?",
         },
@@ -5103,7 +5103,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Inner Connections
         // What color was the LED in {0}?
         // What color was the LED in Inner Connections?
-        [Question.InnerConnectionsLED] = new()
+        [TextQuestion.InnerConnectionsLED] = new()
         {
             QuestionText = "Какого цвета был светодиод {0}?",
             Answers = new Dictionary<string, string>
@@ -5118,7 +5118,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the digit flashed in Morse in {0}?
         // What was the digit flashed in Morse in Inner Connections?
-        [Question.InnerConnectionsMorse] = new()
+        [TextQuestion.InnerConnectionsMorse] = new()
         {
             QuestionText = "Какая цифра была передана кодом Морзе {0}?",
         },
@@ -5126,7 +5126,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Interpunct
         // What was the symbol displayed in the {1} stage of {0}?
         // What was the symbol displayed in the first stage of Interpunct?
-        [Question.InterpunctDisplay] = new()
+        [TextQuestion.InterpunctDisplay] = new()
         {
             QuestionText = "Какой символ был показан на {1}-м этапе {0}?",
         },
@@ -5134,7 +5134,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // IPA
         // What sound played in {0}?
         // What sound played in IPA?
-        [Question.IpaSound] = new()
+        [TextQuestion.IpaSound] = new()
         {
             QuestionText = "Какой звук был воспроизведён {0}?",
         },
@@ -5142,7 +5142,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The iPhone
         // What was the {1} PIN digit in {0}?
         // What was the first PIN digit in The iPhone?
-        [Question.iPhoneDigits] = new()
+        [TextQuestion.iPhoneDigits] = new()
         {
             QuestionText = "Какая была {1}-я цифра пинкода {0}?",
             ModuleName = "iPhone",
@@ -5151,7 +5151,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Jenga
         // Which symbol was on the first correctly pulled block in {0}?
         // Which symbol was on the first correctly pulled block in Jenga?
-        [Question.JengaFirstBlock] = new()
+        [TextQuestion.JengaFirstBlock] = new()
         {
             QuestionText = "Какой символ был на первом правильно вытянутом блоке {0}?",
         },
@@ -5159,7 +5159,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Jewel Vault
         // What number was wheel {1} in {0}?
         // What number was wheel A in The Jewel Vault?
-        [Question.JewelVaultWheels] = new()
+        [TextQuestion.JewelVaultWheels] = new()
         {
             QuestionText = "Какой был номер у колеса {1} {0}?",
             ModuleName = "Хранилище драгоценностей",
@@ -5168,14 +5168,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Jumble Cycle
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Jumble Cycle?
-        [Question.JumbleCycleDialDirections] = new()
+        [TextQuestion.JumbleCycleDialDirections] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // What letter was written on the {1} dial in {0}?
         // What letter was written on the first dial in Jumble Cycle?
-        [Question.JumbleCycleDialLabels] = new()
+        [TextQuestion.JumbleCycleDialLabels] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What letter was written on the {1} dial in {0}?",
@@ -5184,7 +5184,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Juxtacolored Squares
         // What was the color of this square in {0}?
         // What was the color of this square in Juxtacolored Squares?
-        [Question.JuxtacoloredSquaresColorsByPosition] = new()
+        [TextQuestion.JuxtacoloredSquaresColorsByPosition] = new()
         {
             Conjugation = Conjugation.PrepositivePlural,
             QuestionText = "Какого цвета был этот квадрат на {0}?",
@@ -5211,7 +5211,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which square was {1} in {0}?
         // Which square was red in Juxtacolored Squares?
-        [Question.JuxtacoloredSquaresPositionsByColor] = new()
+        [TextQuestion.JuxtacoloredSquaresPositionsByColor] = new()
         {
             Conjugation = Conjugation.PrepositivePlural,
             QuestionText = "Какой квадрат был {1} цвета на {0}?",
@@ -5240,7 +5240,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Kanji
         // What was the displayed word in the {1} stage of {0}?
         // What was the displayed word in the first stage of Kanji?
-        [Question.KanjiDisplayedWords] = new()
+        [TextQuestion.KanjiDisplayedWords] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое слово было показано на {1}-м этапе {0}?",
@@ -5250,7 +5250,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Kanye Encounter
         // What was a food item displayed in {0}?
         // What was a food item displayed in The Kanye Encounter?
-        [Question.KanyeEncounterFoods] = new()
+        [TextQuestion.KanyeEncounterFoods] = new()
         {
             QuestionText = "Какая еда была показана {0}?",
         },
@@ -5258,7 +5258,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // KayMazey Talk
         // What was the {1} word in {0}?
         // What was the starting word in KayMazey Talk?
-        [Question.KayMazeyTalkWord] = new()
+        [TextQuestion.KayMazeyTalkWord] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} phrase in {0}?",
@@ -5277,7 +5277,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Keypad Combinations
         // Which number was displayed on the {1} button, but not part of the answer on {0}?
         // Which number was displayed on the first button, but not part of the answer on Keypad Combinations?
-        [Question.KeypadCombinationWrongNumbers] = new()
+        [TextQuestion.KeypadCombinationWrongNumbers] = new()
         {
             QuestionText = "Какое число было показано на {1}-й кнопке, но не являлось частью решения {0}?",
         },
@@ -5285,7 +5285,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Keypad Magnified
         // What was the position of the LED in {0}?
         // What was the position of the LED in Keypad Magnified?
-        [Question.KeypadMagnifiedLED] = new()
+        [TextQuestion.KeypadMagnifiedLED] = new()
         {
             QuestionText = "Где был светодиод {0}?",
             Answers = new Dictionary<string, string>
@@ -5300,7 +5300,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Keypad Maze
         // Which of these cells was yellow in {0}?
         // Which of these cells was yellow in Keypad Maze?
-        [Question.KeypadMazeYellow] = new()
+        [TextQuestion.KeypadMazeYellow] = new()
         {
             QuestionText = "Какая из этих клеток была жёлтой {0}?",
         },
@@ -5308,7 +5308,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Keypad Sequence
         // What was this key’s label on the {1} panel in {0}?
         // What was this key’s label on the first panel in Keypad Sequence?
-        [Question.KeypadSequenceLabels] = new()
+        [TextQuestion.KeypadSequenceLabels] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была надпись на этой кнопке на {1}-й панели {0}?",
@@ -5317,7 +5317,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Keywords
         // What were the first four letters on the display in {0}?
         // What were the first four letters on the display in Keywords?
-        [Question.KeywordsDisplayedKey] = new()
+        [TextQuestion.KeywordsDisplayedKey] = new()
         {
             QuestionText = "Какие были первые четыре буквы на экране {0}?",
         },
@@ -5325,7 +5325,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Klaxon
         // What was the first module to set off {0}?
         // What was the first module to set off The Klaxon?
-        [Question.KlaxonFirstModule] = new()
+        [TextQuestion.KlaxonFirstModule] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the first module to set off {0}?",
@@ -5334,7 +5334,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Know Your Way
         // Which way was the arrow pointing in {0}?
         // Which way was the arrow pointing in Know Your Way?
-        [Question.KnowYourWayArrow] = new()
+        [TextQuestion.KnowYourWayArrow] = new()
         {
             QuestionText = "В какую сторону была направлена стрелка {0}?",
             Answers = new Dictionary<string, string>
@@ -5347,7 +5347,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which LED was green in {0}?
         // Which LED was green in Know Your Way?
-        [Question.KnowYourWayLed] = new()
+        [TextQuestion.KnowYourWayLed] = new()
         {
             QuestionText = "Какой светодиод был зелёным {0}?",
             Answers = new Dictionary<string, string>
@@ -5362,7 +5362,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Kooky Keypad
         // What color was the {1} button’s LED in {0}?
         // What color was the top-left button’s LED in Kooky Keypad?
-        [Question.KookyKeypadColor] = new()
+        [TextQuestion.KookyKeypadColor] = new()
         {
             QuestionText = "Какого цвета был светодиод на {1} кнопке {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5391,7 +5391,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Kudosudoku
         // Which square was {1} in {0}?
         // Which square was pre-filled in Kudosudoku?
-        [Question.KudosudokuPrefilled] = new()
+        [TextQuestion.KudosudokuPrefilled] = new()
         {
             QuestionText = "Какой квадрат {1} {0}?",
             ModuleName = "Кудосудоку",
@@ -5405,7 +5405,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Kugelblitz
         // Which particles were present for the {1} stage of {0}?
         // Which particles were present for the first stage of Kugelblitz?
-        [Question.KugelblitzBlackOrangeYellowIndigoViolet] = new()
+        [TextQuestion.KugelblitzBlackOrangeYellowIndigoViolet] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which particles were present for the {1} stage of {0}?",
@@ -5441,7 +5441,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What were the particles’ values for the {1} stage of {0}?
         // What were the particles’ values for the first stage of Kugelblitz?
-        [Question.KugelblitzRedGreenBlue] = new()
+        [TextQuestion.KugelblitzRedGreenBlue] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What were the particles’ values for the {1} stage of {0}?",
@@ -5454,7 +5454,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Kuro
         // What was Kuro’s mood in {0}?
         // What was Kuro’s mood in Kuro?
-        [Question.KuroMood] = new()
+        [TextQuestion.KuroMood] = new()
         {
             QuestionText = "Какое было настроение у Kuro {0}?",
         },
@@ -5462,7 +5462,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Labyrinth
         // Where was one of the portals in layer {1} in {0}?
         // Where was one of the portals in layer 1 (Red) in The Labyrinth?
-        [Question.LabyrinthPortalLocations] = new()
+        [TextQuestion.LabyrinthPortalLocations] = new()
         {
             QuestionText = "Где находился один из порталов на {1} слое {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5476,7 +5476,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // In which layer was this portal in {0}?
         // In which layer was this portal in The Labyrinth?
-        [Question.LabyrinthPortalStage] = new()
+        [TextQuestion.LabyrinthPortalStage] = new()
         {
             QuestionText = "На каком слое находился этот портал {0}?",
             Answers = new Dictionary<string, string>
@@ -5492,7 +5492,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Ladder Lottery
         // Which light was on in {0}?
         // Which light was on in Ladder Lottery?
-        [Question.LadderLotteryLightOn] = new()
+        [TextQuestion.LadderLotteryLightOn] = new()
         {
             QuestionText = "Какая лампочка была включена {0}?",
         },
@@ -5500,7 +5500,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Ladders
         // Which color was present on the second ladder in {0}?
         // Which color was present on the second ladder in Ladders?
-        [Question.LaddersStage2Colors] = new()
+        [TextQuestion.LaddersStage2Colors] = new()
         {
             QuestionText = "Какой цвет присутствовал на второй лестнице {0}?",
             Answers = new Dictionary<string, string>
@@ -5517,7 +5517,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What color was missing on the third ladder in {0}?
         // What color was missing on the third ladder in Ladders?
-        [Question.LaddersStage3Missing] = new()
+        [TextQuestion.LaddersStage3Missing] = new()
         {
             QuestionText = "Какой цвет отсутствовал на третьей лестнице {0}?",
             Answers = new Dictionary<string, string>
@@ -5536,7 +5536,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Langton’s Anteater
         // Which of these squares was initially {1} in {0}?
         // Which of these squares was initially black in Langton’s Anteater?
-        [Question.LangtonsAnteaterInitialState] = new()
+        [TextQuestion.LangtonsAnteaterInitialState] = new()
         {
             QuestionText = "Какой из этих квадратов изначально был {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5549,7 +5549,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Lasers
         // What was the number on the {1} hatch on {0}?
         // What was the number on the top-left hatch on Lasers?
-        [Question.LasersHatches] = new()
+        [TextQuestion.LasersHatches] = new()
         {
             QuestionText = "Какое число было на {1} люке {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5569,7 +5569,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // LED Encryption
         // What was the correct letter you pressed in the {1} stage of {0}?
         // What was the correct letter you pressed in the first stage of LED Encryption?
-        [Question.LEDEncryptionPressedLetters] = new()
+        [TextQuestion.LEDEncryptionPressedLetters] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая правильная буква была нажата на {1}-м этапе {0}?",
@@ -5579,7 +5579,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // LED Grid
         // How many LEDs were unlit in {0}?
         // How many LEDs were unlit in LED Grid?
-        [Question.LEDGridNumBlack] = new()
+        [TextQuestion.LEDGridNumBlack] = new()
         {
             Conjugation = Conjugation.PrepositiveFeminine,
             QuestionText = "Сколько светодиодов не горело на {0}?",
@@ -5589,7 +5589,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // LED Math
         // What color was {1} in {0}?
         // What color was LED A in LED Math?
-        [Question.LEDMathLights] = new()
+        [TextQuestion.LEDMathLights] = new()
         {
             QuestionText = "Какого цвета был {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5610,7 +5610,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // LEDs
         // What was the initial color of the changed LED in {0}?
         // What was the initial color of the changed LED in LEDs?
-        [Question.LEDsOriginalColor] = new()
+        [TextQuestion.LEDsOriginalColor] = new()
         {
             QuestionText = "Какой был начальный цвет изменённого светодиода {0}?",
             Answers = new Dictionary<string, string>
@@ -5629,7 +5629,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // LEGOs
         // What were the dimensions of the {1} piece in {0}?
         // What were the dimensions of the red piece in LEGOs?
-        [Question.LEGOsPieceDimensions] = new()
+        [TextQuestion.LEGOsPieceDimensions] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Каких размеров была {1} деталь {0}?",
@@ -5647,7 +5647,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Letter Math
         // What was the letter on the {1} display in {0}?
         // What was the letter on the left display in Letter Math?
-        [Question.LetterMathDisplay] = new()
+        [TextQuestion.LetterMathDisplay] = new()
         {
             QuestionText = "Какая буква была на {1} экране {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5660,7 +5660,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Light Bulbs
         // What was the color of the {1} bulb in {0}?
         // What was the color of the left bulb in Light Bulbs?
-        [Question.LightBulbsColors] = new()
+        [TextQuestion.LightBulbsColors] = new()
         {
             QuestionText = "Какой был цвет {1} лампочки {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5684,7 +5684,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Linq
         // What was the {1} function in {0}?
         // What was the first function in Linq?
-        [Question.LinqFunction] = new()
+        [TextQuestion.LinqFunction] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Какая была {1}-я функция {0}?",
@@ -5697,13 +5697,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Lion’s Share
         // Which year was displayed on {0}?
         // Which year was displayed on Lion’s Share?
-        [Question.LionsShareYear] = new()
+        [TextQuestion.LionsShareYear] = new()
         {
             QuestionText = "Какой год был показан {0}?",
         },
         // Which lion was present but removed in {0}?
         // Which lion was present but removed in Lion’s Share?
-        [Question.LionsShareRemovedLions] = new()
+        [TextQuestion.LionsShareRemovedLions] = new()
         {
             QuestionText = "Какой лев изначально присутствовал, но потом был убран {0}?",
         },
@@ -5711,7 +5711,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Listening
         // What clip was played in {0}?
         // What clip was played in Listening?
-        [Question.ListeningSound] = new()
+        [TextQuestion.ListeningSound] = new()
         {
             QuestionText = "Какой звук был воспроизведён {0}?",
             ModuleName = "Прослушке",
@@ -5720,7 +5720,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Literal Maze
         // Which letter was in this position in {0}?
         // Which letter was in this position in Literal Maze?
-        [Question.LiteralMazeLetter] = new()
+        [TextQuestion.LiteralMazeLetter] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which letter was in this position in {0}?",
@@ -5729,7 +5729,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Logical Buttons
         // What was the color of the {1} button in the {2} stage of {0}?
         // What was the color of the top button in the first stage of Logical Buttons?
-        [Question.LogicalButtonsColor] = new()
+        [TextQuestion.LogicalButtonsColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была {1} кнопка на {2}-м этапе {0}?",
@@ -5754,7 +5754,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the label on the {1} button in the {2} stage of {0}?
         // What was the label on the top button in the first stage of Logical Buttons?
-        [Question.LogicalButtonsLabel] = new()
+        [TextQuestion.LogicalButtonsLabel] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была надпись на {1} кнопке на {2}-м этапе {0}?",
@@ -5767,7 +5767,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the final operator in the {1} stage of {0}?
         // What was the final operator in the first stage of Logical Buttons?
-        [Question.LogicalButtonsOperator] = new()
+        [TextQuestion.LogicalButtonsOperator] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был конечный оператор на {1}-м этапе {0}?",
@@ -5776,7 +5776,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Logic Gates
         // What was {1} in {0}?
         // What was gate A in Logic Gates?
-        [Question.LogicGatesGates] = new()
+        [TextQuestion.LogicGatesGates] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Каким был {1} {0}?",
@@ -5797,7 +5797,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Lombax Cubes
         // What was the {1} letter on the button in {0}?
         // What was the first letter on the button in Lombax Cubes?
-        [Question.LombaxCubesLetters] = new()
+        [TextQuestion.LombaxCubesLetters] = new()
         {
             QuestionText = "Какая была {1}-я буква на кнопке {0}?",
         },
@@ -5805,7 +5805,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The London Underground
         // Where did the {1} journey on {0} {2}?
         // Where did the first journey on The London Underground depart from?
-        [Question.LondonUndergroundStations] = new()
+        [TextQuestion.LondonUndergroundStations] = new()
         {
             QuestionText = "{2} отправился {1}-й рейс {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5818,7 +5818,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Long Words
         // What was the word on the top display on {0}?
         // What was the word on the top display on Long Words?
-        [Question.LongWordsWord] = new()
+        [TextQuestion.LongWordsWord] = new()
         {
             QuestionText = "Какое слово было на верхнем экране {0}?",
         },
@@ -5826,7 +5826,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mad Memory
         // What was on the display in the {1} stage of {0}?
         // What was on the display in the first stage of Mad Memory?
-        [Question.MadMemoryDisplays] = new()
+        [TextQuestion.MadMemoryDisplays] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Что было на экране на {1} этапе {0}?",
@@ -5842,7 +5842,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mafia
         // Who was a player, but not the Godfather, in {0}?
         // Who was a player, but not the Godfather, in Mafia?
-        [Question.MafiaPlayers] = new()
+        [TextQuestion.MafiaPlayers] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Кто был игроком, но не являлся крёстным отцом {0}?",
@@ -5852,7 +5852,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Magenta Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Magenta Cipher?
-        [Question.MagentaCipherScreen] = new()
+        [TextQuestion.MagentaCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5866,13 +5866,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mahjong
         // Which tile was part of the {1} matched pair in {0}?
         // Which tile was part of the first matched pair in Mahjong?
-        [Question.MahjongMatches] = new()
+        [TextQuestion.MahjongMatches] = new()
         {
             QuestionText = "Какая кость была частью {1}-й сопоставленной пары {0}?",
         },
         // Which tile was shown in the bottom-left of {0}?
         // Which tile was shown in the bottom-left of Mahjong?
-        [Question.MahjongCountingTile] = new()
+        [TextQuestion.MahjongCountingTile] = new()
         {
             QuestionText = "Какая кость была показана снизу слева {0}?",
         },
@@ -5880,7 +5880,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Main Page
         // Which color did the bubble not display in {0}?
         // Which color did the bubble not display in Main Page?
-        [Question.MainPageBubbleColors] = new()
+        [TextQuestion.MainPageBubbleColors] = new()
         {
             QuestionText = "Какого цвета не было во фразах {0}?",
             Answers = new Dictionary<string, string>
@@ -5893,7 +5893,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which main page did the {1} button’s effect come from in {0}?
         // Which main page did the toons button’s effect come from in Main Page?
-        [Question.MainPageButtonEffectOrigin] = new()
+        [TextQuestion.MainPageButtonEffectOrigin] = new()
         {
             QuestionText = "Какой главной странице соответствовал эффект кнопки {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5908,7 +5908,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which of the following messages did the bubble {1} in {0}?
         // Which of the following messages did the bubble display in Main Page?
-        [Question.MainPageBubbleMessages] = new()
+        [TextQuestion.MainPageBubbleMessages] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая фраза {1} на {0}?",
@@ -5920,7 +5920,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which main page did {1} come from in {0}?
         // Which main page did Homestar come from in Main Page?
-        [Question.MainPageHomestarBackgroundOrigin] = new()
+        [TextQuestion.MainPageHomestarBackgroundOrigin] = new()
         {
             QuestionText = "С какой главной страницы был взят {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -5933,7 +5933,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // M&Ms
         // What color was the text on the {1} button in {0}?
         // What color was the text on the first button in M&Ms?
-        [Question.MandMsColors] = new()
+        [TextQuestion.MandMsColors] = new()
         {
             QuestionText = "Какого цвета была надпись на {1}-й кнопке {0}?",
             Answers = new Dictionary<string, string>
@@ -5948,7 +5948,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the text on the {1} button in {0}?
         // What was the text on the first button in M&Ms?
-        [Question.MandMsLabels] = new()
+        [TextQuestion.MandMsLabels] = new()
         {
             QuestionText = "Какая надпись была на {1}-й кнопке {0}?",
         },
@@ -5956,7 +5956,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // M&Ns
         // What color was the text on the {1} button in {0}?
         // What color was the text on the first button in M&Ns?
-        [Question.MandNsColors] = new()
+        [TextQuestion.MandNsColors] = new()
         {
             QuestionText = "Какого цвета была надпись на {1}-й кнопке {0}?",
             Answers = new Dictionary<string, string>
@@ -5971,7 +5971,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the text on the correct button in {0}?
         // What was the text on the correct button in M&Ns?
-        [Question.MandNsLabel] = new()
+        [TextQuestion.MandNsLabel] = new()
         {
             QuestionText = "Какая надпись была на правильной кнопке {0}?",
         },
@@ -5979,13 +5979,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Maritime Flags
         // What bearing was signalled in {0}?
         // What bearing was signalled in Maritime Flags?
-        [Question.MaritimeFlagsBearing] = new()
+        [TextQuestion.MaritimeFlagsBearing] = new()
         {
             QuestionText = "Какой пеленг был обозначен {0}?",
         },
         // Which callsign was signalled in {0}?
         // Which callsign was signalled in Maritime Flags?
-        [Question.MaritimeFlagsCallsign] = new()
+        [TextQuestion.MaritimeFlagsCallsign] = new()
         {
             QuestionText = "Какой позывной был обозначен {0}?",
         },
@@ -5993,13 +5993,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Maritime Semaphore
         // In which position was the dummy in {0}?
         // In which position was the dummy in Maritime Semaphore?
-        [Question.MaritimeSemaphoreDummy] = new()
+        [TextQuestion.MaritimeSemaphoreDummy] = new()
         {
             QuestionText = "В какой позиции была фиктивная конфигурация {0}?",
         },
         // Which letter was shown by the {2} in the {1} position in {0}?
         // Which letter was shown by the left flag in the first position in Maritime Semaphore?
-        [Question.MaritimeSemaphoreLetter] = new()
+        [TextQuestion.MaritimeSemaphoreLetter] = new()
         {
             QuestionText = "Какая буква была показана {2} в {1}-й позиции {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -6013,7 +6013,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Maroon Button
         // What was A in {0}?
         // What was A in The Maroon Button?
-        [Question.MaroonButtonA] = new()
+        [TextQuestion.MaroonButtonA] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой был флаг А на {0}?",
@@ -6022,7 +6022,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Maroon Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Maroon Cipher?
-        [Question.MaroonCipherScreen] = new()
+        [TextQuestion.MaroonCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -6036,13 +6036,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mashematics
         // What was the answer in {0}?
         // What was the answer in Mashematics?
-        [Question.MashematicsAnswer] = new()
+        [TextQuestion.MashematicsAnswer] = new()
         {
             QuestionText = "Какой был верный ответ {0}?",
         },
         // What was the {1} number in the equation on {0}?
         // What was the first number in the equation on Mashematics?
-        [Question.MashematicsCalculation] = new()
+        [TextQuestion.MashematicsCalculation] = new()
         {
             QuestionText = "Какое было {1}-е число в уравнении {0}?",
         },
@@ -6050,7 +6050,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Master Tapes
         // Which song was played in {0}?
         // Which song was played in Master Tapes?
-        [Question.MasterTapesPlayedSong] = new()
+        [TextQuestion.MasterTapesPlayedSong] = new()
         {
             QuestionText = "Какая песня была проиграна {0}?",
         },
@@ -6058,7 +6058,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Match Refereeing
         // Which planet was present in the {1} stage of {0}?
         // Which planet was present in the first stage of Match Refereeing?
-        [Question.MatchRefereeingPlanet] = new()
+        [TextQuestion.MatchRefereeingPlanet] = new()
         {
             QuestionText = "Какая планета присутствовала на {1}-м этапе {0}?",
         },
@@ -6066,7 +6066,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Math ’em
         // What was the color of this tile before the shuffle on {0}?
         // What was the color of this tile before the shuffle on Math ’em?
-        [Question.MathEmColor] = new()
+        [TextQuestion.MathEmColor] = new()
         {
             QuestionText = "Какого цвета была эта плитка до перемешивания {0}?",
             Answers = new Dictionary<string, string>
@@ -6079,7 +6079,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the design on this tile before the shuffle on {0}?
         // What was the design on this tile before the shuffle on Math ’em?
-        [Question.MathEmLabel] = new()
+        [TextQuestion.MathEmLabel] = new()
         {
             QuestionText = "Какой узор был на этой плитке до перемешивания {0}?",
         },
@@ -6087,13 +6087,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Matrix
         // Which word was part of the latest access code in {0}?
         // Which word was part of the latest access code in The Matrix?
-        [Question.MatrixAccessCode] = new()
+        [TextQuestion.MatrixAccessCode] = new()
         {
             QuestionText = "Какое слово было частью последнего кода доступа {0}?",
         },
         // What was the glitched word in {0}?
         // What was the glitched word in The Matrix?
-        [Question.MatrixGlitchWord] = new()
+        [TextQuestion.MatrixGlitchWord] = new()
         {
             QuestionText = "Какое слово было глючным {0}?",
         },
@@ -6101,7 +6101,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Maze
         // In which {1} was the starting position in {0}, counting from the {2}?
         // In which column was the starting position in Maze, counting from the left?
-        [Question.MazeStartingPosition] = new()
+        [TextQuestion.MazeStartingPosition] = new()
         {
             QuestionText = "В {1} (считая {2}) была начальная позиция {0}?",
             ModuleName = "Лабиринте",
@@ -6117,7 +6117,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Maze³
         // What was the color of the starting face in {0}?
         // What was the color of the starting face in Maze³?
-        [Question.Maze3StartingFace] = new()
+        [TextQuestion.Maze3StartingFace] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой цвет был у начальной стороны {0}?",
@@ -6135,13 +6135,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Maze Identification
         // What was the seed of the maze in {0}?
         // What was the seed of the maze in Maze Identification?
-        [Question.MazeIdentificationSeed] = new()
+        [TextQuestion.MazeIdentificationSeed] = new()
         {
             QuestionText = "Какое было зерно у лабиринта {0}?",
         },
         // What was the function of button {1} in {0}?
         // What was the function of button 1 in Maze Identification?
-        [Question.MazeIdentificationNum] = new()
+        [TextQuestion.MazeIdentificationNum] = new()
         {
             QuestionText = "Какая была функция у кнопки {1} {0}?",
             Answers = new Dictionary<string, string>
@@ -6154,7 +6154,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which button {1} in {0}?
         // Which button moved you forwards in Maze Identification?
-        [Question.MazeIdentificationFunc] = new()
+        [TextQuestion.MazeIdentificationFunc] = new()
         {
             QuestionText = "Какая кнопка {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -6169,7 +6169,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mazematics
         // Which was the {1} value in {0}?
         // Which was the initial value in Mazematics?
-        [Question.MazematicsValue] = new()
+        [TextQuestion.MazematicsValue] = new()
         {
             QuestionText = "Какая была {1} величина {0}?",
             ModuleName = "Матебиринте",
@@ -6183,7 +6183,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Maze Scrambler
         // What was the starting position on {0}?
         // What was the starting position on Maze Scrambler?
-        [Question.MazeScramblerStart] = new()
+        [TextQuestion.MazeScramblerStart] = new()
         {
             QuestionText = "Какая была начальная позиция {0}?",
             Answers = new Dictionary<string, string>
@@ -6201,7 +6201,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the goal on {0}?
         // What was the goal on Maze Scrambler?
-        [Question.MazeScramblerGoal] = new()
+        [TextQuestion.MazeScramblerGoal] = new()
         {
             QuestionText = "Где была цель {0}?",
             Answers = new Dictionary<string, string>
@@ -6219,7 +6219,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which of these positions was a maze marking on {0}?
         // Which of these positions was a maze marking on Maze Scrambler?
-        [Question.MazeScramblerIndicators] = new()
+        [TextQuestion.MazeScramblerIndicators] = new()
         {
             QuestionText = "На какой позиции было обозначение лабиринта {0}?",
             Answers = new Dictionary<string, string>
@@ -6239,19 +6239,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mazeseeker
         // How many walls surrounded this cell in {0}?
         // How many walls surrounded this cell in Mazeseeker?
-        [Question.MazeseekerCell] = new()
+        [TextQuestion.MazeseekerCell] = new()
         {
             QuestionText = "Сколько стен окружало эту клетку {0}?",
         },
         // Where was the start in {0}?
         // Where was the start in Mazeseeker?
-        [Question.MazeseekerStart] = new()
+        [TextQuestion.MazeseekerStart] = new()
         {
             QuestionText = "Где было начало {0}?",
         },
         // Where was the goal in {0}?
         // Where was the goal in Mazeseeker?
-        [Question.MazeseekerGoal] = new()
+        [TextQuestion.MazeseekerGoal] = new()
         {
             QuestionText = "Где была цель {0}?",
         },
@@ -6259,7 +6259,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Maze Swap
         // Where was the {1} position in {0}?
         // Where was the starting position in Maze Swap?
-        [Question.MazeSwapPosition] = new()
+        [TextQuestion.MazeSwapPosition] = new()
         {
             QuestionText = "Где {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -6272,13 +6272,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mega Man 2
         // Which master was shown in {0}?
         // Which master was shown in Mega Man 2?
-        [Question.MegaMan2Master] = new()
+        [TextQuestion.MegaMan2Master] = new()
         {
             QuestionText = "Какой мастер был показан {0}?",
         },
         // Which weapon was shown in {0}?
         // Which weapon was shown in Mega Man 2?
-        [Question.MegaMan2Weapon] = new()
+        [TextQuestion.MegaMan2Weapon] = new()
         {
             QuestionText = "Какое оружие было показано {0}?",
         },
@@ -6286,14 +6286,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Melody Sequencer
         // Which part was in slot #{1} at the start of {0}?
         // Which part was in slot #1 at the start of Melody Sequencer?
-        [Question.MelodySequencerSlots] = new()
+        [TextQuestion.MelodySequencerSlots] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая часть была в слоту №{1} в начале {0}?",
         },
         // Which slot contained part #{1} at the start of {0}?
         // Which slot contained part #1 at the start of Melody Sequencer?
-        [Question.MelodySequencerParts] = new()
+        [TextQuestion.MelodySequencerParts] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой слот содержал часть №{1} в начале {0}?",
@@ -6302,7 +6302,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Memorable Buttons
         // What was the {1} correct symbol pressed in {0}?
         // What was the first correct symbol pressed in Memorable Buttons?
-        [Question.MemorableButtonsSymbols] = new()
+        [TextQuestion.MemorableButtonsSymbols] = new()
         {
             QuestionText = "Какой был {1}-й верно нажатый символ {0}?",
         },
@@ -6310,7 +6310,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Memory
         // What was the displayed number in the {1} stage of {0}?
         // What was the displayed number in the first stage of Memory?
-        [Question.MemoryDisplay] = new()
+        [TextQuestion.MemoryDisplay] = new()
         {
             Conjugation = Conjugation.GenitiveFeminine,
             QuestionText = "Какая цифра была на экране на {1}-м этапе {0}?",
@@ -6318,7 +6318,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // In what position was the button that you pressed in the {1} stage of {0}?
         // In what position was the button that you pressed in the first stage of Memory?
-        [Question.MemoryPosition] = new()
+        [TextQuestion.MemoryPosition] = new()
         {
             Conjugation = Conjugation.GenitiveFeminine,
             QuestionText = "На какой позиции была кнопка, которую вы нажали на {1}-м этапе {0}?",
@@ -6326,7 +6326,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the label of the button that you pressed in the {1} stage of {0}?
         // What was the label of the button that you pressed in the first stage of Memory?
-        [Question.MemoryLabel] = new()
+        [TextQuestion.MemoryLabel] = new()
         {
             Conjugation = Conjugation.GenitiveFeminine,
             QuestionText = "С каким значением была кнопка, которую вы нажали на {1}-м этапе {0}?",
@@ -6336,14 +6336,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Memory Wires
         // What was the digit displayed in the {1} stage of {0}?
         // What was the digit displayed in the first stage of Memory Wires?
-        [Question.MemoryWiresDisplayedDigits] = new()
+        [TextQuestion.MemoryWiresDisplayedDigits] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая цифра была показана на {1}-м этапе {0}?",
         },
         // What was the colour of wire {1} in {0}?
         // What was the colour of wire 1 in Memory Wires?
-        [Question.MemoryWiresWireColours] = new()
+        [TextQuestion.MemoryWiresWireColours] = new()
         {
             QuestionText = "Какого цвета был {1}-й провод {0}?",
             Answers = new Dictionary<string, string>
@@ -6359,7 +6359,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Metamorse
         // What was the extracted letter in {0}?
         // What was the extracted letter in Metamorse?
-        [Question.MetamorseExtractedLetter] = new()
+        [TextQuestion.MetamorseExtractedLetter] = new()
         {
             QuestionText = "Какая была извлечённая буква {0}?",
         },
@@ -6367,7 +6367,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Metapuzzle
         // What was the final answer in {0}?
         // What was the final answer in Metapuzzle?
-        [Question.MetapuzzleAnswer] = new()
+        [TextQuestion.MetapuzzleAnswer] = new()
         {
             QuestionText = "Какой был финальный ответ {0}?",
         },
@@ -6375,7 +6375,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Minsk Metro
         // What was the name of starting station in {0}?
         // What was the name of starting station in Minsk Metro?
-        [Question.MinskMetroStation] = new()
+        [TextQuestion.MinskMetroStation] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the name of starting station in {0}?",
@@ -6384,7 +6384,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mirror
         // What was the second word written by the original ghost in {0}?
         // What was the second word written by the original ghost in Mirror?
-        [Question.MirrorWord] = new()
+        [TextQuestion.MirrorWord] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое было второе слово, написанное оригинальным призраком на {0}?",
@@ -6393,7 +6393,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mister Softee
         // Where was the SpongeBob Bar on {0}?
         // Where was the SpongeBob Bar on Mister Softee?
-        [Question.MisterSofteeSpongebobPosition] = new()
+        [TextQuestion.MisterSofteeSpongebobPosition] = new()
         {
             QuestionText = "Где был SpongeBob Bar {0}?",
             Answers = new Dictionary<string, string>
@@ -6411,7 +6411,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which treat was present on {0}?
         // Which treat was present on Mister Softee?
-        [Question.MisterSofteeTreatsPresent] = new()
+        [TextQuestion.MisterSofteeTreatsPresent] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая сладость присутствовала на {0}?",
@@ -6420,7 +6420,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mixometer
         // What was the position of the submit button in {0}?
         // What was the position of the submit button in Mixometer?
-        [Question.MixometerSubmitButton] = new()
+        [TextQuestion.MixometerSubmitButton] = new()
         {
             QuestionText = "В какой позиции была кнопка отправки {0}?",
         },
@@ -6428,7 +6428,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Modern Cipher
         // What was the decrypted word of the {1} stage in {0}?
         // What was the decrypted word of the first stage in Modern Cipher?
-        [Question.ModernCipherWord] = new()
+        [TextQuestion.ModernCipherWord] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое слово было расшифровано на {1}-м этапе {0}?",
@@ -6437,7 +6437,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Module Listening
         // Which sound did the {1} button play in {0}?
         // Which sound did the red button play in Module Listening?
-        [Question.ModuleListeningButtonAudio] = new()
+        [TextQuestion.ModuleListeningButtonAudio] = new()
         {
             QuestionText = "Какой звук воспроизводился {1} кнопкой {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -6450,7 +6450,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which sound played in {0}?
         // Which sound played in Module Listening?
-        [Question.ModuleListeningAnyAudio] = new()
+        [TextQuestion.ModuleListeningAnyAudio] = new()
         {
             QuestionText = "Какой звук был воспроизведён {0}?",
         },
@@ -6458,7 +6458,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Module Maneuvers
         // What was the goal location in {0}?
         // What was the goal location in Module Maneuvers?
-        [Question.ModuleManeuversGoal] = new()
+        [TextQuestion.ModuleManeuversGoal] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the goal location in {0}?",
@@ -6471,7 +6471,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Module Maze
         // Which of the following was the starting icon for {0}?
         // Which of the following was the starting icon for Module Maze?
-        [Question.ModuleMazeStartingIcon] = new()
+        [TextQuestion.ModuleMazeStartingIcon] = new()
         {
             QuestionText = "Какая была начальная иконка модуля {0}?",
             ModuleName = "Модульном лабиринте",
@@ -6480,7 +6480,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Module Movements
         // What was the {1} module shown in {0}?
         // What was the first module shown in Module Movements?
-        [Question.ModuleMovementsDisplay] = new()
+        [TextQuestion.ModuleMovementsDisplay] = new()
         {
             QuestionText = "Какой был {1}-й показанный модуль {0}?",
         },
@@ -6488,19 +6488,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Money Game
         // What were the first and second words in the {1} phrase in {0}?
         // What were the first and second words in the first phrase in Money Game?
-        [Question.MoneyGame1] = new()
+        [TextQuestion.MoneyGame1] = new()
         {
             QuestionText = "Какое было первое и второе слово в {1}-й фразе {0}?",
         },
         // What were the third and fourth words in the {1} phrase in {0}?
         // What were the third and fourth words in the first phrase in Money Game?
-        [Question.MoneyGame2] = new()
+        [TextQuestion.MoneyGame2] = new()
         {
             QuestionText = "Какое было третье и четвёртое слово в {1}-й фразе {0}?",
         },
         // What was the end of the {1} phrase in {0}?
         // What was the end of the first phrase in Money Game?
-        [Question.MoneyGame3] = new()
+        [TextQuestion.MoneyGame3] = new()
         {
             QuestionText = "На что оканчивалась {1}-я фраза {0}?",
         },
@@ -6508,14 +6508,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Monsplode, Fight!
         // Which creature was displayed in {0}?
         // Which creature was displayed in Monsplode, Fight!?
-        [Question.MonsplodeFightCreature] = new()
+        [TextQuestion.MonsplodeFightCreature] = new()
         {
             QuestionText = "Какое существо было показано {0}?",
             ModuleName = "\"Монсплоды, в атаку!\"",
         },
         // Which one of these moves {1} selectable in {0}?
         // Which one of these moves was selectable in Monsplode, Fight!?
-        [Question.MonsplodeFightMove] = new()
+        [TextQuestion.MonsplodeFightMove] = new()
         {
             QuestionText = "Какой один из этих приёмов {1} доступен {0}?",
             ModuleName = "\"Монсплоды, в атаку!\"",
@@ -6529,7 +6529,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Monsplode Trading Cards
         // What was the {1} before the last action in {0}?
         // What was the first card in your hand before the last action in Monsplode Trading Cards?
-        [Question.MonsplodeTradingCardsCards] = new()
+        [TextQuestion.MonsplodeTradingCardsCards] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какая была {1} перед последним действием {0}?",
@@ -6544,7 +6544,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the print version of the {1} before the last action in {0}?
         // What was the print version of the first card in your hand before the last action in Monsplode Trading Cards?
-        [Question.MonsplodeTradingCardsPrintVersions] = new()
+        [TextQuestion.MonsplodeTradingCardsPrintVersions] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какое было издание {1} перед последним действием {0}?",
@@ -6561,7 +6561,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Moon
         // What was the {1} set in clockwise order in {0}?
         // What was the first initially lit set in clockwise order in The Moon?
-        [Question.MoonLitUnlit] = new()
+        [TextQuestion.MoonLitUnlit] = new()
         {
             QuestionText = "Какой {1} по часовой стрелке {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -6591,7 +6591,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // More Code
         // What was the flashing word in {0}?
         // What was the flashing word in More Code?
-        [Question.MoreCodeWord] = new()
+        [TextQuestion.MoreCodeWord] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое слово передовалось на {0}?",
@@ -6600,19 +6600,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Morse-A-Maze
         // What was the starting location in {0}?
         // What was the starting location in Morse-A-Maze?
-        [Question.MorseAMazeStartingCoordinate] = new()
+        [TextQuestion.MorseAMazeStartingCoordinate] = new()
         {
             QuestionText = "Какая была начальная позиция {0}?",
         },
         // What was the ending location in {0}?
         // What was the ending location in Morse-A-Maze?
-        [Question.MorseAMazeEndingCoordinate] = new()
+        [TextQuestion.MorseAMazeEndingCoordinate] = new()
         {
             QuestionText = "Какая была конечная позиция {0}?",
         },
         // What was the word shown as Morse code in {0}?
         // What was the word shown as Morse code in Morse-A-Maze?
-        [Question.MorseAMazeMorseCodeWord] = new()
+        [TextQuestion.MorseAMazeMorseCodeWord] = new()
         {
             QuestionText = "Какое кодовое слово было передано через Морзе {0}?",
         },
@@ -6620,13 +6620,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Morse Buttons
         // What was the character flashed by the {1} button in {0}?
         // What was the character flashed by the first button in Morse Buttons?
-        [Question.MorseButtonsButtonLabel] = new()
+        [TextQuestion.MorseButtonsButtonLabel] = new()
         {
             QuestionText = "Какой символ передавался {1}-й кнопкой {0}?",
         },
         // What was the color flashed by the {1} button in {0}?
         // What was the color flashed by the first button in Morse Buttons?
-        [Question.MorseButtonsButtonColor] = new()
+        [TextQuestion.MorseButtonsButtonColor] = new()
         {
             QuestionText = "Каким цветом мигала {1}-я кнопка {0}?",
             Answers = new Dictionary<string, string>
@@ -6643,7 +6643,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Morsematics
         // What was the {1} received letter in {0}?
         // What was the first received letter in Morsematics?
-        [Question.MorsematicsReceivedLetters] = new()
+        [TextQuestion.MorsematicsReceivedLetters] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какая была {1}-я полученная буква {0}?",
@@ -6653,7 +6653,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Morse War
         // What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?
         // What were the LEDs in the bottom row in Morse War (1 = on, 0 = off)?
-        [Question.MorseWarLeds] = new()
+        [TextQuestion.MorseWarLeds] = new()
         {
             QuestionText = "Какими были светодиоды в {1} ряду {0} (1 = вкл, 0 = выкл)?",
             FormatArgs = new Dictionary<string, string>
@@ -6665,7 +6665,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What code was transmitted in {0}?
         // What code was transmitted in Morse War?
-        [Question.MorseWarCode] = new()
+        [TextQuestion.MorseWarCode] = new()
         {
             QuestionText = "Какой код был передан {0}?",
         },
@@ -6673,7 +6673,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mouse in the Maze
         // What color was the torus in {0}?
         // What color was the torus in Mouse in the Maze?
-        [Question.MouseInTheMazeTorus] = new()
+        [TextQuestion.MouseInTheMazeTorus] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какого цвета было кольцо {0}?",
@@ -6688,7 +6688,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which color sphere was the goal in {0}?
         // Which color sphere was the goal in Mouse in the Maze?
-        [Question.MouseInTheMazeSphere] = new()
+        [TextQuestion.MouseInTheMazeSphere] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какого цвета была целевая сфера {0}?",
@@ -6705,13 +6705,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // M-Seq
         // What was the {1} obtained digit in {0}?
         // What was the first obtained digit in M-Seq?
-        [Question.MSeqObtained] = new()
+        [TextQuestion.MSeqObtained] = new()
         {
             QuestionText = "Какая была {1}-я полученная цифра {0}?",
         },
         // What was the final number from the iteration process in {0}?
         // What was the final number from the iteration process in M-Seq?
-        [Question.MSeqSubmitted] = new()
+        [TextQuestion.MSeqSubmitted] = new()
         {
             QuestionText = "Какое было финальное число итерационного процесса {0}?",
         },
@@ -6719,7 +6719,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mssngv Wls
         // Which vowel was missing in {0}?
         // Which vowel was missing in \uE001Mssngv Wls\uE002?
-        [Question.MssngvWlsMssNgvwL] = new()
+        [TextQuestion.MssngvWlsMssNgvwL] = new()
         {
             QuestionText = "Какая гласная отсутствовала {0}?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
@@ -6731,7 +6731,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Multicolored Switches
         // What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?
         // What color was the first LED on the top row when the tiny LED was lit in Multicolored Switches?
-        [Question.MulticoloredSwitchesLedColor] = new()
+        [TextQuestion.MulticoloredSwitchesLedColor] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какого цвета был {1}-й светодиод на {2} ряду, когда маленький светодиод {3} {0}?",
@@ -6759,7 +6759,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Murder
         // Where was the body found in {0}?
         // Where was the body found in Murder?
-        [Question.MurderBodyFound] = new()
+        [TextQuestion.MurderBodyFound] = new()
         {
             QuestionText = "Где было найдено тело {0}?",
             ModuleName = "Убийстве",
@@ -6778,7 +6778,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which of these was {1} in {0}?
         // Which of these was a suspect but not the murderer in Murder?
-        [Question.MurderSuspect] = new()
+        [TextQuestion.MurderSuspect] = new()
         {
             QuestionText = "Кто {1} {0}?",
             ModuleName = "Убийстве",
@@ -6799,7 +6799,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which of these was {1} in {0}?
         // Which of these was a potential weapon but not the murder weapon in Murder?
-        [Question.MurderWeapon] = new()
+        [TextQuestion.MurderWeapon] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "{1} {0}?",
@@ -6823,14 +6823,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mystery Module
         // Which module was the first requested to be solved by {0}?
         // Which module was the first requested to be solved by Mystery Module?
-        [Question.MysteryModuleFirstKey] = new()
+        [TextQuestion.MysteryModuleFirstKey] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой модуль надо было обезвредить первым на {0}?",
         },
         // Which module was hidden by {0}?
         // Which module was hidden by Mystery Module?
-        [Question.MysteryModuleHiddenModule] = new()
+        [TextQuestion.MysteryModuleHiddenModule] = new()
         {
             Conjugation = Conjugation.InstrumentalMascNeuter,
             QuestionText = "Какой модуль был спрятан за {0}?",
@@ -6839,7 +6839,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mystic Square
         // Where was the skull in {0}?
         // Where was the skull in Mystic Square?
-        [Question.MysticSquareSkull] = new()
+        [TextQuestion.MysticSquareSkull] = new()
         {
             QuestionText = "Где находился череп {0}?",
             ModuleName = "Загадочном квадрате",
@@ -6860,7 +6860,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Name Codes
         // What was the {1} index in {0}?
         // What was the left index in Name Codes?
-        [Question.NameCodesIndices] = new()
+        [TextQuestion.NameCodesIndices] = new()
         {
             QuestionText = "Какой был {1} индекс {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -6873,7 +6873,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Naming Conventions
         // What was the label of the first button in {0}?
         // What was the label of the first button in Naming Conventions?
-        [Question.NamingConventionsObject] = new()
+        [TextQuestion.NamingConventionsObject] = new()
         {
             QuestionText = "Какая была надпись на 1й кнопке {0}?",
         },
@@ -6881,7 +6881,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // N&Ms
         // What was the label of the correct button in {0}?
         // What was the label of the correct button in N&Ms?
-        [Question.NandMsAnswer] = new()
+        [TextQuestion.NandMsAnswer] = new()
         {
             QuestionText = "Какая надпись была на правильной кнопке {0}?",
             ModuleName = "N и M",
@@ -6890,14 +6890,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // N&Ns
         // Which label was present in the {1} stage of {0}?
         // Which label was present in the first stage of N&Ns?
-        [Question.NandNsLabel] = new()
+        [TextQuestion.NandNsLabel] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая надпись присутствовала на {1}-м этапе {0}?",
         },
         // Which color was missing in the third stage of {0}?
         // Which color was missing in the third stage of N&Ns?
-        [Question.NandNsColor] = new()
+        [TextQuestion.NandNsColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой цвет отсутствовал на 3-м этапе {0}?",
@@ -6915,7 +6915,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Navigation Determination
         // What was the color of the maze in {0}?
         // What was the color of the maze in Navigation Determination?
-        [Question.NavigationDeterminationColor] = new()
+        [TextQuestion.NavigationDeterminationColor] = new()
         {
             QuestionText = "Какого цвета был лабиринт {0}?",
             Answers = new Dictionary<string, string>
@@ -6928,7 +6928,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the label of the maze in {0}?
         // What was the label of the maze in Navigation Determination?
-        [Question.NavigationDeterminationLabel] = new()
+        [TextQuestion.NavigationDeterminationLabel] = new()
         {
             QuestionText = "Какой буквой был обозначен лабиринт {0}?",
         },
@@ -6936,14 +6936,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Navinums
         // What was the initial middle digit in {0}?
         // What was the initial middle digit in Navinums?
-        [Question.NavinumsMiddleDigit] = new()
+        [TextQuestion.NavinumsMiddleDigit] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая цифра была изначально в центре {0}?",
         },
         // What was the {1} directional button pressed in {0}?
         // What was the first directional button pressed in Navinums?
-        [Question.NavinumsDirectionalButtons] = new()
+        [TextQuestion.NavinumsDirectionalButtons] = new()
         {
             QuestionText = "Какая кнопка направления была нажата {1}-й {0}?",
             Answers = new Dictionary<string, string>
@@ -6958,7 +6958,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Navy Button
         // Which Greek letter appeared on {0} (case-sensitive)?
         // Which Greek letter appeared on The Navy Button (case-sensitive)?
-        [Question.NavyButtonGreekLetters] = new()
+        [TextQuestion.NavyButtonGreekLetters] = new()
         {
             NeedsTranslation = true,
             Conjugation = Conjugation.PrepositiveMascNeuter,
@@ -6974,7 +6974,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} of the given in {0}?
         // What was the (0-indexed) column of the given in The Navy Button?
-        [Question.NavyButtonGiven] = new()
+        [TextQuestion.NavyButtonGiven] = new()
         {
             NeedsTranslation = true,
             Conjugation = Conjugation.PrepositiveMascNeuter,
@@ -6990,7 +6990,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Necronomicon
         // What was the chapter number of the {1} page in {0}?
         // What was the chapter number of the first page in The Necronomicon?
-        [Question.NecronomiconChapters] = new()
+        [TextQuestion.NecronomiconChapters] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был номер главы {1}-й страницы {0}?",
@@ -6999,13 +6999,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Negativity
         // In base 10, what was the value submitted in {0}?
         // In base 10, what was the value submitted in Negativity?
-        [Question.NegativitySubmittedValue] = new()
+        [TextQuestion.NegativitySubmittedValue] = new()
         {
             QuestionText = "Какое значение было введено (в десятиричной системе) {0}?",
         },
         // Excluding 0s, what was the submitted balanced ternary in {0}?
         // Excluding 0s, what was the submitted balanced ternary in Negativity?
-        [Question.NegativitySubmittedTernary] = new()
+        [TextQuestion.NegativitySubmittedTernary] = new()
         {
             QuestionText = "Какой сбалансированный троичный код был введён {0} (исключая нули)?",
         },
@@ -7013,7 +7013,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Neptune
         // Which star was displayed in {0}?
         // Which star was displayed in Neptune?
-        [Question.NeptuneStar] = new()
+        [TextQuestion.NeptuneStar] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which star was displayed in {0}?",
@@ -7022,7 +7022,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Neutralization
         // What was the acid’s color in {0}?
         // What was the acid’s color in Neutralization?
-        [Question.NeutralizationColor] = new()
+        [TextQuestion.NeutralizationColor] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какой цвет был у кислоты {0}?",
@@ -7037,7 +7037,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the acid’s volume in {0}?
         // What was the acid’s volume in Neutralization?
-        [Question.NeutralizationVolume] = new()
+        [TextQuestion.NeutralizationVolume] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какой был объём кислоты {0}?",
@@ -7047,7 +7047,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Next In Line
         // What color was the first wire in {0}?
         // What color was the first wire in Next In Line?
-        [Question.NextInLineFirstWire] = new()
+        [TextQuestion.NextInLineFirstWire] = new()
         {
             QuestionText = "Какого цвета был первый провод {0}?",
             Answers = new Dictionary<string, string>
@@ -7067,7 +7067,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Which button flashed in the {1} stage in {0}?
         // Which button flashed in the first stage in ❖?
         // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
-        [Question.NonverbalSimonFlashes] = new()
+        [TextQuestion.NonverbalSimonFlashes] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой кнопка горела на {1}-м этапе {0}?",
@@ -7076,7 +7076,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Colored Squares
         // What was the position of the square you initially pressed in {0}?
         // What was the position of the square you initially pressed in Not Colored Squares?
-        [Question.NotColoredSquaresInitialPosition] = new()
+        [TextQuestion.NotColoredSquaresInitialPosition] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая была позиция квадрата, который вы изначально нажали на {0}?",
@@ -7085,7 +7085,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Colored Switches
         // What was the encrypted word in {0}?
         // What was the encrypted word in Not Colored Switches?
-        [Question.NotColoredSwitchesWord] = new()
+        [TextQuestion.NotColoredSwitchesWord] = new()
         {
             QuestionText = "Какое было зашифрованное слово {0}?",
         },
@@ -7093,14 +7093,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Colour Flash
         // What was {1} in the displayed word sequence in {0}?
         // What was first in the displayed word sequence in Not Colour Flash?
-        [Question.NotColourFlashInitialWord] = new()
+        [TextQuestion.NotColourFlashInitialWord] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the initial word on {0}?",
         },
         // What was {1} in the displayed colour sequence in {0}?
         // What was first in the displayed colour sequence in Not Colour Flash?
-        [Question.NotColourFlashInitialColour] = new()
+        [TextQuestion.NotColourFlashInitialColour] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the initial colour of the word on {0}?",
@@ -7118,7 +7118,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Connection Check
         // What symbol flashed on the {1} button in {0}?
         // What symbol flashed on the top left button in Not Connection Check?
-        [Question.NotConnectionCheckFlashes] = new()
+        [TextQuestion.NotConnectionCheckFlashes] = new()
         {
             QuestionText = "Какой символ мигал на {1} кнопке {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -7131,7 +7131,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the value of the {1} button in {0}?
         // What was the value of the top left button in Not Connection Check?
-        [Question.NotConnectionCheckValues] = new()
+        [TextQuestion.NotConnectionCheckValues] = new()
         {
             QuestionText = "Какое было значение {1} кнопки {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -7146,7 +7146,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Coordinates
         // Which coordinate was part of the square in {0}?
         // Which coordinate was part of the square in Not Coordinates?
-        [Question.NotCoordinatesSquareCoords] = new()
+        [TextQuestion.NotCoordinatesSquareCoords] = new()
         {
             QuestionText = "Какая координата была частью квадрата {0}?",
         },
@@ -7154,7 +7154,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Double-Oh
         // What was the {1} displayed position in the second stage of {0}?
         // What was the first displayed position in the second stage of Not Double-Oh?
-        [Question.NotDoubleOhPosition] = new()
+        [TextQuestion.NotDoubleOhPosition] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая позиция была показана {1}-й на втором этапе {0}?",
@@ -7163,7 +7163,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Keypad
         // What color flashed {1} in the final sequence in {0}?
         // What color flashed first in the final sequence in Not Keypad?
-        [Question.NotKeypadColor] = new()
+        [TextQuestion.NotKeypadColor] = new()
         {
             Conjugation = Conjugation.PrepositiveFeminine,
             QuestionText = "Какой цвет горел {1}-м в последовательности на {0}?",
@@ -7186,7 +7186,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which symbol was on the button that flashed {1} in the final sequence in {0}?
         // Which symbol was on the button that flashed first in the final sequence in Not Keypad?
-        [Question.NotKeypadSymbol] = new()
+        [TextQuestion.NotKeypadSymbol] = new()
         {
             Conjugation = Conjugation.PrepositiveFeminine,
             QuestionText = "Какой символ был на кнопке, которая горела {1}-й в последовательности на {0}?",
@@ -7196,7 +7196,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Maze
         // What was the starting distance in {0}?
         // What was the starting distance in Not Maze?
-        [Question.NotMazeStartingDistance] = new()
+        [TextQuestion.NotMazeStartingDistance] = new()
         {
             QuestionText = "Какая была начальная дистанция {0}?",
         },
@@ -7204,7 +7204,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Morse Code
         // What was the {1} correct word you submitted in {0}?
         // What was the first correct word you submitted in Not Morse Code?
-        [Question.NotMorseCodeWord] = new()
+        [TextQuestion.NotMorseCodeWord] = new()
         {
             QuestionText = "Какое было {1}-е верное слово, которое вы отправили {0}?",
         },
@@ -7212,7 +7212,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Morsematics
         // What was the transmitted word on {0}?
         // What was the transmitted word on Not Morsematics?
-        [Question.NotMorsematicsWord] = new()
+        [TextQuestion.NotMorsematicsWord] = new()
         {
             QuestionText = "Какое слово было передано {0}?",
         },
@@ -7220,7 +7220,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Murder
         // What room was {1} in initially on {0}?
         // What room was Miss Scarlett in initially on Not Murder?
-        [Question.NotMurderRoom] = new()
+        [TextQuestion.NotMurderRoom] = new()
         {
             NeedsTranslation = true,
             QuestionText = "В какой комнате изначально находился(-ась) {1} {0}?",
@@ -7272,7 +7272,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What weapon did {1} possess initially on {0}?
         // What weapon did Miss Scarlett possess initially on Not Murder?
-        [Question.NotMurderWeapon] = new()
+        [TextQuestion.NotMurderWeapon] = new()
         {
             QuestionText = "Каким орудием изначально обладал(-а) {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -7298,7 +7298,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Number Pad
         // Which of these numbers {1} at the {2} stage of {0}?
         // Which of these numbers flashed at the first stage of Not Number Pad?
-        [Question.NotNumberPadFlashes] = new()
+        [TextQuestion.NotNumberPadFlashes] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая их этих цифр {1} на {2}-м этапе {0}?",
@@ -7312,7 +7312,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Password
         // Which letter was missing from {0}?
         // Which letter was missing from Not Password?
-        [Question.NotPasswordLetter] = new()
+        [TextQuestion.NotPasswordLetter] = new()
         {
             QuestionText = "Какая буква отсутствовала {0}?",
         },
@@ -7320,7 +7320,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Perspective Pegs
         // What was the position of the {1} flashing peg on {0}?
         // What was the position of the first flashing peg on Not Perspective Pegs?
-        [Question.NotPerspectivePegsPosition] = new()
+        [TextQuestion.NotPerspectivePegsPosition] = new()
         {
             QuestionText = "В какой позиции находился {1}-й мигающий колышек {0}?",
             Answers = new Dictionary<string, string>
@@ -7334,7 +7334,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // From what perspective did the {1} peg flash on {0}?
         // From what perspective did the first peg flash on Not Perspective Pegs?
-        [Question.NotPerspectivePegsPerspective] = new()
+        [TextQuestion.NotPerspectivePegsPerspective] = new()
         {
             QuestionText = "С какого ракурса мигнул {1}-й колышек {0}?",
             Answers = new Dictionary<string, string>
@@ -7348,7 +7348,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the color of the {1} flashing peg on {0}?
         // What was the color of the first flashing peg on Not Perspective Pegs?
-        [Question.NotPerspectivePegsColor] = new()
+        [TextQuestion.NotPerspectivePegsColor] = new()
         {
             QuestionText = "Какого цвета был {1}-й мигающий колышек {0}?",
             Answers = new Dictionary<string, string>
@@ -7364,19 +7364,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Piano Keys
         // What was the first displayed symbol on {0}?
         // What was the first displayed symbol on Not Piano Keys?
-        [Question.NotPianoKeysFirstSymbol] = new()
+        [TextQuestion.NotPianoKeysFirstSymbol] = new()
         {
             QuestionText = "Какой был первый изображённый символ {0}?",
         },
         // What was the second displayed symbol on {0}?
         // What was the second displayed symbol on Not Piano Keys?
-        [Question.NotPianoKeysSecondSymbol] = new()
+        [TextQuestion.NotPianoKeysSecondSymbol] = new()
         {
             QuestionText = "Какой был второй изображённый символ {0}?",
         },
         // What was the third displayed symbol on {0}?
         // What was the third displayed symbol on Not Piano Keys?
-        [Question.NotPianoKeysThirdSymbol] = new()
+        [TextQuestion.NotPianoKeysThirdSymbol] = new()
         {
             QuestionText = "Какой был третий изображённый символ {0}?",
         },
@@ -7384,7 +7384,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Red Arrows
         // What was the starting number in {0}?
         // What was the starting number in Not Red Arrows?
-        [Question.NotRedArrowsStart] = new()
+        [TextQuestion.NotRedArrowsStart] = new()
         {
             QuestionText = "Какое было исходное число {0}?",
         },
@@ -7392,7 +7392,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Simaze
         // Which maze was used in {0}?
         // Which maze was used in Not Simaze?
-        [Question.NotSimazeMaze] = new()
+        [TextQuestion.NotSimazeMaze] = new()
         {
             QuestionText = "Какой лабиринт был использован {0}?",
             Answers = new Dictionary<string, string>
@@ -7407,7 +7407,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the starting position in {0}?
         // What was the starting position in Not Simaze?
-        [Question.NotSimazeStart] = new()
+        [TextQuestion.NotSimazeStart] = new()
         {
             QuestionText = "Какая была начальная позиция {0}?",
             Answers = new Dictionary<string, string>
@@ -7452,7 +7452,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the goal position in {0}?
         // What was the goal position in Not Simaze?
-        [Question.NotSimazeGoal] = new()
+        [TextQuestion.NotSimazeGoal] = new()
         {
             QuestionText = "Какая была конечная позиция {0}?",
             Answers = new Dictionary<string, string>
@@ -7499,14 +7499,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Text Field
         // Which letter was pressed in the first stage of {0}?
         // Which letter was pressed in the first stage of Not Text Field?
-        [Question.NotTextFieldInitialPresses] = new()
+        [TextQuestion.NotTextFieldInitialPresses] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая буква была нажата на первом этапе на {0}?",
         },
         // Which letter appeared 9 times at the start of {0}?
         // Which letter appeared 9 times at the start of Not Text Field?
-        [Question.NotTextFieldBackgroundLetter] = new()
+        [TextQuestion.NotTextFieldBackgroundLetter] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая буква появилась 9 раз в начале на {0}?",
@@ -7515,14 +7515,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not The Bulb
         // What word flashed on {0}?
         // What word flashed on Not The Bulb?
-        [Question.NotTheBulbWord] = new()
+        [TextQuestion.NotTheBulbWord] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое слово мигало на {0}?",
         },
         // What color was the bulb on {0}?
         // What color was the bulb on Not The Bulb?
-        [Question.NotTheBulbColor] = new()
+        [TextQuestion.NotTheBulbColor] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какого цвета была лампочка на {0}?",
@@ -7538,7 +7538,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the material of the screw cap on {0}?
         // What was the material of the screw cap on Not The Bulb?
-        [Question.NotTheBulbScrewCap] = new()
+        [TextQuestion.NotTheBulbScrewCap] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Из какого материала был сделан цоколь лампочки на {0}?",
@@ -7556,7 +7556,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not the Button
         // What colors did the light glow in {0}?
         // What colors did the light glow in Not the Button?
-        [Question.NotTheButtonLightColor] = new()
+        [TextQuestion.NotTheButtonLightColor] = new()
         {
             Conjugation = Conjugation.GenitiveFeminine,
             QuestionText = "Какими цветами горела цветная полоска {0}?",
@@ -7584,7 +7584,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not The Plunger Button
         // What color did the background flash in {0}?
         // What color did the background flash in Not The Plunger Button?
-        [Question.NotThePlungerButtonBackground] = new()
+        [TextQuestion.NotThePlungerButtonBackground] = new()
         {
             QuestionText = "Каким цветом мигал фон {0}?",
             Answers = new Dictionary<string, string>
@@ -7603,7 +7603,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not the Screw
         // What was the initial position in {0}?
         // What was the initial position in Not the Screw?
-        [Question.NotTheScrewInitialPosition] = new()
+        [TextQuestion.NotTheScrewInitialPosition] = new()
         {
             QuestionText = "Какая была начальная позиция {0}?",
         },
@@ -7611,7 +7611,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Who’s on First
         // In which position was the button you pressed in the {1} stage on {0}?
         // In which position was the button you pressed in the first stage on Not Who’s on First?
-        [Question.NotWhosOnFirstPressedPosition] = new()
+        [TextQuestion.NotWhosOnFirstPressedPosition] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "На какой позиции была кнопка, которую вы нажали на {1}-м этапе {0}?",
@@ -7627,14 +7627,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the label on the button you pressed in the {1} stage on {0}?
         // What was the label on the button you pressed in the first stage on Not Who’s on First?
-        [Question.NotWhosOnFirstPressedLabel] = new()
+        [TextQuestion.NotWhosOnFirstPressedLabel] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Что было написано на кнопке, которую вы нажали на {1}-м этапе {0}?",
         },
         // In which position was the reference button in the {1} stage on {0}?
         // In which position was the reference button in the first stage on Not Who’s on First?
-        [Question.NotWhosOnFirstReferencePosition] = new()
+        [TextQuestion.NotWhosOnFirstReferencePosition] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "На какой позиции была кнопка-ссылка на {1}-м этапе {0}?",
@@ -7650,14 +7650,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the label on the reference button in the {1} stage on {0}?
         // What was the label on the reference button in the first stage on Not Who’s on First?
-        [Question.NotWhosOnFirstReferenceLabel] = new()
+        [TextQuestion.NotWhosOnFirstReferenceLabel] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Что было написано на кнопке-ссылке на {1}-м этапе {0}?",
         },
         // What was the calculated number in the second stage on {0}?
         // What was the calculated number in the second stage on Not Who’s on First?
-        [Question.NotWhosOnFirstSum] = new()
+        [TextQuestion.NotWhosOnFirstSum] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое было рассчитанное число на втором этапе {0}?",
@@ -7666,13 +7666,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Word Search
         // Which of these consonants was missing in {0}?
         // Which of these consonants was missing in Not Word Search?
-        [Question.NotWordSearchMissing] = new()
+        [TextQuestion.NotWordSearchMissing] = new()
         {
             QuestionText = "Какая из этих согласных букв отсутствовала {0}?",
         },
         // What was the first correctly pressed letter in {0}?
         // What was the first correctly pressed letter in Not Word Search?
-        [Question.NotWordSearchFirstPress] = new()
+        [TextQuestion.NotWordSearchFirstPress] = new()
         {
             QuestionText = "Какая была первая правильно нажатая буква {0}?",
         },
@@ -7680,7 +7680,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not X01
         // Which sector value {1} present on {0}?
         // Which sector value was present on Not X01?
-        [Question.NotX01SectorValues] = new()
+        [TextQuestion.NotX01SectorValues] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое значение сектора {1} на {0}?",
@@ -7694,13 +7694,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not X-Ray
         // What table were we in in {0} (numbered 1–8 in reading order in the manual)?
         // What table were we in in Not X-Ray (numbered 1–8 in reading order in the manual)?
-        [Question.NotXRayTable] = new()
+        [TextQuestion.NotXRayTable] = new()
         {
             QuestionText = "В какой таблице вы находились {0} (пронумерованных от 1 до 8 в порядке чтения в инструкции)?",
         },
         // What direction was button {1} in {0}?
         // What direction was button 1 in Not X-Ray?
-        [Question.NotXRayDirections] = new()
+        [TextQuestion.NotXRayDirections] = new()
         {
             QuestionText = "За какое направление отвечала кнопка \"{1}\" {0}?",
             Answers = new Dictionary<string, string>
@@ -7713,7 +7713,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which button went {1} in {0}?
         // Which button went up in Not X-Ray?
-        [Question.NotXRayButtons] = new()
+        [TextQuestion.NotXRayButtons] = new()
         {
             QuestionText = "Какая кнопка отвечала за направление \"{1}\" {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -7726,7 +7726,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the scanner color in {0}?
         // What was the scanner color in Not X-Ray?
-        [Question.NotXRayScannerColor] = new()
+        [TextQuestion.NotXRayScannerColor] = new()
         {
             QuestionText = "Какой был цвет сканера {0}?",
             Answers = new Dictionary<string, string>
@@ -7741,7 +7741,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Numbered Buttons
         // Which number was correctly pressed on {0}?
         // Which number was correctly pressed on Numbered Buttons?
-        [Question.NumberedButtonsButtons] = new()
+        [TextQuestion.NumberedButtonsButtons] = new()
         {
             QuestionText = "Какое было правильно нажатое число {0}?",
         },
@@ -7749,7 +7749,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Number Game
         // What was the maximum number in {0}?
         // What was the maximum number in The Number Game?
-        [Question.NumberGameMaximum] = new()
+        [TextQuestion.NumberGameMaximum] = new()
         {
             QuestionText = "Какое было максимальное число {0}?",
         },
@@ -7757,7 +7757,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Numbers
         // What two-digit number was given in {0}?
         // What two-digit number was given in Numbers?
-        [Question.NumbersTwoDigit] = new()
+        [TextQuestion.NumbersTwoDigit] = new()
         {
             QuestionText = "Какое двухзначное число было дано {0}?",
         },
@@ -7765,7 +7765,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Numpath
         // What was the color of the number on {0}?
         // What was the color of the number on Numpath?
-        [Question.NumpathColor] = new()
+        [TextQuestion.NumpathColor] = new()
         {
             QuestionText = "Какого цвета было число {0}?",
             Answers = new Dictionary<string, string>
@@ -7780,7 +7780,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the number displayed on {0}?
         // What was the number displayed on Numpath?
-        [Question.NumpathDigit] = new()
+        [TextQuestion.NumpathDigit] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое число было показано на {0}?",
@@ -7789,7 +7789,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Object Shows
         // Which of these was a contestant on {0}?
         // Which of these was a contestant on Object Shows?
-        [Question.ObjectShowsContestants] = new()
+        [TextQuestion.ObjectShowsContestants] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Кто среди этих участников присутствовал на {0}?",
@@ -7799,13 +7799,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Octadecayotton
         // What was the starting sphere in {0}?
         // What was the starting sphere in The Octadecayotton?
-        [Question.OctadecayottonSphere] = new()
+        [TextQuestion.OctadecayottonSphere] = new()
         {
             QuestionText = "Какая была начальная сфера {0}?",
         },
         // What was one of the subrotations in the {1} rotation in {0}?
         // What was one of the subrotations in the first rotation in The Octadecayotton?
-        [Question.OctadecayottonRotations] = new()
+        [TextQuestion.OctadecayottonRotations] = new()
         {
             QuestionText = "Каким было одно из промежуточных вращений в {1}-м вращении {0}?",
         },
@@ -7813,7 +7813,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Odd One Out
         // What was the button you pressed in the {1} stage of {0}?
         // What was the button you pressed in the first stage of Odd One Out?
-        [Question.OddOneOutButton] = new()
+        [TextQuestion.OddOneOutButton] = new()
         {
             QuestionText = "Какую кнопку вы нажали на {1}-м этапе {0}?",
         },
@@ -7821,14 +7821,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Off Keys
         // Which of these keys played at an incorrect pitch in {0}?
         // Which of these keys played at an incorrect pitch in Off Keys?
-        [Question.OffKeysIncorrectPitch] = new()
+        [TextQuestion.OffKeysIncorrectPitch] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which of these keys played at an incorrect pitch in {0}?",
         },
         // Which of these runes was displayed in {0}?
         // Which of these runes was displayed in Off Keys?
-        [Question.OffKeysRunes] = new()
+        [TextQuestion.OffKeysRunes] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which of these runes was displayed in {0]?",
@@ -7837,7 +7837,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Old AI
         // What was the {1} of the numbers shown in {0}?
         // What was the group of the numbers shown in Old AI?
-        [Question.OldAIGroup] = new()
+        [TextQuestion.OldAIGroup] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая {1} чисел была показана на {0}?",
@@ -7851,7 +7851,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Old Fogey
         // What was the initial color of the status light in {0}?
         // What was the initial color of the status light in Old Fogey?
-        [Question.OldFogeyStartingColor] = new()
+        [TextQuestion.OldFogeyStartingColor] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой был исходный цвет индикатора на {0}?",
@@ -7870,13 +7870,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // One Links To All
         // What was the starting article in {0}?
         // What was the starting article in One Links To All?
-        [Question.OneLinksToAllStart] = new()
+        [TextQuestion.OneLinksToAllStart] = new()
         {
             QuestionText = "Какая была начальная статья {0}?",
         },
         // What was the ending article in {0}?
         // What was the ending article in One Links To All?
-        [Question.OneLinksToAllEnd] = new()
+        [TextQuestion.OneLinksToAllEnd] = new()
         {
             QuestionText = "Какая была последняя статья {0}?",
         },
@@ -7884,7 +7884,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Only Connect
         // Which Egyptian hieroglyph was in the {1} in {0}?
         // Which Egyptian hieroglyph was in the top left in Only Connect?
-        [Question.OnlyConnectHieroglyphs] = new()
+        [TextQuestion.OnlyConnectHieroglyphs] = new()
         {
             QuestionText = "Какой египетский иероглиф был {1} {0}?",
             ModuleName = "\"Лишь Соедините!\"",
@@ -7911,7 +7911,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Orange Arrows
         // What was the {1} arrow on the display of the {2} stage of {0}?
         // What was the first arrow on the display of the first stage of Orange Arrows?
-        [Question.OrangeArrowsSequences] = new()
+        [TextQuestion.OrangeArrowsSequences] = new()
         {
             Conjugation = Conjugation.GenitivePlural,
             QuestionText = "Какая была {1}-я стрелка на экране на {2}-м этапе {0}?",
@@ -7928,7 +7928,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Orange Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Orange Cipher?
-        [Question.OrangeCipherScreen] = new()
+        [TextQuestion.OrangeCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -7942,7 +7942,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Ordered Keys
         // What color was this key in the {1} stage of {0}?
         // What color was this key in the first stage of Ordered Keys?
-        [Question.OrderedKeysColors] = new()
+        [TextQuestion.OrderedKeysColors] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была эта клавиша на {1}-м этапе {0}?",
@@ -7958,14 +7958,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the label of this key in the {1} stage of {0}?
         // What was the label of this key in the first stage of Ordered Keys?
-        [Question.OrderedKeysLabels] = new()
+        [TextQuestion.OrderedKeysLabels] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была надпись на этой клавише на {1}-м этапе {0}?",
         },
         // What color was the label of this key in the {1} stage of {0}?
         // What color was the label of this key in the first stage of Ordered Keys?
-        [Question.OrderedKeysLabelColors] = new()
+        [TextQuestion.OrderedKeysLabelColors] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
@@ -7983,19 +7983,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Order Picking
         // What was the order ID in the {1} order of {0}?
         // What was the order ID in the first order of Order Picking?
-        [Question.OrderPickingOrder] = new()
+        [TextQuestion.OrderPickingOrder] = new()
         {
             QuestionText = "Какой был ID у {1}-го заказа {0}?",
         },
         // What was the product ID in the {1} order of {0}?
         // What was the product ID in the first order of Order Picking?
-        [Question.OrderPickingProduct] = new()
+        [TextQuestion.OrderPickingProduct] = new()
         {
             QuestionText = "Какой был ID продукта в {1}-м заказе {0}?",
         },
         // What was the pallet in the {1} order of {0}?
         // What was the pallet in the first order of Order Picking?
-        [Question.OrderPickingPallet] = new()
+        [TextQuestion.OrderPickingPallet] = new()
         {
             QuestionText = "Какой был паллет на {1}-м заказе {0}?",
         },
@@ -8003,7 +8003,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Orientation Cube
         // What was the observer’s initial position in {0}?
         // What was the observer’s initial position in Orientation Cube?
-        [Question.OrientationCubeInitialObserverPosition] = new()
+        [TextQuestion.OrientationCubeInitialObserverPosition] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какая была начальная позиция у наблюдателя {0}?",
@@ -8020,7 +8020,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Orientation Hypercube
         // What was the observer’s initial position in {0}?
         // What was the observer’s initial position in Orientation Hypercube?
-        [Question.OrientationHypercubeInitialObserverPosition] = new()
+        [TextQuestion.OrientationHypercubeInitialObserverPosition] = new()
         {
             QuestionText = "Какая была начальная позиция у наблюдателя {0}?",
             Answers = new Dictionary<string, string>
@@ -8033,7 +8033,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the initial colour of the {1} face in {0}?
         // What was the initial colour of the right face in Orientation Hypercube?
-        [Question.OrientationHypercubeInitialFaceColour] = new()
+        [TextQuestion.OrientationHypercubeInitialFaceColour] = new()
         {
             QuestionText = "Какой был начальный цвет {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -8063,7 +8063,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Palindromes
         // What was {1}’s {2} digit from the right in {0}?
         // What was X’s first digit from the right in Palindromes?
-        [Question.PalindromesNumbers] = new()
+        [TextQuestion.PalindromesNumbers] = new()
         {
             QuestionText = "Какая была {2}-я цифра справа {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -8078,14 +8078,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Papa’s Pizzeria
         // What was the {1} digit in the order number on {0}?
         // What was the first digit in the order number on Papa’s Pizzeria?
-        [Question.PapasPizzeriaDigit] = new()
+        [TextQuestion.PapasPizzeriaDigit] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} digit in the order number on {0}?",
         },
         // What was the letter in the order number on {0}?
         // What was the letter in the order number on Papa’s Pizzeria?
-        [Question.PapasPizzeriaLetter] = new()
+        [TextQuestion.PapasPizzeriaLetter] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the letter in the order number on {0}?",
@@ -8094,7 +8094,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Parity
         // What was shown on the display on {0}?
         // What was shown on the display on Parity?
-        [Question.ParityDisplay] = new()
+        [TextQuestion.ParityDisplay] = new()
         {
             QuestionText = "Что было показано на экране {0}?",
         },
@@ -8102,7 +8102,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Partial Derivatives
         // What was the LED color in the {1} stage of {0}?
         // What was the LED color in the first stage of Partial Derivatives?
-        [Question.PartialDerivativesLedColors] = new()
+        [TextQuestion.PartialDerivativesLedColors] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был цвет светодиода на {1}-м этапе {0}?",
@@ -8118,7 +8118,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} term in {0}?
         // What was the first term in Partial Derivatives?
-        [Question.PartialDerivativesTerms] = new()
+        [TextQuestion.PartialDerivativesTerms] = new()
         {
             QuestionText = "Какой был {1}-й член {0}?",
         },
@@ -8126,7 +8126,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Passport Control
         // What was the passport expiration year of the {1} inspected passenger in {0}?
         // What was the passport expiration year of the first inspected passenger in Passport Control?
-        [Question.PassportControlPassenger] = new()
+        [TextQuestion.PassportControlPassenger] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой был год истечения паспорта у {1}-го пассажира на {0}?",
@@ -8135,7 +8135,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Password Destroyer
         // What was the 2FAST™ value when you solved {0}?
         // What was the 2FAST™ value when you solved Password Destroyer?
-        [Question.PasswordDestroyerTwoFactorV2] = new()
+        [TextQuestion.PasswordDestroyerTwoFactorV2] = new()
         {
             Conjugation = Conjugation.AccusativeMascNeuter,
             QuestionText = "Чему был равен 2FAST™ когда вы обезвредили {0}?",
@@ -8144,7 +8144,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Pattern Cube
         // Which symbol was highlighted in {0}?
         // Which symbol was highlighted in Pattern Cube?
-        [Question.PatternCubeHighlightedSymbol] = new()
+        [TextQuestion.PatternCubeHighlightedSymbol] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какой символ был подсвечен {0}?",
@@ -8154,7 +8154,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Pentabutton
         // What was the base colour in {0}?
         // What was the base colour in The Pentabutton?
-        [Question.PentabuttonBaseColor] = new()
+        [TextQuestion.PentabuttonBaseColor] = new()
         {
             NeedsTranslation = true,
             Conjugation = Conjugation.GenitiveMascNeuter,
@@ -8178,7 +8178,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Periodic Words
         // What word was on the display in the {1} stage of {0}?
         // What word was on the display in the first stage of Periodic Words?
-        [Question.PeriodicWordsDisplayedWords] = new()
+        [TextQuestion.PeriodicWordsDisplayedWords] = new()
         {
             QuestionText = "Какое слово было на экране в {1}-м этапе {0}?",
         },
@@ -8186,7 +8186,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Perspective Pegs
         // What was the {1} color in the initial sequence in {0}?
         // What was the first color in the initial sequence in Perspective Pegs?
-        [Question.PerspectivePegsColorSequence] = new()
+        [TextQuestion.PerspectivePegsColorSequence] = new()
         {
             Conjugation = Conjugation.во_PrepositiveMascNeuter,
             QuestionText = "Какой цвет был {1}-м в начальной последовательности {0}?",
@@ -8204,13 +8204,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Phosphorescence
         // What was the offset in {0}?
         // What was the offset in Phosphorescence?
-        [Question.PhosphorescenceOffset] = new()
+        [TextQuestion.PhosphorescenceOffset] = new()
         {
             QuestionText = "Какое было смещение {0}?",
         },
         // What was the {1} button press in {0}?
         // What was the first button press in Phosphorescence?
-        [Question.PhosphorescenceButtonPresses] = new()
+        [TextQuestion.PhosphorescenceButtonPresses] = new()
         {
             QuestionText = "Какая была {1}-я нажатая кнопка {0}?",
             Answers = new Dictionary<string, string>
@@ -8247,7 +8247,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Pickup Identification
         // What pickup was shown in the {1} stage of {0}?
         // What pickup was shown in the first stage of Pickup Identification?
-        [Question.PickupIdentificationItem] = new()
+        [TextQuestion.PickupIdentificationItem] = new()
         {
             QuestionText = "Какой предмет был показан на {1}-м этапе {0}?",
         },
@@ -8255,7 +8255,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Pictionary
         // What was the code in {0}?
         // What was the code in Pictionary?
-        [Question.PictionaryCode] = new()
+        [TextQuestion.PictionaryCode] = new()
         {
             QuestionText = "Какой был код {0}?",
         },
@@ -8263,7 +8263,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Pie
         // What was the {1} digit of the displayed number in {0}?
         // What was the first digit of the displayed number in Pie?
-        [Question.PieDigits] = new()
+        [TextQuestion.PieDigits] = new()
         {
             QuestionText = "Какая была {1}-я цифра числа, показанного {0}?",
         },
@@ -8271,7 +8271,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Pie Flash
         // What number was not displayed in {0}?
         // What number was not displayed in Pie Flash?
-        [Question.PieFlashDigits] = new()
+        [TextQuestion.PieFlashDigits] = new()
         {
             QuestionText = "Какое число не было показано {0}?",
         },
@@ -8279,14 +8279,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Pigpen Cycle
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Pigpen Cycle?
-        [Question.PigpenCycleDialDirections] = new()
+        [TextQuestion.PigpenCycleDialDirections] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // What letter was written on the {1} dial in {0}?
         // What letter was written on the first dial in Pigpen Cycle?
-        [Question.PigpenCycleDialLabels] = new()
+        [TextQuestion.PigpenCycleDialLabels] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What letter was written on the {1} dial in {0}?",
@@ -8295,14 +8295,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Pinpoint
         // Which distance occurred in {0}?
         // Which distance occurred in Pinpoint?
-        [Question.PinpointDistances] = new()
+        [TextQuestion.PinpointDistances] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which distance occurred in {0}?",
         },
         // Which point occurred in {0}?
         // Which point occurred in Pinpoint?
-        [Question.PinpointPoints] = new()
+        [TextQuestion.PinpointPoints] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which point occurred in {0}?",
@@ -8311,14 +8311,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Pink Button
         // What was the {1} word in {0}?
         // What was the first word in The Pink Button?
-        [Question.PinkButtonWords] = new()
+        [TextQuestion.PinkButtonWords] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое было {1}-е слово {0}?",
         },
         // What was the {1} color in {0}?
         // What was the first color in The Pink Button?
-        [Question.PinkButtonColors] = new()
+        [TextQuestion.PinkButtonColors] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой был {1}-й цвет на {0}?",
@@ -8338,7 +8338,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Pixel Cipher
         // What was the keyword in {0}?
         // What was the keyword in Pixel Cipher?
-        [Question.PixelCipherKeyword] = new()
+        [TextQuestion.PixelCipherKeyword] = new()
         {
             QuestionText = "Какое было ключевое слово {0}?",
         },
@@ -8346,13 +8346,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Placeholder Talk
         // What was the first half of the first phrase in {0}?
         // What was the first half of the first phrase in Placeholder Talk?
-        [Question.PlaceholderTalkFirstPhrase] = new()
+        [TextQuestion.PlaceholderTalkFirstPhrase] = new()
         {
             QuestionText = "Какая была первая половина первой фразы {0}?",
         },
         // What was the last half of the first phrase in {0}?
         // What was the last half of the first phrase in Placeholder Talk?
-        [Question.PlaceholderTalkOrdinal] = new()
+        [TextQuestion.PlaceholderTalkOrdinal] = new()
         {
             QuestionText = "Какая была вторая половина первой фразы {0}?",
         },
@@ -8360,19 +8360,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Placement Roulette
         // What was the character listed on the information display in {0}?
         // What was the character listed on the information display in Placement Roulette?
-        [Question.PlacementRouletteChar] = new()
+        [TextQuestion.PlacementRouletteChar] = new()
         {
             QuestionText = "Какой персонаж присуствовал на экране {0}?",
         },
         // What was the track listed on the information display in {0}?
         // What was the track listed on the information display in Placement Roulette?
-        [Question.PlacementRouletteTrack] = new()
+        [TextQuestion.PlacementRouletteTrack] = new()
         {
             QuestionText = "Какая трасса присутствовала на экране {0}?",
         },
         // What was the vehicle listed on the information display in {0}?
         // What was the vehicle listed on the information display in Placement Roulette?
-        [Question.PlacementRouletteVehicle] = new()
+        [TextQuestion.PlacementRouletteVehicle] = new()
         {
             QuestionText = "Какая машина присутствовала на экране {0}?",
         },
@@ -8380,14 +8380,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Planets
         // What was the planet shown in {0}?
         // What was the planet shown in Planets?
-        [Question.PlanetsPlanet] = new()
+        [TextQuestion.PlanetsPlanet] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая планета была показана на {0}?",
         },
         // What was the color of the {1} strip (from the top) in {0}?
         // What was the color of the first strip (from the top) in Planets?
-        [Question.PlanetsStrips] = new()
+        [TextQuestion.PlanetsStrips] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой был цвет у {1}-й полоски (начиная сверху) на {0}?",
@@ -8408,14 +8408,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Playfair Cycle
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Playfair Cycle?
-        [Question.PlayfairCycleDialDirections] = new()
+        [TextQuestion.PlayfairCycleDialDirections] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // What letter was written on the {1} dial in {0}?
         // What letter was written on the first dial in Playfair Cycle?
-        [Question.PlayfairCycleDialLabels] = new()
+        [TextQuestion.PlayfairCycleDialLabels] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What letter was written on the {1} dial in {0}?",
@@ -8424,7 +8424,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Poetry
         // What was the {1} correct answer you pressed in {0}?
         // What was the first correct answer you pressed in Poetry?
-        [Question.PoetryAnswers] = new()
+        [TextQuestion.PoetryAnswers] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какое было {1}-е правильное слово, которое вы нажали {0}?",
@@ -8434,7 +8434,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Pointless Machines
         // What color flashed {1} in {0}?
         // What color flashed first in Pointless Machines?
-        [Question.PointlessMachinesFlashes] = new()
+        [TextQuestion.PointlessMachinesFlashes] = new()
         {
             QuestionText = "Какого цвета была {1}-я вспышка {0}?",
             Answers = new Dictionary<string, string>
@@ -8450,7 +8450,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Polygons
         // Which polygon was present on {0}?
         // Which polygon was present on Polygons?
-        [Question.PolygonsPolygon] = new()
+        [TextQuestion.PolygonsPolygon] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой многоугольник присутствовал на {0}?",
@@ -8459,7 +8459,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Polyhedral Maze
         // What was the starting position in {0}?
         // What was the starting position in Polyhedral Maze?
-        [Question.PolyhedralMazeStartPosition] = new()
+        [TextQuestion.PolyhedralMazeStartPosition] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Какая была начальная позиция {0}?",
@@ -8485,7 +8485,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Prime Encryption
         // What was the number shown in {0}?
         // What was the number shown in Prime Encryption?
-        [Question.PrimeEncryptionDisplayedValue] = new()
+        [TextQuestion.PrimeEncryptionDisplayedValue] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое число было показано на {0}?",
@@ -8494,14 +8494,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Prison Break
         // Which cell did the prisoner start in in {0}?
         // Which cell did the prisoner start in in Prison Break?
-        [Question.PrisonBreakPrisoner] = new()
+        [TextQuestion.PrisonBreakPrisoner] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Where did the prisoner start in {0}?",
         },
         // Where did you start in {0}?
         // Where did you start in Prison Break?
-        [Question.PrisonBreakDefuser] = new()
+        [TextQuestion.PrisonBreakDefuser] = new()
         {
             QuestionText = "Где вы начали {0}?",
         },
@@ -8509,7 +8509,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Probing
         // What was the missing frequency in the {1} wire in {0}?
         // What was the missing frequency in the red-white wire in Probing?
-        [Question.ProbingFrequencies] = new()
+        [TextQuestion.ProbingFrequencies] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какая частота отсутствовала в {1} проводе {0}?",
@@ -8528,7 +8528,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Procedural Maze
         // What was the initial seed in {0}?
         // What was the initial seed in Procedural Maze?
-        [Question.ProceduralMazeInitialSeed] = new()
+        [TextQuestion.ProceduralMazeInitialSeed] = new()
         {
             QuestionText = "Какое было изначальное зерно {0}?",
         },
@@ -8536,7 +8536,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // ...?
         // What was the displayed number in {0}?
         // What was the displayed number in ...??
-        [Question.PunctuationMarksDisplayedNumber] = new()
+        [TextQuestion.PunctuationMarksDisplayedNumber] = new()
         {
             QuestionText = "Какое было показанное число в {0}?",
         },
@@ -8544,7 +8544,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Purple Arrows
         // What was the target word on {0}?
         // What was the target word on Purple Arrows?
-        [Question.PurpleArrowsFinish] = new()
+        [TextQuestion.PurpleArrowsFinish] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какое было целевое слово {0}?",
@@ -8554,7 +8554,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Purple Button
         // What was the {1} number in the cyclic sequence on {0}?
         // What was the first number in the cyclic sequence on The Purple Button?
-        [Question.PurpleButtonNumbers] = new()
+        [TextQuestion.PurpleButtonNumbers] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое было {1}-е число в зацикленной последовательности {0}?",
@@ -8563,13 +8563,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Puzzle Identification
         // What was the {1} puzzle number in {0}?
         // What was the first puzzle number in Puzzle Identification?
-        [Question.PuzzleIdentificationNum] = new()
+        [TextQuestion.PuzzleIdentificationNum] = new()
         {
             QuestionText = "Какое было {1}-е число пазла {0}?",
         },
         // What game was the {1} puzzle in {0} from?
         // What game was the first puzzle in Puzzle Identification from?
-        [Question.PuzzleIdentificationGame] = new()
+        [TextQuestion.PuzzleIdentificationGame] = new()
         {
             QuestionText = "Из какой игры был {1}-й пазл {0}?",
             Answers = new Dictionary<string, string>
@@ -8586,7 +8586,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} puzzle in {0}?
         // What was the first puzzle in Puzzle Identification?
-        [Question.PuzzleIdentificationName] = new()
+        [TextQuestion.PuzzleIdentificationName] = new()
         {
             QuestionText = "Какой был {1}-й пазл {0}?",
         },
@@ -8594,7 +8594,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Puzzling Hexabuttons
         // What letter was displayed on the {1} hexabutton when submitting in {0}?
         // What letter was displayed on the top-left hexabutton when submitting in Puzzling Hexabuttons?
-        [Question.PuzzlingHexabuttonsLetter] = new()
+        [TextQuestion.PuzzlingHexabuttonsLetter] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What letter was displayed on the {1} hexabutton when submitting in {0}?",
@@ -8613,7 +8613,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Q & A
         // What was the {1} question asked in {0}?
         // What was the first question asked in Q & A?
-        [Question.QnAQuestions] = new()
+        [TextQuestion.QnAQuestions] = new()
         {
             QuestionText = "Какой был {1}-й вопрос {0}?",
         },
@@ -8621,7 +8621,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Quadrants
         // What was on the {1} button of the {2} stage in {0}?
         // What was on the first button of the first stage in Quadrants?
-        [Question.QuadrantsButtons] = new()
+        [TextQuestion.QuadrantsButtons] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was on the {1} button of the {2} stage in {0}?",
@@ -8630,7 +8630,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Quantum Passwords
         // Which word was used in {0}?
         // Which word was used in Quantum Passwords?
-        [Question.QuantumPasswordsWord] = new()
+        [TextQuestion.QuantumPasswordsWord] = new()
         {
             QuestionText = "Какое слово было использовано {0}?",
         },
@@ -8638,7 +8638,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Quantum Ternary Converter
         // Which number was shown in {0}?
         // Which number was shown in Quantum Ternary Converter?
-        [Question.QuantumTernaryConverterNumber] = new()
+        [TextQuestion.QuantumTernaryConverterNumber] = new()
         {
             QuestionText = "Какое число было показано {0}?",
         },
@@ -8646,7 +8646,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Quaver
         // What was the {1} sequence’s answer in {0}?
         // What was the first sequence’s answer in Quaver?
-        [Question.QuaverArrows] = new()
+        [TextQuestion.QuaverArrows] = new()
         {
             QuestionText = "Какой был {1}-й ответ последовательности {0}?",
         },
@@ -8654,7 +8654,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Question Mark
         // Which of these symbols was part of the flashing sequence in {0}?
         // Which of these symbols was part of the flashing sequence in Question Mark?
-        [Question.QuestionMarkFlashedSymbols] = new()
+        [TextQuestion.QuestionMarkFlashedSymbols] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой из этих символов был частью мигающей последовательности {0}?",
@@ -8663,7 +8663,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Quick Arithmetic
         // What was the {1} color in the primary sequence in {0}?
         // What was the first color in the primary sequence in Quick Arithmetic?
-        [Question.QuickArithmeticColors] = new()
+        [TextQuestion.QuickArithmeticColors] = new()
         {
             QuestionText = "Какой был {1}-й цвет в основной последовательности {0}?",
             Answers = new Dictionary<string, string>
@@ -8683,7 +8683,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the {1} digit in the {2} sequence in {0}?
         // What was the first digit in the primary sequence in Quick Arithmetic?
-        [Question.QuickArithmeticPrimSecDigits] = new()
+        [TextQuestion.QuickArithmeticPrimSecDigits] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Какое было {1}-е число в {2} последовательности {0}?",
@@ -8697,13 +8697,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Quintuples
         // What was the {1} digit in the {2} slot in {0}?
         // What was the first digit in the first slot in Quintuples?
-        [Question.QuintuplesNumbers] = new()
+        [TextQuestion.QuintuplesNumbers] = new()
         {
             QuestionText = "Какая была {1}-я цифра в {2}-м слоте {0}?",
         },
         // What color was the {1} digit in the {2} slot in {0}?
         // What color was the first digit in the first slot in Quintuples?
-        [Question.QuintuplesColors] = new()
+        [TextQuestion.QuintuplesColors] = new()
         {
             QuestionText = "Какого цвета была {1}-я цифра в {2}-м слоте {0}?",
             Answers = new Dictionary<string, string>
@@ -8717,7 +8717,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // How many numbers were {1} in {0}?
         // How many numbers were red in Quintuples?
-        [Question.QuintuplesColorCounts] = new()
+        [TextQuestion.QuintuplesColorCounts] = new()
         {
             QuestionText = "Скольк было {1} чисел {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -8733,7 +8733,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Quiplash
         // What number was shown on {0}?
         // What number was shown on Quiplash?
-        [Question.QuiplashNumber] = new()
+        [TextQuestion.QuiplashNumber] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое число было показано на {0}?",
@@ -8742,7 +8742,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Quiz Buzz
         // What was the number initially on the display in {0}?
         // What was the number initially on the display in Quiz Buzz?
-        [Question.QuizBuzzStartingNumber] = new()
+        [TextQuestion.QuizBuzzStartingNumber] = new()
         {
             QuestionText = "Какое было исходное число на экране {0}?",
         },
@@ -8750,7 +8750,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Qwirkle
         // What tile did you place {1} in {0}?
         // What tile did you place first in Qwirkle?
-        [Question.QwirkleTilesPlaced] = new()
+        [TextQuestion.QwirkleTilesPlaced] = new()
         {
             QuestionText = "Какую плитку вы положили {1}-й {0}?",
         },
@@ -8758,7 +8758,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Raiding Temples
         // How many jewels were in the starting common pool in {0}?
         // How many jewels were in the starting common pool in Raiding Temples?
-        [Question.RaidingTemplesStartingCommonPool] = new()
+        [TextQuestion.RaidingTemplesStartingCommonPool] = new()
         {
             QuestionText = "Сколько драгоценностей было в начальном общем схроне {0}?",
         },
@@ -8766,7 +8766,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Railway Cargo Loading
         // What was the {1} car in {0}?
         // What was the first car in Railway Cargo Loading?
-        [Question.RailwayCargoLoadingCars] = new()
+        [TextQuestion.RailwayCargoLoadingCars] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какой вагон был присоединён {1}-м {0}?",
@@ -8774,7 +8774,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which freight table rule {1} in {0}?
         // Which freight table rule was met in Railway Cargo Loading?
-        [Question.RailwayCargoLoadingFreightTableRules] = new()
+        [TextQuestion.RailwayCargoLoadingFreightTableRules] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какое правило из таблицы грузовых вагонов {1} {0}?",
@@ -8789,7 +8789,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Rainbow Arrows
         // What was the displayed number in {0}?
         // What was the displayed number in Rainbow Arrows?
-        [Question.RainbowArrowsNumber] = new()
+        [TextQuestion.RainbowArrowsNumber] = new()
         {
             QuestionText = "Какое число было показано {0}?",
         },
@@ -8797,7 +8797,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Recolored Switches
         // What was the color of the {1} LED in {0}?
         // What was the color of the first LED in Recolored Switches?
-        [Question.RecoloredSwitchesLedColors] = new()
+        [TextQuestion.RecoloredSwitchesLedColors] = new()
         {
             Conjugation = Conjugation.GenitivePlural,
             QuestionText = "Какой был цвет {1}-го светодиода {0}?",
@@ -8817,13 +8817,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Recursive Password
         // Which of these words appeared, but was not the password, in {0}?
         // Which of these words appeared, but was not the password, in Recursive Password?
-        [Question.RecursivePasswordNonPasswordWords] = new()
+        [TextQuestion.RecursivePasswordNonPasswordWords] = new()
         {
             QuestionText = "Какое из этих слов присутствовало, но не являлось верным ответом {0}?",
         },
         // What was the password in {0}?
         // What was the password in Recursive Password?
-        [Question.RecursivePasswordPassword] = new()
+        [TextQuestion.RecursivePasswordPassword] = new()
         {
             QuestionText = "Какой пароль был верным ответом {0}?",
         },
@@ -8831,7 +8831,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Red Arrows
         // What was the starting number in {0}?
         // What was the starting number in Red Arrows?
-        [Question.RedArrowsStartNumber] = new()
+        [TextQuestion.RedArrowsStartNumber] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какое было начальное число {0}?",
@@ -8841,7 +8841,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Red Button’t
         // What was the word before “SUBMIT” in {0}?
         // What was the word before “SUBMIT” in Red Button’t?
-        [Question.RedButtontWord] = new()
+        [TextQuestion.RedButtontWord] = new()
         {
             QuestionText = "Какое слово было перед 'SUBMIT' {0}?",
         },
@@ -8849,7 +8849,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Red Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Red Cipher?
-        [Question.RedCipherScreen] = new()
+        [TextQuestion.RedCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -8863,7 +8863,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Red Herring
         // What was the first color flashed by {0}?
         // What was the first color flashed by Red Herring?
-        [Question.RedHerringFirstFlash] = new()
+        [TextQuestion.RedHerringFirstFlash] = new()
         {
             QuestionText = "Какой был первый мигающий цвет {0}?",
         },
@@ -8871,7 +8871,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Reformed Role Reversal
         // Which condition was the solving condition in {0}?
         // Which condition was the solving condition in Reformed Role Reversal?
-        [Question.ReformedRoleReversalCondition] = new()
+        [TextQuestion.ReformedRoleReversalCondition] = new()
         {
             NeedsTranslation = true,
             Conjugation = Conjugation.NominativeMasculine,
@@ -8889,7 +8889,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What color was the {1} wire in {0}?
         // What color was the first wire in Reformed Role Reversal?
-        [Question.ReformedRoleReversalWire] = new()
+        [TextQuestion.ReformedRoleReversalWire] = new()
         {
             QuestionText = "Какого цвета был {1}-й провод {0}?",
             Answers = new Dictionary<string, string>
@@ -8910,7 +8910,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // ReGret-B Filtering
         // Which calculation was used for the {1} stage of {0}?
         // Which calculation was used for the first stage of ReGret-B Filtering?
-        [Question.ReGretBFilteringOperator] = new()
+        [TextQuestion.ReGretBFilteringOperator] = new()
         {
             QuestionText = "Какой оператор был применён на {1}-м этапе {0}?",
         },
@@ -8918,13 +8918,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Regular Crazy Talk
         // What was the displayed digit that corresponded to the solution phrase in {0}?
         // What was the displayed digit that corresponded to the solution phrase in Regular Crazy Talk?
-        [Question.RegularCrazyTalkDigit] = new()
+        [TextQuestion.RegularCrazyTalkDigit] = new()
         {
             QuestionText = "Какая показанная цифра соответствовала решению {0}?",
         },
         // What was the embellishment of the solution phrase in {0}?
         // What was the embellishment of the solution phrase in Regular Crazy Talk?
-        [Question.RegularCrazyTalkModifier] = new()
+        [TextQuestion.RegularCrazyTalkModifier] = new()
         {
             QuestionText = "Какое было дополнение у фразы решения {0}?",
             Answers = new Dictionary<string, string>
@@ -8940,14 +8940,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         // Reordered Keys
         // Which key was the pivot in the {1} stage of {0}?
-        [Question.ReorderedKeysPivot] = new()
+        [TextQuestion.ReorderedKeysPivot] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which key was the pivot in the {1} stage of {0}?",
         },
         // What color was this key in the {1} stage of {0}?
         // What color was this key in the first stage of Reordered Keys?
-        [Question.ReorderedKeysKeyColor] = new()
+        [TextQuestion.ReorderedKeysKeyColor] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What color was this key in the {1} stage of {0}?",
@@ -8963,7 +8963,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What color was the label of this key in the {1} stage of {0}?
         // What color was the label of this key in the first stage of Reordered Keys?
-        [Question.ReorderedKeysLabelColor] = new()
+        [TextQuestion.ReorderedKeysLabelColor] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What color was the label of this key in the {1} stage of {0}?",
@@ -8979,7 +8979,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the label of this key in the {1} stage of {0}?
         // What was the label of this key in the first stage of Reordered Keys?
-        [Question.ReorderedKeysLabel] = new()
+        [TextQuestion.ReorderedKeysLabel] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the label of this key in the {1} stage of {0}?",
@@ -8988,7 +8988,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Retirement
         // Which one of these houses was on offer, but not chosen by Bob in {0}?
         // Which one of these houses was on offer, but not chosen by Bob in Retirement?
-        [Question.RetirementHouses] = new()
+        [TextQuestion.RetirementHouses] = new()
         {
             QuestionText = "Какой из этих домов предлагался, но не был выбран Бобом {0}?",
         },
@@ -8996,7 +8996,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Reverse Morse
         // What was the {1} character in the {2} message of {0}?
         // What was the first character in the first message of Reverse Morse?
-        [Question.ReverseMorseCharacters] = new()
+        [TextQuestion.ReverseMorseCharacters] = new()
         {
             QuestionText = "Какой был {1}-й символ в {2}-м сообщении {0}?",
         },
@@ -9004,7 +9004,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Reverse Polish Notation
         // What character was used in the {1} round of {0}?
         // What character was used in the first round of Reverse Polish Notation?
-        [Question.ReversePolishNotationCharacter] = new()
+        [TextQuestion.ReversePolishNotationCharacter] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой символ был использован на {1}-м этапе {0}?",
@@ -9013,14 +9013,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // RGB Maze
         // What was the exit coordinate in {0}?
         // What was the exit coordinate in RGB Maze?
-        [Question.RGBMazeExit] = new()
+        [TextQuestion.RGBMazeExit] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была координата выхода из {0}?",
         },
         // Where was the {1} key in {0}?
         // Where was the red key in RGB Maze?
-        [Question.RGBMazeKeys] = new()
+        [TextQuestion.RGBMazeKeys] = new()
         {
             QuestionText = "Где был {1} ключ {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9032,7 +9032,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which maze number was the {1} maze in {0}?
         // Which maze number was the red maze in RGB Maze?
-        [Question.RGBMazeNumber] = new()
+        [TextQuestion.RGBMazeNumber] = new()
         {
             QuestionText = "Какой {1} лабиринт был {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9046,7 +9046,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // RGB Sequences
         // What was the color of the {1} LED in {0}?
         // What was the color of the first LED in RGB Sequences?
-        [Question.RGBSequencesDisplay] = new()
+        [TextQuestion.RGBSequencesDisplay] = new()
         {
             QuestionText = "Какой был цвет {1}-го светодиода {0}?",
             Answers = new Dictionary<string, string>
@@ -9064,7 +9064,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Rhythms
         // What was the color in {0}?
         // What was the color in Rhythms?
-        [Question.RhythmsColor] = new()
+        [TextQuestion.RhythmsColor] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какого цвета был светодиод {0}?",
@@ -9081,7 +9081,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // RNG Crystal
         // Which bit had a tap in {0} (the output after shifting is at bit 0)?
         // Which bit had a tap in RNG Crystal (the output after shifting is at bit 0)?
-        [Question.RNGCrystalTaps] = new()
+        [TextQuestion.RNGCrystalTaps] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which bit had a tap in {0} (the output after shifting is at bit 0)?",
@@ -9090,7 +9090,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Robo-Scanner
         // Where was the empty cell in {0}?
         // Where was the empty cell in Robo-Scanner?
-        [Question.RoboScannerEmptyCell] = new()
+        [TextQuestion.RoboScannerEmptyCell] = new()
         {
             QuestionText = "Где была пустая ячейка {0}?",
         },
@@ -9098,13 +9098,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Robot Programming
         // What was the color of the {1} robot in {0}?
         // What was the color of the first robot in Robot Programming?
-        [Question.RobotProgrammingColor] = new()
+        [TextQuestion.RobotProgrammingColor] = new()
         {
             QuestionText = "Какого цвета был {1}-й робот {0}?",
         },
         // What was the shape of the {1} robot in {0}?
         // What was the shape of the first robot in Robot Programming?
-        [Question.RobotProgrammingShape] = new()
+        [TextQuestion.RobotProgrammingShape] = new()
         {
             QuestionText = "Какой формы был {1}-й робот {0}?",
         },
@@ -9112,7 +9112,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Roger
         // What four-digit number was given in {0}?
         // What four-digit number was given in Roger?
-        [Question.RogerSeed] = new()
+        [TextQuestion.RogerSeed] = new()
         {
             QuestionText = "Какое четырёхзначное число было дано {0}?",
         },
@@ -9120,13 +9120,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Role Reversal
         // What was the number corresponding to the correct condition in {0}?
         // What was the number corresponding to the correct condition in Role Reversal?
-        [Question.RoleReversalNumber] = new()
+        [TextQuestion.RoleReversalNumber] = new()
         {
             QuestionText = "Какое был номер у верного условия {0}?",
         },
         // How many {1} wires were there in {0}?
         // How many warm-colored wires were there in Role Reversal?
-        [Question.RoleReversalWires] = new()
+        [TextQuestion.RoleReversalWires] = new()
         {
             QuestionText = "Сколько проводов, окрашенных в {1} было {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9141,7 +9141,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // RPS Judging
         // Which round did the {1} team {2} in {0}?
         // Which round did the red team win in RPS Judging?
-        [Question.RPSJudgingWinner] = new()
+        [TextQuestion.RPSJudgingWinner] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which round did the {1} team {2} in {0}?",
@@ -9162,7 +9162,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which round was a draw in {0}?
         // Which round was a draw in RPS Judging?
-        [Question.RPSJudgingDraw] = new()
+        [TextQuestion.RPSJudgingDraw] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which round was a draw in {0}?",
@@ -9171,7 +9171,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Rule
         // What was the rule number in {0}?
         // What was the rule number in The Rule?
-        [Question.RuleNumber] = new()
+        [TextQuestion.RuleNumber] = new()
         {
             QuestionText = "Какой был номер правила {0}?",
         },
@@ -9179,7 +9179,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Rule of Three
         // What was the {1} coordinate of the {2} vertex in {0}?
         // What was the X coordinate of the red vertex in Rule of Three?
-        [Question.RuleOfThreeCoordinates] = new()
+        [TextQuestion.RuleOfThreeCoordinates] = new()
         {
             QuestionText = "Какая была {1} координата у {2} оси {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9191,7 +9191,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?
         // What was the position of the red sphere on the X axis in the first cycle in Rule of Three?
-        [Question.RuleOfThreeCycles] = new()
+        [TextQuestion.RuleOfThreeCycles] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Где находилась {1} сфера на {2} оси в {3}-м цикле {0}?",
@@ -9206,7 +9206,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Safety Square
         // What was the digit displayed on the {1} diamond in {0}?
         // What was the digit displayed on the red diamond in Safety Square?
-        [Question.SafetySquareDigits] = new()
+        [TextQuestion.SafetySquareDigits] = new()
         {
             QuestionText = "Какая цифра была показана на {1} ромбе {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9218,7 +9218,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the special rule displayed on the white diamond in {0}?
         // What was the special rule displayed on the white diamond in Safety Square?
-        [Question.SafetySquareSpecialRule] = new()
+        [TextQuestion.SafetySquareSpecialRule] = new()
         {
             QuestionText = "Какое правило было показано на белом ромбе {0}?",
             Answers = new Dictionary<string, string>
@@ -9233,7 +9233,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Samsung
         // Where was {1} in {0}?
         // Where was Duolingo in The Samsung?
-        [Question.SamsungAppPositions] = new()
+        [TextQuestion.SamsungAppPositions] = new()
         {
             QuestionText = "Где было приложение {1} {0}?",
             Answers = new Dictionary<string, string>
@@ -9253,7 +9253,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Saturn
         // Where was the goal in {0}?
         // Where was the goal in Saturn?
-        [Question.SaturnGoal] = new()
+        [TextQuestion.SaturnGoal] = new()
         {
             QuestionText = "Где была цель {0}?",
         },
@@ -9261,7 +9261,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Sbemail Songs
         // What was the displayed song for stage {1} (hexadecimal) of {0}?
         // What was the displayed song for stage 01 (hexadecimal) of Sbemail Songs?
-        [Question.SbemailSongsSongs] = new()
+        [TextQuestion.SbemailSongsSongs] = new()
         {
             QuestionText = "Какая песня была показана на этапе {1} (16-ричное число) {0}?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
@@ -9273,14 +9273,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Scavenger Hunt
         // Which tile was correctly submitted in the first stage of {0}?
         // Which tile was correctly submitted in the first stage of Scavenger Hunt?
-        [Question.ScavengerHuntKeySquare] = new()
+        [TextQuestion.ScavengerHuntKeySquare] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая плитка была верным ответом на первом этапе {0}?",
         },
         // Which of these tiles was {1} in the first stage of {0}?
         // Which of these tiles was red in the first stage of Scavenger Hunt?
-        [Question.ScavengerHuntColoredTiles] = new()
+        [TextQuestion.ScavengerHuntColoredTiles] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая из этих плиток была {1} на первом этапе {0}?",
@@ -9295,19 +9295,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Schlag den Bomb
         // What was the contestant’s name in {0}?
         // What was the contestant’s name in Schlag den Bomb?
-        [Question.SchlagDenBombContestantName] = new()
+        [TextQuestion.SchlagDenBombContestantName] = new()
         {
             QuestionText = "Какое было имя у участника {0}?",
         },
         // What was the contestant’s score in {0}?
         // What was the contestant’s score in Schlag den Bomb?
-        [Question.SchlagDenBombContestantScore] = new()
+        [TextQuestion.SchlagDenBombContestantScore] = new()
         {
             QuestionText = "Какой был счёт у участника {0}?",
         },
         // What was the bomb’s score in {0}?
         // What was the bomb’s score in Schlag den Bomb?
-        [Question.SchlagDenBombBombScore] = new()
+        [TextQuestion.SchlagDenBombBombScore] = new()
         {
             QuestionText = "Какой был счёт у бомбы {0}?",
         },
@@ -9315,7 +9315,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Scramboozled Eggain
         // What was the {1} encrypted word in {0}?
         // What was the first encrypted word in Scramboozled Eggain?
-        [Question.ScramboozledEggainWord] = new()
+        [TextQuestion.ScramboozledEggainWord] = new()
         {
             QuestionText = "Какое было {1}-е зашифрованное слово {0}?",
         },
@@ -9323,7 +9323,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Scripting
         // What was the submitted data type of the variable in {0}?
         // What was the submitted data type of the variable in Scripting?
-        [Question.ScriptingVariableDataType] = new()
+        [TextQuestion.ScriptingVariableDataType] = new()
         {
             QuestionText = "Какой был верный тип данных у переменной {0}?",
         },
@@ -9331,7 +9331,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Scrutiny Squares
         // What was the modified property of the first display in {0}?
         // What was the modified property of the first display in Scrutiny Squares?
-        [Question.ScrutinySquaresFirstDifference] = new()
+        [TextQuestion.ScrutinySquaresFirstDifference] = new()
         {
             QuestionText = "Какое свойство отличалось на первом экране {0}?",
             Answers = new Dictionary<string, string>
@@ -9346,7 +9346,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Sea Shells
         // What were the first and second words in the {1} phrase in {0}?
         // What were the first and second words in the first phrase in Sea Shells?
-        [Question.SeaShells1] = new()
+        [TextQuestion.SeaShells1] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какими были первое и второе слово {1}-й фразы {0}?",
@@ -9354,7 +9354,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What were the third and fourth words in the {1} phrase in {0}?
         // What were the third and fourth words in the first phrase in Sea Shells?
-        [Question.SeaShells2] = new()
+        [TextQuestion.SeaShells2] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какими были третье и четвёртое слово {1}-й фразы {0}?",
@@ -9362,7 +9362,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the end of the {1} phrase in {0}?
         // What was the end of the first phrase in Sea Shells?
-        [Question.SeaShells3] = new()
+        [TextQuestion.SeaShells3] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Каким был конец {1}-й фразы {0}?",
@@ -9372,7 +9372,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Semamorse
         // What was the {1} letter involved in the starting value in {0}?
         // What was the Morse letter involved in the starting value in Semamorse?
-        [Question.SemamorseLetters] = new()
+        [TextQuestion.SemamorseLetters] = new()
         {
             QuestionText = "Какая была буква {1}, использованная в начальном значении {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9383,7 +9383,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the color of the display involved in the starting value in {0}?
         // What was the color of the display involved in the starting value in Semamorse?
-        [Question.SemamorseColor] = new()
+        [TextQuestion.SemamorseColor] = new()
         {
             QuestionText = "Какого цвета светодиоды использовались в начальном значении {0}?",
             Answers = new Dictionary<string, string>
@@ -9399,7 +9399,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Sequencyclopedia
         // What sequence was used in {0}?
         // What sequence was used in The Sequencyclopedia?
-        [Question.SequencyclopediaSequence] = new()
+        [TextQuestion.SequencyclopediaSequence] = new()
         {
             QuestionText = "Какая была последовательность {0}?",
         },
@@ -9407,7 +9407,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // S.E.T. Theory
         // What equation was shown in the {1} stage of {0}?
         // What equation was shown in the first stage of S.E.T. Theory?
-        [Question.SetTheoryEquations] = new()
+        [TextQuestion.SetTheoryEquations] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое уравнение было показано на {1}-м этапе {0}?",
@@ -9416,7 +9416,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Shapes And Bombs
         // What was the initial letter in {0}?
         // What was the initial letter in Shapes And Bombs?
-        [Question.ShapesAndBombsInitialLetter] = new()
+        [TextQuestion.ShapesAndBombsInitialLetter] = new()
         {
             QuestionText = "Какая была начальная буква {0}?",
         },
@@ -9424,7 +9424,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Shape Shift
         // What was the initial shape in {0}?
         // What was the initial shape in Shape Shift?
-        [Question.ShapeShiftInitialShape] = new()
+        [TextQuestion.ShapeShiftInitialShape] = new()
         {
             QuestionText = "Какая была изначальная фигура {0}?",
             ModuleName = "Изменении формы",
@@ -9433,7 +9433,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Shifted Maze
         // What color was the {1} marker in {0}?
         // What color was the top-left marker in Shifted Maze?
-        [Question.ShiftedMazeColors] = new()
+        [TextQuestion.ShiftedMazeColors] = new()
         {
             QuestionText = "Какого цвета был {1} маркер {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9456,7 +9456,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Shifting Maze
         // What was the seed in {0}?
         // What was the seed in Shifting Maze?
-        [Question.ShiftingMazeSeed] = new()
+        [TextQuestion.ShiftingMazeSeed] = new()
         {
             QuestionText = "Какое было зерно {0}?",
         },
@@ -9464,7 +9464,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Shogi Identification
         // What was the displayed piece in {0}?
         // What was the displayed piece in Shogi Identification?
-        [Question.ShogiIdentificationPiece] = new()
+        [TextQuestion.ShogiIdentificationPiece] = new()
         {
             QuestionText = "Какая фигура была показана {0}?",
             Answers = new Dictionary<string, string>
@@ -9504,7 +9504,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Sign Language
         // What was the deciphered word in {0}?
         // What was the deciphered word in Sign Language?
-        [Question.SignLanguageWord] = new()
+        [TextQuestion.SignLanguageWord] = new()
         {
             QuestionText = "Какое слово было расшифровано {0}?",
         },
@@ -9512,7 +9512,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Silly Slots
         // What was the {1} slot in the {2} stage in {0}?
         // What was the first slot in the first stage in Silly Slots?
-        [Question.SillySlots] = new()
+        [TextQuestion.SillySlots] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был {1}-й слот на {2}-м этапе {0}?",
@@ -9537,19 +9537,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Silo Authorization
         // What was the message type in {0}?
         // What was the message type in Silo Authorization?
-        [Question.SiloAuthorizationMessageType] = new()
+        [TextQuestion.SiloAuthorizationMessageType] = new()
         {
             QuestionText = "Какой был тип сообщения {0}?",
         },
         // What was the {1} part of the encrypted message in {0}?
         // What was the first part of the encrypted message in Silo Authorization?
-        [Question.SiloAuthorizationEncryptedMessage] = new()
+        [TextQuestion.SiloAuthorizationEncryptedMessage] = new()
         {
             QuestionText = "Какая была {1}-я часть зашифрованного сообщения {0}?",
         },
         // What was the received authentication code in {0}?
         // What was the received authentication code in Silo Authorization?
-        [Question.SiloAuthorizationAuthCode] = new()
+        [TextQuestion.SiloAuthorizationAuthCode] = new()
         {
             QuestionText = "Какой код авторизации был получен {0}?",
         },
@@ -9557,7 +9557,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Said
         // What color flashed {1} in the final sequence of {0}?
         // What color flashed first in the final sequence of Simon Said?
-        [Question.SimonSaidFlashes] = new()
+        [TextQuestion.SimonSaidFlashes] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What color flashed {1} in the final sequence of {0}?",
@@ -9573,7 +9573,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Samples
         // What were the call samples {1} of {0}?
         // What were the call samples played in the first stage of Simon Samples?
-        [Question.SimonSamplesSamples] = new()
+        [TextQuestion.SimonSamplesSamples] = new()
         {
             QuestionText = "Какие семплы были {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9587,7 +9587,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Says
         // What color flashed {1} in the final sequence in {0}?
         // What color flashed first in the final sequence in Simon Says?
-        [Question.SimonSaysFlash] = new()
+        [TextQuestion.SimonSaysFlash] = new()
         {
             QuestionText = "Какой цвет горел {1}-м в последовательности {0}?",
             ModuleName = "\"Саймон говорит\"",
@@ -9603,7 +9603,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Scrambles
         // What color flashed {1} in {0}?
         // What color flashed first in Simon Scrambles?
-        [Question.SimonScramblesColors] = new()
+        [TextQuestion.SimonScramblesColors] = new()
         {
             QuestionText = "Какой цвет горел {1}-м {0}?",
             Answers = new Dictionary<string, string>
@@ -9618,7 +9618,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Screams
         // Which color flashed {1} in the final sequence in {0}?
         // Which color flashed first in the final sequence in Simon Screams?
-        [Question.SimonScreamsFlashing] = new()
+        [TextQuestion.SimonScreamsFlashing] = new()
         {
             QuestionText = "Какой цвет горел {1}-м в полной последовательности {0}?",
             ModuleName = "\"Саймон кричит\"",
@@ -9634,7 +9634,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // In which stage(s) of {0} was “{1}” the applicable rule?
         // In which stage(s) of Simon Screams was “a color flashed, then a color two away, then the first again” the applicable rule?
-        [Question.SimonScreamsRuleSimple] = new()
+        [TextQuestion.SimonScreamsRuleSimple] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "На каком(-их) этапе(-ах) {0} {1}?",
@@ -9696,7 +9696,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?
         // In which stage(s) of Simon Screams was “at most one color flashed out of Red, Orange, and Yellow” the applicable rule?
-        [Question.SimonScreamsRuleComplex] = new()
+        [TextQuestion.SimonScreamsRuleComplex] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "На каком(-их) этапе(-ах) {0} среди кнопок {2}, {3} и {4} цвета {1}?",
@@ -9727,7 +9727,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Selects
         // Which color flashed {1} in the {2} stage of {0}?
         // Which color flashed first in the first stage of Simon Selects?
-        [Question.SimonSelectsOrder] = new()
+        [TextQuestion.SimonSelectsOrder] = new()
         {
             QuestionText = "Какой цвет горел {1}-м на {2}-м этапе {0}?",
             Answers = new Dictionary<string, string>
@@ -9746,7 +9746,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Sends
         // What was the {1} received letter in {0}?
         // What was the red received letter in Simon Sends?
-        [Question.SimonSendsReceivedLetters] = new()
+        [TextQuestion.SimonSendsReceivedLetters] = new()
         {
             QuestionText = "Какая была {1} полученная буква {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9760,13 +9760,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Serves
         // Who flashed {1} in course {2} of {0}?
         // Who flashed first in course 1 of Simon Serves?
-        [Question.SimonServesFlash] = new()
+        [TextQuestion.SimonServesFlash] = new()
         {
             QuestionText = "Кто горел {1}-м на {2}-й подаче в {0}?",
         },
         // Which item was not served in course {1} of {0}?
         // Which item was not served in course 1 of Simon Serves?
-        [Question.SimonServesFood] = new()
+        [TextQuestion.SimonServesFood] = new()
         {
             QuestionText = "Что не подавалось гостям на {1}-й подаче в {0}?",
             Answers = new Dictionary<string, string>
@@ -9809,7 +9809,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Shapes
         // What was the shape submitted at the end of {0}?
         // What was the shape submitted at the end of Simon Shapes?
-        [Question.SimonShapesSubmittedShape] = new()
+        [TextQuestion.SimonShapesSubmittedShape] = new()
         {
             QuestionText = "Какая фигура была введена в конце {0}?",
         },
@@ -9817,7 +9817,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Shouts
         // Which letter flashed on the {1} button in {0}?
         // Which letter flashed on the top button in Simon Shouts?
-        [Question.SimonShoutsFlashingLetter] = new()
+        [TextQuestion.SimonShoutsFlashingLetter] = new()
         {
             QuestionText = " Какая буква горела на {1} кнопке в {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9832,7 +9832,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Shrieks
         // How many spaces clockwise from the arrow was the {1} flash in the final sequence in {0}?
         // How many spaces clockwise from the arrow was the first flash in the final sequence in Simon Shrieks?
-        [Question.SimonShrieksFlashingButton] = new()
+        [TextQuestion.SimonShrieksFlashingButton] = new()
         {
             QuestionText = "В скольки кнопках от стрелки (по часовой) была {1}-я вспышка в финальной последовательности в {0}?",
         },
@@ -9840,7 +9840,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Shuffles
         // What was the {1} flash of the {2} stage of {0}?
         // What was the first flash of the first stage of Simon Shuffles?
-        [Question.SimonShufflesFlashes] = new()
+        [TextQuestion.SimonShufflesFlashes] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} flash of the {2} stage of {0}?",
@@ -9849,7 +9849,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Signals
         // What shape was the {1} arrow in {0}?
         // What shape was the red arrow in Simon Signals?
-        [Question.SimonSignalsColorToShape] = new()
+        [TextQuestion.SimonSignalsColorToShape] = new()
         {
             QuestionText = "Какой формы была {1} стрелка в {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9862,7 +9862,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // How many directions did the {1} arrow in {0} have?
         // How many directions did the red arrow in Simon Signals have?
-        [Question.SimonSignalsColorToRotations] = new()
+        [TextQuestion.SimonSignalsColorToRotations] = new()
         {
             QuestionText = "Сколько направлений было у {1} стрелки в {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -9875,7 +9875,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What color was the arrow with this shape in {0}?
         // What color was the arrow with this shape in Simon Signals?
-        [Question.SimonSignalsShapeToColor] = new()
+        [TextQuestion.SimonSignalsShapeToColor] = new()
         {
             QuestionText = "Какого цвета была стрелка этой формы в {0}?",
             Answers = new Dictionary<string, string>
@@ -9888,13 +9888,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // How many directions did the arrow with this shape have in {0}?
         // How many directions did the arrow with this shape have in Simon Signals?
-        [Question.SimonSignalsShapeToRotations] = new()
+        [TextQuestion.SimonSignalsShapeToRotations] = new()
         {
             QuestionText = "Сколько направлений было у стрелки с этой формой в {0}?",
         },
         // What color was the arrow with {1} possible directions in {0}?
         // What color was the arrow with 3 possible directions in Simon Signals?
-        [Question.SimonSignalsRotationsToColor] = new()
+        [TextQuestion.SimonSignalsRotationsToColor] = new()
         {
             QuestionText = "Какого цвета была стрелка с {1}-мя возможными направлениями в {0}?",
             Answers = new Dictionary<string, string>
@@ -9907,7 +9907,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What shape was the arrow with {1} possible directions in {0}?
         // What shape was the arrow with 3 possible directions in Simon Signals?
-        [Question.SimonSignalsRotationsToShape] = new()
+        [TextQuestion.SimonSignalsRotationsToShape] = new()
         {
             QuestionText = "Какой формы была стрелка с {1}-мя возможными направлениями {0}?",
         },
@@ -9915,7 +9915,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Simons
         // What was the {1} flash in the final sequence in {0}?
         // What was the first flash in the final sequence in Simon Simons?
-        [Question.SimonSimonsFlashingColors] = new()
+        [TextQuestion.SimonSimonsFlashingColors] = new()
         {
             QuestionText = "Какая была {1}-я вспышка в полной последовательности в {0}?",
         },
@@ -9923,7 +9923,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Sings
         // Which key’s color flashed {1} in the {2} stage of {0}?
         // Which key’s color flashed first in the first stage of Simon Sings?
-        [Question.SimonSingsFlashing] = new()
+        [TextQuestion.SimonSingsFlashing] = new()
         {
             QuestionText = "Какой цвет кнопки горел {1}-м на {2}-м этапе {0}?",
         },
@@ -9931,7 +9931,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Smiles
         // What sound did the {1} button press make {0}?
         // What sound did the first button press make Simon Smiles?
-        [Question.SimonSmilesSounds] = new()
+        [TextQuestion.SimonSmilesSounds] = new()
         {
             QuestionText = "Как звук был у {1}-й кнопки {0}?",
         },
@@ -9939,7 +9939,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Smothers
         // What was the color of the {1} flash in {0}?
         // What was the color of the first flash in Simon Smothers?
-        [Question.SimonSmothersColors] = new()
+        [TextQuestion.SimonSmothersColors] = new()
         {
             QuestionText = "Какой был цвет у {1}-й вспышки в {0}?",
             Answers = new Dictionary<string, string>
@@ -9954,7 +9954,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the direction of the {1} flash in {0}?
         // What was the direction of the first flash in Simon Smothers?
-        [Question.SimonSmothersDirections] = new()
+        [TextQuestion.SimonSmothersDirections] = new()
         {
             QuestionText = "Какое направление было у {1}-й вспышки в {0}?",
             Answers = new Dictionary<string, string>
@@ -9969,7 +9969,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Sounds
         // Which sample button sounded {1} in the final sequence in {0}?
         // Which sample button sounded first in the final sequence in Simon Sounds?
-        [Question.SimonSoundsFlashingColors] = new()
+        [TextQuestion.SimonSoundsFlashingColors] = new()
         {
             QuestionText = "Какая кнопка семпла звучала {1}-й в полной последовательности в {0}?",
             Answers = new Dictionary<string, string>
@@ -9984,7 +9984,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Speaks
         // Which bubble flashed first in {0}?
         // Which bubble flashed first in Simon Speaks?
-        [Question.SimonSpeaksPositions] = new()
+        [TextQuestion.SimonSpeaksPositions] = new()
         {
             QuestionText = "Какое диалоговое облако горело первым {0}?",
             ModuleName = "\"Саймон общается\"",
@@ -10003,28 +10003,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which bubble flashed second in {0}?
         // Which bubble flashed second in Simon Speaks?
-        [Question.SimonSpeaksShapes] = new()
+        [TextQuestion.SimonSpeaksShapes] = new()
         {
             QuestionText = "Какое диалоговое облако загорелось вторым {0}?",
             ModuleName = "\"Саймон общается\"",
         },
         // Which language was the bubble that flashed third in {0} in?
         // Which language was the bubble that flashed third in Simon Speaks in?
-        [Question.SimonSpeaksLanguages] = new()
+        [TextQuestion.SimonSpeaksLanguages] = new()
         {
             QuestionText = "Какого языка была надпись на третьем загоревшемся диалоговом облаке {0}?",
             ModuleName = "\"Саймон общается\"",
         },
         // Which word was in the bubble that flashed fourth in {0}?
         // Which word was in the bubble that flashed fourth in Simon Speaks?
-        [Question.SimonSpeaksWords] = new()
+        [TextQuestion.SimonSpeaksWords] = new()
         {
             QuestionText = "Какое слово было в четвёртом загоревшемся диалоговом окне {0}?",
             ModuleName = "\"Саймон общается\"",
         },
         // What color was the bubble that flashed fifth in {0}?
         // What color was the bubble that flashed fifth in Simon Speaks?
-        [Question.SimonSpeaksColors] = new()
+        [TextQuestion.SimonSpeaksColors] = new()
         {
             QuestionText = "Какого цвета было пятое загоревшееся диалоговое окно {0}?",
             ModuleName = "\"Саймон общается\"",
@@ -10045,7 +10045,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon’s Star
         // Which color flashed {1} in {0}?
         // Which color flashed first in Simon’s Star?
-        [Question.SimonsStarColors] = new()
+        [TextQuestion.SimonsStarColors] = new()
         {
             QuestionText = "Какой цвет горел {1}-м в {0}?",
             Answers = new Dictionary<string, string>
@@ -10061,7 +10061,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Stacks
         // Which color flashed in the {1} stage of {0}?
         // Which color flashed in the first stage of Simon Stacks?
-        [Question.SimonStacksColors] = new()
+        [TextQuestion.SimonStacksColors] = new()
         {
             QuestionText = "Какой цвет горел на {1}-м этапе в {0}?",
             Answers = new Dictionary<string, string>
@@ -10076,7 +10076,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Stages
         // Which color flashed {1} in the {2} stage in {0}?
         // Which color flashed first in the first stage in Simon Stages?
-        [Question.SimonStagesFlashes] = new()
+        [TextQuestion.SimonStagesFlashes] = new()
         {
             QuestionText = "Какой цвет горел {1}-м на {2}-м этапе {0}?",
             ModuleName = "\"Саймон выступает\"",
@@ -10096,7 +10096,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What color was the indicator in the {1} stage in {0}?
         // What color was the indicator in the first stage in Simon Stages?
-        [Question.SimonStagesIndicator] = new()
+        [TextQuestion.SimonStagesIndicator] = new()
         {
             QuestionText = "Какого цвета был индикатор на {1}-м этапе {0}?",
             ModuleName = "\"Саймон выступает\"",
@@ -10118,7 +10118,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon States
         // Which {1} in the {2} stage in {0}?
         // Which color(s) flashed in the first stage in Simon States?
-        [Question.SimonStatesDisplay] = new()
+        [TextQuestion.SimonStatesDisplay] = new()
         {
             QuestionText = "Какой(-ие) цвет(а) {1} на {2}-м этапе {0}?",
             ModuleName = "\"Саймон утверждает\"",
@@ -10147,7 +10147,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Stops
         // Which color flashed {1} in the output sequence in {0}?
         // Which color flashed first in the output sequence in Simon Stops?
-        [Question.SimonStopsColors] = new()
+        [TextQuestion.SimonStopsColors] = new()
         {
             QuestionText = "Какой цвет горел {1}-м в последовательности вспышек в {0}?",
             Answers = new Dictionary<string, string>
@@ -10164,7 +10164,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Stores
         // Which color {1} {2} in the final sequence of {0}?
         // Which color flashed first in the final sequence of Simon Stores?
-        [Question.SimonStoresColors] = new()
+        [TextQuestion.SimonStoresColors] = new()
         {
             QuestionText = "Какой цвет {1} {2} в последовательности в {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -10186,7 +10186,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Subdivides
         // What color was the button at this position in {0}?
         // What color was the button at this position in Simon Subdivides?
-        [Question.SimonSubdividesButton] = new()
+        [TextQuestion.SimonSubdividesButton] = new()
         {
             QuestionText = "Какого цвета была кнопка на этой позиции в {0}?",
             Answers = new Dictionary<string, string>
@@ -10201,7 +10201,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Supports
         // What was the {1} topic in {0}?
         // What was the first topic in Simon Supports?
-        [Question.SimonSupportsTopics] = new()
+        [TextQuestion.SimonSupportsTopics] = new()
         {
             QuestionText = "Какая была {1}-я тема в {0}?",
             Answers = new Dictionary<string, string>
@@ -10220,7 +10220,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simon Swizzles
         // Where was {1} in {0}?
         // Where was OFF in Simon Swizzles?
-        [Question.SimonSwizzlesButton] = new()
+        [TextQuestion.SimonSwizzlesButton] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Где было {1} in {0}?",
@@ -10232,7 +10232,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the hidden number in {0}?
         // What was the hidden number in Simon Swizzles?
-        [Question.SimonSwizzlesNumber] = new()
+        [TextQuestion.SimonSwizzlesNumber] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the hidden number in {0}?",
@@ -10241,7 +10241,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simply Simon
         // What were the flashes in the {1} stage of {0}?
         // What were the flashes in the first stage of Simply Simon?
-        [Question.SimplySimonFlash] = new()
+        [TextQuestion.SimplySimonFlash] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What were the flashes in the {1} stage of {0}?",
@@ -10250,7 +10250,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Simultaneous Simons
         // What color flashed {1} on the {2} Simon in {0}?
         // What color flashed first on the first Simon in Simultaneous Simons?
-        [Question.SimultaneousSimonsFlash] = new()
+        [TextQuestion.SimultaneousSimonsFlash] = new()
         {
             QuestionText = "Какой цвет горел {1}-м на {2}-м Саймоне в {0}?",
             Answers = new Dictionary<string, string>
@@ -10265,7 +10265,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Skewed Slots
         // What were the original numbers in {0}?
         // What were the original numbers in Skewed Slots?
-        [Question.SkewedSlotsOriginalNumbers] = new()
+        [TextQuestion.SkewedSlotsOriginalNumbers] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какие были изначальные цифры {0}?",
@@ -10275,7 +10275,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Skewers
         // What color was this gem in {0}?
         // What color was this gem in Skewers?
-        [Question.SkewersColor] = new()
+        [TextQuestion.SkewersColor] = new()
         {
             QuestionText = "Какого цвета был этот камень {0}?",
             Answers = new Dictionary<string, string>
@@ -10294,7 +10294,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Skyrim
         // Which race was selectable, but not the solution, in {0}?
         // Which race was selectable, but not the solution, in Skyrim?
-        [Question.SkyrimRace] = new()
+        [TextQuestion.SkyrimRace] = new()
         {
             QuestionText = "Какая раса присутствовала, но не являлась решением {0}?",
             Answers = new Dictionary<string, string>
@@ -10312,7 +10312,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which weapon was selectable, but not the solution, in {0}?
         // Which weapon was selectable, but not the solution, in Skyrim?
-        [Question.SkyrimWeapon] = new()
+        [TextQuestion.SkyrimWeapon] = new()
         {
             QuestionText = "Какое оружие присутствовало, но не являлось решением {0}?",
             Answers = new Dictionary<string, string>
@@ -10330,7 +10330,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which enemy was selectable, but not the solution, in {0}?
         // Which enemy was selectable, but not the solution, in Skyrim?
-        [Question.SkyrimEnemy] = new()
+        [TextQuestion.SkyrimEnemy] = new()
         {
             QuestionText = "Какой враг присутствовал, но не являлся решением {0}?",
             Answers = new Dictionary<string, string>
@@ -10348,7 +10348,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which city was selectable, but not the solution, in {0}?
         // Which city was selectable, but not the solution, in Skyrim?
-        [Question.SkyrimCity] = new()
+        [TextQuestion.SkyrimCity] = new()
         {
             QuestionText = "Какой город присутствовал, но не являлся решением {0}?",
             Answers = new Dictionary<string, string>
@@ -10366,7 +10366,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which dragon shout was selectable, but not the solution, in {0}?
         // Which dragon shout was selectable, but not the solution, in Skyrim?
-        [Question.SkyrimDragonShout] = new()
+        [TextQuestion.SkyrimDragonShout] = new()
         {
             QuestionText = "Какой крик дракона присутствовал, но не являлся решением {0}?",
             Answers = new Dictionary<string, string>
@@ -10386,7 +10386,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Slow Math
         // What was the last triplet of letters in {0}?
         // What was the last triplet of letters in Slow Math?
-        [Question.SlowMathLastLetters] = new()
+        [TextQuestion.SlowMathLastLetters] = new()
         {
             QuestionText = "Какие три буквы были последними {0}?",
         },
@@ -10394,14 +10394,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Small Circle
         // How much did the sequence shift by in {0}?
         // How much did the sequence shift by in Small Circle?
-        [Question.SmallCircleShift] = new()
+        [TextQuestion.SmallCircleShift] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "На сколько сместилась последовательность на {0}?",
         },
         // Which wedge made the different noise in the beginning of {0}?
         // Which wedge made the different noise in the beginning of Small Circle?
-        [Question.SmallCircleWedge] = new()
+        [TextQuestion.SmallCircleWedge] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой сегмент {0} издал другой звук в начале?",
@@ -10419,7 +10419,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which color was {1} in the solution to {0}?
         // Which color was first in the solution to Small Circle?
-        [Question.SmallCircleSolution] = new()
+        [TextQuestion.SmallCircleSolution] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой цвет был {1}-м в решении на {0}?",
@@ -10439,7 +10439,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Small Talk
         // What was on the display in the {1} stage of {0}?
         // What was on the display in the first stage of Small Talk?
-        [Question.SmallTalkDisplays] = new()
+        [TextQuestion.SmallTalkDisplays] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was on the display in the {1} stage of {0}?",
@@ -10448,13 +10448,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Smash, Marry, Kill
         // In what category was {1} for {0}?
         // In what category was The Button for Smash, Marry, Kill?
-        [Question.SmashMarryKillCategory] = new()
+        [TextQuestion.SmashMarryKillCategory] = new()
         {
             QuestionText = "В какой категории был {1} {0}?",
         },
         // Which module was in the {1} category for {0}?
         // Which module was in the SMASH category for Smash, Marry, Kill?
-        [Question.SmashMarryKillModule] = new()
+        [TextQuestion.SmashMarryKillModule] = new()
         {
             QuestionText = "Какой модуль был в {1} категории {0}?",
         },
@@ -10462,7 +10462,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Snooker
         // How many red balls were there at the start of {0}?
         // How many red balls were there at the start of Snooker?
-        [Question.SnookerReds] = new()
+        [TextQuestion.SnookerReds] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Сколько красных шаров было в начале {0}?",
@@ -10471,7 +10471,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Snowflakes
         // Which snowflake was on the {1} button of {0}?
         // Which snowflake was on the top button of Snowflakes?
-        [Question.SnowflakesDisplayedSnowflakes] = new()
+        [TextQuestion.SnowflakesDisplayedSnowflakes] = new()
         {
             QuestionText = "Какая снежинка была на {1} кнопке {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -10486,19 +10486,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Sonic & Knuckles
         // Which sound was played but not featured in the chosen zone in {0}?
         // Which sound was played but not featured in the chosen zone in Sonic & Knuckles?
-        [Question.SonicKnucklesSounds] = new()
+        [TextQuestion.SonicKnucklesSounds] = new()
         {
             QuestionText = "Какой звук воспроизводился, но не присутствовал в выбранной зоне {0}?",
         },
         // Which badnik was shown in {0}?
         // Which badnik was shown in Sonic & Knuckles?
-        [Question.SonicKnucklesBadnik] = new()
+        [TextQuestion.SonicKnucklesBadnik] = new()
         {
             QuestionText = "Какой бадник был показан {0}?",
         },
         // Which monitor was shown in {0}?
         // Which monitor was shown in Sonic & Knuckles?
-        [Question.SonicKnucklesMonitor] = new()
+        [TextQuestion.SonicKnucklesMonitor] = new()
         {
             QuestionText = "Какой монитор был показан {0}?",
         },
@@ -10506,13 +10506,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Sonic The Hedgehog
         // What was the {1} picture on {0}?
         // What was the first picture on Sonic The Hedgehog?
-        [Question.SonicTheHedgehogPictures] = new()
+        [TextQuestion.SonicTheHedgehogPictures] = new()
         {
             QuestionText = "Какая была {1}-я картинка {0}?",
         },
         // Which sound was played by the {1} screen on {0}?
         // Which sound was played by the Running Boots screen on Sonic The Hedgehog?
-        [Question.SonicTheHedgehogSounds] = new()
+        [TextQuestion.SonicTheHedgehogSounds] = new()
         {
             QuestionText = "Какой звук воспроизводился на экране \"{1}\" {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -10527,7 +10527,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Sorting
         // What positions were the last swap used to solve {0}?
         // What positions were the last swap used to solve Sorting?
-        [Question.SortingLastSwap] = new()
+        [TextQuestion.SortingLastSwap] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какие позиции участвовали в последней замене чисел {0}?",
@@ -10537,7 +10537,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Souvenir
         // What was the first module asked about in the other Souvenir on this bomb?
         // What was the first module asked about in the other Souvenir on this bomb?
-        [Question.SouvenirFirstQuestion] = new()
+        [TextQuestion.SouvenirFirstQuestion] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "О каком модуле был первый вопрос на другом Сувенире?",
@@ -10547,7 +10547,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Space Traders
         // What was the maximum tax amount per vessel in {0}?
         // What was the maximum tax amount per vessel in Space Traders?
-        [Question.SpaceTradersMaxTax] = new()
+        [TextQuestion.SpaceTradersMaxTax] = new()
         {
             QuestionText = "Какой был максимальный налог за каждое судно {0}?",
         },
@@ -10555,7 +10555,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Spelling Bee
         // What word was asked to be spelled in {0}?
         // What word was asked to be spelled in Spelling Bee?
-        [Question.SpellingBeeWord] = new()
+        [TextQuestion.SpellingBeeWord] = new()
         {
             QuestionText = "Какое слово нужно было произнести {0}?",
             ModuleName = "Правописании",
@@ -10564,7 +10564,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Sphere
         // What was the {1} flashed color in {0}?
         // What was the first flashed color in The Sphere?
-        [Question.SphereColors] = new()
+        [TextQuestion.SphereColors] = new()
         {
             QuestionText = "Какой цвет загорелся {1}-м {0}?",
             Answers = new Dictionary<string, string>
@@ -10583,7 +10583,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Splitting The Loot
         // What bag was initially colored in {0}?
         // What bag was initially colored in Splitting The Loot?
-        [Question.SplittingTheLootColoredBag] = new()
+        [TextQuestion.SplittingTheLootColoredBag] = new()
         {
             QuestionText = "Какой мешок был изначально окрашен {0}?",
             ModuleName = "Разделении добычи",
@@ -10592,7 +10592,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Spongebob Birthday Identification
         // Who was the {1} child displayed in {0}?
         // Who was the first child displayed in Spongebob Birthday Identification?
-        [Question.SpongebobBirthdayIdentificationChildren] = new()
+        [TextQuestion.SpongebobBirthdayIdentificationChildren] = new()
         {
             QuestionText = "Кто был {1}-м показаным ребёнком {0}?",
         },
@@ -10600,7 +10600,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Stability
         // What was the color of the {1} lit LED in {0}?
         // What was the color of the first lit LED in Stability?
-        [Question.StabilityLedColors] = new()
+        [TextQuestion.StabilityLedColors] = new()
         {
             QuestionText = "Какого цвета был {1}-й горящик светодиод {0}?",
             Answers = new Dictionary<string, string>
@@ -10612,7 +10612,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the identification number in {0}?
         // What was the identification number in Stability?
-        [Question.StabilityIdNumber] = new()
+        [TextQuestion.StabilityIdNumber] = new()
         {
             QuestionText = "Какое было идентификационное число {0}?",
         },
@@ -10620,7 +10620,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Stable Time Signatures
         // What was the {1} time signature in {0}?
         // What was the first time signature in Stable Time Signatures?
-        [Question.StableTimeSignaturesSignatures] = new()
+        [TextQuestion.StableTimeSignaturesSignatures] = new()
         {
             QuestionText = "Какая была {1}-я сигнатура времени {0}?",
         },
@@ -10628,7 +10628,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Stacked Sequences
         // Which of these is the length of a sequence in {0}?
         // Which of these is the length of a sequence in Stacked Sequences?
-        [Question.StackedSequences] = new()
+        [TextQuestion.StackedSequences] = new()
         {
             QuestionText = "Который ответ является длиной последовательности {0}?",
         },
@@ -10636,7 +10636,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Stars
         // What was the digit in the center of {0}?
         // What was the digit in the center of Stars?
-        [Question.StarsCenter] = new()
+        [TextQuestion.StarsCenter] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая цифра была в центре {0}?",
@@ -10645,7 +10645,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Starstruck
         // Which star was present on {0}?
         // Which star was present on Starstruck?
-        [Question.StarstruckStar] = new()
+        [TextQuestion.StarstruckStar] = new()
         {
             QuestionText = "Какая звезда присутствовала {0}?",
         },
@@ -10653,7 +10653,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // State of Aggregation
         // What was the element shown in {0}?
         // What was the element shown in State of Aggregation?
-        [Question.StateOfAggregationElement] = new()
+        [TextQuestion.StateOfAggregationElement] = new()
         {
             QuestionText = "Какой элемент был отображён {0}?",
         },
@@ -10661,7 +10661,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Stellar
         // What was the {1} letter in {0}?
         // What was the Morse code letter in Stellar?
-        [Question.StellarLetters] = new()
+        [TextQuestion.StellarLetters] = new()
         {
             QuestionText = "Какая была буква в {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -10675,14 +10675,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Stroop’s Test
         // What was the {1} submitted word in {0}?
         // What was the first submitted word in Stroop’s Test?
-        [Question.StroopsTestWord] = new()
+        [TextQuestion.StroopsTestWord] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} submitted word in {0}?",
         },
         // What was the {1} submitted word’s color in {0}?
         // What was the first submitted word’s color in Stroop’s Test?
-        [Question.StroopsTestColor] = new()
+        [TextQuestion.StroopsTestColor] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} submitted word’s color in {0}?",
@@ -10700,7 +10700,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Stupid Slots
         // What was the value of the {1} arrow in {0}?
         // What was the value of the top-left arrow in Stupid Slots?
-        [Question.StupidSlotsValues] = new()
+        [TextQuestion.StupidSlotsValues] = new()
         {
             QuestionText = "Какое было значение {1} стрелки {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -10717,7 +10717,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Subbly Jubbly
         // What was a substitution word in {0}?
         // What was a substitution word in Subbly Jubbly?
-        [Question.SubblyJubblySubstitutions] = new()
+        [TextQuestion.SubblyJubblySubstitutions] = new()
         {
             QuestionText = "На какое слово была замена {0}?",
         },
@@ -10725,7 +10725,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Subscribe to Pewdiepie
         // How many subscribers does {1} have in {0}?
         // How many subscribers does PewDiePie have in Subscribe to Pewdiepie?
-        [Question.SubscribeToPewdiepieSubCount] = new()
+        [TextQuestion.SubscribeToPewdiepieSubCount] = new()
         {
             QuestionText = "Сколько подписчиков было у {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -10738,13 +10738,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Subway
         // Which bread did the customer ask for in {0}?
         // Which bread did the customer ask for in Subway?
-        [Question.SubwayBread] = new()
+        [TextQuestion.SubwayBread] = new()
         {
             QuestionText = "Какой хлеб попросил покупатель {0}?",
         },
         // Which of these was not asked for in {0}?
         // Which of these was not asked for in Subway?
-        [Question.SubwayItems] = new()
+        [TextQuestion.SubwayItems] = new()
         {
             QuestionText = "Что из этого покупатель не просил {0}?",
         },
@@ -10752,7 +10752,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Sugar Skulls
         // What skull was shown on the {1} square in {0}?
         // What skull was shown on the top square in Sugar Skulls?
-        [Question.SugarSkullsSkull] = new()
+        [TextQuestion.SugarSkullsSkull] = new()
         {
             QuestionText = "Какой череп был показан на {1} квадрате {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -10764,7 +10764,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which skull {1} present in {0}?
         // Which skull was present in Sugar Skulls?
-        [Question.SugarSkullsAvailability] = new()
+        [TextQuestion.SugarSkullsAvailability] = new()
         {
             QuestionText = "Какой череп {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -10777,13 +10777,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Suits And Colours
         // What was the colour of this cell in {0}?
         // What was the colour of this cell in Suits And Colours?
-        [Question.SuitsAndColourColour] = new()
+        [TextQuestion.SuitsAndColourColour] = new()
         {
             QuestionText = "Какой был цвет этой клетки {0}?",
         },
         // What was the suit of this cell in {0}?
         // What was the suit of this cell in Suits And Colours?
-        [Question.SuitsAndColourSuit] = new()
+        [TextQuestion.SuitsAndColourSuit] = new()
         {
             QuestionText = "Какая была масть этой клетки {0}?",
         },
@@ -10791,7 +10791,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Superparsing
         // What was the displayed word in {0}?
         // What was the displayed word in Superparsing?
-        [Question.SuperparsingDisplayed] = new()
+        [TextQuestion.SuperparsingDisplayed] = new()
         {
             QuestionText = "Какое слово было показано {0}?",
         },
@@ -10799,7 +10799,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // SUSadmin
         // Which security protocol was installed in {0}?
         // Which security protocol was installed in SUSadmin?
-        [Question.SUSadminSecurity] = new()
+        [TextQuestion.SUSadminSecurity] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой протокол безопасности был установлен на {0}?",
@@ -10808,7 +10808,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Switch
         // What color was the {1} LED on the {2} flip of {0}?
         // What color was the top LED on the first flip of The Switch?
-        [Question.SwitchInitialColor] = new()
+        [TextQuestion.SwitchInitialColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета был {1} светодиод при {2}-м нажатии {0}?",
@@ -10831,7 +10831,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Switches
         // What was the initial position of the switches in {0}?
         // What was the initial position of the switches in Switches?
-        [Question.SwitchesInitialPosition] = new()
+        [TextQuestion.SwitchesInitialPosition] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое было начальное положение {0}?",
@@ -10840,14 +10840,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Switching Maze
         // What was the seed in {0}?
         // What was the seed in Switching Maze?
-        [Question.SwitchingMazeSeed] = new()
+        [TextQuestion.SwitchingMazeSeed] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое было зерно у {0}?",
         },
         // What was the starting maze color in {0}?
         // What was the starting maze color in Switching Maze?
-        [Question.SwitchingMazeColor] = new()
+        [TextQuestion.SwitchingMazeColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был цвет начального {0}?",
@@ -10865,7 +10865,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Symbol Cycle
         // How many symbols were cycling on the {1} screen in {0}?
         // How many symbols were cycling on the left screen in Symbol Cycle?
-        [Question.SymbolCycleSymbolCounts] = new()
+        [TextQuestion.SymbolCycleSymbolCounts] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Сколько символов было на {1} экране {0}?",
@@ -10879,7 +10879,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Symbolic Coordinates
         // What was the {1} symbol in the {2} stage of {0}?
         // What was the left symbol in the first stage of Symbolic Coordinates?
-        [Question.SymbolicCoordinateSymbols] = new()
+        [TextQuestion.SymbolicCoordinateSymbols] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был {1} символ на {2}-м этапе {0}?",
@@ -10894,7 +10894,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Symbolic Tasha
         // Which button flashed {1} in the final sequence of {0}?
         // Which button flashed first in the final sequence of Symbolic Tasha?
-        [Question.SymbolicTashaFlashes] = new()
+        [TextQuestion.SymbolicTashaFlashes] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая кнопка горела {1}-й в финальной последовательности {0}?",
@@ -10912,7 +10912,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which symbol was on the {1} button in {0}?
         // Which symbol was on the top button in Symbolic Tasha?
-        [Question.SymbolicTashaSymbols] = new()
+        [TextQuestion.SymbolicTashaSymbols] = new()
         {
             QuestionText = "Какой символ был на {1} кнопке {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -10931,21 +10931,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Synapse Says
         // What color flashed {1} in the {2} stage of {0}?
         // What color flashed first in the first stage of Synapse Says?
-        [Question.SynapseSaysFlashes] = new()
+        [TextQuestion.SynapseSaysFlashes] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What color flashed {1} in the {2} stage of {0}?",
         },
         // What color was in the {1} position of the {2} stage of {0}?
         // What color was in the first position of the first stage of Synapse Says?
-        [Question.SynapseSaysPositions] = new()
+        [TextQuestion.SynapseSaysPositions] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What color was in the {1} position of the {2} stage of {0}?",
         },
         // What number was displayed in the {1} stage of {0}?
         // What number was displayed in the first stage of Synapse Says?
-        [Question.SynapseSaysDisplays] = new()
+        [TextQuestion.SynapseSaysDisplays] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What number was displayed in the {1} stage of {0}?",
@@ -10954,7 +10954,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // SYNC-125 [3]
         // What was displayed on the screen in the {1} stage of {0}?
         // What was displayed on the screen in the first stage of SYNC-125 [3]?
-        [Question.Sync125_3Word] = new()
+        [TextQuestion.Sync125_3Word] = new()
         {
             QuestionText = "Что было на экране на {1}-м этапе {0}?",
         },
@@ -10962,7 +10962,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Synonyms
         // Which number was displayed on {0}?
         // Which number was displayed on Synonyms?
-        [Question.SynonymsNumber] = new()
+        [TextQuestion.SynonymsNumber] = new()
         {
             QuestionText = "Какое число было отображено {0}?",
         },
@@ -10970,7 +10970,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Sysadmin
         // What error code did you fix in {0}?
         // What error code did you fix in Sysadmin?
-        [Question.SysadminFixedErrorCodes] = new()
+        [TextQuestion.SysadminFixedErrorCodes] = new()
         {
             QuestionText = "Какой код ошибки вы исправили {0}?",
         },
@@ -10978,7 +10978,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // TAC
         // Which card was {1} in the swap in {0}?
         // Which card was given away in the swap in TAC?
-        [Question.TACSwappedCard] = new()
+        [TextQuestion.TACSwappedCard] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which card was {1} your partner in {0}?",
@@ -11016,7 +11016,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Which card was in your hand in {0}?
         // Which card was in your hand in TAC?
-        [Question.TACHeldCard] = new()
+        [TextQuestion.TACHeldCard] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which card was in your hand in {0}?",
@@ -11051,7 +11051,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Tap Code
         // What was the received word in {0}?
         // What was the received word in Tap Code?
-        [Question.TapCodeReceivedWord] = new()
+        [TextQuestion.TapCodeReceivedWord] = new()
         {
             QuestionText = "Какое слово было передано {0}?",
         },
@@ -11059,7 +11059,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Tasha Squeals
         // What was the {1} flashed color in {0}?
         // What was the first flashed color in Tasha Squeals?
-        [Question.TashaSquealsColors] = new()
+        [TextQuestion.TashaSquealsColors] = new()
         {
             QuestionText = "Какой цвет горел {1}-м {0}?",
             Answers = new Dictionary<string, string>
@@ -11074,7 +11074,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Tasque Managing
         // Where was the starting position in {0}?
         // Where was the starting position in Tasque Managing?
-        [Question.TasqueManagingStartingPos] = new()
+        [TextQuestion.TasqueManagingStartingPos] = new()
         {
             QuestionText = "Где была начальная позиция {0}?",
         },
@@ -11082,7 +11082,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Tea Set
         // Which ingredient was displayed {1}, from left to right, in {0}?
         // Which ingredient was displayed first, from left to right, in The Tea Set?
-        [Question.TeaSetDisplayedIngredients] = new()
+        [TextQuestion.TeaSetDisplayedIngredients] = new()
         {
             QuestionText = "Какой ингридиент был показан {1}-м, слева направо {0}?",
         },
@@ -11091,7 +11091,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // What was the {1} displayed digit in {0}?
         // What was the first displayed digit in Technical Keypad?
         // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
-        [Question.TechnicalKeypadDisplayedDigits] = new()
+        [TextQuestion.TechnicalKeypadDisplayedDigits] = new()
         {
             QuestionText = "Какая была {1}-я отображённая цифра {0}?",
         },
@@ -11099,7 +11099,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Ten-Button Color Code
         // What was the initial color of the {1} button in the {2} stage of {0}?
         // What was the initial color of the first button in the first stage of Ten-Button Color Code?
-        [Question.TenButtonColorCodeInitialColors] = new()
+        [TextQuestion.TenButtonColorCodeInitialColors] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Какой был начальный цвет {1}-й кнопки на {2}-м этапе {0}?",
@@ -11114,7 +11114,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Tenpins
         // What was the {1} split in {0}?
         // What was the red split in Tenpins?
-        [Question.TenpinsSplits] = new()
+        [TextQuestion.TenpinsSplits] = new()
         {
             QuestionText = "Какой был {1} сплит {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -11143,7 +11143,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Tetriamonds
         // What colour triangle pulsed {1} in {0}?
         // What colour triangle pulsed first in Tetriamonds?
-        [Question.TetriamondsPulsingColours] = new()
+        [TextQuestion.TetriamondsPulsingColours] = new()
         {
             QuestionText = "Какой цветной треугольник пульсировал {1}-м {0}?",
             Answers = new Dictionary<string, string>
@@ -11161,7 +11161,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Text Field
         // What was the displayed letter in {0}?
         // What was the displayed letter in Text Field?
-        [Question.TextFieldDisplay] = new()
+        [TextQuestion.TextFieldDisplay] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая буква присутствовала на {0}?",
@@ -11171,14 +11171,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Thinking Wires
         // What was the position from top to bottom of the first wire needing to be cut in {0}?
         // What was the position from top to bottom of the first wire needing to be cut in Thinking Wires?
-        [Question.ThinkingWiresFirstWire] = new()
+        [TextQuestion.ThinkingWiresFirstWire] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Где находился первый провод который нужно было перерезать (сверху вниз) на {0}?",
         },
         // What color did the second valid wire to cut have to have in {0}?
         // What color did the second valid wire to cut have to have in Thinking Wires?
-        [Question.ThinkingWiresSecondWire] = new()
+        [TextQuestion.ThinkingWiresSecondWire] = new()
         {
             QuestionText = "Какой цвет был у второго верно порезаного провода {0}?",
             Answers = new Dictionary<string, string>
@@ -11196,7 +11196,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the display number in {0}?
         // What was the display number in Thinking Wires?
-        [Question.ThinkingWiresDisplayNumber] = new()
+        [TextQuestion.ThinkingWiresDisplayNumber] = new()
         {
             QuestionText = "Какое было число на экране {0}?",
         },
@@ -11204,7 +11204,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Third Base
         // What was the display word in the {1} stage on {0}?
         // What was the display word in the first stage on Third Base?
-        [Question.ThirdBaseDisplay] = new()
+        [TextQuestion.ThirdBaseDisplay] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое слово было на экране на {1}-м этапе {0}?",
@@ -11214,7 +11214,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Thirty Dollar Module
         // Which sound was used in {0}?
         // Which sound was used in Thirty Dollar Module?
-        [Question.ThirtyDollarModuleSounds] = new()
+        [TextQuestion.ThirtyDollarModuleSounds] = new()
         {
             QuestionText = "Какой звук был использован {0}?",
         },
@@ -11222,7 +11222,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Tic Tac Toe
         // What was on the {1} button at the start of {0}?
         // What was on the top-left button at the start of Tic Tac Toe?
-        [Question.TicTacToeInitialState] = new()
+        [TextQuestion.TicTacToeInitialState] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Что было на {1} кнопке в начале игры {0}?",
@@ -11244,7 +11244,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Time Signatures
         // What was the {1} time signature in {0}?
         // What was the first time signature in Time Signatures?
-        [Question.TimeSignaturesSignatures] = new()
+        [TextQuestion.TimeSignaturesSignatures] = new()
         {
             QuestionText = "Какая была {1}-я сигнатура времени {0}?",
         },
@@ -11252,7 +11252,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Timezone
         // What was the {1} city in {0}?
         // What was the departure city in Timezone?
-        [Question.TimezoneCities] = new()
+        [TextQuestion.TimezoneCities] = new()
         {
             QuestionText = "Какой был город {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -11265,7 +11265,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Tip Toe
         // Which of these squares was safe in row {1} in {0}?
         // Which of these squares was safe in row 9 in Tip Toe?
-        [Question.TipToeSafeSquares] = new()
+        [TextQuestion.TipToeSafeSquares] = new()
         {
             QuestionText = "Какой из этих квадратов был безопасным в {1}-м ряду {0}?",
         },
@@ -11273,7 +11273,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Topsy Turvy
         // What was the word initially shown in {0}?
         // What was the word initially shown in Topsy Turvy?
-        [Question.TopsyTurvyWord] = new()
+        [TextQuestion.TopsyTurvyWord] = new()
         {
             QuestionText = "Какое было начальное слово {0}?",
         },
@@ -11281,13 +11281,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Touch Transmission
         // What was the transmitted word in {0}?
         // What was the transmitted word in Touch Transmission?
-        [Question.TouchTransmissionWord] = new()
+        [TextQuestion.TouchTransmissionWord] = new()
         {
             QuestionText = "Какое слово было передано {0}?",
         },
         // In what order was the Braille read in {0}?
         // In what order was the Braille read in Touch Transmission?
-        [Question.TouchTransmissionOrder] = new()
+        [TextQuestion.TouchTransmissionOrder] = new()
         {
             QuestionText = "Какой порядок чтения был у Браилля {0}?",
             Answers = new Dictionary<string, string>
@@ -11302,7 +11302,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Transmitted Morse
         // What was the {1} received message in {0}?
         // What was the first received message in Transmitted Morse?
-        [Question.TransmittedMorseMessage] = new()
+        [TextQuestion.TransmittedMorseMessage] = new()
         {
             QuestionText = "Какое было {1}-е полученное сообщение {0}?",
         },
@@ -11310,7 +11310,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Triamonds
         // What colour triangle pulsed {1} in {0}?
         // What colour triangle pulsed first in Triamonds?
-        [Question.TriamondsPulsingColours] = new()
+        [TextQuestion.TriamondsPulsingColours] = new()
         {
             QuestionText = "Какого цвета был {1}-й пульсирующий треугольник {0}?",
             Answers = new Dictionary<string, string>
@@ -11329,7 +11329,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Tribal Council
         // What was the {1} name in {0}?
         // What was the northeast name in Tribal Council?
-        [Question.TribalCouncilName] = new()
+        [TextQuestion.TribalCouncilName] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Who was your closest ally in {0}?",
@@ -11343,7 +11343,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Triple Term
         // Which of these was one of the passwords in {0}?
         // Which of these was one of the passwords in Triple Term?
-        [Question.TripleTermPasswords] = new()
+        [TextQuestion.TripleTermPasswords] = new()
         {
             QuestionText = "Что из этого было одним из паролей {0}?",
         },
@@ -11351,7 +11351,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Turtle Robot
         // What was the {1} line you commented out in {0}?
         // What was the first line you commented out in Turtle Robot?
-        [Question.TurtleRobotCodeLines] = new()
+        [TextQuestion.TurtleRobotCodeLines] = new()
         {
             QuestionText = "Какую строку вы закомментировали {1}-й {0}?",
         },
@@ -11359,7 +11359,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Two Bits
         // What was the {1} correct query response from {0}?
         // What was the first correct query response from Two Bits?
-        [Question.TwoBitsResponse] = new()
+        [TextQuestion.TwoBitsResponse] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какой был ответ на {1}-й запрос {0}?",
@@ -11369,7 +11369,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Ultimate Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Ultimate Cipher?
-        [Question.UltimateCipherScreen] = new()
+        [TextQuestion.UltimateCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -11383,14 +11383,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Ultimate Cycle
         // Which direction was the {1} dial pointing in {0}?
         // Which direction was the first dial pointing in Ultimate Cycle?
-        [Question.UltimateCycleDialDirections] = new()
+        [TextQuestion.UltimateCycleDialDirections] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Which direction was the {1} dial pointing in {0}?",
         },
         // What letter was written on the {1} dial in {0}?
         // What letter was written on the first dial in Ultimate Cycle?
-        [Question.UltimateCycleDialLabels] = new()
+        [TextQuestion.UltimateCycleDialLabels] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What letter was written on the {1} dial in {0}?",
@@ -11399,7 +11399,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Ultracube
         // What was the {1} rotation in {0}?
         // What was the first rotation in The Ultracube?
-        [Question.UltracubeRotations] = new()
+        [TextQuestion.UltracubeRotations] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Каким было {1}-е вращение {0}?",
@@ -11408,13 +11408,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // UltraStores
         // What was the {1} rotation in the {2} stage of {0}?
         // What was the first rotation in the first stage of UltraStores?
-        [Question.UltraStoresSingleRotation] = new()
+        [TextQuestion.UltraStoresSingleRotation] = new()
         {
             QuestionText = "Какой был {1}-й поворот на {2}-м этапе {0}?",
         },
         // What was the {1} rotation in the {2} stage of {0}?
         // What was the first rotation in the first stage of UltraStores?
-        [Question.UltraStoresMultiRotation] = new()
+        [TextQuestion.UltraStoresMultiRotation] = new()
         {
             QuestionText = "Какой был {1}-й поворот на {2}-м этапе {0}?",
         },
@@ -11422,7 +11422,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Uncolored Squares
         // What was the {1} color in reading order used in the first stage of {0}?
         // What was the first color in reading order used in the first stage of Uncolored Squares?
-        [Question.UncoloredSquaresFirstStage] = new()
+        [TextQuestion.UncoloredSquaresFirstStage] = new()
         {
             Conjugation = Conjugation.GenitivePlural,
             QuestionText = "Какой был {1}-й цвет в порядке чтения, использованный на первом этапе {0}?",
@@ -11441,7 +11441,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Uncolored Switches
         // What was the initial state of the switches in {0}?
         // What was the initial state of the switches in Uncolored Switches?
-        [Question.UncoloredSwitchesInitialState] = new()
+        [TextQuestion.UncoloredSwitchesInitialState] = new()
         {
             Conjugation = Conjugation.GenitivePlural,
             QuestionText = "Какое было исходное состояние {0}?",
@@ -11449,7 +11449,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What color was the {1} LED in reading order in {0}?
         // What color was the first LED in reading order in Uncolored Switches?
-        [Question.UncoloredSwitchesLedColors] = new()
+        [TextQuestion.UncoloredSwitchesLedColors] = new()
         {
             Conjugation = Conjugation.GenitivePlural,
             QuestionText = "Какого цвета был {1}-й светодиод в порядке чтения {0}?",
@@ -11470,7 +11470,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Uncolour Flash
         // What was the {1} in the {2} position of the {3} sequence of {0}?
         // What was the word in the first position of the “YES” sequence of Uncolour Flash?
-        [Question.UncolourFlashDisplays] = new()
+        [TextQuestion.UncolourFlashDisplays] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} displayed in the {2} sequence of {0}?",
@@ -11479,7 +11479,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Unfair Cipher
         // What was the {1} received instruction in {0}?
         // What was the first received instruction in Unfair Cipher?
-        [Question.UnfairCipherInstructions] = new()
+        [TextQuestion.UnfairCipherInstructions] = new()
         {
             QuestionText = "Какая {1}-я инструкция была зашифрована {0}?",
         },
@@ -11487,7 +11487,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Unfair’s Revenge
         // What was the {1} decrypted instruction in {0}?
         // What was the first decrypted instruction in Unfair’s Revenge?
-        [Question.UnfairsRevengeInstructions] = new()
+        [TextQuestion.UnfairsRevengeInstructions] = new()
         {
             QuestionText = "Какая {1}-я инструкция была зашифрована {0}?",
         },
@@ -11495,7 +11495,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Unicode
         // What was the {1} submitted code in {0}?
         // What was the first submitted code in Unicode?
-        [Question.UnicodeSortedAnswer] = new()
+        [TextQuestion.UnicodeSortedAnswer] = new()
         {
             QuestionText = "Какой был {1}-й отправленный ответ {0}?",
         },
@@ -11503,7 +11503,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // UNO!
         // What was the initial card in {0}?
         // What was the initial card in UNO!?
-        [Question.UnoInitialCard] = new()
+        [TextQuestion.UnoInitialCard] = new()
         {
             QuestionText = "Какая была начальная карта {0}?",
             Answers = new Dictionary<string, string>
@@ -11568,21 +11568,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Unordered Keys
         // What color was this key in the {1} stage of {0}?
         // What color was this key in the first stage of Unordered Keys?
-        [Question.UnorderedKeysKeyColor] = new()
+        [TextQuestion.UnorderedKeysKeyColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была эта клавиша на {1}-м этапе {0}?",
         },
         // What color was the label of this key in the {1} stage of {0}?
         // What color was the label of this key in the first stage of Unordered Keys?
-        [Question.UnorderedKeysLabelColor] = new()
+        [TextQuestion.UnorderedKeysLabelColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
         },
         // What was the label of this key in the {1} stage of {0}?
         // What was the label of this key in the first stage of Unordered Keys?
-        [Question.UnorderedKeysLabel] = new()
+        [TextQuestion.UnorderedKeysLabel] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какая была надпись на этой клавише на {1}-м этапе {0}?",
@@ -11591,7 +11591,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Unown Cipher
         // What was the {1} submitted letter in {0}?
         // What was the first submitted letter in Unown Cipher?
-        [Question.UnownCipherAnswers] = new()
+        [TextQuestion.UnownCipherAnswers] = new()
         {
             QuestionText = "Какая буква была отправлена {1}-й {0}?",
         },
@@ -11599,7 +11599,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Unpleasant Squares
         // What was the color of this square in {0}?
         // What was the color of this square in Unpleasant Squares?
-        [Question.UnpleasantSquaresColor] = new()
+        [TextQuestion.UnpleasantSquaresColor] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the color of this square in {0}?",
@@ -11616,14 +11616,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Updog
         // What was the text on {0}?
         // What was the text on Updog?
-        [Question.UpdogWord] = new()
+        [TextQuestion.UpdogWord] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой был текст на {0}?",
         },
         // What was the {1} color in the sequence on {0}?
         // What was the first color in the sequence on Updog?
-        [Question.UpdogColor] = new()
+        [TextQuestion.UpdogColor] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был {1} цвет в последовательности {0}?",
@@ -11646,7 +11646,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // USA Cycle
         // Which state was displayed in {0}?
         // Which state was displayed in USA Cycle?
-        [Question.USACycleDisplayed] = new()
+        [TextQuestion.USACycleDisplayed] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой штат был показан на {0}?",
@@ -11655,7 +11655,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // USA Maze
         // Which state did you depart from in {0}?
         // Which state did you depart from in USA Maze?
-        [Question.USAMazeOrigin] = new()
+        [TextQuestion.USAMazeOrigin] = new()
         {
             QuestionText = "Из какого штата вы отправились {0}?",
             ModuleName = "Американском лабиринте",
@@ -11664,7 +11664,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // V
         // Which word {1} shown in {0}?
         // Which word was shown in V?
-        [Question.VWords] = new()
+        [TextQuestion.VWords] = new()
         {
             QuestionText = "Какое слово {1} показано {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -11677,7 +11677,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Valves
         // What was the initial state of {0}?
         // What was the initial state of Valves?
-        [Question.ValvesInitialState] = new()
+        [TextQuestion.ValvesInitialState] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое было начальное состояние {0}?",
@@ -11686,7 +11686,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Varicolored Squares
         // What was the initially pressed color on {0}?
         // What was the initially pressed color on Varicolored Squares?
-        [Question.VaricoloredSquaresInitialColor] = new()
+        [TextQuestion.VaricoloredSquaresInitialColor] = new()
         {
             Conjugation = Conjugation.PrepositivePlural,
             QuestionText = "Какой был первый нажатый цвет на {0}?",
@@ -11705,7 +11705,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Varicolour Flash
         // What was the word of the {1} goal in {0}?
         // What was the word of the first goal in Varicolour Flash?
-        [Question.VaricolourFlashWords] = new()
+        [TextQuestion.VaricolourFlashWords] = new()
         {
             QuestionText = "Какое было слово у {1}-й цели {0}?",
             Answers = new Dictionary<string, string>
@@ -11720,7 +11720,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the color of the {1} goal in {0}?
         // What was the color of the first goal in Varicolour Flash?
-        [Question.VaricolourFlashColors] = new()
+        [TextQuestion.VaricolourFlashColors] = new()
         {
             QuestionText = "Какой был цвет у {1}-й цели {0}?",
             Answers = new Dictionary<string, string>
@@ -11737,7 +11737,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Variety
         // What color was the LED flashing in {0}?
         // What color was the LED flashing in Variety?
-        [Question.VarietyLED] = new()
+        [TextQuestion.VarietyLED] = new()
         {
             NeedsTranslation = true,
             QuestionText = "Каким цветом горел светодиод {0}?",
@@ -11822,19 +11822,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What digit was displayed but not the answer for the digit display in {0}?
         // What digit was displayed but not the answer for the digit display in Variety?
-        [Question.VarietyDigitDisplay] = new()
+        [TextQuestion.VarietyDigitDisplay] = new()
         {
             QuestionText = "Какая цифра была показана на цифровом экране, но не была для него ответом {0}?",
         },
         // What word could be formed but was not the answer for the letter display in {0}?
         // What word could be formed but was not the answer for the letter display in Variety?
-        [Question.VarietyLetterDisplay] = new()
+        [TextQuestion.VarietyLetterDisplay] = new()
         {
             QuestionText = "Какое слово могло быть составленно на буквенном экране, но не было для него ответом {0}?",
         },
         // What was the maximum display for the {1}timer in {0}?
         // What was the maximum display for the timer in Variety?
-        [Question.VarietyTimer] = new()
+        [TextQuestion.VarietyTimer] = new()
         {
             QuestionText = "Какой был максимальный экран на {1}таймере {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -11846,7 +11846,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was n for the {1}knob in {0}?
         // What was n for the knob in Variety?
-        [Question.VarietyColoredKnob] = new()
+        [TextQuestion.VarietyColoredKnob] = new()
         {
             QuestionText = "Чему было равно n у {1}ручки {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -11861,7 +11861,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was n for the {1}bulb in {0}?
         // What was n for the bulb in Variety?
-        [Question.VarietyBulb] = new()
+        [TextQuestion.VarietyBulb] = new()
         {
             QuestionText = "Чему было равно n у {1}лампочки {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -11875,7 +11875,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Vcrcs
         // What was the word in {0}?
         // What was the word in Vcrcs?
-        [Question.VcrcsWord] = new()
+        [TextQuestion.VcrcsWord] = new()
         {
             QuestionText = "Какое было слово {0}?",
         },
@@ -11883,7 +11883,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Vectors
         // What was the color of the {1} vector in {0}?
         // What was the color of the first vector in Vectors?
-        [Question.VectorsColors] = new()
+        [TextQuestion.VectorsColors] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какого цвета был {1} вектор из {0}?",
@@ -11908,7 +11908,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Vexillology
         // What was the {1} flagpole color on {0}?
         // What was the first flagpole color on Vexillology?
-        [Question.VexillologyColors] = new()
+        [TextQuestion.VexillologyColors] = new()
         {
             QuestionText = "Какого цвета был {1}-й флагшток {0}?",
             Answers = new Dictionary<string, string>
@@ -11927,7 +11927,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Violet Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Violet Cipher?
-        [Question.VioletCipherScreen] = new()
+        [TextQuestion.VioletCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -11941,7 +11941,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Visual Impairment
         // What was the desired color in the {1} stage on {0}?
         // What was the desired color in the first stage on Visual Impairment?
-        [Question.VisualImpairmentColors] = new()
+        [TextQuestion.VisualImpairmentColors] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был целевой цвет на {1}-м этапе {0}?",
@@ -11958,7 +11958,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Walking Cube
         // Which of these cells was part of the cube’s path in {0}?
         // Which of these cells was part of the cube’s path in Walking Cube?
-        [Question.WalkingCubePath] = new()
+        [TextQuestion.WalkingCubePath] = new()
         {
             QuestionText = "Какая из этих клеток была частью пути кубика {0}?",
         },
@@ -11966,7 +11966,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Warning Signs
         // What was the displayed sign in {0}?
         // What was the displayed sign in Warning Signs?
-        [Question.WarningSignsDisplayedSign] = new()
+        [TextQuestion.WarningSignsDisplayedSign] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какой знак был показан на {0}?",
@@ -11975,7 +11975,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // WASD
         // What was the location displayed in {0}?
         // What was the location displayed in WASD?
-        [Question.WasdDisplayedLocation] = new()
+        [TextQuestion.WasdDisplayedLocation] = new()
         {
             QuestionText = "Какая локация была показана {0}?",
         },
@@ -11983,7 +11983,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Watching Paint Dry
         // How many brush strokes were heard in {0}?
         // How many brush strokes were heard in Watching Paint Dry?
-        [Question.WatchingPaintDryStrokeCount] = new()
+        [TextQuestion.WatchingPaintDryStrokeCount] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Сколько мазков кистью было слышно на {0}?",
@@ -11992,7 +11992,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Wavetapping
         // What was the color on the {1} stage in {0}?
         // What was the color on the first stage in Wavetapping?
-        [Question.WavetappingColors] = new()
+        [TextQuestion.WavetappingColors] = new()
         {
             QuestionText = "Какой цвет был на {1}-м этапе {0}?",
             Answers = new Dictionary<string, string>
@@ -12017,7 +12017,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the correct pattern on the {1} stage in {0}?
         // What was the correct pattern on the first stage in Wavetapping?
-        [Question.WavetappingPatterns] = new()
+        [TextQuestion.WavetappingPatterns] = new()
         {
             QuestionText = "Какой был верный узор на {1}-м этапе {0}?",
         },
@@ -12025,25 +12025,25 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Weakest Link
         // Who did you eliminate in {0}?
         // Who did you eliminate in The Weakest Link?
-        [Question.WeakestLinkElimination] = new()
+        [TextQuestion.WeakestLinkElimination] = new()
         {
             QuestionText = "Кого вы устранили {0}?",
         },
         // Who made it to the Money Phase with you in {0}?
         // Who made it to the Money Phase with you in The Weakest Link?
-        [Question.WeakestLinkMoneyPhaseName] = new()
+        [TextQuestion.WeakestLinkMoneyPhaseName] = new()
         {
             QuestionText = "Кто дошёл до Money Phase с вами {0}?",
         },
         // What ratio did {1} get in the Question Phase in {0}?
         // What ratio did Annie get in the Question Phase in The Weakest Link?
-        [Question.WeakestLinkRatio] = new()
+        [TextQuestion.WeakestLinkRatio] = new()
         {
             QuestionText = "На какой процент вопросов ответил(а) {1} в Question Phase {0}?",
         },
         // What was {1}’s skill in {0}?
         // What was Annie’s skill in The Weakest Link?
-        [Question.WeakestLinkSkill] = new()
+        [TextQuestion.WeakestLinkSkill] = new()
         {
             QuestionText = "Какой навык был у {1} {0}?",
         },
@@ -12051,13 +12051,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // What’s on Second
         // What was the display text in the {1} stage of {0}?
         // What was the display text in the first stage of What’s on Second?
-        [Question.WhatsOnSecondDisplayText] = new()
+        [TextQuestion.WhatsOnSecondDisplayText] = new()
         {
             QuestionText = "Какой текст был на {1}-м этапе {0}?",
         },
         // What was the display text color in the {1} stage of {0}?
         // What was the display text color in the first stage of What’s on Second?
-        [Question.WhatsOnSecondDisplayColor] = new()
+        [TextQuestion.WhatsOnSecondDisplayColor] = new()
         {
             QuestionText = "Какого цвета был текст на {1}-м этапе {0}?",
             Answers = new Dictionary<string, string>
@@ -12074,7 +12074,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // White Arrows
         // What was the {1} non-white arrow in {0}?
         // What was the first non-white arrow in White Arrows?
-        [Question.WhiteArrowsArrows] = new()
+        [TextQuestion.WhiteArrowsArrows] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} non-white arrow in {0}?",
@@ -12099,7 +12099,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // White Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in White Cipher?
-        [Question.WhiteCipherScreen] = new()
+        [TextQuestion.WhiteCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -12113,7 +12113,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // WhoOF
         // What was the display in the {1} stage on {0}?
         // What was the display in the first stage on WhoOF?
-        [Question.WhoOFDisplay] = new()
+        [TextQuestion.WhoOFDisplay] = new()
         {
             QuestionText = "Что было на экране на {1}-м этапе {0}?",
         },
@@ -12121,7 +12121,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Who’s on First
         // What was the display in the {1} stage on {0}?
         // What was the display in the first stage on Who’s on First?
-        [Question.WhosOnFirstDisplay] = new()
+        [TextQuestion.WhosOnFirstDisplay] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое слово было на экране на {1}-м этапе {0}?",
@@ -12131,7 +12131,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Who’s on Gas
         // What was the display in the first phase of the {1} stage on {0}?
         // What was the display in the first phase of the first stage on Who’s on Gas?
-        [Question.WhosOnGasDisplay] = new()
+        [TextQuestion.WhosOnGasDisplay] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the display in the {1} stage on {0}?",
@@ -12140,7 +12140,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Who’s on Morse
         // What word was transmitted in the {1} stage on {0}?
         // What word was transmitted in the first stage on Who’s on Morse?
-        [Question.WhosOnMorseTransmitDisplay] = new()
+        [TextQuestion.WhosOnMorseTransmitDisplay] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какое слово было передано на {1}-м этапе {0}?",
@@ -12149,7 +12149,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Wire
         // What was the color of the {1} dial in {0}?
         // What was the color of the top dial in The Wire?
-        [Question.WireDialColors] = new()
+        [TextQuestion.WireDialColors] = new()
         {
             QuestionText = "Какого цвета был {1} диск {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -12170,7 +12170,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the displayed number in {0}?
         // What was the displayed number in The Wire?
-        [Question.WireDisplayedNumber] = new()
+        [TextQuestion.WireDisplayedNumber] = new()
         {
             QuestionText = "Какое было отображённое число {0}?",
         },
@@ -12178,7 +12178,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Wire Ordering
         // What color was the {1} display from the left in {0}?
         // What color was the first display from the left in Wire Ordering?
-        [Question.WireOrderingDisplayColor] = new()
+        [TextQuestion.WireOrderingDisplayColor] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какого цвета был {1}-й экран слева на {0}?",
@@ -12196,14 +12196,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What number was on the {1} display from the left in {0}?
         // What number was on the first display from the left in Wire Ordering?
-        [Question.WireOrderingDisplayNumber] = new()
+        [TextQuestion.WireOrderingDisplayNumber] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое число было на {1}-м экране слева на {0}?",
         },
         // What color was the {1} wire from the left in {0}?
         // What color was the first wire from the left in Wire Ordering?
-        [Question.WireOrderingWireColor] = new()
+        [TextQuestion.WireOrderingWireColor] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какого цвета был {1}-й провод слева на {0}?",
@@ -12223,7 +12223,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Wire Sequence
         // How many {1} wires were there in {0}?
         // How many red wires were there in Wire Sequence?
-        [Question.WireSequenceColorCount] = new()
+        [TextQuestion.WireSequenceColorCount] = new()
         {
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Сколько было {1} проводов {0}?",
@@ -12239,7 +12239,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Wolf, Goat, and Cabbage
         // Which of these was {1} on {0}?
         // Which of these was present on Wolf, Goat, and Cabbage?
-        [Question.WolfGoatAndCabbageAnimals] = new()
+        [TextQuestion.WolfGoatAndCabbageAnimals] = new()
         {
             QuestionText = "Что из этого {1} {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -12250,7 +12250,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // What was the boat size in {0}?
         // What was the boat size in Wolf, Goat, and Cabbage?
-        [Question.WolfGoatAndCabbageBoatSize] = new()
+        [TextQuestion.WolfGoatAndCabbageBoatSize] = new()
         {
             QuestionText = "Какого размера была лодка {0}?",
         },
@@ -12258,7 +12258,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Word Count
         // What was the displayed number on {0}?
         // What was the displayed number on Word Count?
-        [Question.WordCountNumber] = new()
+        [TextQuestion.WordCountNumber] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the displayed number on {0}?",
@@ -12267,7 +12267,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Working Title
         // What was the label shown in {0}?
         // What was the label shown in Working Title?
-        [Question.WorkingTitleLabel] = new()
+        [TextQuestion.WorkingTitleLabel] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая надпись была показана на {0}?",
@@ -12277,7 +12277,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Wumbo
         // What was the number in {0}?
         // What was the number in Wumbo?
-        [Question.WumboNumber] = new()
+        [TextQuestion.WumboNumber] = new()
         {
             QuestionText = "Какое было число {0}?",
         },
@@ -12285,7 +12285,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Xenocryst
         // What was the color of the {1} flash in {0}?
         // What was the color of the first flash in The Xenocryst?
-        [Question.Xenocryst] = new()
+        [TextQuestion.Xenocryst] = new()
         {
             QuestionText = "Какого цвета была {1}-я вспышка {0}?",
         },
@@ -12293,13 +12293,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // XmORse Code
         // What was the {1} displayed letter (in reading order) in {0}?
         // What was the first displayed letter (in reading order) in XmORse Code?
-        [Question.XmORseCodeDisplayedLetters] = new()
+        [TextQuestion.XmORseCodeDisplayedLetters] = new()
         {
             QuestionText = "Какая была {1}-я показанная буква (в порядке чтения) {0}?",
         },
         // What word did you decrypt in {0}?
         // What word did you decrypt in XmORse Code?
-        [Question.XmORseCodeWord] = new()
+        [TextQuestion.XmORseCodeWord] = new()
         {
             QuestionText = "Какое слово вы расшифровали {0}?",
         },
@@ -12307,7 +12307,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // xobekuJ ehT
         // What song was played on {0}?
         // What song was played on xobekuJ ehT?
-        [Question.XobekuJehTSong] = new()
+        [TextQuestion.XobekuJehTSong] = new()
         {
             QuestionText = "Какая песня звучала {0}?",
         },
@@ -12315,7 +12315,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // X-Ring
         // Which symbol was scanned in {0}?
         // Which symbol was scanned in X-Ring?
-        [Question.XRingSymbol] = new()
+        [TextQuestion.XRingSymbol] = new()
         {
             QuestionText = "Какой символ был просканирован {0}?",
         },
@@ -12323,7 +12323,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // XY-Ray
         // Which shape was scanned by {0}?
         // Which shape was scanned by XY-Ray?
-        [Question.XYRayShapes] = new()
+        [TextQuestion.XYRayShapes] = new()
         {
             QuestionText = "Какая фигура была просканирована {0}?",
         },
@@ -12331,7 +12331,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Yahtzee
         // What was the initial roll on {0}?
         // What was the initial roll on Yahtzee?
-        [Question.YahtzeeInitialRoll] = new()
+        [TextQuestion.YahtzeeInitialRoll] = new()
         {
             QuestionText = "Какой был первый бросок {0}?",
             ModuleName = "Покере на костях",
@@ -12351,7 +12351,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Yellow Arrows
         // What was the starting row letter in {0}?
         // What was the starting row letter in Yellow Arrows?
-        [Question.YellowArrowsStartingRow] = new()
+        [TextQuestion.YellowArrowsStartingRow] = new()
         {
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какая была буква у начальной строки {0}?",
@@ -12361,7 +12361,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Yellow Button
         // What was the {1} color in {0}?
         // What was the first color in The Yellow Button?
-        [Question.YellowButtonColors] = new()
+        [TextQuestion.YellowButtonColors] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был {1}-й цвет в последовательности {0}?",
@@ -12379,7 +12379,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Yellow Button’t
         // What was the filename in {0}?
         // What was the filename in Yellow Button’t?
-        [Question.YellowButtontFilename] = new()
+        [TextQuestion.YellowButtontFilename] = new()
         {
             QuestionText = "Какое было название файла {0}?",
         },
@@ -12387,7 +12387,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Yellow Cipher
         // What was on the {1} screen on page {2} in {0}?
         // What was on the top screen on page 1 in Yellow Cipher?
-        [Question.YellowCipherScreen] = new()
+        [TextQuestion.YellowCipherScreen] = new()
         {
             QuestionText = "Что было на {1} экране на {2}-й странице {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -12401,7 +12401,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Zero, Zero
         // What color was the {1} star in {0}?
         // What color was the top-left star in Zero, Zero?
-        [Question.ZeroZeroStarColors] = new()
+        [TextQuestion.ZeroZeroStarColors] = new()
         {
             QuestionText = "Какого цвета была {1} звезда {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -12425,7 +12425,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // How many points were on the {1} star in {0}?
         // How many points were on the top-left star in Zero, Zero?
-        [Question.ZeroZeroStarPoints] = new()
+        [TextQuestion.ZeroZeroStarPoints] = new()
         {
             QuestionText = "Сколько вершин было у {1} звезды {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -12438,7 +12438,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         },
         // Where was the {1} square in {0}?
         // Where was the red square in Zero, Zero?
-        [Question.ZeroZeroSquares] = new()
+        [TextQuestion.ZeroZeroSquares] = new()
         {
             QuestionText = "Где был {1} квадрат {0}?",
             FormatArgs = new Dictionary<string, string>
@@ -12452,7 +12452,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Zoni
         // What was the {1} word in {0}?
         // What was the first word in Zoni?
-        [Question.ZoniWords] = new()
+        [TextQuestion.ZoniWords] = new()
         {
             QuestionText = "Какое было {1}-е расшифрованное слово {0}?",
             ModuleName = "Zoni",

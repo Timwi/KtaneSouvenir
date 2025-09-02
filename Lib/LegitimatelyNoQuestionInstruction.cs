@@ -1,5 +1,3 @@
-﻿using UnityEngine;
+﻿namespace Souvenir;
 
-namespace Souvenir;
-
-public sealed class LegitimatelyNoQuestionInstruction : YieldInstruction { }
+public sealed class LegitimatelyNoQuestionInstruction : SouvenirInstruction { }

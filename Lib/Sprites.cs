@@ -11,9 +11,9 @@ public static class Sprites
 {
     public static Material ColorBlit { set; get; }
 
-    private static readonly Dictionary<string, Sprite> _circleSpriteCache = new();
-    private static readonly Dictionary<string, Sprite> _gridSpriteCache = new();
-    private static readonly Dictionary<AudioClip, Sprite> _audioSpriteCache = new();
+    private static readonly Dictionary<string, Sprite> _circleSpriteCache = [];
+    private static readonly Dictionary<string, Sprite> _gridSpriteCache = [];
+    private static readonly Dictionary<AudioClip, Sprite> _audioSpriteCache = [];
 
     private static bool IsPointInCircle(int pixelX, int pixelY, int radius, int gap, int dotX, int dotY)
     {

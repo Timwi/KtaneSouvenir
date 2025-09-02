@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Souvenir;
 
 public class TranslationInfo
 {
-    public string QuestionText;
-    public string ModuleName;
-    public Dictionary<string, string> Answers;
-    public Dictionary<string, string> FormatArgs;
-    public Dictionary<string, string> TranslatableStrings;
     public bool NeedsTranslation = false;
+    public string ModuleName;
+
+    public Dictionary<Enum, QuestionTranslationInfo> Questions;
+    public Dictionary<Enum, DiscriminatorTranslationInfo> Discriminators;
 
     public static Dictionary<string, ITranslation> AllTranslations = new()
     {

@@ -92,7 +92,7 @@ public partial class SouvenirModule : MonoBehaviour
     public AudioClip[] SimonSmilesAudio;
     public AudioClip[] SonicTheHedgehogAudio;
 
-    private readonly List<Texture2D> _questionTexturesToDestroyLater = new();
+    private readonly List<Texture2D> _questionTexturesToDestroyLater = [];
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -108,13 +108,12 @@ public partial class SouvenirModule : MonoBehaviour
     public Mesh HighlightLong;  // 4 answers, 2 columns
     public Mesh HighlightVeryLong;  // 4 long answers, 1 column
 
-    private static readonly string[] _defaultIgnoredModuleIDs = { "MemoryV2", "SouvenirModule", "HexiEvilFMN", "simonsStages", "forgetThis", "PurgatoryModule", "troll", "forgetThemAll", "tallorderedKeys", "forgetEnigma", "forgetUsNot", "qkForgetPerspective", "organizationModule", "veryAnnoyingButton", "forgetMeLater", "ubermodule", "qkUCN", "14", "forgetItNot", "simonForgets", "brainf", "ForgetTheColors", "RPSJudging", "TheTwinModule", "iconic", "omegaForget", "kugelblitz", "ANDmodule", "dontTouchAnything", "busyBeaver", "whiteout", "ForgetAnyColor", "KeypadDirectionality", "SecurityCouncil", "ShoddyChessModule", "FloorLights", "blackArrowsModule", "forgetMazeNot", "plus", "soulscream", "qkCubeSynchronization", "OutOfTime", "tetrahedron", "BoardWalk", "gemory", "duckKonundrum", "ConcentrationModule", "TwisterModule", "forgetOurVoices", "soulsong", "idExchange", "GSEight", "SimpleBoss", "SimpleBossNot", "KritGrandPrix", "ForgetMeMaybeModule", "HyperForget", "qkBitwiseOblivion", "damoclesLumber", "top10nums", "queensWarModule", "forget_fractal", "pointerPointerModule", "slightGibberishTwistModule", "PianoParadoxModule", "Omission", "inOrderModule", "nobodysCodeModule", "perspectiveStackingModule", "ReportingAnomalies", "forgetle", "ActionsAndConsequences", "fizzBoss", "WatchTheClock", "solveShift", "BlackoutModule", "hickoryDickoryDockModule", "temporalSequence", "sbemailsongs", "spectatorSport", "limboKeysRB", "clearanceCodeModule", "smashmarrykill", "forgetfulGrid", "GSMarmite", "WAR", "NumericalNightmare", "ForgetMeNoModule", "TurnTheKey", "timeKeeper", "timingIsEverything", "bamboozlingTimeKeeper", "pwDestroyer", "omegaDestroyer", "kataZenerCards", "doomsdayButton", "redLightGreenLight", "repeatAgain", "Crazy", "FalseInfo", "minskMetro" };
+    private static readonly string[] _defaultIgnoredModuleIDs = ["MemoryV2", "SouvenirModule", "HexiEvilFMN", "simonsStages", "forgetThis", "PurgatoryModule", "troll", "forgetThemAll", "tallorderedKeys", "forgetEnigma", "forgetUsNot", "qkForgetPerspective", "organizationModule", "veryAnnoyingButton", "forgetMeLater", "ubermodule", "qkUCN", "14", "forgetItNot", "simonForgets", "brainf", "ForgetTheColors", "RPSJudging", "TheTwinModule", "iconic", "omegaForget", "kugelblitz", "ANDmodule", "dontTouchAnything", "busyBeaver", "whiteout", "ForgetAnyColor", "KeypadDirectionality", "SecurityCouncil", "ShoddyChessModule", "FloorLights", "blackArrowsModule", "forgetMazeNot", "plus", "soulscream", "qkCubeSynchronization", "OutOfTime", "tetrahedron", "BoardWalk", "gemory", "duckKonundrum", "ConcentrationModule", "TwisterModule", "forgetOurVoices", "soulsong", "idExchange", "GSEight", "SimpleBoss", "SimpleBossNot", "KritGrandPrix", "ForgetMeMaybeModule", "HyperForget", "qkBitwiseOblivion", "damoclesLumber", "top10nums", "queensWarModule", "forget_fractal", "pointerPointerModule", "slightGibberishTwistModule", "PianoParadoxModule", "Omission", "inOrderModule", "nobodysCodeModule", "perspectiveStackingModule", "ReportingAnomalies", "forgetle", "ActionsAndConsequences", "fizzBoss", "WatchTheClock", "solveShift", "BlackoutModule", "hickoryDickoryDockModule", "temporalSequence", "sbemailsongs", "spectatorSport", "limboKeysRB", "clearanceCodeModule", "smashmarrykill", "forgetfulGrid", "GSMarmite", "WAR", "NumericalNightmare", "ForgetMeNoModule", "TurnTheKey", "timeKeeper", "timingIsEverything", "bamboozlingTimeKeeper", "pwDestroyer", "omegaDestroyer", "kataZenerCards", "doomsdayButton", "redLightGreenLight", "repeatAgain", "Crazy", "FalseInfo", "minskMetro"];
 
     private Config _config;
-    private readonly List<QuestionBatch> _questions = new();
-    private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = new();
-    private readonly HashSet<string> _supportedModuleNames = new();
-    private readonly HashSet<string> _ignoredModuleIDs = new();
+    private readonly List<QandA> _questions = [];
+    private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = [];
+    private readonly HashSet<string> _ignoredModuleIDs = [];
     private bool _isActivated = false;
     private ITranslation _translation;
 
@@ -125,21 +124,19 @@ public partial class SouvenirModule : MonoBehaviour
     private bool _noUnignoredModulesLeft = false;
     private int _avoidQuestions = 0;   // While this is > 0, temporarily avoid asking questions; currently only used when Souvenir is hidden by a Mystery Module
     private bool _showWarning = false;
-    private List<string> _activeProcessors = new();
+    private List<string> _activeProcessors = [];
 
     [NonSerialized]
     public double SurfaceSizeFactor;
 
-    private readonly Dictionary<string, int> _moduleCounts = new();
-    private readonly Dictionary<string, int> _modulesSolved = new();
+    private readonly Dictionary<string, ModuleTypeInfo> _moduleTypeInfo = [];
     private int _coroutinesActive;
 
     private static int _moduleIdCounter = 1;
     internal int _moduleId;
-    private Dictionary<string, ModuleHandlerInfo> _moduleProcessors;
 
     // Used in TestHarness only
-    private Question[] _exampleQuestions = null;
+    private TextQuestion[] _exampleQuestions = null;
     private int _curExampleQuestion = 0;
     private int _curExampleOrdinal = 0;
     private int _curExampleVariant = 0;
@@ -228,7 +225,7 @@ public partial class SouvenirModule : MonoBehaviour
     );
 
     /// <summary><code>yield return</code> this to wait for the module to call <see cref="KMBombModule.HandlePass()"/></summary>
-    private static readonly WaitForSolveInstruction WaitForSolve = new();
+    private static WaitForSolveInstruction WaitForSolve => WaitForSolveInstruction.Instance;
 
     #endregion
 
@@ -264,9 +261,9 @@ public partial class SouvenirModule : MonoBehaviour
                 if (_questions.Count == 0)
                     Debug.Log($"[Souvenir #{_moduleId}] When bomb exploded, there were no pending questions.");
                 else if (_questions.Count == 1)
-                    Debug.Log($"[Souvenir #{_moduleId}] When bomb exploded, 1 question was pending for: {_questions.Select(q => q.Module.ModuleDisplayName).OrderBy(q => q).JoinString(", ")}.");
+                    Debug.Log($"[Souvenir #{_moduleId}] When bomb exploded, 1 question was pending for: {_questions.Select(q => q.ModuleName).OrderBy(q => q).JoinString(", ")}.");
                 else
-                    Debug.Log($"[Souvenir #{_moduleId}] When bomb exploded, {_questions.Count} questions were pending for: {_questions.Select(q => q.Module.ModuleDisplayName).OrderBy(q => q).JoinString(", ")}.");
+                    Debug.Log($"[Souvenir #{_moduleId}] When bomb exploded, {_questions.Count} questions were pending for: {_questions.Select(q => q.ModuleName).OrderBy(q => q).JoinString(", ")}.");
             }
         };
         Bomb.OnBombSolved += delegate
@@ -329,7 +326,7 @@ public partial class SouvenirModule : MonoBehaviour
             if (Application.isEditor)
             {
                 // Testing in Unity
-                foreach (var entry in Ut.Attributes)
+                foreach (var entry in Ut._attributes)
                 {
                     var (q, attr) = (entry.Key, entry.Value);
                     if (attr.TranslateFormatArgs != null && attr.TranslateFormatArgs.Length != attr.ExampleFormatArgumentGroupSize)
@@ -364,7 +361,7 @@ public partial class SouvenirModule : MonoBehaviour
                 }
 
                 Debug.LogFormat(this, "<Souvenir #{0}> Entering Unity testing mode.", _moduleId);
-                _exampleQuestions = Ut.GetEnumValues<Question>();
+                _exampleQuestions = Ut.GetEnumValues<TextQuestion>();
 
                 showExampleQuestion();
 
@@ -440,23 +437,23 @@ public partial class SouvenirModule : MonoBehaviour
             {
                 var answerSprites = attr.SpriteFieldName == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
                 answerSprites?.Shuffle();
-                question = new QandA.SpriteQuestion(questionText, WavetappingSprites[0]);
+                question = new SpriteQuestion(questionText, WavetappingSprites[0]);
             }
             else
-                question = new QandA.TextQuestion(questionText, attr.Layout, attr.UsesQuestionSprite ? SymbolicCoordinatesSprites[0] : null, 0);
+                question = new Question(questionText, attr.Layout, attr.UsesQuestionSprite ? SymbolicCoordinatesSprites[0] : null, 0);
             switch (attr.Type)
             {
                 case AnswerType.Audio:
                     var audioClips = attr.AudioFieldName == null ? ExampleAudio : (AudioClip[]) typeof(SouvenirModule).GetField(attr.AudioFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleAudio;
                     audioClips = audioClips?.Shuffle().Take(attr.NumAnswers).ToArray();
-                    answerSet = new QandA.AudioAnswerSet(attr.NumAnswers, attr.Layout, audioClips, this, attr.AudioSizeMultiplier, attr.ForeignAudioID);
+                    answerSet = new AudioAnswerSet(attr.NumAnswers, attr.Layout, audioClips, this, attr.AudioSizeMultiplier, attr.ForeignAudioID);
                     break;
                 case AnswerType.Sprites:
                     var answerSprites = attr.SpriteFieldName == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
                     answerSprites = answerSprites?.Shuffle().Take(attr.NumAnswers).ToArray();
                     if (attr.AnswerGenerators?.FirstOrDefault() is AnswerGeneratorAttribute<Sprite>)
                         answerSprites = attr.AnswerGenerators.Cast<AnswerGeneratorAttribute<Sprite>>().GetAnswers(this).Distinct().Take(attr.NumAnswers).ToArray();
-                    answerSet = new QandA.SpriteAnswerSet(attr.NumAnswers, attr.Layout, answerSprites);
+                    answerSet = new SpriteAnswerSet(attr.NumAnswers, attr.Layout, answerSprites);
                     break;
                 default:
                     var answers = new List<string>(attr.NumAnswers);
@@ -475,7 +472,7 @@ public partial class SouvenirModule : MonoBehaviour
                     }
                     var correctAnswers = answers.Select(ans => attr.TranslateAnswers ? translateAnswer(q, ans) : ans).ToArray();
                     var fontIndex = attr.Type is AnswerType.DynamicFont or AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type;
-                    answerSet = new QandA.TextAnswerSet(attr.NumAnswers, attr.Layout, correctAnswers, Fonts[fontIndex], attr.FontSize, attr.CharacterSize, FontTextures[fontIndex], FontMaterial);
+                    answerSet = new TextAnswerSet(attr.NumAnswers, attr.Layout, correctAnswers, Fonts[fontIndex], attr.FontSize, attr.CharacterSize, FontTextures[fontIndex], FontMaterial);
                     break;
             }
             disappear();
@@ -487,11 +484,11 @@ public partial class SouvenirModule : MonoBehaviour
         }
     }
 
-    private string translateQuestion(Question question) => _translation?.Translate(question)?.QuestionText ?? question.GetAttribute().QuestionText;
-    private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translate(question)?.FormatArgs?.Get(arg, arg) ?? arg;
-    private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translate(question)?.Answers?.Get(answ, answ) ?? answ;
-    private string translateString(Question question, string str) => str == null ? null : _translation?.Translate(question)?.TranslatableStrings?.Get(str, str) ?? str;
-    private string translateModuleName(Question question, string name = null) => _translation?.Translate(question)?.ModuleName ?? name;
+    public string TranslateQuestion(Enum question) => _translation?.Translate(question)?.QuestionText ?? question.GetAttribute().QuestionText;
+    public string TranslateFormatArg(Enum question, string arg) => arg == null ? null : _translation?.Translate(question)?.FormatArgs?.Get(arg, arg) ?? arg;
+    public string TranslateAnswer(Enum question, string answ) => answ == null ? null : _translation?.Translate(question)?.Answers?.Get(answ, answ) ?? answ;
+    private string translateString(Enum question, string str) => str == null ? null : _translation?.Translate(question)?.TranslatableStrings?.Get(str, str) ?? str;
+    private string translateModuleName(Enum question, string name = null) => _translation?.Translate(question)?.ModuleName ?? name;
 
     private void setAnswerHandler(int index, Action<int> handler)
     {
@@ -638,14 +635,14 @@ public partial class SouvenirModule : MonoBehaviour
         Audio.PlaySoundAtTransform("Question", transform);
     }
 
-    private static readonly double[][] _acceptableWidthsWithoutQuestionSprite = Ut.NewArray(
+    private static readonly double[][] _acceptableWidthsWithoutQuestionSprite = Ut.NewArray<double[]>(
         // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
-        new[] { 0, 1.1896 },
-        new[] { 0.0712, 1.258 },
-        new[] { 0.1476, 1.258 },
-        new[] { 0.306, 1.3442 },
-        new[] { 0.3888, 1.4958 },
-        new[] { 0.443, 1.668 });
+        [0, 1.1896],
+        [0.0712, 1.258],
+        [0.1476, 1.258],
+        [0.306, 1.3442],
+        [0.3888, 1.4958],
+        [0.443, 1.668]);
 
     public void SetWordWrappedText(string text, double desiredHeightFactor, bool useQuestionSprite)
     {
@@ -658,14 +655,14 @@ public partial class SouvenirModule : MonoBehaviour
         var acceptableWidths = _acceptableWidthsWithoutQuestionSprite;
         if (useQuestionSprite)
         {
-            acceptableWidths = Ut.NewArray(
-                new[] { 0, 1.1896 },
-                new[] { 0.0712, 1.258 },
-                new[] { 0.1476, 1.258 },
-                new[] { 0.306, 1.3442 },
-                new[] { 0.443, 1.668 },
-                new[] { 0.549, 1.668 },
-                new[] { 0.55, 1.6 - .874 * QuestionSprite.sprite.rect.width / QuestionSprite.sprite.pixelsPerUnit });
+            acceptableWidths = Ut.NewArray<double[]>(
+                [0, 1.1896],
+                [0.0712, 1.258],
+                [0.1476, 1.258],
+                [0.306, 1.3442],
+                [0.443, 1.668],
+                [0.549, 1.668],
+                [0.55, 1.6 - .874 * QuestionSprite.sprite.rect.width / QuestionSprite.sprite.pixelsPerUnit]);
         }
 
         var low = 1;
@@ -765,88 +762,121 @@ public partial class SouvenirModule : MonoBehaviour
 
     private IEnumerator ProcessModule(KMBombModule module)
     {
-        _coroutinesActive++;
         var moduleType = module.ModuleType;
-        _moduleCounts.IncSafe(moduleType);
-        var processor = _moduleProcessors.Get(moduleType, default).Processor;
-
-        if (processor != null)
+        if (Ut.ModuleHandlers.Get(moduleType, default) is not { } attr)
         {
-            _supportedModuleNames.Add(module.ModuleDisplayName);
-            yield return null;  // Ensures that the module’s Start() method has run
-            Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Start processing.");
-            ModuleData data = new() { Module = module };
-            module.OnPass += () =>
-            {
-                if (data.Unsolved)
-                    data.SolveIndex = _modulesSolved.IncSafe(module.ModuleDisplayName);
-                data.Unsolved = false;
-                return false;
-            };
+            Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Not supported.");
+            yield break;
+        }
 
-            // I’d much rather just put a ‘foreach’ loop inside a ‘try’ block, but Unity’s C# version doesn’t allow ‘yield return’ inside of ‘try’ blocks yet
-            using (var e = processor(data))
+        _coroutinesActive++;
+
+        if (!_moduleTypeInfo.TryGetValue(moduleType, out var info))
+            info = _moduleTypeInfo[moduleType] = new();
+        info.NumModules++;
+        if (!attr.IsBossModule)
+            info.Discriminators.AddSafe(module, null);  // null indicates the solve-count discriminator
+
+        yield return null;  // Ensures that the module’s Start() method has run
+        Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Start processing.");
+        var data = new ModuleData { Module = module };
+        module.OnPass += () =>
+        {
+            if (data.Unsolved)
+                data.SolveIndex = info.NumSolved++;
+            data.Unsolved = false;
+            return false;
+        };
+
+        var questions = new List<QandAStump>();
+
+        try
+        {
+            // Unfortunately C# doesn’t allow ‘yield return’ inside of a ‘try’ block with a ‘catch’ clause,
+            // so we have to instantiate the enumerator and put the ‘try’/‘catch’ around just the e.MoveNext() call
+            using var e = attr.Handler(data);
+            _activeProcessors.Add(module.ModuleDisplayName);
+            while (true)
             {
-                _activeProcessors.Add(module.ModuleDisplayName);
-                while (true)
+                bool canMoveNext;
+                try { canMoveNext = e.MoveNext(); }
+                catch (Exception ex)
                 {
-                    bool canMoveNext;
-                    try { canMoveNext = e.MoveNext(); }
-                    catch (AbandonModuleException ex)
-                    {
-                        Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because: {ex.Message}");
-                        _showWarning = true;
-                        _coroutinesActive--;
-                        _activeProcessors.Remove(module.ModuleDisplayName);
-                        yield break;
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.Log($"<Souvenir #{_moduleId}> The {module.ModuleDisplayName} handler threw an exception ({ex.GetType().FullName}):\n{ex.Message}\n{ex.StackTrace}");
-                        _showWarning = true;
-                        _coroutinesActive--;
-                        _activeProcessors.Remove(module.ModuleDisplayName);
-                        yield break;
-                    }
-                    if (!canMoveNext)
-                        break;
-
-                    switch (e.Current)
-                    {
-                        case WaitForSolveInstruction:
-                            yield return new WaitWhile(() => data.Unsolved);
-                            break;
-                        case LegitimatelyNoQuestionInstruction:
-                            yield break;
-                        default:
-                            yield return e.Current;
-                            break;
-                    }
-
-                    if (TwitchAbandonModule.Contains(module) && !_config.IgnoreTpAutosolvers)
-                    {
-                        Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because Twitch Plays told me to.");
-                        _coroutinesActive--;
-                        _activeProcessors.Remove(module.ModuleDisplayName);
-                        yield break;
-                    }
+                    Debug.Log(ex is AbandonModuleException
+                        ? $"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because: {ex.Message}"
+                        : $"<Souvenir #{_moduleId}> The {module.ModuleDisplayName} handler threw an exception ({ex.GetType().FullName}):\n{ex.Message}\n{ex.StackTrace}");
+                    _showWarning = true;
+                    yield break;
                 }
-                _activeProcessors.Remove(module.ModuleDisplayName);
-            }
+                if (!canMoveNext)
+                    break;
 
-            if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
-            {
-                Debug.Log($"[Souvenir #{_moduleId}] There was no question generated for {module.ModuleDisplayName}. Please report this to Timwi or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.");
-                _showWarning = true;
+                switch (e.Current)
+                {
+                    case WaitForSolveInstruction:
+                        yield return new WaitWhile(() => data.Unsolved);
+                        break;
+                    case LegitimatelyNoQuestionInstruction:
+                        yield break;
+                    case DiscriminatorInstruction d:
+                        info.Discriminators.AddSafe(module, d.Discriminator);
+                        break;
+                    case QandAInstruction q:
+                        questions.Add(q.Stump);
+                        break;
+                    default:
+                        yield return e.Current;
+                        break;
+                }
+
+                if (TwitchAbandonModule.Contains(module) && !_config.IgnoreTpAutosolvers)
+                {
+                    Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because Twitch Plays told me to.");
+                    yield break;
+                }
             }
-            Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Finished processing.");
+        }
+        finally
+        {
+            _activeProcessors.Remove(module.ModuleDisplayName);
+            _coroutinesActive--;
+            info.NumFinished++;
+        }
+
+        while (info.NumFinished < info.NumModules)
+            yield return null;
+
+        if (questions.Count == 0 && !_legitimatelyNoQuestions.Contains(module))
+        {
+            Debug.Log($"[Souvenir #{_moduleId}] There was no question generated for {module.ModuleDisplayName}. Please report this to Timwi or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.");
+            _showWarning = true;
         }
         else
         {
-            Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Not supported.");
+            // Construct the answers first, then pick a discriminator that doesn’t conflict with them
+            var q = questions.PickRandom();
+            var answerSet = q.AnswerStump.GenerateAnswerSet(q.QuestionStump, this);
+            var moduleFormat = formatModuleName(q.QuestionStump.EnumValue, info.NumModules > 1, info.NumModules);
+            if (info.NumModules > 1 && info.Discriminators[module].Any(d => d != null))
+            {
+                var discrs = info.Discriminators[module]
+                    .Where(d => d == null || !d.AvoidAnswers.Intersect(answerSet.Answers).Any())
+                    .Where(d => d == null || info.Discriminators.Values.Count(ds => ds.FirstOrDefault(d2 => d2.Id == d.Id) is not { } cd || cd.Value == d.Value) == 1)
+                    .ToArray();
+                if (discrs.Length == 0)
+                {
+                    Debug.Log($"[Souvenir #{_moduleId}] There was no applicable discriminator for {module.ModuleDisplayName} to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with answers [{answerSet.DebugAnswers.JoinString(", ")}]. Note that boss modules require a discriminator for the player to distinguish them.");
+                    _showWarning = true;
+                }
+                var discr = discrs.PickRandom();
+                var dAttr = discr.EnumValue.GetDiscriminatorAttribute();
+                moduleFormat = string.Format(
+                    translateString(discr.EnumValue, dAttr.DiscriminatorText),
+                    (discr.Arguments ?? []).Select<string, object>((arg, ix) => discr.TranslateArguments != null && discr.TranslateArguments[ix] ? translateString(discr.EnumValue, arg) : arg).ToArray());
+            }
+            _questions.Add(q.GenerateQandA(answerSet, moduleFormat));
         }
-
-        _coroutinesActive--;
+        Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Finished processing.");
     }
 
     private void OnDestroy()
@@ -960,236 +990,16 @@ public partial class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Methods for adding questions to the pool (used by module handlers)
-    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) => addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, module.SolveIndex);
-
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0, int solveIx = 0) => addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
-
-    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0) => addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, allAnswers, preferredWrongAnswers, questionSpriteRotation, module.SolveIndex);
-
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0) => addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
-
-    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0) => addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation, module.SolveIndex);
-
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0) => addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation));
-
-    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0) => addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, allAnswers, preferredWrongAnswers, questionSpriteRotation, module.SolveIndex);
-
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0) => addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
-
-    private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
-    {
-        if (_config.IsExcluded(module, _ignoredModuleIDs))
-        {
-            Debug.Log($"<Souvenir #{_moduleId}> Discarding questions for {module.ModuleDisplayName} because it is excluded in the mod settings.");
-            _legitimatelyNoQuestions.Add(module);
-            return;
-        }
-
-        if (_questions.Any(qb => qb.Module == module))
-        {
-            _showWarning = true;
-            throw new AbandonModuleException($"The handler for {module.ModuleDisplayName} submitted multiple question batches. Handlers should not call addQuestion/addQuestions multiple times, but instead make a single call to addQuestions() with all of the questions.");
-        }
-
-        var qs = questions.Where(q => q != null).ToArray();
-        if (qs.Length == 0)
-        {
-            Debug.Log($"<Souvenir #{_moduleId}> Empty question batch provided for {module.ModuleDisplayName}.");
-            return;
-        }
-        Debug.Log($"‹Souvenir #{_moduleId}› Adding question batch for “{module.ModuleDisplayName}”:\n{qs.Select(q => "    • " + q.DebugString).JoinString("\n")}");
-        _questions.Add(new QuestionBatch
-        {
-            NumSolved = Bomb.GetSolvedModuleNames().Count,
-            Questions = qs,
-            Module = module
-        });
-    }
-
-    private void addQuestions(KMBombModule module, params QandA[] questions) => addQuestions(module, (IEnumerable<QandA>) questions);
-    private void addQuestions(ModuleData module, params QandA[] questions) => addQuestions(module.Module, (IEnumerable<QandA>) questions);
-    private void addQuestions(ModuleData module, IEnumerable<QandA> questions) => addQuestions(module.Module, questions);
-
     private static readonly AnswerType[] _standardAnswerTypes = Ut.GetEnumValues<AnswerType>().Where(a => (int) a >= 0).ToArray();
 
-    private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, data.Module.ModuleType, data.SolveIndex, questionSprite, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation);
-    private QandA makeQuestion(Question question, ModuleData data, Font font, Texture fontTexture, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, data.Module.ModuleType, data.SolveIndex, font, fontTexture, questionSprite, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation);
-    private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, data.Module.ModuleType, data.SolveIndex, questionSprite, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation);
-    private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, data.Module.ModuleType, data.SolveIndex, questionSprite, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, questionSpriteRotation);
-    private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, data.Module.ModuleType, data.SolveIndex, questionSprite, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation);
+    private QuestionStump question(Enum question, string[] args = null, Sprite questionSprite = null, float questionSpriteRotation = 0) =>
+        new TextQuestionStump(question, this, args, questionSprite, questionSpriteRotation);
+    private QuestionStump question(Enum question, Sprite entireQuestionSprite) =>
+        new SpriteQuestionStump(question, this, entireQuestionSprite);
 
-    private QandA makeQuestion(Question question, string moduleId, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, moduleId, solveIx,
-            (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation),
-            (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, attr.CharacterSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, _standardAnswerTypes);
-
-    private QandA makeQuestion(Question question, string moduleId, int solveIx, Font font, Texture fontTexture, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, moduleId, solveIx,
-            (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation),
-            (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, font, attr.FontSize, attr.CharacterSize, fontTexture, FontMaterial),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, AnswerType.DynamicFont);
-
-    private QandA makeQuestion(Question question, string moduleId, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, moduleId, solveIx,
-            (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation),
-            (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? question.GetAllSprites(this), AnswerType.Sprites);
-
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null) =>
-        makeSpriteQuestion(questionSprite, question, data.Module.ModuleType, data.SolveIndex, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers);
-
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleId, int solveIx, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null) =>
-        makeQuestion(question, moduleId, solveIx,
-            (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
-            (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, attr.CharacterSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, _standardAnswerTypes);
-
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null) =>
-        makeSpriteQuestion(questionSprite, question, data.Module.ModuleType, data.SolveIndex, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers);
-
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleId, int solveIx, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null) =>
-        makeQuestion(question, moduleId, solveIx,
-            (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
-            (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? question.GetAllSprites(this), AnswerType.Sprites);
-
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null) =>
-        makeSpriteQuestion(questionSprite, question, data.Module.ModuleType, data.SolveIndex, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers);
-
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleId, int solveIx, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null) =>
-    makeQuestion(question, moduleId, solveIx,
-        (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
-        (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID),
-        formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? question.GetAllSounds(this), AnswerType.Audio);
-
-    private QandA makeQuestion(Question question, string moduleId, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
-    {
-        var w = correctAnswers[0].Width;
-        var h = correctAnswers[0].Height;
-        if (correctAnswers.Concat(preferredWrongAnswers ?? Enumerable.Empty<Coord>()).Any(c => c.Width != w || c.Height != h))
-        {
-            Debug.LogError($"<Souvenir #{_moduleId}> The module handler for {moduleId} provided grid coordinates for different sizes of grids.");
-            throw new InvalidOperationException();
-        }
-        return makeQuestion(question, moduleId, solveIx,
-            (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation),
-            (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers.Select(Sprites.GenerateGridSprite).ToArray()), formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), AnswerType.Sprites);
-    }
-    private QandA makeQuestion(Question question, string moduleId, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0) => makeQuestion(question, moduleId, solveIx,
-            (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation),
-            (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? question.GetAllSounds(this), AnswerType.Audio);
-
-    private QandA makeQuestion<T>(Question question, string moduleId, int solveIx, Func<SouvenirQuestionAttribute, string, QandA.QuestionBase> questionConstructor,
-        Func<SouvenirQuestionAttribute, int, T[], QandA.AnswerSet> answerSetConstructor, string formattedModuleName = null,
-        string[] formatArgs = null, T[] correctAnswers = null, T[] preferredWrongAnswers = null, T[] allAnswers = null, params AnswerType[] acceptableTypes)
-    {
-        if (!Ut.TryGetAttribute(question, out var attr))
-        {
-            Debug.LogError($"<Souvenir #{_moduleId}> Question {question} has no SouvenirQuestionAttribute.");
-            return null;
-        }
-        if (!acceptableTypes.Contains(attr.Type))
-        {
-            Debug.LogError($"<Souvenir #{_moduleId}> The module handler for {attr.ModuleName} attempted to generate question {question} (type={attr.Type}) but used the wrong answer type.");
-            return null;
-        }
-
-        var allAnswersWasNull = allAnswers == null;
-        allAnswers ??= attr.AllAnswers as T[];
-        if (allAnswers != null)
-        {
-            var inconsistency = correctAnswers.Except(allAnswers).FirstOrDefault();
-            if (inconsistency != null)
-            {
-                Debug.LogError($"<Souvenir #{_moduleId}> Question {question}: invalid answer: {inconsistency.ToString() ?? "<null>"}.\nallAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]\ncorrectAnswers: [{correctAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]");
-                return null;
-            }
-            if (preferredWrongAnswers != null)
-            {
-                var inconsistency2 = preferredWrongAnswers.Except(allAnswers).FirstOrDefault();
-                if (inconsistency2 != null)
-                {
-                    Debug.LogError($"<Souvenir #{_moduleId}> Question {question}: invalid preferred wrong answer: {inconsistency2.ToString() ?? "<null>"}.\nallAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]\npreferred wrong answer: [{correctAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]");
-                    return null;
-                }
-            }
-        }
-
-        var answers = new List<T>(attr.NumAnswers);
-        if (allAnswers == null && attr.AnswerGenerators is null)
-        {
-            if (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0)
-            {
-                Debug.LogError($"<Souvenir #{_moduleId}> Question {question} has no answers. You must specify either the full set of possible answers in AllAnswers, provide answers through the preferredWrongAnswers or allAnswers parameters on makeQuestion(), or use an AnswerGenerator.");
-                return null;
-            }
-            answers.AddRange(preferredWrongAnswers.Except(correctAnswers).Distinct());
-        }
-        else
-        {
-            // Pick 𝑛−1 random wrong answers.
-            if (allAnswers != null)
-                answers.AddRange(allAnswers.Except(correctAnswers));
-            if (answers.Count <= attr.NumAnswers - 1)
-            {
-                if (attr.AnswerGenerators?.FirstOrDefault() is AnswerGeneratorAttribute<T>)
-                    answers.AddRange(attr.AnswerGenerators.OfType<AnswerGeneratorAttribute<T>>().GetAnswers(this).Except(answers.Concat(correctAnswers)).Distinct().Take(attr.NumAnswers - 1 - answers.Count));
-                if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
-                {
-                    Debug.LogError($"<Souvenir #{_moduleId}> Question {question}’s answer generator did not generate any answers.");
-                    return null;
-                }
-            }
-            else
-            {
-                answers.Shuffle();
-                answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
-            }
-            // Add the preferred wrong answers, if any. If we had added them earlier, they’d come up too rarely.
-            if (preferredWrongAnswers != null)
-                answers.AddRange(preferredWrongAnswers.Except(answers.Concat(correctAnswers)).Distinct());
-        }
-        answers.Shuffle();
-        if (answers.Count >= attr.NumAnswers)
-            answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
-
-        var correctIndex = Rnd.Range(0, answers.Count + 1);
-        answers.Insert(correctIndex, correctAnswers.PickRandom());
-        if (answers[0] is string && attr.TranslateAnswers)
-            for (var i = 0; i < answers.Count; i++)
-                answers[i] = (T) (object) translateAnswer(question, (string) (object) answers[i]);
-
-        if (formattedModuleName is "" || _moduleCounts[moduleId] == 1)
-            formattedModuleName = null;
-
-        if (solveIx < 1 && formattedModuleName is null)
-        {
-            Debug.LogError($"<Souvenir #{_moduleId}> Abandoning {attr.ModuleName} because it wasn't solved. Make sure to `yield return WaitForSolve;`. If this is intentional, either specify the solve index yourself, or specify the formatted module name.");
-            return null;
-        }
-
-        var allFormatArgs = new string[formatArgs != null ? formatArgs.Length + 1 : 1];
-        allFormatArgs[0] = formattedModuleName ?? formatModuleName(question, _moduleCounts.Get(moduleId, 0) > 1, solveIx);
-
-        if (formatArgs != null)
-            for (var i = 0; i < formatArgs.Length; i++)
-                allFormatArgs[i + 1] = translateFormatArg(question, formatArgs[i]);
-
-        var qQuestion = questionConstructor(attr, string.Format(translateQuestion(question), allFormatArgs));
-        var qAnswerSet = answerSetConstructor(attr, answers.Count, answers.ToArray());
-        return new QandA(question, attr.ModuleNameWithThe, qQuestion, qAnswerSet, correctIndex);
-    }
-
-    private string formatModuleName(Question question, bool addSolveCount, int numSolved) => _translation != null
-        ? _translation.FormatModuleName(question, addSolveCount, numSolved)
-        : addSolveCount ? $"the {question.GetAttribute().ModuleName} you solved {Ordinal(numSolved)}" : question.GetAttribute().ModuleNameWithThe;
+    private string formatModuleName(Enum enumValue, bool addSolveCount, int numSolved) => _translation != null
+        ? _translation.FormatModuleName(enumValue, addSolveCount, numSolved)
+        : addSolveCount ? $"the {enumValue.GetHandlerAttribute().ModuleName} you solved {Ordinal(numSolved)}" : enumValue.GetHandlerAttribute().ModuleNameWithThe;
 
     private string titleCase(string str) => str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
 
@@ -1237,7 +1047,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     #region Twitch Plays
     internal bool TwitchPlaysActive = false;
-    private readonly List<KMBombModule> TwitchAbandonModule = new();
+    private readonly List<KMBombModule> TwitchAbandonModule = [];
 #pragma warning disable 649
     private bool TwitchShouldCancelCommand;
 #pragma warning restore 649

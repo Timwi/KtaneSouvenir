@@ -1,4 +1,6 @@
-﻿namespace Souvenir;
+﻿using System;
+
+namespace Souvenir;
 
 public interface ITranslation
 {
@@ -6,7 +8,7 @@ public interface ITranslation
     int DefaultFontIndex { get; }
     float LineSpacing { get; }
 
-    string FormatModuleName(Question question, bool addSolveCount, int numSolved);
+    string FormatModuleName(Type enumType, bool addSolveCount, int numSolved);
     string Ordinal(int number);
-    TranslationInfo Translate(Question question);
+    TranslationInfo Translate(Type enumType);
 }

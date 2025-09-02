@@ -21,13 +21,3 @@ public enum AnswerType
     DynamicFont = -2, // Special value to indicate that the module handler will obtain the font from the client module
     Audio = -3        // Special value for answers that are audio clips
 }
-
-public enum AnswerLayout
-{
-    OneColumn3Answers,
-    OneColumn4Answers,
-    TwoColumns2Answers,
-    TwoColumns4Answers,
-    ThreeColumns3Answers,
-    ThreeColumns6Answers,
-}
