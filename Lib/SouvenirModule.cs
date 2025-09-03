@@ -339,34 +339,35 @@ public partial class SouvenirModule : MonoBehaviour
                 {
                     var (q, (hAttr, qAttr, dAttr)) = (entry.Key, entry.Value);
                     var qs = $"{q.GetType().Name}.{q}";
-                    if (qAttr?.TranslateArgs != null && qAttr.TranslateArgs.Length != qAttr.ArgumentGroupSize)
-                        Debug.LogError($"<Souvenir #{_moduleId}> Question {qs}: The length of the ‘{nameof(qAttr.TranslateArgs)}’ array must match ‘{nameof(qAttr.ArgumentGroupSize)}’.");
 
-                    if (qAttr.SpriteFieldName != null && qAttr.Type != AnswerType.Sprites)
-                        Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) specifies a SpriteField. This should only be used for questions of type Sprites.");
-
-                    if (qAttr.AllAnswers != null && qAttr.AnswerGenerators != null)
-                        Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) specifies both AllAnswers and an answer generator. When using an answer generator, please set AllAnswers explicitly to null.");
-
-                    if (qAttr.AnswerGenerators is { Length: > 1 } && qAttr.AnswerGenerators.Select(g => g.ElementType).Distinct().Count() is not 1)
-                        Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses multiple answer generators, but they generate different types of answers. Ensure all answer generators are appropriate for the question.");
-
-                    switch (qAttr.Type)
+                    if (qAttr != null)
                     {
-                        case AnswerType.Sprites:
-                            if (qAttr.AnswerGenerators != null && qAttr.AnswerGenerators.Any(g => g is not AnswerGeneratorAttribute<Sprite>))
-                                Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses an answer generator for something other than sprites. Change the answer type or specify a sprite answer generator specify an answer generator (e.g. [AnswerGenerator.Grid(4, 4)]).");
-                            break;
+                        if (qAttr.TranslateArgs != null && qAttr.TranslateArgs.Length != qAttr.ArgumentGroupSize)
+                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs}: The length of the ‘{nameof(qAttr.TranslateArgs)}’ array must match ‘{nameof(qAttr.ArgumentGroupSize)}’.");
+                        if (qAttr.SpriteFieldName != null && qAttr.Type != AnswerType.Sprites)
+                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) specifies a SpriteField. This should only be used for questions of type Sprites.");
+                        if (qAttr.AllAnswers != null && qAttr.AnswerGenerators != null)
+                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) specifies both AllAnswers and an answer generator. When using an answer generator, please set AllAnswers explicitly to null.");
+                        if (qAttr.AnswerGenerators is { Length: > 1 } && qAttr.AnswerGenerators.Select(g => g.ElementType).Distinct().Count() is not 1)
+                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses multiple answer generators, but they generate different types of answers. Ensure all answer generators are appropriate for the question.");
 
-                        case AnswerType.Audio:
-                            if (qAttr.AnswerGenerators != null)
-                                Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses an answer generator. This is not supported for audio questions.");
-                            break;
+                        switch (qAttr.Type)
+                        {
+                            case AnswerType.Sprites:
+                                if (qAttr.AnswerGenerators != null && qAttr.AnswerGenerators.Any(g => g is not AnswerGeneratorAttribute<Sprite>))
+                                    Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses an answer generator for something other than sprites. Change the answer type or specify a sprite answer generator specify an answer generator (e.g. [AnswerGenerator.Grid(4, 4)]).");
+                                break;
 
-                        default:
-                            if ((qAttr.AllAnswers == null || qAttr.AllAnswers.Length == 0) && (qAttr.ExampleAnswers == null || qAttr.ExampleAnswers.Length == 0) && (qAttr.AnswerGenerators is null || qAttr.AnswerGenerators.All(g => g is not AnswerGeneratorAttribute<string>)))
-                                Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} has no answers. Specify either AllAnswers (if it’s a reasonable-sized, fixed finite set), or ExampleAnswers (if it’s generated at runtime and passed to allAnswers in makeQuestion()), or add an answer generator (e.g. [AnswerGenerator.Integers(0, 9999)]).");
-                            break;
+                            case AnswerType.Audio:
+                                if (qAttr.AnswerGenerators != null)
+                                    Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses an answer generator. This is not supported for audio questions.");
+                                break;
+
+                            default:
+                                if ((qAttr.AllAnswers == null || qAttr.AllAnswers.Length == 0) && (qAttr.ExampleAnswers == null || qAttr.ExampleAnswers.Length == 0) && (qAttr.AnswerGenerators is null || qAttr.AnswerGenerators.All(g => g is not AnswerGeneratorAttribute<string>)))
+                                    Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} has no answers. Specify either AllAnswers (if it’s a reasonable-sized, fixed finite set), or ExampleAnswers (if it’s generated at runtime and passed to allAnswers in makeQuestion()), or add an answer generator (e.g. [AnswerGenerator.Integers(0, 9999)]).");
+                                break;
+                        }
                     }
                 }
 
@@ -374,13 +375,7 @@ public partial class SouvenirModule : MonoBehaviour
                 _exampleModules = Ut.ModuleHandlers.Values.ToArray();
                 setExampleModule(0);
 
-                // Modules
-                // Questions
-                // QuestionArguments
-                // Discriminators
-                // DiscriminatorArguments
-
-                setAnswerHandler(0, _ => { _showIntros = false; setExampleModule(_curExampleQuestion + 1); });
+                setAnswerHandler(0, _ => { _showIntros = false; setExampleModule(_curExampleModule + 1); });
                 setAnswerHandler(1, _ => { _showIntros = true; showIntro(_curIntro + 1); });
                 setAnswerHandler(2, _ => { _showIntros = false; setExampleQuestion(_curExampleQuestion + 1); });
                 setAnswerHandler(3, _ => { _showIntros = false; _curExampleQuestionArgument = (_curExampleQuestionArgument + 1) % (_exampleQuestionArguments?.Length ?? 1); showExampleQuestion(); });
@@ -416,20 +411,20 @@ public partial class SouvenirModule : MonoBehaviour
         _curExampleModule = (moduleIndex % _exampleModules.Length + _exampleModules.Length) % _exampleModules.Length;
 
         var enumType = _exampleModules[_curExampleModule].EnumType;
-        _exampleDiscriminators = (_exampleModules[_curExampleModule].IsBossModule ? new SouvenirDiscriminatorAttribute[0] : [null])
-            .Concat(Ut.Attributes.Where(kvp => kvp.Key.GetType() == enumType).Select(kvp => kvp.Value.d)).ToArray();
+        _exampleDiscriminators = (_exampleModules[_curExampleModule].IsBossModule ? new SouvenirDiscriminatorAttribute[] { null } : [null, null])
+            .Concat(Ut.Attributes.Where(kvp => kvp.Key.GetType() == enumType && kvp.Value.d != null).Select(kvp => kvp.Value.d)).ToArray();
         _curExampleDiscriminator = 0;
-        _exampleQuestions = Ut.Attributes.Where(kvp => kvp.Key.GetType() == enumType).Select(kvp => kvp.Value.q).ToArray();
+        _exampleQuestions = Ut.Attributes.Where(kvp => kvp.Key.GetType() == enumType && kvp.Value.q != null).Select(kvp => kvp.Value.q).ToArray();
         setExampleQuestion(0);
     }
 
     private void setExampleQuestion(int questionIndex)
     {
         _curExampleQuestion = (questionIndex % _exampleQuestions.Length + _exampleQuestions.Length) % _exampleQuestions.Length;
-        var group = _exampleQuestions[_curExampleQuestion].ArgumentGroupSize;
-        _exampleQuestionArguments = group == 0 ? null :
-            Enumerable.Range(0, group)
-                .Select(ix => _exampleQuestions[_curExampleQuestion].Arguments.Skip(ix * group).Take(group).ToArray())
+        var groupSize = _exampleQuestions[_curExampleQuestion].ArgumentGroupSize;
+        _exampleQuestionArguments = groupSize == 0 ? null :
+            Enumerable.Range(0, _exampleQuestions[_curExampleQuestion].Arguments.Length / groupSize)
+                .Select(ix => _exampleQuestions[_curExampleQuestion].Arguments.Skip(ix * groupSize).Take(groupSize).ToArray())
                 .ToArray();
         _curExampleQuestionArgument = 0;
         showExampleQuestion();
@@ -454,10 +449,10 @@ public partial class SouvenirModule : MonoBehaviour
         else
         {
             // Custom discriminators
-            var group = _exampleDiscriminators[_curExampleDiscriminator].ArgumentGroupSize;
-            _exampleDiscriminatorArguments = group == 0 ? null :
-                Enumerable.Range(0, group)
-                    .Select(ix => _exampleDiscriminators[_curExampleDiscriminator].Arguments.Skip(ix * group).Take(group).ToArray())
+            var groupSize = _exampleDiscriminators[_curExampleDiscriminator].ArgumentGroupSize;
+            _exampleDiscriminatorArguments = groupSize == 0 ? null :
+                Enumerable.Range(0, _exampleDiscriminators[_curExampleDiscriminator].Arguments.Length / groupSize)
+                    .Select(ix => _exampleDiscriminators[_curExampleDiscriminator].Arguments.Skip(ix * groupSize).Take(groupSize).ToArray())
                     .ToArray();
             _curExampleDiscriminatorArgument = 0;
         }
@@ -491,9 +486,9 @@ public partial class SouvenirModule : MonoBehaviour
             fmt[0] = string.Format(TranslateDiscriminator(dAttr.EnumValue, dAttr.DiscriminatorText), dFmt);
         }
 
-        var args = _exampleQuestionArguments[_curExampleQuestionArgument];
-        for (var i = 0; i < args.Length; i++)
-            fmt[i + 1] = args[i] == QandA.Ordinal ? Ordinal(Rnd.Range(1, 11)) : TranslateQuestionArgument(qAttr.EnumValue, args[i]);
+        if (_exampleQuestionArguments != null && _exampleQuestionArguments[_curExampleQuestionArgument] is { } args)
+            for (var i = 0; i < args.Length; i++)
+                fmt[i + 1] = args[i] == QandA.Ordinal ? Ordinal(Rnd.Range(1, 11)) : TranslateQuestionArgument(qAttr.EnumValue, args[i]);
 
         var questionText = string.Format(TranslateQuestion(qAttr.EnumValue), fmt);
         QuestionBase question = qAttr.IsEntireQuestionSprite
@@ -822,6 +817,7 @@ public partial class SouvenirModule : MonoBehaviour
             Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Not supported.");
             yield break;
         }
+        hAttr.Handler ??= (Func<ModuleData, IEnumerator<SouvenirInstruction>>) Delegate.CreateDelegate(typeof(Func<ModuleData, IEnumerator<SouvenirInstruction>>), this, hAttr.Method);
 
         _coroutinesActive++;
 

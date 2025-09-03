@@ -447,7 +447,7 @@ public static class Ut
         foreach (var method in typeof(SouvenirModule).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic))
             if (method.GetCustomAttribute<SouvenirHandlerAttribute>() is { } hAttr)
             {
-                hAttr.Handler = (Func<ModuleData, IEnumerator<SouvenirInstruction>>) Delegate.CreateDelegate(typeof(Func<ModuleData, IEnumerator<SouvenirInstruction>>), method);
+                hAttr.Method = method;
                 ModuleHandlers[hAttr.ModuleId] = hAttr;
                 _handlerAttributes[hAttr.EnumType] = hAttr;
                 foreach (var field in hAttr.EnumType.GetFields(BindingFlags.Public | BindingFlags.Static))

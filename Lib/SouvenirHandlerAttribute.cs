@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Souvenir;
 
@@ -13,6 +14,7 @@ public sealed class SouvenirHandlerAttribute(string moduleId, string moduleName,
 
     public bool AddThe { get; set; }
     public bool IsBossModule { get; set; }
+    public MethodInfo Method { get; set; }
     public Func<ModuleData, IEnumerator<SouvenirInstruction>> Handler { get; set; }
 
     public string ModuleNameWithThe => (AddThe ? "The\u00a0" : "") + ModuleName;
