@@ -617,7 +617,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessMinskMetro(ModuleData module)
     {
-        var comp = GetComponent(module, "script");
+        var comp = GetComponent(module, "minskMetroScript");
         var correctAnswer = GetField<string>(comp, "initStation").Get();
         var wrongAnswers = GetField<string[]>(comp, "otherStations").Get();
         yield return WaitForSolve;
