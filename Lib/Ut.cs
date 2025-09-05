@@ -473,12 +473,13 @@ public static class Ut
     public static string Stringify(this object value) => value switch
     {
         null => "null",
-        IList list => $"[{list.Cast<object>().Select(Stringify).JoinString(", ")}]",
+        ICollection list => $"[{list.Cast<object>().Select(Stringify).JoinString(", ")}]",
         int i => i.ToString(),
         double d => d.ToString(),
         float f => f.ToString(),
         bool b => b ? "true" : "false",
         string s => $"“{s}”",
+        object o when o.GetType().IsGenericType && o.GetType().GetGenericTypeDefinition() == typeof(KeyValuePair<,>) => $"[{o.GetFieldValue<object>("key").Stringify()}] = {o.GetFieldValue<object>("value").Stringify()}",
         _ => $"{{{value.GetType().FullName}|{value}}}"
     };
 

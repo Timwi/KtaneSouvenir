@@ -20,11 +20,11 @@ public sealed class TextAnswerSet(AnswerLayout layout, string[] answers, int cor
             mesh.gameObject.SetActive(true);
 
             mesh.text = i < answers.Length ? answers[i] : "•";
-            mesh.font = info.Font;
-            mesh.fontSize = info.FontSize;
-            mesh.characterSize = info.CharacterSize;
-            mesh.GetComponent<MeshRenderer>().material = info.FontMaterial;
-            mesh.GetComponent<MeshRenderer>().material.mainTexture = info.FontTexture;
+            mesh.font = info.Font ?? souvenir.Fonts[0];
+            mesh.fontSize = info.FontSize ?? (_layout == AnswerLayout.OneColumn4Answers ? 40 : 48);
+            mesh.characterSize = info.CharacterSize ?? 1;
+            mesh.GetComponent<MeshRenderer>().material = info.FontMaterial ?? souvenir.FontMaterial;
+            mesh.GetComponent<MeshRenderer>().material.mainTexture = info.FontTexture ?? souvenir.FontTextures[0];
 
             // Determine size of the answer and if it’s too long, shrink it horizontally to make it fit
             var origRotation = mesh.transform.localRotation;

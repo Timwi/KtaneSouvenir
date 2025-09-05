@@ -12,4 +12,6 @@ public class Discriminator(Enum discriminator, string id, object value, string[]
     public Sprite QuestionSprite { get; } = questionSprite;
     public object[] AvoidAnswers { get; } = avoidAnswers;
     public bool[] TranslateArguments { get; set; }
+
+    public override string ToString() => $"Discriminator {EnumValue}/{Id}={Value.Stringify()}, {Arguments.Stringify()}{(QuestionSprite == null ? "" : ", uses question sprite")}, avoid answers: {AvoidAnswers.Stringify()}";
 }
