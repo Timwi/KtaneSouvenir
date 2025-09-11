@@ -1,0 +1,29 @@
+using System.Collections.Generic;
+using System.Linq;
+using Souvenir;
+using UnityEngine;
+
+using static Souvenir.AnswerLayout;
+
+public enum SSkewers
+{
+    [SouvenirQuestion("What color was this gem in {0}?", ThreeColumns6Answers, "Black", "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White", UsesQuestionSprite = true, TranslateAnswers = true)]
+    Color
+}
+
+public partial class SouvenirModule
+{
+    [SouvenirHandler("Skewers", "Skewers", typeof(SSkewers), "Anonymous")]
+    private IEnumerator<SouvenirInstruction> ProcessSkewers(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "Skewers");
+
+        var color = GetListField<int>(comp, "GemColors").Get(expectedLength: 16, validator: v => v is < 0 or > 7 ? "Out of range [0, 7]" : null);
+        addQuestions(module, color.Select((c, i) =>
+            makeQuestion(Question.SkewersColor, module,
+                correctAnswers: new[] { Question.SkewersColor.GetAnswers()[c] },
+                questionSprite: Sprites.GenerateGridSprite(4, 4, i))));
+    }
+}

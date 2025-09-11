@@ -1,0 +1,33 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Souvenir;
+using UnityEngine;
+
+using static Souvenir.AnswerLayout;
+
+public enum SVexillology
+{
+    [SouvenirQuestion("What was the {1} flagpole color on {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Yellow", "Blue", "Aqua", "White", "Black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    Colors
+}
+
+public partial class SouvenirModule
+{
+    [SouvenirHandler("vexillology", "Vexillology", typeof(SVexillology), "luisdiogo98")]
+    private IEnumerator<SouvenirInstruction> ProcessVexillology(ModuleData module)
+    {
+        var comp = GetComponent(module, "vexillologyScript");
+
+        var colors = GetArrayField<string>(comp, "coloursStrings").Get();
+        var color1 = GetIntField(comp, "ActiveFlagTop1").Get(min: 0, max: colors.Length - 1);
+        var color2 = GetIntField(comp, "ActiveFlagTop2").Get(min: 0, max: colors.Length - 1);
+        var color3 = GetIntField(comp, "ActiveFlagTop3").Get(min: 0, max: colors.Length - 1);
+
+        yield return WaitForSolve;
+
+        addQuestions(module,
+            makeQuestion(Question.VexillologyColors, module, formatArgs: new[] { "first" }, correctAnswers: new[] { colors[color1] }, preferredWrongAnswers: new[] { colors[color2], colors[color3] }),
+            makeQuestion(Question.VexillologyColors, module, formatArgs: new[] { "second" }, correctAnswers: new[] { colors[color2] }, preferredWrongAnswers: new[] { colors[color1], colors[color3] }),
+            makeQuestion(Question.VexillologyColors, module, formatArgs: new[] { "third" }, correctAnswers: new[] { colors[color3] }, preferredWrongAnswers: new[] { colors[color2], colors[color1] }));
+    }
+}

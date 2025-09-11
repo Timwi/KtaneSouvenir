@@ -923,7 +923,7 @@ public partial class SouvenirModule : MonoBehaviour
                 if (discrs.PickRandom() is { } discr && discr.EnumValue.GetDiscriminatorAttribute() is { } dAttr)
                     moduleFormat = string.Format(
                         TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText),
-                        (discr.Arguments ?? []).Select<string, object>((arg, ix) => discr.TranslateArguments != null && discr.TranslateArguments[ix] ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg).ToArray());
+                        (discr.Arguments ?? []).Select<string, object>((arg, ix) => discr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg).ToArray());
             }
             _questions.Add(q.GenerateQandA(answerSet, moduleFormat, this, Bomb.GetSolvedModuleIDs().Count));
         }

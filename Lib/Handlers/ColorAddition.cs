@@ -1,0 +1,28 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Souvenir;
+using UnityEngine;
+
+using static Souvenir.AnswerLayout;
+
+public enum SColorAddition
+{
+    [SouvenirQuestion("What was {1}’s number in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [AnswerGenerator.Strings(3, "0123456789")]
+    Numbers
+}
+
+public partial class SouvenirModule
+{
+    [SouvenirHandler("colorAddition", "Color Addition", typeof(SColorAddition), "VFlyer")]
+    private IEnumerator<SouvenirInstruction> ProcessColorAddition(ModuleData module)
+    {
+        var script = GetComponent(module, "ColorAddition");
+        var numbersField = GetArrayField<string>(script, "numbers");
+        yield return WaitForSolve;
+
+        var numbersObtained = numbersField.Get(expectedLength: 3);
+        var channelRefs = new[] { "red", "green", "blue" };
+        addQuestions(module, channelRefs.Select((chn, idx) => makeQuestion(Question.ColorAdditionNumbers, module, formatArgs: new[] { chn }, correctAnswers: new[] { numbersObtained[idx] })));
+    }
+}

@@ -1,0 +1,27 @@
+using System.Collections.Generic;
+using System.Linq;
+using Souvenir;
+using UnityEngine;
+
+using static Souvenir.AnswerLayout;
+
+public enum SNotTheScrew
+{
+    [SouvenirQuestion("What was the initial position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [AnswerGenerator.Grid(6, 4)]
+    InitialPosition
+}
+
+public partial class SouvenirModule
+{
+    [SouvenirHandler("notTheScrew", "Not The Screw", typeof(SNotTheScrew), "GhostSalt")]
+    private IEnumerator<SouvenirInstruction> ProcessNotTheScrew(ModuleData module)
+    {
+        var comp = GetComponent(module, "NotTheScrewModule");
+        var position = GetField<int>(comp, "_curPos").Get();
+
+        yield return WaitForSolve;
+
+        addQuestion(module, Question.NotTheScrewInitialPosition, correctAnswers: new[] { new Coord(6, 4, position) });
+    }
+}

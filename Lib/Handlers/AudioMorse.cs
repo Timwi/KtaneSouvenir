@@ -1,0 +1,74 @@
+using System.Collections.Generic;
+using System.Linq;
+using Souvenir;
+using UnityEngine;
+
+using static Souvenir.AnswerLayout;
+
+public enum SAudioMorse
+{
+    [SouvenirQuestion("What was signaled in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
+    Sound
+}
+
+public partial class SouvenirModule
+{
+    [SouvenirHandler("lgndAudioMorse", "Audio Morse", typeof(SAudioMorse), "Anonymous")]
+    private IEnumerator<SouvenirInstruction> ProcessAudioMorse(ModuleData module)
+    {
+        var morse = "   ;A.-;B-...;C-.-.;D-..;E.;F..-.;G--.;H....;I..;J.---;K-.-;L.-..;M--;N-.;O---;P.--.;Q--.-;R.-.;S...;T-;U..-;V...-;W.--;X-..-;Y-.--;Z--..;1.----;2..---;3...--;4....-;5.....;6-....;7--...;8---..;9----.;0-----"
+            .Split(';').ToDictionary(s => s[0], s => s.Substring(1) + " ");
+
+        var comp = GetComponent(module, "AudioMorseModuleScript");
+        var words = GetArrayField<string>(comp, "words").Get(expectedLength: 87, validator: v => v.Any(c => c is < 'A' or > 'Z') ? "Expected only uppercase letters" : null);
+
+        var word = words[GetIntField(comp, "wordIndex").Get(min: 0, max: words.Length)];
+        var a = GetIntField(comp, "num1Index").Get(min: 0, max: 9);
+        var b = GetIntField(comp, "num2Index").Get(min: 0, max: 9);
+        var c = GetIntField(comp, "num3Index").Get(min: 0, max: 9);
+
+        var key = $"{word} {a}{b}{c}";
+
+        var all = new List<string>() { key };
+        while (all.Count < 6)
+        {
+            var wrongWord = words.PickRandom();
+            var num = UnityEngine.Random.Range(0, 1000).ToString("D3");
+            var wrongKey = $"{wrongWord} {num}";
+            if (!all.Contains(wrongKey))
+                all.Add(wrongKey);
+        }
+
+        var clips = all.Select(k =>
+        {
+            if (!_audioMorseAudio.TryGetValue(k, out var clip))
+            {
+                List<Sounds.AudioPosition> clips = new();
+                var head = 0f;
+                var m = k.Select(c => morse[c]).JoinString();
+                for (var i = 0; i < m.Length; i++)
+                {
+                    switch (m[i])
+                    {
+                        case '.':
+                            clips.Add((AudioMorseAudio[0], head));
+                            head += 0.125f;
+                            break;
+                        case '-':
+                            clips.Add((AudioMorseAudio[1], head));
+                            goto case ' ';
+                        case ' ':
+                            head += 0.25f;
+                            break;
+                    }
+                }
+                clip = _audioMorseAudio[k] = Sounds.Combine(k, clips.ToArray());
+            }
+            return clip;
+        }).ToArray();
+
+        yield return WaitForSolve;
+
+        addQuestion(module, Question.AudioMorseSound, correctAnswers: new[] { clips[0] }, allAnswers: clips);
+    }
+}
