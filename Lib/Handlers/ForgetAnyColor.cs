@@ -1,7 +1,7 @@
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -93,10 +93,7 @@ public partial class SouvenirModule
             preferredCylinders.Add(string.Format(translateString(Question.ForgetAnyColorCylinder, "{0}, {1}, {2}"),
                 Enumerable.Range(0, 3).Select(i => colorNames.PickRandom()).ToArray()));
 
-        addQuestions(module,
-            makeQuestion(Question.ForgetAnyColorCylinder, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { Ordinal(randomStage + 1) },
-                correctAnswers: new[] { correctCylinders }, preferredWrongAnswers: preferredCylinders.ToArray()),
-            makeQuestion(Question.ForgetAnyColorSequence, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { Ordinal(randomStage + 1) },
-                correctAnswers: new[] { figureNames[myFigures[randomStage]] }, allAnswers: figureNames));
+        yield return question(SForgetAnyColor.Cylinder, args: [Ordinal(randomStage + 1)]).Answers(correctCylinders, preferredWrong: preferredCylinders.ToArray());
+        yield return question(SForgetAnyColor.Sequence, args: [Ordinal(randomStage + 1)]).Answers(figureNames[myFigures[randomStage]], all: figureNames);
     }
 }

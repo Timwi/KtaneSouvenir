@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -41,8 +41,7 @@ public partial class SouvenirModule
 
         var bgChar = fldBG.Get(ch => ch is < 'A' or > 'F' ? "expected in range A-F" : null);
 
-        addQuestions(module,
-            makeQuestion(Question.NotTextFieldBackgroundLetter, module, correctAnswers: new[] { bgChar.ToString() }),
-            makeQuestion(Question.NotTextFieldInitialPresses, module, correctAnswers: solution));
+        yield return question(SNotTextField.BackgroundLetter).Answers(bgChar.ToString());
+        yield return question(SNotTextField.InitialPresses).Answers(solution);
     }
 }

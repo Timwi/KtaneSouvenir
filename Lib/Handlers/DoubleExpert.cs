@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -26,10 +26,7 @@ public partial class SouvenirModule
         var keywords = GetListField<string>(comp, "keywords").Get().ToArray();
         var correctKeywordIndex = GetIntField(comp, "correctKeyword").Get(min: 0, max: keywords.Length - 1);
 
-        addQuestions(
-            module,
-            makeQuestion(Question.DoubleExpertStartingKeyNumber, module, correctAnswers: new[] { startingKeyNumber.ToString() }),
-            makeQuestion(Question.DoubleExpertSubmittedWord, module, correctAnswers: new[] { keywords[correctKeywordIndex] }, preferredWrongAnswers: keywords)
-        );
+        yield return question(SDoubleExpert.StartingKeyNumber).Answers(startingKeyNumber.ToString());
+        yield return question(SDoubleExpert.SubmittedWord).Answers(keywords[correctKeywordIndex], preferredWrong: keywords);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -38,8 +38,7 @@ public partial class SouvenirModule
         var height = backgroundMaterials.Min(m => m.mainTexture.height);
         var backgroundSprites = backgroundMaterials.Select(material => Sprite.Create(material.mainTexture as Texture2D, new Rect(0, 0, width, height), new Vector2(0, .5f), 200f)).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.EarthboundBackground, module, correctAnswers: new[] { backgroundSprites[backgroundIndex] }, allAnswers: backgroundSprites),
-            makeQuestion(Question.EarthboundMonster, module, correctAnswers: new[] { enemySprites[enemyIndex] }, allAnswers: enemySprites));
+        yield return question(SEarthbound.Background).Answers(backgroundSprites[backgroundIndex], all: backgroundSprites);
+        yield return question(SEarthbound.Monster).Answers(enemySprites[enemyIndex], all: enemySprites);
     }
 }

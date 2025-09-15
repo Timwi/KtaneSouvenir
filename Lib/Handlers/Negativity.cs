@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -54,8 +54,7 @@ public partial class SouvenirModule
                 incorrectSubmittedTernary.Add(onePossible);
         }
 
-        addQuestions(module,
-            makeQuestion(Question.NegativitySubmittedValue, module, formatArgs: null, correctAnswers: new[] { expectedTotal.ToString() }, preferredWrongAnswers: incorrectValues.Select(a => a.ToString()).ToArray()),
-            makeQuestion(Question.NegativitySubmittedTernary, module, formatArgs: null, correctAnswers: new[] { string.IsNullOrEmpty(submittedTernary) ? "(empty)" : submittedTernary }, preferredWrongAnswers: incorrectSubmittedTernary.ToArray()));
+        yield return question(SNegativity.SubmittedValue).Answers(expectedTotal.ToString(), preferredWrong: incorrectValues.Select(a => a.ToString()).ToArray());
+        yield return question(SNegativity.SubmittedTernary).Answers(string.IsNullOrEmpty(submittedTernary) ? "(empty)" : submittedTernary, preferredWrong: incorrectSubmittedTernary.ToArray());
     }
 }

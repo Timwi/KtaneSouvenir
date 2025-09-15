@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,8 +20,7 @@ public partial class SouvenirModule
         var left = GetIntField(comp, "leftLEDColor").Get(0, 3);
         var right = GetIntField(comp, "rightLEDColor").Get(0, 3);
         var colors = new[] { "Red", "Blue", "Green", "Yellow" };
-        addQuestions(module,
-            makeQuestion(Question.ColorOneTwoColor, module, formatArgs: new[] { "left" }, correctAnswers: new[] { colors[left] }),
-            makeQuestion(Question.ColorOneTwoColor, module, formatArgs: new[] { "right" }, correctAnswers: new[] { colors[right] }));
+        yield return question(SColorOneTwo.Color, args: ["left"]).Answers(colors[left]);
+        yield return question(SColorOneTwo.Color, args: ["right"]).Answers(colors[right]);
     }
 }

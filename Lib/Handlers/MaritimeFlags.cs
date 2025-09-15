@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -25,8 +25,7 @@ public partial class SouvenirModule
         var callsignObj = GetField<object>(comp, "_callsign").Get();
         var callsign = GetField<string>(callsignObj, "Name", isPublic: true).Get(str => str.Length != 7 ? "expected length 7" : null);
 
-        addQuestions(module,
-            makeQuestion(Question.MaritimeFlagsBearing, module, correctAnswers: new[] { bearing.ToString() }),
-            makeQuestion(Question.MaritimeFlagsCallsign, module, correctAnswers: new[] { callsign.ToLowerInvariant() }));
+        yield return question(SMaritimeFlags.Bearing).Answers(bearing.ToString());
+        yield return question(SMaritimeFlags.Callsign).Answers(callsign.ToLowerInvariant());
     }
 }

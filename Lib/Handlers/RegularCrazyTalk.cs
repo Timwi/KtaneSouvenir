@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -36,8 +36,7 @@ public partial class SouvenirModule
         else if (phraseText.Length >= 6 && phraseText.Substring(0, 6) == "Quote:") modifier = "Quote: [PHRASE] End quote";
         else if (phraseText.Substring(0, 1) == "“") modifier = "“[PHRASE]”";
 
-        addQuestions(module,
-            makeQuestion(Question.RegularCrazyTalkDigit, module, correctAnswers: new[] { displayDigit.ToString() }),
-            makeQuestion(Question.RegularCrazyTalkModifier, module, correctAnswers: new[] { modifier }));
+        yield return question(SRegularCrazyTalk.Digit).Answers(displayDigit.ToString());
+        yield return question(SRegularCrazyTalk.Modifier).Answers(modifier);
     }
 }

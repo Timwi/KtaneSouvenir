@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -20,9 +20,8 @@ public partial class SouvenirModule
 
         var lastPlayed = GetField<string>(comp, "lastPlayed").Get(validator: str => str.Length != 3 ? "expected length 3" : str.Any(ch => ch is < 'a' or > 'z') ? "expected letters a–z" : null);
         var allLetters = lastPlayed.Select(c => c.ToString()).ToArray();
-        addQuestions(module,
-            makeQuestion(Question.StellarLetters, module, formatArgs: new[] { "Braille" }, correctAnswers: new[] { lastPlayed[0].ToString() }, preferredWrongAnswers: allLetters),
-            makeQuestion(Question.StellarLetters, module, formatArgs: new[] { "tap code" }, correctAnswers: new[] { lastPlayed[1].ToString() }, preferredWrongAnswers: allLetters),
-            makeQuestion(Question.StellarLetters, module, formatArgs: new[] { "Morse code" }, correctAnswers: new[] { lastPlayed[2].ToString() }, preferredWrongAnswers: allLetters));
+        yield return question(SStellar.Letters, args: ["Braille"]).Answers(lastPlayed[0].ToString(), preferredWrong: allLetters);
+        yield return question(SStellar.Letters, args: ["tap code"]).Answers(lastPlayed[1].ToString(), preferredWrong: allLetters);
+        yield return question(SStellar.Letters, args: ["Morse code"]).Answers(lastPlayed[2].ToString(), preferredWrong: allLetters);
     }
 }

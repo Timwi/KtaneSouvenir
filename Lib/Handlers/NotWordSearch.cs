@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -23,8 +23,7 @@ public partial class SouvenirModule
         var missingConsonants = GetArrayField<string>(comp, "missing").Get(expectedLength: 3);
         var pressed = GetArrayField<string>(comp, "ans").Get(expectedLength: 12);
 
-        addQuestions(module,
-            makeQuestion(Question.NotWordSearchMissing, module, correctAnswers: missingConsonants),
-            makeQuestion(Question.NotWordSearchFirstPress, module, correctAnswers: new[] { pressed[0] }));
+        yield return question(SNotWordSearch.Missing).Answers(missingConsonants);
+        yield return question(SNotWordSearch.FirstPress).Answers(pressed[0]);
     }
 }

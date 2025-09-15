@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,8 +22,7 @@ public partial class SouvenirModule
         var numsStr = nums.Select(i => i.ToString()).ToArray();
         var numsNotPresent = Enumerable.Range(1, 20).Except(nums).Select(i => i.ToString()).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.NotX01SectorValues, module, formatArgs: new[] { "was" }, correctAnswers: numsStr, preferredWrongAnswers: numsNotPresent),
-            makeQuestion(Question.NotX01SectorValues, module, formatArgs: new[] { "was not" }, correctAnswers: numsNotPresent, preferredWrongAnswers: numsStr));
+        yield return question(SNotX01.SectorValues, args: ["was"]).Answers(numsStr, preferredWrong: numsNotPresent);
+        yield return question(SNotX01.SectorValues, args: ["was not"]).Answers(numsNotPresent, preferredWrong: numsStr);
     }
 }

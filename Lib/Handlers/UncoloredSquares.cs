@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -16,8 +16,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "UncoloredSquaresModule");
         yield return WaitForSolve;
-        addQuestions(module,
-            makeQuestion(Question.UncoloredSquaresFirstStage, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor1").Get().ToString() }),
-            makeQuestion(Question.UncoloredSquaresFirstStage, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor2").Get().ToString() }));
+        yield return question(SUncoloredSquares.FirstStage, args: [Ordinal(1)]).Answers(GetField<object>(comp, "_firstStageColor1").Get().ToString());
+        yield return question(SUncoloredSquares.FirstStage, args: [Ordinal(2)]).Answers(GetField<object>(comp, "_firstStageColor2").Get().ToString());
     }
 }

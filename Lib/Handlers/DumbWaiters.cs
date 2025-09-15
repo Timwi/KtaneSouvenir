@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,9 +22,8 @@ public partial class SouvenirModule
         var playersAvaiable = GetArrayField<int>(comp, "presentPlayers").Get();
         var availablePlayers = playersAvaiable.Select(ix => players[ix]).ToArray();
 
-        addQuestions(module,
-           makeQuestion(Question.DumbWaitersPlayerAvailable, module, formatArgs: new[] { "was" }, correctAnswers: availablePlayers, preferredWrongAnswers: players),
-           makeQuestion(Question.DumbWaitersPlayerAvailable, module, formatArgs: new[] { "was not" }, correctAnswers: players.Where(a => !availablePlayers.Contains(a)).ToArray(), preferredWrongAnswers: players));
+        yield return question(SDumbWaiters.PlayerAvailable, args: ["was"]).Answers(availablePlayers, preferredWrong: players);
+        yield return question(SDumbWaiters.PlayerAvailable, args: ["was not"]).Answers(players.Where(a => !availablePlayers.Contains(a)).ToArray(), preferredWrong: players);
 
     }
 }

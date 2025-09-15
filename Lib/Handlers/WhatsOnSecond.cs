@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -23,10 +23,9 @@ public partial class SouvenirModule
         var labels = GetArrayField<string>(comp, "Answers").Get(expectedLength: 2);
         var labelColors = GetArrayField<string>(comp, "AnswerColors").Get(expectedLength: 2);
 
-        addQuestions(module,
-           makeQuestion(Question.WhatsOnSecondDisplayText, module, formatArgs: new[] { "first" }, correctAnswers: new[] { labels[0].ToLowerInvariant() }),
-           makeQuestion(Question.WhatsOnSecondDisplayText, module, formatArgs: new[] { "second" }, correctAnswers: new[] { labels[1].ToLowerInvariant() }),
-           makeQuestion(Question.WhatsOnSecondDisplayColor, module, formatArgs: new[] { "first" }, correctAnswers: new[] { labelColors[0] }),
-           makeQuestion(Question.WhatsOnSecondDisplayColor, module, formatArgs: new[] { "second" }, correctAnswers: new[] { labelColors[1] }));
+        yield return question(SWhatsOnSecond.DisplayText, args: [Ordinal(1)]).Answers(labels[0].ToLowerInvariant());
+        yield return question(SWhatsOnSecond.DisplayText, args: [Ordinal(2)]).Answers(labels[1].ToLowerInvariant());
+        yield return question(SWhatsOnSecond.DisplayColor, args: [Ordinal(1)]).Answers(labelColors[0]);
+        yield return question(SWhatsOnSecond.DisplayColor, args: [Ordinal(2)]).Answers(labelColors[1]);
     }
 }

@@ -1,3 +1,4 @@
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -38,12 +39,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-            // Displayed number
-            makeQuestion(Question.FlagsDisplayedNumber, module, correctAnswers: new[] { number.ToString() }),
-            // Main country flag
-            makeQuestion(Question.FlagsMainCountry, module, correctAnswers: new[] { mainCountrySprite }, preferredWrongAnswers: otherCountrySprites),
-            // Rest of the country flags
-            makeQuestion(Question.FlagsCountries, module, correctAnswers: otherCountrySprites, preferredWrongAnswers: FlagsSprites));
+        yield return question(SFlags.DisplayedNumber).Answers(number.ToString());
+        yield return question(SFlags.MainCountry).Answers(mainCountrySprite, preferredWrong: otherCountrySprites);
+        yield return question(SFlags.Countries).Answers(otherCountrySprites, preferredWrong: FlagsSprites);
     }
 }

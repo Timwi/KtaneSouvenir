@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -23,8 +23,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-            makeQuestion(Question.EncryptedMorseCallResponse, module, formatArgs: new[] { "received call" }, correctAnswers: new[] { formatCalls[index] }, preferredWrongAnswers: formatCalls),
-            makeQuestion(Question.EncryptedMorseCallResponse, module, formatArgs: new[] { "sent response" }, correctAnswers: new[] { formatResponses[index] }, preferredWrongAnswers: formatResponses));
+        yield return question(SEncryptedMorse.CallResponse, args: ["received call"]).Answers(formatCalls[index], preferredWrong: formatCalls);
+        yield return question(SEncryptedMorse.CallResponse, args: ["sent response"]).Answers(formatResponses[index], preferredWrong: formatResponses);
     }
 }

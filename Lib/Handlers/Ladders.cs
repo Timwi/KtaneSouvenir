@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -29,8 +29,7 @@ public partial class SouvenirModule
         var missing = fldMissing.Get(min: 0, max: 7);
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray" };
 
-        addQuestions(module,
-            makeQuestion(Question.LaddersStage2Colors, module, correctAnswers: secondLadder.Distinct().Select(x => colorNames[x]).ToArray()),
-            makeQuestion(Question.LaddersStage3Missing, module, correctAnswers: new[] { colorNames[missing] }));
+        yield return question(SLadders.Stage2Colors).Answers(secondLadder.Distinct().Select(x => colorNames[x]).ToArray());
+        yield return question(SLadders.Stage3Missing).Answers(colorNames[missing]);
     }
 }

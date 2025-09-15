@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -23,10 +23,9 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var dials = GetArrayField<Renderer>(comp, "renderers", isPublic: true).Get(expectedLength: 3);
-        addQuestions(module,
-            makeQuestion(Question.WireDialColors, module, formatArgs: new[] { "top" }, correctAnswers: new[] { dials[0].material.mainTexture.name.Replace("Mat", "") }),
-            makeQuestion(Question.WireDialColors, module, formatArgs: new[] { "bottom-left" }, correctAnswers: new[] { dials[1].material.mainTexture.name.Replace("Mat", "") }),
-            makeQuestion(Question.WireDialColors, module, formatArgs: new[] { "bottom-right" }, correctAnswers: new[] { dials[2].material.mainTexture.name.Replace("Mat", "") }),
-            makeQuestion(Question.WireDisplayedNumber, module, correctAnswers: new[] { GetIntField(comp, "displayedNumber").Get().ToString() }));
+        yield return question(SWire.DialColors, args: ["top"]).Answers(dials[0].material.mainTexture.name.Replace("Mat", ""));
+        yield return question(SWire.DialColors, args: ["bottom-left"]).Answers(dials[1].material.mainTexture.name.Replace("Mat", ""));
+        yield return question(SWire.DialColors, args: ["bottom-right"]).Answers(dials[2].material.mainTexture.name.Replace("Mat", ""));
+        yield return question(SWire.DisplayedNumber).Answers(GetIntField(comp, "displayedNumber").Get().ToString());
     }
 }

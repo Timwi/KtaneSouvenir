@@ -1,6 +1,5 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -33,9 +32,8 @@ public partial class SouvenirModule
         var words = GetArrayField<string>(comp, "_souvenirQuestionWordList").Get(expectedLength: 36);
 
         yield return WaitForSolve;
-        addQuestions(module,
-            makeQuestion(Question.MorseAMazeStartingCoordinate, module, correctAnswers: new[] { start }),
-            makeQuestion(Question.MorseAMazeEndingCoordinate, module, correctAnswers: new[] { end }),
-            makeQuestion(Question.MorseAMazeMorseCodeWord, module, correctAnswers: new[] { word }, preferredWrongAnswers: words));
+        yield return question(SMorseAMaze.StartingCoordinate).Answers(start);
+        yield return question(SMorseAMaze.EndingCoordinate).Answers(end);
+        yield return question(SMorseAMaze.MorseCodeWord).Answers(word, preferredWrong: words);
     }
 }

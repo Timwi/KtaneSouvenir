@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -29,9 +29,8 @@ public partial class SouvenirModule
         yield return charR == "@" || charG == "@" || charB == "@"
             ? throw new AbandonModuleException($"Could not decode Morse code: {morseR} / {morseG} / {morseB}")
             : (YieldInstruction) WaitForSolve;
-        addQuestions(module,
-            makeQuestion(Question.SimonSendsReceivedLetters, module, formatArgs: new[] { "red" }, correctAnswers: new[] { charR }, preferredWrongAnswers: new[] { charG, charB }),
-            makeQuestion(Question.SimonSendsReceivedLetters, module, formatArgs: new[] { "green" }, correctAnswers: new[] { charG }, preferredWrongAnswers: new[] { charR, charB }),
-            makeQuestion(Question.SimonSendsReceivedLetters, module, formatArgs: new[] { "blue" }, correctAnswers: new[] { charB }, preferredWrongAnswers: new[] { charR, charG }));
+        yield return question(SSimonSends.ReceivedLetters, args: ["red"]).Answers(charR, preferredWrong: [charG, charB]);
+        yield return question(SSimonSends.ReceivedLetters, args: ["green"]).Answers(charG, preferredWrong: [charR, charB]);
+        yield return question(SSimonSends.ReceivedLetters, args: ["blue"]).Answers(charB, preferredWrong: [charR, charG]);
     }
 }

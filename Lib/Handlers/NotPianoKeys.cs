@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -26,9 +26,8 @@ public partial class SouvenirModule
         var symbols = GetField<Array>(comp, "displayedSymbols").Get(arr => arr.Length == 3 ? null : "expected length 3");
         var propName = GetProperty<char>(symbols.GetValue(0), "symbol", true);
 
-        addQuestions(module,
-            makeQuestion(Question.NotPianoKeysFirstSymbol, module, correctAnswers: new[] { propName.GetFrom(symbols.GetValue(0)).ToString() }),
-            makeQuestion(Question.NotPianoKeysSecondSymbol, module, correctAnswers: new[] { propName.GetFrom(symbols.GetValue(1)).ToString() }),
-            makeQuestion(Question.NotPianoKeysThirdSymbol, module, correctAnswers: new[] { propName.GetFrom(symbols.GetValue(2)).ToString() }));
+        yield return question(SNotPianoKeys.FirstSymbol).Answers(propName.GetFrom(symbols.GetValue(0)).ToString());
+        yield return question(SNotPianoKeys.SecondSymbol).Answers(propName.GetFrom(symbols.GetValue(1)).ToString());
+        yield return question(SNotPianoKeys.ThirdSymbol).Answers(propName.GetFrom(symbols.GetValue(2)).ToString());
     }
 }

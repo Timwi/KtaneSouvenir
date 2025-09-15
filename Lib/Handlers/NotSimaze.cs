@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -30,9 +30,8 @@ public partial class SouvenirModule
 
         var goalPositionArray = new[] { $"({colours[GetIntField(comp, "goalX").Get()]}, {colours[GetIntField(comp, "goalY").Get()]})" };
 
-        addQuestions(module,
-            makeQuestion(Question.NotSimazeMaze, module, correctAnswers: new[] { colours[fldMazeIndex.Get()] }),
-            makeQuestion(Question.NotSimazeStart, module, correctAnswers: startPositionArray, preferredWrongAnswers: goalPositionArray),
-            makeQuestion(Question.NotSimazeGoal, module, correctAnswers: goalPositionArray, preferredWrongAnswers: startPositionArray));
+        yield return question(SNotSimaze.Maze).Answers(colours[fldMazeIndex.Get()]);
+        yield return question(SNotSimaze.Start).Answers(startPositionArray, preferredWrong: goalPositionArray);
+        yield return question(SNotSimaze.Goal).Answers(goalPositionArray, preferredWrong: startPositionArray);
     }
 }

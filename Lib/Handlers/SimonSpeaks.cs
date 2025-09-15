@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -38,11 +38,10 @@ public partial class SouvenirModule
         var positionNames = GetStaticField<string[]>(comp.GetType(), "_positionNames").Get(ar => ar.Length != 9 ? "expected length 9" : null);
         var languageNames = new[] { "English", "Danish", "Dutch", "Esperanto", "Finnish", "French", "German", "Hungarian", "Italian" };
 
-        addQuestions(module,
-            makeQuestion(Question.SimonSpeaksPositions, module, correctAnswers: new[] { positionNames[sequence[0]] }),
-            makeQuestion(Question.SimonSpeaksShapes, module, correctAnswers: new[] { SimonSpeaksSprites[shapes[sequence[1]]] }, preferredWrongAnswers: SimonSpeaksSprites),
-            makeQuestion(Question.SimonSpeaksLanguages, module, correctAnswers: new[] { languageNames[languages[sequence[2]]] }),
-            makeQuestion(Question.SimonSpeaksWords, module, correctAnswers: new[] { wordsTable[words[sequence[3]]][languages[sequence[3]]] }),
-            makeQuestion(Question.SimonSpeaksColors, module, correctAnswers: new[] { wordsTable[colors[sequence[4]]][0] }));
+        yield return question(SSimonSpeaks.Positions).Answers(positionNames[sequence[0]]);
+        yield return question(SSimonSpeaks.Shapes).Answers(SimonSpeaksSprites[shapes[sequence[1]]], preferredWrong: SimonSpeaksSprites);
+        yield return question(SSimonSpeaks.Languages).Answers(languageNames[languages[sequence[2]]]);
+        yield return question(SSimonSpeaks.Words).Answers(wordsTable[words[sequence[3]]][languages[sequence[3]]]);
+        yield return question(SSimonSpeaks.Colors).Answers(wordsTable[colors[sequence[4]]][0]);
     }
 }

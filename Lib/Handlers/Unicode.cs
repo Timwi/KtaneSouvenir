@@ -1,7 +1,8 @@
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using Souvenir.Reflection;
 using static Souvenir.AnswerLayout;
 
 public enum SUnicode
@@ -24,10 +25,7 @@ public partial class SouvenirModule
         if (symbols.Count != 4)
             throw new AbandonModuleException($"‘SelectedSymbols’ has unexpected length {symbols.Count} (expected 4).");
 
-        addQuestions(module,
-            makeQuestion(Question.UnicodeSortedAnswer, module, formatArgs: new[] { "first" }, correctAnswers: new[] { symbols[0] }),
-            makeQuestion(Question.UnicodeSortedAnswer, module, formatArgs: new[] { "second" }, correctAnswers: new[] { symbols[1] }),
-            makeQuestion(Question.UnicodeSortedAnswer, module, formatArgs: new[] { "third" }, correctAnswers: new[] { symbols[2] }),
-            makeQuestion(Question.UnicodeSortedAnswer, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { symbols[3] }));
+        for (var i = 0; i < 4; i++)
+            yield return question(SUnicode.SortedAnswer, args: [Ordinal(i + 1)]).Answers(symbols[i]);
     }
 }

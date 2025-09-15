@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -29,18 +29,17 @@ public partial class SouvenirModule
         var lbl = GetListField<int>(comp, "correctStageLabels", isPublic: true).Get(expectedLength: 5);
         var colors = GetListField<string>(comp, "correctStageColours", isPublic: true).Get(expectedLength: 5);
 
-        addQuestions(module,
-            makeQuestion(Question.HorribleMemoryPositions, module, formatArgs: new[] { "first" }, correctAnswers: new[] { pos[0].ToString() }),
-            makeQuestion(Question.HorribleMemoryPositions, module, formatArgs: new[] { "second" }, correctAnswers: new[] { pos[1].ToString() }),
-            makeQuestion(Question.HorribleMemoryPositions, module, formatArgs: new[] { "third" }, correctAnswers: new[] { pos[2].ToString() }),
-            makeQuestion(Question.HorribleMemoryPositions, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { pos[3].ToString() }),
-            makeQuestion(Question.HorribleMemoryLabels, module, formatArgs: new[] { "first" }, correctAnswers: new[] { lbl[0].ToString() }),
-            makeQuestion(Question.HorribleMemoryLabels, module, formatArgs: new[] { "second" }, correctAnswers: new[] { lbl[1].ToString() }),
-            makeQuestion(Question.HorribleMemoryLabels, module, formatArgs: new[] { "third" }, correctAnswers: new[] { lbl[2].ToString() }),
-            makeQuestion(Question.HorribleMemoryLabels, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { lbl[3].ToString() }),
-            makeQuestion(Question.HorribleMemoryColors, module, formatArgs: new[] { "first" }, correctAnswers: new[] { colors[0] }),
-            makeQuestion(Question.HorribleMemoryColors, module, formatArgs: new[] { "second" }, correctAnswers: new[] { colors[1] }),
-            makeQuestion(Question.HorribleMemoryColors, module, formatArgs: new[] { "third" }, correctAnswers: new[] { colors[2] }),
-            makeQuestion(Question.HorribleMemoryColors, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colors[3] }));
+        yield return question(SHorribleMemory.Positions, args: [Ordinal(1)]).Answers(pos[0].ToString());
+        yield return question(SHorribleMemory.Positions, args: [Ordinal(2)]).Answers(pos[1].ToString());
+        yield return question(SHorribleMemory.Positions, args: [Ordinal(3)]).Answers(pos[2].ToString());
+        yield return question(SHorribleMemory.Positions, args: [Ordinal(4)]).Answers(pos[3].ToString());
+        yield return question(SHorribleMemory.Labels, args: [Ordinal(1)]).Answers(lbl[0].ToString());
+        yield return question(SHorribleMemory.Labels, args: [Ordinal(2)]).Answers(lbl[1].ToString());
+        yield return question(SHorribleMemory.Labels, args: [Ordinal(3)]).Answers(lbl[2].ToString());
+        yield return question(SHorribleMemory.Labels, args: [Ordinal(4)]).Answers(lbl[3].ToString());
+        yield return question(SHorribleMemory.Colors, args: [Ordinal(1)]).Answers(colors[0]);
+        yield return question(SHorribleMemory.Colors, args: [Ordinal(2)]).Answers(colors[1]);
+        yield return question(SHorribleMemory.Colors, args: [Ordinal(3)]).Answers(colors[2]);
+        yield return question(SHorribleMemory.Colors, args: [Ordinal(4)]).Answers(colors[3]);
     }
 }

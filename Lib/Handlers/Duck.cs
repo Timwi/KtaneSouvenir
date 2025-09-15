@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,9 +21,6 @@ public partial class SouvenirModule
         var colorNames = new[] { "blue", "yellow", "green", "orange", "red" };
         var curtainColor = colorNames[GetIntField(comp, "curtainColor").Get(min: 0, max: 4)];
 
-        addQuestions(
-            module,
-            makeQuestion(Question.DuckCurtainColor, module, correctAnswers: new[] { curtainColor })
-        );
+        yield return question(SDuck.CurtainColor).Answers(curtainColor);
     }
 }

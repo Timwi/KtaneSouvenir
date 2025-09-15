@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -30,8 +30,7 @@ public partial class SouvenirModule
         var colorText = GetField<GameObject>(comp, "colorText", isPublic: true).Get(nullAllowed: true);
         colorText?.SetActive(false);
 
-        addQuestions(module,
-            makeQuestion(Question.NeutralizationColor, module, correctAnswers: new[] { new[] { "Yellow", "Green", "Red", "Blue" }[acidType] }),
-            makeQuestion(Question.NeutralizationVolume, module, correctAnswers: new[] { acidVol.ToString() }));
+        yield return question(SNeutralization.Color).Answers(new[] { "Yellow", "Green", "Red", "Blue" }[acidType]);
+        yield return question(SNeutralization.Volume).Answers(acidVol.ToString());
     }
 }

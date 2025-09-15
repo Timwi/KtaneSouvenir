@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -25,8 +25,7 @@ public partial class SouvenirModule
         stage1word = stage1word.Substring(0, 1).ToUpperInvariant() + stage1word.Substring(1).ToLowerInvariant();
         stage2word = stage2word.Substring(0, 1).ToUpperInvariant() + stage2word.Substring(1).ToLowerInvariant();
 
-        addQuestions(module,
-            makeQuestion(Question.ModernCipherWord, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { stage1word }, preferredWrongAnswers: new[] { stage2word }),
-            makeQuestion(Question.ModernCipherWord, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { stage2word }, preferredWrongAnswers: new[] { stage1word }));
+        yield return question(SModernCipher.Word, args: [Ordinal(1)]).Answers(stage1word, preferredWrong: [stage2word]);
+        yield return question(SModernCipher.Word, args: [Ordinal(2)]).Answers(stage2word, preferredWrong: [stage1word]);
     }
 }

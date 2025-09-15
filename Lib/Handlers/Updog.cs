@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -38,9 +38,8 @@ public partial class SouvenirModule
         var firstCol = colorName(colors[0]);
         var lastCol = colorName(colors[6]);
 
-        addQuestions(module,
-            makeQuestion(Question.UpdogWord, module, correctAnswers: new[] { word }),
-            makeQuestion(Question.UpdogColor, module, correctAnswers: new[] { firstCol }, formatArgs: new[] { "first" }),
-            makeQuestion(Question.UpdogColor, module, correctAnswers: new[] { lastCol }, formatArgs: new[] { "last" }));
+        yield return question(SUpdog.Word).Answers(word);
+        yield return question(SUpdog.Color, args: ["first"]).Answers(firstCol);
+        yield return question(SUpdog.Color, args: ["last"]).Answers(lastCol);
     }
 }

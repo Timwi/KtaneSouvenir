@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -23,9 +23,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-            makeQuestion(Question.VexillologyColors, module, formatArgs: new[] { "first" }, correctAnswers: new[] { colors[color1] }, preferredWrongAnswers: new[] { colors[color2], colors[color3] }),
-            makeQuestion(Question.VexillologyColors, module, formatArgs: new[] { "second" }, correctAnswers: new[] { colors[color2] }, preferredWrongAnswers: new[] { colors[color1], colors[color3] }),
-            makeQuestion(Question.VexillologyColors, module, formatArgs: new[] { "third" }, correctAnswers: new[] { colors[color3] }, preferredWrongAnswers: new[] { colors[color2], colors[color1] }));
+        yield return question(SVexillology.Colors, args: [Ordinal(1)]).Answers(colors[color1], preferredWrong: [colors[color2], colors[color3]]);
+        yield return question(SVexillology.Colors, args: [Ordinal(2)]).Answers(colors[color2], preferredWrong: [colors[color1], colors[color3]]);
+        yield return question(SVexillology.Colors, args: [Ordinal(3)]).Answers(colors[color3], preferredWrong: [colors[color2], colors[color1]]);
     }
 }

@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -69,8 +68,7 @@ public partial class SouvenirModule
                 yield return legitimatelyNoQuestion(module, $"There were not enough stages in which this one (#{GetIntField(comp, "_moduleId").Get()}) was unique.");
         }
         formattedName ??= _translation?.Translate(Question.ForgetThisColors).ModuleName ?? "Forget This";
-        addQuestions(module,
-            makeQuestion(Question.ForgetThisColors, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { Ordinal(chosenStage + 1) }, correctAnswers: new[] { allColors[myColors[chosenStage]] }),
-            makeQuestion(Question.ForgetThisDigits, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { Ordinal(chosenStage + 1) }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));
+        yield return question(SForgetThis.Colors, args: [Ordinal(chosenStage + 1)]).Answers(allColors[myColors[chosenStage]]);
+        yield return question(SForgetThis.Digits, args: [Ordinal(chosenStage + 1)]).Answers(base36[myDigits[chosenStage]].ToString());
     }
 }

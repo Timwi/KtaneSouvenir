@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -67,9 +67,8 @@ public partial class SouvenirModule
         if (invalidIx != -1)
             throw new AbandonModuleException($"The sprite for one of the matched tiles ({matchedTileSpriteNames[invalidIx]}) doesn’t exist. matchedTileSpriteNames=[{matchedTileSpriteNames.JoinString(", ")}], matchedTileSprites=[{matchedTileSprites.Select(spr => spr == null ? "<null>" : spr.name).JoinString(", ")}], countingRow=[{GetArrayField<int>(comp, "_countingRow").Get().JoinString(", ")}], matchRow1=[{matchRow1.JoinString(", ")}], matchRow2=[{matchRow2.JoinString(", ")}], tileSprites=[{tileSprites.Select(spr => spr.name).JoinString(", ")}]");
 
-        addQuestions(module,
-            makeQuestion(Question.MahjongCountingTile, module, correctAnswers: new[] { countingTileSprite }, preferredWrongAnswers: GetArrayField<int>(comp, "_countingRow").Get().Select(ix => MahjongSprites[ix]).ToArray()),
-            makeQuestion(Question.MahjongMatches, module, formatArgs: new[] { "first" }, correctAnswers: matchedTileSprites.Take(2).ToArray(), preferredWrongAnswers: tileSprites),
-            makeQuestion(Question.MahjongMatches, module, formatArgs: new[] { "second" }, correctAnswers: matchedTileSprites.Skip(2).Take(2).ToArray(), preferredWrongAnswers: tileSprites));
+        yield return question(SMahjong.CountingTile).Answers(countingTileSprite, preferredWrong: GetArrayField<int>(comp, "_countingRow").Get().Select(ix => MahjongSprites[ix]).ToArray());
+        yield return question(SMahjong.Matches, args: ["first"]).Answers(matchedTileSprites.Take(2).ToArray(), preferredWrong: tileSprites);
+        yield return question(SMahjong.Matches, args: ["second"]).Answers(matchedTileSprites.Skip(2).Take(2).ToArray(), preferredWrong: tileSprites);
     }
 }

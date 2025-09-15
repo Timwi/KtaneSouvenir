@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -26,8 +26,7 @@ public partial class SouvenirModule
             : (YieldInstruction) WaitForSolve;
         textFromCity.text = "WELL";
         textToCity.text = "DONE!";
-        addQuestions(module,
-            makeQuestion(Question.TimezoneCities, module, formatArgs: new[] { "departure" }, correctAnswers: new[] { fldFromCity.Get() }),
-            makeQuestion(Question.TimezoneCities, module, formatArgs: new[] { "destination" }, correctAnswers: new[] { fldToCity.Get() }));
+        yield return question(STimezone.Cities, args: ["departure"]).Answers(fldFromCity.Get());
+        yield return question(STimezone.Cities, args: ["destination"]).Answers(fldToCity.Get());
     }
 }

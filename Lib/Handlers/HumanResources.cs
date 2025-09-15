@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -30,10 +30,9 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var descs = GetArrayField<int>(comp, "_availableDescs").Get(expectedLength: 5);
-        addQuestions(module,
-            makeQuestion(Question.HumanResourcesDescriptors, module, formatArgs: new[] { "red" }, correctAnswers: descs.Take(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray()),
-            makeQuestion(Question.HumanResourcesDescriptors, module, formatArgs: new[] { "green" }, correctAnswers: descs.Skip(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray()),
-            makeQuestion(Question.HumanResourcesHiredFired, module, formatArgs: new[] { "fired" }, correctAnswers: new[] { fldName.GetFrom(people.GetValue(personToFire)) }),
-            makeQuestion(Question.HumanResourcesHiredFired, module, formatArgs: new[] { "hired" }, correctAnswers: new[] { fldName.GetFrom(people.GetValue(personToHire)) }));
+        yield return question(SHumanResources.Descriptors, args: ["red"]).Answers(descs.Take(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray());
+        yield return question(SHumanResources.Descriptors, args: ["green"]).Answers(descs.Skip(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray());
+        yield return question(SHumanResources.HiredFired, args: ["fired"]).Answers(fldName.GetFrom(people.GetValue(personToFire)));
+        yield return question(SHumanResources.HiredFired, args: ["hired"]).Answers(fldName.GetFrom(people.GetValue(personToHire)));
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -51,9 +50,8 @@ public partial class SouvenirModule
         while (stage < 5);
         yield return WaitForSolve;
 
-        addQuestions(module,
-                makeQuestion(Question.NandNsLabel, module, correctAnswers: labels[0], formatArgs: new[] { Ordinal(2) }),
-                makeQuestion(Question.NandNsLabel, module, correctAnswers: labels[1], formatArgs: new[] { Ordinal(3) }),
-                makeQuestion(Question.NandNsColor, module, correctAnswers: new[] { Question.NandNsColor.GetAnswers()[Enumerable.Range(0, 6).Except(colors).Single()] }));
+        yield return question(SNandNs.Label, args: [Ordinal(2)]).Answers(labels[0]);
+        yield return question(SNandNs.Label, args: [Ordinal(3)]).Answers(labels[1]);
+        yield return question(SNandNs.Color).Answers(Question.NandNsColor.GetAnswers()[Enumerable.Range(0, 6).Except(colors).Single()]);
     }
 }

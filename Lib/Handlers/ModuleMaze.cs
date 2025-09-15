@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -23,8 +23,6 @@ public partial class SouvenirModule
         var sprites = fldSprites.Get(expectedLength: 400);
         var translatedSprites = sprites.Select(spr => spr.TranslateSprite()).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.ModuleMazeStartingIcon, module,
-                correctAnswers: new[] { translatedSprites[Array.IndexOf(sprites, GetField<Sprite>(comp, "souvenirStart").Get())] }, allAnswers: translatedSprites));
+        yield return question(SModuleMaze.StartingIcon).Answers(translatedSprites[Array.IndexOf(sprites, GetField<Sprite>(comp, "souvenirStart").Get())], all: translatedSprites);
     }
 }

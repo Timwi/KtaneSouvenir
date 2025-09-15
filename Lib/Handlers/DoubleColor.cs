@@ -1,6 +1,5 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -46,8 +45,7 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "Green", "Blue", "Red", "Pink", "Yellow" };
 
-        addQuestions(module,
-            makeQuestion(Question.DoubleColorColors, module, formatArgs: new[] { "first" }, correctAnswers: new[] { colorNames[color1] }),
-            makeQuestion(Question.DoubleColorColors, module, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[color2] }));
+        yield return question(SDoubleColor.Colors, args: ["first"]).Answers(colorNames[color1]);
+        yield return question(SDoubleColor.Colors, args: ["second"]).Answers(colorNames[color2]);
     }
 }

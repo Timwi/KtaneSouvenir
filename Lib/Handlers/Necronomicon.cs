@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,13 +22,12 @@ public partial class SouvenirModule
         var chapters = GetArrayField<int>(comp, "selectedChapters").Get(expectedLength: 7);
         var chaptersString = chapters.Select(x => x.ToString()).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { chaptersString[0] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { chaptersString[1] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { chaptersString[2] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(4) }, correctAnswers: new[] { chaptersString[3] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(5) }, correctAnswers: new[] { chaptersString[4] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(6) }, correctAnswers: new[] { chaptersString[5] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(7) }, correctAnswers: new[] { chaptersString[6] }, preferredWrongAnswers: chaptersString));
+        yield return question(SNecronomicon.Chapters, args: [Ordinal(1)]).Answers(chaptersString[0], preferredWrong: chaptersString);
+        yield return question(SNecronomicon.Chapters, args: [Ordinal(2)]).Answers(chaptersString[1], preferredWrong: chaptersString);
+        yield return question(SNecronomicon.Chapters, args: [Ordinal(3)]).Answers(chaptersString[2], preferredWrong: chaptersString);
+        yield return question(SNecronomicon.Chapters, args: [Ordinal(4)]).Answers(chaptersString[3], preferredWrong: chaptersString);
+        yield return question(SNecronomicon.Chapters, args: [Ordinal(5)]).Answers(chaptersString[4], preferredWrong: chaptersString);
+        yield return question(SNecronomicon.Chapters, args: [Ordinal(6)]).Answers(chaptersString[5], preferredWrong: chaptersString);
+        yield return question(SNecronomicon.Chapters, args: [Ordinal(7)]).Answers(chaptersString[6], preferredWrong: chaptersString);
     }
 }

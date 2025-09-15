@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,8 +21,7 @@ public partial class SouvenirModule
         var d = GetArrayField<int>(comp, "digits").Get();
         var digits = Enumerable.Range(0, d.Length).Select(str => d[str].ToString()).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.DoubleDigitsDisplays, module, formatArgs: new[] { "left" }, correctAnswers: new[] { digits[0] }),
-            makeQuestion(Question.DoubleDigitsDisplays, module, formatArgs: new[] { "right" }, correctAnswers: new[] { digits[1] }));
+        yield return question(SDoubleDigits.Displays, args: ["left"]).Answers(digits[0]);
+        yield return question(SDoubleDigits.Displays, args: ["right"]).Answers(digits[1]);
     }
 }

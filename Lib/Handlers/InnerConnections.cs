@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -24,8 +24,7 @@ public partial class SouvenirModule
 
         var colourList = new[] { "Black", "Blue", "Red", "White", "Yellow" };
 
-        addQuestions(module,
-            makeQuestion(Question.InnerConnectionsLED, module, correctAnswers: new[] { colourList[rndLEDColour] }),
-            makeQuestion(Question.InnerConnectionsMorse, module, correctAnswers: new[] { morseNumber.ToString() }));
+        yield return question(SInnerConnections.LED).Answers(colourList[rndLEDColour]);
+        yield return question(SInnerConnections.Morse).Answers(morseNumber.ToString());
     }
 }

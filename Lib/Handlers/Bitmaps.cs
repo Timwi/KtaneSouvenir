@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -28,14 +28,13 @@ public partial class SouvenirModule
 
         var preferredWrongAnswers = qCounts.SelectMany(i => new[] { i, 16 - i }).Distinct().Select(i => i.ToString()).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.Bitmaps, module, formatArgs: new[] { "white", "top left" }, correctAnswers: new[] { qCounts[0].ToString() }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, module, formatArgs: new[] { "white", "top right" }, correctAnswers: new[] { qCounts[1].ToString() }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, module, formatArgs: new[] { "white", "bottom left" }, correctAnswers: new[] { qCounts[2].ToString() }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, module, formatArgs: new[] { "white", "bottom right" }, correctAnswers: new[] { qCounts[3].ToString() }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, module, formatArgs: new[] { "black", "top left" }, correctAnswers: new[] { (16 - qCounts[0]).ToString() }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, module, formatArgs: new[] { "black", "top right" }, correctAnswers: new[] { (16 - qCounts[1]).ToString() }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, module, formatArgs: new[] { "black", "bottom left" }, correctAnswers: new[] { (16 - qCounts[2]).ToString() }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, module, formatArgs: new[] { "black", "bottom right" }, correctAnswers: new[] { (16 - qCounts[3]).ToString() }, preferredWrongAnswers: preferredWrongAnswers));
+        yield return question(SBitmaps.Question, args: ["white", "top left"]).Answers(qCounts[0].ToString(), preferredWrong: preferredWrongAnswers);
+        yield return question(SBitmaps.Question, args: ["white", "top right"]).Answers(qCounts[1].ToString(), preferredWrong: preferredWrongAnswers);
+        yield return question(SBitmaps.Question, args: ["white", "bottom left"]).Answers(qCounts[2].ToString(), preferredWrong: preferredWrongAnswers);
+        yield return question(SBitmaps.Question, args: ["white", "bottom right"]).Answers(qCounts[3].ToString(), preferredWrong: preferredWrongAnswers);
+        yield return question(SBitmaps.Question, args: ["black", "top left"]).Answers((16 - qCounts[0]).ToString(), preferredWrong: preferredWrongAnswers);
+        yield return question(SBitmaps.Question, args: ["black", "top right"]).Answers((16 - qCounts[1]).ToString(), preferredWrong: preferredWrongAnswers);
+        yield return question(SBitmaps.Question, args: ["black", "bottom left"]).Answers((16 - qCounts[2]).ToString(), preferredWrong: preferredWrongAnswers);
+        yield return question(SBitmaps.Question, args: ["black", "bottom right"]).Answers((16 - qCounts[3]).ToString(), preferredWrong: preferredWrongAnswers);
     }
 }

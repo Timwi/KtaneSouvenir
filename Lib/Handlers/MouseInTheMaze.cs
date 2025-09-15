@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -26,11 +26,10 @@ public partial class SouvenirModule
         var goalPos = GetIntField(comp, "_goalPosition").Get(min: 0, max: 3);
         var torusColor = GetIntField(comp, "_torusColor").Get(min: 0, max: 3);
         var goalColor = sphereColors[goalPos];
-        yield return goalColor is < 0 or > 3
-            ? throw new AbandonModuleException($"Unexpected color (torus={torusColor}; goal={goalColor})")
-            : (YieldInstruction) WaitForSolve;
-        addQuestions(module,
-            makeQuestion(Question.MouseInTheMazeSphere, module, correctAnswers: new[] { new[] { "white", "green", "blue", "yellow" }[goalColor] }),
-            makeQuestion(Question.MouseInTheMazeTorus, module, correctAnswers: new[] { new[] { "white", "green", "blue", "yellow" }[torusColor] }));
+        yield return goalColor is not < 0 and not > 3
+            ? WaitForSolve
+            : throw new AbandonModuleException($"Unexpected color (torus={torusColor}; goal={goalColor})");
+        yield return question(SMouseInTheMaze.Sphere).Answers(new[] { "white", "green", "blue", "yellow" }[goalColor]);
+        yield return question(SMouseInTheMaze.Torus).Answers(new[] { "white", "green", "blue", "yellow" }[torusColor]);
     }
 }

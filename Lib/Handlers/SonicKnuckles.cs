@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -51,9 +51,8 @@ public partial class SouvenirModule
                 GetArrayField<AudioClip>(comp, "noMushroomSounds", true).Get(expectedLength: 20)
             ).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.SonicKnucklesSounds, module, correctAnswers: new[] { illegalSound }, preferredWrongAnswers: usedSounds, allAnswers: allSounds),
-            makeQuestion(Question.SonicKnucklesBadnik, module, correctAnswers: new[] { SonicKnucklesBadniksSprites.First(sprite => sprite.name == badnikName) }, preferredWrongAnswers: SonicKnucklesBadniksSprites),
-            makeQuestion(Question.SonicKnucklesMonitor, module, correctAnswers: new[] { SonicKnucklesMonitorsSprites.First(sprite => sprite.name == monitorName) }, preferredWrongAnswers: SonicKnucklesMonitorsSprites));
+        yield return question(SSonicKnuckles.Sounds).Answers(illegalSound, all: allSounds, preferredWrong: usedSounds);
+        yield return question(SSonicKnuckles.Badnik).Answers(SonicKnucklesBadniksSprites.First(sprite => sprite.name == badnikName), preferredWrong: SonicKnucklesBadniksSprites);
+        yield return question(SSonicKnuckles.Monitor).Answers(SonicKnucklesMonitorsSprites.First(sprite => sprite.name == monitorName), preferredWrong: SonicKnucklesMonitorsSprites);
     }
 }

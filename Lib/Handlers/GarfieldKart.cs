@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -32,8 +32,7 @@ public partial class SouvenirModule
         foreach (var mr in puzzlePiecesMeshRenders)
             mr.material = materials[0];
 
-        addQuestions(module,
-            makeQuestion(Question.GarfieldKartTrack, module, correctAnswers: new[] { allAnswers[answerIndex] }, allAnswers: allAnswers.ToArray()),
-            makeQuestion(Question.GarfieldKartPuzzleCount, module, correctAnswers: new[] { puzzleCount.ToString() }));
+        yield return question(SGarfieldKart.Track).Answers(allAnswers[answerIndex], all: allAnswers.ToArray());
+        yield return question(SGarfieldKart.PuzzleCount).Answers(puzzleCount.ToString());
     }
 }

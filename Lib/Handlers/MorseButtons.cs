@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -27,18 +27,17 @@ public partial class SouvenirModule
         var letters = GetArrayField<int>(comp, "letters").Get(expectedLength: 6, validator: x => x < 0 || x >= alphabet.Length ? "out of range" : null);
         var colors = GetArrayField<int>(comp, "colors").Get(expectedLength: 6, validator: x => x < 0 || x >= colorNames.Length ? "out of range" : null);
 
-        addQuestions(module,
-            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "first" }, correctAnswers: new[] { alphabet[letters[0]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "second" }, correctAnswers: new[] { alphabet[letters[1]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "third" }, correctAnswers: new[] { alphabet[letters[2]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { alphabet[letters[3]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { alphabet[letters[4]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "sixth" }, correctAnswers: new[] { alphabet[letters[5]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "first" }, correctAnswers: new[] { colorNames[colors[0]].ToString() }, preferredWrongAnswers: colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[colors[1]].ToString() }, preferredWrongAnswers: colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "third" }, correctAnswers: new[] { colorNames[colors[2]].ToString() }, preferredWrongAnswers: colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colorNames[colors[3]].ToString() }, preferredWrongAnswers: colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { colorNames[colors[4]].ToString() }, preferredWrongAnswers: colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "sixth" }, correctAnswers: new[] { colorNames[colors[5]].ToString() }, preferredWrongAnswers: colorNames));
+        yield return question(SMorseButtons.ButtonLabel, args: [Ordinal(1)]).Answers(alphabet[letters[0]].ToString(), preferredWrong: alphabet.Select(x => x.ToString()).ToArray());
+        yield return question(SMorseButtons.ButtonLabel, args: [Ordinal(2)]).Answers(alphabet[letters[1]].ToString(), preferredWrong: alphabet.Select(x => x.ToString()).ToArray());
+        yield return question(SMorseButtons.ButtonLabel, args: [Ordinal(3)]).Answers(alphabet[letters[2]].ToString(), preferredWrong: alphabet.Select(x => x.ToString()).ToArray());
+        yield return question(SMorseButtons.ButtonLabel, args: [Ordinal(4)]).Answers(alphabet[letters[3]].ToString(), preferredWrong: alphabet.Select(x => x.ToString()).ToArray());
+        yield return question(SMorseButtons.ButtonLabel, args: [Ordinal(5)]).Answers(alphabet[letters[4]].ToString(), preferredWrong: alphabet.Select(x => x.ToString()).ToArray());
+        yield return question(SMorseButtons.ButtonLabel, args: [Ordinal(6)]).Answers(alphabet[letters[5]].ToString(), preferredWrong: alphabet.Select(x => x.ToString()).ToArray());
+        yield return question(SMorseButtons.ButtonColor, args: [Ordinal(1)]).Answers(colorNames[colors[0]].ToString(), preferredWrong: colorNames);
+        yield return question(SMorseButtons.ButtonColor, args: [Ordinal(2)]).Answers(colorNames[colors[1]].ToString(), preferredWrong: colorNames);
+        yield return question(SMorseButtons.ButtonColor, args: [Ordinal(3)]).Answers(colorNames[colors[2]].ToString(), preferredWrong: colorNames);
+        yield return question(SMorseButtons.ButtonColor, args: [Ordinal(4)]).Answers(colorNames[colors[3]].ToString(), preferredWrong: colorNames);
+        yield return question(SMorseButtons.ButtonColor, args: [Ordinal(5)]).Answers(colorNames[colors[4]].ToString(), preferredWrong: colorNames);
+        yield return question(SMorseButtons.ButtonColor, args: [Ordinal(6)]).Answers(colorNames[colors[5]].ToString(), preferredWrong: colorNames);
     }
 }

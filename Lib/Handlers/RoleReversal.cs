@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -32,11 +32,10 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"All wires combined has unexpected value (expected 2-7): {totalWires}");
 
         var answerIndex = GetField<byte>(comp, "souvenir").Get(b => b is < 2 or > 8 ? "expected range 2–8" : null);
-        addQuestions(module,
-            makeQuestion(Question.RoleReversalWires, module, formatArgs: new[] { "warm-colored" }, correctAnswers: new[] { (redWires.Count + orangeWires.Count + yellowWires.Count).ToString() }),
-            makeQuestion(Question.RoleReversalWires, module, formatArgs: new[] { "cold-colored" }, correctAnswers: new[] { (greenWires.Count + blueWires.Count + purpleWires.Count).ToString() }),
-            makeQuestion(Question.RoleReversalWires, module, formatArgs: new[] { "primary-colored" }, correctAnswers: new[] { (redWires.Count + yellowWires.Count + blueWires.Count).ToString() }),
-            makeQuestion(Question.RoleReversalWires, module, formatArgs: new[] { "secondary-colored" }, correctAnswers: new[] { (orangeWires.Count + greenWires.Count + purpleWires.Count).ToString() }),
-            makeQuestion(Question.RoleReversalNumber, module, correctAnswers: new[] { answerIndex.ToString() }, preferredWrongAnswers: new[] { "2", "3", "4", "5", "6", "7", "8" }));
+        yield return question(SRoleReversal.Wires, args: ["warm-colored"]).Answers((redWires.Count + orangeWires.Count + yellowWires.Count).ToString());
+        yield return question(SRoleReversal.Wires, args: ["cold-colored"]).Answers((greenWires.Count + blueWires.Count + purpleWires.Count).ToString());
+        yield return question(SRoleReversal.Wires, args: ["primary-colored"]).Answers((redWires.Count + yellowWires.Count + blueWires.Count).ToString());
+        yield return question(SRoleReversal.Wires, args: ["secondary-colored"]).Answers((orangeWires.Count + greenWires.Count + purpleWires.Count).ToString());
+        yield return question(SRoleReversal.Number).Answers(answerIndex.ToString(), preferredWrong: ["2", "3", "4", "5", "6", "7", "8"]);
     }
 }

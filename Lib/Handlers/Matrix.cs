@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -26,8 +26,7 @@ public partial class SouvenirModule
             .Select(n => Question.MatrixAccessCode.GetAnswers().FirstOrDefault(ac => n.ToLowerInvariant().OrderBy(ch => ch).JoinString() == ac.ToLowerInvariant().OrderBy(ch => ch).JoinString()))
             .ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.MatrixAccessCode, module, correctAnswers: unscrambledNames),
-            makeQuestion(Question.MatrixGlitchWord, module, correctAnswers: new[] { GetField<string>(comp, "illegalWordText").Get().ToLowerInvariant() }));
+        yield return question(SMatrix.AccessCode).Answers(unscrambledNames);
+        yield return question(SMatrix.GlitchWord).Answers(GetField<string>(comp, "illegalWordText").Get().ToLowerInvariant());
     }
 }

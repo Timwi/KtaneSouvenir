@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -23,8 +23,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-            makeQuestion(Question.TribalCouncilName, module, correctAnswers: new[] { ne }, formatArgs: new[] { "northeast" }),
-            makeQuestion(Question.TribalCouncilName, module, correctAnswers: new[] { sw }, formatArgs: new[] { "southwest" }));
+        yield return question(STribalCouncil.Name, args: ["northeast"]).Answers(ne);
+        yield return question(STribalCouncil.Name, args: ["southwest"]).Answers(sw);
     }
 }

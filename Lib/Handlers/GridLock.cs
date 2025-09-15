@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -35,9 +34,8 @@ public partial class SouvenirModule
         var start = pages[0].IndexOf(i => (i & 15) == 4);
 
         yield return WaitForSolve;
-        addQuestions(module,
-            makeQuestion(Question.GridLockStartingLocation, module, correctAnswers: new[] { new Coord(4, 4, start) }),
-            makeQuestion(Question.GridLockEndingLocation, module, correctAnswers: new[] { new Coord(4, 4, solution) }),
-            makeQuestion(Question.GridLockStartingColor, module, correctAnswers: new[] { colors[(pages[0][start] >> 4) - 1] }));
+        yield return question(SGridLock.StartingLocation).Answers(new Coord(4, 4, start));
+        yield return question(SGridLock.EndingLocation).Answers(new Coord(4, 4, solution));
+        yield return question(SGridLock.StartingColor).Answers(colors[(pages[0][start] >> 4) - 1]);
     }
 }

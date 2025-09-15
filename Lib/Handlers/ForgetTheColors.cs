@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -114,11 +114,10 @@ public partial class SouvenirModule
         formattedName ??= _translation?.Translate(Question.ForgetTheColorsGearNumber).ModuleName ?? "Forget The Colors";
 
         var stage = chosenStage.ToString();
-        addQuestions(module,
-            makeQuestion(Question.ForgetTheColorsGearNumber, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myGearNumbers[chosenStage].ToString() }),
-            makeQuestion(Question.ForgetTheColorsLargeDisplay, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myLargeDisplays[chosenStage].ToString() }),
-            makeQuestion(Question.ForgetTheColorsSineNumber, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { (Mathf.Abs(mySineNumbers[chosenStage]) % 10).ToString() }),
-            makeQuestion(Question.ForgetTheColorsGearColor, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myGearColors[chosenStage].ToString() }),
-            makeQuestion(Question.ForgetTheColorsRuleColor, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myRuleColors[chosenStage].ToString() }));
+        yield return question(SForgetTheColors.GearNumber, args: [stage]).Answers(myGearNumbers[chosenStage].ToString());
+        yield return question(SForgetTheColors.LargeDisplay, args: [stage]).Answers(myLargeDisplays[chosenStage].ToString());
+        yield return question(SForgetTheColors.SineNumber, args: [stage]).Answers((Mathf.Abs(mySineNumbers[chosenStage]) % 10).ToString());
+        yield return question(SForgetTheColors.GearColor, args: [stage]).Answers(myGearColors[chosenStage].ToString());
+        yield return question(SForgetTheColors.RuleColor, args: [stage]).Answers(myRuleColors[chosenStage].ToString());
     }
 }

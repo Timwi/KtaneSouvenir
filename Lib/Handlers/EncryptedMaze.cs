@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -25,8 +25,9 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var textMesh = GetArrayField<TextMesh>(comp, "mazeIndex", isPublic: true).Get(expectedLength: 36)[0];
-        addQuestions(module,
-            makeQuestion(Question.EncryptedMazeSymbols, module, textMesh.font, textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { "clockwise" }, correctAnswers: new[] { markerCharacters[shapeCw, markerCw] }, preferredWrongAnswers: new[] { markerCharacters[shapeCcw, markerCcw] }),
-            makeQuestion(Question.EncryptedMazeSymbols, module, textMesh.font, textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { "counter-clockwise" }, correctAnswers: new[] { markerCharacters[shapeCcw, markerCcw] }, preferredWrongAnswers: new[] { markerCharacters[shapeCw, markerCw] }));
+        var info = new TextAnswerInfo(font: textMesh.font, fontTexture: textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture);
+        crashPlease_PUT_INFO_IN();
+        yield return question(SEncryptedMaze.Symbols, args: ["clockwise"]).Answers(markerCharacters[shapeCw, markerCw], preferredWrong: [markerCharacters[shapeCcw, markerCcw]]);
+        yield return question(SEncryptedMaze.Symbols, args: ["counter-clockwise"]).Answers(markerCharacters[shapeCcw, markerCcw], preferredWrong: [markerCharacters[shapeCw, markerCw]]);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -39,12 +39,9 @@ public partial class SouvenirModule
         var rNum = GetIntField(comp, "numberB").Get(1, 999);
         var theLetter = GetField<string>(comp, "ruleLetter").Get(s => s.Length != 1 ? "expected length 1" : null);
 
-        addQuestions(module,
-            makeQuestion(Question.FunctionsLastDigit, module, correctAnswers: new[] { lastDigit.ToString() }),
-            makeQuestion(Question.FunctionsLeftNumber, module, correctAnswers: new[] { lNum.ToString() }, preferredWrongAnswers:
-                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray()),
-            makeQuestion(Question.FunctionsLetter, module, correctAnswers: new[] { theLetter }),
-            makeQuestion(Question.FunctionsRightNumber, module, correctAnswers: new[] { rNum.ToString() }, preferredWrongAnswers:
-                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray()));
+        yield return question(SFunctions.LastDigit).Answers(lastDigit.ToString());
+        yield return question(SFunctions.LeftNumber).Answers(lNum.ToString(), preferredWrong: Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray());
+        yield return question(SFunctions.Letter).Answers(theLetter);
+        yield return question(SFunctions.RightNumber).Answers(rNum.ToString(), preferredWrong: Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray());
     }
 }

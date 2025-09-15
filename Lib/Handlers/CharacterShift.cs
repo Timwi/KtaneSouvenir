@@ -30,8 +30,7 @@ public partial class SouvenirModule
         var letters = GetArrayField<string>(comp, "letters").Get(expectedLength: 5).Except(new[] { leftAnswer, "*" }).ToArray();
         var digits = GetArrayField<string>(comp, "numbers").Get(expectedLength: 5).Except(new[] { rightAnswer, "*" }).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.CharacterShiftLetters, module, correctAnswers: letters),
-            makeQuestion(Question.CharacterShiftDigits, module, correctAnswers: digits));
+        yield return question(SCharacterShift.Letters).Answers(letters);
+        yield return question(SCharacterShift.Digits).Answers(digits);
     }
 }

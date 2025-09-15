@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -32,8 +32,7 @@ public partial class SouvenirModule
         var afterReveal = fldSwitches.Get(0, (1 << 5) - 1);
 
         yield return WaitForSolve;
-        addQuestions(module,
-            makeQuestion(Question.ColoredSwitchesInitialPosition, module, correctAnswers: new[] { Enumerable.Range(0, 5).Select(b => (initial & (1 << b)) != 0 ? "Q" : "R").Reverse().JoinString() }),
-            makeQuestion(Question.ColoredSwitchesWhenLEDsCameOn, module, correctAnswers: new[] { Enumerable.Range(0, 5).Select(b => (afterReveal & (1 << b)) != 0 ? "Q" : "R").Reverse().JoinString() }));
+        yield return question(SColoredSwitches.InitialPosition).Answers(Enumerable.Range(0, 5).Select(b => (initial & (1 << b)) != 0 ? "Q" : "R").Reverse().JoinString());
+        yield return question(SColoredSwitches.WhenLEDsCameOn).Answers(Enumerable.Range(0, 5).Select(b => (afterReveal & (1 << b)) != 0 ? "Q" : "R").Reverse().JoinString());
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -40,10 +40,9 @@ public partial class SouvenirModule
             arr.Any(val => val is < 0 or > 99) ? "expected in range 0-99" :
             null);
 
-        addQuestions(module,
-            makeQuestion(Question.AlgorithmiaPositions, module, formatArgs: new[] { "starting" }, correctAnswers: new[] { new Coord(4, 4, startingPos) }, preferredWrongAnswers: new[] { new Coord(4, 4, goalPos) }),
-            makeQuestion(Question.AlgorithmiaPositions, module, formatArgs: new[] { "goal" }, correctAnswers: new[] { new Coord(4, 4, goalPos) }, preferredWrongAnswers: new[] { new Coord(4, 4, startingPos) }),
-            makeQuestion(Question.AlgorithmiaColor, module, correctAnswers: new[] { color }),
-            makeQuestion(Question.AlgorithmiaSeed, module, correctAnswers: seedVals.Select(x => x.ToString()).ToArray()));
+        yield return question(SAlgorithmia.Positions, args: ["starting"]).Answers(new Coord(4, 4, startingPos), preferredWrong: [new Coord(4, 4, goalPos)]);
+        yield return question(SAlgorithmia.Positions, args: ["goal"]).Answers(new Coord(4, 4, goalPos), preferredWrong: [new Coord(4, 4, startingPos)]);
+        yield return question(SAlgorithmia.Color).Answers(color);
+        yield return question(SAlgorithmia.Seed).Answers(seedVals.Select(x => x.ToString()).ToArray());
     }
 }

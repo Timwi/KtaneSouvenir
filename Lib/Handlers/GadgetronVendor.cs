@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -28,10 +28,7 @@ public partial class SouvenirModule
 
         var currentWeaponIndex = GetIntField(comp, "yourWeaponIndex").Get(min: 0, max: GadgetronVendorIconSprites.Length);
         var saleWeaponIndex = GetIntField(comp, "saleWeaponIndex").Get(min: 0, max: GadgetronVendorWeaponSprites.Length);
-        addQuestions(
-            module,
-            makeQuestion(Question.GadgetronVendorCurrentWeapon, module, correctAnswers: new[] { GadgetronVendorIconSprites[currentWeaponIndex] }, preferredWrongAnswers: GadgetronVendorIconSprites),
-            makeQuestion(Question.GadgetronVendorWeaponForSale, module, correctAnswers: new[] { GadgetronVendorWeaponSprites[saleWeaponIndex] }, preferredWrongAnswers: GadgetronVendorWeaponSprites)
-        );
+        yield return question(SGadgetronVendor.CurrentWeapon).Answers(GadgetronVendorIconSprites[currentWeaponIndex], preferredWrong: GadgetronVendorIconSprites);
+        yield return question(SGadgetronVendor.WeaponForSale).Answers(GadgetronVendorWeaponSprites[saleWeaponIndex], preferredWrong: GadgetronVendorWeaponSprites);
     }
 }

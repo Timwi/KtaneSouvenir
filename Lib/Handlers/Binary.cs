@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -17,6 +17,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "Binary");
         yield return WaitForSolve;
 
-        addQuestions(module, makeQuestion(Question.BinaryWord, module, formatArgs: null, correctAnswers: new[] { Question.BinaryWord.GetAnswers()[GetField<int>(comp, "te").Get()] }));
+        yield return question(SBinary.Word).Answers(SBinary.Word.GetAnswers()[GetField<int>(comp, "te").Get()]);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -42,12 +42,11 @@ public partial class SouvenirModule
             .Select(x => char.ToUpperInvariant(x.name[0]) + x.name.Substring(1))
             .ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.AccumulationBorderColor, module, correctAnswers: new[] { colorNames[borderIx] }),
-            makeQuestion(Question.AccumulationBackgroundColor, module, formatArgs: new[] { "first" }, correctAnswers: new[] { bgNames[0] }, preferredWrongAnswers: bgNames),
-            makeQuestion(Question.AccumulationBackgroundColor, module, formatArgs: new[] { "second" }, correctAnswers: new[] { bgNames[1] }, preferredWrongAnswers: bgNames),
-            makeQuestion(Question.AccumulationBackgroundColor, module, formatArgs: new[] { "third" }, correctAnswers: new[] { bgNames[2] }, preferredWrongAnswers: bgNames),
-            makeQuestion(Question.AccumulationBackgroundColor, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { bgNames[3] }, preferredWrongAnswers: bgNames),
-            makeQuestion(Question.AccumulationBackgroundColor, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { bgNames[4] }, preferredWrongAnswers: bgNames));
+        yield return question(SAccumulation.BorderColor).Answers(colorNames[borderIx]);
+        yield return question(SAccumulation.BackgroundColor, args: [Ordinal(1)]).Answers(bgNames[0], preferredWrong: bgNames);
+        yield return question(SAccumulation.BackgroundColor, args: [Ordinal(2)]).Answers(bgNames[1], preferredWrong: bgNames);
+        yield return question(SAccumulation.BackgroundColor, args: [Ordinal(3)]).Answers(bgNames[2], preferredWrong: bgNames);
+        yield return question(SAccumulation.BackgroundColor, args: [Ordinal(4)]).Answers(bgNames[3], preferredWrong: bgNames);
+        yield return question(SAccumulation.BackgroundColor, args: [Ordinal(5)]).Answers(bgNames[4], preferredWrong: bgNames);
     }
 }

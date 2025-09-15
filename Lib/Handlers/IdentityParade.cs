@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -51,12 +51,11 @@ public partial class SouvenirModule
         var validBuilds = new[] { "Fat", "Hunched", "Muscular", "Short", "Slim", "Tall" };
         var validAttires = new[] { "Blazer", "Hoodie", "Jumper", "Suit", "T-shirt", "Tank top" };
 
-        addQuestions(module,
-            makeQuestion(Question.IdentityParadeHairColors, module, formatArgs: new[] { "was" }, correctAnswers: hairs.ToArray()),
-            makeQuestion(Question.IdentityParadeHairColors, module, formatArgs: new[] { "was not" }, correctAnswers: validHairs.Except(hairs).ToArray()),
-            makeQuestion(Question.IdentityParadeBuilds, module, formatArgs: new[] { "was" }, correctAnswers: builds.ToArray()),
-            makeQuestion(Question.IdentityParadeBuilds, module, formatArgs: new[] { "was not" }, correctAnswers: validBuilds.Except(builds).ToArray()),
-            makeQuestion(Question.IdentityParadeAttires, module, formatArgs: new[] { "was" }, correctAnswers: attires.ToArray()),
-            makeQuestion(Question.IdentityParadeAttires, module, formatArgs: new[] { "was not" }, correctAnswers: validAttires.Except(attires).ToArray()));
+        yield return question(SIdentityParade.HairColors, args: ["was"]).Answers(hairs.ToArray());
+        yield return question(SIdentityParade.HairColors, args: ["was not"]).Answers(validHairs.Except(hairs).ToArray());
+        yield return question(SIdentityParade.Builds, args: ["was"]).Answers(builds.ToArray());
+        yield return question(SIdentityParade.Builds, args: ["was not"]).Answers(validBuilds.Except(builds).ToArray());
+        yield return question(SIdentityParade.Attires, args: ["was"]).Answers(attires.ToArray());
+        yield return question(SIdentityParade.Attires, args: ["was not"]).Answers(validAttires.Except(attires).ToArray());
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,8 +20,7 @@ public partial class SouvenirModule
         var ledIndices = GetArrayField<int>(comp, "ledIndices").Get(expectedLength: 2, validator: ix => ix is < 0 or > 3 ? "expected range 0–3" : null);
         var ledColors = new[] { "White", "Red", "Green", "Orange" };
 
-        addQuestions(module,
-          makeQuestion(Question.ChineseCountingLED, module, formatArgs: new[] { "left" }, correctAnswers: new[] { ledColors[ledIndices[0]] }),
-          makeQuestion(Question.ChineseCountingLED, module, formatArgs: new[] { "right" }, correctAnswers: new[] { ledColors[ledIndices[1]] }));
+        yield return question(SChineseCounting.LED, args: ["left"]).Answers(ledColors[ledIndices[0]]);
+        yield return question(SChineseCounting.LED, args: ["right"]).Answers(ledColors[ledIndices[1]]);
     }
 }

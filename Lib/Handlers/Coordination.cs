@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -23,8 +23,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
         var startingCoordinate = GetIntField(comp, "StartingCoordinate").Get();
         var modCoordinates = GetArrayField<string>(comp, "ModuleCoordinates").Get();
-        addQuestions(module,
-            makeQuestion(Question.CoordinationLabel, module, correctAnswers: new[] { modCoordinates[startingCoordinate].ToString() }),
-            makeQuestion(Question.CoordinationPosition, module, correctAnswers: new[] { new Coord(6, 6, startingCoordinate) }));
+        yield return question(SCoordination.Label).Answers(modCoordinates[startingCoordinate].ToString());
+        yield return question(SCoordination.Position).Answers(new Coord(6, 6, startingCoordinate));
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,8 +22,7 @@ public partial class SouvenirModule
         var allWords = GetArrayField<string>(comp, "allWords").Get();
         var currentWords = GetField<List<string>>(comp, "currentWords").Get();
 
-        addQuestions(module,
-           makeQuestion(Question.VWords, module, formatArgs: new[] { "was" }, correctAnswers: currentWords.ToArray(), preferredWrongAnswers: allWords),
-           makeQuestion(Question.VWords, module, formatArgs: new[] { "was not" }, correctAnswers: allWords.Where(a => !currentWords.Contains(a)).ToArray(), preferredWrongAnswers: allWords));
+        yield return question(SV.Words, args: ["was"]).Answers(currentWords.ToArray(), preferredWrong: allWords);
+        yield return question(SV.Words, args: ["was not"]).Answers(allWords.Where(a => !currentWords.Contains(a)).ToArray(), preferredWrong: allWords);
     }
 }

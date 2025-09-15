@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -28,10 +28,7 @@ public partial class SouvenirModule
             .Get(expectedLength: 4)[ledIndex]
             .GetComponent<MeshRenderer>().material = GetArrayField<Material>(comp, "LEDs", isPublic: true).Get(expectedLength: 2)[0];
 
-        addQuestions(
-            module,
-            makeQuestion(Question.KnowYourWayArrow, module, correctAnswers: new[] { new[] { "Up", "Left", "Down", "Right" }[arrowIndex] }),
-            makeQuestion(Question.KnowYourWayLed, module, correctAnswers: new[] { new[] { "Top", "Left", "Bottom", "Right" }[ledIndex] })
-        );
+        yield return question(SKnowYourWay.Arrow).Answers(new[] { "Up", "Left", "Down", "Right" }[arrowIndex]);
+        yield return question(SKnowYourWay.Led).Answers(new[] { "Top", "Left", "Bottom", "Right" }[ledIndex]);
     }
 }

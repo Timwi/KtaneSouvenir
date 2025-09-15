@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -40,14 +40,13 @@ public partial class SouvenirModule
         var monsplodeIds = new[] { fldMonsplode.Get(0, monsplodeNames.Length - 1) }.Concat(deck.Select(card => fldMonsplode.GetFrom(card, 0, monsplodeNames.Length - 1))).ToArray();
         var monsplodes = monsplodeIds.Select(mn => monsplodeNames[mn]).ToArray();
         var printVersions = new[] { fldPrintChar.Get() + "" + fldPrintDigit.Get() }.Concat(deck.Select(card => fldPrintChar.GetFrom(card) + "" + fldPrintDigit.GetFrom(card))).ToArray();
-        addQuestions(module,
-            makeQuestion(Question.MonsplodeTradingCardsCards, module, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { monsplodes[0] }, preferredWrongAnswers: monsplodeNames),
-            makeQuestion(Question.MonsplodeTradingCardsCards, module, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { monsplodes[1] }, preferredWrongAnswers: monsplodeNames),
-            makeQuestion(Question.MonsplodeTradingCardsCards, module, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { monsplodes[2] }, preferredWrongAnswers: monsplodeNames),
-            makeQuestion(Question.MonsplodeTradingCardsCards, module, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { monsplodes[3] }, preferredWrongAnswers: monsplodeNames),
-            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, module, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { printVersions[0] }, preferredWrongAnswers: printVersions),
-            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, module, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { printVersions[1] }, preferredWrongAnswers: printVersions),
-            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, module, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { printVersions[2] }, preferredWrongAnswers: printVersions),
-            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, module, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { printVersions[3] }, preferredWrongAnswers: printVersions));
+        yield return question(SMonsplodeTradingCards.Cards, args: ["card on offer"]).Answers(monsplodes[0], preferredWrong: monsplodeNames);
+        yield return question(SMonsplodeTradingCards.Cards, args: ["first card in your hand"]).Answers(monsplodes[1], preferredWrong: monsplodeNames);
+        yield return question(SMonsplodeTradingCards.Cards, args: ["second card in your hand"]).Answers(monsplodes[2], preferredWrong: monsplodeNames);
+        yield return question(SMonsplodeTradingCards.Cards, args: ["third card in your hand"]).Answers(monsplodes[3], preferredWrong: monsplodeNames);
+        yield return question(SMonsplodeTradingCards.PrintVersions, args: ["card on offer"]).Answers(printVersions[0], preferredWrong: printVersions);
+        yield return question(SMonsplodeTradingCards.PrintVersions, args: ["first card in your hand"]).Answers(printVersions[1], preferredWrong: printVersions);
+        yield return question(SMonsplodeTradingCards.PrintVersions, args: ["second card in your hand"]).Answers(printVersions[2], preferredWrong: printVersions);
+        yield return question(SMonsplodeTradingCards.PrintVersions, args: ["third card in your hand"]).Answers(printVersions[3], preferredWrong: printVersions);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -59,8 +59,7 @@ public partial class SouvenirModule
             .Concat(orderedVegetablesIndexes.Select(i => allVegetables[i]))
             .Concat(orderedCondimentsIndexes.Select(i => allCondiments[i])).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.SubwayBread, module, correctAnswers: new[] { allBreads[orderedBreadIndex] }),
-            makeQuestion(Question.SubwayItems, module, correctAnswers: allMeats.Concat(allCheeses).Concat(allVegetables).Concat(allCondiments).Except(requestedItems).ToArray()));
+        yield return question(SSubway.Bread).Answers(allBreads[orderedBreadIndex]);
+        yield return question(SSubway.Items).Answers(allMeats.Concat(allCheeses).Concat(allVegetables).Concat(allCondiments).Except(requestedItems).ToArray());
     }
 }

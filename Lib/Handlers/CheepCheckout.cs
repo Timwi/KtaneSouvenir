@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -25,8 +25,7 @@ public partial class SouvenirModule
         var shuffledList = GetField<List<int>>(comp, "numberList", isPublic: false).Get();
         var birdsPresent = shuffledList.Take(5).Where(ix => ix < 26).Select(ix => Question.CheepCheckoutBirds.GetAnswers()[ix]).ToArray();
 
-        addQuestions(module,
-           makeQuestion(Question.CheepCheckoutBirds, module, formatArgs: new[] { "was" }, correctAnswers: birdsPresent),
-           makeQuestion(Question.CheepCheckoutBirds, module, formatArgs: new[] { "was not" }, correctAnswers: Question.CheepCheckoutBirds.GetAnswers().Except(birdsPresent).ToArray()));
+        yield return question(SCheepCheckout.Birds, args: ["was"]).Answers(birdsPresent);
+        yield return question(SCheepCheckout.Birds, args: ["was not"]).Answers(Question.CheepCheckoutBirds.GetAnswers().Except(birdsPresent).ToArray());
     }
 }

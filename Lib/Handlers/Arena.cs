@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -31,9 +31,8 @@ public partial class SouvenirModule
         var enemyNames = GetField<TextMesh>(comp, "DefEnemies", isPublic: true).Get().text.Split('\n').ToArray();
         var maxNum = GetField<TextMesh>(comp, "AtkNum", isPublic: true).Get().text.Replace("[", "").Replace("]", "");
 
-        addQuestions(module,
-            makeQuestion(Question.ArenaDamage, module, correctAnswers: new[] { maxNum }),
-            makeQuestion(Question.ArenaEnemies, module, correctAnswers: enemyNames),
-            makeQuestion(Question.ArenaNumbers, module, correctAnswers: grabNums));
+        yield return question(SArena.Damage).Answers(maxNum);
+        yield return question(SArena.Enemies).Answers(enemyNames);
+        yield return question(SArena.Numbers).Answers(grabNums);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -22,8 +22,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-           makeQuestion(Question.SubscribeToPewdiepieSubCount, module, formatArgs: new[] { "PewDiePie" }, correctAnswers: new[] { pewdiepieNumber.ToString() }),
-           makeQuestion(Question.SubscribeToPewdiepieSubCount, module, formatArgs: new[] { "T-Series" }, correctAnswers: new[] { tSeriesNumber.ToString() }));
+        yield return question(SSubscribeToPewdiepie.SubCount, args: ["PewDiePie"]).Answers(pewdiepieNumber.ToString());
+        yield return question(SSubscribeToPewdiepie.SubCount, args: ["T-Series"]).Answers(tSeriesNumber.ToString());
     }
 }

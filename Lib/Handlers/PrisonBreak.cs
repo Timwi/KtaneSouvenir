@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -48,8 +48,7 @@ public partial class SouvenirModule
 
         var cell = GetIntField(comp, "cell").Get(min: 0, max: 14);
 
-        addQuestions(module,
-            makeQuestion(Question.PrisonBreakPrisoner, module, correctAnswers: new[] { (cell + 1).ToString() }),
-            makeQuestion(Question.PrisonBreakDefuser, module, correctAnswers: new[] { $"{(char) ('A' + (startPos % 25 - 1) / 2)}{(startPos / 25 + 1) / 2}" }));
+        yield return question(SPrisonBreak.Prisoner).Answers((cell + 1).ToString());
+        yield return question(SPrisonBreak.Defuser).Answers($"{(char) ('A' + (startPos % 25 - 1) / 2)}{(startPos / 25 + 1) / 2}");
     }
 }

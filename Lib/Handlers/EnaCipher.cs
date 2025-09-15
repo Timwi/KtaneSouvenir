@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -34,9 +34,9 @@ public partial class SouvenirModule
         var allWordsObj = Activator.CreateInstance(allWordsType);
         var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 6);
 
-        addQuestions(module, makeQuestion(Question.EnaCipherKeywordAnswer, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { keywords[0] }, preferredWrongAnswers: allWords[keywords[0].Length - 3].ToArray()),
-            makeQuestion(Question.EnaCipherKeywordAnswer, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { keywords[1] }, preferredWrongAnswers: allWords[keywords[1].Length - 3].ToArray()),
-            makeQuestion(Question.EnaCipherExtAnswer, module, correctAnswers: new[] { extNumbers }),
-            makeQuestion(Question.EnaCipherEncryptedAnswer, module, correctAnswers: new[] { encryptedWord }));
+        yield return question(SEnaCipher.KeywordAnswer, args: [Ordinal(1)]).Answers(keywords[0], preferredWrong: allWords[keywords[0].Length - 3].ToArray());
+        yield return question(SEnaCipher.KeywordAnswer, args: [Ordinal(2)]).Answers(keywords[1], preferredWrong: allWords[keywords[1].Length - 3].ToArray());
+        yield return question(SEnaCipher.ExtAnswer).Answers(extNumbers);
+        yield return question(SEnaCipher.EncryptedAnswer).Answers(encryptedWord);
     }
 }

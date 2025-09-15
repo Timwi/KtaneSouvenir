@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -50,10 +50,7 @@ public partial class SouvenirModule
 
         var brokenStringPosition = GetIntField(comp, "_brokenString").Get(min: 0, max: 5) + 1;
 
-        addQuestions(
-            module,
-            makeQuestion(Question.BrokenGuitarChordsDisplayedChord, module, correctAnswers: new[] { displayedChord }, preferredWrongAnswers: possibleAnswers.ToArray()),
-            makeQuestion(Question.BrokenGuitarChordsMutedString, module, correctAnswers: new[] { brokenStringPosition.ToString() })
-        );
+        yield return question(SBrokenGuitarChords.DisplayedChord).Answers(displayedChord, preferredWrong: possibleAnswers.ToArray());
+        yield return question(SBrokenGuitarChords.MutedString).Answers(brokenStringPosition.ToString());
     }
 }

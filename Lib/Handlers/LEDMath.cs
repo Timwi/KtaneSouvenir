@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -23,9 +23,8 @@ public partial class SouvenirModule
 
         var ledColors = new[] { "Red", "Blue", "Green", "Yellow" };
 
-        addQuestions(module,
-            makeQuestion(Question.LEDMathLights, module, formatArgs: new[] { "LED A" }, correctAnswers: new[] { ledColors[ledA] }),
-            makeQuestion(Question.LEDMathLights, module, formatArgs: new[] { "LED B" }, correctAnswers: new[] { ledColors[ledB] }),
-            makeQuestion(Question.LEDMathLights, module, formatArgs: new[] { "the operator LED" }, correctAnswers: new[] { ledColors[ledOp] }));
+        yield return question(SLEDMath.Lights, args: ["LED A"]).Answers(ledColors[ledA]);
+        yield return question(SLEDMath.Lights, args: ["LED B"]).Answers(ledColors[ledB]);
+        yield return question(SLEDMath.Lights, args: ["the operator LED"]).Answers(ledColors[ledOp]);
     }
 }

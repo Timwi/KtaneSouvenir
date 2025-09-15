@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -28,11 +28,9 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var boatSize = GetIntField(comp, "_boatSize").Get();
-        var allAnimals = Question.WolfGoatAndCabbageAnimals.GetAnswers();
+        var allAnimals = SWolfGoatAndCabbage.Animals.GetAnswers();
         foreach (var present in new[] { false, true })
-        {
             yield return question(SWolfGoatAndCabbage.Animals, args: [present ? "present" : "not present"]).Answers(present ? animalsPresent : allAnimals.Except(animalsPresent).ToArray(), preferredWrong: present ? allAnimals : animalsPresent);
-        }
-        yield return question(SWolfGoatAndCabbage.BoatSize, args: null).Answers(boatSize.ToString());
+        yield return question(SWolfGoatAndCabbage.BoatSize).Answers(boatSize.ToString());
     }
 }

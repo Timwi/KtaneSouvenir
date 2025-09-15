@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -29,9 +29,7 @@ public partial class SouvenirModule
 
         var colors = new string[] { "Red", "Yellow", "Green", "Blue" };
 
-        addQuestions(module,
-            makeQuestion(Question.NavigationDeterminationColor, module, correctAnswers: new[] { colors[color] }),
-            makeQuestion(Question.NavigationDeterminationLabel, module, correctAnswers: new[] { label.ToString() })
-        );
+        yield return question(SNavigationDetermination.Color).Answers(colors[color]);
+        yield return question(SNavigationDetermination.Label).Answers(label.ToString());
     }
 }

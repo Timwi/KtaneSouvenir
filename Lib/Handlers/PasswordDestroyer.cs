@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,7 +21,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-            makeQuestion(Question.PasswordDestroyerTwoFactorV2, module, correctAnswers: new[] { fldTwoFactorV2.Get(100100, 999999).ToString() }));
+        yield return question(SPasswordDestroyer.TwoFactorV2).Answers(fldTwoFactorV2.Get(100100, 999999).ToString());
     }
 }

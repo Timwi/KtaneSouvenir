@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -35,8 +35,7 @@ public partial class SouvenirModule
         foreach (var rend in inatorRenderers)
             rend.enabled = false;
 
-        addQuestions(module,
-            makeQuestion(Question.DoofenshmirtzEvilIncJingles, module, allAnswers: allJingles, correctAnswers: usedJingles.Select(i => allJingles[i]).ToArray()),
-            makeQuestion(Question.DoofenshmirtzEvilIncInators, module, allAnswers: allInators, correctAnswers: usedInators.Select(i => allInators[i]).ToArray()));
+        yield return question(SDoofenshmirtzEvilInc.Jingles).Answers(usedJingles.Select(i => allJingles[i]).ToArray(), all: allJingles);
+        yield return question(SDoofenshmirtzEvilInc.Inators).Answers(usedInators.Select(i => allInators[i]).ToArray(), all: allInators);
     }
 }

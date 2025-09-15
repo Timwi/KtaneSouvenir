@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -22,9 +22,10 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "starstruck");
         const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^^&*()=+_,./<>?;:[]\\{}|-";
-        var stars = GetArrayField<char>(comp, "piecePositions").Get(expectedLength: 3, validator: v => !valid.Contains(v) ? $"Expected chars in \"{valid}\"" : null);
+        var stars = GetArrayField<char>(comp, "piecePositions").Get(expectedLength: 3, validator: v => !valid.Contains(v) ? $"Expected chars in “{valid}”" : null);
         var text = GetArrayField<TextMesh>(comp, "bigStars", true).Get(expectedLength: 3)[0];
 
-        addQuestions(module, makeQuestion(Question.StarstruckStar, module, text.font, text.GetComponent<Renderer>().sharedMaterial.mainTexture, correctAnswers: stars.Select(c => c.ToString()).ToArray()));
+        yield return question(SStarstruck.Star).Answers(stars.Select(c => c.ToString()).ToArray(),
+            info: new TextAnswerInfo(text.font, text.GetComponent<Renderer>().sharedMaterial.mainTexture));
     }
 }

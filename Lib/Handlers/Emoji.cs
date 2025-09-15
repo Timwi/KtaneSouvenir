@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -24,8 +24,7 @@ public partial class SouvenirModule
         var usedSprites = new[] { Array.IndexOf(allSprites, spriteSlots[0].sprite), Array.IndexOf(allSprites, spriteSlots[1].sprite) };
         allSprites = allSprites.TranslateSprites(200).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.EmojiEmoji, module, formatArgs: new[] { "left" }, correctAnswers: new[] { allSprites[usedSprites[0]] }, preferredWrongAnswers: new[] { allSprites[usedSprites[1]] }, allAnswers: allSprites),
-            makeQuestion(Question.EmojiEmoji, module, formatArgs: new[] { "right" }, correctAnswers: new[] { allSprites[usedSprites[1]] }, preferredWrongAnswers: new[] { allSprites[usedSprites[0]] }, allAnswers: allSprites));
+        yield return question(SEmoji.Emoji, args: ["left"]).Answers(allSprites[usedSprites[0]], all: allSprites, preferredWrong: [allSprites[usedSprites[1]]]);
+        yield return question(SEmoji.Emoji, args: ["right"]).Answers(allSprites[usedSprites[1]], all: allSprites, preferredWrong: [allSprites[usedSprites[0]]]);
     }
 }

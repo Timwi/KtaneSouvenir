@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -25,10 +25,9 @@ public partial class SouvenirModule
         var obtainedDigits = GetArrayField<int>(comp, "obtainedDigits").Get(expectedLength: 3);
         var submittedNum = GetIntField(comp, "finalNumber").Get(min: 25, max: 225);
 
-        addQuestions(module,
-            makeQuestion(Question.MSeqObtained, module, correctAnswers: new[] { obtainedDigits[0].ToString() }, formatArgs: new[] { "first" }),
-            makeQuestion(Question.MSeqObtained, module, correctAnswers: new[] { obtainedDigits[1].ToString() }, formatArgs: new[] { "second" }),
-            makeQuestion(Question.MSeqObtained, module, correctAnswers: new[] { obtainedDigits[2].ToString() }, formatArgs: new[] { "third" }),
-            makeQuestion(Question.MSeqSubmitted, module, correctAnswers: new[] { submittedNum.ToString() }));
+        yield return question(SMSeq.Obtained, args: ["first"]).Answers(obtainedDigits[0].ToString());
+        yield return question(SMSeq.Obtained, args: ["second"]).Answers(obtainedDigits[1].ToString());
+        yield return question(SMSeq.Obtained, args: ["third"]).Answers(obtainedDigits[2].ToString());
+        yield return question(SMSeq.Submitted).Answers(submittedNum.ToString());
     }
 }

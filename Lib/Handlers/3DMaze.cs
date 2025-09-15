@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -39,8 +38,7 @@ public partial class SouvenirModule
         var correctMarkings = chars.OrderBy(c => c).JoinString();
 
         yield return WaitForSolve;
-        addQuestions(module,
-            makeQuestion(Question._3DMazeMarkings, module, correctAnswers: new[] { correctMarkings }),
-            makeQuestion(Question._3DMazeBearing, module, correctAnswers: new[] { new[] { "North", "East", "South", "West" }[bearing] }));
+        yield return question(S3DMaze.Markings).Answers(correctMarkings);
+        yield return question(S3DMaze.Bearing).Answers(new[] { "North", "East", "South", "West" }[bearing]);
     }
 }

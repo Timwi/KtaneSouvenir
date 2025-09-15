@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -52,13 +52,11 @@ public partial class SouvenirModule
         var jsonReader = GetStaticField<object>(comp.GetType(), "jsonData").Get();
         var allNames = GetStaticProperty<List<string>>(jsonReader.GetType(), "ContestantNames", isPublic: true).Get().ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.WeakestLinkElimination, module, correctAnswers: new[] { eliminationPersonName }, preferredWrongAnswers: allNames),
-            makeQuestion(Question.WeakestLinkMoneyPhaseName, module, correctAnswers: new[] { moneyPhaseName }, preferredWrongAnswers: allNames),
-            makeQuestion(Question.WeakestLinkSkill, module, formatArgs: new[] { names[0] }, correctAnswers: new[] { skill[0].ToString() }),
-            makeQuestion(Question.WeakestLinkSkill, module, formatArgs: new[] { names[1] }, correctAnswers: new[] { skill[1].ToString() }),
-            makeQuestion(Question.WeakestLinkRatio, module, formatArgs: new[] { names[0] }, correctAnswers: new[] { ratioArr[0] }),
-            makeQuestion(Question.WeakestLinkRatio, module, formatArgs: new[] { names[1] }, correctAnswers: new[] { ratioArr[1] })
-        );
+        yield return question(SWeakestLink.Elimination).Answers(eliminationPersonName, preferredWrong: allNames);
+        yield return question(SWeakestLink.MoneyPhaseName).Answers(moneyPhaseName, preferredWrong: allNames);
+        yield return question(SWeakestLink.Skill, args: [names[0]]).Answers(skill[0].ToString());
+        yield return question(SWeakestLink.Skill, args: [names[1]]).Answers(skill[1].ToString());
+        yield return question(SWeakestLink.Ratio, args: [names[0]]).Answers(ratioArr[0]);
+        yield return question(SWeakestLink.Ratio, args: [names[1]]).Answers(ratioArr[1]);
     }
 }

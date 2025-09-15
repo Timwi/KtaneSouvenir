@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -24,8 +24,7 @@ public partial class SouvenirModule
         var possibleStartVals = Enumerable.Range(17, 33).Select(x => x.ToString()).ToArray();
         var possibleGoalVals = Enumerable.Range(0, 50).Select(x => x.ToString()).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.MazematicsValue, module, formatArgs: new[] { "initial" }, correctAnswers: new[] { startVal }, preferredWrongAnswers: possibleStartVals),
-            makeQuestion(Question.MazematicsValue, module, formatArgs: new[] { "goal" }, correctAnswers: new[] { goalVal }, preferredWrongAnswers: possibleGoalVals));
+        yield return question(SMazematics.Value, args: ["initial"]).Answers(startVal, preferredWrong: possibleStartVals);
+        yield return question(SMazematics.Value, args: ["goal"]).Answers(goalVal, preferredWrong: possibleGoalVals);
     }
 }

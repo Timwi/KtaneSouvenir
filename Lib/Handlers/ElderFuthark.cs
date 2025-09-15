@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -19,9 +19,8 @@ public partial class SouvenirModule
 
         var pickedRuneNames = GetArrayField<string>(comp, "pickedRuneNames").Get(expectedLength: 3);
 
-        addQuestions(module,
-            makeQuestion(Question.ElderFutharkRunes, module, correctAnswers: new[] { pickedRuneNames[0] }, formatArgs: new[] { "first" }, preferredWrongAnswers: pickedRuneNames),
-            makeQuestion(Question.ElderFutharkRunes, module, correctAnswers: new[] { pickedRuneNames[1] }, formatArgs: new[] { "second" }, preferredWrongAnswers: pickedRuneNames),
-            makeQuestion(Question.ElderFutharkRunes, module, correctAnswers: new[] { pickedRuneNames[2] }, formatArgs: new[] { "third" }, preferredWrongAnswers: pickedRuneNames));
+        yield return question(SElderFuthark.Runes, args: ["first"]).Answers(pickedRuneNames[0], preferredWrong: pickedRuneNames);
+        yield return question(SElderFuthark.Runes, args: ["second"]).Answers(pickedRuneNames[1], preferredWrong: pickedRuneNames);
+        yield return question(SElderFuthark.Runes, args: ["third"]).Answers(pickedRuneNames[2], preferredWrong: pickedRuneNames);
     }
 }

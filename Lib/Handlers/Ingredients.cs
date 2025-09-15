@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -25,8 +25,7 @@ public partial class SouvenirModule
         var unusedIngredients = GetField<IList>(comp, "CurrentIngredientsList").Get().Cast<object>().Select(ev => ev.ToString()).ToArray();
         var usedIngredients = initialIngredients.Except(unusedIngredients).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.IngredientsIngredients, module, correctAnswers: usedIngredients, preferredWrongAnswers: unusedIngredients),
-            makeQuestion(Question.IngredientsNonIngredients, module, correctAnswers: unusedIngredients, preferredWrongAnswers: usedIngredients));
+        yield return question(SIngredients.Ingredients).Answers(usedIngredients, preferredWrong: unusedIngredients);
+        yield return question(SIngredients.NonIngredients).Answers(unusedIngredients, preferredWrong: usedIngredients);
     }
 }

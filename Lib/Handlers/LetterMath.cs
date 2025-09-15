@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -25,8 +25,7 @@ public partial class SouvenirModule
 
         var wrongLetters = Enumerable.Range(0, 26).ToArray().Select(i => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(i, 1)).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.LetterMathDisplay, module, formatArgs: new[] { "left" }, correctAnswers: new[] { letters[0] }, preferredWrongAnswers: wrongLetters),
-            makeQuestion(Question.LetterMathDisplay, module, formatArgs: new[] { "right" }, correctAnswers: new[] { letters[1] }, preferredWrongAnswers: wrongLetters));
+        yield return question(SLetterMath.Display, args: ["left"]).Answers(letters[0], preferredWrong: wrongLetters);
+        yield return question(SLetterMath.Display, args: ["right"]).Answers(letters[1], preferredWrong: wrongLetters);
     }
 }

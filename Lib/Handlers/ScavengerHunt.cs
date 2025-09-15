@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -39,10 +39,9 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-            makeQuestion(Question.ScavengerHuntKeySquare, module, correctAnswers: new[] { new Coord(4, 4, keySquare) }),
-            makeQuestion(Question.ScavengerHuntColoredTiles, module, formatArgs: new[] { "red" }, correctAnswers: redTiles.Select(c => new Coord(4, 4, c)).ToArray()),
-            makeQuestion(Question.ScavengerHuntColoredTiles, module, formatArgs: new[] { "green" }, correctAnswers: greenTiles.Select(c => new Coord(4, 4, c)).ToArray()),
-            makeQuestion(Question.ScavengerHuntColoredTiles, module, formatArgs: new[] { "blue" }, correctAnswers: blueTiles.Select(c => new Coord(4, 4, c)).ToArray()));
+        yield return question(SScavengerHunt.KeySquare).Answers(new Coord(4, 4, keySquare));
+        yield return question(SScavengerHunt.ColoredTiles, args: ["red"]).Answers(redTiles.Select(c => new Coord(4, 4, c)).ToArray());
+        yield return question(SScavengerHunt.ColoredTiles, args: ["green"]).Answers(greenTiles.Select(c => new Coord(4, 4, c)).ToArray());
+        yield return question(SScavengerHunt.ColoredTiles, args: ["blue"]).Answers(blueTiles.Select(c => new Coord(4, 4, c)).ToArray());
     }
 }

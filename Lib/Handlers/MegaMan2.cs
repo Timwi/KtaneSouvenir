@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -37,8 +37,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-            makeQuestion(Question.MegaMan2Master, module, correctAnswers: new[] { applicableMasters.First(spr => spr.name == robotMasters[selectedMaster]) }, preferredWrongAnswers: applicableMasters),
-            makeQuestion(Question.MegaMan2Weapon, module, correctAnswers: new[] { applicableWeapons.First(spr => spr.name == robotMasters[selectedWeapon]) }, preferredWrongAnswers: applicableWeapons));
+        yield return question(SMegaMan2.Master).Answers(applicableMasters.First(spr => spr.name == robotMasters[selectedMaster]), preferredWrong: applicableMasters);
+        yield return question(SMegaMan2.Weapon).Answers(applicableWeapons.First(spr => spr.name == robotMasters[selectedWeapon]), preferredWrong: applicableWeapons);
     }
 }

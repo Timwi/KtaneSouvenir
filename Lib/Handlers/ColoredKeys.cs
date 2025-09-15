@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -39,16 +39,15 @@ public partial class SouvenirModule
         var btnLetter = Enumerable.Range(1, 4).Select(i => GetIntField(comp, $"b{i}LetIndex").Get(0, letters.Length - 1)).ToArray();
         var btnColor = Enumerable.Range(1, 4).Select(i => GetIntField(comp, $"b{i}ColIndex").Get(0, matsNames.Length - 1)).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.ColoredKeysDisplayWord, module, correctAnswers: new[] { colors[displayWord] }, preferredWrongAnswers: colors),
-            makeQuestion(Question.ColoredKeysDisplayWordColor, module, correctAnswers: new[] { colors[displayColor] }, preferredWrongAnswers: colors),
-            makeQuestion(Question.ColoredKeysKeyLetter, module, formatArgs: new[] { "top-left" }, correctAnswers: new[] { letters[btnLetter[0]] }, preferredWrongAnswers: letters),
-            makeQuestion(Question.ColoredKeysKeyLetter, module, formatArgs: new[] { "top-right" }, correctAnswers: new[] { letters[btnLetter[1]] }, preferredWrongAnswers: letters),
-            makeQuestion(Question.ColoredKeysKeyLetter, module, formatArgs: new[] { "bottom-left" }, correctAnswers: new[] { letters[btnLetter[2]] }, preferredWrongAnswers: letters),
-            makeQuestion(Question.ColoredKeysKeyLetter, module, formatArgs: new[] { "bottom-right" }, correctAnswers: new[] { letters[btnLetter[3]] }, preferredWrongAnswers: letters),
-            makeQuestion(Question.ColoredKeysKeyColor, module, formatArgs: new[] { "top-left" }, correctAnswers: new[] { matsNames[btnColor[0]] }, preferredWrongAnswers: matsNames),
-            makeQuestion(Question.ColoredKeysKeyColor, module, formatArgs: new[] { "top-right" }, correctAnswers: new[] { matsNames[btnColor[1]] }, preferredWrongAnswers: matsNames),
-            makeQuestion(Question.ColoredKeysKeyColor, module, formatArgs: new[] { "bottom-left" }, correctAnswers: new[] { matsNames[btnColor[2]] }, preferredWrongAnswers: matsNames),
-            makeQuestion(Question.ColoredKeysKeyColor, module, formatArgs: new[] { "bottom-right" }, correctAnswers: new[] { matsNames[btnColor[3]] }, preferredWrongAnswers: matsNames));
+        yield return question(SColoredKeys.DisplayWord).Answers(colors[displayWord], preferredWrong: colors);
+        yield return question(SColoredKeys.DisplayWordColor).Answers(colors[displayColor], preferredWrong: colors);
+        yield return question(SColoredKeys.KeyLetter, args: ["top-left"]).Answers(letters[btnLetter[0]], preferredWrong: letters);
+        yield return question(SColoredKeys.KeyLetter, args: ["top-right"]).Answers(letters[btnLetter[1]], preferredWrong: letters);
+        yield return question(SColoredKeys.KeyLetter, args: ["bottom-left"]).Answers(letters[btnLetter[2]], preferredWrong: letters);
+        yield return question(SColoredKeys.KeyLetter, args: ["bottom-right"]).Answers(letters[btnLetter[3]], preferredWrong: letters);
+        yield return question(SColoredKeys.KeyColor, args: ["top-left"]).Answers(matsNames[btnColor[0]], preferredWrong: matsNames);
+        yield return question(SColoredKeys.KeyColor, args: ["top-right"]).Answers(matsNames[btnColor[1]], preferredWrong: matsNames);
+        yield return question(SColoredKeys.KeyColor, args: ["bottom-left"]).Answers(matsNames[btnColor[2]], preferredWrong: matsNames);
+        yield return question(SColoredKeys.KeyColor, args: ["bottom-right"]).Answers(matsNames[btnColor[3]], preferredWrong: matsNames);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -24,20 +24,19 @@ public partial class SouvenirModule
 
         var balls = GetArrayField<int>(comp, "RndBallNums").Get(expectedLength: 7);
 
-        addQuestions(module,
-            makeQuestion(Question._9BallLetters, module, formatArgs: new[] { "A" }, correctAnswers: new[] { (balls[0] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, module, formatArgs: new[] { "B" }, correctAnswers: new[] { (balls[1] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, module, formatArgs: new[] { "C" }, correctAnswers: new[] { (balls[2] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, module, formatArgs: new[] { "D" }, correctAnswers: new[] { (balls[3] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, module, formatArgs: new[] { "E" }, correctAnswers: new[] { (balls[4] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, module, formatArgs: new[] { "F" }, correctAnswers: new[] { (balls[5] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, module, formatArgs: new[] { "G" }, correctAnswers: new[] { (balls[6] + 1).ToString() }),
-            makeQuestion(Question._9BallNumbers, module, formatArgs: new[] { "2" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 1)] }),
-            makeQuestion(Question._9BallNumbers, module, formatArgs: new[] { "3" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 2)] }),
-            makeQuestion(Question._9BallNumbers, module, formatArgs: new[] { "4" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 3)] }),
-            makeQuestion(Question._9BallNumbers, module, formatArgs: new[] { "5" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 4)] }),
-            makeQuestion(Question._9BallNumbers, module, formatArgs: new[] { "6" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 5)] }),
-            makeQuestion(Question._9BallNumbers, module, formatArgs: new[] { "7" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 6)] }),
-            makeQuestion(Question._9BallNumbers, module, formatArgs: new[] { "8" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 7)] }));
+        yield return question(S9Ball.Letters, args: ["A"]).Answers((balls[0] + 1).ToString());
+        yield return question(S9Ball.Letters, args: ["B"]).Answers((balls[1] + 1).ToString());
+        yield return question(S9Ball.Letters, args: ["C"]).Answers((balls[2] + 1).ToString());
+        yield return question(S9Ball.Letters, args: ["D"]).Answers((balls[3] + 1).ToString());
+        yield return question(S9Ball.Letters, args: ["E"]).Answers((balls[4] + 1).ToString());
+        yield return question(S9Ball.Letters, args: ["F"]).Answers((balls[5] + 1).ToString());
+        yield return question(S9Ball.Letters, args: ["G"]).Answers((balls[6] + 1).ToString());
+        yield return question(S9Ball.Numbers, args: ["2"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 1)]);
+        yield return question(S9Ball.Numbers, args: ["3"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 2)]);
+        yield return question(S9Ball.Numbers, args: ["4"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 3)]);
+        yield return question(S9Ball.Numbers, args: ["5"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 4)]);
+        yield return question(S9Ball.Numbers, args: ["6"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 5)]);
+        yield return question(S9Ball.Numbers, args: ["7"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 6)]);
+        yield return question(S9Ball.Numbers, args: ["8"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 7)]);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -25,9 +25,7 @@ public partial class SouvenirModule
         var age = GetIntField(comp, "age").Get(23, 34);
         var name = GetField<string>(comp, "theirName").Get();
 
-        addQuestions(module,
-            makeQuestion(Question.GryphonsName, module, correctAnswers: new[] { name }),
-            makeQuestion(Question.GryphonsAge, module, correctAnswers: new[] { age.ToString() }, preferredWrongAnswers:
-                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(23, 34).ToString()).Distinct().Take(6).ToArray()));
+        yield return question(SGryphons.Name).Answers(name);
+        yield return question(SGryphons.Age).Answers(age.ToString(), preferredWrong: Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(23, 34).ToString()).Distinct().Take(6).ToArray());
     }
 }

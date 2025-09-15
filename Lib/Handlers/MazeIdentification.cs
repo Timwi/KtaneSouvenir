@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -28,15 +28,14 @@ public partial class SouvenirModule
         var seed = GetArrayField<int>(comp, "Quadrants").Get(validator: x => x.Any(y => y is >= 4 or < 0) ? "quadrants out of range" : null);
         var buttonFuncs = GetArrayField<int>(comp, "ButtonFunctions").Get(validator: x => x.Any(y => y is >= 4 or < 0) ? "functions out of range" : null);
         var directions = new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" };
-        addQuestions(module,
-            makeQuestion(Question.MazeIdentificationSeed, module, correctAnswers: new[] { seed.Select(x => x + 1).JoinString() }),
-            makeQuestion(Question.MazeIdentificationNum, module, formatArgs: new[] { "1" }, correctAnswers: new[] { directions[buttonFuncs[0]] }),
-            makeQuestion(Question.MazeIdentificationNum, module, formatArgs: new[] { "2" }, correctAnswers: new[] { directions[buttonFuncs[1]] }),
-            makeQuestion(Question.MazeIdentificationNum, module, formatArgs: new[] { "3" }, correctAnswers: new[] { directions[buttonFuncs[2]] }),
-            makeQuestion(Question.MazeIdentificationNum, module, formatArgs: new[] { "4" }, correctAnswers: new[] { directions[buttonFuncs[3]] }),
-            makeQuestion(Question.MazeIdentificationFunc, module, formatArgs: new[] { "moved you forwards" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 0) + 1).ToString() }),
-            makeQuestion(Question.MazeIdentificationFunc, module, formatArgs: new[] { "turned you clockwise" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 1) + 1).ToString() }),
-            makeQuestion(Question.MazeIdentificationFunc, module, formatArgs: new[] { "moved you backwards" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 2) + 1).ToString() }),
-            makeQuestion(Question.MazeIdentificationFunc, module, formatArgs: new[] { "turned you counter-clockwise" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 3) + 1).ToString() }));
+        yield return question(SMazeIdentification.Seed).Answers(seed.Select(x => x + 1).JoinString());
+        yield return question(SMazeIdentification.Num, args: ["1"]).Answers(directions[buttonFuncs[0]]);
+        yield return question(SMazeIdentification.Num, args: ["2"]).Answers(directions[buttonFuncs[1]]);
+        yield return question(SMazeIdentification.Num, args: ["3"]).Answers(directions[buttonFuncs[2]]);
+        yield return question(SMazeIdentification.Num, args: ["4"]).Answers(directions[buttonFuncs[3]]);
+        yield return question(SMazeIdentification.Func, args: ["moved you forwards"]).Answers((Array.IndexOf(buttonFuncs, 0) + 1).ToString());
+        yield return question(SMazeIdentification.Func, args: ["turned you clockwise"]).Answers((Array.IndexOf(buttonFuncs, 1) + 1).ToString());
+        yield return question(SMazeIdentification.Func, args: ["moved you backwards"]).Answers((Array.IndexOf(buttonFuncs, 2) + 1).ToString());
+        yield return question(SMazeIdentification.Func, args: ["turned you counter-clockwise"]).Answers((Array.IndexOf(buttonFuncs, 3) + 1).ToString());
     }
 }

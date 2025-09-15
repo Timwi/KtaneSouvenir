@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -109,9 +109,8 @@ public partial class SouvenirModule
         if (displayedCreature == null || displayedMoves == null)
             yield break;
 
-        addQuestions(module,
-            makeQuestion(Question.MonsplodeFightCreature, module, correctAnswers: new[] { displayedCreature }),
-            makeQuestion(Question.MonsplodeFightMove, module, formatArgs: new[] { "was" }, correctAnswers: displayedMoves),
-            makeQuestion(Question.MonsplodeFightMove, module, formatArgs: new[] { "was not" }, correctAnswers: Question.MonsplodeFightMove.GetAnswers().Except(displayedMoves).ToArray()));
+        yield return question(SMonsplodeFight.Creature).Answers(displayedCreature);
+        yield return question(SMonsplodeFight.Move, args: ["was"]).Answers(displayedMoves);
+        yield return question(SMonsplodeFight.Move, args: ["was not"]).Answers(Question.MonsplodeFightMove.GetAnswers().Except(displayedMoves).ToArray());
     }
 }

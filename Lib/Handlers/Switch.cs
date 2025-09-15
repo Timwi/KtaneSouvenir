@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -53,10 +53,9 @@ public partial class SouvenirModule
         if (topColor1 < 1 || topColor1 > 6 || bottomColor1 < 1 || bottomColor1 > 6 || topColor2 < 1 || topColor2 > 6 || bottomColor2 < 1 || bottomColor2 > 6)
             throw new AbandonModuleException($"topColor1/bottomColor1/topColor2/bottomColor2 have unexpected values: {topColor1}, {bottomColor1}, {topColor2}, {bottomColor2} (expected 1–6).");
 
-        addQuestions(module,
-            makeQuestion(Question.SwitchInitialColor, module, formatArgs: new[] { "top", "first" }, correctAnswers: new[] { colorNames[topColor1 - 1] }),
-            makeQuestion(Question.SwitchInitialColor, module, formatArgs: new[] { "bottom", "first" }, correctAnswers: new[] { colorNames[bottomColor1 - 1] }),
-            makeQuestion(Question.SwitchInitialColor, module, formatArgs: new[] { "top", "second" }, correctAnswers: new[] { colorNames[topColor2 - 1] }),
-            makeQuestion(Question.SwitchInitialColor, module, formatArgs: new[] { "bottom", "second" }, correctAnswers: new[] { colorNames[bottomColor2 - 1] }));
+        yield return question(SSwitch.InitialColor, args: ["top", "first"]).Answers(colorNames[topColor1 - 1]);
+        yield return question(SSwitch.InitialColor, args: ["bottom", "first"]).Answers(colorNames[bottomColor1 - 1]);
+        yield return question(SSwitch.InitialColor, args: ["top", "second"]).Answers(colorNames[topColor2 - 1]);
+        yield return question(SSwitch.InitialColor, args: ["bottom", "second"]).Answers(colorNames[bottomColor2 - 1]);
     }
 }

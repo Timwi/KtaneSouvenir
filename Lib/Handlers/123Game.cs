@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -30,8 +30,7 @@ public partial class SouvenirModule
         var sprite = GetField<int>(comp, "ProfileSelector").Get(v => v is < 0 or >= 12 ? "expected sprite index 0–11" : null);
         var name = GetField<int>(comp, "NameSelector").Get(v => v is < 0 or >= 13 ? "expected name index 0–12" : null);
 
-        addQuestions(module,
-            makeQuestion(Question._123GameProfile, module, correctAnswers: new[] { sprites[sprite] }, allAnswers: sprites),
-            makeQuestion(Question._123GameName, module, correctAnswers: new[] { names[name] }));
+        yield return question(S123Game.Profile).Answers(sprites[sprite], all: sprites);
+        yield return question(S123Game.Name).Answers(names[name]);
     }
 }

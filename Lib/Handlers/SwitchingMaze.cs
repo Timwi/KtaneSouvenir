@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
 
@@ -45,8 +46,7 @@ public partial class SouvenirModule
         var seedSplit = Regex.Replace(seed, " ", "").Split(':');
         var colorsOfTheMaze = GetArrayField<string>(comp, "ColorsOfMaze").Get();
 
-        addQuestions(module,
-            makeQuestion(Question.SwitchingMazeSeed, module, formatArgs: null, correctAnswers: new[] { seedSplit[1] }),
-            makeQuestion(Question.SwitchingMazeColor, module, formatArgs: null, correctAnswers: new[] { colorsOfTheMaze[numberBasis] }, preferredWrongAnswers: colorsOfTheMaze));
+        yield return question(SSwitchingMaze.Seed).Answers(seedSplit[1]);
+        yield return question(SSwitchingMaze.Color).Answers(colorsOfTheMaze[numberBasis], preferredWrong: colorsOfTheMaze);
     }
 }

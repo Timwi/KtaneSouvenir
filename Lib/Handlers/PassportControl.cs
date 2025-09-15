@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
-
 using static Souvenir.AnswerLayout;
+using Rnd = UnityEngine.Random;
 
 public enum SPassportControl
 {
@@ -66,9 +66,7 @@ public partial class SouvenirModule
                 altDates[i][j] = (startVal + j).ToString();
         }
 
-        addQuestions(module,
-            makeQuestion(Question.PassportControlPassenger, module, formatArgs: new[] { "first" }, correctAnswers: new[] { expirationDates[0].ToString() }, preferredWrongAnswers: altDates[0]),
-            makeQuestion(Question.PassportControlPassenger, module, formatArgs: new[] { "second" }, correctAnswers: new[] { expirationDates[1].ToString() }, preferredWrongAnswers: altDates[1]),
-            makeQuestion(Question.PassportControlPassenger, module, formatArgs: new[] { "third" }, correctAnswers: new[] { expirationDates[2].ToString() }, preferredWrongAnswers: altDates[2]));
+        for (var i = 0; i < 3; i++)
+            yield return question(SPassportControl.Passenger, args: [Ordinal(i + 1)]).Answers(expirationDates[i].ToString(), preferredWrong: altDates[i]);
     }
 }

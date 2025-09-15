@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,8 +21,7 @@ public partial class SouvenirModule
         var rule1 = GetField<int>(comp, "rule1").Get(i => i is < 0 or > 5 ? "Bad rule 1" : null);
         var rule2 = GetField<int>(comp, "rule2").Get(i => i is < 0 or > 5 ? "Bad rule 2" : null);
 
-        addQuestions(module,
-            makeQuestion(Question.BoomtarTheGreatRules, module, formatArgs: new string[] { "one" }, correctAnswers: new string[] { (rule1 + 1).ToString() }, preferredWrongAnswers: new string[] { (rule2 + 1).ToString() }),
-            makeQuestion(Question.BoomtarTheGreatRules, module, formatArgs: new string[] { "two" }, correctAnswers: new string[] { (rule2 + 1).ToString() }, preferredWrongAnswers: new string[] { (rule1 + 1).ToString() }));
+        yield return question(SBoomtarTheGreat.Rules, args: new string[] { "one" }).Answers(new string[] { (rule1 + 1).ToString() }, preferredWrong: new string[] { (rule2 + 1).ToString() });
+        yield return question(SBoomtarTheGreat.Rules, args: new string[] { "two" }).Answers(new string[] { (rule2 + 1).ToString() }, preferredWrong: new string[] { (rule1 + 1).ToString() });
     }
 }

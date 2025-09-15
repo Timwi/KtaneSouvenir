@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -44,11 +44,9 @@ public partial class SouvenirModule
         for (var grLtrIx = 0; grLtrIx < allGreekLetters.Length; grLtrIx++)
             addCandidateDiscriminator(tup => tup.greekLetters.Contains(grLtrIx), true, "ltr", vowelGreekLetters.Contains(allGreekLetters[grLtrIx]) ? "the Navy Button that had an {0} on it" : "the Navy Button that had a {0} on it", allGreekLetters[grLtrIx]);
 
-        addQuestions(module,
-            makeQuestion(Question.NavyButtonGreekLetters, module, formattedModuleName: candidateDiscriminators.Where(tup => tup.name != "ltr").PickRandom().format,
-                correctAnswers: hasGreekLetters.Select(ix => "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"[ix].ToString()).ToArray()),
-            makeQuestion(Question.NavyButtonGiven, module, formattedModuleName: candidateDiscriminators.Where(tup => tup.name != "col").PickRandom().format, formatArgs: new[] { "(0-indexed) column" }, correctAnswers: new[] { (givenIndex % 4).ToString() }),
-            makeQuestion(Question.NavyButtonGiven, module, formattedModuleName: candidateDiscriminators.Where(tup => tup.name != "row").PickRandom().format, formatArgs: new[] { "(0-indexed) row" }, correctAnswers: new[] { (givenIndex / 4).ToString() }),
-            makeQuestion(Question.NavyButtonGiven, module, formattedModuleName: candidateDiscriminators.Where(tup => tup.name != "val").PickRandom().format, formatArgs: new[] { "value" }, correctAnswers: new[] { givenValue.ToString() }));
+        yield return question(SNavyButton.GreekLetters).Answers(hasGreekLetters.Select(ix => "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"[ix].ToString()).ToArray());
+        yield return question(SNavyButton.Given, args: ["(0-indexed) column"]).Answers((givenIndex % 4).ToString());
+        yield return question(SNavyButton.Given, args: ["(0-indexed) row"]).Answers((givenIndex / 4).ToString());
+        yield return question(SNavyButton.Given, args: ["value"]).Answers(givenValue.ToString());
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -31,9 +31,8 @@ public partial class SouvenirModule
         var thirdResponse = queryResponses[secondLookup];
         var preferredWrongAnswers = new[] { zerothNumCode.ToString("00"), firstResponse.ToString("00"), secondResponse.ToString("00"), thirdResponse.ToString("00") };
 
-        addQuestions(module,
-            makeQuestion(Question.TwoBitsResponse, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { firstResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.TwoBitsResponse, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { secondResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.TwoBitsResponse, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { thirdResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers));
+        yield return question(STwoBits.Response, args: [Ordinal(1)]).Answers(firstResponse.ToString("00"), preferredWrong: preferredWrongAnswers);
+        yield return question(STwoBits.Response, args: [Ordinal(2)]).Answers(secondResponse.ToString("00"), preferredWrong: preferredWrongAnswers);
+        yield return question(STwoBits.Response, args: [Ordinal(3)]).Answers(thirdResponse.ToString("00"), preferredWrong: preferredWrongAnswers);
     }
 }

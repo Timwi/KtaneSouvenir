@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -26,8 +26,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colorNames = new[] { "Red", "Green", "Blue", "Yellow", "Purple", "Orange" };
-        addQuestions(module,
-            makeQuestion(Question.NumpathColor, module, correctAnswers: new[] { colorNames[color] }),
-            makeQuestion(Question.NumpathDigit, module, correctAnswers: new[] { disp }));
+        yield return question(SNumpath.Color).Answers(colorNames[color]);
+        yield return question(SNumpath.Digit).Answers(disp);
     }
 }

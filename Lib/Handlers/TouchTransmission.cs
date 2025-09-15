@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -23,8 +23,7 @@ public partial class SouvenirModule
         var fldGenWord = GetField<string>(comp, "generatedWord");
         var fldOrder = GetField<object>(comp, "chosenOrder");
 
-        addQuestions(module,
-            makeQuestion(Question.TouchTransmissionWord, module, correctAnswers: new[] { fldGenWord.Get().ToLowerInvariant() }),
-            makeQuestion(Question.TouchTransmissionOrder, module, correctAnswers: new[] { fldOrder.Get().ToString().Replace('_', ' ') }));
+        yield return question(STouchTransmission.Word).Answers(fldGenWord.Get().ToLowerInvariant());
+        yield return question(STouchTransmission.Order).Answers(fldOrder.Get().ToString().Replace('_', ' '));
     }
 }

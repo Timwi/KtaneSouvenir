@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -45,9 +45,8 @@ public partial class SouvenirModule
         while (fldAnimating.Get())
             yield return new WaitForSeconds(.1f);
 
-        addQuestions(module,
-            makeQuestion(Question.MysteryModuleFirstKey, module, correctAnswers: new[] { keyModule.ModuleDisplayName }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()),
-            makeQuestion(Question.MysteryModuleHiddenModule, module, correctAnswers: new[] { mystifiedModule.ModuleDisplayName }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()));
+        yield return question(SMysteryModule.FirstKey).Answers(keyModule.ModuleDisplayName, preferredWrong: Bomb.GetSolvableModuleNames().ToArray());
+        yield return question(SMysteryModule.HiddenModule).Answers(mystifiedModule.ModuleDisplayName, preferredWrong: Bomb.GetSolvableModuleNames().ToArray());
 
         if (mystifiedModule == Module)
             _avoidQuestions--;

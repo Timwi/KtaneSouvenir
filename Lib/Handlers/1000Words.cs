@@ -1,6 +1,5 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -144,11 +143,10 @@ public partial class SouvenirModule
             throw new AbandonModuleException("Unable to gather all 5 words in 1000 Words.");
 
         var wordsWrittenArr = wordsWritten.ToArray();
-        addQuestions(module,
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { wordsWritten[0] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { wordsWritten[1] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { wordsWritten[2] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { Ordinal(4) }, correctAnswers: new[] { wordsWritten[3] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { Ordinal(5) }, correctAnswers: new[] { wordsWritten[4] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases));
+        yield return question(S1000Words.Words, args: [Ordinal(1)]).Answers(wordsWritten[0], all: phrases, preferredWrong: wordsWrittenArr);
+        yield return question(S1000Words.Words, args: [Ordinal(2)]).Answers(wordsWritten[1], all: phrases, preferredWrong: wordsWrittenArr);
+        yield return question(S1000Words.Words, args: [Ordinal(3)]).Answers(wordsWritten[2], all: phrases, preferredWrong: wordsWrittenArr);
+        yield return question(S1000Words.Words, args: [Ordinal(4)]).Answers(wordsWritten[3], all: phrases, preferredWrong: wordsWrittenArr);
+        yield return question(S1000Words.Words, args: [Ordinal(5)]).Answers(wordsWritten[4], all: phrases, preferredWrong: wordsWrittenArr);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,8 +20,7 @@ public partial class SouvenirModule
         var colColor = GetField<string>(comp, "_color1").Get();
         var rowColor = GetField<string>(comp, "_color2").Get();
 
-        addQuestions(module,
-            makeQuestion(Question.DecoloredSquaresStartingPos, module, formatArgs: new[] { "column" }, correctAnswers: new[] { colColor }),
-            makeQuestion(Question.DecoloredSquaresStartingPos, module, formatArgs: new[] { "row" }, correctAnswers: new[] { rowColor }));
+        yield return question(SDecoloredSquares.StartingPos, args: ["column"]).Answers(colColor);
+        yield return question(SDecoloredSquares.StartingPos, args: ["row"]).Answers(rowColor);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -25,8 +25,7 @@ public partial class SouvenirModule
         var cellLetters = fldCellLetters.Get(expectedLength: 26 * 26);
         var start = cellLetters[fldStart.Get(min: 0, max: 26 * 26 - 1)];
         var goal = cellLetters[fldGoal.Get(min: 0, max: 26 * 26 - 1)];
-        addQuestions(module,
-            makeQuestion(Question.CrazyMazeStartOrGoal, module, formatArgs: new[] { "starting" }, correctAnswers: new[] { start }, preferredWrongAnswers: new[] { goal }),
-            makeQuestion(Question.CrazyMazeStartOrGoal, module, formatArgs: new[] { "goal" }, correctAnswers: new[] { goal }, preferredWrongAnswers: new[] { start }));
+        yield return question(SCrazyMaze.StartOrGoal, args: ["starting"]).Answers(start, preferredWrong: [goal]);
+        yield return question(SCrazyMaze.StartOrGoal, args: ["goal"]).Answers(goal, preferredWrong: [start]);
     }
 }

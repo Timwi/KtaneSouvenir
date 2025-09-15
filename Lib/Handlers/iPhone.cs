@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,10 +20,9 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { digits[0] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { digits[1] }, preferredWrongAnswers: new[] { digits[0], digits[2], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { digits[2] }, preferredWrongAnswers: new[] { digits[1], digits[0], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { Ordinal(4) }, correctAnswers: new[] { digits[3] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[0] }));
+        yield return question(SiPhone.Digits, args: [Ordinal(1)]).Answers(digits[0], preferredWrong: [digits[1], digits[2], digits[3]]);
+        yield return question(SiPhone.Digits, args: [Ordinal(2)]).Answers(digits[1], preferredWrong: [digits[0], digits[2], digits[3]]);
+        yield return question(SiPhone.Digits, args: [Ordinal(3)]).Answers(digits[2], preferredWrong: [digits[1], digits[0], digits[3]]);
+        yield return question(SiPhone.Digits, args: [Ordinal(4)]).Answers(digits[3], preferredWrong: [digits[1], digits[2], digits[0]]);
     }
 }

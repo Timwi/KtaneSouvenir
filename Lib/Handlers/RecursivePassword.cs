@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -26,10 +26,7 @@ public partial class SouvenirModule
         var selectedWords = GetArrayField<int>(comp, "SelectedWords").Get(expectedLength: 5, validator: ix => ix < 0 || ix >= wordList.Length ? $"expected range 0-{wordList.Length - 1}" : null).Select(ix => wordList[ix]).ToArray();
         var password = wordList[GetIntField(comp, "Password").Get(min: 0, max: wordList.Length - 1)];
 
-        addQuestions(
-            module,
-            makeQuestion(Question.RecursivePasswordNonPasswordWords, module, correctAnswers: selectedWords, preferredWrongAnswers: wordList),
-            makeQuestion(Question.RecursivePasswordPassword, module, correctAnswers: new[] { password }, preferredWrongAnswers: selectedWords)
-        );
+        yield return question(SRecursivePassword.NonPasswordWords).Answers(selectedWords, preferredWrong: wordList);
+        yield return question(SRecursivePassword.Password).Answers(password, preferredWrong: selectedWords);
     }
 }

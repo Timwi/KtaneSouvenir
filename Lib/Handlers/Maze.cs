@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -24,8 +24,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         module.SolveIndex = _modulesSolved.IncSafe("Maze");
 
-        addQuestions(module,
-            makeQuestion(Question.MazeStartingPosition, module, formatArgs: new[] { "column", "left" }, correctAnswers: new[] { (GetIntField(currentCell, "X", true).Get() + 1).ToString() }),
-            makeQuestion(Question.MazeStartingPosition, module, formatArgs: new[] { "row", "top" }, correctAnswers: new[] { (GetIntField(currentCell, "Y", true).Get() + 1).ToString() }));
+        yield return question(SMaze.StartingPosition, args: ["column", "left"]).Answers((GetIntField(currentCell, "X", true).Get() + 1).ToString());
+        yield return question(SMaze.StartingPosition, args: ["row", "top"]).Answers((GetIntField(currentCell, "Y", true).Get() + 1).ToString());
     }
 }

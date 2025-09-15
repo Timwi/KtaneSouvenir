@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -35,9 +35,8 @@ public partial class SouvenirModule
 
         var positionNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
 
-        addQuestions(module,
-            makeQuestion(Question.MazeScramblerStart, module, correctAnswers: new[] { positionNames[startY * 3 + startX] }, preferredWrongAnswers: new[] { positionNames[goalY * 3 + goalX] }),
-            makeQuestion(Question.MazeScramblerGoal, module, correctAnswers: new[] { positionNames[goalY * 3 + goalX] }, preferredWrongAnswers: new[] { positionNames[startY * 3 + startX] }),
-            makeQuestion(Question.MazeScramblerIndicators, module, correctAnswers: new[] { positionNames[ind1Y * 3 + ind1X], positionNames[ind2Y * 3 + ind2X] }, preferredWrongAnswers: positionNames));
+        yield return question(SMazeScrambler.Start).Answers(positionNames[startY * 3 + startX], preferredWrong: [positionNames[goalY * 3 + goalX]]);
+        yield return question(SMazeScrambler.Goal).Answers(positionNames[goalY * 3 + goalX], preferredWrong: [positionNames[startY * 3 + startX]]);
+        yield return question(SMazeScrambler.Indicators).Answers([positionNames[ind1Y * 3 + ind1X], positionNames[ind2Y * 3 + ind2X]], preferredWrong: positionNames);
     }
 }

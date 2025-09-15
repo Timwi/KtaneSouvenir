@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -48,12 +48,10 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"The received number of valid words was not 3: was {wordsAnswered.Count}.");
 
         var textbox = GetField<TextMesh>(comp, "textBox", isPublic: true).Get();
-        var font = textbox.font;
-        var fontTexture = textbox.GetComponent<MeshRenderer>().sharedMaterial.mainTexture;
+        var info = new TextAnswerInfo(textbox.font, textbox.GetComponent<MeshRenderer>().sharedMaterial.mainTexture);
 
-        addQuestions(module,
-            makeQuestion(Question.ZoniWords, module, formatArgs: new[] { "first" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[0]] }, preferredWrongAnswers: words),
-            makeQuestion(Question.ZoniWords, module, formatArgs: new[] { "second" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[1]] }, preferredWrongAnswers: words),
-            makeQuestion(Question.ZoniWords, module, formatArgs: new[] { "third" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[2]] }, preferredWrongAnswers: words));
+        yield return question(SZoni.Words, args: [Ordinal(1)]).Answers(words[wordsAnswered[0]], preferredWrong: words, info: info);
+        yield return question(SZoni.Words, args: [Ordinal(2)]).Answers(words[wordsAnswered[1]], preferredWrong: words, info: info);
+        yield return question(SZoni.Words, args: [Ordinal(3)]).Answers(words[wordsAnswered[2]], preferredWrong: words, info: info);
     }
 }

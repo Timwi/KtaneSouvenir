@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -24,11 +24,8 @@ public partial class SouvenirModule
             colors[i] = char.ToUpperInvariant(colors[i][0]) + colors[i].Substring(1);
 
         yield return WaitForSolve;
-        addQuestions(module,
-            makeQuestion(Question.TashaSquealsColors, module, formatArgs: new[] { "first" }, correctAnswers: new[] { colors[sequence[0]] }),
-            makeQuestion(Question.TashaSquealsColors, module, formatArgs: new[] { "second" }, correctAnswers: new[] { colors[sequence[1]] }),
-            makeQuestion(Question.TashaSquealsColors, module, formatArgs: new[] { "third" }, correctAnswers: new[] { colors[sequence[2]] }),
-            makeQuestion(Question.TashaSquealsColors, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colors[sequence[3]] }),
-            makeQuestion(Question.TashaSquealsColors, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { colors[sequence[4]] }));
+
+        for (var i = 0; i < 5; i++)
+            yield return question(STashaSqueals.Colors, args: [Ordinal(i + 1)]).Answers(colors[sequence[i]]);
     }
 }

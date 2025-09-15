@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -35,15 +35,14 @@ public partial class SouvenirModule
         var gameThree = GetField<int>(comp, "ChosenGame").Get();
         var gameNames = GetField<string[]>(comp, "GameNames").Get();
 
-        addQuestions(module,
-            makeQuestion(Question.PuzzleIdentificationNum, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { (puzzlesOneAndTwo[0] + 1).ToString("000") }),
-            makeQuestion(Question.PuzzleIdentificationNum, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { (puzzlesOneAndTwo[1] + 1).ToString("000") }),
-            makeQuestion(Question.PuzzleIdentificationNum, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { (puzzleThree + 1).ToString("000") }),
-            makeQuestion(Question.PuzzleIdentificationGame, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { gameNames[puzzlesOneAndTwo[2]] }, preferredWrongAnswers: gameNames),
-            makeQuestion(Question.PuzzleIdentificationGame, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { gameNames[puzzlesOneAndTwo[3]] }, preferredWrongAnswers: gameNames),
-            makeQuestion(Question.PuzzleIdentificationGame, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { gameNames[gameThree] }, preferredWrongAnswers: gameNames),
-            makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { names[puzzlesOneAndTwo[2]][puzzlesOneAndTwo[0]] }, preferredWrongAnswers: names[puzzlesOneAndTwo[2]]),
-            makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { names[puzzlesOneAndTwo[3]][puzzlesOneAndTwo[1]] }, preferredWrongAnswers: names[puzzlesOneAndTwo[3]]),
-            makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { names[gameThree][puzzleThree] }, preferredWrongAnswers: names[gameThree]));
+        yield return question(SPuzzleIdentification.Num, args: [Ordinal(1)]).Answers((puzzlesOneAndTwo[0] + 1).ToString("000"));
+        yield return question(SPuzzleIdentification.Num, args: [Ordinal(2)]).Answers((puzzlesOneAndTwo[1] + 1).ToString("000"));
+        yield return question(SPuzzleIdentification.Num, args: [Ordinal(3)]).Answers((puzzleThree + 1).ToString("000"));
+        yield return question(SPuzzleIdentification.Game, args: [Ordinal(1)]).Answers(gameNames[puzzlesOneAndTwo[2]], preferredWrong: gameNames);
+        yield return question(SPuzzleIdentification.Game, args: [Ordinal(2)]).Answers(gameNames[puzzlesOneAndTwo[3]], preferredWrong: gameNames);
+        yield return question(SPuzzleIdentification.Game, args: [Ordinal(3)]).Answers(gameNames[gameThree], preferredWrong: gameNames);
+        yield return question(SPuzzleIdentification.Name, args: [Ordinal(1)]).Answers(names[puzzlesOneAndTwo[2]][puzzlesOneAndTwo[0]], preferredWrong: names[puzzlesOneAndTwo[2]]);
+        yield return question(SPuzzleIdentification.Name, args: [Ordinal(2)]).Answers(names[puzzlesOneAndTwo[3]][puzzlesOneAndTwo[1]], preferredWrong: names[puzzlesOneAndTwo[3]]);
+        yield return question(SPuzzleIdentification.Name, args: [Ordinal(3)]).Answers(names[gameThree][puzzleThree], preferredWrong: names[gameThree]);
     }
 }

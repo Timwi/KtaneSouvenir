@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -22,10 +22,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-            makeQuestion(Question.LombaxCubesLetters, module, formatArgs: new[] { "first" },
-                correctAnswers: new[] { fldLetter1.Get().text }),
-            makeQuestion(Question.LombaxCubesLetters, module, formatArgs: new[] { "second" },
-                correctAnswers: new[] { fldLetter2.Get().text }));
+        yield return question(SLombaxCubes.Letters, args: ["first"]).Answers(fldLetter1.Get().text);
+        yield return question(SLombaxCubes.Letters, args: ["second"]).Answers(fldLetter2.Get().text);
     }
 }

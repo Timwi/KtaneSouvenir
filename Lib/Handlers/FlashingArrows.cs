@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -31,9 +31,8 @@ public partial class SouvenirModule
         var colorAfterBlack = arrowSet[(idxBlack + 1) % 3];
         var colorBeforeBlack = arrowSet[(idxBlack + 2) % 3];
 
-        addQuestions(module,
-            makeQuestion(Question.FlashingArrowsDisplayedValue, module, correctAnswers: new[] { displayedValue.ToString() }),
-            makeQuestion(Question.FlashingArrowsReferredArrow, module, formatArgs: new[] { "before" }, correctAnswers: new[] { colorReference[colorBeforeBlack] }, preferredWrongAnswers: colorReference),
-            makeQuestion(Question.FlashingArrowsReferredArrow, module, formatArgs: new[] { "after" }, correctAnswers: new[] { colorReference[colorAfterBlack] }, preferredWrongAnswers: colorReference));
+        yield return question(SFlashingArrows.DisplayedValue).Answers(displayedValue.ToString());
+        yield return question(SFlashingArrows.ReferredArrow, args: ["before"]).Answers(colorReference[colorBeforeBlack], preferredWrong: colorReference);
+        yield return question(SFlashingArrows.ReferredArrow, args: ["after"]).Answers(colorReference[colorAfterBlack], preferredWrong: colorReference);
     }
 }

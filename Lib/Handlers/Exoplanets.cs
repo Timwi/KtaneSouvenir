@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -34,10 +34,9 @@ public partial class SouvenirModule
 
         var positionNames = GetStaticField<string[]>(comp.GetType(), "positionNames").Get(validator: arr => arr.Length != 3 ? "expected length 3" : null);
 
-        addQuestions(module,
-            makeQuestion(Question.ExoplanetsStartingTargetPlanet, module, correctAnswers: new[] { positionNames[startingTargetPlanet] }),
-            makeQuestion(Question.ExoplanetsStartingTargetDigit, module, correctAnswers: new[] { startingTargetDigit.ToString() }),
-            makeQuestion(Question.ExoplanetsTargetPlanet, module, correctAnswers: new[] { positionNames[targetPlanet] }),
-            makeQuestion(Question.ExoplanetsTargetDigit, module, correctAnswers: new[] { targetDigit.ToString() }));
+        yield return question(SExoplanets.StartingTargetPlanet).Answers(positionNames[startingTargetPlanet]);
+        yield return question(SExoplanets.StartingTargetDigit).Answers(startingTargetDigit.ToString());
+        yield return question(SExoplanets.TargetPlanet).Answers(positionNames[targetPlanet]);
+        yield return question(SExoplanets.TargetDigit).Answers(targetDigit.ToString());
     }
 }

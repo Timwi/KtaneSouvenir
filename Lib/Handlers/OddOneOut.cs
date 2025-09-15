@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -23,12 +24,7 @@ public partial class SouvenirModule
         var btnNames = new[] { "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right" };
         var stageBtn = stages.Cast<object>().Select(x => GetIntField(x, "CorrectIndex", isPublic: true).Get(min: 0, max: btnNames.Length - 1)).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "first" }, correctAnswers: new[] { btnNames[stageBtn[0]] }),
-            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "second" }, correctAnswers: new[] { btnNames[stageBtn[1]] }),
-            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "third" }, correctAnswers: new[] { btnNames[stageBtn[2]] }),
-            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { btnNames[stageBtn[3]] }),
-            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { btnNames[stageBtn[4]] }),
-            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "sixth" }, correctAnswers: new[] { btnNames[stageBtn[5]] }));
+        for (var i = 0; i < 6; i++)
+            yield return question(SOddOneOut.Button, args: [Ordinal(i + 1)]).Answers(btnNames[stageBtn[i]]);
     }
 }

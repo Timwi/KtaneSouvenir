@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -30,8 +30,7 @@ public partial class SouvenirModule
                 rowNineSafeSquares.Add(((col + 1) % 10).ToString());
         }
 
-        addQuestions(module,
-            makeQuestion(Question.TipToeSafeSquares, module, formatArgs: new[] { "9" }, correctAnswers: rowNineSafeSquares.ToArray()),
-            makeQuestion(Question.TipToeSafeSquares, module, formatArgs: new[] { "10" }, correctAnswers: rowTenSafeSquares.ToArray()));
+        yield return question(STipToe.SafeSquares, args: ["9"]).Answers(rowNineSafeSquares.ToArray());
+        yield return question(STipToe.SafeSquares, args: ["10"]).Answers(rowTenSafeSquares.ToArray());
     }
 }

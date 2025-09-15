@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -30,8 +30,7 @@ public partial class SouvenirModule
         var start = GetIntField(comp, "start").Get(min: 0, max: 35);
         var goal = GetIntField(comp, "goal").Get(min: 0, max: 35);
 
-        addQuestions(module,
-            makeQuestion(Question.MazeSwapPosition, module, correctAnswers: new[] { new Coord(6, 6, start) }, formatArgs: new[] { "starting" }),
-            makeQuestion(Question.MazeSwapPosition, module, correctAnswers: new[] { new Coord(6, 6, goal) }, formatArgs: new[] { "goal" }));
+        yield return question(SMazeSwap.Position, args: ["starting"]).Answers(new Coord(6, 6, start));
+        yield return question(SMazeSwap.Position, args: ["goal"]).Answers(new Coord(6, 6, goal));
     }
 }

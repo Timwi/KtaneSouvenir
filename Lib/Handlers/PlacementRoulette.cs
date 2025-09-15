@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -27,10 +27,8 @@ public partial class SouvenirModule
         var vehicle = GetField<string>(comp, "Vehicle").Get();
         var track = GetField<string>(comp, "Track").Get();
 
-        addQuestions(module,
-            makeQuestion(Question.PlacementRouletteChar, module, correctAnswers: new[] { character }),
-            makeQuestion(Question.PlacementRouletteTrack, module, correctAnswers: new[] { track }),
-            makeQuestion(Question.PlacementRouletteVehicle, module, correctAnswers: new[] { vehicle })
-        );
+        yield return question(SPlacementRoulette.Char).Answers(character);
+        yield return question(SPlacementRoulette.Track).Answers(track);
+        yield return question(SPlacementRoulette.Vehicle).Answers(vehicle);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -36,8 +36,7 @@ public partial class SouvenirModule
             _ => "5th"
         };
 
-        addQuestions(module,
-            makeQuestion(Question.HighScorePosition, module, correctAnswers: new[] { stringPos }),
-            makeQuestion(Question.HighScoreScore, module, correctAnswers: new[] { "" + playerScore }));
+        yield return question(SHighScore.Position).Answers(stringPos);
+        yield return question(SHighScore.Score).Answers("" + playerScore);
     }
 }

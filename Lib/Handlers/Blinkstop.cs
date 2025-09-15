@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -27,8 +27,7 @@ public partial class SouvenirModule
             arr.Any(f => !"PMYC".Contains(f)) ? "expected only P, M, Y, or C flash values" : null);
         var leastFlashedColour = new[] { "Multicolor", "Purple", "Yellow", "Cyan" }.OrderBy(col => flashes.Count(f => f == col[0])).First();
 
-        addQuestions(module,
-            makeQuestion(Question.BlinkstopNumberOfFlashes, module, correctAnswers: new[] { flashes.Length.ToString() }),
-            makeQuestion(Question.BlinkstopFewestFlashedColor, module, correctAnswers: new[] { leastFlashedColour }));
+        yield return question(SBlinkstop.NumberOfFlashes).Answers(flashes.Length.ToString());
+        yield return question(SBlinkstop.FewestFlashedColor).Answers(leastFlashedColour);
     }
 }

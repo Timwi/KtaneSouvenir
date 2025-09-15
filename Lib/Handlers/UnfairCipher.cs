@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -18,10 +18,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var instructions = GetArrayField<string>(comp, "Message").Get(expectedLength: 4);
-        addQuestions(module,
-            makeQuestion(Question.UnfairCipherInstructions, module, formatArgs: new[] { "first" }, correctAnswers: new[] { instructions[0] }),
-            makeQuestion(Question.UnfairCipherInstructions, module, formatArgs: new[] { "second" }, correctAnswers: new[] { instructions[1] }),
-            makeQuestion(Question.UnfairCipherInstructions, module, formatArgs: new[] { "third" }, correctAnswers: new[] { instructions[2] }),
-            makeQuestion(Question.UnfairCipherInstructions, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { instructions[3] }));
+        for (var i = 0; i < 4; i++)
+            yield return question(SUnfairCipher.Instructions, args: [Ordinal(i + 1)]).Answers(instructions[i]);
     }
 }

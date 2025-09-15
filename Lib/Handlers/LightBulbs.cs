@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,10 +21,7 @@ public partial class SouvenirModule
 
         var bulbs = GetField<IList>(comp, "Bulbs").Get(lst => lst.Count != 3 ? "expected length 3" : null);
 
-        addQuestions(
-            module,
-            makeQuestion(Question.LightBulbsColors, module, formatArgs: new[] { "left" }, correctAnswers: new[] { GetField<Enum>(bulbs[0], "Color", isPublic: true).Get().ToString() }),
-            makeQuestion(Question.LightBulbsColors, module, formatArgs: new[] { "right" }, correctAnswers: new[] { GetField<Enum>(bulbs[2], "Color", isPublic: true).Get().ToString() })
-        );
+        yield return question(SLightBulbs.Colors, args: ["left"]).Answers(GetField<Enum>(bulbs[0], "Color", isPublic: true).Get().ToString());
+        yield return question(SLightBulbs.Colors, args: ["right"]).Answers(GetField<Enum>(bulbs[2], "Color", isPublic: true).Get().ToString());
     }
 }

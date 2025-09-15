@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -24,13 +24,12 @@ public partial class SouvenirModule
         var shuffled = GetArrayField<string>(comp, "ShuffledAlphabet").Get(expectedLength: 26);
         var lettersShown = GetArrayField<string>(comp, "LettersShown").Get(expectedLength: 6);
 
-        addQuestions(module,
-            makeQuestion(Question.AlphabetTilesCycle, module, formatArgs: new[] { "first" }, correctAnswers: new[] { lettersShown[0] }),
-            makeQuestion(Question.AlphabetTilesCycle, module, formatArgs: new[] { "second" }, correctAnswers: new[] { lettersShown[1] }),
-            makeQuestion(Question.AlphabetTilesCycle, module, formatArgs: new[] { "third" }, correctAnswers: new[] { lettersShown[2] }),
-            makeQuestion(Question.AlphabetTilesCycle, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { lettersShown[3] }),
-            makeQuestion(Question.AlphabetTilesCycle, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { lettersShown[4] }),
-            makeQuestion(Question.AlphabetTilesCycle, module, formatArgs: new[] { "sixth" }, correctAnswers: new[] { lettersShown[5] }),
-            makeQuestion(Question.AlphabetTilesMissingLetter, module, correctAnswers: new[] { shuffled[25] }));
+        yield return question(SAlphabetTiles.Cycle, args: [Ordinal(1)]).Answers(lettersShown[0]);
+        yield return question(SAlphabetTiles.Cycle, args: [Ordinal(2)]).Answers(lettersShown[1]);
+        yield return question(SAlphabetTiles.Cycle, args: [Ordinal(3)]).Answers(lettersShown[2]);
+        yield return question(SAlphabetTiles.Cycle, args: [Ordinal(4)]).Answers(lettersShown[3]);
+        yield return question(SAlphabetTiles.Cycle, args: [Ordinal(5)]).Answers(lettersShown[4]);
+        yield return question(SAlphabetTiles.Cycle, args: [Ordinal(6)]).Answers(lettersShown[5]);
+        yield return question(SAlphabetTiles.MissingLetter).Answers(shuffled[25]);
     }
 }

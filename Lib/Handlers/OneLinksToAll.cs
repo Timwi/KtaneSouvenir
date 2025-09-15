@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -25,8 +25,7 @@ public partial class SouvenirModule
         var end = GetField<string>(comp, "title2").Get();
         var path = GetListField<string>(comp, "exampleSolution").Get().ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.OneLinksToAllStart, module, correctAnswers: new[] { start }, allAnswers: path, preferredWrongAnswers: new[] { end }),
-            makeQuestion(Question.OneLinksToAllEnd, module, correctAnswers: new[] { end }, allAnswers: path, preferredWrongAnswers: new[] { start }));
+        yield return question(SOneLinksToAll.Start).Answers(start, all: path, preferredWrong: [end]);
+        yield return question(SOneLinksToAll.End).Answers(end, all: path, preferredWrong: [start]);
     }
 }

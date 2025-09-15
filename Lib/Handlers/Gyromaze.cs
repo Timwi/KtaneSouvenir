@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -26,9 +26,7 @@ public partial class SouvenirModule
         var colorNames = new[] { "Red", "Blue", "Green", "Yellow" };
         var endPos = GetIntField(comp, "endPos").Get(0, 15);
 
-        addQuestions(module,
-            makeQuestion(Question.GyromazeLEDColor, module, correctAnswers: new[] { colorNames[endPos % 4] }, formatArgs: new[] { "top" }),
-            makeQuestion(Question.GyromazeLEDColor, module, correctAnswers: new[] { colorNames[endPos / 4] }, formatArgs: new[] { "bottom" })
-            );
+        yield return question(SGyromaze.LEDColor, args: ["top"]).Answers(colorNames[endPos % 4]);
+        yield return question(SGyromaze.LEDColor, args: ["bottom"]).Answers(colorNames[endPos / 4]);
     }
 }

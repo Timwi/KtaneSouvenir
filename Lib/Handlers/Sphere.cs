@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,16 +15,12 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessSphere(ModuleData module)
     {
         var comp = GetComponent(module, "theSphereScript");
-
         var colorNames = GetArrayField<string>(comp, "colourNames", isPublic: true).Get();
         var colors = GetArrayField<int>(comp, "selectedColourIndices", isPublic: true).Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? $"expected range 0–{colorNames.Length - 1}" : null);
 
         yield return WaitForSolve;
-        addQuestions(module,
-            makeQuestion(Question.SphereColors, module, formatArgs: new[] { "first" }, correctAnswers: new[] { colorNames[colors[0]] }),
-            makeQuestion(Question.SphereColors, module, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[colors[1]] }),
-            makeQuestion(Question.SphereColors, module, formatArgs: new[] { "third" }, correctAnswers: new[] { colorNames[colors[2]] }),
-            makeQuestion(Question.SphereColors, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colorNames[colors[3]] }),
-            makeQuestion(Question.SphereColors, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { colorNames[colors[4]] }));
+
+        for (var i = 0; i < 5; i++)
+            yield return question(SSphere.Colors, args: [Ordinal(i + 1)]).Answers(colorNames[colors[i]]);
     }
 }

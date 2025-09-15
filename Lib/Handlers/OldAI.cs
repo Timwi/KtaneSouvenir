@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,8 +20,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var seed = fldSeed.Get();
-        addQuestions(module,
-            makeQuestion(Question.OldAIGroup, module, formatArgs: new[] { "group" }, correctAnswers: new[] { ((seed - 1) / 5 + 1).ToString() }),
-            makeQuestion(Question.OldAIGroup, module, formatArgs: new[] { "sub-group" }, correctAnswers: new[] { ((seed - 1) % 5 + 1).ToString() }));
+        yield return question(SOldAI.Group, args: ["group"]).Answers(((seed - 1) / 5 + 1).ToString());
+        yield return question(SOldAI.Group, args: ["sub-group"]).Answers(((seed - 1) % 5 + 1).ToString());
     }
 }

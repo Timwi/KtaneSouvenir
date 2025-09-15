@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -27,11 +27,10 @@ public partial class SouvenirModule
         for (var x = 0; x < textInfo.Length; x++)
             skulls.Add(textInfo[x].text);
 
-        addQuestions(module,
-           makeQuestion(Question.SugarSkullsSkull, module, formatArgs: new[] { "top" }, correctAnswers: new[] { skulls[0] }),
-           makeQuestion(Question.SugarSkullsSkull, module, formatArgs: new[] { "bottom-left" }, correctAnswers: new[] { skulls[1] }),
-           makeQuestion(Question.SugarSkullsSkull, module, formatArgs: new[] { "bottom-right" }, correctAnswers: new[] { skulls[2] }),
-           makeQuestion(Question.SugarSkullsAvailability, module, formatArgs: new[] { "was" }, correctAnswers: skulls.ToArray()),
-           makeQuestion(Question.SugarSkullsAvailability, module, formatArgs: new[] { "was not" }, correctAnswers: Question.SugarSkullsAvailability.GetAnswers().Except(skulls).ToArray()));
+        yield return question(SSugarSkulls.Skull, args: ["top"]).Answers(skulls[0]);
+        yield return question(SSugarSkulls.Skull, args: ["bottom-left"]).Answers(skulls[1]);
+        yield return question(SSugarSkulls.Skull, args: ["bottom-right"]).Answers(skulls[2]);
+        yield return question(SSugarSkulls.Availability, args: ["was"]).Answers(skulls.ToArray());
+        yield return question(SSugarSkulls.Availability, args: ["was not"]).Answers(Question.SugarSkullsAvailability.GetAnswers().Except(skulls).ToArray());
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -22,6 +22,6 @@ public partial class SouvenirModule
         var colorNames = new[] { "Yellow", "Pink", "Blue" };
         var colorIx = fldColorIx.Get(min: 0, max: 2);
 
-        addQuestions(module, makeQuestion(Question.CrittersColor, module, correctAnswers: new[] { colorNames[colorIx] }));
+        yield return question(SCritters.Color).Answers(colorNames[colorIx]);
     }
 }

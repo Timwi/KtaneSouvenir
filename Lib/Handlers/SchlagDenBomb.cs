@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -30,11 +30,8 @@ public partial class SouvenirModule
         var contestantScore = GetIntField(comp, "scoreC").Get(min: 0, max: 75);
         var bombScore = GetIntField(comp, "scoreB").Get(min: 0, max: 75);
 
-        addQuestions(module,
-            makeQuestion(Question.SchlagDenBombContestantName, module, correctAnswers: new[] { contestantName }),
-            makeQuestion(Question.SchlagDenBombContestantScore, module, correctAnswers: new[] { contestantScore.ToString() }, preferredWrongAnswers:
-               Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray()),
-            makeQuestion(Question.SchlagDenBombBombScore, module, correctAnswers: new[] { bombScore.ToString() }, preferredWrongAnswers:
-               Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray()));
+        yield return question(SSchlagDenBomb.ContestantName).Answers(contestantName);
+        yield return question(SSchlagDenBomb.ContestantScore).Answers(contestantScore.ToString(), preferredWrong: Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray());
+        yield return question(SSchlagDenBomb.BombScore).Answers(bombScore.ToString(), preferredWrong: Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray());
     }
 }

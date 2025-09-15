@@ -31,6 +31,6 @@ public partial class SouvenirModule
         }
 
         var noteNames = GetField<Array>(givenChord, "notes").Get(v => v.Length != 4 ? "expected length 4" : null).Cast<object>().Select(note => note.ToString().Replace("sharp", "♯")).ToArray();
-        addQuestions(module, makeQuestion(Question.ChordQualitiesNotes, module, correctAnswers: noteNames));
+        yield return question(SChordQualities.Notes).Answers(noteNames);
     }
 }

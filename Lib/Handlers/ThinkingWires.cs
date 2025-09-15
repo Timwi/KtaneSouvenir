@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -34,9 +34,8 @@ public partial class SouvenirModule
         if (!new[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69" }.Contains(displayNumber))
             throw new AbandonModuleException($"‘displayNumber’ has an unexpected value: {displayNumber}");
 
-        addQuestions(module,
-            makeQuestion(Question.ThinkingWiresFirstWire, module, formatArgs: null, correctAnswers: new[] { firstCorrectWire.ToString() }),
-            makeQuestion(Question.ThinkingWiresSecondWire, module, formatArgs: null, correctAnswers: new[] { secondCorrectWire }),
-            makeQuestion(Question.ThinkingWiresDisplayNumber, module, formatArgs: null, correctAnswers: new[] { displayNumber }));
+        yield return question(SThinkingWires.FirstWire).Answers(firstCorrectWire.ToString());
+        yield return question(SThinkingWires.SecondWire).Answers(secondCorrectWire);
+        yield return question(SThinkingWires.DisplayNumber).Answers(displayNumber);
     }
 }
