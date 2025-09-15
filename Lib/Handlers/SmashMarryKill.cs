@@ -20,8 +20,7 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessSmashMarryKill(ModuleData module)
     {
         var comp = GetComponent(module, "SmashMarryKill");
-        while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForUnignoredModules;
         // All SMyK modules on a bomb share information,
         // so we don't need to keep track of solve order at all,
         // nor even disambiguate the modules.

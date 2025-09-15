@@ -30,8 +30,7 @@ public partial class SouvenirModule
         if (module.IsSolved)
             yield return legitimatelyNoQuestion(module, "The module had too few stages to generate and autosolved.");
 
-        while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForUnignoredModules;
 
         var comp = GetComponent(module, "KugelblitzScript");
         var lobby = GetField<object>(comp, "_lobby").Get();

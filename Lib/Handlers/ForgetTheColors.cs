@@ -50,8 +50,7 @@ public partial class SouvenirModule
         _ftcGearColors.Add(myGearColors);
         _ftcRuleColors.Add(myRuleColors);
 
-        while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForUnignoredModules;
 
         var allLists = new IList[] { _ftcGearNumbers, _ftcLargeDisplays, _ftcSineNumbers, _ftcGearColors, _ftcRuleColors };
         if (allLists.Any(l => l.Count != _ftcGearColors.Count))

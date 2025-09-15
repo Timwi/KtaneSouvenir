@@ -34,8 +34,7 @@ public partial class SouvenirModule
         if (myDisplay.Count == 0 || totalNonIgnoredSbemailSongs == 0)
             yield return legitimatelyNoQuestion(module, "There were no stages.");
 
-        while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForUnignoredModules;
         module.SolveIndex = 1;
 
         var myIgnoredList = GetArrayField<string>(comp, "ignoredModules").Get();

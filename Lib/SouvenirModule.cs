@@ -233,8 +233,10 @@ public partial class SouvenirModule : MonoBehaviour
         "Someone thinks they’re too clever for me. They all think that at first." // Someone thinks they’re too clever for us. They all think that at first. (Invincible)
     );
 
-    /// <summary><code>yield return</code> this to wait for the module to call <see cref="KMBombModule.HandlePass()"/></summary>
+    /// <summary><code>yield return</code> this to wait for the module to be solved.</summary>
     private static WaitForSolveInstruction WaitForSolve => WaitForSolveInstruction.Instance;
+    /// <summary><code>yield return</code> this to wait for all unignored (that is, non-boss) modules to finish.</summary>
+    private static WaitForUnignoredModulesInstruction WaitForUnignoredModules => WaitForUnignoredModulesInstruction.Instance;
 
     #endregion
 
@@ -867,6 +869,9 @@ public partial class SouvenirModule : MonoBehaviour
                 {
                     case WaitForSolveInstruction:
                         yield return new WaitWhile(() => data.Unsolved);
+                        break;
+                    case WaitForUnignoredModulesInstruction:
+                        yield return new WaitWhile(() => !_noUnignoredModulesLeft);
                         break;
                     case LegitimatelyNoQuestionInstruction:
                         yield break;

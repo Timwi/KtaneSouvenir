@@ -35,8 +35,7 @@ public partial class SouvenirModule
         if (myDisplay.Length == 0)
             yield return legitimatelyNoQuestion(module, "There were no stages.");
 
-        while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForUnignoredModules;
 
         var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
         var displayedStageCount = Bomb.GetSolvedModuleNames().Count(x => !myIgnoredList.Contains(x));

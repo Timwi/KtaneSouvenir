@@ -38,8 +38,7 @@ public partial class SouvenirModule
 
         yield return null; // Wait for other instances of this handler to find the first stage.
 
-        while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForUnignoredModules;
 
         if (swapCount < 1)
             yield return legitimatelyNoQuestion(module, "No swaps occurred.");

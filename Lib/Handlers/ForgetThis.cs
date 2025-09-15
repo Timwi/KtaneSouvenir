@@ -39,8 +39,7 @@ public partial class SouvenirModule
         _ftColors.Add(myColors);
         _ftDigits.Add(myDigits);
 
-        while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForUnignoredModules;
 
         var displayedStagesCount = GetIntField(comp, "curStageNum").Get(min: 0, max: myColors.Count);
 

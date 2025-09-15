@@ -45,8 +45,7 @@ public partial class SouvenirModule
         _facCylinders.Add(myCylinders);
         _facFigures.Add(myFigures);
 
-        while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForUnignoredModules;
 
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" }
             .Select(str => translateString(Question.ForgetAnyColorCylinder, str)).ToArray();

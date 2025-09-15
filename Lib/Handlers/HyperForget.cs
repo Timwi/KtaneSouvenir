@@ -28,8 +28,7 @@ public partial class SouvenirModule
 
         var rots = GetListField<string>(comp, "rotationList").Get(minLength: 1);
 
-        while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForUnignoredModules;
 
         var currentStage = GetField<int>(comp, "currentStage").Get();
         if (currentStage < 1)

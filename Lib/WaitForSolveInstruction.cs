@@ -11,6 +11,11 @@ public sealed class WaitForSolveInstruction : SouvenirInstruction
     public static WaitForSolveInstruction Instance = new();
 }
 
+public sealed class WaitForUnignoredModulesInstruction : SouvenirInstruction
+{
+    public static WaitForUnignoredModulesInstruction Instance = new();
+}
+
 public sealed class DiscriminatorInstruction(Discriminator discriminator) : SouvenirInstruction
 {
     public Discriminator Discriminator { get; } = discriminator;

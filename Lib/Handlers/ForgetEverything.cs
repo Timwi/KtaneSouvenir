@@ -37,8 +37,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"First element of ‘DialDisplay’ had length {myFirstDisplay.Length}, when I expected length 10.");
         _feFirstDisplays.Add(myFirstDisplay);
 
-        while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForUnignoredModules;
 
         var stageOrdering = GetArrayField<int>(comp, "StageOrdering").Get();
         var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
