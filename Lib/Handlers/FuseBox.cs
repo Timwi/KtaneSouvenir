@@ -9,7 +9,7 @@ public enum SFuseBox
 {
     [SouvenirQuestion("What color flashed {1} in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, IsEntireQuestionSprite = true, SpriteFieldName = "FuseBoxColorSprites", ArgumentGroupSize = 1, Arguments = [QandA.Ordinal])]
     Flashes,
-    
+
     [SouvenirQuestion("What arrow was shown {1} in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, IsEntireQuestionSprite = true, SpriteFieldName = "FuseBoxArrowSprites", ArgumentGroupSize = 1, Arguments = [QandA.Ordinal])]
     Arrows
 }

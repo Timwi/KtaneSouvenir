@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,11 +7,11 @@ public enum SFindTheDate
 {
     [SouvenirQuestion("What was the month displayed in the {1} stage of {0}?", TwoColumns4Answers, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Month,
-    
+
     [SouvenirQuestion("What was the day displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 31)]
     Day,
-    
+
     [SouvenirQuestion("What was the year displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 2899, "000")]
     Year

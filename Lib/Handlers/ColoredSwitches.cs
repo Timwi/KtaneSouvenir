@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +9,7 @@ public enum SColoredSwitches
     [SouvenirQuestion("What was the initial position of the switches in {0}?", ThreeColumns6Answers, Type = AnswerType.SymbolsFont)]
     [AnswerGenerator.Strings(5, 'Q', 'R')]
     InitialPosition,
-    
+
     [SouvenirQuestion("What was the position of the switches when the LEDs came on in {0}?", ThreeColumns6Answers, Type = AnswerType.SymbolsFont)]
     [AnswerGenerator.Strings(5, 'Q', 'R')]
     WhenLEDsCameOn

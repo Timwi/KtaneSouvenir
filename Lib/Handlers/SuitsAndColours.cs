@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +7,7 @@ public enum SSuitsAndColours
 {
     [SouvenirQuestion("What was the colour of this cell in {0}?", TwoColumns4Answers, "yellow", "green", "orange", "red", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colour,
-    
+
     [SouvenirQuestion("What was the suit of this cell in {0}?", TwoColumns4Answers, "spades", "diamonds", "clubs", "hearts", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Suit
 }

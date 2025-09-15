@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -9,7 +9,7 @@ public enum SMathEm
 {
     [SouvenirQuestion("What was the color of this tile before the shuffle on {0}?", TwoColumns4Answers, "White", "Bronze", "Silver", "Gold", TranslateAnswers = true, UsesQuestionSprite = true)]
     Color,
-    
+
     [SouvenirQuestion("What was the design on this tile before the shuffle on {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites, SpriteFieldName = "MathEmSprites")]
     Label
 }

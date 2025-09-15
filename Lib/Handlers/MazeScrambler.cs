@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,10 +7,10 @@ public enum SMazeScrambler
 {
     [SouvenirQuestion("What was the starting position on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "middle-middle", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
     Start,
-    
+
     [SouvenirQuestion("What was the goal on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "middle-middle", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
     Goal,
-    
+
     [SouvenirQuestion("Which of these positions was a maze marking on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
     Indicators
 }

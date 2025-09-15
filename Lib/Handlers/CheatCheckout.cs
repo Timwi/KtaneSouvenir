@@ -9,10 +9,10 @@ public enum SCheatCheckout
 {
     [SouvenirQuestion("What was the cryptocurrency of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Currency,
-    
+
     [SouvenirQuestion("What was the hack method for the {1} hack of {0}?", TwoColumns4Answers, "DSA", "W", "CI", "XSS", "BFA", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Hack,
-    
+
     [SouvenirQuestion("What was the site for the {1} hack of {0}?", OneColumn4Answers, ExampleAnswers = ["medicalsite.co", "checkout.kt", "collection.com", "ktane.timwi.de", "cartoon.com", "galaxydeliver.com"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Site
 }

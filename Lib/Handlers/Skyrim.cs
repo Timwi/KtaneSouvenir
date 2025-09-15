@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -9,16 +9,16 @@ public enum SSkyrim
 {
     [SouvenirQuestion("Which race was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Nord", "Khajiit", "Breton", "Argonian", "Dunmer", "Altmer", "Redguard", "Orc", "Imperial", TranslateAnswers = true)]
     Race,
-    
+
     [SouvenirQuestion("Which weapon was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Axe of Whiterun", "Dawnbreaker", "Windshear", "Blade of Woe", "Firiniel’s End", "Bow of Hunt", "Volendrung", "Chillrend", "Mace of Molag Bal", TranslateAnswers = true)]
     Weapon,
-    
+
     [SouvenirQuestion("Which enemy was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Alduin", "Blood Dragon", "Cave Bear", "Dragon Priest", "Draugr", "Draugr Overlord", "Frost Troll", "Frostbite Spider", "Mudcrab", TranslateAnswers = true)]
     Enemy,
-    
+
     [SouvenirQuestion("Which city was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Dawnstar", "Ivarstead", "Markarth", "Riverwood", "Rorikstead", "Solitude", "Whiterun", "Windhelm", "Winterhold", TranslateAnswers = true)]
     City,
-    
+
     [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Disarm", "Dismay", "Dragonrend", "Fire Breath", "Ice Form", "Kyne’s Peace", "Slow Time", "Unrelenting Force", "Whirlwind Sprint", TranslateAnswers = true)]
     DragonShout
 }

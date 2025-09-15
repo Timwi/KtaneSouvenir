@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,13 +8,13 @@ public enum SNotXRay
 {
     [SouvenirQuestion("What was the scanner color in {0}?", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", TranslateAnswers = true)]
     ScannerColor,
-    
+
     [SouvenirQuestion("What table were we in in {0} (numbered 1–8 in reading order in the manual)?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
     Table,
-    
+
     [SouvenirQuestion("What direction was button {1} in {0}?", ThreeColumns6Answers, "Up", "Right", "Down", "Left", TranslateAnswers = true, Arguments = ["1", "2", "3", "4"], ArgumentGroupSize = 1)]
     Directions,
-    
+
     [SouvenirQuestion("Which button went {1} in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", TranslateArguments = [true], Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1)]
     Buttons
 }

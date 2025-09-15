@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,10 +8,10 @@ public enum SBoxing
 {
     [SouvenirQuestion("What was {1}’s strength rating on {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", Arguments = ["Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander"], ArgumentGroupSize = 1)]
     StrengthByContestant,
-    
+
     [SouvenirQuestion("What was the {1} of the contestant with strength rating {2} on {0}?", TwoColumns4Answers, ExampleAnswers = ["Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander"], TranslateArguments = [true, false], Arguments = ["first name", "0", "first name", "1", "first name", "2", "last name", "0", "last name", "1", "last name", "2", "substitute’s first name", "0", "substitute’s first name", "1", "substitute’s first name", "2", "substitute’s last name", "0", "substitute’s last name", "1", "substitute’s last name", "2"], ArgumentGroupSize = 2)]
     ContestantByStrength,
-    
+
     [SouvenirQuestion("Which {1} appeared on {0}?", TwoColumns4Answers, ExampleAnswers = ["Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander"], Arguments = ["contestant’s first name", "contestant’s last name", "substitute’s first name", "substitute’s last name"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Names
 }

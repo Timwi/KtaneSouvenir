@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public enum SKnowYourWay
 {
     [SouvenirQuestion("Which way was the arrow pointing in {0}?", TwoColumns4Answers, "Up", "Down", "Left", "Right", TranslateAnswers = true)]
     Arrow,
-    
+
     [SouvenirQuestion("Which LED was green in {0}?", TwoColumns4Answers, "Top", "Bottom", "Right", "Left", TranslateAnswers = true)]
     Led
 }

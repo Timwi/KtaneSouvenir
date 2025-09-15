@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SHalliGalli
 {
     [SouvenirQuestion("Which fruit were there five of in {0}?", TwoColumns4Answers, "Strawberries", "Melons", "Lemons", "Raspberries", "Bananas", TranslateAnswers = true)]
     Fruit,
-    
+
     [SouvenirQuestion("What were the relevant counts in {0}?", TwoColumns4Answers, "5", "1 4", "2 3", "1 1 3", "1 2 2")]
     Counts
 }

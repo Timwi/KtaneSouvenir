@@ -9,7 +9,7 @@ public enum SAdventureGame
 {
     [SouvenirQuestion("Which item was the {1} correct item you used in {0}?", TwoColumns4Answers, "Broadsword", "Caber", "Nasty knife", "Longbow", "Magic orb", "Grimoire", "Balloon", "Battery", "Bellows", "Cheat code", "Crystal ball", "Feather", "Hard drive", "Lamp", "Moonstone", "Potion", "Small dog", "Stepladder", "Sunstone", "Symbol", "Ticket", "Trophy", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     CorrectItem,
-    
+
     [SouvenirQuestion("What enemy were you fighting in {0}?", TwoColumns4Answers, "Dragon", "Demon", "Eagle", "Goblin", "Troll", "Wizard", "Golem", "Lizard")]
     Enemy
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SCruelKeypads
 {
     [SouvenirQuestion("What was the color of the bar in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "White", Arguments = [QandA.Ordinal], TranslateAnswers = true, ArgumentGroupSize = 1)]
     Colors,
-    
+
     [SouvenirQuestion("Which of these characters appeared in the {1} stage of {0}?", ThreeColumns6Answers, "ㄹ", "ㅁ", "ㅂ", "ㄱ", "ㄲ", "ㄷ", "ㅈ", "ㅉ", "ㅟ", "ㅋ", "ㅌ", "ㅍ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅢ", "ㄴ", "ㄸ", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayedSymbols
 }

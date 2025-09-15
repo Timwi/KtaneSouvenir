@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,10 +8,10 @@ public enum SFaerieFires
 {
     [SouvenirQuestion("What color was the {1} faerie in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Cyan", "Magenta", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Color,
-    
+
     [SouvenirQuestion("What pitch did the {1} faerie sing in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     PitchOrdinal,
-    
+
     [SouvenirQuestion("What pitch did the {1} faerie sing in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8, Arguments = ["red", "green", "blue", "yellow", "cyan", "magenta"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     PitchColor
 }

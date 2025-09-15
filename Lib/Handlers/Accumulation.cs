@@ -9,7 +9,7 @@ public enum SAccumulation
 {
     [SouvenirQuestion("What was the border color in {0}?", ThreeColumns6Answers, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow", TranslateAnswers = true)]
     BorderColor,
-    
+
     [SouvenirQuestion("What was the background color on the {1} stage in {0}?", ThreeColumns6Answers, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     BackgroundColor
 }

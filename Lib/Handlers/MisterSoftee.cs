@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SMisterSoftee
 {
     [SouvenirQuestion("Where was the SpongeBob Bar on {0}?", ThreeColumns6Answers, "top-left", "top-middle", "top-right", "middle-left", "middle-middle", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
     SpongebobPosition,
-    
+
     [SouvenirQuestion("Which treat was present on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "MisterSofteeSprites")]
     TreatsPresent
 }

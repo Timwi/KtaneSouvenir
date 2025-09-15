@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public enum SGadgetronVendor
 {
     [SouvenirQuestion("What was your current weapon in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "GadgetronVendorIconSprites")]
     CurrentWeapon,
-    
+
     [SouvenirQuestion("What was the weapon up for sale in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "GadgetronVendorWeaponSprites")]
     WeaponForSale
 }

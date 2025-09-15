@@ -9,7 +9,7 @@ public enum SModuleListening
 {
     [SouvenirQuestion("Which sound did the {1} button play in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue", "yellow"], ArgumentGroupSize = 1, Type = AnswerType.Audio, ForeignAudioID = "moduleListening")]
     ButtonAudio,
-    
+
     [SouvenirQuestion("Which sound played in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "moduleListening")]
     AnyAudio
 }

@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public enum SMouseInTheMaze
 {
     [SouvenirQuestion("Which color sphere was the goal in {0}?", TwoColumns4Answers, "white", "green", "blue", "yellow", TranslateAnswers = true)]
     Sphere,
-    
+
     [SouvenirQuestion("What color was the torus in {0}?", TwoColumns4Answers, "white", "green", "blue", "yellow", TranslateAnswers = true)]
     Torus
 }

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +8,7 @@ public enum SFlashingArrows
     [SouvenirQuestion("What number was displayed on {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 99)]
     DisplayedValue,
-    
+
     [SouvenirQuestion("What color flashed {1} black on the relevant arrow in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", Arguments = ["before", "after"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     ReferredArrow
 }

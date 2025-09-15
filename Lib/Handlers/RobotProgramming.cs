@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +7,7 @@ public enum SRobotProgramming
 {
     [SouvenirQuestion("What was the color of the {1} robot in {0}?", TwoColumns4Answers, "Blue", "Green", "Red", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Color,
-    
+
     [SouvenirQuestion("What was the shape of the {1} robot in {0}?", TwoColumns4Answers, "Triangle", "Square", "Hexagon", "Circle", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Shape
 }

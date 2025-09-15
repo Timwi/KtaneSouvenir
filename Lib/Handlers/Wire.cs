@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public enum SWire
 {
     [SouvenirQuestion("What was the color of the {1} dial in {0}?", ThreeColumns6Answers, "blue", "green", "grey", "orange", "purple", "red", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["top", "bottom-left", "bottom-right"], ArgumentGroupSize = 1)]
     DialColors,
-    
+
     [SouvenirQuestion("What was the displayed number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9)]
     DisplayedNumber

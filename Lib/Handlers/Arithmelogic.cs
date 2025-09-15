@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SArithmelogic
 {
     [SouvenirQuestion("What was the symbol on the submit button in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "ArithmelogicSprites")]
     Submit,
-    
+
     [SouvenirQuestion("Which number was selectable, but not the solution, in the {1} screen on {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["left", "middle", "right"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(10, 40)]
     Numbers

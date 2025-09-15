@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ public enum SSwitchingMaze
     [SouvenirQuestion("What was the seed in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings(8, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/")]
     Seed,
-    
+
     [SouvenirQuestion("What was the starting maze color in {0}?", ThreeColumns6Answers, "Blue", "Cyan", "Magenta", "Orange", "Red", "White", TranslateAnswers = true)]
     Color
 }

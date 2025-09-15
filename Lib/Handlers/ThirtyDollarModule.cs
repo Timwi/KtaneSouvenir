@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SThirtyDollarModule
 {
-    [SouvenirQuestion("Which sound was used in {0}?", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "ThirtyDollarModule", AudioSizeMultiplier = 5)]
+    [SouvenirQuestion("Which sound was used in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "ThirtyDollarModule", AudioSizeMultiplier = 5)]
     Sounds
 }
 

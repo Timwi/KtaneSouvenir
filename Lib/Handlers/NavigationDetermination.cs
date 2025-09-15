@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +7,7 @@ public enum SNavigationDetermination
 {
     [SouvenirQuestion("What was the color of the maze in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateAnswers = true)]
     Color,
-    
+
     [SouvenirQuestion("What was the label of the maze in {0}?", TwoColumns4Answers, "A", "B", "C", "D")]
     Label
 }

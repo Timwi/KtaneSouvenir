@@ -9,7 +9,7 @@ public enum SGarfieldKart
 {
     [SouvenirQuestion("What was the track in {0}?", OneColumn4Answers, ExampleAnswers = ["Play Misty for Me", "Sneak-A-Peak", "Blazing Oasis", "Pastacosi Factory", "Mysterious Temple", "Prohibited Site"])]
     Track,
-    
+
     [SouvenirQuestion("How many puzzle pieces did {0} have?", TwoColumns4Answers, "0", "1", "2", "3")]
     PuzzleCount
 }

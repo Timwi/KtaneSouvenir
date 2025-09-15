@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -9,7 +9,7 @@ public enum S3DMaze
 {
     [SouvenirQuestion("What were the markings in {0}?", ThreeColumns6Answers, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
     Markings,
-    
+
     [SouvenirQuestion("What was the cardinal direction in {0}?", TwoColumns4Answers, "North", "South", "West", "East", TranslateAnswers = true)]
     Bearing
 }

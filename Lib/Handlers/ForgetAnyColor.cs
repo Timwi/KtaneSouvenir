@@ -11,7 +11,7 @@ public enum SForgetAnyColor
                 "the Forget Any Color which used figure {0} in the {1} stage",
                 "the Forget Any Color whose cylinders in the {1} stage were {0}"])]
     Cylinder,
-    
+
     [SouvenirQuestion("Which figure was used during the {1} stage of {0}?", ThreeColumns6Answers, ExampleAnswers = ["LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Sequence
 }

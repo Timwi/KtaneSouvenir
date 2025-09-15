@@ -9,7 +9,7 @@ public enum SWavetapping
 {
     [SouvenirQuestion("What was the correct pattern on the {1} stage in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "WavetappingSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Patterns,
-    
+
     [SouvenirQuestion("What was the color on the {1} stage in {0}?", TwoColumns4Answers, "Red", "Orange", "Orange-Yellow", "Chartreuse", "Lime", "Green", "Seafoam Green", "Cyan-Green", "Turquoise", "Dark Blue", "Indigo", "Purple", "Purple-Magenta", "Magenta", "Pink", "Gray", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }

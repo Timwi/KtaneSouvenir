@@ -9,7 +9,7 @@ public enum SColorDecoding
 {
     [SouvenirQuestion("Which color {1} in the {2}-stage indicator pattern in {0}?", TwoColumns4Answers, "Green", "Purple", "Red", "Blue", "Yellow", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["appeared", QandA.Ordinal, "did not appear", QandA.Ordinal], ArgumentGroupSize = 2)]
     IndicatorColors,
-    
+
     [SouvenirQuestion("What was the {1}-stage indicator pattern in {0}?", TwoColumns4Answers, "Checkered", "Horizontal", "Vertical", "Solid", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     IndicatorPattern
 }

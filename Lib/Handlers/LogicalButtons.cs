@@ -7,12 +7,12 @@ using static Souvenir.AnswerLayout;
 
 public enum SLogicalButtons
 {
-    [SouvenirQuestion("What was the color of the {1} button in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", "Purple", "White", "Orange", "Cyan", "Grey", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom-left", QandA.Ordinal, "bottom-right", QandA.Ordinal, ], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("What was the color of the {1} button in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", "Purple", "White", "Orange", "Cyan", "Grey", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom-left", QandA.Ordinal, "bottom-right", QandA.Ordinal], ArgumentGroupSize = 2)]
     Color,
-    
-    [SouvenirQuestion("What was the label on the {1} button in the {2} stage of {0}?", TwoColumns4Answers, "Logic", "Color", "Label", "Button", "Wrong", "Boom", "No", "Wait", "Hmmm", TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom-left", QandA.Ordinal, "bottom-right", QandA.Ordinal, ], ArgumentGroupSize = 2)]
+
+    [SouvenirQuestion("What was the label on the {1} button in the {2} stage of {0}?", TwoColumns4Answers, "Logic", "Color", "Label", "Button", "Wrong", "Boom", "No", "Wait", "Hmmm", TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom-left", QandA.Ordinal, "bottom-right", QandA.Ordinal], ArgumentGroupSize = 2)]
     Label,
-    
+
     [SouvenirQuestion("What was the final operator in the {1} stage of {0}?", ThreeColumns6Answers, "AND", "OR", "XOR", "NAND", "NOR", "XNOR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Operator
 }

@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,15 +9,15 @@ public enum SFunctions
     [SouvenirQuestion("What was the last digit of your first query’s result in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9)]
     LastDigit,
-    
+
     [SouvenirQuestion("What number was to the left of the displayed letter in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 999)]
     LeftNumber,
-    
+
     [SouvenirQuestion("What letter was displayed in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings('A', 'Z')]
     Letter,
-    
+
     [SouvenirQuestion("What number was to the right of the displayed letter in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 999)]
     RightNumber

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -10,10 +9,10 @@ public enum SMemory
     [SouvenirQuestion("What was the displayed number in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 4)]
     Display,
-    
+
     [SouvenirQuestion("In what position was the button that you pressed in the {1} stage of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "MemorySprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Position,
-    
+
     [SouvenirQuestion("What was the label of the button that you pressed in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 4)]
     Label

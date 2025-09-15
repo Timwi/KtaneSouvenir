@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -10,10 +10,10 @@ public enum SArena
     [SouvenirQuestion("What was the maximum weapon damage of the attack phase in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 99)]
     Damage,
-    
+
     [SouvenirQuestion("Which enemy was present in the defend phase of {0}?", TwoColumns4Answers, "Bat", "Snake", "Spider", "Cobra", "Scorpion", "Mole", "Creeper", "Goblin", "Golem", "Robo-Mouse", "Skeleton", "Undead Guard", "The Reaper", "The Mole’s Dad")]
     Enemies,
-    
+
     [SouvenirQuestion("Which was a number present in the grab phase of {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(10, 99)]
     Numbers

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SWolfGoatAndCabbage
 {
     [SouvenirQuestion("Which of these was {1} on {0}?", ThreeColumns6Answers, "Cat", "Wolf", "Rabbit", "Berry", "Fish", "Dog", "Duck", "Goat", "Fox", "Grass", "Rice", "Mouse", "Bear", "Cabbage", "Chicken", "Goose", "Corn", "Carrot", "Horse", "Earthworm", "Kiwi", "Seeds", Arguments = ["present", "not present"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Animals,
-    
+
     [SouvenirQuestion("What was the boat size in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9)]
     BoatSize

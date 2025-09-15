@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SIngredients
 {
     [SouvenirQuestion("Which ingredient was used in {0}?", TwoColumns4Answers, "Veal", "Beef", "Quail", "FiletMignon", "Crab", "Scallop", "Lobster", "Sole", "Eel", "SeaBass", "Mussel", "Cod", "Pumpkin", "Zucchini", "Onion", "Tomato", "Eggplant", "Carrot", "Garlic", "Celery", "Morel", "Porcini", "Chanterelle", "Portobello", "BlackTruffle", "KingOysterMushroom", "BlackTrumpet", "MillerMushroom", "Cloves", "Rosemary", "Thyme", "BayLeaf", "Basil", "Dill", "Parsley", "Saffron", "Apricot", "Gooseberry", "Lemon", "Orange", "Raspberry", "Pear", "Blackberry", "Apple", "Cheese", "Chocolate", "Caviar", "Butter", "OliveOil", "Cornichon", "Rice", "Honey", "SourCherry", "Strawberry", "BloodOrange", "Banana", "Grapes", "Melon", "Watermelon")]
     Ingredients,
-    
+
     [SouvenirQuestion("Which ingredient was listed but not used in {0}?", TwoColumns4Answers, "Veal", "Beef", "Quail", "FiletMignon", "Crab", "Scallop", "Lobster", "Sole", "Eel", "SeaBass", "Mussel", "Cod", "Pumpkin", "Zucchini", "Onion", "Tomato", "Eggplant", "Carrot", "Garlic", "Celery", "Morel", "Porcini", "Chanterelle", "Portobello", "BlackTruffle", "KingOysterMushroom", "BlackTrumpet", "MillerMushroom", "Cloves", "Rosemary", "Thyme", "BayLeaf", "Basil", "Dill", "Parsley", "Saffron", "Apricot", "Gooseberry", "Lemon", "Orange", "Raspberry", "Pear", "Blackberry", "Apple", "Cheese", "Chocolate", "Caviar", "Butter", "OliveOil", "Cornichon", "Rice", "Honey", "SourCherry", "Strawberry", "BloodOrange", "Banana", "Grapes", "Melon", "Watermelon")]
     NonIngredients
 }

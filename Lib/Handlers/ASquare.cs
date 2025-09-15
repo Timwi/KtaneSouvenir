@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SASquare
 {
     [SouvenirQuestion("Which of these was an index color in {0}?", ThreeColumns6Answers, "Orange", "Pink", "Cyan", "Yellow", "Lavender", "Brown", "Tan", "Blue", "Jade", "Indigo", "White")]
     IndexColors,
-    
+
     [SouvenirQuestion("Which color was submitted {1} in {0}?", ThreeColumns6Answers, "Orange", "Pink", "Cyan", "Yellow", "Lavender", "Brown", "Tan", "Blue", "Jade", "Indigo", "White", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     CorrectColors
 }

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +7,7 @@ public enum SNavinums
 {
     [SouvenirQuestion("What was the {1} directional button pressed in {0}?", TwoColumns4Answers, "up", "left", "right", "down", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DirectionalButtons,
-    
+
     [SouvenirQuestion("What was the initial middle digit in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 9)]
     MiddleDigit

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SAmusementParks
 {
-    [SouvenirQuestion("Which ride was available in {0}?", AnswerLayout.OneColumn4Answers, "Carousel", "Drop Tower", "Enterprise", "Ferris Wheel", "Ghost Train", "Inverted Coaster", "Junior Coaster", "Launched Coaster", "Log Flume", "Omnimover", "Pirate Ship", "River Rapids", "Safari", "Star Flyer", "Top Spin", "Tourbillon", "Vintage Cars", "Walkthrough", "Wooden Coaster")]
+    [SouvenirQuestion("Which ride was available in {0}?", OneColumn4Answers, "Carousel", "Drop Tower", "Enterprise", "Ferris Wheel", "Ghost Train", "Inverted Coaster", "Junior Coaster", "Launched Coaster", "Log Flume", "Omnimover", "Pirate Ship", "River Rapids", "Safari", "Star Flyer", "Top Spin", "Tourbillon", "Vintage Cars", "Walkthrough", "Wooden Coaster")]
     Rides
 }
 

@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public enum SNumpath
 {
     [SouvenirQuestion("What was the color of the number on {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", TranslateAnswers = true)]
     Color,
-    
+
     [SouvenirQuestion("What was the number displayed on {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 9)]
     Digit

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SOctadecayotton
 {
     [SouvenirQuestion("What was the starting sphere in {0}?", OneColumn4Answers, ExampleAnswers = ["--+", "-+-+-++-+", "-++-+--+-", "+++-+-++-", "--++-++-+-++"])]
     Sphere,
-    
+
     [SouvenirQuestion("What was one of the subrotations in the {1} rotation in {0}?", OneColumn4Answers, ExampleAnswers = ["-X", "+Y-Z", "+U+V+W", "-R+S+T-O", "+P-Q-X+Y-Z"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Rotations
 }

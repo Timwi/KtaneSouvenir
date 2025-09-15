@@ -9,7 +9,7 @@ public enum SColorMorse
 {
     [SouvenirQuestion("What was the color of the {1} LED in {0}?", ThreeColumns6Answers, "Blue", "Green", "Orange", "Purple", "Red", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Color,
-    
+
     [SouvenirQuestion("What character was flashed by the {1} LED in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("0-9A-Z")]
     Character

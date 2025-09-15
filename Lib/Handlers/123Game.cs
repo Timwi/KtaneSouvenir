@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -9,7 +9,7 @@ public enum S123Game
 {
     [SouvenirQuestion("Who was the opponent in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Profile,
-    
+
     [SouvenirQuestion("Who was the opponent in {0}?", ThreeColumns6Answers, "Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu", "Yuram")]
     Name
 }

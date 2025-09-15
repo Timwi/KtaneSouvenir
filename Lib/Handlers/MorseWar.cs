@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SMorseWar
 {
     [SouvenirQuestion("What code was transmitted in {0}?", ThreeColumns6Answers, "ABR", "RBS", "SVR", "ZUX", "ZAQ", "MOI", "OPA", "VZQ", "XRP", "OLL", "AIR", "RHG", "MJN", "VTT", "XZS", "SUN")]
     Code,
-    
+
     [SouvenirQuestion("What were the LEDs in the {1} row in {0} (1\u00a0=\u00a0on, 0\u00a0=\u00a0off)?", ThreeColumns6Answers, "1100", "1010", "1001", "0110", "0101", "0011", TranslateArguments = [true], Arguments = ["bottom", "middle", "top"], ArgumentGroupSize = 1)]
     Leds
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SMonsplodeTradingCards
 {
     [SouvenirQuestion("What was the {1} before the last action in {0}?", TwoColumns4Answers, "Aluga", "Asteran", "Bob", "Buhar", "Caadarim", "Clondar", "Cutie Pie", "Docsplode", "Flaurim", "Gloorim", "Lanaluff", "Lugirit", "Magmy", "Melbor", "Mountoise", "Myrchat", "Nibs", "Percy", "Pouse", "Ukkens", "Vellarim", "Violan", "Zapra", "Zenlad", "Aluga, The Fighter", "Bob, The Ancestor", "Buhar, The Protector", "Melbor, The Web Bug", Arguments = ["first card in your hand", "second card in your hand", "third card in your hand", "card on offer"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Cards,
-    
+
     [SouvenirQuestion("What was the print version of the {1} before the last action in {0}?", ThreeColumns6Answers, Arguments = ["first card in your hand", "second card in your hand", "third card in your hand", "card on offer"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("A-J", "1-9")]
     PrintVersions

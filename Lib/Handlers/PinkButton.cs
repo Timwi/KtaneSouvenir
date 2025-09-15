@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SPinkButton
 {
     [SouvenirQuestion("What was the {1} word in {0}?", TwoColumns4Answers, "BLK", "RED", "GRN", "YLW", "BLU", "MGT", "CYN", "WHT", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Words,
-    
+
     [SouvenirQuestion("What was the {1} color in {0}?", TwoColumns4Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }

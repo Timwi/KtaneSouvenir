@@ -9,7 +9,7 @@ public enum SBrokenGuitarChords
 {
     [SouvenirQuestion("What was the displayed chord in {0}?", ThreeColumns6Answers, ExampleAnswers = ["C", "Dm", "F#sus", "Gm7", "A9", "Eadd9"])]
     DisplayedChord,
-    
+
     [SouvenirQuestion("In which position, from left to right, was the broken string in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 6)]
     MutedString

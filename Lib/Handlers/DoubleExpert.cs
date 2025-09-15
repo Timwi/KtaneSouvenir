@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +8,7 @@ public enum SDoubleExpert
     [SouvenirQuestion("What was the starting key number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(30, 69)]
     StartingKeyNumber,
-    
+
     [SouvenirQuestion("What was the word you submitted in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Echo", "November", "Rodeo", "Words", "Victor", "Zulu"])]
     SubmittedWord
 }

@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SBlinkstop
 {
     [SouvenirQuestion("How many times did the LED flash in {0}?", ThreeColumns6Answers, "30", "33", "37", "39", "42", "44", "47", "51", "55", "59")]
     NumberOfFlashes,
-    
+
     [SouvenirQuestion("Which color did the LED flash the fewest times in {0}?", TwoColumns4Answers, "Purple", "Cyan", "Yellow", "Multicolor", TranslateAnswers = true)]
     FewestFlashedColor
 }

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,10 +8,10 @@ public enum SPuzzleIdentification
     [SouvenirQuestion("What was the {1} puzzle number in {0}?", ThreeColumns6Answers, ExampleAnswers = ["001", "002", "003", "004", "005", "006"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 170, 1, "000")]
     Num,
-    
+
     [SouvenirQuestion("What game was the {1} puzzle in {0} from?", OneColumn4Answers, "Professor Layton and the Curious Village", "Professor Layton and Pandora's Box", "Professor Layton and the Lost Future", "Professor Layton and the Spectre's Call", "Professor Layton and the Miracle Mask", "Professor Layton and the Azran Legacy", "Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy", "Professor Layton vs. Phoenix Wright: Ace Attorney", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Game,
-    
+
     [SouvenirQuestion("What was the {1} puzzle in {0}?", OneColumn4Answers, ExampleAnswers = ["Where's the Village?", "Dr Schrader's Map", "A Party Crasher", "A Secret Message"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Name
 }

@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SLadders
 {
     [SouvenirQuestion("Which color was present on the second ladder in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
     Stage2Colors,
-    
+
     [SouvenirQuestion("What color was missing on the third ladder in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
     Stage3Missing
 }

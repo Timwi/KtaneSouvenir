@@ -10,7 +10,7 @@ public enum SNandNs
     [SouvenirQuestion("Which label was present in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings(5, 'M', 'N')]
     Label,
-    
+
     [SouvenirQuestion("Which color was missing in the third stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Orange", "Blue", "Yellow", "Brown", TranslateAnswers = true)]
     Color
 }

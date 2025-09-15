@@ -9,7 +9,7 @@ public enum SVaricolourFlash
 {
     [SouvenirQuestion("What was the word of the {1} goal in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Words,
-    
+
     [SouvenirQuestion("What was the color of the {1} goal in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }

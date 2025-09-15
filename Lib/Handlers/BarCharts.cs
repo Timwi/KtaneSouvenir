@@ -9,16 +9,16 @@ public enum SBarCharts
 {
     [SouvenirQuestion("What was the category of {0}?", OneColumn4Answers, null, ExampleAnswers = ["Non-Percussion Instruments", "European Capital Cities", "Cast of Star Trek: TOS", "Percussion Instruments", "Zodiac Signs", "20th Century Composers"])]
     Category,
-    
+
     [SouvenirQuestion("What was the unit of {0}?", ThreeColumns6Answers, "Popularity", "Frequency", "Responses", "Occurrences", "Density", "Magnitude")]
     Unit,
-    
+
     [SouvenirQuestion("What was the label of the {1} bar in {0}?", TwoColumns4Answers, null, ExampleAnswers = ["Glockenspiel", "C.Discharge", "Shakespeare", "Sagittarius", "Malted Milk", "Venting Gas"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Label,
-    
+
     [SouvenirQuestion("What was the color of the {1} bar in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Color,
-    
+
     [SouvenirQuestion("What was the position of the {1} bar in {0}?", TwoColumns4Answers, TranslateArguments = [true], Arguments = ["shortest", "second shortest", "second tallest", "tallest"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Ordinal(1, 4)]
     Height

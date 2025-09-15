@@ -9,7 +9,7 @@ public enum SNegativity
 {
     [SouvenirQuestion("In base 10, what was the value submitted in {0}?", ThreeColumns6Answers, ExampleAnswers = ["0", "9990", "-9990", "-1234", "5678", "-90"])]
     SubmittedValue,
-    
+
     [SouvenirQuestion("Excluding 0s, what was the submitted balanced ternary in {0}?", TwoColumns4Answers, ExampleAnswers = ["+-", "-++", "++-+-", "++++-", "-----", "+-----++++"])]
     SubmittedTernary
 }

@@ -9,7 +9,7 @@ public enum SIceCream
 {
     [SouvenirQuestion("Which one of these flavours {1} to the {2} customer in {0}?", OneColumn4Answers, "Tutti Frutti", "Rocky Road", "Raspberry Ripple", "Double Chocolate", "Double Strawberry", "Cookies & Cream", "Neapolitan", "Mint Chocolate Chip", "The Classic", "Vanilla", TranslateArguments = [true, false], Arguments = ["was on offer, but not sold,", QandA.Ordinal, "was not on offer", QandA.Ordinal], ArgumentGroupSize = 2)]
     Flavour,
-    
+
     [SouvenirQuestion("Who was the {1} customer in {0}?", ThreeColumns6Answers, "Mike", "Tim", "Tom", "Dave", "Adam", "Cheryl", "Sean", "Ashley", "Jessica", "Taylor", "Simon", "Sally", "Jade", "Sam", "Gary", "Victor", "George", "Jacob", "Pat", "Bob", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Customer
 }

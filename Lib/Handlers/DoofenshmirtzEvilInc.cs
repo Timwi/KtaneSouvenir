@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -9,7 +9,7 @@ public enum SDoofenshmirtzEvilInc
 {
     [SouvenirQuestion("What jingle played in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = "doofenshmirtzEvilIncModule", AudioSizeMultiplier = 8)]
     Jingles,
-    
+
     [SouvenirQuestion("Which image was shown in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Inators
 }

@@ -9,7 +9,7 @@ public enum SUltraStores
 {
     [SouvenirQuestion("What was the {1} rotation in the {2} stage of {0}?", ThreeColumns6Answers, ExampleAnswers = ["UZ", "VU", "WV", "YU", "YW", "YX"], Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     SingleRotation,
-    
+
     [SouvenirQuestion("What was the {1} rotation in the {2} stage of {0}?", TwoColumns4Answers, ExampleAnswers = ["(XU, VY, WZ)", "(XY, VZ, UW)", "(XZ, YV, WU)", "(YX, UZ, VW)"], Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     MultiRotation
 }

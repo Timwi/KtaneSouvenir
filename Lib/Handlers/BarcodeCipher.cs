@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,10 +9,10 @@ public enum SBarcodeCipher
     [SouvenirQuestion("What was the screen number in {0}?", OneColumn4Answers)]
     [AnswerGenerator.Integers(0, 999999, "000000")]
     ScreenNumber,
-    
+
     [SouvenirQuestion("What was the edgework represented by the {1} barcode in {0}?", OneColumn4Answers, "SERIAL NUMBER", "BATTERIES", "BATTERY HOLDERS", "PORTS", "PORT PLATES", "LIT INDICATORS", "UNLIT INDICATORS", "INDICATORS", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     BarcodeEdgework,
-    
+
     [SouvenirQuestion("What was the answer for the {1} barcode in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     BarcodeAnswers
 }

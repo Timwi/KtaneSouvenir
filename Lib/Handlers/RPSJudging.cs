@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SRPSJudging
 {
     [SouvenirQuestion("Which round did the {1} team {2} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["first", "second", "third", "fourth", "fifth", "sixth"], Arguments = ["red", "win", "blue", "win", "red", "lose", "blue", "lose"], ArgumentGroupSize = 2, TranslateArguments = [true, true], TranslatableStrings = ["the RPS Judging where the {0} team {1} the {2} round", "won", "lost", "the RPS Judging with a draw in the {0} round"])]
     Winner,
-    
+
     [SouvenirQuestion("Which round was a draw in {0}?", ThreeColumns6Answers, ExampleAnswers = ["first", "second", "third", "fourth", "fifth", "sixth"])]
     Draw
 }

@@ -9,7 +9,7 @@ public enum SPartialDerivatives
 {
     [SouvenirQuestion("What was the LED color in the {1} stage of {0}?", ThreeColumns6Answers, "blue", "green", "orange", "purple", "red", "yellow", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     LedColors,
-    
+
     [SouvenirQuestion("What was the {1} term in {0}?", TwoColumns4Answers, ExampleAnswers = ["−5x⁴z³", "8x⁴z⁴", "4xy³z²", "−3x⁴z", "3x⁵y⁵z³"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Terms
 }

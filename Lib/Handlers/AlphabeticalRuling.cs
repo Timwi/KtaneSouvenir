@@ -10,7 +10,7 @@ public enum SAlphabeticalRuling
     [SouvenirQuestion("What was the letter displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings(1, 'A', 'Z')]
     Letter,
-    
+
     [SouvenirQuestion("What was the number displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 9)]
     Number

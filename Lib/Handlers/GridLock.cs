@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -9,11 +9,11 @@ public enum SGridLock
 {
     [SouvenirQuestion("What was the starting color in {0}?", TwoColumns4Answers, "Green", "Yellow", "Red", "Blue", TranslateAnswers = true)]
     StartingColor,
-    
+
     [SouvenirQuestion("What was the starting location in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     StartingLocation,
-    
+
     [SouvenirQuestion("What was the ending location in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     EndingLocation

@@ -9,7 +9,7 @@ public enum SBeanSprouts
 {
     [SouvenirQuestion("What was sprout {1} in {0}?", TwoColumns4Answers, "Raw", "Cooked", "Burnt", "Fake", TranslateAnswers = true, ArgumentGroupSize = 1, Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"])]
     Colors,
-    
+
     [SouvenirQuestion("What bean was on sprout {1} in {0}?", TwoColumns4Answers, "Left", "Right", "None", "Both", TranslateAnswers = true, ArgumentGroupSize = 1, Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"])]
     Beans
 }

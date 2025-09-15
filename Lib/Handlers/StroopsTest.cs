@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SStroopsTest
 {
     [SouvenirQuestion("What was the {1} submitted word in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Word,
-    
+
     [SouvenirQuestion("What was the {1} submitted word’s color in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Color
 }

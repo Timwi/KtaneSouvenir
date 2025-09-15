@@ -9,7 +9,7 @@ public enum SForgetTheColors
 {
     [SouvenirQuestion("What color was the gear during stage {1} of {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray", TranslateAnswers = true, Arguments = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
     GearColor,
-    
+
     [SouvenirQuestion("What number was on the gear during stage {1} of {0}?", ThreeColumns6Answers, Arguments = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1, TranslatableStrings = [            "the Forget The Colors whose gear number was {0} in stage {1}",
                 "the Forget The Colors which had {0} on its large display in stage {1}",
                 "the Forget The Colors whose received sine number in stage {1} ended with a {0}",
@@ -17,14 +17,14 @@ public enum SForgetTheColors
                 "the Forget The Colors whose rule color was {0} in stage {1}"])]
     [AnswerGenerator.Integers(0, 9)]
     GearNumber,
-    
+
     [SouvenirQuestion("Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray", TranslateAnswers = true, Arguments = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
     RuleColor,
-    
+
     [SouvenirQuestion("What number was on the large display during stage {1} of {0}?", ThreeColumns6Answers, Arguments = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 990)]
     LargeDisplay,
-    
+
     [SouvenirQuestion("What was the last decimal in the sine number received during stage {1} of {0}?", ThreeColumns6Answers, Arguments = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     SineNumber

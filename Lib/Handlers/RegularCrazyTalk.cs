@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +8,7 @@ public enum SRegularCrazyTalk
     [SouvenirQuestion("What was the displayed digit that corresponded to the solution phrase in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9)]
     Digit,
-    
+
     [SouvenirQuestion("What was the embellishment of the solution phrase in {0}?", OneColumn4Answers, "[PHRASE]", "It says: [PHRASE]", "Quote: [PHRASE] End quote", "“[PHRASE]”", "It says: “[PHRASE]”", "“It says: [PHRASE]”", TranslateAnswers = true)]
     Modifier
 }

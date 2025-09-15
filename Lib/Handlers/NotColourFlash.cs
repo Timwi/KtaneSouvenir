@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SNotColourFlash
 {
     [SouvenirQuestion("What was {1} in the displayed word sequence in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     InitialWord,
-    
+
     [SouvenirQuestion("What was {1} in the displayed colour sequence in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     InitialColour
 }

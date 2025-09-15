@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum STAC
 {
     [SouvenirQuestion("Which card was {1} in the swap in {0}?", TwoColumns4Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "backwards 3", "backwards 4", "backwards 5", "single-step 6", "single-step 7", "8 or discard", "9 or discard", "10 or discard", "Warrior", "Trickster", Arguments = ["given away", "received"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslateAnswers = true)]
     SwappedCard,
-    
+
     [SouvenirQuestion("Which card was in your hand in {0}?", TwoColumns4Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "backwards 3", "backwards 4", "backwards 5", "single-step 6", "single-step 7", "8 or discard", "9 or discard", "10 or discard", "Warrior", "Trickster", TranslateAnswers = true)]
     HeldCard
 }

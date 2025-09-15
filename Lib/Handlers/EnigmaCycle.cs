@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,13 +7,13 @@ public enum SEnigmaCycle
 {
     [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", ThreeColumns3Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleThreeSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DialDirectionsThree,
-    
+
     [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleTwelveSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DialDirectionsTwelve,
-    
+
     [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleEightSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DialDirectionsEight,
-    
+
     [SouvenirQuestion("What letter was written on the {1} dial in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("1*A-Z")]
     DialLabels

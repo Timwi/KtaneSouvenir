@@ -9,7 +9,7 @@ public enum SSmashMarryKill
 {
     [SouvenirQuestion("In what category was {1} for {0}?", TwoColumns4Answers, "SMASH", "MARRY", "KILL", Arguments = ["The Button", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Who’s on First", "Wires", "Wire Sequence"], ArgumentGroupSize = 1)]
     Category,
-    
+
     [SouvenirQuestion("Which module was in the {1} category for {0}?", OneColumn4Answers, ExampleAnswers = ["The Button", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Who’s on First", "Wires", "Wire Sequence"], Arguments = ["SMASH", "MARRY", "KILL"], ArgumentGroupSize = 1)]
     Module
 }

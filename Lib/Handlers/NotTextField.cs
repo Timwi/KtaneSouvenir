@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -10,7 +10,7 @@ public enum SNotTextField
     [SouvenirQuestion("Which letter appeared 9 times at the start of {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings('A', 'F')]
     BackgroundLetter,
-    
+
     [SouvenirQuestion("Which letter was pressed in the first stage of {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings('A', 'F')]
     InitialPresses

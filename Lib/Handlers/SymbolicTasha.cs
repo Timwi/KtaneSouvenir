@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SSymbolicTasha
 {
     [SouvenirQuestion("Which button flashed {1} in the final sequence of {0}?", ThreeColumns6Answers, "Top", "Right", "Bottom", "Left", "Pink", "Green", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Flashes,
-    
+
     [SouvenirQuestion("Which symbol was on the {1} button in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "SymbolicTashaSprites", Arguments = ["top", "right", "bottom", "left", "blue", "green", "yellow", "pink"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Symbols
 }

@@ -9,7 +9,7 @@ public enum SForgetThis
 {
     [SouvenirQuestion("What color was the LED in the {1} stage of {0}?", ThreeColumns6Answers, "Cyan", "Magenta", "Yellow", "Black", "White", "Green", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslatableStrings = ["the Forget This whose LED was {0} in the {1} stage", "the Forget This which displayed {0} in the {1} stage"])]
     Colors,
-    
+
     [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.AsciiMazeFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("0-9A-Z")]
     Digits

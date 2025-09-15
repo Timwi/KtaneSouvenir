@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +8,7 @@ public enum S9Ball
     [SouvenirQuestion("What was the number of ball {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["2", "3", "4", "5", "6", "7"], Arguments = ["A", "B", "C", "D", "E", "F", "G"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(2, 8)]
     Letters,
-    
+
     [SouvenirQuestion("What was the letter of ball {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["A", "B", "C", "D", "E", "F"], Arguments = ["2", "3", "4", "5", "6", "7", "8"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-G")]
     Numbers

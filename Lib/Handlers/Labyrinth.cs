@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +9,7 @@ public enum SLabyrinth
     [SouvenirQuestion("Where was one of the portals in layer {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(6, 7)]
     PortalLocations,
-    
+
     [SouvenirQuestion("In which layer was this portal in {0}?", TwoColumns4Answers, "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)", TranslateAnswers = true, UsesQuestionSprite = true)]
     PortalStage
 }

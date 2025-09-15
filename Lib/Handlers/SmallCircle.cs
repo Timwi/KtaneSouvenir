@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,10 +8,10 @@ public enum SSmallCircle
 {
     [SouvenirQuestion("How much did the sequence shift by in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
     Shift,
-    
+
     [SouvenirQuestion("Which wedge made the different noise in the beginning of {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true)]
     Wedge,
-    
+
     [SouvenirQuestion("Which color was {1} in the solution to {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Solution
 }

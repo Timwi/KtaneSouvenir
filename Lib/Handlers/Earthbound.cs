@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -9,7 +9,7 @@ public enum SEarthbound
 {
     [SouvenirQuestion("What was the background in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Background,
-    
+
     [SouvenirQuestion("Which monster was displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Monster
 }

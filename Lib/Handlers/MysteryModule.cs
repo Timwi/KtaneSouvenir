@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public enum SMysteryModule
 {
     [SouvenirQuestion("Which module was the first requested to be solved by {0}?", OneColumn4Answers, ExampleAnswers = ["Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox", "Rock-Paper-Scissors-L.-Sp."])]
     FirstKey,
-    
+
     [SouvenirQuestion("Which module was hidden by {0}?", OneColumn4Answers, ExampleAnswers = ["Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox"])]
     HiddenModule
 }

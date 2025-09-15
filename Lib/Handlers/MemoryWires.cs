@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SMemoryWires
 {
     [SouvenirQuestion("What was the colour of wire {1} in {0}?", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", Arguments = ["1", "2", "3", "4", "29", "30"], ArgumentGroupSize = 1, TranslateAnswers = true)]
     WireColours,
-    
+
     [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 6)]
     DisplayedDigits

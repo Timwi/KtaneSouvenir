@@ -9,20 +9,20 @@ public enum SVariety
 {
     [SouvenirQuestion("What color was the LED flashing in {0}?", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", TranslateAnswers = true, TranslatableStrings = ["the Variety that has one", "the Variety that has one (LED)", "the Variety that has one (digit display)", "the Variety that has one (letter display)", "the Variety that has one (timer)", "the Variety that has one (ascendingtimer)", "the Variety that has one (descendingtimer)", "the Variety that has one (knob)", "the Variety that has one (coloredknob)", "the Variety that has one (redknob)", "the Variety that has one (yellowknob)", "the Variety that has one (blueknob)", "the Variety that has one (blackknob)", "the Variety that has one (bulb)", "the Variety that has one (redbulb)", "the Variety that has one (yellowbulb)", "the Variety that has {0}", "a knob", "a colored knob", "a white knob", "a red knob", "a black knob", "a blue knob", "a yellow knob", "a keypad", "a white keypad", "a red keypad", "a yellow keypad", "a blue keypad", "a slider", "a horizontal slider", "a vertical slider", "an LED", "a digit display", "a wire", "a black wire", "a blue wire", "a red wire", "a yellow wire", "a white wire", "a button", "a red button", "a yellow button", "a blue button", "a white button", "a letter display", "a Braille display", "a key-in-lock", "a switch", "a red switch", "a yellow switch", "a blue switch", "a white switch", "a timer", "an ascending timer", "a descending timer", "a die", "a light-on-dark die", "a dark-on-light die", "a bulb", "a red bulb", "a yellow bulb", "a maze", "a 3×3 maze", "a 3×4 maze", "a 4×3 maze", "a 4×4 maze"])]
     LED,
-    
+
     [SouvenirQuestion("What digit was displayed but not the answer for the digit display in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "0")]
     DigitDisplay,
-    
+
     [SouvenirQuestion("What word could be formed but was not the answer for the letter display in {0}?", ThreeColumns6Answers, "ACE", "ACT", "AID", "AIM", "AIR", "ALE", "ALL", "AND", "ANT", "APT", "ARM", "ART", "AWE", "AYE", "BAD", "BAG", "BAR", "BAT", "BAY", "BED", "BEE", "BEG", "BET", "BID", "BIG", "BIT", "BIZ", "BOB", "BOW", "BOY", "BUT", "BUY", "BYE", "CAN", "CAP", "CAR", "CAT", "COP", "COT", "COW", "CUE", "CUP", "CUT", "DAD", "DAM", "DAY", "DIE", "DIG", "DIM", "DIP", "DOG", "DOT", "DRY", "DUE", "DUG", "DUO", "DYE", "EAR", "EAT", "FAN", "FAQ", "FAR", "FAT", "FAX", "FED", "FEE", "FEN", "FEW", "FIN", "FIT", "FIX", "FLY", "FOG", "FOR", "FRK", "FRQ", "FRY", "FUN", "FUR", "GET", "GIG", "GIN", "GUM", "GUT", "GUY", "HAM", "HAT", "HAY", "HEN", "HER", "HEY", "HIM", "HIP", "HIT", "HOP", "HOT", "HOW", "HUT", "ILK", "ILL", "IND", "INK", "IRK", "JAM", "JAR", "JAW", "JOB", "JOY", "KID", "KIN", "KIT", "LAD", "LAP", "LAW", "LAY", "LEG", "LET", "LID", "LIE", "LIP", "LIT", "LOG", "LOO", "LOT", "LOW", "LUA", "LUG", "MAD", "MAN", "MAP", "MAT", "MAX", "MAY", "MIC", "MID", "MIX", "MOB", "MOD", "MUD", "MUG", "MUM", "NET", "NEW", "NIL", "NLL", "NOD", "NOR", "NOT", "NOW", "NUN", "NUT", "OIL", "OPT", "OUR", "OUT", "OWE", "OWL", "PAD", "PAN", "PAR", "PAT", "PAY", "PEG", "PEN", "PER", "PET", "PIE", "PIG", "PIN", "PIT", "POP", "POT", "POW", "PUB", "PUT", "QUA", "QUE", "QUO", "RAG", "RAM", "RAT", "RAW", "RED", "RGB", "RIB", "RID", "RIG", "RIM", "ROB", "ROD", "ROT", "ROW", "RUB", "RUG", "RUM", "RUN", "SAD", "SAW", "SAY", "SEA", "SEE", "SET", "SHE", "SHY", "SIC", "SIG", "SIN", "SIR", "SIT", "SIX", "SLY", "SND", "SUE", "SUM", "SUN", "TAG", "TAP", "TAX", "TEA", "TEE", "TEN", "TGB", "THY", "TIE", "TIN", "TIP", "TOE", "TOO", "TOP", "TOY", "TRN", "TRY", "TUB", "VAT", "VET", "WAR", "WAX", "WAY", "WEE", "WET", "WHY", "WIG", "WIN", "WIT", "WIZ", "WRY", "YEN", "YET", "ZAG", "ZIG")]
     LetterDisplay,
-    
+
     [SouvenirQuestion("What was the maximum display for the {1}timer in {0}?", ThreeColumns6Answers, "1 1", "2 1", "4 1", "6 1", "1 2", "2 2", "4 2", "1 4", "2 4", Arguments = ["", "ascending ", "descending "], TranslateArguments = [true], ArgumentGroupSize = 1)]
     Timer,
-    
+
     [SouvenirQuestion("What was n for the {1}knob in {0}?", TwoColumns4Answers, Arguments = ["", "colored ", "red ", "black ", "blue ", "yellow "], TranslateArguments = [true], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(3, 6)]
     ColoredKnob,
-    
+
     [SouvenirQuestion("What was n for the {1}bulb in {0}?", ThreeColumns6Answers, Arguments = ["", "red ", "yellow "], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(5, 13)]
     Bulb

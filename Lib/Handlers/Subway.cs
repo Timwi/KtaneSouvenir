@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SSubway
 {
     [SouvenirQuestion("Which bread did the customer ask for in {0}?", OneColumn4Answers, "WHITE", "MULTIGRAIN", "GLUTEN FREE", "WHOLE WHEAT")]
     Bread,
-    
+
     [SouvenirQuestion("Which of these was not asked for in {0}?", OneColumn4Answers, "TUNA", "CHICKEN", "TURKEY", "HAM", "PASTRAMI", "MYSTERY MEAT", "AMERICAN", "MOZZARELLA", "PROVOLONE", "SWISS", "CHEDDAR", "TOAST THE BREAD", "OLIVES", "LETTUCE", "PICKLES", "ONIONS", "TOMATOES", "JALAPENOS", "KETCHUP", "MAYONNAISE", "RANCH", "SALT", "PEPPER", "VINEGAR")]
     Items
 }

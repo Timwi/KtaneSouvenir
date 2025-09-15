@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SBlindMaze
 {
     [SouvenirQuestion("What color was the {1} button in {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Gray", "Yellow", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["north", "east", "west", "south"], ArgumentGroupSize = 1)]
     Colors,
-    
+
     [SouvenirQuestion("Which maze did you solve {0} on?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9)]
     Maze

@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,10 +9,10 @@ public enum SFlags
     [SouvenirQuestion("What was the displayed number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 7)]
     DisplayedNumber,
-    
+
     [SouvenirQuestion("What was the main country flag in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "FlagsSprites")]
     MainCountry,
-    
+
     [SouvenirQuestion("Which of these country flags was shown, but not the main country flag, in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "FlagsSprites")]
     Countries
 }

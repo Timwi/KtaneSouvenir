@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,10 +8,10 @@ public enum SNotTheBulb
 {
     [SouvenirQuestion("What word flashed on {0}?", OneColumn4Answers, ExampleAnswers = ["Amplitude", "Boulevard", "Chemistry", "Duplicate", "Eightfold", "Filaments", "Goldsmith", "Harlequin", "Injectors", "Juxtapose", "Kilohertz", "Labyrinth", "Moustache", "Neighbour", "Obscurity", "Penumbral", "Quicksand", "Rhapsodic", "Squawking", "Triglyphs", "Universal", "Vexations", "Whizbangs", "Xenoglyph", "Yardstick", "Zigamorph"])]
     Word,
-    
+
     [SouvenirQuestion("What color was the bulb on {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Purple", "White", TranslateAnswers = true)]
     Color,
-    
+
     [SouvenirQuestion("What was the material of the screw cap on {0}?", ThreeColumns6Answers, "Copper", "Silver", "Gold", "Plastic", "Carbon Fibre", "Ceramic", TranslateAnswers = true)]
     ScrewCap
 }

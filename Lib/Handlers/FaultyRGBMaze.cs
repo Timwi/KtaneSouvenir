@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,11 +9,11 @@ public enum SFaultyRGBMaze
     [SouvenirQuestion("Where was the {1} key in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-G", "1-7")]
     Keys,
-    
+
     [SouvenirQuestion("Which maze number was the {1} maze in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("0-9a-f")]
     Number,
-    
+
     [SouvenirQuestion("What was the exit coordinate in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-G", "1-7")]
     Exit

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,10 +9,10 @@ public enum SConnectedMonitors
     [SouvenirQuestion("What number was initially displayed on this screen in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
     [AnswerGenerator.Integers(0, 99)]
     Number,
-    
+
     [SouvenirQuestion("What colour was the indicator on this screen in {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", UsesQuestionSprite = true, TranslateAnswers = true)]
     SingleIndicator,
-    
+
     [SouvenirQuestion("What colour was the {1} indicator on this screen in {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     OrdinalIndicator
 }

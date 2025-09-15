@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +7,7 @@ public enum SReformedRoleReversal
 {
     [SouvenirQuestion("Which condition was the solving condition in {0}?", ThreeColumns6Answers, "second", "third", "4th", "5th", "6th", "7th", "8th", TranslateAnswers = true)]
     Condition,
-    
+
     [SouvenirQuestion("What color was the {1} wire in {0}?", ThreeColumns6Answers, "Navy", "Lapis", "Blue", "Sky", "Teal", "Plum", "Violet", "Purple", "Magenta", "Lavender", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Wire
 }

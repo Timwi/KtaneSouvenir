@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,19 +8,19 @@ public enum SSimonSignals
 {
     [SouvenirQuestion("What shape was the {1} arrow in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = nameof(SouvenirModule.SimonSignalsSprites), Arguments = ["red", "green", "blue", "gray"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     ColorToShape,
-    
+
     [SouvenirQuestion("How many directions did the {1} arrow in {0} have?", TwoColumns4Answers, "3", "4", "5", "6", Arguments = ["red", "green", "blue", "gray"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     ColorToRotations,
-    
+
     [SouvenirQuestion("What color was the arrow with this shape in {0}?", TwoColumns4Answers, "red", "green", "blue", "gray", UsesQuestionSprite = true, TranslateAnswers = true)]
     ShapeToColor,
-    
+
     [SouvenirQuestion("How many directions did the arrow with this shape have in {0}?", TwoColumns4Answers, "3", "4", "5", "6", UsesQuestionSprite = true)]
     ShapeToRotations,
-    
+
     [SouvenirQuestion("What color was the arrow with {1} possible directions in {0}?", TwoColumns4Answers, "red", "green", "blue", "gray", TranslateAnswers = true, Arguments = ["3", "4", "5", "6"], ArgumentGroupSize = 1)]
     RotationsToColor,
-    
+
     [SouvenirQuestion("What shape was the arrow with {1} possible directions in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = nameof(SouvenirModule.SimonSignalsSprites), Arguments = ["3", "4", "5", "6"], ArgumentGroupSize = 1)]
     RotationsToShape
 }

@@ -9,7 +9,7 @@ public enum SMahjong
 {
     [SouvenirQuestion("Which tile was shown in the bottom-left of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "MahjongSprites")]
     CountingTile,
-    
+
     [SouvenirQuestion("Which tile was part of the {1} matched pair in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "MahjongSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Matches
 }

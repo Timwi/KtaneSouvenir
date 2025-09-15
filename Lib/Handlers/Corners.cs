@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SCorners
 {
     [SouvenirQuestion("What was the color of the {1} corner in {0}?", TwoColumns4Answers, "red", "green", "blue", "yellow", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["top-left", "top-right", "bottom-right", "bottom-left"], ArgumentGroupSize = 1)]
     Colors,
-    
+
     [SouvenirQuestion("How many corners in {0} were {1}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", TranslateArguments = [true], Arguments = ["red", "green", "blue", "yellow"], ArgumentGroupSize = 1)]
     ColorCount
 }

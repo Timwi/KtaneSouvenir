@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -10,7 +10,7 @@ public enum SCharacterShift
     [SouvenirQuestion("Which letter was present but not submitted on the left slider of {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-Z")]
     Letters,
-    
+
     [SouvenirQuestion("Which digit was present but not submitted on the right slider of {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("0-9")]
     Digits

@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,11 +7,11 @@ public enum SMazeseeker
 {
     [SouvenirQuestion("How many walls surrounded this cell in {0}?", TwoColumns4Answers, "0", "1", "2", "3", UsesQuestionSprite = true)]
     Cell,
-    
+
     [SouvenirQuestion("Where was the start in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Start,
-    
+
     [SouvenirQuestion("Where was the goal in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Goal

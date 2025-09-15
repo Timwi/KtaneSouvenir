@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +8,7 @@ public enum SCrypticKeypad
     [SouvenirQuestion("What was the label of the {1} key in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("A-Z")]
     Labels,
-    
+
     [SouvenirQuestion("Which cardinal direction was the {1} key rotated to in {0}?", TwoColumns4Answers, "North", "East", "South", "West", TranslateAnswers = true, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Rotations
 }

@@ -9,7 +9,7 @@ public enum SEncryptedHangman
 {
     [SouvenirQuestion("What module name was encrypted by {0}?", OneColumn4Answers, ExampleAnswers = ["Anagrams", "Word Scramble", "Two Bits", "Switches", "Lights Out", "Emoji Math", "Math", "Semaphore", "Piano Keys", "Colour Flash"])]
     Module,
-    
+
     [SouvenirQuestion("What method of encryption was used by {0}?", OneColumn4Answers, "Caesar Cipher", "Atbash Cipher", "Rot-13 Cipher", "Affine Cipher", "Modern Cipher", "Vigenère Cipher", "Playfair Cipher", TranslateAnswers = true)]
     EncryptionMethod
 }

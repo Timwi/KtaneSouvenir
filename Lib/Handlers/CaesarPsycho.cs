@@ -10,7 +10,7 @@ public enum SCaesarPsycho
     [SouvenirQuestion("What text was on the top display in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("5*A-Z")]
     ScreenTexts,
-    
+
     [SouvenirQuestion("What color was the text on the top display in the second stage of {0}?", ThreeColumns6Answers, "white", "red", "magenta", "yellow", "green", "cyan", "violet")]
     ScreenColor
 }

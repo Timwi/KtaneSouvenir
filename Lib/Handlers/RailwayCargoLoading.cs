@@ -9,7 +9,7 @@ public enum SRailwayCargoLoading
 {
     [SouvenirQuestion("What was the {1} car in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Cars,
-    
+
     [SouvenirQuestion("Which freight table rule {1} in {0}?", OneColumn4Answers, "Over 150 lumber/75 logs", "Over 100 sheet metal", "Over 250 crude oil", "Over 400 mail", "Over 30 livestock", "Over 600 milk/water/resin", "Over 100 liquid fuel", "Over 700 industrial gas", "Over 150 food", "Over 100 coal", "Over 500 loose bulk (excl. coal)", "Over 7 large objects", "Over 5 automobiles", "Over 700 industrial gas", Arguments = ["was met", "wasn’t met"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     FreightTableRules
 }

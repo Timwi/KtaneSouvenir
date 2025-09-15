@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +8,7 @@ public enum SFaultyButtons
     [SouvenirQuestion("Which button referred to the {1} button in reading order in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(4, 4)]
     ReferredToThisButton,
-    
+
     [SouvenirQuestion("Which button did the {1} button in reading order refer to in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(4, 4)]
     ThisButtonReferredTo

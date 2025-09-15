@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -10,11 +9,11 @@ public enum SOrderPicking
     [SouvenirQuestion("What was the order ID in the {1} order of {0}?", ThreeColumns6Answers, ExampleAnswers = ["3141", "7946", "6905", "6408", "5030", "2803", "6918", "6642", "4645", "4356", "2868", "1887"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1000, 9999)]
     Order,
-    
+
     [SouvenirQuestion("What was the product ID in the {1} order of {0}?", ThreeColumns6Answers, ExampleAnswers = ["3141", "7946", "6905", "6408", "5030", "2803", "6918", "6642", "4645", "4356", "2868", "1887"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1000, 9999)]
     Product,
-    
+
     [SouvenirQuestion("What was the pallet in the {1} order of {0}?", ThreeColumns6Answers, "CHEP", "SIPPL", "SLPR", "EWHITE", "ECHEP", "ESIPPL", "ESLPR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Pallet
 }

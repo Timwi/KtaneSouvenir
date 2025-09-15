@@ -9,13 +9,13 @@ public enum SCRule
 {
     [SouvenirQuestion("Which symbol pair was here in {0}?", ThreeColumns6Answers, "♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡", UsesQuestionSprite = true)]
     SymbolPair,
-    
+
     [SouvenirQuestion("Where was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡"], ArgumentGroupSize = 1)]
     SymbolPairCell,
-    
+
     [SouvenirQuestion("Which symbol pair was present on {0}?", ThreeColumns6Answers, "♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡")]
     SymbolPairPresent,
-    
+
     [SouvenirQuestion("Which cell was pre-filled at the start of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites)]
     Prefilled
 }

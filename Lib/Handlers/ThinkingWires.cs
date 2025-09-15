@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,10 +8,10 @@ public enum SThinkingWires
 {
     [SouvenirQuestion("What was the position from top to bottom of the first wire needing to be cut in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7")]
     FirstWire,
-    
+
     [SouvenirQuestion("What color did the second valid wire to cut have to have in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any", TranslateAnswers = true)]
     SecondWire,
-    
+
     [SouvenirQuestion("What was the display number in {0}?", ThreeColumns6Answers, "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69")]
     DisplayNumber
 }

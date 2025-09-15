@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SNotKeypad
 {
     [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Color,
-    
+
     [SouvenirQuestion("Which symbol was on the button that flashed {1} in the final sequence in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "KeypadSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Symbol
 }

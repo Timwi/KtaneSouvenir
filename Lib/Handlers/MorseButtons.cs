@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +9,7 @@ public enum SMorseButtons
     [SouvenirQuestion("What was the character flashed by the {1} button in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-Z0-9")]
     ButtonLabel,
-    
+
     [SouvenirQuestion("What was the color flashed by the {1} button in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "orange", "purple", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     ButtonColor
 }

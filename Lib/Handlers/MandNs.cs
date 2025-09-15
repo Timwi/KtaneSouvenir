@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +7,7 @@ public enum SMandNs
 {
     [SouvenirQuestion("What color was the text on the {1} button in {0}?", ThreeColumns6Answers, "red", "green", "orange", "blue", "yellow", "brown", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors,
-    
+
     [SouvenirQuestion("What was the text on the correct button in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings(5, 'M', 'N')]
     Label

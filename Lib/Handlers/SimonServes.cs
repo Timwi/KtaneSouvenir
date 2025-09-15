@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SSimonServes
 {
     [SouvenirQuestion("Who flashed {1} in course {2} of {0}?", ThreeColumns6Answers, "Riley", "Brandon", "Gabriel", "Veronica", "Wendy", "Kayle", Arguments = [QandA.Ordinal, "1", QandA.Ordinal, "2", QandA.Ordinal, "3"], ArgumentGroupSize = 2)]
     Flash,
-    
+
     [SouvenirQuestion("Which item was not served in course {1} of {0}?", OneColumn4Answers, "Baked Batterys", "Bamboozling Waffles", "Big Boom Tortellini", "Blast Shrimps", "Blastwave Compote", "Bomb Brûlée", "Boolean Waffles", "Boom Lager Beer", "Caesar Salad", "Centurion Wings", "Colored Spare Ribs", "Cruelo Juice", "Defuse Juice", "Defuse au Chocolat", "Deto Bull", "Edgework Toast", "Forget Cocktail", "Forghetti Bombognese", "Indicator Tar Tar", "Morse Soup", "NATO Shrimps", "Not Ice Cream", "Omelette au Bombage", "Simon’s Special Mix", "Solve Cake", "Status Light Rolls", "Strike Pie", "Tasha’s Drink", "Ticking Timecakes", "Veggie Blast Plate", "Wire Shake", "Wire Spaghetti", Arguments = ["1", "2", "3"], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Food
 }

@@ -9,7 +9,7 @@ public enum SSonicTheHedgehog
 {
     [SouvenirQuestion("What was the {1} picture on {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.Sprites, SpriteFieldName = "SonicTheHedgehogSprites")]
     Pictures,
-    
+
     [SouvenirQuestion("Which sound was played by the {1} screen on {0}?", TwoColumns4Answers, Type = AnswerType.Audio, AudioFieldName = "SonicTheHedgehogAudio", AudioSizeMultiplier = 4, Arguments = ["Running Boots", "Invincibility", "Extra Life", "Rings"], TranslateArguments = [true], ArgumentGroupSize = 1)]
     Sounds
 }

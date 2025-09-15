@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +9,7 @@ public enum S7
     [SouvenirQuestion("What was the {1} channel’s initial value in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(-9, 9)]
     InitialValues,
-    
+
     [SouvenirQuestion("What LED color was shown in stage {1} of {0}?", TwoColumns4Answers, "red", "blue", "green", "white", Arguments = ["0", "1", "2", "3"], ArgumentGroupSize = 1, TranslateAnswers = true)]
     LedColors
 }

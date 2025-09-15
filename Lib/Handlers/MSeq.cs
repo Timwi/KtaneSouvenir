@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +8,7 @@ public enum SMSeq
     [SouvenirQuestion("What was the {1} obtained digit in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 9)]
     Obtained,
-    
+
     [SouvenirQuestion("What was the final number from the iteration process in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(25, 225)]
     Submitted

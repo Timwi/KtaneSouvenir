@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
 public enum STripleTerm
 {
-    [SouvenirQuestion("Which of these was one of the passwords in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Three", "Every", "These", "Would", "Where", "First", "Still", "Plant", "Small", ])]
+    [SouvenirQuestion("Which of these was one of the passwords in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Three", "Every", "These", "Would", "Where", "First", "Still", "Plant", "Small"])]
     Passwords
 }
 

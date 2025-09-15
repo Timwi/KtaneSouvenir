@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SPhosphorescence
 {
     [SouvenirQuestion("What was the {1} button press in {0}?", ThreeColumns6Answers, ["Azure", "Blue", "Crimson", "Diamond", "Emerald", "Fuchsia", "Green", "Hazel", "Ice", "Jade", "Kiwi", "Lime", "Magenta", "Navy", "Orange", "Purple", "Quartz", "Red", "Salmon", "Tan", "Ube", "Vibe", "White", "Xotic", "Yellow", "Zen"], TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     ButtonPresses,
-    
+
     [SouvenirQuestion("What was the offset in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 419)]
     Offset

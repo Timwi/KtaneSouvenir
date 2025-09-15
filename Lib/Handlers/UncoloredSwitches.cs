@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +9,7 @@ public enum SUncoloredSwitches
     [SouvenirQuestion("What was the initial state of the switches in {0}?", ThreeColumns6Answers, Type = AnswerType.SymbolsFont)]
     [AnswerGenerator.Strings(5, 'Q', 'R')]
     InitialState,
-    
+
     [SouvenirQuestion("What color was the {1} LED in reading order in {0}?", TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white", "black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     LedColors
 }

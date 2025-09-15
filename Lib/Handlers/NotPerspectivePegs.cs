@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,10 +7,10 @@ public enum SNotPerspectivePegs
 {
     [SouvenirQuestion("What was the position of the {1} flashing peg on {0}?", ThreeColumns6Answers, "top", "top-right", "bottom-right", "bottom-left", "top-left", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Position,
-    
+
     [SouvenirQuestion("From what perspective did the {1} peg flash on {0}?", ThreeColumns6Answers, "top", "top-right", "bottom-right", "bottom-left", "top-left", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Perspective,
-    
+
     [SouvenirQuestion("What was the color of the {1} flashing peg on {0}?", ThreeColumns6Answers, "blue", "green", "purple", "red", "yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Color
 }

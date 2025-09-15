@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -9,10 +9,10 @@ public enum SSonicKnuckles
 {
     [SouvenirQuestion("Which sound was played but not featured in the chosen zone in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = "sonicKnuckles")]
     Sounds,
-    
+
     [SouvenirQuestion("Which badnik was shown in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "SonicKnucklesBadniksSprites")]
     Badnik,
-    
+
     [SouvenirQuestion("Which monitor was shown in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "SonicKnucklesMonitorsSprites")]
     Monitor
 }

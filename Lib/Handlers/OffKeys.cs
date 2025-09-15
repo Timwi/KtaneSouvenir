@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +8,7 @@ public enum SOffKeys
 {
     [SouvenirQuestion("Which of these keys played at an incorrect pitch in {0}?", ThreeColumns6Answers, "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B")]
     IncorrectPitch,
-    
+
     [SouvenirQuestion("Which of these runes was displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "OffKeysSprites")]
     Runes
 }

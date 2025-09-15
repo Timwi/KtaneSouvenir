@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -10,11 +9,11 @@ public enum SMorseAMaze
     [SouvenirQuestion("What was the starting location in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-F", "1-6")]
     StartingCoordinate,
-    
+
     [SouvenirQuestion("What was the ending location in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-F", "1-6")]
     EndingCoordinate,
-    
+
     [SouvenirQuestion("What was the word shown as Morse code in {0}?", ThreeColumns6Answers, ExampleAnswers = ["couch", "strobe", "smoke", "assay", "monkey", "glass", "starts", "strode", "office", "essays", "couple", "bosses"])]
     MorseCodeWord
 }

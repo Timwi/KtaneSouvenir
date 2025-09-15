@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -10,10 +9,10 @@ public enum SSynapseSays
     [SouvenirQuestion("What number was displayed in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 4)]
     Displays,
-    
+
     [SouvenirQuestion("What color flashed {1} in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     Flashes,
-    
+
     [SouvenirQuestion("What color was in the {1} position of the {2} stage of {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     Positions
 }

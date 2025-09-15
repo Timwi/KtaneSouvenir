@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,23 +8,23 @@ public enum SDisorderedKeys
 {
     [SouvenirQuestion("What was the missing information for the {1} key in {0}?", OneColumn3Answers, "Key color", "Label color", "Label", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     MissingInfo,
-    
+
     [SouvenirQuestion("What was the unrevealed key color for the {1} key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     UnrevealedKeyColor,
-    
+
     [SouvenirQuestion("What was the unrevealed label color for the {1} key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     UnrevealedLabelColor,
-    
+
     [SouvenirQuestion("What was the unrevealed label for the {1} key in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 6)]
     UnrevealedKeyLabel,
-    
+
     [SouvenirQuestion("What was the revealed key color for the {1} key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     RevealedKeyColor,
-    
+
     [SouvenirQuestion("What was the revealed label color for the {1} key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     RevealedLabelColor,
-    
+
     [SouvenirQuestion("What was the revealed label for the {1} key in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 6)]
     RevealedLabel

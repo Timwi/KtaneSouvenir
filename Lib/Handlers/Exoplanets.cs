@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,13 +7,13 @@ public enum SExoplanets
 {
     [SouvenirQuestion("What was the starting target planet in {0}?", TwoColumns4Answers, "outer", "middle", "inner", "none", TranslateAnswers = true)]
     StartingTargetPlanet,
-    
+
     [SouvenirQuestion("What was the starting target digit in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
     StartingTargetDigit,
-    
+
     [SouvenirQuestion("What was the final target planet in {0}?", TwoColumns4Answers, "outer", "middle", "inner", "none", TranslateAnswers = true)]
     TargetPlanet,
-    
+
     [SouvenirQuestion("What was the final target digit in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
     TargetDigit
 }

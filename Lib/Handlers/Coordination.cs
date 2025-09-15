@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -10,7 +8,7 @@ public enum SCoordination
     [SouvenirQuestion("What was the label of the starting coordinate in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-F", "1-6")]
     Label,
-    
+
     [SouvenirQuestion("Where was the starting coordinate in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Position

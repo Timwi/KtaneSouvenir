@@ -10,7 +10,7 @@ public enum SMelodySequencer
     [SouvenirQuestion("Which slot contained part #{1} at the start of {0}?", ThreeColumns6Answers, Arguments = ["1", "2"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 8)]
     Parts,
-    
+
     [SouvenirQuestion("Which part was in slot #{1} at the start of {0}?", ThreeColumns6Answers, Arguments = ["1", "2"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 8)]
     Slots

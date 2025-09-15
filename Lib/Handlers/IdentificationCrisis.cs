@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -9,7 +7,7 @@ public enum SIdentificationCrisis
 {
     [SouvenirQuestion("What was the {1} shape used in {0}?", TwoColumns4Answers, "Circle", "Square", "Diamond", "Heart", "Star", "Triangle", "Pentagon", "Hexagon", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Shape,
-    
+
     [SouvenirQuestion("What was the {1} identification module used in {0}?", OneColumn4Answers, "Morse Identification", "Boozleglyph Identification", "Plant Identification", "Pickup Identification", "Emotiguy Identification", "Ars Goetia Identification", "Mii Identification", "Customer Identification", "Spongebob Birthday Identification", "VTuber Identification", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Dataset
 }
