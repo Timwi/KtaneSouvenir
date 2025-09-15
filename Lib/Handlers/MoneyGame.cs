@@ -57,11 +57,10 @@ public partial class SouvenirModule
         solved:
         yield return WaitForSolve;
 
-        var possibleAnswers = new[] {
-            new[] { "she sells", "she shells", "sea shells", "sea sells" },
-            new[] { "sea shells", "she shells", "sea sells", "she sells" },
-            new[] { "sea shore", "she sore", "she sure", "seesaw", "seizure", "shell sea", "steep store", "sheer sort", "seed spore", "sieve horn", "steel sword" }
-        };
+        var possibleAnswers = Ut.NewArray<string[]>(
+            ["she sells", "she shells", "sea shells", "sea sells"],
+            ["sea shells", "she shells", "sea sells", "she sells"],
+            ["sea shore", "she sore", "she sure", "seesaw", "seizure", "shell sea", "steep store", "sheer sort", "seed spore", "sieve horn", "steel sword"]);
 
         addQuestions(module, Enumerable.Range(0, 3).SelectMany(i =>
             new[] { Question.MoneyGame1, Question.MoneyGame2, Question.MoneyGame3 }.Select((q, qi) =>

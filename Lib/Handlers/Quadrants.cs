@@ -23,7 +23,7 @@ public partial class SouvenirModule
         var stageComp = GetIntField(comp, "Stage");
 
         var stages = new string[5];
-        string[] sets = { "1243", "1324", "1432", "2134", "2341", "2413", "3142", "3214", "3421", "4123", "4231", "3214" };
+        string[] sets = ["1243", "1324", "1432", "2134", "2341", "2413", "3142", "3214", "3421", "4123", "4231", "3214"];
 
         var btnsAtAllStages = new string[5];
         while (module.Unsolved)
