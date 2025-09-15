@@ -9,7 +9,7 @@ public sealed class SouvenirDiscriminatorAttribute(string discriminatorText) : A
 
     public string[] Arguments { get; set; }
     public int ArgumentGroupSize { get; set; }
-    public bool[] TranslateArgs { get; set; }
+    public bool[] TranslateArguments { get; set; }
     public string[] TranslatableStrings { get; set; }
     public bool UsesQuestionSprite { get; set; }
 

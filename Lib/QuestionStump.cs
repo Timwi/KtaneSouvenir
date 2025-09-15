@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir)
 {
     public Enum EnumValue { get; private set; } = enumValue;
     public SouvenirModule Souvenir { get; private set; } = souvenir;
+    public string[] DiscriminatorIdsToAvoid { get; protected set; }
+    public Enum[] DiscriminatorsToAvoid { get; protected set; }
+
     public SouvenirHandlerAttribute HandlerAttribute => EnumValue.GetHandlerAttribute();
     public SouvenirQuestionAttribute QuestionAttribute => EnumValue.GetQuestionAttribute();
 
@@ -28,4 +32,18 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir)
     }
 
     public abstract QuestionBase MakeQuestion(string moduleFormat, SouvenirModule souvenir);
+
+    public QuestionStump AvoidDiscriminators(params string[] discriminatorIds) => AvoidDiscriminators((IEnumerable<string>) discriminatorIds);
+    public QuestionStump AvoidDiscriminators(IEnumerable<string> discriminatorIds)
+    {
+        DiscriminatorIdsToAvoid = (discriminatorIds as string[]) ?? discriminatorIds.ToArray();
+        return this;
+    }
+
+    public QuestionStump AvoidDiscriminators(params Enum[] discriminators) => AvoidDiscriminators((IEnumerable<Enum>) discriminators);
+    public QuestionStump AvoidDiscriminators(IEnumerable<Enum> discriminators)
+    {
+        DiscriminatorsToAvoid = (discriminators as Enum[]) ?? discriminators.ToArray();
+        return this;
+    }
 }

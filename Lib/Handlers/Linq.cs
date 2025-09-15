@@ -32,6 +32,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         for (var stage = 0; stage < 3; stage++)
-            yield return question(SLinq.Function, args: [Ordinal(stage + 1)], avoidDiscriminators: [$"stage{stage}"]).Answers(functions[stage]);
+            yield return question(SLinq.Function, args: [Ordinal(stage + 1)]).AvoidDiscriminators($"stage{stage}").Answers(functions[stage]);
     }
 }

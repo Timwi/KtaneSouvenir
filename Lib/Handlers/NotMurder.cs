@@ -56,8 +56,8 @@ public partial class SouvenirModule
 
             var avoidDiscriminators = Enumerable.Range(0, 5).Except([i]).SelectMany(i => new[] { $"present{i}", $"weapon{i}", $"room{i}" }).ToArray();
 
-            yield return question(SNotMurder.Room, args: [suspectNames[suspect]], avoidDiscriminators: avoidDiscriminators.Concat([$"room{i}"])).Answers(roomNames[initialRoom]);
-            yield return question(SNotMurder.Weapon, args: [suspectNames[suspect]], avoidDiscriminators: avoidDiscriminators.Concat([$"weapon{i}"])).Answers(weaponNames[initialWeapon]);
+            yield return question(SNotMurder.Room, args: [suspectNames[suspect]]).AvoidDiscriminators(avoidDiscriminators.Concat([$"room{i}"])).Answers(roomNames[initialRoom]);
+            yield return question(SNotMurder.Weapon, args: [suspectNames[suspect]]).AvoidDiscriminators(avoidDiscriminators.Concat([$"weapon{i}"])).Answers(weaponNames[initialWeapon]);
         }
     }
 }

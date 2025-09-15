@@ -10,6 +10,6 @@ public class ModuleTypeInfo
     public int NumSolved;
     /// <summary>Indicates how many of the module handlers for this module type have finished.</summary>
     public int NumFinished;
-    /// <summary>Keeps track of the discriminators returned by each handler.</summary>
-    public Dictionary<KMBombModule, List<Discriminator>> Discriminators = [];
+    /// <summary>Keeps track of the discriminators returned by each handler, indexed by their ID.</summary>
+    public Dictionary<KMBombModule, Dictionary<string, Discriminator>> Discriminators = [];
 }

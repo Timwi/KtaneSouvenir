@@ -116,6 +116,38 @@ public static class Ut
     }
 
     /// <summary>
+    ///     Adds an element to a two-level Dictionary&lt;,&gt;. If the specified key does not exist in the outer Dictionary, a
+    ///     new Dictionary is created.</summary>
+    /// <typeparam name="K1">
+    ///     Type of the key of the outer Dictionary.</typeparam>
+    /// <typeparam name="K2">
+    ///     Type of the key of the inner Dictionary.</typeparam>
+    /// <typeparam name="V">
+    ///     Type of the values in the inner Dictionary.</typeparam>
+    /// <param name="dic">
+    ///     Dictionary to operate on.</param>
+    /// <param name="key1">
+    ///     Key at which the inner Dictionary is located in the outer Dictionary.</param>
+    /// <param name="key2">
+    ///     Key at which the value is located in the inner Dictionary.</param>
+    /// <param name="value">
+    ///     Value to add to the inner Dictionary.</param>
+    /// <param name="comparer">
+    ///     Optional equality comparer to pass into the inner dictionary if a new one is created.</param>
+    public static void AddSafe<K1, K2, V>(this IDictionary<K1, Dictionary<K2, V>> dic, K1 key1, K2 key2, V value, IEqualityComparer<K2> comparer = null)
+    {
+        if (dic == null)
+            throw new ArgumentNullException(nameof(dic));
+        if (key1 == null)
+            throw new ArgumentNullException(nameof(key1), "Null values cannot be used for keys in dictionaries.");
+        if (key2 == null)
+            throw new ArgumentNullException(nameof(key2), "Null values cannot be used for keys in dictionaries.");
+        if (!dic.ContainsKey(key1))
+            dic[key1] = new Dictionary<K2, V>(comparer);
+        dic[key1].Add(key2, value);
+    }
+
+    /// <summary>
     ///     Increments an integer in an <see cref="IDictionary&lt;K, V&gt;"/> by the specified amount. If the specified key
     ///     does not exist in the current dictionary, the value <paramref name="amount"/> is inserted.</summary>
     /// <typeparam name="K">

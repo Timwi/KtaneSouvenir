@@ -481,7 +481,7 @@ public partial class SouvenirModule : MonoBehaviour
             var dAttr = _exampleDiscriminators[_curExampleDiscriminator];
             var dGs = dAttr.ArgumentGroupSize;
             var dFmt = dGs == 0 ? [] : _exampleDiscriminatorArguments[_curExampleDiscriminatorArgument]
-                .Select<string, object>((arg, ix) => dAttr.TranslateArgs != null && dAttr.TranslateArgs[ix] ? TranslateDiscriminatorArgument(dAttr.EnumValue, arg) : arg)
+                .Select<string, object>((arg, ix) => dAttr.TranslateArguments != null && dAttr.TranslateArguments[ix] ? TranslateDiscriminatorArgument(dAttr.EnumValue, arg) : arg)
                 .ToArray();
             fmt[0] = string.Format(TranslateDiscriminator(dAttr.EnumValue, dAttr.DiscriminatorText), dFmt);
         }
@@ -824,8 +824,10 @@ public partial class SouvenirModule : MonoBehaviour
         if (!_moduleTypeInfo.TryGetValue(moduleType, out var info))
             info = _moduleTypeInfo[moduleType] = new();
         info.NumModules++;
+
+        const string SolveCountDiscriminatorKey = "\uE048 solve count discriminator";
         if (!hAttr.IsBossModule)
-            info.Discriminators.AddSafe(module, null);  // null indicates the solve-count discriminator
+            info.Discriminators.AddSafe(module, SolveCountDiscriminatorKey, null);
 
         yield return null;  // Ensures that the module’s Start() method has run
         Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Start processing.");
@@ -869,9 +871,27 @@ public partial class SouvenirModule : MonoBehaviour
                     case LegitimatelyNoQuestionInstruction:
                         yield break;
                     case DiscriminatorInstruction d:
-                        info.Discriminators.AddSafe(module, d.Discriminator);
+                        if (d.Discriminator == null || d.Discriminator.Id == null)
+                        {
+                            Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because the handler returned a null {(d.Discriminator == null ? "discriminator" : "discriminator ID")}.");
+                            _showWarning = true;
+                            yield break;
+                        }
+                        if (info.Discriminators.Get(module)?.ContainsKey(d.Discriminator.Id) == true)
+                        {
+                            Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because the handler generated multiple discriminators with the same ID “{d.Discriminator.Id}”, which is not allowed.");
+                            _showWarning = true;
+                            yield break;
+                        }
+                        info.Discriminators.AddSafe(module, d.Discriminator.Id, d.Discriminator);
                         break;
                     case QandAInstruction q:
+                        if (q.Stump == null || q.Stump.QuestionStump == null || q.Stump.AnswerStump == null)
+                        {
+                            Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because the handler returned a {(q.Stump == null ? "null stump" : q.Stump.QuestionStump == null ? "null question stump" : "null answer stump")}.");
+                            _showWarning = true;
+                            yield break;
+                        }
                         questions.Add(q.Stump);
                         break;
                     default:
@@ -906,26 +926,33 @@ public partial class SouvenirModule : MonoBehaviour
             // Construct the answers first, then pick a discriminator that doesn’t conflict with them
             var q = questions.PickRandom();
             var answerSet = q.AnswerStump.GenerateAnswerSet(q.QuestionStump, this);
-            var moduleFormat = formatModuleName(hAttr, info.NumModules > 1, data.SolveIndex + 1);
-            if (info.NumModules > 1 && (info.Discriminators.Get(module)?.Any(d => d != null) ?? false))
+            string moduleFormat = null;
+            if (info.NumModules > 1)
             {
-                // null indicates the solve-count discriminator
-                var discrs = info.Discriminators[module]
-                    .Where(d => d == null || d.AvoidAnswers == null || !d.AvoidAnswers.Intersect(answerSet.Answers).Any())
-                    .Where(d => d == null || info.Discriminators.Values.Count(ds => ds.FirstOrDefault(d2 => d2 != null && d2.Id == d.Id) is not { } cd || cd.Value == d.Value) == 1)
+                var discrs = info.Discriminators.Get(module)?.Values.Where(d =>
+                    // solve-count discriminator is always allowed
+                    d == null || (
+                        // avoid discriminators that the question explicitly tells us to avoid
+                        q.QuestionStump.DiscriminatorsToAvoid?.Contains(d.EnumValue) != true &&
+                        q.QuestionStump.DiscriminatorIdsToAvoid?.Contains(d.Id) != true &&
+                        // avoid discriminators that clash with one of the answers we already selected
+                        d.AvoidAnswers?.Intersect(answerSet.Answers).Any() != true &&
+                        // use this discriminator only if its value is actually unique
+                        info.Discriminators.Values.Count(ds => ds.TryGetValue(d.Id, out var cd) && cd.Value == d.Value) == 1))
                     .ToArray();
-                if (discrs.Length == 0)
+                if (discrs == null || discrs.Length == 0)
                 {
-                    Debug.Log($"[Souvenir #{_moduleId}] There was no applicable discriminator for {module.ModuleDisplayName} to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with answers [{answerSet.DebugAnswers.JoinString(", ")}]. Note that boss modules require a discriminator for the player to distinguish them.");
+                    Debug.Log($"[Souvenir #{_moduleId}] Please report this bug to the author of the Souvenir handler for {module.ModuleDisplayName}: There was no applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with answers [{answerSet.DebugAnswers.JoinString(", ")}].");
                     _showWarning = true;
+                    yield break;
                 }
-                // if this is false, the solve-count discriminator was picked and ‘moduleFormat’ is already set to that
+                // if this is false, the solve-count discriminator was picked and ‘moduleFormat’ stays null for now
                 if (discrs.PickRandom() is { } discr && discr.EnumValue.GetDiscriminatorAttribute() is { } dAttr)
                     moduleFormat = string.Format(
                         TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText),
                         (discr.Arguments ?? []).Select<string, object>((arg, ix) => discr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg).ToArray());
             }
-            _questions.Add(q.GenerateQandA(answerSet, moduleFormat, this, Bomb.GetSolvedModuleIDs().Count));
+            _questions.Add(q.GenerateQandA(answerSet, moduleFormat ?? formatModuleName(hAttr, info.NumModules > 1, data.SolveIndex + 1), this, Bomb.GetSolvedModuleIDs().Count));
         }
         Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Finished processing.");
     }
