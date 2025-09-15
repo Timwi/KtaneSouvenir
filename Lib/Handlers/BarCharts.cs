@@ -19,7 +19,7 @@ public enum SBarCharts
     [SouvenirQuestion("What was the color of the {1} bar in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Color,
     
-    [SouvenirQuestion("What was the position of the {1} bar in {0}?", TwoColumns4Answers, TranslateFormatArgs = [true], Arguments = ["shortest", "second shortest", "second tallest", "tallest"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the position of the {1} bar in {0}?", TwoColumns4Answers, TranslateArguments = [true], Arguments = ["shortest", "second shortest", "second tallest", "tallest"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Ordinal(1, 4)]
     Height
 }

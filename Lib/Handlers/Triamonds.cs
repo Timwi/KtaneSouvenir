@@ -14,5 +14,5 @@ public enum STriamonds
 public partial class SouvenirModule
 {
     [SouvenirHandler("triamonds", "Triamonds", typeof(STriamonds), "Kuro")]
-    private IEnumerator<SouvenirInstruction> ProcessTriamonds(ModuleData module) => processPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" })
+    private IEnumerator<SouvenirInstruction> ProcessTriamonds(ModuleData module) => processPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
 }

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLogicGates
 {
-    [SouvenirQuestion("What was {1} in {0}?", ThreeColumns6Answers, "AND", "OR", "XOR", "NAND", "NOR", "XNOR", TranslateFormatArgs = [true], Arguments = ["gate A", "gate B", "gate C", "gate D", "gate E", "gate F", "gate G", "the duplicated gate"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was {1} in {0}?", ThreeColumns6Answers, "AND", "OR", "XOR", "NAND", "NOR", "XNOR", TranslateArguments = [true], Arguments = ["gate A", "gate B", "gate C", "gate D", "gate E", "gate F", "gate G", "the duplicated gate"], ArgumentGroupSize = 1)]
     Gates
 }
 

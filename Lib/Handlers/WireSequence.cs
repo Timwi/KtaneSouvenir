@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SWireSequence
 {
-    [SouvenirQuestion("How many {1} wires were there in {0}?", TwoColumns4Answers, TranslateFormatArgs = [true], Arguments = ["red", "blue", "black"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("How many {1} wires were there in {0}?", TwoColumns4Answers, TranslateArguments = [true], Arguments = ["red", "blue", "black"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     ColorCount
 }

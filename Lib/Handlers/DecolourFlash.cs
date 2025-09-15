@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDecolourFlash
 {
-    [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", Arguments = ["colour", QandA.Ordinal, "word", QandA.Ordinal], ArgumentGroupSize = 2, TranslateAnswers = true, TranslateFormatArgs = [true, false])]
+    [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", Arguments = ["colour", QandA.Ordinal, "word", QandA.Ordinal], ArgumentGroupSize = 2, TranslateAnswers = true, TranslateArguments = [true, false])]
     Goal
 }
 

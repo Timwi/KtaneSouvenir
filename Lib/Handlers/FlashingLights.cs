@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SFlashingLights
 {
-    [SouvenirQuestion("How many times did the {1} LED flash {2} on {0}?", ThreeColumns6Answers, TranslateFormatArgs = [true, true], Arguments = ["top", "cyan", "top", "green", "top", "red", "top", "purple", "top", "orange", "bottom", "cyan", "bottom", "green", "bottom", "red", "bottom", "purple", "bottom", "orange"], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("How many times did the {1} LED flash {2} on {0}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["top", "cyan", "top", "green", "top", "red", "top", "purple", "top", "orange", "bottom", "cyan", "bottom", "green", "bottom", "red", "bottom", "purple", "bottom", "orange"], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(0, 12)]
     LEDFrequency
 }

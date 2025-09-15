@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SOrientationHypercube
 {
-    [SouvenirQuestion("What was the initial colour of the {1} face in {0}?", ThreeColumns6Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", Arguments = ["right", "left", "top", "bottom", "back", "front", "zag", "zig"], ArgumentGroupSize = 1, TranslateFormatArgs = [true], TranslateAnswers = true)]
+    [SouvenirQuestion("What was the initial colour of the {1} face in {0}?", ThreeColumns6Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", Arguments = ["right", "left", "top", "bottom", "back", "front", "zag", "zig"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslateAnswers = true)]
     InitialFaceColour,
     
     [SouvenirQuestion("What was the observer’s initial position in {0}?", TwoColumns4Answers, "front", "left", "back", "right", TranslateAnswers = true)]

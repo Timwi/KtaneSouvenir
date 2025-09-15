@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SCartinese
 {
-    [SouvenirQuestion("What color was the {1} button in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What color was the {1} button in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     ButtonColors,
     
-    [SouvenirQuestion("What lyric was played by the {1} button in {0}?", TwoColumns4Answers, "Aingobodirou", "Dongifubounan", "Ayofumylu", "Dimycamilayw", "Dogosemiu", "Bitgosemiu", "Iwittyluyu", "Herolideca", "Anseweke", "Likwoveke", "Omeygah", "Dediamnatifney", Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What lyric was played by the {1} button in {0}?", TwoColumns4Answers, "Aingobodirou", "Dongifubounan", "Ayofumylu", "Dimycamilayw", "Dogosemiu", "Bitgosemiu", "Iwittyluyu", "Herolideca", "Anseweke", "Likwoveke", "Omeygah", "Dediamnatifney", Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Lyrics
 }
 

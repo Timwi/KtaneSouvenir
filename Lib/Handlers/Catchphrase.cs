@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCatchphrase
 {
-    [SouvenirQuestion("What was the colour of the {1} panel in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Orange", "Purple", "Yellow", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the colour of the {1} panel in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Orange", "Purple", "Yellow", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     Colour
 }
 

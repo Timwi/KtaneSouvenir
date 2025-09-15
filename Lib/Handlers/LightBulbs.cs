@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLightBulbs
 {
-    [SouvenirQuestion("What was the color of the {1} bulb in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Cyan", "Magenta", TranslateAnswers = true, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the color of the {1} bulb in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Cyan", "Magenta", TranslateAnswers = true, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Colors
 }
 

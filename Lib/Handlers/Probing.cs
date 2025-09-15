@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SProbing
 {
-    [SouvenirQuestion("What was the missing frequency in the {1} wire in {0}?", TwoColumns4Answers, "10Hz", "22Hz", "50Hz", "60Hz", TranslateFormatArgs = [true], Arguments = ["red-white", "yellow-black", "green", "gray", "yellow-red", "red-blue"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the missing frequency in the {1} wire in {0}?", TwoColumns4Answers, "10Hz", "22Hz", "50Hz", "60Hz", TranslateArguments = [true], Arguments = ["red-white", "yellow-black", "green", "gray", "yellow-red", "red-blue"], ArgumentGroupSize = 1)]
     Frequencies
 }
 

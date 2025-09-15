@@ -7,11 +7,11 @@ using static Souvenir.AnswerLayout;
 
 public enum SRGBMaze
 {
-    [SouvenirQuestion("Where was the {1} key in {0}?", ThreeColumns6Answers, TranslateFormatArgs = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Where was the {1} key in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-H", "1-8")]
     Keys,
     
-    [SouvenirQuestion("Which maze number was the {1} maze in {0}?", ThreeColumns6Answers, TranslateFormatArgs = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which maze number was the {1} maze in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Number,
     

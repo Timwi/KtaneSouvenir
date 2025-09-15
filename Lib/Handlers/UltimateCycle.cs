@@ -18,5 +18,5 @@ public enum SUltimateCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("ultimateCycle", "Ultimate Cycle", typeof(SUltimateCycle), "Quinn Wuest")]
-    private IEnumerator<SouvenirInstruction> ProcessUltimateCycle(ModuleData module) => processSpeakingEvilCycle(module, "UltimateCycleScript", Question.UltimateCycleDialDirections, Question.UltimateCycleDialLabels)
+    private IEnumerator<SouvenirInstruction> ProcessUltimateCycle(ModuleData module) => processSpeakingEvilCycle(module, "UltimateCycleScript", Question.UltimateCycleDialDirections, Question.UltimateCycleDialLabels);
 }

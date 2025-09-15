@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonStates
 {
-    [SouvenirQuestion("Which {1} in the {2} stage in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", "Red, Yellow", "Red, Green", "Red, Blue", "Yellow, Green", "Yellow, Blue", "Green, Blue", "all 4", "none", TranslateAnswers = true, TranslateFormatArgs = [true, false], Arguments = ["color(s) flashed", QandA.Ordinal, "color(s) didn’t flash", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("Which {1} in the {2} stage in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", "Red, Yellow", "Red, Green", "Red, Blue", "Yellow, Green", "Yellow, Blue", "Green, Blue", "all 4", "none", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["color(s) flashed", QandA.Ordinal, "color(s) didn’t flash", QandA.Ordinal], ArgumentGroupSize = 2)]
     Display
 }
 

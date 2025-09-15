@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSymbolCycle
 {
-    [SouvenirQuestion("How many symbols were cycling on the {1} screen in {0}?", TwoColumns4Answers, "2", "3", "4", "5", TranslateFormatArgs = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("How many symbols were cycling on the {1} screen in {0}?", TwoColumns4Answers, "2", "3", "4", "5", TranslateArguments = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
     SymbolCounts
 }
 

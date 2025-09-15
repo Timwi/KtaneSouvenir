@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -9,7 +9,7 @@ public enum SStackedSequences
 {
     [SouvenirQuestion("Which of these is the length of a sequence in {0}?", TwoColumns4Answers, ExampleAnswers = ["3", "4", "5", "6"])]
     [AnswerGenerator.Integers(3, 9)]
-    
+    Question
 }
 
 public partial class SouvenirModule

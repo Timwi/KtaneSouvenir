@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLasers
 {
-    [SouvenirQuestion("What was the number on the {1} hatch on {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the number on the {1} hatch on {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(1, 9)]
     Hatches
 }

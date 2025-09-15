@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SRoleReversal
 {
-    [SouvenirQuestion("How many {1} wires were there in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", Arguments = ["warm-colored", "cold-colored", "primary-colored", "secondary-colored"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("How many {1} wires were there in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", Arguments = ["warm-colored", "cold-colored", "primary-colored", "secondary-colored"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Wires,
     
     [SouvenirQuestion("What was the number corresponding to the correct condition in {0}?", ThreeColumns6Answers, "2", "3", "4", "5", "6", "7", "8")]

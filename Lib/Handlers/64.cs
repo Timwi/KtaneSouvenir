@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -15,5 +15,5 @@ public partial class SouvenirModule
 {
     [SouvenirHandler("64", "64", typeof(S64), "Kuro")]
     private IEnumerator<SouvenirInstruction> Process64(ModuleData module) =>
-        process6421(module, "SixtyFourScript", "numberIn64", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", 64, 0, 16777216, Question._64DisplayedNumber)
+        process6421(module, "SixtyFourScript", "numberIn64", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", 64, 0, 16777216, Question._64DisplayedNumber);
 }

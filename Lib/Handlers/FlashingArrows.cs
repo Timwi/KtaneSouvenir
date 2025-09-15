@@ -11,7 +11,7 @@ public enum SFlashingArrows
     [AnswerGenerator.Integers(0, 99)]
     DisplayedValue,
     
-    [SouvenirQuestion("What color flashed {1} black on the relevant arrow in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", Arguments = ["before", "after"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What color flashed {1} black on the relevant arrow in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", Arguments = ["before", "after"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     ReferredArrow
 }
 

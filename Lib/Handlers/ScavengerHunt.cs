@@ -11,7 +11,7 @@ public enum SScavengerHunt
     [AnswerGenerator.Grid(4, 4)]
     KeySquare,
     
-    [SouvenirQuestion("Which of these tiles was {1} in the first stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateFormatArgs = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which of these tiles was {1} in the first stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(4, 4)]
     ColoredTiles
 }

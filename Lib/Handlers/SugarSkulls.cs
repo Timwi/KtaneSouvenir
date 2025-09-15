@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SSugarSkulls
 {
-    [SouvenirQuestion("What skull was shown on the {1} square in {0}?", ThreeColumns6Answers, "A", "C", "E", "G", "I", "K", "M", "O", "P", "R", "T", "V", "X", "Z", "b", "d", "f", "h", "j", "l", "n", "p", "r", "t", "v", "x", "z", TranslateFormatArgs = [true], Type = AnswerType.SugarSkullsFont, FontSize = 432, CharacterSize = 1 / 6f, Arguments = ["top", "bottom-left", "bottom-right"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What skull was shown on the {1} square in {0}?", ThreeColumns6Answers, "A", "C", "E", "G", "I", "K", "M", "O", "P", "R", "T", "V", "X", "Z", "b", "d", "f", "h", "j", "l", "n", "p", "r", "t", "v", "x", "z", TranslateArguments = [true], Type = AnswerType.SugarSkullsFont, FontSize = 432, CharacterSize = 1 / 6f, Arguments = ["top", "bottom-left", "bottom-right"], ArgumentGroupSize = 1)]
     Skull,
     
-    [SouvenirQuestion("Which skull {1} present in {0}?", ThreeColumns6Answers, "A", "C", "E", "G", "I", "K", "M", "O", "P", "R", "T", "V", "X", "Z", "b", "d", "f", "h", "j", "l", "n", "p", "r", "t", "v", "x", "z", Type = AnswerType.SugarSkullsFont, FontSize = 432, CharacterSize = 1 / 6f, Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Which skull {1} present in {0}?", ThreeColumns6Answers, "A", "C", "E", "G", "I", "K", "M", "O", "P", "R", "T", "V", "X", "Z", "b", "d", "f", "h", "j", "l", "n", "p", "r", "t", "v", "x", "z", Type = AnswerType.SugarSkullsFont, FontSize = 432, CharacterSize = 1 / 6f, Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Availability
 }
 

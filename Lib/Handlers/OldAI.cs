@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SOldAI
 {
-    [SouvenirQuestion("What was the {1} of the numbers shown in {0}?", TwoColumns4Answers, "1", "2", "3", "4", "5", Arguments = ["group", "sub-group"], TranslateFormatArgs = [true], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the {1} of the numbers shown in {0}?", TwoColumns4Answers, "1", "2", "3", "4", "5", Arguments = ["group", "sub-group"], TranslateArguments = [true], ArgumentGroupSize = 1)]
     Group
 }
 

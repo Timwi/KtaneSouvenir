@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSwizzles
 {
-    [SouvenirQuestion("Where was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, ArgumentGroupSize = 1, TranslateFormatArgs = [true], Arguments = ["OFF", "ON"])]
+    [SouvenirQuestion("Where was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, ArgumentGroupSize = 1, TranslateArguments = [true], Arguments = ["OFF", "ON"])]
     [AnswerGenerator.Grid(4, 4)]
     Button,
     

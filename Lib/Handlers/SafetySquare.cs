@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSafetySquare
 {
-    [SouvenirQuestion("What was the digit displayed on the {1} diamond in {0}?", TwoColumns4Answers, Arguments = ["red", "yellow", "blue"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the digit displayed on the {1} diamond in {0}?", TwoColumns4Answers, Arguments = ["red", "yellow", "blue"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(0, 4)]
     Digits,
     

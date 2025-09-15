@@ -8,13 +8,13 @@ using static Souvenir.AnswerLayout;
 public enum SSeaShells
 {
     [SouvenirQuestion("What were the first and second words in the {1} phrase in {0}?", TwoColumns4Answers, "she sells", "she shells", "sea shells", "sea sells", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    1,
+    Question1,
     
     [SouvenirQuestion("What were the third and fourth words in the {1} phrase in {0}?", TwoColumns4Answers, "sea shells", "she shells", "sea sells", "she sells", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    2,
+    Question2,
     
     [SouvenirQuestion("What was the end of the {1} phrase in {0}?", TwoColumns4Answers, "sea shore", "she sore", "she sure", "seesaw", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    3
+    Question3
 }
 
 public partial class SouvenirModule

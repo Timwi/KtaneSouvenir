@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SHumanResources
 {
-    [SouvenirQuestion("Which was a descriptor shown in {1} in {0}?", TwoColumns4Answers, "Intellectual", "Deviser", "Confidant", "Helper", "Auditor", "Innovator", "Defender", "Chameleon", "Director", "Designer", "Educator", "Advocate", "Manager", "Showman", "Contributor", "Entertainer", Arguments = ["red", "green"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Which was a descriptor shown in {1} in {0}?", TwoColumns4Answers, "Intellectual", "Deviser", "Confidant", "Helper", "Auditor", "Innovator", "Defender", "Chameleon", "Director", "Designer", "Educator", "Advocate", "Manager", "Showman", "Contributor", "Entertainer", Arguments = ["red", "green"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Descriptors,
     
-    [SouvenirQuestion("Who was {1} in {0}?", ThreeColumns6Answers, "Rebecca", "Damian", "Jean", "Mike", "River", "Samuel", "Yoshi", "Caleb", "Ashley", "Tim", "Eliott", "Ursula", "Silas", "Noah", "Quinn", "Dylan", Arguments = ["fired", "hired"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Who was {1} in {0}?", ThreeColumns6Answers, "Rebecca", "Damian", "Jean", "Mike", "River", "Samuel", "Yoshi", "Caleb", "Ashley", "Tim", "Eliott", "Ursula", "Silas", "Noah", "Quinn", "Dylan", Arguments = ["fired", "hired"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     HiredFired
 }
 

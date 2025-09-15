@@ -7,11 +7,11 @@ using static Souvenir.AnswerLayout;
 
 public enum SRuleOfThree
 {
-    [SouvenirQuestion("What was the {1} coordinate of the {2} vertex in {0}?", ThreeColumns6Answers, Arguments = ["X", "red", "Y", "yellow", "Z", "blue"], ArgumentGroupSize = 2, TranslateFormatArgs = [false, true])]
+    [SouvenirQuestion("What was the {1} coordinate of the {2} vertex in {0}?", ThreeColumns6Answers, Arguments = ["X", "red", "Y", "yellow", "Z", "blue"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     [AnswerGenerator.Integers(-13, 13)]
     Coordinates,
     
-    [SouvenirQuestion("What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?", TwoColumns4Answers, "-", "0", "+", TranslateFormatArgs = [true, false, false], Arguments = ["red", "X", QandA.Ordinal, "yellow", "Y", QandA.Ordinal, "blue", "Z", QandA.Ordinal], ArgumentGroupSize = 3)]
+    [SouvenirQuestion("What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?", TwoColumns4Answers, "-", "0", "+", TranslateArguments = [true, false, false], Arguments = ["red", "X", QandA.Ordinal, "yellow", "Y", QandA.Ordinal, "blue", "Z", QandA.Ordinal], ArgumentGroupSize = 3)]
     Cycles
 }
 

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SColorAddition
 {
-    [SouvenirQuestion("What was {1}’s number in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was {1}’s number in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings(3, "0123456789")]
     Numbers
 }

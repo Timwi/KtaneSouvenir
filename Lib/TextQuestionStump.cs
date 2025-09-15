@@ -17,7 +17,7 @@ public class TextQuestionStump(Enum enumValue, SouvenirModule souvenir, string[]
 
         if (Args != null)
             for (var i = 0; i < Args.Length; i++)
-                allFormatArgs[i + 1] = attr.TranslateArgs is { } ta && ta[i] ? souvenir.TranslateQuestionArgument(EnumValue, Args[i]) : Args[i];
+                allFormatArgs[i + 1] = attr.TranslateArguments is { } ta && ta[i] ? souvenir.TranslateQuestionArgument(EnumValue, Args[i]) : Args[i];
 
         return new TextQuestion(string.Format(souvenir.TranslateQuestion(EnumValue), allFormatArgs), attr.Layout, QuestionSprite, QuestionSpriteRotation);
     }

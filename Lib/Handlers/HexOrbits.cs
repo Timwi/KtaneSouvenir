@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SHexOrbits
 {
-    [SouvenirQuestion("What was the {1} shape for the {2} display in {0}?", TwoColumns4Answers, "Square", "Pentagon", "Hexagon", "Heptagon", Arguments = ["fast", QandA.Ordinal, "slow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateFormatArgs = [true, false])]
+    [SouvenirQuestion("What was the {1} shape for the {2} display in {0}?", TwoColumns4Answers, "Square", "Pentagon", "Hexagon", "Heptagon", Arguments = ["fast", QandA.Ordinal, "slow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     Shape
 }
 

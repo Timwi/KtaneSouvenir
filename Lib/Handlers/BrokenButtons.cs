@@ -8,7 +8,7 @@ using static Souvenir.AnswerLayout;
 public enum SBrokenButtons
 {
     [SouvenirQuestion("What was the {1} correct button you pressed in {0}?", ThreeColumns6Answers, "bomb", "blast", "boom", "burst", "wire", "button", "module", "light", "led", "switch", "RJ-45", "DVI-D", "RCA", "PS/2", "serial", "port", "row", "column", "one", "two", "three", "four", "five", "six", "seven", "eight", "size", "this", "that", "other", "submit", "abort", "drop", "thing", "blank", "broken", "too", "to", "yes", "see", "sea", "c", "wait", "word", "bob", "no", "not", "first", "hold", "late", "fail", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    
+    Question
 }
 
 public partial class SouvenirModule

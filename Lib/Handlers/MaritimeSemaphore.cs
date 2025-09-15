@@ -11,7 +11,7 @@ public enum SMaritimeSemaphore
     [AnswerGenerator.Ordinal(6)]
     Dummy,
     
-    [SouvenirQuestion("Which letter was shown by the {2} in the {1} position in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "left flag", QandA.Ordinal, "right flag", QandA.Ordinal, "semaphore"], ArgumentGroupSize = 2, TranslateFormatArgs = [false, true])]
+    [SouvenirQuestion("Which letter was shown by the {2} in the {1} position in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "left flag", QandA.Ordinal, "right flag", QandA.Ordinal, "semaphore"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     [AnswerGenerator.Strings('A', 'Z')]
     Letter
 }

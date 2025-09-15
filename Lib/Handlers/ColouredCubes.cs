@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SColouredCubes
 {
-    [SouvenirQuestion("What was the colour of this {1} in the {2} stage of {0}?", ThreeColumns6Answers, "Black", "Indigo", "Blue", "Forest", "Teal", "Azure", "Green", "Jade", "Cyan", "Maroon", "Plum", "Violet", "Olive", "Grey", "Maya", "Lime", "Mint", "Aqua", "Red", "Rose", "Magenta", "Orange", "Salmon", "Pink", "Yellow", "Cream", "White", Arguments = ["cube", QandA.Ordinal, "stage light", QandA.Ordinal], ArgumentGroupSize = 2, UsesQuestionSprite = true, TranslateAnswers = true, TranslateFormatArgs = [true, false])]
+    [SouvenirQuestion("What was the colour of this {1} in the {2} stage of {0}?", ThreeColumns6Answers, "Black", "Indigo", "Blue", "Forest", "Teal", "Azure", "Green", "Jade", "Cyan", "Maroon", "Plum", "Violet", "Olive", "Grey", "Maya", "Lime", "Mint", "Aqua", "Red", "Rose", "Magenta", "Orange", "Salmon", "Pink", "Yellow", "Cream", "White", Arguments = ["cube", QandA.Ordinal, "stage light", QandA.Ordinal], ArgumentGroupSize = 2, UsesQuestionSprite = true, TranslateAnswers = true, TranslateArguments = [true, false])]
     Colours
 }
 

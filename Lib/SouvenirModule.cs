@@ -342,8 +342,8 @@ public partial class SouvenirModule : MonoBehaviour
 
                     if (qAttr != null)
                     {
-                        if (qAttr.TranslateArgs != null && qAttr.TranslateArgs.Length != qAttr.ArgumentGroupSize)
-                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs}: The length of the ‘{nameof(qAttr.TranslateArgs)}’ array must match ‘{nameof(qAttr.ArgumentGroupSize)}’.");
+                        if (qAttr.TranslateArguments != null && qAttr.TranslateArguments.Length != qAttr.ArgumentGroupSize)
+                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs}: The length of the ‘{nameof(qAttr.TranslateArguments)}’ array must match ‘{nameof(qAttr.ArgumentGroupSize)}’.");
                         if (qAttr.SpriteFieldName != null && qAttr.Type != AnswerType.Sprites)
                             Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) specifies a SpriteField. This should only be used for questions of type Sprites.");
                         if (qAttr.AllAnswers != null && qAttr.AnswerGenerators != null)

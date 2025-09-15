@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCheapCheckout
 {
-    [SouvenirQuestion("What was {1} in {0}?", ThreeColumns6Answers, TranslateFormatArgs = [true], Arguments = ["the paid amount", "the first paid amount", "the second paid amount"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was {1} in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["the paid amount", "the first paid amount", "the second paid amount"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(5, 50, "$0\".00\"")]
     Paid
 }

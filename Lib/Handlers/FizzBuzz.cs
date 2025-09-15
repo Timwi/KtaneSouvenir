@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SFizzBuzz
 {
-    [SouvenirQuestion("What was the {1} digit on the {2} display of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "top", QandA.Ordinal, "middle", QandA.Ordinal, "bottom"], ArgumentGroupSize = 2, TranslateFormatArgs = [false, true])]
+    [SouvenirQuestion("What was the {1} digit on the {2} display of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "top", QandA.Ordinal, "middle", QandA.Ordinal, "bottom"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     [AnswerGenerator.Integers(0, 9)]
     DisplayedNumbers
 }

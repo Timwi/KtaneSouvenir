@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMaze
 {
-    [SouvenirQuestion("In which {1} was the starting position in {0}, counting from the {2}?", ThreeColumns6Answers, TranslateFormatArgs = [true, true], Arguments = ["column", "left", "row", "top"], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("In which {1} was the starting position in {0}, counting from the {2}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["column", "left", "row", "top"], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(1, 6)]
     StartingPosition
 }

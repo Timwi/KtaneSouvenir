@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoubleDigits
 {
-    [SouvenirQuestion("What was the digit on the {1} display in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the digit on the {1} display in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Displays
 }
 

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLEDMath
 {
-    [SouvenirQuestion("What color was {1} in {0}?", TwoColumns4Answers, "Red", "Blue", "Yellow", "Green", TranslateAnswers = true, Arguments = ["LED A", "LED B", "the operator LED"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What color was {1} in {0}?", TwoColumns4Answers, "Red", "Blue", "Yellow", "Green", TranslateAnswers = true, Arguments = ["LED A", "LED B", "the operator LED"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Lights
 }
 

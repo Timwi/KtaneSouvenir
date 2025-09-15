@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SHunting
 {
-    [SouvenirQuestion("Which of the first three stages of {0} had the {1} symbol {2}?", TwoColumns4Answers, "none", "first", "second", "first two", "third", "first & third", "second & third", "all three", TranslateAnswers = true, TranslateFormatArgs = [true, false], Arguments = ["column", QandA.Ordinal, "row", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("Which of the first three stages of {0} had the {1} symbol {2}?", TwoColumns4Answers, "none", "first", "second", "first two", "third", "first & third", "second & third", "all three", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["column", QandA.Ordinal, "row", QandA.Ordinal], ArgumentGroupSize = 2)]
     ColumnsRows
 }
 

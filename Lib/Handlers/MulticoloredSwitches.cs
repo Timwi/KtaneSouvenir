@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMulticoloredSwitches
 {
-    [SouvenirQuestion("What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?", TwoColumns4Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", TranslateAnswers = true, TranslateFormatArgs = [false, true, true], Arguments = [QandA.Ordinal, "top", "lit", QandA.Ordinal, "bottom", "lit", QandA.Ordinal, "top", "unlit", QandA.Ordinal, "bottom", "unlit"], ArgumentGroupSize = 3)]
+    [SouvenirQuestion("What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?", TwoColumns4Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", TranslateAnswers = true, TranslateArguments = [false, true, true], Arguments = [QandA.Ordinal, "top", "lit", QandA.Ordinal, "bottom", "lit", QandA.Ordinal, "top", "unlit", QandA.Ordinal, "bottom", "unlit"], ArgumentGroupSize = 3)]
     LedColor
 }
 

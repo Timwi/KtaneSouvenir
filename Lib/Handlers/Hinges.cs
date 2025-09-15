@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SHinges
 {
-    [SouvenirQuestion("Which of these hinges was initially {1} {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "HingesSprites", Arguments = ["present on", "absent from"], ArgumentGroupSize = 1, TranslateFormatArgs = [true], TranslatableStrings = ["the Hinges where this hinge was initally present", "the Hinges where this hinge was initally absent"])]
+    [SouvenirQuestion("Which of these hinges was initially {1} {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "HingesSprites", Arguments = ["present on", "absent from"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslatableStrings = ["the Hinges where this hinge was initally present", "the Hinges where this hinge was initally absent"])]
     InitialHinges
 }
 

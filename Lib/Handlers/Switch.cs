@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSwitch
 {
-    [SouvenirQuestion("What color was the {1} LED on the {2} flip of {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", TranslateAnswers = true, TranslateFormatArgs = [true, false], Arguments = ["top", QandA.Ordinal, "bottom", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("What color was the {1} LED on the {2} flip of {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom", QandA.Ordinal], ArgumentGroupSize = 2)]
     InitialColor
 }
 

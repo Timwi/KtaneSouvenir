@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SButtonSequence
 {
-    [SouvenirQuestion("How many of the buttons in {0} were {1}?", ThreeColumns6Answers, TranslateFormatArgs = [true], Arguments = ["red", "blue", "yellow", "white"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("How many of the buttons in {0} were {1}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "blue", "yellow", "white"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 12)]
     sColorOccurrences
 }

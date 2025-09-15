@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotConnectionCheck
 {
-    [SouvenirQuestion("What symbol flashed on the {1} button in {0}?", ThreeColumns6Answers, "+", "-", ".", ":", "/", "_", "=", ",", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What symbol flashed on the {1} button in {0}?", ThreeColumns6Answers, "+", "-", ".", ":", "/", "_", "=", ",", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Flashes,
     
-    [SouvenirQuestion("What was the value of the {1} button in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the value of the {1} button in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Values
 }
 

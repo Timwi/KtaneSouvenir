@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SGrayButton
 {
-    [SouvenirQuestion("What was the {1} coordinate on the display in {0}?", ThreeColumns6Answers, Arguments = ["horizontal", "vertical"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the {1} coordinate on the display in {0}?", ThreeColumns6Answers, Arguments = ["horizontal", "vertical"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(0, 9)]
     Coordinates
 }

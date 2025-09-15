@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum STribalCouncil
 {
-    [SouvenirQuestion("What was the {1} name in {0}?", TwoColumns4Answers, "Louise", "Mark", "Hannah", "Adam", "Harvey", "Maria", "Jonathan", "Carolyn", "Stacy", "Bob", Arguments = ["northeast", "southwest"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the {1} name in {0}?", TwoColumns4Answers, "Louise", "Mark", "Hannah", "Adam", "Harvey", "Maria", "Jonathan", "Carolyn", "Stacy", "Bob", Arguments = ["northeast", "southwest"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Name
 }
 

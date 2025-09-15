@@ -16,7 +16,7 @@ public enum SNotXRay
     [SouvenirQuestion("What direction was button {1} in {0}?", ThreeColumns6Answers, "Up", "Right", "Down", "Left", TranslateAnswers = true, Arguments = ["1", "2", "3", "4"], ArgumentGroupSize = 1)]
     Directions,
     
-    [SouvenirQuestion("Which button went {1} in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", TranslateFormatArgs = [true], Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which button went {1} in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", TranslateArguments = [true], Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1)]
     Buttons
 }
 

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SStupidSlots
 {
-    [SouvenirQuestion("What was the value of the {1} arrow in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the value of the {1} arrow in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(-30, 30)]
     Values
 }

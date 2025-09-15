@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSubscribeToPewdiepie
 {
-    [SouvenirQuestion("How many subscribers does {1} have in {0}?", TwoColumns4Answers, Arguments = ["PewDiePie", "T-Series"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("How many subscribers does {1} have in {0}?", TwoColumns4Answers, Arguments = ["PewDiePie", "T-Series"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(10000000, 99999999)]
     SubCount
 }

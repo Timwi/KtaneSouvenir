@@ -13,7 +13,7 @@ public enum SFaerieFires
     [SouvenirQuestion("What pitch did the {1} faerie sing in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     PitchOrdinal,
     
-    [SouvenirQuestion("What pitch did the {1} faerie sing in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8, Arguments = ["red", "green", "blue", "yellow", "cyan", "magenta"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What pitch did the {1} faerie sing in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8, Arguments = ["red", "green", "blue", "yellow", "cyan", "magenta"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     PitchColor
 }
 

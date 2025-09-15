@@ -8,7 +8,7 @@ using static Souvenir.AnswerLayout;
 public enum SSillySlots
 {
     [SouvenirQuestion("What was the {1} slot in the {2} stage in {0}?", TwoColumns4Answers, "red bomb", "red cherry", "red coin", "red grape", "green bomb", "green cherry", "green coin", "green grape", "blue bomb", "blue cherry", "blue coin", "blue grape", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
-    
+    Question
 }
 
 public partial class SouvenirModule

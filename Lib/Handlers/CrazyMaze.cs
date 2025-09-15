@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCrazyMaze
 {
-    [SouvenirQuestion("What was the {1} location in {0}?", ThreeColumns6Answers, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the {1} location in {0}?", ThreeColumns6Answers, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("A-Z", "A-Z")]
     StartOrGoal
 }

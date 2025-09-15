@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SKookyKeypad
 {
-    [SouvenirQuestion("What color was the {1} button’s LED in {0}?", OneColumn4Answers, "Crimson", "Red", "Coral", "Orange", "Lemon Chiffon", "Medium Spring Green", "Deep Sea Green", "Cadet Blue", "Slate Blue", "Dark Magenta", "Unlit", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateFormatArgs = [true], TranslateAnswers = true)]
+    [SouvenirQuestion("What color was the {1} button’s LED in {0}?", OneColumn4Answers, "Crimson", "Red", "Coral", "Orange", "Lemon Chiffon", "Medium Spring Green", "Deep Sea Green", "Cadet Blue", "Slate Blue", "Dark Magenta", "Unlit", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslateAnswers = true)]
     Color
 }
 

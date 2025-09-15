@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SEncryptedMaze
 {
-    [SouvenirQuestion("Which symbol on {0} was spinning {1}?", ThreeColumns6Answers, "f", "H", "$", "l", "B", "N", "g", "I", "%", "m", "C", "O", "h", "J", "&", "n", "D", "P", "i", "K", "'", "o", "E", "Q", "j", "L", "(", "p", "F", "R", Type = AnswerType.DynamicFont, Arguments = ["clockwise", "counter-clockwise"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Which symbol on {0} was spinning {1}?", ThreeColumns6Answers, "f", "H", "$", "l", "B", "N", "g", "I", "%", "m", "C", "O", "h", "J", "&", "n", "D", "P", "i", "K", "'", "o", "E", "Q", "j", "L", "(", "p", "F", "R", Type = AnswerType.DynamicFont, Arguments = ["clockwise", "counter-clockwise"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Symbols
 }
 

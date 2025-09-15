@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SColorsMaximization
 {
-    [SouvenirQuestion("How many buttons were {1} in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("How many buttons were {1} in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(0, 11)]
     ColorCount
 }

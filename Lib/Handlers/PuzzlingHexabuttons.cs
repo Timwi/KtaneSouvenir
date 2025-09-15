@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SPuzzlingHexabuttons
 {
-    [SouvenirQuestion("What letter was displayed on the {1} hexabutton when submitting in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What letter was displayed on the {1} hexabutton when submitting in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings('A', 'F')]
     Letter
 }

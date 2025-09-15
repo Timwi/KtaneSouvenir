@@ -9,7 +9,7 @@ public enum S3NPlus1
 {
     [SouvenirQuestion("What number was initially displayed in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 100)]
-    
+    Question
 }
 
 public partial class SouvenirModule

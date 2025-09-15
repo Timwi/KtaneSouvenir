@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SBoomtarTheGreat
 {
-    [SouvenirQuestion("What was rule {1} in {0}?", ThreeColumns6Answers, ArgumentGroupSize = 1, Arguments = ["one", "two"], TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was rule {1} in {0}?", ThreeColumns6Answers, ArgumentGroupSize = 1, Arguments = ["one", "two"], TranslateArguments = [true])]
     [AnswerGenerator.Integers(1, 6)]
     Rules
 }

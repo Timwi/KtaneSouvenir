@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoubleScreen
 {
-    [SouvenirQuestion("What color was the {1} screen in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateAnswers = true, Arguments = ["top", QandA.Ordinal, "bottom", QandA.Ordinal], ArgumentGroupSize = 2, TranslateFormatArgs = [true, false])]
+    [SouvenirQuestion("What color was the {1} screen in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateAnswers = true, Arguments = ["top", QandA.Ordinal, "bottom", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     Colors
 }
 

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSamples
 {
-    [SouvenirQuestion("What were the call samples {1} of {0}?", TwoColumns4Answers, AudioFieldName = "SimonSamplesAudio", Type = AnswerType.Audio, TranslateFormatArgs = [true], Arguments = ["played in the first stage", "added in the second stage", "added in the third stage"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What were the call samples {1} of {0}?", TwoColumns4Answers, AudioFieldName = "SimonSamplesAudio", Type = AnswerType.Audio, TranslateArguments = [true], Arguments = ["played in the first stage", "added in the second stage", "added in the third stage"], ArgumentGroupSize = 1)]
     Samples
 }
 

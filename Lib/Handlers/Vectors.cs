@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SVectors
 {
-    [SouvenirQuestion("What was the color of the {1} vector in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", TranslateAnswers = true, TranslateFormatArgs = [true], Arguments = ["first", "second", "third", "only"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the color of the {1} vector in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["first", "second", "third", "only"], ArgumentGroupSize = 1)]
     Colors
 }
 

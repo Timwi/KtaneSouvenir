@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SGyromaze
 {
-    [SouvenirQuestion("What color was the {1} LED in {0}?", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", Arguments = ["top", "bottom"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What color was the {1} LED in {0}?", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", Arguments = ["top", "bottom"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     LEDColor
 }
 

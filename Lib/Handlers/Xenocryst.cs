@@ -8,7 +8,7 @@ using static Souvenir.AnswerLayout;
 public enum SXenocryst
 {
     [SouvenirQuestion("What was the color of the {1} flash in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    
+    Question
 }
 
 public partial class SouvenirModule

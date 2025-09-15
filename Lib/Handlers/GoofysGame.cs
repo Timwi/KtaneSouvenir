@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SGoofysGame
 {
-    [SouvenirQuestion("What number was flashed by the {1} LED in {0}?", ThreeColumns6Answers, Arguments = ["left", "right", "center"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What number was flashed by the {1} LED in {0}?", ThreeColumns6Answers, Arguments = ["left", "right", "center"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(0, 9)]
     Number
 }

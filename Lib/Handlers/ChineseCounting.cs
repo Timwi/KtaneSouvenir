@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SChineseCounting
 {
-    [SouvenirQuestion("What color was the {1} LED in {0}?", TwoColumns4Answers, "White", "Red", "Green", "Orange", TranslateAnswers = true, TranslateFormatArgs = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What color was the {1} LED in {0}?", TwoColumns4Answers, "White", "Red", "Green", "Orange", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
     LED
 }
 

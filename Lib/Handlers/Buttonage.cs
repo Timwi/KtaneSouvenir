@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SButtonage
 {
-    [SouvenirQuestion("How many {1} buttons were there on {0}?", ThreeColumns6Answers, ArgumentGroupSize = 1, TranslateFormatArgs = [true], Arguments = ["red", "green", "orange", "blue", "pink", "white", "black", "white-bordered", "pink-bordered", "gray-bordered", "red-bordered", "“P”", "special"])]
+    [SouvenirQuestion("How many {1} buttons were there on {0}?", ThreeColumns6Answers, ArgumentGroupSize = 1, TranslateArguments = [true], Arguments = ["red", "green", "orange", "blue", "pink", "white", "black", "white-bordered", "pink-bordered", "gray-bordered", "red-bordered", "“P”", "special"])]
     [AnswerGenerator.Integers(0, 64)]
     Buttons
 }

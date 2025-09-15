@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDividedSquares
 {
-    [SouvenirQuestion("What color was {1} while pressing it in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Black", "White", Arguments = ["the square", "the correct square"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What color was {1} while pressing it in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Black", "White", Arguments = ["the square", "the correct square"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     Color
 }
 

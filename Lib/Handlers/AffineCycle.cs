@@ -19,5 +19,5 @@ public partial class SouvenirModule
 {
     [SouvenirHandler("affineCycle", "Affine Cycle", typeof(SAffineCycle), "Quinn Wuest")]
     private IEnumerator<SouvenirInstruction> ProcessAffineCycle(ModuleData module) => processSpeakingEvilCycle(module, "AffineCycleScript", Question.AffineCycleDialDirections, Question.AffineCycleDialLabels,
-            overrideAnswers: Enumerable.Range(0, 8).Except(new[] { 6 }).Select(x => CycleModuleEightSprites[x]).ToArray())
+            overrideAnswers: Enumerable.Range(0, 8).Except(new[] { 6 }).Select(x => CycleModuleEightSprites[x]).ToArray());
 }

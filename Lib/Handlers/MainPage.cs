@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SMainPage
 {
-    [SouvenirQuestion("Which main page did the {1} button’s effect come from in {0}?", ThreeColumns6Answers, Arguments = ["toons", "games", "characters", "downloads", "store", "email"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Which main page did the {1} button’s effect come from in {0}?", ThreeColumns6Answers, Arguments = ["toons", "games", "characters", "downloads", "store", "email"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(1, 26)]
     ButtonEffectOrigin,
     
-    [SouvenirQuestion("Which main page did {1} come from in {0}?", ThreeColumns6Answers, Arguments = ["Homestar", "the background"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Which main page did {1} come from in {0}?", ThreeColumns6Answers, Arguments = ["Homestar", "the background"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(1, 27)]
     HomestarBackgroundOrigin,
     
     [SouvenirQuestion("Which color did the bubble not display in {0}?", TwoColumns4Answers, "Blue", "Green", "Red", "Yellow", TranslateAnswers = true)]
     BubbleColors,
     
-    [SouvenirQuestion("Which of the following messages did the bubble {1} in {0}?", OneColumn4Answers, "play a game", "latest toon", "latest merch", "new strong bad email", "new sbemail a comin", "email soon", "new toon soon", "new cartoon!", "hey, a new toon!!", "more biz cas fri", "biz cas fri", "new biz cas fri!", "short shorts!", "new short shortly", "new short!", Arguments = ["display", "not display"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Which of the following messages did the bubble {1} in {0}?", OneColumn4Answers, "play a game", "latest toon", "latest merch", "new strong bad email", "new sbemail a comin", "email soon", "new toon soon", "new cartoon!", "hey, a new toon!!", "more biz cas fri", "biz cas fri", "new biz cas fri!", "short shorts!", "new short shortly", "new short!", Arguments = ["display", "not display"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     BubbleMessages
 }
 

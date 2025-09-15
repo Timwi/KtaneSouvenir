@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonStores
 {
-    [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", TranslateAnswers = true, TranslateFormatArgs = [true, false], Arguments = ["flashed", QandA.Ordinal, "was among the colors flashed", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["flashed", QandA.Ordinal, "was among the colors flashed", QandA.Ordinal], ArgumentGroupSize = 2)]
     Colors
 }
 

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SEncryptedMorse
 {
-    [SouvenirQuestion("What was the {1} on {0}?", TwoColumns4Answers, ExampleAnswers = ["Detonate", "Ready Now", "Please No", "Cheesecake"], Arguments = ["received call", "sent response"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the {1} on {0}?", TwoColumns4Answers, ExampleAnswers = ["Detonate", "Ready Now", "Please No", "Cheesecake"], Arguments = ["received call", "sent response"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     CallResponse
 }
 

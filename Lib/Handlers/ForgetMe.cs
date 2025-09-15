@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetMe
 {
-    [SouvenirQuestion("What number was in the {1} position of the initial puzzle in {0}?", ThreeColumns6Answers, TranslateFormatArgs = [true], Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What number was in the {1} position of the initial puzzle in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 8)]
     InitialState
 }

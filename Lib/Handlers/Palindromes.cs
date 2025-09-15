@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SPalindromes
 {
-    [SouvenirQuestion("What was {1}’s {2} digit from the right in {0}?", ThreeColumns6Answers, TranslateFormatArgs = [true, false], Arguments = ["X", QandA.Ordinal, "Y", QandA.Ordinal, "Z", QandA.Ordinal, "the screen", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("What was {1}’s {2} digit from the right in {0}?", ThreeColumns6Answers, TranslateArguments = [true, false], Arguments = ["X", QandA.Ordinal, "Y", QandA.Ordinal, "Z", QandA.Ordinal, "the screen", QandA.Ordinal], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(0, 9)]
     Numbers
 }

@@ -10,7 +10,7 @@ public enum SUpdog
     [SouvenirQuestion("What was the text on {0}?", ThreeColumns6Answers, "dog", "DOG", "dawg", "DAWG", "doge", "DOGE", "dag", "DAG", "dogg", "DOGG", "dage", "DAGE")]
     Word,
     
-    [SouvenirQuestion("What was the {1} color in the sequence on {0}?", ThreeColumns6Answers, "Red", "Yellow", "Orange", "Green", "Blue", "Purple", TranslateFormatArgs = [true], TranslateAnswers = true, Arguments = ["first", "last"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the {1} color in the sequence on {0}?", ThreeColumns6Answers, "Red", "Yellow", "Orange", "Green", "Blue", "Purple", TranslateArguments = [true], TranslateAnswers = true, Arguments = ["first", "last"], ArgumentGroupSize = 1)]
     Color
 }
 

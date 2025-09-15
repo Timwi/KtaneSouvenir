@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDevilishEggs
 {
-    [SouvenirQuestion("What was the {1} egg’s {2} rotation in {0}?", TwoColumns4Answers, "W90CW", "W180CW", "W270CW", "W360CW", "W90CCW", "W180CCW", "W270CCW", "W360CCW", "T90CW", "T180CW", "T270CW", "T360CW", "T90CCW", "T180CCW", "T270CCW", "T360CCW", TranslateFormatArgs = [true, false], Arguments = ["top", QandA.Ordinal, "bottom", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("What was the {1} egg’s {2} rotation in {0}?", TwoColumns4Answers, "W90CW", "W180CW", "W270CW", "W360CW", "W90CCW", "W180CCW", "W270CCW", "W360CCW", "T90CW", "T180CW", "T270CW", "T360CW", "T90CCW", "T180CCW", "T270CCW", "T360CCW", TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom", QandA.Ordinal], ArgumentGroupSize = 2)]
     Rotations,
     
     [SouvenirQuestion("What was the {1} digit in the string of numbers on {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]

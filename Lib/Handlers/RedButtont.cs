@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SRedButtont
 {
-    [SouvenirQuestion("What was the word before “SUBMIT” in {0}?", TwoColumns4Answers, AddThe = false, ExampleAnswers = ["ABACUS", "BABBLE", "CABLES", "DABBLE", "EAGLES", "FABLED", "HABITS", "IAMBIC"])]
+    [SouvenirQuestion("What was the word before “SUBMIT” in {0}?", TwoColumns4Answers, ExampleAnswers = ["ABACUS", "BABBLE", "CABLES", "DABBLE", "EAGLES", "FABLED", "HABITS", "IAMBIC"])]
     Word
 }
 

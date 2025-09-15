@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SBobBarks
 {
-    [SouvenirQuestion("What was the {1} indicator label in {0}?", ThreeColumns6Answers, "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY", TranslateFormatArgs = [true], Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the {1} indicator label in {0}?", ThreeColumns6Answers, "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY", TranslateArguments = [true], Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1)]
     Indicators,
     
     [SouvenirQuestion("Which button flashed {1} in sequence in {0}?", TwoColumns4Answers, "top left", "top right", "bottom left", "bottom right", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]

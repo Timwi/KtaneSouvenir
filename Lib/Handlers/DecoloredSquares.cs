@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDecoloredSquares
 {
-    [SouvenirQuestion("What was the starting {1} defining color in {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true, TranslateFormatArgs = [true], Arguments = ["column", "row"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the starting {1} defining color in {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["column", "row"], ArgumentGroupSize = 1)]
     StartingPos
 }
 

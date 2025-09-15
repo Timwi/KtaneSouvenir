@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlgorithmia
 {
-    [SouvenirQuestion("Which position was the {1} position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Which position was the {1} position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Grid(4, 4)]
     Positions,
     

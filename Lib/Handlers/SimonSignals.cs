@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSignals
 {
-    [SouvenirQuestion("What shape was the {1} arrow in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = nameof(SouvenirModule.SimonSignalsSprites), Arguments = ["red", "green", "blue", "gray"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What shape was the {1} arrow in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = nameof(SouvenirModule.SimonSignalsSprites), Arguments = ["red", "green", "blue", "gray"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     ColorToShape,
     
-    [SouvenirQuestion("How many directions did the {1} arrow in {0} have?", TwoColumns4Answers, "3", "4", "5", "6", Arguments = ["red", "green", "blue", "gray"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("How many directions did the {1} arrow in {0} have?", TwoColumns4Answers, "3", "4", "5", "6", Arguments = ["red", "green", "blue", "gray"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     ColorToRotations,
     
     [SouvenirQuestion("What color was the arrow with this shape in {0}?", TwoColumns4Answers, "red", "green", "blue", "gray", UsesQuestionSprite = true, TranslateAnswers = true)]

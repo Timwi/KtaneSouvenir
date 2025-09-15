@@ -11,10 +11,10 @@ public enum SDoubleArrows
     [AnswerGenerator.Integers(1, 81, "00")]
     Start,
     
-    [SouvenirQuestion("Which direction in the grid did the {1} arrow move in {0}?", TwoColumns4Answers, "Up", "Right", "Left", "Down", Arguments = ["inner up", "inner down", "inner left", "inner right", "outer up", "outer down", "outer left", "outer right"], TranslateAnswers = true, ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Which direction in the grid did the {1} arrow move in {0}?", TwoColumns4Answers, "Up", "Right", "Left", "Down", Arguments = ["inner up", "inner down", "inner left", "inner right", "outer up", "outer down", "outer left", "outer right"], TranslateAnswers = true, ArgumentGroupSize = 1, TranslateArguments = [true])]
     Movement,
     
-    [SouvenirQuestion("Which {1} arrow moved {2} in the grid in {0}?", TwoColumns4Answers, "Up", "Right", "Left", "Down", Arguments = ["inner", "up", "outer", "up", "inner", "down", "outer", "down", "inner", "left", "outer", "left", "inner", "right", "outer", "right"], TranslateAnswers = true, ArgumentGroupSize = 2, TranslateFormatArgs = [true, true])]
+    [SouvenirQuestion("Which {1} arrow moved {2} in the grid in {0}?", TwoColumns4Answers, "Up", "Right", "Left", "Down", Arguments = ["inner", "up", "outer", "up", "inner", "down", "outer", "down", "inner", "left", "outer", "left", "inner", "right", "outer", "right"], TranslateAnswers = true, ArgumentGroupSize = 2, TranslateArguments = [true, true])]
     Arrow
 }
 

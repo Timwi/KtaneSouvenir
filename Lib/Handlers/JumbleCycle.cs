@@ -18,5 +18,5 @@ public enum SJumbleCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("jumbleCycle", "Jumble Cycle", typeof(SJumbleCycle), "Quinn Wuest")]
-    private IEnumerator<SouvenirInstruction> ProcessJumbleCycle(ModuleData module) => processSpeakingEvilCycle(module, "JumbleCycleScript", Question.JumbleCycleDialDirections, Question.JumbleCycleDialLabels)
+    private IEnumerator<SouvenirInstruction> ProcessJumbleCycle(ModuleData module) => processSpeakingEvilCycle(module, "JumbleCycleScript", Question.JumbleCycleDialDirections, Question.JumbleCycleDialLabels);
 }

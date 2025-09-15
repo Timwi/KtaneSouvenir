@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMoon
 {
-    [SouvenirQuestion("What was the {1} set in clockwise order in {0}?", TwoColumns4Answers, "south", "south-west", "west", "north-west", "north", "north-east", "east", "south-east", TranslateAnswers = true, Arguments = ["first initially lit", "second initially lit", "third initially lit", "fourth initially lit", "first initially unlit", "second initially unlit", "third initially unlit", "fourth initially unlit"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the {1} set in clockwise order in {0}?", TwoColumns4Answers, "south", "south-west", "west", "north-west", "north", "north-east", "east", "south-east", TranslateAnswers = true, Arguments = ["first initially lit", "second initially lit", "third initially lit", "fourth initially lit", "first initially unlit", "second initially unlit", "third initially unlit", "fourth initially unlit"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     LitUnlit
 }
 

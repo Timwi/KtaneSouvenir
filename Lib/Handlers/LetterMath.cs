@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLetterMath
 {
-    [SouvenirQuestion("What was the letter on the {1} display in {0}?", ThreeColumns6Answers, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the letter on the {1} display in {0}?", ThreeColumns6Answers, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("A-Z")]
     Display
 }

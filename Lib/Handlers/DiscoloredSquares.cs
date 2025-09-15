@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDiscoloredSquares
 {
-    [SouvenirQuestion("What was {1}’s remembered position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateFormatArgs = [true], Arguments = ["Blue", "Red", "Yellow", "Green", "Magenta"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was {1}’s remembered position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["Blue", "Red", "Yellow", "Green", "Magenta"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(4, 4)]
     RememberedPositions
 }

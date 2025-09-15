@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLabyrinth
 {
-    [SouvenirQuestion("Where was one of the portals in layer {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateFormatArgs = [true], Arguments = ["1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Where was one of the portals in layer {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(6, 7)]
     PortalLocations,
     

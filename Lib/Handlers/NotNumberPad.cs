@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotNumberPad
 {
-    [SouvenirQuestion("Which of these numbers {1} at the {2} stage of {0}?", TwoColumns4Answers, TranslateFormatArgs = [true, false], Arguments = ["flashed", QandA.Ordinal, "did not flash", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("Which of these numbers {1} at the {2} stage of {0}?", TwoColumns4Answers, TranslateArguments = [true, false], Arguments = ["flashed", QandA.Ordinal, "did not flash", QandA.Ordinal], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(0, 9)]
     Flashes
 }

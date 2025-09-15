@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotX01
 {
-    [SouvenirQuestion("Which sector value {1} present on {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Which sector value {1} present on {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     SectorValues
 }
 

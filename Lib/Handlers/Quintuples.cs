@@ -14,7 +14,7 @@ public enum SQuintuples
     [SouvenirQuestion("What color was the {1} digit in the {2} slot in {0}?", TwoColumns4Answers, "red", "blue", "orange", "green", "pink", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     Colors,
     
-    [SouvenirQuestion("How many numbers were {1} in {0}?", ThreeColumns6Answers, TranslateFormatArgs = [true], Arguments = ["red", "blue", "orange", "green", "pink"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("How many numbers were {1} in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "blue", "orange", "green", "pink"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 25)]
     ColorCounts
 }

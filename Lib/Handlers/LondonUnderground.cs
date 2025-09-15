@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLondonUnderground
 {
-    [SouvenirQuestion("Where did the {1} journey on {0} {2}?", OneColumn4Answers, ExampleAnswers = ["Great Portland Street", "High Street Kensington", "King's Cross St. Pancras", "Mornington Crescent", "Shepherd's Bush Market", "Tottenham Court Road", "Walthamstow Central", "White City/Wood Lane"], TranslateFormatArgs = [false, true], Arguments = [QandA.Ordinal, "depart from", QandA.Ordinal, "arrive to"], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("Where did the {1} journey on {0} {2}?", OneColumn4Answers, ExampleAnswers = ["Great Portland Street", "High Street Kensington", "King's Cross St. Pancras", "Mornington Crescent", "Shepherd's Bush Market", "Tottenham Court Road", "Walthamstow Central", "White City/Wood Lane"], TranslateArguments = [false, true], Arguments = [QandA.Ordinal, "depart from", QandA.Ordinal, "arrive to"], ArgumentGroupSize = 2)]
     Stations
 }
 

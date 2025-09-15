@@ -9,7 +9,7 @@ public enum SEncryptedDice
 {
     [SouvenirQuestion("Which of these numbers appeared on a die in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 6)]
-    
+    Question
 }
 
 public partial class SouvenirModule

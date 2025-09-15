@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SNameCodes
 {
-    [SouvenirQuestion("What was the {1} index in {0}?", TwoColumns4Answers, "2", "3", "4", "5", TranslateFormatArgs = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the {1} index in {0}?", TwoColumns4Answers, "2", "3", "4", "5", TranslateArguments = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
     Indices
 }
 

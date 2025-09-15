@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMazematics
 {
-    [SouvenirQuestion("Which was the {1} value in {0}?", ThreeColumns6Answers, ExampleAnswers = ["30", "42", "51"], Arguments = ["initial", "goal"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("Which was the {1} value in {0}?", ThreeColumns6Answers, ExampleAnswers = ["30", "42", "51"], Arguments = ["initial", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Value
 }
 

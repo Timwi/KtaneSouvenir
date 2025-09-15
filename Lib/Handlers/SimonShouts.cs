@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonShouts
 {
-    [SouvenirQuestion("Which letter flashed on the {1} button in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", TranslateFormatArgs = [true], Arguments = ["top", "left", "right", "bottom"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which letter flashed on the {1} button in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", TranslateArguments = [true], Arguments = ["top", "left", "right", "bottom"], ArgumentGroupSize = 1)]
     FlashingLetter
 }
 

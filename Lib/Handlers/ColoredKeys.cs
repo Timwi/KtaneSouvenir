@@ -13,11 +13,11 @@ public enum SColoredKeys
     [SouvenirQuestion("What was the displayed word’s color in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "purple", "white", TranslateAnswers = true)]
     DisplayWordColor,
     
-    [SouvenirQuestion("What letter was on the {1} key in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What letter was on the {1} key in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings('A', 'Z')]
     KeyLetter,
     
-    [SouvenirQuestion("What was the color of the {1} key in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "purple", "white", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = [true])]
+    [SouvenirQuestion("What was the color of the {1} key in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "purple", "white", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     KeyColor
 }
 
