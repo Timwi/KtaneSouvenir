@@ -813,7 +813,7 @@ public partial class SouvenirModule
             foreach (var ix in swappedPositions)
             {
                 var unique = validUnique.Except(new[] { ix }).PickRandom();
-                var moduleName = string.Format(translateString(Question.ForgetMeNotDisplayedDigits, "the Concentration which began with {1} in the {0} position (in reading order)"), Ordinal(unique + 1), stage[unique] + 1);
+                var moduleName = string.Format(translateString(Question.ConcentrationStartingDigit, "the Concentration which began with {1} in the {0} position (in reading order)"), Ordinal(unique + 1), stage[unique] + 1);
                 qs.Add(makeQuestion(Question.ConcentrationStartingDigit, moduleId, 1, questionSprite: Sprites.GenerateGridSprite(3, 5, ix), correctAnswers: new[] { (stage[ix] + 1).ToString() }, formattedModuleName: moduleName));
             }
 
