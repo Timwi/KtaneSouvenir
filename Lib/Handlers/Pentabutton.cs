@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SPentabutton
 {
-    [SouvenirQuestion("What was the base colour in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", TranslateAnswers = true, TranslatableStrings = ["the Pentabutton labelled “{0}”"])]
+    [SouvenirQuestion("What was the base colour in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", TranslateAnswers = true)]
     BaseColor,
 
     [SouvenirDiscriminator("the Pentabutton labelled “{0}”", Arguments = ["press", "detonate", "hold", "abort", "release", "poke", "punch", "depress", "push", "select", "explode", "boom", "ignite", "escape", "colour", "penta", "button"], ArgumentGroupSize = 1)]

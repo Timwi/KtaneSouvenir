@@ -1,3 +1,4 @@
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -7,7 +8,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SVariety
 {
-    [SouvenirQuestion("What color was the LED flashing in {0}?", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", TranslateAnswers = true, TranslatableStrings = ["the Variety that has one", "the Variety that has one (LED)", "the Variety that has one (digit display)", "the Variety that has one (letter display)", "the Variety that has one (timer)", "the Variety that has one (ascendingtimer)", "the Variety that has one (descendingtimer)", "the Variety that has one (knob)", "the Variety that has one (coloredknob)", "the Variety that has one (redknob)", "the Variety that has one (yellowknob)", "the Variety that has one (blueknob)", "the Variety that has one (blackknob)", "the Variety that has one (bulb)", "the Variety that has one (redbulb)", "the Variety that has one (yellowbulb)", "the Variety that has {0}", "a knob", "a colored knob", "a white knob", "a red knob", "a black knob", "a blue knob", "a yellow knob", "a keypad", "a white keypad", "a red keypad", "a yellow keypad", "a blue keypad", "a slider", "a horizontal slider", "a vertical slider", "an LED", "a digit display", "a wire", "a black wire", "a blue wire", "a red wire", "a yellow wire", "a white wire", "a button", "a red button", "a yellow button", "a blue button", "a white button", "a letter display", "a Braille display", "a key-in-lock", "a switch", "a red switch", "a yellow switch", "a blue switch", "a white switch", "a timer", "an ascending timer", "a descending timer", "a die", "a light-on-dark die", "a dark-on-light die", "a bulb", "a red bulb", "a yellow bulb", "a maze", "a 3×3 maze", "a 3×4 maze", "a 4×3 maze", "a 4×4 maze"])]
+    [SouvenirQuestion("What color was the LED flashing in {0}?", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", TranslateAnswers = true)]
     LED,
 
     [SouvenirQuestion("What digit was displayed but not the answer for the digit display in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "0")]
@@ -25,7 +26,9 @@ public enum SVariety
 
     [SouvenirQuestion("What was n for the {1}bulb in {0}?", ThreeColumns6Answers, Arguments = ["", "red ", "yellow "], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(5, 13)]
-    Bulb
+    Bulb,
+
+    // ["the Variety that has one", "the Variety that has one (LED)", "the Variety that has one (digit display)", "the Variety that has one (letter display)", "the Variety that has one (timer)", "the Variety that has one (ascendingtimer)", "the Variety that has one (descendingtimer)", "the Variety that has one (knob)", "the Variety that has one (coloredknob)", "the Variety that has one (redknob)", "the Variety that has one (yellowknob)", "the Variety that has one (blueknob)", "the Variety that has one (blackknob)", "the Variety that has one (bulb)", "the Variety that has one (redbulb)", "the Variety that has one (yellowbulb)", "the Variety that has {0}", "a knob", "a colored knob", "a white knob", "a red knob", "a black knob", "a blue knob", "a yellow knob", "a keypad", "a white keypad", "a red keypad", "a yellow keypad", "a blue keypad", "a slider", "a horizontal slider", "a vertical slider", "an LED", "a digit display", "a wire", "a black wire", "a blue wire", "a red wire", "a yellow wire", "a white wire", "a button", "a red button", "a yellow button", "a blue button", "a white button", "a letter display", "a Braille display", "a key-in-lock", "a switch", "a red switch", "a yellow switch", "a blue switch", "a white switch", "a timer", "an ascending timer", "a descending timer", "a die", "a light-on-dark die", "a dark-on-light die", "a bulb", "a red bulb", "a yellow bulb", "a maze", "a 3×3 maze", "a 3×4 maze", "a 4×3 maze", "a 4×4 maze"]
 }
 
 public partial class SouvenirModule
@@ -46,50 +49,50 @@ public partial class SouvenirModule
             switch (typeName)
             {
                 case "BrailleDisplay":
-                    return new[] { "a Braille display" };
+                    return ["a Braille display"];
                 case "Bulb":
                     var color = GetProperty<object>(piece, "Color", isPublic: true).Get().ToString();
-                    return new[] { "a bulb", $"a {color.Substring(0, color.Length - 4).ToLowerInvariant()} bulb" };
+                    return ["a bulb", $"a {color.Substring(0, color.Length - 4).ToLowerInvariant()} bulb"];
                 case "Button":
                     color = GetProperty<object>(piece, "Color", isPublic: true).Get().ToString();
-                    return new[] { "a button", $"a {color.Substring(0, color.Length - 6).ToLowerInvariant()} button" };
+                    return ["a button", $"a {color.Substring(0, color.Length - 6).ToLowerInvariant()} button"];
                 case "ColoredKeypad":
                     color = GetProperty<object>(piece, "Color", isPublic: true).Get().ToString();
-                    return new[] { "a keypad", $"a {color.Substring(0, color.Length - 6).ToLowerInvariant()} keypad" };
+                    return ["a keypad", $"a {color.Substring(0, color.Length - 6).ToLowerInvariant()} keypad"];
                 case "ColoredKnob":
                     color = GetProperty<object>(piece, "Color", isPublic: true).Get().ToString();
-                    return new[] { "a knob", "a colored knob", $"a {color.Substring(0, color.Length - 4).ToLowerInvariant()} knob" };
+                    return ["a knob", "a colored knob", $"a {color.Substring(0, color.Length - 4).ToLowerInvariant()} knob"];
                 case "Die":
                     var flavor = GetField<bool>(piece, "_flavor").Get();
-                    return new[] { "a die", flavor ? "a dark-on-light die" : "a light-on-dark die" };
+                    return ["a die", flavor ? "a dark-on-light die" : "a light-on-dark die"];
                 case "DigitDisplay":
-                    return new[] { "a digit display" };
+                    return ["a digit display"];
                 case "Key":
-                    return new[] { "a key-in-lock" };
+                    return ["a key-in-lock"];
                 case "Keypad":
-                    return new[] { "a keypad", "a white keypad" };
+                    return ["a keypad", "a white keypad"];
                 case "Knob":
-                    return new[] { "a knob", "a white knob" };
+                    return ["a knob", "a white knob"];
                 case "Led":
-                    return new[] { "an LED" };
+                    return ["an LED"];
                 case "LetterDisplay":
-                    return new[] { "a letter display" };
+                    return ["a letter display"];
                 case "Maze":
                     var width = GetProperty<int>(piece, "Width", isPublic: true).Get();
                     var height = GetProperty<int>(piece, "Height", isPublic: true).Get();
-                    return new[] { "a maze", $"a {width}×{height} maze" };
+                    return ["a maze", $"a {width}×{height} maze"];
                 case "Slider":
                     var orientation = GetProperty<object>(piece, "Orientation", isPublic: true).Get().ToString();
-                    return new[] { "a slider", $"a {orientation.Substring(0, orientation.Length - 6).ToLowerInvariant()} slider" };
+                    return ["a slider", $"a {orientation.Substring(0, orientation.Length - 6).ToLowerInvariant()} slider"];
                 case "Switch":
                     color = GetProperty<object>(piece, "Color", isPublic: true).Get().ToString();
-                    return new[] { "a switch", $"a {color.Substring(0, color.Length - 6).ToLowerInvariant()} switch" };
+                    return ["a switch", $"a {color.Substring(0, color.Length - 6).ToLowerInvariant()} switch"];
                 case "Timer":
                     flavor = ((int) GetProperty<object>(piece, "FlavorType", isPublic: true).Get()) != 0;
-                    return new[] { "a timer", flavor ? "a descending timer" : "an ascending timer" };
+                    return ["a timer", flavor ? "a descending timer" : "an ascending timer"];
                 case "Wire":
                     color = GetProperty<object>(piece, "Color", isPublic: true).Get().ToString();
-                    return new[] { "a wire", $"a {color.Substring(0, color.Length - 4).ToLowerInvariant()} wire" };
+                    return ["a wire", $"a {color.Substring(0, color.Length - 4).ToLowerInvariant()} wire"];
                 default:
                     throw new AbandonModuleException($"Unexpected component type {typeName}");
             }
@@ -163,12 +166,12 @@ public partial class SouvenirModule
             var formats = allDisambiguators.Where(canDisambiguateWith).ToArray();
 
             var chosen = formats.Any() ? formats.PickRandom() : null;
-            if (chosen is null)
-                return null;
-            return string.Format(translateString(Question.VarietyLED, "the Variety that has {0}"), translateString(Question.VarietyLED, chosen));
+            return chosen is null
+                ? null
+                : string.Format(translateString(Question.VarietyLED, "the Variety that has {0}"), translateString(Question.VarietyLED, chosen));
         }
 
-        List<QandA> questions = new();
+        List<QandA> questions = [];
         var disableSelectables = false;
 
         if (Array.IndexOf(itemTypes, "Led") is var i and not -1)
@@ -190,7 +193,7 @@ public partial class SouvenirModule
             {
                 var displays = GetArrayField<int>(display, "_displayedDigitPerState").Get(expectedLength: 9);
                 var solution = GetProperty<int>(display, "State", isPublic: true).Get(v => v is < 0 || v >= amount ? $"Bad digit display solution state {v}" : null);
-                List<string> ans = new();
+                List<string> ans = [];
                 for (var ix = 0; ix < amount; ix++)
                     if (ix != solution)
                         ans.Add(displays[ix].ToString());

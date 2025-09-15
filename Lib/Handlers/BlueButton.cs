@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SBlueButton
 {
-    [SouvenirQuestion("What was D in {0}?", TwoColumns4Answers, TranslatableStrings = ["the Blue Button where {0} was {1}", "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow"])]
+    [SouvenirQuestion("What was D in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Integers(1, 4)]
     D,
 

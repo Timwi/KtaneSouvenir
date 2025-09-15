@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLinq
 {
-    [SouvenirQuestion("What was the {1} function in {0}?", ThreeColumns6Answers, "First", "Last", "Min", "Max", "Distinct", "Skip", "SkipLast", "Take", "TakeLast", "ElementAt", "Except", "Intersect", "Concat", "Append", "Prepend", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslatableStrings = ["the Linq whose {0} function was {1}"])]
+    [SouvenirQuestion("What was the {1} function in {0}?", ThreeColumns6Answers, "First", "Last", "Min", "Max", "Distinct", "Skip", "SkipLast", "Take", "TakeLast", "ElementAt", "Except", "Intersect", "Concat", "Append", "Prepend", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Function,
 
     [SouvenirDiscriminator("the Linq whose {0} function was {1}", Arguments = [QandA.Ordinal, "First", QandA.Ordinal, "Last", QandA.Ordinal, "Min", QandA.Ordinal, "Max"], ArgumentGroupSize = 2)]

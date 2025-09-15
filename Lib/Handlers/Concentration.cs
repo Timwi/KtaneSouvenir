@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SConcentration
 {
-    [SouvenirQuestion("What number began here in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, TranslatableStrings = ["the Concentration which began with {1} in the {0} position (in reading order)"])]
+    [SouvenirQuestion("What number began here in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
     [AnswerGenerator.Integers(1, 15)]
     StartingDigit
 }

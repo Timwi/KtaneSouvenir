@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetEverything
 {
-    [SouvenirQuestion("What was the {1} displayed digit in the first stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslatableStrings = ["the Forget Everything whose {0} displayed digit in that stage was {1}"])]
+    [SouvenirQuestion("What was the {1} displayed digit in the first stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     StageOneDisplay
 }

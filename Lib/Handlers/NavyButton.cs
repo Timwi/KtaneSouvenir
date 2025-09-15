@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SNavyButton
 {
-    [SouvenirQuestion("Which Greek letter appeared on {0} (case-sensitive)?", ThreeColumns6Answers, "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω", TranslatableStrings = ["the Navy Button that had a {0} on it", "the Navy Button that had an {0} on it", "the Navy Button where the (0-indexed) column of the given was {0}", "the Navy Button where the (0-indexed) row of the given was {0}", "the Navy Button where the value of the given was {0}"])]
+    [SouvenirQuestion("Which Greek letter appeared on {0} (case-sensitive)?", ThreeColumns6Answers, "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω")]
     GreekLetters,
 
     [SouvenirQuestion("What was the {1} of the given in {0}?", TwoColumns4Answers, "0", "1", "2", "3", Arguments = ["(0-indexed) column", "(0-indexed) row", "value"], ArgumentGroupSize = 1, TranslateArguments = [true])]

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -13,7 +13,7 @@ public enum SAzureButton
     [SouvenirQuestion("What was the {1} direction in the {2} non-decoy arrow in {0}?", TwoColumns4Answers, "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     QNonDecoyArrowDirection,
 
-    [SouvenirQuestion("What was T in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites", TranslatableStrings = ["the Azure Button that had this card in Stage 1", "the Azure Button where M was {0}", "the Azure Button where the decoy arrow went {0} at some point", "the Azure Button where the {1} non-decoy arrow went {0} at some point", "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"])]
+    [SouvenirQuestion("What was T in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
     QT,
 
     [SouvenirQuestion("Which of these cards was shown in Stage 1, but not T, in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
