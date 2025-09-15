@@ -102,8 +102,8 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"I have a discontinuous set of stages: {patterns.Keys.JoinString(", ")}/{colors.Keys.JoinString(", ")}.");
 
         addQuestions(module, Enumerable.Range(0, 3).SelectMany(stage => Ut.NewArray(
-             colors[stage].Length <= 2 ? makeQuestion(Question.ColorDecodingIndicatorColors, module, formatArgs: new[] { "appeared", Ordinal(stage + 1) }, correctAnswers: colors[stage]) : null,
-             colors[stage].Length >= 3 ? makeQuestion(Question.ColorDecodingIndicatorColors, module, formatArgs: new[] { "did not appear", Ordinal(stage + 1) }, correctAnswers: colorNameMapping.Values.Except(colors[stage]).ToArray()) : null,
-             makeQuestion(Question.ColorDecodingIndicatorPattern, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { patterns[stage] }))));
+             colors[stage].Length <= 2 ? makeQuestion(SColorDecoding.IndicatorColors, module, formatArgs: new[] { "appeared", Ordinal(stage + 1) }, correctAnswers: colors[stage]) : null,
+             colors[stage].Length >= 3 ? makeQuestion(SColorDecoding.IndicatorColors, module, formatArgs: new[] { "did not appear", Ordinal(stage + 1) }, correctAnswers: colorNameMapping.Values.Except(colors[stage]).ToArray()) : null,
+             makeQuestion(SColorDecoding.IndicatorPattern, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { patterns[stage] }))));
     }
 }

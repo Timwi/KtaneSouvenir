@@ -33,7 +33,7 @@ public partial class SouvenirModule
                 colorOccurrences.IncSafe(fldColor.GetFrom(panelInfo.GetValue(i, j), v => v < 0 || v >= colorNames.Length ? $"out of range; colorNames.Length={colorNames.Length} ([{colorNames.JoinString(", ")}])" : null));
 
         addQuestions(module, colorOccurrences.Select(kvp =>
-            makeQuestion(Question.ButtonSequencesColorOccurrences, module,
+            makeQuestion(SButtonSequence.sColorOccurrences, module,
                 formatArgs: new[] { colorNames[kvp.Key].ToLowerInvariant() },
                 correctAnswers: new[] { kvp.Value.ToString() },
                 preferredWrongAnswers: colorOccurrences.Values.Select(v => v.ToString()).ToArray())));

@@ -24,7 +24,7 @@ public partial class SouvenirModule
             var startingPoint = (int) fldPoint.Get();
             if (startingPoint is not >= 0 or not < 4)
                 throw new AbandonModuleException($"‘_startingPoint’ was {startingPoint} but expected 0–4.");
-            addQuestion(module, Question.LadderLotteryLightOn, correctAnswers: new[] { LadderLotterySprites[startingPoint] });
+            addQuestion(module, SLadderLottery.LightOn, correctAnswers: new[] { LadderLotterySprites[startingPoint] });
         }
         catch (InvalidCastException)
         {

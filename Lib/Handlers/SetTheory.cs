@@ -27,7 +27,7 @@ public partial class SouvenirModule
             var wrongAnswers = new HashSet<string> { equations[stage] };
             while (wrongAnswers.Count < 4)
                 wrongAnswers.Add(mthGenerate.Invoke(stage).ToString());
-            return makeQuestion(Question.SetTheoryEquations, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { equations[stage] }, preferredWrongAnswers: wrongAnswers.ToArray());
+            return makeQuestion(SSetTheory.Equations, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { equations[stage] }, preferredWrongAnswers: wrongAnswers.ToArray());
         }));
     }
 }

@@ -51,8 +51,8 @@ public partial class SouvenirModule
 
         var colors = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
         addQuestions(module, stages.Take(stages.Count - 1).SelectMany((stage, stageIx) => stage.SelectMany((key, keyIx) => key is null ? Enumerable.Empty<QandA>() : Ut.NewArray(
-                makeQuestion(Question.UnorderedKeysKeyColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[0]] }),
-                makeQuestion(Question.UnorderedKeysLabelColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[1]] }),
-                makeQuestion(Question.UnorderedKeysLabel, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { (key[2] + 1).ToString() })))));
+                makeQuestion(SUnorderedKeys.KeyColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[0]] }),
+                makeQuestion(SUnorderedKeys.LabelColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[1]] }),
+                makeQuestion(SUnorderedKeys.Label, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { (key[2] + 1).ToString() })))));
     }
 }

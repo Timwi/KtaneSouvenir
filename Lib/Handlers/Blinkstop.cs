@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -23,7 +23,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var flashes = GetArrayField<char>(comp, "prevledcols").Get(arr =>
-            !Question.BlinkstopNumberOfFlashes.GetAnswers().Contains(arr.Length.ToString()) ? "unexpected flash count" :
+            !SBlinkstop.NumberOfFlashes.GetAnswers().Contains(arr.Length.ToString()) ? "unexpected flash count" :
             arr.Any(f => !"PMYC".Contains(f)) ? "expected only P, M, Y, or C flash values" : null);
         var leastFlashedColour = new[] { "Multicolor", "Purple", "Yellow", "Cyan" }.OrderBy(col => flashes.Count(f => f == col[0])).First();
 

@@ -37,6 +37,6 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, Enumerable.Range(0, 3).Select(i =>
-            makeQuestion(Question.InterpunctDisplay, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { texts[i] })));
+            makeQuestion(SInterpunct.Display, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { texts[i] })));
     }
 }

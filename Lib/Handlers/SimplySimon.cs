@@ -38,7 +38,7 @@ public partial class SouvenirModule
         module.Module.OnStrike -= onstrike;
 
         addQuestions(module, flashes.Select((f, i) =>
-            makeQuestion(Question.SimplySimonFlash, module,
+            makeQuestion(SSimplySimon.Flash, module,
                 correctAnswers: new[] { f },
                 preferredWrongAnswers: flashes.ToArray(),
                 formatArgs: new[] { Ordinal(i + 1) })));

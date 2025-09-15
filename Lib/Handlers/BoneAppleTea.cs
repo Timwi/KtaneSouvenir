@@ -17,7 +17,7 @@ public partial class SouvenirModule
     {
         yield return WaitForSolve;
 
-        var allAnswers = Question.BoneAppleTeaPhrase.GetAnswers();
+        var allAnswers = SBoneAppleTea.Phrase.GetAnswers();
 
         var comp = GetComponent(module, "boneAppleTeaScript");
         var p1 = GetIntField(comp, "phrase1").Get(min: 0, max: allAnswers.Length - 1);

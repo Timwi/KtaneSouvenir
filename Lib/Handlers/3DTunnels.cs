@@ -24,6 +24,6 @@ public partial class SouvenirModule
             .Get(tns => tns.Any(tn => tn < 0 || tn >= symbols.Length) ? "invalid symbols" : null)
             .Select(tn => symbols[tn].ToString())
             .ToArray();
-        addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(Question._3DTunnelsTargetNode, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { tn }, preferredWrongAnswers: targetNodeNames)));
+        addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(S3DTunnels.TargetNode, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { tn }, preferredWrongAnswers: targetNodeNames)));
     }
 }

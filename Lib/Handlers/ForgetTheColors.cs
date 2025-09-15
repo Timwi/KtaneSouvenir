@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -67,7 +67,7 @@ public partial class SouvenirModule
         if (!new[] { myLargeDisplays.Count, mySineNumbers.Count, myGearColors.Count, myRuleColors.Count }.All(x => x == myGearNumbers.Count))
             throw new AbandonModuleException($"One or more of the lists of information for this module are not the same length as the others. Gears: {myGearNumbers.Count}, LargeDisplays: {myLargeDisplays.Count}, SineNumbers: {mySineNumbers.Count}, GearColors: {myGearColors.Count}, RuleColors: {myRuleColors.Count}");
 
-        var colors = Question.ForgetTheColorsGearColor.GetAnswers();
+        var colors = SForgetTheColors.GearColor.GetAnswers();
         for (var i = 0; i < myGearNumbers.Count; i++)
         {
             if (myGearNumbers[i] is < 0 or > 9)
@@ -93,15 +93,15 @@ public partial class SouvenirModule
                     continue;
                 var formatCandidates = new List<string>();
                 if (_ftcGearNumbers.Count(l => l[ix] == myGearNumbers[ix]) == 1)
-                    formatCandidates.Add(string.Format(translateString(Question.ForgetTheColorsGearNumber, "the Forget The Colors whose gear number was {0} in stage {1}"), myGearNumbers[ix], ix));
+                    formatCandidates.Add(string.Format(translateString(SForgetTheColors.GearNumber, "the Forget The Colors whose gear number was {0} in stage {1}"), myGearNumbers[ix], ix));
                 if (_ftcLargeDisplays.Count(l => l[ix] == myLargeDisplays[ix]) == 1)
-                    formatCandidates.Add(string.Format(translateString(Question.ForgetTheColorsGearNumber, "the Forget The Colors which had {0} on its large display in stage {1}"), myLargeDisplays[ix], ix));
+                    formatCandidates.Add(string.Format(translateString(SForgetTheColors.GearNumber, "the Forget The Colors which had {0} on its large display in stage {1}"), myLargeDisplays[ix], ix));
                 if (_ftcSineNumbers.Count(l => l[ix] == mySineNumbers[ix]) == 1)
-                    formatCandidates.Add(string.Format(translateString(Question.ForgetTheColorsGearNumber, "the Forget The Colors whose received sine number in stage {1} ended with a {0}"), Mathf.Abs(mySineNumbers[ix]) % 10, ix));
+                    formatCandidates.Add(string.Format(translateString(SForgetTheColors.GearNumber, "the Forget The Colors whose received sine number in stage {1} ended with a {0}"), Mathf.Abs(mySineNumbers[ix]) % 10, ix));
                 if (_ftcGearColors.Count(l => l[ix] == myGearColors[ix]) == 1)
-                    formatCandidates.Add(string.Format(translateString(Question.ForgetTheColorsGearNumber, "the Forget The Colors whose gear color was {0} in stage {1}"), translateAnswer(Question.ForgetTheColorsGearColor, myGearColors[ix]), ix));
+                    formatCandidates.Add(string.Format(translateString(SForgetTheColors.GearNumber, "the Forget The Colors whose gear color was {0} in stage {1}"), translateAnswer(SForgetTheColors.GearColor, myGearColors[ix]), ix));
                 if (_ftcRuleColors.Count(l => l[ix] == myRuleColors[ix]) == 1)
-                    formatCandidates.Add(string.Format(translateString(Question.ForgetTheColorsGearNumber, "the Forget The Colors whose rule color was {0} in stage {1}"), translateAnswer(Question.ForgetTheColorsRuleColor, myRuleColors[ix]), ix));
+                    formatCandidates.Add(string.Format(translateString(SForgetTheColors.GearNumber, "the Forget The Colors whose rule color was {0} in stage {1}"), translateAnswer(SForgetTheColors.RuleColor, myRuleColors[ix]), ix));
                 if (formatCandidates.Count > 0)
                 {
                     formattedName = formatCandidates.PickRandom();
@@ -111,7 +111,7 @@ public partial class SouvenirModule
             if (formattedName == null)
                 yield return legitimatelyNoQuestion(module, $"There are not enough stages at which this one (#{GetIntField(comp, "_moduleId").Get()}) is unique.");
         }
-        formattedName ??= _translation?.Translate(Question.ForgetTheColorsGearNumber).ModuleName ?? "Forget The Colors";
+        formattedName ??= _translation?.Translate(SForgetTheColors.GearNumber).ModuleName ?? "Forget The Colors";
 
         var stage = chosenStage.ToString();
         yield return question(SForgetTheColors.GearNumber, args: [stage]).Answers(myGearNumbers[chosenStage].ToString());

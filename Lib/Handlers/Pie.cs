@@ -21,6 +21,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, digits.Select((digit, ix) => makeQuestion(Question.PieDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { digit }, preferredWrongAnswers: digits)));
+        addQuestions(module, digits.Select((digit, ix) => makeQuestion(SPie.Digits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { digit }, preferredWrongAnswers: digits)));
     }
 }

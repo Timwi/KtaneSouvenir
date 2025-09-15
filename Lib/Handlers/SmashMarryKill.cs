@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -28,7 +28,7 @@ public partial class SouvenirModule
         if (assignments.Count == 0)
             yield return legitimatelyNoQuestion(module, "No modules were categorized.");
 
-        var moduleName = translateModuleName(Question.SmashMarryKillCategory, "Smash, Marry, Kill");
+        var moduleName = translateModuleName(SSmashMarryKill.Category, "Smash, Marry, Kill");
         List<QandA> questions = new();
         var smash = new List<string>();
         var marry = new List<string>();
@@ -41,19 +41,19 @@ public partial class SouvenirModule
                 marry.Add((string) de.Key);
             if (de.Value.ToString() == "KILL")
                 kill.Add((string) de.Key);
-            questions.Add(makeQuestion(Question.SmashMarryKillCategory, module, formattedModuleName: moduleName, formatArgs: new[] { (string) de.Key }, correctAnswers: new[] { de.Value.ToString() }));
+            questions.Add(makeQuestion(SSmashMarryKill.Category, module, formattedModuleName: moduleName, formatArgs: new[] { (string) de.Key }, correctAnswers: new[] { de.Value.ToString() }));
         }
         var allMods = smash.Concat(marry).Concat(kill).ToArray();
         if (allMods.Length < 4)
             allMods = Bomb.GetSolvableModuleNames().Distinct().ToArray();
         if (smash.Count > 0)
-            questions.Add(makeQuestion(Question.SmashMarryKillModule, module, formattedModuleName: moduleName, formatArgs: new[] { "SMASH" },
+            questions.Add(makeQuestion(SSmashMarryKill.Module, module, formattedModuleName: moduleName, formatArgs: new[] { "SMASH" },
                 correctAnswers: smash.ToArray(), allAnswers: allMods));
         if (marry.Count > 0)
-            questions.Add(makeQuestion(Question.SmashMarryKillModule, module, formattedModuleName: moduleName, formatArgs: new[] { "MARRY" },
+            questions.Add(makeQuestion(SSmashMarryKill.Module, module, formattedModuleName: moduleName, formatArgs: new[] { "MARRY" },
                 correctAnswers: marry.ToArray(), allAnswers: allMods));
         if (kill.Count > 0)
-            questions.Add(makeQuestion(Question.SmashMarryKillModule, module, formattedModuleName: moduleName, formatArgs: new[] { "KILL" },
+            questions.Add(makeQuestion(SSmashMarryKill.Module, module, formattedModuleName: moduleName, formatArgs: new[] { "KILL" },
                 correctAnswers: kill.ToArray(), allAnswers: allMods));
 
         addQuestions(module, questions);

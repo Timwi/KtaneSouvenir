@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -55,9 +55,9 @@ public partial class SouvenirModule
                     continue;
                 var formatCandidates = new List<string>();
                 if (_ftColors.Count(c => c[stage] == myColors[stage]) == 1)
-                    formatCandidates.Add(string.Format(translateString(Question.ForgetThisColors, "the Forget This whose LED was {0} in the {1} stage"), translateAnswer(Question.ForgetThisColors, allColors[myColors[stage]]), Ordinal(stage + 1)));
+                    formatCandidates.Add(string.Format(translateString(SForgetThis.Colors, "the Forget This whose LED was {0} in the {1} stage"), translateAnswer(SForgetThis.Colors, allColors[myColors[stage]]), Ordinal(stage + 1)));
                 if (_ftDigits.Count(d => d[stage] == myDigits[stage]) == 1)
-                    formatCandidates.Add(string.Format(translateString(Question.ForgetThisColors, "the Forget This which displayed {0} in the {1} stage"), base36[myDigits[stage]], Ordinal(stage + 1)));
+                    formatCandidates.Add(string.Format(translateString(SForgetThis.Colors, "the Forget This which displayed {0} in the {1} stage"), base36[myDigits[stage]], Ordinal(stage + 1)));
                 if (formatCandidates.Count > 0)
                 {
                     formattedName = formatCandidates.PickRandom();
@@ -67,7 +67,7 @@ public partial class SouvenirModule
             if (formattedName == null)
                 yield return legitimatelyNoQuestion(module, $"There were not enough stages in which this one (#{GetIntField(comp, "_moduleId").Get()}) was unique.");
         }
-        formattedName ??= _translation?.Translate(Question.ForgetThisColors).ModuleName ?? "Forget This";
+        formattedName ??= _translation?.Translate(SForgetThis.Colors).ModuleName ?? "Forget This";
         yield return question(SForgetThis.Colors, args: [Ordinal(chosenStage + 1)]).Answers(allColors[myColors[chosenStage]]);
         yield return question(SForgetThis.Digits, args: [Ordinal(chosenStage + 1)]).Answers(base36[myDigits[chosenStage]].ToString());
     }

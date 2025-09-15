@@ -44,27 +44,27 @@ public partial class SouvenirModule
             // If this arrow has a unique color, we can ask for its shape and its number of rotations
             if (colorsShapes.Count(cs => (cs >> 3) == (colorsShapes[i] >> 3)) == 1)
             {
-                qs.Add(makeQuestion(Question.SimonSignalsColorToShape, module,
+                qs.Add(makeQuestion(SSimonSignals.ColorToShape, module,
                     formatArgs: new[] { colorNames[colorsShapes[i] >> 3] }, correctAnswers: new[] { SimonSignalsSprites[colorsShapes[i] & 7] }));
-                qs.Add(makeQuestion(Question.SimonSignalsColorToRotations, module,
+                qs.Add(makeQuestion(SSimonSignals.ColorToRotations, module,
                     formatArgs: new[] { colorNames[colorsShapes[i] >> 3] }, correctAnswers: new[] { numRotations[i].ToString() }));
             }
 
             // If this arrow has a unique shape, we can ask for its color and its number of rotations
             if (colorsShapes.Count(cs => (cs & 7) == (colorsShapes[i] & 7)) == 1)
             {
-                qs.Add(makeQuestion(Question.SimonSignalsShapeToColor, module,
+                qs.Add(makeQuestion(SSimonSignals.ShapeToColor, module,
                     questionSprite: SimonSignalsSprites[colorsShapes[i] & 7], correctAnswers: new[] { colorNames[colorsShapes[i] >> 3] }));
-                qs.Add(makeQuestion(Question.SimonSignalsShapeToRotations, module,
+                qs.Add(makeQuestion(SSimonSignals.ShapeToRotations, module,
                     questionSprite: SimonSignalsSprites[colorsShapes[i] & 7], correctAnswers: new[] { numRotations[i].ToString() }));
             }
 
             // If this arrow has a unique number of rotations, we can ask for its color and shape
             if (numRotations.Count(nr => nr == numRotations[i]) == 1)
             {
-                qs.Add(makeQuestion(Question.SimonSignalsRotationsToColor, module,
+                qs.Add(makeQuestion(SSimonSignals.RotationsToColor, module,
                     formatArgs: new[] { numRotations[i].ToString() }, correctAnswers: new[] { colorNames[colorsShapes[i] >> 3] }));
-                qs.Add(makeQuestion(Question.SimonSignalsRotationsToShape, module,
+                qs.Add(makeQuestion(SSimonSignals.RotationsToShape, module,
                     formatArgs: new[] { numRotations[i].ToString() }, correctAnswers: new[] { SimonSignalsSprites[colorsShapes[i] & 7] }));
             }
         }

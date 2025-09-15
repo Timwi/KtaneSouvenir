@@ -36,11 +36,11 @@ public partial class SouvenirModule
         PropertyInfo<object> colorProp = null;
         IEnumerable<QandA> processMonitor(object mon, int ix)
         {
-            yield return makeQuestion(Question.ConnectedMonitorsNumber, module, questionSprite: ConnectedMonitorsSprites[ix],
+            yield return makeQuestion(SConnectedMonitors.Number, module, questionSprite: ConnectedMonitorsSprites[ix],
                     correctAnswers: new[] { displays[ix].ToString() });
             var inds = indsProp.GetFrom(mon, validator: v => v.Count is > 3 or < 0 ? $"Bad indicator count {v.Count} (Monitor {ix})" : null);
             foreach (var q in inds.Cast<object>().Select((ind, indIx) =>
-                    makeQuestion(inds.Count == 1 ? Question.ConnectedMonitorsSingleIndicator : Question.ConnectedMonitorsOrdinalIndicator, module, questionSprite: ConnectedMonitorsSprites[ix],
+                    makeQuestion(inds.Count == 1 ? SConnectedMonitors.SingleIndicator : SConnectedMonitors.OrdinalIndicator, module, questionSprite: ConnectedMonitorsSprites[ix],
                     correctAnswers: new[] { (colorProp ??= GetProperty<object>(ind, "Color", isPublic: true)).GetFrom(ind, v => (int) v is < 0 or > 5 ? $"Bad indicator color {v} (Monitor {ix}) (Indicator {indIx})" : null).ToString() },
                     formatArgs: new[] { Ordinal(indIx + 1) })))
                 yield return q;

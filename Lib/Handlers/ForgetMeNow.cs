@@ -21,6 +21,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var displayedDigits = GetArrayField<int>(comp, "displayDigits").Get(expectedLength: Bomb.GetSolvableModuleNames().Count, validator: d => d is < 0 or > 9 ? "expected range 0-9" : null);
-        addQuestions(module, displayedDigits.Select((d, ix) => makeQuestion(Question.ForgetMeNowDisplayedDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { d.ToString() })));
+        addQuestions(module, displayedDigits.Select((d, ix) => makeQuestion(SForgetMeNow.DisplayedDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { d.ToString() })));
     }
 }

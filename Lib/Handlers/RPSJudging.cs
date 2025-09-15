@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -76,14 +76,14 @@ public partial class SouvenirModule
             format = (options.PickRandom(), UnityEngine.Random.Range(0, 2) != 0) switch
             {
                 ((OutcomeRed, var stage), var b) => string.Format(
-                    translateString(Question.RPSJudgingWinner, "the RPS Judging where the {0} team {1} the {2} round"),
-                    translateFormatArg(Question.RPSJudgingWinner, b ? "blue" : "red"), translateFormatArg(Question.RPSJudgingWinner, b ? "lost" : "won"), Ordinal(stage + 1)),
+                    translateString(SRPSJudging.Winner, "the RPS Judging where the {0} team {1} the {2} round"),
+                    translateFormatArg(SRPSJudging.Winner, b ? "blue" : "red"), translateFormatArg(SRPSJudging.Winner, b ? "lost" : "won"), Ordinal(stage + 1)),
                 ((OutcomeDraw, var stage), _) => string.Format(
-                    translateString(Question.RPSJudgingWinner, "the RPS Judging with a draw in the {0} round"),
+                    translateString(SRPSJudging.Winner, "the RPS Judging with a draw in the {0} round"),
                     Ordinal(stage + 1)),
                 ((OutcomeBlue, var stage), var b) => string.Format(
-                    translateString(Question.RPSJudgingWinner, "the RPS Judging where the {0} team {1} the {2} round"),
-                    translateFormatArg(Question.RPSJudgingWinner, b ? "blue" : "red"), translateFormatArg(Question.RPSJudgingWinner, b ? "won" : "lost"), Ordinal(stage + 1)),
+                    translateString(SRPSJudging.Winner, "the RPS Judging where the {0} team {1} the {2} round"),
+                    translateFormatArg(SRPSJudging.Winner, b ? "blue" : "red"), translateFormatArg(SRPSJudging.Winner, b ? "won" : "lost"), Ordinal(stage + 1)),
                 _ => throw new InvalidOperationException()
             };
             return true;
@@ -102,16 +102,16 @@ public partial class SouvenirModule
                 }).Add(stage);
 
             if (draws.Count > 0 && pickUniqueStage(OutcomeDraw, out var format) && pickAnswers(draws, out var correct, out var incorrect))
-                yield return makeQuestion(Question.RPSJudgingDraw, moduleId, 1, formattedModuleName: format, correctAnswers: correct, preferredWrongAnswers: incorrect);
+                yield return makeQuestion(SRPSJudging.Draw, moduleId, 1, formattedModuleName: format, correctAnswers: correct, preferredWrongAnswers: incorrect);
             if (blueWins.Count > 0 && pickUniqueStage(OutcomeBlue, out format) && pickAnswers(blueWins, out correct, out incorrect))
             {
-                yield return makeQuestion(Question.RPSJudgingWinner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "blue", "win" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
-                yield return makeQuestion(Question.RPSJudgingWinner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "red", "lose" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
+                yield return makeQuestion(SRPSJudging.Winner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "blue", "win" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
+                yield return makeQuestion(SRPSJudging.Winner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "red", "lose" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
             }
             if (redWins.Count > 0 && pickUniqueStage(OutcomeRed, out format) && pickAnswers(redWins, out correct, out incorrect))
             {
-                yield return makeQuestion(Question.RPSJudgingWinner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "blue", "lose" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
-                yield return makeQuestion(Question.RPSJudgingWinner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "red", "win" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
+                yield return makeQuestion(SRPSJudging.Winner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "blue", "lose" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
+                yield return makeQuestion(SRPSJudging.Winner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "red", "win" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
             }
         }
 

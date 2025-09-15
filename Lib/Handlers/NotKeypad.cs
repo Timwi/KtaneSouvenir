@@ -22,7 +22,7 @@ public partial class SouvenirModule
         var connectorComponent = GetComponent(module, "NotVanillaModulesLib.NotKeypadConnector");
         yield return WaitForSolve;
 
-        var strings = Question.NotKeypadColor.GetAnswers();
+        var strings = SNotKeypad.Color.GetAnswers();
         var colours = GetField<Array>(comp, "sequenceColours").Get(ar => ar.Cast<int>().Any(v => v <= 0 || v > strings.Length) ? "out of range" : null);
         var buttons = GetArrayField<int>(comp, "sequenceButtons").Get(expectedLength: colours.Length);
         var symbols = GetField<Array>(connectorComponent, "symbols").Get(ar => ar.Cast<int>().Any(v => v < 0 || v > KeypadSprites.Length) ? "out of range" : null);

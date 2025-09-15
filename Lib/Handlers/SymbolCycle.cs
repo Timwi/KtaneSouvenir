@@ -33,6 +33,6 @@ public partial class SouvenirModule
         }
 
         yield return cycles == null ? throw new AbandonModuleException("No cycles.") : (YieldInstruction) WaitForSolve;
-        addQuestions(module, new[] { "left", "right" }.Select((screen, ix) => makeQuestion(Question.SymbolCycleSymbolCounts, module, formatArgs: new[] { screen }, correctAnswers: new[] { cycles[ix].Length.ToString() })));
+        addQuestions(module, new[] { "left", "right" }.Select((screen, ix) => makeQuestion(SSymbolCycle.SymbolCounts, module, formatArgs: new[] { screen }, correctAnswers: new[] { cycles[ix].Length.ToString() })));
     }
 }

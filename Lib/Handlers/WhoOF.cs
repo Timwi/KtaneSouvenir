@@ -27,6 +27,6 @@ public partial class SouvenirModule
                 yield return new WaitForSeconds(0.1f);
             }
         yield return WaitForSolve;
-        addQuestions(module, storedDisplays.Select((disp, stage) => makeQuestion(Question.WhoOFDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { disp }, preferredWrongAnswers: storedDisplays)));
+        addQuestions(module, storedDisplays.Select((disp, stage) => makeQuestion(SWhoOF.Display, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { disp }, preferredWrongAnswers: storedDisplays)));
     }
 }

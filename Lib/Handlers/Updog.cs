@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -21,7 +21,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "UpdogScript");
         yield return WaitForSolve;
-        var word = GetField<string>(comp, "_souvenirWord").Get(v => Ut.Attributes[Question.UpdogWord].AllAnswers.Contains(v) ? null : $"Bad word {v}");
+        var word = GetField<string>(comp, "_souvenirWord").Get(v => Ut.Attributes[SUpdog.Word].AllAnswers.Contains(v) ? null : $"Bad word {v}");
         var colors = GetArrayField<Color>(comp, "_souvenirColors").Get(expectedLength: 10);
 
         static string colorName(Color c) => (c.r, c.g, c.b) switch

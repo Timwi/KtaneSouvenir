@@ -28,7 +28,7 @@ public partial class SouvenirModule
 
         var formats = new[] { "top-left", "top-right", "middle-left", "middle-right", "bottom-left", "bottom-right", "center" };
         addQuestions(module, outer.Concat(new[] { center }).Select((c, i) =>
-            makeQuestion(Question.PuzzlingHexabuttonsLetter, module,
+            makeQuestion(SPuzzlingHexabuttons.Letter, module,
                 correctAnswers: new[] { c.ToString() },
                 formatArgs: new[] { formats[i] })));
 

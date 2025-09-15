@@ -38,7 +38,7 @@ public partial class SouvenirModule
         // The size clue is the only one where fldClueSystem is null
         var sizeClue = clues.Cast<object>().Where(szCl => fldClueSystem.GetFrom(szCl, nullAllowed: true) == null).FirstOrDefault();
         addQuestions(module,
-            makeQuestion(Question.CoordinatesFirstSolution, module, correctAnswers: new[] { clueText.Replace("\n", " ") }, preferredWrongAnswers: clues.Cast<object>().Select(c => fldClueText.GetFrom(c).Replace("\n", " ")).Where(t => t != null).ToArray()),
-            sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, module, correctAnswers: new[] { fldClueText.GetFrom(sizeClue) }));
+            makeQuestion(SCoordinates.FirstSolution, module, correctAnswers: new[] { clueText.Replace("\n", " ") }, preferredWrongAnswers: clues.Cast<object>().Select(c => fldClueText.GetFrom(c).Replace("\n", " ")).Where(t => t != null).ToArray()),
+            sizeClue == null ? null : makeQuestion(SCoordinates.Size, module, correctAnswers: new[] { fldClueText.GetFrom(sizeClue) }));
     }
 }

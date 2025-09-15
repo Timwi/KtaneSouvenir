@@ -30,6 +30,6 @@ public partial class SouvenirModule
             seg.SetActive(false);
 
         addQuestions(module, Enumerable.Range(0, 8).Select(i =>
-            makeQuestion(Question.NotDoubleOhPosition, module, correctAnswers: new[] { displays[i] }, formatArgs: new[] { Ordinal(i + 1) })));
+            makeQuestion(SNotDoubleOh.Position, module, correctAnswers: new[] { displays[i] }, formatArgs: new[] { Ordinal(i + 1) })));
     }
 }

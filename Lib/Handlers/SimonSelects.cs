@@ -40,7 +40,7 @@ public partial class SouvenirModule
         if (seqs.Any(seq => seq.Any(color => !colorNames.Contains(color))))
             throw new AbandonModuleException($"‘colors’ contains an invalid color: [{seqs.Select(seq => seq.JoinString(", ")).JoinString("; ")}]");
 
-        addQuestions(module, seqs.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSelectsOrder, module,
+        addQuestions(module, seqs.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(SSimonSelects.Order, module,
             formatArgs: new[] { Ordinal(ix + 1), Ordinal(stage + 1) },
             correctAnswers: new[] { col }))));
     }

@@ -21,8 +21,8 @@ public partial class SouvenirModule
         var operators = GetArrayField<int>(comp, "operators").Get(expectedLength: 3, validator: v => v is > 5 or < 0 ? "Out of range [0, 5]" : null);
 
         addQuestions(module, operators.Select((op, i) =>
-            makeQuestion(Question.ReGretBFilteringOperator, module,
-                correctAnswers: new[] { Question.ReGretBFilteringOperator.GetAnswers()[op] },
+            makeQuestion(SReGretBFiltering.Operator, module,
+                correctAnswers: new[] { SReGretBFiltering.Operator.GetAnswers()[op] },
                 formatArgs: new[] { Ordinal(i + 1) })));
     }
 }

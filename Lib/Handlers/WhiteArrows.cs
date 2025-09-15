@@ -39,11 +39,11 @@ public partial class SouvenirModule
         var colors = new[] { "Blue", "Red", "Yellow", "Green", "Purple", "Orange", "Cyan", "Teal" };
         var directions = new[] { "Up", "Right", "Down", "Left" };
 
-        string format(int dir, int col) => string.Format(translateString(Question.WhiteArrowsArrows, "{0} {1}"), translateString(Question.WhiteArrowsArrows, colors[col]), translateString(Question.WhiteArrowsArrows, directions[dir]));
+        string format(int dir, int col) => string.Format(translateString(SWhiteArrows.Arrows, "{0} {1}"), translateString(SWhiteArrows.Arrows, colors[col]), translateString(SWhiteArrows.Arrows, directions[dir]));
         var all = (from d in Enumerable.Range(0, 4) from c in Enumerable.Range(0, 8) select format(d, c)).ToArray();
 
         addQuestions(module, arrows.Select((a, i) =>
-            makeQuestion(Question.WhiteArrowsArrows, module,
+            makeQuestion(SWhiteArrows.Arrows, module,
                 correctAnswers: new[] { format(a[0], a[1]) },
                 formatArgs: new[] { Ordinal(i + 1) },
                 allAnswers: all)));

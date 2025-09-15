@@ -35,6 +35,6 @@ public partial class SouvenirModule
             yield return null;
         }
 
-        addQuestions(module, flashes.Select((val, ix) => makeQuestion(Question.SimonSaidFlashes, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[btnColors[val]] })));
+        addQuestions(module, flashes.Select((val, ix) => makeQuestion(SSimonSaid.Flashes, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[btnColors[val]] })));
     }
 }

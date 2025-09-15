@@ -22,6 +22,6 @@ public partial class SouvenirModule
         var display = GetArrayField<char>(comp, "displayedLetters").Get(expectedLength: 12);
 
         addQuestions(module, display.Where(c => c != '.').Select((ans, i) =>
-            makeQuestion(Question._100LevelsOfDefusalLetters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ans.ToString() })));
+            makeQuestion(S100LevelsOfDefusal.Letters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ans.ToString() })));
     }
 }

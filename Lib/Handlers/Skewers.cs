@@ -21,8 +21,8 @@ public partial class SouvenirModule
 
         var color = GetListField<int>(comp, "GemColors").Get(expectedLength: 16, validator: v => v is < 0 or > 7 ? "Out of range [0, 7]" : null);
         addQuestions(module, color.Select((c, i) =>
-            makeQuestion(Question.SkewersColor, module,
-                correctAnswers: new[] { Question.SkewersColor.GetAnswers()[c] },
+            makeQuestion(SSkewers.Color, module,
+                correctAnswers: new[] { SSkewers.Color.GetAnswers()[c] },
                 questionSprite: Sprites.GenerateGridSprite(4, 4, i))));
     }
 }

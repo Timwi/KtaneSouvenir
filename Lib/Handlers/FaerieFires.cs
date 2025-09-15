@@ -32,16 +32,16 @@ public partial class SouvenirModule
         var faeries = fires.Cast<object>().Select(f => (
             Order: fldOrder.GetFrom(f, 0, 5),
             Sound: fldSound.GetFrom(f, v => !Regex.IsMatch(v, "^FaerieGlitter[1-6]$") ? "Expected sound to match \"^FaerieGlitter[1-6]$\"" : null),
-            Name: fldName.GetFrom(f, v => !Question.FaerieFiresColor.GetAnswers().Contains(v) ? "Unexpected color name" : null)));
+            Name: fldName.GetFrom(f, v => !SFaerieFires.Color.GetAnswers().Contains(v) ? "Unexpected color name" : null)));
 
         addQuestions(module, faeries.SelectMany(f => new[] {
-            makeQuestion(Question.FaerieFiresPitchOrdinal, module,
+            makeQuestion(SFaerieFires.PitchOrdinal, module,
                 formatArgs: new[] { Ordinal(f.Order + 1) },
                 correctAnswers: new[] { FaerieFiresAudio[f.Sound.Last() - '1'] }),
-            makeQuestion(Question.FaerieFiresPitchColor, module,
+            makeQuestion(SFaerieFires.PitchColor, module,
                 formatArgs: new[] { f.Name },
                 correctAnswers: new[] { FaerieFiresAudio[f.Sound.Last() - '1'] }),
-            makeQuestion(Question.FaerieFiresColor, module,
+            makeQuestion(SFaerieFires.Color, module,
                 formatArgs: new[] { Ordinal(f.Order + 1) },
                 correctAnswers: new[] { f.Name })}));
     }

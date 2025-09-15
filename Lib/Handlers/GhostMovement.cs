@@ -29,6 +29,6 @@ public partial class SouvenirModule
             .Select(c => (c.name, position: nameFunction.Invoke(GetField<int>(comp, $"{c.id}Pos").Get(v => !validPositions.Contains(v) ? "not a valid position" : null))))
             .ToArray();
         var shownPositions = combos.Select(c => c.position).ToArray();
-        addQuestions(module, combos.Select(c => makeQuestion(Question.GhostMovementPosition, module, formatArgs: new[] { c.name }, correctAnswers: new[] { c.position }, preferredWrongAnswers: shownPositions)));
+        addQuestions(module, combos.Select(c => makeQuestion(SGhostMovement.Position, module, formatArgs: new[] { c.name }, correctAnswers: new[] { c.position }, preferredWrongAnswers: shownPositions)));
     }
 }

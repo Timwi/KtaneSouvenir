@@ -28,7 +28,7 @@ public partial class SouvenirModule
             ? throw new AbandonModuleException($"The displayed characters are {displayedCharacters.Select(str => $"“{str}”").JoinString(", ")} (expected six single-character strings 0–9/A–V each).")
             : (YieldInstruction) WaitForSolve;
         addQuestions(module, Enumerable.Range(0, 6).Select(displayIx => makeQuestion(
-            Question.AlphaBitsDisplayedCharacters, module, font, fontTexture,
+            SAlphaBits.DisplayedCharacters, module, font, fontTexture,
             formatArgs: new[] { new[] { "top", "middle", "bottom" }[displayIx % 3], new[] { "left", "right" }[displayIx / 3] },
             correctAnswers: new[] { displayedCharacters[displayIx] },
             preferredWrongAnswers: displayedCharacters)));

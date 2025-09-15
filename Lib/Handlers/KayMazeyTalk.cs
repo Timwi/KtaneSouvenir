@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -46,14 +46,14 @@ public partial class SouvenirModule
             if (!struck)
             {
                 if (_kayMazeyTalkInfo.Count(i => i.start == startingPosition) == 1)
-                    startFormat = string.Format(translateString(Question.KayMazeyTalkWord, "the KayMazey Talk whose starting word was {0}"), startWord);
+                    startFormat = string.Format(translateString(SKayMazeyTalk.Word, "the KayMazey Talk whose starting word was {0}"), startWord);
 
                 string endFormat = null;
                 if (_kayMazeyTalkInfo.Count(i => i.end == endingPosition) == 1)
-                    endFormat = string.Format(translateString(Question.KayMazeyTalkWord, "the KayMazey Talk whose goal word was {0}"), endWord);
+                    endFormat = string.Format(translateString(SKayMazeyTalk.Word, "the KayMazey Talk whose goal word was {0}"), endWord);
 
                 yield return makeQuestion(
-                    Question.KayMazeyTalkWord,
+                    SKayMazeyTalk.Word,
                     module,
                     formattedModuleName: endFormat,
                     correctAnswers: new[] { startWord },
@@ -62,7 +62,7 @@ public partial class SouvenirModule
             }
 
             yield return makeQuestion(
-                Question.KayMazeyTalkWord,
+                SKayMazeyTalk.Word,
                 module,
                 formattedModuleName: startFormat,
                 correctAnswers: new[] { endWord },

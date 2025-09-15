@@ -35,8 +35,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var qs = colors.Select((col, ix) => makeQuestion(Question.SafetySquareDigits, module, formatArgs: new[] { col }, correctAnswers: new[] { digits[ix] })).ToList();
-        qs.Add(makeQuestion(Question.SafetySquareSpecialRule, module, correctAnswers: new[] { specialRules[symbol] }));
+        var qs = colors.Select((col, ix) => makeQuestion(SSafetySquare.Digits, module, formatArgs: new[] { col }, correctAnswers: new[] { digits[ix] })).ToList();
+        qs.Add(makeQuestion(SSafetySquare.SpecialRule, module, correctAnswers: new[] { specialRules[symbol] }));
         addQuestions(module, qs);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -66,7 +66,7 @@ public partial class SouvenirModule
         void addCandidateDiscriminator<T>(Func<(int d, int e, int f, int g, int h, int m, int n, string p, int q, int x), T> getter, string name, T value, string valueReadable)
         {
             if (_blueButtonInfos.Count(tup => getter(tup).Equals(value)) == 1)
-                candidateDiscriminators.Add((string.Format(translateString(Question.BlueButtonD, "the Blue Button where {0} was {1}"), name, valueReadable), name));
+                candidateDiscriminators.Add((string.Format(translateString(SBlueButton.D, "the Blue Button where {0} was {1}"), name, valueReadable), name));
         }
         addCandidateDiscriminator(tup => tup.d, "D", valD, valD.ToString());
         addCandidateDiscriminator(tup => tup.e, "E", valE, valE.ToString());
@@ -76,7 +76,7 @@ public partial class SouvenirModule
         addCandidateDiscriminator(tup => tup.m, "M", valM, valM.ToString());
         addCandidateDiscriminator(tup => tup.n, "N", valN, valN.ToString());
         addCandidateDiscriminator(tup => tup.p, "P", valP, valP);
-        addCandidateDiscriminator(tup => tup.q, "Q", valQ, translateString(Question.BlueButtonD, colorNames[valQ]));
+        addCandidateDiscriminator(tup => tup.q, "Q", valQ, translateString(SBlueButton.D, colorNames[valQ]));
         addCandidateDiscriminator(tup => tup.x, "X", valX, valX.ToString());
 
         QandA makeQ(Question q, string forbiddenDiscriminator, string correctAnswer, string[] formatArgs = null) =>
@@ -84,15 +84,15 @@ public partial class SouvenirModule
                 formattedModuleName: candidateDiscriminators.Where(tup => tup.name != forbiddenDiscriminator).PickRandom().format);
 
         addQuestions(module,
-            makeQ(Question.BlueButtonEFGH, "E", valE.ToString(), formatArgs: new[] { "E" }),
-            makeQ(Question.BlueButtonEFGH, "F", valF.ToString(), formatArgs: new[] { "F" }),
-            makeQ(Question.BlueButtonEFGH, "G", valG.ToString(), formatArgs: new[] { "G" }),
-            makeQ(Question.BlueButtonEFGH, "H", valH.ToString(), formatArgs: new[] { "H" }),
-            makeQ(Question.BlueButtonD, "D", valD.ToString()),
-            makeQ(Question.BlueButtonM, "M", valM.ToString()),
-            makeQ(Question.BlueButtonN, "N", valN.ToString()),
-            makeQ(Question.BlueButtonP, "P", valP),
-            makeQ(Question.BlueButtonQ, "Q", colorNames[valQ]),
-            makeQ(Question.BlueButtonX, "X", valX.ToString()));
+            makeQ(SBlueButton.EFGH, "E", valE.ToString(), formatArgs: new[] { "E" }),
+            makeQ(SBlueButton.EFGH, "F", valF.ToString(), formatArgs: new[] { "F" }),
+            makeQ(SBlueButton.EFGH, "G", valG.ToString(), formatArgs: new[] { "G" }),
+            makeQ(SBlueButton.EFGH, "H", valH.ToString(), formatArgs: new[] { "H" }),
+            makeQ(SBlueButton.D, "D", valD.ToString()),
+            makeQ(SBlueButton.M, "M", valM.ToString()),
+            makeQ(SBlueButton.N, "N", valN.ToString()),
+            makeQ(SBlueButton.P, "P", valP),
+            makeQ(SBlueButton.Q, "Q", colorNames[valQ]),
+            makeQ(SBlueButton.X, "X", valX.ToString()));
     }
 }

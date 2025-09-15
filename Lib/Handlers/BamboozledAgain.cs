@@ -108,23 +108,23 @@ public partial class SouvenirModule
         //End of the displayed texts section.
 
         addQuestions(module,
-            correctButtonTexts.Select((name, index) => makeQuestion(Question.BamboozledAgainButtonText, module,
+            correctButtonTexts.Select((name, index) => makeQuestion(SBamboozledAgain.ButtonText, module,
                 formatArgs: new[] { Ordinal(index + 1) },
                 correctAnswers: new[] { name },
                 preferredWrongAnswers: correctButtonTexts.Except(new[] { name }).ToArray())).Concat(
-            correctButtonColors.Select((col, index) => makeQuestion(Question.BamboozledAgainButtonColor, module,
+            correctButtonColors.Select((col, index) => makeQuestion(SBamboozledAgain.ButtonColor, module,
                 formatArgs: new[] { Ordinal(index + 1) },
                 correctAnswers: new[] { col },
                 preferredWrongAnswers: correctButtonColors.Except(new[] { col }).ToArray()))).Concat(
-            firstRowTexts.Select((text, index) => makeQuestion(Question.BamboozledAgainDisplayTexts1, module,
+            firstRowTexts.Select((text, index) => makeQuestion(SBamboozledAgain.DisplayTexts1, module,
                 formatArgs: new[] { Ordinal(2 * index + 1) },
                 correctAnswers: new[] { text },
                 preferredWrongAnswers: firstRowTexts.Except(new[] { text }).ToArray()))).Concat(
-            lastThreeTexts.Select((text, index) => makeQuestion(Question.BamboozledAgainDisplayTexts2, module,
+            lastThreeTexts.Select((text, index) => makeQuestion(SBamboozledAgain.DisplayTexts2, module,
                 formatArgs: new[] { Ordinal(index + 6) },
                 correctAnswers: new[] { text },
                 preferredWrongAnswers: lastThreeTexts.Except(new[] { text }).ToArray()))).Concat(
-            displayColors.Select((col, index) => makeQuestion(Question.BamboozledAgainDisplayColor, module,
+            displayColors.Select((col, index) => makeQuestion(SBamboozledAgain.DisplayColor, module,
                 formatArgs: new[] { Ordinal(index + 1) },
                 correctAnswers: new[] { col },
                 preferredWrongAnswers: displayColors.Except(new[] { col }).ToArray()))));

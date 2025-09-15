@@ -28,7 +28,7 @@ public partial class SouvenirModule
 
         // All 5 colors always appear (with one duplicate), so no need to add preferredWrongAnswers
         addQuestions(module, flashes.Select((f, i) =>
-            makeQuestion(Question.PointlessMachinesFlashes, module, formatArgs: new[] { Ordinal(i + 1) },
+            makeQuestion(SPointlessMachines.Flashes, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { f })));
     }
 }

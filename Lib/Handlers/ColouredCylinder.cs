@@ -20,8 +20,8 @@ public partial class SouvenirModule
         // The module can theoretically generate an arbitrarily large sequence of colours
         var sequence = GetListField<int>(comp, "colourIndexes").Get(minLength: 6, validator: v => v is < 0 or > 6 ? "Out of range [0, 6]" : null);
         addQuestions(module, sequence.Select((c, i) =>
-            makeQuestion(Question.ColouredCylinderColours, module,
-                correctAnswers: new[] { Question.ColouredCylinderColours.GetAnswers()[c] },
+            makeQuestion(SColouredCylinder.Colours, module,
+                correctAnswers: new[] { SColouredCylinder.Colours.GetAnswers()[c] },
                 formatArgs: new[] { Ordinal(i + 1) })));
     }
 }

@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, Enumerable.Range(0, 12).Select(ix => makeQuestion(Question.ASCIIMazeCharacters, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { characters[ix] }, preferredWrongAnswers: characters)));
+        addQuestions(module, Enumerable.Range(0, 12).Select(ix => makeQuestion(SASCIIMaze.Characters, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { characters[ix] }, preferredWrongAnswers: characters)));
     }
 }

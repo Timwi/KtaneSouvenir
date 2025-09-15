@@ -29,10 +29,10 @@ public partial class SouvenirModule
         // Rock-Paper-Scissors-Lizard-Spock needs to be broken up in the question because hyphens don't word-wrap.
         addQuestions(module,
             dic.Keys.Cast<object>().Where(house => dic[house] != null).SelectMany(house => Ut.NewArray(
-                makeQuestion(Question.HogwartsHouse, module,
+                makeQuestion(SHogwarts.House, module,
                     formatArgs: new[] { dic[house].ToString() == "Rock-Paper-Scissors-L.-Sp." ? "Rock-Paper- Scissors-L.-Sp." : dic[house].ToString() },
                     correctAnswers: new[] { house.ToString() }),
-                makeQuestion(Question.HogwartsModule, module,
+                makeQuestion(SHogwarts.Module, module,
                     formatArgs: new[] { house.ToString() },
                     correctAnswers: new[] { dic[house].ToString() },
                     preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()))));

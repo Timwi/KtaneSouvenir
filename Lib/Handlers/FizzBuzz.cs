@@ -43,9 +43,9 @@ public partial class SouvenirModule
             if (labelTexts[pos] != labels[pos].text)
             {
                 for (var digit = 0; digit < 6; digit++)
-                    qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, module, formatArgs: new[] { Ordinal(digit + 1), displays[pos] }, correctAnswers: new[] { displayedDigits[pos][digit].ToString() }));
+                    qs.Add(makeQuestion(SFizzBuzz.DisplayedNumbers, module, formatArgs: new[] { Ordinal(digit + 1), displays[pos] }, correctAnswers: new[] { displayedDigits[pos][digit].ToString() }));
                 if (!labels[pos].text.ToLowerInvariant().Contains("buzz")) // Do not ask about the last digit if the answer was buzz because there are only two possible correct answers.
-                    qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, module, formatArgs: new[] { "7th", displays[pos] }, correctAnswers: new[] { displayedDigits[pos][6].ToString() }));
+                    qs.Add(makeQuestion(SFizzBuzz.DisplayedNumbers, module, formatArgs: new[] { "7th", displays[pos] }, correctAnswers: new[] { displayedDigits[pos][6].ToString() }));
             }
         }
         if (qs.Count == 0)

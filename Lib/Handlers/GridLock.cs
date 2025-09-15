@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -25,7 +25,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "GridlockModule");
 
-        var colors = Question.GridLockStartingColor.GetAnswers();
+        var colors = SGridLock.StartingColor.GetAnswers();
 
         yield return WaitForActivate;
 

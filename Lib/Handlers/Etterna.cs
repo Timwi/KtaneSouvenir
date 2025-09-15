@@ -20,6 +20,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var correct = GetArrayField<byte>(comp, "correct").Get(expectedLength: 4, validator: b => b is > 32 or 0 ? "expected 1–32" : null);
-        addQuestions(module, correct.Select((answer, ix) => makeQuestion(Question.EtternaNumber, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { answer.ToString() })));
+        addQuestions(module, correct.Select((answer, ix) => makeQuestion(SEtterna.Number, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { answer.ToString() })));
     }
 }

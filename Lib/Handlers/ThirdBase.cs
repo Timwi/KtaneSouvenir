@@ -39,6 +39,6 @@ public partial class SouvenirModule
             }
 
         yield return WaitForSolve;
-        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.ThirdBaseDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word })));
+        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(SThirdBase.Display, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word })));
     }
 }

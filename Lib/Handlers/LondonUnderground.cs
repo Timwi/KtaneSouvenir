@@ -58,7 +58,7 @@ public partial class SouvenirModule
             primary = primary.Union(extraOptions).ToArray();
 
         addQuestions(module,
-            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, module, formatArgs: new[] { Ordinal(ix + 1), "depart from" }, correctAnswers: new[] { dep }, preferredWrongAnswers: primary)).Concat(
-            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, module, formatArgs: new[] { Ordinal(ix + 1), "arrive to" }, correctAnswers: new[] { dest }, preferredWrongAnswers: primary))));
+            departures.Select((dep, ix) => makeQuestion(SLondonUnderground.Stations, module, formatArgs: new[] { Ordinal(ix + 1), "depart from" }, correctAnswers: new[] { dep }, preferredWrongAnswers: primary)).Concat(
+            destinations.Select((dest, ix) => makeQuestion(SLondonUnderground.Stations, module, formatArgs: new[] { Ordinal(ix + 1), "arrive to" }, correctAnswers: new[] { dest }, preferredWrongAnswers: primary))));
     }
 }

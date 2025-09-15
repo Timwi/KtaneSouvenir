@@ -47,7 +47,7 @@ public partial class SouvenirModule
 
         var all = stages.Select(s => map[s]).ToArray();
         addQuestions(module, stages.Select((s, i) =>
-            makeQuestion(Question.BlindfoldedYahtzeeClaim, module,
+            makeQuestion(SBlindfoldedYahtzee.Claim, module,
                 correctAnswers: new[] { map[s] },
                 formatArgs: new[] { Ordinal(i + 1) },
                 preferredWrongAnswers: all)));

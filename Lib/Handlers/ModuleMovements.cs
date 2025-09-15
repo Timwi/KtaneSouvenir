@@ -35,7 +35,7 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, answers.Select((ans, i) =>
-            makeQuestion(Question.ModuleMovementsDisplay, module, formatArgs: new[] { Ordinal(i + 1) },
+            makeQuestion(SModuleMovements.Display, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { ans }, preferredWrongAnswers: answers)));
     }
 }

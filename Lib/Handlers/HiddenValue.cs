@@ -26,9 +26,9 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var format = translateString(Question.HiddenValueDisplay, "{0} {1}");
+        var format = translateString(SHiddenValue.Display, "{0} {1}");
         var colorNames = new[] { "Red", "Green", "White", "Yellow", "Magenta", "Cyan", "Purple" }
-            .Select(s => translateString(Question.HiddenValueDisplay, s))
+            .Select(s => translateString(SHiddenValue.Display, s))
             .ToArray();
         var all = from i in Enumerable.Range(0, 10) from c in colorNames select string.Format(format, c, i);
         var correct = numbers.Select((n, i) => string.Format(format, colorNames[colors[i]], n)).ToArray();

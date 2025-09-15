@@ -74,12 +74,12 @@ public partial class SouvenirModule
             var ix = GetField<int?>(comp, "_mustSwapWith").Get(v => v is null or < 0 or > 4 ? "Expected number [0, 4]" : null);
             var usedCards = initialHand.Cast<object>().Select(toString).Concat(new[] { toString(swap) }).ToArray();
             addQuestions(module,
-                makeQuestion(Question.TACSwappedCard, module, correctAnswers: new[] { toString(initialHand[ix.Value]) }, formatArgs: new[] { "given away" }, allAnswers: validCards, preferredWrongAnswers: usedCards),
-                makeQuestion(Question.TACSwappedCard, module, correctAnswers: new[] { toString(swap) }, formatArgs: new[] { "received" }, allAnswers: validCards, preferredWrongAnswers: usedCards));
+                makeQuestion(STAC.SwappedCard, module, correctAnswers: new[] { toString(initialHand[ix.Value]) }, formatArgs: new[] { "given away" }, allAnswers: validCards, preferredWrongAnswers: usedCards),
+                makeQuestion(STAC.SwappedCard, module, correctAnswers: new[] { toString(swap) }, formatArgs: new[] { "received" }, allAnswers: validCards, preferredWrongAnswers: usedCards));
         }
         else
         {
-            addQuestion(module, Question.TACHeldCard,
+            addQuestion(module, STAC.HeldCard,
                 correctAnswers: initialHand.Cast<object>().Select(toString).Except(new[] { toString(topCard) }).ToArray(),
                 allAnswers: validCards.Except(new[] { toString(topCard) }).ToArray());
         }

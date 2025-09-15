@@ -21,6 +21,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, flashes.Select((f, ix) => makeQuestion(Question.SimonsStarColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { f })));
+        addQuestions(module, flashes.Select((f, ix) => makeQuestion(SSimonsStar.Colors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { f })));
     }
 }

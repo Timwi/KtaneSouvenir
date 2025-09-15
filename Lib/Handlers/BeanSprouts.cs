@@ -29,8 +29,8 @@ public partial class SouvenirModule
         var flavors2 = new[] { "Left", "None", "Right" };
         IEnumerable<QandA> beansQ(int i)
         {
-            yield return makeQuestion(Question.BeanSproutsColors, module, formatArgs: new string[] { (i + 1).ToString() }, correctAnswers: new string[] { flavors[bns[i] % 3] });
-            yield return makeQuestion(Question.BeanSproutsBeans, module, formatArgs: new string[] { (i + 1).ToString() }, correctAnswers: new string[] { flavors2[bns[i] / 3] });
+            yield return makeQuestion(SBeanSprouts.Colors, module, formatArgs: new string[] { (i + 1).ToString() }, correctAnswers: new string[] { flavors[bns[i] % 3] });
+            yield return makeQuestion(SBeanSprouts.Beans, module, formatArgs: new string[] { (i + 1).ToString() }, correctAnswers: new string[] { flavors2[bns[i] / 3] });
         }
         addQuestions(module, Enumerable.Range(0, 9).Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon).SelectMany(beansQ));
     }

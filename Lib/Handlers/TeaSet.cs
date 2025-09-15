@@ -20,6 +20,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var displayedIngredients = GetListField<int>(comp, "Order").Get(expectedLength: 8);
-        addQuestions(module, displayedIngredients.Select((ing, ix) => makeQuestion(Question.TeaSetDisplayedIngredients, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { TeaSetSprites[ing] }, preferredWrongAnswers: TeaSetSprites)));
+        addQuestions(module, displayedIngredients.Select((ing, ix) => makeQuestion(STeaSet.DisplayedIngredients, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { TeaSetSprites[ing] }, preferredWrongAnswers: TeaSetSprites)));
     }
 }

@@ -22,6 +22,6 @@ public partial class SouvenirModule
 
         var numbersObtained = numbersField.Get(expectedLength: 3);
         var channelRefs = new[] { "red", "green", "blue" };
-        addQuestions(module, channelRefs.Select((chn, idx) => makeQuestion(Question.ColorAdditionNumbers, module, formatArgs: new[] { chn }, correctAnswers: new[] { numbersObtained[idx] })));
+        addQuestions(module, channelRefs.Select((chn, idx) => makeQuestion(SColorAddition.Numbers, module, formatArgs: new[] { chn }, correctAnswers: new[] { numbersObtained[idx] })));
     }
 }

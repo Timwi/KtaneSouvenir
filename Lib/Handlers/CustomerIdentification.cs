@@ -25,7 +25,7 @@ public partial class SouvenirModule
         var answers = unique.Select(uq => seedPacketIdentifier[uq].name).ToArray();
 
         addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(
-            question: Question.CustomerIdentificationCustomer,
+            question: SCustomerIdentification.Customer,
             data: module,
             formatArgs: new[] { Ordinal(i + 1) },
             correctAnswers: new[] { answers[i] })));

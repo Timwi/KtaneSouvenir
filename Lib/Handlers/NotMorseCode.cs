@@ -23,7 +23,7 @@ public partial class SouvenirModule
         var columns = GetStaticField<string[][]>(component.GetType(), "defaultColumns").Get();
 
         addQuestions(module, Enumerable.Range(0, 5).Select(stage => makeQuestion(
-            question: Question.NotMorseCodeWord,
+            question: SNotMorseCode.Word,
             data: module,
             formatArgs: new[] { Ordinal(stage + 1) },
             correctAnswers: new[] { words[channels[stage]] },

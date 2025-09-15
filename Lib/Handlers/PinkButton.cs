@@ -29,7 +29,7 @@ public partial class SouvenirModule
 
         addQuestions(module,
             Enumerable.Range(0, 4).SelectMany(ix => Ut.NewArray(
-                 makeQuestion(Question.PinkButtonWords, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { abbreviatedColorNames[words[ix]] }),
-                 makeQuestion(Question.PinkButtonColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[colors[ix]] }))));
+                 makeQuestion(SPinkButton.Words, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { abbreviatedColorNames[words[ix]] }),
+                 makeQuestion(SPinkButton.Colors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[colors[ix]] }))));
     }
 }

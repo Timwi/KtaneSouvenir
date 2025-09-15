@@ -39,6 +39,6 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, Enumerable.Range(0, 5).Select(i =>
-            makeQuestion(Question.DirectionalButtonButtonCount, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { buttonPresses[i].ToString() })));
+            makeQuestion(SDirectionalButton.ButtonCount, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { buttonPresses[i].ToString() })));
     }
 }

@@ -24,6 +24,6 @@ public partial class SouvenirModule
         panelColors = panelColors.Select(x => char.ToUpperInvariant(x[0]) + x.Substring(1)).ToList();
 
         addQuestions(module,
-            Enumerable.Range(0, 4).Select(panel => makeQuestion(Question.CatchphraseColour, module, formatArgs: new[] { panelNames[panel] }, correctAnswers: new[] { panelColors[panel] })));
+            Enumerable.Range(0, 4).Select(panel => makeQuestion(SCatchphrase.Colour, module, formatArgs: new[] { panelNames[panel] }, correctAnswers: new[] { panelColors[panel] })));
     }
 }

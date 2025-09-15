@@ -93,8 +93,8 @@ public partial class SouvenirModule
 
         var _logicalButtonsButtonNames = new[] { "top", "bottom-left", "bottom-right" };
         addQuestions(module,
-            colors.SelectMany((clrs, stage) => clrs.Select((clr, btnIx) => makeQuestion(Question.LogicalButtonsColor, module, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], Ordinal(stage + 1) }, correctAnswers: new[] { clr })))
-                .Concat(labels.SelectMany((lbls, stage) => lbls.Select((lbl, btnIx) => makeQuestion(Question.LogicalButtonsLabel, module, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], Ordinal(stage + 1) }, correctAnswers: new[] { lbl }))))
-                .Concat(initialOperators.Select((op, stage) => makeQuestion(Question.LogicalButtonsOperator, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { op }))));
+            colors.SelectMany((clrs, stage) => clrs.Select((clr, btnIx) => makeQuestion(SLogicalButtons.Color, module, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], Ordinal(stage + 1) }, correctAnswers: new[] { clr })))
+                .Concat(labels.SelectMany((lbls, stage) => lbls.Select((lbl, btnIx) => makeQuestion(SLogicalButtons.Label, module, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], Ordinal(stage + 1) }, correctAnswers: new[] { lbl }))))
+                .Concat(initialOperators.Select((op, stage) => makeQuestion(SLogicalButtons.Operator, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { op }))));
     }
 }

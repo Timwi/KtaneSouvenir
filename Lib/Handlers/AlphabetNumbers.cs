@@ -40,6 +40,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, displayedNumberSets.Select((numArr, stage) => makeQuestion(Question.AlphabetNumbersDisplayedNumbers, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: displayedNumberSets[stage], preferredWrongAnswers: allOptions.Take(stageOptionCounts[stage]).ToArray())));
+        addQuestions(module, displayedNumberSets.Select((numArr, stage) => makeQuestion(SAlphabetNumbers.DisplayedNumbers, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: displayedNumberSets[stage], preferredWrongAnswers: allOptions.Take(stageOptionCounts[stage]).ToArray())));
     }
 }

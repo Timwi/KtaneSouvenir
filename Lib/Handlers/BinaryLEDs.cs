@@ -81,6 +81,6 @@ public partial class SouvenirModule
         if (answer == -1)
             legitimatelyNoQuestion(module, "The module auto-solved after all three wires were cut incorrectly.");
         else
-            addQuestion(module, Question.BinaryLEDsValue, correctAnswers: new[] { answer.ToString() });
+            addQuestion(module, SBinaryLEDs.Value, correctAnswers: new[] { answer.ToString() });
     }
 }

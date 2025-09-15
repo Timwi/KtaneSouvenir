@@ -40,20 +40,20 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"Unexpected suspect, weapon, room or bodyFound (expected 0–5/0–5/0–8/0–8, got {actualSuspect}/{actualWeapon}/{actualRoom}/{bodyFound}).");
 
         addQuestions(module,
-            makeQuestion(Question.MurderSuspect, module,
+            makeQuestion(SMurder.Suspect, module,
                 formatArgs: new[] { "a suspect but not the murderer" },
                 correctAnswers: Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 0 && suspectIx != actualSuspect).Select(suspectIx => names[0, suspectIx]).ToArray()),
-            makeQuestion(Question.MurderSuspect, module,
+            makeQuestion(SMurder.Suspect, module,
                 formatArgs: new[] { "not a suspect" },
                 correctAnswers: Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 1).Select(suspectIx => names[0, suspectIx]).ToArray()),
 
-            makeQuestion(Question.MurderWeapon, module,
+            makeQuestion(SMurder.Weapon, module,
                 formatArgs: new[] { "a potential weapon but not the murder weapon" },
                 correctAnswers: Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 0 && weaponIx != actualWeapon).Select(weaponIx => names[1, weaponIx]).ToArray()),
-            makeQuestion(Question.MurderWeapon, module,
+            makeQuestion(SMurder.Weapon, module,
                 formatArgs: new[] { "not a potential weapon" },
                 correctAnswers: Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 1).Select(weaponIx => names[1, weaponIx]).ToArray()),
 
-            bodyFound == actualRoom ? null : makeQuestion(Question.MurderBodyFound, module, correctAnswers: new[] { names[2, bodyFound] }));
+            bodyFound == actualRoom ? null : makeQuestion(SMurder.BodyFound, module, correctAnswers: new[] { names[2, bodyFound] }));
     }
 }

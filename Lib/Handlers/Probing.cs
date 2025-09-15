@@ -33,6 +33,6 @@ public partial class SouvenirModule
         var wireFrequenciesRaw = GetField<Array>(comp, "mWires").Get(ar => ar.Length != 6 ? "expected length 6" : ar.Cast<int>().Any(v => !frequencyDic.ContainsKey(v)) ? "contains unknown frequency value" : null);
         var wireFrequencies = wireFrequenciesRaw.Cast<int>().Select(val => frequencyDic[val]).ToArray();
 
-        addQuestions(module, wireFrequencies.Select((wf, ix) => makeQuestion(Question.ProbingFrequencies, module, formatArgs: new[] { wireNames[ix] }, correctAnswers: new[] { wf })));
+        addQuestions(module, wireFrequencies.Select((wf, ix) => makeQuestion(SProbing.Frequencies, module, formatArgs: new[] { wireNames[ix] }, correctAnswers: new[] { wf })));
     }
 }

@@ -36,10 +36,10 @@ public partial class SouvenirModule
 
         addQuestions(module,
             Enumerable.Range(0, 4).Select(btn =>
-                makeQuestion(Question.ModuleListeningButtonAudio, module, formatArgs: new[] { colorNames[colorOrder[btn]] },
+                makeQuestion(SModuleListening.ButtonAudio, module, formatArgs: new[] { colorNames[colorOrder[btn]] },
                 correctAnswers: new[] { clipsPerModule[indices[btn]][soundIndex[btn]] },
                 preferredWrongAnswers: allUsed,
                 allAnswers: allAnswers))
-            .Concat(new[] { makeQuestion(Question.ModuleListeningAnyAudio, module, correctAnswers: allUsed, allAnswers: allAnswers) }));
+            .Concat(new[] { makeQuestion(SModuleListening.AnyAudio, module, correctAnswers: allUsed, allAnswers: allAnswers) }));
     }
 }

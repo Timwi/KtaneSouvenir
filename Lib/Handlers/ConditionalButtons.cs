@@ -25,6 +25,6 @@ public partial class SouvenirModule
             buttonColors.Add(buttonColor.Remove(buttonColor.IndexOf(" (Instance)")));
         }
         yield return WaitForSolve;
-        addQuestions(module, buttonColors.Select((color, ix) => makeQuestion(Question.ConditionalButtonsColors, module, questionSprite: Sprites.GenerateGridSprite(new Coord(3, 2, ix)), correctAnswers: new[] { color })));
+        addQuestions(module, buttonColors.Select((color, ix) => makeQuestion(SConditionalButtons.Colors, module, questionSprite: Sprites.GenerateGridSprite(new Coord(3, 2, ix)), correctAnswers: new[] { color })));
     }
 }

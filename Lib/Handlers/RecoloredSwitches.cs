@@ -30,6 +30,6 @@ public partial class SouvenirModule
             { 'W', "white" }
         };
         var ledColors = GetField<StringBuilder>(comp, "LEDsColorsString").Get(sb => sb.Length != 10 ? "expected length 10" : Enumerable.Range(0, 10).Any(ix => !colorNames.ContainsKey(sb[ix])) ? $"expected {colorNames.Keys.JoinString()}" : null);
-        addQuestions(module, Enumerable.Range(0, 10).Select(ix => makeQuestion(Question.RecoloredSwitchesLedColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[ledColors[ix]] })));
+        addQuestions(module, Enumerable.Range(0, 10).Select(ix => makeQuestion(SRecoloredSwitches.LedColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[ledColors[ix]] })));
     }
 }

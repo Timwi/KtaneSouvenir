@@ -30,6 +30,6 @@ public partial class SouvenirModule
 
         var displays = GetArrayField<TextMesh>(comp, "displays", isPublic: true).Get(expectedLength: 4);
         var directions = new[] { "top", "right", "bottom", "left" };
-        addQuestions(module, directions.Select((dir, ix) => makeQuestion(Question.SnowflakesDisplayedSnowflakes, module, formatArgs: new[] { dir }, correctAnswers: new[] { displays[ix].text })));
+        addQuestions(module, directions.Select((dir, ix) => makeQuestion(SSnowflakes.DisplayedSnowflakes, module, formatArgs: new[] { dir }, correctAnswers: new[] { displays[ix].text })));
     }
 }

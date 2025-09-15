@@ -48,7 +48,7 @@ public partial class SouvenirModule
 
             var q = Sprite.Create(tex, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
             q.name = $"NVSQ{stage}-{module.SolveIndex}";
-            qs.Add(makeSpriteQuestion(q, Question.NonverbalSimonFlashes, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])] }, preferredWrongAnswers: NonverbalSimonSprites));
+            qs.Add(makeSpriteQuestion(q, SNonverbalSimon.Flashes, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])] }, preferredWrongAnswers: NonverbalSimonSprites));
         }
 
         addQuestions(module, qs);

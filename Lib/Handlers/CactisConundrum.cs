@@ -29,8 +29,8 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, colors.Select((c, i) =>
-            makeQuestion(Question.CactisConundrumColor, module,
+            makeQuestion(SCactisConundrum.Color, module,
                 formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { Question.CactisConundrumColor.GetAnswers()[c - 2] })));
+                correctAnswers: new[] { SCactisConundrum.Color.GetAnswers()[c - 2] })));
     }
 }

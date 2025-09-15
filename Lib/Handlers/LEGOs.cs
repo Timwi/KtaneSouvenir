@@ -52,6 +52,6 @@ public partial class SouvenirModule
         var brickDimensions = Enumerable.Range(0, 6).Select(i => fldBrickDimensions.GetFrom(pieces[i])).ToList();
 
         var colorNames = new[] { "red", "green", "blue", "cyan", "magenta", "yellow" };
-        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.LEGOsPieceDimensions, module, formatArgs: new[] { colorNames[brickColors[i]] }, correctAnswers: new[] { brickDimensions[i][0] + "×" + brickDimensions[i][1] })));
+        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(SLEGOs.PieceDimensions, module, formatArgs: new[] { colorNames[brickColors[i]] }, correctAnswers: new[] { brickDimensions[i][0] + "×" + brickDimensions[i][1] })));
     }
 }

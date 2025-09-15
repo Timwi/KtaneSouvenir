@@ -43,6 +43,6 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         module.SolveIndex = _modulesSolved.IncSafe("WhosOnFirst");
-        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.WhosOnFirstDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: displayWords)));
+        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(SWhosOnFirst.Display, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: displayWords)));
     }
 }

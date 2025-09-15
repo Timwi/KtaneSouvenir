@@ -22,6 +22,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var combinedCode = GetField<string>(comp, "combinedCode", isPublic: true).Get(str => str.Length is < 10 or > 15 ? "expected length 10–15" : null);
-        addQuestions(module, combinedCode.Select((ch, ix) => makeQuestion(Question.MemorableButtonsSymbols, module, buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { ch.ToString() })));
+        addQuestions(module, combinedCode.Select((ch, ix) => makeQuestion(SMemorableButtons.Symbols, module, buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { ch.ToString() })));
     }
 }

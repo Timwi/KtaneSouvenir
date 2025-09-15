@@ -26,7 +26,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var displayLetters = GetArrayField<int>(comp, "displayed").Get(expectedLength: 5, validator: number => number is < 0 or > 25 ? "expected range 0–25" : null);
-        var words = Question.XmORseCodeWord.GetAnswers();
+        var words = SXmORseCode.Word.GetAnswers();
         var answerWord = words[GetIntField(comp, "answer").Get(validator: number => number is < 0 or > 45 ? "expected range 0–45" : null)];
         for (var i = 0; i < 5; i++)
             yield return question(SXmORseCode.DisplayedLetters, args: [Ordinal(i + 1)]).Answers(alphabet.Substring(displayLetters[i], 1), preferredWrong: displayLetters.Select(x => alphabet.Substring(x, 1)).ToArray());

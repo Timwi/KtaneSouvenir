@@ -21,6 +21,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var braillePatterns = GetArrayField<int>(comp, "BraillePatterns").Get(expectedLength: 4);
-        addQuestions(module, braillePatterns.Select((p, ix) => makeQuestion(Question.BraillePattern, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new Sprite[] { Sprites.GenerateCirclesSprite(2, 3, p, 20, 20, vertical: true) })));
+        addQuestions(module, braillePatterns.Select((p, ix) => makeQuestion(SBraille.Pattern, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new Sprite[] { Sprites.GenerateCirclesSprite(2, 3, p, 20, 20, vertical: true) })));
     }
 }

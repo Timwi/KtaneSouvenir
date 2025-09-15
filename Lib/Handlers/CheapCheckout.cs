@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -27,7 +27,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, module,
+        addQuestions(module, paids.Select((p, i) => makeQuestion(SCheapCheckout.Paid, module,
             formatArgs: new[] { paids.Count == 1 ? "the paid amount" : i == 0 ? "the first paid amount" : "the second paid amount" },
             correctAnswers: new[] { "$" + p.ToString("N2") })));
     }

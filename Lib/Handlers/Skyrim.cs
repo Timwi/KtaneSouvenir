@@ -42,7 +42,7 @@ public partial class SouvenirModule
                 return false;
             };
         }
-        var questions = new[] { Question.SkyrimRace, Question.SkyrimWeapon, Question.SkyrimEnemy, Question.SkyrimCity };
+        var questions = new[] { SSkyrim.Race, SSkyrim.Weapon, SSkyrim.Enemy, SSkyrim.City };
         var fieldNames = new[] { "race", "weapon", "enemy", "city" };
         var flds = fieldNames.Select(name => GetListField<Texture>(comp, name + "Images", isPublic: true)).ToArray();
         var fldsCorrect = new[] { "correctRace", "correctWeapon", "correctEnemy", "correctCity" }.Select(name => GetField<Texture>(comp, name)).ToArray();

@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         var code = GetArrayField<string>(comp, "chosenLetters").Get();
         var allChars = GetStaticField<Dictionary<ushort, string>>(comp.GetType(), "characterList").Get().Values.ToArray();
-        addQuestions(module, code.Select((c, i) => makeQuestion(Question.CharacterCodesCharacter, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { c }, preferredWrongAnswers: allChars)));
+        addQuestions(module, code.Select((c, i) => makeQuestion(SCharacterCodes.Character, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { c }, preferredWrongAnswers: allChars)));
     }
 }

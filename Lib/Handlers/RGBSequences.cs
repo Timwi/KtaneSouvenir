@@ -22,6 +22,6 @@ public partial class SouvenirModule
         var displayStr = GetField<string>(comp, "StringFour").Get(val => val.Length != 10 ? "expected length of 10" : val.Any(ch => !colorDic.ContainsKey(ch)) ? $"expected characters {colorDic.Keys.JoinString()}" : null);
 
         addQuestions(module, Enumerable.Range(0, 10).Select(i =>
-            makeQuestion(Question.RGBSequencesDisplay, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorDic[displayStr[i]] })));
+            makeQuestion(SRGBSequences.Display, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorDic[displayStr[i]] })));
     }
 }

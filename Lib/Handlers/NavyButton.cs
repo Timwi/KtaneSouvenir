@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -36,7 +36,7 @@ public partial class SouvenirModule
         void addCandidateDiscriminator<T>(Func<(int[] greekLetters, int col, int row, int val), T> getter, T value, string name, string format, object arg)
         {
             if (_navyButtonInfos.Count(tup => getter(tup).Equals(value)) == 1)
-                candidateDiscriminators.Add((string.Format(translateString(Question.NavyButtonGreekLetters, format), arg), name));
+                candidateDiscriminators.Add((string.Format(translateString(SNavyButton.GreekLetters, format), arg), name));
         }
         addCandidateDiscriminator(tup => tup.col, givenIndex % 4, "col", "the Navy Button where the (0-indexed) column of the given was {0}", givenIndex % 4);
         addCandidateDiscriminator(tup => tup.row, givenIndex / 4, "row", "the Navy Button where the (0-indexed) row of the given was {0}", givenIndex / 4);

@@ -38,7 +38,7 @@ public partial class SouvenirModule
 
         var formats = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
         addQuestions(module, combos[index].Select((c, i) =>
-            makeQuestion(Question.KookyKeypadColor, module,
+            makeQuestion(SKookyKeypad.Color, module,
                 correctAnswers: new[] { colorMapping[c] },
                 formatArgs: new[] { formats[i] })));
     }

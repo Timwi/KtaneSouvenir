@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -52,6 +52,6 @@ public partial class SouvenirModule
 
         yield return question(SNandNs.Label, args: [Ordinal(2)]).Answers(labels[0]);
         yield return question(SNandNs.Label, args: [Ordinal(3)]).Answers(labels[1]);
-        yield return question(SNandNs.Color).Answers(Question.NandNsColor.GetAnswers()[Enumerable.Range(0, 6).Except(colors).Single()]);
+        yield return question(SNandNs.Color).Answers(SNandNs.Color.GetAnswers()[Enumerable.Range(0, 6).Except(colors).Single()]);
     }
 }

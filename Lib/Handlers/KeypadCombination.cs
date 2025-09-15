@@ -22,7 +22,7 @@ public partial class SouvenirModule
         var buttonNums = GetField<int[,]>(comp, "buttonnum").Get(v => v.GetLength(0) != 4 || v.GetLength(1) != 3 ? "expected 4×3 array" : null);
         var moduleAnswer = GetField<string>(comp, "answer").Get();
 
-        addQuestions(module, Enumerable.Range(0, 4).Select(i => makeQuestion(Question.KeypadCombinationWrongNumbers, module,
+        addQuestions(module, Enumerable.Range(0, 4).Select(i => makeQuestion(SKeypadCombination.WrongNumbers, module,
             formatArgs: new[] { Ordinal(i + 1) },
             correctAnswers: Enumerable.Range(0, 3).Select(buttonIndex => buttonNums[i, buttonIndex])
                 .Where(num => num != moduleAnswer[i] - '0').Select(num => num.ToString()).ToArray())));

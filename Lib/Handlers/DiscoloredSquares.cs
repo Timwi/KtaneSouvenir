@@ -24,6 +24,6 @@ public partial class SouvenirModule
         var colors = colorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
 
         addQuestions(module, Enumerable.Range(0, 4).Select(color =>
-            makeQuestion(Question.DiscoloredSquaresRememberedPositions, module, formatArgs: new[] { colors[color] }, correctAnswers: new[] { new Coord(4, 4, positions[color]) })));
+            makeQuestion(SDiscoloredSquares.RememberedPositions, module, formatArgs: new[] { colors[color] }, correctAnswers: new[] { new Coord(4, 4, positions[color]) })));
     }
 }

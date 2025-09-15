@@ -36,7 +36,7 @@ public partial class SouvenirModule
 
         var allNames = GetField<Texture[]>(comp, "allImages", isPublic: true).Get().Select(x => x.name).ToArray();
         addQuestions(module, answers.Select((ans, ix) => makeQuestion(
-            question: Question.SpongebobBirthdayIdentificationChildren,
+            question: SSpongebobBirthdayIdentification.Children,
             data: module,
             formatArgs: new[] { Ordinal(ix + 1) },
             correctAnswers: new[] { ans },

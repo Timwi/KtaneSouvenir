@@ -20,7 +20,7 @@ public partial class SouvenirModule
         var fldDay = GetIntField(comp, "Day");
         var fldWeather = GetField<string>(comp, "Weather");
 
-        var weatherNames = Question.CreationWeather.GetAnswers();
+        var weatherNames = SCreation.Weather.GetAnswers();
 
         yield return WaitForActivate;
 
@@ -44,6 +44,6 @@ public partial class SouvenirModule
             currentWeather = fldWeather.Get(cw => !weatherNames.Contains(cw) ? "unknown weather" : null);
         }
 
-        addQuestions(module, allWeather.Select((t, i) => makeQuestion(Question.CreationWeather, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { t })));
+        addQuestions(module, allWeather.Select((t, i) => makeQuestion(SCreation.Weather, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { t })));
     }
 }

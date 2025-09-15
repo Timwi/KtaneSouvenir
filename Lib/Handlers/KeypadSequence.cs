@@ -26,7 +26,7 @@ public partial class SouvenirModule
 
         addQuestions(module, Enumerable.Range(0, 4).SelectMany(p =>
             symbols.Skip(4 * p).Take(4).Select((s, i) =>
-                makeQuestion(Question.KeypadSequenceLabels, module,
+                makeQuestion(SKeypadSequence.Labels, module,
                     correctAnswers: new[] { _keypadSequenceSprites[s] },
                     formatArgs: new[] { Ordinal(p + 1) },
                     questionSprite: Sprites.GenerateGridSprite(2, 2, i),

@@ -42,7 +42,7 @@ public partial class SouvenirModule
 
         var position = new[] { "left", "middle", "right" };
         addQuestions(module, stageLetters.SelectMany((letters, stage) => letters.Select((letter, pos) => makeQuestion(
-            Question.SymbolicCoordinateSymbols,
+            SSymbolicCoordinates.ymbols,
             module,
             formatArgs: new[] { position[pos], Ordinal(stage + 1) },
             correctAnswers: new[] { SymbolicCoordinatesSprites["ACELP".IndexOf(letter, StringComparison.Ordinal)] },

@@ -27,7 +27,7 @@ public partial class SouvenirModule
         var buttonNames = new[] { "up", "right", "down", "left" };
 
         addQuestions(module,
-            Enumerable.Range(0, 4).Select(btn => makeQuestion(Question.CartineseButtonColors, module, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { Question.CartineseButtonColors.GetAnswers()[buttonColors[btn]] }))
-            .Concat(Enumerable.Range(0, 4).Select(btn => makeQuestion(Question.CartineseLyrics, module, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { buttonLyrics[btn] }))));
+            Enumerable.Range(0, 4).Select(btn => makeQuestion(SCartinese.ButtonColors, module, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { SCartinese.ButtonColors.GetAnswers()[buttonColors[btn]] }))
+            .Concat(Enumerable.Range(0, 4).Select(btn => makeQuestion(SCartinese.Lyrics, module, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { buttonLyrics[btn] }))));
     }
 }

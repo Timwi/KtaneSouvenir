@@ -29,7 +29,7 @@ public partial class SouvenirModule
         }
 
         addQuestions(module,
-            Enumerable.Range(0, 4).Select(tile => makeQuestion(Question.QwirkleTilesPlaced, module,
+            Enumerable.Range(0, 4).Select(tile => makeQuestion(SQwirkle.TilesPlaced, module,
             formatArgs: new[] { Ordinal(tile + 1) }, correctAnswers: new[] { QwirkleSprites[tilesIndex[tile]] })));
     }
 }

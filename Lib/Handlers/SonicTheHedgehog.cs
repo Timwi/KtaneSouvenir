@@ -44,7 +44,7 @@ public partial class SouvenirModule
 
         for (var stage = 0; stage < 3; stage++)
             qs.Add(makeQuestion(
-                question: Question.SonicTheHedgehogPictures,
+                question: SSonicTheHedgehog.Pictures,
                 formatArgs: new[] { Ordinal(stage + 1) },
                 data: module,
                 allAnswers: spriteArr[stage],

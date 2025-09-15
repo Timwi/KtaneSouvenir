@@ -19,10 +19,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colorIxs = GetArrayField<int>(comp, "_colorIxs").Get(expectedLength: 5 * 6);
-        var colorNames = Question.ColorBrailleColor.GetAnswers();
+        var colorNames = SColorBraille.Color.GetAnswers();
 
         addQuestions(module, Enumerable.Range(0, 5 * 6).Select(ix =>
-            makeQuestion(Question.ColorBrailleColor, module,
+            makeQuestion(SColorBraille.Color, module,
                 questionSprite: Sprites.GenerateCirclesSprite(5 * 2, 3, 1 << ix, 20, 5, outline: true, vertical: true),
                 correctAnswers: new[] { colorNames[colorIxs[ix]] })));
     }

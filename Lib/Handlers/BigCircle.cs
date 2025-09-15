@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         addQuestions(module, GetField<Array>(comp, "_currentSolution").Get(v => v.Length != 3 ? "expected length 3" : null).Cast<object>()
-            .Select((color, ix) => makeQuestion(Question.BigCircleColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { color.ToString() })));
+            .Select((color, ix) => makeQuestion(SBigCircle.Colors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { color.ToString() })));
     }
 }

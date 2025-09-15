@@ -27,7 +27,7 @@ public partial class SouvenirModule
         if (lightColor == 0)
             yield return legitimatelyNoQuestion(module, "The strip didn’t light up (or I missed the light color).");
 
-        var strings = Question.NotTheButtonLightColor.GetAnswers();
+        var strings = SNotTheButton.LightColor.GetAnswers();
         if (lightColor <= 0 || lightColor > strings.Length)
             throw new AbandonModuleException($"‘LightColour’ is out of range ({lightColor}).");
         yield return question(SNotTheButton.LightColor).Answers(strings[lightColor - 1]);

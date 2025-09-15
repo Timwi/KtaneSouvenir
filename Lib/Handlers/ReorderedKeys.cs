@@ -60,9 +60,9 @@ public partial class SouvenirModule
 
         var colors = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
         addQuestions(module, stages.SelectMany((stage, stageIx) => stage.SelectMany((key, keyIx) => Ut.NewArray(
-                makeQuestion(Question.ReorderedKeysKeyColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[0]] }),
-                makeQuestion(Question.ReorderedKeysLabelColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[2]] }),
-                makeQuestion(Question.ReorderedKeysLabel, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { (key[1] + 1).ToString() })))
-            .Concat(new[] { makeQuestion(Question.ReorderedKeysPivot, module, formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { OrderedKeysSprites[pivots[stageIx]] }) })));
+                makeQuestion(SReorderedKeys.KeyColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[0]] }),
+                makeQuestion(SReorderedKeys.LabelColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[2]] }),
+                makeQuestion(SReorderedKeys.Label, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { (key[1] + 1).ToString() })))
+            .Concat(new[] { makeQuestion(SReorderedKeys.Pivot, module, formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { OrderedKeysSprites[pivots[stageIx]] }) })));
     }
 }

@@ -31,7 +31,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var buttonNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
-        addQuestions(module, Enumerable.Range(0, 9).Select(ix => makeQuestion(Question.TicTacToeInitialState, module,
+        addQuestions(module, Enumerable.Range(0, 9).Select(ix => makeQuestion(STicTacToe.InitialState, module,
             formatArgs: new[] { buttonNames[Array.IndexOf(keypadPhysical, keypadButtons[ix])] },
             correctAnswers: new[] { placedX[ix] == null ? (ix + 1).ToString() : placedX[ix].Value ? "X" : "O" })));
     }

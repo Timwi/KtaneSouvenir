@@ -92,8 +92,8 @@ public partial class SouvenirModule
             var q2 = Sprite.Create(tex2, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
             q.name = $"FuseBox-Flash-{ix}-{module.SolveIndex}";
             q2.name = $"FuseBox-Arrow-{ix}-{module.SolveIndex}";
-            qs.Add(makeSpriteQuestion(q, Question.FuseBoxFlashes, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { FuseBoxColorSprites[flashes[ix]] }));
-            qs.Add(makeSpriteQuestion(q2, Question.FuseBoxArrows, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { FuseBoxArrowSprites[arrows[ix]] }));
+            qs.Add(makeSpriteQuestion(q, SFuseBox.Flashes, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { FuseBoxColorSprites[flashes[ix]] }));
+            qs.Add(makeSpriteQuestion(q2, SFuseBox.Arrows, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { FuseBoxArrowSprites[arrows[ix]] }));
         }
 
         addQuestions(module, qs);

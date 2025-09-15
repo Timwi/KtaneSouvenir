@@ -23,7 +23,7 @@ public partial class SouvenirModule
         var bottomSequence = GetListField<string>(comp, "randomSequenceBottom", isPublic: true)
             .Get(expectedLength: topSequence.Count, validator: s => !"1248".Contains(s) ? "Bad digit" : null);
         var answers = Enumerable.Range(0, topSequence.Count).Select(i => $"{topSequence[i]}/{bottomSequence[i]}").ToArray();
-        addQuestions(module, answers.Select((s, i) => makeQuestion(Question.StableTimeSignaturesSignatures, module,
+        addQuestions(module, answers.Select((s, i) => makeQuestion(SStableTimeSignatures.Signatures, module,
             formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { s }, preferredWrongAnswers: answers)));
     }
 }

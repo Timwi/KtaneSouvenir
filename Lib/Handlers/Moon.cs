@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var lightIndex = GetIntField(comp, "lightIndex").Get(min: 0, max: 7);
         var qNames = new[] { "first initially lit", "second initially lit", "third initially lit", "fourth initially lit", "first initially unlit", "second initially unlit", "third initially unlit", "fourth initially unlit" };
         var aNames = new[] { "south", "south-west", "west", "north-west", "north", "north-east", "east", "south-east" };
-        addQuestions(module, Enumerable.Range(0, 8).Select(i => makeQuestion(Question.MoonLitUnlit, module, formatArgs: new[] { qNames[i] }, correctAnswers: new[] { aNames[(i + lightIndex) % 8] })));
+        addQuestions(module, Enumerable.Range(0, 8).Select(i => makeQuestion(SMoon.LitUnlit, module, formatArgs: new[] { qNames[i] }, correctAnswers: new[] { aNames[(i + lightIndex) % 8] })));
     }
 }

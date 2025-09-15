@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -94,11 +95,11 @@ public partial class SouvenirModule
             : null;
 
         string constructStandardAnswer(int b) => string.Format(
-            translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "{0}{1}{2}{3}{4}{5}{6}"),
-            Enumerable.Range(0, 7).Select(i => (b & (1 << i)) != 0 ? translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "ROYGBIV"[i].ToString()) : "").ToArray());
+            translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, "{0}{1}{2}{3}{4}{5}{6}"),
+            Enumerable.Range(0, 7).Select(i => (b & (1 << i)) != 0 ? translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, "ROYGBIV"[i].ToString()) : "").ToArray());
 
         string constructRGBAnswer(byte[] b) => string.Format(
-            translateString(Question.KugelblitzRedGreenBlue, "R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"),
+            translateString(SKugelblitz.RedGreenBlue, "R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"),
             b[0], b[1], b[2], b[3], b[4], b[5], b[6]);
 
         IEnumerable<string> allRGBAnswers(int max)
@@ -110,10 +111,10 @@ public partial class SouvenirModule
         }
 
         var allStandardAnswers = Enumerable.Range(0, 128).Select(constructStandardAnswer).ToArray();
-        allStandardAnswers[0] = translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "None");
+        allStandardAnswers[0] = translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, "None");
 
         var quirkNames = new[] { "black", "red", "orange", "yellow", "green", "blue", "indigo", "violet" };
-        string formatName(int color) => string.Format(translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "the {0} Kugelblitz"), translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, quirkNames[color]));
+        string formatName(int color) => string.Format(translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, "the {0} Kugelblitz"), translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, quirkNames[color]));
 
         var templates = Ut.NewArray(
             "the Kugelblitz linked with no other Kugelblitzes",
@@ -124,7 +125,7 @@ public partial class SouvenirModule
             "the {0} Kugelblitz linked with five other Kugelblitzes",
             "the {0} Kugelblitz linked with six other Kugelblitzes",
             "the {0} Kugelblitz linked with seven other Kugelblitzes");
-        string formatNameSized(int color, int size) => string.Format(translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, templates[size - 1]), translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, quirkNames[color]));
+        string formatNameSized(int color, int size) => string.Format(translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, templates[size - 1]), translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, quirkNames[color]));
 
         bool myFormat(int color, out string format)
         {
@@ -153,7 +154,7 @@ public partial class SouvenirModule
         if (!myFormat(finalQuirk, out var format))
             yield break;
         addQuestions(module, answers.Select((answer, i) => makeQuestion(
-            isNormal ? Question.KugelblitzBlackOrangeYellowIndigoViolet : Question.KugelblitzRedGreenBlue,
+            isNormal ? SKugelblitz.BlackOrangeYellowIndigoViolet : SKugelblitz.RedGreenBlue,
             module,
             formattedModuleName: format,
             correctAnswers: new[] { answer },

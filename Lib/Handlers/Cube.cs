@@ -22,6 +22,6 @@ public partial class SouvenirModule
         var rotationNames = new[] { "rotate cw", "tip left", "tip backwards", "rotate ccw", "tip right", "tip forwards" };
         var allRotations = rotations.Select(r => rotationNames[r]).ToArray();
 
-        addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
+        addQuestions(module, rotations.Select((rot, ix) => makeQuestion(SCube.Rotations, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
     }
 }

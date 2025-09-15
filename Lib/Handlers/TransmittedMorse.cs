@@ -30,7 +30,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         }
 
-        addQuestions(module, messages.Select((msg, index) => makeQuestion(Question.TransmittedMorseMessage, module,
+        addQuestions(module, messages.Select((msg, index) => makeQuestion(STransmittedMorse.Message, module,
             formatArgs: new[] { Ordinal(index + 1) },
             correctAnswers: new[] { msg },
             preferredWrongAnswers: messages)));

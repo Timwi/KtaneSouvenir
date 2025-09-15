@@ -31,7 +31,7 @@ public partial class SouvenirModule
         var buttonNames = new[] { "north", "east", "south", "west" };
 
         addQuestions(module,
-            buttonColors.Select((col, ix) => makeQuestion(Question.BlindMazeColors, module, formatArgs: new[] { buttonNames[ix] }, correctAnswers: new[] { colorNames[col] }))
-                .Concat(new[] { makeQuestion(Question.BlindMazeMaze, module, correctAnswers: new[] { ((numSolved + lastDigit) % 10).ToString() }) }));
+            buttonColors.Select((col, ix) => makeQuestion(SBlindMaze.Colors, module, formatArgs: new[] { buttonNames[ix] }, correctAnswers: new[] { colorNames[col] }))
+                .Concat(new[] { makeQuestion(SBlindMaze.Maze, module, correctAnswers: new[] { ((numSolved + lastDigit) % 10).ToString() }) }));
     }
 }

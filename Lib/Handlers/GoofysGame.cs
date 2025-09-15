@@ -23,7 +23,7 @@ public partial class SouvenirModule
         var directions = new[] { "left", "center", "right" };
 
         addQuestions(module, nums.Select((n, i) =>
-            makeQuestion(Question.GoofysGameNumber, module,
+            makeQuestion(SGoofysGame.Number, module,
                 correctAnswers: new[] { n.ToString() },
                 formatArgs: new[] { directions[i] })));
     }

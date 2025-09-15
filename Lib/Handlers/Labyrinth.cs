@@ -44,7 +44,7 @@ public partial class SouvenirModule
 
         var args = new[] { "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)" };
         for (var layer = 0; layer < 5; layer++)
-            qs.Add(makeQuestion(Question.LabyrinthPortalLocations, module, formatArgs: new[] { args[layer] }, correctAnswers: new[] { new Coord(6, 7, portals[layer][0]), new Coord(6, 7, portals[layer][1]) }, preferredWrongAnswers: distinctPortals.Select(i => new Coord(6, 7, i)).ToArray()));
+            qs.Add(makeQuestion(SLabyrinth.PortalLocations, module, formatArgs: new[] { args[layer] }, correctAnswers: new[] { new Coord(6, 7, portals[layer][0]), new Coord(6, 7, portals[layer][1]) }, preferredWrongAnswers: distinctPortals.Select(i => new Coord(6, 7, i)).ToArray()));
 
         foreach (var p in distinctPortals)
         {
@@ -54,7 +54,7 @@ public partial class SouvenirModule
                     correct.Add(args[i / 2]); // Integer division gives layer #
             if (correct.Distinct().Count() > 2)
                 continue; // Don't have a question with less than 4 answers
-            qs.Add(makeQuestion(Question.LabyrinthPortalStage, module, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 7, p)), correctAnswers: correct.Distinct().ToArray()));
+            qs.Add(makeQuestion(SLabyrinth.PortalStage, module, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 7, p)), correctAnswers: correct.Distinct().ToArray()));
         }
 
         addQuestions(module, qs);

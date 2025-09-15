@@ -42,6 +42,6 @@ public partial class SouvenirModule
         }
 
         yield return WaitForSolve;
-        addQuestions(module, displayedLetters.Select((word, stage) => makeQuestion(Question.AngelHernandezMainLetter, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: alph)));
+        addQuestions(module, displayedLetters.Select((word, stage) => makeQuestion(SAngelHernandez.MainLetter, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: alph)));
     }
 }

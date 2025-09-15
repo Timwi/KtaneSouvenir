@@ -23,6 +23,6 @@ public partial class SouvenirModule
         var initState = GetArrayField<int>(comp, "givenPuzzle").Get(expectedLength: 9);
         addQuestions(module,
             Enumerable.Range(0, 9).Where(ix => initState[ix] != 0).Select(ix =>
-            makeQuestion(Question.ForgetMeInitialState, module, formatArgs: new[] { positions[ix] }, correctAnswers: new[] { initState[ix].ToString() })));
+            makeQuestion(SForgetMe.InitialState, module, formatArgs: new[] { positions[ix] }, correctAnswers: new[] { initState[ix].ToString() })));
     }
 }

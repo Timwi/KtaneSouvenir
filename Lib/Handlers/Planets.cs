@@ -26,7 +26,7 @@ public partial class SouvenirModule
 
         var stripNames = new[] { "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off" };
         addQuestions(module,
-            stripColors.Select((strip, count) => makeQuestion(Question.PlanetsStrips, module, formatArgs: new[] { Ordinal(count + 1) }, correctAnswers: new[] { stripNames[strip] }))
-                .Concat(new[] { makeQuestion(Question.PlanetsPlanet, module, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()) }));
+            stripColors.Select((strip, count) => makeQuestion(SPlanets.Strips, module, formatArgs: new[] { Ordinal(count + 1) }, correctAnswers: new[] { stripNames[strip] }))
+                .Concat(new[] { makeQuestion(SPlanets.Planet, module, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()) }));
     }
 }

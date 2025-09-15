@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -59,7 +59,7 @@ public partial class SouvenirModule
                 .Select((t, c) => (t, c))
                 .Where(t => t.t is not (0, 0))
                 .Select(t => makeQuestion(
-                    question: Question.HickoryDickoryDockTime,
+                    question: SHickoryDickoryDock.Time,
                     moduleId: module.Module.ModuleType, solveIx: 1,
                     formatArgs: new[] { $"{t.c + 1}:00" },
                     correctAnswers: new[] { $"{t.t.h}:{_hickoryDickoryDockMinutes[t.t.m]:00}" })));
@@ -78,10 +78,10 @@ public partial class SouvenirModule
 
             var used = unique.PickRandom();
             var format = string.Format(
-                translateString(Question.HickoryDickoryDockTime, "the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}"),
+                translateString(SHickoryDickoryDock.Time, "the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}"),
                 stages[used].h, _hickoryDickoryDockMinutes[stages[used].m], $"{used + 1}:00");
 
-            qs.Add(makeQuestion(Question.HickoryDickoryDockTime, module, formattedModuleName: format, formatArgs: new[] { $"{i + 1}:00" }, correctAnswers: new[] { $"{stages[i].h}:{_hickoryDickoryDockMinutes[stages[i].m]:00}" }));
+            qs.Add(makeQuestion(SHickoryDickoryDock.Time, module, formattedModuleName: format, formatArgs: new[] { $"{i + 1}:00" }, correctAnswers: new[] { $"{stages[i].h}:{_hickoryDickoryDockMinutes[stages[i].m]:00}" }));
         }
 
         if (qs.Count == 0)

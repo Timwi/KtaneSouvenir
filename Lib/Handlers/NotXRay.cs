@@ -29,7 +29,7 @@ public partial class SouvenirModule
 
         var table = GetIntField(comp, "_table").Get(0, 7);
         var directions = GetField<Array>(comp, "_directions").Get(validator: arr => arr.Length != 4 ? "expected length 4" : null);
-        var allColors = Question.NotXRayScannerColor.GetAnswers();
+        var allColors = SNotXRay.ScannerColor.GetAnswers();
         var scannerColor = GetField<object>(comp, "_scannerColor").Get(v => v == null ? "did not expected null" : !allColors.Contains(v.ToString()) ? "expected " + allColors.JoinString(", ") : null);
 
         yield return question(SNotXRay.Table).Answers((table + 1).ToString());

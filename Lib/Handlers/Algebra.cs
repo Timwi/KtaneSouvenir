@@ -23,7 +23,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         addQuestions(module, Enumerable.Range(0, 2).Select(i => makeQuestion(
-            question: i == 0 ? Question.AlgebraEquation1 : Question.AlgebraEquation2,
+            question: i == 0 ? SAlgebra.Equation1 : SAlgebra.Equation2,
             data: module,
             correctAnswers: new[] { GetField<Texture>(comp, $"level{i + 1}Equation").Get().name.Replace(';', '/') })));
     }

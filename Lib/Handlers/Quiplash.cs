@@ -20,7 +20,7 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "QLModule");
         var config = GetField<object>(comp, "ChosenConfig").Get();
-        var id = GetField<string>(config, "id", true).Get(v => !Question.QuiplashNumber.GetAnswers().Contains(v) ? "Unexpected number" : null);
+        var id = GetField<string>(config, "id", true).Get(v => !SQuiplash.Number.GetAnswers().Contains(v) ? "Unexpected number" : null);
 
         foreach (var t in GetArrayField<TextMesh>(comp, "PromptTexts", true).Get())
             t.text = "Quiplash!";

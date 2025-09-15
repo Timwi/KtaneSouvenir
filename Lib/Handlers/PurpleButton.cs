@@ -25,6 +25,6 @@ public partial class SouvenirModule
         var preferredWrongAnswers = preferredWrongNumbers.Select(n => n.ToString()).ToArray();
 
         addQuestions(module, Enumerable.Range(0, 6).Select(ix =>
-            makeQuestion(Question.PurpleButtonNumbers, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { cyclingNumbers[ix].ToString() }, preferredWrongAnswers: preferredWrongAnswers)));
+            makeQuestion(SPurpleButton.Numbers, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { cyclingNumbers[ix].ToString() }, preferredWrongAnswers: preferredWrongAnswers)));
     }
 }

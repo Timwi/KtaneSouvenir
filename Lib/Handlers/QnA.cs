@@ -21,6 +21,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, qs.Select((q, i) => makeQuestion(Question.QnAQuestions, module, correctAnswers: new[] { q }, formatArgs: new[] { Ordinal(i + 1) })));
+        addQuestions(module, qs.Select((q, i) => makeQuestion(SQnA.Questions, module, correctAnswers: new[] { q }, formatArgs: new[] { Ordinal(i + 1) })));
     }
 }

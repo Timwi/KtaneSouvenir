@@ -47,8 +47,8 @@ public partial class SouvenirModule
 
         var colorNames = new string[] { "Red", "Yellow", "Green", "Blue" };
         addQuestions(module, stages.SelectMany((s, i) => new QandA[] {
-                makeQuestion(Question.DoubleScreenColors, module, correctAnswers: new[] { colorNames[s.Top] }, formatArgs: new[] { "top", Ordinal(i + 1) }),
-                makeQuestion(Question.DoubleScreenColors, module, correctAnswers: new[] { colorNames[s.Bottom] }, formatArgs: new[] { "bottom", Ordinal(i + 1) })
+                makeQuestion(SDoubleScreen.Colors, module, correctAnswers: new[] { colorNames[s.Top] }, formatArgs: new[] { "top", Ordinal(i + 1) }),
+                makeQuestion(SDoubleScreen.Colors, module, correctAnswers: new[] { colorNames[s.Bottom] }, formatArgs: new[] { "bottom", Ordinal(i + 1) })
         }));
     }
 }

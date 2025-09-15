@@ -26,6 +26,6 @@ public partial class SouvenirModule
 
         addQuestions(module, Enumerable.Range(0, 9)
             .Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon)
-            .Select(i => makeQuestion(Question.BeansColors, module, questionSprite: Sprites.GenerateGridSprite(3, 3, i), correctAnswers: new string[] { flavors[bns[i]] })));
+            .Select(i => makeQuestion(SBeans.Colors, module, questionSprite: Sprites.GenerateGridSprite(3, 3, i), correctAnswers: new string[] { flavors[bns[i]] })));
     }
 }

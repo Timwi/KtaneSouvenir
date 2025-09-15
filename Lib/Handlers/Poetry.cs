@@ -46,6 +46,6 @@ public partial class SouvenirModule
         if (answers.Count != fldStageCount.Get())
             throw new AbandonModuleException($"The number of answers captured is not equal to the number of stages played ({fldStageCount.Get()}). Answers were: [{answers.JoinString(", ")}]");
 
-        addQuestions(module, answers.Select((ans, st) => makeQuestion(Question.PoetryAnswers, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { ans }, preferredWrongAnswers: answers.ToArray())));
+        addQuestions(module, answers.Select((ans, st) => makeQuestion(SPoetry.Answers, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { ans }, preferredWrongAnswers: answers.ToArray())));
     }
 }

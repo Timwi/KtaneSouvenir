@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -46,12 +46,12 @@ public partial class SouvenirModule
         yield return WaitForUnignoredModules;
 
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" }
-            .Select(str => translateString(Question.ForgetAnyColorCylinder, str)).ToArray();
+            .Select(str => translateString(SForgetAnyColor.Cylinder, str)).ToArray();
         var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" }
-            .Select(str => str.Select(ch => translateString(Question.ForgetAnyColorCylinder, ch.ToString())).JoinString()).ToArray();
+            .Select(str => str.Select(ch => translateString(SForgetAnyColor.Cylinder, ch.ToString())).JoinString()).ToArray();
 
         string getCylinders(Array cylinders, int stage) => string.Format(
-            translateString(Question.ForgetAnyColorCylinder, "{0}, {1}, {2}"),
+            translateString(SForgetAnyColor.Cylinder, "{0}, {1}, {2}"),
             Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(stage, ix)]).ToArray());
 
         var randomStage = Rnd.Range(0, fldCurrentStage.Get(min: 0, max: maxStage));
@@ -66,12 +66,12 @@ public partial class SouvenirModule
                 var formatCandidates = new List<string>();
                 if (_facFigures.Count(f => f[stage] == myFigures[stage]) == 1)
                     formatCandidates.Add(string.Format(
-                        translateString(Question.ForgetAnyColorCylinder, "the Forget Any Color which used figure {0} in the {1} stage"),
+                        translateString(SForgetAnyColor.Cylinder, "the Forget Any Color which used figure {0} in the {1} stage"),
                         figureNames[myFigures[stage]],
                         Ordinal(stage + 1)));
                 if (_facCylinders.Count(c => getCylinders(c, stage) == cylindersThisStage) == 1)
                     formatCandidates.Add(string.Format(
-                        translateString(Question.ForgetAnyColorCylinder, "the Forget Any Color whose cylinders in the {1} stage were {0}"),
+                        translateString(SForgetAnyColor.Cylinder, "the Forget Any Color whose cylinders in the {1} stage were {0}"),
                         cylindersThisStage,
                         Ordinal(stage + 1)));
                 if (formatCandidates.Count > 0)
@@ -84,11 +84,11 @@ public partial class SouvenirModule
                 yield return legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetIntField(init, "moduleId").Get()}) was unique.");
         }
 
-        formattedName ??= _translation?.Translate(Question.ForgetAnyColorCylinder).ModuleName ?? "Forget Any Color";
+        formattedName ??= _translation?.Translate(SForgetAnyColor.Cylinder).ModuleName ?? "Forget Any Color";
         var correctCylinders = getCylinders(myCylinders, randomStage);
         var preferredCylinders = new HashSet<string> { correctCylinders };
         while (preferredCylinders.Count < 6)
-            preferredCylinders.Add(string.Format(translateString(Question.ForgetAnyColorCylinder, "{0}, {1}, {2}"),
+            preferredCylinders.Add(string.Format(translateString(SForgetAnyColor.Cylinder, "{0}, {1}, {2}"),
                 Enumerable.Range(0, 3).Select(i => colorNames.PickRandom()).ToArray()));
 
         yield return question(SForgetAnyColor.Cylinder, args: [Ordinal(randomStage + 1)]).Answers(correctCylinders, preferredWrong: preferredCylinders.ToArray());

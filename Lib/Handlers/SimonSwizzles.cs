@@ -29,8 +29,8 @@ public partial class SouvenirModule
 
         var gateNames = new[] { "OFF", "ON" };
         addQuestions(module, gates
-            .Select((g, i) => g is not 0 and not 15 ? null : makeQuestion(Question.SimonSwizzlesButton, module, correctAnswers: new[] { Sprites.GenerateGridSprite(4, 4, i) }, formatArgs: new[] { gateNames[g / 15] }))
+            .Select((g, i) => g is not 0 and not 15 ? null : makeQuestion(SSimonSwizzles.Button, module, correctAnswers: new[] { Sprites.GenerateGridSprite(4, 4, i) }, formatArgs: new[] { gateNames[g / 15] }))
             .Where(q => q != null)
-            .Concat(new[] { makeQuestion(Question.SimonSwizzlesNumber, module, correctAnswers: new[] { hidden }) }));
+            .Concat(new[] { makeQuestion(SSimonSwizzles.Number, module, correctAnswers: new[] { hidden }) }));
     }
 }

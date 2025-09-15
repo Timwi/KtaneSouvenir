@@ -24,6 +24,6 @@ public partial class SouvenirModule
         if (sequence[9] < 0 || sequence[9] >= colors.Length)
             throw new AbandonModuleException($"‘sequence[9]’ points to illegal color: {sequence[9]} (expected 0-3).");
 
-        addQuestions(module, sequence.Select((val, ix) => makeQuestion(Question.SimonScramblesColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colors[val] })));
+        addQuestions(module, sequence.Select((val, ix) => makeQuestion(SSimonScrambles.Colors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colors[val] })));
     }
 }

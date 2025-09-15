@@ -26,7 +26,7 @@ public partial class SouvenirModule
         yield return invalid != -1
             ? throw new AbandonModuleException($"Found unexpected color text: “{colorblindTexts[invalid]}”.")
             : (YieldInstruction) WaitForSolve;
-        addQuestions(module, Enumerable.Range(0, 4).Select(corner => makeQuestion(Question.ShiftedMazeColors, module,
+        addQuestions(module, Enumerable.Range(0, 4).Select(corner => makeQuestion(SShiftedMaze.Colors, module,
             formatArgs: new[] { cornerNames[corner] }, correctAnswers: new[] { colorNames[Array.IndexOf(expectedCBTexts, colorblindTexts[corner])] })));
     }
 }

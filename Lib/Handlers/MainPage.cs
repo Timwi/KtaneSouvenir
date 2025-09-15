@@ -50,11 +50,11 @@ public partial class SouvenirModule
         var bubbleMessageAnswers = new[] { bubbleFirstMessage[bubbleIndices[0]], bubbleMessages[bubbleIndices[1] % 5, bubbleIndices[1] / 5], bubbleMessages[bubbleIndices[2] % 5, bubbleIndices[2] / 5] };
 
         addQuestions(module,
-            new[] { "toons", "games", "characters", "downloads", "store", "email" }.Select((text, ix) => makeQuestion(Question.MainPageButtonEffectOrigin, module, formatArgs: new[] { text }, correctAnswers: new[] { animNums[ix].ToString() })).Concat(
-            new[] { makeQuestion(Question.MainPageHomestarBackgroundOrigin, module, formatArgs: new[] { "Homestar" }, correctAnswers: new[] { homestarNum.ToString() }),
-            makeQuestion(Question.MainPageHomestarBackgroundOrigin, module, formatArgs: new[] { "the background" }, correctAnswers: new[] { backgroundNum.ToString() }),
-            makeQuestion(Question.MainPageBubbleColors, module, correctAnswers: new[] { absentBubbleColor }),
-            makeQuestion(Question.MainPageBubbleMessages, module, formatArgs: new[] { "display" }, correctAnswers: bubbleMessageAnswers),
-            makeQuestion(Question.MainPageBubbleMessages, module, formatArgs: new[] { "not display" }, correctAnswers: Question.MainPageBubbleMessages.GetAnswers().Except(bubbleMessageAnswers).ToArray())}));
+            new[] { "toons", "games", "characters", "downloads", "store", "email" }.Select((text, ix) => makeQuestion(SMainPage.ButtonEffectOrigin, module, formatArgs: new[] { text }, correctAnswers: new[] { animNums[ix].ToString() })).Concat(
+            new[] { makeQuestion(SMainPage.HomestarBackgroundOrigin, module, formatArgs: new[] { "Homestar" }, correctAnswers: new[] { homestarNum.ToString() }),
+            makeQuestion(SMainPage.HomestarBackgroundOrigin, module, formatArgs: new[] { "the background" }, correctAnswers: new[] { backgroundNum.ToString() }),
+            makeQuestion(SMainPage.BubbleColors, module, correctAnswers: new[] { absentBubbleColor }),
+            makeQuestion(SMainPage.BubbleMessages, module, formatArgs: new[] { "display" }, correctAnswers: bubbleMessageAnswers),
+            makeQuestion(SMainPage.BubbleMessages, module, formatArgs: new[] { "not display" }, correctAnswers: SMainPage.BubbleMessages.GetAnswers().Except(bubbleMessageAnswers).ToArray())}));
     }
 }

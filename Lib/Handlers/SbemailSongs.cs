@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -44,7 +44,7 @@ public partial class SouvenirModule
         var transcriptionsAbridged = GetArrayField<string>(comp, "transcriptionsAbridged").Get(expectedLength: 209);
 
         if (_moduleCounts[moduleId] == 1)
-            addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(Question.SbemailSongsSongs, module, formatArgs: new[] { (ix + 1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[digit - 1] }, preferredWrongAnswers: transcriptionsAbridged)));
+            addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(SSbemailSongs.Songs, module, formatArgs: new[] { (ix + 1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[digit - 1] }, preferredWrongAnswers: transcriptionsAbridged)));
         else
         {
             var uniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _sbemailSongsDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
@@ -56,8 +56,8 @@ public partial class SouvenirModule
             {
                 var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
                 if (uniqueStage != 0)
-                    qs.Add(makeQuestion(Question.SbemailSongsSongs, moduleId, 0,
-                        formattedModuleName: string.Format(translateString(Question.SbemailSongsSongs,
+                    qs.Add(makeQuestion(SSbemailSongs.Songs, moduleId, 0,
+                        formattedModuleName: string.Format(translateString(SSbemailSongs.Songs,
                             "the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"),
                             transcriptionsAbridged[myDisplay[uniqueStage - 1] - 1],
                             uniqueStage.ToString("X2")), formatArgs: new[] { (stage + 1).ToString("X2") },

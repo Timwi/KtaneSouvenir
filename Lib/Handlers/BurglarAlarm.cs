@@ -24,6 +24,6 @@ public partial class SouvenirModule
         displayText.text = "";
 
         var moduleNumber = GetArrayField<int>(comp, "moduleNumber").Get(expectedLength: 8, validator: mn => mn is < 0 or > 9 ? "expected 0–9" : null);
-        addQuestions(module, moduleNumber.Select((mn, ix) => makeQuestion(Question.BurglarAlarmDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { mn.ToString() }, preferredWrongAnswers: moduleNumber.Select(n => n.ToString()).ToArray())));
+        addQuestions(module, moduleNumber.Select((mn, ix) => makeQuestion(SBurglarAlarm.Digits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { mn.ToString() }, preferredWrongAnswers: moduleNumber.Select(n => n.ToString()).ToArray())));
     }
 }

@@ -20,8 +20,8 @@ public partial class SouvenirModule
         var leftIx = GetIntField(comp, "leftIndex").Get().ToString();
         var rightIx = GetIntField(comp, "rightIndex").Get().ToString();
         addQuestions(module, new[] {
-            makeQuestion(Question.NameCodesIndices, module, formatArgs: new[] { "left" }, correctAnswers: new[] { leftIx }),
-            makeQuestion(Question.NameCodesIndices, module, formatArgs: new[] { "right" }, correctAnswers: new[] { rightIx }),
+            makeQuestion(SNameCodes.Indices, module, formatArgs: new[] { "left" }, correctAnswers: new[] { leftIx }),
+            makeQuestion(SNameCodes.Indices, module, formatArgs: new[] { "right" }, correctAnswers: new[] { rightIx }),
         });
     }
 }

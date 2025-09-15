@@ -64,6 +64,6 @@ public partial class SouvenirModule
 
         addQuestions(module, Enumerable.Range(0, pressedLetters.Length - 1)
             .Where(i => pressedLetters[i] != null)
-            .Select(stage => makeQuestion(Question.LEDEncryptionPressedLetters, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { pressedLetters[stage] }, preferredWrongAnswers: wrongLetters.ToArray())));
+            .Select(stage => makeQuestion(SLEDEncryption.PressedLetters, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { pressedLetters[stage] }, preferredWrongAnswers: wrongLetters.ToArray())));
     }
 }

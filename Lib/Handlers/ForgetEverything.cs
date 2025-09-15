@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -46,7 +46,7 @@ public partial class SouvenirModule
         if (_moduleCounts[moduleId] == 1)
         {
             module.SolveIndex = 1;
-            addQuestions(module, myFirstDisplay.Select((digit, pos) => makeQuestion(Question.ForgetEverythingStageOneDisplay, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { digit.ToString() })));
+            addQuestions(module, myFirstDisplay.Select((digit, pos) => makeQuestion(SForgetEverything.StageOneDisplay, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { digit.ToString() })));
         }
         else
         {
@@ -59,8 +59,8 @@ public partial class SouvenirModule
                 if (uniquePositions.Any(p => p != pos))
                 {
                     var reference = uniquePositions.Where(p => p != pos).PickRandom();
-                    qs.Add(makeQuestion(Question.ForgetEverythingStageOneDisplay, moduleId, 0,
-                        formattedModuleName: string.Format(translateString(Question.ForgetEverythingStageOneDisplay, "the Forget Everything whose {0} displayed digit in that stage was {1}"), Ordinal(reference + 1), myFirstDisplay[reference]),
+                    qs.Add(makeQuestion(SForgetEverything.StageOneDisplay, moduleId, 0,
+                        formattedModuleName: string.Format(translateString(SForgetEverything.StageOneDisplay, "the Forget Everything whose {0} displayed digit in that stage was {1}"), Ordinal(reference + 1), myFirstDisplay[reference]),
                         formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { myFirstDisplay[pos].ToString() }));
                 }
             }

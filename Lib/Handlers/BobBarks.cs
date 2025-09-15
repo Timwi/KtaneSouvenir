@@ -34,12 +34,12 @@ public partial class SouvenirModule
         string[] labelsOnModule = { validLabels[indicators[0]], validLabels[indicators[1]], validLabels[indicators[2]], validLabels[indicators[3]] };
 
         addQuestions(module,
-            Enumerable.Range(0, 4).Select(ix => makeQuestion(Question.BobBarksIndicators, module,
+            Enumerable.Range(0, 4).Select(ix => makeQuestion(SBobBarks.Indicators, module,
                 correctAnswers: new[] { labelsOnModule[ix] },
                 formatArgs: new[] { validDirections[ix] },
                 preferredWrongAnswers: labelsOnModule.Except(new[] { labelsOnModule[ix] }).ToArray()
             )).Concat(
-            Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.BobBarksPositions, module,
+            Enumerable.Range(0, 5).Select(ix => makeQuestion(SBobBarks.Positions, module,
                 correctAnswers: new[] { validDirections[flashes[ix]] },
                 formatArgs: new[] { Ordinal(ix + 1) }))
             ));

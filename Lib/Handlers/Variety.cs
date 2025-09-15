@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -116,22 +116,22 @@ public partial class SouvenirModule
                 case "Led":
                     if (canDisambiguateWith("an LED"))
                     {
-                        var str = translateString(Question.VarietyLED, "the Variety that has one");
-                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (LED)");
+                        var str = translateString(SVariety.LED, "the Variety that has one");
+                        return str != "" ? str : translateString(SVariety.LED, "the Variety that has one (LED)");
                     }
                     break;
                 case "DigitDisplay":
                     if (canDisambiguateWith("a digit display"))
                     {
-                        var str = translateString(Question.VarietyLED, "the Variety that has one");
-                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (digit display)");
+                        var str = translateString(SVariety.LED, "the Variety that has one");
+                        return str != "" ? str : translateString(SVariety.LED, "the Variety that has one (digit display)");
                     }
                     break;
                 case "LetterDisplay":
                     if (canDisambiguateWith("a letter display"))
                     {
-                        var str = translateString(Question.VarietyLED, "the Variety that has one");
-                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (letter display)");
+                        var str = translateString(SVariety.LED, "the Variety that has one");
+                        return str != "" ? str : translateString(SVariety.LED, "the Variety that has one (letter display)");
                     }
                     break;
                 case "Timer":
@@ -139,24 +139,24 @@ public partial class SouvenirModule
                         flavor == "ascending" && canDisambiguateWith("an ascending timer") ||
                         flavor == "descending" && canDisambiguateWith("a descending timer"))
                     {
-                        var str = translateString(Question.VarietyLED, "the Variety that has one");
-                        return str != "" ? str : translateString(Question.VarietyLED, $"the Variety that has one ({flavor ?? ""}timer)");
+                        var str = translateString(SVariety.LED, "the Variety that has one");
+                        return str != "" ? str : translateString(SVariety.LED, $"the Variety that has one ({flavor ?? ""}timer)");
                     }
                     break;
                 case "ColoredKnob":
                     if (flavor == null && canDisambiguateWith("a knob") ||
                         flavor != null && canDisambiguateWith($"a {flavor} knob"))
                     {
-                        var str = translateString(Question.VarietyLED, "the Variety that has one");
-                        return str != "" ? str : translateString(Question.VarietyLED, $"the Variety that has one ({flavor ?? ""}knob)");
+                        var str = translateString(SVariety.LED, "the Variety that has one");
+                        return str != "" ? str : translateString(SVariety.LED, $"the Variety that has one ({flavor ?? ""}knob)");
                     }
                     break;
                 case "Bulb":
                     if (flavor == null && canDisambiguateWith("a bulb") ||
                         flavor != null && canDisambiguateWith($"a {flavor} bulb"))
                     {
-                        var str = translateString(Question.VarietyLED, "the Variety that has one");
-                        return str != "" ? str : translateString(Question.VarietyLED, $"the Variety that has one ({flavor ?? ""}bulb)");
+                        var str = translateString(SVariety.LED, "the Variety that has one");
+                        return str != "" ? str : translateString(SVariety.LED, $"the Variety that has one ({flavor ?? ""}bulb)");
                     }
                     break;
                 default:
@@ -168,7 +168,7 @@ public partial class SouvenirModule
             var chosen = formats.Any() ? formats.PickRandom() : null;
             return chosen is null
                 ? null
-                : string.Format(translateString(Question.VarietyLED, "the Variety that has {0}"), translateString(Question.VarietyLED, chosen));
+                : string.Format(translateString(SVariety.LED, "the Variety that has {0}"), translateString(SVariety.LED, chosen));
         }
 
         List<QandA> questions = [];
@@ -179,7 +179,7 @@ public partial class SouvenirModule
             var led = items[i];
             var c1 = GetProperty<object>(led, "Color1", isPublic: true).Get(null, v => (int) v is < 0 or > 4 ? $"Unknown LED color {v}" : null).ToString();
             var c2 = GetProperty<object>(led, "Color2", isPublic: true).Get(null, v => (int) v is < 0 or > 4 ? $"Unknown LED color {v}" : null).ToString();
-            questions.Add(makeQuestion(Question.VarietyLED, module, formattedModuleName: disambiguate("Led", null), correctAnswers: new[] { c1, c2 }));
+            questions.Add(makeQuestion(SVariety.LED, module, formattedModuleName: disambiguate("Led", null), correctAnswers: new[] { c1, c2 }));
             disableSelectables = true;
         }
 
@@ -197,7 +197,7 @@ public partial class SouvenirModule
                 for (var ix = 0; ix < amount; ix++)
                     if (ix != solution)
                         ans.Add(displays[ix].ToString());
-                questions.Add(makeQuestion(Question.VarietyDigitDisplay, module, formattedModuleName: disambiguate("DigitDisplay", null), correctAnswers: ans.ToArray(), preferredWrongAnswers: new[] { displays[solution].ToString() }));
+                questions.Add(makeQuestion(SVariety.DigitDisplay, module, formattedModuleName: disambiguate("DigitDisplay", null), correctAnswers: ans.ToArray(), preferredWrongAnswers: new[] { displays[solution].ToString() }));
                 disableSelectables = true;
             }
         }
@@ -212,7 +212,7 @@ public partial class SouvenirModule
             else
             {
                 var solution = GetProperty<int>(display, "State", isPublic: true).Get(v => v is < 0 || v >= words.Length ? $"Bad letter display solution state {v}" : null);
-                questions.Add(makeQuestion(Question.VarietyLetterDisplay, module, formattedModuleName: disambiguate("LetterDisplay", null), correctAnswers: words.Where((_, i) => i != solution).ToArray(), preferredWrongAnswers: new[] { words[solution] }));
+                questions.Add(makeQuestion(SVariety.LetterDisplay, module, formattedModuleName: disambiguate("LetterDisplay", null), correctAnswers: words.Where((_, i) => i != solution).ToArray(), preferredWrongAnswers: new[] { words[solution] }));
                 disableSelectables = true;
             }
         }
@@ -228,11 +228,11 @@ public partial class SouvenirModule
                 return (A: a, B: b, Flavor: flavor);
             }).ToArray();
             if (data.Length == 1)
-                questions.Add(makeQuestion(Question.VarietyTimer, module, formattedModuleName: disambiguate("Timer", null), formatArgs: new[] { "" }, correctAnswers: new[] { $"{data[0].A - 1} {data[0].B - 1}" }));
+                questions.Add(makeQuestion(SVariety.Timer, module, formattedModuleName: disambiguate("Timer", null), formatArgs: new[] { "" }, correctAnswers: new[] { $"{data[0].A - 1} {data[0].B - 1}" }));
             else
                 questions.AddRange(new[] {
-                    makeQuestion(Question.VarietyTimer, module, formattedModuleName: disambiguate("Timer", data[0].Flavor.ToString().ToLowerInvariant()), formatArgs: new[] { data[0].Flavor.ToString().ToLowerInvariant() + " " }, correctAnswers: new[] { $"{data[0].A - 1} {data[0].B - 1}" }),
-                    makeQuestion(Question.VarietyTimer, module, formattedModuleName: disambiguate("Timer", data[1].Flavor.ToString().ToLowerInvariant()), formatArgs: new[] { data[1].Flavor.ToString().ToLowerInvariant() + " " }, correctAnswers: new[] { $"{data[1].A - 1} {data[1].B - 1}" })
+                    makeQuestion(SVariety.Timer, module, formattedModuleName: disambiguate("Timer", data[0].Flavor.ToString().ToLowerInvariant()), formatArgs: new[] { data[0].Flavor.ToString().ToLowerInvariant() + " " }, correctAnswers: new[] { $"{data[0].A - 1} {data[0].B - 1}" }),
+                    makeQuestion(SVariety.Timer, module, formattedModuleName: disambiguate("Timer", data[1].Flavor.ToString().ToLowerInvariant()), formatArgs: new[] { data[1].Flavor.ToString().ToLowerInvariant() + " " }, correctAnswers: new[] { $"{data[1].A - 1} {data[1].B - 1}" })
                 });
             disableSelectables = true;
         }
@@ -246,7 +246,7 @@ public partial class SouvenirModule
             {
                 var ans = GetProperty<int>(knob, "NumStates", isPublic: true).Get(null, v => v is < 3 or > 6 ? $"Bad colored knob state count {v}" : null);
                 var flavor = GetProperty<object>(knob, "Color", isPublic: true).Get(null, v => (int) v is < 0 or > 3 ? $"Unknown knob color {v}" : null).ToString();
-                questions.Add(makeQuestion(Question.VarietyColoredKnob, module, formattedModuleName: disambiguate("ColoredKnob", cknobs.Length + wknobs == 1 ? null : cknobs.Length == 1 ? "colored" : flavor.ToLowerInvariant().Substring(0, flavor.Length - 4)), formatArgs: new[] { format ?? flavor.ToLowerInvariant().Substring(0, flavor.Length - 4) + " " }, correctAnswers: new[] { ans.ToString() }));
+                questions.Add(makeQuestion(SVariety.ColoredKnob, module, formattedModuleName: disambiguate("ColoredKnob", cknobs.Length + wknobs == 1 ? null : cknobs.Length == 1 ? "colored" : flavor.ToLowerInvariant().Substring(0, flavor.Length - 4)), formatArgs: new[] { format ?? flavor.ToLowerInvariant().Substring(0, flavor.Length - 4) + " " }, correctAnswers: new[] { ans.ToString() }));
             }
             disableSelectables = true;
         }
@@ -260,7 +260,7 @@ public partial class SouvenirModule
             {
                 var ans = GetProperty<int>(bulb, "N", isPublic: true).Get(null, v => v is < 5 or > 13 ? $"Unknown bulb N {v}" : null);
                 var flavor = GetProperty<object>(bulb, "Color", isPublic: true).Get(null, v => (int) v is < 0 or > 1 ? $"Unknown bulb color {v}" : null).ToString();
-                questions.Add(makeQuestion(Question.VarietyBulb, module, formattedModuleName: disambiguate("Bulb", bulbs.Length == 1 ? null : flavor.Substring(0, flavor.Length - 4).ToLowerInvariant()), formatArgs: new[] { format ?? flavor.Substring(0, flavor.Length - 4).ToLowerInvariant() + " " }, correctAnswers: new[] { ans.ToString() }));
+                questions.Add(makeQuestion(SVariety.Bulb, module, formattedModuleName: disambiguate("Bulb", bulbs.Length == 1 ? null : flavor.Substring(0, flavor.Length - 4).ToLowerInvariant()), formatArgs: new[] { format ?? flavor.Substring(0, flavor.Length - 4).ToLowerInvariant() + " " }, correctAnswers: new[] { ans.ToString() }));
             }
             disableSelectables = true;
         }

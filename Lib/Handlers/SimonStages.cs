@@ -31,11 +31,11 @@ public partial class SouvenirModule
         var stage4Flash = flashList.Invoke(4);
         var stage5Flash = flashList.Invoke(5);
 
-        addQuestions(module, indicators.Select((ans, i) => makeQuestion(Question.SimonStagesIndicator, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ans }))
-            .Concat(stage1Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, module, formatArgs: new[] { Ordinal(i + 1), "first" }, correctAnswers: new[] { ans })))
-            .Concat(stage2Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, module, formatArgs: new[] { Ordinal(i + 1), "second" }, correctAnswers: new[] { ans })))
-            .Concat(stage3Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, module, formatArgs: new[] { Ordinal(i + 1), "third" }, correctAnswers: new[] { ans })))
-            .Concat(stage4Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, module, formatArgs: new[] { Ordinal(i + 1), "4th" }, correctAnswers: new[] { ans })))
-            .Concat(stage5Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, module, formatArgs: new[] { Ordinal(i + 1), "5th" }, correctAnswers: new[] { ans }))));
+        addQuestions(module, indicators.Select((ans, i) => makeQuestion(SSimonStages.Indicator, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ans }))
+            .Concat(stage1Flash.Select((ans, i) => makeQuestion(SSimonStages.Flashes, module, formatArgs: new[] { Ordinal(i + 1), "first" }, correctAnswers: new[] { ans })))
+            .Concat(stage2Flash.Select((ans, i) => makeQuestion(SSimonStages.Flashes, module, formatArgs: new[] { Ordinal(i + 1), "second" }, correctAnswers: new[] { ans })))
+            .Concat(stage3Flash.Select((ans, i) => makeQuestion(SSimonStages.Flashes, module, formatArgs: new[] { Ordinal(i + 1), "third" }, correctAnswers: new[] { ans })))
+            .Concat(stage4Flash.Select((ans, i) => makeQuestion(SSimonStages.Flashes, module, formatArgs: new[] { Ordinal(i + 1), "4th" }, correctAnswers: new[] { ans })))
+            .Concat(stage5Flash.Select((ans, i) => makeQuestion(SSimonStages.Flashes, module, formatArgs: new[] { Ordinal(i + 1), "5th" }, correctAnswers: new[] { ans }))));
     }
 }

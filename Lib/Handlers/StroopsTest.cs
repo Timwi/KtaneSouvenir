@@ -52,12 +52,12 @@ public partial class SouvenirModule
 
         addQuestions(module,
             usedWords.Select((w, i) =>
-                makeQuestion(Question.StroopsTestWord, module,
-                    correctAnswers: new[] { Question.StroopsTestWord.GetAnswers()[w] },
+                makeQuestion(SStroopsTest.Word, module,
+                    correctAnswers: new[] { SStroopsTest.Word.GetAnswers()[w] },
                     formatArgs: new[] { Ordinal(i + 1) }))
             .Concat(usedColors.Select((c, i) =>
-                makeQuestion(Question.StroopsTestColor, module,
-                    correctAnswers: new[] { Question.StroopsTestColor.GetAnswers()[c] },
+                makeQuestion(SStroopsTest.Color, module,
+                    correctAnswers: new[] { SStroopsTest.Color.GetAnswers()[c] },
                     formatArgs: new[] { Ordinal(i + 1) }))));
     }
 }

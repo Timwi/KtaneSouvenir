@@ -27,6 +27,6 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"Expected all values in range 0–3. Got: {niceGrid.JoinString(" ")}");
 
         var colors = new[] { "Black", "Red", "Green", "Blue" };
-        addQuestions(module, niceGrid.Select((c, i) => makeQuestion(Question.CARPSCell, module, questionSprite: Sprites.GenerateGridSprite(6, 8, i), correctAnswers: new[] { colors[c] })));
+        addQuestions(module, niceGrid.Select((c, i) => makeQuestion(SCARPS.Cell, module, questionSprite: Sprites.GenerateGridSprite(6, 8, i), correctAnswers: new[] { colors[c] })));
     }
 }

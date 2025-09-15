@@ -20,6 +20,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var unownAnswer = GetArrayField<int>(comp, "letterIndexes").Get(expectedLength: 5, validator: v => v is < 0 or > 25 ? "expected 0–25" : null);
-        addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
+        addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(SUnownCipher.Answers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
     }
 }

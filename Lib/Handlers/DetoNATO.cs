@@ -39,7 +39,7 @@ public partial class SouvenirModule
             yield return null;
         }
         yield return WaitForSolve;
-        addQuestions(module, displaysList.Select((w, ix) => makeQuestion(Question.DetoNATODisplay, module,
+        addQuestions(module, displaysList.Select((w, ix) => makeQuestion(SDetoNATO.Display, module,
             formatArgs: new[] { Ordinal(ix + 1) },
             correctAnswers: new[] { displaysList[ix] },
             allAnswers: words)));

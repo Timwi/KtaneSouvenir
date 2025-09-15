@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         var colors = GetArrayField<string>(comp, "outputSequence").Get(expectedLength: 5);
         addQuestions(module, colors.Select((color, ix) =>
-             makeQuestion(Question.SimonStopsColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { color }, preferredWrongAnswers: colors)));
+             makeQuestion(SSimonStops.Colors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { color }, preferredWrongAnswers: colors)));
     }
 }

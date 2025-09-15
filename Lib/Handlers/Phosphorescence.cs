@@ -26,7 +26,7 @@ public partial class SouvenirModule
         var index = GetIntField(init, "index").Get(min: 0, max: 419);
         var buttonPresses = GetField<Array>(init, "buttonPresses").Get(ar =>
             ar.Length is < 3 or > 6 ? "expected length 3–6" :
-            ar.OfType<object>().Any(v => !Question.PhosphorescenceButtonPresses.GetAnswers().Contains(v.ToString())) ? "contains unknown color" : null);
+            ar.OfType<object>().Any(v => !SPhosphorescence.ButtonPresses.GetAnswers().Contains(v.ToString())) ? "contains unknown color" : null);
         yield return question(SPhosphorescence.Offset).Answers(index.ToString());
 
         for (var i = 0; i < buttonPresses.GetLength(0); i++)

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -23,7 +23,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "NotSimaze");
         var fldMazeIndex = GetIntField(comp, "mazeIndex");
 
-        var colours = Question.NotSimazeMaze.GetAnswers();
+        var colours = SNotSimaze.Maze.GetAnswers();
         var startPositionArray = new[] { $"({colours[GetIntField(comp, "x").Get()]}, {colours[GetIntField(comp, "y").Get()]})" };
 
         yield return WaitForSolve;

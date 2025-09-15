@@ -21,8 +21,8 @@ public partial class SouvenirModule
         var stages = GetArrayField<int>(comp, "stageValues").Get(expectedLength: 5, validator: v => v is < 0 or > 15 ? $"Bad stage value {v}" : null);
         var shapes = new[] { "Square", "Pentagon", "Hexagon", "Heptagon" };
         addQuestions(module, stages.Take(4).SelectMany((s, i) => new[] {
-            makeQuestion(Question.HexOrbitsShape, module, formatArgs: new[] { "slow", Ordinal(i + 1) }, correctAnswers: new[] { shapes[s / 4] }),
-            makeQuestion(Question.HexOrbitsShape, module, formatArgs: new[] { "fast", Ordinal(i + 1) }, correctAnswers: new[] { shapes[s % 4] })
+            makeQuestion(SHexOrbits.Shape, module, formatArgs: new[] { "slow", Ordinal(i + 1) }, correctAnswers: new[] { shapes[s / 4] }),
+            makeQuestion(SHexOrbits.Shape, module, formatArgs: new[] { "fast", Ordinal(i + 1) }, correctAnswers: new[] { shapes[s % 4] })
         }));
     }
 }

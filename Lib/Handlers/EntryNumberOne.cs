@@ -24,6 +24,6 @@ public partial class SouvenirModule
         var num4 = GetIntField(comp, "Num4").Get().ToString("00000000");
 
         addQuestions(module, new[] { num2, num3, num4 }.SelectMany((n, i) => Enumerable.Range(0, 8).Select(d =>
-            makeQuestion(Question.EntryNumberOneDigits, module, formatArgs: new[] { Ordinal(d + 1), Ordinal(i + 2) }, correctAnswers: new[] { n[d].ToString() }))));
+            makeQuestion(SEntryNumberOne.Digits, module, formatArgs: new[] { Ordinal(d + 1), Ordinal(i + 2) }, correctAnswers: new[] { n[d].ToString() }))));
     }
 }

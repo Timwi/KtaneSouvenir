@@ -23,6 +23,6 @@ public partial class SouvenirModule
             yield return legitimatelyNoQuestion(module, "The only buttons you pressed were literally blank.");
 
         // skip the literally blank buttons.
-        addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { p }, preferredWrongAnswers: pressed.Except(new[] { "" }).ToArray())));
+        addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(SBrokenButtons.Question, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { p }, preferredWrongAnswers: pressed.Except(new[] { "" }).ToArray())));
     }
 }

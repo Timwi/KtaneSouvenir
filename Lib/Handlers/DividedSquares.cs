@@ -23,6 +23,6 @@ public partial class SouvenirModule
         var len = GetIntField(comp, "_sideLength").Get(1, 13);
         var b = GetIntField(comp, "_colorB").Get(0, 5);
 
-        yield return question(SDividedSquares.Color, args: [len == 1 ? "the square" : "the correct square"]).Answers(Question.DividedSquaresColor.GetAnswers()[b]);
+        yield return question(SDividedSquares.Color, args: [len == 1 ? "the square" : "the correct square"]).Answers(SDividedSquares.Color.GetAnswers()[b]);
     }
 }

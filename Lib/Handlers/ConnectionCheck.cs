@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -59,11 +59,11 @@ public partial class SouvenirModule
                     var which = candidates.PickRandom();
                     var count = allDigits[which];
                     var phrase = new[] { "the Connection Check with no {0}s", "the Connection Check with one {0}", "the Connection Check with two {0}s", "the Connection Check with three {0}s", "the Connection Check with four {0}s" }[count];
-                    format = string.Format(translateString(Question.ConnectionCheckNumbers, phrase), which);
+                    format = string.Format(translateString(SConnectionCheck.Numbers, phrase), which);
                     if (count == 0)
                         myWrong = myWrong.Where(s => !s.Contains(which.ToString())).ToArray();
                 }
-                yield return makeQuestion(Question.ConnectionCheckNumbers, module, formattedModuleName: format, correctAnswers: new[] { $"{q.x} {q.y}", $"{q.y} {q.x}" }, preferredWrongAnswers: myWrong);
+                yield return makeQuestion(SConnectionCheck.Numbers, module, formattedModuleName: format, correctAnswers: new[] { $"{q.x} {q.y}", $"{q.y} {q.x}" }, preferredWrongAnswers: myWrong);
             }
         }
         addQuestions(module, qs());

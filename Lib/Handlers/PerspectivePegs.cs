@@ -53,6 +53,6 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, 5)
             .Select(i => (pegIndex + i) % 5)
             .Select(n => colorNames.First(cn => colourMeshes[n, n].sharedMaterial.name.Substring(6).StartsWith(cn, StringComparison.InvariantCultureIgnoreCase)))
-            .Select((col, ix) => makeQuestion(Question.PerspectivePegsColorSequence, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { col })));
+            .Select((col, ix) => makeQuestion(SPerspectivePegs.ColorSequence, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { col })));
     }
 }

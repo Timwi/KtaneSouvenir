@@ -41,7 +41,7 @@ public partial class SouvenirModule
         var preferredWrongAnswers = Bomb.GetSolvedModuleNames();
         preferredWrongAnswers.Remove("The Klaxon");
         if (preferredWrongAnswers.Count < 7)
-            preferredWrongAnswers.AddRange(Question.KlaxonFirstModule.GetExampleAnswers());
+            preferredWrongAnswers.AddRange(SKlaxon.FirstModule.GetExampleAnswers());
 
         yield return question(SKlaxon.FirstModule).Answers(answer, preferredWrong: preferredWrongAnswers.ToArray());
     }

@@ -43,11 +43,11 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, sets.Take(4).Select((s, i) =>
-            makeQuestion(Question.GrandPianoKey, module,
+            makeQuestion(SGrandPiano.Key, module,
                 correctAnswers: s.Select(n => toNote(n)).ToArray(),
                 formatArgs: new[] { Ordinal(i + 1) }))
             .Concat(new[] {
-                makeQuestion(Question.GrandPianoFinalKey, module,
+                makeQuestion(SGrandPiano.FinalKey, module,
                 correctAnswers: new[] { toNote(sets[4][4], true) })}));
     }
 }

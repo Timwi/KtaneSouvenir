@@ -34,7 +34,7 @@ public partial class SouvenirModule
 
         addQuestions(module, ingredients.Select((ing, i) =>
             makeQuestion(
-                question: Question.CrazyHamburgerIngredient,
+                question: SCrazyHamburger.Ingredient,
                 data: module,
                 formatArgs: new string[] { Ordinal(i + 1) },
                 correctAnswers: new[] { dic[ing] })));

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -40,7 +40,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException("The number of displays did not match the number of Forget Me Not modules.");
 
         if (_moduleCounts[moduleId] == 1)
-            addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(Question.ForgetMeNotDisplayedDigits, moduleId, 1, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { digit.ToString() })));
+            addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(SForgetMeNot.DisplayedDigits, moduleId, 1, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { digit.ToString() })));
         else
         {
             var uniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _forgetMeNotDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
@@ -53,8 +53,8 @@ public partial class SouvenirModule
                 var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
                 if (uniqueStage != 0)
                 {
-                    qs.Add(makeQuestion(Question.ForgetMeNotDisplayedDigits, moduleId, 0,
-                        formattedModuleName: string.Format(translateString(Question.ForgetMeNotDisplayedDigits, "the Forget Me Not which displayed a {0} in the {1} stage"), myDisplay[uniqueStage - 1], Ordinal(uniqueStage)),
+                    qs.Add(makeQuestion(SForgetMeNot.DisplayedDigits, moduleId, 0,
+                        formattedModuleName: string.Format(translateString(SForgetMeNot.DisplayedDigits, "the Forget Me Not which displayed a {0} in the {1} stage"), myDisplay[uniqueStage - 1], Ordinal(uniqueStage)),
                         formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { myDisplay[stage].ToString() }));
                 }
             }

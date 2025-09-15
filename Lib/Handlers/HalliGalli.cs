@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -50,7 +50,7 @@ public partial class SouvenirModule
         if (fruit == -1 || figure == "")
             throw new AbandonModuleException($"The solution was somehow missed. (fruit={fruit}, figure={figure})");
 
-        yield return question(SHalliGalli.Fruit).Answers(Question.HalliGalliFruit.GetAnswers()[fruit]);
+        yield return question(SHalliGalli.Fruit).Answers(SHalliGalli.Fruit.GetAnswers()[fruit]);
         yield return question(SHalliGalli.Counts).Answers(figure);
     }
 }

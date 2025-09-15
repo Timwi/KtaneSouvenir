@@ -27,8 +27,8 @@ public partial class SouvenirModule
 
         yield return WaitForActivate;
 
-        var flavourNames = Question.IceCreamFlavour.GetAnswers();
-        var customerNames = Question.IceCreamCustomer.GetAnswers();
+        var flavourNames = SIceCream.Flavour.GetAnswers();
+        var customerNames = SIceCream.Customer.GetAnswers();
 
         var flavours = new int[3][];
         var solution = new int[3];

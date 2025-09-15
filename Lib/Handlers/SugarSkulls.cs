@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -31,6 +31,6 @@ public partial class SouvenirModule
         yield return question(SSugarSkulls.Skull, args: ["bottom-left"]).Answers(skulls[1]);
         yield return question(SSugarSkulls.Skull, args: ["bottom-right"]).Answers(skulls[2]);
         yield return question(SSugarSkulls.Availability, args: ["was"]).Answers(skulls.ToArray());
-        yield return question(SSugarSkulls.Availability, args: ["was not"]).Answers(Question.SugarSkullsAvailability.GetAnswers().Except(skulls).ToArray());
+        yield return question(SSugarSkulls.Availability, args: ["was not"]).Answers(SSugarSkulls.Availability.GetAnswers().Except(skulls).ToArray());
     }
 }

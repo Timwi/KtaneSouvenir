@@ -27,7 +27,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var colors = Question.WireOrderingDisplayColor.GetAnswers();
+        var colors = SWireOrdering.DisplayColor.GetAnswers();
         var chosenColorsDisplay = fldChosenColorsDisplay.Get(expectedLength: 4);
         var chosenDisplayNumbers = fldChosenDisplayNumbers.Get(expectedLength: 4);
         var chosenColorsWire = fldChosenColorsWire.Get(expectedLength: 4);

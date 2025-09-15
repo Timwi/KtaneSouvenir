@@ -19,9 +19,9 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var moves = GetListField<string>(comp, "souvenirPositions").Get().Select(move => Regex.Replace(move, @"^\[|\]$", "")).ToArray();
-        addQuestions(module, moves.Select((move, ix) =>
-            makeQuestion(Question._1DChessMoves, module,
-                formatArgs: new[] { new[] { "your first move", "Rustmate’s first move", "your second move", "Rustmate’s second move", "your third move", "Rustmate’s third move", "your fourth move", "Rustmate’s fourth move", "your fifth move", "Rustmate’s fifth move", "your sixth move", "Rustmate’s sixth move", "your seventh move", "Rustmate’s seventh move", "your eighth move", "Rustmate’s eighth move" }[ix] },
-                correctAnswers: new[] { move })));
+        var strings = new[] { "your first move", "Rustmate’s first move", "your second move", "Rustmate’s second move", "your third move", "Rustmate’s third move", "your fourth move", "Rustmate’s fourth move", "your fifth move", "Rustmate’s fifth move", "your sixth move", "Rustmate’s sixth move", "your seventh move", "Rustmate’s seventh move", "your eighth move", "Rustmate’s eighth move" };
+        addQuestions(module, moves.Select((move, ix) => makeQuestion(S1DChess.Moves, module,
+                            formatArgs: new[] { strings[ix] },
+                            correctAnswers: new[] { move })));
     }
 }

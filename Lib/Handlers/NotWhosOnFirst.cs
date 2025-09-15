@@ -34,7 +34,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var positions = Question.NotWhosOnFirstPressedPosition.GetAnswers();
+        var positions = SNotWhosOnFirst.PressedPosition.GetAnswers();
         var sumCorrectAnswers = new[] { fldSum.Get().ToString() };
         for (var i = 0; i < 4; i++)
         {

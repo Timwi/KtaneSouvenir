@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -23,7 +23,7 @@ public partial class SouvenirModule
 
         // “selectedNames” contains the scrambled versions of the names. Find the unscrambled name.
         var unscrambledNames = GetArrayField<string>(comp, "selectedNames").Get()
-            .Select(n => Question.MatrixAccessCode.GetAnswers().FirstOrDefault(ac => n.ToLowerInvariant().OrderBy(ch => ch).JoinString() == ac.ToLowerInvariant().OrderBy(ch => ch).JoinString()))
+            .Select(n => SMatrix.AccessCode.GetAnswers().FirstOrDefault(ac => n.ToLowerInvariant().OrderBy(ch => ch).JoinString() == ac.ToLowerInvariant().OrderBy(ch => ch).JoinString()))
             .ToArray();
 
         yield return question(SMatrix.AccessCode).Answers(unscrambledNames);

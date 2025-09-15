@@ -59,7 +59,7 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, questions.Select(t =>
-            makeQuestion(Question.ButtonageButtons, module,
+            makeQuestion(SButtonage.Buttons, module,
                 formatArgs: new[] { t.Item1 },
                 correctAnswers: new[] { t.Item2.ToString() },
                 preferredWrongAnswers: reasonableRandom(t.Item3, t.Item4, t.Item2).ToArray())));

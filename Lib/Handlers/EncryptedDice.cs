@@ -43,6 +43,6 @@ public partial class SouvenirModule
             }
             yield return new WaitForSeconds(.1f); // Roll animation is much longer than .1 seconds anyway.
         }
-        addQuestions(module, rolledValues.Select((vals, ix) => makeQuestion(Question.EncryptedDice, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: vals.Select(val => (val).ToString()).ToArray())));
+        addQuestions(module, rolledValues.Select((vals, ix) => makeQuestion(SEncryptedDice.Question, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: vals.Select(val => (val).ToString()).ToArray())));
     }
 }

@@ -22,7 +22,7 @@ public partial class SouvenirModule
         var displayTD = GetField<IList>(comp, "displaySounds").Get(v => v.Count is not 5 || v.Cast<object>().Any(o => o is null) ? "Expected 5 played sounds" : null);
         var allTD = GetField<IList>(comp, "sounds").Get(v => v.Count is not 204 || v.Cast<object>().Any(o => o is null) ? "Expected 204 total sounds" : null);
         var fldSound = GetField<string>(displayTD[0], "sound");
-        var foreignID = Question.ThirtyDollarModuleSounds.GetAttribute().ForeignAudioID;
+        var foreignID = SThirtyDollarModule.Sounds.GetAttribute().ForeignAudioID;
         var display = displayTD.Cast<object>().Select(o => fldSound.GetFrom(o)).Select(s => Sounds.GetForeignClip(foreignID, s)).ToArray();
         var all = allTD.Cast<object>().Select(o => fldSound.GetFrom(o)).Select(s => Sounds.GetForeignClip(foreignID, s)).ToArray();
 

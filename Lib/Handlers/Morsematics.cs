@@ -21,6 +21,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(Question.MorsematicsReceivedLetters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { chars[i] }, preferredWrongAnswers: chars)));
+        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(SMorsematics.ReceivedLetters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { chars[i] }, preferredWrongAnswers: chars)));
     }
 }

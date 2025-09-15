@@ -62,7 +62,7 @@ public partial class SouvenirModule
             ["sea shore", "she sore", "she sure", "seesaw", "seizure", "shell sea", "steep store", "sheer sort", "seed spore", "sieve horn", "steel sword"]);
 
         addQuestions(module, Enumerable.Range(0, 3).SelectMany(i =>
-            new[] { Question.MoneyGame1, Question.MoneyGame2, Question.MoneyGame3 }.Select((q, qi) =>
+            new[] { SMoneyGame.Question1, SMoneyGame.Question2, SMoneyGame.Question3 }.Select((q, qi) =>
                 makeQuestion(q, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { possibleAnswers[qi][data[i][qi]] })
             )));
     }

@@ -27,19 +27,19 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "MssngvWls");
         var missingVowel = GetIntField(comp, "ForbiddenNumber").Get(0, 4);
 
-        var vowels = translateString(Question.MssngvWlsMssNgvwL, "AEIOU");
+        var vowels = translateString(SMssngvWls.MssNgvwL, "AEIOU");
 
         GetField<TextMesh>(comp, "Text", true).Get().text = "";
         GetField<KMSelectable>(comp, "CycleButton", true).Get().OnInteract = () => false;
 
         if (vowels is "")
         {
-            addQuestion(module, Question.MssngvWlsMssNgvwL, correctAnswers: new[] { "AEIOU"[missingVowel].ToString() });
+            addQuestion(module, SMssngvWls.MssNgvwL, correctAnswers: new[] { "AEIOU"[missingVowel].ToString() });
             yield break;
         }
 
-        var moduleName = formatModuleName(Question.MssngvWlsMssNgvwL, _moduleCounts.Get(module.Module.ModuleType, 0) > 1, module.SolveIndex);
-        var questionText = string.Format(translateQuestion(Question.MssngvWlsMssNgvwL), moduleName);
+        var moduleName = formatModuleName(SMssngvWls.MssNgvwL, _moduleCounts.Get(module.Module.ModuleType, 0) > 1, module.SolveIndex);
+        var questionText = string.Format(translateQuestion(SMssngvWls.MssNgvwL), moduleName);
 
         using var letters = questionText.Normalize().GetEnumerator();
 
@@ -74,11 +74,11 @@ public partial class SouvenirModule
             }
         }
 
-        var attr = Ut.GetAttribute(Question.MssngvWlsMssNgvwL);
+        var attr = Ut.GetAttribute(SMssngvWls.MssNgvwL);
         var answers = "AEIOU".Select(c => c.ToString()).ToArray().Shuffle();
 
         addQuestions(module, new QandA(
-            q: Question.MssngvWlsMssNgvwL,
+            q: SMssngvWls.MssNgvwL,
             module: attr.ModuleNameWithThe,
             question: new QandA.TextQuestion(newText.ToString(), attr.Layout, null, 0f),
             answerSet: new QandA.TextAnswerSet(5, attr.Layout, answers, Fonts[_translation?.DefaultFontIndex ?? 0], attr.FontSize, attr.CharacterSize, FontTextures[_translation?.DefaultFontIndex ?? 0], FontMaterial),

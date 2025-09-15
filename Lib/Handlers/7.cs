@@ -40,10 +40,10 @@ public partial class SouvenirModule
             if (x == 0) // Stage 0 is denoted as the initial stage on this module.
             {
                 for (var y = 0; y < 3; y++)
-                    allQuestions.Add(makeQuestion(Question._7InitialValues, module, formatArgs: new[] { colorReference[y] }, correctAnswers: new[] { allDisplayedValues[x][y].ToString() }));
+                    allQuestions.Add(makeQuestion(S7.InitialValues, module, formatArgs: new[] { colorReference[y] }, correctAnswers: new[] { allDisplayedValues[x][y].ToString() }));
             }
             else
-                allQuestions.Add(makeQuestion(Question._7LedColors, module, formatArgs: new[] { x.ToString() }, correctAnswers: new[] { colorReference[allIdxDisplayedOperators[x]] }, preferredWrongAnswers: colorReference));
+                allQuestions.Add(makeQuestion(S7.LedColors, module, formatArgs: new[] { x.ToString() }, correctAnswers: new[] { colorReference[allIdxDisplayedOperators[x]] }, preferredWrongAnswers: colorReference));
         }
 
         addQuestions(module, allQuestions.ToArray());
