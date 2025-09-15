@@ -24,8 +24,7 @@ public partial class SouvenirModule
         var fldMoveIDs = GetArrayField<int>(comp, "moveIDs");
         var fldRevive = GetField<bool>(comp, "revive");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var creatureData = GetField<object>(comp, "CD", isPublic: true).Get();
         var movesData = GetField<object>(comp, "MD", isPublic: true).Get();
@@ -100,7 +99,7 @@ public partial class SouvenirModule
         }
 
         while (!finished)
-            yield return new WaitForSeconds(.1f);
+            yield return null;
         yield return WaitForSolve;
 
         for (var i = 0; i < buttons.Length; i++)

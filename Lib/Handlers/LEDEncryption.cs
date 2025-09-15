@@ -19,8 +19,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "LEDEncryption");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(0.1f);
+        yield return WaitForActivate;
 
         var buttons = GetArrayField<KMSelectable>(comp, "buttons", true).Get(expectedLength: 4);
         var buttonLabels = buttons.Select(btn => btn.GetComponentInChildren<TextMesh>()).ToArray();

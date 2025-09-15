@@ -18,8 +18,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "Listening");
         var fldCode = GetArrayField<char>(comp, "codeInput");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         yield return WaitForSolve;
 

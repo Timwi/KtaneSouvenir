@@ -11,6 +11,11 @@ public sealed class WaitForSolveInstruction : SouvenirInstruction
     public static WaitForSolveInstruction Instance = new();
 }
 
+public sealed class WaitForActivateInstruction : SouvenirInstruction
+{
+    public static WaitForActivateInstruction Instance = new();
+}
+
 public sealed class WaitForUnignoredModulesInstruction : SouvenirInstruction
 {
     public static WaitForUnignoredModulesInstruction Instance = new();

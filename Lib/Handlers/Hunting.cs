@@ -19,8 +19,7 @@ public partial class SouvenirModule
         var fldStage = GetIntField(comp, "stage");
         var fldReverseClues = GetField<bool>(comp, "reverseClues");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var hasRowFirst = new bool[4];
         while (module.Unsolved)

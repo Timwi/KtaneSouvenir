@@ -22,8 +22,7 @@ public partial class SouvenirModule
 
         var weatherNames = Question.CreationWeather.GetAnswers();
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(0.1f);
+        yield return WaitForActivate;
 
         var currentDay = fldDay.Get(min: 1, max: 1);
         var currentWeather = fldWeather.Get(cw => !weatherNames.Contains(cw) ? "unknown weather" : null);

@@ -16,8 +16,7 @@ public partial class SouvenirModule
     [SouvenirHandler("SplittingTheLootModule", "Splitting The Loot", typeof(SSplittingTheLoot), "luisdiogo98")]
     private IEnumerator<SouvenirInstruction> ProcessSplittingTheLoot(ModuleData module)
     {
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var comp = GetComponent(module, "SplittingTheLootScript");
         var bags = (IList) GetField<object>(comp, "bags").Get(lst => lst is not IList list ? "expected an IList" : list.Count != 7 ? "expected length 7" : null);

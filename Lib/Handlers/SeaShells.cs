@@ -28,8 +28,7 @@ public partial class SouvenirModule
         var fldStage = GetIntField(comp, "stage");
         var fldDisplay = GetField<TextMesh>(comp, "Display", isPublic: true);
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var rows = new int[3];
         var cols = new int[3];

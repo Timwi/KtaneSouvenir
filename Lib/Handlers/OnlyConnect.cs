@@ -17,8 +17,7 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessOnlyConnect(ModuleData module)
     {
         var comp = GetComponent(module, "OnlyConnectModule");
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var hieroglyphsDisplayed = GetArrayField<int>(comp, "_hieroglyphsDisplayed").Get(expectedLength: 6, validator: v => v is < 0 or > 5 ? "expected range 0–5" : null);
 

@@ -21,8 +21,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "MouseInTheMazeModule");
         var sphereColors = GetArrayField<int>(comp, "_sphereColors").Get(expectedLength: 4);
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var goalPos = GetIntField(comp, "_goalPosition").Get(min: 0, max: 3);
         var torusColor = GetIntField(comp, "_torusColor").Get(min: 0, max: 3);

@@ -233,10 +233,12 @@ public partial class SouvenirModule : MonoBehaviour
         "Someone thinks they’re too clever for me. They all think that at first." // Someone thinks they’re too clever for us. They all think that at first. (Invincible)
     );
 
+    /// <summary><code>yield return</code> this to wait for the module to be activated.</summary>
+    private static SouvenirInstruction WaitForActivate => WaitForActivateInstruction.Instance;
     /// <summary><code>yield return</code> this to wait for the module to be solved.</summary>
-    private static WaitForSolveInstruction WaitForSolve => WaitForSolveInstruction.Instance;
+    private static SouvenirInstruction WaitForSolve => WaitForSolveInstruction.Instance;
     /// <summary><code>yield return</code> this to wait for all unignored (that is, non-boss) modules to finish.</summary>
-    private static WaitForUnignoredModulesInstruction WaitForUnignoredModules => WaitForUnignoredModulesInstruction.Instance;
+    private static SouvenirInstruction WaitForUnignoredModules => WaitForUnignoredModulesInstruction.Instance;
 
     #endregion
 
@@ -529,7 +531,7 @@ public partial class SouvenirModule : MonoBehaviour
                 }
                 var fontIndex = qAttr.Type is AnswerType.DynamicFont or AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) qAttr.Type;
                 answerSet = new TextAnswerSet(qAttr.Layout, answers.Select(ans => qAttr.TranslateAnswers ? TranslateAnswer(qAttr.EnumValue, ans) : ans).ToArray(),
-                    0, new(Fonts[fontIndex], qAttr.FontSize, qAttr.CharacterSize, FontTextures[fontIndex], FontMaterial));
+                    0, new(Fonts[fontIndex], FontTextures[fontIndex], FontMaterial, qAttr.FontSize, qAttr.CharacterSize));
                 break;
         }
         disappear();
@@ -867,8 +869,14 @@ public partial class SouvenirModule : MonoBehaviour
 
                 switch (e.Current)
                 {
+                    case null:
+                        yield return null;
+                        break;
                     case WaitForSolveInstruction:
                         yield return new WaitWhile(() => data.Unsolved);
+                        break;
+                    case WaitForActivateInstruction:
+                        yield return new WaitWhile(() => !_isActivated);
                         break;
                     case WaitForUnignoredModulesInstruction:
                         yield return new WaitWhile(() => !_noUnignoredModulesLeft);
@@ -898,9 +906,6 @@ public partial class SouvenirModule : MonoBehaviour
                             yield break;
                         }
                         questions.Add(q.Stump);
-                        break;
-                    default:
-                        yield return e.Current;
                         break;
                 }
 

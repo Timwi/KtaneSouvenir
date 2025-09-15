@@ -22,8 +22,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "ColorMorseModule");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         yield return WaitForSolve;
 

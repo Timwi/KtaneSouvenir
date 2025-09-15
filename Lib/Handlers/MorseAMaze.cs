@@ -25,8 +25,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "MorseAMaze");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(0.1f);
+        yield return WaitForActivate;
 
         var start = GetField<string>(comp, "_souvenirQuestionStartingLocation").Get(str => str.Length != 2 ? "expected length 2" : null);
         var end = GetField<string>(comp, "_souvenirQuestionEndingLocation").Get(str => str.Length != 2 ? "expected length 2" : null);

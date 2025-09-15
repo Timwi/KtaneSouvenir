@@ -17,8 +17,7 @@ public partial class SouvenirModule
     [SouvenirHandler("errorCodes", "Error Codes", typeof(SErrorCodes), "Hawker")]
     private IEnumerator<SouvenirInstruction> ProcessErrorCodes(ModuleData module)
     {
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var comp = GetComponent(module, "ErrorCodes");
         var errorTextDisplay = GetField<TextMesh>(comp, "errorText", isPublic: true).Get();

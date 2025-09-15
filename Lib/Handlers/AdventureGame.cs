@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -25,20 +26,19 @@ public partial class SouvenirModule
         var mthItemName = GetMethod<string>(comp, "ItemName", 1);
         var mthShouldUseItem = GetMethod<bool>(comp, "ShouldUseItem", 1);
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var invValues = GetField<IList>(comp, "InvValues").Get();   // actually List<AdventureGameModule.ITEM>
         var buttonUse = GetField<KMSelectable>(comp, "ButtonUse", isPublic: true).Get(b => b.OnInteract == null ? "ButtonUse.OnInteract is null" : null);
-        var enemy = GetField<object>(comp, "SelectedEnemy").Get();
         var textEnemy = GetField<TextMesh>(comp, "TextEnemy", isPublic: true).Get();
         var invWeaponCount = fldInvWeaponCount.Get(v => v == 0 ? "zero" : null);
+
+        yield return question(SAdventureGame.Enemy).Answers(titleCase(GetField<object>(comp, "SelectedEnemy").Get().ToString()));
 
         var prevInteract = buttonUse.OnInteract;
         var origInvValues = new List<int>(invValues.Cast<int>());
         var correctItemsUsed = 0;
-        var qs = new List<Func<QandA>>();
-        var solved = false;
+        var qs = new List<QandAStump>();
 
         buttonUse.OnInteract = delegate
         {
@@ -54,26 +54,23 @@ public partial class SouvenirModule
             {
                 // If the length of the inventory has changed, the user used a correct non-weapon item.
                 var itemIndex = ++correctItemsUsed;
-                qs.Add(() => makeQuestion(Question.AdventureGameCorrectItem, module, formatArgs: new[] { Ordinal(itemIndex) }, correctAnswers: new[] { titleCase(mthItemName.Invoke(itemUsed)) }));
+                qs.Add(question(SAdventureGame.CorrectItem, args: [Ordinal(itemIndex)]).Answers(titleCase(mthItemName.Invoke(itemUsed))));
                 origInvValues.Clear();
                 origInvValues.AddRange(invValues.Cast<int>());
             }
             else if (shouldUse)
             {
                 // The user solved the module.
-                solved = true;
                 textEnemy.text = "Victory!";
             }
 
             return ret;
         };
 
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForSolve;
 
         buttonUse.OnInteract = prevInteract;
-        var enemyName = enemy.ToString();
-        enemyName = enemyName.Substring(0, 1).ToUpperInvariant() + enemyName.Substring(1).ToLowerInvariant();
-        addQuestions(module, qs.Select(q => q()).Concat(new[] { makeQuestion(Question.AdventureGameEnemy, module, correctAnswers: new[] { enemyName }) }));
+        foreach (var q in qs)
+            yield return q;
     }
 }

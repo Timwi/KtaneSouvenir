@@ -20,8 +20,7 @@ public partial class SouvenirModule
         var fldScreen = GetField<TextMesh>(comp, "Screen", isPublic: true);
         var usableLetters = GetField<string>(comp, "letters").Get();
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var wrongAnswers = new HashSet<string>();
         string letters = null;

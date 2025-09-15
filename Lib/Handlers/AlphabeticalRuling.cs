@@ -24,8 +24,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "AlphabeticalRuling");
         var fldStage = GetIntField(comp, "currentStage");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var letterDisplay = GetField<TextMesh>(comp, "LetterDisplay", isPublic: true).Get();
         var numberDisplays = GetArrayField<TextMesh>(comp, "NumberDisplays", isPublic: true).Get(expectedLength: 2);

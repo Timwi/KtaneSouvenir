@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -20,10 +20,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "EvilMemory");
         const string moduleId = "HexiEvilFMN";
 
-        var activated = false;
-        module.Module.OnActivate += () => activated = true;
-        while (!activated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
         yield return null; // Wait one extra frame to ensure DialDisplay is set.
 
         var allDisplays = GetArrayField<int[]>(comp, "DialDisplay").Get(nullAllowed: true);

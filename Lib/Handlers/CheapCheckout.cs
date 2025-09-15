@@ -19,8 +19,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "CheapCheckoutModule");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var paids = new List<decimal> { GetField<decimal>(comp, "Display").Get() };
         var paid = GetField<decimal>(comp, "Paid").Get();

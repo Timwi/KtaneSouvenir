@@ -23,8 +23,7 @@ public partial class SouvenirModule
         var seedTextMesh = GetField<TextMesh>(comp, "Seedling", isPublic: true).Get();
         var fldNumberBasis = GetField<int>(comp, "NumberBasis");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var seed = seedTextMesh.text;
         var numberBasis = fldNumberBasis.Get();

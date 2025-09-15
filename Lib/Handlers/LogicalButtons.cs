@@ -27,8 +27,7 @@ public partial class SouvenirModule
         var fldButtons = GetField<Array>(comp, "buttons");
         var fldGateOperator = GetField<object>(comp, "gateOperator");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var curStage = 0;
         var colors = new string[3][];

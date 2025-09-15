@@ -21,10 +21,7 @@ public partial class SouvenirModule
         const string moduleId = "MemoryV2";
 
         var fldDisplayedDigits = GetArrayField<int>(comp, "Display");
-        var activated = false;
-        module.Module.OnActivate += () => { activated = true; };
-        while (!activated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
         yield return null; // Wait one frame to make sure the Display field has been set.
 
         var myDisplay = fldDisplayedDigits.Get(minLength: 0, validator: d => d is < 0 or > 9 ? "expected range 0-9" : null);

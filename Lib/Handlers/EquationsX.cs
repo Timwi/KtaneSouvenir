@@ -18,8 +18,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "EquationsScript");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(0.1f);
+        yield return WaitForActivate;
 
         var symbol = GetField<GameObject>(comp, "symboldisplay", isPublic: true).Get().GetComponentInChildren<TextMesh>().text;
 

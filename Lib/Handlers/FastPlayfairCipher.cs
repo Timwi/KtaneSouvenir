@@ -20,8 +20,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "FastPlayfairCipher");
         var fldScreen = GetField<TextMesh>(comp, "DisplayedMessage", isPublic: true);
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var wrongAnswers = new HashSet<string>();
         string letters = null;

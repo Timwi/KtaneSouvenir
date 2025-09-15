@@ -28,8 +28,7 @@ public partial class SouvenirModule
 
         var colors = Question.GridLockStartingColor.GetAnswers();
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(0.1f);
+        yield return WaitForActivate;
 
         var solution = GetIntField(comp, "_solution").Get(min: 0, max: 15);
         var pages = GetArrayField<int[]>(comp, "_pages").Get(minLength: 5, maxLength: 10, validator: p => p.Length != 16 ? "expected length 16" : p.Any(q => q < 0 || (q & 15) > 12 || (q & (15 << 4)) > (4 << 4)) ? "unexpected value" : null);

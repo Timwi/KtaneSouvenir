@@ -28,8 +28,7 @@ public partial class SouvenirModule
         var texts = new string[2];
         var c = -1;
         var colorNames = new string[] { "white", "red", "magenta", "yellow", "green", "cyan", "violet" };
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
         while (stage.Get() == 0)
         {
             texts[0] = dletters.Get().Take(5).Select(i => i.text).JoinString();

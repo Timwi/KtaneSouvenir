@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -20,8 +20,8 @@ public partial class SouvenirModule
     [SouvenirHandler("NandNs", "N&Ns", typeof(SNandNs), "Anonymous")]
     private IEnumerator<SouvenirInstruction> ProcessNandNs(ModuleData module)
     {
-        while (!_isActivated) // No chance of missing the second stage, since the animation takes some time
-            yield return new WaitForSeconds(.1f);
+        // No chance of missing the second stage, since the animation takes some time
+        yield return WaitForActivate;
 
         var comp = GetComponent(module, "NandNs");
         var labels = new string[2][];

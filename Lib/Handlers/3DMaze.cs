@@ -21,8 +21,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "ThreeDMazeModule");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var map = GetField<object>(comp, "map").Get();
         var mapData = GetField<Array>(map, "mapData").Get(arr => arr.GetLength(0) != 8 || arr.GetLength(1) != 8 ? $"size {arr.GetLength(0)},{arr.GetLength(1)}, expected 8,8" : null);

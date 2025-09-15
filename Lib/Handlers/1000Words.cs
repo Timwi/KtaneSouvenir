@@ -119,8 +119,7 @@ public partial class SouvenirModule
             "BREVE", "LUAUS", "RATER", "LIONS", "PRUNT", "KANGA", "FINCA", "BOING", "ALMUD", "CAPOS", "FOGIE", "STRAW", "PORNO", "DUMBO", "DIBBS", "SICKS", "TARRY", "KREEP", "KYBOS", "SORNS",
             "EXCEL", "BYRES", "THONG", "WOOFS", "SEROW", "FORBS", "JUNTA", "SIEUR", "HEJAB", "DYKED", "VINTS", "KAIAK", "LAPIS", "GYNIE", "EPHOD", "GYPPY", "CUVEE", "AGREE", "SKEGS", "HEEDS" };
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var yesAndNo = GetArrayField<KMSelectable>(comp, "Buttons", isPublic: true).Get(expectedLength: 2);
         var indexNumber = GetField<int>(comp, "WordIndex");

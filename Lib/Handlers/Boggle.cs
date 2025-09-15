@@ -18,8 +18,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "boggle");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var map = GetField<char[,]>(comp, "letterMap").Get(m => m.GetLength(0) != 10 || m.GetLength(1) != 10 ? $"size was {m.GetLength(0)}×{m.GetLength(1)}, expected 10×10" : null);
         var visible = GetField<string>(comp, "visableLetters", isPublic: true).Get(v => v.Length != 4 ? "expected length 4" : null);

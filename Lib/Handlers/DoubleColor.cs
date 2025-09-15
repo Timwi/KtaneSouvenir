@@ -19,8 +19,7 @@ public partial class SouvenirModule
         var fldColor = GetIntField(comp, "screenColor");
         var fldStage = GetIntField(comp, "stageNumber");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var color1 = fldColor.Get(min: 0, max: 4);
         var stage = fldStage.Get(min: 1, max: 1);

@@ -20,8 +20,7 @@ public partial class SouvenirModule
         var fldStage = GetIntField(comp, "stage");
         var fldTextOption = GetField<object>(comp, "textOption");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var maxStageAmount = GetIntField(comp, "maxStageAmount").Get();
         var answers = new string[maxStageAmount];

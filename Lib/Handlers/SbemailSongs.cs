@@ -20,8 +20,7 @@ public partial class SouvenirModule
         const string moduleId = "sbemailsongs";
 
         var fldDisplayedSongNumbers = GetListField<int>(comp, "stages", isPublic: true);
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
         yield return null; // Wait one frame to make sure the Display field has been set.
 
         var myDisplay = fldDisplayedSongNumbers.Get(minLength: 0, validator: d => d is < 1 or > 209 ? "expected range 1-209" : null);

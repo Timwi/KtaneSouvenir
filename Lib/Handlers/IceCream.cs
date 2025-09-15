@@ -25,8 +25,7 @@ public partial class SouvenirModule
         var fldSolution = GetArrayField<int>(comp, "Solution");
         var fldFlavourOptions = GetArrayField<int[]>(comp, "FlavorOptions");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var flavourNames = Question.IceCreamFlavour.GetAnswers();
         var customerNames = Question.IceCreamCustomer.GetAnswers();

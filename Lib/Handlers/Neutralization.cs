@@ -20,8 +20,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "neutralization");
 
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForActivate;
 
         var acidType = GetIntField(comp, "acidType").Get(min: 0, max: 3);
         var acidVol = GetIntField(comp, "acidVol").Get(av => av < 5 || av > 20 || av % 5 != 0 ? "unexpected acid volume" : null);
