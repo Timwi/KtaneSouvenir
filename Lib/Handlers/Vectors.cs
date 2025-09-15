@@ -30,10 +30,7 @@ public partial class SouvenirModule
         for (var i = 0; i < vectorCount; i++)
             if (!colorsName.Contains(colors[pickedVectors[i]]))
                 throw new AbandonModuleException($"‘colors[{pickedVectors[i]}]’ pointed to illegal color “{colors[pickedVectors[i]]}” (colors=[{colors.JoinString(", ")}], pickedVectors=[{pickedVectors.JoinString(", ")}], index {i}).");
-
-        var qs = new List<QandA>();
         for (var i = 0; i < vectorCount; i++)
-            qs.Add(makeQuestion(Question.VectorsColors, module, formatArgs: new[] { vectorCount == 1 ? "only" : Ordinal(i + 1) }, correctAnswers: new[] { colors[pickedVectors[i]] }));
-        addQuestions(module, qs);
+            yield return question(SVectors.Colors, args: [vectorCount == 1 ? "only" : Ordinal(i + 1)]).Answers(colors[pickedVectors[i]]);
     }
 }

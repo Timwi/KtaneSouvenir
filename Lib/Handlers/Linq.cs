@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -7,7 +8,10 @@ using static Souvenir.AnswerLayout;
 public enum SLinq
 {
     [SouvenirQuestion("What was the {1} function in {0}?", ThreeColumns6Answers, "First", "Last", "Min", "Max", "Distinct", "Skip", "SkipLast", "Take", "TakeLast", "ElementAt", "Except", "Intersect", "Concat", "Append", "Prepend", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslatableStrings = ["the Linq whose {0} function was {1}"])]
-    Function
+    Function,
+
+    [SouvenirDiscriminator("the Linq whose {0} function was {1}", Arguments = [QandA.Ordinal, "First", QandA.Ordinal, "Last", QandA.Ordinal, "Min", QandA.Ordinal, "Max"], ArgumentGroupSize = 2)]
+    Discriminator
 }
 
 public partial class SouvenirModule
@@ -18,27 +22,16 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "LinqScript");
 
         var select = GetField<object>(comp, "select").Get();
-        var functions = GetField<Array>(select, "functions").Get(ar =>
-                ar.Length != 3 ? "expected length 3" :
-                ar.OfType<object>().Any(v => !Question.LinqFunction.GetAnswers().Contains(v.ToString())) ? "contains unknown function" : null)
-            .OfType<object>().Select(v => v.ToString()).ToArray();
-        _linqFunctions.Add(functions);
+        var functions = GetField<Array>(select, "functions")
+            .Get(ar => ar.Length != 3 ? "expected length 3" : ar.Cast<object>().Any(v => !SLinq.Function.GetAnswers().Contains(v.ToString())) ? "contains unknown function" : null)
+            .Cast<object>().Select(v => v.ToString()).ToArray();
+
+        for (var stage = 0; stage < 3; stage++)
+            yield return new Discriminator(SLinq.Discriminator, $"stage{stage}", functions[stage], [Ordinal(stage + 1), functions[stage]]);
 
         yield return WaitForSolve;
 
-        var qs = new List<QandA>();
-        for (var i = 0; i < functions.Length; i++)
-        {
-            string format = null;
-            var stages = Enumerable.Range(0, 2).Where(s => s != i && _linqFunctions.Count(f => f[s] == functions[s]) == 1).ToArray();
-            if (stages.Any() && UnityEngine.Random.Range(0, 2) != 0)
-            {
-                var stage = stages.PickRandom();
-                format = string.Format(translateString(Question.LinqFunction, "the Linq whose {0} function was {1}"), Ordinal(stage + 1), functions[stage]);
-            }
-            qs.Add(makeQuestion(Question.LinqFunction, module, formattedModuleName: format, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { functions[i].ToString() }));
-        }
-
-        addQuestions(module, qs);
+        for (var stage = 0; stage < 3; stage++)
+            yield return question(SLinq.Function, args: [Ordinal(stage + 1)], avoidDiscriminators: [$"stage{stage}"]).Answers(functions[stage]);
     }
 }

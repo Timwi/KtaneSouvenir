@@ -29,22 +29,18 @@ public partial class SouvenirModule
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
             yield return legitimatelyNoQuestion(module, "The module was force-solved.");
 
-        var questions = new List<QandA>();
-
         var pressedLetter = GetProperty<char>(comp, "souvenirPressedLetter", true).Get();
         if (pressedLetter != 0)
-            questions.Add(makeQuestion(Question.AlfaBravoPressedLetter, module, correctAnswers: new[] { pressedLetter.ToString() }));
+            yield return question(SAlfaBravo.PressedLetter).Answers(pressedLetter.ToString());
 
         var letterToTheLeftOfPressedOne = GetProperty<char>(comp, "souvenirLetterToTheLeftOfPressedOne", true).Get();
         if (letterToTheLeftOfPressedOne != 0)
-            questions.Add(makeQuestion(Question.AlfaBravoLeftPressedLetter, module, correctAnswers: new[] { letterToTheLeftOfPressedOne.ToString() }));
+            yield return question(SAlfaBravo.LeftPressedLetter).Answers(letterToTheLeftOfPressedOne.ToString());
 
         var letterToTheRightOfPressedOne = GetProperty<char>(comp, "souvenirLetterToTheRightOfPressedOne", true).Get();
         if (letterToTheRightOfPressedOne != 0)
-            questions.Add(makeQuestion(Question.AlfaBravoRightPressedLetter, module, correctAnswers: new[] { letterToTheRightOfPressedOne.ToString() }));
+            yield return question(SAlfaBravo.RightPressedLetter).Answers(letterToTheRightOfPressedOne.ToString());
 
-        questions.Add(makeQuestion(Question.AlfaBravoDigit, module, correctAnswers: new[] { GetProperty<int>(comp, "souvenirDisplayedDigit", true).Get().ToString() }));
-
-        addQuestions(module, questions);
+        yield return question(SAlfaBravo.Digit).Answers(GetProperty<int>(comp, "souvenirDisplayedDigit", true).Get().ToString());
     }
 }

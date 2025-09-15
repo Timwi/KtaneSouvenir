@@ -70,29 +70,16 @@ public partial class SouvenirModule
         }
 
         var unaviableCharacters = new[] { "Bob", "God Browser", "Flavio", "Make", "Quiz Thwomb", "Yoshi Kid" };
-        var qs = new List<QandA>();
 
         for (var i = 0; i < answer.Count; i++)
         {
             var (name, quote) = answer[i];
-            qs.Add(makeQuestion(
-                question: Question.BookOfMarioPictures,
-                data: module,
-                formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { BookOfMarioSprites.First(sprite => sprite.name == name) },
-                preferredWrongAnswers: BookOfMarioSprites));
+            yield return question(SBookOfMario.Pictures, args: [Ordinal(i + 1)]).Answers(BookOfMarioSprites.First(sprite => sprite.name == name), preferredWrong: BookOfMarioSprites);
 
             if (!unaviableCharacters.Contains(name))
             {
-                qs.Add(makeQuestion(
-                    question: Question.BookOfMarioQuotes,
-                    data: module,
-                    formatArgs: new[] { name, Ordinal(i + 1) },
-                    correctAnswers: new[] { quote },
-                    preferredWrongAnswers: GetUpdatedQuotes(name)));
+                yield return question(SBookOfMario.Quotes, args: [name, Ordinal(i + 1)]).Answers(quote, preferredWrong: GetUpdatedQuotes(name));
             }
         }
-
-        addQuestions(module, qs);
     }
 }

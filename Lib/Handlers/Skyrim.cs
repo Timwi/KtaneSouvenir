@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -42,8 +42,6 @@ public partial class SouvenirModule
                 return false;
             };
         }
-
-        var qs = new List<QandA>();
         var questions = new[] { Question.SkyrimRace, Question.SkyrimWeapon, Question.SkyrimEnemy, Question.SkyrimCity };
         var fieldNames = new[] { "race", "weapon", "enemy", "city" };
         var flds = fieldNames.Select(name => GetListField<Texture>(comp, name + "Images", isPublic: true)).ToArray();
@@ -55,7 +53,6 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(questions[i], module, correctAnswers: list.Except(new[] { correct }).Select(t => t.name.Replace("'", "’")).ToArray()));
         }
         var shoutNames = GetListField<string>(comp, "shoutNameOptions").Get(expectedLength: 3);
-        qs.Add(makeQuestion(Question.SkyrimDragonShout, module, correctAnswers: shoutNames.Except(new[] { GetField<string>(comp, "shoutName").Get() }).Select(n => n.Replace("'", "’")).ToArray()));
-        addQuestions(module, qs);
+        yield return question(SSkyrim.DragonShout).Answers(shoutNames.Except(new[] { GetField<string>(comp, "shoutName").Get() }).Select(n => n.Replace("'", "’")).ToArray());
     }
 }

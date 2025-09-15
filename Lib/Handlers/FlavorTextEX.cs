@@ -39,17 +39,7 @@ public partial class SouvenirModule
         var textOptionList = GetField<IList>(comp, "textOptions").Get();
         var moduleNames = Enumerable.Range(0, textOptionList.Count).Select(index => fldName.GetFrom(textOptionList[index])).ToArray();
 
-        var qs = new List<QandA>();
-
         for (var i = 0; i < maxStageAmount; i++)
-            qs.Add(makeQuestion(
-                    question: Question.FlavorTextEXModule,
-                    data: module,
-                    formatArgs: new[] { Ordinal(i + 1) },
-                    correctAnswers: new[] { answers[i] },
-                    preferredWrongAnswers: answers,
-                    allAnswers: moduleNames));
-
-        addQuestions(module, qs);
+            yield return question(SFlavorTextEX.Module, args: [Ordinal(i + 1)]).Answers(answers[i], all: moduleNames, preferredWrong: answers);
     }
 }

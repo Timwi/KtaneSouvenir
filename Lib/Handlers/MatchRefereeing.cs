@@ -39,14 +39,7 @@ public partial class SouvenirModule
         }
 
         var allPlanetsUsed = planetsUsed.SelectMany(x => x).ToArray();
-
-        var qs = new List<QandA>();
         for (var stage = 0; stage < 2; stage++)
-            qs.Add(makeQuestion(Question.MatchRefereeingPlanet, module,
-                formatArgs: new[] { Ordinal(stage + 1) },
-                correctAnswers: planetsUsed[stage],
-                preferredWrongAnswers: allPlanetsUsed,
-                allAnswers: planetImages));
-        addQuestions(module, qs);
+            yield return question(SMatchRefereeing.Planet, args: [Ordinal(stage + 1)]).Answers(planetsUsed[stage], all: planetImages, preferredWrong: allPlanetsUsed);
     }
 }

@@ -6,8 +6,12 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetUsNot
 {
-    [SouvenirQuestion("Which module name was used for stage {1} in {0}?", OneColumn4Answers, ExampleAnswers = ["Souvenir", "The Button", "The Needlessly Complicated Button", "8", "Eight", "Zero, Zero"], Arguments = ["1", "2", "3", "4", "5"], ArgumentGroupSize = 1, TranslatableStrings = ["the Forget Us Not in which {0} was used for stage {1}"])]
-    Stage
+    // The format args for this question aren't ordinals because that would be ambiguous (i.e. does "first stage" refer to the stage displayed first or input first?)
+    [SouvenirQuestion("Which module name was used for stage {1} in {0}?", OneColumn4Answers, ExampleAnswers = ["Souvenir", "The Button", "The Needlessly Complicated Button", "8", "Eight", "Zero, Zero"], Arguments = ["1", "2", "3", "4", "5"], ArgumentGroupSize = 1)]
+    Stage,
+
+    [SouvenirDiscriminator("the Forget Us Not in which {0} was used for stage {1}", Arguments = ["1", "1", "1", "2", "2", "1", "2", "2"], ArgumentGroupSize = 2)]
+    Discriminator
 }
 
 public partial class SouvenirModule
@@ -15,9 +19,6 @@ public partial class SouvenirModule
     [SouvenirHandler("forgetUsNot", "Forget Us Not", typeof(SForgetUsNot), "Anonymous")]
     private IEnumerator<SouvenirInstruction> ProcessForgetUsNot(ModuleData module)
     {
-        // The format args for this question aren't ordinals because that would be ambiguous (i.e. does "first stage" refer to the stage displayed first or input first?)
-
-        const string moduleId = "forgetUsNot";
         var comp = GetComponent(module, "AdvancedMemory");
         var foreignIgnored = new HashSet<string>(GetStaticField<string[]>(comp.GetType(), "ignoredModules", true).Get());
         var wrongAnswers = Bomb.GetSolvableModuleNames().Where(x => !foreignIgnored.Contains(x)).ToArray();
@@ -50,34 +51,11 @@ public partial class SouvenirModule
 
         var allAnswers = Bomb.GetSolvableModuleNames().ToArray();
 
-        if (_moduleCounts[moduleId] == 1)
-        {
-            addQuestions(module, order.Select((n, i) => makeQuestion(Question.ForgetUsNotStage, moduleId, 1, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { n }, allAnswers: allAnswers, preferredWrongAnswers: wrongAnswers)));
-            yield break;
-        }
-
-        _forgetUsNotStages.Add(order);
-        yield return null;
-
-        if (_forgetUsNotStages.Any(s => s.Count != order.Count))
-            throw new AbandonModuleException("Stage counts were not consistent among modules.");
-
-        var qs = new List<QandA>();
-
         for (var i = 0; i < order.Count; i++)
         {
             var n = order[i];
-            var disambiguators = Enumerable.Range(0, order.Count).Where(x => x != i && _forgetUsNotStages.Count(s => s[x] == n) is 1).ToArray();
-            if (disambiguators.Length == 0)
-                continue;
-            var d = disambiguators.PickRandom();
-            var format = string.Format(translateString(Question.ForgetUsNotStage, "the Forget Us Not in which {0} was used for stage {1}"), order[d], d + 1);
-            qs.Add(makeQuestion(Question.ForgetUsNotStage, module, formattedModuleName: format, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { n }, allAnswers: allAnswers, preferredWrongAnswers: wrongAnswers));
+            yield return new Discriminator(SForgetUsNot.Discriminator, $"stage{i}", n, args: [n, (i + 1).ToString()]);
+            yield return question(SForgetUsNot.Stage, args: [(i + 1).ToString()]).Answers(n, all: allAnswers, preferredWrong: wrongAnswers);
         }
-
-        if (qs.Count == 0)
-            yield return legitimatelyNoQuestion(module, $"There were not enough stages in which this one(#{GetIntField(comp, "thisLoggingID", true).Get()}) was unique.");
-
-        addQuestions(module, qs);
     }
 }

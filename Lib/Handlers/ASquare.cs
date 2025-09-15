@@ -20,21 +20,18 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "ASquareScript");
         yield return WaitForSolve;
-        var qs = new List<QandA>();
         var colorNames = new[] { "Orange", "Pink", "Cyan", "Yellow", "Lavender", "Brown", "Tan", "Blue", "Jade", "Indigo", "White" };
 
         // Index colors
         var indexColors = GetListField<int>(comp, "_indexColors").Get();
         var indexColorNames = Enumerable.Range(0, indexColors.Count).Select(index => colorNames[indexColors[index]]).ToArray();
 
-        qs.Add(makeQuestion(Question.ASquareIndexColors, module, correctAnswers: indexColorNames, preferredWrongAnswers: colorNames));
+        yield return question(SASquare.IndexColors).Answers(indexColorNames, preferredWrong: colorNames);
 
         // Correct colors
         var correctColors = GetArrayField<int>(comp, "_correctColors").Get(expectedLength: 3);
         var correctColorNames = Enumerable.Range(0, correctColors.Length).Select(correct => colorNames[correctColors[correct]]).ToArray();
         for (var correct = 0; correct < 3; correct++)
-            qs.Add(makeQuestion(Question.ASquareCorrectColors, module, formatArgs: new[] { Ordinal(correct + 1) }, correctAnswers: new[] { correctColorNames[correct] }, preferredWrongAnswers: colorNames));
-
-        addQuestions(module, qs);
+            yield return question(SASquare.CorrectColors, args: [Ordinal(correct + 1)]).Answers(correctColorNames[correct], preferredWrong: colorNames);
     }
 }

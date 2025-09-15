@@ -29,9 +29,8 @@ public partial class SouvenirModule
         var removedLions = Enumerable.Range(0, lionNames.Length).Where(ix => correctPortions[ix] == 0).Select(ix => lionNames[ix]).ToArray();
         var allLionNames = GetListField<string>(comp, "_allLionNames").Get(expectedLength: 35);
 
-        var qs = new List<QandA> { makeQuestion(Question.LionsShareYear, module, correctAnswers: new[] { yearText }) };
+        yield return question(SLionsShare.Year).Answers(yearText);
         if (removedLions.Length > 0)
-            qs.Add(makeQuestion(Question.LionsShareRemovedLions, module, correctAnswers: removedLions, preferredWrongAnswers: allLionNames.ToArray()));
-        addQuestions(module, qs);
+            yield return question(SLionsShare.RemovedLions).Answers(removedLions, preferredWrong: allLionNames.ToArray());
     }
 }

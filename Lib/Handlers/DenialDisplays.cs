@@ -31,14 +31,7 @@ public partial class SouvenirModule
             else
                 rands.Add(Rnd.Range(100, 1000));
         }
-
-        var qs = new List<QandA>();
         for (var disp = 0; disp < 5; disp++)
-            qs.Add(makeQuestion(Question.DenialDisplaysDisplays, module,
-                formatArgs: new[] { "ABCDE"[disp].ToString() },
-                correctAnswers: new[] { initial[disp].ToString() },
-                preferredWrongAnswers: rands.Select(i => i.ToString()).ToArray()));
-
-        addQuestions(module, qs);
+            yield return question(SDenialDisplays.Displays, args: ["ABCDE"[disp].ToString()]).Answers(initial[disp].ToString(), preferredWrong: rands.Select(i => i.ToString()).ToArray());
     }
 }

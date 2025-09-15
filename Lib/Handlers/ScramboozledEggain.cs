@@ -20,10 +20,7 @@ public partial class SouvenirModule
 
         var wordList = GetStaticField<string[]>(comp.GetType(), "_wordList").Get().Select(i => i.Substring(0, 1) + i.Substring(1).ToLowerInvariant()).ToArray();
         var selectedWords = GetArrayField<string>(comp, "_selectedWords").Get().Select(i => i.Substring(0, 1) + i.Substring(1).ToLowerInvariant()).ToArray();
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 4; i++)
-            qs.Add(makeQuestion(Question.ScramboozledEggainWord, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { selectedWords[i] }, preferredWrongAnswers: wordList));
-        addQuestions(module, qs);
+            yield return question(SScramboozledEggain.Word, args: [Ordinal(i + 1)]).Answers(selectedWords[i], preferredWrong: wordList);
     }
 }

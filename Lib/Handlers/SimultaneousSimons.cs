@@ -20,13 +20,8 @@ public partial class SouvenirModule
         var sequences = GetField<int[,]>(comp, "sequences").Get();
         var btnColors = GetStaticField<int[]>(comp.GetType(), "buttonColors").Get();
         var colorNames = new[] { "Blue", "Yellow", "Red", "Green" };
-
-        var qs = new List<QandA>();
         for (var simon = 0; simon < 4; simon++)
             for (var flash = 0; flash < 4; flash++)
-                qs.Add(makeQuestion(Question.SimultaneousSimonsFlash, module,
-                    formatArgs: new[] { Ordinal(flash + 1), Ordinal(simon + 1) },
-                    correctAnswers: new[] { colorNames[btnColors[sequences[simon, flash]]] }));
-        addQuestions(module, qs);
+                yield return question(SSimultaneousSimons.Flash, args: [Ordinal(flash + 1), Ordinal(simon + 1)]).Answers(colorNames[btnColors[sequences[simon, flash]]]);
     }
 }

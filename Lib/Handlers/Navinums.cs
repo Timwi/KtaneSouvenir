@@ -49,11 +49,8 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var directionNames = new[] { "up", "left", "right", "down" };
-
-        var qs = new List<QandA>();
         for (var stage = 0; stage < 8; stage++)
-            qs.Add(makeQuestion(Question.NavinumsDirectionalButtons, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { directionNames[answers[stage]] }));
-        qs.Add(makeQuestion(Question.NavinumsMiddleDigit, module, correctAnswers: new[] { centerDigit.ToString() }));
-        addQuestions(module, qs);
+            yield return question(SNavinums.DirectionalButtons, args: [Ordinal(stage + 1)]).Answers(directionNames[answers[stage]]);
+        yield return question(SNavinums.MiddleDigit).Answers(centerDigit.ToString());
     }
 }

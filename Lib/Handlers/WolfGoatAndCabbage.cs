@@ -29,16 +29,10 @@ public partial class SouvenirModule
 
         var boatSize = GetIntField(comp, "_boatSize").Get();
         var allAnimals = Question.WolfGoatAndCabbageAnimals.GetAnswers();
-
-        var questions = new List<QandA>();
         foreach (var present in new[] { false, true })
         {
-            questions.Add(makeQuestion(Question.WolfGoatAndCabbageAnimals, module,
-                formatArgs: new[] { present ? "present" : "not present" },
-                correctAnswers: present ? animalsPresent : allAnimals.Except(animalsPresent).ToArray(),
-                preferredWrongAnswers: present ? allAnimals : animalsPresent));
+            yield return question(SWolfGoatAndCabbage.Animals, args: [present ? "present" : "not present"]).Answers(present ? animalsPresent : allAnimals.Except(animalsPresent).ToArray(), preferredWrong: present ? allAnimals : animalsPresent);
         }
-        questions.Add(makeQuestion(Question.WolfGoatAndCabbageBoatSize, module, formatArgs: null, correctAnswers: new[] { boatSize.ToString() }));
-        addQuestions(module, questions);
+        yield return question(SWolfGoatAndCabbage.BoatSize, args: null).Answers(boatSize.ToString());
     }
 }

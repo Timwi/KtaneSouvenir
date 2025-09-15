@@ -34,16 +34,13 @@ public partial class SouvenirModule
         foreach (var item in wireSequence.Cast<object>().Take(12))
             if (!fldNoWire.GetFrom(item))
                 counts[(int) fldColor.GetFrom(item)]++;
-
-        var qs = new List<QandA>();
         for (var color = 0; color < 3; color++)
         {
             var preferredWrongAnswers = new string[4];
             for (var i = 0; i < 3; i++)
                 preferredWrongAnswers[i] = counts[i].ToString();
             preferredWrongAnswers[3] = (counts[color] == 0 ? 1 : counts[color] - 1).ToString();
-            qs.Add(makeQuestion(Question.WireSequenceColorCount, module, formatArgs: new[] { new[] { "black", "blue", "red" }[color] }, correctAnswers: new[] { counts[color].ToString() }, preferredWrongAnswers: preferredWrongAnswers));
+            yield return question(SWireSequence.ColorCount, args: [new[] { "black", "blue", "red" }[color]]).Answers(counts[color].ToString(), preferredWrong: preferredWrongAnswers);
         }
-        addQuestions(module, qs);
     }
 }

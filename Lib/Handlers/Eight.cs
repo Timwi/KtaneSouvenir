@@ -34,14 +34,11 @@ public partial class SouvenirModule
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
             yield return legitimatelyNoQuestion(module, "The module was force-solved.");
 
-        var questions = new List<QandA> {
-            makeQuestion(Question.EightLastSmallDisplayDigit, module, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastStageDigit", true).Get().ToString() }),
-            makeQuestion(Question.EightLastBrokenDigitPosition, module, correctAnswers: new[] { (GetProperty<int>(comp, "souvenirLastBrokenDigitPosition", true).Get() + 1).ToString() }),
-            makeQuestion(Question.EightLastResultingDigits, module, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastResultingDigits", true).Get().ToString() }, preferredWrongAnswers: GetProperty<HashSet<int>>(comp, "souvenirPossibleLastResultingDigits", true).Get().Select(n => n.ToString().PadLeft(2, '0')).ToArray()),
-        };
+        yield return question(SEight.LastSmallDisplayDigit).Answers(GetProperty<int>(comp, "souvenirLastStageDigit", true).Get().ToString());
+        yield return question(SEight.LastBrokenDigitPosition).Answers((GetProperty<int>(comp, "souvenirLastBrokenDigitPosition", true).Get() + 1).ToString());
+        yield return question(SEight.LastResultingDigits).Answers(GetProperty<int>(comp, "souvenirLastResultingDigits", true).Get().ToString(), preferredWrong: GetProperty<HashSet<int>>(comp, "souvenirPossibleLastResultingDigits", true).Get().Select(n => n.ToString().PadLeft(2, '0')).ToArray());
         var lastDisplayedNumber = GetProperty<int>(comp, "souvenirLastDisplayedNumber", true).Get();
         if (lastDisplayedNumber != -1)
-            questions.Add(makeQuestion(Question.EightLastDisplayedNumber, module, correctAnswers: new[] { lastDisplayedNumber.ToString() }, preferredWrongAnswers: GetProperty<HashSet<int>>(comp, "souvenirPossibleLastNumbers", true).Get().Select(n => n.ToString().PadLeft(2, '0')).ToArray()));
-        addQuestions(module, questions);
+            yield return question(SEight.LastDisplayedNumber).Answers(lastDisplayedNumber.ToString(), preferredWrong: GetProperty<HashSet<int>>(comp, "souvenirPossibleLastNumbers", true).Get().Select(n => n.ToString().PadLeft(2, '0')).ToArray());
     }
 }

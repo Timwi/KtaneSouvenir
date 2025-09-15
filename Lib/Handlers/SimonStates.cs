@@ -32,20 +32,13 @@ public partial class SouvenirModule
         // Consistency check
         if (fldPuzzleDisplay.Get(nullAllowed: true) != null)
             throw new AbandonModuleException($"‘PuzzleDisplay’ was expected to be null when the module solved, but wasn’t.");
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 3; i++)     // Do not ask about fourth stage because it can sometimes be solved without waiting for the flashes
         {
             var c = puzzleDisplay[i].Count(b => b);
             if (c != 3)
-                qs.Add(makeQuestion(Question.SimonStatesDisplay, module,
-                    formatArgs: new[] { "color(s) flashed", Ordinal(i + 1) },
-                    correctAnswers: new[] { c == 4 ? "all 4" : puzzleDisplay[i].Select((v, j) => v ? colorNames[j] : null).Where(x => x != null).JoinString(", ") }));
+                yield return question(SSimonStates.Display, args: ["color(s) flashed", Ordinal(i + 1)]).Answers(c == 4 ? "all 4" : puzzleDisplay[i].Select((v, j) => v ? colorNames[j] : null).Where(x => x != null).JoinString(", "));
             if (c != 1)
-                qs.Add(makeQuestion(Question.SimonStatesDisplay, module,
-                    formatArgs: new[] { "color(s) didn’t flash", Ordinal(i + 1) },
-                    correctAnswers: new[] { c == 4 ? "none" : puzzleDisplay[i].Select((v, j) => v ? null : colorNames[j]).Where(x => x != null).JoinString(", ") }));
+                yield return question(SSimonStates.Display, args: ["color(s) didn’t flash", Ordinal(i + 1)]).Answers(c == 4 ? "none" : puzzleDisplay[i].Select((v, j) => v ? null : colorNames[j]).Where(x => x != null).JoinString(", "));
         }
-        addQuestions(module, qs);
     }
 }

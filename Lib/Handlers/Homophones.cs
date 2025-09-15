@@ -26,23 +26,19 @@ public partial class SouvenirModule
         var allCWords = GetArrayField<string>(comp, "cWords").Get(expectedLength: 10);
         var allOneWords = GetArrayField<string>(comp, "oneWords").Get(expectedLength: 10);
 
-        var possibleQuestions = new List<QandA>();
-
         for (var i = 0; i < selectedWords.Length; i++)
         {
             var thisWord = selectedWords[i];
             if (allCWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allCWords).ToArray()));
+                yield return question(SHomophones.DisplayedPhrases, args: [Ordinal(i + 1)]).Answers(thisWord, preferredWrong: selectedWords.Union(allCWords).ToArray());
             else if (allLWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allLWords).ToArray()));
+                yield return question(SHomophones.DisplayedPhrases, args: [Ordinal(i + 1)]).Answers(thisWord, preferredWrong: selectedWords.Union(allLWords).ToArray());
             else if (allIWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allIWords).ToArray()));
+                yield return question(SHomophones.DisplayedPhrases, args: [Ordinal(i + 1)]).Answers(thisWord, preferredWrong: selectedWords.Union(allIWords).ToArray());
             else if (allOneWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allOneWords).ToArray()));
+                yield return question(SHomophones.DisplayedPhrases, args: [Ordinal(i + 1)]).Answers(thisWord, preferredWrong: selectedWords.Union(allOneWords).ToArray());
             else
                 throw new AbandonModuleException($"The given phrase “{thisWord}” is not one of the possible words that can be found in Homophones.");
         }
-
-        addQuestions(module, possibleQuestions);
     }
 }

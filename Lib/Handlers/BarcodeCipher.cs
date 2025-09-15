@@ -31,14 +31,11 @@ public partial class SouvenirModule
         var answers = GetArrayField<int>(comp, "answerNumbers").Get(validator: arr => arr.Length != 3 ? "expected length 3" : arr.Any(n => n is < 0 or > 8) ? "expected numbers 0–8" : null);
 
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.BarcodeCipherScreenNumber, module, correctAnswers: new[] { fldScreenNumber }));
+        yield return question(SBarcodeCipher.ScreenNumber).Answers(fldScreenNumber);
         for (var i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.BarcodeCipherBarcodeEdgework, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { barcodes[i] }));
-            qs.Add(makeQuestion(Question.BarcodeCipherBarcodeAnswers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { answers[i].ToString() }));
+            yield return question(SBarcodeCipher.BarcodeEdgework, args: [Ordinal(i + 1)]).Answers(barcodes[i]);
+            yield return question(SBarcodeCipher.BarcodeAnswers, args: [Ordinal(i + 1)]).Answers(answers[i].ToString());
         }
-        addQuestions(module, qs);
     }
 }

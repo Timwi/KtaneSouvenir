@@ -27,10 +27,7 @@ public partial class SouvenirModule
         var ordinals = GetArrayField<string>(comp, "ordinals").Get();
         var currentOrdinal = GetField<string>(comp, "currentOrdinal").Get(str => !ordinals.Contains(str) ? $"expected string to be contained in “{ordinals}” (‘ordinals’)" : null);
 
-        var qs = new List<QandA>();
-
-        qs.Add(makeQuestion(Question.PlaceholderTalkFirstPhrase, module, correctAnswers: new[] { firstString }, preferredWrongAnswers: firstPhrase));
-        qs.Add(makeQuestion(Question.PlaceholderTalkOrdinal, module, correctAnswers: new[] { currentOrdinal }, preferredWrongAnswers: ordinals));
-        addQuestions(module, qs);
+        yield return question(SPlaceholderTalk.FirstPhrase).Answers(firstString, preferredWrong: firstPhrase);
+        yield return question(SPlaceholderTalk.Ordinal).Answers(currentOrdinal, preferredWrong: ordinals);
     }
 }

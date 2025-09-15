@@ -21,14 +21,11 @@ public partial class SouvenirModule
 
         var usedChars = GetArrayField<string[]>(comp, "usedChars")
             .Get(expectedLength: 3, validator: x => x.Any(character => !Regex.IsMatch(character, @"^[0-9A-G]$")) ? "expected character to be in the range of 0-9 or A-G" : null);
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 3; i++)
         {
             if (usedChars[i].Length != i + 3)
                 throw new AbandonModuleException($"‘usedChars[{i}]’ is of an unexpected length (expected {i + 3}): [{string.Join(", ", usedChars[i])}]");
-            qs.Add(makeQuestion(Question.ReversePolishNotationCharacter, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: usedChars[i]));
+            yield return question(SReversePolishNotation.Character, args: [Ordinal(i + 1)]).Answers(usedChars[i]);
         }
-        addQuestions(module, qs);
     }
 }

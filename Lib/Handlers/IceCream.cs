@@ -50,17 +50,14 @@ public partial class SouvenirModule
             solution[i] = flavours[i][sol[i]];
             customers[i] = cus[i];
         }
-        var qs = new List<QandA>();
         yield return WaitForSolve;
 
         for (var i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.IceCreamFlavour, module, formatArgs: new[] { "was on offer, but not sold,", Ordinal(i + 1) }, correctAnswers: flavours[i].Where(ix => ix != solution[i]).Select(ix => flavourNames[ix]).ToArray()));
-            qs.Add(makeQuestion(Question.IceCreamFlavour, module, formatArgs: new[] { "was not on offer", Ordinal(i + 1) }, correctAnswers: flavourNames.Where((f, ix) => !flavours[i].Contains(ix)).ToArray()));
+            yield return question(SIceCream.Flavour, args: ["was on offer, but not sold,", Ordinal(i + 1)]).Answers(flavours[i].Where(ix => ix != solution[i]).Select(ix => flavourNames[ix]).ToArray());
+            yield return question(SIceCream.Flavour, args: ["was not on offer", Ordinal(i + 1)]).Answers(flavourNames.Where((f, ix) => !flavours[i].Contains(ix)).ToArray());
             if (i != 2)
-                qs.Add(makeQuestion(Question.IceCreamCustomer, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { customerNames[customers[i]] }, preferredWrongAnswers: customers.Select(ix => customerNames[ix]).ToArray()));
+                yield return question(SIceCream.Customer, args: [Ordinal(i + 1)]).Answers(customerNames[customers[i]], preferredWrong: customers.Select(ix => customerNames[ix]).ToArray());
         }
-
-        addQuestions(module, qs);
     }
 }

@@ -29,18 +29,15 @@ public partial class SouvenirModule
         Debug.Log($"<Souvenir #{_moduleId}> Melody Sequencer: parts are: [{partsPerSlot.JoinString(", ")}].");
 
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
         var givenSlots = Enumerable.Range(0, partsPerSlot.Length).Where(slot => partsPerSlot[slot] != -1).Select(slot => (slot + 1).ToString()).ToArray();
         var givenParts = partsPerSlot.Where(part => part != -1).Select(part => (part + 1).ToString()).ToArray();
         for (var i = 0; i < partsPerSlot.Length; i++)
         {
             if (partsPerSlot[i] != -1)
             {
-                qs.Add(makeQuestion(Question.MelodySequencerParts, module, formatArgs: new[] { (partsPerSlot[i] + 1).ToString() }, correctAnswers: new[] { (i + 1).ToString() }, preferredWrongAnswers: givenSlots));
-                qs.Add(makeQuestion(Question.MelodySequencerSlots, module, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { (partsPerSlot[i] + 1).ToString() }, preferredWrongAnswers: givenParts));
+                yield return question(SMelodySequencer.Parts, args: [(partsPerSlot[i] + 1).ToString()]).Answers((i + 1).ToString(), preferredWrong: givenSlots);
+                yield return question(SMelodySequencer.Slots, args: [(i + 1).ToString()]).Answers((partsPerSlot[i] + 1).ToString(), preferredWrong: givenParts);
             }
         }
-        addQuestions(module, qs);
     }
 }

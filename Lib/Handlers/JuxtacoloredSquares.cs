@@ -36,17 +36,14 @@ public partial class SouvenirModule
             yield return null; // Do not wait .1 seconds to make sure we get get the colors before any squares are pressed.
         }
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
         for (var pos = 0; pos < 16; pos++)
         {
             var colorName = colors.GetValue(pos).ToString();
             if (colorName == "DarkBlue")
                 colorName = "Blue";
             var coordinate = new Coord(4, 4, pos);
-            qs.Add(makeQuestion(Question.JuxtacoloredSquaresColorsByPosition, module, questionSprite: Sprites.GenerateGridSprite(coordinate), correctAnswers: new[] { colorName }));
-            qs.Add(makeQuestion(Question.JuxtacoloredSquaresPositionsByColor, module, formatArgs: new[] { colorName.ToLowerInvariant() }, correctAnswers: new[] { coordinate }));
+            yield return question(SJuxtacoloredSquares.ColorsByPosition, questionSprite: Sprites.GenerateGridSprite(coordinate)).Answers(colorName);
+            yield return question(SJuxtacoloredSquares.PositionsByColor, args: [colorName.ToLowerInvariant()]).Answers(coordinate);
         }
-        addQuestions(module, qs);
     }
 }

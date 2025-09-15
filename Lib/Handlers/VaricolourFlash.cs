@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -40,9 +39,9 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
         }
 
-        var qs = new List<QandA>();
-        qs.AddRange(words.Select((val, ix) => makeQuestion(Question.VaricolourFlashWords, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
-        qs.AddRange(colors.Select((val, ix) => makeQuestion(Question.VaricolourFlashColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
-        addQuestions(module, qs);
+        for (var ix = 0; ix < words.Length; ix++)
+            yield return question(SVaricolourFlash.Words, args: [Ordinal(ix + 1)]).Answers(names[words[ix]]);
+        for (var ix = 0; ix < colors.Length; ix++)
+            yield return question(SVaricolourFlash.Colors, args: [Ordinal(ix + 1)]).Answers(names[colors[ix]]);
     }
 }

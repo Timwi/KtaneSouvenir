@@ -70,22 +70,17 @@ public partial class SouvenirModule
         yield return WaitForSolve;
         if (exception != null)
             throw exception;
-
-        var qs = new List<QandA>();
         for (var keyIndex = 0; keyIndex < keys.Count; keyIndex++)
         {
             if (borderColors[keyIndex] != null)
             {
                 var formatArgs = new[] { Ordinal(keyIndex + 1) };
-                qs.AddRange(new[] {
-                    makeQuestion(Question.BorderedKeysBorderColor, module, formatArgs: formatArgs, correctAnswers: new[] { borderColors[keyIndex] }),
-                    makeQuestion(Question.BorderedKeysDigit, module, formatArgs: formatArgs, correctAnswers: new[] { digits[keyIndex] }),
-                    makeQuestion(Question.BorderedKeysKeyColor, module, formatArgs: formatArgs, correctAnswers: new[] { keysColors[keyIndex] }),
-                    makeQuestion(Question.BorderedKeysLabel, module, formatArgs: formatArgs, correctAnswers: new[] { labels[keyIndex] }),
-                    makeQuestion(Question.BorderedKeysLabelColor, module, formatArgs: formatArgs, correctAnswers: new[] { labelColors[keyIndex] }),
-                });
+                yield return question(SBorderedKeys.BorderColor, args: formatArgs).Answers(borderColors[keyIndex]);
+                yield return question(SBorderedKeys.Digit, args: formatArgs).Answers(digits[keyIndex]);
+                yield return question(SBorderedKeys.KeyColor, args: formatArgs).Answers(keysColors[keyIndex]);
+                yield return question(SBorderedKeys.Label, args: formatArgs).Answers(labels[keyIndex]);
+                yield return question(SBorderedKeys.LabelColor, args: formatArgs).Answers(labelColors[keyIndex]);
             }
         }
-        addQuestions(module, qs);
     }
 }

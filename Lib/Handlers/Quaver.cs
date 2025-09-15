@@ -22,15 +22,13 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var correctValues = fldCorrectValues.Get(minLength: 1, maxLength: 20, validator: arr => arr.Length is not 1 and not 4 ? "expected array of length 1 or 4" : null);
-        var qs = new List<QandA>();
 
         for (var i = 0; i < correctValues.Count; i++)
         {
             var preferredWrongAnswers = new HashSet<string>();
             while (preferredWrongAnswers.Count < 6)
                 preferredWrongAnswers.Add(correctValues[i].Select(x => Math.Max(x + Rnd.Range(-4, 5), 1)).JoinString(", "));
-            qs.Add(makeQuestion(Question.QuaverArrows, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { correctValues[i].JoinString(", ") }, preferredWrongAnswers: preferredWrongAnswers.ToArray()));
+            yield return question(SQuaver.Arrows, args: [Ordinal(i + 1)]).Answers(correctValues[i].JoinString(", "), preferredWrong: preferredWrongAnswers.ToArray());
         }
-        addQuestions(module, qs);
     }
 }

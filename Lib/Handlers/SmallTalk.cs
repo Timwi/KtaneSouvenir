@@ -20,7 +20,6 @@ public partial class SouvenirModule
         var stageComp = GetIntField(comp, "Stage");
         var textMeshComp = GetField<TextMesh>(comp, "TopWordTM", isPublic: true);
         var displays = new string[3];
-        var qs = new List<QandA>();
         while (module.Unsolved)
         {
             var stage = stageComp.Get();
@@ -30,7 +29,6 @@ public partial class SouvenirModule
             yield return null;
         }
         for (var st = 0; st < 2; st++)
-            qs.Add(makeQuestion(Question.SmallTalkDisplays, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { displays[st] }, preferredWrongAnswers: possibleDisplays));
-        addQuestions(module, qs);
+            yield return question(SSmallTalk.Displays, args: [Ordinal(st + 1)]).Answers(displays[st], preferredWrong: possibleDisplays);
     }
 }

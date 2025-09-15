@@ -24,14 +24,12 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var referredButtons = GetField<int[]>(comp, "ReferredButtons").Get();
-        var qs = new List<QandA>();
         for (var pos = 0; pos < 16; pos++)
         {
             var buttonRefersTo = new Coord(4, 4, referredButtons[pos]);
             var refersToButton = new Coord(4, 4, Array.IndexOf(referredButtons, pos));
-            qs.Add(makeQuestion(Question.FaultyButtonsReferredToThisButton, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { refersToButton }, preferredWrongAnswers: new[] { buttonRefersTo }));
-            qs.Add(makeQuestion(Question.FaultyButtonsThisButtonReferredTo, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { buttonRefersTo }, preferredWrongAnswers: new[] { refersToButton }));
+            yield return question(SFaultyButtons.ReferredToThisButton, args: [Ordinal(pos + 1)]).Answers(refersToButton, preferredWrong: [buttonRefersTo]);
+            yield return question(SFaultyButtons.ThisButtonReferredTo, args: [Ordinal(pos + 1)]).Answers(buttonRefersTo, preferredWrong: [refersToButton]);
         }
-        addQuestions(module, qs);
     }
 }

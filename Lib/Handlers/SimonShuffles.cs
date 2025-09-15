@@ -27,11 +27,9 @@ public partial class SouvenirModule
             flashesArr[stage] = flashes.ToList();
             yield return null;
         }
-        var qs = new List<QandA>();
 
         for (var s = 0; s < 3; s++)
             for (var f = 0; f < flashesArr[s].Count; f++)
-                qs.Add(makeQuestion(Question.SimonShufflesFlashes, module, formatArgs: new[] { Ordinal(f + 1), Ordinal(s + 1) }, correctAnswers: new[] { colourNames[flashesArr[s][f]] }));
-        addQuestions(module, qs);
+                yield return question(SSimonShuffles.Flashes, args: [Ordinal(f + 1), Ordinal(s + 1)]).Answers(colourNames[flashesArr[s][f]]);
     }
 }

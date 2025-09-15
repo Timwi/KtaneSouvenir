@@ -27,13 +27,10 @@ public partial class SouvenirModule
         var buttons = GetArrayField<int>(comp, "sequenceButtons").Get(expectedLength: colours.Length);
         var symbols = GetField<Array>(connectorComponent, "symbols").Get(ar => ar.Cast<int>().Any(v => v < 0 || v > KeypadSprites.Length) ? "out of range" : null);
         var sprites = symbols.Cast<int>().Select(i => KeypadSprites[i]).ToArray();
-
-        var qs = new List<QandA>();
         for (var stage = 0; stage < colours.Length; stage++)
         {
-            qs.Add(makeQuestion(Question.NotKeypadColor, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { strings[(int) colours.GetValue(stage) - 1] }));
-            qs.Add(makeQuestion(Question.NotKeypadSymbol, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { KeypadSprites[(int) symbols.GetValue(buttons[stage])] }, preferredWrongAnswers: sprites));
+            yield return question(SNotKeypad.Color, args: [Ordinal(stage + 1)]).Answers(strings[(int) colours.GetValue(stage) - 1]);
+            yield return question(SNotKeypad.Symbol, args: [Ordinal(stage + 1)]).Answers(KeypadSprites[(int) symbols.GetValue(buttons[stage])], preferredWrong: sprites);
         }
-        addQuestions(module, qs);
     }
 }

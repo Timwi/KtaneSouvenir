@@ -32,15 +32,12 @@ public partial class SouvenirModule
         var allColors = Question.NotXRayScannerColor.GetAnswers();
         var scannerColor = GetField<object>(comp, "_scannerColor").Get(v => v == null ? "did not expected null" : !allColors.Contains(v.ToString()) ? "expected " + allColors.JoinString(", ") : null);
 
-        var qs = new List<QandA>() {
-            makeQuestion(Question.NotXRayTable, module, correctAnswers: new[] { (table + 1).ToString() }),
-            makeQuestion(Question.NotXRayScannerColor, module, correctAnswers: new[] { scannerColor.ToString() })
-        };
+        yield return question(SNotXRay.Table).Answers((table + 1).ToString());
+        yield return question(SNotXRay.ScannerColor).Answers(scannerColor.ToString());
         for (var i = 0; i < 4; i++)
         {
-            qs.Add(makeQuestion(Question.NotXRayDirections, module, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { directions.GetValue(i).ToString() }));
-            qs.Add(makeQuestion(Question.NotXRayButtons, module, formatArgs: new[] { directions.GetValue(i).ToString().ToLowerInvariant() }, correctAnswers: new[] { (i + 1).ToString() }));
+            yield return question(SNotXRay.Directions, args: [(i + 1).ToString()]).Answers(directions.GetValue(i).ToString());
+            yield return question(SNotXRay.Buttons, args: [directions.GetValue(i).ToString().ToLowerInvariant()]).Answers((i + 1).ToString());
         }
-        addQuestions(module, qs);
     }
 }

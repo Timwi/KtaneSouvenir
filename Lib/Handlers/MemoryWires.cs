@@ -46,12 +46,9 @@ public partial class SouvenirModule
         var allColours = GetArrayField<string>(comp, "logcol").Get(expectedLength: 5);
         var wireColours = GetArrayField<int[]>(comp, "colset").Get(expectedLength: 5,
             validator: innerArr => innerArr.Length != 6 ? "expected length 6" : innerArr.Any(i => i is < 0 or > 4) ? "inner array contained value outside expected range 0-4" : null);
-
-        var qs = new List<QandA>();
         for (var pos = 0; pos < 30; pos++)
-            qs.Add(makeQuestion(Question.MemoryWiresWireColours, module, formatArgs: new[] { (pos + 1).ToString() }, correctAnswers: new[] { allColours[wireColours[pos / 6][pos % 6]] }));
+            yield return question(SMemoryWires.WireColours, args: [(pos + 1).ToString()]).Answers(allColours[wireColours[pos / 6][pos % 6]]);
         for (var stage = 0; stage < 5; stage++)
-            qs.Add(makeQuestion(Question.MemoryWiresDisplayedDigits, module, formatArgs: new[] { (stage + 1).ToString() }, correctAnswers: new[] { displayedDigits[stage].ToString() }));
-        addQuestions(module, qs);
+            yield return question(SMemoryWires.DisplayedDigits, args: [(stage + 1).ToString()]).Answers(displayedDigits[stage].ToString());
     }
 }

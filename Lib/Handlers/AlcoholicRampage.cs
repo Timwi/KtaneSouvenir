@@ -26,10 +26,7 @@ public partial class SouvenirModule
         }
 
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
         for (var s = 0; s < 3; s++)
-            qs.Add(makeQuestion(Question.AlcoholicRampageMercenaries, module, formatArgs: new[] { Ordinal(s + 1) }, correctAnswers: new[] { AlcoholicRampageSprites[mercs[s]] }));
-        addQuestions(module, qs);
+            yield return question(SAlcoholicRampage.Mercenaries, args: [Ordinal(s + 1)]).Answers(AlcoholicRampageSprites[mercs[s]]);
     }
 }

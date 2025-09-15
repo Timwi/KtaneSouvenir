@@ -28,11 +28,7 @@ public partial class SouvenirModule
                 displays[fldStage.Get()] = display.text;
             yield return null;
         }
-
-        var qs = new List<QandA>();
         for (var st = 0; st < 3; st++)
-            qs.Add(makeQuestion(Question.MorseWoFDisplays, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { displays[st] }, preferredWrongAnswers: wordList));
-
-        addQuestions(module, qs);
+            yield return question(SMorseWoF.Displays, args: [Ordinal(st + 1)]).Answers(displays[st], preferredWrong: wordList);
     }
 }

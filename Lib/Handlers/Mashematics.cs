@@ -28,12 +28,11 @@ public partial class SouvenirModule
         var number2 = GetField<int>(numberClass, "Number2", isPublic: true).Get();
         var number3 = GetField<int>(numberClass, "Number3", isPublic: true).Get();
 
-        var questions = new List<QandA> { makeQuestion(Question.MashematicsAnswer, module, correctAnswers: new[] { answer.ToString() }) };
+        yield return question(SMashematics.Answer).Answers(answer.ToString());
         for (var i = 0; i < 3; i++)
         {
             var number = i == 0 ? number1 : (i == 1 ? number2 : number3);
-            questions.Add(makeQuestion(Question.MashematicsCalculation, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { number.ToString() }));
+            yield return question(SMashematics.Calculation, args: [Ordinal(i + 1)]).Answers(number.ToString());
         }
-        addQuestions(module, questions);
     }
 }

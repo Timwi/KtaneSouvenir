@@ -25,21 +25,16 @@ public partial class SouvenirModule
         var posNames = new[] { "top", "top-right", "bottom-right", "bottom-left", "top-left" };
         // Peg position
         var positions = GetArrayField<int>(comp, "_flashPegPosition").Get();
-        var qs = new List<QandA>();
         for (var i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.NotPerspectivePegsPosition, module, formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { posNames[positions[i]] }));
+            yield return question(SNotPerspectivePegs.Position, args: [Ordinal(i + 1)]).Answers(posNames[positions[i]]);
         // Peg perspective
         var perspectives = GetArrayField<int>(comp, "_flashPegPerspective").Get();
         for (var i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.NotPerspectivePegsPerspective, module, formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { posNames[perspectives[i]] }));
+            yield return question(SNotPerspectivePegs.Perspective, args: [Ordinal(i + 1)]).Answers(posNames[perspectives[i]]);
         // Peg color
         var colors = GetArrayField<int>(comp, "_flashPegColor").Get();
         var colorNames = new[] { "blue", "green", "purple", "red", "yellow" };
         for (var i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.NotPerspectivePegsColor, module, formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { colorNames[colors[i]] }));
-        addQuestions(module, qs);
+            yield return question(SNotPerspectivePegs.Color, args: [Ordinal(i + 1)]).Answers(colorNames[colors[i]]);
     }
 }

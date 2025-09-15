@@ -22,10 +22,7 @@ public partial class SouvenirModule
         var values = GetArrayField<int>(comp, "allValues").Get(expectedLength: 6);
         var validPositions = Enumerable.Range(0, 6).Where(x => values[x] != 0);
         var posNames = new[] { "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right" };
-
-        var qs = new List<QandA>();
         foreach (var pos in validPositions)
-            qs.Add(makeQuestion(Question.StupidSlotsValues, module, formatArgs: new[] { posNames[pos] }, correctAnswers: new[] { values[pos].ToString() }));
-        addQuestions(module, qs);
+            yield return question(SStupidSlots.Values, args: [posNames[pos]]).Answers(values[pos].ToString());
     }
 }

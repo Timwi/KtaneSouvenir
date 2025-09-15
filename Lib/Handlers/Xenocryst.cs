@@ -19,15 +19,8 @@ public partial class SouvenirModule
 
         var flashes = GetArrayField<int>(comp, "Outputs").Get();
 
-        var qs = new List<QandA>();
-
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
         for (var i = 0; i < 10; i++)
-            qs.Add(makeQuestion(Question.Xenocryst, module,
-                formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { colorNames[flashes[i]] },
-                preferredWrongAnswers: colorNames));
-
-        addQuestions(module, qs);
+            yield return question(SXenocryst.Question, args: [Ordinal(i + 1)]).Answers(colorNames[flashes[i]], preferredWrong: colorNames);
     }
 }

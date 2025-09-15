@@ -20,10 +20,7 @@ public partial class SouvenirModule
 
         var directionWords = new Dictionary<string, string> { { "U", "Up" }, { "D", "Down" }, { "L", "Left" }, { "R", "Right" } };
         var path = GetListField<string>(comp, "Path").Get(minLength: 1, validator: x => !directionWords.ContainsKey(x) ? $"expected only {directionWords.Keys.JoinString(", ")}" : null);
-
-        var qs = new List<QandA>();
         for (var pos = 0; pos < path.Count; pos++)
-            qs.Add(makeQuestion(Question.FollowMeDisplayedPath, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { directionWords[path[pos]] }));
-        addQuestions(module, qs);
+            yield return question(SFollowMe.DisplayedPath, args: [Ordinal(pos + 1)]).Answers(directionWords[path[pos]]);
     }
 }

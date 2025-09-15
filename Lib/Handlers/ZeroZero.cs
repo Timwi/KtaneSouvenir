@@ -45,21 +45,17 @@ public partial class SouvenirModule
         gridSquares[greenPos].material.color = white.Value;
         gridSquares[bluePos].material.color = white.Value;
 
-        var qs = new List<QandA>
-        {
-            makeQuestion(Question.ZeroZeroSquares, module, formatArgs: new[] { "red" }, correctAnswers: new[] { new Coord(7, 7, redPos) }),
-            makeQuestion(Question.ZeroZeroSquares, module, formatArgs: new[] { "green" }, correctAnswers: new[] { new Coord(7, 7, greenPos) }),
-            makeQuestion(Question.ZeroZeroSquares, module, formatArgs: new[] { "blue" }, correctAnswers: new[] { new Coord(7, 7, bluePos) })
-        };
+        yield return question(SZeroZero.Squares, args: ["red"]).Answers(new Coord(7, 7, redPos));
+        yield return question(SZeroZero.Squares, args: ["green"]).Answers(new Coord(7, 7, greenPos));
+        yield return question(SZeroZero.Squares, args: ["blue"]).Answers(new Coord(7, 7, bluePos));
         var positionNames = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
         var colorNames = new[] { "black", "blue", "green", "cyan", "red", "magenta", "yellow", "white" };
         for (var starIx = 0; starIx < 4; starIx++)
         {
             var channels = fldChannels.GetFrom(stars.GetValue(starIx), expectedLength: 3);
-            qs.Add(makeQuestion(Question.ZeroZeroStarColors, module, formatArgs: new[] { positionNames[starIx] }, correctAnswers: new[] { colorNames[(channels[0] ? 4 : 0) + (channels[1] ? 2 : 0) + (channels[2] ? 1 : 0)] }));
+            yield return question(SZeroZero.StarColors, args: [positionNames[starIx]]).Answers(colorNames[(channels[0] ? 4 : 0) + (channels[1] ? 2 : 0) + (channels[2] ? 1 : 0)]);
             var points = fldPoints.GetFrom(stars.GetValue(starIx), 2, 8);
-            qs.Add(makeQuestion(Question.ZeroZeroStarPoints, module, formatArgs: new[] { positionNames[starIx] }, correctAnswers: new[] { points.ToString() }));
+            yield return question(SZeroZero.StarPoints, args: [positionNames[starIx]]).Answers(points.ToString());
         }
-        addQuestions(module, qs);
     }
 }

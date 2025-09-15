@@ -75,30 +75,27 @@ public partial class SouvenirModule
                 recompute = false;
             }
         }
-
-        var qs = new List<QandA>();
         var missingStrArr = new[] { "Key color", "Label color", "Label" };
 
         for (var keyIndex = 0; keyIndex < 6; keyIndex++)
         {
             var formatArgs = new[] { Ordinal(keyIndex + 1) };
-            qs.Add(makeQuestion(Question.DisorderedKeysMissingInfo, module, formatArgs: formatArgs, correctAnswers: new[] { missingStrArr[missing[keyIndex]] }));
+            yield return question(SDisorderedKeys.MissingInfo, args: formatArgs).Answers(missingStrArr[missing[keyIndex]]);
 
             if (missing[keyIndex] != 0)   // Key color
-                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedKeyColor, module, formatArgs: formatArgs, correctAnswers: new[] { unrevealedKeyColors[keyIndex] }));
+                yield return question(SDisorderedKeys.UnrevealedKeyColor, args: formatArgs).Answers(unrevealedKeyColors[keyIndex]);
             if (missing[keyIndex] != 1)     // Label color
-                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedLabelColor, module, formatArgs: formatArgs, correctAnswers: new[] { unrevealedLabelColors[keyIndex] }));
+                yield return question(SDisorderedKeys.UnrevealedLabelColor, args: formatArgs).Answers(unrevealedLabelColors[keyIndex]);
             if (missing[keyIndex] != 2)     // Label
-                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedKeyLabel, module, formatArgs: formatArgs, correctAnswers: new[] { unrevealedLabels[keyIndex] }));
+                yield return question(SDisorderedKeys.UnrevealedKeyLabel, args: formatArgs).Answers(unrevealedLabels[keyIndex]);
 
             // If not a sequential nor false key, ask about reavealed key info
             if (quirks[keyIndex] < 4)
             {
-                qs.Add(makeQuestion(Question.DisorderedKeysRevealedKeyColor, module, formatArgs: formatArgs, correctAnswers: new[] { colorList[info[keyIndex][0]] }));
-                qs.Add(makeQuestion(Question.DisorderedKeysRevealedLabelColor, module, formatArgs: formatArgs, correctAnswers: new[] { colorList[info[keyIndex][1]] }));
-                qs.Add(makeQuestion(Question.DisorderedKeysRevealedLabel, module, formatArgs: formatArgs, correctAnswers: new[] { (info[keyIndex][2] + 1).ToString() }));
+                yield return question(SDisorderedKeys.RevealedKeyColor, args: formatArgs).Answers(colorList[info[keyIndex][0]]);
+                yield return question(SDisorderedKeys.RevealedLabelColor, args: formatArgs).Answers(colorList[info[keyIndex][1]]);
+                yield return question(SDisorderedKeys.RevealedLabel, args: formatArgs).Answers((info[keyIndex][2] + 1).ToString());
             }
         }
-        addQuestions(module, qs);
     }
 }

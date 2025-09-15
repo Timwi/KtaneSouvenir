@@ -19,9 +19,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var operators = GetListField<string>(comp, "Entered", isPublic: true).Get(expectedLength: 10);
-        var qs = new List<QandA>();
         for (var pos = 0; pos < 5; pos++)
-            qs.Add(makeQuestion(Question.BooleanWiresEnteredOperators, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { operators[2 * pos] }));
-        addQuestions(module, qs);
+            yield return question(SBooleanWires.EnteredOperators, args: [Ordinal(pos + 1)]).Answers(operators[2 * pos]);
     }
 }

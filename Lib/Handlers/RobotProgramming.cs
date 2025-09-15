@@ -24,18 +24,14 @@ public partial class SouvenirModule
         var fldColor = GetField<Enum>(robotsArr[0], "Color", isPublic: true);
         var fldShape = GetField<Enum>(robotsArr[0], "Shape", isPublic: true);
 
-        var qs = new List<QandA>();
-
         for (var i = 0; i < 4; i++)
         {
             var robot = robotsArr[i];
             var color = fldColor.GetFrom(robot).ToString();
             var shape = fldShape.GetFrom(robot).ToString();
 
-            qs.Add(makeQuestion(Question.RobotProgrammingColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { color }));
-            qs.Add(makeQuestion(Question.RobotProgrammingShape, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { shape }));
+            yield return question(SRobotProgramming.Color, args: [Ordinal(i + 1)]).Answers(color);
+            yield return question(SRobotProgramming.Shape, args: [Ordinal(i + 1)]).Answers(shape);
         }
-
-        addQuestions(module, qs);
     }
 }

@@ -24,12 +24,10 @@ public partial class SouvenirModule
         var datasets = GetArrayField<int>(comp, "datasetsUsed").Get();
         var shapeNames = GetStaticField<string[]>(comp.GetType(), "shapeNames").Get();
         var datasetNames = new[] { "Morse Identification", "Boozleglyph Identification", "Plant Identification", "Pickup Identification", "Emotiguy Identification", "Ars Goetia Identification", "Mii Identification", "Customer Identification", "Spongebob Birthday Identification", "VTuber Identification" };
-        var qs = new List<QandA>();
         for (var i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.IdentificationCrisisShape, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { shapeNames[shapes[i]] }));
-            qs.Add(makeQuestion(Question.IdentificationCrisisDataset, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { datasetNames[datasets[i]] }));
+            yield return question(SIdentificationCrisis.Shape, args: [Ordinal(i + 1)]).Answers(shapeNames[shapes[i]]);
+            yield return question(SIdentificationCrisis.Dataset, args: [Ordinal(i + 1)]).Answers(datasetNames[datasets[i]]);
         }
-        addQuestions(module, qs);
     }
 }

@@ -40,14 +40,10 @@ public partial class SouvenirModule
         // If there are less than 4 eligible modules, fill the remaining spaces with random other modules.
         if (wrongModuleNames.Count < 4)
             wrongModuleNames.AddRange(Ut.Attributes.Select(a => a.Value.ModuleNameWithThe).Distinct());
-
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.EncryptedHangmanModule, module, correctAnswers: new[] { moduleName }, preferredWrongAnswers: wrongModuleNames.ToArray()));
+        yield return question(SEncryptedHangman.Module).Answers(moduleName, preferredWrong: wrongModuleNames.ToArray());
 
         var encryptionMethodNames = new[] { "Caesar Cipher", "Playfair Cipher", "Rot-13 Cipher", "Atbash Cipher", "Affine Cipher", "Modern Cipher", "Vigenère Cipher" };
         var encryptionMethod = GetIntField(comp, "encryptionMethod").Get(0, encryptionMethodNames.Length - 1);
-        qs.Add(makeQuestion(Question.EncryptedHangmanEncryptionMethod, module, correctAnswers: new[] { encryptionMethodNames[encryptionMethod] }));
-
-        addQuestions(module, qs);
+        yield return question(SEncryptedHangman.EncryptionMethod).Answers(encryptionMethodNames[encryptionMethod]);
     }
 }

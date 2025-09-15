@@ -24,12 +24,10 @@ public partial class SouvenirModule
         var colorNames = new[] { "red", "green", "orange", "blue", "yellow", "brown" };
         var colors = GetArrayField<int>(comp, "buttonColors").Get();
         var labels = GetArrayField<string>(comp, "labels").Get();
-        var qs = new List<QandA>();
         for (var i = 0; i < 5; i++)
         {
-            qs.Add(makeQuestion(Question.MandMsColors, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
-            qs.Add(makeQuestion(Question.MandMsLabels, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, preferredWrongAnswers: labels));
+            yield return question(SMandMs.Colors, args: [Ordinal(i + 1)]).Answers(colorNames[colors[i]]);
+            yield return question(SMandMs.Labels, args: [Ordinal(i + 1)]).Answers(labels[i], preferredWrong: labels);
         }
-        addQuestions(module, qs);
     }
 }

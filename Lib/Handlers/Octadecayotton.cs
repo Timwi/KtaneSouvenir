@@ -38,10 +38,8 @@ public partial class SouvenirModule
                 do { wrongPositions[i] = toPosition(Rnd.Range(0, (int) Math.Pow(2, dimension))); }
                 while (wrongPositions.Take(i - 1).Contains(wrongPositions[i]));
         }
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.OctadecayottonSphere, module, correctAnswers: new[] { sphere }, preferredWrongAnswers: wrongPositions));
+        yield return question(SOctadecayotton.Sphere).Answers(sphere, preferredWrong: wrongPositions);
         for (var i = 0; i < rotations.Length; i++)
-            qs.Add(makeQuestion(Question.OctadecayottonRotations, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrongAnswers: Enumerable.Range(1, 10).Select(n => new[] { "X", "Y", "Z", "W", "U", "V", "R", "S", "T", "O", "P", "Q", "L", "M", "M", "I", "J", "K", "F", "G", "H", "C", "D", "E", "A", "B", "XX" }.Take(dimension).ToArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray()));
-        addQuestions(module, qs);
+            yield return question(SOctadecayotton.Rotations, args: [Ordinal(i + 1)]).Answers(rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrong: Enumerable.Range(1, 10).Select(n => new[] { "X", "Y", "Z", "W", "U", "V", "R", "S", "T", "O", "P", "Q", "L", "M", "M", "I", "J", "K", "F", "G", "H", "C", "D", "E", "A", "B", "XX" }.Take(dimension).ToArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray());
     }
 }

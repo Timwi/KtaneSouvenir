@@ -24,20 +24,17 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "WarGamesModuleScript");
         yield return WaitForSolve;
-        var qs = new List<QandA>();
 
         var messageColor = GetField<object>(comp, "correctColor").Get();
         var colorNames = new[] { "Red-Alpha", "Yellow-Alpha", "Green-Alpha" };
         var correctColor = messageColor.ToString() == "Red" ? colorNames[0] : messageColor.ToString() == "Yellow" ? colorNames[1] : colorNames[2];
-        qs.Add(makeQuestion(Question.SiloAuthorizationMessageType, module, correctAnswers: new[] { correctColor }, preferredWrongAnswers: colorNames));
+        yield return question(SSiloAuthorization.MessageType).Answers(correctColor, preferredWrong: colorNames);
 
         var outMessages = GetArrayField<string>(comp, "outMessages").Get();
         var messages = new[] { outMessages[0], outMessages[2] };
         for (var message = 0; message < 2; message++)
-            qs.Add(makeQuestion(Question.SiloAuthorizationEncryptedMessage, module, formatArgs: new[] { Ordinal(message + 1) }, correctAnswers: new[] { messages[message] }, preferredWrongAnswers: messages));
+            yield return question(SSiloAuthorization.EncryptedMessage, args: [Ordinal(message + 1)]).Answers(messages[message], preferredWrong: messages);
 
-        qs.Add(makeQuestion(Question.SiloAuthorizationAuthCode, module, correctAnswers: new[] { GetField<int>(comp, "outAuthCode").Get().ToString("0000") }));
-
-        addQuestions(module, qs);
+        yield return question(SSiloAuthorization.AuthCode).Answers(GetField<int>(comp, "outAuthCode").Get().ToString("0000"));
     }
 }

@@ -19,10 +19,7 @@ public partial class SouvenirModule
 
         var arrow = GetIntField(comp, "_arrow").Get(min: 0, max: 6);
         var flashingButtons = GetArrayField<int>(comp, "_flashingButtons").Get(expectedLength: 8, validator: b => b is < 0 or > 6 ? "expected range 0–6" : null);
-
-        var qs = new List<QandA>();
         for (var i = 0; i < flashingButtons.Length; i++)
-            qs.Add(makeQuestion(Question.SimonShrieksFlashingButton, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ((flashingButtons[i] + 7 - arrow) % 7).ToString() }));
-        addQuestions(module, qs);
+            yield return question(SSimonShrieks.FlashingButton, args: [Ordinal(i + 1)]).Answers(((flashingButtons[i] + 7 - arrow) % 7).ToString());
     }
 }

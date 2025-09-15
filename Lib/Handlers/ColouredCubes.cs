@@ -52,16 +52,13 @@ public partial class SouvenirModule
         }
 
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
         for (var stage = 0; stage < 3; stage++)
         {
             for (var ix = 0; ix < 9; ix++)
-                qs.Add(makeQuestion(Question.ColouredCubesColours, module, Sprites.GenerateGridSprite(3, 3, ix), formatArgs: new[] { "cube", Ordinal(stage + 1) }, correctAnswers: new[] { cubeColours[stage, ix] }, preferredWrongAnswers: allCubeColours));
+                yield return question(SColouredCubes.Colours, args: ["cube", Ordinal(stage + 1)], questionSprite: Sprites.GenerateGridSprite(3, 3, ix)).Answers(cubeColours[stage, ix], preferredWrong: allCubeColours);
             if (stage < 2)
                 for (var ix = 0; ix < 3; ix++)
-                    qs.Add(makeQuestion(Question.ColouredCubesColours, module, Sprites.GenerateGridSprite(1, 3, ix), formatArgs: new[] { "stage light", Ordinal(stage + 1) }, correctAnswers: new[] { stageLightColours[stage, ix] }, preferredWrongAnswers: allStageLightColours));
+                    yield return question(SColouredCubes.Colours, args: ["stage light", Ordinal(stage + 1)], questionSprite: Sprites.GenerateGridSprite(1, 3, ix)).Answers(stageLightColours[stage, ix], preferredWrong: allStageLightColours);
         }
-        addQuestions(module, qs);
     }
 }

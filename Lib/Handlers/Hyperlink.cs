@@ -24,12 +24,8 @@ public partial class SouvenirModule
         var moduleNames = GetStaticField<string[]>(moduleNamesType, "phrases", isPublic: true).Get(validator: ar => ar.Length % 2 != 0 ? "expected even number of items" : null);
         var hyperlink = GetField<string>(comp, "selectedString").Get();
         var anchor = GetIntField(comp, "anchor").Get();
-
-        var questions = new List<QandA>();
         for (var i = 0; i < 11; i++)
-            questions.Add(makeQuestion(Question.HyperlinkCharacters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { hyperlink[i].ToString() }));
-        questions.Add(makeQuestion(Question.HyperlinkAnswer, module, correctAnswers: new[] { moduleNames[anchor + 1].Replace("'", "’") }));
-
-        addQuestions(module, questions);
+            yield return question(SHyperlink.Characters, args: [Ordinal(i + 1)]).Answers(hyperlink[i].ToString());
+        yield return question(SHyperlink.Answer).Answers(moduleNames[anchor + 1].Replace("'", "’"));
     }
 }

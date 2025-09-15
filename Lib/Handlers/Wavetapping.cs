@@ -36,18 +36,9 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "Red", "Orange", "Orange-Yellow", "Chartreuse", "Lime", "Green", "Seafoam Green", "Cyan-Green", "Turquoise", "Dark Blue", "Indigo", "Purple", "Purple-Magenta", "Magenta", "Pink", "Gray" };
 
-        var qs = new List<QandA>();
-
         for (var stage = 0; stage < intPatterns.Length; stage++)
-            qs.Add(makeQuestion(Question.WavetappingPatterns, module,
-                formatArgs: new[] { Ordinal(stage + 1) },
-                correctAnswers: new[] { patternSprites[stageColors[stage]][intPatterns[stage]] },
-                preferredWrongAnswers: stageColors.SelectMany(stages => patternSprites[stages]).ToArray()));
+            yield return question(SWavetapping.Patterns, args: [Ordinal(stage + 1)]).Answers(patternSprites[stageColors[stage]][intPatterns[stage]], preferredWrong: stageColors.SelectMany(stages => patternSprites[stages]).ToArray());
         for (var stage = 0; stage < 2; stage++)
-            qs.Add(makeQuestion(Question.WavetappingColors, module,
-                formatArgs: new[] { Ordinal(stage + 1) },
-                correctAnswers: new[] { colorNames[stageColors[stage]] }));
-
-        addQuestions(module, qs);
+            yield return question(SWavetapping.Colors, args: [Ordinal(stage + 1)]).Answers(colorNames[stageColors[stage]]);
     }
 }

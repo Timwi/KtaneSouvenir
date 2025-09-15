@@ -31,14 +31,11 @@ public partial class SouvenirModule
         var chosenColorsDisplay = fldChosenColorsDisplay.Get(expectedLength: 4);
         var chosenDisplayNumbers = fldChosenDisplayNumbers.Get(expectedLength: 4);
         var chosenColorsWire = fldChosenColorsWire.Get(expectedLength: 4);
-
-        var qs = new List<QandA>();
         for (var ix = 0; ix < 4; ix++)
         {
-            qs.Add(makeQuestion(Question.WireOrderingDisplayColor, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colors[chosenColorsDisplay[ix]] }));
-            qs.Add(makeQuestion(Question.WireOrderingDisplayNumber, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { chosenDisplayNumbers[ix].ToString() }));
-            qs.Add(makeQuestion(Question.WireOrderingWireColor, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colors[chosenColorsWire[ix]] }));
+            yield return question(SWireOrdering.DisplayColor, args: [Ordinal(ix + 1)]).Answers(colors[chosenColorsDisplay[ix]]);
+            yield return question(SWireOrdering.DisplayNumber, args: [Ordinal(ix + 1)]).Answers(chosenDisplayNumbers[ix].ToString());
+            yield return question(SWireOrdering.WireColor, args: [Ordinal(ix + 1)]).Answers(colors[chosenColorsWire[ix]]);
         }
-        addQuestions(module, qs);
     }
 }

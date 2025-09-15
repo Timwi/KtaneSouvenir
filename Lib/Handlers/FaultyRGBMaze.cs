@@ -36,21 +36,12 @@ public partial class SouvenirModule
 
         string[] colors = { "red", "green", "blue" };
 
-        var qs = new List<QandA>();
-
         for (var index = 0; index < 3; index++)
         {
-            qs.Add(makeQuestion(Question.FaultyRGBMazeKeys, module,
-                formatArgs: new[] { colors[index] },
-                correctAnswers: new[] { "ABCDEFG"[keyPos[index][1]] + (keyPos[index][0] + 1).ToString() }));
-            qs.Add(makeQuestion(Question.FaultyRGBMazeNumber, module,
-                formatArgs: new[] { colors[index] },
-                correctAnswers: new[] { "0123456789abcdef"[mazeNum[index][0]].ToString() }));
+            yield return question(SFaultyRGBMaze.Keys, args: [colors[index]]).Answers("ABCDEFG"[keyPos[index][1]] + (keyPos[index][0] + 1).ToString());
+            yield return question(SFaultyRGBMaze.Number, args: [colors[index]]).Answers("0123456789abcdef"[mazeNum[index][0]].ToString());
         }
 
-        qs.Add(makeQuestion(Question.FaultyRGBMazeExit, module,
-            correctAnswers: new[] { "ABCDEFG"[exitPos[2]] + (exitPos[1] + 1).ToString() }));
-
-        addQuestions(module, qs);
+        yield return question(SFaultyRGBMaze.Exit).Answers("ABCDEFG"[exitPos[2]] + (exitPos[1] + 1).ToString());
     }
 }

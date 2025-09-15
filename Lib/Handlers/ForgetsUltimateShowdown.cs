@@ -39,16 +39,13 @@ public partial class SouvenirModule
         var initial = GetField<string>(comp, "_initialNumber").Get();
         var bottom = GetField<string>(comp, "_bottomNumber").Get();
         var methodNames = methods.Cast<object>().Select(x => GetProperty<string>(x, "Name", isPublic: true).Get()).ToList();
-
-        var questions = new List<QandA>();
         for (var i = 0; i < 12; i++)
         {
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownAnswer, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { answer[i].ToString() }));
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { bottom[i].ToString() }));
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { initial[i].ToString() }));
+            yield return question(SForgetsUltimateShowdown.Answer, args: [Ordinal(i + 1)]).Answers(answer[i].ToString());
+            yield return question(SForgetsUltimateShowdown.Bottom, args: [Ordinal(i + 1)]).Answers(bottom[i].ToString());
+            yield return question(SForgetsUltimateShowdown.Initial, args: [Ordinal(i + 1)]).Answers(initial[i].ToString());
         }
         for (var i = 0; i < 4; i++)
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { methodNames[i].Replace("'", "’") }));
-        addQuestions(module, questions);
+            yield return question(SForgetsUltimateShowdown.Method, args: [Ordinal(i + 1)]).Answers(methodNames[i].Replace("'", "’"));
     }
 }

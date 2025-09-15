@@ -70,11 +70,9 @@ public partial class SouvenirModule
         var rules = GetField<Array>(comp, "_rowCriteria").Get(ar => ar.Length != 6 ? "expected length 6" : null);
         var colorsRaw = GetField<Array>(comp, "_colors").Get(ar => ar.Length != 6 ? "expected length 6" : null);     // array of enum values
         var colors = colorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
-
-        var qs = new List<QandA>();
         var lastSeq = seqs.Last();
         foreach (var i in stageIxs)     // Only ask about the flashing colors that were relevant in the big table
-            qs.Add(makeQuestion(Question.SimonScreamsFlashing, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colors[lastSeq[i]] }));
+            yield return question(SSimonScreams.Flashing, args: [Ordinal(i + 1)]).Answers(colors[lastSeq[i]]);
 
         // First determine which rule applied in which stage
         var fldCheck = GetField<Func<int[], bool>>(rules.GetValue(0), "Check", isPublic: true);
@@ -101,21 +99,15 @@ public partial class SouvenirModule
             {
                 var code = fldSouvenirCode.GetFrom(rules.GetValue(rule));
                 if (code == 0)
-                    qs.Add(makeQuestion(Question.SimonScreamsRuleSimple, module,
-                        formatArgs: new[] { fldRuleName.GetFrom(rules.GetValue(rule)) },
-                        correctAnswers: new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") }));
+                    yield return question(SSimonScreams.RuleSimple, args: [fldRuleName.GetFrom(rules.GetValue(rule))]).Answers(applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and "));
                 else
                 {
                     var color1 = colorNames[code >> 7];
                     var color2 = colorNames[(code >> 4) & 7];
                     var color3 = colorNames[(code >> 1) & 7];
-                    qs.Add(makeQuestion(Question.SimonScreamsRuleComplex, module,
-                        formatArgs: new[] { (code & 1) != 0 ? "at least two colors" : "at most one color", color1, color2, color3 },
-                        correctAnswers: new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") }));
+                    yield return question(SSimonScreams.RuleComplex, args: [(code & 1) != 0 ? "at least two colors" : "at most one color", color1, color2, color3]).Answers(applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and "));
                 }
             }
         }
-
-        addQuestions(module, qs);
     }
 }

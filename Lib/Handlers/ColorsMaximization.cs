@@ -26,13 +26,7 @@ public partial class SouvenirModule
         var colorNameDic = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorNames", true).Get();
         var colorNames = colorNameDic.Values.ToArray();
         var allColors = GetStaticField<Color[]>(comp.GetType(), "allColors").Get();
-
-        var questions = new List<QandA>();
         foreach (var color in allColors)
-            questions.Add(makeQuestion(Question.ColorsMaximizationColorCount, module,
-                formatArgs: new[] { colorNameDic[color] },
-                correctAnswers: new[] { GetField<Dictionary<Color, int>>(comp, "countOfColor").Get()[color].ToString() }));
-
-        addQuestions(module, questions);
+            yield return question(SColorsMaximization.ColorCount, args: [colorNameDic[color]]).Answers(GetField<Dictionary<Color, int>>(comp, "countOfColor").Get()[color].ToString());
     }
 }

@@ -32,14 +32,9 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" };
         var colorChars = "KRGYBMCW";
-
-        var qs = new List<QandA>();
         for (var upDown = 0; upDown < 2; upDown++)
             for (var cycle = 0; cycle < 2; cycle++)
                 for (var led = 0; led < 5; led++)
-                    qs.Add(makeQuestion(Question.MulticoloredSwitchesLedColor, module,
-                        formatArgs: new[] { Ordinal(led + 1), upDown == 0 ? "top" : "bottom", cycle == 0 ? "lit" : "unlit" },
-                        correctAnswers: new[] { colorNames[colorChars.IndexOf((upDown == 0 ? upColors : downColors)[led][cycle])] }));
-        addQuestions(module, qs);
+                    yield return question(SMulticoloredSwitches.LedColor, args: [Ordinal(led + 1), upDown == 0 ? "top" : "bottom", cycle == 0 ? "lit" : "unlit"]).Answers(colorNames[colorChars.IndexOf((upDown == 0 ? upColors : downColors)[led][cycle])]);
     }
 }

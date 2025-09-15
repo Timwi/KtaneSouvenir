@@ -49,12 +49,9 @@ public partial class SouvenirModule
             btnPrevious.AddInteractionPunch(0.2f);
             return false;
         };
-
-        var qs = new List<QandA>();
         for (var i = 0; i < gateTypeNames.Length; i++)
-            qs.Add(makeQuestion(Question.LogicGatesGates, module, formatArgs: new[] { "gate " + (char) ('A' + i) }, correctAnswers: new[] { gateTypeNames[i] }));
+            yield return question(SLogicGates.Gates, args: ["gate " + (char) ('A' + i)]).Answers(gateTypeNames[i]);
         if (!isDuplicateInvalid)
-            qs.Add(makeQuestion(Question.LogicGatesGates, module, formatArgs: new[] { "the duplicated gate" }, correctAnswers: new[] { duplicate }));
-        addQuestions(module, qs);
+            yield return question(SLogicGates.Gates, args: ["the duplicated gate"]).Answers(duplicate);
     }
 }

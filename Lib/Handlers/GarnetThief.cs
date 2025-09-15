@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -17,31 +18,24 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessGarnetThief(ModuleData module)
     {
         var comp = GetComponent(module, "TheGarnetThiefScript");
-
-        var qs = new List<QandA>();
+        var contestants = GetField<Array>(comp, "contestants").Get(arr => arr.Length != 7 ? "expected length 7" : null) as object[];
+        var fldLying = GetField<bool>(contestants[0], "lying", isPublic: true);
+        var fldName = GetField<Enum>(contestants[0], "name", isPublic: true);
+        var fldClaimedFaction = GetField<Enum>(contestants[0], "claimedFaction", isPublic: true);
 
         module.Module.OnPass += () =>
         {
-            var contestants = GetField<Array>(comp, "contestants").Get(arr => arr.Length != 7 ? "expected length 7" : null) as object[];
-            var fldLying = GetField<bool>(contestants[0], "lying", isPublic: true);
-            var fldName = GetField<Enum>(contestants[0], "name", isPublic: true);
-            var fldClaimedFaction = GetField<Enum>(contestants[0], "claimedFaction", isPublic: true);
-
             foreach (var cont in contestants)
                 fldLying.SetTo(cont, true);
 
             GetArrayField<Color>(comp, "frameColors").Set(Enumerable.Repeat(Color.gray, 4).ToArray());
             GetArrayField<Sprite>(comp, "allFactionIcons", isPublic: true).Set(new Sprite[4]);
-
-            qs.AddRange(Enumerable.Range(0, 7).Select(i => makeQuestion(
-                question: Question.GarnetThiefClaim,
-                data: module,
-                formatArgs: new[] { fldName.GetFrom(contestants[i]).ToString() },
-                correctAnswers: new[] { fldClaimedFaction.GetFrom(contestants[i]).ToString() })));
             return false;
         };
 
         yield return WaitForSolve;
-        addQuestions(module, qs);
+
+        for (var i = 0; i < 7; i++)
+            yield return question(SGarnetThief.Claim, args: [fldName.GetFrom(contestants[i]).ToString()]).Answers(fldClaimedFaction.GetFrom(contestants[i]).ToString());
     }
 }

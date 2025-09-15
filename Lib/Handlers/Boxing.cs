@@ -32,20 +32,17 @@ public partial class SouvenirModule
         var lastNameIndices = GetArrayField<int>(comp, "lastNameIndices").Get(expectedLength: 5, validator: v => v < 0 || v >= possibleLastNames.Length ? "out of range" : null);
         var substituteIndices = GetArrayField<int>(comp, "substituteIndices").Get(expectedLength: 5, validator: v => v < 0 || v >= possibleSubstituteNames.Length ? "out of range" : null);
         var substituteLastNameIndices = GetArrayField<int>(comp, "substituteLastNameIndices").Get(expectedLength: 5, validator: v => v < 0 || v >= possibleLastNames.Length ? "out of range" : null);
-
-        var qs = new List<QandA>();
         for (var ct = 0; ct < 5; ct++)
         {
-            qs.Add(makeQuestion(Question.BoxingStrengthByContestant, module, formatArgs: new[] { possibleNames[contestantIndices[ct]] }, correctAnswers: new[] { contestantStrengths[ct].ToString() }));
-            qs.Add(makeQuestion(Question.BoxingContestantByStrength, module, formatArgs: new[] { "first name", contestantStrengths[ct].ToString() }, correctAnswers: new[] { possibleNames[contestantIndices[ct]] }, preferredWrongAnswers: possibleNames));
-            qs.Add(makeQuestion(Question.BoxingContestantByStrength, module, formatArgs: new[] { "last name", contestantStrengths[ct].ToString() }, correctAnswers: new[] { possibleLastNames[lastNameIndices[ct]] }, preferredWrongAnswers: possibleLastNames));
-            qs.Add(makeQuestion(Question.BoxingContestantByStrength, module, formatArgs: new[] { "substitute’s first name", contestantStrengths[ct].ToString() }, correctAnswers: new[] { possibleSubstituteNames[substituteIndices[ct]] }, preferredWrongAnswers: possibleSubstituteNames));
-            qs.Add(makeQuestion(Question.BoxingContestantByStrength, module, formatArgs: new[] { "substitute’s last name", contestantStrengths[ct].ToString() }, correctAnswers: new[] { possibleLastNames[substituteLastNameIndices[ct]] }, preferredWrongAnswers: possibleLastNames));
+            yield return question(SBoxing.StrengthByContestant, args: [possibleNames[contestantIndices[ct]]]).Answers(contestantStrengths[ct].ToString());
+            yield return question(SBoxing.ContestantByStrength, args: ["first name", contestantStrengths[ct].ToString()]).Answers(possibleNames[contestantIndices[ct]], preferredWrong: possibleNames);
+            yield return question(SBoxing.ContestantByStrength, args: ["last name", contestantStrengths[ct].ToString()]).Answers(possibleLastNames[lastNameIndices[ct]], preferredWrong: possibleLastNames);
+            yield return question(SBoxing.ContestantByStrength, args: ["substitute’s first name", contestantStrengths[ct].ToString()]).Answers(possibleSubstituteNames[substituteIndices[ct]], preferredWrong: possibleSubstituteNames);
+            yield return question(SBoxing.ContestantByStrength, args: ["substitute’s last name", contestantStrengths[ct].ToString()]).Answers(possibleLastNames[substituteLastNameIndices[ct]], preferredWrong: possibleLastNames);
         }
-        qs.Add(makeQuestion(Question.BoxingNames, module, formatArgs: new[] { "contestant’s first name", }, correctAnswers: contestantIndices.Select(ix => possibleNames[ix]).ToArray(), preferredWrongAnswers: possibleNames));
-        qs.Add(makeQuestion(Question.BoxingNames, module, formatArgs: new[] { "contestant’s last name" }, correctAnswers: lastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrongAnswers: possibleLastNames));
-        qs.Add(makeQuestion(Question.BoxingNames, module, formatArgs: new[] { "substitute’s first name" }, correctAnswers: substituteIndices.Select(ix => possibleSubstituteNames[ix]).ToArray(), preferredWrongAnswers: possibleSubstituteNames));
-        qs.Add(makeQuestion(Question.BoxingNames, module, formatArgs: new[] { "substitute’s last name" }, correctAnswers: substituteLastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrongAnswers: possibleLastNames));
-        addQuestions(module, qs);
+        yield return question(SBoxing.Names, args: ["contestant’s first name",]).Answers(contestantIndices.Select(ix => possibleNames[ix]).ToArray(), preferredWrong: possibleNames);
+        yield return question(SBoxing.Names, args: ["contestant’s last name"]).Answers(lastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrong: possibleLastNames);
+        yield return question(SBoxing.Names, args: ["substitute’s first name"]).Answers(substituteIndices.Select(ix => possibleSubstituteNames[ix]).ToArray(), preferredWrong: possibleSubstituteNames);
+        yield return question(SBoxing.Names, args: ["substitute’s last name"]).Answers(substituteLastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrong: possibleLastNames);
     }
 }

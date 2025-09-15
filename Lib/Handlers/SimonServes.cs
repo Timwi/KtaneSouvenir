@@ -53,14 +53,11 @@ public partial class SouvenirModule
             }
             yield return null;  // no ‘WaitForSeconds’ here to make absolutely sure we don’t miss a stage
         }
-
-        var qs = new List<QandA>();
         for (var stage = 0; stage < 4; stage++)
         {
             for (var flashIx = 0; flashIx < 6; flashIx++)
-                qs.Add(makeQuestion(Question.SimonServesFlash, module, formatArgs: new[] { Ordinal(flashIx + 1), (stage + 1).ToString() }, correctAnswers: new[] { flashOrder[stage][flashIx] }));
-            qs.Add(makeQuestion(Question.SimonServesFood, module, formatArgs: new[] { (stage + 1).ToString() }, allAnswers: foodCourse[stage], correctAnswers: foodCourse[stage].Except(foodDisplayed[stage]).ToArray()));
+                yield return question(SSimonServes.Flash, args: [Ordinal(flashIx + 1), (stage + 1).ToString()]).Answers(flashOrder[stage][flashIx]);
+            yield return question(SSimonServes.Food, args: [(stage + 1).ToString()]).Answers(foodCourse[stage].Except(foodDisplayed[stage]).ToArray(), all: foodCourse[stage]);
         }
-        addQuestions(module, qs);
     }
 }

@@ -29,11 +29,8 @@ public partial class SouvenirModule
                 yield return new WaitForSeconds(0.1f);
             }
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
         for (var stage = 0; stage < storedIdxDisplays.Length; stage++)
             if (storedIdxDisplays[stage] != null)
-                qs.Add(makeQuestion(Question.WhosOnMorseTransmitDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { wordBank[storedIdxDisplays[stage].Value] }, preferredWrongAnswers: storedIdxDisplays.Select(a => a == null ? null : wordBank[a.Value]).Where(s => s != null).ToArray()));
-        addQuestions(module, qs);
+                yield return question(SWhosOnMorse.TransmitDisplay, args: [Ordinal(stage + 1)]).Answers(wordBank[storedIdxDisplays[stage].Value], preferredWrong: storedIdxDisplays.Select(a => a == null ? null : wordBank[a.Value]).Where(s => s != null).ToArray());
     }
 }

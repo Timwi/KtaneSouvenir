@@ -22,16 +22,12 @@ public partial class SouvenirModule
         var flashes = GetField<IList>(comp, "flashes").Get();
         var mthGetNumbers = GetMethod<int[]>(flashes[0], "GetNumbers", 0, isPublic: true);
         var numbers = Enumerable.Range(0, 3).Select(stage => mthGetNumbers.InvokeOn(flashes[stage]).Select(i => i.ToString()).ToArray()).ToArray();
-
-        var qs = new List<QandA>();
         var numStrs = Enumerable.Range(0, 10).Select(i => i.ToString()).ToArray();
         for (var stage = 0; stage < 3; stage++)
         {
             if (numbers[stage].Length >= 3)
-                qs.Add(makeQuestion(Question.NotNumberPadFlashes, module, formatArgs: new[] { "did not flash", Ordinal(stage + 1) }, correctAnswers: numStrs.Except(numbers[stage]).ToArray()));
-            qs.Add(makeQuestion(Question.NotNumberPadFlashes, module, formatArgs: new[] { "flashed", Ordinal(stage + 1) }, correctAnswers: numbers[stage]));
+                yield return question(SNotNumberPad.Flashes, args: ["did not flash", Ordinal(stage + 1)]).Answers(numStrs.Except(numbers[stage]).ToArray());
+            yield return question(SNotNumberPad.Flashes, args: ["flashed", Ordinal(stage + 1)]).Answers(numbers[stage]);
         }
-
-        addQuestions(module, qs);
     }
 }

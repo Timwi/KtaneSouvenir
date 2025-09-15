@@ -36,19 +36,16 @@ public partial class SouvenirModule
 
         var positions = Question.NotWhosOnFirstPressedPosition.GetAnswers();
         var sumCorrectAnswers = new[] { fldSum.Get().ToString() };
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 4; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { fldLabels.Get()[i] }));
+            yield return question(SNotWhosOnFirst.PressedPosition, args: [Ordinal(i + 1)]).Answers(positions[fldPositions.Get()[i]]);
+            yield return question(SNotWhosOnFirst.PressedLabel, args: [Ordinal(i + 1)]).Answers(fldLabels.Get()[i]);
         }
         for (var i = 4; i < 6; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, module, formatArgs: new[] { Ordinal(i - 1) }, correctAnswers: new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, module, formatArgs: new[] { Ordinal(i - 1) }, correctAnswers: new[] { fldLabels.Get()[i] }));
+            yield return question(SNotWhosOnFirst.ReferencePosition, args: [Ordinal(i - 1)]).Answers(positions[fldPositions.Get()[i]]);
+            yield return question(SNotWhosOnFirst.ReferenceLabel, args: [Ordinal(i - 1)]).Answers(fldLabels.Get()[i]);
         }
-        qs.Add(makeQuestion(Question.NotWhosOnFirstSum, module, correctAnswers: sumCorrectAnswers));
-        addQuestions(module, qs);
+        yield return question(SNotWhosOnFirst.Sum).Answers(sumCorrectAnswers);
     }
 }

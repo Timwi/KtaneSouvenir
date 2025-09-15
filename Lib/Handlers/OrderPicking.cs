@@ -51,15 +51,11 @@ public partial class SouvenirModule
         }
         yield return WaitForSolve;
 
-        var qs = new List<QandA>();
-
         for (var order = 0; order < orderCount; order++)
         {
-            qs.Add(makeQuestion(Question.OrderPickingOrder, module, formatArgs: new[] { Ordinal(order + 1) }, correctAnswers: new[] { orderList[order].ToString() }));
-            qs.Add(makeQuestion(Question.OrderPickingProduct, module, formatArgs: new[] { Ordinal(order + 1) }, correctAnswers: new[] { productList[order].ToString() }));
-            qs.Add(makeQuestion(Question.OrderPickingPallet, module, formatArgs: new[] { Ordinal(order + 1) }, correctAnswers: new[] { palletList[order] }));
+            yield return question(SOrderPicking.Order, args: [Ordinal(order + 1)]).Answers(orderList[order].ToString());
+            yield return question(SOrderPicking.Product, args: [Ordinal(order + 1)]).Answers(productList[order].ToString());
+            yield return question(SOrderPicking.Pallet, args: [Ordinal(order + 1)]).Answers(palletList[order]);
         }
-
-        addQuestions(module, qs);
     }
 }

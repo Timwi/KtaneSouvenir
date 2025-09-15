@@ -32,14 +32,11 @@ public partial class SouvenirModule
         var fieldNames = new[] { "Stage1Symbols", "Stage2Symbols", "pickedSymbols" };
         // Unfortunately, these are stored as IList<char> types instead of just List<char>, so we can't use GetListField.
         var displayedSymbolSets = fieldNames.Select(name => GetField<IList<char>>(comp, name).Get(list => list.Count != 4 ? "expected length 4" : null).Select(c => c.ToString()).ToArray()).ToArray();
-
-        var qs = new List<QandA>();
         for (var stage = 0; stage < 3; stage++)
         {
             var stageNum = Ordinal(stage + 1);
-            qs.Add(makeQuestion(Question.CruelKeypadsColors, module, formatArgs: new[] { stageNum }, correctAnswers: new[] { colors[stage] }));
-            qs.Add(makeQuestion(Question.CruelKeypadsDisplayedSymbols, module, formatArgs: new[] { stageNum }, correctAnswers: displayedSymbolSets[stage]));
+            yield return question(SCruelKeypads.Colors, args: [stageNum]).Answers(colors[stage]);
+            yield return question(SCruelKeypads.DisplayedSymbols, args: [stageNum]).Answers(displayedSymbolSets[stage]);
         }
-        addQuestions(module, qs);
     }
 }

@@ -26,15 +26,12 @@ public partial class SouvenirModule
         var testSlot = ((Array) prevSlots[0]).GetValue(0);
         var fldShape = GetField<object>(testSlot, "shape", isPublic: true);
         var fldColor = GetField<object>(testSlot, "color", isPublic: true);
-
-        var qs = new List<QandA>();
         // Skip the last stage because if the last action was Keep, it is still visible on the module
         for (var stage = 0; stage < prevSlots.Count - 1; stage++)
         {
             var slotStrings = ((Array) prevSlots[stage]).Cast<object>().Select(obj => (fldColor.GetFrom(obj).ToString() + " " + fldShape.GetFrom(obj).ToString()).ToLowerInvariant()).ToArray();
             for (var slot = 0; slot < slotStrings.Length; slot++)
-                qs.Add(makeQuestion(Question.SillySlots, module, formatArgs: new[] { Ordinal(slot + 1), Ordinal(stage + 1) }, correctAnswers: new[] { slotStrings[slot] }, preferredWrongAnswers: slotStrings));
+                yield return question(SSillySlots.Question, args: [Ordinal(slot + 1), Ordinal(stage + 1)]).Answers(slotStrings[slot], preferredWrong: slotStrings);
         }
-        addQuestions(module, qs);
     }
 }

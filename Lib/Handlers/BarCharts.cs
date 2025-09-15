@@ -51,22 +51,15 @@ public partial class SouvenirModule
             allLabels.AddRange(fldVariables.GetFrom(variableSet));
         }
 
-        var qs = new List<QandA>
-        {
-            makeQuestion(Question.BarChartsCategory, module, correctAnswers: new[] { fldName.GetFrom(chosenSet) }, allAnswers: allCategories.ToArray()),
-            makeQuestion(Question.BarChartsUnit, module, correctAnswers: new[] { chosenUnit.ToString() })
-        };
+        yield return question(SBarCharts.Category).Answers(fldName.GetFrom(chosenSet), all: allCategories.ToArray());
+        yield return question(SBarCharts.Unit).Answers(chosenUnit.ToString());
 
         for (var i = 0; i < 4; i++)
         {
             var correctHeightPos = heightOrderIndices.IndexOf(i + 1) + 1;
-            qs.AddRange(new[] {
-                makeQuestion(Question.BarChartsLabel, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, allAnswers: relevantLabels),
-                makeQuestion(Question.BarChartsColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { barColours[i].ToString() }),
-                makeQuestion(Question.BarChartsHeight, module, formatArgs: new[] { heightArr[i] }, correctAnswers: new[] { Ordinal(correctHeightPos) })
-            });
+            yield return question(SBarCharts.Label, args: [Ordinal(i + 1)]).Answers(labels[i], all: relevantLabels);
+            yield return question(SBarCharts.Color, args: [Ordinal(i + 1)]).Answers(barColours[i].ToString());
+            yield return question(SBarCharts.Height, args: [heightArr[i]]).Answers(Ordinal(correctHeightPos));
         }
-
-        addQuestions(module, qs);
     }
 }

@@ -44,19 +44,12 @@ public partial class SouvenirModule
                     ? ixOfSymbols.First() == i ? parityOfSymbols.First() ? "+" : "-" : parityOfSymbols.Last() ? "+" : "-"
                     : sets[set][i].ToString();
             }
-            btnsAtAllStages[stage] = btns.JoinString("");
+            btnsAtAllStages[stage] = btns.JoinString();
             yield return null;
         }
 
-        var qs = new List<QandA>();
-
         for (var s = 0; s < 5; s++)
             for (var b = 0; b < 4; b++)
-            {
-                qs.Add(makeQuestion(Question.QuadrantsButtons, module,
-                formatArgs: new[] { Ordinal(b + 1), Ordinal(s + 1) },
-                correctAnswers: new[] { btnsAtAllStages[s][b].ToString() }));
-            }
-        addQuestions(module, qs);
+                yield return question(SQuadrants.Buttons, args: [Ordinal(b + 1), Ordinal(s + 1)]).Answers(btnsAtAllStages[s][b].ToString());
     }
 }

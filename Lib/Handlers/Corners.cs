@@ -25,9 +25,9 @@ public partial class SouvenirModule
         var cornerNames = new[] { "top-left", "top-right", "bottom-right", "bottom-left" };
 
         var clampColors = GetArrayField<int>(comp, "_clampColors").Get(expectedLength: 4, validator: v => v < 0 || v >= colorNames.Length ? $"expected 0–{colorNames.Length - 1}" : null);
-        var qs = new List<QandA>();
-        qs.AddRange(cornerNames.Select((corner, cIx) => makeQuestion(Question.CornersColors, module, formatArgs: new[] { corner }, correctAnswers: new[] { colorNames[clampColors[cIx]] })));
-        qs.AddRange(colorNames.Select((col, colIx) => makeQuestion(Question.CornersColorCount, module, formatArgs: new[] { col }, correctAnswers: new[] { clampColors.Count(cc => cc == colIx).ToString() })));
-        addQuestions(module, qs);
+        for (var cIx = 0; cIx < cornerNames.Length; cIx++)
+            yield return question(SCorners.Colors, args: [cornerNames[cIx]]).Answers(colorNames[clampColors[cIx]]);
+        for (var colIx = 0; colIx < colorNames.Length; colIx++)
+            yield return question(SCorners.ColorCount, args: [colorNames[colIx]]).Answers(clampColors.Count(cc => cc == colIx).ToString());
     }
 }

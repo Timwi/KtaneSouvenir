@@ -47,16 +47,12 @@ public partial class SouvenirModule
                 var typeName => throw new AbandonModuleException($"Invalid hack method: {typeName}"),
             });
         }
-
-        var questions = new List<QandA>();
-        questions.Add(makeQuestion(Question.CheatCheckoutCurrency, module, correctAnswers: new[] { sprites[spriteIndex] }, allAnswers: sprites));
+        yield return question(SCheatCheckout.Currency).Answers(sprites[spriteIndex], all: sprites);
 
         for (var i = 0; i < hacks.Count; i++)
         {
-            questions.Add(makeQuestion(Question.CheatCheckoutHack, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { hackHackMethods[i] }, allAnswers: hackMethods));
-            questions.Add(makeQuestion(Question.CheatCheckoutSite, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { hackSites[i] }, allAnswers: sites));
+            yield return question(SCheatCheckout.Hack, args: [Ordinal(i + 1)]).Answers(hackHackMethods[i], all: hackMethods);
+            yield return question(SCheatCheckout.Site, args: [Ordinal(i + 1)]).Answers(hackSites[i], all: sites);
         }
-
-        addQuestions(module, questions);
     }
 }

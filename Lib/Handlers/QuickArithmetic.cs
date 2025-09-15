@@ -25,14 +25,11 @@ public partial class SouvenirModule
         var primSeqDigits = GetArrayField<int>(comp, "LeftSequenceN").Get(expectedLength: 8);
         var secSeqDigits = GetArrayField<int>(comp, "RightSequence").Get(expectedLength: 8);
         var colorRef = new[] { "red", "blue", "green", "yellow", "white", "black", "orange", "pink", "purple", "cyan", "brown" };
-        var allQuestions = new List<QandA>();
         for (var x = 0; x < 8; x++)
         {
-            allQuestions.Add(makeQuestion(Question.QuickArithmeticColors, module, formatArgs: new[] { Ordinal(x + 1) }, correctAnswers: new[] { colorRef[seqColors[x]] }, preferredWrongAnswers: colorRef));
-            allQuestions.Add(makeQuestion(Question.QuickArithmeticPrimSecDigits, module, formatArgs: new[] { Ordinal(x + 1), "primary" }, correctAnswers: new[] { primSeqDigits[x].ToString() }));
-            allQuestions.Add(makeQuestion(Question.QuickArithmeticPrimSecDigits, module, formatArgs: new[] { Ordinal(x + 1), "secondary" }, correctAnswers: new[] { secSeqDigits[x].ToString() }));
+            yield return question(SQuickArithmetic.Colors, args: [Ordinal(x + 1)]).Answers(colorRef[seqColors[x]], preferredWrong: colorRef);
+            yield return question(SQuickArithmetic.PrimSecDigits, args: [Ordinal(x + 1), "primary"]).Answers(primSeqDigits[x].ToString());
+            yield return question(SQuickArithmetic.PrimSecDigits, args: [Ordinal(x + 1), "secondary"]).Answers(secSeqDigits[x].ToString());
         }
-
-        addQuestions(module, allQuestions);
     }
 }

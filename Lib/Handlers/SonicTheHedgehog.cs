@@ -42,8 +42,6 @@ public partial class SouvenirModule
             SonicTheHedgehogSprites.Where(sprite => new[] { "blueLamppost", "redLamppost", "redSpring", "switch", "yellowSpring" }.Contains(sprite.name)).ToArray()
         };
 
-        var qs = new List<QandA>();
-
         for (var stage = 0; stage < 3; stage++)
             qs.Add(makeQuestion(
                 question: Question.SonicTheHedgehogPictures,
@@ -53,13 +51,6 @@ public partial class SouvenirModule
                 correctAnswers: new[] { spriteArr[stage].First(sprite => sprite.name == pics[stage].name) }));
 
         for (var screen = 0; screen < 4; screen++)
-            qs.Add(makeQuestion(
-                Question.SonicTheHedgehogSounds,
-                data: module,
-                formatArgs: new[] { screenNames[screen] },
-                correctAnswers: new[] { SonicTheHedgehogAudio[soundNameMapping[sounds[screen]]] },
-                preferredWrongAnswers: sounds.Select(s => SonicTheHedgehogAudio[soundNameMapping[s]]).ToArray()));
-
-        addQuestions(module, qs);
+            yield return question(SSonicTheHedgehog.Sounds, args: [screenNames[screen]]).Answers(SonicTheHedgehogAudio[soundNameMapping[sounds[screen]]], preferredWrong: sounds.Select(s => SonicTheHedgehogAudio[soundNameMapping[s]]).ToArray());
     }
 }

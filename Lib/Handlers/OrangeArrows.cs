@@ -60,12 +60,8 @@ public partial class SouvenirModule
         var directions = new[] { "UP", "RIGHT", "DOWN", "LEFT" };
         if (correctMoves.Any(arr => arr == null || arr.Any(dir => !directions.Contains(dir))))
             throw new AbandonModuleException($"One of the move arrays has an unexpected value: [{correctMoves.Select(arr => arr == null ? "null" : $"[{arr.JoinString(", ")}]").JoinString(", ")}].");
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 3; i++)
             for (var j = 0; j < 3; j++)
-                qs.Add(makeQuestion(Question.OrangeArrowsSequences, module, formatArgs: new[] { Ordinal(j + 1), Ordinal(i + 1) }, correctAnswers: new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
-
-        addQuestions(module, qs);
+                yield return question(SOrangeArrows.Sequences, args: [Ordinal(j + 1), Ordinal(i + 1)]).Answers(correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant());
     }
 }

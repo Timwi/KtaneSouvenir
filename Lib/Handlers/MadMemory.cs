@@ -20,10 +20,7 @@ public partial class SouvenirModule
 
         var possibleTexts = GetArrayField<string>(comp, "screenTexts", true).Get(expectedLength: 16);
         var displayedLabels = GetArrayField<int>(comp, "screenLabels", true).Get(expectedLength: 4);
-
-        var qs = new List<QandA>();
         for (var stageNum = 0; stageNum < 4; stageNum++)
-            qs.Add(makeQuestion(Question.MadMemoryDisplays, module, formatArgs: new[] { Ordinal(stageNum + 1) }, correctAnswers: new[] { possibleTexts[displayedLabels[stageNum]] }));
-        addQuestions(module, qs);
+            yield return question(SMadMemory.Displays, args: [Ordinal(stageNum + 1)]).Answers(possibleTexts[displayedLabels[stageNum]]);
     }
 }

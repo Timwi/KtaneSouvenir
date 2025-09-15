@@ -19,9 +19,7 @@ public partial class SouvenirModule
 
         var appPositions = GetListField<int>(comp, "positionNumbers").Get();
         var appNames = new[] { "Duolingo", "Google Maps", "Kindle", "Google Authenticator", "Photomath", "Spotify", "Google Arts & Culture", "Discord" };
-        var qs = new List<QandA>();
         for (var i = 0; i < 8; i++)
-            qs.Add(makeQuestion(Question.SamsungAppPositions, module, formatArgs: new[] { appNames[i] }, correctAnswers: new[] { Question.SamsungAppPositions.GetAnswers()[appPositions[i]] }));
-        addQuestions(module, qs);
+            yield return question(SSamsung.AppPositions, args: [appNames[i]]).Answers(Question.SamsungAppPositions.GetAnswers()[appPositions[i]]);
     }
 }

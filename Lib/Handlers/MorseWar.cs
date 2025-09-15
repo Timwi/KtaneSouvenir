@@ -26,11 +26,9 @@ public partial class SouvenirModule
         var wordNum = GetIntField(comp, "wordNum").Get(min: 0, max: wordTable.Length - 1);
         var lights = GetField<string>(comp, "lights").Get(str => str.Length != 3 ? "expected length 3" : str.Any(ch => ch is < '1' or > '6') ? "expected characters 1–6" : null);
 
-        var qs = new List<QandA>() { makeQuestion(Question.MorseWarCode, module, correctAnswers: new[] { wordTable[wordNum].ToUpperInvariant() }) };
+        yield return question(SMorseWar.Code).Answers(wordTable[wordNum].ToUpperInvariant());
         var rowNames = new[] { "bottom", "middle", "top" };
         for (var i = 0; i < 3; i++)
-            qs.Add(makeQuestion(Question.MorseWarLeds, module, formatArgs: new[] { rowNames[i] }, correctAnswers: new[] { rowTable[lights[i] - '1'] }));
-
-        addQuestions(module, qs);
+            yield return question(SMorseWar.Leds, args: [rowNames[i]]).Answers(rowTable[lights[i] - '1']);
     }
 }

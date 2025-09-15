@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,16 +22,13 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var notes = new string[] { "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B" };
-        var qs = new List<QandA>();
 
         var faultyKeys = GetListField<int>(comp, "FaultyKeys").Get();
-        qs.Add(makeQuestion(Question.OffKeysIncorrectPitch, module, correctAnswers: faultyKeys.Select(i => notes[i]).ToArray()));
+        yield return question(SOffKeys.IncorrectPitch).Answers(faultyKeys.Select(i => notes[i]).ToArray());
 
         var pickedSymbols = GetArrayField<int>(comp, "PickedSymbols").Get();
         var correctSymbols = pickedSymbols.Select(i => OffKeysSprites[i]).ToArray();
 
-        qs.Add(makeQuestion(Question.OffKeysRunes, module, correctAnswers: correctSymbols));
-
-        addQuestions(module, qs);
+        yield return question(SOffKeys.Runes).Answers(correctSymbols);
     }
 }

@@ -36,12 +36,7 @@ public partial class SouvenirModule
             { 'M', "Magenta" },
             { 'Y', "Yellow" }
         };
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.SimonStoresColors, module,
-                formatArgs: new[] { flashSequences[i].Length == 1 ? "flashed" : "was among the colors flashed", Ordinal(i + 1) },
-                correctAnswers: flashSequences[i].Select(ch => colorNames[ch]).ToArray()));
-        addQuestions(module, qs);
+            yield return question(SSimonStores.Colors, args: [flashSequences[i].Length == 1 ? "flashed" : "was among the colors flashed", Ordinal(i + 1)]).Answers(flashSequences[i].Select(ch => colorNames[ch]).ToArray());
     }
 }

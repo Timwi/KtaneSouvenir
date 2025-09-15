@@ -38,16 +38,14 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         }
 
-        var questions = new List<QandA>();
-
         for (var i = 0; i < 3; i++)
         {
             for (var j = 0; j < i + 3; j++)
             {
                 var possibleWrong = possibleRotations[rotations[i][j].Count(ch => ch == ',')].SelectMany(x => x).ToArray();
-                questions.Add(makeQuestion(rotations[i][j].Split(',').Length - 1 == 0 ? Question.UltraStoresSingleRotation : Question.UltraStoresMultiRotation, module, formatArgs: new[] { Ordinal(j + 1), Ordinal(i + 1) }, correctAnswers: new[] { rotations[i][j] }, preferredWrongAnswers: possibleWrong));
+                yield return question(rotations[i][j].Split(',').Length - 1 == 0 ? SUltraStores.SingleRotation : SUltraStores.MultiRotation, args: [Ordinal(j + 1), Ordinal(i + 1)])
+                    .Answers(rotations[i][j], preferredWrong: possibleWrong);
             }
         }
-        addQuestions(module, questions);
     }
 }

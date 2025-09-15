@@ -23,13 +23,11 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var flashes = GetField<IList>(comp, "flashes").Get();
-        var qs = new List<QandA>();
         for (int pos = 0, length = flashes.Count; pos < length; pos++)
         {
             var position = Ordinal(pos + 1);
-            qs.Add(makeQuestion(Question.SimonSmothersColors, module, formatArgs: new[] { position }, correctAnswers: new[] { GetField<Enum>(flashes[pos], "color", isPublic: true).Get().ToString() }));
-            qs.Add(makeQuestion(Question.SimonSmothersDirections, module, formatArgs: new[] { position }, correctAnswers: new[] { GetField<Enum>(flashes[pos], "direction", isPublic: true).Get().ToString() }));
+            yield return question(SSimonSmothers.Colors, args: [position]).Answers(GetField<Enum>(flashes[pos], "color", isPublic: true).Get().ToString());
+            yield return question(SSimonSmothers.Directions, args: [position]).Answers(GetField<Enum>(flashes[pos], "direction", isPublic: true).Get().ToString());
         }
-        addQuestions(module, qs);
     }
 }

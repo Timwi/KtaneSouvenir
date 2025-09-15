@@ -20,13 +20,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var displayedNums = GetField<int[][]>(comp, "Data").Get().First();
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 9; i++)
-            qs.Add(makeQuestion(Question.DigisibilityDisplayedNumber, module,
-                formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { displayedNums[i].ToString() },
-                preferredWrongAnswers: displayedNums.Select(x => x.ToString()).ToArray()));
-        addQuestions(module, qs);
+            yield return question(SDigisibility.DisplayedNumber, args: [Ordinal(i + 1)]).Answers(displayedNums[i].ToString(), preferredWrong: displayedNums.Select(x => x.ToString()).ToArray());
     }
 }

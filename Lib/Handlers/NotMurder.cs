@@ -1,16 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
 using static Souvenir.AnswerLayout;
 
 public enum SNotMurder
 {
-    [SouvenirQuestion("What room was {1} in initially on {0}?", TwoColumns4Answers, "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study", TranslateAnswers = true, Arguments = ["Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslatableStrings = ["the Not Murder where he initially held the {0}", "the Not Murder where she initially held the {0}", "the Not Murder where he started in the {0}", "the Not Murder where she started in the {0}", "the Not Murder where he was present", "the Not Murder where she was present", "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner", "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study"])]
+    [SouvenirQuestion("What room was {1} in initially on {0}?", TwoColumns4Answers, "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study", TranslateAnswers = true, Arguments = ["Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Room,
 
     [SouvenirQuestion("What weapon did {1} possess initially on {0}?", TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner", TranslateAnswers = true, Arguments = ["Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    Weapon
+    Weapon,
+
+    [SouvenirDiscriminator("the Not Murder where {0} was present", Arguments = ["he", "she"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    Present,
+
+    [SouvenirDiscriminator("the Not Murder where {0} initially held the {1}", Arguments = ["he", "Candlestick", "he", "Dagger", "she", "Lead Pipe", "she", "Revolver"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    InitialWeapon,
+
+    [SouvenirDiscriminator("the Not Murder where {0} started in the {1}", Arguments = ["he", "Ballroom", "he", "Billiard Room", "she", "Conservatory", "she", "Dining Room"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    InitialRoom
 }
 
 public partial class SouvenirModule
@@ -23,14 +31,11 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "NMurScript");
 
-        // whats displayed
+        // what’s displayed
         var dispinfo = GetArrayField<List<int>>(comp, "dispinfo").Get(expectedLength: 3).Select(i => i.ToArray()).ToArray();
 
         // turn number, then suspect, then room/weapon
         var turns = GetListField<List<int[]>>(comp, "turns").Get(expectedLength: 6);
-
-        var data = Enumerable.Range(0, 5).Select(i => (suspect: dispinfo[0][i], room: turns[0][i][0], weapon: turns[0][i][1])).ToArray();
-        _notMurderInfo.Add(data);
 
         yield return WaitForSolve;
 
@@ -39,26 +44,20 @@ public partial class SouvenirModule
         var roomNames = new[] { "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study" };
         var suspectIsFemale = new[] { true, false, false, true, false, true };
 
-        var qs = new List<QandA>();
-
         for (var i = 0; i < 5; i++)
         {
-            string dRoom = null, dWeapon = null;
-            if (Rnd.Range(0, 3) != 0)
-            {
-                if (_notMurderInfo.Count(n => n.Any(t => t.suspect == data[i].suspect)) == 1)
-                    dRoom = dWeapon = translateString(Question.NotMurderRoom, suspectIsFemale[data[i].suspect] ? "the Not Murder where she was present" : "the Not Murder where he was present");
-                else
-                {
-                    if (_notMurderInfo.Count(n => n.Any(t => t.suspect == data[i].suspect && t.weapon == data[i].weapon)) == 1)
-                        dRoom = string.Format(translateString(Question.NotMurderRoom, suspectIsFemale[data[i].suspect] ? "the Not Murder where she initially held the {0}" : "the Not Murder where he initially held the {0}"), translateString(Question.NotMurderRoom, weaponNames[data[i].weapon]));
-                    if (_notMurderInfo.Count(n => n.Any(t => t.suspect == data[i].suspect && t.room == data[i].room)) == 1)
-                        dWeapon = string.Format(translateString(Question.NotMurderRoom, suspectIsFemale[data[i].suspect] ? "the Not Murder where she started in the {0}" : "the Not Murder where he started in the {0}"), translateString(Question.NotMurderRoom, roomNames[data[i].room]));
-                }
-            }
-            qs.Add(makeQuestion(Question.NotMurderRoom, module, formattedModuleName: dRoom, formatArgs: new[] { suspectNames[data[i].suspect] }, correctAnswers: new[] { roomNames[data[i].room] }));
-            qs.Add(makeQuestion(Question.NotMurderWeapon, module, formattedModuleName: dWeapon, formatArgs: new[] { suspectNames[data[i].suspect] }, correctAnswers: new[] { weaponNames[data[i].weapon] }));
+            var suspect = dispinfo[0][i];
+            var initialRoom = turns[0][i][0];
+            var initialWeapon = turns[0][i][1];
+
+            yield return new Discriminator(SNotMurder.Present, $"present{suspect}", true, [suspectIsFemale[suspect] ? "he" : "she"]);
+            yield return new Discriminator(SNotMurder.InitialWeapon, $"weapon{suspect}", initialWeapon, [suspectIsFemale[suspect] ? "he" : "she", weaponNames[initialWeapon]]);
+            yield return new Discriminator(SNotMurder.InitialRoom, $"room{suspect}", initialRoom, [suspectIsFemale[suspect] ? "he" : "she", roomNames[initialRoom]]);
+
+            var avoidDiscriminators = Enumerable.Range(0, 5).Except([i]).SelectMany(i => new[] { $"present{i}", $"weapon{i}", $"room{i}" }).ToArray();
+
+            yield return question(SNotMurder.Room, args: [suspectNames[suspect]], avoidDiscriminators: avoidDiscriminators.Concat([$"room{i}"])).Answers(roomNames[initialRoom]);
+            yield return question(SNotMurder.Weapon, args: [suspectNames[suspect]], avoidDiscriminators: avoidDiscriminators.Concat([$"weapon{i}"])).Answers(weaponNames[initialWeapon]);
         }
-        addQuestions(module, qs);
     }
 }

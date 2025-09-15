@@ -25,10 +25,8 @@ public partial class SouvenirModule
         var relevantIx = Enumerable.Range(0, letters[0].Length).First(ix => letters[0][ix] != letters[1][ix]);
         var colorNames = new[] { "red", "green", "cyan", "indigo", "pink" };
         var colors = GetArrayField<int>(comp, "displayedColors").Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? $"expected range 0–{colorNames.Length - 1}" : null);
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.SemamorseColor, module, correctAnswers: new[] { colorNames[colors[relevantIx]] }));
-        qs.Add(makeQuestion(Question.SemamorseLetters, module, formatArgs: new[] { "semaphore" }, correctAnswers: new[] { ((char) ('A' + letters[0][relevantIx])).ToString() }));
-        qs.Add(makeQuestion(Question.SemamorseLetters, module, formatArgs: new[] { "Morse" }, correctAnswers: new[] { ((char) ('A' + letters[1][relevantIx])).ToString() }));
-        addQuestions(module, qs);
+        yield return question(SSemamorse.Color).Answers(colorNames[colors[relevantIx]]);
+        yield return question(SSemamorse.Letters, args: ["semaphore"]).Answers(((char) ('A' + letters[0][relevantIx])).ToString());
+        yield return question(SSemamorse.Letters, args: ["Morse"]).Answers(((char) ('A' + letters[1][relevantIx])).ToString());
     }
 }

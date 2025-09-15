@@ -33,13 +33,11 @@ public partial class SouvenirModule
         var displaySequence = GetProperty<string>(comp, "DisplaySequence", true).Get();
         var indices = GetListField<int>(comp, "buttonIndicesPressed", false).Get();
         var labels = GetListField<string>(comp, "buttonLabelsPressed", false).Get();
-        var qs = new List<QandA>();
         for (var stage = 0; stage < 4; stage++)
         {
-            qs.Add(makeQuestion(Question.MemoryDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { displaySequence[stage].ToString() }));
-            qs.Add(makeQuestion(Question.MemoryPosition, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { MemorySprites[indices[stage]] }, preferredWrongAnswers: MemorySprites));
-            qs.Add(makeQuestion(Question.MemoryLabel, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { labels[stage][labels[stage].Length - 1].ToString() }));
+            yield return question(SMemory.Display, args: [Ordinal(stage + 1)]).Answers(displaySequence[stage].ToString());
+            yield return question(SMemory.Position, args: [Ordinal(stage + 1)]).Answers(MemorySprites[indices[stage]], preferredWrong: MemorySprites);
+            yield return question(SMemory.Label, args: [Ordinal(stage + 1)]).Answers(labels[stage][labels[stage].Length - 1].ToString());
         }
-        addQuestions(module, qs);
     }
 }

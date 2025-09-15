@@ -33,12 +33,9 @@ public partial class SouvenirModule
             ["+W"] = "zag",
             ["-W"] = "zig"
         };
-        var qs = new List<QandA>();
 
         foreach (var key in faceNames.Keys)
-            qs.Add(makeQuestion(Question.OrientationHypercubeInitialFaceColour, module, formatArgs: new[] { faceNames[key] }, correctAnswers: new[] { colourTexts[key] }));
-        qs.Add(makeQuestion(Question.OrientationHypercubeInitialObserverPosition, module, correctAnswers: new[] { initialObserverPosition }));
-
-        addQuestions(module, qs);
+            yield return question(SOrientationHypercube.InitialFaceColour, args: [faceNames[key]]).Answers(colourTexts[key]);
+        yield return question(SOrientationHypercube.InitialObserverPosition).Answers(initialObserverPosition);
     }
 }

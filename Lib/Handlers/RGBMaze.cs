@@ -36,21 +36,12 @@ public partial class SouvenirModule
 
         string[] colors = { "red", "green", "blue" };
 
-        var qs = new List<QandA>();
-
         for (var index = 0; index < 3; index++)
         {
-            qs.Add(makeQuestion(Question.RGBMazeKeys, module,
-                formatArgs: new[] { colors[index] },
-                correctAnswers: new[] { "ABCDEFGH"[keyPos[index][1]] + (keyPos[index][0] + 1).ToString() }));
-            qs.Add(makeQuestion(Question.RGBMazeNumber, module,
-                formatArgs: new[] { colors[index] },
-                correctAnswers: new[] { mazeNum[index][0].ToString() }));
+            yield return question(SRGBMaze.Keys, args: [colors[index]]).Answers("ABCDEFGH"[keyPos[index][1]] + (keyPos[index][0] + 1).ToString());
+            yield return question(SRGBMaze.Number, args: [colors[index]]).Answers(mazeNum[index][0].ToString());
         }
 
-        qs.Add(makeQuestion(Question.RGBMazeExit, module,
-            correctAnswers: new[] { "ABCDEFGH"[exitPos[2]] + (exitPos[1] + 1).ToString() }));
-
-        addQuestions(module, qs);
+        yield return question(SRGBMaze.Exit).Answers("ABCDEFGH"[exitPos[2]] + (exitPos[1] + 1).ToString());
     }
 }

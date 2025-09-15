@@ -29,22 +29,14 @@ public partial class SouvenirModule
 
         var initialArrangement = fldArrangements.Get().First();
         var props = fldProps.Get();
-
-        var qs = new List<QandA>();
         string[] colorNames = { "White", "Bronze", "Silver", "Gold" };
         var displayedMarkings = Enumerable.Range(0, 16).Select(ix => MathEmSprites[(props[initialArrangement[ix], 0] * 10) + props[initialArrangement[ix], 2]]).ToArray();
 
         for (var tileIx = 0; tileIx < 16; tileIx++)
         {
-            qs.Add(makeQuestion(Question.MathEmColor, module,
-                questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx)),
-                correctAnswers: new[] { colorNames[props[initialArrangement[tileIx], 1]] }));
-            qs.Add(makeQuestion(Question.MathEmLabel, module,
-                questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx)),
-                correctAnswers: new[] { displayedMarkings[tileIx] },
-                preferredWrongAnswers: displayedMarkings));
+            yield return question(SMathEm.Color, questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx))).Answers(colorNames[props[initialArrangement[tileIx], 1]]);
+            yield return question(SMathEm.Label, questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx))).Answers(displayedMarkings[tileIx], preferredWrong: displayedMarkings);
         }
-        addQuestions(module, qs);
 
     }
 }

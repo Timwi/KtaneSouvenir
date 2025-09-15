@@ -28,13 +28,10 @@ public partial class SouvenirModule
         var words = infos.Select(inf => (int) fldWord.GetFrom(inf)).ToArray();
         if (colours.Any(c => c is < 0 or >= 6) || words.Any(w => w is < 0 or >= 6))
             throw new AbandonModuleException($"colours/words are: [{colours.JoinString(", ")}], [{words.JoinString(", ")}]; expected values 0–5");
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.DecolourFlashGoal, module, formatArgs: new[] { "colour", Ordinal(i + 1) }, correctAnswers: new[] { names[colours[i]] }));
-            qs.Add(makeQuestion(Question.DecolourFlashGoal, module, formatArgs: new[] { "word", Ordinal(i + 1) }, correctAnswers: new[] { names[words[i]] }));
+            yield return question(SDecolourFlash.Goal, args: ["colour", Ordinal(i + 1)]).Answers(names[colours[i]]);
+            yield return question(SDecolourFlash.Goal, args: ["word", Ordinal(i + 1)]).Answers(names[words[i]]);
         }
-        addQuestions(module, qs);
     }
 }

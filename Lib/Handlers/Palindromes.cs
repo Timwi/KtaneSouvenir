@@ -24,7 +24,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var vars = new[] { fldN, fldX, fldY, fldZ };
-        var qs = new List<QandA>();
         for (var varIx = 0; varIx < vars.Length; varIx++)
             for (var digitIx = 0; digitIx < (varIx < 2 ? 5 : 4); digitIx++)       // 5 if x or n, else 4
             {
@@ -34,8 +33,7 @@ public partial class SouvenirModule
                     throw new AbandonModuleException($"The chosen character ('{digit}') was unexpected (expected a digit 0–9).");
 
                 var labels = new[] { "the screen", "X", "Y", "Z" };
-                qs.Add(makeQuestion(Question.PalindromesNumbers, module, formatArgs: new[] { labels[varIx], Ordinal(digitIx + 1) }, correctAnswers: new[] { digit.ToString() }));
+                yield return question(SPalindromes.Numbers, args: [labels[varIx], Ordinal(digitIx + 1)]).Answers(digit.ToString());
             }
-        addQuestions(module, qs);
     }
 }

@@ -20,13 +20,10 @@ public partial class SouvenirModule
         var message2 = GetListField<string>(comp, "selectedLetters2", isPublic: true).Get(expectedLength: 6);
 
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 6; i++)
         {
-            qs.Add(makeQuestion(Question.ReverseMorseCharacters, module, formatArgs: new[] { Ordinal(i + 1), "first" }, correctAnswers: new[] { message1[i] }, preferredWrongAnswers: message1.ToArray()));
-            qs.Add(makeQuestion(Question.ReverseMorseCharacters, module, formatArgs: new[] { Ordinal(i + 1), "second" }, correctAnswers: new[] { message2[i] }, preferredWrongAnswers: message2.ToArray()));
+            yield return question(SReverseMorse.Characters, args: [Ordinal(i + 1), "first"]).Answers(message1[i], preferredWrong: message1.ToArray());
+            yield return question(SReverseMorse.Characters, args: [Ordinal(i + 1), "second"]).Answers(message2[i], preferredWrong: message2.ToArray());
         }
-        addQuestions(module, qs);
     }
 }

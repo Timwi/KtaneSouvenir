@@ -28,22 +28,20 @@ public partial class SouvenirModule
             yield return legitimatelyNoQuestion(module, "The module was force-solved.");
 
         var allPositions = new[] { "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right" };
-        var questions = new List<QandA>();
         for (var position = 0; position < 9; position++)
         {
             var initialNumber = GetMethod<int>(comp, "GetInitialNumber", 1, true).Invoke(position);
             var possibleInitialNumbers = GetProperty<HashSet<int>>(comp, "possibleInitialNumbers", true).Get().Select(n => n.ToString()).ToArray();
-            questions.Add(makeQuestion(Question.BinaryShiftInitialNumber, module, formatArgs: new[] { allPositions[position] }, correctAnswers: new[] { initialNumber.ToString() }, preferredWrongAnswers: possibleInitialNumbers));
+            yield return question(SBinaryShift.InitialNumber, args: [allPositions[position]]).Answers(initialNumber.ToString(), preferredWrong: possibleInitialNumbers);
         }
         var stagesCount = GetProperty<int>(comp, "stagesCount", true).Get();
         for (var stage = 0; stage < stagesCount; stage++)
         {
             var selectedNumberPositions = GetMethod<HashSet<int>>(comp, "GetSelectedNumberPositions", 1, true).Invoke(stage);
             if (selectedNumberPositions.Count < 5)
-                questions.Add(makeQuestion(Question.BinaryShiftSelectedNumberPossition, module, formatArgs: new[] { stage.ToString() }, correctAnswers: selectedNumberPositions.Select(p => allPositions[p]).ToArray(), preferredWrongAnswers: allPositions));
+                yield return question(SBinaryShift.SelectedNumberPossition, args: [stage.ToString()]).Answers(selectedNumberPositions.Select(p => allPositions[p]).ToArray(), preferredWrong: allPositions);
             else if (selectedNumberPositions.Count > 5)
-                questions.Add(makeQuestion(Question.BinaryShiftNotSelectedNumberPossition, module, formatArgs: new[] { stage.ToString() }, correctAnswers: Enumerable.Range(0, 9).Except(selectedNumberPositions).Select(p => allPositions[p]).ToArray(), preferredWrongAnswers: allPositions));
+                yield return question(SBinaryShift.NotSelectedNumberPossition, args: [stage.ToString()]).Answers(Enumerable.Range(0, 9).Except(selectedNumberPositions).Select(p => allPositions[p]).ToArray(), preferredWrong: allPositions);
         }
-        addQuestions(module, questions);
     }
 }

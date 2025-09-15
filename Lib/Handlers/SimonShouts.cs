@@ -20,11 +20,8 @@ public partial class SouvenirModule
 
         var diagramBPositions = GetArrayField<int>(comp, "_diagramBPositions").Get(expectedLength: 4, validator: b => b is < 0 or > 24 ? "expected range 0–24" : null);
         var diagramB = GetField<string>(comp, "_diagramB").Get(str => str.Length != 24 ? "expected length 24" : str.Any(ch => ch is < 'A' or > 'Z') ? "expected letters A–Z" : null);
-
-        var qs = new List<QandA>();
         var buttonNames = new[] { "top", "right", "bottom", "left" };
         for (var i = 0; i < 4; i++)
-            qs.Add(makeQuestion(Question.SimonShoutsFlashingLetter, module, formatArgs: new[] { buttonNames[i] }, correctAnswers: new[] { diagramB[diagramBPositions[i]].ToString() }));
-        addQuestions(module, qs);
+            yield return question(SSimonShouts.FlashingLetter, args: [buttonNames[i]]).Answers(diagramB[diagramBPositions[i]].ToString());
     }
 }

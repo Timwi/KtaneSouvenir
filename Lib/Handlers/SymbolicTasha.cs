@@ -31,19 +31,14 @@ public partial class SouvenirModule
         var flashing = GetArrayField<int>(comp, "flashing").Get();
         var presentSymbols = GetField<Array>(comp, "presentSymbols").Get(validator: arr => arr.Length != 4 ? "expected length 4" : null).Cast<object>().Select(obj => (int) obj).ToArray();
         var buttonColors = GetField<Array>(comp, "buttonColors").Get(validator: arr => arr.Length != 4 ? "expected length 4" : null).Cast<object>().Select(obj => (int) obj).ToArray();
-
-        var qs = new List<QandA>();
         for (var pos = 0; pos < 5; pos++)
-            qs.Add(makeQuestion(Question.SymbolicTashaFlashes, module, formatArgs: new[] { Ordinal(pos + 1) },
-                correctAnswers: new[] { positionNames[flashing[pos]], colorNames[buttonColors[flashing[pos]]] }));
+            yield return question(SSymbolicTasha.Flashes, args: [Ordinal(pos + 1)]).Answers([positionNames[flashing[pos]], colorNames[buttonColors[flashing[pos]]]]);
 
         for (var btn = 0; btn < 4; btn++)
             if (presentSymbols[btn] < 0)
             {
-                qs.Add(makeQuestion(Question.SymbolicTashaSymbols, module, formatArgs: new[] { positionNamesLc[btn] }, correctAnswers: new[] { SymbolicTashaSprites[-presentSymbols[btn] - 1] }, preferredWrongAnswers: SymbolicTashaSprites));
-                qs.Add(makeQuestion(Question.SymbolicTashaSymbols, module, formatArgs: new[] { colorNamesLc[buttonColors[btn]] }, correctAnswers: new[] { SymbolicTashaSprites[-presentSymbols[btn] - 1] }, preferredWrongAnswers: SymbolicTashaSprites));
+                yield return question(SSymbolicTasha.Symbols, args: [positionNamesLc[btn]]).Answers(SymbolicTashaSprites[-presentSymbols[btn] - 1], preferredWrong: SymbolicTashaSprites);
+                yield return question(SSymbolicTasha.Symbols, args: [colorNamesLc[buttonColors[btn]]]).Answers(SymbolicTashaSprites[-presentSymbols[btn] - 1], preferredWrong: SymbolicTashaSprites);
             }
-
-        addQuestions(module, qs);
     }
 }

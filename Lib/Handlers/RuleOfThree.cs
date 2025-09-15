@@ -22,7 +22,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colorNames = new[] { "red", "yellow", "blue" };
-        var qs = new List<QandA>();
 
         // Coordinates
         var redValues = GetArrayField<int>(comp, "_redValues").Get(expectedLength: 3);
@@ -31,7 +30,7 @@ public partial class SouvenirModule
         var values = new[] { redValues, yellowValues, blueValues };
         for (var color = 0; color < 3; color++)
             for (var coord = 0; coord < 3; coord++)
-                qs.Add(makeQuestion(Question.RuleOfThreeCoordinates, module, formatArgs: new[] { "XYZ"[coord].ToString(), colorNames[color] }, correctAnswers: new[] { values[color][coord].ToString() }));
+                yield return question(SRuleOfThree.Coordinates, args: ["XYZ"[coord].ToString(), colorNames[color]]).Answers(values[color][coord].ToString());
 
         // Cycles
         var redCoords = GetArrayField<int[]>(comp, "_redCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
@@ -41,8 +40,6 @@ public partial class SouvenirModule
         for (var color = 0; color < 3; color++)
             for (var axis = 0; axis < 3; axis++)
                 for (var cycle = 0; cycle < 3; cycle++)
-                    qs.Add(makeQuestion(Question.RuleOfThreeCycles, module, formatArgs: new[] { colorNames[color], "XYZ"[axis].ToString(), Ordinal(cycle + 1) }, correctAnswers: new[] { coords[color][cycle][axis].ToString() }));
-
-        addQuestions(module, qs);
+                    yield return question(SRuleOfThree.Cycles, args: [colorNames[color], "XYZ"[axis].ToString(), Ordinal(cycle + 1)]).Answers(coords[color][cycle][axis].ToString());
     }
 }

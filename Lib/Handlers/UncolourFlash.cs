@@ -19,13 +19,10 @@ public partial class SouvenirModule
 
         var fldInitseq = GetArrayField<int[][]>(comp, "initseq").Get();
         var colornames = new[] { "Red", "Green", "Blue", "Yellow", "Magenta", "White" };
-
-        var qs = new List<QandA>();
         for (var displayIx = 0; displayIx < 12; displayIx++)
             for (var yesno = 0; yesno < 2; yesno++)
                 if (yesno != 0 || displayIx < 6)
                     for (var wordcolor = 0; wordcolor < 2; wordcolor++)
-                        qs.Add(makeQuestion(Question.UncolourFlashDisplays, module, formatArgs: new[] { wordcolor == 0 ? "word" : "colour of the word", Ordinal(displayIx + 1), yesno == 0 ? "“YES”" : "“NO”" }, correctAnswers: new[] { colornames[fldInitseq[yesno][wordcolor][displayIx]] }));
-        addQuestions(module, qs);
+                        yield return question(SUncolourFlash.Displays, args: [wordcolor == 0 ? "word" : "colour of the word", Ordinal(displayIx + 1), yesno == 0 ? "“YES”" : "“NO”"]).Answers(colornames[fldInitseq[yesno][wordcolor][displayIx]]);
     }
 }

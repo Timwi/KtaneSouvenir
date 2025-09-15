@@ -20,7 +20,6 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "NCCScript");
         yield return WaitForSolve;
-        var qs = new List<QandA>();
         var positions = new[] { "top left", "top right", "bottom left", "bottom right" };
 
         // Flashes
@@ -28,14 +27,12 @@ public partial class SouvenirModule
         var puncMarkNames = new[] { "+", "-", ".", ":", "/", "_", "=", "," };
         var puncMarks = Enumerable.Range(0, ops.Length).Select(i => puncMarkNames[ops[i]]).ToArray();
         for (var p = 0; p < 4; p++)
-            qs.Add(makeQuestion(Question.NotConnectionCheckFlashes, module, formatArgs: new[] { positions[p] }, correctAnswers: new[] { puncMarks[p] }));
+            yield return question(SNotConnectionCheck.Flashes, args: [positions[p]]).Answers(puncMarks[p]);
 
         // Values
         var outputs = GetArrayField<int>(comp, "outputs").Get();
         var vals = Enumerable.Range(0, outputs.Length).Select(i => outputs[i].ToString()).ToArray();
         for (var p = 0; p < 4; p++)
-            qs.Add(makeQuestion(Question.NotConnectionCheckValues, module, formatArgs: new[] { positions[p] }, correctAnswers: new[] { vals[p] }, preferredWrongAnswers: Enumerable.Range(1, 9).Select(i => i.ToString()).ToArray()));
-
-        addQuestions(module, qs);
+            yield return question(SNotConnectionCheck.Values, args: [positions[p]]).Answers(vals[p], preferredWrong: Enumerable.Range(1, 9).Select(i => i.ToString()).ToArray());
     }
 }

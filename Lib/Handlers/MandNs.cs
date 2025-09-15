@@ -25,10 +25,8 @@ public partial class SouvenirModule
         var colors = GetArrayField<int>(comp, "buttonColors").Get();
         var labels = GetArrayField<string>(comp, "convertedValues").Get();
         var solution = GetIntField(comp, "solution").Get();
-        var qs = new List<QandA>();
         for (var i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.MandNsColors, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
-        qs.Add(makeQuestion(Question.MandNsLabel, module, correctAnswers: new[] { labels[solution] }, preferredWrongAnswers: labels));
-        addQuestions(module, qs);
+            yield return question(SMandNs.Colors, args: [Ordinal(i + 1)]).Answers(colorNames[colors[i]]);
+        yield return question(SMandNs.Label).Answers(labels[solution], preferredWrong: labels);
     }
 }

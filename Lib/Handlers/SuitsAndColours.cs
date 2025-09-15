@@ -24,15 +24,11 @@ public partial class SouvenirModule
         var colours = new[] { "red", "orange", "yellow", "green" };
         var correctSuitIndices = GetListField<int>(comp, "ChosenSuits").Get(li => li.Count != 9 ? "expected length 9" : null);
         var correctColourIndices = GetListField<int>(comp, "ChosenColours").Get(li => li.Count != 9 ? "expected length 9" : null);
-
-        var questions = new List<QandA>();
         for (var i = 0; i < 9; i++)
         {
             var coordinate = new Coord(3, 3, i);
-            questions.Add(makeQuestion(Question.SuitsAndColoursColour, module, questionSprite: Sprites.GenerateGridSprite(coordinate), correctAnswers: new[] { colours[correctColourIndices[i]] }));
-            questions.Add(makeQuestion(Question.SuitsAndColoursSuit, module, questionSprite: Sprites.GenerateGridSprite(coordinate), correctAnswers: new[] { colours[correctSuitIndices[i]] }));
+            yield return question(SSuitsAndColours.Colour, questionSprite: Sprites.GenerateGridSprite(coordinate)).Answers(colours[correctColourIndices[i]]);
+            yield return question(SSuitsAndColours.Suit, questionSprite: Sprites.GenerateGridSprite(coordinate)).Answers(colours[correctSuitIndices[i]]);
         }
-
-        addQuestions(module, questions);
     }
 }

@@ -30,13 +30,9 @@ public partial class SouvenirModule
         var startColumn = GetField<int>(comp, "StartingColumn").Get();
         var goalRow = GetField<int>(comp, "GoalRow").Get();
         var goalColumn = GetField<int>(comp, "GoalColumn").Get();
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 36; i++)
-            qs.Add(makeQuestion(Question.MazeseekerCell, module, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 6, i)), correctAnswers: new[] { nums[i / 6, i % 6].ToString() }));
-        qs.Add(makeQuestion(Question.MazeseekerStart, module, correctAnswers: new[] { new Coord(6, 6, startColumn, startRow) }));
-        qs.Add(makeQuestion(Question.MazeseekerGoal, module, correctAnswers: new[] { new Coord(6, 6, goalColumn, goalRow) }));
-
-        addQuestions(module, qs);
+            yield return question(SMazeseeker.Cell, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 6, i))).Answers(nums[i / 6, i % 6].ToString());
+        yield return question(SMazeseeker.Start).Answers(new Coord(6, 6, startColumn, startRow));
+        yield return question(SMazeseeker.Goal).Answers(new Coord(6, 6, goalColumn, goalRow));
     }
 }

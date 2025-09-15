@@ -29,11 +29,8 @@ public partial class SouvenirModule
         var colorNames = new[] { "red", "green", "blue", "turquoise", "orange", "purple", "white", "black" };
         var curLedColors = fldLedColors.Get(str => str.Length != 10 ? "expected length 10" : null);
         var ledColors = Enumerable.Range(0, 10).Select(ledIx => "RGBTOPWK".IndexOf(curLedColors[ledIx])).ToArray();
-
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.UncoloredSwitchesInitialState, module, correctAnswers: new[] { switchStates.Select(b => b ? 'Q' : 'R').JoinString() }));
+        yield return question(SUncoloredSwitches.InitialState).Answers(switchStates.Select(b => b ? 'Q' : 'R').JoinString());
         for (var ledIx = 0; ledIx < 10; ledIx++)
-            qs.Add(makeQuestion(Question.UncoloredSwitchesLedColors, module, formatArgs: new[] { Ordinal(ledIx + 1) }, correctAnswers: new[] { colorNames[ledColors[ledIx]] }));
-        addQuestions(module, qs);
+            yield return question(SUncoloredSwitches.LedColors, args: [Ordinal(ledIx + 1)]).Answers(colorNames[ledColors[ledIx]]);
     }
 }

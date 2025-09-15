@@ -51,12 +51,9 @@ public partial class SouvenirModule
 
         if (letters.Any(l => l is < 'A' or > 'Z') || numbers.Any(n => n is < 1 or > 9))
             throw new AbandonModuleException($"The captured letters/numbers are unexpected (letters: [{letters.JoinString(", ")}], numbers: [{numbers.JoinString(", ")}]).");
-
-        var qs = new List<QandA>();
         for (var ix = 0; ix < letters.Length; ix++)
-            qs.Add(makeQuestion(Question.AlphabeticalRulingLetter, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { letters[ix].ToString() }));
+            yield return question(SAlphabeticalRuling.Letter, args: [Ordinal(ix + 1)]).Answers(letters[ix].ToString());
         for (var ix = 0; ix < numbers.Length; ix++)
-            qs.Add(makeQuestion(Question.AlphabeticalRulingNumber, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { numbers[ix].ToString() }));
-        addQuestions(module, qs);
+            yield return question(SAlphabeticalRuling.Number, args: [Ordinal(ix + 1)]).Answers(numbers[ix].ToString());
     }
 }

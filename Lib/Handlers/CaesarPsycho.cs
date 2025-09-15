@@ -53,12 +53,8 @@ public partial class SouvenirModule
         Debug.Log($"<Souvenir #{_moduleId}> CPSY " + c);
 
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
         for (var st = 0; st < 2; st++)
-            qs.Add(makeQuestion(Question.CaesarPsychoScreenTexts, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { texts[st] }));
-        qs.Add(makeQuestion(Question.CaesarPsychoScreenColor, module, correctAnswers: new[] { colorNames[c] }, preferredWrongAnswers: colorNames));
-
-        addQuestions(module, qs);
+            yield return question(SCaesarPsycho.ScreenTexts, args: [Ordinal(st + 1)]).Answers(texts[st]);
+        yield return question(SCaesarPsycho.ScreenColor).Answers(colorNames[c], preferredWrong: colorNames);
     }
 }

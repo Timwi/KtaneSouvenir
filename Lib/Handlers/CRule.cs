@@ -42,27 +42,21 @@ public partial class SouvenirModule
             .ToArray();
         var cellSprites = Enumerable.Range(0, 26).Select(cell => Sprites.GenerateGridSprite("cRule", 4 * 8 + 1, 4 * 4 + 1, cells, cell, $"cRule row {cells[cell].y / 4 + 1} cell {(cells[cell].x - cells[cell].y / 2) / 4 + 1}", 80)).ToArray();
 
-        var qs = new List<QandA>();
-
         var displayedSymbols = symbols.Select(tup => tup.symPair).ToArray();
         var displayedCells = symbols.Select(tup => cellSprites[tup.cell]).ToArray();
         foreach (var (symPair, cell) in symbols)
         {
             // "Which symbol pair was here in {0}?"
-            qs.Add(makeQuestion(Question.CRuleSymbolPair, module, questionSprite: cellSprites[cell],
-                correctAnswers: new[] { symPair }, preferredWrongAnswers: displayedSymbols));
+            yield return question(SCRule.SymbolPair, questionSprite: cellSprites[cell]).Answers(symPair, preferredWrong: displayedSymbols);
 
             // "Where was {1} in {0}?"
-            qs.Add(makeQuestion(Question.CRuleSymbolPairCell, module, formatArgs: new[] { symPair },
-                correctAnswers: new[] { cellSprites[cell] }, allAnswers: cellSprites, preferredWrongAnswers: displayedCells));
+            yield return question(SCRule.SymbolPairCell, args: [symPair]).Answers(cellSprites[cell], all: cellSprites, preferredWrong: displayedCells);
         }
 
         // "Which symbol pair was present on {0}?"
-        qs.Add(makeQuestion(Question.CRuleSymbolPairPresent, module, correctAnswers: displayedSymbols));
+        yield return question(SCRule.SymbolPairPresent).Answers(displayedSymbols);
 
         // "Which cell was pre-filled at the start of {0}?"
-        qs.Add(makeQuestion(Question.CRulePrefilled, module, correctAnswers: initOn.Select(cellOffBy1 => cellSprites[cellOffBy1 - 1]).ToArray(), allAnswers: cellSprites));
-
-        addQuestions(module, qs);
+        yield return question(SCRule.Prefilled).Answers(initOn.Select(cellOffBy1 => cellSprites[cellOffBy1 - 1]).ToArray(), all: cellSprites);
     }
 }

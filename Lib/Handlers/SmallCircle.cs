@@ -28,13 +28,9 @@ public partial class SouvenirModule
         var tableColor = GetField<int>(comp, "tableColor").Get();
         var solution = GetArrayField<int>(comp, "solution").Get();
         var colorNames = GetStaticField<string[]>(comp.GetType(), "colorNames").Get().Select(x => x[0].ToString().ToUpperInvariant() + x.Substring(1)).ToArray();
-        var qs = new List<QandA>
-        {
-            makeQuestion(Question.SmallCircleShift, module, correctAnswers: new[] { shift.ToString() }),
-            makeQuestion(Question.SmallCircleWedge, module, correctAnswers: new[] { colorNames[tableColor] })
-        };
+        yield return question(SSmallCircle.Shift).Answers(shift.ToString());
+        yield return question(SSmallCircle.Wedge).Answers(colorNames[tableColor]);
         for (var i = 0; i < 3; i++)
-            qs.Add(makeQuestion(Question.SmallCircleSolution, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorNames[solution[i]] }));
-        addQuestions(module, qs);
+            yield return question(SSmallCircle.Solution, args: [Ordinal(i + 1)]).Answers(colorNames[solution[i]]);
     }
 }

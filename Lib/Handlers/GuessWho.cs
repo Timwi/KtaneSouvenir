@@ -20,9 +20,7 @@ public partial class SouvenirModule
         var colors = new string[] { "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Cyan", "Pink" };
 
         yield return WaitForSolve;
-        var questions = new List<QandA>();
         for (var i = 0; i < colors.Length; i++)
-            questions.Add(makeQuestion(Question.GuessWhoColors, module, formatArgs: new[] { colors[i] }, correctAnswers: new[] { bases[i] == 1 ? "Yes" : "No" }));
-        addQuestions(module, questions);
+            yield return question(SGuessWho.Colors, args: [colors[i]]).Answers(bases[i] == 1 ? "Yes" : "No");
     }
 }

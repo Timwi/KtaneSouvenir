@@ -27,12 +27,10 @@ public partial class SouvenirModule
             screens[s] = displays[l];
             yield return null;
         }
-        var qs = new List<QandA>();
         for (var s = 0; s < 3; s++)
         {
             var ix = s * 2;
-            qs.Add(makeQuestion(Question.WhosOnGasDisplay, module, formatArgs: new[] { Ordinal(s + 1) }, correctAnswers: new[] { screens[ix] }, preferredWrongAnswers: displays));
+            yield return question(SWhosOnGas.Display, args: [Ordinal(s + 1)]).Answers(screens[ix], preferredWrong: displays);
         }
-        addQuestions(module, qs);
     }
 }

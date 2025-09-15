@@ -24,13 +24,10 @@ public partial class SouvenirModule
         var colorNames = new[] { "cyan", "green", "red", "purple", "orange" };
         var topTotals = Enumerable.Range(1, 5).Select(num => topColors.Count(x => x == num)).ToArray();
         var bottomTotals = Enumerable.Range(1, 5).Select(num => bottomColors.Count(x => x == num)).ToArray();
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 5; i++)
         {
-            qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, module, formatArgs: new[] { "top", colorNames[i] }, correctAnswers: new[] { topTotals[i].ToString() }, preferredWrongAnswers: new[] { bottomTotals[i].ToString() }));
-            qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, module, formatArgs: new[] { "bottom", colorNames[i] }, correctAnswers: new[] { bottomTotals[i].ToString() }, preferredWrongAnswers: new[] { topTotals[i].ToString() }));
+            yield return question(SFlashingLights.LEDFrequency, args: ["top", colorNames[i]]).Answers(topTotals[i].ToString(), preferredWrong: [bottomTotals[i].ToString()]);
+            yield return question(SFlashingLights.LEDFrequency, args: ["bottom", colorNames[i]]).Answers(bottomTotals[i].ToString(), preferredWrong: [topTotals[i].ToString()]);
         }
-        addQuestions(module, qs);
     }
 }

@@ -24,15 +24,11 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "StabilityScript");
         yield return WaitForSolve;
 
-        var qs = new List<QandA>();
-
         var litLedStates = GetArrayField<int>(comp, "ledStates").Get().Where(l => l != 5).ToArray();
         for (var i = 0; i < litLedStates.Length; i++)
-            qs.Add(makeQuestion(Question.StabilityLedColors, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorNames[litLedStates[i]] }));
+            yield return question(SStability.LedColors, args: [Ordinal(i + 1)]).Answers(colorNames[litLedStates[i]]);
 
         if (litLedStates.Length > 3)
-            qs.Add(makeQuestion(Question.StabilityIdNumber, module, correctAnswers: new[] { GetField<string>(comp, "idNumber").Get() }));
-
-        addQuestions(module, qs);
+            yield return question(SStability.IdNumber).Answers(GetField<string>(comp, "idNumber").Get());
     }
 }

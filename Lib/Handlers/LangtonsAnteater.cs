@@ -28,12 +28,9 @@ public partial class SouvenirModule
             yield return legitimatelyNoQuestion(module.Module, "the module generated 25 cells of the same colour.");
 
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
         if (initialBlacks.Count >= 5)
-            qs.Add(makeQuestion(Question.LangtonsAnteaterInitialState, module, formatArgs: new[] { "white" }, correctAnswers: initialWhites.Select(pos => new Coord(5, 5, pos)).ToArray()));
+            yield return question(SLangtonsAnteater.InitialState, args: ["white"]).Answers(initialWhites.Select(pos => new Coord(5, 5, pos)).ToArray());
         if (initialWhites.Count >= 5)
-            qs.Add(makeQuestion(Question.LangtonsAnteaterInitialState, module, formatArgs: new[] { "black" }, correctAnswers: initialBlacks.Select(pos => new Coord(5, 5, pos)).ToArray()));
-        addQuestions(module, qs);
+            yield return question(SLangtonsAnteater.InitialState, args: ["black"]).Answers(initialBlacks.Select(pos => new Coord(5, 5, pos)).ToArray());
     }
 }

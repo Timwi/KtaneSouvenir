@@ -21,10 +21,7 @@ public partial class SouvenirModule
 
         var finalNumbers = GetArrayField<int>(comp, "finalNumbers").Get(expectedLength: 3, validator: number => number is < 0 or > 9999 ? "expected range 0–9999" : null);
         var finalNumbersStr = finalNumbers.Select(n => n.ToString()).ToArray();
-
-        var qs = new List<QandA>();
         for (var i = 0; i < finalNumbers.Length; i++)
-            qs.Add(makeQuestion(Question.DivisibleNumbersNumbers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { finalNumbersStr[i] }, preferredWrongAnswers: finalNumbersStr));
-        addQuestions(module, qs);
+            yield return question(SDivisibleNumbers.Numbers, args: [Ordinal(i + 1)]).Answers(finalNumbersStr[i], preferredWrong: finalNumbersStr);
     }
 }

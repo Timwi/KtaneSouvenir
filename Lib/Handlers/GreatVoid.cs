@@ -25,13 +25,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colorNames = new[] { "Red", "Green", "Blue", "Magenta", "Yellow", "Cyan", "White" };
-
-        var questions = new List<QandA>();
         for (var i = 0; i < 6; i++)
         {
-            questions.Add(makeQuestion(Question.GreatVoidDigit, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { fldDigits.Get()[i].ToString() }));
-            questions.Add(makeQuestion(Question.GreatVoidColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorNames[fldColors.Get()[i]] }));
+            yield return question(SGreatVoid.Digit, args: [Ordinal(i + 1)]).Answers(fldDigits.Get()[i].ToString());
+            yield return question(SGreatVoid.Color, args: [Ordinal(i + 1)]).Answers(colorNames[fldColors.Get()[i]]);
         }
-        addQuestions(module, questions);
     }
 }

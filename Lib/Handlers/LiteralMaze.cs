@@ -23,9 +23,7 @@ public partial class SouvenirModule
         var cleartext = GetField<char[]>(comp, "cleartext").Get(ar => ar.Length != mazeString.Distinct().Count() ? "expected length of ‘cleartext’ to match number of distinct letters in ‘mazeString’" : null);
         if (mazeString.Any(ch => ch - 'a' < 0 && ch - 'a' >= cleartext.Length))
             throw new AbandonModuleException($"‘mazeString’ ({mazeString}) contains unexpected character (expected a–{(char) ('a' + cleartext.Length - 1)}).");
-        var qs = new List<QandA>();
         for (var cell = 0; cell < 16; cell++)
-            qs.Add(makeQuestion(Question.LiteralMazeLetter, module, Sprites.GenerateGridSprite(4, 4, cell), correctAnswers: new[] { cleartext[mazeString[cell] - 'a'].ToString() }));
-        addQuestions(module, qs);
+            yield return question(SLiteralMaze.Letter, questionSprite: Sprites.GenerateGridSprite(4, 4, cell)).Answers(cleartext[mazeString[cell] - 'a'].ToString());
     }
 }

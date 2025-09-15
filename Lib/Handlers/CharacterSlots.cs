@@ -22,22 +22,15 @@ public partial class SouvenirModule
 
         var fldName = GetField<Enum>(characters.GetValue(0, 0), "characterName");
         var stageNumber = GetField<int>(comp, "stageNumber").Get();
-        var qs = new List<QandA>();
 
         for (var row = 0; row < stageNumber; row++)
         {
             for (var col = 0; col < 3; col++)
             {
                 var name = fldName.GetFrom(characters.GetValue(row, col), ch => !CharacterSlotsSprites.Any(s => s.name.Replace(" ", "") == ch.ToString()) ? "unexpected character name" : null).ToString();
-                qs.Add(makeQuestion(
-                    question: Question.CharacterSlotsDisplayedCharacters,
-                    data: module,
-                    formatArgs: new[] { Ordinal(col + 1), Ordinal(row + 1) },
-                    correctAnswers: new[] { CharacterSlotsSprites.First(sprite => sprite.name.Replace(" ", "") == name) },
-                    preferredWrongAnswers: CharacterSlotsSprites));
+                yield return question(SCharacterSlots.DisplayedCharacters, args: [Ordinal(col + 1), Ordinal(row + 1)])
+                    .Answers(CharacterSlotsSprites.First(sprite => sprite.name.Replace(" ", "") == name), preferredWrong: CharacterSlotsSprites);
             }
         }
-
-        addQuestions(module, qs);
     }
 }

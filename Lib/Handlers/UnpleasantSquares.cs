@@ -18,8 +18,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
         var subGrid = GetField<int[,]>(comp, "subgrid").Get();
         var colorNames = new string[] { "Red", "Yellow", "Jade", "Azure", "Violet", };
-
-        var qs = new List<QandA>();
         for (var x = 0; x < 5; x++)
             for (var y = 0; y < 5; y++)
             {
@@ -27,8 +25,7 @@ public partial class SouvenirModule
                 if (p == 12)
                     continue;
                 var coord = new Coord(5, 5, p);
-                qs.Add(makeQuestion(Question.UnpleasantSquaresColor, module, questionSprite: Sprites.GenerateGridSprite(coord), correctAnswers: new[] { colorNames[subGrid[x, y]] }));
+                yield return question(SUnpleasantSquares.Color, questionSprite: Sprites.GenerateGridSprite(coord)).Answers(colorNames[subGrid[x, y]]);
             }
-        addQuestions(module, qs);
     }
 }

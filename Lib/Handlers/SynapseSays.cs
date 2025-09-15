@@ -49,16 +49,14 @@ public partial class SouvenirModule
         }
 
         var colorNames = new string[] { "Red", "Yellow", "Green", "Blue" };
-        var qs = new List<QandA>();
         for (var st = 0; st < 5; st++)
         {
-            qs.Add(makeQuestion(Question.SynapseSaysDisplays, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { displays[st] }));
+            yield return question(SSynapseSays.Displays, args: [Ordinal(st + 1)]).Answers(displays[st]);
             for (var ix = 0; ix < 4; ix++)
             {
-                qs.Add(makeQuestion(Question.SynapseSaysFlashes, module, formatArgs: new[] { Ordinal(ix + 1), Ordinal(st + 1) }, correctAnswers: new[] { colorNames[allFlashes[st][ix]] }));
-                qs.Add(makeQuestion(Question.SynapseSaysPositions, module, formatArgs: new[] { Ordinal(ix + 1), Ordinal(st + 1) }, correctAnswers: new[] { colorNames[positions[st][ix]] }));
+                yield return question(SSynapseSays.Flashes, args: [Ordinal(ix + 1), Ordinal(st + 1)]).Answers(colorNames[allFlashes[st][ix]]);
+                yield return question(SSynapseSays.Positions, args: [Ordinal(ix + 1), Ordinal(st + 1)]).Answers(colorNames[positions[st][ix]]);
             }
         }
-        addQuestions(module, qs);
     }
 }

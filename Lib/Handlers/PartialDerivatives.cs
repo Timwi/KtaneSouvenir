@@ -64,11 +64,9 @@ public partial class SouvenirModule
 
         var leds = fldLeds.Get(expectedLength: 3, validator: l => l is < 0 or > 5 ? "expected range 0–5" : null);
         var colorNames = new[] { "blue", "green", "orange", "purple", "red", "yellow" };
-        var qs = new List<QandA>();
         for (var stage = 0; stage < 3; stage++)
-            qs.Add(makeQuestion(Question.PartialDerivativesLedColors, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { colorNames[leds[stage]] }));
+            yield return question(SPartialDerivatives.LedColors, args: [Ordinal(stage + 1)]).Answers(colorNames[leds[stage]]);
         for (var term = 0; term < 3; term++)
-            qs.Add(makeQuestion(Question.PartialDerivativesTerms, module, formatArgs: new[] { Ordinal(term + 1) }, correctAnswers: new[] { terms[term] }, preferredWrongAnswers: wrongAnswers.ToArray()));
-        addQuestions(module, qs);
+            yield return question(SPartialDerivatives.Terms, args: [Ordinal(term + 1)]).Answers(terms[term], preferredWrong: wrongAnswers.ToArray());
     }
 }

@@ -46,20 +46,17 @@ public partial class SouvenirModule
 
         var colors = new string[15] { "White", "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Grey", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "Black" };
         var texts = new string[55] { "A LETTER", "A WORD", "THE LETTER", "THE WORD", "1 LETTER", "1 WORD", "ONE LETTER", "ONE WORD", "B", "C", "D", "E", "G", "K", "N", "P", "Q", "T", "V", "W", "Y", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "NOVEMBER", "PAPA", "QUEBEC", "TANGO", "VICTOR", "WHISKEY", "YANKEE", "COLOUR", "RED", "ORANGE", "YELLOW", "LIME", "GREEN", "JADE", "CYAN", "AZURE", "BLUE", "VIOLET", "MAGENTA", "ROSE", "IN RED", "IN YELLOW", "IN GREEN", "IN CYAN", "IN BLUE", "IN MAGENTA", "QUOTE", "END QUOTE" };
-        var qs = new List<QandA>();
         for (var i = 0; i < 2; i++)
         {
-            qs.Add(makeQuestion(Question.BamboozlingButtonColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colors[moduleData[i][0]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, module, formatArgs: new[] { Ordinal(i + 1), "fourth" }, correctAnswers: new[] { colors[moduleData[i][1]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, module, formatArgs: new[] { Ordinal(i + 1), "fifth" }, correctAnswers: new[] { colors[moduleData[i][2]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { Ordinal(i + 1), "first" }, correctAnswers: new[] { texts[moduleData[i][3]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { Ordinal(i + 1), "third" }, correctAnswers: new[] { texts[moduleData[i][4]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { Ordinal(i + 1), "fourth" }, correctAnswers: new[] { texts[moduleData[i][5]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { Ordinal(i + 1), "fifth" }, correctAnswers: new[] { texts[moduleData[i][6]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, module, formatArgs: new[] { Ordinal(i + 1), "top" }, correctAnswers: new[] { texts[moduleData[i][7]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, module, formatArgs: new[] { Ordinal(i + 1), "bottom" }, correctAnswers: new[] { texts[moduleData[i][8]] }));
+            yield return question(SBamboozlingButton.Color, args: [Ordinal(i + 1)]).Answers(colors[moduleData[i][0]]);
+            yield return question(SBamboozlingButton.DisplayColor, args: [Ordinal(i + 1), "fourth"]).Answers(colors[moduleData[i][1]]);
+            yield return question(SBamboozlingButton.DisplayColor, args: [Ordinal(i + 1), "fifth"]).Answers(colors[moduleData[i][2]]);
+            yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), "first"]).Answers(texts[moduleData[i][3]]);
+            yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), "third"]).Answers(texts[moduleData[i][4]]);
+            yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), "fourth"]).Answers(texts[moduleData[i][5]]);
+            yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), "fifth"]).Answers(texts[moduleData[i][6]]);
+            yield return question(SBamboozlingButton.Label, args: [Ordinal(i + 1), "top"]).Answers(texts[moduleData[i][7]]);
+            yield return question(SBamboozlingButton.Label, args: [Ordinal(i + 1), "bottom"]).Answers(texts[moduleData[i][8]]);
         }
-
-        addQuestions(module, qs);
     }
 }

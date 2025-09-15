@@ -28,11 +28,8 @@ public partial class SouvenirModule
         var displayLetters = GetArrayField<int>(comp, "displayed").Get(expectedLength: 5, validator: number => number is < 0 or > 25 ? "expected range 0–25" : null);
         var words = Question.XmORseCodeWord.GetAnswers();
         var answerWord = words[GetIntField(comp, "answer").Get(validator: number => number is < 0 or > 45 ? "expected range 0–45" : null)];
-
-        var qs = new List<QandA>();
         for (var i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.XmORseCodeDisplayedLetters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { alphabet.Substring(displayLetters[i], 1) }, preferredWrongAnswers: displayLetters.Select(x => alphabet.Substring(x, 1)).ToArray()));
-        qs.Add(makeQuestion(Question.XmORseCodeWord, module, correctAnswers: new[] { answerWord }));
-        addQuestions(module, qs);
+            yield return question(SXmORseCode.DisplayedLetters, args: [Ordinal(i + 1)]).Answers(alphabet.Substring(displayLetters[i], 1), preferredWrong: displayLetters.Select(x => alphabet.Substring(x, 1)).ToArray());
+        yield return question(SXmORseCode.Word).Answers(answerWord);
     }
 }

@@ -29,10 +29,8 @@ public partial class SouvenirModule
         var wires = fldWires.Get(minLength: 3, maxLength: 9, validator: i => i is < 0 or > 9 ? "expected value 0–9" : null);
 
         var colors = new[] { "Navy", "Lapis", "Blue", "Sky", "Teal", "Plum", "Violet", "Purple", "Magenta", "Lavender" };
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.ReformedRoleReversalCondition, module, correctAnswers: new[] { Ordinal(index[1] + 1) }));
+        yield return question(SReformedRoleReversal.Condition).Answers(Ordinal(index[1] + 1));
         for (var ix = 0; ix < wires.Length; ix++)
-            qs.Add(makeQuestion(Question.ReformedRoleReversalWire, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colors[wires[ix]] }));
-        addQuestions(module, qs);
+            yield return question(SReformedRoleReversal.Wire, args: [Ordinal(ix + 1)]).Answers(colors[wires[ix]]);
     }
 }

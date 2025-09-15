@@ -26,8 +26,6 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "EnigmaCycleScript");
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
         var rotComp = GetArrayField<int>(comp, "assignedDialRotations").Get();
         var dialLabels = GetField<string>(comp, "encryptedDisplay").Get();
 
@@ -36,20 +34,18 @@ public partial class SouvenirModule
             switch (dial)
             {
                 case 0:
-                    qs.Add(makeQuestion(Question.EnigmaCycleDialDirectionsThree, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleThreeSprites[rotComp[dial]] }, preferredWrongAnswers: CycleModuleThreeSprites));
+                    yield return question(SEnigmaCycle.DialDirectionsThree, args: [Ordinal(dial + 1)]).Answers(CycleModuleThreeSprites[rotComp[dial]], preferredWrong: CycleModuleThreeSprites);
                     break;
                 case 4:
                 case 5:
                 case 6:
-                    qs.Add(makeQuestion(Question.EnigmaCycleDialDirectionsTwelve, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleTwelveSprites[rotComp[dial]] }, preferredWrongAnswers: CycleModuleTwelveSprites));
+                    yield return question(SEnigmaCycle.DialDirectionsTwelve, args: [Ordinal(dial + 1)]).Answers(CycleModuleTwelveSprites[rotComp[dial]], preferredWrong: CycleModuleTwelveSprites);
                     break;
                 default:
-                    qs.Add(makeQuestion(Question.EnigmaCycleDialDirectionsEight, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleEightSprites[rotComp[dial]] }, preferredWrongAnswers: CycleModuleEightSprites));
+                    yield return question(SEnigmaCycle.DialDirectionsEight, args: [Ordinal(dial + 1)]).Answers(CycleModuleEightSprites[rotComp[dial]], preferredWrong: CycleModuleEightSprites);
                     break;
             }
-            qs.Add(makeQuestion(Question.EnigmaCycleDialLabels, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { dialLabels[dial].ToString() }));
+            yield return question(SEnigmaCycle.DialLabels, args: [Ordinal(dial + 1)]).Answers(dialLabels[dial].ToString());
         }
-
-        addQuestions(module, qs);
     }
 }

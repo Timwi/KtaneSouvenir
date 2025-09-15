@@ -20,10 +20,7 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "red", "blue", "yellow", "green" };
         var flashed = GetArrayField<List<int>>(comp, "stage").Get(ar => ar == null ? "contains null" : ar.Any(list => list.Last() < 0 || list.Last() >= colorNames.Length) ? "expected last value in range 0–3" : null);
-
-        var qs = new List<QandA>();
         for (var stage = 0; stage < flashed.Length; stage++)
-            qs.Add(makeQuestion(Question.SimonSoundsFlashingColors, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { colorNames[flashed[stage].Last()] }));
-        addQuestions(module, qs);
+            yield return question(SSimonSounds.FlashingColors, args: [Ordinal(stage + 1)]).Answers(colorNames[flashed[stage].Last()]);
     }
 }

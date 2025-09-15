@@ -37,12 +37,9 @@ public partial class SouvenirModule
             .Select(car => carSpriteDic[fldCarAppearance.GetFrom(car)])
             .ToArray();
 
-        var qs = new List<QandA>();
-
         // Ask about the correctly connected cars/locomotives
         for (var i = 0; i < 14; i++)    // skip 15 because it’s always the Caboose
-            qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, module, formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { trainCars[i] }, preferredWrongAnswers: allCarSprites));
+            yield return question(SRailwayCargoLoading.Cars, args: [Ordinal(i + 1)]).Answers(trainCars[i], preferredWrong: allCarSprites);
 
         // Ask about the met or unmet freight table rules
         var freightTableRules = GetField<Array>(comp, "_freightTable").Get(ar => ar.Length != 14 ? "expected length 14" : null);
@@ -81,10 +78,8 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"The total amount of freight table rules is not 14. Met: {metRules.Count}, unmet: {unmetRules.Count}");
 
         if (metRules.Count >= 1 && unmetRules.Count >= 3)
-            qs.Add(makeQuestion(Question.RailwayCargoLoadingFreightTableRules, module, formatArgs: new[] { "was met" }, correctAnswers: metRules.ToArray(), preferredWrongAnswers: unmetRules.ToArray()));
+            yield return question(SRailwayCargoLoading.FreightTableRules, args: ["was met"]).Answers(metRules.ToArray(), preferredWrong: unmetRules.ToArray());
         if (unmetRules.Count >= 1 && metRules.Count >= 3)
-            qs.Add(makeQuestion(Question.RailwayCargoLoadingFreightTableRules, module, formatArgs: new[] { "wasn’t met" }, correctAnswers: unmetRules.ToArray(), preferredWrongAnswers: metRules.ToArray()));
-
-        addQuestions(module, qs);
+            yield return question(SRailwayCargoLoading.FreightTableRules, args: ["wasn’t met"]).Answers(unmetRules.ToArray(), preferredWrong: metRules.ToArray());
     }
 }

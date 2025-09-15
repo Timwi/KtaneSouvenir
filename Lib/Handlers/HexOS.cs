@@ -36,8 +36,6 @@ public partial class SouvenirModule
         var decipher = GetField<char[]>(comp, "decipher").Get(arr => arr.Length is not 2 and not 6 ? "expected length 2 or 6" : arr.Any(ch => !validCharacters.Contains(char.ToUpperInvariant(ch))) ? "expected characters A–Z or space" : null);
         var screen = GetField<string>(comp, "screen").Get(s => s.Length != 30 ? "expected length 30" : s.Any(ch => !char.IsDigit(ch)) ? "expected only digits" : null);
         var sum = GetField<string>(comp, "sum").Get(s => s.Length != 4 ? "expected length 4" : s.Any(ch => ch is not '0' and not '1' and not '2' and not '3') ? "expected only characters 0–3" : null);
-
-        var qs = new List<QandA>();
         var cipherWrongAnswers = octOS ? validPhrases.SelectMany(str => Enumerable.Range(0, str.Length - 6).Select(ix => str.Substring(ix, 6))).ToArray() : validCharacters.SelectMany(c1 => validCharacters.Select(c2 => string.Concat(c1, c2))).ToArray();
 
         var wrongAnswers = octOS
@@ -46,12 +44,11 @@ public partial class SouvenirModule
             // Generate every combination of 0, 1, & 2 so long as the left two numbers don’t match the right (2021 is valid but 2121 is not)
             : Enumerable.Range(0, 81).Where(i => i / 9 != i % 9).Select(i => new[] { i / 27, (i / 9) % 3, (i / 3) % 3, i % 3 }.JoinString()).ToArray();
 
-        qs.Add(octOS
-            ? makeQuestion(Question.HexOSOctCipher, module, correctAnswers: new[] { decipher.JoinString() }, preferredWrongAnswers: cipherWrongAnswers)
-            : makeQuestion(Question.HexOSCipher, module, correctAnswers: new[] { decipher.JoinString(), decipher.Reverse().JoinString() }, preferredWrongAnswers: cipherWrongAnswers));
-        qs.Add(makeQuestion(Question.HexOSSum, module, correctAnswers: new[] { sum }, preferredWrongAnswers: wrongAnswers));
+        yield return octOS
+            ? question(SHexOS.OctCipher).Answers(decipher.JoinString(), preferredWrong: cipherWrongAnswers)
+            : question(SHexOS.Cipher).Answers([decipher.JoinString(), decipher.Reverse().JoinString()], preferredWrong: cipherWrongAnswers);
+        yield return question(SHexOS.Sum).Answers(sum, preferredWrong: wrongAnswers);
         for (var offset = 0; offset < 10; offset++)
-            qs.Add(makeQuestion(Question.HexOSScreen, module, formatArgs: new[] { Ordinal(offset + 1) }, correctAnswers: new[] { screen.Substring(offset * 3, 3) }));
-        addQuestions(module, qs);
+            yield return question(SHexOS.Screen, args: [Ordinal(offset + 1)]).Answers(screen.Substring(offset * 3, 3));
     }
 }

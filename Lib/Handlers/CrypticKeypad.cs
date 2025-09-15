@@ -23,15 +23,12 @@ public partial class SouvenirModule
 
         var letters = GetArrayField<string>(comp, "Letters2").Get();
         var rotations = GetArrayField<int>(comp, "Rotations").Get();
-
-        var qs = new List<QandA>();
         var directions = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
         var cardinalDirections = new[] { "North", "East", "South", "West" };
         for (var i = 0; i < 4; i++)
         {
-            qs.Add(makeQuestion(Question.CrypticKeypadLabels, module, formatArgs: new[] { directions[i] }, correctAnswers: new[] { letters[i] }));
-            qs.Add(makeQuestion(Question.CrypticKeypadRotations, module, formatArgs: new[] { directions[i] }, correctAnswers: new[] { cardinalDirections[rotations[i]] }));
+            yield return question(SCrypticKeypad.Labels, args: [directions[i]]).Answers(letters[i]);
+            yield return question(SCrypticKeypad.Rotations, args: [directions[i]]).Answers(cardinalDirections[rotations[i]]);
         }
-        addQuestions(module, qs);
     }
 }

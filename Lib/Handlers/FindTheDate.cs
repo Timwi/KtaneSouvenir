@@ -42,28 +42,16 @@ public partial class SouvenirModule
                 currentStage = newStage;
                 dateArr[newStage] = fldDate.Get();
                 monthArr[newStage] = fldMonth.Get();
-                yearArr[newStage] = "" + fldCentury.Get() + fldYear.Get();
+                yearArr[newStage] = $"{fldCentury.Get()}{fldYear.Get()}";
             }
             yield return null;
         }
 
-        var qs = new List<QandA>();
-
         for (var i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.FindTheDateMonth, module,
-            formatArgs: new[] { Ordinal(i + 1) },
-            correctAnswers: new[] { monthArr[i] }));
-
-            qs.Add(makeQuestion(Question.FindTheDateDay, module,
-            formatArgs: new[] { Ordinal(i + 1) },
-            correctAnswers: new[] { dateArr[i].ToString() }));
-
-            qs.Add(makeQuestion(Question.FindTheDateYear, module,
-            formatArgs: new[] { Ordinal(i + 1) },
-            correctAnswers: new[] { yearArr[i] }));
+            yield return question(SFindTheDate.Month, args: [Ordinal(i + 1)]).Answers(monthArr[i]);
+            yield return question(SFindTheDate.Day, args: [Ordinal(i + 1)]).Answers(dateArr[i].ToString());
+            yield return question(SFindTheDate.Year, args: [Ordinal(i + 1)]).Answers(yearArr[i]);
         }
-
-        addQuestions(module, qs);
     }
 }

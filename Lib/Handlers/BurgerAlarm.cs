@@ -24,14 +24,11 @@ public partial class SouvenirModule
 
         var displayedNumber = GetArrayField<int>(comp, "number").Get(expectedLength: 7);
         var orders = GetArrayField<string>(comp, "orderStrings").Get(expectedLength: 5);
-
-        var qs = new List<QandA>();
         for (var pos = 0; pos < 7; pos++)
         {
-            qs.Add(makeQuestion(Question.BurgerAlarmDigits, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { displayedNumber[pos].ToString() }));
+            yield return question(SBurgerAlarm.Digits, args: [Ordinal(pos + 1)]).Answers(displayedNumber[pos].ToString());
             if (pos < 5)
-                qs.Add(makeQuestion(Question.BurgerAlarmOrderNumbers, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { orders[pos].Replace("no.    ", "") }));
+                yield return question(SBurgerAlarm.OrderNumbers, args: [Ordinal(pos + 1)]).Answers(orders[pos].Replace("no.    ", ""));
         }
-        addQuestions(module, qs);
     }
 }

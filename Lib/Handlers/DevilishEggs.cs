@@ -36,18 +36,15 @@ public partial class SouvenirModule
         var topRotations = GetField<Array>(comp, "topRotations").Get(validator: arr => arr.Length != 6 ? "expected length 6" : null).Cast<object>().Select(rot => rot.ToString()).ToArray();
         var bottomRotations = GetField<Array>(comp, "bottomRotations").Get(validator: arr => arr.Length != 6 ? "expected length 6" : null).Cast<object>().Select(rot => rot.ToString()).ToArray();
         var allRotations = topRotations.Concat(bottomRotations).ToArray();
-
-        var qs = new List<QandA>();
         for (var rotIx = 0; rotIx < 6; rotIx++)
         {
-            qs.Add(makeQuestion(Question.DevilishEggsRotations, module, formatArgs: new[] { "top", Ordinal(rotIx + 1) }, correctAnswers: new[] { topRotations[rotIx] }, preferredWrongAnswers: allRotations));
-            qs.Add(makeQuestion(Question.DevilishEggsRotations, module, formatArgs: new[] { "bottom", Ordinal(rotIx + 1) }, correctAnswers: new[] { bottomRotations[rotIx] }, preferredWrongAnswers: allRotations));
+            yield return question(SDevilishEggs.Rotations, args: ["top", Ordinal(rotIx + 1)]).Answers(topRotations[rotIx], preferredWrong: allRotations);
+            yield return question(SDevilishEggs.Rotations, args: ["bottom", Ordinal(rotIx + 1)]).Answers(bottomRotations[rotIx], preferredWrong: allRotations);
         }
         for (var ix = 0; ix < 8; ix++)
         {
-            qs.Add(makeQuestion(Question.DevilishEggsNumbers, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { digits[ix] }, preferredWrongAnswers: digits));
-            qs.Add(makeQuestion(Question.DevilishEggsLetters, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { letters[ix] }, preferredWrongAnswers: letters));
+            yield return question(SDevilishEggs.Numbers, args: [Ordinal(ix + 1)]).Answers(digits[ix], preferredWrong: digits);
+            yield return question(SDevilishEggs.Letters, args: [Ordinal(ix + 1)]).Answers(letters[ix], preferredWrong: letters);
         }
-        addQuestions(module, qs);
     }
 }
