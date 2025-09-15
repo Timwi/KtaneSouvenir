@@ -33,6 +33,6 @@ public partial class SouvenirModule
         }
         yield return new WaitForSeconds(.1f);
 
-        addQuestion(module, Question.SnookerReds, correctAnswers: new[] { activeReds.ToString() });
+        yield return question(SSnooker.Reds).Answers(activeReds.ToString());
     }
 }

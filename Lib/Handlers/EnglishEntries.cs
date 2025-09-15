@@ -23,6 +23,6 @@ public partial class SouvenirModule
         var kevin = GetIntField(comp, "Kevin").Get();
         var allAnswers = loudclapping.SelectMany(i => i).ToArray();
 
-        addQuestion(module, Question.EnglishEntriesDisplay, correctAnswers: new[] { loudclapping[ann][kevin] }, preferredWrongAnswers: allAnswers);
+        yield return question(SEnglishEntries.Display).Answers(loudclapping[ann][kevin], preferredWrong: allAnswers);
     }
 }

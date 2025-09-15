@@ -29,6 +29,6 @@ public partial class SouvenirModule
         yield return paintedBag == -1
             ? throw new AbandonModuleException($"No colored bag was found: [{bagColors.JoinString(", ")}]")
             : (YieldInstruction) WaitForSolve;
-        addQuestion(module, Question.SplittingTheLootColoredBag, correctAnswers: new[] { bagLabels[paintedBag] }, preferredWrongAnswers: bagLabels);
+        yield return question(SSplittingTheLoot.ColoredBag).Answers(bagLabels[paintedBag], preferredWrong: bagLabels);
     }
 }

@@ -20,6 +20,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "TheNumberGameScript");
         var num = GetIntField(comp, "RandomMaxNumber").Get(min: 10000000, max: 99999999);
 
-        addQuestion(module, Question.NumberGameMaximum, correctAnswers: new[] { num.ToString() });
+        yield return question(SNumberGame.Maximum).Answers(num.ToString());
     }
 }

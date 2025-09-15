@@ -19,6 +19,6 @@ public partial class SouvenirModule
         var index = GetIntField(comp, "labelNum").Get(0, labels.Length - 1);
 
         yield return WaitForSolve;
-        addQuestion(module, Question.HexabuttonLabel, correctAnswers: new[] { labels[index] });
+        yield return question(SHexabutton.Label).Answers(labels[index]);
     }
 }

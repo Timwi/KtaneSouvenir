@@ -19,6 +19,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
         var focus = GetField<int>(comp, "chosenWord").Get();
-        addQuestion(module, Question.SpellingBeeWord, correctAnswers: new[] { wordList[focus] }, preferredWrongAnswers: wordList.ToArray());
+        yield return question(SSpellingBee.Word).Answers(wordList[focus], preferredWrong: wordList.ToArray());
     }
 }

@@ -16,6 +16,6 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "HexamazeModule");
         yield return WaitForSolve;
-        addQuestion(module, Question.HexamazePawnColor, correctAnswers: new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[GetIntField(comp, "_pawnColor").Get(0, 5)] });
+        yield return question(SHexamaze.PawnColor).Answers(new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[GetIntField(comp, "_pawnColor").Get(0, 5)]);
     }
 }

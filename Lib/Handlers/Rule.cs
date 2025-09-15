@@ -19,6 +19,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.RuleNumber, correctAnswers: new[] { GetIntField(comp, "ruleNumber").Get(min: 0, max: 15).ToString() });
+        yield return question(SRule.Number).Answers(GetIntField(comp, "ruleNumber").Get(min: 0, max: 15).ToString());
     }
 }

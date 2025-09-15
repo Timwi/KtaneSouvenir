@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var letterIndex = GetIntField(comp, "_displayedLetterIx").Get(min: 0, max: 25);
-        addQuestion(module, Question.YellowArrowsStartingRow, correctAnswers: new[] { ((char) ('A' + letterIndex)).ToString() });
+        yield return question(SYellowArrows.StartingRow).Answers(((char) ('A' + letterIndex)).ToString());
     }
 }

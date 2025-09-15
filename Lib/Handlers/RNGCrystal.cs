@@ -31,6 +31,6 @@ public partial class SouvenirModule
         var allPossible = Enumerable.Range(0, degree).ToArray();
         var answers = allPossible.Where(i => ((1 << i) & taps) != 0).ToArray();
 
-        addQuestion(module, Question.RNGCrystalTaps, allAnswers: allPossible.Select(i => i.ToString()).ToArray(), correctAnswers: answers.Select(i => i.ToString()).ToArray());
+        yield return question(SRNGCrystal.Taps).Answers(answers.Select(i => i.ToString()).ToArray(), all: allPossible.Select(i => i.ToString()).ToArray());
     }
 }

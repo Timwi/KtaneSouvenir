@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         var words = GetArrayField<string>(comp, "otherWords").Get();
         var index = GetIntField(comp, "otherwordindex").Get(min: 0, max: words.Length - 1);
-        addQuestion(module, Question.NandMsAnswer, correctAnswers: new[] { words[index] });
+        yield return question(SNandMs.Answer).Answers(words[index]);
     }
 }

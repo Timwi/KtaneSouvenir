@@ -27,6 +27,6 @@ public partial class SouvenirModule
             foreach (var ans in new AnswerGenerator.Integers(0, maxSeqId, "'A'000000").GetAnswers(this).Take(6 - wrongAnswers.Count))
                 wrongAnswers.Add(ans);
 
-        addQuestion(module, Question.SequencyclopediaSequence, correctAnswers: new[] { answer }, preferredWrongAnswers: wrongAnswers.ToArray());
+        yield return question(SSequencyclopedia.Sequence).Answers(answer, preferredWrong: wrongAnswers.ToArray());
     }
 }

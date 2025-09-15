@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var initialStates = GetArrayField<bool>(comp, "initialStates").Get(expectedLength: 3);
-        addQuestion(module, Question._3LEDsInitialState, correctAnswers: new[] { initialStates.Select(s => s ? "on" : "off").JoinString("/") });
+        yield return question(S3LEDs.InitialState).Answers(initialStates.Select(s => s ? "on" : "off").JoinString("/"));
     }
 }

@@ -23,6 +23,6 @@ public partial class SouvenirModule
 
         var type = (int) GetProperty<object>(comp, "DataType").Get(v => (int) v is < 0 or > 9 ? "expected data type 0–9" : null);
         var ans = Ut.Attributes[Question.NamingConventionsObject].AllAnswers[type];
-        addQuestion(module, Question.NamingConventionsObject, correctAnswers: new[] { ans });
+        yield return question(SNamingConventions.Object).Answers(ans);
     }
 }

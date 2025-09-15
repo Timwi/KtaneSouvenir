@@ -26,6 +26,6 @@ public partial class SouvenirModule
                 index = i;
         var words = Enumerable.Range(0, wordList.Length).Except(new[] { index }).Select(i => wordList[i][0]).ToArray();
 
-        addQuestion(module, Question.ÉpelleMoiÇaWord, correctAnswers: new[] { inputtedText }, preferredWrongAnswers: words);
+        yield return question(SÉpelleMoiÇa.Word).Answers(inputtedText, preferredWrong: words);
     }
 }

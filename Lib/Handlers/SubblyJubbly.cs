@@ -22,6 +22,6 @@ public partial class SouvenirModule
         var all = GetField<Dictionary<char, List<string>>>(comp, "subblies").Get(v => v.Count == 26 ? "Subblies dict too big" : null).Values.SelectMany(x => x).ToArray();
 
         var used = GetArrayField<string>(comp, "subselect").Get(expectedLength: 9, validator: v => all.Contains(v) ? null : $"Unknown word {v}");
-        addQuestion(module, Question.SubblyJubblySubstitutions, allAnswers: all, correctAnswers: used);
+        yield return question(SSubblyJubbly.Substitutions).Answers(used, all: all);
     }
 }

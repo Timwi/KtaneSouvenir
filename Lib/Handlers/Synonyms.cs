@@ -26,6 +26,6 @@ public partial class SouvenirModule
         GetField<TextMesh>(comp, "BadLabel", isPublic: true).Get().text = "INPUT";
         GetField<TextMesh>(comp, "GoodLabel", isPublic: true).Get().text = "ACCEPTED";
 
-        addQuestion(module, Question.SynonymsNumber, correctAnswers: new[] { number.ToString() });
+        yield return question(SSynonyms.Number).Answers(number.ToString());
     }
 }

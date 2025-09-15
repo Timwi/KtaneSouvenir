@@ -16,6 +16,6 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "TheBulbModule");
         yield return WaitForSolve;
-        addQuestion(module, Question.BulbInitialState, correctAnswers: new[] { GetField<bool>(comp, "_initiallyOn").Get() ? "Yes" : "No" });
+        yield return question(SBulb.InitialState).Answers(GetField<bool>(comp, "_initiallyOn").Get() ? "Yes" : "No");
     }
 }

@@ -19,6 +19,6 @@ public partial class SouvenirModule
 
         var emptyCell = GetIntField(comp, "emptyCell").Get(min: 0, max: 24);
         var sol = "ABCDE"[emptyCell % 5].ToString() + "12345"[emptyCell / 5].ToString();
-        addQuestion(module, Question.RoboScannerEmptyCell, correctAnswers: new[] { sol });
+        yield return question(SRoboScanner.EmptyCell).Answers(sol);
     }
 }

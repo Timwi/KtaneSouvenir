@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.LongWordsWord, correctAnswers: new[] { word }, preferredWrongAnswers: fldPossibleWords.Get().ToArray());
+        yield return question(SLongWords.Word).Answers(word, preferredWrong: fldPossibleWords.Get().ToArray());
     }
 }

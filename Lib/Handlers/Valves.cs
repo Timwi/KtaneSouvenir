@@ -23,6 +23,6 @@ public partial class SouvenirModule
 
         var valvesColorNums = GetArrayField<int>(comp, "valvesColorNum").Get(expectedLength: 3, validator: val => val is not 0 and not 1 ? "expected 0 or 1" : null);
         var spriteIx = valvesColorNums.Aggregate(0, (p, n) => (p << 1) | (n ^ 1));
-        addQuestion(module, Question.ValvesInitialState, correctAnswers: new[] { ValvesSprites[spriteIx] });
+        yield return question(SValves.InitialState).Answers(ValvesSprites[spriteIx]);
     }
 }

@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
         var initialLetter = GetField<string>(comp, "LetterList").Get(x => x.Length != 26 ? "expected length 26" : null)[0];
 
-        addQuestion(module, Question.ALetterInitialLetter, correctAnswers: new[] { initialLetter.ToString() });
+        yield return question(SALetter.InitialLetter).Answers(initialLetter.ToString());
     }
 }

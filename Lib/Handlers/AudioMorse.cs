@@ -68,6 +68,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.AudioMorseSound, correctAnswers: new[] { clips[0] }, allAnswers: clips);
+        yield return question(SAudioMorse.Sound).Answers(clips[0], all: clips);
     }
 }

@@ -23,6 +23,6 @@ public partial class SouvenirModule
 
         var answer = GetField<string>(comp, "metaAnswer").Get(x => x.Length != 7 ? "expected length 7" : null);
 
-        addQuestion(module, Question.MetapuzzleAnswer, correctAnswers: new[] { answer }, preferredWrongAnswers: words);
+        yield return question(SMetapuzzle.Answer).Answers(answer, preferredWrong: words);
     }
 }

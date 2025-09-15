@@ -25,6 +25,6 @@ public partial class SouvenirModule
         module.Module.OnStrike += delegate { finalAnswer = display.Get().text; return false; };
 
         yield return WaitForSolve;
-        addQuestion(module, Question.GroceryStoreFirstItem, correctAnswers: new[] { finalAnswer }, preferredWrongAnswers: items);
+        yield return question(SGroceryStore.FirstItem).Answers(finalAnswer, preferredWrong: items);
     }
 }

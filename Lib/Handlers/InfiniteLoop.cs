@@ -18,6 +18,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var selectedWord = GetField<string>(comp, "SelectedWord").Get();
-        addQuestion(module, Question.InfiniteLoopSelectedWord, correctAnswers: new[] { selectedWord });
+        yield return question(SInfiniteLoop.SelectedWord).Answers(selectedWord);
     }
 }

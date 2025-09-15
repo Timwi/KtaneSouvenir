@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var solutionWordRaw = GetField<string>(comp, "_chosenWord").Get();
         var solutionWord = solutionWordRaw.Substring(0, 1) + solutionWordRaw.Substring(1).ToLowerInvariant();
 
-        addQuestion(module, Question.NotColoredSwitchesWord, correctAnswers: new[] { solutionWord }, preferredWrongAnswers: wordList);
+        yield return question(SNotColoredSwitches.Word).Answers(solutionWord, preferredWrong: wordList);
     }
 }

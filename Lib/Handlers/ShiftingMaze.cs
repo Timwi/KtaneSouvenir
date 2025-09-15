@@ -34,6 +34,6 @@ public partial class SouvenirModule
         }
 
         var seedSplit = Regex.Replace(seed, " ", "").Split(':');
-        addQuestion(module, Question.ShiftingMazeSeed, correctAnswers: new[] { seedSplit[1] });
+        yield return question(SShiftingMaze.Seed).Answers(seedSplit[1]);
     }
 }

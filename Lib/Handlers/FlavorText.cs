@@ -23,8 +23,6 @@ public partial class SouvenirModule
         var fldName = GetField<string>(textOption, "name", isPublic: true);
         var moduleNames = Enumerable.Range(0, textOptionList.Count).Select(index => fldName.GetFrom(textOptionList[index])).ToArray();
 
-        addQuestion(module, Question.FlavorTextModule,
-            correctAnswers: new[] { fldName.GetFrom(textOption) },
-            preferredWrongAnswers: moduleNames);
+        yield return question(SFlavorText.Module).Answers(fldName.GetFrom(textOption), preferredWrong: moduleNames);
     }
 }

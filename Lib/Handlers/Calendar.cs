@@ -25,6 +25,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.CalendarLedColor, correctAnswers: new[] { colorblindText.text });
+        yield return question(SCalendar.LedColor).Answers(colorblindText.text);
     }
 }

@@ -30,6 +30,6 @@ public partial class SouvenirModule
                          from sy in new[] { -1, 1 }
                          select string.Format(template, sx * x + dx, sy * y + dy);
 
-        addQuestion(module, Question.ModuleManeuversGoal, correctAnswers: new[] { string.Format(template, x, y) }, allAnswers: allAnswers.Distinct().ToArray());
+        yield return question(SModuleManeuvers.Goal).Answers(string.Format(template, x, y), all: allAnswers.Distinct().ToArray());
     }
 }

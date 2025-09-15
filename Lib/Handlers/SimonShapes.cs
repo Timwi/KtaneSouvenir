@@ -34,8 +34,6 @@ public partial class SouvenirModule
         if (binaryIx == -1)
             throw new AbandonModuleException($"Obtained binary value {binaryValue} does not match any entry corresponding to a shape.");
 
-        addQuestion(module, Question.SimonShapesSubmittedShape,
-            correctAnswers: new[] { SimonShapesSprites[binaryIx] },
-            preferredWrongAnswers: SimonShapesSprites);
+        yield return question(SSimonShapes.SubmittedShape).Answers(SimonShapesSprites[binaryIx], preferredWrong: SimonShapesSprites);
     }
 }

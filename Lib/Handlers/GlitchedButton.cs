@@ -31,6 +31,6 @@ public partial class SouvenirModule
                 break;
         }
 
-        addQuestion(module, Question.GlitchedButtonSequence, correctAnswers: Enumerable.Range(0, 12).Select(amount => correctAnswer.Substring(amount) + correctAnswer.Substring(0, amount)).ToArray(), preferredWrongAnswers: wrongAnswers.ToArray());
+        yield return question(SGlitchedButton.Sequence).Answers(Enumerable.Range(0, 12).Select(amount => correctAnswer.Substring(amount) + correctAnswer.Substring(0, amount)).ToArray(), preferredWrong: wrongAnswers.ToArray());
     }
 }

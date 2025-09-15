@@ -26,6 +26,6 @@ public partial class SouvenirModule
             options.SetTo(spinner, null);
 
         var letter = GetField<char>(comp, "MissingLetter", isPublic: true).Get(c => c is < 'A' or > 'Z' ? $"Bad letter {c}" : null);
-        addQuestion(module, Question.NotPasswordLetter, correctAnswers: new[] { letter.ToString() });
+        yield return question(SNotPassword.Letter).Answers(letter.ToString());
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "WalkingCubeModule");
         var path = GetArrayField<int[]>(comp, "_solutionSymbols").Get(expectedLength: 4, validator: v => v is not { Length: 4 } ? "Expected length 4" : v.Any(i => i is < -1) ? "Expected all positive" : null);
         var sol = Enumerable.Range(0, 16).Where(i => path[i / 4][i % 4] is not -1).Select(i => Sprites.GenerateGridSprite(4, 4, i)).ToArray();
-        addQuestion(module, Question.WalkingCubePath, correctAnswers: sol);
+        yield return question(SWalkingCube.Path).Answers(sol);
     }
 }

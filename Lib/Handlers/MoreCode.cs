@@ -19,6 +19,6 @@ public partial class SouvenirModule
 
         var word = GetField<string>(comp, "SolutionWord").Get();
         word = word.Substring(0, 1) + word.Substring(1).ToLowerInvariant();
-        addQuestion(module, Question.MoreCodeWord, correctAnswers: new[] { word });
+        yield return question(SMoreCode.Word).Answers(word);
     }
 }

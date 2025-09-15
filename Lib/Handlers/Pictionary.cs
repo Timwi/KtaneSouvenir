@@ -21,6 +21,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var code = GetField<string>(comp, "code").Get(c => c.Length != 4 || c.Any(ch => !char.IsDigit(ch)) ? "expected a sequence of four digits" : null);
-        addQuestion(module, Question.PictionaryCode, correctAnswers: new[] { code });
+        yield return question(SPictionary.Code).Answers(code);
     }
 }

@@ -30,6 +30,6 @@ public partial class SouvenirModule
         var wordScreenTextMesh = wordScreen.GetComponent<TextMesh>() ?? throw new AbandonModuleException("‘wordDisplay’ does not have a TextMesh component.");
         wordScreenTextMesh.text = "SOLVED";
 
-        addQuestion(module, Question.PurpleArrowsFinish, correctAnswers: new[] { Regex.Replace(finishWord, @"(?<!^).", m => m.Value.ToLowerInvariant()) }, preferredWrongAnswers: wordList.Select(w => w[0] + w.Substring(1).ToLowerInvariant()).ToArray());
+        yield return question(SPurpleArrows.Finish).Answers(Regex.Replace(finishWord, @"(?<!^).", m => m.Value.ToLowerInvariant()), preferredWrong: wordList.Select(w => w[0] + w.Substring(1).ToLowerInvariant()).ToArray());
     }
 }

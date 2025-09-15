@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 using Rnd = UnityEngine.Random;
@@ -716,5 +717,41 @@ public static class Ut
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    ///     Determines whether the <paramref name="input"/> string matches the specified regular expression <paramref
+    ///     name="pattern"/>.</summary>
+    /// <param name="input">
+    ///     The string to search for a match.</param>
+    /// <param name="pattern">
+    ///     The regular expression pattern to match.</param>
+    /// <param name="match">
+    ///     Receives an object that contains information about the match.</param>
+    /// <returns>
+    ///     A boolean indicating whether a match was found or not.</returns>
+    public static bool RegexMatch(this string input, string pattern, out Match match)
+    {
+        match = Regex.Match(input, pattern);
+        return match.Success;
+    }
+
+    /// <summary>
+    ///     Determines whether the <paramref name="input"/> string matches the specified regular expression <paramref
+    ///     name="pattern"/>.</summary>
+    /// <param name="input">
+    ///     The string to search for a match.</param>
+    /// <param name="pattern">
+    ///     The regular expression pattern to match.</param>
+    /// <param name="options">
+    ///     A bitwise combination of the enumeration values that provide options for matching.</param>
+    /// <param name="match">
+    ///     Receives an object that contains information about the match.</param>
+    /// <returns>
+    ///     A boolean indicating whether a match was found or not.</returns>
+    public static bool RegexMatch(this string input, string pattern, RegexOptions options, out Match match)
+    {
+        match = Regex.Match(input, pattern, options);
+        return match.Success;
     }
 }

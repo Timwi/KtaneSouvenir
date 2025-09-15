@@ -47,6 +47,6 @@ public partial class SouvenirModule
             .Concat(new[] { ans })
             .ToArray();
 
-        addQuestion(module, Question.YellowButtontFilename, correctAnswers: new[] { ans }, allAnswers: answers);
+        yield return question(SYellowButtont.Filename).Answers(ans, all: answers);
     }
 }

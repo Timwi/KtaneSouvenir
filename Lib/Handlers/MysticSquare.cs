@@ -44,6 +44,6 @@ public partial class SouvenirModule
 
         skull.gameObject.SetActive(false);
         var answers = new[] { "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right" };
-        addQuestion(module, Question.MysticSquareSkull, correctAnswers: new[] { answers[skullpos] });
+        yield return question(SMysticSquare.Skull).Answers(answers[skullpos]);
     }
 }

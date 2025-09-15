@@ -43,6 +43,6 @@ public partial class SouvenirModule
         if (preferredWrongAnswers.Count < 7)
             preferredWrongAnswers.AddRange(Question.KlaxonFirstModule.GetExampleAnswers());
 
-        addQuestion(module, Question.KlaxonFirstModule, correctAnswers: new[] { answer }, preferredWrongAnswers: preferredWrongAnswers.ToArray());
+        yield return question(SKlaxon.FirstModule).Answers(answer, preferredWrong: preferredWrongAnswers.ToArray());
     }
 }

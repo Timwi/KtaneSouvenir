@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var seededAnswer = GetField<int>(comp, "seed").Get().ToString().PadLeft(4, '0');
-        addQuestion(module, Question.RogerSeed, correctAnswers: new[] { seededAnswer });
+        yield return question(SRoger.Seed).Answers(seededAnswer);
     }
 }

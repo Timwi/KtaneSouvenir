@@ -23,6 +23,6 @@ public partial class SouvenirModule
         var commonPoolText = GetField<TextMesh>(comp, "commonPoolText", isPublic: true).Get();
 
         commonPoolText.text = "";
-        addQuestion(module, Question.RaidingTemplesStartingCommonPool, correctAnswers: new[] { startingCommonPool.Get().ToString() });
+        yield return question(SRaidingTemples.StartingCommonPool).Answers(startingCommonPool.Get().ToString());
     }
 }

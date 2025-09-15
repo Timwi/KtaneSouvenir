@@ -21,6 +21,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var targetWord = GetField<string>(comp, "targetWord").Get().ToLowerInvariant();
-        addQuestion(module, Question.DreamcipherWord, correctAnswers: new[] { targetWord }, preferredWrongAnswers: wordList);
+        yield return question(SDreamcipher.Word).Answers(targetWord, preferredWrong: wordList);
     }
 }

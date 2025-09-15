@@ -41,6 +41,6 @@ public partial class SouvenirModule
             foreach (var ans in new AnswerGenerator.Strings(2, usableLetters).GetAnswers(this).Take(6 - wrongAnswers.Count))
                 wrongAnswers.Add(ans);
 
-        addQuestion(module, Question.FastMathLastLetters, correctAnswers: new[] { letters }, preferredWrongAnswers: wrongAnswers.ToArray());
+        yield return question(SFastMath.LastLetters).Answers(letters, preferredWrong: wrongAnswers.ToArray());
     }
 }

@@ -20,6 +20,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var number = GetIntField(comp, "memoryBankNumber").Get(min: 0, max: 99).ToString("00");
-        addQuestion(module, Question.PunctuationMarksDisplayedNumber, correctAnswers: new[] { number });
+        yield return question(SPunctuationMarks.DisplayedNumber).Answers(number);
     }
 }

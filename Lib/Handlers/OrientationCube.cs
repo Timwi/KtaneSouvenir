@@ -23,6 +23,6 @@ public partial class SouvenirModule
         if (initialAnglePos == -1)
             throw new AbandonModuleException($"‘initialVirtualViewAngle’ has unexpected value: {initialVirtualViewAngle}");
 
-        addQuestion(module, Question.OrientationCubeInitialObserverPosition, correctAnswers: new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
+        yield return question(SOrientationCube.InitialObserverPosition).Answers(new[] { "front", "left", "back", "right" }[initialAnglePos]);
     }
 }

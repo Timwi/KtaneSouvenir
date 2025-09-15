@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -41,7 +41,6 @@ public partial class SouvenirModule
                 yield return new WaitForSeconds(.1f);
         }
 
-        addQuestion(module, Question.SkewedSlotsOriginalNumbers, correctAnswers: new[] { originalNumbers.Last() },
-            preferredWrongAnswers: originalNumbers.Take(originalNumbers.Count - 1).ToArray());
+        yield return question(SSkewedSlots.OriginalNumbers).Answers(originalNumbers.Last(), preferredWrong: originalNumbers.Take(originalNumbers.Count - 1).ToArray());
     }
 }

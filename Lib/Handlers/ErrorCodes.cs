@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -37,9 +37,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.ErrorCodesActiveError,
-            correctAnswers: new[] { displayCodes[activeErrorIndex] },
-            preferredWrongAnswers: displayCodes);
+        yield return question(SErrorCodes.ActiveError).Answers(displayCodes[activeErrorIndex], preferredWrong: displayCodes);
 
         // Change the displays to blank
         errorTextDisplay.text = errorPrefix;

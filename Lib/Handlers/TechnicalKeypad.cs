@@ -22,7 +22,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var qs = new List<QandA>();
         for (var position = 0; position < 12; position++)
         {
             var tex = TechnicalKeypadQuestions[position];
@@ -32,8 +31,7 @@ public partial class SouvenirModule
             tex = TechnicalKeypadQuestions.First(t => t.name.Equals("name"));
             tmp.SetPixels(40, 90, tex.width, tex.height, tex.GetPixels());
 
-            var modCount = _moduleCounts.Get("TechnicalKeypad");
-            if (modCount > 1)
+            if (module.Info.NumModules > 1)
             {
                 var numText = module.SolveIndex.ToString();
                 for (var digit = 0; digit < numText.Length; digit++)
@@ -49,8 +47,7 @@ public partial class SouvenirModule
 
             var questionSprite = Sprite.Create(tex, Rect.MinMaxRect(0, 0, 400, 320), new Vector2(.5f, .5f), 1280f, 1, SpriteMeshType.Tight);
             questionSprite.name = $"Technical-Keypad-{position}-{module.SolveIndex}";
-            qs.Add(makeSpriteQuestion(questionSprite, Question.TechnicalKeypadDisplayedDigits, module, formatArgs: new[] { Ordinal(position + 1) }, correctAnswers: new[] { digits[position].ToString() }));
+            yield return question(STechnicalKeypad.DisplayedDigits, questionSprite, args: [Ordinal(position + 1)]).Answers(digits[position].ToString());
         }
-        addQuestions(module, qs);
     }
 }

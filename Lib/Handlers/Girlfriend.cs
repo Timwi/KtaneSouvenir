@@ -19,6 +19,6 @@ public partial class SouvenirModule
 
         var languageArr = GetArrayField<string>(comp, "languages").Get();
         var answerIndex = GetIntField(comp, "answerIndex").Get(min: 0, max: languageArr.Length - 1);
-        addQuestion(module, Question.GirlfriendLanguage, correctAnswers: new[] { languageArr[answerIndex] });
+        yield return question(SGirlfriend.Language).Answers(languageArr[answerIndex]);
     }
 }

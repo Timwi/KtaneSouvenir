@@ -20,6 +20,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var flashedSpritePool = GetArrayField<int>(comp, "spritePool").Get(expectedLength: 4);
-        addQuestion(module, Question.QuestionMarkFlashedSymbols, correctAnswers: flashedSpritePool.Select(ix => QuestionMarkSprites[ix]).ToArray(), preferredWrongAnswers: QuestionMarkSprites);
+        yield return question(SQuestionMark.FlashedSymbols).Answers(flashedSpritePool.Select(ix => QuestionMarkSprites[ix]).ToArray(), preferredWrong: QuestionMarkSprites);
     }
 }

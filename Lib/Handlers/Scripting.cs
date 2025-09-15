@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var variableType = GetField<string>(comp, "VariableKindValue", isPublic: true).Get();
-        addQuestion(module, Question.ScriptingVariableDataType, correctAnswers: new[] { variableType });
+        yield return question(SScripting.VariableDataType).Answers(variableType);
     }
 }

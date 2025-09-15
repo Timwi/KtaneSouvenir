@@ -35,6 +35,6 @@ public partial class SouvenirModule
         }
         if (letters == null)
             throw new AbandonModuleException("No letters were extracted before the module was solved.");
-        addQuestion(module, Question.FastPlayfairCipherLastMessage, correctAnswers: new[] { letters }, preferredWrongAnswers: wrongAnswers.ToArray());
+        yield return question(SFastPlayfairCipher.LastMessage).Answers(letters, preferredWrong: wrongAnswers.ToArray());
     }
 }

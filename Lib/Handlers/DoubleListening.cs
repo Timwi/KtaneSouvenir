@@ -33,9 +33,6 @@ public partial class SouvenirModule
         };
 
         var used = GetArrayField<int>(comp, "soundPositions").Get(expectedLength: 2, validator: i => i < 0 || i >= indices.Length ? $"Index {i} out of range [0,{indices.Length})" : null);
-        addQuestion(module, Question.DoubleListeningSounds,
-            correctAnswers: used.Select(i => ListeningAudio[indices[i]]).ToArray(),
-            allAnswers: indices.Select(i => ListeningAudio[i]).ToArray()
-        );
+        yield return question(SDoubleListening.Sounds).Answers(used.Select(i => ListeningAudio[indices[i]]).ToArray(), all: indices.Select(i => ListeningAudio[i]).ToArray());
     }
 }

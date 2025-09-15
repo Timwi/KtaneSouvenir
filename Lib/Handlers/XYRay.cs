@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -20,6 +20,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "XYRayScript");
         var shapes = GetArrayField<int>(comp, "sindex").Get(expectedLength: 3, validator: v => v is < 0 or > 26 ? "Expected range [0, 26]" : null);
 
-        addQuestion(module, Question.XYRayShapes, correctAnswers: shapes.Select(i => XYRaySprites[i]).ToArray());
+        yield return question(SXYRay.Shapes).Answers(shapes.Select(i => XYRaySprites[i]).ToArray());
     }
 }

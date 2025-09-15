@@ -19,6 +19,6 @@ public partial class SouvenirModule
         var fldBigChar = GetField<char>(comp, "greaterLetter");
 
         yield return WaitForSolve;
-        addQuestion(module, Question.MetamorseExtractedLetter, correctAnswers: new[] { fldBigChar.Get().ToString() });
+        yield return question(SMetamorse.ExtractedLetter).Answers(fldBigChar.Get().ToString());
     }
 }

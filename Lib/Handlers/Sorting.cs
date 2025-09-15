@@ -21,6 +21,6 @@ public partial class SouvenirModule
         if (lastSwap % 10 == 0 || lastSwap % 10 > 5 || lastSwap / 10 == 0 || lastSwap / 10 > 5 || lastSwap / 10 == lastSwap % 10)
             throw new AbandonModuleException($"‘swap’ has unexpected value (expected two digit number, each with a unique digit from 1-5): {lastSwap}");
 
-        addQuestion(module, Question.SortingLastSwap, correctAnswers: new[] { lastSwap.ToString().Insert(1, " & ") });
+        yield return question(SSorting.LastSwap).Answers(lastSwap.ToString().Insert(1, " & "));
     }
 }

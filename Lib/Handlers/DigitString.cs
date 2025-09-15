@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         var storedInitialString = GetField<string>(comp, "shownString").Get(x => x.Length != 8 ? "Expected length 8" : null);
 
-        addQuestion(module, Question.DigitStringInitialNumber, correctAnswers: new[] { storedInitialString });
+        yield return question(SDigitString.InitialNumber).Answers(storedInitialString);
     }
 }

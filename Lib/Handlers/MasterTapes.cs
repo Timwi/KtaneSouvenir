@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var songIndex = GetIntField(comp, "currentSong").Get(min: 1, max: 9) - 1;
-        addQuestion(module, Question.MasterTapesPlayedSong, correctAnswers: new[] { Question.MasterTapesPlayedSong.GetAnswers()[songIndex] });
+        yield return question(SMasterTapes.PlayedSong).Answers(Question.MasterTapesPlayedSong.GetAnswers()[songIndex]);
     }
 }

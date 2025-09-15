@@ -18,6 +18,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.VaricoloredSquaresInitialColor, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor").Get().ToString() });
+        yield return question(SVaricoloredSquares.InitialColor).Answers(GetField<object>(comp, "_firstStageColor").Get().ToString());
     }
 }

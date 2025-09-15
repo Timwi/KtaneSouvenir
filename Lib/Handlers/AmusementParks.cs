@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,11 +23,9 @@ public partial class SouvenirModule
         var correct = GetField<object>(comp, "correctInvestment").Get();
 
         var fldName = GetField<string>(avail[0], "name", true);
-        var options = avail.Select(r => fldName.GetFrom(r, v => !Question.AmusementParksRides.GetAnswers().Contains(v) ? $"Unknown ride type {v}" : null));
-        var correctName = fldName.GetFrom(correct, v => !Question.AmusementParksRides.GetAnswers().Contains(v) ? $"Unknown ride type {v}" : null);
+        var options = avail.Select(r => fldName.GetFrom(r, v => !SAmusementParks.Rides.GetAnswers().Contains(v) ? $"Unknown ride type {v}" : null));
+        var correctName = fldName.GetFrom(correct, v => !SAmusementParks.Rides.GetAnswers().Contains(v) ? $"Unknown ride type {v}" : null);
 
-        addQuestion(module, Question.AmusementParksRides,
-            correctAnswers: options.Except(new[] { correctName }).ToArray(),
-            allAnswers: Question.AmusementParksRides.GetAnswers().Except(new[] { correctName }).ToArray());
+        yield return question(SAmusementParks.Rides).Answers(options.Except(new[] { correctName }).ToArray(), all: SAmusementParks.Rides.GetAnswers().Except([correctName]).ToArray());
     }
 }

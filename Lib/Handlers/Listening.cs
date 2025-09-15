@@ -33,6 +33,6 @@ public partial class SouvenirModule
 
         var codes = "$#$#*|$*$**|*&*&&|###&$|&#**&|**$*#|&&$&*|&#&&#|$$*$*|&$#$&|*#&*&|#$#&$|$#$*&|$&$$*|*$*$*|#&$&&|&*$*$|&$**&|&#$$#|&$$&*|**###|*#$&&|$&**#|$&&**|$&#$$|#&&*#|##*$*|$*&##|#$$&*|*$$&$|$#*$&|&&&**|$&&*&|**$$$|**#**|#&&&&|#$$**|#&$##|#&$*&|&**$$|&$&##".Split('|');
 
-        addQuestion(module, Question.ListeningSound, correctAnswers: new[] { ListeningAudio[codes.IndexOf(s => s.Equals(correctCode))] });
+        yield return question(SListening.Sound).Answers(ListeningAudio[codes.IndexOf(s => s.Equals(correctCode))]);
     }
 }

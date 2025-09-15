@@ -20,6 +20,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var selectedShape = GetField<int>(comp, "selectedShape").Get();
-        addQuestion(module, Question.DeafAlleyShape, correctAnswers: new[] { shapes[selectedShape] }, preferredWrongAnswers: shapes);
+        yield return question(SDeafAlley.Shape).Answers(shapes[selectedShape], preferredWrong: shapes);
     }
 }

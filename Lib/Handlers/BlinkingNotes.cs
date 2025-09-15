@@ -18,6 +18,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "blinkingLightsScript");
         var correct = GetIntField(comp, "correctClip").Get(min: 0, max: 15);
 
-        addQuestion(module, Question.BlinkingNotesSong, correctAnswers: new[] { Question.BlinkingNotesSong.GetAnswers()[correct] });
+        yield return question(SBlinkingNotes.Song).Answers(Question.BlinkingNotesSong.GetAnswers()[correct]);
     }
 }

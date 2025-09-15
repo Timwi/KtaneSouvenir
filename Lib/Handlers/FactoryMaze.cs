@@ -24,6 +24,6 @@ public partial class SouvenirModule
         for (var i = usedRooms.Length - 1; i >= 0; --i)
             usedRooms[i] = usedRooms[i].Replace('\n', ' ');
 
-        addQuestion(module, Question.FactoryMazeStartRoom, correctAnswers: new[] { usedRooms[startRoom] }, preferredWrongAnswers: usedRooms);
+        yield return question(SFactoryMaze.StartRoom).Answers(usedRooms[startRoom], preferredWrong: usedRooms);
     }
 }

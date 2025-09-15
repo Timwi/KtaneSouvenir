@@ -18,6 +18,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var disp = GetField<string>(comp, "displayedWord").Get(str => str.Length != 4 ? "expected length 4" : null);
-        addQuestion(module, Question.SuperparsingDisplayed, correctAnswers: new[] { disp });
+        yield return question(SSuperparsing.Displayed).Answers(disp);
     }
 }

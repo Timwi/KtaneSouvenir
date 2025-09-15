@@ -23,6 +23,6 @@ public partial class SouvenirModule
         if (colors[4] < 0 || colors[4] >= colorNames.Length)
             throw new AbandonModuleException($"‘colors[4]’ pointed to illegal color: {colors[4]}.");
 
-        addQuestion(module, Question.BrushStrokesMiddleColor, correctAnswers: new[] { char.ToUpperInvariant(colorNames[colors[4]][0]) + colorNames[colors[4]].Substring(1) });
+        yield return question(SBrushStrokes.MiddleColor).Answers(char.ToUpperInvariant(colorNames[colors[4]][0]) + colorNames[colors[4]].Substring(1));
     }
 }

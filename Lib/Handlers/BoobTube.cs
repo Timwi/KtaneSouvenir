@@ -38,6 +38,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var words = GetArrayField<string>(comp, "chosenWords").Get(expectedLength: 6, validator: v => !Question.BoobTubeWord.GetAnswers().Contains(v) ? "Unknown word" : null);
-        addQuestion(module, Question.BoobTubeWord, correctAnswers: words);
+        yield return question(SBoobTube.Word).Answers(words);
     }
 }

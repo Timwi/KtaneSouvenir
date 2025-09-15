@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -30,6 +30,6 @@ public partial class SouvenirModule
                 expectedButtons = GetListField<string>(comp, "ExpectedButtons").Get(list => list.Count == 0 ? "list is empty" : null).ToArray();
             }
         }
-        addQuestion(module, Question.NumberedButtonsButtons, correctAnswers: expectedButtons);
+        yield return question(SNumberedButtons.Buttons).Answers(expectedButtons);
     }
 }

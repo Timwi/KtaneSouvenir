@@ -20,6 +20,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colors = new[] { "Red", "Blue", "Yellow", "Green", "Magenta", "Orange" };
-        addQuestion(module, Question.Maze3StartingFace, correctAnswers: new[] { colors[node / 9] });
+        yield return question(SMaze3.StartingFace).Answers(colors[node / 9]);
     }
 }

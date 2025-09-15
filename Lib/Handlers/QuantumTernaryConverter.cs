@@ -22,6 +22,6 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "QTCScript");
         var ints = GetArrayField<int>(comp, "ansints").Get(expectedLength: 2, validator: v => Mathf.Abs(v) is < 9842 or > 265720 ? "Expected range ±[9842, 265720]" : null);
-        addQuestion(module, Question.QuantumTernaryConverterNumber, correctAnswers: ints.Select(i => i.ToString()).ToArray());
+        yield return question(SQuantumTernaryConverter.Number).Answers(ints.Select(i => i.ToString()).ToArray());
     }
 }

@@ -20,6 +20,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "wumboScript");
         var num = GetField<ulong>(comp, "number").Get(v => v is < 0uL or > 813244863240810000uL ? "Out of range [0, 813244863240810000]" : null);
 
-        addQuestion(module, Question.WumboNumber, correctAnswers: new[] { num.ToString() });
+        yield return question(SWumbo.Number).Answers(num.ToString());
     }
 }

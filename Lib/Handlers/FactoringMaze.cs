@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var chosenPrimes = GetArrayField<int>(comp, "chosenPrimes").Get(expectedLength: 4);
-        addQuestion(module, Question.FactoringMazeChosenPrimes, correctAnswers: chosenPrimes.Select(i => i.ToString()).ToArray());
+        yield return question(SFactoringMaze.ChosenPrimes).Answers(chosenPrimes.Select(i => i.ToString()).ToArray());
     }
 }

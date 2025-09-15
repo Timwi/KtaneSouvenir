@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,6 +21,6 @@ public partial class SouvenirModule
 
         var sequences = GetArrayField<List<int>>(comp, "answer").Get();
 
-        addQuestion(module, Question.StackedSequences, correctAnswers: sequences.Select(x => x.Count.ToString()).ToArray());
+        yield return question(SStackedSequences.Question).Answers(sequences.Select(x => x.Count.ToString()).ToArray());
     }
 }

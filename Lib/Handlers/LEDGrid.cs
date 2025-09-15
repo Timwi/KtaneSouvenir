@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -32,6 +32,6 @@ public partial class SouvenirModule
         foreach (var light in lights)
             light.material.mainTexture = blackColor;
 
-        addQuestion(module, Question.LEDGridNumBlack, correctAnswers: new[] { numBlack.ToString() });
+        yield return question(SLEDGrid.NumBlack).Answers(numBlack.ToString());
     }
 }

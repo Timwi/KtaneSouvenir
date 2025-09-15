@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -52,6 +52,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.YahtzeeInitialRoll, correctAnswers: new[] { result });
+        yield return question(SYahtzee.InitialRoll).Answers(result);
     }
 }

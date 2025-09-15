@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -45,8 +45,6 @@ public partial class SouvenirModule
         var sprites = fldSprites.Get(expectedLength: 20);
         var spritesOnFirstPress = firstCorrectSelectable.GetComponentsInChildren<SpriteRenderer>().Select(x => x.sprite).ToArray(); //Always 2 sprites
         var prettyLookingSouvSprites = spritesOnFirstPress.Select(spr => JengaSprites[Array.IndexOf(sprites, spr)]).ToArray();
-        addQuestion(module, Question.JengaFirstBlock,
-            correctAnswers: prettyLookingSouvSprites,
-            preferredWrongAnswers: JengaSprites);
+        yield return question(SJenga.FirstBlock).Answers(prettyLookingSouvSprites, preferredWrong: JengaSprites);
     }
 }

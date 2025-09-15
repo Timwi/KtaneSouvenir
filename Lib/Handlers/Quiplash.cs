@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -25,6 +25,6 @@ public partial class SouvenirModule
         foreach (var t in GetArrayField<TextMesh>(comp, "PromptTexts", true).Get())
             t.text = "Quiplash!";
 
-        addQuestion(module, Question.QuiplashNumber, correctAnswers: new[] { id });
+        yield return question(SQuiplash.Number).Answers(id);
     }
 }

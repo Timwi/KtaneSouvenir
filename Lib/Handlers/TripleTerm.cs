@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var wordList = GetArrayField<string>(comp, "wordList").Get().Select(i => i.Substring(0, 1).ToUpperInvariant() + i.Substring(1).ToLowerInvariant()).ToArray();
         var chosenWords = GetArrayField<int>(comp, "chosenWords").Get().Select(i => wordList[i]).ToArray();
 
-        addQuestion(module, Question.TripleTermPasswords, correctAnswers: chosenWords, preferredWrongAnswers: wordList);
+        yield return question(STripleTerm.Passwords).Answers(chosenWords, preferredWrong: wordList);
     }
 }

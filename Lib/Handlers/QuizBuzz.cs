@@ -20,6 +20,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var startingNumber = GetIntField(comp, "startNumber").Get(min: 6, max: 74);
-        addQuestion(module, Question.QuizBuzzStartingNumber, correctAnswers: new[] { startingNumber.ToString() });
+        yield return question(SQuizBuzz.StartingNumber).Answers(startingNumber.ToString());
     }
 }

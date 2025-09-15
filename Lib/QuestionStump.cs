@@ -5,10 +5,12 @@ using UnityEngine;
 
 namespace Souvenir;
 
-public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir)
+public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir, string[] args)
 {
     public Enum EnumValue { get; private set; } = enumValue;
     public SouvenirModule Souvenir { get; private set; } = souvenir;
+    public string[] Args { get; private set; } = args;
+
     public string[] DiscriminatorIdsToAvoid { get; protected set; }
     public Enum[] DiscriminatorsToAvoid { get; protected set; }
 
@@ -45,5 +47,18 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir)
     {
         DiscriminatorsToAvoid = (discriminators as Enum[]) ?? discriminators.ToArray();
         return this;
+    }
+
+    protected string FormattedQuestion(string moduleFormat)
+    {
+        var attr = EnumValue.GetQuestionAttribute();
+        var allFormatArgs = new object[Args != null ? Args.Length + 1 : 1];
+        allFormatArgs[0] = moduleFormat;
+
+        if (Args != null)
+            for (var i = 0; i < Args.Length; i++)
+                allFormatArgs[i + 1] = attr.TranslateArguments is { } ta && ta[i] ? souvenir.TranslateQuestionArgument(EnumValue, Args[i]) : Args[i];
+
+        return string.Format(souvenir.TranslateQuestion(EnumValue), allFormatArgs);
     }
 }

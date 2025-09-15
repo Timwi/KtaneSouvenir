@@ -25,6 +25,6 @@ public partial class SouvenirModule
         if (fixedErrorCodes.Count == 0)
             yield return legitimatelyNoQuestion(module, "There are no errors to ask about.");
         var allErrorCodes = GetStaticProperty<HashSet<string>>(comp.GetType(), "allErrorCodes", true).Get();
-        addQuestion(module, Question.SysadminFixedErrorCodes, correctAnswers: fixedErrorCodes.ToArray(), preferredWrongAnswers: allErrorCodes.ToArray());
+        yield return question(SSysadmin.FixedErrorCodes).Answers(fixedErrorCodes.ToArray(), preferredWrong: allErrorCodes.ToArray());
     }
 }

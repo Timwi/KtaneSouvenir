@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var displayedSign = GetIntField(comp, "chosenSign").Get(min: 0, max: 19);
-        addQuestion(module, Question.WarningSignsDisplayedSign, correctAnswers: new[] { WarningSignsSprites[displayedSign] }, preferredWrongAnswers: WarningSignsSprites);
+        yield return question(SWarningSigns.DisplayedSign).Answers(WarningSignsSprites[displayedSign], preferredWrong: WarningSignsSprites);
     }
 }

@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var answer = ((char) ('A' + GetIntField(comp, "WhatToSubmit").Get(min: 0, max: 25))).ToString();
-        addQuestion(module, Question.HLetter, correctAnswers: new[] { answer });
+        yield return question(SH.Letter).Answers(answer);
     }
 }

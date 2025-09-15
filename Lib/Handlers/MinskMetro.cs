@@ -18,6 +18,6 @@ public partial class SouvenirModule
         var correctAnswer = GetField<string>(comp, "initStation").Get();
         var wrongAnswers = GetField<string[]>(comp, "otherStations").Get();
         yield return WaitForSolve;
-        addQuestion(module, Question.MinskMetroStation, correctAnswers: new[] { correctAnswer }, preferredWrongAnswers: wrongAnswers);
+        yield return question(SMinskMetro.Station).Answers(correctAnswer, preferredWrong: wrongAnswers);
     }
 }

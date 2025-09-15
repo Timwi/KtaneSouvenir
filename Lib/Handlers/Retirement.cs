@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var homes = GetArrayField<string>(comp, "retirementHomeOptions", isPublic: true).Get();
         var available = GetArrayField<string>(comp, "selectedHomes").Get();
         var correct = GetField<string>(comp, "correctHome").Get(str => str == "" ? "empty" : null);
-        addQuestion(module, Question.RetirementHouses, correctAnswers: available.Where(x => x != correct).ToArray(), preferredWrongAnswers: homes);
+        yield return question(SRetirement.Houses).Answers(available.Where(x => x != correct).ToArray(), preferredWrong: homes);
     }
 }

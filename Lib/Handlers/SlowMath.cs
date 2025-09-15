@@ -20,6 +20,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var ogLetters = GetListField<string>(comp, "_chosenLetters").Get(minLength: 3, maxLength: 5);
-        addQuestion(module, Question.SlowMathLastLetters, correctAnswers: new[] { ogLetters.Last() });
+        yield return question(SSlowMath.LastLetters).Answers(ogLetters.Last());
     }
 }

@@ -54,7 +54,6 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         module.SolveIndex = 1; // The question does not use the formatted module name. However, since the module may not be solved at this point, we need to specify a solve index anyways.
-        addQuestion(module, Question.SouvenirFirstQuestion, correctAnswers: new[] { firstModule },
-            preferredWrongAnswers: preferredWrongAnswers.ToArray(), allAnswers: allAnswers.ToArray());
+        yield return question(SSouvenir.FirstQuestion).Answers(firstModule, all: allAnswers.ToArray(), preferredWrong: preferredWrongAnswers.ToArray());
     }
 }

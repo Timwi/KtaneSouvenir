@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         string[] colorNames = { "Green", "Blue", "Purple", "Orange" };
         var firstColor = GetArrayField<int>(comp, "colorIndices").Get(expectedLength: 4).First();
-        addQuestion(module, Question.RedHerringFirstFlash, correctAnswers: new[] { colorNames[firstColor] });
+        yield return question(SRedHerring.FirstFlash).Answers(colorNames[firstColor]);
     }
 }

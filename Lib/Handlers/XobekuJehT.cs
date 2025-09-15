@@ -20,6 +20,6 @@ public partial class SouvenirModule
         var songIx = GetIntField(comp, "songselect").Get();
         var songList = GetArrayField<string>(comp, "titles").Get();
 
-        addQuestion(module, Question.XobekuJehTSong, correctAnswers: new[] { songList[songIx] }, preferredWrongAnswers: songList);
+        yield return question(SXobekuJehT.Song).Answers(songList[songIx], preferredWrong: songList);
     }
 }

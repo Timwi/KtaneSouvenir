@@ -20,6 +20,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "watchingPaintDry");
         var strokes = GetIntField(comp, "strokeCount").Get(min: 3, max: 8);
 
-        addQuestion(module, Question.WatchingPaintDryStrokeCount, correctAnswers: new[] { strokes.ToString() });
+        yield return question(SWatchingPaintDry.StrokeCount).Answers(strokes.ToString());
     }
 }

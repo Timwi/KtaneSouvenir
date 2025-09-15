@@ -23,6 +23,6 @@ public partial class SouvenirModule
         // Find valid answers within pi that do not overlap with any of the other strings
         var piString = GetField<string>(comp, "pi").Get();
         var validAnswers = Enumerable.Range(0, piString.Length - 5).Select(ix => piString.Substring(ix, 5)).Where(sps => !digits.Contains(sps)).ToArray();
-        addQuestion(module, Question.PieFlashDigits, correctAnswers: validAnswers, preferredWrongAnswers: digits);
+        yield return question(SPieFlash.Digits).Answers(validAnswers, preferredWrong: digits);
     }
 }

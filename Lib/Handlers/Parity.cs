@@ -22,6 +22,6 @@ public partial class SouvenirModule
         for (var i = 0; i < 26; i++)
             for (var j = 0; j < 10; j++)
                 pairs.Add("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i].ToString() + j.ToString());
-        addQuestion(module, Question.ParityDisplay, correctAnswers: new[] { text }, preferredWrongAnswers: pairs.ToArray());
+        yield return question(SParity.Display).Answers(text, preferredWrong: pairs.ToArray());
     }
 }

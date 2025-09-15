@@ -16,8 +16,6 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "tasqueManaging");
         yield return WaitForSolve;
-        addQuestion(module, Question.TasqueManagingStartingPos,
-            correctAnswers: new[] { TasqueManagingSprites[GetIntField(comp, "startingPosition").Get(min: 0, max: 15)] },
-            preferredWrongAnswers: TasqueManagingSprites);
+        yield return question(STasqueManaging.StartingPos).Answers(TasqueManagingSprites[GetIntField(comp, "startingPosition").Get(min: 0, max: 15)], preferredWrong: TasqueManagingSprites);
     }
 }

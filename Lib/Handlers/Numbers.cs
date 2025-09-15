@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var numberValue1 = GetField<int>(comp, "numberValue1").Get();
         var numberValue2 = GetField<int>(comp, "numberValue2").Get();
         var answer = numberValue1.ToString() + numberValue2.ToString();
-        addQuestion(module, Question.NumbersTwoDigit, correctAnswers: new[] { answer });
+        yield return question(SNumbers.TwoDigit).Answers(answer);
     }
 }

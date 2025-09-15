@@ -20,6 +20,6 @@ public partial class SouvenirModule
         var entryObj = GetField<object>(comp, "entry").Get();
         var answer = GetField<string>(entryObj, "word").Get();
 
-        addQuestion(module, Question.SignLanguageWord, correctAnswers: new[] { answer });
+        yield return question(SSignLanguage.Word).Answers(answer);
     }
 }

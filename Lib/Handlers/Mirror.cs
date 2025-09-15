@@ -31,6 +31,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.MirrorWord, correctAnswers: new[] { texts[position].text }, preferredWrongAnswers: candidateWords);
+        yield return question(SMirror.Word).Answers(texts[position].text, preferredWrong: candidateWords);
     }
 }

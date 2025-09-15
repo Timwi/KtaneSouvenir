@@ -22,6 +22,6 @@ public partial class SouvenirModule
 
         var firstNumber = GetField<List<int>>(comp, "visitedNumbers").Get().First();
         var firstDigit = (firstNumber / 10).ToString();
-        addQuestion(module, Question.CursedDoubleOhInitialPosition, correctAnswers: new[] { firstDigit });
+        yield return question(SCursedDoubleOh.InitialPosition).Answers(firstDigit);
     }
 }

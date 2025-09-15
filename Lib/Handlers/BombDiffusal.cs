@@ -30,6 +30,6 @@ public partial class SouvenirModule
             answers.Add(fldLicenseNumber.Get(x => x.Length != 6 || x.Any(c => !char.IsLetterOrDigit(c)) ? "expected 6 alphanumeric characters" : null));
         }
         fldLicenseNumber.Set(correctAnswer); // Set the license number back to what it was to allow other Souvenir modules to access it.
-        addQuestion(module, Question.BombDiffusalLicenseNumber, correctAnswers: new[] { correctAnswer }, preferredWrongAnswers: answers.ToArray());
+        yield return question(SBombDiffusal.LicenseNumber).Answers(correctAnswer, preferredWrong: answers.ToArray());
     }
 }

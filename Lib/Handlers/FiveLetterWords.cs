@@ -21,6 +21,6 @@ public partial class SouvenirModule
 
         var wordList = JsonConvert.DeserializeObject<string[]>(GetField<TextAsset>(comp, "FiverData", isPublic: true).Get().text);
         var displayedWords = GetArrayField<string>(comp, "TheNames").Get(expectedLength: 3, validator: name => name.Length != 5 ? "expected length 5" : null);
-        addQuestion(module, Question.FiveLetterWordsDisplayedWords, correctAnswers: displayedWords, preferredWrongAnswers: wordList);
+        yield return question(SFiveLetterWords.DisplayedWords).Answers(displayedWords, preferredWrong: wordList);
     }
 }

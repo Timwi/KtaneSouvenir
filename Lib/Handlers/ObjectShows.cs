@@ -22,6 +22,6 @@ public partial class SouvenirModule
         var fldId = GetField<int>(contestantsPresent[0], "id", isPublic: true);
         var allContestantNames = GetStaticField<string[]>(comp.GetType(), "characterNames").Get(v => v.Length != 30 ? "expected length 30" : null);
         var contestantNames = Enumerable.Range(0, contestantsPresent.Count).Select(ix => allContestantNames[fldId.GetFrom(contestantsPresent[ix], v => v is < 0 or >= 30 ? "expected range 0–29" : null)]).ToArray();
-        addQuestion(module, Question.ObjectShowsContestants, correctAnswers: contestantNames, preferredWrongAnswers: allContestantNames);
+        yield return question(SObjectShows.Contestants).Answers(contestantNames, preferredWrong: allContestantNames);
     }
 }

@@ -23,6 +23,6 @@ public partial class SouvenirModule
         var initStr = fldInitColor.Get(col => (int) col is > 7 or < 0 ? "expected value 0-7" : null).ToString();
         var actualStr = fldActualColor.Get(col => (int) col is > 7 or < 0 ? "expected value 0-7" : null).ToString();
 
-        addQuestion(module, Question.LEDsOriginalColor, correctAnswers: new[] { initStr }, preferredWrongAnswers: new[] { actualStr });
+        yield return question(SLEDs.OriginalColor).Answers(initStr, preferredWrong: [actualStr]);
     }
 }

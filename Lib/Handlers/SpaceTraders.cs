@@ -22,6 +22,6 @@ public partial class SouvenirModule
         if (GetProperty<int>(comp, "maxPossibleTaxAmount", true).Get() < 4)
             yield return legitimatelyNoQuestion(module, "All paths from the solar system are too short.");
 
-        addQuestion(module, Question.SpaceTradersMaxTax, correctAnswers: new[] { GetProperty<int>(comp, "maxTax", true).Get().ToString() + " GCr" });
+        yield return question(SSpaceTraders.MaxTax).Answers(GetProperty<int>(comp, "maxTax", true).Get().ToString() + " GCr");
     }
 }

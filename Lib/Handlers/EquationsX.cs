@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -51,6 +51,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.EquationsXSymbols, correctAnswers: new[] { symbol });
+        yield return question(SEquationsX.Symbols).Answers(symbol);
     }
 }

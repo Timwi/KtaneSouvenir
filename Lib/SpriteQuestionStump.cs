@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Souvenir;
 
-public class SpriteQuestionStump(Enum question, SouvenirModule souvenir, Sprite sprite) : QuestionStump(question, souvenir)
+public class SpriteQuestionStump(Enum question, SouvenirModule souvenir, string[] args, Sprite sprite) : QuestionStump(question, souvenir, args)
 {
     public Sprite Sprite { get; } = sprite;
 
     public override QuestionBase MakeQuestion(string moduleFormat, SouvenirModule souvenir) =>
-        new SpriteQuestion(souvenir.TranslateQuestion(EnumValue), Sprite);
+        new SpriteQuestion(FormattedQuestion(moduleFormat), Sprite);
 }

@@ -36,9 +36,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var qs = new List<QandA>();
+        var info = new TextAnswerInfo(font: screenText.font, fontTexture: screenText.GetComponent<MeshRenderer>().sharedMaterial.mainTexture);
         for (var stage = 0; stage < 3; stage++)
-            qs.Add(makeQuestion(Question.Sync125_3Word, module, screenText.font, screenText.GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { (stage + 1).ToString() }, correctAnswers: new[] { words[textIds[stage]] }, preferredWrongAnswers: words));
-        addQuestions(module, qs);
+            yield return question(SSync125_3.Word, args: [(stage + 1).ToString()]).Answers(words[textIds[stage]], preferredWrong: words, info: info);
     }
 }

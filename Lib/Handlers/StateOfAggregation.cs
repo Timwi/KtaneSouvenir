@@ -25,6 +25,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         // Convert to proper case.
-        addQuestion(module, Question.StateOfAggregationElement, correctAnswers: new[] { element.Substring(0, 1).ToUpperInvariant() + element.Substring(1).ToLowerInvariant() });
+        yield return question(SStateOfAggregation.Element).Answers(element.Substring(0, 1).ToUpperInvariant() + element.Substring(1).ToLowerInvariant());
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,6 +20,6 @@ public partial class SouvenirModule
         var colors = new[] { "Crimson", "Orange", "Pink", "Beige", "Cyan", "Lime", "Petrol" };
         var yolkA = GetIntField(comp, "yolkNumA").Get(min: 0, max: 7);
         var yolkB = GetIntField(comp, "yolkNumB").Get(min: 0, max: 7);
-        addQuestion(module, Question.BreakfastEggColor, correctAnswers: new[] { colors[yolkA], colors[yolkB] });
+        yield return question(SBreakfastEgg.Color).Answers([colors[yolkA], colors[yolkB]]);
     }
 }

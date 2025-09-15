@@ -45,6 +45,6 @@ public partial class SouvenirModule
         if (solution == 0)
             yield return legitimatelyNoQuestion(module, "The solution was the first card.");
 
-        addQuestion(module, Question.DeckOfManyThingsFirstCard, correctAnswers: new[] { firstCardDeck });
+        yield return question(SDeckOfManyThings.FirstCard).Answers(firstCardDeck);
     }
 }

@@ -23,6 +23,6 @@ public partial class SouvenirModule
         var seq = GetArrayField<List<int>>(comp, "seq").Get(expectedLength: 2, validator: i => i.Count < 3 ? "expected length at least 3" : null);
         var answers = seq[0].Take(3).Select(coord => disp[seq[1].IndexOf(coord)]).ToArray();
 
-        addQuestion(module, Question.NotCoordinatesSquareCoords, correctAnswers: answers, preferredWrongAnswers: disp.ToArray());
+        yield return question(SNotCoordinates.SquareCoords).Answers(answers, preferredWrong: disp.ToArray());
     }
 }

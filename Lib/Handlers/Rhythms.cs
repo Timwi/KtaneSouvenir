@@ -18,6 +18,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var color = GetIntField(comp, "lightColor").Get(min: 0, max: 3);
-        addQuestion(module, Question.RhythmsColor, correctAnswers: new[] { new[] { "Blue", "Red", "Green", "Yellow" }[color] });
+        yield return question(SRhythms.Color).Answers(new[] { "Blue", "Red", "Green", "Yellow" }[color]);
     }
 }

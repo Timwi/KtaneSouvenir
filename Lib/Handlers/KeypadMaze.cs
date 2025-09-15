@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "KeypadMaze");
         var yellow = GetArrayField<int>(comp, "yellow", true).Get(expectedLength: 5, validator: v => v is < 0 or > 35 ? "Expected range 0–35" : null);
 
-        addQuestion(module, Question.KeypadMazeYellow, correctAnswers: yellow.Take(4).Select(i => new Coord(6, 6, i)).ToArray());
+        yield return question(SKeypadMaze.Yellow).Answers(yellow.Take(4).Select(i => new Coord(6, 6, i)).ToArray());
     }
 }

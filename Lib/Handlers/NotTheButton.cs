@@ -30,6 +30,6 @@ public partial class SouvenirModule
         var strings = Question.NotTheButtonLightColor.GetAnswers();
         if (lightColor <= 0 || lightColor > strings.Length)
             throw new AbandonModuleException($"‘LightColour’ is out of range ({lightColor}).");
-        addQuestion(module, Question.NotTheButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
+        yield return question(SNotTheButton.LightColor).Answers(strings[lightColor - 1]);
     }
 }

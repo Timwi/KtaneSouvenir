@@ -32,6 +32,6 @@ public partial class SouvenirModule
             .ToArray();
         var all = from i in Enumerable.Range(0, 10) from c in colorNames select string.Format(format, c, i);
         var correct = numbers.Select((n, i) => string.Format(format, colorNames[colors[i]], n)).ToArray();
-        addQuestion(module, Question.HiddenValueDisplay, correctAnswers: correct, allAnswers: all.ToArray());
+        yield return question(SHiddenValue.Display).Answers(correct, all: all.ToArray());
     }
 }

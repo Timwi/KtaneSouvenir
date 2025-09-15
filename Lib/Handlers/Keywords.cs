@@ -29,6 +29,6 @@ public partial class SouvenirModule
         while (possibleAnswers.Count < 6)
             possibleAnswers.Add(consonants.Shuffle().Take(2).Concat(vowels.Shuffle().Take(2)).ToArray().Shuffle().JoinString());
 
-        addQuestion(module, Question.KeywordsDisplayedKey, correctAnswers: new[] { displayedKey }, preferredWrongAnswers: possibleAnswers.ToArray());
+        yield return question(SKeywords.DisplayedKey).Answers(displayedKey, preferredWrong: possibleAnswers.ToArray());
     }
 }

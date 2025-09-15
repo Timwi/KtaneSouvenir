@@ -18,8 +18,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "CoinageScript");
         yield return WaitForSolve;
 
-        addQuestion(module, Question.CoinageFlip,
-            correctAnswers: new[] { GetField<string>(comp, "souvenirCoin").Get() },
-            preferredWrongAnswers: Enumerable.Range(0, 64).Select(i => "abcdefgh"[i % 8].ToString() + "87654321"[i / 8]).ToArray());
+        yield return question(SCoinage.Flip).Answers(GetField<string>(comp, "souvenirCoin").Get(), preferredWrong: Enumerable.Range(0, 64).Select(i => "abcdefgh"[i % 8].ToString() + "87654321"[i / 8]).ToArray());
     }
 }

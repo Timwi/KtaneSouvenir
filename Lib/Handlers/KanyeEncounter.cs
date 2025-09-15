@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -27,6 +27,6 @@ public partial class SouvenirModule
 
         var selectedFoods = fldFoodsAvailable.Get(expectedLength: 3);
         var selectedFoodNames = selectedFoods.Select(x => foodNames[x]).ToArray();
-        addQuestion(module, Question.KanyeEncounterFoods, correctAnswers: selectedFoodNames);
+        yield return question(SKanyeEncounter.Foods).Answers(selectedFoodNames);
     }
 }

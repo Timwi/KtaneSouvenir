@@ -26,6 +26,6 @@ public partial class SouvenirModule
         if (word == null)
             throw new AbandonModuleException("‘Words.text’ is null, or OnPass was never called.");
 
-        addQuestion(module, Question.VcrcsWord, correctAnswers: new[] { word });
+        yield return question(SVcrcs.Word).Answers(word);
     }
 }

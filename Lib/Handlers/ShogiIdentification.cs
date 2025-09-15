@@ -20,6 +20,6 @@ public partial class SouvenirModule
         var fldPiece = GetField<object>(comp, "chosenPiece");
         var propName = GetProperty<string>(fldPiece.Get(), "name", isPublic: true);
 
-        addQuestion(module, Question.ShogiIdentificationPiece, correctAnswers: new[] { propName.Get() });
+        yield return question(SShogiIdentification.Piece).Answers(propName.Get());
     }
 }

@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         var wordList = GetArrayField<string>(comp, "_WordList", isPublic: true).Get();
         var displayedWord = GetField<string>(comp, "h", isPublic: true).Get();
-        addQuestion(module, Question.CruelBinaryDisplayedWord, correctAnswers: new[] { displayedWord }, preferredWrongAnswers: wordList);
+        yield return question(SCruelBinary.DisplayedWord).Answers(displayedWord, preferredWrong: wordList);
     }
 }

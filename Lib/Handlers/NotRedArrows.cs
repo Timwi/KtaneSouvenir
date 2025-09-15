@@ -23,6 +23,6 @@ public partial class SouvenirModule
         if (startNumber == -1)
             throw new AbandonModuleException("Failed to capture the starting number.");
 
-        addQuestion(module, Question.NotRedArrowsStart, correctAnswers: new[] { startNumber.ToString("00") });
+        yield return question(SNotRedArrows.Start).Answers(startNumber.ToString("00"));
     }
 }

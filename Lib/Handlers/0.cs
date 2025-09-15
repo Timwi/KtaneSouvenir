@@ -21,6 +21,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question._0Number, correctAnswers: new[] { solution });
+        yield return question(S0.Number).Answers(solution);
     }
 }

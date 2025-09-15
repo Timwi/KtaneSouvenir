@@ -45,6 +45,6 @@ public partial class SouvenirModule
         if (number is < 0 or > 99)
             throw new AbandonModuleException($"The number on the screen is out of range: number = {number}, expected 0-99");
 
-        addQuestion(module, Question.GreenArrowsLastScreen, correctAnswers: new[] { number.ToString("00") });
+        yield return question(SGreenArrows.LastScreen).Answers(number.ToString("00"));
     }
 }

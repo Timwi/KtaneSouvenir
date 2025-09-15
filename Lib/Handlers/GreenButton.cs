@@ -23,6 +23,6 @@ public partial class SouvenirModule
         var displayedString = GetField<string>(comp, "_displayedString").Get(validator: str => str.Length != 7 ? "expected length 7" : null);
         var submission = GetArrayField<bool>(comp, "_submission").Get(expectedLength: 7);
         var submittedWord = Enumerable.Range(0, displayedString.Length).Select(ix => submission[ix] ? displayedString.Substring(ix, 1) : "").JoinString();
-        addQuestion(module, Question.GreenButtonWord, correctAnswers: new[] { submittedWord[0] + submittedWord.Substring(1).ToLowerInvariant() }, preferredWrongAnswers: words);
+        yield return question(SGreenButton.Word).Answers(submittedWord[0] + submittedWord.Substring(1).ToLowerInvariant(), preferredWrong: words);
     }
 }

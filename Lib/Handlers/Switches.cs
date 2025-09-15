@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -26,6 +26,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.SwitchesInitialPosition, correctAnswers: new[] { initialState });
+        yield return question(SSwitches.InitialPosition).Answers(initialState);
     }
 }

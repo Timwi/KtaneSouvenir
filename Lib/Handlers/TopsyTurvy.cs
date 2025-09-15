@@ -17,6 +17,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "topsyTurvy");
         yield return WaitForSolve;
 
-        addQuestion(module, Question.TopsyTurvyWord, correctAnswers: new[] { Question.TopsyTurvyWord.GetAnswers()[GetField<int>(comp, "displayIndex").Get()] });
+        yield return question(STopsyTurvy.Word).Answers(Question.TopsyTurvyWord.GetAnswers()[GetField<int>(comp, "displayIndex").Get()]);
     }
 }

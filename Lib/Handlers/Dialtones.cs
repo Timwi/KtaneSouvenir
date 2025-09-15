@@ -38,9 +38,6 @@ public partial class SouvenirModule
         if (!_dialtonesAnswers.TryGetValue(toneString, out var solution))
             throw new AbandonModuleException($"Unexpected set of solution dialtones {toneString}");
 
-        addQuestion(module, Question.DialtonesDialtones,
-            correctAnswers: new[] { question },
-            preferredWrongAnswers: new[] { solution },
-            allAnswers: _dialtonesAnswers.Values.ToArray());
+        yield return question(SDialtones.Dialtones).Answers(question, all: _dialtonesAnswers.Values.ToArray(), preferredWrong: [solution]);
     }
 }

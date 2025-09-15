@@ -19,6 +19,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var startingColor = GetMethod<string>(comp, "GetStartingColor", 0).Invoke();
-        addQuestion(module, Question.OldFogeyStartingColor, correctAnswers: new[] { startingColor });
+        yield return question(SOldFogey.StartingColor).Answers(startingColor);
     }
 }

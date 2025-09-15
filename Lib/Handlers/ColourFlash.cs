@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var fldColorSequence = GetArrayField<object>(comp, "_colourSequence").Get(ar => ar.Length != 8 ? "expected length 8" : null);
         var colorValue = GetField<object>(fldColorSequence.GetValue(7), "ColourValue", isPublic: true).Get();
 
-        addQuestion(module, Question.ColourFlashLastColor, correctAnswers: new[] { colorValue.ToString() });
+        yield return question(SColourFlash.LastColor).Answers(colorValue.ToString());
     }
 }

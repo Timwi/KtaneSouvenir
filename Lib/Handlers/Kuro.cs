@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -26,6 +26,6 @@ public partial class SouvenirModule
             yield return legitimatelyNoQuestion(module.Module, "Mood is not relevant to the answer");
 
         var currentMood = GetField<Enum>(comp, "currentMood").Get().ToString();
-        addQuestion(module, Question.KuroMood, correctAnswers: new[] { currentMood }, preferredWrongAnswers: moods.ToArray());
+        yield return question(SKuro.Mood).Answers(currentMood, preferredWrong: moods.ToArray());
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -19,6 +19,6 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "SusadminModule");
         var protocols = GetListField<int>(comp, "securityProtocols").Get(expectedLength: 3, validator: v => v is < 0 or > 5 ? "Expected range [0, 5]" : null);
-        addQuestion(module, Question.SUSadminSecurity, correctAnswers: protocols.Select(i => Question.SUSadminSecurity.GetAnswers()[i]).ToArray());
+        yield return question(SSUSadmin.Security).Answers(protocols.Select(i => Question.SUSadminSecurity.GetAnswers()[i]).ToArray());
     }
 }

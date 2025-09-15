@@ -18,6 +18,6 @@ public partial class SouvenirModule
         var component = GetComponent(module, "NotMaze");
         yield return WaitForSolve;
 
-        addQuestion(module, Question.NotMazeStartingDistance, correctAnswers: new[] { GetIntField(component, "distance").Get().ToString() });
+        yield return question(SNotMaze.StartingDistance).Answers(GetIntField(component, "distance").Get().ToString());
     }
 }

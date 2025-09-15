@@ -38,6 +38,6 @@ public partial class SouvenirModule
             3 => "white",
             _ => throw new AbandonModuleException($"IndicatorColor is out of range ({color})."),
         };
-        addQuestion(module, Question.ButtonLightColor, correctAnswers: new[] { answer });
+        yield return question(SButton.LightColor).Answers(answer);
     }
 }

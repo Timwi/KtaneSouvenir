@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var words = GetArrayField<string>(comp, "grid").Get(expectedLength: 25);
         var solution = GetArrayField<bool>(comp, "solution").Get(expectedLength: 25);
         var solutionWords = words.Where((w, i) => solution[i]).ToArray();
-        addQuestion(module, Question.CodenamesAnswers, correctAnswers: solutionWords, preferredWrongAnswers: words.Where(x => !solutionWords.Contains(x)).ToArray());
+        yield return question(SCodenames.Answers).Answers(solutionWords, preferredWrong: words.Where(x => !solutionWords.Contains(x)).ToArray());
     }
 }

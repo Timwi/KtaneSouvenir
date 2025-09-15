@@ -28,6 +28,6 @@ public partial class SouvenirModule
         fldResetBtn.Get().OnInteract = delegate { return false; };
         fldSubmitBtn.Get().OnInteract = delegate { return false; };
 
-        addQuestion(module, Question.CodeDisplayNumber, correctAnswers: new[] { code.ToString() });
+        yield return question(SCode.DisplayNumber).Answers(code.ToString());
     }
 }

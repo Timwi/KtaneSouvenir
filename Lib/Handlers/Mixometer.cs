@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var submitButtonIndex = i_buttons.IndexOf(x => x.Length == 0);
         if (submitButtonIndex < 0)
             throw new AbandonModuleException($"expected ‘i_buttons’ to contain an empty array, but got: {i_buttons.Stringify()}");
-        addQuestion(module, Question.MixometerSubmitButton, correctAnswers: new[] { Ordinal(submitButtonIndex + 1) });
+        yield return question(SMixometer.SubmitButton).Answers(Ordinal(submitButtonIndex + 1));
     }
 }

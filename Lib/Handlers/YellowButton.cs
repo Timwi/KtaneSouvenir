@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -20,13 +19,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var sqs = GetArrayField<MeshRenderer>(comp, "ColorSquares", isPublic: true).Get(expectedLength: 8);
-        var colorNames = Question.YellowButtonColors.GetAttribute().AllAnswers;
-        addQuestions(module, sqs.Select((sq, ix) =>
-        {
-            var m = Regex.Match(sq.sharedMaterial.name, @"^Color([0-5])$");
-            return !m.Success
-                ? throw new AbandonModuleException($"Expected material name “Color0–5”, got: “{sq.sharedMaterial.name}”")
-                : makeQuestion(Question.YellowButtonColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[int.Parse(m.Groups[1].Value)] });
-        }));
+        var colorNames = SYellowButton.Colors.GetAnswers();
+        for (var ix = 0; ix < sqs.Length; ix++)
+            yield return sqs[ix].sharedMaterial.name.RegexMatch(@"^Color([0-5])$", out var m)
+                ? question(SYellowButton.Colors, args: [Ordinal(ix + 1)]).Answers(colorNames[int.Parse(m.Groups[1].Value)])
+                : throw new AbandonModuleException($"Expected material name “Color0–5”, got: “{sqs[ix].sharedMaterial.name}”");
     }
 }

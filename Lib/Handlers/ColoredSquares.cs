@@ -16,6 +16,6 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "ColoredSquaresModule");
         yield return WaitForSolve;
-        addQuestion(module, Question.ColoredSquaresFirstGroup, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor").Get().ToString() });
+        yield return question(SColoredSquares.FirstGroup).Answers(GetField<object>(comp, "_firstStageColor").Get().ToString());
     }
 }

@@ -24,6 +24,6 @@ public partial class SouvenirModule
         for (var i = 0; i < coffees.Length; i++)
             coffees[i] = coffees[i].Replace("\n", " ");
 
-        addQuestion(module, Question.CoffeebucksCoffee, correctAnswers: new[] { coffees[currCoffee] }, preferredWrongAnswers: coffees);
+        yield return question(SCoffeebucks.Coffee).Answers(coffees[currCoffee], preferredWrong: coffees);
     }
 }

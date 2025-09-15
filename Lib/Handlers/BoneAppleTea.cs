@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -29,6 +29,6 @@ public partial class SouvenirModule
         texts[2].text = "✓";
         texts[3].text = "✓";
 
-        addQuestion(module, Question.BoneAppleTeaPhrase, correctAnswers: new[] { allAnswers[p1], allAnswers[p2] });
+        yield return question(SBoneAppleTea.Phrase).Answers([allAnswers[p1], allAnswers[p2]]);
     }
 }

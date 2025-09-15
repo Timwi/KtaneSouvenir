@@ -24,6 +24,6 @@ public partial class SouvenirModule
         yield return !int.TryParse(text, out var answer)
             ? throw new AbandonModuleException($"“{text}” does not parse as an integer.")
             : (YieldInstruction) WaitForSolve;
-        addQuestion(module, Question._3NPlus1, correctAnswers: new[] { answer.ToString() });
+        yield return question(S3NPlus1.Question).Answers(answer.ToString());
     }
 }

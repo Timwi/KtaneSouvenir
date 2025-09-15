@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var data = GetArrayField<int>(comp, "SequenceNumbers").Get(expectedLength: 5, validator: v => v is < 0 or > 31 ? "Out of range [0, 31]" : null);
         var sol = GetArrayField<int>(comp, "RealNumbers").Get(expectedLength: 5, validator: v => v is < 0 or > 31 ? "Out of range [0, 31]" : null);
         static string convert(int[] nums) => new(nums.Select(i => (char) ('\ue900' + i)).ToArray());
-        addQuestion(module, Question.AMessageAMessage, correctAnswers: new[] { convert(data) }, preferredWrongAnswers: new[] { convert(sol) });
+        yield return question(SAMessage.AMessage).Answers(convert(data), preferredWrong: [convert(sol)]);
     }
 }

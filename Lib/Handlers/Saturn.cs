@@ -27,6 +27,6 @@ public partial class SouvenirModule
         var index = GetIntField(comp, "EndIndex").Get(min: 0, max: 64 * 5);
         var outer = GetField<bool>(comp, "EndOuter").Get();
 
-        addQuestion(module, Question.SaturnGoal, correctAnswers: new[] { $"{(outer ? 9 : 4) - (index / 64)} {index % 64}" });
+        yield return question(SSaturn.Goal).Answers($"{(outer ? 9 : 4) - (index / 64)} {index % 64}");
     }
 }

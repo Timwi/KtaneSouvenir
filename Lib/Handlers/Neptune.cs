@@ -36,6 +36,6 @@ public partial class SouvenirModule
             "Princess' Secret Slide (Normal)", "Princess' Secret Slide (Fast)", "Secret Aquarium", "Tower of the Wing Cap", "Cavern of the Metal Cap", "Vanish Cap under the Moat", "Wing Mario over the Rainbow",
             "MIPS #1", "MIPS #2", "Toad #1", "Toad #2", "Toad #3", "Bowser in the Dark World", "Bowser in the Fire Sea", "Bowser in the Sky" };
 
-        addQuestion(module, Question.NeptuneStar, correctAnswers: new[] { starNames[GetIntField(comp, "chosenStar").Get()] }, preferredWrongAnswers: starNames);
+        yield return question(SNeptune.Star).Answers(starNames[GetIntField(comp, "chosenStar").Get()], preferredWrong: starNames);
     }
 }

@@ -26,6 +26,6 @@ public partial class SouvenirModule
             yield return legitimatelyNoQuestion(module, "No question for Next In Line because the module struck, so the first wire color may be irretrievable.");
 
         var colors = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Black", "White", "Gray" };
-        addQuestion(module, Question.NextInLineFirstWire, correctAnswers: new[] { colors[color] });
+        yield return question(SNextInLine.FirstWire).Answers(colors[color]);
     }
 }

@@ -22,6 +22,6 @@ public partial class SouvenirModule
 
         var possibleModuleNames = GetArrayField<GameObject>(comp, "Prefabs", isPublic: true).Get().Select(pref => pref.name).ToArray();
         var chosenModIndex = GetIntField(comp, "chosenMod").Get(min: 0, max: possibleModuleNames.Length - 1);
-        addQuestion(module, Question.ImpostorDisguise, correctAnswers: new[] { possibleModuleNames[chosenModIndex] }, preferredWrongAnswers: possibleModuleNames);
+        yield return question(SImpostor.Disguise).Answers(possibleModuleNames[chosenModIndex], preferredWrong: possibleModuleNames);
     }
 }

@@ -21,6 +21,6 @@ public partial class SouvenirModule
         var uncapitalizedWord = GetField<string>(comp, "_chosenWord").Get();
         var word = uncapitalizedWord[0] + uncapitalizedWord.Substring(1).ToLowerInvariant();
         var allWords = GetArrayField<string>(comp, "_chosenWordList").Get(expectedLength: 125).Select(x => x[0] + x.Substring(1).ToLowerInvariant()).ToArray();
-        addQuestion(module, Question._3DTapCodeWord, correctAnswers: new[] { word }, preferredWrongAnswers: allWords);
+        yield return question(S3DTapCode.Word).Answers(word, preferredWrong: allWords);
     }
 }

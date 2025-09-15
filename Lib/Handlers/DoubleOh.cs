@@ -22,6 +22,6 @@ public partial class SouvenirModule
         if (submitIndex is < 0 or > 4)
             throw new AbandonModuleException($"Submit button is at index {submitIndex} (expected 0–4).");
 
-        addQuestion(module, Question.DoubleOhSubmitButton, correctAnswers: new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
+        yield return question(SDoubleOh.SubmitButton).Answers("↕↔⇔⇕◆".Substring(submitIndex, 1));
     }
 }

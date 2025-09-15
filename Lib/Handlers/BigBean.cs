@@ -28,6 +28,6 @@ public partial class SouvenirModule
             3 => 2,
             _ => null
         };
-        addQuestion(module, Question.BigBeanColor, correctAnswers: new[] { flavors[bn] }, preferredWrongAnswers: match is null ? null : new[] { flavors[match.Value] });
+        yield return question(SBigBean.Color).Answers(flavors[bn], preferredWrong: match is null ? null : new[] { flavors[match.Value] });
     }
 }

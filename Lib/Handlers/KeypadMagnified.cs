@@ -20,6 +20,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var posNames = new[] { "Top-left", "Top-right", "Bottom-left", "Bottom-right" };
-        addQuestion(module, Question.KeypadMagnifiedLED, correctAnswers: new[] { posNames[LEDPos] });
+        yield return question(SKeypadMagnified.LED).Answers(posNames[LEDPos]);
     }
 }

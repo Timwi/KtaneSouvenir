@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -20,7 +20,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "QuantumPasswordsScript");
         var words = GetArrayField<string>(comp, "selectedWords").Get(expectedLength: 2, validator: v => v is { Length: 5 } ? null : "Expected word length 5");
 
-        addQuestion(module, Question.QuantumPasswordsWord, correctAnswers: Question.QuantumPasswordsWord.GetAnswers()
+        yield return question(SQuantumPasswords.Word).Answers(Question.QuantumPasswordsWord.GetAnswers()
             .Where(word => words.Any(w => word.ToUpperInvariant().OrderBy(c => c).SequenceEqual(w.OrderBy(c => c)))).ToArray());
     }
 }

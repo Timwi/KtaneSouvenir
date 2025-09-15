@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -33,6 +33,6 @@ public partial class SouvenirModule
             if (displayMeshes[i].text == answer)
                 displayMeshes[i].text = "✓";
 
-        addQuestion(module, Question.TextFieldDisplay, correctAnswers: new[] { answer });
+        yield return question(STextField.Display).Answers(answer);
     }
 }

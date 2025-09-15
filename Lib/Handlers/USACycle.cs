@@ -23,8 +23,6 @@ public partial class SouvenirModule
         var stateIndices = fldStateIndices.Get(minLength: 4).Where(ix => ix is not 5 and not 49).ToArray();
 
         //Colorado and Wyoming are practically indistinguishable
-        addQuestion(module, Question.USACycleDisplayed,
-            correctAnswers: stateIndices.Select(ix => USACycleSprites[ix]).ToArray(),
-            preferredWrongAnswers: USACycleSprites.Where((_, pos) => pos is not 5 and not 49).ToArray());
+        yield return question(SUSACycle.Displayed).Answers(stateIndices.Select(ix => USACycleSprites[ix]).ToArray(), preferredWrong: USACycleSprites.Where((_, pos) => pos is not 5 and not 49).ToArray());
     }
 }

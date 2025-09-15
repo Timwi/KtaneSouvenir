@@ -36,6 +36,6 @@ public partial class SouvenirModule
         if (correctAnswers.Length == 0)
             yield return legitimatelyNoQuestion(module, "There were no colored squares.");
 
-        addQuestion(module, Question.GameOfLifeCruelColors, correctAnswers: correctAnswers, preferredWrongAnswers: allAnswers);
+        yield return question(SGameOfLifeCruel.Colors).Answers(correctAnswers, preferredWrong: allAnswers);
     }
 }

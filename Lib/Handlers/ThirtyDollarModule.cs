@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -38,6 +38,6 @@ public partial class SouvenirModule
         }
         StartCoroutine(hideBacksolve());
 
-        addQuestion(module, Question.ThirtyDollarModuleSounds, correctAnswers: display, allAnswers: all);
+        yield return question(SThirtyDollarModule.Sounds).Answers(display, all: all);
     }
 }

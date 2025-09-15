@@ -49,6 +49,6 @@ public partial class SouvenirModule
             .ToArray();
         var correct = allShapes.Select(v => PolygonsSprites[v]).ToArray();
 
-        addQuestion(module, Question.PolygonsPolygon, correctAnswers: correct, allAnswers: valid);
+        yield return question(SPolygons.Polygon).Answers(correct, all: valid);
     }
 }

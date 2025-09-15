@@ -831,7 +831,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         yield return null;  // Ensures that the module’s Start() method has run
         Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Start processing.");
-        var data = new ModuleData { Module = module };
+        var data = new ModuleData { Module = module, Info = info };
         module.OnPass += () =>
         {
             if (data.Unsolved)
@@ -942,7 +942,7 @@ public partial class SouvenirModule : MonoBehaviour
                     .ToArray();
                 if (discrs == null || discrs.Length == 0)
                 {
-                    Debug.Log($"[Souvenir #{_moduleId}] Please report this bug to the author of the Souvenir handler for {module.ModuleDisplayName}: There was no applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with answers [{answerSet.DebugAnswers.JoinString(", ")}].");
+                    Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because there was no applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with answers [{answerSet.DebugAnswers.JoinString(", ")}].");
                     _showWarning = true;
                     yield break;
                 }
@@ -1072,8 +1072,8 @@ public partial class SouvenirModule : MonoBehaviour
 
     private QuestionStump question(Enum question, string[] args = null, Sprite questionSprite = null, float questionSpriteRotation = 0) =>
         new TextQuestionStump(question, this, args, questionSprite, questionSpriteRotation);
-    private QuestionStump question(Enum question, Sprite entireQuestionSprite) =>
-        new SpriteQuestionStump(question, this, entireQuestionSprite);
+    private QuestionStump question(Enum question, Sprite entireQuestionSprite, string[] args = null) =>
+        new SpriteQuestionStump(question, this, args, entireQuestionSprite);
 
     private string formatModuleName(SouvenirHandlerAttribute handler, bool addSolveCount, int numSolved) => _translation != null
         ? _translation.FormatModuleName(handler, addSolveCount, numSolved)

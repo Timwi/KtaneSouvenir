@@ -33,6 +33,6 @@ public partial class SouvenirModule
             for (var j = horOffset; j < horOffset + 4; j++)
                 letters.Add(map[i, j].ToString());
 
-        addQuestion(module, Question.BoggleLetters, correctAnswers: visible.Select(v => v.ToString()).ToArray(), preferredWrongAnswers: letters.ToArray());
+        yield return question(SBoggle.Letters).Answers(visible.Select(v => v.ToString()).ToArray(), preferredWrong: letters.ToArray());
     }
 }

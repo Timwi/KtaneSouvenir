@@ -21,6 +21,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.CosmicNumber, correctAnswers: new[] { answer });
+        yield return question(SCosmic.Number).Answers(answer);
     }
 }

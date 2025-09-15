@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -29,8 +29,7 @@ public partial class SouvenirModule
         if (display == null || digits1 == null || digits2 == null)
             throw new AbandonModuleException($"One of the three displays does not have a TextMesh ({(display == null ? "null" : "not null")}, {(digits1 == null ? "null" : "not null")}, {(digits2 == null ? "null" : "not null")}).");
 
-        addQuestion(module, Question.GamepadNumbers, correctAnswers: new[] { $"{x:00}:{y:00}" },
-            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => $"{Rnd.Range(1, 99):00}:{Rnd.Range(1, 99):00}").Distinct().Take(6).ToArray());
+        yield return question(SGamepad.Numbers).Answers($"{x:00}:{y:00}", preferredWrong: Enumerable.Range(0, int.MaxValue).Select(i => $"{Rnd.Range(1, 99):00}:{Rnd.Range(1, 99):00}").Distinct().Take(6).ToArray());
         digits1.GetComponent<TextMesh>().text = "--";
         digits2.GetComponent<TextMesh>().text = "--";
     }

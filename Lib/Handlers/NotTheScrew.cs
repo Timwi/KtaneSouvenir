@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.NotTheScrewInitialPosition, correctAnswers: new[] { new Coord(6, 4, position) });
+        yield return question(SNotTheScrew.InitialPosition).Answers(new Coord(6, 4, position));
     }
 }

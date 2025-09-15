@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -50,6 +50,6 @@ public partial class SouvenirModule
             .Where((_, i) => !remove.Contains(i))
             .ToArray();
 
-        addQuestion(module, Question.ChineseRemainderTheoremEquations, correctAnswers: right);
+        yield return question(SChineseRemainderTheorem.Equations).Answers(right);
     }
 }

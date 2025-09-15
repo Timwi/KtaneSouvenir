@@ -2,11 +2,11 @@
 
 namespace Souvenir;
 
-public readonly struct TextAnswerInfo(Font font, int? fontSize, float? characterSize, Texture fontTexture, Material fontMaterial)
+public readonly struct TextAnswerInfo(Font font = null, Texture fontTexture = null, Material fontMaterial = null, int? fontSize = null, float? characterSize = null)
 {
     public Font Font { get; } = font;
-    public int? FontSize { get; } = fontSize;
-    public float? CharacterSize { get; } = characterSize;
     public Texture FontTexture { get; } = fontTexture;
     public Material FontMaterial { get; } = fontMaterial;
+    public int? FontSize { get; } = fontSize;
+    public float? CharacterSize { get; } = characterSize;
 }

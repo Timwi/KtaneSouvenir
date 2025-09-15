@@ -26,6 +26,6 @@ public partial class SouvenirModule
 
         if (colors.Length == 9)
             led.material = colors[8];
-        addQuestion(module, Question.HiddenColorsLED, correctAnswers: new[] { ledcolors[ledcolor] });
+        yield return question(SHiddenColors.LED).Answers(ledcolors[ledcolor]);
     }
 }

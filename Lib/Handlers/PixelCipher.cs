@@ -20,6 +20,6 @@ public partial class SouvenirModule
         var keywords = GetArrayField<string>(comp, "pixelKeyword").Get();
         var pickedKeyword = GetIntField(comp, "pickedKeyword").Get(0, keywords.Length - 1);
 
-        addQuestion(module, Question.PixelCipherKeyword, correctAnswers: new[] { keywords[pickedKeyword] });
+        yield return question(SPixelCipher.Keyword).Answers(keywords[pickedKeyword]);
     }
 }

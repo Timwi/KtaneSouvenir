@@ -22,6 +22,6 @@ public partial class SouvenirModule
         var solveParent = GetField<Transform>(comp, "SolveParent", isPublic: true).Get();
         for (var i = 0; i < solveParent.childCount; i++)
             solveParent.GetChild(i).gameObject.SetActive(false);
-        addQuestion(module, Question.MaroonButtonA, correctAnswers: new[] { MaroonButtonSprites[ans] });
+        yield return question(SMaroonButton.A).Answers(MaroonButtonSprites[ans]);
     }
 }

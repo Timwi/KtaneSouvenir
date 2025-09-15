@@ -22,6 +22,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.FreeParkingToken, correctAnswers: new[] { tokens[selected].name });
+        yield return question(SFreeParking.Token).Answers(tokens[selected].name);
     }
 }

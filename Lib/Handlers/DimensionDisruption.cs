@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -29,6 +29,6 @@ public partial class SouvenirModule
 
         var alphabet = GetField<string>(comp, "alphabet").Get();
         var answers = letterIndex.Select(li => alphabet[li].ToString()).ToArray();
-        addQuestion(module, Question.DimensionDisruptionVisibleLetters, correctAnswers: answers);
+        yield return question(SDimensionDisruption.VisibleLetters).Answers(answers);
     }
 }

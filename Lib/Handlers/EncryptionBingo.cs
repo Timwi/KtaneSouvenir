@@ -26,6 +26,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.EncryptionBingoEncoding, correctAnswers: new[] { encodingNames[encoding] }, preferredWrongAnswers: encodingNames);
+        yield return question(SEncryptionBingo.Encoding).Answers(encodingNames[encoding], preferredWrong: encodingNames);
     }
 }

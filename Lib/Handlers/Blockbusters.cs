@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -44,6 +44,6 @@ public partial class SouvenirModule
         if (lastPress == null)
             throw new AbandonModuleException("No pressed letter was retrieved.");
 
-        addQuestion(module, Question.BlockbustersLastLetter, correctAnswers: new[] { lastPress }, preferredWrongAnswers: legalLetters.ToArray());
+        yield return question(SBlockbusters.LastLetter).Answers(lastPress, preferredWrong: legalLetters.ToArray());
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -19,6 +19,6 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "ClockCounter");
         var ans = GetArrayField<int>(comp, "answer").Get(10, false, false, i => i is > 26 or < 1 ? "Out of range 1-26" : null);
-        addQuestion(module, Question.ClockCounterArrows, correctAnswers: ans.Select(i => ClockCounterSprites[i - 1]).ToArray());
+        yield return question(SClockCounter.Arrows).Answers(ans.Select(i => ClockCounterSprites[i - 1]).ToArray());
     }
 }

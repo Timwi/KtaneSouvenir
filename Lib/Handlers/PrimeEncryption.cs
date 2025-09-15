@@ -35,8 +35,6 @@ public partial class SouvenirModule
                 incorrectValues.Add(productPrimes);
         }
 
-        addQuestion(module, Question.PrimeEncryptionDisplayedValue,
-            correctAnswers: new[] { displayedValue.ToString() },
-            preferredWrongAnswers: incorrectValues.Select(val => val.ToString()).ToArray());
+        yield return question(SPrimeEncryption.DisplayedValue).Answers(displayedValue.ToString(), preferredWrong: incorrectValues.Select(val => val.ToString()).ToArray());
     }
 }

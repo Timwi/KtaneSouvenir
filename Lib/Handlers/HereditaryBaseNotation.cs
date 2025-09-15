@@ -31,6 +31,6 @@ public partial class SouvenirModule
         while (invalidAnswer.Count() < 4)
             invalidAnswer.Add(mthNumberToBaseNString.Invoke(baseN, Rnd.Range(1, upperBound + 1)).ToString());
 
-        addQuestion(module, Question.HereditaryBaseNotationInitialNumber, correctAnswers: new[] { answer }, preferredWrongAnswers: invalidAnswer.ToArray());
+        yield return question(SHereditaryBaseNotation.InitialNumber).Answers(answer, preferredWrong: invalidAnswer.ToArray());
     }
 }

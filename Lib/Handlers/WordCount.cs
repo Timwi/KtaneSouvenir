@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         var displayNumber = GetIntField(comp, "DisplayNumber").Get();
 
-        addQuestion(module, Question.WordCountNumber, correctAnswers: new[] { displayNumber.ToString() });
+        yield return question(SWordCount.Number).Answers(displayNumber.ToString());
     }
 }

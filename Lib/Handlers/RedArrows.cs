@@ -18,6 +18,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "RedArrowsScript");
         yield return WaitForSolve;
 
-        addQuestion(module, Question.RedArrowsStartNumber, correctAnswers: new[] { GetIntField(comp, "start").Get(min: 0, max: 9).ToString() });
+        yield return question(SRedArrows.StartNumber).Answers(GetIntField(comp, "start").Get(min: 0, max: 9).ToString());
     }
 }

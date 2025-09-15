@@ -27,6 +27,6 @@ public partial class SouvenirModule
             "Down" => "Color of word",
             _ => throw new AbandonModuleException($"Unexpected value of ‘direction’: {direction}")
         };
-        addQuestion(module, Question.ScrutinySquaresFirstDifference, correctAnswers: new[] { answer });
+        yield return question(SScrutinySquares.FirstDifference).Answers(answer);
     }
 }

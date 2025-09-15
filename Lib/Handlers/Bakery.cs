@@ -25,8 +25,6 @@ public partial class SouvenirModule
         var nameArrayNames = new[] { "regularCookieNames", "teaBiscuitNames", "chocolateButterBiscuitNames", "brandedNames", "danishButterCookieNames", "macaronNames", "notCookieNames", "seasonalCookieNames" };
         for (var i = 0; i < 8; i++)
             allNameArrays[i] = GetStaticField<string[]>(comp.GetType(), nameArrayNames[i]).Get();
-        addQuestion(module, Question.BakeryItems,
-            correctAnswers: Enumerable.Range(0, 12).Select(i => allNameArrays[Array.IndexOf(enumNames, cookieTypes[i])][cookieIndices[i]]).ToArray(),
-            preferredWrongAnswers: allNameArrays.SelectMany(x => x).ToArray());
+        yield return question(SBakery.Items).Answers(Enumerable.Range(0, 12).Select(i => allNameArrays[Array.IndexOf(enumNames, cookieTypes[i])][cookieIndices[i]]).ToArray(), preferredWrong: allNameArrays.SelectMany(x => x).ToArray());
     }
 }

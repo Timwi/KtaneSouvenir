@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -23,6 +23,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
         display.text = "";
 
-        addQuestion(module, Question.WasdDisplayedLocation, correctAnswers: new[] { displayedLocation });
+        yield return question(SWasd.DisplayedLocation).Answers(displayedLocation);
     }
 }

@@ -24,6 +24,6 @@ public partial class SouvenirModule
         var wordLower = word[0].Substring(0, 1) + word[0].Substring(1).ToLowerInvariant();
         var wordListLower = Enumerable.Range(0, wordList.Length).Select(word => wordList[word].Substring(0, 1) + wordList[word].Substring(1).ToLowerInvariant()).ToArray();
 
-        addQuestion(module, Question.NotMorsematicsWord, correctAnswers: new[] { wordLower }, preferredWrongAnswers: wordListLower);
+        yield return question(SNotMorsematics.Word).Answers(wordLower, preferredWrong: wordListLower);
     }
 }
