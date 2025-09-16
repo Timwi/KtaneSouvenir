@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -50,9 +50,13 @@ public partial class SouvenirModule
         }
 
         var colors = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
-        addQuestions(module, stages.Take(stages.Count - 1).SelectMany((stage, stageIx) => stage.SelectMany((key, keyIx) => key is null ? Enumerable.Empty<QandA>() : Ut.NewArray(
-                makeQuestion(SUnorderedKeys.KeyColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[0]] }),
-                makeQuestion(SUnorderedKeys.LabelColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[1]] }),
-                makeQuestion(SUnorderedKeys.Label, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { (key[2] + 1).ToString() })))));
+        for (var stageIx = 0; stageIx < stages.Count - 1; stageIx++)
+            for (var keyIx = 0; keyIx < stages[stageIx].Length; keyIx++)
+                if (stages[stageIx][keyIx] != null)
+                {
+                    yield return question(SUnorderedKeys.KeyColor, args: [Ordinal(stageIx + 1)], questionSprite: OrderedKeysSprites[keyIx]).Answers(colors[stages[stageIx][keyIx][0]]);
+                    yield return question(SUnorderedKeys.LabelColor, args: [Ordinal(stageIx + 1)], questionSprite: OrderedKeysSprites[keyIx]).Answers(colors[stages[stageIx][keyIx][1]]);
+                    yield return question(SUnorderedKeys.Label, args: [Ordinal(stageIx + 1)], questionSprite: OrderedKeysSprites[keyIx]).Answers((stages[stageIx][keyIx][2] + 1).ToString());
+                }
     }
 }

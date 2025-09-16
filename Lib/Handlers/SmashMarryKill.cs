@@ -10,7 +10,10 @@ public enum SSmashMarryKill
     Category,
 
     [SouvenirQuestion("Which module was in the {1} category for {0}?", OneColumn4Answers, ExampleAnswers = ["The Button", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Who’s on First", "Wires", "Wire Sequence"], Arguments = ["SMASH", "MARRY", "KILL"], ArgumentGroupSize = 1)]
-    Module
+    Module,
+
+    [SouvenirDiscriminator("Smash, Marry, Kill")]
+    NullDiscriminator
 }
 
 public partial class SouvenirModule
@@ -20,16 +23,15 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "SmashMarryKill");
         yield return WaitForUnignoredModules;
+
         // All SMyK modules on a bomb share information,
         // so we don't need to keep track of solve order at all,
         // nor even disambiguate the modules.
+        yield return new Discriminator(SSmashMarryKill.NullDiscriminator, "", module.Module);
 
         var assignments = GetStaticField<IDictionary>(comp.GetType(), "allModules").Get();
         if (assignments.Count == 0)
             yield return legitimatelyNoQuestion(module, "No modules were categorized.");
-
-        var moduleName = translateModuleName(SSmashMarryKill.Category, "Smash, Marry, Kill");
-        List<QandA> questions = [];
         var smash = new List<string>();
         var marry = new List<string>();
         var kill = new List<string>();
@@ -41,21 +43,16 @@ public partial class SouvenirModule
                 marry.Add((string) de.Key);
             if (de.Value.ToString() == "KILL")
                 kill.Add((string) de.Key);
-            questions.Add(makeQuestion(SSmashMarryKill.Category, module, formattedModuleName: moduleName, formatArgs: new[] { (string) de.Key }, correctAnswers: new[] { de.Value.ToString() }));
+            yield return question(SSmashMarryKill.Category, args: [(string) de.Key]).Answers(de.Value.ToString());
         }
         var allMods = smash.Concat(marry).Concat(kill).ToArray();
         if (allMods.Length < 4)
             allMods = Bomb.GetSolvableModuleNames().Distinct().ToArray();
         if (smash.Count > 0)
-            questions.Add(makeQuestion(SSmashMarryKill.Module, module, formattedModuleName: moduleName, formatArgs: new[] { "SMASH" },
-                correctAnswers: smash.ToArray(), allAnswers: allMods));
+            yield return question(SSmashMarryKill.Module, args: ["SMASH"]).Answers(smash.ToArray(), all: allMods);
         if (marry.Count > 0)
-            questions.Add(makeQuestion(SSmashMarryKill.Module, module, formattedModuleName: moduleName, formatArgs: new[] { "MARRY" },
-                correctAnswers: marry.ToArray(), allAnswers: allMods));
+            yield return question(SSmashMarryKill.Module, args: ["MARRY"]).Answers(marry.ToArray(), all: allMods);
         if (kill.Count > 0)
-            questions.Add(makeQuestion(SSmashMarryKill.Module, module, formattedModuleName: moduleName, formatArgs: new[] { "KILL" },
-                correctAnswers: kill.ToArray(), allAnswers: allMods));
-
-        addQuestions(module, questions);
+            yield return question(SSmashMarryKill.Module, args: ["KILL"]).Answers(kill.ToArray(), all: allMods);
     }
 }

@@ -826,10 +826,6 @@ public partial class SouvenirModule : MonoBehaviour
             info = _moduleTypeInfo[moduleType] = new();
         info.NumModules++;
 
-        const string SolveCountDiscriminatorKey = "\uE048 solve count discriminator";
-        if (!hAttr.IsBossModule)
-            info.Discriminators.AddSafe(module, SolveCountDiscriminatorKey, null);
-
         yield return null;  // Ensures that the module’s Start() method has run
         Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Start processing.");
         var data = new ModuleData { Module = module, Info = info };
@@ -939,27 +935,35 @@ public partial class SouvenirModule : MonoBehaviour
             string moduleFormat = null;
             if (info.NumModules > 1)
             {
-                var discrs = info.Discriminators.Get(module)?.Values.Where(d =>
-                    // solve-count discriminator is always allowed
-                    d == null || (
-                        // avoid discriminators that the question explicitly tells us to avoid
-                        q.QuestionStump.DiscriminatorsToAvoid?.Contains(d.EnumValue) != true &&
-                        q.QuestionStump.DiscriminatorIdsToAvoid?.Contains(d.Id) != true &&
-                        // avoid discriminators that clash with one of the answers we already selected
-                        d.AvoidAnswers?.Intersect(answerSet.Answers).Any() != true &&
-                        // use this discriminator only if its value is actually unique
-                        info.Discriminators.Values.Count(ds => ds.TryGetValue(d.Id, out var cd) && cd.Value == d.Value) == 1))
-                    .ToArray();
-                if (discrs == null || discrs.Length == 0)
+                if (info.Discriminators.Get(module) is { Count: > 0 } discrRaw)
+                {
+                    var discrs = discrRaw.Values.Where(d =>
+                            // avoid discriminators that the question explicitly tells us to avoid
+                            q.QuestionStump.DiscriminatorsToAvoid?.Contains(d.EnumValue) != true &&
+                            q.QuestionStump.DiscriminatorIdsToAvoid?.Contains(d.Id) != true &&
+                            // avoid discriminators that clash with one of the answers we already selected
+                            d.AvoidAnswers?.Intersect(answerSet.Answers).Any() != true &&
+                            // use this discriminator only if its value is actually unique
+                            info.Discriminators.Values.Count(ds => ds.TryGetValue(d.Id, out var cd) && cd.Value == d.Value) == 1)
+                        .GroupBy(d => d.PriorityFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? d.Priority)
+                        .OrderBy(gr => gr.Key)
+                        .First()
+                        .Concat(hAttr.IsBossModule ? [] : [null])   // use null to represent the solve-count discriminator
+                        .ToArray();
+
+                    // If this is false, the solve-count discriminator was picked and ‘moduleFormat’ will default to it later
+                    if (discrs.PickRandom() is { } discr && discr.EnumValue.GetDiscriminatorAttribute() is var dAttr)
+                        moduleFormat = string.Format(
+                            TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText),
+                            (discr.Arguments ?? discr.ArgumentsFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? [])
+                                .Select<string, object>((arg, ix) => dAttr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg).ToArray());
+                }
+
+                if (moduleFormat == null && hAttr.IsBossModule)
                 {
                     Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because there was no applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with answers [{answerSet.DebugAnswers.JoinString(", ")}].");
                     yield break;
                 }
-                // if this is false, the solve-count discriminator was picked and ‘moduleFormat’ stays null for now
-                if (discrs.PickRandom() is { } discr && discr.EnumValue.GetDiscriminatorAttribute() is { } dAttr)
-                    moduleFormat = string.Format(
-                        TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText),
-                        (discr.Arguments ?? []).Select<string, object>((arg, ix) => discr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg).ToArray());
             }
             _questions.Add(q.GenerateQandA(answerSet, moduleFormat ?? formatModuleName(hAttr, info.NumModules > 1, data.SolveIndex + 1), this, Bomb.GetSolvedModuleIDs().Count));
         }

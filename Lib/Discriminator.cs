@@ -11,7 +11,10 @@ public class Discriminator(Enum discriminator, string id, object value, string[]
     public string[] Arguments { get; } = args;
     public Sprite QuestionSprite { get; } = questionSprite;
     public object[] AvoidAnswers { get; } = avoidAnswers;
-    public bool[] TranslateArguments { get; set; }
 
-    public override string ToString() => $"Discriminator {EnumValue}/{Id}={Value.Stringify()}, {Arguments.Stringify()}{(QuestionSprite == null ? "" : ", uses question sprite")}, avoid answers: {AvoidAnswers.Stringify()}";
+    public int Priority { get; set; }
+    public Func<Enum, int> PriorityFromQuestion { get; set; }
+    public Func<Enum, string[]> ArgumentsFromQuestion { get; set; }
+
+    public override string ToString() => $"Discriminator {EnumValue}/{Id}={Value.Stringify()}, {(Arguments ?? ArgumentsFromQuestion?.Invoke(null)).Stringify()}{(QuestionSprite == null ? "" : $", question sprite={QuestionSprite}")}, avoid answers: {AvoidAnswers.Stringify()}{(Priority != 0 ? $" (P{Priority})" : "")}{(PriorityFromQuestion != null ? $" (PQ)" : "")}";
 }

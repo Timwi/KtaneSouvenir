@@ -6,11 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SRPSJudging
 {
-    [SouvenirQuestion("Which round did the {1} team {2} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["first", "second", "third", "fourth", "fifth", "sixth"], Arguments = ["red", "win", "blue", "win", "red", "lose", "blue", "lose"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
-    Winner,
+    [SouvenirQuestion("Which round did the {1} team {2} in {0}?", ThreeColumns6Answers, ExampleAnswers = [QandA.Ordinal], Arguments = ["red", "win", "blue", "win", "red", "lose", "blue", "lose"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    QWinner,
 
-    [SouvenirQuestion("Which round was a draw in {0}?", ThreeColumns6Answers, ExampleAnswers = ["first", "second", "third", "fourth", "fifth", "sixth"])]
-    Draw
+    [SouvenirQuestion("Which round was a draw in {0}?", ThreeColumns6Answers, ExampleAnswers = [QandA.Ordinal])]
+    QDraw,
+
+    [SouvenirDiscriminator("the RPS Judging where the {0} team {1} the {2} round", Arguments = ["red", "won", QandA.Ordinal, "red", "lost", QandA.Ordinal, "blue", "won", QandA.Ordinal, "blue", "lost", QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, true, false])]
+    DWinner,
+
+    [SouvenirDiscriminator("the RPS Judging with a draw in the {0} round", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    DDraw
 }
 
 public partial class SouvenirModule
@@ -19,7 +25,6 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessRPSJudging(ModuleData module)
     {
         var comp = GetComponent(module, "RPSJudgingScript");
-        const string moduleId = "RPSJudging";
 
         const int OutcomeRed = -1;
         const int OutcomeDraw = 0;
@@ -32,16 +37,10 @@ public partial class SouvenirModule
         var leftDisplays = GetListField<int>(comp, "LeftDisplays").Get(minLength: 0, validator: v => v is < 0 or > 100 ? "Expected range [0, 101]" : null);
         var rightDisplays = GetListField<int>(comp, "RightDisplays").Get(expectedLength: leftDisplays.Count, validator: v => v is < 0 or > 100 ? "Expected range [0, 101]" : null);
 
-        _rpsJudgingDisplays.Add((leftDisplays, rightDisplays));
-        if (_rpsJudgingDisplays[0].blue.Count != leftDisplays.Count)
-            throw new AbandonModuleException("There were inconsistent stage counts among modules.");
         if (leftDisplays.Count == 0)
             yield return legitimatelyNoQuestion(module, "There were no stages.");
 
         yield return null;
-
-        if (_rpsJudgingDisplays.Count != _moduleCounts[moduleId])
-            throw new AbandonModuleException("The number of displays did not match the number of RPS Judging modules.");
 
         bool pickAnswers(List<int> valid, out string[] correct, out string[] incorrect)
         {
@@ -52,72 +51,44 @@ public partial class SouvenirModule
 
         static int matchup(int blue, int red) => blue == red ? OutcomeDraw : (red - blue + 101) % 101 < 51 ? OutcomeBlue : OutcomeRed;
 
-        bool pickUniqueStage(int outcomeToAvoid, out string format)
+        List<int> blueWins = [], redWins = [], draws = [];
+        for (var stage = 0; stage < leftDisplays.Count; stage++)
         {
-            if (_moduleCounts[moduleId] == 1)
+            switch (matchup(leftDisplays[stage], rightDisplays[stage]))
             {
-                format = null;
-                return true;
-            }
+                case OutcomeRed:
+                    redWins.Add(stage);
+                    yield return new Discriminator(SRPSJudging.DWinner, $"red-win-{stage}", true, args: ["red", "won", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
+                    yield return new Discriminator(SRPSJudging.DWinner, $"blue-lose-{stage}", true, args: ["blue", "lost", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
+                    break;
 
-            var options = outcomes.Where(oc => oc != outcomeToAvoid).SelectMany(outcome =>
-                Enumerable
-                    .Range(0, leftDisplays.Count)
-                    .Where(stage => matchup(leftDisplays[stage], rightDisplays[stage]) == outcome && _rpsJudgingDisplays.Count(d => matchup(d.blue[stage], d.red[stage]) == outcome) == 1)
-                    .Select(stage => (outcome, stage)))
-                .ToArray();
+                case OutcomeDraw:
+                    draws.Add(stage);
+                    yield return new Discriminator(SRPSJudging.DDraw, $"draw-{stage}", true, args: [Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
+                    break;
 
-            if (options.Length == 0)
-            {
-                format = null;
-                return false;
-            }
+                case OutcomeBlue:
+                    blueWins.Add(stage);
+                    yield return new Discriminator(SRPSJudging.DWinner, $"blue-win-{stage}", true, args: ["blue", "won", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
+                    yield return new Discriminator(SRPSJudging.DWinner, $"red-lose-{stage}", true, args: ["red", "lost", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
+                    break;
 
-            format = (options.PickRandom(), UnityEngine.Random.Range(0, 2) != 0) switch
-            {
-                ((OutcomeRed, var stage), var b) => string.Format(
-                    translateString(SRPSJudging.Winner, "the RPS Judging where the {0} team {1} the {2} round"),
-                    translateFormatArg(SRPSJudging.Winner, b ? "blue" : "red"), translateFormatArg(SRPSJudging.Winner, b ? "lost" : "won"), Ordinal(stage + 1)),
-                ((OutcomeDraw, var stage), _) => string.Format(
-                    translateString(SRPSJudging.Winner, "the RPS Judging with a draw in the {0} round"),
-                    Ordinal(stage + 1)),
-                ((OutcomeBlue, var stage), var b) => string.Format(
-                    translateString(SRPSJudging.Winner, "the RPS Judging where the {0} team {1} the {2} round"),
-                    translateFormatArg(SRPSJudging.Winner, b ? "blue" : "red"), translateFormatArg(SRPSJudging.Winner, b ? "won" : "lost"), Ordinal(stage + 1)),
-                _ => throw new InvalidOperationException()
-            };
-            return true;
-        }
-
-        IEnumerable<QandA> makeQuestions()
-        {
-            List<int> blueWins = [], redWins = [], draws = [];
-            for (var stage = 0; stage < leftDisplays.Count; stage++)
-                (matchup(leftDisplays[stage], rightDisplays[stage]) switch
-                {
-                    OutcomeRed => redWins,
-                    OutcomeDraw => draws,
-                    OutcomeBlue => blueWins,
-                    _ => throw new InvalidOperationException()
-                }).Add(stage);
-
-            if (draws.Count > 0 && pickUniqueStage(OutcomeDraw, out var format) && pickAnswers(draws, out var correct, out var incorrect))
-                yield return makeQuestion(SRPSJudging.Draw, moduleId, 1, formattedModuleName: format, correctAnswers: correct, preferredWrongAnswers: incorrect);
-            if (blueWins.Count > 0 && pickUniqueStage(OutcomeBlue, out format) && pickAnswers(blueWins, out correct, out incorrect))
-            {
-                yield return makeQuestion(SRPSJudging.Winner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "blue", "win" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
-                yield return makeQuestion(SRPSJudging.Winner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "red", "lose" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
-            }
-            if (redWins.Count > 0 && pickUniqueStage(OutcomeRed, out format) && pickAnswers(redWins, out correct, out incorrect))
-            {
-                yield return makeQuestion(SRPSJudging.Winner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "blue", "lose" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
-                yield return makeQuestion(SRPSJudging.Winner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "red", "win" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
+                default:
+                    throw new InvalidOperationException();
             }
         }
 
-        var qs = makeQuestions().ToArray();
-        if (qs.Length == 0)
-            yield return legitimatelyNoQuestion(module, $"There were not enough stages at which this one (#{GetIntField(comp, "moduleId").Get()}) had a unique result.");
-        addQuestions(module, qs);
+        if (draws.Count > 0 && pickAnswers(draws, out var correct, out var incorrect))
+            yield return question(SRPSJudging.QDraw).Answers(correct, preferredWrong: incorrect);
+        if (blueWins.Count > 0 && pickAnswers(blueWins, out correct, out incorrect))
+        {
+            yield return question(SRPSJudging.QWinner, args: ["blue", "win"]).Answers(correct, preferredWrong: incorrect);
+            yield return question(SRPSJudging.QWinner, args: ["red", "lose"]).Answers(correct, preferredWrong: incorrect);
+        }
+        if (redWins.Count > 0 && pickAnswers(redWins, out correct, out incorrect))
+        {
+            yield return question(SRPSJudging.QWinner, args: ["blue", "lose"]).Answers(correct, preferredWrong: incorrect);
+            yield return question(SRPSJudging.QWinner, args: ["red", "win"]).Answers(correct, preferredWrong: incorrect);
+        }
     }
 }

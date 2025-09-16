@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -43,14 +43,12 @@ public partial class SouvenirModule
         };
 
         for (var stage = 0; stage < 3; stage++)
-            qs.Add(makeQuestion(
-                question: SSonicTheHedgehog.Pictures,
-                formatArgs: new[] { Ordinal(stage + 1) },
-                data: module,
-                allAnswers: spriteArr[stage],
-                correctAnswers: new[] { spriteArr[stage].First(sprite => sprite.name == pics[stage].name) }));
+            yield return question(SSonicTheHedgehog.Pictures, args: [Ordinal(stage + 1)])
+                .Answers(spriteArr[stage].First(sprite => sprite.name == pics[stage].name), all: spriteArr[stage]);
 
+        var preferredWrong = sounds.Select(s => SonicTheHedgehogAudio[soundNameMapping[s]]).ToArray();
         for (var screen = 0; screen < 4; screen++)
-            yield return question(SSonicTheHedgehog.Sounds, args: [screenNames[screen]]).Answers(SonicTheHedgehogAudio[soundNameMapping[sounds[screen]]], preferredWrong: sounds.Select(s => SonicTheHedgehogAudio[soundNameMapping[s]]).ToArray());
+            yield return question(SSonicTheHedgehog.Sounds, args: [screenNames[screen]])
+                .Answers(SonicTheHedgehogAudio[soundNameMapping[sounds[screen]]], preferredWrong: preferredWrong);
     }
 }

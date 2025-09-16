@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum STenButtonColorCode
@@ -30,7 +30,9 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colorNames = new[] { "red", "green", "blue" };
-        addQuestions(module, new[] { firstStageColors, secondStageColors }.SelectMany((colors, stage) => Enumerable.Range(0, 10)
-            .Select(slot => makeQuestion(STenButtonColorCode.InitialColors, module, formatArgs: new[] { Ordinal(slot + 1), Ordinal(stage + 1) }, correctAnswers: new[] { colorNames[colors[slot]] }))));
+        var stages = new[] { firstStageColors, secondStageColors };
+        for (var stage = 0; stage < stages.Length; stage++)
+            for (var slot = 0; slot < 10; slot++)
+                yield return question(STenButtonColorCode.InitialColors, args: [Ordinal(slot + 1), Ordinal(stage + 1)]).Answers(colorNames[stages[stage][slot]]);
     }
 }
