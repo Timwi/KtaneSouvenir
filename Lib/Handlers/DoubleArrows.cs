@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -34,15 +34,13 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         }
 
-        var qs = new List<QandA>(17) { makeQuestion(SDoubleArrows.Start, module, correctAnswers: new[] { start }) };
+        yield return question(SDoubleArrows.Start).Answers(start);
         var callib = GetArrayField<int[]>(comp, "callib").Get(expectedLength: 2);
         var dirs = new[] { "Left", "Up", "Right", "Down" };
         for (var i = 0; i < 8; i++)
         {
-            qs.Add(makeQuestion(SDoubleArrows.Movement, module, formatArgs: new[] { $"{(i < 4 ? "inner" : "outer")} {dirs[i % 4].ToLowerInvariant()}" }, correctAnswers: new[] { dirs[callib[i / 4][i % 4]] }));
-            qs.Add(makeQuestion(SDoubleArrows.Arrow, module, formatArgs: new[] { i < 4 ? "inner" : "outer", dirs[callib[i / 4][i % 4]].ToLowerInvariant() }, correctAnswers: new[] { dirs[i % 4] }));
+            yield return question(SDoubleArrows.Movement, args: [$"{(i < 4 ? "inner" : "outer")} {dirs[i % 4].ToLowerInvariant()}"]).Answers(dirs[callib[i / 4][i % 4]]);
+            yield return question(SDoubleArrows.Arrow, args: [i < 4 ? "inner" : "outer", dirs[callib[i / 4][i % 4]].ToLowerInvariant()]).Answers(dirs[i % 4]);
         }
-
-        addQuestions(module, qs);
     }
 }

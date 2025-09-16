@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -32,10 +32,8 @@ public partial class SouvenirModule
             for (var j = 0; j < 3; j++)
                 colorOccurrences.IncSafe(fldColor.GetFrom(panelInfo.GetValue(i, j), v => v < 0 || v >= colorNames.Length ? $"out of range; colorNames.Length={colorNames.Length} ([{colorNames.JoinString(", ")}])" : null));
 
-        addQuestions(module, colorOccurrences.Select(kvp =>
-            makeQuestion(SButtonSequence.sColorOccurrences, module,
-                formatArgs: new[] { colorNames[kvp.Key].ToLowerInvariant() },
-                correctAnswers: new[] { kvp.Value.ToString() },
-                preferredWrongAnswers: colorOccurrences.Values.Select(v => v.ToString()).ToArray())));
+        foreach (var kvp in colorOccurrences)
+            yield return question(SButtonSequence.sColorOccurrences, args: [colorNames[kvp.Key].ToLowerInvariant()])
+                .Answers(kvp.Value.ToString(), preferredWrong: colorOccurrences.Values.Select(v => v.ToString()).ToArray());
     }
 }

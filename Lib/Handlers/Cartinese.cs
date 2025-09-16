@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -26,8 +26,10 @@ public partial class SouvenirModule
 
         var buttonNames = new[] { "up", "right", "down", "left" };
 
-        addQuestions(module,
-            Enumerable.Range(0, 4).Select(btn => makeQuestion(SCartinese.ButtonColors, module, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { SCartinese.ButtonColors.GetAnswers()[buttonColors[btn]] }))
-            .Concat(Enumerable.Range(0, 4).Select(btn => makeQuestion(SCartinese.Lyrics, module, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { buttonLyrics[btn] }))));
+        for (var btn = 0; btn < 4; btn++)
+        {
+            yield return question(SCartinese.ButtonColors, args: [buttonNames[btn]]).Answers(SCartinese.ButtonColors.GetAnswers()[buttonColors[btn]]);
+            yield return question(SCartinese.Lyrics, args: [buttonNames[btn]]).Answers(buttonLyrics[btn]);
+        }
     }
 }

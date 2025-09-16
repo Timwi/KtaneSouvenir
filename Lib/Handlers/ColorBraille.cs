@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,9 +21,8 @@ public partial class SouvenirModule
         var colorIxs = GetArrayField<int>(comp, "_colorIxs").Get(expectedLength: 5 * 6);
         var colorNames = SColorBraille.Color.GetAnswers();
 
-        addQuestions(module, Enumerable.Range(0, 5 * 6).Select(ix =>
-            makeQuestion(SColorBraille.Color, module,
-                questionSprite: Sprites.GenerateCirclesSprite(5 * 2, 3, 1 << ix, 20, 5, outline: true, vertical: true),
-                correctAnswers: new[] { colorNames[colorIxs[ix]] })));
+        for (var ix = 0; ix < 5 * 6; ix++)
+            yield return question(SColorBraille.Color, questionSprite: Sprites.GenerateCirclesSprite(5 * 2, 3, 1 << ix, 20, 5, outline: true, vertical: true))
+                .Answers(colorNames[colorIxs[ix]]);
     }
 }

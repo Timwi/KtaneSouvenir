@@ -38,7 +38,7 @@ public partial class SouvenirModule
         if (dummyPos == -1)
             throw new AbandonModuleException("No dummy flag");
 
-        var questions = new List<QandA>(13) { makeQuestion(SMaritimeSemaphore.Dummy, module, correctAnswers: new[] { Ordinal(dummyPos + 1) }) };
+        yield return question(SMaritimeSemaphore.Dummy).Answers(Ordinal(dummyPos + 1) );
 
         var left = GetField<int>(flags[0], "LeftMaritime", isPublic: true);
         var right = GetField<int>(flags[0], "RightMaritime", isPublic: true);
@@ -54,14 +54,9 @@ public partial class SouvenirModule
 
         for (var i = 0; i < 4; i++)
         {
-            questions.Add(makeQuestion(SMaritimeSemaphore.Letter, module,
-                formatArgs: new[] { letters[i].Ordinal, "left flag" }, correctAnswers: new[] { ((char) ('A' + letters[i].LeftFlag)).ToString() }));
-            questions.Add(makeQuestion(SMaritimeSemaphore.Letter, module,
-                formatArgs: new[] { letters[i].Ordinal, "right flag" }, correctAnswers: new[] { ((char) ('A' + letters[i].RightFlag)).ToString() }));
-            questions.Add(makeQuestion(SMaritimeSemaphore.Letter, module,
-                formatArgs: new[] { letters[i].Ordinal, "semaphore" }, correctAnswers: new[] { ((char) ('A' + letters[i].Semaphore)).ToString() }));
+            yield return question(SMaritimeSemaphore.Letter,args:[letters[i].Ordinal, "left flag"]).Answers(((char) ('A' + letters[i].LeftFlag)).ToString() );
+            yield return question(SMaritimeSemaphore.Letter,args:[letters[i].Ordinal, "right flag"]).Answers(((char) ('A' + letters[i].RightFlag)).ToString() );
+            yield return question(SMaritimeSemaphore.Letter,args:[letters[i].Ordinal, "semaphore"]).Answers(((char) ('A' + letters[i].Semaphore)).ToString() );
         }
-
-        addQuestions(module, questions);
     }
 }

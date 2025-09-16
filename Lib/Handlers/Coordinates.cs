@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SCoordinates
@@ -33,11 +34,10 @@ public partial class SouvenirModule
         var clueText = fldClueText.Get();
 
         yield return WaitForSolve;
+        yield return question(SCoordinates.FirstSolution).Answers(clueText.Replace("\n", " "), preferredWrong: clues.Cast<object>().Select(c => fldClueText.GetFrom(c).Replace("\n", " ")).Where(t => t != null).ToArray());
 
         // The size clue is the only one where fldClueSystem is null
-        var sizeClue = clues.Cast<object>().Where(szCl => fldClueSystem.GetFrom(szCl, nullAllowed: true) == null).FirstOrDefault();
-        addQuestions(module,
-            makeQuestion(SCoordinates.FirstSolution, module, correctAnswers: new[] { clueText.Replace("\n", " ") }, preferredWrongAnswers: clues.Cast<object>().Select(c => fldClueText.GetFrom(c).Replace("\n", " ")).Where(t => t != null).ToArray()),
-            sizeClue == null ? null : makeQuestion(SCoordinates.Size, module, correctAnswers: new[] { fldClueText.GetFrom(sizeClue) }));
+        if (clues.Cast<object>().Where(szCl => fldClueSystem.GetFrom(szCl, nullAllowed: true) == null).FirstOrDefault() is { } sizeClue)
+            yield return question(SCoordinates.Size).Answers(fldClueText.GetFrom(sizeClue));
     }
 }

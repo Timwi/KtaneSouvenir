@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -33,15 +33,9 @@ public partial class SouvenirModule
         // To provide preferred wrong answers, mostly.
         string[] labelsOnModule = { validLabels[indicators[0]], validLabels[indicators[1]], validLabels[indicators[2]], validLabels[indicators[3]] };
 
-        addQuestions(module,
-            Enumerable.Range(0, 4).Select(ix => makeQuestion(SBobBarks.Indicators, module,
-                correctAnswers: new[] { labelsOnModule[ix] },
-                formatArgs: new[] { validDirections[ix] },
-                preferredWrongAnswers: labelsOnModule.Except([labelsOnModule[ix]]).ToArray()
-            )).Concat(
-            Enumerable.Range(0, 5).Select(ix => makeQuestion(SBobBarks.Positions, module,
-                correctAnswers: new[] { validDirections[flashes[ix]] },
-                formatArgs: new[] { Ordinal(ix + 1) }))
-            ));
+        for (var ix = 0; ix < 4; ix++)
+            yield return question(SBobBarks.Indicators, args: [validDirections[ix]]).Answers(labelsOnModule[ix], preferredWrong: labelsOnModule.Except([labelsOnModule[ix]]).ToArray());
+        for (var ix = 0; ix < 5; ix++)
+            yield return question(SBobBarks.Positions, args: [Ordinal(ix + 1)]).Answers(validDirections[flashes[ix]]);
     }
 }

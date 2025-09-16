@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
-
 using static Souvenir.AnswerLayout;
+using Rnd = UnityEngine.Random;
 
 public enum SButtonage
 {
@@ -53,15 +53,12 @@ public partial class SouvenirModule
         {
             if (mu + deviation < real || mu - deviation > real)
                 mu = real;
-            var count = UnityEngine.Random.Range(12, 18);
+            var count = Rnd.Range(12, 18);
             for (var i = 0; i < count; i++)
-                yield return UnityEngine.Random.Range(Mathf.Max(mu - deviation, 0), Mathf.Min(mu + deviation, 65)).ToString();
+                yield return Rnd.Range(Mathf.Max(mu - deviation, 0), Mathf.Min(mu + deviation, 65)).ToString();
         }
 
-        addQuestions(module, questions.Select(t =>
-            makeQuestion(SButtonage.Buttons, module,
-                formatArgs: new[] { t.Item1 },
-                correctAnswers: new[] { t.Item2.ToString() },
-                preferredWrongAnswers: reasonableRandom(t.Item3, t.Item4, t.Item2).ToArray())));
+        foreach (var t in questions)
+            yield return question(SButtonage.Buttons, args: [t.Item1]).Answers(t.Item2.ToString(), preferredWrong: reasonableRandom(t.Item3, t.Item4, t.Item2).ToArray());
     }
 }

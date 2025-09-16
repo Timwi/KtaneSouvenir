@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -30,8 +30,8 @@ public partial class SouvenirModule
         var colorNames = new[] { "Red", "Green", "Blue", "Gray", "Yellow" };
         var buttonNames = new[] { "north", "east", "south", "west" };
 
-        addQuestions(module,
-            buttonColors.Select((col, ix) => makeQuestion(SBlindMaze.Colors, module, formatArgs: new[] { buttonNames[ix] }, correctAnswers: new[] { colorNames[col] }))
-                .Concat(new[] { makeQuestion(SBlindMaze.Maze, module, correctAnswers: new[] { ((numSolved + lastDigit) % 10).ToString() }) }));
+        for (var ix = 0; ix < buttonColors.Length; ix++)
+            yield return question(SBlindMaze.Colors, args: [buttonNames[ix]]).Answers(colorNames[buttonColors[ix]]);
+        yield return question(SBlindMaze.Maze).Answers(((numSolved + lastDigit) % 10).ToString());
     }
 }

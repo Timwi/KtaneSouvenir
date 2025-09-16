@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -32,8 +32,10 @@ public partial class SouvenirModule
         var flashedColorNames = colors.Select(c => colorNames[c].Substring(0, 1) + colorNames[c].Substring(1).ToLowerInvariant()).ToArray();
         var flashedCharacters = numbers.Select(num => "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(num, 1)).ToArray();
 
-        addQuestions(module, Enumerable.Range(0, 3).SelectMany(ix => Ut.NewArray(
-             makeQuestion(SColorMorse.Color, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { flashedColorNames[ix] }, preferredWrongAnswers: flashedColorNames),
-             makeQuestion(SColorMorse.Character, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { flashedCharacters[ix] }, preferredWrongAnswers: flashedCharacters))));
+        for (var ix = 0; ix < 3; ix++)
+        {
+            yield return question(SColorMorse.Color, args: [Ordinal(ix + 1)]).Answers(flashedColorNames[ix], preferredWrong: flashedColorNames);
+            yield return question(SColorMorse.Character, args: [Ordinal(ix + 1)]).Answers(flashedCharacters[ix], preferredWrong: flashedCharacters);
+        }
     }
 }

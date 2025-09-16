@@ -1,7 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
+using Souvenir.Reflection;
 using static Souvenir.AnswerLayout;
 
 public enum SConnectedMonitors
@@ -34,17 +35,19 @@ public partial class SouvenirModule
 
         var indsProp = GetProperty<IList>(monitors[0], "Indicators", isPublic: true);
         PropertyInfo<object> colorProp = null;
-        IEnumerable<QandA> processMonitor(object mon, int ix)
+        for (var ix = 0; ix < monitors.Count; ix++)
         {
-            yield return makeQuestion(SConnectedMonitors.Number, module, questionSprite: ConnectedMonitorsSprites[ix],
-                    correctAnswers: new[] { displays[ix].ToString() });
-            var inds = indsProp.GetFrom(mon, validator: v => v.Count is > 3 or < 0 ? $"Bad indicator count {v.Count} (Monitor {ix})" : null);
-            foreach (var q in inds.Cast<object>().Select((ind, indIx) =>
-                    makeQuestion(inds.Count == 1 ? SConnectedMonitors.SingleIndicator : SConnectedMonitors.OrdinalIndicator, module, questionSprite: ConnectedMonitorsSprites[ix],
-                    correctAnswers: new[] { (colorProp ??= GetProperty<object>(ind, "Color", isPublic: true)).GetFrom(ind, v => (int) v is < 0 or > 5 ? $"Bad indicator color {v} (Monitor {ix}) (Indicator {indIx})" : null).ToString() },
-                    formatArgs: new[] { Ordinal(indIx + 1) })))
-                yield return q;
+            yield return question(SConnectedMonitors.Number, questionSprite: ConnectedMonitorsSprites[ix]).Answers(displays[ix].ToString());
+            var inds = indsProp.GetFrom(monitors[ix], validator: v => v.Count is > 3 or < 0 ? $"Bad indicator count {v.Count} (Monitor {ix})" : null);
+            for (var indIx = 0; indIx < inds.Count; indIx++)
+            {
+                colorProp ??= GetProperty<object>(inds[indIx], "Color", isPublic: true);
+                yield return question(
+                        inds.Count == 1 ? SConnectedMonitors.SingleIndicator : SConnectedMonitors.OrdinalIndicator,
+                        args: [Ordinal(indIx + 1)],
+                        questionSprite: ConnectedMonitorsSprites[ix])
+                    .Answers(colorProp.GetFrom(inds[indIx], v => (int) v is < 0 or > 5 ? $"Bad indicator color {v} (Monitor {ix}) (Indicator {indIx})" : null).ToString());
+            }
         }
-        addQuestions(module, monitors.Cast<object>().SelectMany(processMonitor));
     }
 }
