@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,8 +20,8 @@ public partial class SouvenirModule
 
         string[] positions = { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
         var initState = GetArrayField<int>(comp, "givenPuzzle").Get(expectedLength: 9);
-        addQuestions(module,
-            Enumerable.Range(0, 9).Where(ix => initState[ix] != 0).Select(ix =>
-            makeQuestion(SForgetMe.InitialState, module, formatArgs: new[] { positions[ix] }, correctAnswers: new[] { initState[ix].ToString() })));
+        for (var ix = 0; ix < 9; ix++)
+            if (initState[ix] != 0)
+                yield return question(SForgetMe.InitialState, args: [positions[ix]]).Answers(initState[ix].ToString());
     }
 }

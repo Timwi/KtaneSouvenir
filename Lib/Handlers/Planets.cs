@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -21,12 +21,15 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "planetsModScript");
         var planetShown = GetIntField(comp, "planetShown").Get(0, 9);
         var stripColors = GetArrayField<int>(comp, "stripColours").Get(expectedLength: 5, validator: x => x is < 0 or > 8 ? "expected range 0–8" : null);
+        var preferredWrong = DateTime.Now is { Month: 4, Day: 1 } ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray();
 
         yield return WaitForSolve;
 
         var stripNames = new[] { "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off" };
-        addQuestions(module,
-            stripColors.Select((strip, count) => makeQuestion(SPlanets.Strips, module, formatArgs: new[] { Ordinal(count + 1) }, correctAnswers: new[] { stripNames[strip] }))
-                .Concat(new[] { makeQuestion(SPlanets.Planet, module, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()) }));
+        for (var count = 0; count < stripColors.Length; count++)
+            yield return question(SPlanets.Strips, args: [Ordinal(count + 1)])
+                .Answers(stripNames[stripColors[count]]);
+
+        yield return question(SPlanets.Planet).Answers(PlanetsSprites[planetShown], preferredWrong: preferredWrong);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -40,29 +40,27 @@ public partial class SouvenirModule
                 button.OnInteract = () => false;
 
             // Set the children array to an empty array to signal to other Souvenirs on the same bomb that we’re already taking care of this
-            comp.GetComponent<KMSelectable>().Children = new KMSelectable[0];
+            comp.GetComponent<KMSelectable>().Children = [];
 
             while (fldAnimating.Get())
                 yield return new WaitForSeconds(0.1f);
             if (fldOpened.Get())
-                yield return ((MonoBehaviour) comp).StartCoroutine(mthToggleDoor.Invoke(new object[0]));
+                yield return ((MonoBehaviour) comp).StartCoroutine(mthToggleDoor.Invoke([]));
         }
 
         var flashes = GetField<int[]>(comp, "lightColors")
             .Get(arr => arr.Length != 4 ? "Bad length" : arr.Any(i => i is < 0 or > 3) ? "Bad item" : null)
             .ToList();
-        var qs = new List<QandA>(8);
         var arrows = GetField<int[]>(comp, "correctButtons")
             .Get(arr => arr.Length != 4 ? "Bad length" : arr.Any(i => i is < 0 or > 3) ? "Bad item" : null)
             .ToList();
 
-        var moduleCount = _moduleCounts.Get("FuseBox");
         for (var ix = 0; ix < 4; ix++)
         {
             var tex = FuseBoxQuestions.First(t => t.name.Equals($"flash{ix + 1}"));
             var tex2 = FuseBoxQuestions.First(t => t.name.Equals($"arrow{ix + 1}"));
 
-            if (moduleCount > 1)
+            if (module.Info.NumModules > 1)
             {
                 var num = module.SolveIndex.ToString();
                 var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
@@ -92,10 +90,8 @@ public partial class SouvenirModule
             var q2 = Sprite.Create(tex2, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
             q.name = $"FuseBox-Flash-{ix}-{module.SolveIndex}";
             q2.name = $"FuseBox-Arrow-{ix}-{module.SolveIndex}";
-            qs.Add(makeSpriteQuestion(q, SFuseBox.Flashes, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { FuseBoxColorSprites[flashes[ix]] }));
-            qs.Add(makeSpriteQuestion(q2, SFuseBox.Arrows, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { FuseBoxArrowSprites[arrows[ix]] }));
+            yield return question(SFuseBox.Flashes, entireQuestionSprite: q, args: [Ordinal(ix + 1)]).Answers(FuseBoxColorSprites[flashes[ix]]);
+            yield return question(SFuseBox.Arrows, entireQuestionSprite: q2, args: [Ordinal(ix + 1)]).Answers(FuseBoxArrowSprites[arrows[ix]]);
         }
-
-        addQuestions(module, qs);
     }
 }

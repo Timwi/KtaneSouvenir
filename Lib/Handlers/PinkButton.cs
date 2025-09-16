@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -27,9 +27,10 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module,
-            Enumerable.Range(0, 4).SelectMany(ix => Ut.NewArray(
-                 makeQuestion(SPinkButton.Words, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { abbreviatedColorNames[words[ix]] }),
-                 makeQuestion(SPinkButton.Colors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[colors[ix]] }))));
+        for (var ix = 0; ix < 4; ix++)
+        {
+            yield return question(SPinkButton.Words, args: [Ordinal(ix + 1)]).Answers(abbreviatedColorNames[words[ix]]);
+            yield return question(SPinkButton.Colors, args: [Ordinal(ix + 1)]).Answers(colorNames[colors[ix]]);
+        }
     }
 }

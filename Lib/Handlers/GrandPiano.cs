@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -42,12 +42,8 @@ public partial class SouvenirModule
             return name;
         }
 
-        addQuestions(module, sets.Take(4).Select((s, i) =>
-            makeQuestion(SGrandPiano.Key, module,
-                correctAnswers: s.Select(n => toNote(n)).ToArray(),
-                formatArgs: new[] { Ordinal(i + 1) }))
-            .Concat(new[] {
-                makeQuestion(SGrandPiano.FinalKey, module,
-                correctAnswers: new[] { toNote(sets[4][4], true) })}));
+        for (var i = 0; i < 4; i++)
+            yield return question(SGrandPiano.Key, args: [Ordinal(i + 1)]).Answers(sets[i].Select(n => toNote(n)).ToArray());
+        yield return question(SGrandPiano.FinalKey).Answers(toNote(sets[4][4], true));
     }
 }

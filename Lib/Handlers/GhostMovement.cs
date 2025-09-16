@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -29,6 +29,7 @@ public partial class SouvenirModule
             .Select(c => (c.name, position: nameFunction.Invoke(GetField<int>(comp, $"{c.id}Pos").Get(v => !validPositions.Contains(v) ? "not a valid position" : null))))
             .ToArray();
         var shownPositions = combos.Select(c => c.position).ToArray();
-        addQuestions(module, combos.Select(c => makeQuestion(SGhostMovement.Position, module, formatArgs: new[] { c.name }, correctAnswers: new[] { c.position }, preferredWrongAnswers: shownPositions)));
+        foreach (var c in combos)
+            yield return question(SGhostMovement.Position, args: [c.name]).Answers(c.position, preferredWrong: shownPositions);
     }
 }

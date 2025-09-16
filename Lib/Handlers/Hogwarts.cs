@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -27,14 +27,11 @@ public partial class SouvenirModule
             yield return legitimatelyNoQuestion(module, "No module solves were awarded to it.");
 
         // Rock-Paper-Scissors-Lizard-Spock needs to be broken up in the question because hyphens don't word-wrap.
-        addQuestions(module,
-            dic.Keys.Cast<object>().Where(house => dic[house] != null).SelectMany(house => Ut.NewArray(
-                makeQuestion(SHogwarts.House, module,
-                    formatArgs: new[] { dic[house].ToString() == "Rock-Paper-Scissors-L.-Sp." ? "Rock-Paper- Scissors-L.-Sp." : dic[house].ToString() },
-                    correctAnswers: new[] { house.ToString() }),
-                makeQuestion(SHogwarts.Module, module,
-                    formatArgs: new[] { house.ToString() },
-                    correctAnswers: new[] { dic[house].ToString() },
-                    preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()))));
+        foreach (var house in dic.Keys)
+            if (dic[house] is string name)
+            {
+                yield return question(SHogwarts.House, args: [name == "Rock-Paper-Scissors-L.-Sp." ? "Rock-Paper- Scissors-L.-Sp." : name]).Answers(house.ToString());
+                yield return question(SHogwarts.Module, args: [house.ToString()]).Answers(name, preferredWrong: Bomb.GetSolvableModuleNames().ToArray());
+            }
     }
 }

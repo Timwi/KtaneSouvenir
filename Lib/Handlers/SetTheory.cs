@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -22,12 +22,12 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var equations = fldEquations.Get(v => v.Length != 4 ? "expected length 4" : null).Cast<object>().Select(eq => eq.ToString()).ToArray();
-        addQuestions(module, Enumerable.Range(0, 4).Select(stage =>
+        for (var stage = 0; stage < 4; stage++)
         {
             var wrongAnswers = new HashSet<string> { equations[stage] };
             while (wrongAnswers.Count < 4)
                 wrongAnswers.Add(mthGenerate.Invoke(stage).ToString());
-            return makeQuestion(SSetTheory.Equations, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { equations[stage] }, preferredWrongAnswers: wrongAnswers.ToArray());
-        }));
+            yield return question(SSetTheory.Equations, args: [Ordinal(stage + 1)]).Answers(equations[stage], preferredWrong: wrongAnswers.ToArray());
+        }
     }
 }

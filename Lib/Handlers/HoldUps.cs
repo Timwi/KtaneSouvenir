@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -37,6 +37,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, Enumerable.Range(0, isItFiveStages.Get() ? 5 : 3).Select(stage => makeQuestion(SHoldUps.Shadows, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { shadows[stage] })));
+        for (var stage = isItFiveStages.Get() ? 5 : 3; stage >= 0; stage--)
+            yield return question(SHoldUps.Shadows, args: [Ordinal(stage + 1)]).Answers(shadows[stage]);
     }
 }
