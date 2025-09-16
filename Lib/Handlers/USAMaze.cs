@@ -12,5 +12,5 @@ public enum SUSAMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("USA", "USA Maze", typeof(SUSAMaze), "luisdiogo98")]
-    private IEnumerator<SouvenirInstruction> ProcessUSAMaze(ModuleData module) => processWorldMaze(module, "USAMaze", Question.USAMazeOrigin);
+    private IEnumerator<SouvenirInstruction> ProcessUSAMaze(ModuleData module) => processWorldMaze(module, "USAMaze", SUSAMaze.Origin);
 }

@@ -12,5 +12,5 @@ public enum SYellowCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("yellowCipher", "Yellow Cipher", typeof(SYellowCipher), "BigCrunch22")]
-    private IEnumerator<SouvenirInstruction> ProcessYellowCipher(ModuleData module) => processColoredCiphers(module, "yellowCipher", Question.YellowCipherScreen);
+    private IEnumerator<SouvenirInstruction> ProcessYellowCipher(ModuleData module) => processColoredCiphers(module, "yellowCipher", SYellowCipher.Screen);
 }

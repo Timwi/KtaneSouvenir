@@ -12,5 +12,5 @@ public enum SGrayCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("grayCipher", "Gray Cipher", typeof(SGrayCipher), "BigCrunch22")]
-    private IEnumerator<SouvenirInstruction> ProcessGrayCipher(ModuleData module) => processColoredCiphers(module, "grayCipher", Question.GrayCipherScreen);
+    private IEnumerator<SouvenirInstruction> ProcessGrayCipher(ModuleData module) => processColoredCiphers(module, "grayCipher", SGrayCipher.Screen);
 }

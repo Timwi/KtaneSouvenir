@@ -16,5 +16,5 @@ public enum SPigpenCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("pigpenCycle", "Pigpen Cycle", typeof(SPigpenCycle), "Quinn Wuest")]
-    private IEnumerator<SouvenirInstruction> ProcessPigpenCycle(ModuleData module) => processSpeakingEvilCycle(module, "PigpenCycleScript", Question.PigpenCycleDialDirections, Question.PigpenCycleDialLabels);
+    private IEnumerator<SouvenirInstruction> ProcessPigpenCycle(ModuleData module) => processSpeakingEvilCycle(module, "PigpenCycleScript", SPigpenCycle.DialDirections, SPigpenCycle.DialLabels);
 }

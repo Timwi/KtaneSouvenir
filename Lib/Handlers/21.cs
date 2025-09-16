@@ -13,5 +13,5 @@ public partial class SouvenirModule
 {
     [SouvenirHandler("TwennyWan", "21", typeof(S21), "Anonymous")]
     private IEnumerator<SouvenirInstruction> Process21(ModuleData module) =>
-        process6421(module, "TwennyWan", "numberin21", "0123456789ABCDEFGHIJK", 21, 9261, 194480, Question._21DisplayedNumber);
+        process6421(module, "TwennyWan", "numberin21", "0123456789ABCDEFGHIJK", 21, 9261, 194480, S21.DisplayedNumber);
 }

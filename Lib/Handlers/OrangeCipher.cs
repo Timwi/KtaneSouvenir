@@ -12,5 +12,5 @@ public enum SOrangeCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("orangeCipher", "Orange Cipher", typeof(SOrangeCipher), "BigCrunch22")]
-    private IEnumerator<SouvenirInstruction> ProcessOrangeCipher(ModuleData module) => processColoredCiphers(module, "orangeCipher", Question.OrangeCipherScreen);
+    private IEnumerator<SouvenirInstruction> ProcessOrangeCipher(ModuleData module) => processColoredCiphers(module, "orangeCipher", SOrangeCipher.Screen);
 }

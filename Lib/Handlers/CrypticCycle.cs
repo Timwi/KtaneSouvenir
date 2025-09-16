@@ -16,5 +16,5 @@ public enum SCrypticCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("crypticCycle", "Cryptic Cycle", typeof(SCrypticCycle), "Quinn Wuest")]
-    private IEnumerator<SouvenirInstruction> ProcessCrypticCycle(ModuleData module) => processSpeakingEvilCycle(module, "CrypticCycleScript", Question.CrypticCycleDialDirections, Question.CrypticCycleDialLabels);
+    private IEnumerator<SouvenirInstruction> ProcessCrypticCycle(ModuleData module) => processSpeakingEvilCycle(module, "CrypticCycleScript", SCrypticCycle.DialDirections, SCrypticCycle.DialLabels);
 }

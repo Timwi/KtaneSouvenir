@@ -17,6 +17,6 @@ public enum SAffineCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("affineCycle", "Affine Cycle", typeof(SAffineCycle), "Quinn Wuest")]
-    private IEnumerator<SouvenirInstruction> ProcessAffineCycle(ModuleData module) => processSpeakingEvilCycle(module, "AffineCycleScript", Question.AffineCycleDialDirections, Question.AffineCycleDialLabels,
+    private IEnumerator<SouvenirInstruction> ProcessAffineCycle(ModuleData module) => processSpeakingEvilCycle(module, "AffineCycleScript", SAffineCycle.DialDirections, SAffineCycle.DialLabels,
             overrideAnswers: Enumerable.Range(0, 8).Except([6]).Select(x => CycleModuleEightSprites[x]).ToArray());
 }

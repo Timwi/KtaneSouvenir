@@ -12,5 +12,5 @@ public enum SMagentaCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("magentaCipher", "Magenta Cipher", typeof(SMagentaCipher), "Timwi")]
-    private IEnumerator<SouvenirInstruction> ProcessMagentaCipher(ModuleData module) => processColoredCiphers(module, "magentaCipher", Question.MagentaCipherScreen);
+    private IEnumerator<SouvenirInstruction> ProcessMagentaCipher(ModuleData module) => processColoredCiphers(module, "magentaCipher", SMagentaCipher.Screen);
 }

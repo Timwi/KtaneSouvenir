@@ -12,5 +12,5 @@ public enum SCrimsonCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("crimsonCipher", "Crimson Cipher", typeof(SCrimsonCipher), "Timwi")]
-    private IEnumerator<SouvenirInstruction> ProcessCrimsonCipher(ModuleData module) => processColoredCiphers(module, "crimsonCipher", Question.CrimsonCipherScreen);
+    private IEnumerator<SouvenirInstruction> ProcessCrimsonCipher(ModuleData module) => processColoredCiphers(module, "crimsonCipher", SCrimsonCipher.Screen);
 }

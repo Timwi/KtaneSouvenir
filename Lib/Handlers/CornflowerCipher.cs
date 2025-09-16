@@ -12,5 +12,5 @@ public enum SCornflowerCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("cornflowerCipher", "Cornflower Cipher", typeof(SCornflowerCipher), "Timwi")]
-    private IEnumerator<SouvenirInstruction> ProcessCornflowerCipher(ModuleData module) => processColoredCiphers(module, "cornflowerCipher", Question.CornflowerCipherScreen);
+    private IEnumerator<SouvenirInstruction> ProcessCornflowerCipher(ModuleData module) => processColoredCiphers(module, "cornflowerCipher", SCornflowerCipher.Screen);
 }

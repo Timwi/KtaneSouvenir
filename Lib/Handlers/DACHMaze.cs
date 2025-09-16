@@ -12,5 +12,5 @@ public enum SDACHMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("DACH", "DACH Maze", typeof(SDACHMaze), "Timwi")]
-    private IEnumerator<SouvenirInstruction> ProcessDACHMaze(ModuleData module) => processWorldMaze(module, "DACHMaze", Question.DACHMazeOrigin);
+    private IEnumerator<SouvenirInstruction> ProcessDACHMaze(ModuleData module) => processWorldMaze(module, "DACHMaze", SDACHMaze.Origin);
 }

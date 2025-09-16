@@ -12,5 +12,5 @@ public enum SHypercube
 public partial class SouvenirModule
 {
     [SouvenirHandler("TheHypercubeModule", "Hypercube", typeof(SHypercube), "luisdiogo98", AddThe = true)]
-    private IEnumerator<SouvenirInstruction> ProcessHypercube(ModuleData module) => processHypercubeUltracube(module, "TheHypercubeModule", Question.HypercubeRotations);
+    private IEnumerator<SouvenirInstruction> ProcessHypercube(ModuleData module) => processHypercubeUltracube(module, "TheHypercubeModule", SHypercube.Rotations);
 }

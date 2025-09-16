@@ -12,5 +12,5 @@ public enum SForestCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("forestCipher", "Forest Cipher", typeof(SForestCipher), "Timwi")]
-    private IEnumerator<SouvenirInstruction> ProcessForestCipher(ModuleData module) => processColoredCiphers(module, "forestCipher", Question.ForestCipherScreen);
+    private IEnumerator<SouvenirInstruction> ProcessForestCipher(ModuleData module) => processColoredCiphers(module, "forestCipher", SForestCipher.Screen);
 }

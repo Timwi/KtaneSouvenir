@@ -12,5 +12,5 @@ public enum SBlackCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("blackCipher", "Black Cipher", typeof(SBlackCipher), "BigCrunch22")]
-    private IEnumerator<SouvenirInstruction> ProcessBlackCipher(ModuleData module) => processColoredCiphers(module, "blackCipher", Question.BlackCipherScreen);
+    private IEnumerator<SouvenirInstruction> ProcessBlackCipher(ModuleData module) => processColoredCiphers(module, "blackCipher", SBlackCipher.Screen);
 }

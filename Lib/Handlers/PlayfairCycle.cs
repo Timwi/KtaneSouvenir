@@ -16,5 +16,5 @@ public enum SPlayfairCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("playfairCycle", "Playfair Cycle", typeof(SPlayfairCycle), "Quinn Wuest")]
-    private IEnumerator<SouvenirInstruction> ProcessPlayfairCycle(ModuleData module) => processSpeakingEvilCycle(module, "PlayfairCycleScript", Question.PlayfairCycleDialDirections, Question.PlayfairCycleDialLabels);
+    private IEnumerator<SouvenirInstruction> ProcessPlayfairCycle(ModuleData module) => processSpeakingEvilCycle(module, "PlayfairCycleScript", SPlayfairCycle.DialDirections, SPlayfairCycle.DialLabels);
 }
