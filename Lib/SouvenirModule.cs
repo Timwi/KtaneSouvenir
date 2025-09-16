@@ -869,6 +869,9 @@ public partial class SouvenirModule : MonoBehaviour
                     case null:
                         yield return null;
                         break;
+                    case SouvenirYieldInstruction y:
+                        yield return y.Object;
+                        break;
                     case WaitForSolveInstruction:
                         yield return new WaitWhile(() => data.Unsolved);
                         break;
