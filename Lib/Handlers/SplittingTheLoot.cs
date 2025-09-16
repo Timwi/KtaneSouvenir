@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -25,9 +25,10 @@ public partial class SouvenirModule
         var bagColors = bags.Cast<object>().Select(obj => fldBagColor.GetFrom(obj)).ToArray();
         var bagLabels = bags.Cast<object>().Select(obj => fldBagLabel.GetFrom(obj)).ToArray();
         var paintedBag = bagColors.IndexOf(bc => bc.ToString() != "Normal");
-        yield return paintedBag == -1
-            ? throw new AbandonModuleException($"No colored bag was found: [{bagColors.JoinString(", ")}]")
-            : (YieldInstruction) WaitForSolve;
+        if (paintedBag == -1)
+            throw new AbandonModuleException($"No colored bag was found: [{bagColors.JoinString(", ")}]");
+
+        yield return WaitForSolve;
         yield return question(SSplittingTheLoot.ColoredBag).Answers(bagLabels[paintedBag], preferredWrong: bagLabels);
     }
 }

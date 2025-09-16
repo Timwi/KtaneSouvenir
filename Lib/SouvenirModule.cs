@@ -545,16 +545,13 @@ public partial class SouvenirModule : MonoBehaviour
     public string TranslateDiscriminatorArgument(Enum enumValue, string arg) => arg == null ? null : _translation?.TranslateDiscriminator(enumValue)?.Arguments?.Get(arg, arg) ?? arg;
     public string TranslateModuleName(Type enumType, string name = null) => _translation?.TranslateModule(enumType)?.ModuleName ?? name ?? enumType.GetHandlerAttribute().ModuleNameWithThe;
 
-    private void setAnswerHandler(int index, Action<int> handler)
+    private void setAnswerHandler(int index, Action<int> handler) => Answers[index].OnInteract = delegate
     {
-        Answers[index].OnInteract = delegate
-        {
-            Answers[index].AddInteractionPunch();
-            if (!_currentQuestion.OnPress(index))
-                handler(index);
-            return false;
-        };
-    }
+        Answers[index].AddInteractionPunch();
+        if (!_currentQuestion.OnPress(index))
+            handler(index);
+        return false;
+    };
 
     private void disappear()
     {

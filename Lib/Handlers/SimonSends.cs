@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
@@ -26,9 +26,10 @@ public partial class SouvenirModule
         var charG = ((char) ('A' + Array.IndexOf(morse, morseG.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
         var charB = ((char) ('A' + Array.IndexOf(morse, morseB.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
 
-        yield return charR == "@" || charG == "@" || charB == "@"
-            ? throw new AbandonModuleException($"Could not decode Morse code: {morseR} / {morseG} / {morseB}")
-            : (YieldInstruction) WaitForSolve;
+        if (charR == "@" || charG == "@" || charB == "@")
+            throw new AbandonModuleException($"Could not decode Morse code: {morseR} / {morseG} / {morseB}");
+
+        yield return WaitForSolve;
         yield return question(SSimonSends.ReceivedLetters, args: ["red"]).Answers(charR, preferredWrong: [charG, charB]);
         yield return question(SSimonSends.ReceivedLetters, args: ["green"]).Answers(charG, preferredWrong: [charR, charB]);
         yield return question(SSimonSends.ReceivedLetters, args: ["blue"]).Answers(charB, preferredWrong: [charR, charG]);

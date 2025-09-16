@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -29,7 +29,7 @@ public partial class SouvenirModule
             yield return legitimatelyNoQuestion(module, "No modules were categorized.");
 
         var moduleName = translateModuleName(SSmashMarryKill.Category, "Smash, Marry, Kill");
-        List<QandA> questions = new();
+        List<QandA> questions = [];
         var smash = new List<string>();
         var marry = new List<string>();
         var kill = new List<string>();

@@ -305,16 +305,16 @@ public static class Program
                 case '\\': result.Append(@"\\"); break;
                 case '"': result.Append(@"\"""); break;
                 default:
-                    if (c >= 0xE000 && c < 0xF900) // Private Use Area
+                    if (c is >= '\uE000' and < '\uF900') // Private Use Area
                         result.AppendFormat(@"\u{0:X4}", (int) c);
-                    else if (c >= 0xD800 && c < 0xDC00)
+                    else if (c is >= '\uD800' and < '\uDC00')
                     {
                         if (i == value.Length - 1) // string ends on a broken surrogate pair
                             result.AppendFormat(@"\u{0:X4}", (int) c);
                         else
                         {
                             var c2 = value[i + 1];
-                            if (c2 >= 0xDC00 && c2 <= 0xDFFF)
+                            if (c2 is >= '\uDC00' and <= '\uDFFF')
                             {
                                 // nothing wrong with this surrogate pair
                                 i++;
@@ -325,7 +325,7 @@ public static class Program
                                 result.AppendFormat(@"\u{0:X4}", (int) c);
                         }
                     }
-                    else if (c >= 0xDC00 && c <= 0xDFFF) // the second half of a broken surrogate pair
+                    else if (c is >= '\uDC00' and <= '\uDFFF') // the second half of a broken surrogate pair
                         result.AppendFormat(@"\u{0:X4}", (int) c);
                     else if (c >= ' ')
                         result.Append(c);

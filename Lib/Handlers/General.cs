@@ -8,7 +8,7 @@ using UnityEngine;
 
 using Rnd = UnityEngine.Random;
 
-partial class SouvenirModule
+public partial class SouvenirModule
 {
     /* Generalized handlers for modules that are extremely similar */
 

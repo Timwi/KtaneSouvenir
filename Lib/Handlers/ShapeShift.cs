@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -32,6 +32,6 @@ public partial class SouvenirModule
         if (answers.Count < 4)
             legitimatelyNoQuestion(module, "The answer was the same as the initial state.");
         else
-            yield return question(SShapeShift.InitialShape).Answers(((char) ('A' + stR + (4 * stL))).ToString() ,preferredWrong:answers.ToArray());
+            yield return question(SShapeShift.InitialShape).Answers(((char) ('A' + stR + (4 * stL))).ToString(), preferredWrong: answers.ToArray());
     }
 }

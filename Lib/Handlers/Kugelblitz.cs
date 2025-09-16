@@ -90,9 +90,10 @@ public partial class SouvenirModule
             indices[5] = GetIntField(orderedQuirks[5], "_index").Get(min: 0);
         }
 
-        yield return indices.Skip(1).Any(x => x is not null && x != indices[0])
-            ? throw new AbandonModuleException("Two quirks disagreed on how many stages were shown.")
-            : null;
+        if (indices.Skip(1).Any(x => x is not null && x != indices[0]))
+            throw new AbandonModuleException("Two quirks disagreed on how many stages were shown.");
+
+        yield return null;
 
         string constructStandardAnswer(int b) => string.Format(
             translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, "{0}{1}{2}{3}{4}{5}{6}"),

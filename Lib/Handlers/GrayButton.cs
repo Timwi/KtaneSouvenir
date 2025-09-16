@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
@@ -20,7 +20,10 @@ public partial class SouvenirModule
 
         var text = GetField<TextMesh>(comp, "ScreenText", isPublic: true).Get();
         var m = Regex.Match(text.text, @"^(\d), (\d)$");
-        yield return !m.Success ? throw new AbandonModuleException($"Unexpected text on Gray Button display: {text.text}") : (YieldInstruction) WaitForSolve;
+        if (!m.Success)
+            throw new AbandonModuleException($"Unexpected text on Gray Button display: {text.text}");
+
+        yield return WaitForSolve;
         yield return question(SGrayButton.Coordinates, args: ["horizontal"]).Answers(m.Groups[1].Value);
         yield return question(SGrayButton.Coordinates, args: ["vertical"]).Answers(m.Groups[2].Value);
     }

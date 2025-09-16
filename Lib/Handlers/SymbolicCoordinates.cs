@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -22,10 +22,10 @@ public partial class SouvenirModule
         var letter3 = GetField<string>(comp, "letter3").Get();
 
         var stageLetters = new[] { letter1.Split(' '), letter2.Split(' '), letter3.Split(' ') };
+        if (stageLetters.Any(x => x.Length != 3) || stageLetters.SelectMany(x => x).Any(y => !"ACELP".Contains(y)))
+            throw new AbandonModuleException($"One of the stages has fewer than 3 symbols or symbols are of unexpected value (expected symbols “ACELP”, got “{stageLetters.Select(x => $"“{x.JoinString()}”").JoinString(", ")}”).");
 
-        yield return stageLetters.Any(x => x.Length != 3) || stageLetters.SelectMany(x => x).Any(y => !"ACELP".Contains(y))
-            ? throw new AbandonModuleException($"One of the stages has fewer than 3 symbols or symbols are of unexpected value (expected symbols “ACELP”, got “{stageLetters.Select(x => $"“{x.JoinString()}”").JoinString(", ")}”).")
-            : (YieldInstruction) WaitForSolve;
+        yield return WaitForSolve;
         GetField<TextMesh>(comp, "lettersText", isPublic: true).Get().text = "";
         GetField<TextMesh>(comp, "digitsText", isPublic: true).Get().text = "";
 

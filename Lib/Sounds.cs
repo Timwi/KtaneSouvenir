@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,7 +118,7 @@ public static class Sounds
             var expr = Expression.Call(nullMod, method, arg1, arg2, Expression.Constant(32, typeof(int)));
             _injectAudio = Expression.Lambda<Action<List<AudioClip>, string>>(expr, arg1, arg2).Compile();
         }
-        _injectAudio(new List<AudioClip>() { clip }, $"{Generated}_{clip.name}");
+        _injectAudio([clip], $"{Generated}_{clip.name}");
         return clip;
     }
 

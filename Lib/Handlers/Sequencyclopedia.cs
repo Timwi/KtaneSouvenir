@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,8 +21,7 @@ public partial class SouvenirModule
 
         var maxSeqId = int.Parse(GetField<string>(comp, "Tridal").Get(str => str == "" ? "Tridal is empty, meaning module was unable to gather the amount of sequence" : null));
         var answer = GetField<string>(comp, "APass").Get();
-        var wrongAnswers = new HashSet<string>();
-        wrongAnswers.Add(answer);
+        var wrongAnswers = new HashSet<string> { answer };
         while (wrongAnswers.Count < 6)
             foreach (var ans in new AnswerGenerator.Integers(0, maxSeqId, "'A'000000").GetAnswers(this).Take(6 - wrongAnswers.Count))
                 wrongAnswers.Add(ans);

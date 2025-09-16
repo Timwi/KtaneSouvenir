@@ -62,7 +62,7 @@ public partial class SouvenirModule
                 if (count == 0)
                     myWrong = myWrong.Where(s => !s.Contains(which.ToString())).ToArray();
             }
-            yield return question(SConnectionCheck.Numbers).Answers([$"{q.x} {q.y}", $"{q.y} {q.x}"],preferredWrong:myWrong);
+            yield return question(SConnectionCheck.Numbers).Answers([$"{q.x} {q.y}", $"{q.y} {q.x}"], preferredWrong: myWrong);
         }
 
         var L = GetArrayField<GameObject>(comp, "L", true).Get(expectedLength: 4);

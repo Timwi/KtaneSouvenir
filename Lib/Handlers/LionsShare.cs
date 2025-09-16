@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -21,9 +21,10 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "LionsShareModule");
         var yearText = GetField<TextMesh>(comp, "Year", isPublic: true).Get().text;
-        yield return !int.TryParse(yearText, out var year) || year < 1 || year > 16
-            ? throw new AbandonModuleException($"Expected year number between 1 and 16; got: {yearText}")
-            : (YieldInstruction) WaitForSolve;
+        if (!int.TryParse(yearText, out var year) || year < 1 || year > 16)
+            throw new AbandonModuleException($"Expected year number between 1 and 16; got: {yearText}");
+
+        yield return WaitForSolve;
         var lionNames = GetArrayField<string>(comp, "_lionNames").Get(minLength: 2);
         var correctPortions = GetArrayField<int>(comp, "_correctPortions").Get(expectedLength: lionNames.Length);
         var removedLions = Enumerable.Range(0, lionNames.Length).Where(ix => correctPortions[ix] == 0).Select(ix => lionNames[ix]).ToArray();

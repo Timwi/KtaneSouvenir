@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -21,12 +21,14 @@ public partial class SouvenirModule
         var textFromCity = GetField<TextMesh>(comp, "TextFromCity", isPublic: true).Get();
         var textToCity = GetField<TextMesh>(comp, "TextToCity", isPublic: true).Get();
 
-        yield return fldFromCity.Get() != textFromCity.text || fldToCity.Get() != textToCity.text
-            ? throw new AbandonModuleException($"The city names don’t match up: “{fldFromCity.Get()}” vs. “{textFromCity.text}” and “{fldToCity.Get()}” vs. “{textToCity.text}”.")
-            : (YieldInstruction) WaitForSolve;
-        textFromCity.text = "WELL";
-        textToCity.text = "DONE!";
+        if (fldFromCity.Get() != textFromCity.text || fldToCity.Get() != textToCity.text)
+            throw new AbandonModuleException($"The city names don’t match up: “{fldFromCity.Get()}” vs. “{textFromCity.text}” and “{fldToCity.Get()}” vs. “{textToCity.text}”.");
+
+        yield return WaitForSolve;
         yield return question(STimezone.Cities, args: ["departure"]).Answers(fldFromCity.Get());
         yield return question(STimezone.Cities, args: ["destination"]).Answers(fldToCity.Get());
+
+        textFromCity.text = "WELL";
+        textToCity.text = "DONE!";
     }
 }

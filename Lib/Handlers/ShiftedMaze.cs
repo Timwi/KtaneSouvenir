@@ -23,9 +23,10 @@ public partial class SouvenirModule
 
         var colorblindTexts = GetArrayField<TextMesh>(comp, "colorblindTexts", isPublic: true).Get(expectedLength: 4).Select(c => c.text).ToArray();
         var invalid = colorblindTexts.IndexOf(c => !expectedCBTexts.Contains(c));
-        yield return invalid != -1
-            ? throw new AbandonModuleException($"Found unexpected color text: “{colorblindTexts[invalid]}”.")
-            : (YieldInstruction) WaitForSolve;
+        if (invalid != -1)
+            throw new AbandonModuleException($"Found unexpected color text: “{colorblindTexts[invalid]}”.");
+
+        yield return WaitForSolve;
         for (var corner = 0; corner < 4; corner++)
             yield return question(SShiftedMaze.Colors, args: [cornerNames[corner]]).Answers(colorNames[Array.IndexOf(expectedCBTexts, colorblindTexts[corner])]);
     }

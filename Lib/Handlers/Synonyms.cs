@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -19,9 +19,10 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "Synonyms");
         var numberText = GetField<TextMesh>(comp, "NumberText", isPublic: true).Get();
 
-        yield return numberText.text == null || !int.TryParse(numberText.text, out var number) || number < 0 || number > 9
-            ? throw new AbandonModuleException($"The display text (“{numberText.text ?? "<null>"}”) is not an integer 0–9.")
-            : (YieldInstruction) WaitForSolve;
+        if (numberText.text == null || !int.TryParse(numberText.text, out var number) || number < 0 || number > 9)
+            throw new AbandonModuleException($"The display text (“{numberText.text ?? "<null>"}”) is not an integer 0–9.");
+
+        yield return WaitForSolve;
         numberText.gameObject.SetActive(false);
         GetField<TextMesh>(comp, "BadLabel", isPublic: true).Get().text = "INPUT";
         GetField<TextMesh>(comp, "GoodLabel", isPublic: true).Get().text = "ACCEPTED";

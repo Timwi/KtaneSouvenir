@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -18,7 +17,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "DoubleScreenScript");
 
-        List<(int Top, int Bottom)> stages = new();
+        List<(int Top, int Bottom)> stages = [];
         module.Module.OnStrike += () => { stages.Clear(); return false; };
 
         yield return null;  // Ensures that the module’s Start() method has run

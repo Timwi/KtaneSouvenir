@@ -26,9 +26,10 @@ public partial class SouvenirModule
         var answer = displayMeshes.Select(x => x.text).FirstOrDefault(x => x is not "✓" and not "✗");
         var possibleAnswers = new[] { "A", "B", "C", "D", "E", "F" };
 
-        yield return !possibleAnswers.Contains(answer)
-            ? throw new AbandonModuleException($"Answer ‘{answer ?? "<null>"}’ is not of expected value ({possibleAnswers.JoinString(", ")}).")
-            : (YieldInstruction) WaitForSolve;
+        if (!possibleAnswers.Contains(answer))
+            throw new AbandonModuleException($"Answer ‘{answer ?? "<null>"}’ is not of expected value ({possibleAnswers.JoinString(", ")}).");
+
+        yield return WaitForSolve;
         for (var i = 0; i < 12; i++)
             if (displayMeshes[i].text == answer)
                 displayMeshes[i].text = "✓";
