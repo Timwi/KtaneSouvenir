@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -24,8 +24,8 @@ public partial class SouvenirModule
 
         var flavors = new[] { "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", "Wobbly Orange", "Wobbly Yellow", "Wobbly Green" };
 
-        addQuestions(module, Enumerable.Range(0, 9)
-            .Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon)
-            .Select(i => makeQuestion(SBeans.Colors, module, questionSprite: Sprites.GenerateGridSprite(3, 3, i), correctAnswers: new string[] { flavors[bns[i]] })));
+        for (var i = 0; i < 9; i++)
+            if (eaten[i].transform.localScale.magnitude <= Mathf.Epsilon)
+                yield return question(SBeans.Colors, questionSprite: Sprites.GenerateGridSprite(3, 3, i)).Answers(flavors[bns[i]]);
     }
 }

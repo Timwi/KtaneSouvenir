@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -17,9 +17,9 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "TheBigCircle");
         yield return WaitForSolve;
-        var source = GetField<Array>(comp, "_currentSolution").Get(v => v.Length != 3 ? "expected length 3" : null).Cast<object>();
 
+        var source = GetField<Array>(comp, "_currentSolution").Get(v => v.Length != 3 ? "expected length 3" : null);
         for (var ix = 0; ix < source.Length; ix++)
-            yield return question(SBigCircle.Colors, args: [Ordinal(ix + 1)]).Answers(source[ix].ToString());
+            yield return question(SBigCircle.Colors, args: [Ordinal(ix + 1)]).Answers(source.GetValue(ix).ToString());
     }
 }

@@ -19,6 +19,6 @@ public partial class SouvenirModule
         var positions = GetArrayField<int>(comp, "_buttonPositions").Get(expectedLength: 6);
 
         for (var stage = 0; stage < 6; stage++)
-            yield return question(SCyanButton.Positions, args: [Ordinal(stage + 1)]).Answers(SCyanButton.Positions.GetAttribute().AllAnswers[positions[stage]]);
+            yield return question(SCyanButton.Positions, args: [Ordinal(stage + 1)]).Answers(SCyanButton.Positions.GetAnswers()[positions[stage]]);
     }
 }

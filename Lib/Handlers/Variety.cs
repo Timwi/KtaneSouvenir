@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -219,7 +219,7 @@ public partial class SouvenirModule
 
         if (Array.IndexOf(itemTypes, "Timer") is var l and not -1)
         {
-            var timers = Array.IndexOf(itemTypes, "Timer", l + 1) is var x and not -1 ? (new[] { items[l], items[x] }) : (new[] { items[l] });
+            var timers = Array.IndexOf(itemTypes, "Timer", l + 1) is var x and not -1 ? [items[l], items[x]] : new[] { items[l] };
             var data = timers.Select(timer =>
             {
                 var a = GetField<int>(timer, "_a").Get(v => v is not 2 and not 3 and not 5 and not 7 ? $"Unknown timer A value {v}" : null);

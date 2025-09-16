@@ -67,7 +67,6 @@ public partial class SouvenirModule
             yield break;
         }
 
-        List<QandA> qs = new();
         for (var i = 0; i < 12; i++)
         {
             if (stages[i] is (0, 0))
@@ -82,12 +81,10 @@ public partial class SouvenirModule
                 translateString(SHickoryDickoryDock.Time, "the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}"),
                 stages[used].h, _hickoryDickoryDockMinutes[stages[used].m], $"{used + 1}:00");
 
-            qs.Add(makeQuestion(SHickoryDickoryDock.Time, module, formattedModuleName: format, formatArgs: new[] { $"{i + 1}:00" }, correctAnswers: new[] { $"{stages[i].h}:{_hickoryDickoryDockMinutes[stages[i].m]:00}" }));
+            yield return question(SHickoryDickoryDock.Time, args: [$"{i + 1}:00"]).Answers($"{stages[i].h}:{_hickoryDickoryDockMinutes[stages[i].m]:00}");
         }
 
         if (qs.Count == 0)
             yield return legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetIntField(comp, "moduleId").Get()}) was unique.");
-
-        addQuestions(module, qs);
     }
 }

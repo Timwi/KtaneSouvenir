@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -74,15 +74,12 @@ public partial class SouvenirModule
         {
             var ix = GetField<int?>(comp, "_mustSwapWith").Get(v => v is null or < 0 or > 4 ? "Expected number [0, 4]" : null);
             var usedCards = initialHand.Cast<object>().Select(toString).Concat(new[] { toString(swap) }).ToArray();
-            addQuestions(module,
-                makeQuestion(STAC.SwappedCard, module, correctAnswers: new[] { toString(initialHand[ix.Value]) }, formatArgs: new[] { "given away" }, allAnswers: validCards, preferredWrongAnswers: usedCards),
-                makeQuestion(STAC.SwappedCard, module, correctAnswers: new[] { toString(swap) }, formatArgs: new[] { "received" }, allAnswers: validCards, preferredWrongAnswers: usedCards));
+            yield return question(STAC.SwappedCard, args: ["given away"]).Answers(toString(initialHand[ix.Value]), all: validCards, preferredWrong: usedCards);
+            yield return question(STAC.SwappedCard, args: ["received"]).Answers(toString(swap), all: validCards, preferredWrong: usedCards);
         }
         else
         {
-            addQuestion(module, STAC.HeldCard,
-                correctAnswers: initialHand.Cast<object>().Select(toString).Except([toString(topCard)]).ToArray(),
-                allAnswers: validCards.Except([toString(topCard)]).ToArray());
+            yield return question(STAC.HeldCard).Answers(initialHand.Cast<object>().Select(toString).Except([toString(topCard)]).ToArray(), all: validCards.Except([toString(topCard)]).ToArray());
         }
     }
 }

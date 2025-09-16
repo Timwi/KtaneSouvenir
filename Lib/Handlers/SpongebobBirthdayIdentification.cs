@@ -35,7 +35,7 @@ public partial class SouvenirModule
         yield return new WaitForSeconds(.1f);
 
         var allNames = GetField<Texture[]>(comp, "allImages", isPublic: true).Get().Select(x => x.name).ToArray();
-        for (var ix = 0; ix < answers.Length; ix++)
+        for (var ix = 0; ix < answers.Count; ix++)
             yield return question(SSpongebobBirthdayIdentification.Children, args: [Ordinal(ix + 1)]).Answers(answers[ix], preferredWrong: allNames);
     }
 }

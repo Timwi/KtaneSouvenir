@@ -39,7 +39,7 @@ public partial class SouvenirModule
         var wrongModuleNames = Bomb.GetSolvableModuleNames().Distinct().ToList();
         // If there are less than 4 eligible modules, fill the remaining spaces with random other modules.
         if (wrongModuleNames.Count < 4)
-            wrongModuleNames.AddRange(Ut.Attributes.Select(a => a.Value.ModuleNameWithThe).Distinct());
+            wrongModuleNames.AddRange(Ut.Attributes.Select(a => a.Value.h.ModuleNameWithThe).Distinct());
         yield return question(SEncryptedHangman.Module).Answers(moduleName, preferredWrong: wrongModuleNames.ToArray());
 
         var encryptionMethodNames = new[] { "Caesar Cipher", "Playfair Cipher", "Rot-13 Cipher", "Atbash Cipher", "Affine Cipher", "Modern Cipher", "Vigenère Cipher" };

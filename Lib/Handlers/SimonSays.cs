@@ -21,7 +21,6 @@ public partial class SouvenirModule
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        module.SolveIndex = _modulesSolved.IncSafe("Simon");
 
         var colorNames = new[] { "red", "blue", "green", "yellow" };
         var sequence = GetArrayField<int>(comp, "currentSequence").Get(validator: arr => arr.Any(i => i < 0 || i >= colorNames.Length) ? "expected values 0–3" : null);

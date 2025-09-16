@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -40,7 +40,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        for (var stage = 0; stage < displayedNumberSets.Length; stage++)
+        for (var stage = 0; stage < displayedNumberSets.Count; stage++)
             yield return question(SAlphabetNumbers.DisplayedNumbers, args: [Ordinal(stage + 1)]).Answers(displayedNumberSets[stage], preferredWrong: allOptions.Take(stageOptionCounts[stage]).ToArray());
     }
 }

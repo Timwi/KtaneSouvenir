@@ -1,8 +1,8 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
 using static Souvenir.AnswerLayout;
+using Rnd = UnityEngine.Random;
 
 public enum SHereditaryBaseNotation
 {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -149,8 +149,8 @@ public partial class SouvenirModule
         var qp = Array.IndexOf(normalQuirks, finalQuirk);
         var isNormal = qp != -1;
         var answers = isNormal
-            ? KOYIV[qp].Select(b => allStandardAnswers[b])
-            : RGB[Array.IndexOf(abnormalQuirks, finalQuirk)].Select(constructRGBAnswer);
+            ? KOYIV[qp].Select(b => allStandardAnswers[b]).ToArray()
+            : RGB[Array.IndexOf(abnormalQuirks, finalQuirk)].Select(constructRGBAnswer).ToArray();
         if (!myFormat(finalQuirk, out var format))
             yield break;
         for (var i = 0; i < answers.Length; i++)

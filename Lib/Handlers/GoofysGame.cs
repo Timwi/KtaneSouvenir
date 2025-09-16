@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,7 +21,7 @@ public partial class SouvenirModule
         var nums = GetListField<int>(comp, "lightCodes").Get(expectedLength: 3, validator: v => v is < 0 or > 9 ? "Out of range [0, 9]" : null);
         var directions = new[] { "left", "center", "right" };
 
-        for (var i = 0; i < nums.Length; i++)
+        for (var i = 0; i < nums.Count; i++)
             yield return question(SGoofysGame.Number, args: [directions[i]]).Answers(nums[i].ToString());
     }
 }

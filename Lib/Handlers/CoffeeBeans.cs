@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,7 +20,7 @@ public partial class SouvenirModule
         var moves = GetListField<int>(comp, "moves").Get(minLength: 3, maxLength: 5, validator: v => v is < 0 or > 2 ? "Out of range [0, 2]" : null);
         var names = SCoffeeBeans.Movements.GetAnswers();
 
-        for (var i = 0; i < moves.Length; i++)
+        for (var i = 0; i < moves.Count; i++)
             yield return question(SCoffeeBeans.Movements, args: [Ordinal(i + 1)]).Answers(names[moves[i]]);
     }
 }

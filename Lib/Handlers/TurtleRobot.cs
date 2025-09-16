@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -37,8 +37,7 @@ public partial class SouvenirModule
         };
 
         yield return WaitForSolve;
-        var source = bugs.Take(2);
-        for (var ix = 0; ix < source.Length; ix++)
-            yield return question(STurtleRobot.CodeLines, args: [Ordinal(ix + 1)]).Answers(source[ix], preferredWrong: codeLines);
+        for (var ix = 0; ix < bugs.Count && ix < 2; ix++)
+            yield return question(STurtleRobot.CodeLines, args: [Ordinal(ix + 1)]).Answers(bugs[ix], preferredWrong: codeLines);
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -31,7 +31,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException(check);
 
         var formatArgs = new[] { "played in the first stage", "added in the second stage", "added in the third stage" };
-        for (var ix = 0; ix < calls.Length; ix++)
+        for (var ix = 0; ix < calls.Count; ix++)
             yield return question(SSimonSamples.Samples, args: [formatArgs[ix]]).Answers(SimonSamplesAudio[Array.IndexOf(possibleCalls, calls[ix].Substring(ix * 4))], all: SimonSamplesAudio.Skip(4 * ix).Take(4).ToArray());
     }
 }

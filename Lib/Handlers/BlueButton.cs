@@ -1,7 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SBlueButton
@@ -30,13 +31,19 @@ public enum SBlueButton
 
     [SouvenirQuestion("What was X in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Integers(1, 5)]
-    X
+    X,
+
+    [SouvenirDiscriminator("the Blue Button where Q was {0}", Arguments = ["Blue", "Green", "Cyan", "Red", "Magenta", "Yellow"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    DQ,
+
+    [SouvenirDiscriminator("the Blue Button where {0} was {1}")]
+    DOther
 }
 
 public partial class SouvenirModule
 {
     [SouvenirHandler("BlueButtonModule", "Blue Button", typeof(SBlueButton), "Timwi", AddThe = true)]
-    private IEnumerator<SouvenirInstruction> ProcessBlueButton(ModuleData module)
+    private IEnumerable<SouvenirInstruction> ProcessBlueButton(ModuleData module)
     {
         var comp = GetComponent(module, "BlueButtonScript");
 
@@ -55,44 +62,31 @@ public partial class SouvenirModule
         var valM = equationOffsets[3];  // 1–9
         var valN = colorStageColors.Length; // 4–9
         var valP = suitsGoal.Where(s => s != 3).Select(s => "♠♥♣"[s]).JoinString(); // permutation of ♠♥♣
-        var valQ = colorStageColors[3]; // 0–5; corresponds to a color in ‘colorNames’ above
+        var valQ = colorStageColors[3]; // 0–5, color
         var valX = equationOffsets[2];  // 1–5
 
-        _blueButtonInfos.Add((valD, valE, valF, valG, valH, valM, valN, valP, valQ, valX));
+        yield return new Discriminator(SBlueButton.DOther, "D", valD, ["D", valD.ToString()]);
+        yield return new Discriminator(SBlueButton.DOther, "E", valE, ["E", valE.ToString()]);
+        yield return new Discriminator(SBlueButton.DOther, "F", valF, ["F", valF.ToString()]);
+        yield return new Discriminator(SBlueButton.DOther, "G", valG, ["G", valG.ToString()]);
+        yield return new Discriminator(SBlueButton.DOther, "H", valH, ["H", valH.ToString()]);
+        yield return new Discriminator(SBlueButton.DOther, "M", valM, ["M", valM.ToString()]);
+        yield return new Discriminator(SBlueButton.DOther, "N", valN, ["N", valN.ToString()]);
+        yield return new Discriminator(SBlueButton.DOther, "P", valP, ["P", valP]);
+        yield return new Discriminator(SBlueButton.DQ, "Q", valQ, [colorNames[valQ]]);
+        yield return new Discriminator(SBlueButton.DOther, "X", valX, ["X", valX.ToString()]);
 
         yield return WaitForSolve;
 
-        var candidateDiscriminators = new List<(string format, string name)> { (null, null) };
-        void addCandidateDiscriminator<T>(Func<(int d, int e, int f, int g, int h, int m, int n, string p, int q, int x), T> getter, string name, T value, string valueReadable)
-        {
-            if (_blueButtonInfos.Count(tup => getter(tup).Equals(value)) == 1)
-                candidateDiscriminators.Add((string.Format(translateString(SBlueButton.D, "the Blue Button where {0} was {1}"), name, valueReadable), name));
-        }
-        addCandidateDiscriminator(tup => tup.d, "D", valD, valD.ToString());
-        addCandidateDiscriminator(tup => tup.e, "E", valE, valE.ToString());
-        addCandidateDiscriminator(tup => tup.f, "F", valF, valF.ToString());
-        addCandidateDiscriminator(tup => tup.g, "G", valG, valG.ToString());
-        addCandidateDiscriminator(tup => tup.h, "H", valH, valH.ToString());
-        addCandidateDiscriminator(tup => tup.m, "M", valM, valM.ToString());
-        addCandidateDiscriminator(tup => tup.n, "N", valN, valN.ToString());
-        addCandidateDiscriminator(tup => tup.p, "P", valP, valP);
-        addCandidateDiscriminator(tup => tup.q, "Q", valQ, translateString(SBlueButton.D, colorNames[valQ]));
-        addCandidateDiscriminator(tup => tup.x, "X", valX, valX.ToString());
-
-        QandA makeQ(Question q, string forbiddenDiscriminator, string correctAnswer, string[] formatArgs = null) =>
-            makeQuestion(q, module, formatArgs: formatArgs, correctAnswers: new[] { correctAnswer },
-                formattedModuleName: candidateDiscriminators.Where(tup => tup.name != forbiddenDiscriminator).PickRandom().format);
-
-        addQuestions(module,
-            makeQ(SBlueButton.EFGH, "E", valE.ToString(), formatArgs: new[] { "E" }),
-            makeQ(SBlueButton.EFGH, "F", valF.ToString(), formatArgs: new[] { "F" }),
-            makeQ(SBlueButton.EFGH, "G", valG.ToString(), formatArgs: new[] { "G" }),
-            makeQ(SBlueButton.EFGH, "H", valH.ToString(), formatArgs: new[] { "H" }),
-            makeQ(SBlueButton.D, "D", valD.ToString()),
-            makeQ(SBlueButton.M, "M", valM.ToString()),
-            makeQ(SBlueButton.N, "N", valN.ToString()),
-            makeQ(SBlueButton.P, "P", valP),
-            makeQ(SBlueButton.Q, "Q", colorNames[valQ]),
-            makeQ(SBlueButton.X, "X", valX.ToString()));
+        yield return question(SBlueButton.EFGH, args: ["E"]).AvoidDiscriminators("E").Answers(valE.ToString());
+        yield return question(SBlueButton.EFGH, args: ["F"]).AvoidDiscriminators("F").Answers(valF.ToString());
+        yield return question(SBlueButton.EFGH, args: ["G"]).AvoidDiscriminators("G").Answers(valG.ToString());
+        yield return question(SBlueButton.EFGH, args: ["H"]).AvoidDiscriminators("H").Answers(valH.ToString());
+        yield return question(SBlueButton.D).AvoidDiscriminators("D").Answers(valD.ToString());
+        yield return question(SBlueButton.M).AvoidDiscriminators("M").Answers(valM.ToString());
+        yield return question(SBlueButton.N).AvoidDiscriminators("N").Answers(valN.ToString());
+        yield return question(SBlueButton.P).AvoidDiscriminators("P").Answers(valP);
+        yield return question(SBlueButton.Q).AvoidDiscriminators("Q").Answers(colorNames[valQ]);
+        yield return question(SBlueButton.X).AvoidDiscriminators("X").Answers(valX.ToString());
     }
 }

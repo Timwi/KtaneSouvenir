@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -19,7 +19,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "Skewers");
 
         var color = GetListField<int>(comp, "GemColors").Get(expectedLength: 16, validator: v => v is < 0 or > 7 ? "Out of range [0, 7]" : null);
-        for (var i = 0; i < color.Length; i++)
+        for (var i = 0; i < color.Count; i++)
             yield return question(SSkewers.Color, questionSprite: Sprites.GenerateGridSprite(4, 4, i)).Answers(SSkewers.Color.GetAnswers()[color[i]]);
     }
 }

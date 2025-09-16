@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -36,7 +36,7 @@ public partial class SouvenirModule
 
         module.Module.OnStrike -= onstrike;
 
-        for (var i = 0; i < flashes.Length; i++)
+        for (var i = 0; i < flashes.Count; i++)
             yield return question(SSimplySimon.Flash, args: [Ordinal(i + 1)]).Answers(flashes[i], preferredWrong: flashes.ToArray());
     }
 }

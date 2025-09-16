@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -22,7 +22,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        for (var ix = 0; ix < assignedWheels.Length; ix++)
+        for (var ix = 0; ix < assignedWheels.Count; ix++)
             yield return question(SJewelVault.Wheels, args: ["ABCD".Substring(ix, 1)]).Answers((Array.IndexOf(wheels, assignedWheels[ix]) + 1).ToString());
     }
 }

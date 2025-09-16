@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,7 +22,7 @@ public partial class SouvenirModule
         var laserOrder = GetListField<int>(comp, "_laserOrder").Get(expectedLength: 9);
         var hatchesPressed = GetListField<int>(comp, "_hatchesAlreadyPressed").Get(expectedLength: 7);
         var hatchNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
-        for (var ix = 0; ix < hatchesPressed.Length; ix++)
+        for (var ix = 0; ix < hatchesPressed.Count; ix++)
             yield return question(SLasers.Hatches, args: [hatchNames[hatchesPressed[ix]]]).Answers(laserOrder[hatchesPressed[ix]].ToString(), preferredWrong: hatchesPressed.Select(number => laserOrder[number].ToString()).ToArray());
     }
 }

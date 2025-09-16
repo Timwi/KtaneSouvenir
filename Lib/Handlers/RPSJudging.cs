@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -91,7 +91,7 @@ public partial class SouvenirModule
 
         IEnumerable<QandA> makeQuestions()
         {
-            List<int> blueWins = new(), redWins = new(), draws = new();
+            List<int> blueWins = [], redWins = [], draws = [];
             for (var stage = 0; stage < leftDisplays.Count; stage++)
                 (matchup(leftDisplays[stage], rightDisplays[stage]) switch
                 {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -34,7 +34,7 @@ public partial class SouvenirModule
 
         if (vowels is "")
         {
-            addQuestion(module, SMssngvWls.MssNgvwL, correctAnswers: new[] { "AEIOU"[missingVowel].ToString() });
+            yield return question(SMssngvWls.MssNgvwL).Answers("AEIOU"[missingVowel].ToString());
             yield break;
         }
 

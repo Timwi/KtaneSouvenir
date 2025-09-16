@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -26,8 +26,9 @@ public partial class SouvenirModule
 
         var textMesh = GetArrayField<TextMesh>(comp, "mazeIndex", isPublic: true).Get(expectedLength: 36)[0];
         var info = new TextAnswerInfo(font: textMesh.font, fontTexture: textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture);
-        crashPlease_PUT_INFO_IN();
-        yield return question(SEncryptedMaze.Symbols, args: ["clockwise"]).Answers(markerCharacters[shapeCw, markerCw], preferredWrong: [markerCharacters[shapeCcw, markerCcw]]);
-        yield return question(SEncryptedMaze.Symbols, args: ["counter-clockwise"]).Answers(markerCharacters[shapeCcw, markerCcw], preferredWrong: [markerCharacters[shapeCw, markerCw]]);
+        yield return question(SEncryptedMaze.Symbols, args: ["clockwise"])
+            .Answers(markerCharacters[shapeCw, markerCw], preferredWrong: [markerCharacters[shapeCcw, markerCcw]], info: info);
+        yield return question(SEncryptedMaze.Symbols, args: ["counter-clockwise"])
+            .Answers(markerCharacters[shapeCcw, markerCcw], preferredWrong: [markerCharacters[shapeCw, markerCw]], info: info);
     }
 }

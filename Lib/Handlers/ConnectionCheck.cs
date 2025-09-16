@@ -4,6 +4,7 @@ using System.Linq;
 using Souvenir;
 using UnityEngine;
 using static Souvenir.AnswerLayout;
+using Rnd = UnityEngine.Random;
 
 public enum SConnectionCheck
 {
@@ -47,26 +48,22 @@ public partial class SouvenirModule
             }
         }
         var wrong = wrongAnswers().ToArray();
-        IEnumerable<QandA> qs()
+        foreach (var q in queries)
         {
-            foreach (var q in queries)
+            string format = null;
+            var myWrong = wrong;
+            var candidates = Enumerable.Range(1, 8).Where(i => q.x != i && q.y != i && _connectionCheckDigitCounts.Count(d => d[i] == allDigits[i]) == 1).ToArray();
+            if (candidates.Any() && Rnd.Range(0, 3) != 0)
             {
-                string format = null;
-                var myWrong = wrong;
-                var candidates = Enumerable.Range(1, 8).Where(i => q.x != i && q.y != i && _connectionCheckDigitCounts.Count(d => d[i] == allDigits[i]) == 1).ToArray();
-                if (candidates.Any() && UnityEngine.Random.Range(0, 3) != 0)
-                {
-                    var which = candidates.PickRandom();
-                    var count = allDigits[which];
-                    var phrase = new[] { "the Connection Check with no {0}s", "the Connection Check with one {0}", "the Connection Check with two {0}s", "the Connection Check with three {0}s", "the Connection Check with four {0}s" }[count];
-                    format = string.Format(translateString(SConnectionCheck.Numbers, phrase), which);
-                    if (count == 0)
-                        myWrong = myWrong.Where(s => !s.Contains(which.ToString())).ToArray();
-                }
-                yield return makeQuestion(SConnectionCheck.Numbers, module, formattedModuleName: format, correctAnswers: new[] { $"{q.x} {q.y}", $"{q.y} {q.x}" }, preferredWrongAnswers: myWrong);
+                var which = candidates.PickRandom();
+                var count = allDigits[which];
+                var phrase = new[] { "the Connection Check with no {0}s", "the Connection Check with one {0}", "the Connection Check with two {0}s", "the Connection Check with three {0}s", "the Connection Check with four {0}s" }[count];
+                format = string.Format(translateString(SConnectionCheck.Numbers, phrase), which);
+                if (count == 0)
+                    myWrong = myWrong.Where(s => !s.Contains(which.ToString())).ToArray();
             }
+            yield return question(SConnectionCheck.Numbers).Answers([$"{q.x} {q.y}", $"{q.y} {q.x}"],preferredWrong:myWrong);
         }
-        addQuestions(module, qs());
 
         var L = GetArrayField<GameObject>(comp, "L", true).Get(expectedLength: 4);
         var R = GetArrayField<GameObject>(comp, "R", true).Get(expectedLength: 4);

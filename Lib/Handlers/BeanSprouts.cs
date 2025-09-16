@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -27,11 +27,11 @@ public partial class SouvenirModule
 
         var flavors = new[] { "Raw", "Cooked", "Burnt" };
         var flavors2 = new[] { "Left", "None", "Right" };
-        IEnumerable<QandA> beansQ(int i)
-        {
-            yield return makeQuestion(SBeanSprouts.Colors, module, formatArgs: new string[] { (i + 1).ToString() }, correctAnswers: new string[] { flavors[bns[i] % 3] });
-            yield return makeQuestion(SBeanSprouts.Beans, module, formatArgs: new string[] { (i + 1).ToString() }, correctAnswers: new string[] { flavors2[bns[i] / 3] });
-        }
-        addQuestions(module, Enumerable.Range(0, 9).Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon).SelectMany(beansQ));
+        for (var i = 0; i < 9; i++)
+            if (eaten[i].transform.localScale.magnitude <= Mathf.Epsilon)
+            {
+                yield return question(SBeanSprouts.Colors, args: [(i + 1).ToString()]).Answers(flavors[bns[i] % 3]);
+                yield return question(SBeanSprouts.Beans, args: [(i + 1).ToString()]).Answers(flavors2[bns[i] / 3]);
+            }
     }
 }

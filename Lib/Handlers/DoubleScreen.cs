@@ -46,9 +46,10 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"Expected {stageCount} stages but found {stages.Count}.");
 
         var colorNames = new string[] { "Red", "Yellow", "Green", "Blue" };
-        addQuestions(module, stages.SelectMany((s, i) => new QandA[] {
-                makeQuestion(SDoubleScreen.Colors, module, correctAnswers: new[] { colorNames[s.Top] }, formatArgs: new[] { "top", Ordinal(i + 1) }),
-                makeQuestion(SDoubleScreen.Colors, module, correctAnswers: new[] { colorNames[s.Bottom] }, formatArgs: new[] { "bottom", Ordinal(i + 1) })
-        }));
+        for (var i = 0; i < stages.Count; i++)
+        {
+            yield return question(SDoubleScreen.Colors, args: ["top", Ordinal(i + 1)]).Answers(colorNames[stages[i].Top]);
+            yield return question(SDoubleScreen.Colors, args: ["bottom", Ordinal(i + 1)]).Answers(colorNames[stages[i].Bottom]);
+        }
     }
 }

@@ -22,7 +22,6 @@ public partial class SouvenirModule
         var currentCell = GetProperty<object>(comp, "CurrentCell", isPublic: true).Get();  // Need to get the current cell at the start.
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        module.SolveIndex = _modulesSolved.IncSafe("Maze");
 
         yield return question(SMaze.StartingPosition, args: ["column", "left"]).Answers((GetIntField(currentCell, "X", true).Get() + 1).ToString());
         yield return question(SMaze.StartingPosition, args: ["row", "top"]).Answers((GetIntField(currentCell, "Y", true).Get() + 1).ToString());

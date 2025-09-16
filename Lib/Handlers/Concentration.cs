@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -42,33 +42,24 @@ public partial class SouvenirModule
         if (swapCount < 1)
             yield return legitimatelyNoQuestion(module, "No swaps occurred.");
 
-        if (_moduleCounts[moduleId] == 1)
-            addQuestions(module, swappedPositions.Select(ix => makeQuestion(SConcentration.StartingDigit, moduleId, 1, questionSprite: Sprites.GenerateGridSprite(3, 5, ix), correctAnswers: new[] { (stage[ix] + 1).ToString() })));
-        else
+        var validUnique = Enumerable
+            .Range(0, 14)
+            .Where(ix => _concentrationStages.Count(s => s[ix] == stage[ix]) == 1)
+            .ToArray();
+
+        if (validUnique.Length is 0)
         {
-            var validUnique = Enumerable
-                .Range(0, 14)
-                .Where(ix => _concentrationStages.Count(s => s[ix] == stage[ix]) == 1)
-                .ToArray();
+            var id = GetIntField(comp, "_moduleId").Get(min: 0);
+            yield return legitimatelyNoQuestion(module, $"No position was unique for this one (#{id}).");
+        }
 
-            if (validUnique.Length is 0)
-            {
-                var id = GetIntField(comp, "_moduleId").Get(min: 0);
-                yield return legitimatelyNoQuestion(module, $"No position was unique for this one (#{id}).");
-            }
-
-            if (validUnique.Length == 1 && swappedPositions.Contains(validUnique[0]))
-                swappedPositions.Remove(validUnique[0]); // swappedPositions cannot have a single element
-
-            List<QandA> qs = new();
-            foreach (var ix in swappedPositions)
-            {
-                var unique = validUnique.Except([ix]).PickRandom();
-                var moduleName = string.Format(translateString(SConcentration.StartingDigit, "the Concentration which began with {1} in the {0} position (in reading order)"), Ordinal(unique + 1), stage[unique] + 1);
-                qs.Add(makeQuestion(SConcentration.StartingDigit, moduleId, 1, questionSprite: Sprites.GenerateGridSprite(3, 5, ix), correctAnswers: new[] { (stage[ix] + 1).ToString() }, formattedModuleName: moduleName));
-            }
-
-            addQuestions(module, qs);
+        if (validUnique.Length == 1 && swappedPositions.Contains(validUnique[0]))
+            swappedPositions.Remove(validUnique[0]); // swappedPositions cannot have a single element
+        foreach (var ix in swappedPositions)
+        {
+            var unique = validUnique.Except([ix]).PickRandom();
+            var moduleName = string.Format(translateString(SConcentration.StartingDigit, "the Concentration which began with {1} in the {0} position (in reading order)"), Ordinal(unique + 1), stage[unique] + 1);
+            yield return question(SConcentration.StartingDigit, questionSprite: Sprites.GenerateGridSprite(3, 5, ix)).Answers((stage[ix] + 1).ToString());
         }
     }
 }

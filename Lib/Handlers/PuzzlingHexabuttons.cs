@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -24,12 +24,12 @@ public partial class SouvenirModule
         var center = texts[6].text[0];
         if (center is < 'A' or > 'F')
             throw new AbandonModuleException($"Center button label ({center}) was not in \"ABCDEF\"");
-        var outer = GetArrayField<char>(comp, "solution").Get(expectedLength: 6, validator: v => v is < 'A' or > 'F' ? "Expected character in “ABCDEF”" : null);
 
+        var solution = GetArrayField<char>(comp, "solution").Get(expectedLength: 6, validator: v => v is < 'A' or > 'F' ? "Expected character in “ABCDEF”" : null);
         var formats = new[] { "top-left", "top-right", "middle-left", "middle-right", "bottom-left", "bottom-right", "center" };
-        var source = outer.Concat(new[] { center });
-        for (var i = 0; i < source.Length; i++)
-            yield return question(SPuzzlingHexabuttons.Letter, args: [formats[i]]).Answers(source[i].ToString());
+        var fullSolution = solution.Concat(new[] { center }).ToArray();
+        for (var i = 0; i < fullSolution.Length; i++)
+            yield return question(SPuzzlingHexabuttons.Letter, args: [formats[i]]).Answers(fullSolution[i].ToString());
 
         yield return null; // Allow other Souvenirs to grab the text
 

@@ -41,7 +41,6 @@ public partial class SouvenirModule
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
 
-        module.SolveIndex = _modulesSolved.IncSafe("WhosOnFirst");
         for (var stage = 0; stage < displayWords.Length; stage++)
             yield return question(SWhosOnFirst.Display, args: [Ordinal(stage + 1)]).Answers(displayWords[stage], preferredWrong: displayWords);
     }

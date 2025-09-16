@@ -32,6 +32,6 @@ public partial class SouvenirModule
         if (answers.Count < 4)
             legitimatelyNoQuestion(module, "The answer was the same as the initial state.");
         else
-            addQuestion(module, SShapeShift.InitialShape, correctAnswers: new[] { ((char) ('A' + stR + (4 * stL))).ToString() }, preferredWrongAnswers: answers.ToArray());
+            yield return question(SShapeShift.InitialShape).Answers(((char) ('A' + stR + (4 * stL))).ToString() ,preferredWrong:answers.ToArray());
     }
 }

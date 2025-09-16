@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,7 +22,7 @@ public partial class SouvenirModule
         var rotationNames = new[] { "rotate cw", "tip left", "tip backwards", "rotate ccw", "tip right", "tip forwards" };
         var allRotations = rotations.Select(r => rotationNames[r]).ToArray();
 
-        for (var ix = 0; ix < rotations.Length; ix++)
+        for (var ix = 0; ix < rotations.Count; ix++)
             yield return question(SCube.Rotations, args: [Ordinal(ix + 1)]).Answers(rotationNames[rotations[ix]], preferredWrong: allRotations);
     }
 }
