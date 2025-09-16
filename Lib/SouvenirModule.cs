@@ -953,7 +953,6 @@ public partial class SouvenirModule : MonoBehaviour
                 if (discrs == null || discrs.Length == 0)
                 {
                     Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because there was no applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with answers [{answerSet.DebugAnswers.JoinString(", ")}].");
-                    _showWarning = true;
                     yield break;
                 }
                 // if this is false, the solve-count discriminator was picked and ‘moduleFormat’ stays null for now

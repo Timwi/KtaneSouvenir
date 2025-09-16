@@ -22,20 +22,19 @@ public partial class SouvenirModule
         //RBVG
         var split = GetArrayField<bool[]>(comp, "split").Get(arr => arr.Length != 5 ? "Wrong outer array size" : arr.All(a => a.Length == 4) ? null : "Wrong inner array size");
         var arrange = GetField<int[,]>(comp, "arrange").Get(arr => arr.Length == 84 ? null : "Bad arrange size");
-        var qs = new List<QandA>();
         var dirs = new[] { new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(1, 1), new Vector2Int(0, 1) };
         var colors = new[] { "Red", "Blue", "Violet", "Green" };
         for (var a = 0; a < 4; a++)
         {
             if (split[0][a])
             {
-                qs.Add(makeQuestion(SSimonSubdivides.Button, module, questionSprite: Sprites.GenerateGridSprite(new Coord(2, 2, dirs[a].x, dirs[a].y)), correctAnswers: new[] { colors[arrange[0, a]] }, questionSpriteRotation: 45f));
+                yield return question(SSimonSubdivides.Button, questionSprite: Sprites.GenerateGridSprite(new Coord(2, 2, dirs[a].x, dirs[a].y)), questionSpriteRotation: 45f)
+                    .Answers(colors[arrange[0, a]]);
                 for (var b = 0; b < 4; b++)
                     if (split[a + 1][b])
-                        qs.Add(makeQuestion(SSimonSubdivides.Button, module, questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, dirs[a].x * 2 + dirs[b].x, dirs[a].y * 2 + dirs[b].y)), correctAnswers: new[] { colors[arrange[a + 1, b]] }, questionSpriteRotation: 45f));
+                        yield return question(SSimonSubdivides.Button, questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, dirs[a].x * 2 + dirs[b].x, dirs[a].y * 2 + dirs[b].y)), questionSpriteRotation: 45f)
+                            .Answers(colors[arrange[a + 1, b]]);
             }
         }
-
-        addQuestions(module, qs);
     }
 }

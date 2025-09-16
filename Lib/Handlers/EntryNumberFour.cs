@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -19,11 +18,11 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "EntryNumberFourScript");
         yield return WaitForSolve;
 
-        var num1 = GetIntField(comp, "Num1").Get().ToString("00000000");
-        var num2 = GetIntField(comp, "Num2").Get().ToString("00000000");
-        var num3 = GetIntField(comp, "Num3").Get().ToString("00000000");
-
-        addQuestions(module, new[] { num1, num2, num3 }.SelectMany((n, i) => Enumerable.Range(0, 8).Select(d =>
-            makeQuestion(SEntryNumberFour.Digits, module, formatArgs: new[] { Ordinal(d + 1), Ordinal(i + 1) }, correctAnswers: new[] { n[d].ToString() }))));
+        for (var i = 0; i < 3; i++)
+        {
+            var number = GetIntField(comp, $"Num{i + 1}").Get().ToString("00000000");
+            for (var d = 0; d < 8; d++)
+                yield return question(SEntryNumberFour.Digits, args: [Ordinal(d + 1), Ordinal(i + 1)]).Answers(number[d].ToString());
+        }
     }
 }

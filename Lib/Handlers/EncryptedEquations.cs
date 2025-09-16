@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,12 +19,14 @@ public partial class SouvenirModule
 
         var equation = GetField<object>(comp, "CurrentEquation").Get();
 
-        addQuestions(module, new[] { "LeftOperand", "MiddleOperand", "RightOperand" }
-            .Select(fldName => GetField<object>(equation, fldName, isPublic: true).Get())
-            .Select(op => GetField<object>(op, "Shape", isPublic: true).Get())
-            .Select(sh => GetIntField(sh, "TextureIndex", isPublic: true).Get(min: -1, max: EncryptedEquationsSprites.Length - 1))
-            .Select((txIx, opIx) => txIx == -1 ? null : new { Shape = EncryptedEquationsSprites[txIx], Ordinal = Ordinal(opIx + 1) })
-            .Where(inf => inf != null)
-            .Select(inf => makeQuestion(SEncryptedEquations.Shapes, module, formatArgs: new[] { inf.Ordinal }, correctAnswers: new[] { inf.Shape }, preferredWrongAnswers: EncryptedEquationsSprites)));
+        var fldNames = new[] { "LeftOperand", "MiddleOperand", "RightOperand" };
+        for (var opIx = 0; opIx < fldNames.Length; opIx++)
+        {
+            var operand = GetField<object>(equation, fldNames[opIx], isPublic: true).Get();
+            var shape = GetField<object>(operand, "Shape", isPublic: true).Get();
+            if (GetIntField(shape, "TextureIndex", isPublic: true).Get(min: -1, max: EncryptedEquationsSprites.Length - 1) is int textureIx and not -1)
+                yield return question(SEncryptedEquations.Shapes, args: [Ordinal(opIx + 1)])
+                    .Answers(EncryptedEquationsSprites[textureIx], preferredWrong: EncryptedEquationsSprites);
+        }
     }
 }
