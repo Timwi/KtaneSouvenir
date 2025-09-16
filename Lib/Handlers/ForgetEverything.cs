@@ -34,9 +34,6 @@ public partial class SouvenirModule
         if (myFirstDisplay.Length != 10)
             throw new AbandonModuleException($"First element of ‘DialDisplay’ had length {myFirstDisplay.Length}, when I expected length 10.");
 
-        for (var pos = 0; pos < myFirstDisplay.Length; pos++)
-            yield return new Discriminator(SForgetEverything.DStageOneDisplay, $"digit{pos}", myFirstDisplay[pos], [Ordinal(pos + 1), myFirstDisplay[pos].ToString()]);
-
         yield return WaitForUnignoredModules;
 
         var stageOrdering = GetArrayField<int>(comp, "StageOrdering").Get();
@@ -45,6 +42,9 @@ public partial class SouvenirModule
             yield return legitimatelyNoQuestion(module, "Stage one was not displayed before non-ignored modules were solved.");
 
         for (var pos = 0; pos < myFirstDisplay.Length; pos++)
+        {
+            yield return new Discriminator(SForgetEverything.DStageOneDisplay, $"digit{pos}", myFirstDisplay[pos], [Ordinal(pos + 1), myFirstDisplay[pos].ToString()]);
             yield return question(SForgetEverything.QStageOneDisplay, args: [Ordinal(pos + 1)]).AvoidDiscriminators($"digit{pos}").Answers(myFirstDisplay[pos].ToString());
+        }
     }
 }
