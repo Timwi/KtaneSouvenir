@@ -38,3 +38,8 @@ public sealed class SouvenirYieldInstruction(YieldInstruction obj) : SouvenirIns
 {
     public YieldInstruction Object { get; } = obj;
 }
+
+public sealed class LegitimatelyNoQuestionInstruction : SouvenirInstruction
+{
+    public static LegitimatelyNoQuestionInstruction Instance = new();
+}

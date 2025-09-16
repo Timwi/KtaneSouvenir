@@ -1123,7 +1123,7 @@ public partial class SouvenirModule : MonoBehaviour
     {
         Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because: {logMessage}");
         _legitimatelyNoQuestions.Add(module);
-        return new();
+        return LegitimatelyNoQuestionInstruction.Instance;
     }
     /// <summary>
     /// Indicates that this handler can't generate a question, but that that's no an error.
