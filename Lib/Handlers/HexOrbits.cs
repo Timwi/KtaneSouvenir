@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -20,9 +20,10 @@ public partial class SouvenirModule
 
         var stages = GetArrayField<int>(comp, "stageValues").Get(expectedLength: 5, validator: v => v is < 0 or > 15 ? $"Bad stage value {v}" : null);
         var shapes = new[] { "Square", "Pentagon", "Hexagon", "Heptagon" };
-        addQuestions(module, stages.Take(4).SelectMany((s, i) => new[] {
-            makeQuestion(SHexOrbits.Shape, module, formatArgs: new[] { "slow", Ordinal(i + 1) }, correctAnswers: new[] { shapes[s / 4] }),
-            makeQuestion(SHexOrbits.Shape, module, formatArgs: new[] { "fast", Ordinal(i + 1) }, correctAnswers: new[] { shapes[s % 4] })
-        }));
+        for (var i = 0; i < 4; i++)
+        {
+            yield return question(SHexOrbits.Shape, args: ["slow", Ordinal(i + 1)]).Answers(shapes[stages[i] / 4]);
+            yield return question(SHexOrbits.Shape, args: ["fast", Ordinal(i + 1)]).Answers(shapes[stages[i] % 4]);
+        }
     }
 }

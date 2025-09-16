@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
@@ -56,13 +57,11 @@ public partial class SouvenirModule
         }
 
         solved:
-        var qs = new List<QandA>();
         for (var i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(SSeaShells.Question1, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { new[] { "she sells", "she shells", "sea shells", "sea sells" }[rows[i]] }));
-            qs.Add(makeQuestion(SSeaShells.Question2, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { new[] { "sea shells", "she shells", "sea sells", "she sells" }[cols[i]] }));
-            qs.Add(makeQuestion(SSeaShells.Question3, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { new[] { "sea shore", "she sore", "she sure", "seesaw" }[keynums[i]] }));
+            yield return question(SSeaShells.Question1, args: [Ordinal(i + 1)]).Answers(new[] { "she sells", "she shells", "sea shells", "sea sells" }[rows[i]]);
+            yield return question(SSeaShells.Question2, args: [Ordinal(i + 1)]).Answers(new[] { "sea shells", "she shells", "sea sells", "she sells" }[cols[i]]);
+            yield return question(SSeaShells.Question3, args: [Ordinal(i + 1)]).Answers(new[] { "sea shore", "she sore", "she sure", "seesaw" }[keynums[i]]);
         }
-        addQuestions(module, qs);
     }
 }

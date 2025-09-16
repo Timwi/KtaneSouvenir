@@ -115,6 +115,7 @@ public partial class SouvenirModule : MonoBehaviour
     private Config _config;
     private readonly List<QandA> _questions = [];
     private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = [];
+    private readonly HashSet<string> _supportedModuleNames = [];
     private readonly HashSet<string> _ignoredModuleIDs = [];
     private bool _isActivated = false;
     private ITranslation _translation;
@@ -825,6 +826,7 @@ public partial class SouvenirModule : MonoBehaviour
         if (!_moduleTypeInfo.TryGetValue(moduleType, out var info))
             info = _moduleTypeInfo[moduleType] = new();
         info.NumModules++;
+        _supportedModuleNames.Add(module.ModuleDisplayName);
 
         yield return null;  // Ensures that the module’s Start() method has run
         Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Start processing.");

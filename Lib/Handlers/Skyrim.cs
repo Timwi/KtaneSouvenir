@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -50,7 +50,7 @@ public partial class SouvenirModule
         {
             var list = flds[i].Get(expectedLength: 3);
             var correct = fldsCorrect[i].Get();
-            qs.Add(makeQuestion(questions[i], module, correctAnswers: list.Except([correct]).Select(t => t.name.Replace("'", "’")).ToArray()));
+            yield return question(questions[i]).Answers(list.Except([correct]).Select(t => t.name.Replace("'", "’")).ToArray());
         }
         var shoutNames = GetListField<string>(comp, "shoutNameOptions").Get(expectedLength: 3);
         yield return question(SSkyrim.DragonShout).Answers(shoutNames.Except([GetField<string>(comp, "shoutName").Get()]).Select(n => n.Replace("'", "’")).ToArray());

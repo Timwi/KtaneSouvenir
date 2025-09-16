@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -31,11 +31,17 @@ public partial class SouvenirModule
         var stage4Flash = flashList.Invoke(4);
         var stage5Flash = flashList.Invoke(5);
 
-        addQuestions(module, indicators.Select((ans, i) => makeQuestion(SSimonStages.Indicator, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ans }))
-            .Concat(stage1Flash.Select((ans, i) => makeQuestion(SSimonStages.Flashes, module, formatArgs: new[] { Ordinal(i + 1), "first" }, correctAnswers: new[] { ans })))
-            .Concat(stage2Flash.Select((ans, i) => makeQuestion(SSimonStages.Flashes, module, formatArgs: new[] { Ordinal(i + 1), "second" }, correctAnswers: new[] { ans })))
-            .Concat(stage3Flash.Select((ans, i) => makeQuestion(SSimonStages.Flashes, module, formatArgs: new[] { Ordinal(i + 1), "third" }, correctAnswers: new[] { ans })))
-            .Concat(stage4Flash.Select((ans, i) => makeQuestion(SSimonStages.Flashes, module, formatArgs: new[] { Ordinal(i + 1), "4th" }, correctAnswers: new[] { ans })))
-            .Concat(stage5Flash.Select((ans, i) => makeQuestion(SSimonStages.Flashes, module, formatArgs: new[] { Ordinal(i + 1), "5th" }, correctAnswers: new[] { ans }))));
+        for (var i = 0; i < indicators.Count; i++)
+            yield return question(SSimonStages.Indicator, args: [Ordinal(i + 1)]).Answers(indicators[i]);
+        for (var i = 0; i < stage1Flash.Count; i++)
+            yield return question(SSimonStages.Flashes, args: [Ordinal(i + 1), Ordinal(1)]).Answers(stage1Flash[i]);
+        for (var i = 0; i < stage2Flash.Count; i++)
+            yield return question(SSimonStages.Flashes, args: [Ordinal(i + 1), Ordinal(2)]).Answers(stage2Flash[i]);
+        for (var i = 0; i < stage3Flash.Count; i++)
+            yield return question(SSimonStages.Flashes, args: [Ordinal(i + 1), Ordinal(3)]).Answers(stage3Flash[i]);
+        for (var i = 0; i < stage4Flash.Count; i++)
+            yield return question(SSimonStages.Flashes, args: [Ordinal(i + 1), Ordinal(4)]).Answers(stage4Flash[i]);
+        for (var i = 0; i < stage5Flash.Count; i++)
+            yield return question(SSimonStages.Flashes, args: [Ordinal(i + 1), Ordinal(5)]).Answers(stage5Flash[i]);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -61,9 +61,9 @@ public partial class SouvenirModule
             ["sea shells", "she shells", "sea sells", "she sells"],
             ["sea shore", "she sore", "she sure", "seesaw", "seizure", "shell sea", "steep store", "sheer sort", "seed spore", "sieve horn", "steel sword"]);
 
-        addQuestions(module, Enumerable.Range(0, 3).SelectMany(i =>
-            new[] { SMoneyGame.Question1, SMoneyGame.Question2, SMoneyGame.Question3 }.Select((q, qi) =>
-                makeQuestion(q, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { possibleAnswers[qi][data[i][qi]] })
-            )));
+        var qs = new[] { SMoneyGame.Question1, SMoneyGame.Question2, SMoneyGame.Question3 };
+        for (var i = 0; i < 3; i++)
+            for (var qi = 0; qi < qs.Length; qi++)
+                yield return question(qs[qi], args: [Ordinal(i + 1)]).Answers(possibleAnswers[qi][data[i][qi]]);
     }
 }

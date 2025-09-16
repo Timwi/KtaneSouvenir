@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -19,7 +19,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var noteNames = new[] { "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B" };
-        var flashingColorSequences = GetArrayField<int[]>(comp, "_flashingColors").Get(expectedLength: 3, validator: seq => seq.Any(col => col < 0 || col >= noteNames.Length) ? $"expected range 0–{noteNames.Length - 1}" : null);
-        addQuestions(module, flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(SSimonSings.Flashing, module, formatArgs: new[] { Ordinal(ix + 1), Ordinal(stage + 1) }, correctAnswers: new[] { noteNames[col] }))));
+        var flashingColorSequences = GetArrayField<int[]>(comp, "_flashingColors")
+            .Get(expectedLength: 3, validator: seq => seq.Any(col => col < 0 || col >= noteNames.Length) ? $"expected range 0–{noteNames.Length - 1}" : null);
+        for (var stage = 0; stage < flashingColorSequences.Length; stage++)
+            for (var ix = 0; ix < flashingColorSequences[stage].Length; ix++)
+                yield return question(SSimonSings.Flashing, args: [Ordinal(ix + 1), Ordinal(stage + 1)]).Answers(noteNames[flashingColorSequences[stage][ix]]);
     }
 }

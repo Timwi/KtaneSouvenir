@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -50,14 +50,9 @@ public partial class SouvenirModule
         if (usedWords.Any(s => s is -1) || usedColors.Any(s => s is -1))
             throw new AbandonModuleException($"A stage was somehow missed ({usedWords.Stringify()}), ({usedColors.Stringify()})");
 
-        addQuestions(module,
-            usedWords.Select((w, i) =>
-                makeQuestion(SStroopsTest.Word, module,
-                    correctAnswers: new[] { SStroopsTest.Word.GetAnswers()[w] },
-                    formatArgs: new[] { Ordinal(i + 1) }))
-            .Concat(usedColors.Select((c, i) =>
-                makeQuestion(SStroopsTest.Color, module,
-                    correctAnswers: new[] { SStroopsTest.Color.GetAnswers()[c] },
-                    formatArgs: new[] { Ordinal(i + 1) }))));
+        for (var i = 0; i < usedWords.Length; i++)
+            yield return question(SStroopsTest.Word, args: [Ordinal(i + 1)]).Answers(SStroopsTest.Word.GetAnswers()[usedWords[i]]);
+        for (var i = 0; i < usedColors.Length; i++)
+            yield return question(SStroopsTest.Color, args: [Ordinal(i + 1)]).Answers(SStroopsTest.Color.GetAnswers()[usedColors[i]]);
     }
 }

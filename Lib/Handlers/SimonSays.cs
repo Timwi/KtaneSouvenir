@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SSimonSays
@@ -23,7 +23,7 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "red", "blue", "green", "yellow" };
         var sequence = GetArrayField<int>(comp, "currentSequence").Get(validator: arr => arr.Any(i => i < 0 || i >= colorNames.Length) ? "expected values 0–3" : null);
-        addQuestions(module, Enumerable.Range(0, sequence.Length).Select(i =>
-            makeQuestion(SSimonSays.Flash, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorNames[sequence[i]] })));
+        for (var i = 0; i < sequence.Length; i++)
+            yield return question(SSimonSays.Flash, args: [Ordinal(i + 1)]).Answers(colorNames[sequence[i]]);
     }
 }

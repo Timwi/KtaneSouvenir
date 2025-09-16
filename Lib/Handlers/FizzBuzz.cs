@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -35,22 +35,19 @@ public partial class SouvenirModule
         }
 
         yield return WaitForSolve;
-
-        var qs = new List<QandA>();
         var displays = new[] { "top", "middle", "bottom" };
+        var any = false;
         for (var pos = 0; pos < 3; pos++)
-        {
             if (labelTexts[pos] != labels[pos].text)
             {
                 for (var digit = 0; digit < 6; digit++)
-                    qs.Add(makeQuestion(SFizzBuzz.DisplayedNumbers, module, formatArgs: new[] { Ordinal(digit + 1), displays[pos] }, correctAnswers: new[] { displayedDigits[pos][digit].ToString() }));
+                    yield return question(SFizzBuzz.DisplayedNumbers, args: [Ordinal(digit + 1), displays[pos]]).Answers(displayedDigits[pos][digit].ToString());
                 if (!labels[pos].text.ToLowerInvariant().Contains("buzz")) // Do not ask about the last digit if the answer was buzz because there are only two possible correct answers.
-                    qs.Add(makeQuestion(SFizzBuzz.DisplayedNumbers, module, formatArgs: new[] { "7th", displays[pos] }, correctAnswers: new[] { displayedDigits[pos][6].ToString() }));
+                    yield return question(SFizzBuzz.DisplayedNumbers, args: ["7th", displays[pos]]).Answers(displayedDigits[pos][6].ToString());
+                any = true;
             }
-        }
-        if (qs.Count == 0)
-            legitimatelyNoQuestion(module, "All of the numbers remained on the display.");
-        else
-            addQuestions(module, qs);
+
+        if (!any)
+            yield return legitimatelyNoQuestion(module, "All of the numbers remained on the display.");
     }
 }

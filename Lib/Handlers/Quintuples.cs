@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -31,9 +31,11 @@ public partial class SouvenirModule
         var colorCounts = GetArrayField<int>(comp, "numberOfEachColour", isPublic: true).Get(expectedLength: 5, validator: cc => cc is < 0 or > 25 ? "expected range 0–25" : null);
         var colorNames = GetArrayField<string>(comp, "potentialColorsName", isPublic: true).Get(expectedLength: 5);
 
-        addQuestions(module,
-            numbers.Select((n, ix) => makeQuestion(SQuintuples.Numbers, module, formatArgs: new[] { Ordinal(ix % 5 + 1), Ordinal(ix / 5 + 1) }, correctAnswers: new[] { (n % 10).ToString() })).Concat(
-            colors.Select((color, ix) => makeQuestion(SQuintuples.Colors, module, formatArgs: new[] { Ordinal(ix % 5 + 1), Ordinal(ix / 5 + 1) }, correctAnswers: new[] { color }))).Concat(
-            colorCounts.Select((cc, ix) => makeQuestion(SQuintuples.ColorCounts, module, formatArgs: new[] { colorNames[ix] }, correctAnswers: new[] { cc.ToString() }))));
+        for (var ix = 0; ix < numbers.Length; ix++)
+            yield return question(SQuintuples.Numbers, args: [Ordinal(ix % 5 + 1), Ordinal(ix / 5 + 1)]).Answers((numbers[ix] % 10).ToString());
+        for (var ix = 0; ix < colors.Length; ix++)
+            yield return question(SQuintuples.Colors, args: [Ordinal(ix % 5 + 1), Ordinal(ix / 5 + 1)]).Answers(colors[ix]);
+        for (var ix = 0; ix < colorCounts.Length; ix++)
+            yield return question(SQuintuples.ColorCounts, args: [colorNames[ix]]).Answers(colorCounts[ix].ToString());
     }
 }

@@ -41,11 +41,9 @@ public partial class SouvenirModule
         }
 
         var position = new[] { "left", "middle", "right" };
-        addQuestions(module, stageLetters.SelectMany((letters, stage) => letters.Select((letter, pos) => makeQuestion(
-            SSymbolicCoordinates.ymbols,
-            module,
-            formatArgs: new[] { position[pos], Ordinal(stage + 1) },
-            correctAnswers: new[] { SymbolicCoordinatesSprites["ACELP".IndexOf(letter, StringComparison.Ordinal)] },
-            preferredWrongAnswers: SymbolicCoordinatesSprites))));
+        for (var stage = 0; stage < stageLetters.Length; stage++)
+            for (var pos = 0; pos < stageLetters[stage].Length; pos++)
+                yield return question(SSymbolicCoordinates.ymbols, args: [position[pos], Ordinal(stage + 1)])
+                    .Answers(SymbolicCoordinatesSprites["ACELP".IndexOf(stageLetters[stage][pos], StringComparison.Ordinal)], preferredWrong: SymbolicCoordinatesSprites);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -28,9 +28,9 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"Expected 16 distinct gates, got {gates.Stringify()}");
 
         var gateNames = new[] { "OFF", "ON" };
-        addQuestions(module, gates
-            .Select((g, i) => g is not 0 and not 15 ? null : makeQuestion(SSimonSwizzles.Button, module, correctAnswers: new[] { Sprites.GenerateGridSprite(4, 4, i) }, formatArgs: new[] { gateNames[g / 15] }))
-            .Where(q => q != null)
-            .Concat(new[] { makeQuestion(SSimonSwizzles.Number, module, correctAnswers: new[] { hidden }) }));
+        for (var i = 0; i < gates.Length; i++)
+            if (gates[i] is 0 or 15)
+                yield return question(SSimonSwizzles.Button, args: [gateNames[gates[i] / 15]]).Answers(Sprites.GenerateGridSprite(4, 4, i));
+        yield return question(SSimonSwizzles.Number).Answers(hidden);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -13,10 +13,13 @@ public enum SKeypadSequence
 
 public partial class SouvenirModule
 {
+    private static Sprite[] _keypadSequenceSprites;
+
     [SouvenirHandler("keypadSeq", "Keypad Sequence", typeof(SKeypadSequence), "Anonymous")]
     private IEnumerator<SouvenirInstruction> ProcessKeypadSequence(ModuleData module)
     {
         var comp = GetComponent(module, "KeypadSeqScript");
+
         _keypadSequenceSprites ??= GetArrayField<Material>(comp, "symbols", true)
             .Get(expectedLength: 36).Select(m => ((Texture2D) m.mainTexture).Recolor().ToSprite()).ToArray();
 
@@ -24,12 +27,9 @@ public partial class SouvenirModule
 
         var symbols = GetArrayField<int>(comp, "symbselect").Get(expectedLength: 16, validator: v => v is < 0 or > 35 ? "Expected range 0–35" : null);
 
-        addQuestions(module, Enumerable.Range(0, 4).SelectMany(p =>
-            symbols.Skip(4 * p).Take(4).Select((s, i) =>
-                makeQuestion(SKeypadSequence.Labels, module,
-                    correctAnswers: new[] { _keypadSequenceSprites[s] },
-                    formatArgs: new[] { Ordinal(p + 1) },
-                    questionSprite: Sprites.GenerateGridSprite(2, 2, i),
-                    allAnswers: _keypadSequenceSprites))));
+        for (var p = 0; p < 4; p++)
+            for (var i = 0; i < p; i++)
+                yield return question(SKeypadSequence.Labels, args: [Ordinal(p + 1)], questionSprite: Sprites.GenerateGridSprite(2, 2, i))
+                    .Answers(_keypadSequenceSprites[symbols[4 * p + i]], all: _keypadSequenceSprites);
     }
 }

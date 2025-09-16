@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -59,10 +59,15 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"I missed a stage: ({stages.Stringify()}), ({pivots.Stringify()})");
 
         var colors = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
-        addQuestions(module, stages.SelectMany((stage, stageIx) => stage.SelectMany((key, keyIx) => Ut.NewArray(
-                makeQuestion(SReorderedKeys.KeyColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[0]] }),
-                makeQuestion(SReorderedKeys.LabelColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[2]] }),
-                makeQuestion(SReorderedKeys.Label, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { (key[1] + 1).ToString() })))
-            .Concat(new[] { makeQuestion(SReorderedKeys.Pivot, module, formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { OrderedKeysSprites[pivots[stageIx]] }) })));
+        for (var stageIx = 0; stageIx < stages.Length; stageIx++)
+        {
+            for (var keyIx = 0; keyIx < stages[stageIx].Length; keyIx++)
+            {
+                yield return question(SReorderedKeys.KeyColor, args: [Ordinal(stageIx + 1)], questionSprite: OrderedKeysSprites[keyIx]).Answers(colors[stages[stageIx][keyIx][0]]);
+                yield return question(SReorderedKeys.LabelColor, args: [Ordinal(stageIx + 1)], questionSprite: OrderedKeysSprites[keyIx]).Answers(colors[stages[stageIx][keyIx][2]]);
+                yield return question(SReorderedKeys.Label, args: [Ordinal(stageIx + 1)], questionSprite: OrderedKeysSprites[keyIx]).Answers((stages[stageIx][keyIx][1] + 1).ToString());
+            }
+            yield return question(SReorderedKeys.Pivot, args: [Ordinal(stageIx + 1)]).Answers(OrderedKeysSprites[pivots[stageIx]]);
+        }
     }
 }

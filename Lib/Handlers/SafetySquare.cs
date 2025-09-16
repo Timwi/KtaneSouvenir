@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -35,8 +35,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var qs = colors.Select((col, ix) => makeQuestion(SSafetySquare.Digits, module, formatArgs: new[] { col }, correctAnswers: new[] { digits[ix] })).ToList();
-        qs.Add(makeQuestion(SSafetySquare.SpecialRule, module, correctAnswers: new[] { specialRules[symbol] }));
-        addQuestions(module, qs);
+        for (var ix = 0; ix < colors.Length; ix++)
+            yield return question(SSafetySquare.Digits, args: [colors[ix]]).Answers(digits[ix]);
+        yield return question(SSafetySquare.SpecialRule).Answers(specialRules[symbol]);
     }
 }
