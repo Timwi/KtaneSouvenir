@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,9 +22,8 @@ public partial class SouvenirModule
         var buttonNums = GetField<int[,]>(comp, "buttonnum").Get(v => v.GetLength(0) != 4 || v.GetLength(1) != 3 ? "expected 4×3 array" : null);
         var moduleAnswer = GetField<string>(comp, "answer").Get();
 
-        addQuestions(module, Enumerable.Range(0, 4).Select(i => makeQuestion(SKeypadCombination.WrongNumbers, module,
-            formatArgs: new[] { Ordinal(i + 1) },
-            correctAnswers: Enumerable.Range(0, 3).Select(buttonIndex => buttonNums[i, buttonIndex])
-                .Where(num => num != moduleAnswer[i] - '0').Select(num => num.ToString()).ToArray())));
+        for (var i = 0; i < 4; i++)
+            yield return question(SKeypadCombination.WrongNumbers, args: [Ordinal(i + 1)])
+                .Answers(Enumerable.Range(0, 3).Select(ix => buttonNums[i, ix]).Where(num => num != moduleAnswer[i] - '0').Select(num => num.ToString()).ToArray());
     }
 }

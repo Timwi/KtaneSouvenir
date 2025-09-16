@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -24,10 +24,7 @@ public partial class SouvenirModule
         var unique = GetArrayField<int>(comp, "Unique").Get(expectedLength: 3);
         var answers = unique.Select(uq => seedPacketIdentifier[uq].name).ToArray();
 
-        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(
-            question: SCustomerIdentification.Customer,
-            data: module,
-            formatArgs: new[] { Ordinal(i + 1) },
-            correctAnswers: new[] { answers[i] })));
+        for (var i = 0; i < 3; i++)
+            yield return question(SCustomerIdentification.Customer, args: [Ordinal(i + 1)]).Answers(answers[i]);
     }
 }

@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -19,6 +18,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
         var positions = GetArrayField<int>(comp, "_buttonPositions").Get(expectedLength: 6);
 
-        addQuestions(module, Enumerable.Range(0, 6).Select(stage => makeQuestion(SCyanButton.Positions, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { SCyanButton.Positions.GetAttribute().AllAnswers[positions[stage]] })));
+        for (var stage = 0; stage < 6; stage++)
+            yield return question(SCyanButton.Positions, args: [Ordinal(stage + 1)]).Answers(SCyanButton.Positions.GetAttribute().AllAnswers[positions[stage]]);
     }
 }

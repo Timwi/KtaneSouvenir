@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -29,7 +29,7 @@ public partial class SouvenirModule
         foreach (var seg in leftSegs.Concat(rightSegs))
             seg.SetActive(false);
 
-        addQuestions(module, Enumerable.Range(0, 8).Select(i =>
-            makeQuestion(SNotDoubleOh.Position, module, correctAnswers: new[] { displays[i] }, formatArgs: new[] { Ordinal(i + 1) })));
+        for (var i = 0; i < 8; i++)
+            yield return question(SNotDoubleOh.Position, args: [Ordinal(i + 1)]).Answers(displays[i]);
     }
 }

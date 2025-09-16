@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -47,6 +47,7 @@ public partial class SouvenirModule
             GetArrayField<string>(comp, "Stage2Char").Get(arr => !arr.Contains(displayedWords[1]) ? $"expected array to contain \"{displayedWords[1]}\"" : null),
             GetArrayField<string>(comp, "Stage3Words").Get(arr => !arr.Contains(displayedWords[2]) ? $"expected array to contain \"{displayedWords[2]}\"" : null)
         };
-        addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(SKanji.DisplayedWords, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { displayedWords[stage] }, preferredWrongAnswers: wordLists[stage])));
+        for (var stage = 0; stage < 3; stage++)
+            yield return question(SKanji.DisplayedWords, args: [Ordinal(stage + 1)]).Answers(displayedWords[stage], preferredWrong: wordLists[stage]);
     }
 }

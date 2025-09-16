@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -30,6 +30,7 @@ public partial class SouvenirModule
             { 'W', "white" }
         };
         var ledColors = GetField<StringBuilder>(comp, "LEDsColorsString").Get(sb => sb.Length != 10 ? "expected length 10" : Enumerable.Range(0, 10).Any(ix => !colorNames.ContainsKey(sb[ix])) ? $"expected {colorNames.Keys.JoinString()}" : null);
-        addQuestions(module, Enumerable.Range(0, 10).Select(ix => makeQuestion(SRecoloredSwitches.LedColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[ledColors[ix]] })));
+        for (var ix = 0; ix < 10; ix++)
+            yield return question(SRecoloredSwitches.LedColors, args: [Ordinal(ix + 1)]).Answers(colorNames[ledColors[ix]]);
     }
 }

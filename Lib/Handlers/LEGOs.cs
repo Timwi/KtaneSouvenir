@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -52,6 +52,7 @@ public partial class SouvenirModule
         var brickDimensions = Enumerable.Range(0, 6).Select(i => fldBrickDimensions.GetFrom(pieces[i])).ToList();
 
         var colorNames = new[] { "red", "green", "blue", "cyan", "magenta", "yellow" };
-        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(SLEGOs.PieceDimensions, module, formatArgs: new[] { colorNames[brickColors[i]] }, correctAnswers: new[] { brickDimensions[i][0] + "×" + brickDimensions[i][1] })));
+        for (var i = 0; i < 6; i++)
+            yield return question(SLEGOs.PieceDimensions, args: [colorNames[brickColors[i]]]).Answers($"{brickDimensions[i][0]}×{brickDimensions[i][1]}");
     }
 }

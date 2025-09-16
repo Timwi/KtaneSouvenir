@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,11 +22,7 @@ public partial class SouvenirModule
         var channels = GetArrayField<int>(component, "correctChannels").Get();
         var columns = GetStaticField<string[][]>(component.GetType(), "defaultColumns").Get();
 
-        addQuestions(module, Enumerable.Range(0, 5).Select(stage => makeQuestion(
-            question: SNotMorseCode.Word,
-            data: module,
-            formatArgs: new[] { Ordinal(stage + 1) },
-            correctAnswers: new[] { words[channels[stage]] },
-            preferredWrongAnswers: words.Concat(Enumerable.Range(0, 50).Select(_ => columns.PickRandom().PickRandom())).Except([words[channels[stage]]]).Distinct().Take(8).ToArray())));
+        for (var stage = 0; stage < 5; stage++)
+            yield return question(SNotMorseCode.Word, args: [Ordinal(stage + 1)]).Answers(words[channels[stage]], preferredWrong: words.Concat(Enumerable.Range(0, 50).Select(_ => columns.PickRandom().PickRandom())).Except([words[channels[stage]]]).Distinct().Take(8).ToArray());
     }
 }

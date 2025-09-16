@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,6 +20,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(SMorsematics.ReceivedLetters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { chars[i] }, preferredWrongAnswers: chars)));
+        for (var i = 0; i < 3; i++)
+            yield return question(SMorsematics.ReceivedLetters, args: [Ordinal(i + 1)]).Answers(chars[i], preferredWrong: chars);
     }
 }

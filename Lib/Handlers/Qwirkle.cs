@@ -1,6 +1,5 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using static Souvenir.AnswerLayout;
 
@@ -28,8 +27,7 @@ public partial class SouvenirModule
             tilesIndex[i] = shapeIndex * 6 + colourIndex;
         }
 
-        addQuestions(module,
-            Enumerable.Range(0, 4).Select(tile => makeQuestion(SQwirkle.TilesPlaced, module,
-            formatArgs: new[] { Ordinal(tile + 1) }, correctAnswers: new[] { QwirkleSprites[tilesIndex[tile]] })));
+        for (var tile = 0; tile < 4; tile++)
+            yield return question(SQwirkle.TilesPlaced, args: [Ordinal(tile + 1)]).Answers(QwirkleSprites[tilesIndex[tile]]);
     }
 }

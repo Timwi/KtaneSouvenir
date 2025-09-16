@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -22,9 +21,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "algebraScript");
         yield return WaitForSolve;
 
-        addQuestions(module, Enumerable.Range(0, 2).Select(i => makeQuestion(
-            question: i == 0 ? SAlgebra.Equation1 : SAlgebra.Equation2,
-            data: module,
-            correctAnswers: new[] { GetField<Texture>(comp, $"level{i + 1}Equation").Get().name.Replace(';', '/') })));
+        for (var i = 0; i < 2; i++)
+            yield return question(i == 0 ? SAlgebra.Equation1 : SAlgebra.Equation2).Answers(GetField<Texture>(comp, $"level{i + 1}Equation").Get().name.Replace(';', '/'));
     }
 }

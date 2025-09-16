@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -31,8 +31,6 @@ public partial class SouvenirModule
             !(idx.First() == -1) ? "Stage 0 does not have an index of -1." : // Then check if stage 0 has an idx of -1.
             null);
 
-        var allQuestions = new List<QandA>();
-
         var colorReference = new[] { "red", "green", "blue", "white" };
 
         for (var x = 0; x < allDisplayedValues.Count; x++)
@@ -40,12 +38,10 @@ public partial class SouvenirModule
             if (x == 0) // Stage 0 is denoted as the initial stage on this module.
             {
                 for (var y = 0; y < 3; y++)
-                    allQuestions.Add(makeQuestion(S7.InitialValues, module, formatArgs: new[] { colorReference[y] }, correctAnswers: new[] { allDisplayedValues[x][y].ToString() }));
+                    yield return question(S7.InitialValues, args: [colorReference[y]]).Answers(allDisplayedValues[x][y].ToString());
             }
             else
-                allQuestions.Add(makeQuestion(S7.LedColors, module, formatArgs: new[] { x.ToString() }, correctAnswers: new[] { colorReference[allIdxDisplayedOperators[x]] }, preferredWrongAnswers: colorReference));
+                yield return question(S7.LedColors, args: [x.ToString()]).Answers(colorReference[allIdxDisplayedOperators[x]], preferredWrong: colorReference);
         }
-
-        addQuestions(module, allQuestions.ToArray());
     }
 }

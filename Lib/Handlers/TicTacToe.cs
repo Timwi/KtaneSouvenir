@@ -1,8 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum STicTacToe
@@ -20,7 +19,7 @@ public partial class SouvenirModule
         var fldIsInitialized = GetField<bool>(comp, "_isInitialized");
 
         while (!fldIsInitialized.Get())
-            yield return new WaitForSeconds(.1f);
+            yield return null;
 
         var keypadButtons = GetArrayField<KMSelectable>(comp, "KeypadButtons", isPublic: true).Get(expectedLength: 9);
         var keypadPhysical = GetArrayField<KMSelectable>(comp, "_keypadButtonsPhysical").Get(expectedLength: 9);
@@ -31,8 +30,8 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var buttonNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
-        addQuestions(module, Enumerable.Range(0, 9).Select(ix => makeQuestion(STicTacToe.InitialState, module,
-            formatArgs: new[] { buttonNames[Array.IndexOf(keypadPhysical, keypadButtons[ix])] },
-            correctAnswers: new[] { placedX[ix] == null ? (ix + 1).ToString() : placedX[ix].Value ? "X" : "O" })));
+        for (var ix = 0; ix < 9; ix++)
+            yield return question(STicTacToe.InitialState, args: [buttonNames[Array.IndexOf(keypadPhysical, keypadButtons[ix])]])
+                .Answers(placedX[ix] == null ? (ix + 1).ToString() : placedX[ix].Value ? "X" : "O");
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -24,13 +24,13 @@ public partial class SouvenirModule
         var fontTexture = textMeshes[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture;
         var displayedCharacters = textMeshes.Select(textMesh => textMesh.text.Trim()).ToArray();
 
-        yield return displayedCharacters.Any(ch => !(ch.Length == 1 && (ch[0] >= 'A' && ch[0] <= 'V' || ch[0] >= '0' && ch[0] <= '9')))
-            ? throw new AbandonModuleException($"The displayed characters are {displayedCharacters.Select(str => $"“{str}”").JoinString(", ")} (expected six single-character strings 0–9/A–V each).")
-            : (YieldInstruction) WaitForSolve;
-        addQuestions(module, Enumerable.Range(0, 6).Select(displayIx => makeQuestion(
-            SAlphaBits.DisplayedCharacters, module, font, fontTexture,
-            formatArgs: new[] { new[] { "top", "middle", "bottom" }[displayIx % 3], new[] { "left", "right" }[displayIx / 3] },
-            correctAnswers: new[] { displayedCharacters[displayIx] },
-            preferredWrongAnswers: displayedCharacters)));
+        if (displayedCharacters.Any(ch => !(ch.Length == 1 && (ch[0] >= 'A' && ch[0] <= 'V' || ch[0] >= '0' && ch[0] <= '9'))))
+            throw new AbandonModuleException($"The displayed characters are {displayedCharacters.Select(str => $"“{str}”").JoinString(", ")} (expected six single-character strings 0–9/A–V each).");
+
+        yield return WaitForSolve;
+
+        for (var displayIx = 0; displayIx < 6; displayIx++)
+            yield return question(SAlphaBits.DisplayedCharacters, args: [new[] { "top", "middle", "bottom" }[displayIx % 3], new[] { "left", "right" }[displayIx / 3]])
+                .Answers(displayedCharacters[displayIx], preferredWrong: displayedCharacters, info: new TextAnswerInfo(font, fontTexture));
     }
 }

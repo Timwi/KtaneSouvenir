@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -23,7 +23,7 @@ public partial class SouvenirModule
 
         panelColors = panelColors.Select(x => char.ToUpperInvariant(x[0]) + x.Substring(1)).ToList();
 
-        addQuestions(module,
-            Enumerable.Range(0, 4).Select(panel => makeQuestion(SCatchphrase.Colour, module, formatArgs: new[] { panelNames[panel] }, correctAnswers: new[] { panelColors[panel] })));
+        for (var panel = 0; panel < 4; panel++)
+            yield return question(SCatchphrase.Colour, args: [panelNames[panel]]).Answers(panelColors[panel]);
     }
 }

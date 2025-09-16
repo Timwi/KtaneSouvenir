@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -38,7 +37,7 @@ public partial class SouvenirModule
             yield return null;
         }
 
-        addQuestions(module, Enumerable.Range(0, 5).Select(i =>
-            makeQuestion(SDirectionalButton.ButtonCount, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { buttonPresses[i].ToString() })));
+        for (var i = 0; i < 5; i++)
+            yield return question(SDirectionalButton.ButtonCount, args: [Ordinal(i + 1)]).Answers(buttonPresses[i].ToString());
     }
 }

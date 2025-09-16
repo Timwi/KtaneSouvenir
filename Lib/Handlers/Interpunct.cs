@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -36,7 +35,7 @@ public partial class SouvenirModule
             }
         }
 
-        addQuestions(module, Enumerable.Range(0, 3).Select(i =>
-            makeQuestion(SInterpunct.Display, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { texts[i] })));
+        for (var i = 0; i < 3; i++)
+            yield return question(SInterpunct.Display, args: [Ordinal(i + 1)]).Answers(texts[i]);
     }
 }

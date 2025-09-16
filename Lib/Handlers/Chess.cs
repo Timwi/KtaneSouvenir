@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -25,6 +24,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(SChess.Coordinate, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { "" + ((char) (indexSelected[i] / 10 + 'a')) + (indexSelected[i] % 10 + 1) })));
+        for (var i = 0; i < 6; i++)
+            yield return question(SChess.Coordinate, args: [Ordinal(i + 1)]).Answers("" + ((char) (indexSelected[i] / 10 + 'a')) + (indexSelected[i] % 10 + 1));
     }
 }

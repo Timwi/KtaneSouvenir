@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -23,7 +23,7 @@ public partial class SouvenirModule
         var positions = GetArrayField<int>(comp, "_rememberedPositions").Get(expectedLength: 4);
         var colors = colorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
 
-        addQuestions(module, Enumerable.Range(0, 4).Select(color =>
-            makeQuestion(SDiscoloredSquares.RememberedPositions, module, formatArgs: new[] { colors[color] }, correctAnswers: new[] { new Coord(4, 4, positions[color]) })));
+        for (var color = 0; color < 4; color++)
+            yield return question(SDiscoloredSquares.RememberedPositions, args: [colors[color]]).Answers(new Coord(4, 4, positions[color]));
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,7 +21,7 @@ public partial class SouvenirModule
         var colorDic = new Dictionary<char, string> { ['R'] = "Red", ['G'] = "Green", ['B'] = "Blue", ['C'] = "Cyan", ['M'] = "Magenta", ['Y'] = "Yellow", ['W'] = "White" };
         var displayStr = GetField<string>(comp, "StringFour").Get(val => val.Length != 10 ? "expected length of 10" : val.Any(ch => !colorDic.ContainsKey(ch)) ? $"expected characters {colorDic.Keys.JoinString()}" : null);
 
-        addQuestions(module, Enumerable.Range(0, 10).Select(i =>
-            makeQuestion(SRGBSequences.Display, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorDic[displayStr[i]] })));
+        for (var i = 0; i < 10; i++)
+            yield return question(SRGBSequences.Display, args: [Ordinal(i + 1)]).Answers(colorDic[displayStr[i]]);
     }
 }

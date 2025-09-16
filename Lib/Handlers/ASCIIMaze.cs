@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -20,6 +20,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, Enumerable.Range(0, 12).Select(ix => makeQuestion(SASCIIMaze.Characters, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { characters[ix] }, preferredWrongAnswers: characters)));
+        for (var ix = 0; ix < 12; ix++)
+            yield return question(SASCIIMaze.Characters, args: [Ordinal(ix + 1)]).Answers(characters[ix], preferredWrong: characters);
     }
 }

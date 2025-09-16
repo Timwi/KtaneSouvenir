@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -23,8 +23,7 @@ public partial class SouvenirModule
         var sounds = GetField<int[]>(comp, "Sounds")
             .Get(a => a.Select((b, i) => b < 0 ? $"Sounds[{i}] = {b} < 0" : b > 2 ? $"Sounds[{i}] = {b} > 2" : null).Aggregate((x, y) => x is null ? y : y is null ? x : x + ", " + y));
         var allAnswers = shitassMode ? SimonSmilesAudio.Skip(3).ToArray() : SimonSmilesAudio.Take(3).ToArray();
-        addQuestions(module, Enumerable.Range(0, 9).Select(ix =>
-            makeQuestion(SSimonSmiles.Sounds, module, formatArgs: new[] { Ordinal(ix + 1) },
-                correctAnswers: new[] { allAnswers[sounds[ix]] }, allAnswers: allAnswers)));
+        for (var ix = 0; ix < 9; ix++)
+            yield return question(SSimonSmiles.Sounds, args: [Ordinal(ix + 1)]).Answers(allAnswers[sounds[ix]], all: allAnswers);
     }
 }

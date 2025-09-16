@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -21,9 +21,10 @@ public partial class SouvenirModule
         var fldStage = GetField<int>(comp, "Stage");
 
         var text = fldDisplayText.Get().text;
-        yield return !int.TryParse(text, out var answer)
-            ? throw new AbandonModuleException($"“{text}” does not parse as an integer.")
-            : (YieldInstruction) WaitForSolve;
+        if (!int.TryParse(text, out var answer))
+            throw new AbandonModuleException($"“{text}” does not parse as an integer.");
+
+        yield return WaitForSolve;
         yield return question(S3NPlus1.Question).Answers(answer.ToString());
     }
 }

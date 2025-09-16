@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -23,7 +22,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "papasPizzeriaScript");
         yield return WaitForSolve;
         var request = GetField<string>(comp, "request").Get(x => Regex.IsMatch(x, @"^[0-7]{3}[ACQBJMSD]$") ? null : "Unexpected order number.");
-        addQuestions(module, Enumerable.Range(0, 4).Select(i =>
-            makeQuestion(i == 3 ? SPapasPizzeria.Letter : SPapasPizzeria.Digit, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { request[i].ToString() })));
+        for (var i = 0; i < 4; i++)
+            yield return question(i == 3 ? SPapasPizzeria.Letter : SPapasPizzeria.Digit, args: [Ordinal(i + 1)]).Answers(request[i].ToString());
     }
 }

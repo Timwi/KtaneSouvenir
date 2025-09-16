@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,6 +20,7 @@ public partial class SouvenirModule
         var lightIndex = GetIntField(comp, "lightIndex").Get(min: 0, max: 7);
         var qNames = new[] { "first initially lit", "second initially lit", "third initially lit", "fourth initially lit", "first initially unlit", "second initially unlit", "third initially unlit", "fourth initially unlit" };
         var aNames = new[] { "south", "south-west", "west", "north-west", "north", "north-east", "east", "south-east" };
-        addQuestions(module, Enumerable.Range(0, 8).Select(i => makeQuestion(SMoon.LitUnlit, module, formatArgs: new[] { qNames[i] }, correctAnswers: new[] { aNames[(i + lightIndex) % 8] })));
+        for (var i = 0; i < 8; i++)
+            yield return question(SMoon.LitUnlit, args: [qNames[i]]).Answers(aNames[(i + lightIndex) % 8]);
     }
 }

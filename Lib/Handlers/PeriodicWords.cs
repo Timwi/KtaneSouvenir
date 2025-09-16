@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -20,6 +20,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var words = GetArrayField<string>(comp, "Words").Get().Take(4).ToArray();
-        addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(SPeriodicWords.DisplayedWords, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { words[stage] }, preferredWrongAnswers: words)));
+        for (var stage = 0; stage < 3; stage++)
+            yield return question(SPeriodicWords.DisplayedWords, args: [Ordinal(stage + 1)]).Answers(words[stage], preferredWrong: words);
     }
 }

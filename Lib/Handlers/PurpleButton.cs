@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -24,7 +24,7 @@ public partial class SouvenirModule
             preferredWrongNumbers.Add(preferredWrongNumbers.Max() + 1);
         var preferredWrongAnswers = preferredWrongNumbers.Select(n => n.ToString()).ToArray();
 
-        addQuestions(module, Enumerable.Range(0, 6).Select(ix =>
-            makeQuestion(SPurpleButton.Numbers, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { cyclingNumbers[ix].ToString() }, preferredWrongAnswers: preferredWrongAnswers)));
+        for (var ix = 0; ix < 6; ix++)
+            yield return question(SPurpleButton.Numbers, args: [Ordinal(ix + 1)]).Answers(cyclingNumbers[ix].ToString(), preferredWrong: preferredWrongAnswers);
     }
 }
