@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -22,7 +21,7 @@ public partial class SouvenirModule
         var diceValues = GetArrayField<int>(comp, "_diceValues").Get();
 
         while (diceValues.Any(v => v == 0))
-            yield return new WaitForSeconds(.1f);
+            yield return null;
 
         string result = null;
 

@@ -1,7 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
 using static Souvenir.AnswerLayout;
 
 public enum SMafia
@@ -20,6 +20,6 @@ public partial class SouvenirModule
 
         var godfather = GetField<object>(comp, "_godfather").Get();
         var suspects = GetField<Array>(comp, "_suspects").Get(ar => ar.Length != 8 ? "expected length 8" : null);
-        yield return question(SMafia.Players).Answers(suspects.Cast<object>().Select(obj => obj.ToString()).Except(new[] { godfather.ToString() }).ToArray());
+        yield return question(SMafia.Players).Answers(suspects.Cast<object>().Select(obj => obj.ToString()).Except([godfather.ToString()]).ToArray());
     }
 }

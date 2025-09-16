@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -41,7 +40,7 @@ public partial class SouvenirModule
                 stage = newStage;
                 moduleData[stage - 1] = randomiser.ToArray(); // Take a copy of the array.
             }
-            yield return new WaitForSeconds(.1f);
+            yield return null;
         }
 
         var colors = new string[15] { "White", "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Grey", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "Black" };

@@ -24,7 +24,7 @@ public partial class SouvenirModule
         for (var i = 0; i < wordList.Length; i++)
             if (wordList[i].Contains(inputtedText))
                 index = i;
-        var words = Enumerable.Range(0, wordList.Length).Except(new[] { index }).Select(i => wordList[i][0]).ToArray();
+        var words = Enumerable.Range(0, wordList.Length).Except([index]).Select(i => wordList[i][0]).ToArray();
 
         yield return question(SÉpelleMoiÇa.Word).Answers(inputtedText, preferredWrong: words);
     }

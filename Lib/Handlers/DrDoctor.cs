@@ -26,7 +26,7 @@ public partial class SouvenirModule
         var symptoms = GetArrayField<string>(comp, "_selectableSymptoms").Get();
         var diagnoseText = GetField<TextMesh>(comp, "DiagnoseText", isPublic: true).Get();
 
-        yield return question(SDrDoctor.Diseases).Answers(diagnoses.Except(new[] { diagnoseText.text }).ToArray());
+        yield return question(SDrDoctor.Diseases).Answers(diagnoses.Except([diagnoseText.text]).ToArray());
         yield return question(SDrDoctor.Symptoms).Answers(symptoms);
     }
 }

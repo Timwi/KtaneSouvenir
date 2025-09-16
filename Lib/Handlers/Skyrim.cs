@@ -50,9 +50,9 @@ public partial class SouvenirModule
         {
             var list = flds[i].Get(expectedLength: 3);
             var correct = fldsCorrect[i].Get();
-            qs.Add(makeQuestion(questions[i], module, correctAnswers: list.Except(new[] { correct }).Select(t => t.name.Replace("'", "’")).ToArray()));
+            qs.Add(makeQuestion(questions[i], module, correctAnswers: list.Except([correct]).Select(t => t.name.Replace("'", "’")).ToArray()));
         }
         var shoutNames = GetListField<string>(comp, "shoutNameOptions").Get(expectedLength: 3);
-        yield return question(SSkyrim.DragonShout).Answers(shoutNames.Except(new[] { GetField<string>(comp, "shoutName").Get() }).Select(n => n.Replace("'", "’")).ToArray());
+        yield return question(SSkyrim.DragonShout).Answers(shoutNames.Except([GetField<string>(comp, "shoutName").Get()]).Select(n => n.Replace("'", "’")).ToArray());
     }
 }

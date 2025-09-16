@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Souvenir;
-
 using static Souvenir.AnswerLayout;
 
 public enum STAC
@@ -49,7 +50,7 @@ public partial class SouvenirModule
             var singleStep = next.Invoke(6, 8);
             var discard = next.Invoke(8, 11);
             var missing = next.Invoke(0, 10);
-            var cards = Enumerable.Range(1, 13).Except(new[] { backwards, singleStep, discard }).ToList();
+            var cards = Enumerable.Range(1, 13).Except([backwards, singleStep, discard]).ToList();
             cards.RemoveAt(missing);
             validCards = cards
                 .Select(c => c.ToString())
@@ -80,8 +81,8 @@ public partial class SouvenirModule
         else
         {
             addQuestion(module, STAC.HeldCard,
-                correctAnswers: initialHand.Cast<object>().Select(toString).Except(new[] { toString(topCard) }).ToArray(),
-                allAnswers: validCards.Except(new[] { toString(topCard) }).ToArray());
+                correctAnswers: initialHand.Cast<object>().Select(toString).Except([toString(topCard)]).ToArray(),
+                allAnswers: validCards.Except([toString(topCard)]).ToArray());
         }
     }
 }

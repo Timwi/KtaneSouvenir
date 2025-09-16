@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
 
@@ -80,7 +81,7 @@ public partial class SouvenirModule
             if (buttonTextMesh.Any(strMesh => strMesh.text.Length == 1))
                 dataAdded = false;
 
-            yield return new WaitForSeconds(.1f);
+            yield return null;
         }
 
         //Restore the first button to the arrays.
@@ -96,7 +97,7 @@ public partial class SouvenirModule
         var colorIndex = fldColorIndex.Get(expectedLength: 8);
 
         if (displayTexts[0].Any(string.IsNullOrEmpty))
-            throw new AbandonModuleException($"'displayText[0]' contains null or an empty string: [{displayTexts[0].Select(str => str ?? "<null>").JoinString(", ")}]");
+            throw new AbandonModuleException($"‘displayText[0]’ contains null or an empty string: [{displayTexts[0].Select(str => str ?? "<null>").JoinString(", ")}]");
 
         displayTexts[0] = displayTexts[0].Select(str => Regex.Replace(str, "#", " ")).ToArray();
 
@@ -107,26 +108,20 @@ public partial class SouvenirModule
 
         //End of the displayed texts section.
 
-        addQuestions(module,
-            correctButtonTexts.Select((name, index) => makeQuestion(SBamboozledAgain.ButtonText, module,
-                formatArgs: new[] { Ordinal(index + 1) },
-                correctAnswers: new[] { name },
-                preferredWrongAnswers: correctButtonTexts.Except(new[] { name }).ToArray())).Concat(
-            correctButtonColors.Select((col, index) => makeQuestion(SBamboozledAgain.ButtonColor, module,
-                formatArgs: new[] { Ordinal(index + 1) },
-                correctAnswers: new[] { col },
-                preferredWrongAnswers: correctButtonColors.Except(new[] { col }).ToArray()))).Concat(
-            firstRowTexts.Select((text, index) => makeQuestion(SBamboozledAgain.DisplayTexts1, module,
-                formatArgs: new[] { Ordinal(2 * index + 1) },
-                correctAnswers: new[] { text },
-                preferredWrongAnswers: firstRowTexts.Except(new[] { text }).ToArray()))).Concat(
-            lastThreeTexts.Select((text, index) => makeQuestion(SBamboozledAgain.DisplayTexts2, module,
-                formatArgs: new[] { Ordinal(index + 6) },
-                correctAnswers: new[] { text },
-                preferredWrongAnswers: lastThreeTexts.Except(new[] { text }).ToArray()))).Concat(
-            displayColors.Select((col, index) => makeQuestion(SBamboozledAgain.DisplayColor, module,
-                formatArgs: new[] { Ordinal(index + 1) },
-                correctAnswers: new[] { col },
-                preferredWrongAnswers: displayColors.Except(new[] { col }).ToArray()))));
+        for (var index = 0; index < correctButtonTexts.Length; index++)
+            yield return question(SBamboozledAgain.ButtonText, args: [Ordinal(index + 1)])
+                .Answers(correctButtonTexts[index], preferredWrong: correctButtonTexts.Except([correctButtonTexts[index]]).ToArray());
+        for (var index = 0; index < correctButtonColors.Length; index++)
+            yield return question(SBamboozledAgain.ButtonColor, args: [Ordinal(index + 1)])
+                .Answers(correctButtonColors[index], preferredWrong: correctButtonColors.Except([correctButtonColors[index]]).ToArray());
+        for (var index = 0; index < firstRowTexts.Length; index++)
+            yield return question(SBamboozledAgain.DisplayTexts1, args: [Ordinal(2 * index + 1)])
+                .Answers(firstRowTexts[index], preferredWrong: firstRowTexts.Except([firstRowTexts[index]]).ToArray());
+        for (var index = 0; index < lastThreeTexts.Length; index++)
+            yield return question(SBamboozledAgain.DisplayTexts2, args: [Ordinal(index + 6)])
+                .Answers(lastThreeTexts[index], preferredWrong: lastThreeTexts.Except([lastThreeTexts[index]]).ToArray());
+        for (var index = 0; index < displayColors.Length; index++)
+            yield return question(SBamboozledAgain.DisplayColor, args: [Ordinal(index + 1)])
+                .Answers(displayColors[index], preferredWrong: displayColors.Except([displayColors[index]]).ToArray());
     }
 }

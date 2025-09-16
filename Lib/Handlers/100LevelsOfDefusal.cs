@@ -20,9 +20,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var display = GetArrayField<char>(comp, "displayedLetters").Get(expectedLength: 12);
-        var source = display.Where(c => c != '.');
-
-        for (var i = 0; i < source.Length; i++)
-            yield return question(S100LevelsOfDefusal.Letters, args: [Ordinal(i + 1)]).Answers(source[i].ToString());
+        foreach (var (ch, i) in display.Where(c => c != '.').Select((c, i) => (ch: c.ToString(), i)))
+            yield return question(S100LevelsOfDefusal.Letters, args: [Ordinal(i + 1)]).Answers(ch);
     }
 }

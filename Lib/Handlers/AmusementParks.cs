@@ -26,6 +26,6 @@ public partial class SouvenirModule
         var options = avail.Select(r => fldName.GetFrom(r, v => !SAmusementParks.Rides.GetAnswers().Contains(v) ? $"Unknown ride type {v}" : null));
         var correctName = fldName.GetFrom(correct, v => !SAmusementParks.Rides.GetAnswers().Contains(v) ? $"Unknown ride type {v}" : null);
 
-        yield return question(SAmusementParks.Rides).Answers(options.Except(new[] { correctName }).ToArray(), all: SAmusementParks.Rides.GetAnswers().Except([correctName]).ToArray());
+        yield return question(SAmusementParks.Rides).Answers(options.Except([correctName]).ToArray(), all: SAmusementParks.Rides.GetAnswers().Except([correctName]).ToArray());
     }
 }

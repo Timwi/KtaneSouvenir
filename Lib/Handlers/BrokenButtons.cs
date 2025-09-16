@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -25,6 +25,6 @@ public partial class SouvenirModule
         // skip the literally blank buttons.
         for (var i = 0; i < pressed.Length; i++)
             if (pressed[i].Length != 0)
-                yield return question(SBrokenButtons.Question, args: [Ordinal(i + 1)]).Answers(pressed[i], preferredWrong: pressed.Except(new[] { "" }).ToArray());
+                yield return question(SBrokenButtons.Question, args: [Ordinal(i + 1)]).Answers(pressed[i], preferredWrong: pressed.Except([""]).ToArray());
     }
 }

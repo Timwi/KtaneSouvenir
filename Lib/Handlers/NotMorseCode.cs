@@ -27,6 +27,6 @@ public partial class SouvenirModule
             data: module,
             formatArgs: new[] { Ordinal(stage + 1) },
             correctAnswers: new[] { words[channels[stage]] },
-            preferredWrongAnswers: words.Concat(Enumerable.Range(0, 50).Select(_ => columns.PickRandom().PickRandom())).Except(new[] { words[channels[stage]] }).Distinct().Take(8).ToArray())));
+            preferredWrongAnswers: words.Concat(Enumerable.Range(0, 50).Select(_ => columns.PickRandom().PickRandom())).Except([words[channels[stage]]]).Distinct().Take(8).ToArray())));
     }
 }

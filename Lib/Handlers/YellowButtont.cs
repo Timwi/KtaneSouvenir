@@ -42,7 +42,7 @@ public partial class SouvenirModule
         var chosenNames = names.OrderRandomly().Take(6).ToArray();
         var answers = Enumerable
             .Range(0, 6)
-            .Except(new[] { extIx })
+            .Except([extIx])
             .Select(i => $"{names[i]}.{extensions[i].PickRandom()}")
             .Concat(new[] { ans })
             .ToArray();

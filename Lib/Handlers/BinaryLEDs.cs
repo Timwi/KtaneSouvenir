@@ -75,12 +75,11 @@ public partial class SouvenirModule
             };
         }
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForSolve;
 
         if (answer == -1)
             legitimatelyNoQuestion(module, "The module auto-solved after all three wires were cut incorrectly.");
         else
-            addQuestion(module, SBinaryLEDs.Value, correctAnswers: new[] { answer.ToString() });
+            yield return question(SBinaryLEDs.Value).Answers(answer.ToString());
     }
 }

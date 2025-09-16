@@ -1,7 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
 using static Souvenir.AnswerLayout;
 
 public enum SMaritimeSemaphore
@@ -45,7 +45,7 @@ public partial class SouvenirModule
         var semaphore = GetField<int>(flags[0], "Semaphore", isPublic: true);
 
         var solutionPos = GetIntField(comp, "_solution").Get(0, 5); // The solution page is still visible after solve, so avoid asking about it
-        var letters = Enumerable.Range(0, 6).Except(new[] { dummyPos, solutionPos }).Select(i => (
+        var letters = Enumerable.Range(0, 6).Except([dummyPos, solutionPos]).Select(i => (
             Ordinal: Ordinal(i + 1),
             LeftFlag: left.GetFrom(flags[i], i => i is < 0 or > 25 ? $"Left letter {i} out of range 0-25" : null), // The five non-dummy flags must not have numbers
             RightFlag: right.GetFrom(flags[i], i => i is < 0 or > 25 ? $"Right letter {i} out of range 0-25" : null),

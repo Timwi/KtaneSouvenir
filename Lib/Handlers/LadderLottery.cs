@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Souvenir;
 
@@ -19,16 +20,17 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        int startingPoint;
         try
         {
-            var startingPoint = (int) fldPoint.Get();
+            startingPoint = (int) fldPoint.Get();
             if (startingPoint is not >= 0 or not < 4)
                 throw new AbandonModuleException($"‘_startingPoint’ was {startingPoint} but expected 0–4.");
-            addQuestion(module, SLadderLottery.LightOn, correctAnswers: new[] { LadderLotterySprites[startingPoint] });
         }
         catch (InvalidCastException)
         {
             throw new AbandonModuleException($"‘_startingPoint’ was not castable to int.");
         }
+        yield return question(SLadderLottery.LightOn).Answers(LadderLotterySprites[startingPoint]);
     }
 }

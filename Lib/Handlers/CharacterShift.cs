@@ -27,8 +27,8 @@ public partial class SouvenirModule
 
         var leftAnswer = GetField<TextMesh>(comp, "letterText", isPublic: true).Get().text;
         var rightAnswer = GetField<TextMesh>(comp, "numberText", isPublic: true).Get().text;
-        var letters = GetArrayField<string>(comp, "letters").Get(expectedLength: 5).Except(new[] { leftAnswer, "*" }).ToArray();
-        var digits = GetArrayField<string>(comp, "numbers").Get(expectedLength: 5).Except(new[] { rightAnswer, "*" }).ToArray();
+        var letters = GetArrayField<string>(comp, "letters").Get(expectedLength: 5).Except([leftAnswer, "*"]).ToArray();
+        var digits = GetArrayField<string>(comp, "numbers").Get(expectedLength: 5).Except([rightAnswer, "*"]).ToArray();
 
         yield return question(SCharacterShift.Letters).Answers(letters);
         yield return question(SCharacterShift.Digits).Answers(digits);

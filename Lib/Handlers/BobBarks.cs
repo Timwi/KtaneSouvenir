@@ -37,7 +37,7 @@ public partial class SouvenirModule
             Enumerable.Range(0, 4).Select(ix => makeQuestion(SBobBarks.Indicators, module,
                 correctAnswers: new[] { labelsOnModule[ix] },
                 formatArgs: new[] { validDirections[ix] },
-                preferredWrongAnswers: labelsOnModule.Except(new[] { labelsOnModule[ix] }).ToArray()
+                preferredWrongAnswers: labelsOnModule.Except([labelsOnModule[ix]]).ToArray()
             )).Concat(
             Enumerable.Range(0, 5).Select(ix => makeQuestion(SBobBarks.Positions, module,
                 correctAnswers: new[] { validDirections[flashes[ix]] },

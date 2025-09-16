@@ -1,6 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
 using Souvenir;
-
 using static Souvenir.AnswerLayout;
 
 public enum SProceduralMaze

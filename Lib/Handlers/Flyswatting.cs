@@ -27,6 +27,6 @@ public partial class SouvenirModule
         if (outsideLetters.Length == 0)
             legitimatelyNoQuestion(module, "Every fly was part of the solution.");
         else
-            addQuestion(module, SFlyswatting.Unpressed, correctAnswers: outsideLetters);
+            yield return question(SFlyswatting.Unpressed).Answers(outsideLetters);
     }
 }

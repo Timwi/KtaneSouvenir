@@ -63,7 +63,7 @@ public partial class SouvenirModule
             List<QandA> qs = new();
             foreach (var ix in swappedPositions)
             {
-                var unique = validUnique.Except(new[] { ix }).PickRandom();
+                var unique = validUnique.Except([ix]).PickRandom();
                 var moduleName = string.Format(translateString(SConcentration.StartingDigit, "the Concentration which began with {1} in the {0} position (in reading order)"), Ordinal(unique + 1), stage[unique] + 1);
                 qs.Add(makeQuestion(SConcentration.StartingDigit, moduleId, 1, questionSprite: Sprites.GenerateGridSprite(3, 5, ix), correctAnswers: new[] { (stage[ix] + 1).ToString() }, formattedModuleName: moduleName));
             }

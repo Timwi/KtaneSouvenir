@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -22,7 +21,7 @@ public partial class SouvenirModule
         var fldMainLetter = GetIntField(comp, "_mainLetter");
 
         while (!fldActivated.Get())
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
 
         var displayedLetters = new string[2];
         var alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Select(i => i.ToString()).ToArray();

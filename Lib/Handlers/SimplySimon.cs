@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Souvenir;
-
 using static Souvenir.AnswerLayout;
 
 public enum SSimplySimon
