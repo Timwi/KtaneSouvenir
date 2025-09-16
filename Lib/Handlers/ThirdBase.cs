@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -39,6 +38,7 @@ public partial class SouvenirModule
             }
 
         yield return WaitForSolve;
-        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(SThirdBase.Display, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word })));
+        for (var stage = 0; stage < displayWords.Length; stage++)
+            yield return question(SThirdBase.Display, args: [Ordinal(stage + 1)]).Answers(displayWords[stage]);
     }
 }

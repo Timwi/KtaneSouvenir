@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -27,8 +26,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, paids.Select((p, i) => makeQuestion(SCheapCheckout.Paid, module,
-            formatArgs: new[] { paids.Count == 1 ? "the paid amount" : i == 0 ? "the first paid amount" : "the second paid amount" },
-            correctAnswers: new[] { "$" + p.ToString("N2") })));
+        for (var i = 0; i < paids.Count; i++)
+            yield return question(SCheapCheckout.Paid, args: [paids.Count == 1 ? "the paid amount" : i == 0 ? "the first paid amount" : "the second paid amount"])
+                .Answers($"${paids[i]:N2}");
     }
 }

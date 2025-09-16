@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -43,6 +43,7 @@ public partial class SouvenirModule
             }
             yield return new WaitForSeconds(.1f); // Roll animation is much longer than .1 seconds anyway.
         }
-        addQuestions(module, rolledValues.Select((vals, ix) => makeQuestion(SEncryptedDice.Question, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: vals.Select(val => (val).ToString()).ToArray())));
+        for (var ix = 0; ix < rolledValues.Length; ix++)
+            yield return question(SEncryptedDice.Question, args: [Ordinal(ix + 1)]).Answers(rolledValues[ix].Select(val => (val).ToString()).ToArray());
     }
 }

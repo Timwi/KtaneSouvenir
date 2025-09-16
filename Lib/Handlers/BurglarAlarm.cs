@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -24,6 +24,7 @@ public partial class SouvenirModule
         displayText.text = "";
 
         var moduleNumber = GetArrayField<int>(comp, "moduleNumber").Get(expectedLength: 8, validator: mn => mn is < 0 or > 9 ? "expected 0–9" : null);
-        addQuestions(module, moduleNumber.Select((mn, ix) => makeQuestion(SBurglarAlarm.Digits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { mn.ToString() }, preferredWrongAnswers: moduleNumber.Select(n => n.ToString()).ToArray())));
+        for (var ix = 0; ix < moduleNumber.Length; ix++)
+            yield return question(SBurglarAlarm.Digits, args: [Ordinal(ix + 1)]).Answers(moduleNumber[ix].ToString(), preferredWrong: moduleNumber.Select(n => n.ToString()).ToArray());
     }
 }

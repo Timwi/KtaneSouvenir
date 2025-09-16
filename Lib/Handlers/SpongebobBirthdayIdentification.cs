@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -35,11 +35,7 @@ public partial class SouvenirModule
         yield return new WaitForSeconds(.1f);
 
         var allNames = GetField<Texture[]>(comp, "allImages", isPublic: true).Get().Select(x => x.name).ToArray();
-        addQuestions(module, answers.Select((ans, ix) => makeQuestion(
-            question: SSpongebobBirthdayIdentification.Children,
-            data: module,
-            formatArgs: new[] { Ordinal(ix + 1) },
-            correctAnswers: new[] { ans },
-            preferredWrongAnswers: allNames)));
+        for (var ix = 0; ix < answers.Length; ix++)
+            yield return question(SSpongebobBirthdayIdentification.Children, args: [Ordinal(ix + 1)]).Answers(answers[ix], preferredWrong: allNames);
     }
 }

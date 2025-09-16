@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -20,6 +20,7 @@ public partial class SouvenirModule
 
         var code = GetArrayField<string>(comp, "chosenLetters").Get();
         var allChars = GetStaticField<Dictionary<ushort, string>>(comp.GetType(), "characterList").Get().Values.ToArray();
-        addQuestions(module, code.Select((c, i) => makeQuestion(SCharacterCodes.Character, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { c }, preferredWrongAnswers: allChars)));
+        for (var i = 0; i < code.Length; i++)
+            yield return question(SCharacterCodes.Character, args: [Ordinal(i + 1)]).Answers(code[i], preferredWrong: allChars);
     }
 }

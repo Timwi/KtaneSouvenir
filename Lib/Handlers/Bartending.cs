@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -22,6 +21,7 @@ public partial class SouvenirModule
 
         var ingIxs = fldIngredientIxs.Get(expectedLength: 5, validator: ing => ing is < 0 or > 4 ? "expected 0–4" : null);
         var ingredientNames = new[] { "Powdered Delta", "Flanergide", "Adelhyde", "Bronson Extract", "Karmotrine" };
-        addQuestions(module, ingIxs.Select((ingIx, pos) => makeQuestion(SBartending.Ingredients, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { ingredientNames[ingIx] })));
+        for (var pos = 0; pos < ingIxs.Length; pos++)
+            yield return question(SBartending.Ingredients, args: [Ordinal(pos + 1)]).Answers(ingredientNames[ingIxs[pos]]);
     }
 }

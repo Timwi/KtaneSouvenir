@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -19,6 +18,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "AbyssScript");
         yield return WaitForSolve;
         var seedAbyss = GetField<string>(comp, "SeedVar").Get();
-        addQuestions(module, seedAbyss.Select((aChar, idx) => makeQuestion(SAbyss.Seed, module, formatArgs: new[] { Ordinal(idx + 1) }, correctAnswers: new[] { aChar.ToString() })));
+        for (var idx = 0; idx < seedAbyss.Length; idx++)
+            yield return question(SAbyss.Seed, args: [Ordinal(idx + 1)]).Answers(seedAbyss[idx].ToString());
     }
 }

@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -39,9 +38,7 @@ public partial class SouvenirModule
             yield return null;
         }
         yield return WaitForSolve;
-        addQuestions(module, displaysList.Select((w, ix) => makeQuestion(SDetoNATO.Display, module,
-            formatArgs: new[] { Ordinal(ix + 1) },
-            correctAnswers: new[] { displaysList[ix] },
-            allAnswers: words)));
+        for (var ix = 0; ix < displaysList.Length; ix++)
+            yield return question(SDetoNATO.Display, args: [Ordinal(ix + 1)]).Answers(displaysList[ix], all: words);
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -153,13 +153,7 @@ public partial class SouvenirModule
             : RGB[Array.IndexOf(abnormalQuirks, finalQuirk)].Select(constructRGBAnswer);
         if (!myFormat(finalQuirk, out var format))
             yield break;
-        addQuestions(module, answers.Select((answer, i) => makeQuestion(
-            isNormal ? SKugelblitz.BlackOrangeYellowIndigoViolet : SKugelblitz.RedGreenBlue,
-            module,
-            formattedModuleName: format,
-            correctAnswers: new[] { answer },
-            formatArgs: new[] { Ordinal(i + 1) },
-            preferredWrongAnswers: isNormal ? null : allRGBAnswers(finalQuirk == 5 ? 2 : 6).ToArray(),
-            allAnswers: isNormal ? allStandardAnswers : null)));
+        for (var i = 0; i < answers.Length; i++)
+            yield return question(isNormal ? SKugelblitz.BlackOrangeYellowIndigoViolet : SKugelblitz.RedGreenBlue, args: [Ordinal(i + 1)]).Answers(answers[i], all: isNormal ? allStandardAnswers : null, preferredWrong: isNormal ? null : allRGBAnswers(finalQuirk == 5 ? 2 : 6).ToArray());
     }
 }

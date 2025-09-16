@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,6 +21,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, qs.Select((q, i) => makeQuestion(SQnA.Questions, module, correctAnswers: new[] { q }, formatArgs: new[] { Ordinal(i + 1) })));
+        for (var i = 0; i < qs.Length; i++)
+            yield return question(SQnA.Questions, args: [Ordinal(i + 1)]).Answers(qs[i]);
     }
 }

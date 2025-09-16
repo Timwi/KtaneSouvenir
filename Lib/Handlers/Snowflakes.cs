@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -30,6 +29,7 @@ public partial class SouvenirModule
 
         var displays = GetArrayField<TextMesh>(comp, "displays", isPublic: true).Get(expectedLength: 4);
         var directions = new[] { "top", "right", "bottom", "left" };
-        addQuestions(module, directions.Select((dir, ix) => makeQuestion(SSnowflakes.DisplayedSnowflakes, module, formatArgs: new[] { dir }, correctAnswers: new[] { displays[ix].text })));
+        for (var ix = 0; ix < directions.Length; ix++)
+            yield return question(SSnowflakes.DisplayedSnowflakes, args: [directions[ix]]).Answers(displays[ix].text);
     }
 }

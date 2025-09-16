@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -32,11 +32,7 @@ public partial class SouvenirModule
 
         var ingredients = fldIngredients.Get(v => v.Any(ch => !dic.ContainsKey(ch)) ? $"expected only characters {dic.Keys.JoinString()}" : null);
 
-        addQuestions(module, ingredients.Select((ing, i) =>
-            makeQuestion(
-                question: SCrazyHamburger.Ingredient,
-                data: module,
-                formatArgs: new string[] { Ordinal(i + 1) },
-                correctAnswers: new[] { dic[ing] })));
+        for (var i = 0; i < ingredients.Length; i++)
+            yield return question(SCrazyHamburger.Ingredient, args: new string[] { Ordinal(i + 1) }).Answers(dic[ingredients[i]]);
     }
 }

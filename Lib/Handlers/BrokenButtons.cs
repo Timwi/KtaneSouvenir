@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -23,6 +23,8 @@ public partial class SouvenirModule
             yield return legitimatelyNoQuestion(module, "The only buttons you pressed were literally blank.");
 
         // skip the literally blank buttons.
-        addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(SBrokenButtons.Question, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { p }, preferredWrongAnswers: pressed.Except(new[] { "" }).ToArray())));
+        for (var i = 0; i < pressed.Length; i++)
+            if (pressed[i].Length != 0)
+                yield return question(SBrokenButtons.Question, args: [Ordinal(i + 1)]).Answers(pressed[i], preferredWrong: pressed.Except(new[] { "" }).ToArray());
     }
 }

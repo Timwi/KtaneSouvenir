@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -28,9 +27,7 @@ public partial class SouvenirModule
             yield return null;
         }
 
-        addQuestions(module, colors.Select((c, i) =>
-            makeQuestion(SCactisConundrum.Color, module,
-                formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { SCactisConundrum.Color.GetAnswers()[c - 2] })));
+        for (var i = 0; i < colors.Length; i++)
+            yield return question(SCactisConundrum.Color, args: [Ordinal(i + 1)]).Answers(SCactisConundrum.Color.GetAnswers()[colors[i] - 2]);
     }
 }

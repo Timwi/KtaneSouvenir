@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -46,6 +46,6 @@ public partial class SouvenirModule
         if (_polyhedralMazeTypes.Count(n => n == souvenirName) == 1 && Rnd.Range(0, 2) != 0)
             format = translateString(SPolyhedralMaze.StartPosition, souvenirName);
 
-        addQuestion(module, SPolyhedralMaze.StartPosition, formattedModuleName: format, correctAnswers: new[] { GetIntField(comp, "_startFace").Get().ToString() });
+        yield return question(SPolyhedralMaze.StartPosition).Answers(GetIntField(comp, "_startFace").Get().ToString());
     }
 }

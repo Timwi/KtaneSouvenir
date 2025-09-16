@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -42,10 +42,7 @@ public partial class SouvenirModule
         string format(int dir, int col) => string.Format(translateString(SWhiteArrows.Arrows, "{0} {1}"), translateString(SWhiteArrows.Arrows, colors[col]), translateString(SWhiteArrows.Arrows, directions[dir]));
         var all = (from d in Enumerable.Range(0, 4) from c in Enumerable.Range(0, 8) select format(d, c)).ToArray();
 
-        addQuestions(module, arrows.Select((a, i) =>
-            makeQuestion(SWhiteArrows.Arrows, module,
-                correctAnswers: new[] { format(a[0], a[1]) },
-                formatArgs: new[] { Ordinal(i + 1) },
-                allAnswers: all)));
+        for (var i = 0; i < arrows.Length; i++)
+            yield return question(SWhiteArrows.Arrows, args: [Ordinal(i + 1)]).Answers(format(arrows[i][0], arrows[i][1]), all: all);
     }
 }

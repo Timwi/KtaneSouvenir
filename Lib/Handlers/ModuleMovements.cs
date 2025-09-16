@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -34,8 +33,7 @@ public partial class SouvenirModule
             yield return null;
         }
 
-        addQuestions(module, answers.Select((ans, i) =>
-            makeQuestion(SModuleMovements.Display, module, formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { ans }, preferredWrongAnswers: answers)));
+        for (var i = 0; i < answers.Length; i++)
+            yield return question(SModuleMovements.Display, args: [Ordinal(i + 1)]).Answers(answers[i], preferredWrong: answers);
     }
 }

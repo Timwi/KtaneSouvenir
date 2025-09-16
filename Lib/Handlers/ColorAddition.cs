@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -22,6 +21,7 @@ public partial class SouvenirModule
 
         var numbersObtained = numbersField.Get(expectedLength: 3);
         var channelRefs = new[] { "red", "green", "blue" };
-        addQuestions(module, channelRefs.Select((chn, idx) => makeQuestion(SColorAddition.Numbers, module, formatArgs: new[] { chn }, correctAnswers: new[] { numbersObtained[idx] })));
+        for (var idx = 0; idx < channelRefs.Length; idx++)
+            yield return question(SColorAddition.Numbers, args: [channelRefs[idx]]).Answers(numbersObtained[idx]);
     }
 }

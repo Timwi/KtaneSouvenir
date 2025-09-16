@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -49,10 +49,11 @@ public partial class SouvenirModule
         var pegIndex = Enumerable.Range(0, 5).IndexOf(px => Enumerable.Range(0, 5).Count(i => colourMeshes[px, i].sharedMaterial.name.StartsWith(keyColour)) >= 3);
         if (pegIndex == -1)
             throw new AbandonModuleException($"The key peg couldn't be found (the key colour was {keyColour}).");
+        var source = Enumerable.Range(0, 5)
+                    .Select(i => (pegIndex + i) % 5)
+                    .Select(n => colorNames.First(cn => colourMeshes[n, n].sharedMaterial.name.Substring(6).StartsWith(cn, StringComparison.InvariantCultureIgnoreCase)));
 
-        addQuestions(module, Enumerable.Range(0, 5)
-            .Select(i => (pegIndex + i) % 5)
-            .Select(n => colorNames.First(cn => colourMeshes[n, n].sharedMaterial.name.Substring(6).StartsWith(cn, StringComparison.InvariantCultureIgnoreCase)))
-            .Select((col, ix) => makeQuestion(SPerspectivePegs.ColorSequence, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { col })));
+        for (var ix = 0; ix < source.Length; ix++)
+            yield return question(SPerspectivePegs.ColorSequence, args: [Ordinal(ix + 1)]).Answers(source[ix]);
     }
 }

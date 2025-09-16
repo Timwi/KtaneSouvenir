@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,6 +19,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colors = GetListField<string>(comp, "Colors").Get(minLength: 3, maxLength: 5);
-        addQuestions(module, colors.Select((c, ix) => makeQuestion(SSimonStacks.Colors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { c })));
+        for (var ix = 0; ix < colors.Length; ix++)
+            yield return question(SSimonStacks.Colors, args: [Ordinal(ix + 1)]).Answers(colors[ix]);
     }
 }

@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -21,6 +20,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var braillePatterns = GetArrayField<int>(comp, "BraillePatterns").Get(expectedLength: 4);
-        addQuestions(module, braillePatterns.Select((p, ix) => makeQuestion(SBraille.Pattern, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new Sprite[] { Sprites.GenerateCirclesSprite(2, 3, p, 20, 20, vertical: true) })));
+        for (var ix = 0; ix < braillePatterns.Length; ix++)
+            yield return question(SBraille.Pattern, args: [Ordinal(ix + 1)]).Answers([Sprites.GenerateCirclesSprite(2, 3, braillePatterns[ix], 20, 20, vertical: true)]);
     }
 }

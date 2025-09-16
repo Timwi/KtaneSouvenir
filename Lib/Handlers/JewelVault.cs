@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -23,6 +22,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, assignedWheels.Select((aw, ix) => makeQuestion(SJewelVault.Wheels, module, formatArgs: new[] { "ABCD".Substring(ix, 1) }, correctAnswers: new[] { (Array.IndexOf(wheels, aw) + 1).ToString() })));
+        for (var ix = 0; ix < assignedWheels.Length; ix++)
+            yield return question(SJewelVault.Wheels, args: ["ABCD".Substring(ix, 1)]).Answers((Array.IndexOf(wheels, assignedWheels[ix]) + 1).ToString());
     }
 }

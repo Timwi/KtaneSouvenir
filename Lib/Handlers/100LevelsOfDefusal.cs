@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -20,8 +20,9 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var display = GetArrayField<char>(comp, "displayedLetters").Get(expectedLength: 12);
+        var source = display.Where(c => c != '.');
 
-        addQuestions(module, display.Where(c => c != '.').Select((ans, i) =>
-            makeQuestion(S100LevelsOfDefusal.Letters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ans.ToString() })));
+        for (var i = 0; i < source.Length; i++)
+            yield return question(S100LevelsOfDefusal.Letters, args: [Ordinal(i + 1)]).Answers(source[i].ToString());
     }
 }

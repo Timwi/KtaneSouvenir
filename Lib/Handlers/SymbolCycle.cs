@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -33,6 +32,8 @@ public partial class SouvenirModule
         }
 
         yield return cycles == null ? throw new AbandonModuleException("No cycles.") : (YieldInstruction) WaitForSolve;
-        addQuestions(module, new[] { "left", "right" }.Select((screen, ix) => makeQuestion(SSymbolCycle.SymbolCounts, module, formatArgs: new[] { screen }, correctAnswers: new[] { cycles[ix].Length.ToString() })));
+        var source = new[] { "left", "right" };
+        for (var ix = 0; ix < source.Length; ix++)
+            yield return question(SSymbolCycle.SymbolCounts, args: [source[ix]]).Answers(cycles[ix].Length.ToString());
     }
 }

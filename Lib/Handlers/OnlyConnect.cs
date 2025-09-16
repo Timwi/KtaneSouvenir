@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -24,6 +23,7 @@ public partial class SouvenirModule
 
         var hieroglyphs = new[] { "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus" };
         var positions = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" };
-        addQuestions(module, positions.Select((p, i) => makeQuestion(SOnlyConnect.Hieroglyphs, module, formatArgs: new[] { p }, correctAnswers: new[] { hieroglyphs[hieroglyphsDisplayed[i]] })));
+        for (var i = 0; i < positions.Length; i++)
+            yield return question(SOnlyConnect.Hieroglyphs, args: [positions[i]]).Answers(hieroglyphs[hieroglyphsDisplayed[i]]);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -20,7 +20,7 @@ public partial class SouvenirModule
 
         var flashes = new[] { "TR", "TY", "TG", "TB", "LR", "LY", "LG", "LB", "RR", "RY", "RG", "RB", "BR", "BY", "BG", "BB" };
         var buttonFlashes = GetArrayField<KMSelectable>(comp, "selButtons").Get(expectedLength: 5, validator: sel => !flashes.Contains(sel.name.ToUpperInvariant()) ? "invalid flash" : null);
-        addQuestions(module, buttonFlashes.Select((btn, i) =>
-            makeQuestion(SSimonSimons.FlashingColors, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { btn.name.ToUpperInvariant() })));
+        for (var i = 0; i < buttonFlashes.Length; i++)
+            yield return question(SSimonSimons.FlashingColors, args: [Ordinal(i + 1)]).Answers(buttonFlashes[i].name.ToUpperInvariant());
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -44,6 +44,7 @@ public partial class SouvenirModule
             currentWeather = fldWeather.Get(cw => !weatherNames.Contains(cw) ? "unknown weather" : null);
         }
 
-        addQuestions(module, allWeather.Select((t, i) => makeQuestion(SCreation.Weather, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { t })));
+        for (var i = 0; i < allWeather.Length; i++)
+            yield return question(SCreation.Weather, args: [Ordinal(i + 1)]).Answers(allWeather[i]);
     }
 }

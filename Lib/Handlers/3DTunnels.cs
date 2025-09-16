@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -24,6 +24,7 @@ public partial class SouvenirModule
             .Get(tns => tns.Any(tn => tn < 0 || tn >= symbols.Length) ? "invalid symbols" : null)
             .Select(tn => symbols[tn].ToString())
             .ToArray();
-        addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(S3DTunnels.TargetNode, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { tn }, preferredWrongAnswers: targetNodeNames)));
+        for (var ix = 0; ix < targetNodeNames.Length; ix++)
+            yield return question(S3DTunnels.TargetNode, args: [Ordinal(ix + 1)]).Answers(targetNodeNames[ix], preferredWrong: targetNodeNames);
     }
 }

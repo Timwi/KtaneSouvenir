@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -46,10 +46,7 @@ public partial class SouvenirModule
         };
 
         var all = stages.Select(s => map[s]).ToArray();
-        addQuestions(module, stages.Select((s, i) =>
-            makeQuestion(SBlindfoldedYahtzee.Claim, module,
-                correctAnswers: new[] { map[s] },
-                formatArgs: new[] { Ordinal(i + 1) },
-                preferredWrongAnswers: all)));
+        for (var i = 0; i < stages.Length; i++)
+            yield return question(SBlindfoldedYahtzee.Claim, args: [Ordinal(i + 1)]).Answers(map[stages[i]], preferredWrong: all);
     }
 }

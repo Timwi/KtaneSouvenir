@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -40,6 +39,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         }
 
-        addQuestions(module, colorsPerStage.Select((col, ix) => makeQuestion(SVisualImpairment.Colors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[col] })));
+        for (var ix = 0; ix < colorsPerStage.Length; ix++)
+            yield return question(SVisualImpairment.Colors, args: [Ordinal(ix + 1)]).Answers(colorNames[colorsPerStage[ix]]);
     }
 }

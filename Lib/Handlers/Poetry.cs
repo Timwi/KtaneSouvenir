@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -46,6 +45,7 @@ public partial class SouvenirModule
         if (answers.Count != fldStageCount.Get())
             throw new AbandonModuleException($"The number of answers captured is not equal to the number of stages played ({fldStageCount.Get()}). Answers were: [{answers.JoinString(", ")}]");
 
-        addQuestions(module, answers.Select((ans, st) => makeQuestion(SPoetry.Answers, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { ans }, preferredWrongAnswers: answers.ToArray())));
+        for (var st = 0; st < answers.Length; st++)
+            yield return question(SPoetry.Answers, args: [Ordinal(st + 1)]).Answers(answers[st], preferredWrong: answers.ToArray());
     }
 }

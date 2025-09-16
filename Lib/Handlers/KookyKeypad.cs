@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -37,9 +37,7 @@ public partial class SouvenirModule
         var index = GetIntField(comp, "correctindex").Get(min: 0, max: 14);
 
         var formats = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
-        addQuestions(module, combos[index].Select((c, i) =>
-            makeQuestion(SKookyKeypad.Color, module,
-                correctAnswers: new[] { colorMapping[c] },
-                formatArgs: new[] { formats[i] })));
+        for (var i = 0; i < combos[index].Length; i++)
+            yield return question(SKookyKeypad.Color, args: [formats[i]]).Answers(colorMapping[combos[index][i]]);
     }
 }

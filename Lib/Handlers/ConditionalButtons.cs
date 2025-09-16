@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -25,6 +24,7 @@ public partial class SouvenirModule
             buttonColors.Add(buttonColor.Remove(buttonColor.IndexOf(" (Instance)")));
         }
         yield return WaitForSolve;
-        addQuestions(module, buttonColors.Select((color, ix) => makeQuestion(SConditionalButtons.Colors, module, questionSprite: Sprites.GenerateGridSprite(new Coord(3, 2, ix)), correctAnswers: new[] { color })));
+        for (var ix = 0; ix < buttonColors.Length; ix++)
+            yield return question(SConditionalButtons.Colors, questionSprite: Sprites.GenerateGridSprite(new Coord(3, 2, ix))).Answers(buttonColors[ix]);
     }
 }

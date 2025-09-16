@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -23,6 +23,7 @@ public partial class SouvenirModule
         var allSprites = GetArrayField<Sprite>(comp, "SeedPacketIdentifier", isPublic: true).Get(expectedLength: 719).TranslateSprites(166).ToArray();
         var chosen = GetArrayField<int>(comp, "Unique").Get(expectedLength: 3, validator: v => v is < 0 or >= 719 ? "Expected pickup number 0–718" : null);
 
-        addQuestions(module, chosen.Select((sprite, stage) => makeQuestion(SPickupIdentification.Item, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { allSprites[sprite] }, allAnswers: allSprites)));
+        for (var stage = 0; stage < chosen.Length; stage++)
+            yield return question(SPickupIdentification.Item, args: [Ordinal(stage + 1)]).Answers(allSprites[chosen[stage]], all: allSprites);
     }
 }

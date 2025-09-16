@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -22,6 +21,8 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var combinedCode = GetField<string>(comp, "combinedCode", isPublic: true).Get(str => str.Length is < 10 or > 15 ? "expected length 10–15" : null);
-        addQuestions(module, combinedCode.Select((ch, ix) => makeQuestion(SMemorableButtons.Symbols, module, buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { ch.ToString() })));
+        var info = new TextAnswerInfo(buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture);
+        for (var ix = 0; ix < combinedCode.Length; ix++)
+            yield return question(SMemorableButtons.Symbols, args: [Ordinal(ix + 1)]).Answers(combinedCode[ix].ToString(), info: info);
     }
 }

@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,6 +19,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var unownAnswer = GetArrayField<int>(comp, "letterIndexes").Get(expectedLength: 5, validator: v => v is < 0 or > 25 ? "expected 0–25" : null);
-        addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(SUnownCipher.Answers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
+        for (var i = 0; i < unownAnswer.Length; i++)
+            yield return question(SUnownCipher.Answers, args: [Ordinal(i + 1)]).Answers(((char) ('A' + unownAnswer[i])).ToString());
     }
 }

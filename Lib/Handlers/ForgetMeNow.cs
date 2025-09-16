@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,6 +20,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var displayedDigits = GetArrayField<int>(comp, "displayDigits").Get(expectedLength: Bomb.GetSolvableModuleNames().Count, validator: d => d is < 0 or > 9 ? "expected range 0-9" : null);
-        addQuestions(module, displayedDigits.Select((d, ix) => makeQuestion(SForgetMeNow.DisplayedDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { d.ToString() })));
+        for (var ix = 0; ix < displayedDigits.Length; ix++)
+            yield return question(SForgetMeNow.DisplayedDigits, args: [Ordinal(ix + 1)]).Answers(displayedDigits[ix].ToString());
     }
 }

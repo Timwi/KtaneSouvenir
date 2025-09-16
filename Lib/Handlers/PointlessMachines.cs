@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -27,8 +27,7 @@ public partial class SouvenirModule
             .ToArray();
 
         // All 5 colors always appear (with one duplicate), so no need to add preferredWrongAnswers
-        addQuestions(module, flashes.Select((f, i) =>
-            makeQuestion(SPointlessMachines.Flashes, module, formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { f })));
+        for (var i = 0; i < flashes.Length; i++)
+            yield return question(SPointlessMachines.Flashes, args: [Ordinal(i + 1)]).Answers(flashes[i]);
     }
 }

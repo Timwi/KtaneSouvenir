@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -27,6 +26,7 @@ public partial class SouvenirModule
                 yield return new WaitForSeconds(0.1f);
             }
         yield return WaitForSolve;
-        addQuestions(module, storedDisplays.Select((disp, stage) => makeQuestion(SWhoOF.Display, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { disp }, preferredWrongAnswers: storedDisplays)));
+        for (var stage = 0; stage < storedDisplays.Length; stage++)
+            yield return question(SWhoOF.Display, args: [Ordinal(stage + 1)]).Answers(storedDisplays[stage], preferredWrong: storedDisplays);
     }
 }

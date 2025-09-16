@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,6 +21,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, flashes.Select((f, ix) => makeQuestion(SSimonsStar.Colors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { f })));
+        for (var ix = 0; ix < flashes.Length; ix++)
+            yield return question(SSimonsStar.Colors, args: [Ordinal(ix + 1)]).Answers(flashes[ix]);
     }
 }

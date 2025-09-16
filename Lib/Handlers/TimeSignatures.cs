@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -21,7 +21,7 @@ public partial class SouvenirModule
         var sequence = GetArrayField<string>(comp, "randomSequence")
             .Get(expectedLength: 5, validator: s => s.Length != 2 ? "Bad length" : !"123456789".Contains(s[0]) ? "Bad top digit" : !"1248".Contains(s[1]) ? "Bad bottom digit" : null);
         var answers = sequence.Select(s => $"{s[0]}/{s[1]}").ToArray();
-        addQuestions(module, sequence.Select((s, i) => makeQuestion(STimeSignatures.Signatures, module,
-            formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: answers)));
+        for (var i = 0; i < sequence.Length; i++)
+            yield return question(STimeSignatures.Signatures, args: [Ordinal(i + 1)]).Answers(answers[i], preferredWrong: answers);
     }
 }

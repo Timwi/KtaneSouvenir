@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,6 +19,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var displayedIngredients = GetListField<int>(comp, "Order").Get(expectedLength: 8);
-        addQuestions(module, displayedIngredients.Select((ing, ix) => makeQuestion(STeaSet.DisplayedIngredients, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { TeaSetSprites[ing] }, preferredWrongAnswers: TeaSetSprites)));
+        for (var ix = 0; ix < displayedIngredients.Length; ix++)
+            yield return question(STeaSet.DisplayedIngredients, args: [Ordinal(ix + 1)]).Answers(TeaSetSprites[displayedIngredients[ix]], preferredWrong: TeaSetSprites);
     }
 }

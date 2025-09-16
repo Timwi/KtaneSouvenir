@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -35,6 +35,7 @@ public partial class SouvenirModule
             yield return null;
         }
 
-        addQuestions(module, flashes.Select((val, ix) => makeQuestion(SSimonSaid.Flashes, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[btnColors[val]] })));
+        for (var ix = 0; ix < flashes.Length; ix++)
+            yield return question(SSimonSaid.Flashes, args: [Ordinal(ix + 1)]).Answers(colorNames[btnColors[flashes[ix]]]);
     }
 }

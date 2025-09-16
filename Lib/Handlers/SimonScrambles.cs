@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -24,6 +23,7 @@ public partial class SouvenirModule
         if (sequence[9] < 0 || sequence[9] >= colors.Length)
             throw new AbandonModuleException($"‘sequence[9]’ points to illegal color: {sequence[9]} (expected 0-3).");
 
-        addQuestions(module, sequence.Select((val, ix) => makeQuestion(SSimonScrambles.Colors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colors[val] })));
+        for (var ix = 0; ix < sequence.Length; ix++)
+            yield return question(SSimonScrambles.Colors, args: [Ordinal(ix + 1)]).Answers(colors[sequence[ix]]);
     }
 }

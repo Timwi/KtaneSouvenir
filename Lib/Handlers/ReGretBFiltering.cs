@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,9 +19,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "regretScript");
         var operators = GetArrayField<int>(comp, "operators").Get(expectedLength: 3, validator: v => v is > 5 or < 0 ? "Out of range [0, 5]" : null);
 
-        addQuestions(module, operators.Select((op, i) =>
-            makeQuestion(SReGretBFiltering.Operator, module,
-                correctAnswers: new[] { SReGretBFiltering.Operator.GetAnswers()[op] },
-                formatArgs: new[] { Ordinal(i + 1) })));
+        for (var i = 0; i < operators.Length; i++)
+            yield return question(SReGretBFiltering.Operator, args: [Ordinal(i + 1)]).Answers(SReGretBFiltering.Operator.GetAnswers()[operators[i]]);
     }
 }

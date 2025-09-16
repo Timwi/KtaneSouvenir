@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,6 +20,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, digits.Select((digit, ix) => makeQuestion(SPie.Digits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { digit }, preferredWrongAnswers: digits)));
+        for (var ix = 0; ix < digits.Length; ix++)
+            yield return question(SPie.Digits, args: [Ordinal(ix + 1)]).Answers(digits[ix], preferredWrong: digits);
     }
 }

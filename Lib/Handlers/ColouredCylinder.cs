@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -19,9 +18,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "colouredCylinder");
         // The module can theoretically generate an arbitrarily large sequence of colours
         var sequence = GetListField<int>(comp, "colourIndexes").Get(minLength: 6, validator: v => v is < 0 or > 6 ? "Out of range [0, 6]" : null);
-        addQuestions(module, sequence.Select((c, i) =>
-            makeQuestion(SColouredCylinder.Colours, module,
-                correctAnswers: new[] { SColouredCylinder.Colours.GetAnswers()[c] },
-                formatArgs: new[] { Ordinal(i + 1) })));
+        for (var i = 0; i < sequence.Length; i++)
+            yield return question(SColouredCylinder.Colours, args: [Ordinal(i + 1)]).Answers(SColouredCylinder.Colours.GetAnswers()[sequence[i]]);
     }
 }

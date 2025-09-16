@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,6 +19,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var correct = GetArrayField<byte>(comp, "correct").Get(expectedLength: 4, validator: b => b is > 32 or 0 ? "expected 1–32" : null);
-        addQuestions(module, correct.Select((answer, ix) => makeQuestion(SEtterna.Number, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { answer.ToString() })));
+        for (var ix = 0; ix < correct.Length; ix++)
+            yield return question(SEtterna.Number, args: [Ordinal(ix + 1)]).Answers(correct[ix].ToString());
     }
 }

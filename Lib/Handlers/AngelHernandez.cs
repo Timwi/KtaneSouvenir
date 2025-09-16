@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -42,6 +42,7 @@ public partial class SouvenirModule
         }
 
         yield return WaitForSolve;
-        addQuestions(module, displayedLetters.Select((word, stage) => makeQuestion(SAngelHernandez.MainLetter, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: alph)));
+        for (var stage = 0; stage < displayedLetters.Length; stage++)
+            yield return question(SAngelHernandez.MainLetter, args: [Ordinal(stage + 1)]).Answers(displayedLetters[stage], preferredWrong: alph);
     }
 }

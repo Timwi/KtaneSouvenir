@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -43,6 +42,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         module.SolveIndex = _modulesSolved.IncSafe("WhosOnFirst");
-        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(SWhosOnFirst.Display, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: displayWords)));
+        for (var stage = 0; stage < displayWords.Length; stage++)
+            yield return question(SWhosOnFirst.Display, args: [Ordinal(stage + 1)]).Answers(displayWords[stage], preferredWrong: displayWords);
     }
 }
