@@ -36,28 +36,28 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
 ## Implemented by Anonymous (110)
 
-    ↻↺                         │  Color One Two            │  HiddenValue, The        │  Number Game, The           │  Skewers
-    ❖                          │  Coloured Cylinder        │  HyperForget             │  One Links To All           │  Smash, Marry, Kill
-    0                          │  Concentration            │  KayMazey Talk           │  Pentabutton, The           │  Squares
-    1, 2, 3 Game, The          │  Connected Monitors       │  Keypad Maze             │  Pickup Identification      │  Stable Time Signatures
-    21                         │  Connection Check         │  Keypad Sequence         │  Pointless Machines         │  Starstruck
-    A Message                  │  Dialtones                │  Kooky Keypad            │  Polygons                   │  Stroop’s Test
-    Amusement Parks            │  Doofenshmirtz Evil Inc.  │  Kugelblitz              │  Prison Break               │  Subbly Jubbly
-    Audio Morse                │  Double Arrows            │  Labyrinth, The          │  Puzzling Hexabuttons       │  SUSadmin
-    Bean Sprouts               │  Double Listening         │  Maritime Semaphore      │  Q & A                      │  TAC
-    Beans                      │  Double Screen            │  Maroon Button, The      │  Quantum Passwords          │  Thirty Dollar Module
-    Big Bean                   │  Emoji                    │  Maze Swap               │  Quantum Ternary Converter  │  Time Signatures
-    BlindfoldedYahtzee         │  Faerie Fires             │  Module Maneuvers        │  Quiplash                   │  Tribal Council
-    Blinking Notes             │  Forget Our Voices        │  MoneyGame               │  Red Button’t               │  Unordered Keys
-    Bone Apple Tea             │  Forget Us Not            │  Mssngv Wls              │  ReGret-B Filtering         │  Updog
-    Boob Tube                  │  Fuse Box, The            │  N&Ns                    │  Reordered Keys             │  Variety
-    Boomtar the Great          │  Ghost Movement           │  Naming Conventions      │  RNG Crystal                │  Walking Cube
-    Bottom Gear                │  Goofy’s Game             │  Next In Line            │  RPS Judging                │  Watching Paint Dry
-    Buttonage                  │  Grand Piano              │  Not Colour Flash        │  Saturn                     │  White Arrows
-    CA-RPS                     │  Gyromaze                 │  Not Double-Oh           │  Simon Smiles               │  Wumbo
-    Cacti’s Conundrum          │  Halli Galli              │  Not Password            │  Simon Subdivides           │  X-Ring
-    Chinese Remainder Theorem  │  hexOrbits                │  Not Red Arrows          │  Simon Swizzles             │  XY-Ray
-    Coffee Beans               │  Hickory Dickory Dock     │  Not The Plunger Button  │  Simply Simon               │  Yellow Button’t
+    ↻↺                         │  Color One Two            │  Hickory Dickory Dock  │  Not The Plunger Button     │  Simply Simon
+    ❖                          │  Coloured Cylinder        │  Hidden Value, The     │  Number Game, The           │  Skewers
+    0                          │  Concentration            │  HyperForget           │  One Links To All           │  Smash, Marry, Kill
+    1, 2, 3 Game, The          │  Connected Monitors       │  KayMazey Talk         │  Pentabutton, The           │  Stable Time Signatures
+    21                         │  Connection Check         │  Keypad Maze           │  Pickup Identification      │  Starstruck
+    A Message                  │  Dialtones                │  Keypad Sequence       │  Pointless Machines         │  Stroop’s Test
+    Amusement Parks            │  Divided Squares          │  Kooky Keypad          │  Polygons                   │  Subbly Jubbly
+    Audio Morse                │  Doofenshmirtz Evil Inc.  │  Kugelblitz            │  Prison Break               │  SUSadmin
+    Bean Sprouts               │  Double Arrows            │  Labyrinth, The        │  Puzzling Hexabuttons       │  TAC
+    Beans                      │  Double Listening         │  Maritime Semaphore    │  Q & A                      │  Thirty Dollar Module
+    Big Bean                   │  Double Screen            │  Maroon Button, The    │  Quantum Passwords          │  Time Signatures
+    Blindfolded Yahtzee        │  Emoji                    │  Maze Swap             │  Quantum Ternary Converter  │  Tribal Council
+    Blinking Notes             │  Faerie Fires             │  Module Maneuvers      │  Quiplash                   │  Unordered Keys
+    Bone Apple Tea             │  Forget Our Voices        │  Money Game            │  Red Button’t               │  Updog
+    Boob Tube                  │  Forget Us Not            │  Mssngv Wls            │  ReGret-B Filtering         │  Variety
+    Boomtar the Great          │  Fuse Box, The            │  N&Ns                  │  Reordered Keys             │  Walking Cube
+    Bottom Gear                │  Ghost Movement           │  Naming Conventions    │  RNG Crystal                │  Watching Paint Dry
+    Buttonage                  │  Goofy’s Game             │  Next In Line          │  RPS Judging                │  White Arrows
+    CA-RPS                     │  Grand Piano              │  Not Colour Flash      │  Saturn                     │  Wumbo
+    Cacti’s Conundrum          │  Gyromaze                 │  Not Double-Oh         │  Simon Smiles               │  X-Ring
+    Chinese Remainder Theorem  │  Halli Galli              │  Not Password          │  Simon Subdivides           │  XY-Ray
+    Coffee Beans               │  hexOrbits                │  Not Red Arrows        │  Simon Swizzles             │  Yellow Button’t
 
 ## Implemented by Kuro (59)
 
@@ -102,15 +102,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
 ## Implemented by Hawker (41)
 
-    3N+1                     │  DetoNATO              │  Garfield Kart       │  Mixometer                          │  Subway
-    Arena, The               │  Dimension Disruption  │  Garnet Thief, The   │  Module Movements                   │  Suits and Colours
-    Bar Charts               │  Directional Button    │  Girlfriend          │  RGB Sequences                      │  UNO!
-    Book of Mario            │  Disordered Keys       │  h                   │  Robot Programming                  │  Valves
-    Bordered Keys            │  Earthbound            │  High Score, The     │  Scrutiny Squares                   │  Weakest Link, The
-    Character Slots          │  Error Codes           │  Keypad Combination  │  Sign Language                      │
-    Cheat Checkout           │  Find The Date         │  Kuro                │  Simon Serves                       │
-    Conditional Buttons      │  Flavor Text           │  Ladder Lottery      │  Sonic & Knuckles                   │
-    Customer Identification  │  Flavor Text EX        │  LED Grid            │  Spongebob Birthday Identification  │
+    3N+1                     │  DetoNATO              │  Garfield Kart        │  Mixometer                          │  Subway
+    Arena, The               │  Dimension Disruption  │  Garnet Thief, The    │  Module Movements                   │  Suits and Colours
+    Bar Charts               │  Directional Button    │  Girlfriend           │  RGB Sequences                      │  UNO!
+    Book of Mario            │  Disordered Keys       │  h                    │  Robot Programming                  │  Valves
+    Bordered Keys            │  Earthbound            │  High Score, The      │  Scrutiny Squares                   │  Weakest Link, The
+    Character Slots          │  Error Codes           │  Keypad Combinations  │  Sign Language                      │
+    Cheat Checkout           │  Find The Date         │  Kuro                 │  Simon Serves                       │
+    Conditional Buttons      │  Flavor Text           │  Ladder Lottery       │  Sonic & Knuckles                   │
+    Customer Identification  │  Flavor Text EX        │  LED Grid             │  Spongebob Birthday Identification  │
 
 ## Implemented by BigCrunch22 (37)
 
@@ -150,7 +150,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 ## Implemented by Andrio Celos (14)
 
     Button, The  │  Not Keypad      │  Not Simaze          │  Perspective Pegs  │  Wire Ordering
-    Maze         │  Not Maze        │  Not the Button      │  Simon Says        │  Wire Sequence
+    Maze         │  Not Maze        │  Not The Button      │  Simon Says        │  Wire Sequence
     Memory       │  Not Morse Code  │  Not Who’s on First  │  Who’s on First    │
 
 ## Implemented by CaitSith2 (13)

@@ -3,11 +3,11 @@
 namespace Souvenir;
 
 /// <summary>Represents a position in an orthogonal, rectangular grid.</summary>
-public class Coord : IEquatable<Coord>
+public class Coord(int width, int height, int index) : IEquatable<Coord>
 {
-    private readonly int _index;
-    private readonly int _width;
-    private readonly int _height;
+    private readonly int _index = index;
+    private readonly int _width = width;
+    private readonly int _height = height;
 
     public int Index => _index;
     public int Width => _width;
@@ -15,7 +15,6 @@ public class Coord : IEquatable<Coord>
     public int X => _index % _width;
     public int Y => _index / _width;
 
-    public Coord(int width, int height, int index) { _width = width; _height = height; _index = index; }
     public Coord(int width, int height, int x, int y) : this(width, height, x + width * y) { }
 
     public bool Equals(Coord other) => _width == other._width && _height == other._height && _index == other._index;

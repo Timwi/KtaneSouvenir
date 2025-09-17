@@ -15,11 +15,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RT.CommandLine" Version="2.1.164" />
-    <PackageReference Include="RT.Lingo.Base" Version="2.0.1769" />
-    <PackageReference Include="RT.PostBuild" Version="2.0.1769" />
-    <PackageReference Include="RT.Serialization" Version="2.0.1769" />
-    <PackageReference Include="RT.Util.Core" Version="2.0.1769" />
+    <PackageReference Include="RT.CommandLine" Version="2.2.202" />
+    <PackageReference Include="RT.Lingo.Base" Version="2.0.1813" />
+    <PackageReference Include="RT.PostBuild" Version="2.0.1813" />
+    <PackageReference Include="RT.Serialization" Version="2.0.1813" />
+    <PackageReference Include="RT.Serialization.Json" Version="2.0.1813" />
+    <PackageReference Include="RT.Util.Core" Version="2.0.1813" />
     <PackageReference Include="ValueTupleBridge" Version="0.1.5" />
   </ItemGroup>
 </Project>

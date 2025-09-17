@@ -16,18 +16,12 @@ public static class Sounds
     public const string Generated = "\uE047generated";
 
     /// <summary>Represents an <see cref="AudioClip"/> played at a specific time.</summary>
-    public readonly struct AudioPosition
+    public readonly struct AudioPosition(AudioClip clip, float time)
     {
         /// <summary>The clip to play.</summary>
-        public readonly AudioClip Clip;
+        public readonly AudioClip Clip = clip;
         /// <summary>The time to play the clip at.</summary>
-        public readonly float Time;
-
-        public AudioPosition(AudioClip clip, float time)
-        {
-            Clip = clip;
-            Time = time;
-        }
+        public readonly float Time = time;
 
         public static implicit operator AudioPosition((AudioClip, float) tup) => new(tup.Item1, tup.Item2);
         public static implicit operator AudioPosition((float, AudioClip) tup) => new(tup.Item2, tup.Item1);
@@ -137,14 +131,14 @@ public static class Sounds
         var aref = new KMAudio.KMAudioRef();
         var result = Type.GetType("DarkTonic.MasterAudio.MasterAudio, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null")
             .GetMethod("PlaySound3DAtTransform", BindingFlags.Public | BindingFlags.Static)
-            .Invoke(null, new object[] { $"{foreignAudioID}_{name}", transform, 1f, null, 0f, null, false, false });
+            .Invoke(null, [$"{foreignAudioID}_{name}", transform, 1f, null, 0f, null, false, false]);
         // Skip setting loop = true since we don't want that anyways
         aref.StopSound += () =>
         {
             var variation = result?.GetType().GetProperty("ActingVariation", BindingFlags.Public | BindingFlags.Instance)
-                ?.GetValue(result, new object[0]);
+                ?.GetValue(result, []);
             variation?.GetType().GetMethod("Stop", BindingFlags.Public | BindingFlags.Instance)
-                ?.Invoke(variation, new object[] { false, false });
+                ?.Invoke(variation, [false, false]);
         };
         return aref;
     }

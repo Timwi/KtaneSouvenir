@@ -257,14 +257,14 @@ public static class AnswerGenerator
         ///     The inclusive lower bound of the range of characters to choose from.</param>
         /// <param name="last">
         ///     The inclusive upper bound of the range of characters to choose from.</param>
-        public Strings(char first, char last) : this(new CharacterList(1, null, new[] { first, last })) { }
+        public Strings(char first, char last) : this(new CharacterList(1, null, [first, last])) { }
         /// <param name="count">
         ///     The number of characters to choose.</param>
         /// <param name="first">
         ///     The inclusive lower bound of the range of characters to choose from.</param>
         /// <param name="last">
         ///     The inclusive upper bound of the range of characters to choose from.</param>
-        public Strings(int count, char first, char last) : this(new CharacterList(count, null, new[] { first, last })) { }
+        public Strings(int count, char first, char last) : this(new CharacterList(count, null, [first, last])) { }
         // This constructor cannot be used in an attribute.
         private Strings(params CharacterList[] characterLists)
         {
@@ -291,39 +291,35 @@ public static class AnswerGenerator
     }
 
     /// <summary>An answer generator that generates answers consisting of randomly selected grid cells.</summary>
-    public class Grid : AnswerGeneratorAttribute<Sprite>
+    public class Grid(int width, int height) : AnswerGeneratorAttribute<Sprite>
     {
-        private readonly int _width;
-        private readonly int _height;
-
-        public override int Count => _width * _height;
-
-        public Grid(int width, int height)
-        {
-            _width = width;
-            _height = height;
-        }
+        public override int Count => width * height;
 
         public override IEnumerable<Sprite> GetAnswers(SouvenirModule module)
         {
-            var count = _width * _height;
+            var count = width * height;
             if (count >= 10)
                 while (true)
-                    yield return Sprites.GenerateGridSprite(_width, _height, Random.Range(0, count));
+                    yield return Sprites.GenerateGridSprite(width, height, Random.Range(0, count));
 
             var positions = Enumerable.Range(0, count).ToArray().Shuffle();
             foreach (var position in positions)
-                yield return Sprites.GenerateGridSprite(_width, _height, position);
+                yield return Sprites.GenerateGridSprite(width, height, position);
         }
     }
 
-    public class Circles : AnswerGeneratorAttribute<Sprite>
+    /// <summary>
+    ///     Generates sprites in which circles are arranged in a rectilinear grid.</summary>
+    /// <param name="width">
+    ///     Specifies the number of circles per row.</param>
+    /// <param name="height">
+    ///     Specifies the number of circles per column.</param>
+    /// <param name="radius">
+    ///     Specifies the radius of each circle, in pixels.</param>
+    /// <param name="gap">
+    ///     Specifies the gap between circles, in pixels.</param>
+    public class Circles(int width, int height, int radius, int gap) : AnswerGeneratorAttribute<Sprite>
     {
-        private readonly int _width;
-        private readonly int _height;
-        private readonly int _radius;
-        private readonly int _gap;
-
         /// <summary>Indicates that the pattern in which all circles are “off” should not be generated.</summary>
         public bool SuppressEmpty { get; set; }
 
@@ -331,39 +327,21 @@ public static class AnswerGenerator
         ///     Indicates whether “off” circles should be represented by a circle outline (as opposed to be missing entirely).</summary>
         public bool DrawOutline { get; set; }
 
-        /// <summary>
-        ///     Generates sprites in which circles are arranged in a rectilinear grid.</summary>
-        /// <param name="width">
-        ///     Specifies the number of circles per row.</param>
-        /// <param name="height">
-        ///     Specifies the number of circles per column.</param>
-        /// <param name="radius">
-        ///     Specifies the radius of each circle, in pixels.</param>
-        /// <param name="gap">
-        ///     Specifies the gap between circles, in pixels.</param>
-        public Circles(int width, int height, int radius, int gap)
-        {
-            _width = width;
-            _height = height;
-            _radius = radius;
-            _gap = gap;
-        }
-
         public override IEnumerable<Sprite> GetAnswers(SouvenirModule module)
         {
-            var maxDots = _width * _height;
+            var maxDots = width * height;
             if (maxDots >= 10)
                 while (true)
-                    yield return Sprites.GenerateCirclesSprite(_width, _height, Random.Range(SuppressEmpty ? 1 : 0, 1 << maxDots), _radius, _gap, DrawOutline);
+                    yield return Sprites.GenerateCirclesSprite(width, height, Random.Range(SuppressEmpty ? 1 : 0, 1 << maxDots), radius, gap, DrawOutline);
 
             // With no more than 6 possible values, the above case may go into an infinite loop trying to generate 5 distinct values.
             // In this case, we will return all possible values in a random order and then halt.
             var dotPatterns = Enumerable.Range(SuppressEmpty ? 1 : 0, (1 << maxDots) - (SuppressEmpty ? 1 : 0)).ToArray().Shuffle();
             foreach (var dotPattern in dotPatterns)
-                yield return Sprites.GenerateCirclesSprite(_width, _height, dotPattern, _radius, _gap, DrawOutline);
+                yield return Sprites.GenerateCirclesSprite(width, height, dotPattern, radius, gap, DrawOutline);
         }
 
-        public override int Count => _width * _height;
+        public override int Count => width * height;
     }
 
     /// <summary>
@@ -431,17 +409,11 @@ public static class AnswerGenerator
     ///         // Generates grid coordinates from A1 to L12.</code></example>
     /// <remarks>
     ///     This generator might enter an infinite loop if it can't generate enough answers.</remarks>
-    public class Concatenate : AnswerGeneratorAttribute<string>
+    public class Concatenate(Type g1type, object[] g1args, Type g2type, object[] g2args) : AnswerGeneratorAttribute<string>
     {
-        private readonly AnswerGeneratorAttribute<string>[] _generators;
-        // Attribute parameters are unfortunately quite restricted
-        public Concatenate(Type g1type, object[] g1args, Type g2type, object[] g2args)
-        {
-            _generators = new[] {
-                (AnswerGeneratorAttribute<string>) Activator.CreateInstance(g1type, g1args),
-                (AnswerGeneratorAttribute<string>) Activator.CreateInstance(g2type, g2args)
-            };
-        }
+        private readonly AnswerGeneratorAttribute<string>[] _generators = Ut.NewArray(
+            (AnswerGeneratorAttribute<string>) Activator.CreateInstance(g1type, g1args),
+            (AnswerGeneratorAttribute<string>) Activator.CreateInstance(g2type, g2args));
 
         public override IEnumerable<string> GetAnswers(SouvenirModule module)
         {
@@ -510,7 +482,7 @@ public static class AnswerGenerator
 
     public sealed class HickoryDickoryDock : AnswerGeneratorAttribute<string>
     {
-        private static readonly int[] _minutes = { 0, 7, 15, 22, 30, 37, 45, 52 };
+        private static readonly int[] _minutes = [0, 7, 15, 22, 30, 37, 45, 52];
         public override IEnumerable<string> GetAnswers(SouvenirModule module)
         {
             while (true)
