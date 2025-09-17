@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -34,12 +34,9 @@ public partial class SouvenirModule
         // Pick a single sound from each module to avoid (a) too many Boot To Big sounds, because there are a lot; (b) nearly-identical sounds (like Colored Squares)
         var allAnswers = clipsPerModule.Select((clips, ix) => Array.IndexOf(indices, ix) is int p && p >= 0 ? clips[soundIndex[p]] : clips.PickRandom()).ToArray();
 
-        addQuestions(module,
-            Enumerable.Range(0, 4).Select(btn =>
-                makeQuestion(SModuleListening.ButtonAudio, module, formatArgs: new[] { colorNames[colorOrder[btn]] },
-                correctAnswers: new[] { clipsPerModule[indices[btn]][soundIndex[btn]] },
-                preferredWrongAnswers: allUsed,
-                allAnswers: allAnswers))
-            .Concat(new[] { makeQuestion(SModuleListening.AnyAudio, module, correctAnswers: allUsed, allAnswers: allAnswers) }));
+        for (var btn = 0; btn < 4; btn++)
+            yield return question(SModuleListening.ButtonAudio, args: [colorNames[colorOrder[btn]]])
+                .Answers(clipsPerModule[indices[btn]][soundIndex[btn]], all: allAnswers, preferredWrong: allUsed);
+        yield return question(SModuleListening.AnyAudio).Answers(allUsed, all: allAnswers);
     }
 }

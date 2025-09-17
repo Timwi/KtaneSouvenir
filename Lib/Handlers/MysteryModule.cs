@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SMysteryModule
@@ -38,16 +38,21 @@ public partial class SouvenirModule
         if (mystifiedModule == Module)
             _avoidQuestions++;
 
-        yield return WaitForSolve;
+        try
+        {
+            yield return WaitForSolve;
 
-        // Do not ask questions during the solve animation, since Mystery Module modifies the scaling of this module.
-        while (fldAnimating.Get())
-            yield return new WaitForSeconds(.1f);
+            // Do not ask questions during the solve animation, since Mystery Module modifies the scaling of this module.
+            while (fldAnimating.Get())
+                yield return new WaitForSeconds(.1f);
 
-        yield return question(SMysteryModule.FirstKey).Answers(keyModule.ModuleDisplayName, preferredWrong: Bomb.GetSolvableModuleNames().ToArray());
-        yield return question(SMysteryModule.HiddenModule).Answers(mystifiedModule.ModuleDisplayName, preferredWrong: Bomb.GetSolvableModuleNames().ToArray());
-
-        if (mystifiedModule == Module)
-            _avoidQuestions--;
+            yield return question(SMysteryModule.FirstKey).Answers(keyModule.ModuleDisplayName, preferredWrong: Bomb.GetSolvableModuleNames().ToArray());
+            yield return question(SMysteryModule.HiddenModule).Answers(mystifiedModule.ModuleDisplayName, preferredWrong: Bomb.GetSolvableModuleNames().ToArray());
+        }
+        finally
+        {
+            if (mystifiedModule == Module)
+                _avoidQuestions--;
+        }
     }
 }

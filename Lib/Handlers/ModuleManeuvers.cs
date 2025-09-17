@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,7 +22,7 @@ public partial class SouvenirModule
         var x = GetProperty<int>(end, "x", isPublic: true).Get();
         var y = GetProperty<int>(end, "y", isPublic: true).Get();
 
-        var template = translateString(SModuleManeuvers.Goal, "{0}, {1}");
+        var template = TranslateQuestionString(SModuleManeuvers.Goal, "{0}, {1}");
         // Use answers in a 5×5 grid around the correct one, as well as reflections in all four quadrants
         var allAnswers = from dx in new[] { -2, -1, 0, 1, 2 }
                          from dy in new[] { -2, -1, 0, 1, 2 }

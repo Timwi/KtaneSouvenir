@@ -80,8 +80,8 @@ public partial class SouvenirModule
 
                 tmp.Apply(false, true);
                 tmp2.Apply(false, true);
-                _questionTexturesToDestroyLater.Add(tmp);
-                _questionTexturesToDestroyLater.Add(tmp2);
+                _unityObjectsToDestroyLater.Add(tmp);
+                _unityObjectsToDestroyLater.Add(tmp2);
                 tex = tmp;
                 tex2 = tmp2;
             }

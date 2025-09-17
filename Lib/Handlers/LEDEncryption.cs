@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -62,8 +62,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, Enumerable.Range(0, pressedLetters.Length - 1)
-            .Where(i => pressedLetters[i] != null)
-            .Select(stage => makeQuestion(SLEDEncryption.PressedLetters, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { pressedLetters[stage] }, preferredWrongAnswers: wrongLetters.ToArray())));
+        for (var stage = 0; stage < pressedLetters.Length - 1 + 0; stage++)
+            if (pressedLetters[stage] != null)
+                yield return question(SLEDEncryption.PressedLetters, args: [Ordinal(stage + 1)]).Answers(pressedLetters[stage], preferredWrong: wrongLetters.ToArray());
     }
 }

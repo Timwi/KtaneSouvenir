@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -49,12 +49,13 @@ public partial class SouvenirModule
         var bubbleIndices = Enumerable.Range(1, 3).Select(ix => GetIntField(comp, $"message{ix}").Get(min: 0, max: ix == 1 ? 4 : 14)).ToArray();
         var bubbleMessageAnswers = new[] { bubbleFirstMessage[bubbleIndices[0]], bubbleMessages[bubbleIndices[1] % 5, bubbleIndices[1] / 5], bubbleMessages[bubbleIndices[2] % 5, bubbleIndices[2] / 5] };
 
-        addQuestions(module,
-            new[] { "toons", "games", "characters", "downloads", "store", "email" }.Select((text, ix) => makeQuestion(SMainPage.ButtonEffectOrigin, module, formatArgs: new[] { text }, correctAnswers: new[] { animNums[ix].ToString() })).Concat(
-            new[] { makeQuestion(SMainPage.HomestarBackgroundOrigin, module, formatArgs: new[] { "Homestar" }, correctAnswers: new[] { homestarNum.ToString() }),
-            makeQuestion(SMainPage.HomestarBackgroundOrigin, module, formatArgs: new[] { "the background" }, correctAnswers: new[] { backgroundNum.ToString() }),
-            makeQuestion(SMainPage.BubbleColors, module, correctAnswers: new[] { absentBubbleColor }),
-            makeQuestion(SMainPage.BubbleMessages, module, formatArgs: new[] { "display" }, correctAnswers: bubbleMessageAnswers),
-            makeQuestion(SMainPage.BubbleMessages, module, formatArgs: new[] { "not display" }, correctAnswers: SMainPage.BubbleMessages.GetAnswers().Except(bubbleMessageAnswers).ToArray())}));
+        var buttons = new[] { "toons", "games", "characters", "downloads", "store", "email" };
+        for (var ix = 0; ix < buttons.Length; ix++)
+            yield return question(SMainPage.ButtonEffectOrigin, args: [buttons[ix]]).Answers(animNums[ix].ToString());
+        yield return question(SMainPage.HomestarBackgroundOrigin, args: ["Homestar"]).Answers(homestarNum.ToString());
+        yield return question(SMainPage.HomestarBackgroundOrigin, args: ["the background"]).Answers(backgroundNum.ToString());
+        yield return question(SMainPage.BubbleColors).Answers(absentBubbleColor);
+        yield return question(SMainPage.BubbleMessages, args: ["display"]).Answers(bubbleMessageAnswers);
+        yield return question(SMainPage.BubbleMessages, args: ["not display"]).Answers(SMainPage.BubbleMessages.GetAnswers().Except(bubbleMessageAnswers).ToArray());
     }
 }

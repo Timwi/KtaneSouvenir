@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -50,9 +50,9 @@ public partial class SouvenirModule
             var initialRoom = turns[0][i][0];
             var initialWeapon = turns[0][i][1];
 
-            yield return new Discriminator(SNotMurder.Present, $"present{suspect}", true, [suspectIsFemale[suspect] ? "he" : "she"]);
-            yield return new Discriminator(SNotMurder.InitialWeapon, $"weapon{suspect}", initialWeapon, [suspectIsFemale[suspect] ? "he" : "she", weaponNames[initialWeapon]]);
-            yield return new Discriminator(SNotMurder.InitialRoom, $"room{suspect}", initialRoom, [suspectIsFemale[suspect] ? "he" : "she", roomNames[initialRoom]]);
+            yield return new Discriminator(SNotMurder.Present, $"present{suspect}", args: [suspectIsFemale[suspect] ? "he" : "she"]);
+            yield return new Discriminator(SNotMurder.InitialWeapon, $"weapon{suspect}", initialWeapon, args: [suspectIsFemale[suspect] ? "he" : "she", weaponNames[initialWeapon]]);
+            yield return new Discriminator(SNotMurder.InitialRoom, $"room{suspect}", initialRoom, args: [suspectIsFemale[suspect] ? "he" : "she", roomNames[initialRoom]]);
 
             var avoidDiscriminators = Enumerable.Range(0, 5).Except([i]).SelectMany(i => new[] { $"present{i}", $"weapon{i}", $"room{i}" }).ToArray();
 

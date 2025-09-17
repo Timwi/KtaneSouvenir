@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -39,21 +39,16 @@ public partial class SouvenirModule
         if (actualSuspect < 0 || actualSuspect >= 6 || actualWeapon < 0 || actualWeapon >= 6 || actualRoom < 0 || actualRoom >= 9 || bodyFound < 0 || bodyFound >= 9)
             throw new AbandonModuleException($"Unexpected suspect, weapon, room or bodyFound (expected 0–5/0–5/0–8/0–8, got {actualSuspect}/{actualWeapon}/{actualRoom}/{bodyFound}).");
 
-        addQuestions(module,
-            makeQuestion(SMurder.Suspect, module,
-                formatArgs: new[] { "a suspect but not the murderer" },
-                correctAnswers: Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 0 && suspectIx != actualSuspect).Select(suspectIx => names[0, suspectIx]).ToArray()),
-            makeQuestion(SMurder.Suspect, module,
-                formatArgs: new[] { "not a suspect" },
-                correctAnswers: Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 1).Select(suspectIx => names[0, suspectIx]).ToArray()),
+        yield return question(SMurder.Suspect, args: ["a suspect but not the murderer"])
+            .Answers(Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 0 && suspectIx != actualSuspect).Select(suspectIx => names[0, suspectIx]).ToArray());
+        yield return question(SMurder.Suspect, args: ["not a suspect"])
+            .Answers(Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 1).Select(suspectIx => names[0, suspectIx]).ToArray());
+        yield return question(SMurder.Weapon, args: ["a potential weapon but not the murder weapon"])
+            .Answers(Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 0 && weaponIx != actualWeapon).Select(weaponIx => names[1, weaponIx]).ToArray());
+        yield return question(SMurder.Weapon, args: ["not a potential weapon"])
+            .Answers(Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 1).Select(weaponIx => names[1, weaponIx]).ToArray());
 
-            makeQuestion(SMurder.Weapon, module,
-                formatArgs: new[] { "a potential weapon but not the murder weapon" },
-                correctAnswers: Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 0 && weaponIx != actualWeapon).Select(weaponIx => names[1, weaponIx]).ToArray()),
-            makeQuestion(SMurder.Weapon, module,
-                formatArgs: new[] { "not a potential weapon" },
-                correctAnswers: Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 1).Select(weaponIx => names[1, weaponIx]).ToArray()),
-
-            bodyFound == actualRoom ? null : makeQuestion(SMurder.BodyFound, module, correctAnswers: new[] { names[2, bodyFound] }));
+        if (bodyFound != actualRoom)
+            yield return question(SMurder.BodyFound).Answers(names[2, bodyFound]);
     }
 }

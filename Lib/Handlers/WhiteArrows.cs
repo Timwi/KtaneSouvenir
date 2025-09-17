@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -39,7 +39,11 @@ public partial class SouvenirModule
         var colors = new[] { "Blue", "Red", "Yellow", "Green", "Purple", "Orange", "Cyan", "Teal" };
         var directions = new[] { "Up", "Right", "Down", "Left" };
 
-        string format(int dir, int col) => string.Format(translateString(SWhiteArrows.Arrows, "{0} {1}"), translateString(SWhiteArrows.Arrows, colors[col]), translateString(SWhiteArrows.Arrows, directions[dir]));
+        string format(int dir, int col) => string.Format(
+            TranslateQuestionString(SWhiteArrows.Arrows, "{0} {1}"), 
+            TranslateQuestionString(SWhiteArrows.Arrows, colors[col]), 
+            TranslateQuestionString(SWhiteArrows.Arrows, directions[dir]));
+
         var all = (from d in Enumerable.Range(0, 4) from c in Enumerable.Range(0, 8) select format(d, c)).ToArray();
 
         for (var i = 0; i < arrows.Length; i++)

@@ -7,20 +7,25 @@ using Rnd = UnityEngine.Random;
 public enum SForgetThis
 {
     [SouvenirQuestion("What color was the LED in the {1} stage of {0}?", ThreeColumns6Answers, "Cyan", "Magenta", "Yellow", "Black", "White", "Green", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    Colors,
+    QColors,
 
     [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.AsciiMazeFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("0-9A-Z")]
-    Digits
+    QDigits,
+
+    [SouvenirDiscriminator("the Forget This whose LED was {0} in the {1} stage", Arguments = ["cyan", QandA.Ordinal, "magenta", QandA.Ordinal, "yellow", QandA.Ordinal, "black", QandA.Ordinal, "white", QandA.Ordinal, "green", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    DColors,
+
+    [SouvenirDiscriminator("the Forget This which displayed {0} in the {1} stage", Arguments = ["A", QandA.Ordinal, "B", QandA.Ordinal, "C", QandA.Ordinal, "D", QandA.Ordinal, "E", QandA.Ordinal, "F", QandA.Ordinal], ArgumentGroupSize = 2)]
+    DDigits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("forgetThis", "Forget This", typeof(SForgetThis), "Kuro")]
+    [SouvenirHandler("forgetThis", "Forget This", typeof(SForgetThis), "Kuro", IsBossModule = true)]
     private IEnumerator<SouvenirInstruction> ProcessForgetThis(ModuleData module)
     {
         var comp = GetComponent(module, "ForgetThis");
-        const string moduleId = "forgetThis";
 
         if (GetField<bool>(comp, "autoSolved").Get())
             yield return legitimatelyNoQuestion(module, "It solved itself due to a lack of stages.");
@@ -30,13 +35,6 @@ public partial class SouvenirModule
 
         if (myColors.Count != myDigits.Count)
             throw new AbandonModuleException($"The number of colors ({myColors.Count}) did not match the number of digits ({myDigits.Count})");
-        if (_ftColors.Any() && _ftColors.Last().Count != myColors.Count)
-            throw new AbandonModuleException("The number of colors was not consistent across all Forget This modules.");
-        if (_ftDigits.Any() && _ftDigits.Last().Count != myDigits.Count)
-            throw new AbandonModuleException("The number of digits was not consistent across all Forget This modules.");
-
-        _ftColors.Add(myColors);
-        _ftDigits.Add(myDigits);
 
         yield return WaitForUnignoredModules;
 
@@ -44,31 +42,13 @@ public partial class SouvenirModule
 
         var allColors = new[] { "Cyan", "Magenta", "Yellow", "Black", "White", "Green" };
         var base36 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var chosenStage = Rnd.Range(0, displayedStagesCount);
 
-        string formattedName = null;
-        if (_moduleCounts[moduleId] > 1)
+        for (var stage = 0; stage < displayedStagesCount; stage++)
         {
-            for (var stage = 0; stage < displayedStagesCount; stage++)
-            {
-                if (stage == chosenStage)
-                    continue;
-                var formatCandidates = new List<string>();
-                if (_ftColors.Count(c => c[stage] == myColors[stage]) == 1)
-                    formatCandidates.Add(string.Format(translateString(SForgetThis.Colors, "the Forget This whose LED was {0} in the {1} stage"), translateAnswer(SForgetThis.Colors, allColors[myColors[stage]]), Ordinal(stage + 1)));
-                if (_ftDigits.Count(d => d[stage] == myDigits[stage]) == 1)
-                    formatCandidates.Add(string.Format(translateString(SForgetThis.Colors, "the Forget This which displayed {0} in the {1} stage"), base36[myDigits[stage]], Ordinal(stage + 1)));
-                if (formatCandidates.Count > 0)
-                {
-                    formattedName = formatCandidates.PickRandom();
-                    break;
-                }
-            }
-            if (formattedName == null)
-                yield return legitimatelyNoQuestion(module, $"There were not enough stages in which this one (#{GetIntField(comp, "_moduleId").Get()}) was unique.");
+            yield return question(SForgetThis.QColors, args: [Ordinal(stage + 1)]).AvoidDiscriminators($"colors{stage}").Answers(allColors[myColors[stage]]);
+            yield return question(SForgetThis.QDigits, args: [Ordinal(stage + 1)]).AvoidDiscriminators($"digits{stage}").Answers(base36[myDigits[stage]].ToString());
+            yield return new Discriminator(SForgetThis.DColors, $"colors{stage}", myColors[stage], args: [allColors[myColors[stage]], Ordinal(stage + 1)]);
+            yield return new Discriminator(SForgetThis.DDigits, $"digits{stage}", myDigits[stage], args: [base36[myDigits[stage]].ToString(), Ordinal(stage + 1)]);
         }
-        formattedName ??= _translation?.Translate(SForgetThis.Colors).ModuleName ?? "Forget This";
-        yield return question(SForgetThis.Colors, args: [Ordinal(chosenStage + 1)]).Answers(allColors[myColors[chosenStage]]);
-        yield return question(SForgetThis.Digits, args: [Ordinal(chosenStage + 1)]).Answers(base36[myDigits[chosenStage]].ToString());
     }
 }

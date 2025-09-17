@@ -110,7 +110,7 @@ public partial class SouvenirModule
             foreach (var (a, b, flavor) in timers)
             {
                 yield return question(SVariety.Timer, args: [timers.Length == 1 ? "timer" : flavorNames[flavor]]).Answers($"{a - 1} {b - 1}");
-                yield return new Discriminator(SVariety.Has, $"timer-{flavor}", true, [flavor == 0 ? "an ascending timer" : "a descending timer"]) { Priority = 2 };
+                yield return new Discriminator(SVariety.Has, $"timer-{flavor}", args: [flavor == 0 ? "an ascending timer" : "a descending timer"]) { Priority = 2 };
             }
             yield return new Discriminator(SVariety.Has, "timer", true)
             {
@@ -131,7 +131,7 @@ public partial class SouvenirModule
                 var flavor = GetProperty<object>(knob, "Color", isPublic: true).Get(null, v => (int) v is < 0 or > 3 ? $"Unknown knob color {v}" : null).ToString();
                 flavor = flavor.Substring(0, flavor.Length - 4).ToLowerInvariant();
                 yield return question(SVariety.ColoredKnob, args: [format ?? $"{flavor} knob"]).Answers(ans.ToString());
-                yield return new Discriminator(SVariety.Has, $"cknob-{flavor}", true, [$"a {flavor} knob"]) { Priority = 3 };
+                yield return new Discriminator(SVariety.Has, $"cknob-{flavor}", args: [$"a {flavor} knob"]) { Priority = 3 };
             }
             yield return new Discriminator(SVariety.Has, "cknob", true)
             {
@@ -150,7 +150,7 @@ public partial class SouvenirModule
                 var flavor = GetProperty<object>(bulb, "Color", isPublic: true).Get(null, v => (int) v is < 0 or > 1 ? $"Unknown bulb color {v}" : null).ToString();
                 flavor = flavor.Substring(0, flavor.Length - 4).ToLowerInvariant();
                 yield return question(SVariety.Bulb, args: [format ?? $"{flavor} bulb"]).Answers(ans.ToString());
-                yield return new Discriminator(SVariety.Has, $"bulb-{flavor}", true, [$"a {flavor} bulb"]) { Priority = 2 };
+                yield return new Discriminator(SVariety.Has, $"bulb-{flavor}", args: [$"a {flavor} bulb"]) { Priority = 2 };
             }
             yield return new Discriminator(SVariety.Has, "bulb", true)
             {
@@ -161,51 +161,51 @@ public partial class SouvenirModule
         }
 
         if (items.Get("Key") != null)
-            yield return new Discriminator(SVariety.Has, "key", true, ["a key-in-lock"]) { Priority = 1 };
+            yield return new Discriminator(SVariety.Has, "key", args: ["a key-in-lock"]) { Priority = 1 };
 
         if (items.Get("Keypad") != null || items.Get("ColoredKeypad") != null)
-            yield return new Discriminator(SVariety.Has, "keypad", true, ["a keypad"]) { Priority = 1 };
+            yield return new Discriminator(SVariety.Has, "keypad", args: ["a keypad"]) { Priority = 1 };
 
         if (items.Get("Keypad") != null)
-            yield return new Discriminator(SVariety.Has, "white-keypad", true, ["a white keypad"]) { Priority = 2 };
+            yield return new Discriminator(SVariety.Has, "white-keypad", args: ["a white keypad"]) { Priority = 2 };
 
         if (items.Get("ColoredKeypad") is { } keypads)
         {
             foreach (var item in keypads)
             {
                 var color = GetProperty<object>(item, "Color", isPublic: true).Get().ToString().ToLowerInvariant();
-                yield return new Discriminator(SVariety.Has, $"colored-keypad-{color}", true, [$"a {color.Substring(0, color.Length - 6)} keypad"]) { Priority = 2 };
+                yield return new Discriminator(SVariety.Has, $"colored-keypad-{color}", args: [$"a {color.Substring(0, color.Length - 6)} keypad"]) { Priority = 2 };
             }
-            yield return new Discriminator(SVariety.Has, "colored-keypad", true, ["a colored keypad"]) { Priority = 2 };
+            yield return new Discriminator(SVariety.Has, "colored-keypad", args: ["a colored keypad"]) { Priority = 2 };
         }
 
         if (items.Get("Knob") != null || items.Get("ColoredKnob") != null)
-            yield return new Discriminator(SVariety.Has, "knob", true, ["a knob"]) { Priority = 1 };
+            yield return new Discriminator(SVariety.Has, "knob", args: ["a knob"]) { Priority = 1 };
 
         if (items.Get("Knob") != null)
-            yield return new Discriminator(SVariety.Has, "white-knob", true, ["a white knob"]) { Priority = 2 };
+            yield return new Discriminator(SVariety.Has, "white-knob", args: ["a white knob"]) { Priority = 2 };
 
         if (items.Get("ColoredKnob") is { } knobs)
         {
             foreach (var item in knobs)
             {
                 var color = GetProperty<object>(item, "Color", isPublic: true).Get().ToString().ToLowerInvariant();
-                yield return new Discriminator(SVariety.Has, $"colored-knob-{color}", true, [$"a {color.Substring(0, color.Length - 4)} knob"]) { Priority = 3 };
+                yield return new Discriminator(SVariety.Has, $"colored-knob-{color}", args: [$"a {color.Substring(0, color.Length - 4)} knob"]) { Priority = 3 };
             }
-            yield return new Discriminator(SVariety.Has, "colored-knob", true, ["a colored knob"]) { Priority = 2 };
+            yield return new Discriminator(SVariety.Has, "colored-knob", args: ["a colored knob"]) { Priority = 2 };
         }
 
         if (items.Get("BrailleDisplay") != null)
-            yield return new Discriminator(SVariety.Has, "braille", true, ["a Braille display"]) { Priority = 1 };
+            yield return new Discriminator(SVariety.Has, "braille", args: ["a Braille display"]) { Priority = 1 };
 
         if (items.Get("Button") is { } buttons)
         {
             foreach (var button in buttons)
             {
                 var color = GetProperty<object>(button, "Color", isPublic: true).Get().ToString().ToLowerInvariant();
-                yield return new Discriminator(SVariety.Has, $"button-{color}", true, [$"a {color.Substring(0, color.Length - 6)} button"]) { Priority = 2 };
+                yield return new Discriminator(SVariety.Has, $"button-{color}", args: [$"a {color.Substring(0, color.Length - 6)} button"]) { Priority = 2 };
             }
-            yield return new Discriminator(SVariety.Has, "button", true, ["a button"]) { Priority = 1 };
+            yield return new Discriminator(SVariety.Has, "button", args: ["a button"]) { Priority = 1 };
         }
 
         if (items.Get("Die") is { } dice)
@@ -213,9 +213,9 @@ public partial class SouvenirModule
             foreach (var die in dice)
             {
                 var flavor = GetProperty<bool>(die, "_flavor").Get();
-                yield return new Discriminator(SVariety.Has, $"die-{flavor}", true, [flavor ? "a dark-on-light die" : "a light-on-dark die"]) { Priority = 2 };
+                yield return new Discriminator(SVariety.Has, $"die-{flavor}", args: [flavor ? "a dark-on-light die" : "a light-on-dark die"]) { Priority = 2 };
             }
-            yield return new Discriminator(SVariety.Has, "die", true, ["a die"]) { Priority = 1 };
+            yield return new Discriminator(SVariety.Has, "die", args: ["a die"]) { Priority = 1 };
         }
 
         if (items.Get("Maze") is { } mazes)
@@ -224,9 +224,9 @@ public partial class SouvenirModule
             {
                 var width = GetProperty<int>(maze, "Width", isPublic: true).Get();
                 var height = GetProperty<int>(maze, "Height", isPublic: true).Get();
-                yield return new Discriminator(SVariety.Has, $"maze-{width}-{height}", true, [$"a {width}×{height} maze"]) { Priority = 2 };
+                yield return new Discriminator(SVariety.Has, $"maze-{width}-{height}", args: [$"a {width}×{height} maze"]) { Priority = 2 };
             }
-            yield return new Discriminator(SVariety.Has, "maze", true, ["a maze"]) { Priority = 1 };
+            yield return new Discriminator(SVariety.Has, "maze", args: ["a maze"]) { Priority = 1 };
         }
 
         if (items.Get("Slider") is { } sliders)
@@ -234,9 +234,9 @@ public partial class SouvenirModule
             foreach (var slider in sliders)
             {
                 var orientation = GetProperty<object>(slider, "Orientation", isPublic: true).Get().ToString().ToLowerInvariant();
-                yield return new Discriminator(SVariety.Has, $"slider-{orientation}", true, [$"a {orientation.Substring(0, orientation.Length - 6)} slider"]) { Priority = 2 };
+                yield return new Discriminator(SVariety.Has, $"slider-{orientation}", args: [$"a {orientation.Substring(0, orientation.Length - 6)} slider"]) { Priority = 2 };
             }
-            yield return new Discriminator(SVariety.Has, "slider", true, ["a slider"]) { Priority = 1 };
+            yield return new Discriminator(SVariety.Has, "slider", args: ["a slider"]) { Priority = 1 };
         }
 
         if (items.Get("Switch") is { } switches)
@@ -244,9 +244,9 @@ public partial class SouvenirModule
             foreach (var @switch in switches)
             {
                 var color = GetProperty<object>(@switch, "Color", isPublic: true).Get().ToString().ToLowerInvariant();
-                yield return new Discriminator(SVariety.Has, $"switch-{color}", true, [$"a {color.Substring(0, color.Length - 6)} switch"]) { Priority = 2 };
+                yield return new Discriminator(SVariety.Has, $"switch-{color}", args: [$"a {color.Substring(0, color.Length - 6)} switch"]) { Priority = 2 };
             }
-            yield return new Discriminator(SVariety.Has, "switch", true, ["a switch"]) { Priority = 1 };
+            yield return new Discriminator(SVariety.Has, "switch", args: ["a switch"]) { Priority = 1 };
         }
 
         if (items.Get("Wire") is { } wires)
@@ -254,9 +254,9 @@ public partial class SouvenirModule
             foreach (var wire in wires)
             {
                 var color = GetProperty<object>(wire, "Color", isPublic: true).Get().ToString().ToLowerInvariant();
-                yield return new Discriminator(SVariety.Has, $"wire-{color}", true, [$"a {color.Substring(0, color.Length - 4)} wire"]) { Priority = 2 };
+                yield return new Discriminator(SVariety.Has, $"wire-{color}", args: [$"a {color.Substring(0, color.Length - 4)} wire"]) { Priority = 2 };
             }
-            yield return new Discriminator(SVariety.Has, "wire", true, ["a wire"]) { Priority = 1 };
+            yield return new Discriminator(SVariety.Has, "wire", args: ["a wire"]) { Priority = 1 };
         }
 
         if (disableSelectables)

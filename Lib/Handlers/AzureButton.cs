@@ -54,7 +54,7 @@ public partial class SouvenirModule
         var dirNames = new[] { "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west" };
 
         foreach (var card in cards)
-            yield return new Discriminator(SAzureButton.DCard, $"card{card}", true, questionSprite: AzureButtonSprites[card]);
+            yield return new Discriminator(SAzureButton.DCard, $"card{card}", questionSprite: AzureButtonSprites[card]);
 
         yield return new Discriminator(SAzureButton.DM, "m", m, [m.ToString()]);
 

@@ -8,7 +8,10 @@ public enum SPolyhedralMaze
 {
     [SouvenirQuestion("What was the starting position in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 61)]
-    StartPosition
+    StartPosition,
+
+    [SouvenirDiscriminator("{0}", Arguments = ["the 4-truncated deltoidal icositetrahedral Polyhedral Maze", "the chamfered dodecahedral Polyhedral Maze", "the chamfered icosahedral Polyhedral Maze", "the deltoidal hexecontahedral Polyhedral Maze", "the disdyakis dodecahedral Polyhedral Maze", "the joined snub cubic Polyhedral Maze", "the joined rhombicuboctahedral Polyhedral Maze", "the pentagonal hexecontahedral Polyhedral Maze", "the orthokis propello cubic Polyhedral Maze", "the pentakis dodecahedral Polyhedral Maze", "the rectified rhombicuboctahedral Polyhedral Maze", "the triakis icosahedral Polyhedral Maze", "the rhombicosidodecahedral Polyhedral Maze", "the canonical rectified snub cubic Polyhedral Maze"], ArgumentGroupSize = 1)]
+    MazeShape
 }
 
 public partial class SouvenirModule
@@ -38,14 +41,9 @@ public partial class SouvenirModule
         var polyhedron = GetField<object>(comp, "_polyhedron").Get();
         var internalName = GetField<string>(polyhedron, "Name", isPublic: true).Get(s => !nameMapping.ContainsKey(s) ? "Unexpected polyhedron name" : null);
         var souvenirName = nameMapping[internalName];
-        _polyhedralMazeTypes.Add(souvenirName);
 
         yield return WaitForSolve;
-
-        string format = null;
-        if (_polyhedralMazeTypes.Count(n => n == souvenirName) == 1 && Rnd.Range(0, 2) != 0)
-            format = translateString(SPolyhedralMaze.StartPosition, souvenirName);
-
         yield return question(SPolyhedralMaze.StartPosition).Answers(GetIntField(comp, "_startFace").Get().ToString());
+        yield return new Discriminator(SPolyhedralMaze.MazeShape, "shape", internalName, args: [souvenirName]);
     }
 }

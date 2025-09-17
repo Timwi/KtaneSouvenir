@@ -33,7 +33,7 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir, str
         return new(this, new CoordAnswerStump(correct, preferredWrong, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray()));
     }
 
-    public abstract QuestionBase MakeQuestion(string moduleFormat);
+    public abstract QuestionBase MakeQuestion(string moduleFormat, Sprite questionSpriteFromDiscriminator, float questionSpriteRotationFromDiscriminator);
 
     public QuestionStump AvoidDiscriminators(params string[] discriminatorIds) => AvoidDiscriminators((IEnumerable<string>) discriminatorIds);
     public QuestionStump AvoidDiscriminators(IEnumerable<string> discriminatorIds)

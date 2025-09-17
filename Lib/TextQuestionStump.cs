@@ -8,6 +8,8 @@ public class TextQuestionStump(Enum enumValue, SouvenirModule souvenir, string[]
     public Sprite QuestionSprite { get; } = questionSprite;
     public float QuestionSpriteRotation { get; } = questionSpriteRotation;
 
-    public override QuestionBase MakeQuestion(string moduleFormat) =>
-        new TextQuestion(FormattedQuestion(moduleFormat), EnumValue.GetQuestionAttribute().Layout, QuestionSprite, QuestionSpriteRotation);
+    public override QuestionBase MakeQuestion(string moduleFormat, Sprite questionSpriteFromDiscriminator, float questionSpriteRotationFromDiscriminator) =>
+        new TextQuestion(FormattedQuestion(moduleFormat), EnumValue.GetQuestionAttribute().Layout,
+            questionSpriteFromDiscriminator ?? QuestionSprite,
+            questionSpriteFromDiscriminator == null ? QuestionSpriteRotation : questionSpriteRotationFromDiscriminator);
 }

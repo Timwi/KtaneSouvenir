@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -14,7 +14,7 @@ public enum SHyperForget
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("HyperForget", "HyperForget", typeof(SHyperForget), "Anonymous")]
+    [SouvenirHandler("HyperForget", "HyperForget", typeof(SHyperForget), "Anonymous", IsBossModule = true)]
     private IEnumerator<SouvenirInstruction> ProcessHyperForget(ModuleData module)
     {
         var comp = GetComponent(module, "HyperForget");

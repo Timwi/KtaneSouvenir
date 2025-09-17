@@ -51,27 +51,27 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
     protected override Dictionary<Type, TranslationInfo_de> _translations => new()
     {
         #region Translatable strings
-        [typeof(SouvAbyss)] = new()
+        [typeof(SAbyss)] = new()
         {
             Questions = new()
             {
-                [SouvAbyss.Seed] = new()
+                [SAbyss.Seed] = new()
                 {
                     Question = "Welcher Buchstabe wurde bei {0} als {1}es angezeigt?"
                 }
             }
         },
 
-        [typeof(SouvPentabutton)] = new()
+        [typeof(SPentabutton)] = new()
         {
             Gender = Gender.Masculine,
             ModuleName = "Pentaknopf",
             Questions = new()
             {
-                [SouvPentabutton.QBaseColor] = new()
+                [SPentabutton.BaseColor] = new()
                 {
                     Question = "Was war bei {0} die Basisfarbe?",
-                    Answers = new Dictionary<string, string>
+                    Answers = new()
                     {
                         ["Red"] = "Rot",
                         ["Orange"] = "Orange",
@@ -85,7 +85,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Discriminators = new()
             {
-                [SouvPentabutton.DLabel] = new()
+                [SPentabutton.Label] = new()
                 {
                     Discriminator = "dem Pentaknopf mit der Aufschrift “{0}”"
                 }

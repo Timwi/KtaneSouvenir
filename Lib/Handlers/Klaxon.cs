@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -15,8 +15,7 @@ public partial class SouvenirModule
     [SouvenirHandler("klaxon", "Klaxon", typeof(SKlaxon), "Timwi", AddThe = true)]
     private IEnumerator<SouvenirInstruction> ProcessKlaxon(ModuleData module)
     {
-        while (!_isActivated)
-            yield return null;
+        yield return WaitForActivate;
 
         var comp = GetComponent(module, "KlaxonScript");
         var letter = GetArrayField<char>(comp, "CorrectLetters").Get(minLength: 1, validator: c => c is < 'A' or > 'Z' ? "Expected uppercase letters" : null)[0];

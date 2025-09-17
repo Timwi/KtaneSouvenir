@@ -16,7 +16,7 @@ public enum SForgetEverything
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("HexiEvilFMN", "Forget Everything", typeof(SForgetEverything), "Kuro")]
+    [SouvenirHandler("HexiEvilFMN", "Forget Everything", typeof(SForgetEverything), "Kuro", IsBossModule = true)]
     private IEnumerator<SouvenirInstruction> ProcessForgetEverything(ModuleData module)
     {
         var comp = GetComponent(module, "EvilMemory");

@@ -31,15 +31,15 @@ public partial class SouvenirModule
         var fldName = GetField<string>(fires[0], "Name", true);
 
         var faeries = fires.Cast<object>().Select(f => (
-            Order: fldOrder.GetFrom(f, 0, 5),
-            Sound: fldSound.GetFrom(f, v => !Regex.IsMatch(v, "^FaerieGlitter[1-6]$") ? "Expected sound to match “^FaerieGlitter[1-6]$”" : null),
-            Name: fldName.GetFrom(f, v => !SFaerieFires.Color.GetAnswers().Contains(v) ? "Unexpected color name" : null)));
+            order: fldOrder.GetFrom(f, 0, 5),
+            sound: fldSound.GetFrom(f, v => !Regex.IsMatch(v, "^FaerieGlitter[1-6]$") ? "Expected sound to match “^FaerieGlitter[1-6]$”" : null),
+            name: fldName.GetFrom(f, v => !SFaerieFires.Color.GetAnswers().Contains(v) ? "Unexpected color name" : null)));
 
-        foreach (var f in faeries)
+        foreach (var (order, sound, name) in faeries)
         {
-            yield return question(SFaerieFires.PitchOrdinal, args: [Ordinal(f.Order + 1)]).Answers(FaerieFiresAudio[f.Sound.Last() - '1']);
-            yield return question(SFaerieFires.PitchColor, args: [f.Name]).Answers(FaerieFiresAudio[f.Sound.Last() - '1']);
-            yield return question(SFaerieFires.Color, args: [Ordinal(f.Order + 1)]).Answers(f.Name);
+            yield return question(SFaerieFires.PitchOrdinal, args: [Ordinal(order + 1)]).Answers(FaerieFiresAudio[sound.Last() - '1']);
+            yield return question(SFaerieFires.PitchColor, args: [name]).Answers(FaerieFiresAudio[sound.Last() - '1']);
+            yield return question(SFaerieFires.Color, args: [Ordinal(order + 1)]).Answers(name);
         }
     }
 }

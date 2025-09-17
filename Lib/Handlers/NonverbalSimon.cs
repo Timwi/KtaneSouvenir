@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -19,8 +19,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "NonverbalSimonHandler");
         yield return WaitForSolve;
 
-        var flashes = GetMethod<List<string>>(comp, "GrabCombinedFlashes", 0, true).Invoke(new object[0]);
-        var qs = new List<QandA>(flashes.Count);
+        var flashes = GetMethod<List<string>>(comp, "GrabCombinedFlashes", 0, true).Invoke([]);
         var names = new[] { "Red", "Orange", "Yellow", "Green" };
 
         for (var stage = 0; stage < flashes.Count; stage++)
@@ -28,7 +27,7 @@ public partial class SouvenirModule
             var name = $"{flashes.Count}-{stage + 1}";
             var tex = NonverbalSimonQuestions.First(t => t.name.Equals(name));
 
-            if (_moduleCounts.Get("nonverbalSimon") > 1)
+            if (module.Info.NumModules > 1)
             {
                 var num = module.SolveIndex.ToString();
                 var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
@@ -42,15 +41,14 @@ public partial class SouvenirModule
                 }
 
                 tmp.Apply(false, true);
-                _questionTexturesToDestroyLater.Add(tmp);
+                _unityObjectsToDestroyLater.Add(tmp);
                 tex = tmp;
             }
 
             var q = Sprite.Create(tex, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
             q.name = $"NVSQ{stage}-{module.SolveIndex}";
-            qs.Add(makeSpriteQuestion(q, SNonverbalSimon.Flashes, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])] }, preferredWrongAnswers: NonverbalSimonSprites));
+            yield return question(SNonverbalSimon.Flashes, entireQuestionSprite: q, args: [Ordinal(stage + 1)])
+                .Answers(NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])], preferredWrong: NonverbalSimonSprites);
         }
-
-        addQuestions(module, qs);
     }
 }

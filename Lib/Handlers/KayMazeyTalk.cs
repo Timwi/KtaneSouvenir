@@ -7,7 +7,10 @@ using static Souvenir.AnswerLayout;
 public enum SKayMazeyTalk
 {
     [SouvenirQuestion("What was the {1} word in {0}?", ThreeColumns6Answers, "Knit", "Knows", "Knock", "Knew", "Knoll", "Kneed", "Knuff", "Knork", "Knout", "Knits", "Knife", "Knights", "Knap", "Knee", "Knocks", "Knacks", "Knab", "Knocked", "Knight", "Knitch", "Knots", "Knish", "Knob", "Knox", "Knur", "Knook", "Know", "Knack", "Knurl", "Knot", Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    Word
+    QWord,
+
+    [SouvenirDiscriminator("the KayMazey Talk whose {0} word was {1}", Arguments = ["starting", "Knit", "goal", "Knows"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    DWord
 }
 
 public partial class SouvenirModule
@@ -19,7 +22,6 @@ public partial class SouvenirModule
 
         var startingPosition = GetIntField(comp, "currentPosition").Get(min: 0, max: 35);
         var endingPosition = GetIntField(comp, "goalPosition").Get(min: 0, max: 35);
-        _kayMazeyTalkInfo.Add((startingPosition, endingPosition));
 
         var struck = false;
         module.Module.OnStrike += () => { struck = true; return false; };
@@ -35,23 +37,14 @@ public partial class SouvenirModule
             "Knook",  "Know",    "",        "Knack",  "Knurl",  "Knot"
         ];
 
-        var endWord = mazeWords[endingPosition];
+        var goalWord = mazeWords[endingPosition];
         var startWord = mazeWords[startingPosition];
-        string startFormat = null;
-        var usesFormat = _moduleCounts["KMazeyTalk"] > 1;
 
         if (!struck)
-        {
-            if (_kayMazeyTalkInfo.Count(i => i.start == startingPosition) == 1)
-                startFormat = string.Format(translateString(SKayMazeyTalk.Word, "the KayMazey Talk whose starting word was {0}"), startWord);
+            yield return question(SKayMazeyTalk.QWord, args: ["starting"]).AvoidDiscriminators("start").Answers(startWord);
+        yield return question(SKayMazeyTalk.QWord, args: ["goal"]).AvoidDiscriminators("goal").Answers(goalWord);
 
-            string endFormat = null;
-            if (_kayMazeyTalkInfo.Count(i => i.end == endingPosition) == 1)
-                endFormat = string.Format(translateString(SKayMazeyTalk.Word, "the KayMazey Talk whose goal word was {0}"), endWord);
-
-            yield return question(SKayMazeyTalk.Word, args: ["starting"]).Answers(startWord, preferredWrong: usesFormat && endFormat != null ? [] : [endWord]);
-        }
-
-        yield return question(SKayMazeyTalk.Word, args: ["ending"]).Answers(endWord, preferredWrong: usesFormat && startFormat != null ? [] : [startWord]);
+        yield return new Discriminator(SKayMazeyTalk.DWord, "start", startWord, args: ["starting", startWord], avoidAnswers: [startWord]);
+        yield return new Discriminator(SKayMazeyTalk.DWord, "goal", goalWord, args: ["goal", goalWord], avoidAnswers: [goalWord]);
     }
 }

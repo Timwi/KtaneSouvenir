@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
+using UnityEngine.UI;
 using static Souvenir.AnswerLayout;
 
 public enum SBarCharts

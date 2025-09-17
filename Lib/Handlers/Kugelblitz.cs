@@ -12,17 +12,25 @@ public enum SKugelblitz
 
     [SouvenirQuestion("What were the particles’ values for the {1} stage of {0}?", OneColumn4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ExampleAnswers = ["R=0, O=0, Y=0, G=0, B=0, I=0, V=0", "R=1, O=0, Y=2, G=3, B=4, I=1, V=6", "R=1, O=0, Y=1, G=1, B=1, I=1, V=0", "R=6, O=5, Y=2, G=4, B=3, I=1, V=2"], TranslatableStrings = ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"])]
     RedGreenBlue,
+
+    [SouvenirDiscriminator("the {0} Kugelblitz", Arguments = ["black", "red", "orange", "yellow", "green", "blue", "indigo", "violet"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    Color,
+
+    [SouvenirDiscriminator("the Kugelblitz linked with no other Kugelblitzes")]
+    NoLinks,
+
+    [SouvenirDiscriminator("the {0} Kugelblitz linked with {1}", Arguments = ["black", "one other Kugelblitz", "red", "two other Kugelblitzes", "orange", "three other Kugelblitzes", "yellow", "four other Kugelblitzes", "green", "five other Kugelblitzes", "blue", "six other Kugelblitzes", "indigo", "seven other Kugelblitzes", "violet", "seven other Kugelblitzes"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    Links
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("kugelblitz", "Kugelblitz", typeof(SKugelblitz), "Anonymous")]
+    private readonly Dictionary<object, HashSet<int>> _kugelblitzUsedQuirks = [];
+
+    [SouvenirHandler("kugelblitz", "Kugelblitz", typeof(SKugelblitz), "Anonymous", IsBossModule = true)]
     private IEnumerator<SouvenirInstruction> ProcessKugelblitz(ModuleData module)
     {
-        module.SolveIndex = 1;
-
-        while (!_isActivated)
-            yield return null;
+        yield return WaitForActivate;
 
         yield return null;
         yield return null; // The module takes this long to subscribe to a lobby
@@ -42,10 +50,7 @@ public partial class SouvenirModule
         var usedQuirks = new HashSet<int>(Enumerable.Range(0, 8).Where(qId => orderedQuirks[qId] != null));
 
         if (!_kugelblitzUsedQuirks.TryGetValue(lobby, out var askedQuirks))
-        {
-            askedQuirks = _kugelblitzUsedQuirks[lobby] = new();
-            _kugelblitzQuirksGroupings.Add(usedQuirks);
-        }
+            askedQuirks = _kugelblitzUsedQuirks[lobby] = [];
 
         var KOYIV = new List<byte>[5];
         var RGB = new List<byte[]>[3];
@@ -96,11 +101,11 @@ public partial class SouvenirModule
         yield return null;
 
         string constructStandardAnswer(int b) => string.Format(
-            translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, "{0}{1}{2}{3}{4}{5}{6}"),
-            Enumerable.Range(0, 7).Select(i => (b & (1 << i)) != 0 ? translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, "ROYGBIV"[i].ToString()) : "").ToArray());
+            TranslateQuestionString(SKugelblitz.BlackOrangeYellowIndigoViolet, "{0}{1}{2}{3}{4}{5}{6}"),
+            Enumerable.Range(0, 7).Select(i => (b & (1 << i)) != 0 ? TranslateQuestionString(SKugelblitz.BlackOrangeYellowIndigoViolet, "ROYGBIV"[i].ToString()) : "").ToArray());
 
         string constructRGBAnswer(byte[] b) => string.Format(
-            translateString(SKugelblitz.RedGreenBlue, "R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"),
+            TranslateQuestionString(SKugelblitz.RedGreenBlue, "R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"),
             b[0], b[1], b[2], b[3], b[4], b[5], b[6]);
 
         IEnumerable<string> allRGBAnswers(int max)
@@ -112,38 +117,18 @@ public partial class SouvenirModule
         }
 
         var allStandardAnswers = Enumerable.Range(0, 128).Select(constructStandardAnswer).ToArray();
-        allStandardAnswers[0] = translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, "None");
+        allStandardAnswers[0] = TranslateQuestionString(SKugelblitz.BlackOrangeYellowIndigoViolet, "None");
 
         var quirkNames = new[] { "black", "red", "orange", "yellow", "green", "blue", "indigo", "violet" };
-        string formatName(int color) => string.Format(translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, "the {0} Kugelblitz"), translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, quirkNames[color]));
 
         var templates = Ut.NewArray(
-            "the Kugelblitz linked with no other Kugelblitzes",
-            "the {0} Kugelblitz linked with one other Kugelblitz",
-            "the {0} Kugelblitz linked with two other Kugelblitzes",
-            "the {0} Kugelblitz linked with three other Kugelblitzes",
-            "the {0} Kugelblitz linked with four other Kugelblitzes",
-            "the {0} Kugelblitz linked with five other Kugelblitzes",
-            "the {0} Kugelblitz linked with six other Kugelblitzes",
-            "the {0} Kugelblitz linked with seven other Kugelblitzes");
-        string formatNameSized(int color, int size) => string.Format(translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, templates[size - 1]), translateString(SKugelblitz.BlackOrangeYellowIndigoViolet, quirkNames[color]));
-
-        bool myFormat(int color, out string format)
-        {
-            if (color == 0 && _kugelblitzQuirksGroupings.Count == 1 && _kugelblitzQuirksGroupings[0].Count == 1)
-                format = null;
-            else if (_kugelblitzQuirksGroupings.Count(g => g.Contains(color)) == 1)
-                format = formatName(color);
-            else if (_kugelblitzQuirksGroupings.Count(g => g.Contains(color) && g.Count == linkSize) == 1)
-                format = formatNameSized(color, linkSize);
-            else
-            {
-                legitimatelyNoQuestion(module, $"There are multiple lobbies with {linkSize} kugelblitzes and a(n) {quirkNames[color]} one, so I can’t ask about them.");
-                format = null;
-                return false;
-            }
-            return true;
-        }
+            "one other Kugelblitz",
+            "two other Kugelblitzes",
+            "three other Kugelblitzes",
+            "four other Kugelblitzes",
+            "five other Kugelblitzes",
+            "six other Kugelblitzes",
+            "seven other Kugelblitzes");
 
         var finalQuirk = usedQuirks.FirstOrNull(q => !askedQuirks.Contains(q)) ?? throw new AbandonModuleException("I somehow ran out of quirks.");
         askedQuirks.Add(finalQuirk);
@@ -152,9 +137,13 @@ public partial class SouvenirModule
         var answers = isNormal
             ? KOYIV[qp].Select(b => allStandardAnswers[b]).ToArray()
             : RGB[Array.IndexOf(abnormalQuirks, finalQuirk)].Select(constructRGBAnswer).ToArray();
-        if (!myFormat(finalQuirk, out var format))
-            yield break;
+
         for (var i = 0; i < answers.Length; i++)
-            yield return question(isNormal ? SKugelblitz.BlackOrangeYellowIndigoViolet : SKugelblitz.RedGreenBlue, args: [Ordinal(i + 1)]).Answers(answers[i], all: isNormal ? allStandardAnswers : null, preferredWrong: isNormal ? null : allRGBAnswers(finalQuirk == 5 ? 2 : 6).ToArray());
+            yield return question(isNormal ? SKugelblitz.BlackOrangeYellowIndigoViolet : SKugelblitz.RedGreenBlue, args: [Ordinal(i + 1)])
+                .Answers(answers[i], all: isNormal ? allStandardAnswers : null, preferredWrong: isNormal ? null : allRGBAnswers(finalQuirk == 5 ? 2 : 6).ToArray());
+        yield return new Discriminator(SKugelblitz.Color, "color", finalQuirk, [quirkNames[finalQuirk]]);
+        yield return linkSize == 1
+            ? new Discriminator(SKugelblitz.NoLinks, "nolink", true)
+            : new Discriminator(SKugelblitz.Links, "colorlink", (finalQuirk, linkSize), args: [quirkNames[finalQuirk], templates[linkSize - 2]]) { Priority = 1 };
     }
 }

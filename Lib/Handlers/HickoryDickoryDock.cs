@@ -12,24 +12,18 @@ public enum SHickoryDickoryDock
     [AnswerGenerator.HickoryDickoryDock]
     Time,
 
-    [SouvenirDiscriminator("the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}", Arguments = ["1", "30", "2:00"], ArgumentGroupSize = 3)]
+    [SouvenirDiscriminator("the Hickory Dickory Dock which showed {0} when it struck {1}", Arguments = ["1:30", "2:00"], ArgumentGroupSize = 3)]
     Discriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("hickoryDickoryDockModule", "Hickory Dickory Dock", typeof(SHickoryDickoryDock), "Anonymous")]
+    [SouvenirHandler("hickoryDickoryDockModule", "Hickory Dickory Dock", typeof(SHickoryDickoryDock), "Anonymous", IsBossModule = true)]
     private IEnumerator<SouvenirInstruction> ProcessHickoryDickoryDock(ModuleData module)
     {
-        _hickoryDickoryDocksUnsolved++;
-
+        // Wait until _either_ the module solves itself, _or_ no unignored modules are left
         while (!_noUnignoredModulesLeft && module.Unsolved)
             yield return new WaitForSeconds(.1f);
-
-        _hickoryDickoryDocksUnsolved--;
-
-        while (_hickoryDickoryDocksUnsolved != 0)
-            yield return null;
 
         var comp = GetComponent(module, "HickoryDickoryDockScript");
         var stageObjects = GetField<IList>(comp, "generatedStages").Get();
@@ -42,9 +36,9 @@ public partial class SouvenirModule
         var fldChimes = GetField<int>(stageObjects[0], "chimes", isPublic: true);
 
         var validMinutes = new[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
+        var minuteValues = new[] { 0, 7, 15, 22, 30, 37, 45, 52 };
 
         var stages = new (int h, int m)[12];
-        _hickoryDickoryDockStages.Add(stages);
 
         foreach (var stage in stageObjects)
         {
@@ -55,39 +49,16 @@ public partial class SouvenirModule
             stages[c - 1] = (h + 1, Array.IndexOf(validMinutes, m));
         }
 
-        yield return null;
-
         if (module.Info.NumModules == 1)
         {
-            addQuestions(module, stages
-                .Select((t, c) => (t, c))
-                .Where(t => t.t is not (0, 0))
-                .Select(t => makeQuestion(
-                    question: SHickoryDickoryDock.Time,
-                    moduleId: module.Module.ModuleType, solveIx: 1,
-                    formatArgs: new[] { $"{t.c + 1}:00" },
-                    correctAnswers: new[] { $"{t.t.h}:{_hickoryDickoryDockMinutes[t.t.m]:00}" })));
-            yield break;
+            for (var c = 0; c < stages.Length; c++)
+                if (stages[c] is not (0, 0))
+                {
+                    var struck = $"{c + 1}:00";
+                    var time = $"{stages[c].h}:{minuteValues[stages[c].m]:00}";
+                    yield return question(SHickoryDickoryDock.Time, args: [struck]).Answers(time);
+                    yield return new Discriminator(SHickoryDickoryDock.Discriminator, $"stage{c}", time, args: [time, struck]);
+                }
         }
-
-        for (var i = 0; i < 12; i++)
-        {
-            if (stages[i] is (0, 0))
-                continue;
-
-            var unique = Enumerable.Range(0, 12).Where(s => s != i && stages[s] is not (0, 0) && _hickoryDickoryDockStages.Count(d => d[s] == stages[s]) is 1);
-            if (!unique.Any())
-                continue;
-
-            var used = unique.PickRandom();
-            var format = string.Format(
-                translateString(SHickoryDickoryDock.Time, "the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}"),
-                stages[used].h, _hickoryDickoryDockMinutes[stages[used].m], $"{used + 1}:00");
-
-            yield return question(SHickoryDickoryDock.Time, args: [$"{i + 1}:00"]).Answers($"{stages[i].h}:{_hickoryDickoryDockMinutes[stages[i].m]:00}");
-        }
-
-        if (qs.Count == 0)
-            yield return legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetIntField(comp, "moduleId").Get()}) was unique.");
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,8 +22,9 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "NCFScript");
         var seq = GetArrayField<int[]>(comp, "seq").Get(expectedLength: 4, validator: v => v is not { Length: 6 } ? "Expected length 6" : v.Any(i => i is < 0 or > 5) ? "Expected within range [0, 5]" : null);
-        addQuestions(module,
-            seq[0].Select((c, i) => makeQuestion(SNotColourFlash.InitialWord, module, correctAnswers: new[] { SNotColourFlash.InitialWord.GetAnswers()[c] }, formatArgs: new[] { Ordinal(i + 1) }))
-            .Concat(seq[1].Select((c, i) => makeQuestion(SNotColourFlash.InitialColour, module, correctAnswers: new[] { SNotColourFlash.InitialColour.GetAnswers()[c] }, formatArgs: new[] { Ordinal(i + 1) }))));
+        for (var i = 0; i < seq[0].Length; i++)
+            yield return question(SNotColourFlash.InitialWord, args: [Ordinal(i + 1)]).Answers(SNotColourFlash.InitialWord.GetAnswers()[seq[0][i]]);
+        for (var i = 0; i < seq[1].Length; i++)
+            yield return question(SNotColourFlash.InitialColour, args: [Ordinal(i + 1)]).Answers(SNotColourFlash.InitialColour.GetAnswers()[seq[1][i]]);
     }
 }

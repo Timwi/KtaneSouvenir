@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -19,9 +19,7 @@ public partial class SouvenirModule
 
         var leftIx = GetIntField(comp, "leftIndex").Get().ToString();
         var rightIx = GetIntField(comp, "rightIndex").Get().ToString();
-        addQuestions(module, new[] {
-            makeQuestion(SNameCodes.Indices, module, formatArgs: new[] { "left" }, correctAnswers: new[] { leftIx }),
-            makeQuestion(SNameCodes.Indices, module, formatArgs: new[] { "right" }, correctAnswers: new[] { rightIx }),
-        });
+        yield return question(SNameCodes.Indices, args: ["left"]).Answers(leftIx);
+        yield return question(SNameCodes.Indices, args: ["right"]).Answers(rightIx);
     }
 }

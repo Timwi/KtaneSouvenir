@@ -35,7 +35,7 @@ public partial class SouvenirModule
         }
 
         // Used to validate colors
-        string[] colorNames = { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan" };
+        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan" };
 
         if (seqs.Any(seq => seq.Any(color => !colorNames.Contains(color))))
             throw new AbandonModuleException($"‘colors’ contains an invalid color: [{seqs.Select(seq => seq.JoinString(", ")).JoinString("; ")}]");

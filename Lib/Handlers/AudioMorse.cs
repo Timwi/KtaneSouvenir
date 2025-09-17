@@ -1,8 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
+using Rnd = UnityEngine.Random;
 
 public enum SAudioMorse
 {
@@ -28,46 +29,36 @@ public partial class SouvenirModule
 
         var key = $"{word} {a}{b}{c}";
 
-        var all = new List<string>() { key };
+        var all = new HashSet<string>() { key };
         while (all.Count < 6)
-        {
-            var wrongWord = words.PickRandom();
-            var num = UnityEngine.Random.Range(0, 1000).ToString("D3");
-            var wrongKey = $"{wrongWord} {num}";
-            if (!all.Contains(wrongKey))
-                all.Add(wrongKey);
-        }
+            all.Add($"{words.PickRandom()} {Rnd.Range(0, 1000):D3}");
 
         var clips = all.Select(k =>
         {
-            if (!_audioMorseAudio.TryGetValue(k, out var clip))
+            var clips = new List<Sounds.AudioPosition>();
+            var head = 0f;
+            var m = k.Select(c => morse[c]).JoinString();
+            for (var i = 0; i < m.Length; i++)
             {
-                List<Sounds.AudioPosition> clips = new();
-                var head = 0f;
-                var m = k.Select(c => morse[c]).JoinString();
-                for (var i = 0; i < m.Length; i++)
+                switch (m[i])
                 {
-                    switch (m[i])
-                    {
-                        case '.':
-                            clips.Add((AudioMorseAudio[0], head));
-                            head += 0.125f;
-                            break;
-                        case '-':
-                            clips.Add((AudioMorseAudio[1], head));
-                            goto case ' ';
-                        case ' ':
-                            head += 0.25f;
-                            break;
-                    }
+                    case '.':
+                        clips.Add((AudioMorseAudio[0], head));
+                        head += 0.125f;
+                        break;
+                    case '-':
+                        clips.Add((AudioMorseAudio[1], head));
+                        goto case ' ';
+                    case ' ':
+                        head += 0.25f;
+                        break;
                 }
-                clip = _audioMorseAudio[k] = Sounds.Combine(k, clips.ToArray());
             }
-            return clip;
+            return Sounds.Combine(k, clips.ToArray());
         }).ToArray();
+        _unityObjectsToDestroyLater.AddRange(clips);
 
         yield return WaitForSolve;
-
         yield return question(SAudioMorse.Sound).Answers(clips[0], all: clips);
     }
 }

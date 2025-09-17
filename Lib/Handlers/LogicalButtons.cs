@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Souvenir;
+using Souvenir.Reflection;
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SLogicalButtons
@@ -91,9 +94,13 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"There is a null initial operator ([{initialOperators.Select(io => io == null ? "<null>" : $"“{io}”").JoinString(", ")}]).");
 
         var _logicalButtonsButtonNames = new[] { "top", "bottom-left", "bottom-right" };
-        addQuestions(module,
-            colors.SelectMany((clrs, stage) => clrs.Select((clr, btnIx) => makeQuestion(SLogicalButtons.Color, module, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], Ordinal(stage + 1) }, correctAnswers: new[] { clr })))
-                .Concat(labels.SelectMany((lbls, stage) => lbls.Select((lbl, btnIx) => makeQuestion(SLogicalButtons.Label, module, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], Ordinal(stage + 1) }, correctAnswers: new[] { lbl }))))
-                .Concat(initialOperators.Select((op, stage) => makeQuestion(SLogicalButtons.Operator, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { op }))));
+        for (var stage = 0; stage < colors.Length; stage++)
+            for (var btnIx = 0; btnIx < colors[stage].Length; btnIx++)
+                yield return question(SLogicalButtons.Color, args: [_logicalButtonsButtonNames[btnIx], Ordinal(stage + 1)]).Answers(colors[stage][btnIx]);
+        for (var stage = 0; stage < labels.Length; stage++)
+            for (var btnIx = 0; btnIx < labels[stage].Length; btnIx++)
+                yield return question(SLogicalButtons.Label, args: [_logicalButtonsButtonNames[btnIx], Ordinal(stage + 1)]).Answers(labels[stage][btnIx]);
+        for (var stage = 0; stage < initialOperators.Length; stage++)
+            yield return question(SLogicalButtons.Operator, args: [Ordinal(stage + 1)]).Answers(initialOperators[stage]);
     }
 }

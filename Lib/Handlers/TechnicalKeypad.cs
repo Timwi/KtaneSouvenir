@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -42,7 +42,7 @@ public partial class SouvenirModule
             }
 
             tmp.Apply(updateMipmaps: false, makeNoLongerReadable: true);
-            _questionTexturesToDestroyLater.Add(tmp);
+            _unityObjectsToDestroyLater.Add(tmp);
             tex = tmp;
 
             var questionSprite = Sprite.Create(tex, Rect.MinMaxRect(0, 0, 400, 320), new Vector2(.5f, .5f), 1280f, 1, SpriteMeshType.Tight);

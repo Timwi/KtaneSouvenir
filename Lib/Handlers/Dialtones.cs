@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SDialtones
@@ -12,6 +12,8 @@ public enum SDialtones
 
 public partial class SouvenirModule
 {
+    private static readonly Dictionary<string, AudioClip> _dialtonesAnswers = [];
+
     [SouvenirHandler("xelDialtones", "Dialtones", typeof(SDialtones), "Anonymous")]
     private IEnumerator<SouvenirInstruction> ProcessDialtones(ModuleData module)
     {
@@ -32,12 +34,12 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var toneString = GetField<string>(comp, "questionWord").Get();
-        if (!_dialtonesAnswers.TryGetValue(toneString, out var question))
+        if (!_dialtonesAnswers.TryGetValue(toneString, out var questionDialtones))
             throw new AbandonModuleException($"Unexpected set of question dialtones {toneString}");
         toneString = GetField<string>(comp, "answerWord").Get();
         if (!_dialtonesAnswers.TryGetValue(toneString, out var solution))
             throw new AbandonModuleException($"Unexpected set of solution dialtones {toneString}");
 
-        yield return question(SDialtones.Dialtones).Answers(question, all: _dialtonesAnswers.Values.ToArray(), preferredWrong: [solution]);
+        yield return question(SDialtones.Dialtones).Answers(questionDialtones, all: _dialtonesAnswers.Values.ToArray(), preferredWrong: [solution]);
     }
 }

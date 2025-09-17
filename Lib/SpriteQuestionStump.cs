@@ -7,6 +7,6 @@ public class SpriteQuestionStump(Enum question, SouvenirModule souvenir, string[
 {
     public Sprite Sprite { get; } = sprite;
 
-    public override QuestionBase MakeQuestion(string moduleFormat) =>
+    public override QuestionBase MakeQuestion(string moduleFormat, Sprite questionSpriteFromDiscriminator, float questionSpriteRotationFromDiscriminator) =>
         new SpriteQuestion(FormattedQuestion(moduleFormat), Sprite);
 }

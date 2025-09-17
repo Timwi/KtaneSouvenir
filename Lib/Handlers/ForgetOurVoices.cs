@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -16,7 +16,7 @@ public enum SForgetOurVoices
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("forgetOurVoices", "Forget Our Voices", typeof(SForgetOurVoices), "Anonymous")]
+    [SouvenirHandler("forgetOurVoices", "Forget Our Voices", typeof(SForgetOurVoices), "Anonymous", IsBossModule = true)]
     private IEnumerator<SouvenirInstruction> ProcessForgetOurVoices(ModuleData module)
     {
         while (!_noUnignoredModulesLeft)

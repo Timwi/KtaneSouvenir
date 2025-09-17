@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -7,10 +7,19 @@ using static Souvenir.AnswerLayout;
 public enum SNavyButton
 {
     [SouvenirQuestion("Which Greek letter appeared on {0} (case-sensitive)?", ThreeColumns6Answers, "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω")]
-    GreekLetters,
+    QGreekLetters,
 
     [SouvenirQuestion("What was the {1} of the given in {0}?", TwoColumns4Answers, "0", "1", "2", "3", Arguments = ["(0-indexed) column", "(0-indexed) row", "value"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    Given
+    QGiven,
+
+    [SouvenirDiscriminator("the Navy Button that had a {0} on it", Arguments = ["Β", "Γ", "Δ", "Ζ", "Θ", "Κ", "Λ", "Μ", "Ν", "Ξ", "Π", "Ρ", "Σ", "Τ", "Φ", "Χ", "Ψ", "β", "γ", "δ", "ζ", "θ", "κ", "λ", "μ", "ν", "ξ", "π", "ρ", "σ", "τ", "φ", "χ", "ψ"], ArgumentGroupSize = 1)]
+    DGreekLettersNV,
+
+    [SouvenirDiscriminator("the Navy Button that had an {0} on it", Arguments = ["Α", "Ε", "Η", "Ι", "Ο", "Υ", "Ω", "α", "ε", "η", "ι", "ο", "υ", "ω"], ArgumentGroupSize = 1)]
+    DGreekLettersV,
+
+    [SouvenirDiscriminator("the Navy Button where the {0} of the given was {1}", Arguments = ["(0-indexed) column", "1", "(0-indexed) row", "1", "value", "1"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    DGiven
 }
 
 public partial class SouvenirModule
@@ -28,25 +37,21 @@ public partial class SouvenirModule
             .Get(validator: arr => arr.Any(v => v < 0 || v >= allGreekLetters.Length) ? $"expected range 0–{allGreekLetters.Length - 1}" : null);
         var givenIndex = GetProperty<int>(puzzle, "GivenIndex", isPublic: true).Get(validator: v => v is < 0 or >= 16 ? "expected range 0–15" : null);
         var givenValue = GetProperty<int>(puzzle, "GivenValue", isPublic: true).Get(validator: v => v is < 0 or >= 4 ? "expected range 0–3" : null);
-        _navyButtonInfos.Add((hasGreekLetters, givenIndex % 4, givenIndex / 4, givenValue));
 
         yield return WaitForSolve;
 
-        var candidateDiscriminators = new List<(string format, string name)> { (null, null) };
-        void addCandidateDiscriminator<T>(Func<(int[] greekLetters, int col, int row, int val), T> getter, T value, string name, string format, object arg)
-        {
-            if (_navyButtonInfos.Count(tup => getter(tup).Equals(value)) == 1)
-                candidateDiscriminators.Add((string.Format(translateString(SNavyButton.GreekLetters, format), arg), name));
-        }
-        addCandidateDiscriminator(tup => tup.col, givenIndex % 4, "col", "the Navy Button where the (0-indexed) column of the given was {0}", givenIndex % 4);
-        addCandidateDiscriminator(tup => tup.row, givenIndex / 4, "row", "the Navy Button where the (0-indexed) row of the given was {0}", givenIndex / 4);
-        addCandidateDiscriminator(tup => tup.val, givenValue, "val", "the Navy Button where the value of the given was {0}", givenValue);
+        yield return new Discriminator(SNavyButton.DGiven, "given-v", givenValue, ["value", givenValue.ToString()]);
+        yield return new Discriminator(SNavyButton.DGiven, "given-c", givenValue, ["(0-indexed) column", (givenIndex % 4).ToString()]);
+        yield return new Discriminator(SNavyButton.DGiven, "given-r", givenValue, ["(0-indexed) row", (givenIndex / 4).ToString()]);
         for (var grLtrIx = 0; grLtrIx < allGreekLetters.Length; grLtrIx++)
-            addCandidateDiscriminator(tup => tup.greekLetters.Contains(grLtrIx), true, "ltr", vowelGreekLetters.Contains(allGreekLetters[grLtrIx]) ? "the Navy Button that had an {0} on it" : "the Navy Button that had a {0} on it", allGreekLetters[grLtrIx]);
+            yield return new Discriminator(
+                vowelGreekLetters.Contains(allGreekLetters[grLtrIx]) ? SNavyButton.DGreekLettersV : SNavyButton.DGreekLettersNV,
+                $"ltr-{allGreekLetters[grLtrIx]}", args: [allGreekLetters[grLtrIx].ToString()]);
 
-        yield return question(SNavyButton.GreekLetters).Answers(hasGreekLetters.Select(ix => "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"[ix].ToString()).ToArray());
-        yield return question(SNavyButton.Given, args: ["(0-indexed) column"]).Answers((givenIndex % 4).ToString());
-        yield return question(SNavyButton.Given, args: ["(0-indexed) row"]).Answers((givenIndex / 4).ToString());
-        yield return question(SNavyButton.Given, args: ["value"]).Answers(givenValue.ToString());
+        yield return question(SNavyButton.QGreekLetters).AvoidDiscriminators(SNavyButton.DGreekLettersV, SNavyButton.DGreekLettersNV)
+            .Answers(hasGreekLetters.Select(ix => "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"[ix].ToString()).ToArray());
+        yield return question(SNavyButton.QGiven, args: ["(0-indexed) column"]).AvoidDiscriminators("given-c").Answers((givenIndex % 4).ToString());
+        yield return question(SNavyButton.QGiven, args: ["(0-indexed) row"]).AvoidDiscriminators("given-r").Answers((givenIndex / 4).ToString());
+        yield return question(SNavyButton.QGiven, args: ["value"]).AvoidDiscriminators("given-v").Answers(givenValue.ToString());
     }
 }

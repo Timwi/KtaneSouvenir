@@ -94,7 +94,7 @@ public partial class SouvenirModule : MonoBehaviour
     public AudioClip[] SimonSmilesAudio;
     public AudioClip[] SonicTheHedgehogAudio;
 
-    private readonly List<Texture2D> _questionTexturesToDestroyLater = [];
+    private readonly List<UnityEngine.Object> _unityObjectsToDestroyLater = [];
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -541,6 +541,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     public string TranslateQuestion(Enum enumValue) => _translation?.TranslateQuestion(enumValue)?.Question ?? enumValue.GetQuestionAttribute().QuestionText;
     public string TranslateQuestionArgument(Enum enumValue, string arg) => arg == null ? null : _translation?.TranslateQuestion(enumValue)?.Arguments?.Get(arg, arg) ?? arg;
+    public string TranslateQuestionString(Enum enumValue, string arg) => arg == null ? null : _translation?.TranslateQuestion(enumValue)?.Additional?.Get(arg, arg) ?? arg;
     public string TranslateAnswer(Enum enumValue, string answ) => answ == null ? null : _translation?.TranslateQuestion(enumValue)?.Answers?.Get(answ, answ) ?? answ;
     public string TranslateDiscriminator(Enum enumValue, string dcr) => dcr == null ? null : _translation?.TranslateDiscriminator(enumValue)?.Discriminator ?? dcr;
     public string TranslateDiscriminatorArgument(Enum enumValue, string arg) => arg == null ? null : _translation?.TranslateDiscriminator(enumValue)?.Arguments?.Get(arg, arg) ?? arg;
@@ -934,7 +935,10 @@ public partial class SouvenirModule : MonoBehaviour
             // Construct the answers first, then pick a discriminator that doesn’t conflict with them
             var q = questions.PickRandom();
             var answerSet = q.AnswerStump.GenerateAnswerSet(q.QuestionStump, this);
+            var questionHasQuestionSprite = q.QuestionStump is TextQuestionStump { QuestionSprite: { } } or SpriteQuestionStump;
             string moduleFormat = null;
+            Sprite questionSpriteFromDiscriminator = null;
+            float questionSpriteRotationFromDiscriminator = 0f;
             if (info.NumModules > 1)
             {
                 if (info.Discriminators.Get(module) is { Count: > 0 } discrRaw)
@@ -945,8 +949,10 @@ public partial class SouvenirModule : MonoBehaviour
                             q.QuestionStump.DiscriminatorIdsToAvoid?.Contains(d.Id) != true &&
                             // avoid discriminators that clash with one of the answers we already selected
                             d.AvoidAnswers?.Intersect(answerSet.Answers).Any() != true &&
+                            // can’t use a question sprite if the question already uses one
+                            (d.QuestionSprite == null || !questionHasQuestionSprite) ||
                             // use this discriminator only if its value is actually unique
-                            info.Discriminators.Values.Count(ds => ds.TryGetValue(d.Id, out var cd) && cd.Value == d.Value) == 1)
+                            info.Discriminators.Values.Count(ds => ds.TryGetValue(d.Id, out var cd) && Equals(cd.Value, d.Value)) == 1)
                         .GroupBy(d => d.PriorityFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? d.Priority)
                         .OrderBy(gr => gr.Key)
                         .First()
@@ -955,10 +961,14 @@ public partial class SouvenirModule : MonoBehaviour
 
                     // If this is false, the solve-count discriminator was picked and ‘moduleFormat’ will default to it later
                     if (discrs.PickRandom() is { } discr && discr.EnumValue.GetDiscriminatorAttribute() is var dAttr)
+                    {
                         moduleFormat = string.Format(
                             TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText),
                             (discr.Arguments ?? discr.ArgumentsFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? [])
                                 .Select<string, object>((arg, ix) => dAttr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg).ToArray());
+                        questionSpriteFromDiscriminator = discr.QuestionSprite;
+                        questionSpriteRotationFromDiscriminator = discr.QuestionSpriteRotation;
+                    }
                 }
 
                 if (moduleFormat == null && hAttr.IsBossModule)
@@ -967,16 +977,16 @@ public partial class SouvenirModule : MonoBehaviour
                     yield break;
                 }
             }
-            _questions.Add(q.GenerateQandA(answerSet, moduleFormat ?? formatModuleName(hAttr, info.NumModules > 1, data.SolveIndex + 1), this, Bomb.GetSolvedModuleIDs().Count));
+            _questions.Add(q.GenerateQandA(answerSet, moduleFormat ?? formatModuleName(hAttr, info.NumModules > 1, data.SolveIndex + 1), Bomb.GetSolvedModuleIDs().Count, questionSpriteFromDiscriminator, questionSpriteRotationFromDiscriminator));
         }
         Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Finished processing.");
     }
 
     private void OnDestroy()
     {
-        foreach (var tx in _questionTexturesToDestroyLater)
+        foreach (var tx in _unityObjectsToDestroyLater)
             Destroy(tx);
-        _questionTexturesToDestroyLater.Clear();
+        _unityObjectsToDestroyLater.Clear();
     }
 
     #endregion

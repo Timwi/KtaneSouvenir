@@ -18,7 +18,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "NotForgetMeNotScript");
         yield return WaitForSolve;
 
-        string[] positions = { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
+        var positions = new[] { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
         var initState = GetArrayField<int>(comp, "givenPuzzle").Get(expectedLength: 9);
         for (var ix = 0; ix < 9; ix++)
             if (initState[ix] != 0)

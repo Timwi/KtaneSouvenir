@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -26,9 +26,9 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var format = translateString(SHiddenValue.Display, "{0} {1}");
+        var format = TranslateQuestionString(SHiddenValue.Display, "{0} {1}");
         var colorNames = new[] { "Red", "Green", "White", "Yellow", "Magenta", "Cyan", "Purple" }
-            .Select(s => translateString(SHiddenValue.Display, s))
+            .Select(s => TranslateQuestionString(SHiddenValue.Display, s))
             .ToArray();
         var all = from i in Enumerable.Range(0, 10) from c in colorNames select string.Format(format, c, i);
         var correct = numbers.Select((n, i) => string.Format(format, colorNames[colors[i]], n)).ToArray();

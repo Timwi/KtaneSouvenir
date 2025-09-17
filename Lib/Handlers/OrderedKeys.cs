@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SOrderedKeys
@@ -42,13 +42,11 @@ public partial class SouvenirModule
 
         var colors = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
         for (var stage = 0; stage < 3; stage++)
-        {
             for (var key = 0; key < 6; key++)
             {
                 yield return question(SOrderedKeys.Colors, args: [Ordinal(stage + 1)], questionSprite: OrderedKeysSprites[key]).Answers(colors[moduleData[stage][key][0]]);
                 yield return question(SOrderedKeys.Labels, args: [Ordinal(stage + 1)], questionSprite: OrderedKeysSprites[key]).Answers((moduleData[stage][key][3] + 1).ToString());
                 yield return question(SOrderedKeys.LabelColors, args: [Ordinal(stage + 1)], questionSprite: OrderedKeysSprites[key]).Answers(colors[moduleData[stage][key][1]]);
             }
-        }
     }
 }

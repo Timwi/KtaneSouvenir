@@ -21,7 +21,7 @@ public enum SRPSJudging
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("RPSJudging", "RPS Judging", typeof(SRPSJudging), "Anonymous")]
+    [SouvenirHandler("RPSJudging", "RPS Judging", typeof(SRPSJudging), "Anonymous", IsBossModule = true)]
     private IEnumerator<SouvenirInstruction> ProcessRPSJudging(ModuleData module)
     {
         var comp = GetComponent(module, "RPSJudgingScript");
@@ -58,19 +58,19 @@ public partial class SouvenirModule
             {
                 case OutcomeRed:
                     redWins.Add(stage);
-                    yield return new Discriminator(SRPSJudging.DWinner, $"red-win-{stage}", true, args: ["red", "won", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
-                    yield return new Discriminator(SRPSJudging.DWinner, $"blue-lose-{stage}", true, args: ["blue", "lost", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
+                    yield return new Discriminator(SRPSJudging.DWinner, $"red-win-{stage}", args: ["red", "won", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
+                    yield return new Discriminator(SRPSJudging.DWinner, $"blue-lose-{stage}", args: ["blue", "lost", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
                     break;
 
                 case OutcomeDraw:
                     draws.Add(stage);
-                    yield return new Discriminator(SRPSJudging.DDraw, $"draw-{stage}", true, args: [Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
+                    yield return new Discriminator(SRPSJudging.DDraw, $"draw-{stage}", args: [Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
                     break;
 
                 case OutcomeBlue:
                     blueWins.Add(stage);
-                    yield return new Discriminator(SRPSJudging.DWinner, $"blue-win-{stage}", true, args: ["blue", "won", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
-                    yield return new Discriminator(SRPSJudging.DWinner, $"red-lose-{stage}", true, args: ["red", "lost", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
+                    yield return new Discriminator(SRPSJudging.DWinner, $"blue-win-{stage}", args: ["blue", "won", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
+                    yield return new Discriminator(SRPSJudging.DWinner, $"red-lose-{stage}", args: ["red", "lost", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
                     break;
 
                 default:

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,7 +16,7 @@ public enum SForgetUsNot
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("forgetUsNot", "Forget Us Not", typeof(SForgetUsNot), "Anonymous")]
+    [SouvenirHandler("forgetUsNot", "Forget Us Not", typeof(SForgetUsNot), "Anonymous", IsBossModule = true)]
     private IEnumerator<SouvenirInstruction> ProcessForgetUsNot(ModuleData module)
     {
         var comp = GetComponent(module, "AdvancedMemory");
