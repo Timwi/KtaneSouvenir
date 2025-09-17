@@ -51,7 +51,7 @@ public static class Program
         var dictionary = (IDictionary) fldDictionary.GetValue(module);
         var contributorToModules = new Dictionary<string, List<string>>();
         foreach (DictionaryEntry entry in dictionary)
-            contributorToModules.AddSafe((string) ((dynamic) entry.Value).Contributor, (string) ((dynamic) entry.Value).ModuleName);
+            contributorToModules.AddSafe((string) ((dynamic) entry.Value).Contributor, ((string) ((dynamic) entry.Value).ModuleName).Replace("\uE001", "").Replace("\uE002", ""));
 
         const int numColumns = 5;
 
