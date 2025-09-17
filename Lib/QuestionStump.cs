@@ -57,7 +57,7 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir, str
 
         if (Args != null)
             for (var i = 0; i < Args.Length; i++)
-                allFormatArgs[i + 1] = attr.TranslateArguments is { } ta && ta[i] ? Souvenir.TranslateQuestionArgument(EnumValue, Args[i]) : Args[i];
+                allFormatArgs[i + 1] = SouvenirModule.Snip(attr.TranslateArguments is { } ta && ta[i] ? Souvenir.TranslateQuestionArgument(EnumValue, Args[i]) : Args[i]);
 
         return string.Format(Souvenir.TranslateQuestion(EnumValue), allFormatArgs);
     }

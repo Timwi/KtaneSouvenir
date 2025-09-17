@@ -486,14 +486,14 @@ public partial class SouvenirModule : MonoBehaviour
             var dAttr = _exampleDiscriminators[_curExampleDiscriminator];
             var dGs = dAttr.ArgumentGroupSize;
             var dFmt = dGs == 0 ? [] : _exampleDiscriminatorArguments[_curExampleDiscriminatorArgument]
-                .Select<string, object>((arg, ix) => dAttr.TranslateArguments != null && dAttr.TranslateArguments[ix] ? TranslateDiscriminatorArgument(dAttr.EnumValue, arg) : arg)
+                .Select<string, object>((arg, ix) => Snip(dAttr.TranslateArguments != null && dAttr.TranslateArguments[ix] ? TranslateDiscriminatorArgument(dAttr.EnumValue, arg) : arg))
                 .ToArray();
             fmt[0] = string.Format(TranslateDiscriminator(dAttr.EnumValue, dAttr.DiscriminatorText), dFmt);
         }
 
         if (_exampleQuestionArguments != null && _exampleQuestionArguments[_curExampleQuestionArgument] is { } args)
             for (var i = 0; i < args.Length; i++)
-                fmt[i + 1] = args[i] == QandA.Ordinal ? Ordinal(Rnd.Range(1, 11)) : TranslateQuestionArgument(qAttr.EnumValue, args[i]);
+                fmt[i + 1] = args[i] == QandA.Ordinal ? Ordinal(Rnd.Range(1, 11)) : Snip(TranslateQuestionArgument(qAttr.EnumValue, args[i]));
 
         var questionText = string.Format(TranslateQuestion(qAttr.EnumValue), fmt);
         QuestionBase question = qAttr.IsEntireQuestionSprite
@@ -546,6 +546,7 @@ public partial class SouvenirModule : MonoBehaviour
     public string TranslateDiscriminator(Enum enumValue, string dcr) => dcr == null ? null : _translation?.TranslateDiscriminator(enumValue)?.Discriminator ?? dcr;
     public string TranslateDiscriminatorArgument(Enum enumValue, string arg) => arg == null ? null : _translation?.TranslateDiscriminator(enumValue)?.Arguments?.Get(arg, arg) ?? arg;
     public string TranslateModuleName(Type enumType, string name = null) => _translation?.TranslateModule(enumType)?.ModuleName ?? name ?? enumType.GetHandlerAttribute().ModuleNameWithThe;
+    public static string Snip(string str) => str.IndexOf('\uE003') is int p and not -1 ? str.Substring(0, p) : str;
 
     private void setAnswerHandler(int index, Action<int> handler) => Answers[index].OnInteract = delegate
     {
@@ -965,7 +966,8 @@ public partial class SouvenirModule : MonoBehaviour
                         moduleFormat = string.Format(
                             TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText),
                             (discr.Arguments ?? discr.ArgumentsFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? [])
-                                .Select<string, object>((arg, ix) => dAttr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg).ToArray());
+                                .Select<string, object>((arg, ix) => Snip(dAttr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg))
+                                .ToArray());
                         questionSpriteFromDiscriminator = discr.QuestionSprite;
                         questionSpriteRotationFromDiscriminator = discr.QuestionSpriteRotation;
                     }
