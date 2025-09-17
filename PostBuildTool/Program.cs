@@ -149,8 +149,13 @@ public static class Program
                 outerSb.AppendLine($"{indent()}{{");
                 indentation += 4;
 
-                var needsTranslation = already == null || alreadyHandler == null || alreadyHandler.NeedsTranslation;
+
                 var sb = new StringBuilder();
+                var prospectiveModuleName = (string) alreadyHandler?.ModuleName;
+                if (prospectiveModuleName != null && prospectiveModuleName != handler.ModuleName)
+                    sb.AppendLine($@"{indent()}ModuleName = ""{prospectiveModuleName.CLiteralEscape()}"",");
+
+                var needsTranslation = already == null || alreadyHandler == null || alreadyHandler.NeedsTranslation;
                 var skip = "NeedsTranslation,ModuleName,Questions,Discriminators".Split(',');
                 if (alreadyHandler != null)
                     foreach (var f in tiFields)
@@ -202,7 +207,7 @@ public static class Program
                             needsTranslation = true;
                     }
 
-                    if (qAttr.ExampleAnswers is string[] { Length: > 0 } origAnswers && (bool) qAttr.TranslateAnswers)
+                    if (qAttr.AllAnswers is string[] { Length: > 0 } origAnswers && (bool) qAttr.TranslateAnswers)
                         AddDictionary("Answers", origAnswers.Distinct(), alreadyQuestion?.Answers);
                     if (qAttr.Arguments is string[] { Length: > 0 } origArguments && qAttr.ArgumentGroupSize is int groupSize && qAttr.TranslateArguments is bool[] trArgs)
                         AddDictionary("Arguments", origArguments.Select((str, ix) => trArgs[ix % groupSize] ? str : null).Where(s => s != null).Distinct(), alreadyQuestion?.Arguments);

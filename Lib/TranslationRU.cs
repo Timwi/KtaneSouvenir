@@ -84,91 +84,91 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         #region Translatable strings
         [typeof(S0)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [S0.Number] = new()
                 {
                     // English: What was the initially displayed number in {0}?
-                    Question = "What was the initially displayed number in {0}?",
+                    Question = "Какое число было изначально показано на {0}?",
                 },
             },
         },
 
         [typeof(S1000Words)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "1000 слов",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [S1000Words.Words] = new()
                 {
                     // English: What was the {1} word shown in {0}?
                     // Example: What was the first word shown in 1000 Words?
-                    Question = "What was the {1} word shown in {0}?",
+                    Question = "Какое было {1}-е показанное слово {0}?",
                 },
             },
         },
 
         [typeof(S100LevelsOfDefusal)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "100 уровнях обезвреживания",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [S100LevelsOfDefusal.Letters] = new()
                 {
                     // English: What was the {1} displayed letter in {0}?
                     // Example: What was the first displayed letter in 100 Levels of Defusal?
-                    Question = "What was the {1} displayed letter in {0}?",
+                    Question = "Какая была {1}-я показанная буква {0}?",
                 },
             },
         },
 
         [typeof(S123Game)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S123Game.Profile] = new()
                 {
                     // English: Who was the opponent in {0}?
-                    Question = "Who was the opponent in {0}?",
+                    Question = "Кто был вашим оппонентом {0}?",
                 },
                 [S123Game.Name] = new()
                 {
                     // English: Who was the opponent in {0}?
-                    Question = "Who was the opponent in {0}?",
+                    Question = "Кто был вашим оппонентом {0}?",
                 },
             },
         },
 
         [typeof(S1DChess)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S1DChess.Moves] = new()
                 {
                     // English: What was {1} in {0}?
                     // Example: What was your first move in 1D Chess?
-                    Question = "What was {1} in {0}?",
+                    Question = "Каким был {1} {0}?",
                     Arguments = new()
                     {
-                        ["your first move"] = "your first move",
-                        ["Rustmate’s first move"] = "Rustmate’s first move",
-                        ["your second move"] = "your second move",
-                        ["Rustmate’s second move"] = "Rustmate’s second move",
-                        ["your third move"] = "your third move",
-                        ["Rustmate’s third move"] = "Rustmate’s third move",
-                        ["your fourth move"] = "your fourth move",
-                        ["Rustmate’s fourth move"] = "Rustmate’s fourth move",
-                        ["your fifth move"] = "your fifth move",
-                        ["Rustmate’s fifth move"] = "Rustmate’s fifth move",
-                        ["your sixth move"] = "your sixth move",
-                        ["Rustmate’s sixth move"] = "Rustmate’s sixth move",
-                        ["your seventh move"] = "your seventh move",
-                        ["Rustmate’s seventh move"] = "Rustmate’s seventh move",
-                        ["your eighth move"] = "your eighth move",
-                        ["Rustmate’s eighth move"] = "Rustmate’s eighth move",
+                        ["your first move"] = "ваш 1-й ход",
+                        ["Rustmate’s first move"] = "1-й ход Rustmate",
+                        ["your second move"] = "ваш 2-й ход",
+                        ["Rustmate’s second move"] = "2-й ход Rustmate",
+                        ["your third move"] = "ваш 3-й ход",
+                        ["Rustmate’s third move"] = "3-й ход Rustmate",
+                        ["your fourth move"] = "ваш 4-й ход",
+                        ["Rustmate’s fourth move"] = "4-й ход Rustmate",
+                        ["your fifth move"] = "ваш 5-й ход",
+                        ["Rustmate’s fifth move"] = "5-й ход Rustmate",
+                        ["your sixth move"] = "ваш 6-й ход",
+                        ["Rustmate’s sixth move"] = "6-й ход Rustmate",
+                        ["your seventh move"] = "ваш 7-й ход",
+                        ["Rustmate’s seventh move"] = "7-й ход Rustmate",
+                        ["your eighth move"] = "ваш 8-й ход",
+                        ["Rustmate’s eighth move"] = "8-й ход Rustmate",
                     },
                 },
             },
@@ -189,182 +189,233 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(S3DMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "3D лабиринт",
+            Conjugation = Conjugation.NominativeMasculine,
             Questions = new()
             {
                 [S3DMaze.Markings] = new()
                 {
                     // English: What were the markings in {0}?
-                    Question = "What were the markings in {0}?",
+                    Question = "Какими буквами был обозначен ваш {0}?",
                 },
                 [S3DMaze.Bearing] = new()
                 {
                     // English: What was the cardinal direction in {0}?
-                    Question = "What was the cardinal direction in {0}?",
+                    Question = "Какое было направление нужной стены {0}?",
+                    Answers = new()
+                    {
+                        ["North"] = "Север",
+                        ["South"] = "Юг",
+                        ["West"] = "Запад",
+                        ["East"] = "Восток",
+                    },
                 },
             },
         },
 
         [typeof(S3DTapCode)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S3DTapCode.Word] = new()
                 {
                     // English: What was the received word in {0}?
-                    Question = "What was the received word in {0}?",
+                    Question = "Какое слово было получено {0}?",
                 },
             },
         },
 
         [typeof(S3DTunnels)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "3D тоннелях",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [S3DTunnels.TargetNode] = new()
                 {
                     // English: What was the {1} goal node in {0}?
                     // Example: What was the first goal node in 3D Tunnels?
-                    Question = "What was the {1} goal node in {0}?",
+                    Question = "Какой символ был вашей {1}-й целью {0}?",
                 },
             },
         },
 
         [typeof(S3LEDs)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [S3LEDs.InitialState] = new()
                 {
                     // English: What was the initial state of the LEDs in {0} (in reading order)?
-                    Question = "What was the initial state of the LEDs in {0} (in reading order)?",
+                    Question = "Какое было исходное состояние у {0} (в порядке чтения)?",
+                    Answers = new()
+                    {
+                        ["off/off/off"] = "выкл/выкл/выкл",
+                        ["off/off/on"] = "выкл/выкл/вкл",
+                        ["off/on/off"] = "выкл/вкл/выкл",
+                        ["off/on/on"] = "выкл/вкл/вкл",
+                        ["on/off/off"] = "вкл/выкл/выкл",
+                        ["on/off/on"] = "вкл/выкл/вкл",
+                        ["on/on/off"] = "вкл/вкл/выкл",
+                        ["on/on/on"] = "вкл/вкл/вкл",
+                    },
                 },
             },
         },
 
         [typeof(S3NPlus1)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [S3NPlus1.Question] = new()
                 {
                     // English: What number was initially displayed in {0}?
-                    Question = "What number was initially displayed in {0}?",
+                    Question = "Какое число было изначально показано на {0}?",
                 },
             },
         },
 
         [typeof(S64)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [S64.DisplayedNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
-                    Question = "What was the displayed number in {0}?",
+                    Question = "Какое число было показано на {0}?",
                 },
             },
         },
 
         [typeof(S7)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [S7.InitialValues] = new()
                 {
                     // English: What was the {1} channel’s initial value in {0}?
                     // Example: What was the red channel’s initial value in 7?
-                    Question = "What was the {1} channel’s initial value in {0}?",
+                    Question = "Какое было начальное значение {1} канала у {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красного",
+                        ["green"] = "зелёного",
+                        ["blue"] = "синего",
                     },
                 },
                 [S7.LedColors] = new()
                 {
                     // English: What LED color was shown in stage {1} of {0}?
                     // Example: What LED color was shown in stage 0 of 7?
-                    Question = "What LED color was shown in stage {1} of {0}?",
+                    Question = "Какой цвет был у светодиода на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["blue"] = "Синий",
+                        ["green"] = "Зелёный",
+                        ["white"] = "Белый",
+                    },
                 },
             },
         },
 
         [typeof(S9Ball)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S9Ball.Letters] = new()
                 {
                     // English: What was the number of ball {1} in {0}?
                     // Example: What was the number of ball A in 9-Ball?
-                    Question = "What was the number of ball {1} in {0}?",
+                    Question = "Какой был номер у шара \"{1}\" {0}?",
                 },
                 [S9Ball.Numbers] = new()
                 {
                     // English: What was the letter of ball {1} in {0}?
                     // Example: What was the letter of ball 2 in 9-Ball?
-                    Question = "What was the letter of ball {1} in {0}?",
+                    Question = "Какая была буква у шара \"{1}\" {0}?",
                 },
             },
         },
 
         [typeof(SAbyss)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAbyss.Seed] = new()
                 {
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on Abyss?
-                    Question = "What was the {1} character displayed on {0}?",
+                    Question = "Какой был {1}-й показанный символ {0}?",
                 },
             },
         },
 
         [typeof(SAccumulation)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Накопления",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SAccumulation.BorderColor] = new()
                 {
                     // English: What was the border color in {0}?
-                    Question = "What was the border color in {0}?",
+                    Question = "Какого цвета было обрамление у {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Синего",
+                        ["Brown"] = "Коричневого",
+                        ["Green"] = "Зелёного",
+                        ["Grey"] = "Серого",
+                        ["Lime"] = "Салатового",
+                        ["Orange"] = "Оранжевого",
+                        ["Pink"] = "Розового",
+                        ["Red"] = "Красного",
+                        ["White"] = "Белого",
+                        ["Yellow"] = "Жёлтого",
+                    },
                 },
                 [SAccumulation.BackgroundColor] = new()
                 {
                     // English: What was the background color on the {1} stage in {0}?
                     // Example: What was the background color on the first stage in Accumulation?
-                    Question = "What was the background color on the {1} stage in {0}?",
+                    Question = "Какого цвета была подложка на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Синего",
+                        ["Brown"] = "Коричневого",
+                        ["Green"] = "Зелёного",
+                        ["Grey"] = "Серого",
+                        ["Lime"] = "Салатового",
+                        ["Orange"] = "Оранжевого",
+                        ["Pink"] = "Розового",
+                        ["Red"] = "Красного",
+                        ["White"] = "Белого",
+                        ["Yellow"] = "Жёлтого",
+                    },
                 },
             },
         },
 
         [typeof(SAdventureGame)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Приключении",
             Questions = new()
             {
                 [SAdventureGame.CorrectItem] = new()
                 {
                     // English: Which item was the {1} correct item you used in {0}?
                     // Example: Which item was the first correct item you used in Adventure Game?
-                    Question = "Which item was the {1} correct item you used in {0}?",
+                    Question = "Какой был {1}-й правильный предмет, который вы использовали {0}?",
                 },
                 [SAdventureGame.Enemy] = new()
                 {
                     // English: What enemy were you fighting in {0}?
-                    Question = "What enemy were you fighting in {0}?",
+                    Question = "С каким врагом вы сражались {0}?",
                 },
             },
         },
@@ -398,166 +449,163 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Who was the {1} mercenary displayed in {0}?
                     // Example: Who was the first mercenary displayed in Alcoholic Rampage?
-                    Question = "Who was the {1} mercenary displayed in {0}?",
+                    Question = "Who was the {1} mercenary you killed in {0}?",
                 },
             },
         },
 
         [typeof(SALetter)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SALetter.InitialLetter] = new()
                 {
                     // English: What was the initial letter in {0}?
-                    Question = "What was the initial letter in {0}?",
+                    Question = "Какая была начальная буква {0}?",
                 },
             },
         },
 
         [typeof(SAlfaBravo)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlfaBravo.PressedLetter] = new()
                 {
                     // English: Which letter was pressed in {0}?
-                    Question = "Which letter was pressed in {0}?",
+                    Question = "Какая буква была нажата {0}?",
                 },
                 [SAlfaBravo.LeftPressedLetter] = new()
                 {
                     // English: Which letter was to the left of the pressed one in {0}?
-                    Question = "Which letter was to the left of the pressed one in {0}?",
+                    Question = "Какая буква была слева от нажатой {0}?",
                 },
                 [SAlfaBravo.RightPressedLetter] = new()
                 {
                     // English: Which letter was to the right of the pressed one in {0}?
-                    Question = "Which letter was to the right of the pressed one in {0}?",
+                    Question = "Какая буква была справа от нажатой {0}?",
                 },
                 [SAlfaBravo.Digit] = new()
                 {
                     // English: What was the last digit on the small display in {0}?
-                    Question = "What was the last digit on the small display in {0}?",
+                    Question = "Какая была последняя цифра на маленьком экране {0}?",
                 },
             },
         },
 
         [typeof(SAlgebra)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Алгебре",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SAlgebra.Equation1] = new()
                 {
                     // English: What was the first equation in {0}?
-                    Question = "What was the first equation in {0}?",
+                    Question = "Какое было первое уравнение {0}?",
                 },
                 [SAlgebra.Equation2] = new()
                 {
                     // English: What was the second equation in {0}?
-                    Question = "What was the second equation in {0}?",
+                    Question = "Какое было второе уравнение {0}?",
                 },
             },
         },
 
         [typeof(SAlgorithmia)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlgorithmia.Positions] = new()
                 {
                     // English: Which position was the {1} position in {0}?
                     // Example: Which position was the starting position in Algorithmia?
-                    Question = "Which position was the {1} position in {0}?",
+                    Question = "Какая позиция была {1} {0}?",
                     Arguments = new()
                     {
-                        ["starting"] = "starting",
-                        ["goal"] = "goal",
+                        ["starting"] = "начальной",
+                        ["goal"] = "целевой",
                     },
                 },
                 [SAlgorithmia.Color] = new()
                 {
                     // English: What was the color of the colored bulb in {0}?
-                    Question = "What was the color of the colored bulb in {0}?",
+                    Question = "Какого цвета была цветная лампочка {0}?",
                 },
                 [SAlgorithmia.Seed] = new()
                 {
                     // English: Which number was present in the seed in {0}?
-                    Question = "Which number was present in the seed in {0}?",
+                    Question = "Какое число присутствовало в зерне {0}?",
                 },
             },
         },
 
         [typeof(SAlphabeticalRuling)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SAlphabeticalRuling.Letter] = new()
                 {
                     // English: What was the letter displayed in the {1} stage of {0}?
                     // Example: What was the letter displayed in the first stage of Alphabetical Ruling?
-                    Question = "What was the letter displayed in the {1} stage of {0}?",
+                    Question = "Какая буква была показана на {1}-м этапе {0}?",
                 },
                 [SAlphabeticalRuling.Number] = new()
                 {
                     // English: What was the number displayed in the {1} stage of {0}?
                     // Example: What was the number displayed in the first stage of Alphabetical Ruling?
-                    Question = "What was the number displayed in the {1} stage of {0}?",
+                    Question = "Какое число было показано на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SAlphabetNumbers)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlphabetNumbers.DisplayedNumbers] = new()
                 {
                     // English: Which of these numbers was on one of the buttons in the {1} stage of {0}?
                     // Example: Which of these numbers was on one of the buttons in the first stage of Alphabet Numbers?
-                    Question = "Which of these numbers was on one of the buttons in the {1} stage of {0}?",
+                    Question = "Какое из этих чисел было на одной из кнопок на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SAlphabetTiles)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SAlphabetTiles.Cycle] = new()
                 {
                     // English: What was the {1} letter shown during the cycle in {0}?
                     // Example: What was the first letter shown during the cycle in Alphabet Tiles?
-                    Question = "What was the {1} letter shown during the cycle in {0}?",
+                    Question = "В цикле {0}, какая была {1}-я буква?",
                 },
                 [SAlphabetTiles.MissingLetter] = new()
                 {
                     // English: What was the missing letter in {0}?
-                    Question = "What was the missing letter in {0}?",
+                    Question = "Какая буква отсутствовала {0}?",
                 },
             },
         },
 
         [typeof(SAlphaBits)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlphaBits.DisplayedCharacters] = new()
                 {
                     // English: What character was displayed on the {1} screen on the {2} in {0}?
                     // Example: What character was displayed on the first screen on the left in Alpha-Bits?
-                    Question = "What character was displayed on the {1} screen on the {2} in {0}?",
+                    Question = "Какой символ был на {1}-м экране {2} {0}?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "слева",
+                        ["right"] = "справа",
                     },
                 },
             },
@@ -578,74 +626,70 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SAmusementParks)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAmusementParks.Rides] = new()
                 {
                     // English: Which ride was available in {0}?
-                    Question = "Which ride was available in {0}?",
+                    Question = "Какой аттракцион был доступен {0}?",
                 },
             },
         },
 
         [typeof(SAngelHernandez)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAngelHernandez.MainLetter] = new()
                 {
                     // English: What letter was shown by the raised buttons on the {1} stage on {0}?
                     // Example: What letter was shown by the raised buttons on the first stage on Ángel Hernández?
-                    Question = "What letter was shown by the raised buttons on the {1} stage on {0}?",
+                    Question = "Какая буква была показана поднятой кнопкой на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SArena)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SArena.Damage] = new()
                 {
                     // English: What was the maximum weapon damage of the attack phase in {0}?
-                    Question = "What was the maximum weapon damage of the attack phase in {0}?",
+                    Question = "Какой был максимальный урон оружия в фазе атаки {0}?",
                 },
                 [SArena.Enemies] = new()
                 {
                     // English: Which enemy was present in the defend phase of {0}?
-                    Question = "Which enemy was present in the defend phase of {0}?",
+                    Question = "Какой враг присутствовал в фазе защиты {0}?",
                 },
                 [SArena.Numbers] = new()
                 {
                     // English: Which was a number present in the grab phase of {0}?
-                    Question = "Which was a number present in the grab phase of {0}?",
+                    Question = "Какое число присутствовало в фазе захвата {0}?",
                 },
             },
         },
 
         [typeof(SArithmelogic)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SArithmelogic.Submit] = new()
                 {
                     // English: What was the symbol on the submit button in {0}?
-                    Question = "What was the symbol on the submit button in {0}?",
+                    Question = "Какой символ был на кнопке отправки ответа {0}?",
                 },
                 [SArithmelogic.Numbers] = new()
                 {
                     // English: Which number was selectable, but not the solution, in the {1} screen on {0}?
                     // Example: Which number was selectable, but not the solution, in the left screen on Arithmelogic?
-                    Question = "Which number was selectable, but not the solution, in the {1} screen on {0}?",
+                    Question = "Какое число присутствовало (но не являлось решением) на {1} экране {0}?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["middle"] = "middle",
-                        ["right"] = "right",
+                        ["left"] = "левом",
+                        ["middle"] = "центральном",
+                        ["right"] = "правом",
                     },
                 },
             },
@@ -653,46 +697,43 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SASCIIMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SASCIIMaze.Characters] = new()
                 {
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on ASCII Maze?
-                    Question = "What was the {1} character displayed on {0}?",
+                    Question = "Какой был {1}-й символ, отображённый {0}?",
                 },
             },
         },
 
         [typeof(SASquare)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SASquare.IndexColors] = new()
                 {
                     // English: Which of these was an index color in {0}?
-                    Question = "Which of these was an index color in {0}?",
+                    Question = "Какой из этих цветов был индексным {0}?",
                 },
                 [SASquare.CorrectColors] = new()
                 {
                     // English: Which color was submitted {1} in {0}?
                     // Example: Which color was submitted first in A Square?
-                    Question = "Which color was submitted {1} in {0}?",
+                    Question = "Какой цвет был отправлен {1}-м {0}?",
                 },
             },
         },
 
         [typeof(SAudioMorse)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAudioMorse.Sound] = new()
                 {
                     // English: What was signaled in {0}?
-                    Question = "What was signaled in {0}?",
+                    Question = "Что было в сигнале {0}?",
                 },
             },
         },
@@ -706,28 +747,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} direction in the decoy arrow in {0}?
                     // Example: What was the first direction in the decoy arrow in Azure Button?
-                    Question = "What was the {1} direction in the decoy arrow in {0}?",
+                    Question = "Какое было {1}-е направление у стрелки-ловушки {0}?",
                 },
                 [SAzureButton.QNonDecoyArrowDirection] = new()
                 {
                     // English: What was the {1} direction in the {2} non-decoy arrow in {0}?
                     // Example: What was the first direction in the first non-decoy arrow in Azure Button?
-                    Question = "What was the {1} direction in the {2} non-decoy arrow in {0}?",
+                    Question = "Какое было {1}-е направление у {2}-й стрелки (не ловушки) {0}?",
                 },
                 [SAzureButton.QT] = new()
                 {
                     // English: What was T in {0}?
-                    Question = "What was T in {0}?",
+                    Question = "Какое была карта T {0}?",
                 },
                 [SAzureButton.QNotT] = new()
                 {
                     // English: Which of these cards was shown in Stage 1, but not T, in {0}?
-                    Question = "Which of these cards was shown in Stage 1, but not T, in {0}?",
+                    Question = "Какая из этих карт была показана на первом этапе (но не T) {0}?",
                 },
                 [SAzureButton.QM] = new()
                 {
                     // English: What was M in {0}?
-                    Question = "What was M in {0}?",
+                    Question = "Какое значение было у M {0}?",
                 },
             },
             Discriminators = new()
@@ -748,99 +789,190 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: the Azure Button where the decoy arrow went {0} at some point
                     // Example: the Azure Button where the decoy arrow went north at some point
                     Discriminator = "the Azure Button where the decoy arrow went {0} at some point",
+                    Arguments = new()
+                    {
+                        ["north"] = "north",
+                        ["north-east"] = "north-east",
+                        ["east"] = "east",
+                        ["south-east"] = "south-east",
+                        ["south"] = "south",
+                        ["south-west"] = "south-west",
+                        ["west"] = "west",
+                        ["north-west"] = "north-west",
+                    },
                 },
                 [SAzureButton.DNonDecoyArrowDirection] = new()
                 {
                     // English: the Azure Button where the {1} non-decoy arrow went {0} at some point
                     // Example: the Azure Button where the first non-decoy arrow went north at some point
                     Discriminator = "the Azure Button where the {1} non-decoy arrow went {0} at some point",
+                    Arguments = new()
+                    {
+                        ["north"] = "north",
+                        ["north-east"] = "north-east",
+                        ["east"] = "east",
+                        ["south-east"] = "south-east",
+                        ["south"] = "south",
+                        ["south-west"] = "south-west",
+                        ["west"] = "west",
+                        ["north-west"] = "north-west",
+                    },
                 },
             },
         },
 
         [typeof(SBakery)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBakery.Items] = new()
                 {
                     // English: Which menu item was present in {0}?
-                    Question = "Which menu item was present in {0}?",
+                    Question = "Какая позиция меню присутствовала {0}?",
                 },
             },
         },
 
         [typeof(SBamboozledAgain)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Повторном надувательстве",
             Questions = new()
             {
                 [SBamboozledAgain.ButtonText] = new()
                 {
                     // English: What was the text on the {1} correct button in {0}?
                     // Example: What was the text on the first correct button in Bamboozled Again?
-                    Question = "What was the text on the {1} correct button in {0}?",
+                    Question = "Какая была надпись на {1}-й правильной кнопке {0}?",
                 },
                 [SBamboozledAgain.ButtonColor] = new()
                 {
                     // English: What color was the {1} correct button in {0}?
                     // Example: What color was the first correct button in Bamboozled Again?
-                    Question = "What color was the {1} correct button in {0}?",
+                    Question = "Какого цвета была {1}-я правильная кнопка {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красного",
+                        ["Orange"] = "Оранжевого",
+                        ["Yellow"] = "Жёлтого",
+                        ["Lime"] = "Лаймового",
+                        ["Green"] = "Зелёного",
+                        ["Jade"] = "Нефритового",
+                        ["Cyan"] = "Голубого",
+                        ["Azure"] = "Лазурного",
+                        ["Blue"] = "Синего",
+                        ["Violet"] = "Фиолетового",
+                        ["Magenta"] = "Пурпурного",
+                        ["Rose"] = "Розового",
+                        ["White"] = "Белого",
+                        ["Grey"] = "Серого",
+                        ["Black"] = "Чёрного",
+                    },
                 },
                 [SBamboozledAgain.DisplayTexts1] = new()
                 {
                     // English: What was the {1} decrypted text on the display in {0}?
                     // Example: What was the first decrypted text on the display in Bamboozled Again?
-                    Question = "What was the {1} decrypted text on the display in {0}?",
+                    Question = "Какой был {1}-й расшифрованный текст на экране {0}?",
                 },
                 [SBamboozledAgain.DisplayTexts2] = new()
                 {
                     // English: What was the {1} decrypted text on the display in {0}?
                     // Example: What was the first decrypted text on the display in Bamboozled Again?
-                    Question = "What was the {1} decrypted text on the display in {0}?",
+                    Question = "Какой был {1}-й расшифрованный текст на экране {0}?",
                 },
                 [SBamboozledAgain.DisplayColor] = new()
                 {
                     // English: What color was the {1} text on the display in {0}?
                     // Example: What color was the first text on the display in Bamboozled Again?
-                    Question = "What color was the {1} text on the display in {0}?",
+                    Question = "Какого цвета был {1}-й текст на экране {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красного",
+                        ["Orange"] = "Оранжевого",
+                        ["Yellow"] = "Жёлтого",
+                        ["Lime"] = "Лаймового",
+                        ["Green"] = "Зелёного",
+                        ["Jade"] = "Нефритового",
+                        ["Cyan"] = "Голубого",
+                        ["Azure"] = "Лазурного",
+                        ["Blue"] = "Синего",
+                        ["Violet"] = "Фиолетового",
+                        ["Magenta"] = "Пурпурного",
+                        ["Rose"] = "Розового",
+                        ["White"] = "Белого",
+                        ["Grey"] = "Серого",
+                    },
                 },
             },
         },
 
         [typeof(SBamboozlingButton)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBamboozlingButton.Color] = new()
                 {
                     // English: What color was the button in the {1} stage of {0}?
                     // Example: What color was the button in the first stage of Bamboozling Button?
-                    Question = "What color was the button in the {1} stage of {0}?",
+                    Question = "Какого цвета была кнопка на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Lime"] = "Лаймовый",
+                        ["Green"] = "Зелёный",
+                        ["Jade"] = "Нефритовый",
+                        ["Cyan"] = "Голубой",
+                        ["Azure"] = "Лазурный",
+                        ["Blue"] = "Синий",
+                        ["Violet"] = "Фиолетовый",
+                        ["Magenta"] = "Пурпурный",
+                        ["Rose"] = "Розовый",
+                        ["White"] = "Белый",
+                        ["Grey"] = "Серый",
+                        ["Black"] = "Чёрный",
+                    },
                 },
                 [SBamboozlingButton.DisplayColor] = new()
                 {
                     // English: What was the color of the {2} display in the {1} stage of {0}?
                     // Example: What was the color of the first display in the first stage of Bamboozling Button?
-                    Question = "What was the color of the {2} display in the {1} stage of {0}?",
+                    Question = "Какого цвета был {2}-й экран на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Lime"] = "Лаймовый",
+                        ["Green"] = "Зелёный",
+                        ["Jade"] = "Нефритовый",
+                        ["Cyan"] = "Голубой",
+                        ["Azure"] = "Лазуритовый",
+                        ["Blue"] = "Синий",
+                        ["Violet"] = "Фиолетовый",
+                        ["Magenta"] = "Пурпурный",
+                        ["Rose"] = "Розовый",
+                        ["White"] = "Белый",
+                        ["Grey"] = "Серый",
+                    },
                 },
                 [SBamboozlingButton.Display] = new()
                 {
                     // English: What was the {2} display in the {1} stage of {0}?
                     // Example: What was the first display in the first stage of Bamboozling Button?
-                    Question = "What was the {2} display in the {1} stage of {0}?",
+                    Question = "Какой был {2}-й экран на {1}-м этапе {0}?",
                 },
                 [SBamboozlingButton.Label] = new()
                 {
                     // English: What was the {2} label on the button in the {1} stage of {0}?
                     // Example: What was the top label on the button in the first stage of Bamboozling Button?
-                    Question = "What was the {2} label on the button in the {1} stage of {0}?",
+                    Question = "Какая была {2} надпись на кнопке на {1}-м этапе {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхняя",
+                        ["bottom"] = "нижняя",
                     },
                 },
             },
@@ -848,42 +980,49 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SBarCharts)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBarCharts.Category] = new()
                 {
                     // English: What was the category of {0}?
-                    Question = "What was the category of {0}?",
+                    Question = "Какая была категория у {0}?",
                 },
                 [SBarCharts.Unit] = new()
                 {
                     // English: What was the unit of {0}?
-                    Question = "What was the unit of {0}?",
+                    Question = "Какая была единица измерения у {0}?",
                 },
                 [SBarCharts.Label] = new()
                 {
                     // English: What was the label of the {1} bar in {0}?
                     // Example: What was the label of the first bar in Bar Charts?
-                    Question = "What was the label of the {1} bar in {0}?",
+                    Question = "Какая надпись была у {1}-го столбца {0}?",
                 },
                 [SBarCharts.Color] = new()
                 {
                     // English: What was the color of the {1} bar in {0}?
                     // Example: What was the color of the first bar in Bar Charts?
-                    Question = "What was the color of the {1} bar in {0}?",
+                    Question = "Какого цвета был {1}-й столбец {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красного",
+                        ["Yellow"] = "Жёлтого",
+                        ["Green"] = "Зелёного",
+                        ["Blue"] = "Синего",
+                    },
                 },
                 [SBarCharts.Height] = new()
                 {
                     // English: What was the position of the {1} bar in {0}?
                     // Example: What was the position of the shortest bar in Bar Charts?
-                    Question = "What was the position of the {1} bar in {0}?",
+                    Question = "Где находился {1} столбец {0}?",
                     Arguments = new()
                     {
-                        ["shortest"] = "shortest",
-                        ["second shortest"] = "second shortest",
-                        ["second tallest"] = "second tallest",
-                        ["tallest"] = "tallest",
+                        ["shortest"] = "самый короткий",
+                        ["second shortest"] = "третий по высоте",
+                        ["second tallest"] = "второй по высоте",
+                        ["tallest"] = "самый высокий",
                     },
                 },
             },
@@ -897,19 +1036,30 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SBarcodeCipher.ScreenNumber] = new()
                 {
                     // English: What was the screen number in {0}?
-                    Question = "What was the screen number in {0}?",
+                    Question = "Какой был номер экрана {0}?",
                 },
                 [SBarcodeCipher.BarcodeEdgework] = new()
                 {
                     // English: What was the edgework represented by the {1} barcode in {0}?
                     // Example: What was the edgework represented by the first barcode in Barcode Cipher?
-                    Question = "What was the edgework represented by the {1} barcode in {0}?",
+                    Question = "Какой компонент бомбы был представлен {1}-м штрихкодом {0}?",
+                    Answers = new()
+                    {
+                        ["SERIAL NUMBER"] = "SERIAL NUMBER",
+                        ["BATTERIES"] = "BATTERIES",
+                        ["BATTERY HOLDERS"] = "BATTERY HOLDERS",
+                        ["PORTS"] = "PORTS",
+                        ["PORT PLATES"] = "PORT PLATES",
+                        ["LIT INDICATORS"] = "LIT INDICATORS",
+                        ["UNLIT INDICATORS"] = "UNLIT INDICATORS",
+                        ["INDICATORS"] = "INDICATORS",
+                    },
                 },
                 [SBarcodeCipher.BarcodeAnswers] = new()
                 {
                     // English: What was the answer for the {1} barcode in {0}?
                     // Example: What was the answer for the first barcode in Barcode Cipher?
-                    Question = "What was the answer for the {1} barcode in {0}?",
+                    Question = "Какой был ответ на {1}-й штрихкод {0}?",
                 },
             },
         },
@@ -923,7 +1073,15 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which ingredient was in the {1} position on {0}?
                     // Example: Which ingredient was in the first position on Bartending?
-                    Question = "Which ingredient was in the {1} position on {0}?",
+                    Question = "Какой ингредиент был на {1}-й позиции {0}?",
+                    Answers = new()
+                    {
+                        ["Adelhyde"] = "Adelhyde",
+                        ["Flanergide"] = "Flanergide",
+                        ["Bronson Extract"] = "Bronson Extract",
+                        ["Karmotrine"] = "Karmotrine",
+                        ["Powdered Delta"] = "Powdered Delta",
+                    },
                 },
             },
         },
@@ -936,7 +1094,16 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SBeans.Colors] = new()
                 {
                     // English: What was this bean in {0}?
-                    Question = "What was this bean in {0}?",
+                    Question = "Каким был данный боб {0}?",
+                    Answers = new()
+                    {
+                        ["Wobbly Orange"] = "Wobbly Orange",
+                        ["Wobbly Yellow"] = "Wobbly Yellow",
+                        ["Wobbly Green"] = "Wobbly Green",
+                        ["Not Wobbly Orange"] = "Not Wobbly Orange",
+                        ["Not Wobbly Yellow"] = "Not Wobbly Yellow",
+                        ["Not Wobbly Green"] = "Not Wobbly Green",
+                    },
                 },
             },
         },
@@ -950,13 +1117,27 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was sprout {1} in {0}?
                     // Example: What was sprout 1 in Bean Sprouts?
-                    Question = "What was sprout {1} in {0}?",
+                    Question = "Каким был росток {1} {0}?",
+                    Answers = new()
+                    {
+                        ["Raw"] = "Raw",
+                        ["Cooked"] = "Cooked",
+                        ["Burnt"] = "Burnt",
+                        ["Fake"] = "Fake",
+                    },
                 },
                 [SBeanSprouts.Beans] = new()
                 {
                     // English: What bean was on sprout {1} in {0}?
                     // Example: What bean was on sprout 1 in Bean Sprouts?
-                    Question = "What bean was on sprout {1} in {0}?",
+                    Question = "Какой боб был на {1}-м ростке {0}?",
+                    Answers = new()
+                    {
+                        ["Left"] = "Левый",
+                        ["Right"] = "Правый",
+                        ["None"] = "Никакой",
+                        ["Both"] = "Оба",
+                    },
                 },
             },
         },
@@ -969,107 +1150,154 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SBigBean.Color] = new()
                 {
                     // English: What was the bean in {0}?
-                    Question = "What was the bean in {0}?",
+                    Question = "Каким был боб {0}?",
+                    Answers = new()
+                    {
+                        ["Wobbly Orange"] = "Wobbly Orange",
+                        ["Wobbly Yellow"] = "Wobbly Yellow",
+                        ["Wobbly Green"] = "Wobbly Green",
+                        ["Not Wobbly Orange"] = "Not Wobbly Orange",
+                        ["Not Wobbly Yellow"] = "Not Wobbly Yellow",
+                        ["Not Wobbly Green"] = "Not Wobbly Green",
+                    },
                 },
             },
         },
 
         [typeof(SBigCircle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Большом круге",
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBigCircle.Colors] = new()
                 {
                     // English: What color was {1} in the solution to {0}?
                     // Example: What color was first in the solution to Big Circle?
-                    Question = "What color was {1} in the solution to {0}?",
+                    Question = "Какой правильный цвет был {1}-м на {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Magenta"] = "Пурпурный",
+                        ["White"] = "Белый",
+                        ["Black"] = "Чёрный",
+                    },
                 },
             },
         },
 
         [typeof(SBinary)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Двоичных светодиодах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SBinary.Word] = new()
                 {
                     // English: What word was displayed in {0}?
-                    Question = "What word was displayed in {0}?",
+                    Question = "Какое слово было отображено на {0}?",
                 },
             },
         },
 
         [typeof(SBinaryLEDs)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Двоичных светодиодах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SBinaryLEDs.Value] = new()
                 {
                     // English: At which numeric value did you cut the correct wire in {0}?
-                    Question = "At which numeric value did you cut the correct wire in {0}?",
+                    Question = "На каком числе вы перерезали верный провод {0}?",
                 },
             },
         },
 
         [typeof(SBinaryShift)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBinaryShift.InitialNumber] = new()
                 {
                     // English: What was the {1} initial number in {0}?
                     // Example: What was the top-left initial number in Binary Shift?
-                    Question = "What was the {1} initial number in {0}?",
+                    Question = "Какое было начальное число {1} {0}?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["left-middle"] = "left-middle",
-                        ["center"] = "center",
-                        ["right-middle"] = "right-middle",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "сверху слева",
+                        ["top-middle"] = "сверху посередине",
+                        ["top-right"] = "сверху справа",
+                        ["left-middle"] = "посередине слева",
+                        ["center"] = "в центре",
+                        ["right-middle"] = "посередине справа",
+                        ["bottom-left"] = "снизу слева",
+                        ["bottom-middle"] = "снизу посередине",
+                        ["bottom-right"] = "снизу справа",
                     },
                 },
                 [SBinaryShift.SelectedNumberPossition] = new()
                 {
                     // English: What number was selected at stage {1} in {0}?
                     // Example: What number was selected at stage 0 in Binary Shift?
-                    Question = "What number was selected at stage {1} in {0}?",
+                    Question = "Какое число было выбрано на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "Сверху слева",
+                        ["top-middle"] = "Сверху посередине",
+                        ["top-right"] = "Сверху справа",
+                        ["left-middle"] = "Посередине слева",
+                        ["center"] = "В центре",
+                        ["right-middle"] = "Посередине справа",
+                        ["bottom-left"] = "Снизу слева",
+                        ["bottom-middle"] = "Снизу посередине",
+                        ["bottom-right"] = "Снизу справа",
+                    },
                 },
                 [SBinaryShift.NotSelectedNumberPossition] = new()
                 {
                     // English: What number was not selected at stage {1} in {0}?
                     // Example: What number was not selected at stage 0 in Binary Shift?
-                    Question = "What number was not selected at stage {1} in {0}?",
+                    Question = "Какое число не было выбрано на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "Сверху слева",
+                        ["top-middle"] = "Сверху посередине",
+                        ["top-right"] = "Сверху справа",
+                        ["left-middle"] = "Посередине слева",
+                        ["center"] = "В центре",
+                        ["right-middle"] = "Посередине справа",
+                        ["bottom-left"] = "Снизу слева",
+                        ["bottom-middle"] = "Снизу посередине",
+                        ["bottom-right"] = "Снизу справа",
+                    },
                 },
             },
         },
 
         [typeof(SBitmaps)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Битовых изображениях",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SBitmaps.Question] = new()
                 {
                     // English: How many pixels were {1} in the {2} quadrant in {0}?
                     // Example: How many pixels were white in the top left quadrant in Bitmaps?
-                    Question = "How many pixels were {1} in the {2} quadrant in {0}?",
+                    Question = "Сколько было {1} пикселей в {2} квадранте {0}?",
                     Arguments = new()
                     {
-                        ["white"] = "white",
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
-                        ["black"] = "black",
+                        ["white"] = "белых",
+                        ["top left"] = "левом верхнем",
+                        ["top right"] = "правом верхнем",
+                        ["bottom left"] = "нижнем левом",
+                        ["bottom right"] = "нижнем правом",
+                        ["black"] = "чёрных",
                     },
                 },
             },
@@ -1077,19 +1305,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SBlackCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBlackCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Black Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -1105,89 +1332,116 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What roll did the module claim in the {1} stage of {0}?
                     // Example: What roll did the module claim in the first stage of Blindfolded Yahtzee?
                     Question = "What roll did the module claim in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Yahtzee"] = "Yahtzee",
+                        ["Large Straight"] = "Large Straight",
+                        ["Small Straight"] = "Small Straight",
+                        ["Full House"] = "Full House",
+                        ["Four of a Kind"] = "Four of a Kind",
+                        ["Chance"] = "Chance",
+                        ["Three of a Kind"] = "Three of a Kind",
+                        ["1s"] = "1s",
+                        ["2s"] = "2s",
+                        ["3s"] = "3s",
+                        ["4s"] = "4s",
+                        ["5s"] = "5s",
+                        ["6s"] = "6s",
+                    },
                 },
             },
         },
 
         [typeof(SBlindMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBlindMaze.Colors] = new()
                 {
                     // English: What color was the {1} button in {0}?
                     // Example: What color was the north button in Blind Maze?
-                    Question = "What color was the {1} button in {0}?",
+                    Question = "Какого цвета была {1} кнопка {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красного",
+                        ["Green"] = "Зелёного",
+                        ["Blue"] = "Синего",
+                        ["Gray"] = "Серого",
+                        ["Yellow"] = "Жёлтого",
+                    },
                     Arguments = new()
                     {
-                        ["north"] = "north",
-                        ["east"] = "east",
-                        ["west"] = "west",
-                        ["south"] = "south",
+                        ["north"] = "северная",
+                        ["east"] = "восточная",
+                        ["west"] = "западная",
+                        ["south"] = "южная",
                     },
                 },
                 [SBlindMaze.Maze] = new()
                 {
                     // English: Which maze did you solve {0} on?
-                    Question = "Which maze did you solve {0} on?",
+                    Question = "Какой лабиринт вы прошли {0}?",
                 },
             },
         },
 
         [typeof(SBlinkingNotes)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBlinkingNotes.Song] = new()
                 {
                     // English: What song was flashed in {0}?
-                    Question = "What song was flashed in {0}?",
+                    Question = "Какая песня мигала на {0}?",
                 },
             },
         },
 
         [typeof(SBlinkstop)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBlinkstop.NumberOfFlashes] = new()
                 {
                     // English: How many times did the LED flash in {0}?
-                    Question = "How many times did the LED flash in {0}?",
+                    Question = "Сколько раз мигал светодиод {0}?",
                 },
                 [SBlinkstop.FewestFlashedColor] = new()
                 {
                     // English: Which color did the LED flash the fewest times in {0}?
-                    Question = "Which color did the LED flash the fewest times in {0}?",
+                    Question = "Каким цветом светодиод мигал наименьшее количество раз {0}?",
+                    Answers = new()
+                    {
+                        ["Purple"] = "Фиолетовый",
+                        ["Cyan"] = "Голубой",
+                        ["Yellow"] = "Жёлтый",
+                        ["Multicolor"] = "Разноцветный",
+                    },
                 },
             },
         },
 
         [typeof(SBlockbusters)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBlockbusters.LastLetter] = new()
                 {
                     // English: What was the last letter pressed on {0}?
-                    Question = "What was the last letter pressed on {0}?",
+                    Question = "Какая буква была нажата последней {0}?",
                 },
             },
         },
 
         [typeof(SBlueArrows)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBlueArrows.InitialCharacters] = new()
                 {
                     // English: What were the characters on the screen in {0}?
-                    Question = "What were the characters on the screen in {0}?",
+                    Question = "Какие символы были на экране {0}?",
                 },
             },
         },
@@ -1195,43 +1449,53 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBlueButton)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBlueButton.D] = new()
                 {
                     // English: What was D in {0}?
-                    Question = "What was D in {0}?",
+                    Question = "Какое значение было у D на {0}?",
                 },
                 [SBlueButton.EFGH] = new()
                 {
                     // English: What was {1} in {0}?
                     // Example: What was E in Blue Button?
-                    Question = "What was {1} in {0}?",
+                    Question = "Какое значение было у {1} на {0}?",
                 },
                 [SBlueButton.M] = new()
                 {
                     // English: What was M in {0}?
-                    Question = "What was M in {0}?",
+                    Question = "Какое значение было у M на {0}?",
                 },
                 [SBlueButton.N] = new()
                 {
                     // English: What was N in {0}?
-                    Question = "What was N in {0}?",
+                    Question = "Какое значение было у N на {0}?",
                 },
                 [SBlueButton.P] = new()
                 {
                     // English: What was P in {0}?
-                    Question = "What was P in {0}?",
+                    Question = "Какое значение было у P на {0}?",
                 },
                 [SBlueButton.Q] = new()
                 {
                     // English: What was Q in {0}?
-                    Question = "What was Q in {0}?",
+                    Question = "Какое значение было у D на {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Cyan"] = "Cyan",
+                        ["Red"] = "Red",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SBlueButton.X] = new()
                 {
                     // English: What was X in {0}?
-                    Question = "What was X in {0}?",
+                    Question = "Какое значение было у X на {0}?",
                 },
             },
             Discriminators = new()
@@ -1261,19 +1525,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SBlueCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBlueCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -1281,131 +1544,135 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SBobBarks)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBobBarks.Indicators] = new()
                 {
                     // English: What was the {1} indicator label in {0}?
                     // Example: What was the top left indicator label in Bob Barks?
-                    Question = "What was the {1} indicator label in {0}?",
+                    Question = "Какая была надпись {1} индикатора {0}?",
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "верхнего левого",
+                        ["top right"] = "верхнего правого",
+                        ["bottom left"] = "нижнего левого",
+                        ["bottom right"] = "нижнего правого",
                     },
                 },
                 [SBobBarks.Positions] = new()
                 {
                     // English: Which button flashed {1} in sequence in {0}?
                     // Example: Which button flashed first in sequence in Bob Barks?
-                    Question = "Which button flashed {1} in sequence in {0}?",
+                    Question = "Какая кнопка была {1}-й в последовательности вспышек {0}?",
+                    Answers = new()
+                    {
+                        ["top left"] = "Верхняя левая",
+                        ["top right"] = "Верхняя правая",
+                        ["bottom left"] = "Нижняя левая",
+                        ["bottom right"] = "Нижняя правая",
+                    },
                 },
             },
         },
 
         [typeof(SBoggle)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBoggle.Letters] = new()
                 {
                     // English: What letter was initially visible on {0}?
-                    Question = "What letter was initially visible on {0}?",
+                    Question = "Какая буква была изначально видна на {0}?",
                 },
             },
         },
 
         [typeof(SBombDiffusal)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBombDiffusal.LicenseNumber] = new()
                 {
                     // English: What was the license number in {0}?
-                    Question = "What was the license number in {0}?",
+                    Question = "Какой был номер лицензии {0}?",
                 },
             },
         },
 
         [typeof(SBoneAppleTea)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Еле-еле ели ели",
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBoneAppleTea.Phrase] = new()
                 {
                     // English: Which phrase was shown on {0}?
-                    Question = "Which phrase was shown on {0}?",
+                    Question = "Какая фраза была показана на {0}?",
                 },
             },
         },
 
         [typeof(SBoobTube)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBoobTube.Word] = new()
                 {
                     // English: Which word was shown on {0}?
-                    Question = "Which word was shown on {0}?",
+                    Question = "Какое слово было показано на {0}?",
                 },
             },
         },
 
         [typeof(SBookOfMario)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBookOfMario.Pictures] = new()
                 {
                     // English: Who said the {1} quote in {0}?
                     // Example: Who said the first quote in Book of Mario?
-                    Question = "Who said the {1} quote in {0}?",
+                    Question = "Кто сказал {1}-ю цитату {0}?",
                 },
                 [SBookOfMario.Quotes] = new()
                 {
                     // English: What did {1} say in the {2} stage of {0}?
                     // Example: What did Goombell say in the first stage of Book of Mario?
-                    Question = "What did {1} say in the {2} stage of {0}?",
+                    Question = "Что сказал {1} на {2}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SBooleanWires)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBooleanWires.EnteredOperators] = new()
                 {
                     // English: Which operator did you submit in the {1} stage of {0}?
                     // Example: Which operator did you submit in the first stage of Boolean Wires?
-                    Question = "Which operator did you submit in the {1} stage of {0}?",
+                    Question = "Какой оператор был ответом на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SBoomtarTheGreat)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBoomtarTheGreat.Rules] = new()
                 {
                     // English: What was rule {1} in {0}?
                     // Example: What was rule one in Boomtar the Great?
-                    Question = "What was rule {1} in {0}?",
+                    Question = "Какое было {1} правило {0}?",
                     Arguments = new()
                     {
-                        ["one"] = "one",
-                        ["two"] = "two",
+                        ["one"] = "первое",
+                        ["two"] = "второе",
                     },
                 },
             },
@@ -1414,89 +1681,116 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBorderedKeys)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBorderedKeys.BorderColor] = new()
                 {
                     // English: What was the {1} key’s border color when it was pressed in {0}?
                     // Example: What was the first key’s border color when it was pressed in Bordered Keys?
-                    Question = "What was the {1} key’s border color when it was pressed in {0}?",
+                    Question = "Какого цвета была рамка, когда вы нажали {1}-ю клавишу {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SBorderedKeys.Digit] = new()
                 {
                     // English: What was the digit displayed when the {1} key was pressed in {0}?
                     // Example: What was the digit displayed when the first key was pressed in Bordered Keys?
-                    Question = "What was the digit displayed when the {1} key was pressed in {0}?",
+                    Question = "Какая цифра отображалась на дисплее, когда вы нажали {1}-ю клавишу {0}?",
                 },
                 [SBorderedKeys.KeyColor] = new()
                 {
                     // English: What was the {1} key’s key color when it was pressed in {0}?
                     // Example: What was the first key’s key color when it was pressed in Bordered Keys?
-                    Question = "What was the {1} key’s key color when it was pressed in {0}?",
+                    Question = "Какого цвета была клавиша, когда вы нажали {1}-ю клавишу {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SBorderedKeys.Label] = new()
                 {
                     // English: What was the {1} key’s label when it was pressed in {0}?
                     // Example: What was the first key’s label when it was pressed in Bordered Keys?
-                    Question = "What was the {1} key’s label when it was pressed in {0}?",
+                    Question = "Какая была надпись, когда вы нажали {1}-ю клавишу {0}?",
                 },
                 [SBorderedKeys.LabelColor] = new()
                 {
                     // English: What was the {1} key’s label color when it was pressed in {0}?
                     // Example: What was the first key’s label color when it was pressed in Bordered Keys?
-                    Question = "What was the {1} key’s label color when it was pressed in {0}?",
+                    Question = "Какого цвета была надпись, когда вы нажали {1}-ю клавишу {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
             },
         },
 
         [typeof(SBottomGear)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBottomGear.Tweet] = new()
                 {
                     // English: What tweet was shown in {0}?
-                    Question = "What tweet was shown in {0}?",
+                    Question = "Какой твит был показан {0}?",
                 },
             },
         },
 
         [typeof(SBoxing)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBoxing.StrengthByContestant] = new()
                 {
                     // English: What was {1}’s strength rating on {0}?
                     // Example: What was Muhammad’s strength rating on Boxing?
-                    Question = "What was {1}’s strength rating on {0}?",
+                    Question = "Какая была оценка силы у {1} {0}?",
                 },
                 [SBoxing.ContestantByStrength] = new()
                 {
                     // English: What was the {1} of the contestant with strength rating {2} on {0}?
                     // Example: What was the first name of the contestant with strength rating 0 on Boxing?
-                    Question = "What was the {1} of the contestant with strength rating {2} on {0}?",
+                    Question = "{1} участника с оценкой силы {2} {0}?",
                     Arguments = new()
                     {
-                        ["first name"] = "first name",
-                        ["last name"] = "last name",
-                        ["substitute’s first name"] = "substitute’s first name",
-                        ["substitute’s last name"] = "substitute’s last name",
+                        ["first name"] = "Какое было имя",
+                        ["last name"] = "Какая была фамилия",
+                        ["substitute’s first name"] = "Какое было имя запасного",
+                        ["substitute’s last name"] = "Какая была фамилия запасного",
                     },
                 },
                 [SBoxing.Names] = new()
                 {
                     // English: Which {1} appeared on {0}?
                     // Example: Which contestant’s first name appeared on Boxing?
-                    Question = "Which {1} appeared on {0}?",
+                    Question = "{1} было показано на {0}?",
                     Arguments = new()
                     {
-                        ["contestant’s first name"] = "contestant’s first name",
-                        ["contestant’s last name"] = "contestant’s last name",
-                        ["substitute’s first name"] = "substitute’s first name",
-                        ["substitute’s last name"] = "substitute’s last name",
+                        ["contestant’s first name"] = "Какое имя участника",
+                        ["contestant’s last name"] = "Какая фамилия участника",
+                        ["substitute’s first name"] = "Какое имя запасного участника",
+                        ["substitute’s last name"] = "Какая фамилия запасного участника",
                     },
                 },
             },
@@ -1504,14 +1798,15 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SBraille)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Шрифта Брайля",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBraille.Pattern] = new()
                 {
                     // English: What was the {1} pattern in {0}?
                     // Example: What was the first pattern in Braille?
-                    Question = "What was the {1} pattern in {0}?",
+                    Question = "Какой был {1}-й паттерн {0}?",
                 },
             },
         },
@@ -1519,63 +1814,74 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBreakfastEgg)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBreakfastEgg.Color] = new()
                 {
                     // English: Which color appeared on the egg in {0}?
-                    Question = "Which color appeared on the egg in {0}?",
+                    Question = "Какой был цвет у {0}?",
+                    Answers = new()
+                    {
+                        ["Crimson"] = "Crimson",
+                        ["Orange"] = "Orange",
+                        ["Pink"] = "Pink",
+                        ["Beige"] = "Beige",
+                        ["Cyan"] = "Cyan",
+                        ["Lime"] = "Lime",
+                        ["Petrol"] = "Petrol",
+                    },
                 },
             },
         },
 
         [typeof(SBrokenButtons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Сломанных кнопках",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SBrokenButtons.Question] = new()
                 {
                     // English: What was the {1} correct button you pressed in {0}?
                     // Example: What was the first correct button you pressed in Broken Buttons?
-                    Question = "What was the {1} correct button you pressed in {0}?",
+                    Question = "Какая была {1}-я правильная нажатая кнопка {0}?",
                 },
             },
         },
 
         [typeof(SBrokenGuitarChords)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBrokenGuitarChords.DisplayedChord] = new()
                 {
                     // English: What was the displayed chord in {0}?
-                    Question = "What was the displayed chord in {0}?",
+                    Question = "Какой аккорд был показан на {0}?",
                 },
                 [SBrokenGuitarChords.MutedString] = new()
                 {
                     // English: In which position, from left to right, was the broken string in {0}?
-                    Question = "In which position, from left to right, was the broken string in {0}?",
+                    Question = "На какой позиции (слева направо) была сломанная струна {0}?",
                 },
             },
         },
 
         [typeof(SBrownCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBrownCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Brown Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -1584,12 +1890,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBrushStrokes)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBrushStrokes.MiddleColor] = new()
                 {
                     // English: What was the color of the middle contact point in {0}?
-                    Question = "What was the color of the middle contact point in {0}?",
+                    Question = "Какого цвета была центральная точка {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Lime"] = "Lime",
+                        ["Green"] = "Green",
+                        ["Cyan"] = "Cyan",
+                        ["Sky"] = "Sky",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Magenta"] = "Magenta",
+                        ["Brown"] = "Brown",
+                        ["White"] = "White",
+                        ["Gray"] = "Gray",
+                        ["Black"] = "Black",
+                        ["Pink"] = "Pink",
+                    },
                 },
             },
         },
@@ -1609,76 +1934,84 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SBurgerAlarm)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBurgerAlarm.Digits] = new()
                 {
                     // English: What was the {1} displayed digit in {0}?
                     // Example: What was the first displayed digit in Burger Alarm?
-                    Question = "What was the {1} displayed digit in {0}?",
+                    Question = "Какая была {1}-я цифра {0}?",
                 },
                 [SBurgerAlarm.OrderNumbers] = new()
                 {
                     // English: What was the {1} order number in {0}?
                     // Example: What was the first order number in Burger Alarm?
-                    Question = "What was the {1} order number in {0}?",
+                    Question = "Какой был номер {1}-го заказа {0}?",
                 },
             },
         },
 
         [typeof(SBurglarAlarm)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Сигнализации",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SBurglarAlarm.Digits] = new()
                 {
                     // English: What was the {1} displayed digit in {0}?
                     // Example: What was the first displayed digit in Burglar Alarm?
-                    Question = "What was the {1} displayed digit in {0}?",
+                    Question = "Какая была {1}-я цифра {0}?",
                 },
             },
         },
 
         [typeof(SButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Кнопки",
+            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SButton.LightColor] = new()
                 {
                     // English: What color did the light glow in {0}?
-                    Question = "What color did the light glow in {0}?",
+                    Question = "Каким цветом горела цветная полоска {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красным",
+                        ["blue"] = "Синим",
+                        ["yellow"] = "Жёлтым",
+                        ["white"] = "Белым",
+                    },
                 },
             },
         },
 
         [typeof(SButtonage)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SButtonage.Buttons] = new()
                 {
                     // English: How many {1} buttons were there on {0}?
                     // Example: How many red buttons were there on Buttonage?
-                    Question = "How many {1} buttons were there on {0}?",
+                    Question = "Сколько {1} было на {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["orange"] = "orange",
-                        ["blue"] = "blue",
-                        ["pink"] = "pink",
-                        ["white"] = "white",
-                        ["black"] = "black",
-                        ["white-bordered"] = "white-bordered",
-                        ["pink-bordered"] = "pink-bordered",
-                        ["gray-bordered"] = "gray-bordered",
-                        ["red-bordered"] = "red-bordered",
-                        ["“P”"] = "“P”",
-                        ["special"] = "special",
+                        ["red"] = "кнопок красного цвета",
+                        ["green"] = "кнопок зелёного цвета",
+                        ["orange"] = "кнопок оранжевого цвета",
+                        ["blue"] = "кнопок синего цвета",
+                        ["pink"] = "кнопок розового цвета",
+                        ["white"] = "кнопок белого цвета",
+                        ["black"] = "кнопок чёрного цвета",
+                        ["white-bordered"] = "кнопок с белой рамкой",
+                        ["pink-bordered"] = "кнопок с розовой рамкой",
+                        ["gray-bordered"] = "кнопок с серой рамкой",
+                        ["red-bordered"] = "кнопок с красной рамкой",
+                        ["“P”"] = "кнопок с буквой \"P\"",
+                        ["special"] = "специальных кнопок",
                     },
                 },
             },
@@ -1686,20 +2019,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SButtonSequence)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Последовательности кнопок",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SButtonSequence.sColorOccurrences] = new()
                 {
                     // English: How many of the buttons in {0} were {1}?
                     // Example: How many of the buttons in Button Sequence were red?
-                    Question = "How many of the buttons in {0} were {1}?",
+                    Question = "Сколько было {1} кнопок {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["blue"] = "blue",
-                        ["yellow"] = "yellow",
-                        ["white"] = "white",
+                        ["red"] = "красных",
+                        ["blue"] = "синих",
+                        ["yellow"] = "жёлтых",
+                        ["white"] = "белых",
                     },
                 },
             },
@@ -1714,7 +2048,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What color was the LED in the {1} stage of {0}?
                     // Example: What color was the LED in the first stage of Cacti’s Conundrum?
-                    Question = "What color was the LED in the {1} stage of {0}?",
+                    Question = "Какого цвета был светодиод на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Lime"] = "Lime",
+                        ["Orange"] = "Orange",
+                        ["Red"] = "Red",
+                    },
                 },
             },
         },
@@ -1741,32 +2082,39 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCaesarPsycho)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCaesarPsycho.ScreenTexts] = new()
                 {
                     // English: What text was on the top display in the {1} stage of {0}?
                     // Example: What text was on the top display in the first stage of Caesar Psycho?
-                    Question = "What text was on the top display in the {1} stage of {0}?",
+                    Question = "Какой текст был на верхнем экране на {1}-м этапе {0}?",
                 },
                 [SCaesarPsycho.ScreenColor] = new()
                 {
                     // English: What color was the text on the top display in the second stage of {0}?
-                    Question = "What color was the text on the top display in the second stage of {0}?",
+                    Question = "Какого цвета был текст на верхнем экране на втором этапе {0}?",
                 },
             },
         },
 
         [typeof(SCalendar)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Календаре",
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SCalendar.LedColor] = new()
                 {
                     // English: What was the LED color in {0}?
-                    Question = "What was the LED color in {0}?",
+                    Question = "Какого цвета был индикатор на {0}?",
+                    Answers = new()
+                    {
+                        ["Green"] = "Зелёный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Red"] = "Красный",
+                        ["Blue"] = "Синий",
+                    },
                 },
             },
         },
@@ -1774,45 +2122,59 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SCARPS)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCARPS.Cell] = new()
                 {
                     // English: What color was this cell initially in {0}?
-                    Question = "What color was this cell initially in {0}?",
+                    Question = "Какого цвета была эта клетка в начале {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Black"] = "Black",
+                    },
                 },
             },
         },
 
         [typeof(SCartinese)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCartinese.ButtonColors] = new()
                 {
                     // English: What color was the {1} button in {0}?
                     // Example: What color was the up button in Cartinese?
-                    Question = "What color was the {1} button in {0}?",
+                    Question = "Какого цвета была кнопка \"{1}\" {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красного",
+                        ["Yellow"] = "Жёлтого",
+                        ["Green"] = "Зелёного",
+                        ["Blue"] = "Синего",
+                    },
                     Arguments = new()
                     {
-                        ["up"] = "up",
-                        ["right"] = "right",
-                        ["down"] = "down",
-                        ["left"] = "left",
+                        ["up"] = "вверх",
+                        ["right"] = "вправо",
+                        ["down"] = "вниз",
+                        ["left"] = "влево",
                     },
                 },
                 [SCartinese.Lyrics] = new()
                 {
                     // English: What lyric was played by the {1} button in {0}?
                     // Example: What lyric was played by the up button in Cartinese?
-                    Question = "What lyric was played by the {1} button in {0}?",
+                    Question = "Какая лирика прозвучала при нажатии кнопки \"{1}\" {0}?",
                     Arguments = new()
                     {
-                        ["up"] = "up",
-                        ["right"] = "right",
-                        ["down"] = "down",
-                        ["left"] = "left",
+                        ["up"] = "вверх",
+                        ["right"] = "вправо",
+                        ["down"] = "вниз",
+                        ["left"] = "влево",
                     },
                 },
             },
@@ -1820,20 +2182,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCatchphrase)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCatchphrase.Colour] = new()
                 {
                     // English: What was the colour of the {1} panel in {0}?
                     // Example: What was the colour of the top-left panel in Catchphrase?
-                    Question = "What was the colour of the {1} panel in {0}?",
+                    Question = "Какого цвета была панель {1} {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Orange"] = "Оранжевый",
+                        ["Purple"] = "Фиолетовый",
+                        ["Yellow"] = "Жёлтый",
+                    },
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "сверху слева",
+                        ["top-right"] = "сверху справа",
+                        ["bottom-left"] = "снизу слева",
+                        ["bottom-right"] = "снизу справа",
                     },
                 },
             },
@@ -1841,79 +2211,77 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SChallengeAndContact)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SChallengeAndContact.Answers] = new()
                 {
                     // English: What was the {1} submitted answer in {0}?
                     // Example: What was the first submitted answer in Challenge & Contact?
-                    Question = "What was the {1} submitted answer in {0}?",
+                    Question = "Какой был {1}-й введённый ответ {0}?",
                 },
             },
         },
 
         [typeof(SCharacterCodes)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCharacterCodes.Character] = new()
                 {
                     // English: What was the {1} character in {0}?
                     // Example: What was the first character in Character Codes?
-                    Question = "What was the {1} character in {0}?",
+                    Question = "Какой был {1}-й символ {0}?",
                 },
             },
         },
 
         [typeof(SCharacterShift)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCharacterShift.Letters] = new()
                 {
                     // English: Which letter was present but not submitted on the left slider of {0}?
-                    Question = "Which letter was present but not submitted on the left slider of {0}?",
+                    Question = "Какой символ присутствовал, но не был введён на левом ползунке {0}?",
                 },
                 [SCharacterShift.Digits] = new()
                 {
                     // English: Which digit was present but not submitted on the right slider of {0}?
-                    Question = "Which digit was present but not submitted on the right slider of {0}?",
+                    Question = "Какая цифра присутствовала, но не была введён на правом ползунке {0}?",
                 },
             },
         },
 
         [typeof(SCharacterSlots)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCharacterSlots.DisplayedCharacters] = new()
                 {
                     // English: Who was displayed in the {1} slot in the {2} stage of {0}?
                     // Example: Who was displayed in the first slot in the first stage of Character Slots?
-                    Question = "Who was displayed in the {1} slot in the {2} stage of {0}?",
+                    Question = "Кто был показан в {1}-м слоте на {2}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SCheapCheckout)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Свободной кассе",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SCheapCheckout.Paid] = new()
                 {
                     // English: What was {1} in {0}?
                     // Example: What was the paid amount in Cheap Checkout?
-                    Question = "What was {1} in {0}?",
+                    Question = "{1} {0}?",
                     Arguments = new()
                     {
-                        ["the paid amount"] = "the paid amount",
-                        ["the first paid amount"] = "the first paid amount",
-                        ["the second paid amount"] = "the second paid amount",
+                        ["the paid amount"] = "Сколько всего денег было заплачено",
+                        ["the first paid amount"] = "Каким был первый платёж",
+                        ["the second paid amount"] = "Каким был второй платёж",
                     },
                 },
             },
@@ -1953,11 +2321,40 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which bird {1} present in {0}?
                     // Example: Which bird was present in Cheep Checkout?
-                    Question = "Which bird {1} present in {0}?",
+                    Question = "Какая птица {1} {0}?",
+                    Answers = new()
+                    {
+                        ["Auklet"] = "Auklet",
+                        ["Bluebird"] = "Bluebird",
+                        ["Chickadee"] = "Chickadee",
+                        ["Dove"] = "Dove",
+                        ["Egret"] = "Egret",
+                        ["Finch"] = "Finch",
+                        ["Godwit"] = "Godwit",
+                        ["Hummingbird"] = "Hummingbird",
+                        ["Ibis"] = "Ibis",
+                        ["Jay"] = "Jay",
+                        ["Kinglet"] = "Kinglet",
+                        ["Loon"] = "Loon",
+                        ["Magpie"] = "Magpie",
+                        ["Nuthatch"] = "Nuthatch",
+                        ["Oriole"] = "Oriole",
+                        ["Pipit"] = "Pipit",
+                        ["Quail"] = "Quail",
+                        ["Raven"] = "Raven",
+                        ["Shrike"] = "Shrike",
+                        ["Thrush"] = "Thrush",
+                        ["Umbrellabird"] = "Umbrellabird",
+                        ["Vireo"] = "Vireo",
+                        ["Warbler"] = "Warbler",
+                        ["Xantus’s Hummingbird"] = "Xantus’s Hummingbird",
+                        ["Yellowlegs"] = "Yellowlegs",
+                        ["Zigzag Heron"] = "Zigzag Heron",
+                    },
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "присутствовала",
+                        ["was not"] = "отсутствовала",
                     },
                 },
             },
@@ -1965,32 +2362,39 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SChess)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Шахматах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SChess.Coordinate] = new()
                 {
                     // English: What was the {1} coordinate in {0}?
                     // Example: What was the first coordinate in Chess?
-                    Question = "What was the {1} coordinate in {0}?",
+                    Question = "Какие были {1}-е координаты {0}?",
                 },
             },
         },
 
         [typeof(SChineseCounting)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SChineseCounting.LED] = new()
                 {
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the left LED in Chinese Counting?
-                    Question = "What color was the {1} LED in {0}?",
+                    Question = "Какой был цвет {1} светодиода {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "Белый",
+                        ["Red"] = "Красный",
+                        ["Green"] = "Зелёный",
+                        ["Orange"] = "Оранжевый",
+                    },
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "левого",
+                        ["right"] = "правого",
                     },
                 },
             },
@@ -1998,124 +2402,125 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SChineseRemainderTheorem)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SChineseRemainderTheorem.Equations] = new()
                 {
                     // English: Which equation was used in {0}?
-                    Question = "Which equation was used in {0}?",
+                    Question = "Какое уравнение было использовано {0}?",
                 },
             },
         },
 
         [typeof(SChordQualities)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Аккордных ладах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SChordQualities.Notes] = new()
                 {
                     // English: Which note was part of the given chord in {0}?
-                    Question = "Which note was part of the given chord in {0}?",
+                    Question = "Какая нота присутствовала в начальном аккорде {0}?",
                 },
             },
         },
 
         [typeof(SClockCounter)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SClockCounter.Arrows] = new()
                 {
                     // English: Which arrow was shown in {0}?
-                    Question = "Which arrow was shown in {0}?",
+                    Question = "Какая стрелка была показана {0}?",
                 },
             },
         },
 
         [typeof(SCode)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Коде",
             Questions = new()
             {
                 [SCode.DisplayNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
-                    Question = "What was the displayed number in {0}?",
+                    Question = "Какое было показанное число {0}?",
                 },
             },
         },
 
         [typeof(SCodenames)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCodenames.Answers] = new()
                 {
                     // English: Which of these words was submitted in {0}?
-                    Question = "Which of these words was submitted in {0}?",
+                    Question = "Какое из слов было введено {0}?",
                 },
             },
         },
 
         [typeof(SCoffeeBeans)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCoffeeBeans.Movements] = new()
                 {
                     // English: What was the {1} movement in {0}?
                     // Example: What was the first movement in Coffee Beans?
-                    Question = "What was the {1} movement in {0}?",
+                    Question = "Какое было {1}-е движение {0}?",
+                    Answers = new()
+                    {
+                        ["Horizontal"] = "Горизонтальное",
+                        ["Vertical"] = "Вертикальное",
+                        ["Diagonal"] = "Диагональное",
+                        ["Nothing"] = "Никакое",
+                    },
                 },
             },
         },
 
         [typeof(SCoffeebucks)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCoffeebucks.Coffee] = new()
                 {
                     // English: What was the last served coffee in {0}?
-                    Question = "What was the last served coffee in {0}?",
+                    Question = "Какое было последне поданное кофе {0}?",
                 },
             },
         },
 
         [typeof(SCoinage)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCoinage.Flip] = new()
                 {
                     // English: Which coin was flipped in {0}?
-                    Question = "Which coin was flipped in {0}?",
+                    Question = "Какая монета была перевёрнута {0}?",
                 },
             },
         },
 
         [typeof(SColorAddition)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SColorAddition.Numbers] = new()
                 {
                     // English: What was {1}’s number in {0}?
                     // Example: What was red’s number in Color Addition?
-                    Question = "What was {1}’s number in {0}?",
+                    Question = "Какое было {1} число {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красное",
+                        ["green"] = "зелёное",
+                        ["blue"] = "синее",
                     },
                 },
             },
@@ -2129,75 +2534,130 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SColorBraille.Color] = new()
                 {
                     // English: What color was this dot in {0}?
-                    Question = "What color was this dot in {0}?",
+                    Question = "Какого цвета была эта точка {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Black",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Cyan"] = "Cyan",
+                        ["Red"] = "Red",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
 
         [typeof(SColorDecoding)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Расшифровки цветов",
+            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SColorDecoding.IndicatorColors] = new()
                 {
                     // English: Which color {1} in the {2}-stage indicator pattern in {0}?
                     // Example: Which color appeared in the first-stage indicator pattern in Color Decoding?
-                    Question = "Which color {1} in the {2}-stage indicator pattern in {0}?",
+                    Question = "Какой цвет {1} на узоре индикатора на {2}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Green"] = "Зелёный",
+                        ["Purple"] = "Фиолетовый",
+                        ["Red"] = "Красный",
+                        ["Blue"] = "Синий",
+                        ["Yellow"] = "Жёлтый",
+                    },
                     Arguments = new()
                     {
-                        ["appeared"] = "appeared",
-                        ["did not appear"] = "did not appear",
+                        ["appeared"] = "присутствовал",
+                        ["did not appear"] = "отсутствовал",
                     },
                 },
                 [SColorDecoding.IndicatorPattern] = new()
                 {
                     // English: What was the {1}-stage indicator pattern in {0}?
                     // Example: What was the first-stage indicator pattern in Color Decoding?
-                    Question = "What was the {1}-stage indicator pattern in {0}?",
+                    Question = "Какой был узор индикатора на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Checkered"] = "Шахматный",
+                        ["Horizontal"] = "Горизонтальный",
+                        ["Vertical"] = "Вертикальный",
+                        ["Solid"] = "Сплошной",
+                    },
                 },
             },
         },
 
         [typeof(SColoredKeys)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Цветных кнопках",
+            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SColoredKeys.DisplayWord] = new()
                 {
                     // English: What was the displayed word in {0}?
-                    Question = "What was the displayed word in {0}?",
+                    Question = "Какое слово было отображено на дисплее на {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Red",
+                        ["blue"] = "Blue",
+                        ["green"] = "Green",
+                        ["yellow"] = "Yellow",
+                        ["purple"] = "Purple",
+                        ["white"] = "White",
+                    },
                 },
                 [SColoredKeys.DisplayWordColor] = new()
                 {
                     // English: What was the displayed word’s color in {0}?
-                    Question = "What was the displayed word’s color in {0}?",
+                    Question = "Какого цвета было отображённое слово {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["blue"] = "Синего",
+                        ["green"] = "Зелёного",
+                        ["yellow"] = "Жёлтого",
+                        ["purple"] = "Фиолетового",
+                        ["white"] = "Белого",
+                    },
                 },
                 [SColoredKeys.KeyLetter] = new()
                 {
                     // English: What letter was on the {1} key in {0}?
                     // Example: What letter was on the top-left key in Colored Keys?
-                    Question = "What letter was on the {1} key in {0}?",
+                    Question = "Какая буква была на {1} кнопке на {0}?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхней левой",
+                        ["top-right"] = "верхней правой",
+                        ["bottom-left"] = "нижней левой",
+                        ["bottom-right"] = "нижней правой",
                     },
                 },
                 [SColoredKeys.KeyColor] = new()
                 {
                     // English: What was the color of the {1} key in {0}?
                     // Example: What was the color of the top-left key in Colored Keys?
-                    Question = "What was the color of the {1} key in {0}?",
+                    Question = "Какого цвета была {1} кнопка {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["blue"] = "Синего",
+                        ["green"] = "Зелёного",
+                        ["yellow"] = "Жёлтого",
+                        ["purple"] = "Фиолетового",
+                        ["white"] = "Белого",
+                    },
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхняя левая",
+                        ["top-right"] = "верхняя правая",
+                        ["bottom-left"] = "нижняя левая",
+                        ["bottom-right"] = "нижняя правая",
                     },
                 },
             },
@@ -2205,69 +2665,99 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SColoredSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Цветных квадратах",
+            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SColoredSquares.FirstGroup] = new()
                 {
                     // English: What was the first color group in {0}?
-                    Question = "What was the first color group in {0}?",
+                    Question = "Какого цвета была первая группа на {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "Белая",
+                        ["Red"] = "Красная",
+                        ["Blue"] = "Синяя",
+                        ["Green"] = "Зелёная",
+                        ["Yellow"] = "Жёлтая",
+                        ["Magenta"] = "Розовая",
+                    },
                 },
             },
         },
 
         [typeof(SColoredSwitches)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Цветных переключателей",
+            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [SColoredSwitches.InitialPosition] = new()
                 {
                     // English: What was the initial position of the switches in {0}?
-                    Question = "What was the initial position of the switches in {0}?",
+                    Question = "Какое было начальное положение {0}?",
                 },
                 [SColoredSwitches.WhenLEDsCameOn] = new()
                 {
                     // English: What was the position of the switches when the LEDs came on in {0}?
-                    Question = "What was the position of the switches when the LEDs came on in {0}?",
+                    Question = "Какое было положение у {0}, когда загорелись светодиоды?",
                 },
             },
         },
 
         [typeof(SColorMorse)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Цветной азбуке Морзе",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SColorMorse.Color] = new()
                 {
                     // English: What was the color of the {1} LED in {0}?
                     // Example: What was the color of the first LED in Color Morse?
-                    Question = "What was the color of the {1} LED in {0}?",
+                    Question = "Какой был цвет {1}-го светодиода {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Синий",
+                        ["Green"] = "Зелёный",
+                        ["Orange"] = "Оранжевый",
+                        ["Purple"] = "Фиолетовый",
+                        ["Red"] = "Красный",
+                        ["Yellow"] = "Жёлтый",
+                        ["White"] = "Белый",
+                    },
                 },
                 [SColorMorse.Character] = new()
                 {
                     // English: What character was flashed by the {1} LED in {0}?
                     // Example: What character was flashed by the first LED in Color Morse?
-                    Question = "What character was flashed by the {1} LED in {0}?",
+                    Question = "Какой символ передавался через Морзе {1}-м светодиодом {0}?",
                 },
             },
         },
 
         [typeof(SColorOneTwo)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "\"Цвет раз два\"",
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SColorOneTwo.Color] = new()
                 {
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the left LED in Color One Two?
-                    Question = "What color was the {1} LED in {0}?",
+                    Question = "Какого цвета был {1} светодиод на {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Blue"] = "Синий",
+                        ["Green"] = "Зелёный",
+                        ["Yellow"] = "Жёлтый",
+                    },
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "левый",
+                        ["right"] = "правый",
                     },
                 },
             },
@@ -2275,19 +2765,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SColorsMaximization)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SColorsMaximization.ColorCount] = new()
                 {
                     // English: How many buttons were {1} in {0}?
                     // Example: How many buttons were red in Colors Maximization?
-                    Question = "How many buttons were {1} in {0}?",
+                    Question = "Сколько было {1} кнопок {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красных",
+                        ["green"] = "зелёных",
+                        ["blue"] = "синих",
                     },
                 },
             },
@@ -2296,17 +2785,48 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SColouredCubes)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SColouredCubes.Colours] = new()
                 {
                     // English: What was the colour of this {1} in the {2} stage of {0}?
                     // Example: What was the colour of this cube in the first stage of Coloured Cubes?
-                    Question = "What was the colour of this {1} in the {2} stage of {0}?",
+                    Question = "Какой был цвет данного {1} на {2}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Black",
+                        ["Indigo"] = "Indigo",
+                        ["Blue"] = "Blue",
+                        ["Forest"] = "Forest",
+                        ["Teal"] = "Teal",
+                        ["Azure"] = "Azure",
+                        ["Green"] = "Green",
+                        ["Jade"] = "Jade",
+                        ["Cyan"] = "Cyan",
+                        ["Maroon"] = "Maroon",
+                        ["Plum"] = "Plum",
+                        ["Violet"] = "Violet",
+                        ["Olive"] = "Olive",
+                        ["Grey"] = "Grey",
+                        ["Maya"] = "Maya",
+                        ["Lime"] = "Lime",
+                        ["Mint"] = "Mint",
+                        ["Aqua"] = "Aqua",
+                        ["Red"] = "Red",
+                        ["Rose"] = "Rose",
+                        ["Magenta"] = "Magenta",
+                        ["Orange"] = "Orange",
+                        ["Salmon"] = "Salmon",
+                        ["Pink"] = "Pink",
+                        ["Yellow"] = "Yellow",
+                        ["Cream"] = "Cream",
+                        ["White"] = "White",
+                    },
                     Arguments = new()
                     {
-                        ["cube"] = "cube",
-                        ["stage light"] = "stage light",
+                        ["cube"] = "куба",
+                        ["stage light"] = "индикатора этапа",
                     },
                 },
             },
@@ -2321,33 +2841,52 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} colour flashed on the cylinder in {0}?
                     // Example: What was the first colour flashed on the cylinder in Coloured Cylinder?
-                    Question = "What was the {1} colour flashed on the cylinder in {0}?",
+                    Question = "Какой цвет мигал {1}-м на цилиндре {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                        ["Black"] = "Black",
+                    },
                 },
             },
         },
 
         [typeof(SColourFlash)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Цветной вспышки",
+            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SColourFlash.LastColor] = new()
                 {
                     // English: What was the color of the last word in the sequence in {0}?
-                    Question = "What was the color of the last word in the sequence in {0}?",
+                    Question = "Какого цвета было последнее слово в последовательности {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Magenta"] = "Розовый",
+                        ["White"] = "Белый",
+                    },
                 },
             },
         },
 
         [typeof(SConcentration)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SConcentration.StartingDigit] = new()
                 {
                     // English: What number began here in {0}?
-                    Question = "What number began here in {0}?",
+                    Question = "Какое число было здесь изначально {0}?",
                 },
             },
             Discriminators = new()
@@ -2356,44 +2895,74 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: the Concentration which began with {1} in the {0} position (in reading order)
                     // Example: the Concentration which began with 1 in the first position (in reading order)
-                    Discriminator = "the Concentration which began with {1} in the {0} position (in reading order)",
+                    Discriminator = "в Concentration, где \"{1}\" изначально было в {0}-й позиции (в порядке чтения)",
                 },
             },
         },
 
         [typeof(SConditionalButtons)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SConditionalButtons.Colors] = new()
                 {
                     // English: What was the color of this button in {0}?
-                    Question = "What was the color of this button in {0}?",
+                    Question = "Какого цвета была эта кнопка на {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "Чёрного",
+                        ["blue"] = "Синего",
+                        ["dark green"] = "Тёмно-зелёного",
+                        ["light green"] = "Светло-зелёного",
+                        ["orange"] = "Оранжевого",
+                        ["pink"] = "Розового",
+                        ["purple"] = "Фиолетового",
+                        ["red"] = "Красного",
+                        ["white"] = "Белого",
+                        ["yellow"] = "Жёлтого",
+                    },
                 },
             },
         },
 
         [typeof(SConnectedMonitors)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SConnectedMonitors.Number] = new()
                 {
                     // English: What number was initially displayed on this screen in {0}?
-                    Question = "What number was initially displayed on this screen in {0}?",
+                    Question = "Какое число было изначально отображено на данном экране {0}?",
                 },
                 [SConnectedMonitors.SingleIndicator] = new()
                 {
                     // English: What colour was the indicator on this screen in {0}?
-                    Question = "What colour was the indicator on this screen in {0}?",
+                    Question = "Какого цвета был индикатор на данном экране {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетовый",
+                        ["White"] = "Белый",
+                    },
                 },
                 [SConnectedMonitors.OrdinalIndicator] = new()
                 {
                     // English: What colour was the {1} indicator on this screen in {0}?
                     // Example: What colour was the first indicator on this screen in Connected Monitors?
-                    Question = "What colour was the {1} indicator on this screen in {0}?",
+                    Question = "Какого цвета был {1}-й индикатор на данном экране {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетовый",
+                        ["White"] = "Белый",
+                    },
                 },
             },
         },
@@ -2401,12 +2970,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SConnectionCheck)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Проверке соединения",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SConnectionCheck.Numbers] = new()
                 {
                     // English: What pair of numbers was present in {0}?
-                    Question = "What pair of numbers was present in {0}?",
+                    Question = "Какая пара чисел присутствовала {0}?",
                 },
             },
             Discriminators = new()
@@ -2446,18 +3017,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCoordinates)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Координатах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SCoordinates.FirstSolution] = new()
                 {
                     // English: What was the solution you selected first in {0}?
-                    Question = "What was the solution you selected first in {0}?",
+                    Question = "Какую координату вы выбрали первой {0}?",
                 },
                 [SCoordinates.Size] = new()
                 {
                     // English: What was the grid size in {0}?
-                    Question = "What was the grid size in {0}?",
+                    Question = "В каком формате был указан размер сетки {0}?",
                 },
             },
         },
@@ -2482,19 +3054,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCoralCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCoralCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Coral Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -2502,33 +3073,41 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCorners)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Углах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SCorners.Colors] = new()
                 {
                     // English: What was the color of the {1} corner in {0}?
                     // Example: What was the color of the top-left corner in Corners?
-                    Question = "What was the color of the {1} corner in {0}?",
+                    Question = "Какого цвета был {1} угол {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["green"] = "Зелёного",
+                        ["blue"] = "Синего",
+                        ["yellow"] = "Жёлтого",
+                    },
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-right"] = "bottom-right",
-                        ["bottom-left"] = "bottom-left",
+                        ["top-left"] = "верхний левый",
+                        ["top-right"] = "верхний правый",
+                        ["bottom-right"] = "нижний правый",
+                        ["bottom-left"] = "нижний левый",
                     },
                 },
                 [SCorners.ColorCount] = new()
                 {
                     // English: How many corners in {0} were {1}?
                     // Example: How many corners in Corners were red?
-                    Question = "How many corners in {0} were {1}?",
+                    Question = "Сколько было {1} углов {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["yellow"] = "yellow",
+                        ["red"] = "красных",
+                        ["green"] = "зелёных",
+                        ["blue"] = "синих",
+                        ["yellow"] = "жёлтых",
                     },
                 },
             },
@@ -2536,19 +3115,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCornflowerCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCornflowerCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Cornflower Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -2556,45 +3134,42 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCosmic)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCosmic.Number] = new()
                 {
                     // English: What was the number initially shown in {0}?
-                    Question = "What was the number initially shown in {0}?",
+                    Question = "Какое число было изначально показано {0}?",
                 },
             },
         },
 
         [typeof(SCrazyHamburger)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCrazyHamburger.Ingredient] = new()
                 {
                     // English: What was the {1} ingredient shown in {0}?
                     // Example: What was the first ingredient shown in Crazy Hamburger?
-                    Question = "What was the {1} ingredient shown in {0}?",
+                    Question = "Какой был {1}-й показанный ингредиент {0}?",
                 },
             },
         },
 
         [typeof(SCrazyMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCrazyMaze.StartOrGoal] = new()
                 {
                     // English: What was the {1} location in {0}?
                     // Example: What was the starting location in Crazy Maze?
-                    Question = "What was the {1} location in {0}?",
+                    Question = "Какая была {1} позиция {0}?",
                     Arguments = new()
                     {
-                        ["starting"] = "starting",
-                        ["goal"] = "goal",
+                        ["starting"] = "начальная",
+                        ["goal"] = "конечная",
                     },
                 },
             },
@@ -2602,19 +3177,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCreamCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCreamCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Cream Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -2622,33 +3196,41 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCreation)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Творения",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCreation.Weather] = new()
                 {
                     // English: What were the weather conditions on the {1} day in {0}?
                     // Example: What were the weather conditions on the first day in Creation?
-                    Question = "What were the weather conditions on the {1} day in {0}?",
+                    Question = "Какая погода была на {1}-м дне {0}?",
+                    Answers = new()
+                    {
+                        ["Clear"] = "Ясно",
+                        ["Heat Wave"] = "Жара",
+                        ["Meteor Shower"] = "Метеор. дождь",
+                        ["Rain"] = "Дождь",
+                        ["Windy"] = "Ветер",
+                    },
                 },
             },
         },
 
         [typeof(SCrimsonCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCrimsonCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Crimson Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -2656,26 +3238,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCritters)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCritters.Color] = new()
                 {
                     // English: What was the color in {0}?
-                    Question = "What was the color in {0}?",
+                    Question = "Какой цвет использовался {0}?",
+                    Answers = new()
+                    {
+                        ["Yellow"] = "Жёлтый",
+                        ["Pink"] = "Розовый",
+                        ["Blue"] = "Синий",
+                        ["White"] = "Белый",
+                    },
                 },
             },
         },
 
         [typeof(SCruelBinary)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCruelBinary.DisplayedWord] = new()
                 {
                     // English: What was the displayed word in {0}?
-                    Question = "What was the displayed word in {0}?",
+                    Question = "Какое слово было показано {0}?",
                 },
             },
         },
@@ -2683,48 +3270,58 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SCruelKeypads)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCruelKeypads.Colors] = new()
                 {
                     // English: What was the color of the bar in the {1} stage of {0}?
                     // Example: What was the color of the bar in the first stage of Cruel Keypads?
-                    Question = "What was the color of the bar in the {1} stage of {0}?",
+                    Question = "Какого цвета была шкала на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                    },
                 },
                 [SCruelKeypads.DisplayedSymbols] = new()
                 {
                     // English: Which of these characters appeared in the {1} stage of {0}?
                     // Example: Which of these characters appeared in the first stage of Cruel Keypads?
-                    Question = "Which of these characters appeared in the {1} stage of {0}?",
+                    Question = "Какой из этих символов появился на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SCRule)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCRule.SymbolPair] = new()
                 {
                     // English: Which symbol pair was here in {0}?
-                    Question = "Which symbol pair was here in {0}?",
+                    Question = "Какая пара символов была здесь {0}?",
                 },
                 [SCRule.SymbolPairCell] = new()
                 {
                     // English: Where was {1} in {0}?
                     // Example: Where was ♤♤ in cRule?
-                    Question = "Where was {1} in {0}?",
+                    Question = "Где находилось {1} {0}?",
                 },
                 [SCRule.SymbolPairPresent] = new()
                 {
                     // English: Which symbol pair was present on {0}?
-                    Question = "Which symbol pair was present on {0}?",
+                    Question = "Какая пара символов присутствовала {0}?",
                 },
                 [SCRule.Prefilled] = new()
                 {
                     // English: Which cell was pre-filled at the start of {0}?
-                    Question = "Which cell was pre-filled at the start of {0}?",
+                    Question = "Какая клетка была уже заполнена в начале {0}?",
                 },
             },
         },
@@ -2751,33 +3348,39 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCrypticKeypad)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCrypticKeypad.Labels] = new()
                 {
                     // English: What was the label of the {1} key in {0}?
                     // Example: What was the label of the top-left key in Cryptic Keypad?
-                    Question = "What was the label of the {1} key in {0}?",
+                    Question = "Какой был символ на {1} кнопке {0}?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхней левой",
+                        ["top-right"] = "верхней правой",
+                        ["bottom-left"] = "нижней левой",
+                        ["bottom-right"] = "нижней правой",
                     },
                 },
                 [SCrypticKeypad.Rotations] = new()
                 {
                     // English: Which cardinal direction was the {1} key rotated to in {0}?
                     // Example: Which cardinal direction was the top-left key rotated to in Cryptic Keypad?
-                    Question = "Which cardinal direction was the {1} key rotated to in {0}?",
+                    Question = "В какую сторону света была повёрнута {1} кнопка {0}?",
+                    Answers = new()
+                    {
+                        ["North"] = "Север",
+                        ["East"] = "Восток",
+                        ["South"] = "Юг",
+                        ["West"] = "Запад",
+                    },
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхняя левая",
+                        ["top-right"] = "верхняя правая",
+                        ["bottom-left"] = "нижняя левая",
+                        ["bottom-right"] = "нижняя правая",
                     },
                 },
             },
@@ -2785,55 +3388,72 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SCube)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Куба",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCube.Rotations] = new()
                 {
                     // English: What was the {1} cube rotation in {0}?
                     // Example: What was the first cube rotation in Cube?
-                    Question = "What was the {1} cube rotation in {0}?",
+                    Question = "Какое было {1}-е вращение у {0}?",
+                    Answers = new()
+                    {
+                        ["rotate cw"] = "поворот по часовой",
+                        ["tip left"] = "наклон влево",
+                        ["tip backwards"] = "наклон назад",
+                        ["rotate ccw"] = "поворот против часовой",
+                        ["tip right"] = "наклон вправо",
+                        ["tip forwards"] = "наклон вперёд",
+                    },
                 },
             },
         },
 
         [typeof(SCursedDoubleOh)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCursedDoubleOh.InitialPosition] = new()
                 {
                     // English: What was the first digit of the initially displayed number in {0}?
-                    Question = "What was the first digit of the initially displayed number in {0}?",
+                    Question = "Какая была первая цифра изначально отображённого числа {0}?",
                 },
             },
         },
 
         [typeof(SCustomerIdentification)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCustomerIdentification.Customer] = new()
                 {
                     // English: Who was the {1} customer in {0}?
                     // Example: Who was the first customer in Customer Identification?
-                    Question = "Who was the {1} customer in {0}?",
+                    Question = "Кто был {1}-м посетителем {0}?",
                 },
             },
         },
 
         [typeof(SCyanButton)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.NominativeMasculine,
             Questions = new()
             {
                 [SCyanButton.Positions] = new()
                 {
                     // English: Where was the button at the {1} stage in {0}?
                     // Example: Where was the button at the first stage in Cyan Button?
-                    Question = "Where was the button at the {1} stage in {0}?",
+                    Question = "Где был {0} на своём {1}-м этапе?",
+                    Answers = new()
+                    {
+                        ["top left"] = "Сверху слева",
+                        ["top middle"] = "Сверху посередине",
+                        ["top right"] = "Сверху справа",
+                        ["bottom left"] = "Снизу слева",
+                        ["bottom middle"] = "Снизу посередине",
+                        ["bottom right"] = "Снизу справа",
+                    },
                 },
             },
         },
@@ -2846,51 +3466,115 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SDACHMaze.Origin] = new()
                 {
                     // English: Which region did you depart from in {0}?
-                    Question = "Which region did you depart from in {0}?",
+                    Question = "Откуда вы отправились {0}?",
+                    Answers = new()
+                    {
+                        ["Burgenland, A"] = "Burgenland, A",
+                        ["Carinthia, A"] = "Carinthia, A",
+                        ["Lower Austria, A"] = "Lower Austria, A",
+                        ["North Tyrol, A"] = "North Tyrol, A",
+                        ["Upper Austria, A"] = "Upper Austria, A",
+                        ["East Tyrol, A"] = "East Tyrol, A",
+                        ["Salzburg, A"] = "Salzburg, A",
+                        ["Styria, A"] = "Styria, A",
+                        ["Vorarlberg, A"] = "Vorarlberg, A",
+                        ["Vienna, A"] = "Vienna, A",
+                        ["Aargau, CH"] = "Aargau, CH",
+                        ["Appenzell Inner Rhodes, CH"] = "Appenzell Inner Rhodes, CH",
+                        ["Appenzell Outer Rhodes, CH"] = "Appenzell Outer Rhodes, CH",
+                        ["Basel Country, CH"] = "Basel Country, CH",
+                        ["Bern, CH"] = "Bern, CH",
+                        ["Basel City, CH"] = "Basel City, CH",
+                        ["Fribourg, CH"] = "Fribourg, CH",
+                        ["Geneva, CH"] = "Geneva, CH",
+                        ["Glarus, CH"] = "Glarus, CH",
+                        ["Grisons, CH"] = "Grisons, CH",
+                        ["Jura, CH"] = "Jura, CH",
+                        ["Luzern, CH"] = "Luzern, CH",
+                        ["Nidwalden, CH"] = "Nidwalden, CH",
+                        ["Neuchâtel, CH"] = "Neuchâtel, CH",
+                        ["Obwalden, CH"] = "Obwalden, CH",
+                        ["Schaffhausen, CH"] = "Schaffhausen, CH",
+                        ["St. Gallen, CH"] = "St. Gallen, CH",
+                        ["Solothurn, CH"] = "Solothurn, CH",
+                        ["Schwyz, CH"] = "Schwyz, CH",
+                        ["Thurgau, CH"] = "Thurgau, CH",
+                        ["Ticino, CH"] = "Ticino, CH",
+                        ["Uri, CH"] = "Uri, CH",
+                        ["Vaud, CH"] = "Vaud, CH",
+                        ["Valais, CH"] = "Valais, CH",
+                        ["Zug, CH"] = "Zug, CH",
+                        ["Zürich, CH"] = "Zürich, CH",
+                        ["Brandenburg, D"] = "Brandenburg, D",
+                        ["Berlin, D"] = "Berlin, D",
+                        ["Baden-Württemberg, D"] = "Baden-Württemberg, D",
+                        ["Bavaria, D"] = "Bavaria, D",
+                        ["Bremen, D"] = "Bremen, D",
+                        ["Hesse, D"] = "Hesse, D",
+                        ["Hamburg, D"] = "Hamburg, D",
+                        ["Mecklenburg-Vorpommern, D"] = "Mecklenburg-Vorpommern, D",
+                        ["Lower Saxony, D"] = "Lower Saxony, D",
+                        ["North Rhine-Westphalia, D"] = "North Rhine-Westphalia, D",
+                        ["Rhineland-Palatinate, D"] = "Rhineland-Palatinate, D",
+                        ["Schleswig-Holstein, D"] = "Schleswig-Holstein, D",
+                        ["Saarland, D"] = "Saarland, D",
+                        ["Saxony, D"] = "Saxony, D",
+                        ["Saxony-Anhalt, D"] = "Saxony-Anhalt, D",
+                        ["Thuringia, D"] = "Thuringia, D",
+                        ["Liechtenstein"] = "Liechtenstein",
+                    },
                 },
             },
         },
 
         [typeof(SDeafAlley)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDeafAlley.Shape] = new()
                 {
                     // English: What was the shape generated in {0}?
-                    Question = "What was the shape generated in {0}?",
+                    Question = "Какой символ был сгенерирован {0}?",
                 },
             },
         },
 
         [typeof(SDeckOfManyThings)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDeckOfManyThings.FirstCard] = new()
                 {
                     // English: What deck did the first card of {0} belong to?
-                    Question = "What deck did the first card of {0} belong to?",
+                    Question = "Какой колоде принадлежала первая карта {0}?",
                 },
             },
         },
 
         [typeof(SDecoloredSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Обесцвеченных квадратах",
+            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SDecoloredSquares.StartingPos] = new()
                 {
                     // English: What was the starting {1} defining color in {0}?
                     // Example: What was the starting column defining color in Decolored Squares?
-                    Question = "What was the starting {1} defining color in {0}?",
+                    Question = "Какой цвет определил {1} схемы на {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "Белый",
+                        ["Red"] = "Красный",
+                        ["Blue"] = "Синий",
+                        ["Green"] = "Зелёный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Magenta"] = "Розовый",
+                    },
                     Arguments = new()
                     {
-                        ["column"] = "column",
-                        ["row"] = "row",
+                        ["column"] = "начальный столбец",
+                        ["row"] = "начальную строку",
                     },
                 },
             },
@@ -2905,11 +3589,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} of the {2} goal in {0}?
                     // Example: What was the colour of the first goal in Decolour Flash?
-                    Question = "What was the {1} of the {2} goal in {0}?",
+                    Question = "{1} у {2}-й цели {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Red"] = "Red",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                     Arguments = new()
                     {
-                        ["colour"] = "colour",
-                        ["word"] = "word",
+                        ["colour"] = "Какой был цвет",
+                        ["word"] = "Какое было слово",
                     },
                 },
             },
@@ -2917,147 +3610,143 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SDenialDisplays)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDenialDisplays.Displays] = new()
                 {
                     // English: What number was initially shown on display {1} in {0}?
                     // Example: What number was initially shown on display A in Denial Displays?
-                    Question = "What number was initially shown on display {1} in {0}?",
+                    Question = "Какое число было показано на экране {1} {0}?",
                 },
             },
         },
 
         [typeof(SDetoNATO)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SDetoNATO.Display] = new()
                 {
                     // English: What was the {1} display in {0}?
                     // Example: What was the first display in DetoNATO?
-                    Question = "What was the {1} display in {0}?",
+                    Question = "Что было на дисплее на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SDevilishEggs)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDevilishEggs.Rotations] = new()
                 {
                     // English: What was the {1} egg’s {2} rotation in {0}?
                     // Example: What was the top egg’s first rotation in Devilish Eggs?
-                    Question = "What was the {1} egg’s {2} rotation in {0}?",
+                    Question = "Какой был {2}-й поворот у {1} яйца {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнего",
+                        ["bottom"] = "нижнего",
                     },
                 },
                 [SDevilishEggs.Numbers] = new()
                 {
                     // English: What was the {1} digit in the string of numbers on {0}?
                     // Example: What was the first digit in the string of numbers on Devilish Eggs?
-                    Question = "What was the {1} digit in the string of numbers on {0}?",
+                    Question = "Какая была {1}-я цифра в строке чисел на {0}?",
                 },
                 [SDevilishEggs.Letters] = new()
                 {
                     // English: What was the {1} letter in the string of letters on {0}?
                     // Example: What was the first letter in the string of letters on Devilish Eggs?
-                    Question = "What was the {1} letter in the string of letters on {0}?",
+                    Question = "Какая была {1}-я буква в строке букв на {0}?",
                 },
             },
         },
 
         [typeof(SDialtones)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDialtones.Dialtones] = new()
                 {
                     // English: What dialtones were heard in {0}?
-                    Question = "What dialtones were heard in {0}?",
+                    Question = "Какие тональные сигналы играли {0}?",
                 },
             },
         },
 
         [typeof(SDigisibility)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDigisibility.DisplayedNumber] = new()
                 {
                     // English: What was the number on the {1} button in {0}?
                     // Example: What was the number on the first button in Digisibility?
-                    Question = "What was the number on the {1} button in {0}?",
+                    Question = "Какое число было на {1}-й кнопке {0}?",
                 },
             },
         },
 
         [typeof(SDigitString)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDigitString.InitialNumber] = new()
                 {
                     // English: What was the initial number in {0}?
-                    Question = "What was the initial number in {0}?",
+                    Question = "Какое было исходное число {0}?",
                 },
             },
         },
 
         [typeof(SDimensionDisruption)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDimensionDisruption.VisibleLetters] = new()
                 {
                     // English: Which of these was a visible character in {0}?
-                    Question = "Which of these was a visible character in {0}?",
+                    Question = "Что из этого было видимым символом {0}?",
                 },
             },
         },
 
         [typeof(SDirectionalButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Направляющей кнопки",
+            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SDirectionalButton.ButtonCount] = new()
                 {
                     // English: How many times did you press the button in the {1} stage of {0}?
                     // Example: How many times did you press the button in the first stage of Directional Button?
-                    Question = "How many times did you press the button in the {1} stage of {0}?",
+                    Question = "Сколько раз вы нажали кнопку на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SDiscoloredSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Бесцветных квадратах",
+            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SDiscoloredSquares.RememberedPositions] = new()
                 {
                     // English: What was {1}’s remembered position in {0}?
                     // Example: What was Blue’s remembered position in Discolored Squares?
-                    Question = "What was {1}’s remembered position in {0}?",
+                    Question = "В какой позиции находился {1} квадрат в самом начале на {0}?",
                     Arguments = new()
                     {
-                        ["Blue"] = "Blue",
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Magenta"] = "Magenta",
+                        ["Blue"] = "синий",
+                        ["Red"] = "красный",
+                        ["Yellow"] = "жёлтый",
+                        ["Green"] = "зелёный",
+                        ["Magenta"] = "розовый",
                     },
                 },
             },
@@ -3072,43 +3761,85 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the missing information for the {1} key in {0}?
                     // Example: What was the missing information for the first key in Disordered Keys?
-                    Question = "What was the missing information for the {1} key in {0}?",
+                    Question = "Какой информации недоставало {1}-й клавише {0}?",
+                    Answers = new()
+                    {
+                        ["Key color"] = "Цвета клавиши",
+                        ["Label color"] = "Цвета надписи",
+                        ["Label"] = "Надписи",
+                    },
                 },
                 [SDisorderedKeys.UnrevealedKeyColor] = new()
                 {
                     // English: What was the unrevealed key color for the {1} key in {0}?
                     // Example: What was the unrevealed key color for the first key in Disordered Keys?
-                    Question = "What was the unrevealed key color for the {1} key in {0}?",
+                    Question = "Каким был нераскрытый цвет {1}-й клавиши {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SDisorderedKeys.UnrevealedLabelColor] = new()
                 {
                     // English: What was the unrevealed label color for the {1} key in {0}?
                     // Example: What was the unrevealed label color for the first key in Disordered Keys?
-                    Question = "What was the unrevealed label color for the {1} key in {0}?",
+                    Question = "Каким был нераскрытый цвет надписи {1}-й клавиши {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SDisorderedKeys.UnrevealedKeyLabel] = new()
                 {
                     // English: What was the unrevealed label for the {1} key in {0}?
                     // Example: What was the unrevealed label for the first key in Disordered Keys?
-                    Question = "What was the unrevealed label for the {1} key in {0}?",
+                    Question = "Какая была нераскрытая надпись {1}-й клавиши {0}?",
                 },
                 [SDisorderedKeys.RevealedKeyColor] = new()
                 {
                     // English: What was the revealed key color for the {1} key in {0}?
                     // Example: What was the revealed key color for the first key in Disordered Keys?
-                    Question = "What was the revealed key color for the {1} key in {0}?",
+                    Question = "Каким был раскрытый цвет {1}-й клавиши {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SDisorderedKeys.RevealedLabelColor] = new()
                 {
                     // English: What was the revealed label color for the {1} key in {0}?
                     // Example: What was the revealed label color for the first key in Disordered Keys?
-                    Question = "What was the revealed label color for the {1} key in {0}?",
+                    Question = "Каким был раскрытый цвет надписи {1}-й клавиши {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SDisorderedKeys.RevealedLabel] = new()
                 {
                     // English: What was the revealed label for the {1} key in {0}?
                     // Example: What was the revealed label for the first key in Disordered Keys?
-                    Question = "What was the revealed label for the {1} key in {0}?",
+                    Question = "Какая была раскрытая надпись {1}-й клавиши {0}?",
                 },
             },
         },
@@ -3123,6 +3854,15 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was {1} while pressing it in {0}?
                     // Example: What color was the square while pressing it in Divided Squares?
                     Question = "What color was {1} while pressing it in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Black"] = "Black",
+                        ["White"] = "White",
+                    },
                     Arguments = new()
                     {
                         ["the square"] = "the square",
@@ -3134,14 +3874,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SDivisibleNumbers)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SDivisibleNumbers.Numbers] = new()
                 {
                     // English: What was the {1} stage’s number in {0}?
                     // Example: What was the first stage’s number in Divisible Numbers?
-                    Question = "What was the {1} stage’s number in {0}?",
+                    Question = "Какое было число {1}-го этапа {0}?",
                 },
             },
         },
@@ -3166,44 +3906,59 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SDoubleArrows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Двойных стрелках",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SDoubleArrows.Start] = new()
                 {
                     // English: What was the starting position in {0}?
-                    Question = "What was the starting position in {0}?",
+                    Question = "Какая была начальная позиция {0}?",
                 },
                 [SDoubleArrows.Movement] = new()
                 {
                     // English: Which direction in the grid did the {1} arrow move in {0}?
                     // Example: Which direction in the grid did the inner up arrow move in Double Arrows?
-                    Question = "Which direction in the grid did the {1} arrow move in {0}?",
+                    Question = "В какую сторону вас переместила стрелка {1} {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Вверх",
+                        ["Right"] = "Вправо",
+                        ["Left"] = "Влево",
+                        ["Down"] = "Вниз",
+                    },
                     Arguments = new()
                     {
-                        ["inner up"] = "inner up",
-                        ["inner down"] = "inner down",
-                        ["inner left"] = "inner left",
-                        ["inner right"] = "inner right",
-                        ["outer up"] = "outer up",
-                        ["outer down"] = "outer down",
-                        ["outer left"] = "outer left",
-                        ["outer right"] = "outer right",
+                        ["inner up"] = "внутри вверх",
+                        ["inner down"] = "внутри вниз",
+                        ["inner left"] = "внутри влево",
+                        ["inner right"] = "внутри вправо",
+                        ["outer up"] = "снаружи вверх",
+                        ["outer down"] = "снаружи вниз",
+                        ["outer left"] = "снаружи влево",
+                        ["outer right"] = "снаружи вправо",
                     },
                 },
                 [SDoubleArrows.Arrow] = new()
                 {
                     // English: Which {1} arrow moved {2} in the grid in {0}?
                     // Example: Which inner arrow moved up in the grid in Double Arrows?
-                    Question = "Which {1} arrow moved {2} in the grid in {0}?",
+                    Question = "Которая стрелка {1} переместила вас {2} {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Вверх",
+                        ["Right"] = "Вправо",
+                        ["Left"] = "Влево",
+                        ["Down"] = "Вниз",
+                    },
                     Arguments = new()
                     {
-                        ["inner"] = "inner",
-                        ["up"] = "up",
-                        ["outer"] = "outer",
-                        ["down"] = "down",
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["inner"] = "внутри",
+                        ["up"] = "вверх",
+                        ["outer"] = "снаружи",
+                        ["down"] = "вниз",
+                        ["left"] = "влево",
+                        ["right"] = "вправо",
                     },
                 },
             },
@@ -3211,32 +3966,40 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SDoubleColor)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SDoubleColor.Colors] = new()
                 {
                     // English: What was the screen color on the {1} stage of {0}?
                     // Example: What was the screen color on the first stage of Double Color?
-                    Question = "What was the screen color on the {1} stage of {0}?",
+                    Question = "Какого цвета был экран на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Green"] = "Зелёного",
+                        ["Blue"] = "Синего",
+                        ["Red"] = "Красного",
+                        ["Pink"] = "Розового",
+                        ["Yellow"] = "Жёлтого",
+                    },
                 },
             },
         },
 
         [typeof(SDoubleDigits)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SDoubleDigits.Displays] = new()
                 {
                     // English: What was the digit on the {1} display in {0}?
                     // Example: What was the digit on the left display in Double Digits?
-                    Question = "What was the digit on the {1} display in {0}?",
+                    Question = "Какая цифра была на {1} дисплее {0}?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "левом",
+                        ["right"] = "правом",
                     },
                 },
             },
@@ -3244,62 +4007,67 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SDoubleExpert)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDoubleExpert.StartingKeyNumber] = new()
                 {
                     // English: What was the starting key number in {0}?
-                    Question = "What was the starting key number in {0}?",
+                    Question = "Какое было начальное ключевое число {0}?",
                 },
                 [SDoubleExpert.SubmittedWord] = new()
                 {
                     // English: What was the word you submitted in {0}?
-                    Question = "What was the word you submitted in {0}?",
+                    Question = "Какое было отправленное слово {0}?",
                 },
             },
         },
 
         [typeof(SDoubleListening)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDoubleListening.Sounds] = new()
                 {
                     // English: What clip was played in {0}?
-                    Question = "What clip was played in {0}?",
+                    Question = "Какой звук был воспроизведён {0}?",
                 },
             },
         },
 
         [typeof(SDoubleOh)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Агент Ноль-ноль",
             Questions = new()
             {
                 [SDoubleOh.SubmitButton] = new()
                 {
                     // English: Which button was the submit button in {0}?
-                    Question = "Which button was the submit button in {0}?",
+                    Question = "Какая кнопка была кнопкой отправки {0}?",
                 },
             },
         },
 
         [typeof(SDoubleScreen)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SDoubleScreen.Colors] = new()
                 {
                     // English: What color was the {1} screen in the {2} stage of {0}?
                     // Example: What color was the top screen in the first stage of Double Screen?
-                    Question = "What color was the {1} screen in the {2} stage of {0}?",
+                    Question = "Какого цвета был {1} экран на {2}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                    },
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхний",
+                        ["bottom"] = "нижний",
                     },
                 },
             },
@@ -3307,62 +4075,67 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SDrDoctor)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDrDoctor.Diseases] = new()
                 {
                     // English: Which of these diseases was listed on {0}, but not the one treated?
-                    Question = "Which of these diseases was listed on {0}, but not the one treated?",
+                    Question = "Какая из этих болезней присутствовала на {0}, но не была вылечена?",
                 },
                 [SDrDoctor.Symptoms] = new()
                 {
                     // English: Which of these symptoms was listed on {0}?
-                    Question = "Which of these symptoms was listed on {0}?",
+                    Question = "Какой из этих симптомов присутствовал {0}?",
                 },
             },
         },
 
         [typeof(SDreamcipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDreamcipher.Word] = new()
                 {
                     // English: What was the decrypted word in {0}?
-                    Question = "What was the decrypted word in {0}?",
+                    Question = "Какое было расшифрованное слово {0}?",
                 },
             },
         },
 
         [typeof(SDuck)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDuck.CurtainColor] = new()
                 {
                     // English: What was the color of the curtain in {0}?
-                    Question = "What was the color of the curtain in {0}?",
+                    Question = "Какого цвета был занавески {0}?",
+                    Answers = new()
+                    {
+                        ["blue"] = "синий",
+                        ["yellow"] = "жёлтый",
+                        ["green"] = "зелёный",
+                        ["orange"] = "оранжевый",
+                        ["red"] = "красный",
+                    },
                 },
             },
         },
 
         [typeof(SDumbWaiters)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SDumbWaiters.PlayerAvailable] = new()
                 {
                     // English: Which player {1} present in {0}?
                     // Example: Which player was present in Dumb Waiters?
-                    Question = "Which player {1} present in {0}?",
+                    Question = "Какой игрок {1} на {0}?",
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "присутствовал",
+                        ["was not"] = "отсутствовал",
                     },
                 },
             },
@@ -3370,18 +4143,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SEarthbound)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SEarthbound.Background] = new()
                 {
                     // English: What was the background in {0}?
-                    Question = "What was the background in {0}?",
+                    Question = "Какой был фон на {0}?",
                 },
                 [SEarthbound.Monster] = new()
                 {
                     // English: Which monster was displayed in {0}?
-                    Question = "Which monster was displayed in {0}?",
+                    Question = "Какой монстр был показан на {0}?",
                 },
             },
         },
@@ -3401,60 +4174,57 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SEight)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SEight.LastSmallDisplayDigit] = new()
                 {
                     // English: What was the last digit on the small display in {0}?
-                    Question = "What was the last digit on the small display in {0}?",
+                    Question = "Какая была последняя цифра на малом экране {0}?",
                 },
                 [SEight.LastBrokenDigitPosition] = new()
                 {
                     // English: What was the position of the last broken digit in {0}?
-                    Question = "What was the position of the last broken digit in {0}?",
+                    Question = "Какая была позиция последней сломанной цифры {0}?",
                 },
                 [SEight.LastResultingDigits] = new()
                 {
                     // English: What were the last resulting digits in {0}?
-                    Question = "What were the last resulting digits in {0}?",
+                    Question = "Какие были посление цифры перед отправкой {0}?",
                 },
                 [SEight.LastDisplayedNumber] = new()
                 {
                     // English: What was the last displayed number in {0}?
-                    Question = "What was the last displayed number in {0}?",
+                    Question = "Какие были последние отображённые цифры на {0}?",
                 },
             },
         },
 
         [typeof(SElderFuthark)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SElderFuthark.Runes] = new()
                 {
                     // English: What was the {1} rune shown on {0}?
                     // Example: What was the first rune shown on Elder Futhark?
-                    Question = "What was the {1} rune shown on {0}?",
+                    Question = "Какая была {1}-я показанная руна {0}?",
                 },
             },
         },
 
         [typeof(SEmoji)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SEmoji.Emoji] = new()
                 {
                     // English: What was the {1} emoji in {0}?
                     // Example: What was the left emoji in Emoji?
-                    Question = "What was the {1} emoji in {0}?",
+                    Question = "Какой был {1} эмодзи {0}?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "левый",
+                        ["right"] = "правый",
                     },
                 },
             },
@@ -3462,52 +4232,49 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SEnaCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SEnaCipher.KeywordAnswer] = new()
                 {
                     // English: What was the {1} keyword in {0}?
                     // Example: What was the first keyword in ƎNA Cipher?
-                    Question = "What was the {1} keyword in {0}?",
+                    Question = "Какое было {1}-е ключевое слово {0}?",
                 },
                 [SEnaCipher.ExtAnswer] = new()
                 {
                     // English: What was the transposition key in {0}?
-                    Question = "What was the transposition key in {0}?",
+                    Question = "Какой был ключ перестановки {0}?",
                 },
                 [SEnaCipher.EncryptedAnswer] = new()
                 {
                     // English: What was the encrypted word in {0}?
-                    Question = "What was the encrypted word in {0}?",
+                    Question = "Какое слово было зашифрованно {0}",
                 },
             },
         },
 
         [typeof(SEncryptedDice)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SEncryptedDice.Question] = new()
                 {
                     // English: Which of these numbers appeared on a die in the {1} stage of {0}?
                     // Example: Which of these numbers appeared on a die in the first stage of Encrypted Dice?
-                    Question = "Which of these numbers appeared on a die in the {1} stage of {0}?",
+                    Question = "Какие из этих чисел были на костях на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SEncryptedEquations)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SEncryptedEquations.Shapes] = new()
                 {
                     // English: Which shape was the {1} operand in {0}?
                     // Example: Which shape was the first operand in Encrypted Equations?
-                    Question = "Which shape was the {1} operand in {0}?",
+                    Question = "Какая фигура была {1}-й переменной {0}?",
                 },
             },
         },
@@ -3520,30 +4287,39 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SEncryptedHangman.Module] = new()
                 {
                     // English: What module name was encrypted by {0}?
-                    Question = "What module name was encrypted by {0}?",
+                    Question = "Какое название модуля было зашифрованно {0}?",
                 },
                 [SEncryptedHangman.EncryptionMethod] = new()
                 {
                     // English: What method of encryption was used by {0}?
-                    Question = "What method of encryption was used by {0}?",
+                    Question = "Какой метод шифрования был применён {0}?",
+                    Answers = new()
+                    {
+                        ["Caesar Cipher"] = "Caesar Cipher",
+                        ["Atbash Cipher"] = "Atbash Cipher",
+                        ["Rot-13 Cipher"] = "Rot-13 Cipher",
+                        ["Affine Cipher"] = "Affine Cipher",
+                        ["Modern Cipher"] = "Modern Cipher",
+                        ["Vigenère Cipher"] = "Vigenère Cipher",
+                        ["Playfair Cipher"] = "Playfair Cipher",
+                    },
                 },
             },
         },
 
         [typeof(SEncryptedMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SEncryptedMaze.Symbols] = new()
                 {
                     // English: Which symbol on {0} was spinning {1}?
                     // Example: Which symbol on Encrypted Maze was spinning clockwise?
-                    Question = "Which symbol on {0} was spinning {1}?",
+                    Question = "Какой символ {0} крутился {1}?",
                     Arguments = new()
                     {
-                        ["clockwise"] = "clockwise",
-                        ["counter-clockwise"] = "counter-clockwise",
+                        ["clockwise"] = "по часовой",
+                        ["counter-clockwise"] = "против часовой",
                     },
                 },
             },
@@ -3551,18 +4327,17 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SEncryptedMorse)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SEncryptedMorse.CallResponse] = new()
                 {
                     // English: What was the {1} on {0}?
                     // Example: What was the received call on Encrypted Morse?
-                    Question = "What was the {1} on {0}?",
+                    Question = "Какое было {1} {0}?",
                     Arguments = new()
                     {
-                        ["received call"] = "received call",
-                        ["sent response"] = "sent response",
+                        ["received call"] = "полученное сообщение",
+                        ["sent response"] = "отправленное сообщение",
                     },
                 },
             },
@@ -3576,7 +4351,29 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SEncryptionBingo.Encoding] = new()
                 {
                     // English: What was the first encoding used in {0}?
-                    Question = "What was the first encoding used in {0}?",
+                    Question = "Какая шифровка была первой {0}?",
+                    Answers = new()
+                    {
+                        ["Morse Code"] = "Morse Code",
+                        ["Tap Code"] = "Tap Code",
+                        ["Maritime Flags"] = "Maritime Flags",
+                        ["Semaphore"] = "Semaphore",
+                        ["Pigpen"] = "Pigpen",
+                        ["Lombax"] = "Lombax",
+                        ["Braille"] = "Braille",
+                        ["Wingdings"] = "Wingdings",
+                        ["Zoni"] = "Zoni",
+                        ["Galatic Alphabet"] = "Galatic Alphabet",
+                        ["Arrow"] = "Arrow",
+                        ["Listening"] = "Listening",
+                        ["Regular Number"] = "Regular Number",
+                        ["Chinese Number"] = "Chinese Number",
+                        ["Cube Symbols"] = "Cube Symbols",
+                        ["Runes"] = "Runes",
+                        ["New York Point"] = "New York Point",
+                        ["Fontana"] = "Fontana",
+                        ["ASCII Hex Code"] = "ASCII Hex Code",
+                    },
                 },
             },
         },
@@ -3649,101 +4446,112 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} digit in the {2} number shown in {0}?
                     // Example: What was the first digit in the first number shown in Entry Number One?
-                    Question = "What was the {1} digit in the {2} number shown in {0}?",
+                    Question = "What was the{1} digit in the {2} number shown in {0}?",
                 },
             },
         },
 
         [typeof(SEquationsX)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SEquationsX.Symbols] = new()
                 {
                     // English: What was the displayed symbol in {0}?
-                    Question = "What was the displayed symbol in {0}?",
+                    Question = "Какой символ был показан на {0}?",
                 },
             },
         },
 
         [typeof(SErrorCodes)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SErrorCodes.ActiveError] = new()
                 {
                     // English: What was the active error code in {0}?
-                    Question = "What was the active error code in {0}?",
+                    Question = "Какой код был активным на {0}?",
                 },
             },
         },
 
         [typeof(SEtterna)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SEtterna.Number] = new()
                 {
                     // English: What was the beat for the {1} arrow from the bottom in {0}?
                     // Example: What was the beat for the first arrow from the bottom in Etterna?
-                    Question = "What was the beat for the {1} arrow from the bottom in {0}?",
+                    Question = "Какой бит был у {1}-й стрелки снизу вверх {0}?",
                 },
             },
         },
 
         [typeof(SExoplanets)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SExoplanets.StartingTargetPlanet] = new()
                 {
                     // English: What was the starting target planet in {0}?
-                    Question = "What was the starting target planet in {0}?",
+                    Question = "Какая была начальная целевая планета из {0}?",
+                    Answers = new()
+                    {
+                        ["outer"] = "Внешняя",
+                        ["middle"] = "Средняя",
+                        ["inner"] = "Внутреняя",
+                        ["none"] = "Никакая",
+                    },
                 },
                 [SExoplanets.StartingTargetDigit] = new()
                 {
                     // English: What was the starting target digit in {0}?
-                    Question = "What was the starting target digit in {0}?",
+                    Question = "Какая была начальная целевая цифра {0}?",
                 },
                 [SExoplanets.TargetPlanet] = new()
                 {
                     // English: What was the final target planet in {0}?
-                    Question = "What was the final target planet in {0}?",
+                    Question = "Какая была финальная целевая планета из {0}?",
+                    Answers = new()
+                    {
+                        ["outer"] = "Внешняя",
+                        ["middle"] = "Средняя",
+                        ["inner"] = "Внутреняя",
+                        ["none"] = "Никакая",
+                    },
                 },
                 [SExoplanets.TargetDigit] = new()
                 {
                     // English: What was the final target digit in {0}?
-                    Question = "What was the final target digit in {0}?",
+                    Question = "Какая была финальная целевая цифра {0}?",
                 },
             },
         },
 
         [typeof(SFactoringMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFactoringMaze.ChosenPrimes] = new()
                 {
                     // English: What was one of the prime numbers chosen in {0}?
-                    Question = "What was one of the prime numbers chosen in {0}?",
+                    Question = "Какое из простых чисел было выбрано {0}?",
                 },
             },
         },
 
         [typeof(SFactoryMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFactoryMaze.StartRoom] = new()
                 {
                     // English: What room did you start in in {0}?
-                    Question = "What room did you start in in {0}?",
+                    Question = "Какая была начальная комната {0}?",
                 },
             },
         },
@@ -3758,6 +4566,15 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was the {1} faerie in {0}?
                     // Example: What color was the first faerie in Faerie Fires?
                     Question = "What color was the {1} faerie in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
                 [SFaerieFires.PitchOrdinal] = new()
                 {
@@ -3785,13 +4602,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SFastMath)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Быстрой математике",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SFastMath.LastLetters] = new()
                 {
                     // English: What was the last pair of letters in {0}?
-                    Question = "What was the last pair of letters in {0}?",
+                    Question = "Какая пара букв была последней {0}?",
                 },
             },
         },
@@ -3811,115 +4629,110 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SFaultyButtons)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFaultyButtons.ReferredToThisButton] = new()
                 {
                     // English: Which button referred to the {1} button in reading order in {0}?
                     // Example: Which button referred to the first button in reading order in Faulty Buttons?
-                    Question = "Which button referred to the {1} button in reading order in {0}?",
+                    Question = "Какая кнопка ссылалась на {1}-ю кнопку в порядке чтения {0}?",
                 },
                 [SFaultyButtons.ThisButtonReferredTo] = new()
                 {
                     // English: Which button did the {1} button in reading order refer to in {0}?
                     // Example: Which button did the first button in reading order refer to in Faulty Buttons?
-                    Question = "Which button did the {1} button in reading order refer to in {0}?",
+                    Question = "На какую кнопку ссылалась {1}-я кнопка в порядке чтения {0}?",
                 },
             },
         },
 
         [typeof(SFaultyRGBMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFaultyRGBMaze.Keys] = new()
                 {
                     // English: Where was the {1} key in {0}?
                     // Example: Where was the red key in Faulty RGB Maze?
-                    Question = "Where was the {1} key in {0}?",
+                    Question = "Где был {1} ключ {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красный",
+                        ["green"] = "зелёный",
+                        ["blue"] = "синий",
                     },
                 },
                 [SFaultyRGBMaze.Number] = new()
                 {
                     // English: Which maze number was the {1} maze in {0}?
                     // Example: Which maze number was the red maze in Faulty RGB Maze?
-                    Question = "Which maze number was the {1} maze in {0}?",
+                    Question = "Какой {1} лабиринт был {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красный",
+                        ["green"] = "зелёный",
+                        ["blue"] = "синий",
                     },
                 },
                 [SFaultyRGBMaze.Exit] = new()
                 {
                     // English: What was the exit coordinate in {0}?
-                    Question = "What was the exit coordinate in {0}?",
+                    Question = "На каких координатах был выход {0}?",
                 },
             },
         },
 
         [typeof(SFindTheDate)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFindTheDate.Month] = new()
                 {
                     // English: What was the month displayed in the {1} stage of {0}?
                     // Example: What was the month displayed in the first stage of Find The Date?
-                    Question = "What was the month displayed in the {1} stage of {0}?",
+                    Question = "Какой месяц был показан на {1}-м этапе {0}?",
                 },
                 [SFindTheDate.Day] = new()
                 {
                     // English: What was the day displayed in the {1} stage of {0}?
                     // Example: What was the day displayed in the first stage of Find The Date?
-                    Question = "What was the day displayed in the {1} stage of {0}?",
+                    Question = "Какой день был показан на {1}-м этапе {0}?",
                 },
                 [SFindTheDate.Year] = new()
                 {
                     // English: What was the year displayed in the {1} stage of {0}?
                     // Example: What was the year displayed in the first stage of Find The Date?
-                    Question = "What was the year displayed in the {1} stage of {0}?",
+                    Question = "Какой год был показан на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SFiveLetterWords)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFiveLetterWords.DisplayedWords] = new()
                 {
                     // English: Which of these words was on the display in {0}?
-                    Question = "Which of these words was on the display in {0}?",
+                    Question = "Какое из этих слов было на экране {0}?",
                 },
             },
         },
 
         [typeof(SFizzBuzz)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFizzBuzz.DisplayedNumbers] = new()
                 {
                     // English: What was the {1} digit on the {2} display of {0}?
                     // Example: What was the first digit on the top display of FizzBuzz?
-                    Question = "What was the {1} digit on the {2} display of {0}?",
+                    Question = "Какая была {1}-я цифра на {2} экране {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "среднем",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -3927,46 +4740,54 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SFlags)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFlags.DisplayedNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
-                    Question = "What was the displayed number in {0}?",
+                    Question = "Какое число было показано на экране {0}?",
                 },
                 [SFlags.MainCountry] = new()
                 {
                     // English: What was the main country flag in {0}?
-                    Question = "What was the main country flag in {0}?",
+                    Question = "Какой главный флаг отображался {0}?",
                 },
                 [SFlags.Countries] = new()
                 {
                     // English: Which of these country flags was shown, but not the main country flag, in {0}?
-                    Question = "Which of these country flags was shown, but not the main country flag, in {0}?",
+                    Question = "Какой из этих флагов был показан (но не являлся главным) {0}?",
                 },
             },
         },
 
         [typeof(SFlashingArrows)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFlashingArrows.DisplayedValue] = new()
                 {
                     // English: What number was displayed on {0}?
-                    Question = "What number was displayed on {0}?",
+                    Question = "Какое число было показано {0}?",
                 },
                 [SFlashingArrows.ReferredArrow] = new()
                 {
                     // English: What color flashed {1} black on the relevant arrow in {0}?
                     // Example: What color flashed before black on the relevant arrow in Flashing Arrows?
-                    Question = "What color flashed {1} black on the relevant arrow in {0}?",
+                    Question = "Какой цвет мигнул {1} на соответствующей стрелке {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетовый",
+                        ["White"] = "Белый",
+                    },
                     Arguments = new()
                     {
-                        ["before"] = "before",
-                        ["after"] = "after",
+                        ["before"] = "перед чёрным",
+                        ["after"] = "после чёрного",
                     },
                 },
             },
@@ -3974,23 +4795,22 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SFlashingLights)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFlashingLights.LEDFrequency] = new()
                 {
                     // English: How many times did the {1} LED flash {2} on {0}?
                     // Example: How many times did the top LED flash cyan on Flashing Lights?
-                    Question = "How many times did the {1} LED flash {2} on {0}?",
+                    Question = "Сколько раз {1} светодиод мигал {2} {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["cyan"] = "cyan",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["purple"] = "purple",
-                        ["orange"] = "orange",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхний",
+                        ["cyan"] = "голубым",
+                        ["green"] = "зелёным",
+                        ["red"] = "красным",
+                        ["purple"] = "фиолетовым",
+                        ["orange"] = "оранжевым",
+                        ["bottom"] = "нижний",
                     },
                 },
             },
@@ -3998,73 +4818,76 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SFlavorText)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SFlavorText.Module] = new()
                 {
                     // English: Which module’s flavor text was shown in {0}?
-                    Question = "Which module’s flavor text was shown in {0}?",
+                    Question = "К какому модулю был показан флейвор текст на {0}?",
                 },
             },
         },
 
         [typeof(SFlavorTextEX)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFlavorTextEX.Module] = new()
                 {
                     // English: Which module’s flavor text was shown in the {1} stage of {0}?
                     // Example: Which module’s flavor text was shown in the first stage of Flavor Text EX?
-                    Question = "Which module’s flavor text was shown in the {1} stage of {0}?",
+                    Question = "К какому модулю был показан флейвор текст на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SFlyswatting)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFlyswatting.Unpressed] = new()
                 {
                     // English: Which fly was present, but not in the solution in {0}?
-                    Question = "Which fly was present, but not in the solution in {0}?",
+                    Question = "Какая муха присутствовала, но не была частью решения {0}?",
                 },
             },
         },
 
         [typeof(SFollowMe)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFollowMe.DisplayedPath] = new()
                 {
                     // English: What was the {1} flashing direction in {0}?
                     // Example: What was the first flashing direction in Follow Me?
-                    Question = "What was the {1} flashing direction in {0}?",
+                    Question = "Какое было {1}-е мигающее направление {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Вверх",
+                        ["Down"] = "Вниз",
+                        ["Left"] = "Влево",
+                        ["Right"] = "Вправо",
+                    },
                 },
             },
         },
 
         [typeof(SForestCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SForestCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Forest Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -4073,27 +4896,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SForgetAnyColor)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SForgetAnyColor.QCylinder] = new()
                 {
                     // English: What colors were the cylinders during the {1} stage of {0}?
                     // Example: What colors were the cylinders during the first stage of Forget Any Color?
-                    Question = "What colors were the cylinders during the {1} stage of {0}?",
+                    Question = "Какие были цилиндры на {1}-м этапе {0}?",
                     Additional = new()
                     {
                         ["{0}, {1}, {2}"] = "{0}, {1}, {2}",
-                        ["Red"] = "Red",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Cyan"] = "Cyan",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
-                        ["White"] = "White",
-                        ["L"] = "L",
-                        ["M"] = "M",
-                        ["R"] = "R",
+                        ["Red"] = "красный",
+                        ["Orange"] = "оранжевый",
+                        ["Yellow"] = "жёлтый",
+                        ["Green"] = "зелёный",
+                        ["Cyan"] = "голубой",
+                        ["Blue"] = "синий",
+                        ["Purple"] = "фиолетовый",
+                        ["White"] = "белый",
+                        ["L"] = "Л",
+                        ["M"] = "Ц",
+                        ["R"] = "П",
                     },
                 },
                 [SForgetAnyColor.QFigure] = new()
@@ -4109,27 +4933,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: the Forget Any Color whose cylinders in the {1} stage were {0}
                     // Example: the Forget Any Color whose cylinders in the first stage were Orange, Yellow, Green
-                    Discriminator = "the Forget Any Color whose cylinders in the {1} stage were {0}",
+                    Discriminator = "Forget Any Color, где цвета цилиндров на {1}-м этапе были: {0}",
                 },
                 [SForgetAnyColor.DFigure] = new()
                 {
                     // English: the Forget Any Color which used figure {0} in the {1} stage
                     // Example: the Forget Any Color which used figure LLLMR in the first stage
-                    Discriminator = "the Forget Any Color which used figure {0} in the {1} stage",
+                    Discriminator = "Forget Any Color, где на {1}-м этапе была применена строка {0}",
                 },
             },
         },
 
         [typeof(SForgetEverything)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Полного забвения",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SForgetEverything.QStageOneDisplay] = new()
                 {
                     // English: What was the {1} displayed digit in the first stage of {0}?
                     // Example: What was the first displayed digit in the first stage of Forget Everything?
-                    Question = "What was the {1} displayed digit in the first stage of {0}?",
+                    Question = "Какая была {1}-я отображённая цифра на первом этапе {0}?",
                 },
             },
             Discriminators = new()
@@ -4138,32 +4963,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: the Forget Everything whose {0} displayed digit in that stage was {1}
                     // Example: the Forget Everything whose first displayed digit in that stage was 1
-                    Discriminator = "the Forget Everything whose {0} displayed digit in that stage was {1}",
+                    Discriminator = "Полного забвения, {0}-я отображённая цифра которого на том этапе была {1}",
                 },
             },
         },
 
         [typeof(SForgetMe)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SForgetMe.InitialState] = new()
                 {
                     // English: What number was in the {1} position of the initial puzzle in {0}?
                     // Example: What number was in the top-left position of the initial puzzle in Forget Me?
-                    Question = "What number was in the {1} position of the initial puzzle in {0}?",
+                    Question = "Какое число было на {1} кнопке изначального пазла {0}?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["center"] = "center",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхней левой",
+                        ["top-middle"] = "верхней средней",
+                        ["top-right"] = "верхней правой",
+                        ["middle-left"] = "средней левой",
+                        ["center"] = "центральной",
+                        ["middle-right"] = "средней правой",
+                        ["bottom-left"] = "нижней левой",
+                        ["bottom-middle"] = "нижней средней",
+                        ["bottom-right"] = "нижней правой",
                     },
                 },
             },
@@ -4171,14 +4995,15 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SForgetMeNot)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Незабудки",
+            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SForgetMeNot.Question] = new()
                 {
                     // English: What was the digit displayed in the {1} stage of {0}?
                     // Example: What was the digit displayed in the first stage of Forget Me Not?
-                    Question = "What was the digit displayed in the {1} stage of {0}?",
+                    Question = "Какая цифра была отображена на {1}-м этапе {0}?",
                 },
             },
             Discriminators = new()
@@ -4187,21 +5012,22 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: the Forget Me Not which displayed a {0} in the {1} stage
                     // Example: the Forget Me Not which displayed a 1 in the first stage
-                    Discriminator = "the Forget Me Not which displayed a {0} in the {1} stage",
+                    Discriminator = "Незабудки, на которой была отображена {0} на {1}-м этапе",
                 },
             },
         },
 
         [typeof(SForgetMeNow)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Забудке",
+            Conjugation = Conjugation.PrepositiveFeminine,
             Questions = new()
             {
                 [SForgetMeNow.DisplayedDigits] = new()
                 {
                     // English: What was the {1} displayed digit in {0}?
                     // Example: What was the first displayed digit in Forget Me Now?
-                    Question = "What was the {1} displayed digit in {0}?",
+                    Question = "Какая была {1}-я отображённая цифра на {0}?",
                 },
             },
         },
@@ -4259,32 +5085,44 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SForgetsUltimateShowdown)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Финальной битве забвения",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SForgetsUltimateShowdown.Answer] = new()
                 {
                     // English: What was the {1} digit of the answer in {0}?
                     // Example: What was the first digit of the answer in Forget’s Ultimate Showdown?
-                    Question = "What was the {1} digit of the answer in {0}?",
+                    Question = "Какая была {1}-я цифра финального кода {0}?",
                 },
                 [SForgetsUltimateShowdown.Bottom] = new()
                 {
                     // English: What was the {1} digit of the bottom number in {0}?
                     // Example: What was the first digit of the bottom number in Forget’s Ultimate Showdown?
-                    Question = "What was the {1} digit of the bottom number in {0}?",
+                    Question = "Какая была {1}-я цифра нижнего числа {0}?",
                 },
                 [SForgetsUltimateShowdown.Initial] = new()
                 {
                     // English: What was the {1} digit of the initial number in {0}?
                     // Example: What was the first digit of the initial number in Forget’s Ultimate Showdown?
-                    Question = "What was the {1} digit of the initial number in {0}?",
+                    Question = "Какая была {1}-я цифра изначального кодового числа {0}?",
                 },
                 [SForgetsUltimateShowdown.Method] = new()
                 {
                     // English: What was the {1} method used in {0}?
                     // Example: What was the first method used in Forget’s Ultimate Showdown?
-                    Question = "What was the {1} method used in {0}?",
+                    Question = "Какой был {1}-й использованный метод {0}?",
+                    Answers = new()
+                    {
+                        ["Forget Me Not"] = "Незабудка",
+                        ["Simon’s Stages"] = "Выступление Саймона",
+                        ["Forget Me Later"] = "Забудемся позже",
+                        ["Forget Infinity"] = "Бесконечное забвение",
+                        ["A>N<D"] = "＞И＜",
+                        ["Forget Me Now"] = "Забудка",
+                        ["Forget Everything"] = "Полное забвение",
+                        ["Forget Us Not"] = "Незабудки",
+                    },
                 },
             },
         },
@@ -4292,37 +5130,67 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SForgetTheColors)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "\"Забудь цвета\"",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SForgetTheColors.QGearNumber] = new()
                 {
                     // English: What number was on the gear during stage {1} of {0}?
                     // Example: What number was on the gear during stage 0 of Forget The Colors?
-                    Question = "What number was on the gear during stage {1} of {0}?",
+                    Question = "Какое число было на шестерёнке на {1}-м этапе {0}?",
                 },
                 [SForgetTheColors.QLargeDisplay] = new()
                 {
                     // English: What number was on the large display during stage {1} of {0}?
                     // Example: What number was on the large display during stage 0 of Forget The Colors?
-                    Question = "What number was on the large display during stage {1} of {0}?",
+                    Question = "Какое число было на большом экране на {1}-м этапе {0}?",
                 },
                 [SForgetTheColors.QSineNumber] = new()
                 {
                     // English: What was the last decimal in the sine number received during stage {1} of {0}?
                     // Example: What was the last decimal in the sine number received during stage 0 of Forget The Colors?
-                    Question = "What was the last decimal in the sine number received during stage {1} of {0}?",
+                    Question = "Какая была последняя дробная цифра полученного числа синуса на {1}-м этапе {0}?",
                 },
                 [SForgetTheColors.QGearColor] = new()
                 {
                     // English: What color was the gear during stage {1} of {0}?
                     // Example: What color was the gear during stage 0 of Forget The Colors?
-                    Question = "What color was the gear during stage {1} of {0}?",
+                    Question = "Какого цвета была шестерёнка на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Cyan"] = "Голубой",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетоывй",
+                        ["Pink"] = "Розовый",
+                        ["Maroon"] = "Бордовый",
+                        ["White"] = "Белый",
+                        ["Gray"] = "Серый",
+                    },
                 },
                 [SForgetTheColors.QRuleColor] = new()
                 {
                     // English: Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?
                     // Example: Which edgework-based rule was applied to the sum of nixies and gear during stage 0 of Forget The Colors?
-                    Question = "Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?",
+                    Question = "Какого цвета было правило, по которому вы сложили числа на лампах и шестерёнках на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Cyan"] = "Голубой",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетоывй",
+                        ["Pink"] = "Розовый",
+                        ["Maroon"] = "Бордовый",
+                        ["White"] = "Белый",
+                        ["Gray"] = "Серый",
+                    },
                 },
             },
             Discriminators = new()
@@ -4331,19 +5199,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: the Forget The Colors whose gear number was {0} in stage {1}
                     // Example: the Forget The Colors whose gear number was 1 in stage 1
-                    Discriminator = "the Forget The Colors whose gear number was {0} in stage {1}",
+                    Discriminator = "\"Забудь цвета\", где на {1}-м этапе на шестерёнке было {0}",
                 },
                 [SForgetTheColors.DLargeDisplay] = new()
                 {
                     // English: the Forget The Colors which had {0} on its large display in stage {1}
                     // Example: the Forget The Colors which had 426 on its large display in stage 1
-                    Discriminator = "the Forget The Colors which had {0} on its large display in stage {1}",
+                    Discriminator = "\"Забудь цвета\", где на {1}-м этапе на большом экране было {0}",
                 },
                 [SForgetTheColors.DSineNumber] = new()
                 {
                     // English: the Forget The Colors whose received sine number in stage {1} ended with a {0}
                     // Example: the Forget The Colors whose received sine number in stage 1 ended with a 0
-                    Discriminator = "the Forget The Colors whose received sine number in stage {1} ended with a {0}",
+                    Discriminator = "\"Забудь цвета\", где на {1}-м этапе полученное число синуса оканчивалось на {0}",
                 },
                 [SForgetTheColors.DColor] = new()
                 {
@@ -4379,13 +5247,22 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What color was the LED in the {1} stage of {0}?
                     // Example: What color was the LED in the first stage of Forget This?
-                    Question = "What color was the LED in the {1} stage of {0}?",
+                    Question = "Какого цвета был светодиод на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["Black"] = "Black",
+                        ["White"] = "White",
+                        ["Green"] = "Green",
+                    },
                 },
                 [SForgetThis.QDigits] = new()
                 {
                     // English: What was the digit displayed in the {1} stage of {0}?
                     // Example: What was the digit displayed in the first stage of Forget This?
-                    Question = "What was the digit displayed in the {1} stage of {0}?",
+                    Question = "Какая цифра была показана на {1}-м этапе {0}?",
                 },
             },
             Discriminators = new()
@@ -4394,7 +5271,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: the Forget This whose LED was {0} in the {1} stage
                     // Example: the Forget This whose LED was cyan in the first stage
-                    Discriminator = "the Forget This whose LED was {0} in the {1} stage",
+                    Discriminator = "Forget This, на котором был {0} светодиод на {1}-м этапе",
                     Arguments = new()
                     {
                         ["cyan"] = "cyan",
@@ -4409,7 +5286,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: the Forget This which displayed {0} in the {1} stage
                     // Example: the Forget This which displayed A in the first stage
-                    Discriminator = "the Forget This which displayed {0} in the {1} stage",
+                    Discriminator = "Forget This, который показывал {0} на {1}-м этапе",
                 },
             },
         },
@@ -4445,188 +5322,191 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SFreeParking.Token] = new()
                 {
                     // English: What was the player token in {0}?
-                    Question = "What was the player token in {0}?",
+                    Question = "Какой был жетон игрока {0}?",
+                    Answers = new()
+                    {
+                        ["Dog"] = "Dog",
+                        ["Wheelbarrow"] = "Wheelbarrow",
+                        ["Cat"] = "Cat",
+                        ["Iron"] = "Iron",
+                        ["Top Hat"] = "Top Hat",
+                        ["Car"] = "Car",
+                        ["Battleship"] = "Battleship",
+                    },
                 },
             },
         },
 
         [typeof(SFunctions)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFunctions.LastDigit] = new()
                 {
                     // English: What was the last digit of your first query’s result in {0}?
-                    Question = "What was the last digit of your first query’s result in {0}?",
+                    Question = "Какая была последняя цифра результата вашего первого запроса {0}?",
                 },
                 [SFunctions.LeftNumber] = new()
                 {
                     // English: What number was to the left of the displayed letter in {0}?
-                    Question = "What number was to the left of the displayed letter in {0}?",
+                    Question = "Какое число было слева от отображённой буквы {0}?",
                 },
                 [SFunctions.Letter] = new()
                 {
                     // English: What letter was displayed in {0}?
-                    Question = "What letter was displayed in {0}?",
+                    Question = "Какая буква была отображена {0}?",
                 },
                 [SFunctions.RightNumber] = new()
                 {
                     // English: What number was to the right of the displayed letter in {0}?
-                    Question = "What number was to the right of the displayed letter in {0}?",
+                    Question = "Какое число было справа от отображённой буквы {0}?",
                 },
             },
         },
 
         [typeof(SFuseBox)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SFuseBox.Flashes] = new()
                 {
                     // This question is depicted visually, rather than with words. The translation here will only be used for logging.
-                    Question = "What color flashed {1} in {0}?",
+                    Question = "Какой цвет горел {1}-м {0}?",
                 },
                 [SFuseBox.Arrows] = new()
                 {
                     // This question is depicted visually, rather than with words. The translation here will only be used for logging.
-                    Question = "What arrow was shown {1} in {0}?",
+                    Question = "Какая стрелка была показана {1}-й {0}?",
                 },
             },
         },
 
         [typeof(SGadgetronVendor)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGadgetronVendor.CurrentWeapon] = new()
                 {
                     // English: What was your current weapon in {0}?
-                    Question = "What was your current weapon in {0}?",
+                    Question = "Какое оружие было текущим {0}?",
                 },
                 [SGadgetronVendor.WeaponForSale] = new()
                 {
                     // English: What was the weapon up for sale in {0}?
-                    Question = "What was the weapon up for sale in {0}?",
+                    Question = "Какое оружие продавалось {0}?",
                 },
             },
         },
 
         [typeof(SGameOfLifeCruel)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGameOfLifeCruel.Colors] = new()
                 {
                     // English: Which of these was a color combination that occurred in {0}?
-                    Question = "Which of these was a color combination that occurred in {0}?",
+                    Question = "Какие комбинации цветов присутствовали {0}?",
                 },
             },
         },
 
         [typeof(SGamepad)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Геймпада",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SGamepad.Numbers] = new()
                 {
                     // English: What were the numbers on {0}?
-                    Question = "What were the numbers on {0}?",
+                    Question = "Какие числа были на экране {0}?",
                 },
             },
         },
 
         [typeof(SGarfieldKart)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SGarfieldKart.Track] = new()
                 {
                     // English: What was the track in {0}?
-                    Question = "What was the track in {0}?",
+                    Question = "Какая была трасса на {0}?",
                 },
                 [SGarfieldKart.PuzzleCount] = new()
                 {
                     // English: How many puzzle pieces did {0} have?
-                    Question = "How many puzzle pieces did {0} have?",
+                    Question = "Сколько было частей пазла на {0}?",
                 },
             },
         },
 
         [typeof(SGarnetThief)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGarnetThief.Claim] = new()
                 {
                     // English: Which faction did {1} claim to be in {0}?
                     // Example: Which faction did Jungmoon claim to be in Garnet Thief?
-                    Question = "Which faction did {1} claim to be in {0}?",
+                    Question = "К какой фракции {1} заявлял, что он принадлежит {0}?",
                 },
             },
         },
 
         [typeof(SGhostMovement)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGhostMovement.Position] = new()
                 {
                     // English: Where was {1} in {0}?
                     // Example: Where was Inky in Ghost Movement?
-                    Question = "Where was {1} in {0}?",
+                    Question = "Где был {1} {0}?",
                 },
             },
         },
 
         [typeof(SGirlfriend)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGirlfriend.Language] = new()
                 {
                     // English: What was the language sung in {0}?
-                    Question = "What was the language sung in {0}?",
+                    Question = "На каком языке была песня {0}?",
                 },
             },
         },
 
         [typeof(SGlitchedButton)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SGlitchedButton.Sequence] = new()
                 {
                     // English: What was the cycling bit sequence in {0}?
-                    Question = "What was the cycling bit sequence in {0}?",
+                    Question = "Какая последовательность битов повторялась на {0}?",
                 },
             },
         },
 
         [typeof(SGoofysGame)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGoofysGame.Number] = new()
                 {
                     // English: What number was flashed by the {1} LED in {0}?
                     // Example: What number was flashed by the left LED in Goofy’s Game?
-                    Question = "What number was flashed by the {1} LED in {0}?",
+                    Question = "Какое число мигало на {1} светодиоде {0}?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
-                        ["center"] = "center",
+                        ["left"] = "левом",
+                        ["right"] = "правом",
+                        ["center"] = "центральном",
                     },
                 },
             },
@@ -4646,25 +5526,24 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SGrandPiano.FinalKey] = new()
                 {
                     // English: Which key was the fifth set in {0}?
-                    Question = "Which key was the fifth set in {0}?",
+                    Question = "Which key made up the fifth set in {0}?",
                 },
             },
         },
 
         [typeof(SGrayButton)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGrayButton.Coordinates] = new()
                 {
                     // English: What was the {1} coordinate on the display in {0}?
                     // Example: What was the horizontal coordinate on the display in Gray Button?
-                    Question = "What was the {1} coordinate on the display in {0}?",
+                    Question = "Какие были {1} координаты на экране {0}?",
                     Arguments = new()
                     {
-                        ["horizontal"] = "horizontal",
-                        ["vertical"] = "vertical",
+                        ["horizontal"] = "горизонтальные",
+                        ["vertical"] = "вертикальные",
                     },
                 },
             },
@@ -4672,19 +5551,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SGrayCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGrayCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Gray Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -4699,58 +5577,68 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} digit in {0}?
                     // Example: What was the first digit in Great Void?
-                    Question = "What was the {1} digit in {0}?",
+                    Question = "Какая была {1}-я цифра {0}?",
                 },
                 [SGreatVoid.Color] = new()
                 {
                     // English: What was the {1} color in {0}?
                     // Example: What was the first color in Great Void?
-                    Question = "What was the {1} color in {0}?",
+                    Question = "Какой был {1}-й цвет {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
 
         [typeof(SGreenArrows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Зелёных стрелках",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SGreenArrows.LastScreen] = new()
                 {
                     // English: What was the last number on the display on {0}?
-                    Question = "What was the last number on the display on {0}?",
+                    Question = "Какое последнее число было показано на экране {0}?",
                 },
             },
         },
 
         [typeof(SGreenButton)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SGreenButton.Word] = new()
                 {
                     // English: What was the word submitted in {0}?
-                    Question = "What was the word submitted in {0}?",
+                    Question = "Какое слово было введено на {0}?",
                 },
             },
         },
 
         [typeof(SGreenCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGreenCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Green Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -4758,54 +5646,58 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SGridLock)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGridLock.StartingColor] = new()
                 {
                     // English: What was the starting color in {0}?
-                    Question = "What was the starting color in {0}?",
+                    Question = "Какой был начальный цвет {0}?",
+                    Answers = new()
+                    {
+                        ["Green"] = "Зелёный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Red"] = "Красный",
+                        ["Blue"] = "Синий",
+                    },
                 },
                 [SGridLock.StartingLocation] = new()
                 {
                     // English: What was the starting location in {0}?
-                    Question = "What was the starting location in {0}?",
+                    Question = "Какая была начальная позиция {0}?",
                 },
                 [SGridLock.EndingLocation] = new()
                 {
                     // English: What was the ending location in {0}?
-                    Question = "What was the ending location in {0}?",
+                    Question = "Какая была конечная позиция {0}?",
                 },
             },
         },
 
         [typeof(SGroceryStore)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGroceryStore.FirstItem] = new()
                 {
                     // English: What was the first item shown in {0}?
-                    Question = "What was the first item shown in {0}?",
+                    Question = "Какой товар был показан первым {0}?",
                 },
             },
         },
 
         [typeof(SGryphons)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGryphons.Name] = new()
                 {
                     // English: What was the gryphon’s name in {0}?
-                    Question = "What was the gryphon’s name in {0}?",
+                    Question = "Какое было имя у грифона {0}?",
                 },
                 [SGryphons.Age] = new()
                 {
                     // English: What was the gryphon’s age in {0}?
-                    Question = "What was the gryphon’s age in {0}?",
+                    Question = "Сколько лет было грифону {0}?",
                 },
             },
         },
@@ -4825,18 +5717,24 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SGyromaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGyromaze.LEDColor] = new()
                 {
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the top LED in Gyromaze?
-                    Question = "What color was the {1} LED in {0}?",
+                    Question = "Какого цвета был {1} светодиод {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Blue"] = "Синий",
+                        ["Green"] = "Зелёный",
+                        ["Yellow"] = "Жёлтый",
+                    },
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхний",
+                        ["bottom"] = "нижний",
                     },
                 },
             },
@@ -4844,70 +5742,84 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SH)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SH.Letter] = new()
                 {
                     // English: What was the transmitted letter in {0}?
-                    Question = "What was the transmitted letter in {0}?",
+                    Question = "Какая буква передавалась в \"{0}\"?",
                 },
             },
         },
 
         [typeof(SHalliGalli)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHalliGalli.Fruit] = new()
                 {
                     // English: Which fruit were there five of in {0}?
-                    Question = "Which fruit were there five of in {0}?",
+                    Question = "Каких фруктов было пять {0}?",
+                    Answers = new()
+                    {
+                        ["Strawberries"] = "Клубники",
+                        ["Melons"] = "Арбузов",
+                        ["Lemons"] = "Лемонов",
+                        ["Raspberries"] = "Малины",
+                        ["Bananas"] = "Бананов",
+                    },
                 },
                 [SHalliGalli.Counts] = new()
                 {
                     // English: What were the relevant counts in {0}?
-                    Question = "What were the relevant counts in {0}?",
+                    Question = "Какие количества имели значение в {0}?",
                 },
             },
         },
 
         [typeof(SHereditaryBaseNotation)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHereditaryBaseNotation.InitialNumber] = new()
                 {
                     // English: What was the given number in {0}?
-                    Question = "What was the given number in {0}?",
+                    Question = "Какое число было дано {0}?",
                 },
             },
         },
 
         [typeof(SHexabutton)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SHexabutton.Label] = new()
                 {
                     // English: What label was printed on {0}?
-                    Question = "What label was printed on {0}?",
+                    Question = "Какая была надпись на {0}?",
                 },
             },
         },
 
         [typeof(SHexamaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Гексабиринте",
             Questions = new()
             {
                 [SHexamaze.PawnColor] = new()
                 {
                     // English: What was the color of the pawn in {0}?
-                    Question = "What was the color of the pawn in {0}?",
+                    Question = "Какого цвета была фигурка {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красная",
+                        ["Yellow"] = "Жёлтая",
+                        ["Green"] = "Зелёная",
+                        ["Cyan"] = "Голубая",
+                        ["Blue"] = "Синяя",
+                        ["Pink"] = "Розовая",
+                    },
                 },
             },
         },
@@ -4933,29 +5845,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SHexOS)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHexOS.OctCipher] = new()
                 {
                     // English: What was the deciphered phrase in {0}?
-                    Question = "What was the deciphered phrase in {0}?",
+                    Question = "Какая фраза была расшифрованна {0}?",
                 },
                 [SHexOS.Cipher] = new()
                 {
                     // English: What were the deciphered letters in {0}?
-                    Question = "What were the deciphered letters in {0}?",
+                    Question = "Какие буквы были расшифрованны {0}?",
                 },
                 [SHexOS.Sum] = new()
                 {
                     // English: What were the rhythm values in {0}?
-                    Question = "What were the rhythm values in {0}?",
+                    Question = "Какие были значения ритмов {0}?",
                 },
                 [SHexOS.Screen] = new()
                 {
                     // English: What was the {1} 3-digit number cycled by the screen in {0}?
                     // Example: What was the first 3-digit number cycled by the screen in hexOS?
-                    Question = "What was the {1} 3-digit number cycled by the screen in {0}?",
+                    Question = "Какое было {1}-е трёхзначное число в последовательности на экране {0}?",
                 },
             },
         },
@@ -4991,7 +5902,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SHiddenColors.LED] = new()
                 {
                     // English: What was the color of the main LED in {0}?
-                    Question = "What was the color of the main LED in {0}?",
+                    Question = "Какого цвета был главный светодиод {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Orange"] = "Orange",
+                        ["Purple"] = "Purple",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -4999,12 +5921,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SHiddenValue)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SHiddenValue.Display] = new()
                 {
                     // English: What was displayed on {0}?
-                    Question = "What was displayed on {0}?",
+                    Question = "Что было отображено на {0}?",
                     Additional = new()
                     {
                         ["Red"] = "Red",
@@ -5022,18 +5945,17 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SHighScore)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHighScore.Position] = new()
                 {
                     // English: What was the position of the player in {0}?
-                    Question = "What was the position of the player in {0}?",
+                    Question = "На котором месте был игрок {0}?",
                 },
                 [SHighScore.Score] = new()
                 {
                     // English: What was the score of the player in {0}?
-                    Question = "What was the score of the player in {0}?",
+                    Question = "Какой был счёт у игрока {0}?",
                 },
             },
         },
@@ -5061,17 +5983,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SHinges)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Петлях",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SHinges.Initial] = new()
                 {
                     // English: Which of these hinges was initially {1} {0}?
                     // Example: Which of these hinges was initially present on Hinges?
-                    Question = "Which of these hinges was initially {1} {0}?",
+                    Question = "Какие из петель изначально {1} {0}?",
                     Arguments = new()
                     {
-                        ["present on"] = "present on",
-                        ["absent from"] = "absent from",
+                        ["present on"] = "присутствовали",
+                        ["absent from"] = "отсутствовали",
                     },
                 },
             },
@@ -5100,13 +6024,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which House was {1} solved for in {0}?
                     // Example: Which House was Binary Puzzle solved for in Hogwarts?
-                    Question = "Which House was {1} solved for in {0}?",
+                    Question = "Какому дому зачли обезвреживание модуля \"{1}\" {0}?",
+                    Answers = new()
+                    {
+                        ["Gryffindor"] = "Gryffindor",
+                        ["Hufflepuff"] = "Hufflepuff",
+                        ["Slytherin"] = "Slytherin",
+                        ["Ravenclaw"] = "Ravenclaw",
+                    },
                 },
                 [SHogwarts.Module] = new()
                 {
                     // English: Which module was solved for {1} in {0}?
                     // Example: Which module was solved for Gryffindor in Hogwarts?
-                    Question = "Which module was solved for {1} in {0}?",
+                    Question = "Обезвреживание какого модуля зачли {1} {0}?",
                     Arguments = new()
                     {
                         ["Gryffindor"] = "Gryffindor",
@@ -5120,83 +6051,89 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SHoldUps)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHoldUps.Shadows] = new()
                 {
                     // English: What was the name of the {1} shadow shown in {0}?
                     // Example: What was the name of the first shadow shown in Hold Ups?
-                    Question = "What was the name of the {1} shadow shown in {0}?",
+                    Question = "Какое было имя у {1}-й тени {0}?",
                 },
             },
         },
 
         [typeof(SHomophones)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHomophones.DisplayedPhrases] = new()
                 {
                     // English: What was the {1} displayed phrase in {0}?
                     // Example: What was the first displayed phrase in Homophones?
-                    Question = "What was the {1} displayed phrase in {0}?",
+                    Question = "Какая была {1}-я показанная фраза {0}?",
                 },
             },
         },
 
         [typeof(SHorribleMemory)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SHorribleMemory.Positions] = new()
                 {
                     // English: In what position was the button pressed on the {1} stage of {0}?
                     // Example: In what position was the button pressed on the first stage of Horrible Memory?
-                    Question = "In what position was the button pressed on the {1} stage of {0}?",
+                    Question = "Какая позиция была нажата на {1}-м этапе {0}?",
                 },
                 [SHorribleMemory.Labels] = new()
                 {
                     // English: What was the label of the button pressed on the {1} stage of {0}?
                     // Example: What was the label of the button pressed on the first stage of Horrible Memory?
-                    Question = "What was the label of the button pressed on the {1} stage of {0}?",
+                    Question = "Какая была надпись у нажатой кнопки на {1}-м этапе {0}?",
                 },
                 [SHorribleMemory.Colors] = new()
                 {
                     // English: What color was the button pressed on the {1} stage of {0}?
                     // Example: What color was the button pressed on the first stage of Horrible Memory?
-                    Question = "What color was the button pressed on the {1} stage of {0}?",
+                    Question = "Какого цвета была нажатая кнопка на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["blue"] = "синий",
+                        ["green"] = "зелёный",
+                        ["red"] = "красный",
+                        ["orange"] = "оранжевый",
+                        ["purple"] = "фиолетовый",
+                        ["pink"] = "розовый",
+                    },
                 },
             },
         },
 
         [typeof(SHumanResources)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHumanResources.Descriptors] = new()
                 {
                     // English: Which was a descriptor shown in {1} in {0}?
                     // Example: Which was a descriptor shown in red in Human Resources?
-                    Question = "Which was a descriptor shown in {1} in {0}?",
+                    Question = "Какие описания {0} были показаны {1} цветом?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
+                        ["red"] = "красным",
+                        ["green"] = "зелёным",
                     },
                 },
                 [SHumanResources.HiredFired] = new()
                 {
                     // English: Who was {1} in {0}?
                     // Example: Who was fired in Human Resources?
-                    Question = "Who was {1} in {0}?",
+                    Question = "Кто из {0} был {1}?",
                     Arguments = new()
                     {
-                        ["fired"] = "fired",
-                        ["hired"] = "hired",
+                        ["fired"] = "уволен",
+                        ["hired"] = "нанят",
                     },
                 },
             },
@@ -5204,18 +6141,29 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SHunting)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SHunting.ColumnsRows] = new()
                 {
                     // English: Which of the first three stages of {0} had the {1} symbol {2}?
                     // Example: Which of the first three stages of Hunting had the column symbol first?
-                    Question = "Which of the first three stages of {0} had the {1} symbol {2}?",
+                    Question = "На каком из первых трёх этапов {0} символ {1} был {2}-м?",
+                    Answers = new()
+                    {
+                        ["none"] = "Ни на каком",
+                        ["first"] = "На 1-м",
+                        ["second"] = "На 2-м",
+                        ["first two"] = "На 1-м и 2-м",
+                        ["third"] = "На 3-м",
+                        ["first & third"] = "На 1-м и 3-м",
+                        ["second & third"] = "На 2-м и 3-м",
+                        ["all three"] = "На всех трёх",
+                    },
                     Arguments = new()
                     {
-                        ["column"] = "column",
-                        ["row"] = "row",
+                        ["column"] = "столбца",
+                        ["row"] = "строки",
                     },
                 },
             },
@@ -5223,28 +6171,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SHypercube)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Гиперкуба",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SHypercube.Rotations] = new()
                 {
                     // English: What was the {1} rotation in {0}?
                     // Example: What was the first rotation in Hypercube?
-                    Question = "What was the {1} rotation in {0}?",
+                    Question = "Каким было {1}-е вращение {0}?",
                 },
             },
         },
 
         [typeof(SHyperForget)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHyperForget.Rotations] = new()
                 {
                     // English: What was the rotation for the {1} stage in {0}?
                     // Example: What was the rotation for the first stage in HyperForget?
-                    Question = "What was the rotation for the {1} stage in {0}?",
+                    Question = "Какое было вращение на {1}-м этапе {0}?",
                 },
             },
             Discriminators = new()
@@ -5253,51 +6201,51 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: the HyperForget whose rotation in the {1} stage was {0}
                     // Example: the HyperForget whose rotation in the first stage was XY
-                    Discriminator = "the HyperForget whose rotation in the {1} stage was {0}",
+                    Discriminator = "в HyperForget, где на {1}-м этапе было вращение {0}",
                 },
             },
         },
 
         [typeof(SHyperlink)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHyperlink.Characters] = new()
                 {
                     // English: What was the {1} character of the hyperlink in {0}?
                     // Example: What was the first character of the hyperlink in Hyperlink?
-                    Question = "What was the {1} character of the hyperlink in {0}?",
+                    Question = "Какой был {1}-й символ ссылки {0}?",
                 },
                 [SHyperlink.Answer] = new()
                 {
                     // English: Which module was referenced on {0}?
-                    Question = "Which module was referenced on {0}?",
+                    Question = "На какой модуль ссылался {0}?",
                 },
             },
         },
 
         [typeof(SIceCream)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Мороженого",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SIceCream.Flavour] = new()
                 {
                     // English: Which one of these flavours {1} to the {2} customer in {0}?
                     // Example: Which one of these flavours was on offer, but not sold, to the first customer in Ice Cream?
-                    Question = "Which one of these flavours {1} to the {2} customer in {0}?",
+                    Question = "Какой из этих вкусов {0} {1} {2}-му посетителю?",
                     Arguments = new()
                     {
-                        ["was on offer, but not sold,"] = "was on offer, but not sold,",
-                        ["was not on offer"] = "was not on offer",
+                        ["was on offer, but not sold,"] = "был предложен, но не продан",
+                        ["was not on offer"] = "не был предложен",
                     },
                 },
                 [SIceCream.Customer] = new()
                 {
                     // English: Who was the {1} customer in {0}?
                     // Example: Who was the first customer in Ice Cream?
-                    Question = "Who was the {1} customer in {0}?",
+                    Question = "Кто был {1}-м посетителем {0}?",
                 },
             },
         },
@@ -5311,53 +6259,65 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} shape used in {0}?
                     // Example: What was the first shape used in Identification Crisis?
-                    Question = "What was the {1} shape used in {0}?",
+                    Question = "Какая была {1}-я фигура {0}?",
                 },
                 [SIdentificationCrisis.Dataset] = new()
                 {
                     // English: What was the {1} identification module used in {0}?
                     // Example: What was the first identification module used in Identification Crisis?
-                    Question = "What was the {1} identification module used in {0}?",
+                    Question = "Какой был {1}-й использованный модуль {0}?",
+                    Answers = new()
+                    {
+                        ["Morse Identification"] = "Morse Identification",
+                        ["Boozleglyph Identification"] = "Boozleglyph Identification",
+                        ["Plant Identification"] = "Plant Identification",
+                        ["Pickup Identification"] = "Pickup Identification",
+                        ["Emotiguy Identification"] = "Emotiguy Identification",
+                        ["Ars Goetia Identification"] = "Ars Goetia Identification",
+                        ["Mii Identification"] = "Mii Identification",
+                        ["Customer Identification"] = "Customer Identification",
+                        ["Spongebob Birthday Identification"] = "Spongebob Birthday Identification",
+                        ["VTuber Identification"] = "VTuber Identification",
+                    },
                 },
             },
         },
 
         [typeof(SIdentityParade)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SIdentityParade.HairColors] = new()
                 {
                     // English: Which hair color {1} listed in {0}?
                     // Example: Which hair color was listed in Identity Parade?
-                    Question = "Which hair color {1} listed in {0}?",
+                    Question = "Какой цвет волос {1} {0}?",
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "присутствовал",
+                        ["was not"] = "отсутствовал",
                     },
                 },
                 [SIdentityParade.Builds] = new()
                 {
                     // English: Which build {1} listed in {0}?
                     // Example: Which build was listed in Identity Parade?
-                    Question = "Which build {1} listed in {0}?",
+                    Question = "Какое телосложение {1} {0}?",
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "присутствовало",
+                        ["was not"] = "отсутствовало",
                     },
                 },
                 [SIdentityParade.Attires] = new()
                 {
                     // English: Which attire {1} listed in {0}?
                     // Example: Which attire was listed in Identity Parade?
-                    Question = "Which attire {1} listed in {0}?",
+                    Question = "Какой наряд {1} {0}?",
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "присутствовал",
+                        ["was not"] = "отсутствовал",
                     },
                 },
             },
@@ -5365,32 +6325,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SImpostor)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.NominativeMasculine,
             Questions = new()
             {
                 [SImpostor.Disguise] = new()
                 {
                     // English: Which module was {0} pretending to be?
-                    Question = "Which module was {0} pretending to be?",
+                    Question = "Каким модулем притворялся {0}?",
                 },
             },
         },
 
         [typeof(SIndigoCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SIndigoCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Indigo Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -5398,63 +6357,68 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SInfiniteLoop)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SInfiniteLoop.SelectedWord] = new()
                 {
                     // English: What was the selected word in {0}?
-                    Question = "What was the selected word in {0}?",
+                    Question = "Какое слово было выбрано {0}?",
                 },
             },
         },
 
         [typeof(SIngredients)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SIngredients.Ingredients] = new()
                 {
                     // English: Which ingredient was used in {0}?
-                    Question = "Which ingredient was used in {0}?",
+                    Question = "Какие ингредиенты были использованны {0}?",
                 },
                 [SIngredients.NonIngredients] = new()
                 {
                     // English: Which ingredient was listed but not used in {0}?
-                    Question = "Which ingredient was listed but not used in {0}?",
+                    Question = "Какие ингредиенты были указаны, но не были использованы {0}?",
                 },
             },
         },
 
         [typeof(SInnerConnections)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SInnerConnections.LED] = new()
                 {
                     // English: What color was the LED in {0}?
-                    Question = "What color was the LED in {0}?",
+                    Question = "Какого цвета был светодиод {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Чёрный",
+                        ["Blue"] = "Синий",
+                        ["Red"] = "Красный",
+                        ["White"] = "Белый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                    },
                 },
                 [SInnerConnections.Morse] = new()
                 {
                     // English: What was the digit flashed in Morse in {0}?
-                    Question = "What was the digit flashed in Morse in {0}?",
+                    Question = "Какая цифра была передана кодом Морзе {0}?",
                 },
             },
         },
 
         [typeof(SInterpunct)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SInterpunct.Display] = new()
                 {
                     // English: What was the symbol displayed in the {1} stage of {0}?
                     // Example: What was the symbol displayed in the first stage of Interpunct?
-                    Question = "What was the symbol displayed in the {1} stage of {0}?",
+                    Question = "Какой символ был показан на {1}-м этапе {0}?",
                 },
             },
         },
@@ -5474,41 +6438,39 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SiPhone)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SiPhone.Digits] = new()
                 {
                     // English: What was the {1} PIN digit in {0}?
                     // Example: What was the first PIN digit in iPhone?
-                    Question = "What was the {1} PIN digit in {0}?",
+                    Question = "Какая была {1}-я цифра пинкода {0}?",
                 },
             },
         },
 
         [typeof(SJenga)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SJenga.FirstBlock] = new()
                 {
                     // English: Which symbol was on the first correctly pulled block in {0}?
-                    Question = "Which symbol was on the first correctly pulled block in {0}?",
+                    Question = "Какой символ был на первом правильно вытянутом блоке {0}?",
                 },
             },
         },
 
         [typeof(SJewelVault)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Хранилище драгоценностей",
             Questions = new()
             {
                 [SJewelVault.Wheels] = new()
                 {
                     // English: What number was wheel {1} in {0}?
                     // Example: What number was wheel A in Jewel Vault?
-                    Question = "What number was wheel {1} in {0}?",
+                    Question = "Какой был номер у колеса {1} {0}?",
                 },
             },
         },
@@ -5535,37 +6497,57 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SJuxtacoloredSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Смежных цветных квадратах",
+            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SJuxtacoloredSquares.ColorsByPosition] = new()
                 {
                     // English: What was the color of this square in {0}?
-                    Question = "What was the color of this square in {0}?",
+                    Question = "Какого цвета был этот квадрат на {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красного",
+                        ["Blue"] = "Синего",
+                        ["Yellow"] = "Жёлтого",
+                        ["Green"] = "Зелёного",
+                        ["Magenta"] = "Пурпурного",
+                        ["Orange"] = "Оранжевого",
+                        ["Cyan"] = "Голубого",
+                        ["Purple"] = "Фиолетового",
+                        ["Chestnut"] = "Каштанового",
+                        ["Brown"] = "Коричневого",
+                        ["Mauve"] = "Лилового",
+                        ["Azure"] = "Лазурного",
+                        ["Jade"] = "Нефритового",
+                        ["Forest"] = "Лесного",
+                        ["Gray"] = "Серого",
+                        ["Black"] = "Чёрного",
+                    },
                 },
                 [SJuxtacoloredSquares.PositionsByColor] = new()
                 {
                     // English: Which square was {1} in {0}?
                     // Example: Which square was red in Juxtacolored Squares?
-                    Question = "Which square was {1} in {0}?",
+                    Question = "Какой квадрат был {1} цвета на {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["blue"] = "blue",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["magenta"] = "magenta",
-                        ["orange"] = "orange",
-                        ["cyan"] = "cyan",
-                        ["purple"] = "purple",
-                        ["chestnut"] = "chestnut",
-                        ["brown"] = "brown",
-                        ["mauve"] = "mauve",
-                        ["azure"] = "azure",
-                        ["jade"] = "jade",
-                        ["forest"] = "forest",
-                        ["gray"] = "gray",
-                        ["black"] = "black",
+                        ["red"] = "красного",
+                        ["blue"] = "синего",
+                        ["yellow"] = "жёлтого",
+                        ["green"] = "зелёного",
+                        ["magenta"] = "пурпурного",
+                        ["orange"] = "оранжевого",
+                        ["cyan"] = "голубого",
+                        ["purple"] = "фиолетового",
+                        ["chestnut"] = "каштанового",
+                        ["brown"] = "коричневого",
+                        ["mauve"] = "лилового",
+                        ["azure"] = "лазурного",
+                        ["jade"] = "нефритового",
+                        ["forest"] = "лесного",
+                        ["gray"] = "серого",
+                        ["black"] = "чёрного",
                     },
                 },
             },
@@ -5573,27 +6555,27 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SKanji)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Кандзи",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SKanji.DisplayedWords] = new()
                 {
                     // English: What was the displayed word in the {1} stage of {0}?
                     // Example: What was the displayed word in the first stage of Kanji?
-                    Question = "What was the displayed word in the {1} stage of {0}?",
+                    Question = "Какое слово было показано на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SKanyeEncounter)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SKanyeEncounter.Foods] = new()
                 {
                     // English: What was a food item displayed in {0}?
-                    Question = "What was a food item displayed in {0}?",
+                    Question = "Какая еда была показана {0}?",
                 },
             },
         },
@@ -5607,7 +6589,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} word in {0}?
                     // Example: What was the starting word in KayMazey Talk?
-                    Question = "What was the {1} word in {0}?",
+                    Question = "What was the {1} phrase in {0}?",
                     Arguments = new()
                     {
                         ["starting"] = "starting",
@@ -5633,67 +6615,70 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SKeypadCombination)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SKeypadCombination.WrongNumbers] = new()
                 {
                     // English: Which number was displayed on the {1} button, but not part of the answer on {0}?
                     // Example: Which number was displayed on the first button, but not part of the answer on Keypad Combinations?
-                    Question = "Which number was displayed on the {1} button, but not part of the answer on {0}?",
+                    Question = "Какое число было показано на {1}-й кнопке, но не являлось частью решения {0}?",
                 },
             },
         },
 
         [typeof(SKeypadMagnified)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SKeypadMagnified.LED] = new()
                 {
                     // English: What was the position of the LED in {0}?
-                    Question = "What was the position of the LED in {0}?",
+                    Question = "Где был светодиод {0}?",
+                    Answers = new()
+                    {
+                        ["Top-left"] = "Сверху слева",
+                        ["Top-right"] = "Сверху справа",
+                        ["Bottom-left"] = "Снизу слева",
+                        ["Bottom-right"] = "Снизу справа",
+                    },
                 },
             },
         },
 
         [typeof(SKeypadMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SKeypadMaze.Yellow] = new()
                 {
                     // English: Which of these cells was yellow in {0}?
-                    Question = "Which of these cells was yellow in {0}?",
+                    Question = "Какая из этих клеток была жёлтой {0}?",
                 },
             },
         },
 
         [typeof(SKeypadSequence)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SKeypadSequence.Labels] = new()
                 {
                     // English: What was this key’s label on the {1} panel in {0}?
                     // Example: What was this key’s label on the first panel in Keypad Sequence?
-                    Question = "What was this key’s label on the {1} panel in {0}?",
+                    Question = "Какая была надпись на этой кнопке на {1}-й панели {0}?",
                 },
             },
         },
 
         [typeof(SKeywords)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SKeywords.DisplayedKey] = new()
                 {
                     // English: What were the first four letters on the display in {0}?
-                    Question = "What were the first four letters on the display in {0}?",
+                    Question = "Какие были первые четыре буквы на экране {0}?",
                 },
             },
         },
@@ -5713,18 +6698,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SKnowYourWay)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SKnowYourWay.Arrow] = new()
                 {
                     // English: Which way was the arrow pointing in {0}?
-                    Question = "Which way was the arrow pointing in {0}?",
+                    Question = "В какую сторону была направлена стрелка {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Вверх",
+                        ["Down"] = "Вниз",
+                        ["Left"] = "Влево",
+                        ["Right"] = "Вправо",
+                    },
                 },
                 [SKnowYourWay.Led] = new()
                 {
                     // English: Which LED was green in {0}?
-                    Question = "Which LED was green in {0}?",
+                    Question = "Какой светодиод был зелёным {0}?",
+                    Answers = new()
+                    {
+                        ["Top"] = "Верхний",
+                        ["Bottom"] = "Нижний",
+                        ["Right"] = "Правый",
+                        ["Left"] = "Левый",
+                    },
                 },
             },
         },
@@ -5738,13 +6736,27 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What color was the {1} button’s LED in {0}?
                     // Example: What color was the top-left button’s LED in Kooky Keypad?
-                    Question = "What color was the {1} button’s LED in {0}?",
+                    Question = "Какого цвета был светодиод на {1} кнопке {0}?",
+                    Answers = new()
+                    {
+                        ["Crimson"] = "Crimson",
+                        ["Red"] = "Red",
+                        ["Coral"] = "Coral",
+                        ["Orange"] = "Orange",
+                        ["Lemon Chiffon"] = "Lemon Chiffon",
+                        ["Medium Spring Green"] = "Medium Spring Green",
+                        ["Deep Sea Green"] = "Deep Sea Green",
+                        ["Cadet Blue"] = "Cadet Blue",
+                        ["Slate Blue"] = "Slate Blue",
+                        ["Dark Magenta"] = "Dark Magenta",
+                        ["Unlit"] = "Unlit",
+                    },
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхней левой",
+                        ["top-right"] = "верхней правой",
+                        ["bottom-left"] = "нижней левой",
+                        ["bottom-right"] = "нижней правой",
                     },
                 },
             },
@@ -5752,18 +6764,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SKudosudoku)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Кудосудоку",
             Questions = new()
             {
                 [SKudosudoku.Prefilled] = new()
                 {
                     // English: Which square was {1} in {0}?
                     // Example: Which square was pre-filled in Kudosudoku?
-                    Question = "Which square was {1} in {0}?",
+                    Question = "Какой квадрат {1} {0}?",
                     Arguments = new()
                     {
-                        ["pre-filled"] = "pre-filled",
-                        ["not pre-filled"] = "not pre-filled",
+                        ["pre-filled"] = "был изначально заполнен",
+                        ["not pre-filled"] = "не был изначально заполнен",
                     },
                 },
             },
@@ -5844,89 +6856,114 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SKuro)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SKuro.Mood] = new()
                 {
                     // English: What was Kuro’s mood in {0}?
-                    Question = "What was Kuro’s mood in {0}?",
+                    Question = "Какое было настроение у Kuro {0}?",
                 },
             },
         },
 
         [typeof(SLabyrinth)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLabyrinth.PortalLocations] = new()
                 {
                     // English: Where was one of the portals in layer {1} in {0}?
                     // Example: Where was one of the portals in layer 1 (Red) in Labyrinth?
-                    Question = "Where was one of the portals in layer {1} in {0}?",
+                    Question = "Где находился один из порталов на {1} слое {0}?",
                     Arguments = new()
                     {
-                        ["1 (Red)"] = "1 (Red)",
-                        ["2 (Orange)"] = "2 (Orange)",
-                        ["3 (Yellow)"] = "3 (Yellow)",
-                        ["4 (Green)"] = "4 (Green)",
-                        ["5 (Blue)"] = "5 (Blue)",
+                        ["1 (Red)"] = "1-м (красном)",
+                        ["2 (Orange)"] = "2-м (оранжевом)",
+                        ["3 (Yellow)"] = "3-м (жёлтом)",
+                        ["4 (Green)"] = "4-м (зелёном)",
+                        ["5 (Blue)"] = "5-м (синем)",
                     },
                 },
                 [SLabyrinth.PortalStage] = new()
                 {
                     // English: In which layer was this portal in {0}?
-                    Question = "In which layer was this portal in {0}?",
+                    Question = "На каком слое находился этот портал {0}?",
+                    Answers = new()
+                    {
+                        ["1 (Red)"] = "1-м (красном)",
+                        ["2 (Orange)"] = "2-м (оранжевом)",
+                        ["3 (Yellow)"] = "3-м (жёлтом)",
+                        ["4 (Green)"] = "4-м (зелёном)",
+                        ["5 (Blue)"] = "5-м (синем)",
+                    },
                 },
             },
         },
 
         [typeof(SLadderLottery)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLadderLottery.LightOn] = new()
                 {
                     // English: Which light was on in {0}?
-                    Question = "Which light was on in {0}?",
+                    Question = "Какая лампочка была включена {0}?",
                 },
             },
         },
 
         [typeof(SLadders)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLadders.Stage2Colors] = new()
                 {
                     // English: Which color was present on the second ladder in {0}?
-                    Question = "Which color was present on the second ladder in {0}?",
+                    Question = "Какой цвет присутствовал на второй лестнице {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Cyan"] = "Голубой",
+                        ["Purple"] = "Фиолетовый",
+                        ["Gray"] = "Серый",
+                    },
                 },
                 [SLadders.Stage3Missing] = new()
                 {
                     // English: What color was missing on the third ladder in {0}?
-                    Question = "What color was missing on the third ladder in {0}?",
+                    Question = "Какой цвет отсутствовал на третьей лестнице {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Cyan"] = "Голубой",
+                        ["Purple"] = "Фиолетовый",
+                        ["Gray"] = "Серый",
+                    },
                 },
             },
         },
 
         [typeof(SLangtonsAnteater)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLangtonsAnteater.InitialState] = new()
                 {
                     // English: Which of these squares was initially {1} in {0}?
                     // Example: Which of these squares was initially black in Langton’s Anteater?
-                    Question = "Which of these squares was initially {1} in {0}?",
+                    Question = "Какой из этих квадратов изначально был {1} {0}?",
                     Arguments = new()
                     {
-                        ["black"] = "black",
-                        ["white"] = "white",
+                        ["black"] = "чёрным",
+                        ["white"] = "белым",
                     },
                 },
             },
@@ -5934,25 +6971,24 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SLasers)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLasers.Hatches] = new()
                 {
                     // English: What was the number on the {1} hatch on {0}?
                     // Example: What was the number on the top-left hatch on Lasers?
-                    Question = "What was the number on the {1} hatch on {0}?",
+                    Question = "Какое число было на {1} люке {0}?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["center"] = "center",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхнем левом",
+                        ["top-middle"] = "верхнем среднем",
+                        ["top-right"] = "верхнем правом",
+                        ["middle-left"] = "среднем левом",
+                        ["center"] = "центральном",
+                        ["middle-right"] = "среднем правом",
+                        ["bottom-left"] = "нижнем левом",
+                        ["bottom-middle"] = "нижнем среднем",
+                        ["bottom-right"] = "нижнем правом",
                     },
                 },
             },
@@ -5960,46 +6996,54 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SLEDEncryption)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Шифра светодиодов",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SLEDEncryption.PressedLetters] = new()
                 {
                     // English: What was the correct letter you pressed in the {1} stage of {0}?
                     // Example: What was the correct letter you pressed in the first stage of LED Encryption?
-                    Question = "What was the correct letter you pressed in the {1} stage of {0}?",
+                    Question = "Какая правильная буква была нажата на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SLEDGrid)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Сетке светодиодов",
+            Conjugation = Conjugation.PrepositiveFeminine,
             Questions = new()
             {
                 [SLEDGrid.NumBlack] = new()
                 {
                     // English: How many LEDs were unlit in {0}?
-                    Question = "How many LEDs were unlit in {0}?",
+                    Question = "Сколько светодиодов не горело на {0}?",
                 },
             },
         },
 
         [typeof(SLEDMath)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLEDMath.Lights] = new()
                 {
                     // English: What color was {1} in {0}?
                     // Example: What color was LED A in LED Math?
-                    Question = "What color was {1} in {0}?",
+                    Question = "Какого цвета был {1} {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красного",
+                        ["Blue"] = "Синего",
+                        ["Yellow"] = "Жёлтого",
+                        ["Green"] = "Зелёного",
+                    },
                     Arguments = new()
                     {
-                        ["LED A"] = "LED A",
-                        ["LED B"] = "LED B",
-                        ["the operator LED"] = "the operator LED",
+                        ["LED A"] = "светодиод A",
+                        ["LED B"] = "светодиод B",
+                        ["the operator LED"] = "светодиод-оператор",
                     },
                 },
             },
@@ -6007,13 +7051,23 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SLEDs)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLEDs.OriginalColor] = new()
                 {
                     // English: What was the initial color of the changed LED in {0}?
-                    Question = "What was the initial color of the changed LED in {0}?",
+                    Question = "Какой был начальный цвет изменённого светодиода {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетовый",
+                        ["Black"] = "Чёрный",
+                        ["White"] = "Белый",
+                    },
                 },
             },
         },
@@ -6021,13 +7075,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SLEGOs)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SLEGOs.PieceDimensions] = new()
                 {
                     // English: What were the dimensions of the {1} piece in {0}?
                     // Example: What were the dimensions of the red piece in LEGOs?
-                    Question = "What were the dimensions of the {1} piece in {0}?",
+                    Question = "Каких размеров была {1} деталь {0}?",
                     Arguments = new()
                     {
                         ["red"] = "red",
@@ -6043,18 +7098,17 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SLetterMath)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLetterMath.Display] = new()
                 {
                     // English: What was the letter on the {1} display in {0}?
                     // Example: What was the letter on the left display in Letter Math?
-                    Question = "What was the letter on the {1} display in {0}?",
+                    Question = "Какая буква была на {1} экране {0}?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "левом",
+                        ["right"] = "правом",
                     },
                 },
             },
@@ -6069,11 +7123,22 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the color of the {1} bulb in {0}?
                     // Example: What was the color of the left bulb in Light Bulbs?
-                    Question = "What was the color of the {1} bulb in {0}?",
+                    Question = "Какой был цвет {1} лампочки {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                    },
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "левой",
+                        ["right"] = "правой",
                     },
                 },
             },
@@ -6088,7 +7153,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} function in {0}?
                     // Example: What was the first function in Linq?
-                    Question = "What was the {1} function in {0}?",
+                    Question = "Какая была {1}-я функция {0}?",
                 },
             },
             Discriminators = new()
@@ -6104,31 +7169,30 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SLionsShare)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLionsShare.Year] = new()
                 {
                     // English: Which year was displayed on {0}?
-                    Question = "Which year was displayed on {0}?",
+                    Question = "Какой год был показан {0}?",
                 },
                 [SLionsShare.RemovedLions] = new()
                 {
                     // English: Which lion was present but removed in {0}?
-                    Question = "Which lion was present but removed in {0}?",
+                    Question = "Какой лев изначально присутствовал, но потом был убран {0}?",
                 },
             },
         },
 
         [typeof(SListening)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Прослушке",
             Questions = new()
             {
                 [SListening.Sound] = new()
                 {
                     // English: What clip was played in {0}?
-                    Question = "What clip was played in {0}?",
+                    Question = "Какой звук был воспроизведён {0}?",
                 },
             },
         },
@@ -6148,62 +7212,75 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SLogicalButtons)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SLogicalButtons.Color] = new()
                 {
                     // English: What was the color of the {1} button in the {2} stage of {0}?
                     // Example: What was the color of the top button in the first stage of Logical Buttons?
-                    Question = "What was the color of the {1} button in the {2} stage of {0}?",
+                    Question = "Какого цвета была {1} кнопка на {2}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красная",
+                        ["Blue"] = "Синяя",
+                        ["Green"] = "Зелёная",
+                        ["Yellow"] = "Жёлтая",
+                        ["Purple"] = "Фиолетовая",
+                        ["White"] = "Белая",
+                        ["Orange"] = "Оранжевая",
+                        ["Cyan"] = "Голубая",
+                        ["Grey"] = "Серая",
+                    },
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top"] = "верхняя",
+                        ["bottom-left"] = "нижняя левая",
+                        ["bottom-right"] = "нижняя правая",
                     },
                 },
                 [SLogicalButtons.Label] = new()
                 {
                     // English: What was the label on the {1} button in the {2} stage of {0}?
                     // Example: What was the label on the top button in the first stage of Logical Buttons?
-                    Question = "What was the label on the {1} button in the {2} stage of {0}?",
+                    Question = "Какая была надпись на {1} кнопке на {2}-м этапе {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top"] = "верхней",
+                        ["bottom-left"] = "нижней левой",
+                        ["bottom-right"] = "нижней правой",
                     },
                 },
                 [SLogicalButtons.Operator] = new()
                 {
                     // English: What was the final operator in the {1} stage of {0}?
                     // Example: What was the final operator in the first stage of Logical Buttons?
-                    Question = "What was the final operator in the {1} stage of {0}?",
+                    Question = "Какой был конечный оператор на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SLogicGates)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Логических элементах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SLogicGates.Gates] = new()
                 {
                     // English: What was {1} in {0}?
                     // Example: What was gate A in Logic Gates?
-                    Question = "What was {1} in {0}?",
+                    Question = "Каким был {1} {0}?",
                     Arguments = new()
                     {
-                        ["gate A"] = "gate A",
-                        ["gate B"] = "gate B",
-                        ["gate C"] = "gate C",
-                        ["gate D"] = "gate D",
-                        ["gate E"] = "gate E",
-                        ["gate F"] = "gate F",
-                        ["gate G"] = "gate G",
-                        ["the duplicated gate"] = "the duplicated gate",
+                        ["gate A"] = "элемент A",
+                        ["gate B"] = "элемент B",
+                        ["gate C"] = "элемент C",
+                        ["gate D"] = "элемент D",
+                        ["gate E"] = "элемент E",
+                        ["gate F"] = "элемент F",
+                        ["gate G"] = "элемент G",
+                        ["the duplicated gate"] = "элемент-дубликат",
                     },
                 },
             },
@@ -6211,32 +7288,30 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SLombaxCubes)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLombaxCubes.Letters] = new()
                 {
                     // English: What was the {1} letter on the button in {0}?
                     // Example: What was the first letter on the button in Lombax Cubes?
-                    Question = "What was the {1} letter on the button in {0}?",
+                    Question = "Какая была {1}-я буква на кнопке {0}?",
                 },
             },
         },
 
         [typeof(SLondonUnderground)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLondonUnderground.Stations] = new()
                 {
                     // English: Where did the {1} journey on {0} {2}?
                     // Example: Where did the first journey on London Underground depart from?
-                    Question = "Where did the {1} journey on {0} {2}?",
+                    Question = "{2} отправился {1}-й рейс {0}?",
                     Arguments = new()
                     {
-                        ["depart from"] = "depart from",
-                        ["arrive to"] = "arrive to",
+                        ["depart from"] = "Откуда",
+                        ["arrive to"] = "Куда",
                     },
                 },
             },
@@ -6244,33 +7319,32 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SLongWords)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLongWords.Word] = new()
                 {
                     // English: What was the word on the top display on {0}?
-                    Question = "What was the word on the top display on {0}?",
+                    Question = "Какое слово было на верхнем экране {0}?",
                 },
             },
         },
 
         [typeof(SMadMemory)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SMadMemory.Displays] = new()
                 {
                     // English: What was on the display in the {1} stage of {0}?
                     // Example: What was on the display in the first stage of Mad Memory?
-                    Question = "What was on the display in the {1} stage of {0}?",
+                    Question = "Что было на экране на {1} этапе {0}?",
                     Arguments = new()
                     {
-                        ["first"] = "first",
-                        ["second"] = "second",
-                        ["third"] = "third",
-                        ["4th"] = "4th",
+                        ["first"] = "первом",
+                        ["second"] = "втором",
+                        ["third"] = "третьем",
+                        ["4th"] = "четвёртом",
                     },
                 },
             },
@@ -6278,32 +7352,32 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMafia)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Мафии",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SMafia.Players] = new()
                 {
                     // English: Who was a player, but not the Godfather, in {0}?
-                    Question = "Who was a player, but not the Godfather, in {0}?",
+                    Question = "Кто был игроком, но не являлся крёстным отцом {0}?",
                 },
             },
         },
 
         [typeof(SMagentaCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMagentaCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Magenta Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -6311,19 +7385,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMahjong)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMahjong.CountingTile] = new()
                 {
                     // English: Which tile was shown in the bottom-left of {0}?
-                    Question = "Which tile was shown in the bottom-left of {0}?",
+                    Question = "Какая кость была показана снизу слева {0}?",
                 },
                 [SMahjong.Matches] = new()
                 {
                     // English: Which tile was part of the {1} matched pair in {0}?
                     // Example: Which tile was part of the first matched pair in Mahjong?
-                    Question = "Which tile was part of the {1} matched pair in {0}?",
+                    Question = "Какая кость была частью {1}-й сопоставленной пары {0}?",
                 },
             },
         },
@@ -6337,7 +7410,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which main page did the {1} button’s effect come from in {0}?
                     // Example: Which main page did the toons button’s effect come from in Main Page?
-                    Question = "Which main page did the {1} button’s effect come from in {0}?",
+                    Question = "Какой главной странице соответствовал эффект кнопки {1} {0}?",
                     Arguments = new()
                     {
                         ["toons"] = "toons",
@@ -6352,27 +7425,34 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which main page did {1} come from in {0}?
                     // Example: Which main page did Homestar come from in Main Page?
-                    Question = "Which main page did {1} come from in {0}?",
+                    Question = "С какой главной страницы был взят {1} {0}?",
                     Arguments = new()
                     {
                         ["Homestar"] = "Homestar",
-                        ["the background"] = "the background",
+                        ["the background"] = "фон",
                     },
                 },
                 [SMainPage.BubbleColors] = new()
                 {
                     // English: Which color did the bubble not display in {0}?
-                    Question = "Which color did the bubble not display in {0}?",
+                    Question = "Какого цвета не было во фразах {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Синий",
+                        ["Green"] = "Зелёный",
+                        ["Red"] = "Красный",
+                        ["Yellow"] = "Жёлтый",
+                    },
                 },
                 [SMainPage.BubbleMessages] = new()
                 {
                     // English: Which of the following messages did the bubble {1} in {0}?
                     // Example: Which of the following messages did the bubble display in Main Page?
-                    Question = "Which of the following messages did the bubble {1} in {0}?",
+                    Question = "Какая фраза {1} на {0}?",
                     Arguments = new()
                     {
-                        ["display"] = "display",
-                        ["not display"] = "not display",
+                        ["display"] = "присутствовала",
+                        ["not display"] = "отсутствовала",
                     },
                 },
             },
@@ -6380,81 +7460,95 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMandMs)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMandMs.Colors] = new()
                 {
                     // English: What color was the text on the {1} button in {0}?
                     // Example: What color was the text on the first button in M&Ms?
-                    Question = "What color was the text on the {1} button in {0}?",
+                    Question = "Какого цвета была надпись на {1}-й кнопке {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["green"] = "Зелёного",
+                        ["orange"] = "Оранжевого",
+                        ["blue"] = "Синего",
+                        ["yellow"] = "Жёлтого",
+                        ["brown"] = "Коричневого",
+                    },
                 },
                 [SMandMs.Labels] = new()
                 {
                     // English: What was the text on the {1} button in {0}?
                     // Example: What was the text on the first button in M&Ms?
-                    Question = "What was the text on the {1} button in {0}?",
+                    Question = "Какая надпись была на {1}-й кнопке {0}?",
                 },
             },
         },
 
         [typeof(SMandNs)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMandNs.Colors] = new()
                 {
                     // English: What color was the text on the {1} button in {0}?
                     // Example: What color was the text on the first button in M&Ns?
-                    Question = "What color was the text on the {1} button in {0}?",
+                    Question = "Какого цвета была надпись на {1}-й кнопке {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["green"] = "Зелёного",
+                        ["orange"] = "Оранжевого",
+                        ["blue"] = "Синего",
+                        ["yellow"] = "Жёлтого",
+                        ["brown"] = "Коричневого",
+                    },
                 },
                 [SMandNs.Label] = new()
                 {
                     // English: What was the text on the correct button in {0}?
-                    Question = "What was the text on the correct button in {0}?",
+                    Question = "Какая надпись была на правильной кнопке {0}?",
                 },
             },
         },
 
         [typeof(SMaritimeFlags)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMaritimeFlags.Bearing] = new()
                 {
                     // English: What bearing was signalled in {0}?
-                    Question = "What bearing was signalled in {0}?",
+                    Question = "Какой пеленг был обозначен {0}?",
                 },
                 [SMaritimeFlags.Callsign] = new()
                 {
                     // English: Which callsign was signalled in {0}?
-                    Question = "Which callsign was signalled in {0}?",
+                    Question = "Какой позывной был обозначен {0}?",
                 },
             },
         },
 
         [typeof(SMaritimeSemaphore)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMaritimeSemaphore.Dummy] = new()
                 {
                     // English: In which position was the dummy in {0}?
-                    Question = "In which position was the dummy in {0}?",
+                    Question = "В какой позиции была фиктивная конфигурация {0}?",
                 },
                 [SMaritimeSemaphore.Letter] = new()
                 {
                     // English: Which letter was shown by the {2} in the {1} position in {0}?
                     // Example: Which letter was shown by the left flag in the first position in Maritime Semaphore?
-                    Question = "Which letter was shown by the {2} in the {1} position in {0}?",
+                    Question = "Какая буква была показана {2} в {1}-й позиции {0}?",
                     Arguments = new()
                     {
-                        ["left flag"] = "left flag",
-                        ["right flag"] = "right flag",
-                        ["semaphore"] = "semaphore",
+                        ["left flag"] = "левым флагом",
+                        ["right flag"] = "правым флагом",
+                        ["semaphore"] = "семафором",
                     },
                 },
             },
@@ -6462,32 +7556,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMaroonButton)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SMaroonButton.A] = new()
                 {
                     // English: What was A in {0}?
-                    Question = "What was A in {0}?",
+                    Question = "Какой был флаг А на {0}?",
                 },
             },
         },
 
         [typeof(SMaroonCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMaroonCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Maroon Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -6495,102 +7588,104 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMashematics)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMashematics.Answer] = new()
                 {
                     // English: What was the answer in {0}?
-                    Question = "What was the answer in {0}?",
+                    Question = "Какой был верный ответ {0}?",
                 },
                 [SMashematics.Calculation] = new()
                 {
                     // English: What was the {1} number in the equation on {0}?
                     // Example: What was the first number in the equation on Mashematics?
-                    Question = "What was the {1} number in the equation on {0}?",
+                    Question = "Какое было {1}-е число в уравнении {0}?",
                 },
             },
         },
 
         [typeof(SMasterTapes)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMasterTapes.PlayedSong] = new()
                 {
                     // English: Which song was played in {0}?
-                    Question = "Which song was played in {0}?",
+                    Question = "Какая песня была проиграна {0}?",
                 },
             },
         },
 
         [typeof(SMatchRefereeing)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMatchRefereeing.Planet] = new()
                 {
                     // English: Which planet was present in the {1} stage of {0}?
                     // Example: Which planet was present in the first stage of Match Refereeing?
-                    Question = "Which planet was present in the {1} stage of {0}?",
+                    Question = "Какая планета присутствовала на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SMathEm)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMathEm.Color] = new()
                 {
                     // English: What was the color of this tile before the shuffle on {0}?
-                    Question = "What was the color of this tile before the shuffle on {0}?",
+                    Question = "Какого цвета была эта плитка до перемешивания {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "Белый",
+                        ["Bronze"] = "Бронзовый",
+                        ["Silver"] = "Серебрянный",
+                        ["Gold"] = "Золотой",
+                    },
                 },
                 [SMathEm.Label] = new()
                 {
                     // English: What was the design on this tile before the shuffle on {0}?
-                    Question = "What was the design on this tile before the shuffle on {0}?",
+                    Question = "Какой узор был на этой плитке до перемешивания {0}?",
                 },
             },
         },
 
         [typeof(SMatrix)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMatrix.AccessCode] = new()
                 {
                     // English: Which word was part of the latest access code in {0}?
-                    Question = "Which word was part of the latest access code in {0}?",
+                    Question = "Какое слово было частью последнего кода доступа {0}?",
                 },
                 [SMatrix.GlitchWord] = new()
                 {
                     // English: What was the glitched word in {0}?
-                    Question = "What was the glitched word in {0}?",
+                    Question = "Какое слово было глючным {0}?",
                 },
             },
         },
 
         [typeof(SMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Лабиринте",
             Questions = new()
             {
                 [SMaze.StartingPosition] = new()
                 {
                     // English: In which {1} was the starting position in {0}, counting from the {2}?
                     // Example: In which column was the starting position in Maze, counting from the left?
-                    Question = "In which {1} was the starting position in {0}, counting from the {2}?",
+                    Question = "В {1} (считая {2}) была начальная позиция {0}?",
                     Arguments = new()
                     {
-                        ["column"] = "column",
-                        ["left"] = "left",
-                        ["row"] = "row",
-                        ["top"] = "top",
+                        ["column"] = "каком столбце",
+                        ["left"] = "слева направо",
+                        ["row"] = "какой строке",
+                        ["top"] = "сверху вниз",
                     },
                 },
             },
@@ -6599,50 +7694,59 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SMaze3)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SMaze3.StartingFace] = new()
                 {
                     // English: What was the color of the starting face in {0}?
-                    Question = "What was the color of the starting face in {0}?",
+                    Question = "Какой цвет был у начальной стороны {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Magenta"] = "Magenta",
+                        ["Orange"] = "Orange",
+                    },
                 },
             },
         },
 
         [typeof(SMazeIdentification)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMazeIdentification.Seed] = new()
                 {
                     // English: What was the seed of the maze in {0}?
-                    Question = "What was the seed of the maze in {0}?",
+                    Question = "Какое было зерно у лабиринта {0}?",
                 },
                 [SMazeIdentification.Num] = new()
                 {
                     // English: What was the function of button {1} in {0}?
                     // Example: What was the function of button 1 in Maze Identification?
-                    Question = "What was the function of button {1} in {0}?",
+                    Question = "Какая была функция у кнопки {1} {0}?",
                     Answers = new()
                     {
-                        ["forwards"] = "forwards",
-                        ["clockwise"] = "clockwise",
-                        ["backwards"] = "backwards",
-                        ["counter-clockwise"] = "counter-clockwise",
+                        ["Forwards"] = "Вперёд",
+                        ["Clockwise"] = "90° по часовой",
+                        ["Backwards"] = "Назад",
+                        ["Counter-clockwise"] = "90° против часовой",
                     },
                 },
                 [SMazeIdentification.Func] = new()
                 {
                     // English: Which button {1} in {0}?
                     // Example: Which button moved you forwards in Maze Identification?
-                    Question = "Which button {1} in {0}?",
+                    Question = "Какая кнопка {1} {0}?",
                     Arguments = new()
                     {
-                        ["moved you forwards"] = "moved you forwards",
-                        ["turned you clockwise"] = "turned you clockwise",
-                        ["moved you backwards"] = "moved you backwards",
-                        ["turned you counter-clockwise"] = "turned you counter-clockwise",
+                        ["moved you forwards"] = "передвинула вас вперёд",
+                        ["turned you clockwise"] = "повернула вас по часовой",
+                        ["moved you backwards"] = "передвинула вас назад",
+                        ["turned you counter-clockwise"] = "повернула вас против часовой",
                     },
                 },
             },
@@ -6650,18 +7754,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMazematics)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Матебиринте",
             Questions = new()
             {
                 [SMazematics.Value] = new()
                 {
                     // English: Which was the {1} value in {0}?
                     // Example: Which was the initial value in Mazematics?
-                    Question = "Which was the {1} value in {0}?",
+                    Question = "Какая была {1} величина {0}?",
                     Arguments = new()
                     {
-                        ["initial"] = "initial",
-                        ["goal"] = "goal",
+                        ["initial"] = "начальная",
+                        ["goal"] = "целевая",
                     },
                 },
             },
@@ -6669,64 +7773,97 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMazeScrambler)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMazeScrambler.Start] = new()
                 {
                     // English: What was the starting position on {0}?
-                    Question = "What was the starting position on {0}?",
+                    Question = "Какая была начальная позиция {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "Сверху слева",
+                        ["top-middle"] = "Сверху посередине",
+                        ["top-right"] = "Сверху справа",
+                        ["middle-left"] = "Посередине слева",
+                        ["middle-middle"] = "В центре",
+                        ["middle-right"] = "Посередине справа",
+                        ["bottom-left"] = "Снизу слева",
+                        ["bottom-middle"] = "Снизу посередине",
+                        ["bottom-right"] = "Снизу справа",
+                    },
                 },
                 [SMazeScrambler.Goal] = new()
                 {
                     // English: What was the goal on {0}?
-                    Question = "What was the goal on {0}?",
+                    Question = "Где была цель {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "Сверху слева",
+                        ["top-middle"] = "Сверху посередине",
+                        ["top-right"] = "Сверху справа",
+                        ["middle-left"] = "Посередине слева",
+                        ["middle-middle"] = "В центре",
+                        ["middle-right"] = "Посередине справа",
+                        ["bottom-left"] = "Снизу слева",
+                        ["bottom-middle"] = "Снизу посередине",
+                        ["bottom-right"] = "Снизу справа",
+                    },
                 },
                 [SMazeScrambler.Indicators] = new()
                 {
                     // English: Which of these positions was a maze marking on {0}?
-                    Question = "Which of these positions was a maze marking on {0}?",
+                    Question = "На какой позиции было обозначение лабиринта {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "Сверху слева",
+                        ["top-middle"] = "Сверху посередине",
+                        ["top-right"] = "Сверху справа",
+                        ["middle-left"] = "Посередине слева",
+                        ["center"] = "Центр",
+                        ["middle-right"] = "Посередине справа",
+                        ["bottom-left"] = "Снизу слева",
+                        ["bottom-middle"] = "Снизу посередине",
+                        ["bottom-right"] = "Снизу справа",
+                    },
                 },
             },
         },
 
         [typeof(SMazeseeker)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMazeseeker.Cell] = new()
                 {
                     // English: How many walls surrounded this cell in {0}?
-                    Question = "How many walls surrounded this cell in {0}?",
+                    Question = "Сколько стен окружало эту клетку {0}?",
                 },
                 [SMazeseeker.Start] = new()
                 {
                     // English: Where was the start in {0}?
-                    Question = "Where was the start in {0}?",
+                    Question = "Где было начало {0}?",
                 },
                 [SMazeseeker.Goal] = new()
                 {
                     // English: Where was the goal in {0}?
-                    Question = "Where was the goal in {0}?",
+                    Question = "Где была цель {0}?",
                 },
             },
         },
 
         [typeof(SMazeSwap)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMazeSwap.Position] = new()
                 {
                     // English: Where was the {1} position in {0}?
                     // Example: Where was the starting position in Maze Swap?
-                    Question = "Where was the {1} position in {0}?",
+                    Question = "Где {1} {0}?",
                     Arguments = new()
                     {
-                        ["starting"] = "starting",
-                        ["goal"] = "goal",
+                        ["starting"] = "было начало",
+                        ["goal"] = "была цель",
                     },
                 },
             },
@@ -6734,124 +7871,129 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMegaMan2)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMegaMan2.Master] = new()
                 {
                     // English: Which master was shown in {0}?
-                    Question = "Which master was shown in {0}?",
+                    Question = "Какой мастер был показан {0}?",
                 },
                 [SMegaMan2.Weapon] = new()
                 {
                     // English: Which weapon was shown in {0}?
-                    Question = "Which weapon was shown in {0}?",
+                    Question = "Какое оружие было показано {0}?",
                 },
             },
         },
 
         [typeof(SMelodySequencer)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SMelodySequencer.Parts] = new()
                 {
                     // English: Which slot contained part #{1} at the start of {0}?
                     // Example: Which slot contained part #1 at the start of Melody Sequencer?
-                    Question = "Which slot contained part #{1} at the start of {0}?",
+                    Question = "Какой слот содержал часть №{1} в начале {0}?",
                 },
                 [SMelodySequencer.Slots] = new()
                 {
                     // English: Which part was in slot #{1} at the start of {0}?
                     // Example: Which part was in slot #1 at the start of Melody Sequencer?
-                    Question = "Which part was in slot #{1} at the start of {0}?",
+                    Question = "Какая часть была в слоту №{1} в начале {0}?",
                 },
             },
         },
 
         [typeof(SMemorableButtons)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMemorableButtons.Symbols] = new()
                 {
                     // English: What was the {1} correct symbol pressed in {0}?
                     // Example: What was the first correct symbol pressed in Memorable Buttons?
-                    Question = "What was the {1} correct symbol pressed in {0}?",
+                    Question = "Какой был {1}-й верно нажатый символ {0}?",
                 },
             },
         },
 
         [typeof(SMemory)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Памяти",
+            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SMemory.Display] = new()
                 {
                     // English: What was the displayed number in the {1} stage of {0}?
                     // Example: What was the displayed number in the first stage of Memory?
-                    Question = "What was the displayed number in the {1} stage of {0}?",
+                    Question = "Какая цифра была на экране на {1}-м этапе {0}?",
                 },
                 [SMemory.Position] = new()
                 {
                     // English: In what position was the button that you pressed in the {1} stage of {0}?
                     // Example: In what position was the button that you pressed in the first stage of Memory?
-                    Question = "In what position was the button that you pressed in the {1} stage of {0}?",
+                    Question = "На какой позиции была кнопка, которую вы нажали на {1}-м этапе {0}?",
                 },
                 [SMemory.Label] = new()
                 {
                     // English: What was the label of the button that you pressed in the {1} stage of {0}?
                     // Example: What was the label of the button that you pressed in the first stage of Memory?
-                    Question = "What was the label of the button that you pressed in the {1} stage of {0}?",
+                    Question = "С каким значением была кнопка, которую вы нажали на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SMemoryWires)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SMemoryWires.WireColours] = new()
                 {
                     // English: What was the colour of wire {1} in {0}?
                     // Example: What was the colour of wire 1 in Memory Wires?
-                    Question = "What was the colour of wire {1} in {0}?",
+                    Question = "Какого цвета был {1}-й провод {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Blue"] = "Синий",
+                        ["White"] = "Белый",
+                        ["Black"] = "Чёрный",
+                    },
                 },
                 [SMemoryWires.DisplayedDigits] = new()
                 {
                     // English: What was the digit displayed in the {1} stage of {0}?
                     // Example: What was the digit displayed in the first stage of Memory Wires?
-                    Question = "What was the digit displayed in the {1} stage of {0}?",
+                    Question = "Какая цифра была показана на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SMetamorse)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMetamorse.ExtractedLetter] = new()
                 {
                     // English: What was the extracted letter in {0}?
-                    Question = "What was the extracted letter in {0}?",
+                    Question = "Какая была извлечённая буква {0}?",
                 },
             },
         },
 
         [typeof(SMetapuzzle)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMetapuzzle.Answer] = new()
                 {
                     // English: What was the final answer in {0}?
-                    Question = "What was the final answer in {0}?",
+                    Question = "Какой был финальный ответ {0}?",
                 },
             },
         },
@@ -6871,84 +8013,93 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMirror)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SMirror.Word] = new()
                 {
                     // English: What was the second word written by the original ghost in {0}?
-                    Question = "What was the second word written by the original ghost in {0}?",
+                    Question = "Какое было второе слово, написанное оригинальным призраком на {0}?",
                 },
             },
         },
 
         [typeof(SMisterSoftee)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMisterSoftee.SpongebobPosition] = new()
                 {
                     // English: Where was the SpongeBob Bar on {0}?
-                    Question = "Where was the SpongeBob Bar on {0}?",
+                    Question = "Где был SpongeBob Bar {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "Сверху слева",
+                        ["top-middle"] = "Сверху посередине",
+                        ["top-right"] = "Сверху справа",
+                        ["middle-left"] = "Посередине слева",
+                        ["middle-middle"] = "В центре",
+                        ["middle-right"] = "Посередине справа",
+                        ["bottom-left"] = "Снизу слева",
+                        ["bottom-middle"] = "Снизу посередине",
+                        ["bottom-right"] = "Снизу справа",
+                    },
                 },
                 [SMisterSoftee.TreatsPresent] = new()
                 {
                     // English: Which treat was present on {0}?
-                    Question = "Which treat was present on {0}?",
+                    Question = "Какая сладость присутствовала на {0}?",
                 },
             },
         },
 
         [typeof(SMixometer)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMixometer.SubmitButton] = new()
                 {
                     // English: What was the position of the submit button in {0}?
-                    Question = "What was the position of the submit button in {0}?",
+                    Question = "В какой позиции была кнопка отправки {0}?",
                 },
             },
         },
 
         [typeof(SModernCipher)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SModernCipher.Word] = new()
                 {
                     // English: What was the decrypted word of the {1} stage in {0}?
                     // Example: What was the decrypted word of the first stage in Modern Cipher?
-                    Question = "What was the decrypted word of the {1} stage in {0}?",
+                    Question = "Какое слово было расшифровано на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SModuleListening)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SModuleListening.ButtonAudio] = new()
                 {
                     // English: Which sound did the {1} button play in {0}?
                     // Example: Which sound did the red button play in Module Listening?
-                    Question = "Which sound did the {1} button play in {0}?",
+                    Question = "Какой звук воспроизводился {1} кнопкой {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["yellow"] = "yellow",
+                        ["red"] = "красной",
+                        ["green"] = "зелёной",
+                        ["blue"] = "синей",
+                        ["yellow"] = "жёлтой",
                     },
                 },
                 [SModuleListening.AnyAudio] = new()
                 {
                     // English: Which sound played in {0}?
-                    Question = "Which sound played in {0}?",
+                    Question = "Какой звук был воспроизведён {0}?",
                 },
             },
         },
@@ -6972,34 +8123,32 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SModuleMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Модульном лабиринте",
             Questions = new()
             {
                 [SModuleMaze.StartingIcon] = new()
                 {
                     // English: Which of the following was the starting icon for {0}?
-                    Question = "Which of the following was the starting icon for {0}?",
+                    Question = "Какая была начальная иконка модуля {0}?",
                 },
             },
         },
 
         [typeof(SModuleMovements)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SModuleMovements.Display] = new()
                 {
                     // English: What was the {1} module shown in {0}?
                     // Example: What was the first module shown in Module Movements?
-                    Question = "What was the {1} module shown in {0}?",
+                    Question = "Какой был {1}-й показанный модуль {0}?",
                 },
             },
         },
 
         [typeof(SMoneyGame)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMoneyGame.Question1] = new()
@@ -7025,23 +8174,23 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMonsplodeFight)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "\"Монсплоды, в атаку!\"",
             Questions = new()
             {
                 [SMonsplodeFight.Creature] = new()
                 {
                     // English: Which creature was displayed in {0}?
-                    Question = "Which creature was displayed in {0}?",
+                    Question = "Какое существо было показано {0}?",
                 },
                 [SMonsplodeFight.Move] = new()
                 {
                     // English: Which one of these moves {1} selectable in {0}?
                     // Example: Which one of these moves was selectable in Monsplode, Fight!?
-                    Question = "Which one of these moves {1} selectable in {0}?",
+                    Question = "Какой один из этих приёмов {1} доступен {0}?",
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "был",
+                        ["was not"] = "не был",
                     },
                 },
             },
@@ -7049,33 +8198,34 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMonsplodeTradingCards)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Коллекционных карточках по Монсплодам",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SMonsplodeTradingCards.Cards] = new()
                 {
                     // English: What was the {1} before the last action in {0}?
                     // Example: What was the first card in your hand before the last action in Monsplode Trading Cards?
-                    Question = "What was the {1} before the last action in {0}?",
+                    Question = "Какая была {1} перед последним действием {0}?",
                     Arguments = new()
                     {
-                        ["first card in your hand"] = "first card in your hand",
-                        ["second card in your hand"] = "second card in your hand",
-                        ["third card in your hand"] = "third card in your hand",
-                        ["card on offer"] = "card on offer",
+                        ["first card in your hand"] = "первая карта в вашей руке",
+                        ["second card in your hand"] = "вторая карта в вашей руке",
+                        ["third card in your hand"] = "третья карта в вашей руке",
+                        ["card on offer"] = "карта на обмен",
                     },
                 },
                 [SMonsplodeTradingCards.PrintVersions] = new()
                 {
                     // English: What was the print version of the {1} before the last action in {0}?
                     // Example: What was the print version of the first card in your hand before the last action in Monsplode Trading Cards?
-                    Question = "What was the print version of the {1} before the last action in {0}?",
+                    Question = "Какое было издание {1} перед последним действием {0}?",
                     Arguments = new()
                     {
-                        ["first card in your hand"] = "first card in your hand",
-                        ["second card in your hand"] = "second card in your hand",
-                        ["third card in your hand"] = "third card in your hand",
-                        ["card on offer"] = "card on offer",
+                        ["first card in your hand"] = "первой карты в вашей руке",
+                        ["second card in your hand"] = "второй карты в вашей руке",
+                        ["third card in your hand"] = "третьей карты в вашей руке",
+                        ["card on offer"] = "карты на обмен",
                     },
                 },
             },
@@ -7083,24 +8233,34 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMoon)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMoon.LitUnlit] = new()
                 {
                     // English: What was the {1} set in clockwise order in {0}?
                     // Example: What was the first initially lit set in clockwise order in Moon?
-                    Question = "What was the {1} set in clockwise order in {0}?",
+                    Question = "Какой {1} по часовой стрелке {0}?",
+                    Answers = new()
+                    {
+                        ["south"] = "Южный",
+                        ["south-west"] = "Юго-западный",
+                        ["west"] = "Западный",
+                        ["north-west"] = "Северо-западный",
+                        ["north"] = "Северный",
+                        ["north-east"] = "Северо-восточный",
+                        ["east"] = "Восточный",
+                        ["south-east"] = "Юго-восточный",
+                    },
                     Arguments = new()
                     {
-                        ["first initially lit"] = "first initially lit",
-                        ["second initially lit"] = "second initially lit",
-                        ["third initially lit"] = "third initially lit",
-                        ["fourth initially lit"] = "fourth initially lit",
-                        ["first initially unlit"] = "first initially unlit",
-                        ["second initially unlit"] = "second initially unlit",
-                        ["third initially unlit"] = "third initially unlit",
-                        ["fourth initially unlit"] = "fourth initially unlit",
+                        ["first initially lit"] = "1-й светодиод горел",
+                        ["second initially lit"] = "2-й светодиод горел",
+                        ["third initially lit"] = "3-й светодиод горел",
+                        ["fourth initially lit"] = "4-й светодиод горел",
+                        ["first initially unlit"] = "1-й светодиод не горел",
+                        ["second initially unlit"] = "2-й светодиод не горел",
+                        ["third initially unlit"] = "3-й светодиод не горел",
+                        ["fourth initially unlit"] = "4-й светодиод не горел",
                     },
                 },
             },
@@ -7108,94 +8268,101 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMoreCode)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SMoreCode.Word] = new()
                 {
                     // English: What was the flashing word in {0}?
-                    Question = "What was the flashing word in {0}?",
+                    Question = "Какое слово передовалось на {0}?",
                 },
             },
         },
 
         [typeof(SMorseAMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMorseAMaze.StartingCoordinate] = new()
                 {
                     // English: What was the starting location in {0}?
-                    Question = "What was the starting location in {0}?",
+                    Question = "Какая была начальная позиция {0}?",
                 },
                 [SMorseAMaze.EndingCoordinate] = new()
                 {
                     // English: What was the ending location in {0}?
-                    Question = "What was the ending location in {0}?",
+                    Question = "Какая была конечная позиция {0}?",
                 },
                 [SMorseAMaze.MorseCodeWord] = new()
                 {
                     // English: What was the word shown as Morse code in {0}?
-                    Question = "What was the word shown as Morse code in {0}?",
+                    Question = "Какое кодовое слово было передано через Морзе {0}?",
                 },
             },
         },
 
         [typeof(SMorseButtons)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMorseButtons.ButtonLabel] = new()
                 {
                     // English: What was the character flashed by the {1} button in {0}?
                     // Example: What was the character flashed by the first button in Morse Buttons?
-                    Question = "What was the character flashed by the {1} button in {0}?",
+                    Question = "Какой символ передавался {1}-й кнопкой {0}?",
                 },
                 [SMorseButtons.ButtonColor] = new()
                 {
                     // English: What was the color flashed by the {1} button in {0}?
                     // Example: What was the color flashed by the first button in Morse Buttons?
-                    Question = "What was the color flashed by the {1} button in {0}?",
+                    Question = "Каким цветом мигала {1}-я кнопка {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красным",
+                        ["blue"] = "Синим",
+                        ["green"] = "Зелёным",
+                        ["yellow"] = "Жёлтым",
+                        ["orange"] = "Оранжевым",
+                        ["purple"] = "Фиолетовым",
+                    },
                 },
             },
         },
 
         [typeof(SMorsematics)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Морзематике",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SMorsematics.ReceivedLetters] = new()
                 {
                     // English: What was the {1} received letter in {0}?
                     // Example: What was the first received letter in Morsematics?
-                    Question = "What was the {1} received letter in {0}?",
+                    Question = "Какая была {1}-я полученная буква {0}?",
                 },
             },
         },
 
         [typeof(SMorseWar)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMorseWar.Code] = new()
                 {
                     // English: What code was transmitted in {0}?
-                    Question = "What code was transmitted in {0}?",
+                    Question = "Какой код был передан {0}?",
                 },
                 [SMorseWar.Leds] = new()
                 {
                     // English: What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?
                     // Example: What were the LEDs in the bottom row in Morse War (1 = on, 0 = off)?
-                    Question = "What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?",
+                    Question = "Какими были светодиоды в {1} ряду {0} (1 = вкл, 0 = выкл)?",
                     Arguments = new()
                     {
-                        ["bottom"] = "bottom",
-                        ["middle"] = "middle",
-                        ["top"] = "top",
+                        ["bottom"] = "нижнем",
+                        ["middle"] = "центральном",
+                        ["top"] = "верхнем",
                     },
                 },
             },
@@ -7217,37 +8384,51 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMouseInTheMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Мыши в лабиринте",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SMouseInTheMaze.Sphere] = new()
                 {
                     // English: Which color sphere was the goal in {0}?
-                    Question = "Which color sphere was the goal in {0}?",
+                    Question = "Какого цвета была целевая сфера {0}?",
+                    Answers = new()
+                    {
+                        ["white"] = "Белая",
+                        ["green"] = "Зелёная",
+                        ["blue"] = "Синяя",
+                        ["yellow"] = "Жёлтая",
+                    },
                 },
                 [SMouseInTheMaze.Torus] = new()
                 {
                     // English: What color was the torus in {0}?
-                    Question = "What color was the torus in {0}?",
+                    Question = "Какого цвета было кольцо {0}?",
+                    Answers = new()
+                    {
+                        ["white"] = "Белое",
+                        ["green"] = "Зелёное",
+                        ["blue"] = "Синее",
+                        ["yellow"] = "Жёлтое",
+                    },
                 },
             },
         },
 
         [typeof(SMSeq)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMSeq.Obtained] = new()
                 {
                     // English: What was the {1} obtained digit in {0}?
                     // Example: What was the first obtained digit in M-Seq?
-                    Question = "What was the {1} obtained digit in {0}?",
+                    Question = "Какая была {1}-я полученная цифра {0}?",
                 },
                 [SMSeq.Submitted] = new()
                 {
                     // English: What was the final number from the iteration process in {0}?
-                    Question = "What was the final number from the iteration process in {0}?",
+                    Question = "Какое было финальное число итерационного процесса {0}?",
                 },
             },
         },
@@ -7261,11 +8442,11 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: {1}
                     // Example: Whc hvw lwsm ssn gn {0}?
-                    Question = "{1}",
+                    Question = "Какая гласная отсутствовала {0}?",
                     Additional = new()
                     {
                         ["Which vowel was missing in {0}?"] = "Which vowel was missing in {0}?",
-                        ["AEIOU"] = "AEIOU",
+                        ["AEIOU"] = "АИОУЭЯЫЁЮЕ",
                     },
                 },
             },
@@ -7273,20 +8454,32 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SMulticoloredSwitches)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Многоцветных переключателях",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SMulticoloredSwitches.LedColor] = new()
                 {
                     // English: What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?
                     // Example: What color was the first LED on the top row when the tiny LED was lit in Multicolored Switches?
-                    Question = "What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?",
+                    Question = "Какого цвета был {1}-й светодиод на {2} ряду, когда маленький светодиод {3} {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "Чёрный",
+                        ["red"] = "Красный",
+                        ["green"] = "Зелёный",
+                        ["yellow"] = "Жёлтый",
+                        ["blue"] = "Синий",
+                        ["magenta"] = "Пурпурный",
+                        ["cyan"] = "Голубой",
+                        ["white"] = "Белый",
+                    },
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["lit"] = "lit",
-                        ["bottom"] = "bottom",
-                        ["unlit"] = "unlit",
+                        ["top"] = "верхнем",
+                        ["lit"] = "горел",
+                        ["bottom"] = "нижнем",
+                        ["unlit"] = "не горел",
                     },
                 },
             },
@@ -7295,83 +8488,125 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SMurder)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Убийстве",
             Questions = new()
             {
                 [SMurder.Suspect] = new()
                 {
                     // English: Which of these was {1} in {0}?
                     // Example: Which of these was a suspect but not the murderer in Murder?
-                    Question = "Which of these was {1} in {0}?",
+                    Question = "Кто {1} {0}?",
+                    Answers = new()
+                    {
+                        ["Miss Scarlett"] = "Miss Scarlett",
+                        ["Professor Plum"] = "Professor Plum",
+                        ["Mrs Peacock"] = "Mrs Peacock",
+                        ["Reverend Green"] = "Reverend Green",
+                        ["Colonel Mustard"] = "Colonel Mustard",
+                        ["Mrs White"] = "Mrs White",
+                    },
                     Arguments = new()
                     {
-                        ["a suspect but not the murderer"] = "a suspect but not the murderer",
-                        ["not a suspect"] = "not a suspect",
+                        ["a suspect but not the murderer"] = "не являлся убийцей, но был среди подозреваемых",
+                        ["not a suspect"] = "не был подозреваемым",
                     },
                 },
                 [SMurder.Weapon] = new()
                 {
                     // English: Which of these was {1} in {0}?
                     // Example: Which of these was a potential weapon but not the murder weapon in Murder?
-                    Question = "Which of these was {1} in {0}?",
+                    Question = "{1} {0}?",
+                    Answers = new()
+                    {
+                        ["Candlestick"] = "Candlestick",
+                        ["Dagger"] = "Dagger",
+                        ["Lead Pipe"] = "Lead Pipe",
+                        ["Revolver"] = "Revolver",
+                        ["Rope"] = "Rope",
+                        ["Spanner"] = "Spanner",
+                    },
                     Arguments = new()
                     {
-                        ["a potential weapon but not the murder weapon"] = "a potential weapon but not the murder weapon",
-                        ["not a potential weapon"] = "not a potential weapon",
+                        ["a potential weapon but not the murder weapon"] = "Какое орудие было найдено, но не являлось орудием убийства",
+                        ["not a potential weapon"] = "Какого орудия не было среди найденных возможных орудий",
                     },
                 },
                 [SMurder.BodyFound] = new()
                 {
                     // English: Where was the body found in {0}?
-                    Question = "Where was the body found in {0}?",
+                    Question = "Где было найдено тело {0}?",
+                    Answers = new()
+                    {
+                        ["Dining Room"] = "Dining Room",
+                        ["Study"] = "Study",
+                        ["Kitchen"] = "Kitchen",
+                        ["Lounge"] = "Lounge",
+                        ["Billiard Room"] = "Billiard Room",
+                        ["Conservatory"] = "Conservatory",
+                        ["Ballroom"] = "Ballroom",
+                        ["Hall"] = "Hall",
+                        ["Library"] = "Library",
+                    },
                 },
             },
         },
 
         [typeof(SMysteryModule)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SMysteryModule.FirstKey] = new()
                 {
                     // English: Which module was the first requested to be solved by {0}?
-                    Question = "Which module was the first requested to be solved by {0}?",
+                    Question = "Какой модуль надо было обезвредить первым на {0}?",
                 },
                 [SMysteryModule.HiddenModule] = new()
                 {
                     // English: Which module was hidden by {0}?
-                    Question = "Which module was hidden by {0}?",
+                    Question = "Какой модуль был спрятан за {0}?",
                 },
             },
         },
 
         [typeof(SMysticSquare)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Загадочном квадрате",
             Questions = new()
             {
                 [SMysticSquare.Skull] = new()
                 {
                     // English: Where was the skull in {0}?
-                    Question = "Where was the skull in {0}?",
+                    Question = "Где находился череп {0}?",
+                    Answers = new()
+                    {
+                        ["top left"] = "сверху слева",
+                        ["top middle"] = "сверху посередине",
+                        ["top right"] = "сверху справа",
+                        ["middle left"] = "посередине слева",
+                        ["center"] = "в центре",
+                        ["middle right"] = "посередине справа",
+                        ["bottom left"] = "снизу слева",
+                        ["bottom middle"] = "снизу посередине",
+                        ["bottom right"] = "снизу справа",
+                    },
                 },
             },
         },
 
         [typeof(SNameCodes)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNameCodes.Indices] = new()
                 {
                     // English: What was the {1} index in {0}?
                     // Example: What was the left index in Name Codes?
-                    Question = "What was the {1} index in {0}?",
+                    Question = "Какой был {1} индекс {0}?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "левый",
+                        ["right"] = "правый",
                     },
                 },
             },
@@ -7379,82 +8614,103 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SNamingConventions)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNamingConventions.Object] = new()
                 {
                     // English: What was the label of the first button in {0}?
-                    Question = "What was the label of the first button in {0}?",
+                    Question = "Какая была надпись на 1й кнопке {0}?",
                 },
             },
         },
 
         [typeof(SNandMs)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "N и M",
             Questions = new()
             {
                 [SNandMs.Answer] = new()
                 {
                     // English: What was the label of the correct button in {0}?
-                    Question = "What was the label of the correct button in {0}?",
+                    Question = "Какая надпись была на правильной кнопке {0}?",
                 },
             },
         },
 
         [typeof(SNandNs)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNandNs.Label] = new()
                 {
                     // English: Which label was present in the {1} stage of {0}?
                     // Example: Which label was present in the first stage of N&Ns?
-                    Question = "Which label was present in the {1} stage of {0}?",
+                    Question = "Какая надпись присутствовала на {1}-м этапе {0}?",
                 },
                 [SNandNs.Color] = new()
                 {
                     // English: Which color was missing in the third stage of {0}?
-                    Question = "Which color was missing in the third stage of {0}?",
+                    Question = "Какой цвет отсутствовал на 3-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Green"] = "Зелёный",
+                        ["Orange"] = "Оранжевый",
+                        ["Blue"] = "Синий",
+                        ["Yellow"] = "Жёлтый",
+                        ["Brown"] = "Коричневый",
+                    },
                 },
             },
         },
 
         [typeof(SNavigationDetermination)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNavigationDetermination.Color] = new()
                 {
                     // English: What was the color of the maze in {0}?
-                    Question = "What was the color of the maze in {0}?",
+                    Question = "Какого цвета был лабиринт {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красного",
+                        ["Yellow"] = "Жёлтого",
+                        ["Green"] = "Зелёного",
+                        ["Blue"] = "Синего",
+                    },
                 },
                 [SNavigationDetermination.Label] = new()
                 {
                     // English: What was the label of the maze in {0}?
-                    Question = "What was the label of the maze in {0}?",
+                    Question = "Какой буквой был обозначен лабиринт {0}?",
                 },
             },
         },
 
         [typeof(SNavinums)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNavinums.DirectionalButtons] = new()
                 {
                     // English: What was the {1} directional button pressed in {0}?
                     // Example: What was the first directional button pressed in Navinums?
-                    Question = "What was the {1} directional button pressed in {0}?",
+                    Question = "Какая кнопка направления была нажата {1}-й {0}?",
+                    Answers = new()
+                    {
+                        ["up"] = "вверх",
+                        ["left"] = "влево",
+                        ["right"] = "вправо",
+                        ["down"] = "вниз",
+                    },
                 },
                 [SNavinums.MiddleDigit] = new()
                 {
                     // English: What was the initial middle digit in {0}?
-                    Question = "What was the initial middle digit in {0}?",
+                    Question = "Какая цифра была изначально в центре {0}?",
                 },
             },
         },
@@ -7462,23 +8718,24 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SNavyButton)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SNavyButton.QGreekLetters] = new()
                 {
                     // English: Which Greek letter appeared on {0} (case-sensitive)?
-                    Question = "Which Greek letter appeared on {0} (case-sensitive)?",
+                    Question = "Какая греческая буква (с учётом регистра) появилась на {0}?",
                 },
                 [SNavyButton.QGiven] = new()
                 {
                     // English: What was the {1} of the given in {0}?
                     // Example: What was the (0-indexed) column of the given in Navy Button?
-                    Question = "What was the {1} of the given in {0}?",
+                    Question = "{1} (с индексом 0) на {0}?",
                     Arguments = new()
                     {
                         ["(0-indexed) column"] = "(0-indexed) column",
                         ["(0-indexed) row"] = "(0-indexed) row",
-                        ["value"] = "value",
+                        ["value"] = "Какое значение было указано",
                     },
                 },
             },
@@ -7513,32 +8770,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SNecronomicon)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNecronomicon.Chapters] = new()
                 {
                     // English: What was the chapter number of the {1} page in {0}?
                     // Example: What was the chapter number of the first page in Necronomicon?
-                    Question = "What was the chapter number of the {1} page in {0}?",
+                    Question = "Какой был номер главы {1}-й страницы {0}?",
                 },
             },
         },
 
         [typeof(SNegativity)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNegativity.SubmittedValue] = new()
                 {
                     // English: In base 10, what was the value submitted in {0}?
-                    Question = "In base 10, what was the value submitted in {0}?",
+                    Question = "Какое значение было введено (в десятиричной системе) {0}?",
                 },
                 [SNegativity.SubmittedTernary] = new()
                 {
                     // English: Excluding 0s, what was the submitted balanced ternary in {0}?
-                    Question = "Excluding 0s, what was the submitted balanced ternary in {0}?",
+                    Question = "Какой сбалансированный троичный код был введён {0} (исключая нули)?",
                 },
             },
         },
@@ -7558,70 +8814,87 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SNeutralization)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Нейтрализации",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SNeutralization.Color] = new()
                 {
                     // English: What was the acid’s color in {0}?
-                    Question = "What was the acid’s color in {0}?",
+                    Question = "Какой цвет был у кислоты {0}?",
+                    Answers = new()
+                    {
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Red"] = "Красный",
+                        ["Blue"] = "Синий",
+                    },
                 },
                 [SNeutralization.Volume] = new()
                 {
                     // English: What was the acid’s volume in {0}?
-                    Question = "What was the acid’s volume in {0}?",
+                    Question = "Какой был объём кислоты {0}?",
                 },
             },
         },
 
         [typeof(SNextInLine)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNextInLine.FirstWire] = new()
                 {
                     // English: What color was the first wire in {0}?
-                    Question = "What color was the first wire in {0}?",
+                    Question = "Какого цвета был первый провод {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Black"] = "Чёрный",
+                        ["White"] = "Белый",
+                        ["Gray"] = "Серый",
+                    },
                 },
             },
         },
 
         [typeof(SNonverbalSimon)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNonverbalSimon.Flashes] = new()
                 {
                     // This question is depicted visually, rather than with words. The translation here will only be used for logging.
-                    Question = "Which button flashed in the {1} stage in {0}?",
+                    Question = "Какой кнопка горела на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SNotColoredSquares)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SNotColoredSquares.InitialPosition] = new()
                 {
                     // English: What was the position of the square you initially pressed in {0}?
-                    Question = "What was the position of the square you initially pressed in {0}?",
+                    Question = "Какая была позиция квадрата, который вы изначально нажали на {0}?",
                 },
             },
         },
 
         [typeof(SNotColoredSwitches)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotColoredSwitches.Word] = new()
                 {
                     // English: What was the encrypted word in {0}?
-                    Question = "What was the encrypted word in {0}?",
+                    Question = "Какое было зашифрованное слово {0}?",
                 },
             },
         },
@@ -7635,46 +8908,54 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was {1} in the displayed word sequence in {0}?
                     // Example: What was first in the displayed word sequence in Not Colour Flash?
-                    Question = "What was {1} in the displayed word sequence in {0}?",
+                    Question = "What was the initial word on {0}?",
                 },
                 [SNotColourFlash.InitialColour] = new()
                 {
                     // English: What was {1} in the displayed colour sequence in {0}?
                     // Example: What was first in the displayed colour sequence in Not Colour Flash?
-                    Question = "What was {1} in the displayed colour sequence in {0}?",
+                    Question = "What was the initial colour of the word on {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
 
         [typeof(SNotConnectionCheck)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotConnectionCheck.Flashes] = new()
                 {
                     // English: What symbol flashed on the {1} button in {0}?
                     // Example: What symbol flashed on the top left button in Not Connection Check?
-                    Question = "What symbol flashed on the {1} button in {0}?",
+                    Question = "Какой символ мигал на {1} кнопке {0}?",
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "верхней левой",
+                        ["top right"] = "верхней правой",
+                        ["bottom left"] = "нижней левой",
+                        ["bottom right"] = "нижней правой",
                     },
                 },
                 [SNotConnectionCheck.Values] = new()
                 {
                     // English: What was the value of the {1} button in {0}?
                     // Example: What was the value of the top left button in Not Connection Check?
-                    Question = "What was the value of the {1} button in {0}?",
+                    Question = "Какое было значение {1} кнопки {0}?",
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "верхней левой",
+                        ["top right"] = "верхней правой",
+                        ["bottom left"] = "нижней левой",
+                        ["bottom right"] = "нижней правой",
                     },
                 },
             },
@@ -7682,87 +8963,99 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SNotCoordinates)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotCoordinates.SquareCoords] = new()
                 {
                     // English: Which coordinate was part of the square in {0}?
-                    Question = "Which coordinate was part of the square in {0}?",
+                    Question = "Какая координата была частью квадрата {0}?",
                 },
             },
         },
 
         [typeof(SNotDoubleOh)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNotDoubleOh.Position] = new()
                 {
                     // English: What was the {1} displayed position in the second stage of {0}?
                     // Example: What was the first displayed position in the second stage of Not Double-Oh?
-                    Question = "What was the {1} displayed position in the second stage of {0}?",
+                    Question = "Какая позиция была показана {1}-й на втором этапе {0}?",
                 },
             },
         },
 
         [typeof(SNotKeypad)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Не клавиатуре",
+            Conjugation = Conjugation.PrepositiveFeminine,
             Questions = new()
             {
                 [SNotKeypad.Color] = new()
                 {
                     // English: What color flashed {1} in the final sequence in {0}?
                     // Example: What color flashed first in the final sequence in Not Keypad?
-                    Question = "What color flashed {1} in the final sequence in {0}?",
+                    Question = "Какой цвет горел {1}-м в последовательности на {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["orange"] = "Оранжевый",
+                        ["yellow"] = "Жёлтый",
+                        ["green"] = "Зелёный",
+                        ["cyan"] = "Голубой",
+                        ["blue"] = "Синий",
+                        ["purple"] = "Фиолетовый",
+                        ["magenta"] = "Пурпурный",
+                        ["pink"] = "Розовый",
+                        ["brown"] = "Коричневый",
+                        ["grey"] = "Серый",
+                        ["white"] = "Белый",
+                    },
                 },
                 [SNotKeypad.Symbol] = new()
                 {
                     // English: Which symbol was on the button that flashed {1} in the final sequence in {0}?
                     // Example: Which symbol was on the button that flashed first in the final sequence in Not Keypad?
-                    Question = "Which symbol was on the button that flashed {1} in the final sequence in {0}?",
+                    Question = "Какой символ был на кнопке, которая горела {1}-й в последовательности на {0}?",
                 },
             },
         },
 
         [typeof(SNotMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotMaze.StartingDistance] = new()
                 {
                     // English: What was the starting distance in {0}?
-                    Question = "What was the starting distance in {0}?",
+                    Question = "Какая была начальная дистанция {0}?",
                 },
             },
         },
 
         [typeof(SNotMorseCode)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotMorseCode.Word] = new()
                 {
                     // English: What was the {1} correct word you submitted in {0}?
                     // Example: What was the first correct word you submitted in Not Morse Code?
-                    Question = "What was the {1} correct word you submitted in {0}?",
+                    Question = "Какое было {1}-е верное слово, которое вы отправили {0}?",
                 },
             },
         },
 
         [typeof(SNotMorsematics)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotMorsematics.Word] = new()
                 {
                     // English: What was the transmitted word on {0}?
-                    Question = "What was the transmitted word on {0}?",
+                    Question = "Какое слово было передано {0}?",
                 },
             },
         },
@@ -7776,7 +9069,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What room was {1} in initially on {0}?
                     // Example: What room was Miss Scarlett in initially on Not Murder?
-                    Question = "What room was {1} in initially on {0}?",
+                    Question = "В какой комнате изначально находился(-ась) {1} {0}?",
+                    Answers = new()
+                    {
+                        ["Ballroom"] = "Ballroom",
+                        ["Billiard Room"] = "Billiard Room",
+                        ["Conservatory"] = "Conservatory",
+                        ["Dining Room"] = "Dining Room",
+                        ["Hall"] = "Hall",
+                        ["Kitchen"] = "Kitchen",
+                        ["Library"] = "Library",
+                        ["Lounge"] = "Lounge",
+                        ["Study"] = "Study",
+                    },
                     Arguments = new()
                     {
                         ["Miss Scarlett"] = "Miss Scarlett",
@@ -7791,7 +9096,16 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What weapon did {1} possess initially on {0}?
                     // Example: What weapon did Miss Scarlett possess initially on Not Murder?
-                    Question = "What weapon did {1} possess initially on {0}?",
+                    Question = "Каким орудием изначально обладал(-а) {1} {0}?",
+                    Answers = new()
+                    {
+                        ["Candlestick"] = "Candlestick",
+                        ["Dagger"] = "Dagger",
+                        ["Lead Pipe"] = "Lead Pipe",
+                        ["Revolver"] = "Revolver",
+                        ["Rope"] = "Rope",
+                        ["Spanner"] = "Spanner",
+                    },
                     Arguments = new()
                     {
                         ["Miss Scarlett"] = "Miss Scarlett",
@@ -7851,18 +9165,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SNotNumberPad)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNotNumberPad.Flashes] = new()
                 {
                     // English: Which of these numbers {1} at the {2} stage of {0}?
                     // Example: Which of these numbers flashed at the first stage of Not Number Pad?
-                    Question = "Which of these numbers {1} at the {2} stage of {0}?",
+                    Question = "Какая их этих цифр {1} на {2}-м этапе {0}?",
                     Arguments = new()
                     {
-                        ["flashed"] = "flashed",
-                        ["did not flash"] = "did not flash",
+                        ["flashed"] = "мигала",
+                        ["did not flash"] = "не мигала",
                     },
                 },
             },
@@ -7870,152 +9184,295 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SNotPassword)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotPassword.Letter] = new()
                 {
                     // English: Which letter was missing from {0}?
-                    Question = "Which letter was missing from {0}?",
+                    Question = "Какая буква отсутствовала {0}?",
                 },
             },
         },
 
         [typeof(SNotPerspectivePegs)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotPerspectivePegs.Position] = new()
                 {
                     // English: What was the position of the {1} flashing peg on {0}?
                     // Example: What was the position of the first flashing peg on Not Perspective Pegs?
-                    Question = "What was the position of the {1} flashing peg on {0}?",
+                    Question = "В какой позиции находился {1}-й мигающий колышек {0}?",
+                    Answers = new()
+                    {
+                        ["top"] = "Сверху",
+                        ["top-right"] = "Сверху справа",
+                        ["bottom-right"] = "Снизу справа",
+                        ["bottom-left"] = "Снизу слева",
+                        ["top-left"] = "Сверху слева",
+                    },
                 },
                 [SNotPerspectivePegs.Perspective] = new()
                 {
                     // English: From what perspective did the {1} peg flash on {0}?
                     // Example: From what perspective did the first peg flash on Not Perspective Pegs?
-                    Question = "From what perspective did the {1} peg flash on {0}?",
+                    Question = "С какого ракурса мигнул {1}-й колышек {0}?",
+                    Answers = new()
+                    {
+                        ["top"] = "С верхнего",
+                        ["top-right"] = "С верх. правого",
+                        ["bottom-right"] = "С ниж. правого",
+                        ["bottom-left"] = "С ниж. левого",
+                        ["top-left"] = "С верх. левого",
+                    },
                 },
                 [SNotPerspectivePegs.Color] = new()
                 {
                     // English: What was the color of the {1} flashing peg on {0}?
                     // Example: What was the color of the first flashing peg on Not Perspective Pegs?
-                    Question = "What was the color of the {1} flashing peg on {0}?",
+                    Question = "Какого цвета был {1}-й мигающий колышек {0}?",
+                    Answers = new()
+                    {
+                        ["blue"] = "Синего",
+                        ["green"] = "Зелёного",
+                        ["purple"] = "Фиолетового",
+                        ["red"] = "Красного",
+                        ["yellow"] = "Жёлтого",
+                    },
                 },
             },
         },
 
         [typeof(SNotPianoKeys)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotPianoKeys.FirstSymbol] = new()
                 {
                     // English: What was the first displayed symbol on {0}?
-                    Question = "What was the first displayed symbol on {0}?",
+                    Question = "Какой был первый изображённый символ {0}?",
                 },
                 [SNotPianoKeys.SecondSymbol] = new()
                 {
                     // English: What was the second displayed symbol on {0}?
-                    Question = "What was the second displayed symbol on {0}?",
+                    Question = "Какой был второй изображённый символ {0}?",
                 },
                 [SNotPianoKeys.ThirdSymbol] = new()
                 {
                     // English: What was the third displayed symbol on {0}?
-                    Question = "What was the third displayed symbol on {0}?",
+                    Question = "Какой был третий изображённый символ {0}?",
                 },
             },
         },
 
         [typeof(SNotRedArrows)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotRedArrows.Start] = new()
                 {
                     // English: What was the starting number in {0}?
-                    Question = "What was the starting number in {0}?",
+                    Question = "Какое было исходное число {0}?",
                 },
             },
         },
 
         [typeof(SNotSimaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotSimaze.Maze] = new()
                 {
                     // English: Which maze was used in {0}?
-                    Question = "Which maze was used in {0}?",
+                    Question = "Какой лабиринт был использован {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["orange"] = "Оранжевый",
+                        ["yellow"] = "Жёлтый",
+                        ["green"] = "Зелёный",
+                        ["blue"] = "Синий",
+                        ["purple"] = "Фиолетовый",
+                    },
                 },
                 [SNotSimaze.Start] = new()
                 {
                     // English: What was the starting position in {0}?
-                    Question = "What was the starting position in {0}?",
+                    Question = "Какая была начальная позиция {0}?",
+                    Answers = new()
+                    {
+                        ["(red, red)"] = "(К, К)",
+                        ["(red, orange)"] = "(К, О)",
+                        ["(red, yellow)"] = "(К, Ж)",
+                        ["(red, green)"] = "(К, З)",
+                        ["(red, blue)"] = "(К, С)",
+                        ["(red, purple)"] = "(К, Ф)",
+                        ["(orange, red)"] = "(О, К)",
+                        ["(orange, orange)"] = "(О, О)",
+                        ["(orange, yellow)"] = "(О, Ж)",
+                        ["(orange, green)"] = "(О, З)",
+                        ["(orange, blue)"] = "(О, С)",
+                        ["(orange, purple)"] = "(О, Ф)",
+                        ["(yellow, red)"] = "(Ж, К)",
+                        ["(yellow, orange)"] = "(Ж, О)",
+                        ["(yellow, yellow)"] = "(Ж, Ж)",
+                        ["(yellow, green)"] = "(Ж, З)",
+                        ["(yellow, blue)"] = "(Ж, С)",
+                        ["(yellow, purple)"] = "(Ж, Ф)",
+                        ["(green, red)"] = "(З, К)",
+                        ["(green, orange)"] = "(З, О)",
+                        ["(green, yellow)"] = "(З, Ж)",
+                        ["(green, green)"] = "(З, З)",
+                        ["(green, blue)"] = "(З, С)",
+                        ["(green, purple)"] = "(З, Ф)",
+                        ["(blue, red)"] = "(С, К)",
+                        ["(blue, orange)"] = "(С, О)",
+                        ["(blue, yellow)"] = "(С, Ж)",
+                        ["(blue, green)"] = "(С, З)",
+                        ["(blue, blue)"] = "(С, С)",
+                        ["(blue, purple)"] = "(С, Ф)",
+                        ["(purple, red)"] = "(Ф, К)",
+                        ["(purple, orange)"] = "(Ф, О)",
+                        ["(purple, yellow)"] = "(Ф, Ж)",
+                        ["(purple, green)"] = "(Ф, З)",
+                        ["(purple, blue)"] = "(Ф, С)",
+                        ["(purple, purple)"] = "(Ф, Ф)",
+                    },
                 },
                 [SNotSimaze.Goal] = new()
                 {
                     // English: What was the goal position in {0}?
-                    Question = "What was the goal position in {0}?",
+                    Question = "Какая была конечная позиция {0}?",
+                    Answers = new()
+                    {
+                        ["(red, red)"] = "(К, К)",
+                        ["(red, orange)"] = "(К, О)",
+                        ["(red, yellow)"] = "(К, Ж)",
+                        ["(red, green)"] = "(К, З)",
+                        ["(red, blue)"] = "(К, С)",
+                        ["(red, purple)"] = "(К, Ф)",
+                        ["(orange, red)"] = "(О, К)",
+                        ["(orange, orange)"] = "(О, О)",
+                        ["(orange, yellow)"] = "(О, Ж)",
+                        ["(orange, green)"] = "(О, З)",
+                        ["(orange, blue)"] = "(О, С)",
+                        ["(orange, purple)"] = "(О, Ф)",
+                        ["(yellow, red)"] = "(Ж, К)",
+                        ["(yellow, orange)"] = "(Ж, О)",
+                        ["(yellow, yellow)"] = "(Ж, Ж)",
+                        ["(yellow, green)"] = "(Ж, З)",
+                        ["(yellow, blue)"] = "(Ж, С)",
+                        ["(yellow, purple)"] = "(Ж, Ф)",
+                        ["(green, red)"] = "(З, К)",
+                        ["(green, orange)"] = "(З, О)",
+                        ["(green, yellow)"] = "(З, Ж)",
+                        ["(green, green)"] = "(З, З)",
+                        ["(green, blue)"] = "(З, С)",
+                        ["(green, purple)"] = "(З, Ф)",
+                        ["(blue, red)"] = "(С, К)",
+                        ["(blue, orange)"] = "(С, О)",
+                        ["(blue, yellow)"] = "(С, Ж)",
+                        ["(blue, green)"] = "(С, З)",
+                        ["(blue, blue)"] = "(С, С)",
+                        ["(blue, purple)"] = "(С, Ф)",
+                        ["(purple, red)"] = "(Ф, К)",
+                        ["(purple, orange)"] = "(Ф, О)",
+                        ["(purple, yellow)"] = "(Ф, Ж)",
+                        ["(purple, green)"] = "(Ф, З)",
+                        ["(purple, blue)"] = "(Ф, С)",
+                        ["(purple, purple)"] = "(Ф, Ф)",
+                    },
                 },
             },
         },
 
         [typeof(SNotTextField)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SNotTextField.BackgroundLetter] = new()
                 {
                     // English: Which letter appeared 9 times at the start of {0}?
-                    Question = "Which letter appeared 9 times at the start of {0}?",
+                    Question = "Какая буква появилась 9 раз в начале на {0}?",
                 },
                 [SNotTextField.InitialPresses] = new()
                 {
                     // English: Which letter was pressed in the first stage of {0}?
-                    Question = "Which letter was pressed in the first stage of {0}?",
+                    Question = "Какая буква была нажата на первом этапе на {0}?",
                 },
             },
         },
 
         [typeof(SNotTheBulb)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SNotTheBulb.Word] = new()
                 {
                     // English: What word flashed on {0}?
-                    Question = "What word flashed on {0}?",
+                    Question = "Какое слово мигало на {0}?",
                 },
                 [SNotTheBulb.Color] = new()
                 {
                     // English: What color was the bulb on {0}?
-                    Question = "What color was the bulb on {0}?",
+                    Question = "Какого цвета была лампочка на {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красная",
+                        ["Green"] = "Зелёная",
+                        ["Blue"] = "Синяя",
+                        ["Yellow"] = "Жёлтая",
+                        ["Purple"] = "Фиолетовая",
+                        ["White"] = "Белая",
+                    },
                 },
                 [SNotTheBulb.ScrewCap] = new()
                 {
                     // English: What was the material of the screw cap on {0}?
-                    Question = "What was the material of the screw cap on {0}?",
+                    Question = "Из какого материала был сделан цоколь лампочки на {0}?",
+                    Answers = new()
+                    {
+                        ["Copper"] = "Медь",
+                        ["Silver"] = "Серебро",
+                        ["Gold"] = "Золото",
+                        ["Plastic"] = "Пластик",
+                        ["Carbon Fibre"] = "Углеволокно",
+                        ["Ceramic"] = "Керамика",
+                    },
                 },
             },
         },
 
         [typeof(SNotTheButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Не кнопки",
+            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SNotTheButton.LightColor] = new()
                 {
                     // English: What colors did the light glow in {0}?
-                    Question = "What colors did the light glow in {0}?",
+                    Question = "Какими цветами горела цветная полоска {0}?",
+                    Answers = new()
+                    {
+                        ["white"] = "Белым",
+                        ["red"] = "Красным",
+                        ["yellow"] = "Жёлтым",
+                        ["green"] = "Зелёным",
+                        ["blue"] = "Синим",
+                        ["white/red"] = "Красно-белым",
+                        ["white/yellow"] = "Жёлто-белым",
+                        ["white/green"] = "Зелёно-белым",
+                        ["white/blue"] = "Сине-белым",
+                        ["red/yellow"] = "Красно-жёлтым",
+                        ["red/green"] = "Красно-зелёным",
+                        ["red/blue"] = "Красно-синим",
+                        ["yellow/green"] = "Жёлто-зелёным",
+                        ["yellow/blue"] = "Жёлто-синим",
+                        ["green/blue"] = "Сине-зелёным",
+                    },
                 },
             },
         },
@@ -8028,93 +9485,120 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SNotThePlungerButton.Background] = new()
                 {
                     // English: What color did the background flash in {0}?
-                    Question = "What color did the background flash in {0}?",
+                    Question = "Каким цветом мигал фон {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Black",
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
 
         [typeof(SNotTheScrew)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotTheScrew.InitialPosition] = new()
                 {
                     // English: What was the initial position in {0}?
-                    Question = "What was the initial position in {0}?",
+                    Question = "Какая была начальная позиция {0}?",
                 },
             },
         },
 
         [typeof(SNotWhosOnFirst)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNotWhosOnFirst.PressedPosition] = new()
                 {
                     // English: In which position was the button you pressed in the {1} stage on {0}?
                     // Example: In which position was the button you pressed in the first stage on Not Who’s on First?
-                    Question = "In which position was the button you pressed in the {1} stage on {0}?",
+                    Question = "На какой позиции была кнопка, которую вы нажали на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["top left"] = "сверху слева",
+                        ["top right"] = "сверху справа",
+                        ["middle left"] = "посередине слева",
+                        ["middle right"] = "посередине справа",
+                        ["bottom left"] = "снизу слева",
+                        ["bottom right"] = "снизу справа",
+                    },
                 },
                 [SNotWhosOnFirst.PressedLabel] = new()
                 {
                     // English: What was the label on the button you pressed in the {1} stage on {0}?
                     // Example: What was the label on the button you pressed in the first stage on Not Who’s on First?
-                    Question = "What was the label on the button you pressed in the {1} stage on {0}?",
+                    Question = "Что было написано на кнопке, которую вы нажали на {1}-м этапе {0}?",
                 },
                 [SNotWhosOnFirst.ReferencePosition] = new()
                 {
                     // English: In which position was the reference button in the {1} stage on {0}?
                     // Example: In which position was the reference button in the first stage on Not Who’s on First?
-                    Question = "In which position was the reference button in the {1} stage on {0}?",
+                    Question = "На какой позиции была кнопка-ссылка на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["top left"] = "сверху слева",
+                        ["top right"] = "сверху справа",
+                        ["middle left"] = "посередине слева",
+                        ["middle right"] = "посередине справа",
+                        ["bottom left"] = "снизу слева",
+                        ["bottom right"] = "снизу справа",
+                    },
                 },
                 [SNotWhosOnFirst.ReferenceLabel] = new()
                 {
                     // English: What was the label on the reference button in the {1} stage on {0}?
                     // Example: What was the label on the reference button in the first stage on Not Who’s on First?
-                    Question = "What was the label on the reference button in the {1} stage on {0}?",
+                    Question = "Что было написано на кнопке-ссылке на {1}-м этапе {0}?",
                 },
                 [SNotWhosOnFirst.Sum] = new()
                 {
                     // English: What was the calculated number in the second stage on {0}?
-                    Question = "What was the calculated number in the second stage on {0}?",
+                    Question = "Какое было рассчитанное число на втором этапе {0}?",
                 },
             },
         },
 
         [typeof(SNotWordSearch)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotWordSearch.Missing] = new()
                 {
                     // English: Which of these consonants was missing in {0}?
-                    Question = "Which of these consonants was missing in {0}?",
+                    Question = "Какая из этих согласных букв отсутствовала {0}?",
                 },
                 [SNotWordSearch.FirstPress] = new()
                 {
                     // English: What was the first correctly pressed letter in {0}?
-                    Question = "What was the first correctly pressed letter in {0}?",
+                    Question = "Какая была первая правильно нажатая буква {0}?",
                 },
             },
         },
 
         [typeof(SNotX01)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SNotX01.SectorValues] = new()
                 {
                     // English: Which sector value {1} present on {0}?
                     // Example: Which sector value was present on Not X01?
-                    Question = "Which sector value {1} present on {0}?",
+                    Question = "Какое значение сектора {1} на {0}?",
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "присутствовало",
+                        ["was not"] = "отсутствовало",
                     },
                 },
             },
@@ -8122,36 +9606,49 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SNotXRay)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNotXRay.ScannerColor] = new()
                 {
                     // English: What was the scanner color in {0}?
-                    Question = "What was the scanner color in {0}?",
+                    Question = "Какой был цвет сканера {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Blue"] = "Синий",
+                        ["White"] = "Белый",
+                    },
                 },
                 [SNotXRay.Table] = new()
                 {
                     // English: What table were we in in {0} (numbered 1–8 in reading order in the manual)?
-                    Question = "What table were we in in {0} (numbered 1–8 in reading order in the manual)?",
+                    Question = "В какой таблице вы находились {0} (пронумерованных от 1 до 8 в порядке чтения в инструкции)?",
                 },
                 [SNotXRay.Directions] = new()
                 {
                     // English: What direction was button {1} in {0}?
                     // Example: What direction was button 1 in Not X-Ray?
-                    Question = "What direction was button {1} in {0}?",
+                    Question = "За какое направление отвечала кнопка \"{1}\" {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Вверх",
+                        ["Right"] = "Вправо",
+                        ["Down"] = "Вних",
+                        ["Left"] = "Влево",
+                    },
                 },
                 [SNotXRay.Buttons] = new()
                 {
                     // English: Which button went {1} in {0}?
                     // Example: Which button went up in Not X-Ray?
-                    Question = "Which button went {1} in {0}?",
+                    Question = "Какая кнопка отвечала за направление \"{1}\" {0}?",
                     Arguments = new()
                     {
-                        ["up"] = "up",
-                        ["right"] = "right",
-                        ["down"] = "down",
-                        ["left"] = "left",
+                        ["up"] = "вверх",
+                        ["right"] = "вправо",
+                        ["down"] = "вниз",
+                        ["left"] = "влево",
                     },
                 },
             },
@@ -8159,103 +9656,107 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SNumberedButtons)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNumberedButtons.Buttons] = new()
                 {
                     // English: Which number was correctly pressed on {0}?
-                    Question = "Which number was correctly pressed on {0}?",
+                    Question = "Какое было правильно нажатое число {0}?",
                 },
             },
         },
 
         [typeof(SNumberGame)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNumberGame.Maximum] = new()
                 {
                     // English: What was the maximum number in {0}?
-                    Question = "What was the maximum number in {0}?",
+                    Question = "Какое было максимальное число {0}?",
                 },
             },
         },
 
         [typeof(SNumbers)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNumbers.TwoDigit] = new()
                 {
                     // English: What two-digit number was given in {0}?
-                    Question = "What two-digit number was given in {0}?",
+                    Question = "Какое двухзначное число было дано {0}?",
                 },
             },
         },
 
         [typeof(SNumpath)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNumpath.Color] = new()
                 {
                     // English: What was the color of the number on {0}?
-                    Question = "What was the color of the number on {0}?",
+                    Question = "Какого цвета было число {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетовый",
+                    },
                 },
                 [SNumpath.Digit] = new()
                 {
                     // English: What was the number displayed on {0}?
-                    Question = "What was the number displayed on {0}?",
+                    Question = "Какое число было показано на {0}?",
                 },
             },
         },
 
         [typeof(SObjectShows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Обджект-шоу",
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SObjectShows.Contestants] = new()
                 {
                     // English: Which of these was a contestant on {0}?
-                    Question = "Which of these was a contestant on {0}?",
+                    Question = "Кто среди этих участников присутствовал на {0}?",
                 },
             },
         },
 
         [typeof(SOctadecayotton)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SOctadecayotton.Sphere] = new()
                 {
                     // English: What was the starting sphere in {0}?
-                    Question = "What was the starting sphere in {0}?",
+                    Question = "Какая была начальная сфера {0}?",
                 },
                 [SOctadecayotton.Rotations] = new()
                 {
                     // English: What was one of the subrotations in the {1} rotation in {0}?
                     // Example: What was one of the subrotations in the first rotation in Octadecayotton?
-                    Question = "What was one of the subrotations in the {1} rotation in {0}?",
+                    Question = "Каким было одно из промежуточных вращений в {1}-м вращении {0}?",
                 },
             },
         },
 
         [typeof(SOddOneOut)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SOddOneOut.Button] = new()
                 {
                     // English: What was the button you pressed in the {1} stage of {0}?
                     // Example: What was the button you pressed in the first stage of Odd One Out?
-                    Question = "What was the button you pressed in the {1} stage of {0}?",
+                    Question = "Какую кнопку вы нажали на {1}-м этапе {0}?",
                 },
             },
         },
@@ -8273,25 +9774,25 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SOffKeys.Runes] = new()
                 {
                     // English: Which of these runes was displayed in {0}?
-                    Question = "Which of these runes was displayed in {0}?",
+                    Question = "Which of these runes was displayed in {0]?",
                 },
             },
         },
 
         [typeof(SOldAI)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SOldAI.Group] = new()
                 {
                     // English: What was the {1} of the numbers shown in {0}?
                     // Example: What was the group of the numbers shown in Old AI?
-                    Question = "What was the {1} of the numbers shown in {0}?",
+                    Question = "Какая {1} чисел была показана на {0}?",
                     Arguments = new()
                     {
-                        ["group"] = "group",
-                        ["sub-group"] = "sub-group",
+                        ["group"] = "группа",
+                        ["sub-group"] = "подгруппа",
                     },
                 },
             },
@@ -8300,52 +9801,71 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SOldFogey)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SOldFogey.StartingColor] = new()
                 {
                     // English: What was the initial color of the status light in {0}?
-                    Question = "What was the initial color of the status light in {0}?",
+                    Question = "Какой был исходный цвет индикатора на {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
 
         [typeof(SOneLinksToAll)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SOneLinksToAll.Start] = new()
                 {
                     // English: What was the starting article in {0}?
-                    Question = "What was the starting article in {0}?",
+                    Question = "Какая была начальная статья {0}?",
                 },
                 [SOneLinksToAll.End] = new()
                 {
                     // English: What was the ending article in {0}?
-                    Question = "What was the ending article in {0}?",
+                    Question = "Какая была последняя статья {0}?",
                 },
             },
         },
 
         [typeof(SOnlyConnect)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "\"Лишь Соедините!\"",
             Questions = new()
             {
                 [SOnlyConnect.Hieroglyphs] = new()
                 {
                     // English: Which Egyptian hieroglyph was in the {1} in {0}?
                     // Example: Which Egyptian hieroglyph was in the top left in Only Connect?
-                    Question = "Which Egyptian hieroglyph was in the {1} in {0}?",
+                    Question = "Какой египетский иероглиф был {1} {0}?",
+                    Answers = new()
+                    {
+                        ["Two Reeds"] = "Два тростника",
+                        ["Lion"] = "Лев",
+                        ["Twisted Flax"] = "Скрученный лён",
+                        ["Horned Viper"] = "Рогатая гадюка",
+                        ["Water"] = "Вода",
+                        ["Eye of Horus"] = "Глаз Гора",
+                    },
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top middle"] = "top middle",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom middle"] = "bottom middle",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "слева сверху",
+                        ["top middle"] = "сверху посередине",
+                        ["top right"] = "справа сверху",
+                        ["bottom left"] = "слева снизу",
+                        ["bottom middle"] = "снизу посередине",
+                        ["bottom right"] = "справа снизу",
                     },
                 },
             },
@@ -8353,33 +9873,40 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SOrangeArrows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Оранжевых стрелок",
+            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [SOrangeArrows.Sequences] = new()
                 {
                     // English: What was the {1} arrow on the display of the {2} stage of {0}?
                     // Example: What was the first arrow on the display of the first stage of Orange Arrows?
-                    Question = "What was the {1} arrow on the display of the {2} stage of {0}?",
+                    Question = "Какая была {1}-я стрелка на экране на {2}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Вверх",
+                        ["Right"] = "Вправо",
+                        ["Down"] = "Вниз",
+                        ["Left"] = "Влево",
+                    },
                 },
             },
         },
 
         [typeof(SOrangeCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SOrangeCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Orange Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -8388,64 +9915,90 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SOrderedKeys)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SOrderedKeys.Colors] = new()
                 {
                     // English: What color was this key in the {1} stage of {0}?
                     // Example: What color was this key in the first stage of Ordered Keys?
-                    Question = "What color was this key in the {1} stage of {0}?",
+                    Question = "Какого цвета была эта клавиша на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
                 [SOrderedKeys.Labels] = new()
                 {
                     // English: What was the label of this key in the {1} stage of {0}?
                     // Example: What was the label of this key in the first stage of Ordered Keys?
-                    Question = "What was the label of this key in the {1} stage of {0}?",
+                    Question = "Какая была надпись на этой клавише на {1}-м этапе {0}?",
                 },
                 [SOrderedKeys.LabelColors] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}?
                     // Example: What color was the label of this key in the first stage of Ordered Keys?
-                    Question = "What color was the label of this key in the {1} stage of {0}?",
+                    Question = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
             },
         },
 
         [typeof(SOrderPicking)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SOrderPicking.Order] = new()
                 {
                     // English: What was the order ID in the {1} order of {0}?
                     // Example: What was the order ID in the first order of Order Picking?
-                    Question = "What was the order ID in the {1} order of {0}?",
+                    Question = "Какой был ID у {1}-го заказа {0}?",
                 },
                 [SOrderPicking.Product] = new()
                 {
                     // English: What was the product ID in the {1} order of {0}?
                     // Example: What was the product ID in the first order of Order Picking?
-                    Question = "What was the product ID in the {1} order of {0}?",
+                    Question = "Какой был ID продукта в {1}-м заказе {0}?",
                 },
                 [SOrderPicking.Pallet] = new()
                 {
                     // English: What was the pallet in the {1} order of {0}?
                     // Example: What was the pallet in the first order of Order Picking?
-                    Question = "What was the pallet in the {1} order of {0}?",
+                    Question = "Какой был паллет на {1}-м заказе {0}?",
                 },
             },
         },
 
         [typeof(SOrientationCube)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Ориентации куба",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SOrientationCube.InitialObserverPosition] = new()
                 {
                     // English: What was the observer’s initial position in {0}?
-                    Question = "What was the observer’s initial position in {0}?",
+                    Question = "Какая была начальная позиция у наблюдателя {0}?",
+                    Answers = new()
+                    {
+                        ["front"] = "Спереди",
+                        ["left"] = "Слева",
+                        ["back"] = "Сзади",
+                        ["right"] = "Справа",
+                    },
                 },
             },
         },
@@ -8459,43 +10012,60 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the initial colour of the {1} face in {0}?
                     // Example: What was the initial colour of the right face in Orientation Hypercube?
-                    Question = "What was the initial colour of the {1} face in {0}?",
+                    Question = "Какой был начальный цвет {1} {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "black",
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["blue"] = "blue",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "cyan",
+                        ["white"] = "white",
+                    },
                     Arguments = new()
                     {
-                        ["right"] = "right",
-                        ["left"] = "left",
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
-                        ["back"] = "back",
-                        ["front"] = "front",
-                        ["zag"] = "zag",
-                        ["zig"] = "zig",
+                        ["right"] = "правой грани",
+                        ["left"] = "левой грани",
+                        ["top"] = "верхней грани",
+                        ["bottom"] = "нижней грани",
+                        ["back"] = "задней грани",
+                        ["front"] = "фронтальной грани",
+                        ["zag"] = "заг-грани",
+                        ["zig"] = "зиг-грани",
                     },
                 },
                 [SOrientationHypercube.InitialObserverPosition] = new()
                 {
                     // English: What was the observer’s initial position in {0}?
-                    Question = "What was the observer’s initial position in {0}?",
+                    Question = "Какая была начальная позиция у наблюдателя {0}?",
+                    Answers = new()
+                    {
+                        ["front"] = "Спереди",
+                        ["left"] = "Слева",
+                        ["back"] = "Сзади",
+                        ["right"] = "Справа",
+                    },
                 },
             },
         },
 
         [typeof(SPalindromes)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPalindromes.Numbers] = new()
                 {
                     // English: What was {1}’s {2} digit from the right in {0}?
                     // Example: What was X’s first digit from the right in Palindromes?
-                    Question = "What was {1}’s {2} digit from the right in {0}?",
+                    Question = "Какая была {2}-я цифра справа {1} {0}?",
                     Arguments = new()
                     {
-                        ["X"] = "X",
-                        ["Y"] = "Y",
-                        ["Z"] = "Z",
-                        ["the screen"] = "the screen",
+                        ["X"] = "у X",
+                        ["Y"] = "у Y",
+                        ["Z"] = "у Z",
+                        ["the screen"] = "на экране",
                     },
                 },
             },
@@ -8522,73 +10092,82 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SParity)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SParity.Display] = new()
                 {
                     // English: What was shown on the display on {0}?
-                    Question = "What was shown on the display on {0}?",
+                    Question = "Что было показано на экране {0}?",
                 },
             },
         },
 
         [typeof(SPartialDerivatives)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SPartialDerivatives.LedColors] = new()
                 {
                     // English: What was the LED color in the {1} stage of {0}?
                     // Example: What was the LED color in the first stage of Partial Derivatives?
-                    Question = "What was the LED color in the {1} stage of {0}?",
+                    Question = "Какой был цвет светодиода на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["blue"] = "синий",
+                        ["green"] = "зелёный",
+                        ["orange"] = "оранжевый",
+                        ["purple"] = "фиолетовый",
+                        ["red"] = "красный",
+                        ["yellow"] = "жёлтый",
+                    },
                 },
                 [SPartialDerivatives.Terms] = new()
                 {
                     // English: What was the {1} term in {0}?
                     // Example: What was the first term in Partial Derivatives?
-                    Question = "What was the {1} term in {0}?",
+                    Question = "Какой был {1}-й член {0}?",
                 },
             },
         },
 
         [typeof(SPassportControl)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SPassportControl.Passenger] = new()
                 {
                     // English: What was the passport expiration year of the {1} inspected passenger in {0}?
                     // Example: What was the passport expiration year of the first inspected passenger in Passport Control?
-                    Question = "What was the passport expiration year of the {1} inspected passenger in {0}?",
+                    Question = "Какой был год истечения паспорта у {1}-го пассажира на {0}?",
                 },
             },
         },
 
         [typeof(SPasswordDestroyer)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.AccusativeMascNeuter,
             Questions = new()
             {
                 [SPasswordDestroyer.TwoFactorV2] = new()
                 {
                     // English: What was the 2FAST™ value when you solved {0}?
-                    Question = "What was the 2FAST™ value when you solved {0}?",
+                    Question = "Чему был равен 2FAST™ когда вы обезвредили {0}?",
                 },
             },
         },
 
         [typeof(SPatternCube)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Развёртке куба",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SPatternCube.HighlightedSymbol] = new()
                 {
                     // English: Which symbol was highlighted in {0}?
-                    Question = "Which symbol was highlighted in {0}?",
+                    Question = "Какой символ был подсвечен {0}?",
                 },
             },
         },
@@ -8596,12 +10175,23 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SPentabutton)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SPentabutton.BaseColor] = new()
                 {
                     // English: What was the base colour in {0}?
-                    Question = "What was the base colour in {0}?",
+                    Question = "Какой был цвет у основания {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетовый",
+                        ["White"] = "Белый",
+                    },
                 },
             },
             Discriminators = new()
@@ -8617,28 +10207,36 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SPeriodicWords)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPeriodicWords.DisplayedWords] = new()
                 {
                     // English: What word was on the display in the {1} stage of {0}?
                     // Example: What word was on the display in the first stage of Periodic Words?
-                    Question = "What word was on the display in the {1} stage of {0}?",
+                    Question = "Какое слово было на экране в {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SPerspectivePegs)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Взгляде на колышках",
+            Conjugation = Conjugation.во_PrepositiveMascNeuter,
             Questions = new()
             {
                 [SPerspectivePegs.ColorSequence] = new()
                 {
                     // English: What was the {1} color in the initial sequence in {0}?
                     // Example: What was the first color in the initial sequence in Perspective Pegs?
-                    Question = "What was the {1} color in the initial sequence in {0}?",
+                    Question = "Какой цвет был {1}-м в начальной последовательности {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["yellow"] = "Жёлтый",
+                        ["green"] = "Зелёный",
+                        ["blue"] = "Синий",
+                        ["purple"] = "Фиолетовый",
+                    },
                 },
             },
         },
@@ -8652,66 +10250,91 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} button press in {0}?
                     // Example: What was the first button press in Phosphorescence?
-                    Question = "What was the {1} button press in {0}?",
+                    Question = "Какая была {1}-я нажатая кнопка {0}?",
+                    Answers = new()
+                    {
+                        ["Azure"] = "Azure",
+                        ["Blue"] = "Blue",
+                        ["Crimson"] = "Crimson",
+                        ["Diamond"] = "Diamond",
+                        ["Emerald"] = "Emerald",
+                        ["Fuchsia"] = "Fuchsia",
+                        ["Green"] = "Green",
+                        ["Hazel"] = "Hazel",
+                        ["Ice"] = "Ice",
+                        ["Jade"] = "Jade",
+                        ["Kiwi"] = "Kiwi",
+                        ["Lime"] = "Lime",
+                        ["Magenta"] = "Magenta",
+                        ["Navy"] = "Navy",
+                        ["Orange"] = "Orange",
+                        ["Purple"] = "Purple",
+                        ["Quartz"] = "Quartz",
+                        ["Red"] = "Red",
+                        ["Salmon"] = "Salmon",
+                        ["Tan"] = "Tan",
+                        ["Ube"] = "Ube",
+                        ["Vibe"] = "Vibe",
+                        ["White"] = "White",
+                        ["Xotic"] = "Xotic",
+                        ["Yellow"] = "Yellow",
+                        ["Zen"] = "Zen",
+                    },
                 },
                 [SPhosphorescence.Offset] = new()
                 {
                     // English: What was the offset in {0}?
-                    Question = "What was the offset in {0}?",
+                    Question = "Какое было смещение {0}?",
                 },
             },
         },
 
         [typeof(SPickupIdentification)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPickupIdentification.Item] = new()
                 {
                     // English: What pickup was shown in the {1} stage of {0}?
                     // Example: What pickup was shown in the first stage of Pickup Identification?
-                    Question = "What pickup was shown in the {1} stage of {0}?",
+                    Question = "Какой предмет был показан на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SPictionary)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPictionary.Code] = new()
                 {
                     // English: What was the code in {0}?
-                    Question = "What was the code in {0}?",
+                    Question = "Какой был код {0}?",
                 },
             },
         },
 
         [typeof(SPie)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPie.Digits] = new()
                 {
                     // English: What was the {1} digit of the displayed number in {0}?
                     // Example: What was the first digit of the displayed number in Pie?
-                    Question = "What was the {1} digit of the displayed number in {0}?",
+                    Question = "Какая была {1}-я цифра числа, показанного {0}?",
                 },
             },
         },
 
         [typeof(SPieFlash)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPieFlash.Digits] = new()
                 {
                     // English: What number was not displayed in {0}?
-                    Question = "What number was not displayed in {0}?",
+                    Question = "Какое число не было показано {0}?",
                 },
             },
         },
@@ -8739,19 +10362,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SPinkButton)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SPinkButton.Words] = new()
                 {
                     // English: What was the {1} word in {0}?
                     // Example: What was the first word in Pink Button?
-                    Question = "What was the {1} word in {0}?",
+                    Question = "Какое было {1}-е слово {0}?",
                 },
                 [SPinkButton.Colors] = new()
                 {
                     // English: What was the {1} color in {0}?
                     // Example: What was the first color in Pink Button?
-                    Question = "What was the {1} color in {0}?",
+                    Question = "Какой был {1}-й цвет на {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "black",
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["blue"] = "blue",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "cyan",
+                        ["white"] = "white",
+                    },
                 },
             },
         },
@@ -8776,54 +10411,51 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SPixelCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPixelCipher.Keyword] = new()
                 {
                     // English: What was the keyword in {0}?
-                    Question = "What was the keyword in {0}?",
+                    Question = "Какое было ключевое слово {0}?",
                 },
             },
         },
 
         [typeof(SPlaceholderTalk)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPlaceholderTalk.FirstPhrase] = new()
                 {
                     // English: What was the first half of the first phrase in {0}?
-                    Question = "What was the first half of the first phrase in {0}?",
+                    Question = "Какая была первая половина первой фразы {0}?",
                 },
                 [SPlaceholderTalk.Ordinal] = new()
                 {
                     // English: What was the last half of the first phrase in {0}?
-                    Question = "What was the last half of the first phrase in {0}?",
+                    Question = "Какая была вторая половина первой фразы {0}?",
                 },
             },
         },
 
         [typeof(SPlacementRoulette)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPlacementRoulette.Char] = new()
                 {
                     // English: What was the character listed on the information display in {0}?
-                    Question = "What was the character listed on the information display in {0}?",
+                    Question = "Какой персонаж присуствовал на экране {0}?",
                 },
                 [SPlacementRoulette.Track] = new()
                 {
                     // English: What was the track listed on the information display in {0}?
-                    Question = "What was the track listed on the information display in {0}?",
+                    Question = "Какая трасса присутствовала на экране {0}?",
                 },
                 [SPlacementRoulette.Vehicle] = new()
                 {
                     // English: What was the vehicle listed on the information display in {0}?
-                    Question = "What was the vehicle listed on the information display in {0}?",
+                    Question = "Какая машина присутствовала на экране {0}?",
                 },
             },
         },
@@ -8831,18 +10463,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SPlanets)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SPlanets.Strips] = new()
                 {
                     // English: What was the color of the {1} strip (from the top) in {0}?
                     // Example: What was the color of the first strip (from the top) in Planets?
-                    Question = "What was the color of the {1} strip (from the top) in {0}?",
+                    Question = "Какой был цвет у {1}-й полоски (начиная сверху) на {0}?",
+                    Answers = new()
+                    {
+                        ["Aqua"] = "Aqua",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Lime"] = "Lime",
+                        ["Orange"] = "Orange",
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                        ["Off"] = "Off",
+                    },
                 },
                 [SPlanets.Planet] = new()
                 {
                     // English: What was the planet shown in {0}?
-                    Question = "What was the planet shown in {0}?",
+                    Question = "Какая планета была показана на {0}?",
                 },
             },
         },
@@ -8869,41 +10514,49 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SPoetry)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Поэзии",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SPoetry.Answers] = new()
                 {
                     // English: What was the {1} correct answer you pressed in {0}?
                     // Example: What was the first correct answer you pressed in Poetry?
-                    Question = "What was the {1} correct answer you pressed in {0}?",
+                    Question = "Какое было {1}-е правильное слово, которое вы нажали {0}?",
                 },
             },
         },
 
         [typeof(SPointlessMachines)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPointlessMachines.Flashes] = new()
                 {
                     // English: What color flashed {1} in {0}?
                     // Example: What color flashed first in Pointless Machines?
-                    Question = "What color flashed {1} in {0}?",
+                    Question = "Какого цвета была {1}-я вспышка {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "Белый",
+                        ["Purple"] = "Фиолетовый",
+                        ["Red"] = "Красный",
+                        ["Blue"] = "Синий",
+                        ["Yellow"] = "Жёлтый",
+                    },
                 },
             },
         },
 
         [typeof(SPolygons)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SPolygons.Polygon] = new()
                 {
                     // English: Which polygon was present on {0}?
-                    Question = "Which polygon was present on {0}?",
+                    Question = "Какой многоугольник присутствовал на {0}?",
                 },
             },
         },
@@ -8916,7 +10569,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SPolyhedralMaze.StartPosition] = new()
                 {
                     // English: What was the starting position in {0}?
-                    Question = "What was the starting position in {0}?",
+                    Question = "Какая была начальная позиция {0}?",
                 },
             },
             Discriminators = new()
@@ -8932,13 +10585,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SPrimeEncryption)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SPrimeEncryption.DisplayedValue] = new()
                 {
                     // English: What was the number shown in {0}?
-                    Question = "What was the number shown in {0}?",
+                    Question = "Какое число было показано на {0}?",
                 },
             },
         },
@@ -8951,34 +10604,35 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SPrisonBreak.Prisoner] = new()
                 {
                     // English: Which cell did the prisoner start in in {0}?
-                    Question = "Which cell did the prisoner start in in {0}?",
+                    Question = "Where did the prisoner start in {0}?",
                 },
                 [SPrisonBreak.Defuser] = new()
                 {
                     // English: Where did you start in {0}?
-                    Question = "Where did you start in {0}?",
+                    Question = "Где вы начали {0}?",
                 },
             },
         },
 
         [typeof(SProbing)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Прозвонке",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SProbing.Frequencies] = new()
                 {
                     // English: What was the missing frequency in the {1} wire in {0}?
                     // Example: What was the missing frequency in the red-white wire in Probing?
-                    Question = "What was the missing frequency in the {1} wire in {0}?",
+                    Question = "Какая частота отсутствовала в {1} проводе {0}?",
                     Arguments = new()
                     {
-                        ["red-white"] = "red-white",
-                        ["yellow-black"] = "yellow-black",
-                        ["green"] = "green",
-                        ["gray"] = "gray",
-                        ["yellow-red"] = "yellow-red",
-                        ["red-blue"] = "red-blue",
+                        ["red-white"] = "красно-белом",
+                        ["yellow-black"] = "жёлто-чёрном",
+                        ["green"] = "зелёном",
+                        ["gray"] = "сером",
+                        ["yellow-red"] = "красно-жёлтом",
+                        ["red-blue"] = "красно-синем",
                     },
                 },
             },
@@ -8986,53 +10640,52 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SProceduralMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SProceduralMaze.InitialSeed] = new()
                 {
                     // English: What was the initial seed in {0}?
-                    Question = "What was the initial seed in {0}?",
+                    Question = "Какое было изначальное зерно {0}?",
                 },
             },
         },
 
         [typeof(SPunctuationMarks)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPunctuationMarks.DisplayedNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
-                    Question = "What was the displayed number in {0}?",
+                    Question = "Какое было показанное число в {0}?",
                 },
             },
         },
 
         [typeof(SPurpleArrows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Фиолетовых стрелках",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SPurpleArrows.Finish] = new()
                 {
                     // English: What was the target word on {0}?
-                    Question = "What was the target word on {0}?",
+                    Question = "Какое было целевое слово {0}?",
                 },
             },
         },
 
         [typeof(SPurpleButton)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SPurpleButton.Numbers] = new()
                 {
                     // English: What was the {1} number in the cyclic sequence on {0}?
                     // Example: What was the first number in the cyclic sequence on Purple Button?
-                    Question = "What was the {1} number in the cyclic sequence on {0}?",
+                    Question = "Какое было {1}-е число в зацикленной последовательности {0}?",
                 },
             },
         },
@@ -9046,19 +10699,30 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} puzzle number in {0}?
                     // Example: What was the first puzzle number in Puzzle Identification?
-                    Question = "What was the {1} puzzle number in {0}?",
+                    Question = "Какое было {1}-е число пазла {0}?",
                 },
                 [SPuzzleIdentification.Game] = new()
                 {
                     // English: What game was the {1} puzzle in {0} from?
                     // Example: What game was the first puzzle in Puzzle Identification from?
-                    Question = "What game was the {1} puzzle in {0} from?",
+                    Question = "Из какой игры был {1}-й пазл {0}?",
+                    Answers = new()
+                    {
+                        ["Professor Layton and the Curious Village"] = "Professor Layton and the Curious Village",
+                        ["Professor Layton and Pandora's Box"] = "Professor Layton and Pandora's Box",
+                        ["Professor Layton and the Lost Future"] = "Professor Layton and the Lost Future",
+                        ["Professor Layton and the Spectre's Call"] = "Professor Layton and the Spectre's Call",
+                        ["Professor Layton and the Miracle Mask"] = "Professor Layton and the Miracle Mask",
+                        ["Professor Layton and the Azran Legacy"] = "Professor Layton and the Azran Legacy",
+                        ["Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy"] = "Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy",
+                        ["Professor Layton vs. Phoenix Wright: Ace Attorney"] = "Professor Layton vs. Phoenix Wright: Ace Attorney",
+                    },
                 },
                 [SPuzzleIdentification.Name] = new()
                 {
                     // English: What was the {1} puzzle in {0}?
                     // Example: What was the first puzzle in Puzzle Identification?
-                    Question = "What was the {1} puzzle in {0}?",
+                    Question = "Какой был {1}-й пазл {0}?",
                 },
             },
         },
@@ -9089,14 +10753,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SQnA)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SQnA.Questions] = new()
                 {
                     // English: What was the {1} question asked in {0}?
                     // Example: What was the first question asked in Q & A?
-                    Question = "What was the {1} question asked in {0}?",
+                    Question = "Какой был {1}-й вопрос {0}?",
                 },
             },
         },
@@ -9117,53 +10780,50 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SQuantumPasswords)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SQuantumPasswords.Word] = new()
                 {
                     // English: Which word was used in {0}?
-                    Question = "Which word was used in {0}?",
+                    Question = "Какое слово было использовано {0}?",
                 },
             },
         },
 
         [typeof(SQuantumTernaryConverter)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SQuantumTernaryConverter.Number] = new()
                 {
                     // English: Which number was shown in {0}?
-                    Question = "Which number was shown in {0}?",
+                    Question = "Какое число было показано {0}?",
                 },
             },
         },
 
         [typeof(SQuaver)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SQuaver.Arrows] = new()
                 {
                     // English: What was the {1} sequence’s answer in {0}?
                     // Example: What was the first sequence’s answer in Quaver?
-                    Question = "What was the {1} sequence’s answer in {0}?",
+                    Question = "Какой был {1}-й ответ последовательности {0}?",
                 },
             },
         },
 
         [typeof(SQuestionMark)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SQuestionMark.FlashedSymbols] = new()
                 {
                     // English: Which of these symbols was part of the flashing sequence in {0}?
-                    Question = "Which of these symbols was part of the flashing sequence in {0}?",
+                    Question = "Какой из этих символов был частью мигающей последовательности {0}?",
                 },
             },
         },
@@ -9177,13 +10837,27 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} color in the primary sequence in {0}?
                     // Example: What was the first color in the primary sequence in Quick Arithmetic?
-                    Question = "What was the {1} color in the primary sequence in {0}?",
+                    Question = "Какой был {1}-й цвет в основной последовательности {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["blue"] = "Синий",
+                        ["green"] = "Зелёный",
+                        ["yellow"] = "Жёлтый",
+                        ["white"] = "Белый",
+                        ["black"] = "Чёрный",
+                        ["orange"] = "Оранжевый",
+                        ["pink"] = "Розовый",
+                        ["purple"] = "Фиолетовый",
+                        ["cyan"] = "Голубой",
+                        ["brown"] = "Коричневый",
+                    },
                 },
                 [SQuickArithmetic.PrimSecDigits] = new()
                 {
                     // English: What was the {1} digit in the {2} sequence in {0}?
                     // Example: What was the first digit in the primary sequence in Quick Arithmetic?
-                    Question = "What was the {1} digit in the {2} sequence in {0}?",
+                    Question = "Какое было {1}-е число в {2} последовательности {0}?",
                     Arguments = new()
                     {
                         ["primary"] = "primary",
@@ -9195,33 +10869,40 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SQuintuples)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SQuintuples.Numbers] = new()
                 {
                     // English: What was the {1} digit in the {2} slot in {0}?
                     // Example: What was the first digit in the first slot in Quintuples?
-                    Question = "What was the {1} digit in the {2} slot in {0}?",
+                    Question = "Какая была {1}-я цифра в {2}-м слоте {0}?",
                 },
                 [SQuintuples.Colors] = new()
                 {
                     // English: What color was the {1} digit in the {2} slot in {0}?
                     // Example: What color was the first digit in the first slot in Quintuples?
-                    Question = "What color was the {1} digit in the {2} slot in {0}?",
+                    Question = "Какого цвета была {1}-я цифра в {2}-м слоте {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["blue"] = "Синий",
+                        ["orange"] = "Оранжевый",
+                        ["green"] = "Зелёный",
+                        ["pink"] = "Розовый",
+                    },
                 },
                 [SQuintuples.ColorCounts] = new()
                 {
                     // English: How many numbers were {1} in {0}?
                     // Example: How many numbers were red in Quintuples?
-                    Question = "How many numbers were {1} in {0}?",
+                    Question = "Скольк было {1} чисел {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["blue"] = "blue",
-                        ["orange"] = "orange",
-                        ["green"] = "green",
-                        ["pink"] = "pink",
+                        ["red"] = "красных",
+                        ["blue"] = "синих",
+                        ["orange"] = "оранжевых",
+                        ["green"] = "зелёных",
+                        ["pink"] = "розовых",
                     },
                 },
             },
@@ -9229,77 +10910,75 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SQuiplash)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SQuiplash.Number] = new()
                 {
                     // English: What number was shown on {0}?
-                    Question = "What number was shown on {0}?",
+                    Question = "Какое число было показано на {0}?",
                 },
             },
         },
 
         [typeof(SQuizBuzz)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SQuizBuzz.StartingNumber] = new()
                 {
                     // English: What was the number initially on the display in {0}?
-                    Question = "What was the number initially on the display in {0}?",
+                    Question = "Какое было исходное число на экране {0}?",
                 },
             },
         },
 
         [typeof(SQwirkle)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SQwirkle.TilesPlaced] = new()
                 {
                     // English: What tile did you place {1} in {0}?
                     // Example: What tile did you place first in Qwirkle?
-                    Question = "What tile did you place {1} in {0}?",
+                    Question = "Какую плитку вы положили {1}-й {0}?",
                 },
             },
         },
 
         [typeof(SRaidingTemples)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRaidingTemples.StartingCommonPool] = new()
                 {
                     // English: How many jewels were in the starting common pool in {0}?
-                    Question = "How many jewels were in the starting common pool in {0}?",
+                    Question = "Сколько драгоценностей было в начальном общем схроне {0}?",
                 },
             },
         },
 
         [typeof(SRailwayCargoLoading)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Загрузке ЖД состава",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SRailwayCargoLoading.Cars] = new()
                 {
                     // English: What was the {1} car in {0}?
                     // Example: What was the first car in Railway Cargo Loading?
-                    Question = "What was the {1} car in {0}?",
+                    Question = "Какой вагон был присоединён {1}-м {0}?",
                 },
                 [SRailwayCargoLoading.FreightTableRules] = new()
                 {
                     // English: Which freight table rule {1} in {0}?
                     // Example: Which freight table rule was met in Railway Cargo Loading?
-                    Question = "Which freight table rule {1} in {0}?",
+                    Question = "Какое правило из таблицы грузовых вагонов {1} {0}?",
                     Arguments = new()
                     {
-                        ["was met"] = "was met",
-                        ["wasn’t met"] = "wasn’t met",
+                        ["was met"] = "было применено",
+                        ["wasn’t met"] = "не было применено",
                     },
                 },
             },
@@ -9307,90 +10986,98 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SRainbowArrows)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRainbowArrows.Number] = new()
                 {
                     // English: What was the displayed number in {0}?
-                    Question = "What was the displayed number in {0}?",
+                    Question = "Какое число было показано {0}?",
                 },
             },
         },
 
         [typeof(SRecoloredSwitches)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Перекрашенных переключателей",
+            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [SRecoloredSwitches.LedColors] = new()
                 {
                     // English: What was the color of the {1} LED in {0}?
                     // Example: What was the color of the first LED in Recolored Switches?
-                    Question = "What was the color of the {1} LED in {0}?",
+                    Question = "Какой был цвет {1}-го светодиода {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["green"] = "Зелёный",
+                        ["blue"] = "Синий",
+                        ["cyan"] = "Голубой",
+                        ["orange"] = "Оранжевый",
+                        ["purple"] = "Фиолетовый",
+                        ["white"] = "Белый",
+                    },
                 },
             },
         },
 
         [typeof(SRecursivePassword)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRecursivePassword.NonPasswordWords] = new()
                 {
                     // English: Which of these words appeared, but was not the password, in {0}?
-                    Question = "Which of these words appeared, but was not the password, in {0}?",
+                    Question = "Какое из этих слов присутствовало, но не являлось верным ответом {0}?",
                 },
                 [SRecursivePassword.Password] = new()
                 {
                     // English: What was the password in {0}?
-                    Question = "What was the password in {0}?",
+                    Question = "Какой пароль был верным ответом {0}?",
                 },
             },
         },
 
         [typeof(SRedArrows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Красных стрелках",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SRedArrows.StartNumber] = new()
                 {
                     // English: What was the starting number in {0}?
-                    Question = "What was the starting number in {0}?",
+                    Question = "Какое было начальное число {0}?",
                 },
             },
         },
 
         [typeof(SRedButtont)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRedButtont.Word] = new()
                 {
                     // English: What was the word before “SUBMIT” in {0}?
-                    Question = "What was the word before “SUBMIT” in {0}?",
+                    Question = "Какое слово было перед 'SUBMIT' {0}?",
                 },
             },
         },
 
         [typeof(SRedCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRedCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Red Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -9398,13 +11085,12 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SRedHerring)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRedHerring.FirstFlash] = new()
                 {
                     // English: What was the first color flashed by {0}?
-                    Question = "What was the first color flashed by {0}?",
+                    Question = "Какой был первый мигающий цвет {0}?",
                 },
             },
         },
@@ -9412,32 +11098,55 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SReformedRoleReversal)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.NominativeMasculine,
             Questions = new()
             {
                 [SReformedRoleReversal.Condition] = new()
                 {
                     // English: Which condition was the solving condition in {0}?
-                    Question = "Which condition was the solving condition in {0}?",
+                    Question = "На каком условии был обезврежен {0}?",
+                    Answers = new()
+                    {
+                        ["second"] = "2-м",
+                        ["third"] = "3-м",
+                        ["4th"] = "4-м",
+                        ["5th"] = "5-м",
+                        ["6th"] = "6-м",
+                        ["7th"] = "7-м",
+                        ["8th"] = "8-м",
+                    },
                 },
                 [SReformedRoleReversal.Wire] = new()
                 {
                     // English: What color was the {1} wire in {0}?
                     // Example: What color was the first wire in Reformed Role Reversal?
-                    Question = "What color was the {1} wire in {0}?",
+                    Question = "Какого цвета был {1}-й провод {0}?",
+                    Answers = new()
+                    {
+                        ["Navy"] = "Navy",
+                        ["Lapis"] = "Lapis",
+                        ["Blue"] = "Blue",
+                        ["Sky"] = "Sky",
+                        ["Teal"] = "Teal",
+                        ["Plum"] = "Plum",
+                        ["Violet"] = "Violet",
+                        ["Purple"] = "Purple",
+                        ["Magenta"] = "Magenta",
+                        ["Lavender"] = "Lavender",
+                    },
                 },
             },
         },
 
         [typeof(SReGretBFiltering)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SReGretBFiltering.Operator] = new()
                 {
                     // English: Which calculation was used for the {1} stage of {0}?
                     // Example: Which calculation was used for the first stage of ReGret-B Filtering?
-                    Question = "Which calculation was used for the {1} stage of {0}?",
+                    Question = "Какой оператор был применён на {1}-м этапе {0}?",
                 },
             },
         },
@@ -9450,12 +11159,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SRegularCrazyTalk.Digit] = new()
                 {
                     // English: What was the displayed digit that corresponded to the solution phrase in {0}?
-                    Question = "What was the displayed digit that corresponded to the solution phrase in {0}?",
+                    Question = "Какая показанная цифра соответствовала решению {0}?",
                 },
                 [SRegularCrazyTalk.Modifier] = new()
                 {
                     // English: What was the embellishment of the solution phrase in {0}?
-                    Question = "What was the embellishment of the solution phrase in {0}?",
+                    Question = "Какое было дополнение у фразы решения {0}?",
+                    Answers = new()
+                    {
+                        ["[PHRASE]"] = "[PHRASE]",
+                        ["It says: [PHRASE]"] = "It says: [PHRASE]",
+                        ["Quote: [PHRASE] End quote"] = "Quote: [PHRASE] End quote",
+                        ["“[PHRASE]”"] = "“[PHRASE]”",
+                        ["It says: “[PHRASE]”"] = "It says: “[PHRASE]”",
+                        ["“It says: [PHRASE]”"] = "“It says: [PHRASE]”",
+                    },
                 },
             },
         },
@@ -9470,18 +11188,36 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was this key in the {1} stage of {0}?
                     // Example: What color was this key in the first stage of Reordered Keys?
                     Question = "What color was this key in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SReorderedKeys.LabelColor] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}?
                     // Example: What color was the label of this key in the first stage of Reordered Keys?
                     Question = "What color was the label of this key in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SReorderedKeys.Label] = new()
                 {
                     // English: What was the label of this key in the {1} stage of {0}?
                     // Example: What was the label of this key in the first stage of Reordered Keys?
-                    Question = "What was the label of this key in the {1} stage of {0}?",
+                    Question = "What color was the label of this key in the {1} stage of {0}?",
                 },
                 [SReorderedKeys.Pivot] = new()
                 {
@@ -9493,78 +11229,76 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SRetirement)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRetirement.Houses] = new()
                 {
                     // English: Which one of these houses was on offer, but not chosen by Bob in {0}?
-                    Question = "Which one of these houses was on offer, but not chosen by Bob in {0}?",
+                    Question = "Какой из этих домов предлагался, но не был выбран Бобом {0}?",
                 },
             },
         },
 
         [typeof(SReverseMorse)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SReverseMorse.Characters] = new()
                 {
                     // English: What was the {1} character in the {2} message of {0}?
                     // Example: What was the first character in the first message of Reverse Morse?
-                    Question = "What was the {1} character in the {2} message of {0}?",
+                    Question = "Какой был {1}-й символ в {2}-м сообщении {0}?",
                 },
             },
         },
 
         [typeof(SReversePolishNotation)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SReversePolishNotation.Character] = new()
                 {
                     // English: What character was used in the {1} round of {0}?
                     // Example: What character was used in the first round of Reverse Polish Notation?
-                    Question = "What character was used in the {1} round of {0}?",
+                    Question = "Какой символ был использован на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SRGBMaze)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SRGBMaze.Keys] = new()
                 {
                     // English: Where was the {1} key in {0}?
                     // Example: Where was the red key in RGB Maze?
-                    Question = "Where was the {1} key in {0}?",
+                    Question = "Где был {1} ключ {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красный",
+                        ["green"] = "зелёный",
+                        ["blue"] = "синий",
                     },
                 },
                 [SRGBMaze.Number] = new()
                 {
                     // English: Which maze number was the {1} maze in {0}?
                     // Example: Which maze number was the red maze in RGB Maze?
-                    Question = "Which maze number was the {1} maze in {0}?",
+                    Question = "Какой {1} лабиринт был {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красный",
+                        ["green"] = "зелёный",
+                        ["blue"] = "синий",
                     },
                 },
                 [SRGBMaze.Exit] = new()
                 {
                     // English: What was the exit coordinate in {0}?
-                    Question = "What was the exit coordinate in {0}?",
+                    Question = "Какая была координата выхода из {0}?",
                 },
             },
         },
@@ -9578,20 +11312,38 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the color of the {1} LED in {0}?
                     // Example: What was the color of the first LED in RGB Sequences?
-                    Question = "What was the color of the {1} LED in {0}?",
+                    Question = "Какой был цвет {1}-го светодиода {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
 
         [typeof(SRhythms)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Ритмах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SRhythms.Color] = new()
                 {
                     // English: What was the color in {0}?
-                    Question = "What was the color in {0}?",
+                    Question = "Какого цвета был светодиод {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Синего",
+                        ["Red"] = "Красного",
+                        ["Green"] = "Зелёного",
+                        ["Yellow"] = "Жёлтого",
+                    },
                 },
             },
         },
@@ -9611,72 +11363,68 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SRoboScanner)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRoboScanner.EmptyCell] = new()
                 {
                     // English: Where was the empty cell in {0}?
-                    Question = "Where was the empty cell in {0}?",
+                    Question = "Где была пустая ячейка {0}?",
                 },
             },
         },
 
         [typeof(SRobotProgramming)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRobotProgramming.Color] = new()
                 {
                     // English: What was the color of the {1} robot in {0}?
                     // Example: What was the color of the first robot in Robot Programming?
-                    Question = "What was the color of the {1} robot in {0}?",
+                    Question = "Какого цвета был {1}-й робот {0}?",
                 },
                 [SRobotProgramming.Shape] = new()
                 {
                     // English: What was the shape of the {1} robot in {0}?
                     // Example: What was the shape of the first robot in Robot Programming?
-                    Question = "What was the shape of the {1} robot in {0}?",
+                    Question = "Какой формы был {1}-й робот {0}?",
                 },
             },
         },
 
         [typeof(SRoger)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRoger.Seed] = new()
                 {
                     // English: What four-digit number was given in {0}?
-                    Question = "What four-digit number was given in {0}?",
+                    Question = "Какое четырёхзначное число было дано {0}?",
                 },
             },
         },
 
         [typeof(SRoleReversal)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRoleReversal.Wires] = new()
                 {
                     // English: How many {1} wires were there in {0}?
                     // Example: How many warm-colored wires were there in Role Reversal?
-                    Question = "How many {1} wires were there in {0}?",
+                    Question = "Сколько проводов, окрашенных в {1} было {0}?",
                     Arguments = new()
                     {
-                        ["warm-colored"] = "warm-colored",
-                        ["cold-colored"] = "cold-colored",
-                        ["primary-colored"] = "primary-colored",
-                        ["secondary-colored"] = "secondary-colored",
+                        ["warm-colored"] = "тёплые цвета",
+                        ["cold-colored"] = "холодные цвета",
+                        ["primary-colored"] = "основные цвета",
+                        ["secondary-colored"] = "вторичные цвета",
                     },
                 },
                 [SRoleReversal.Number] = new()
                 {
                     // English: What was the number corresponding to the correct condition in {0}?
-                    Question = "What was the number corresponding to the correct condition in {0}?",
+                    Question = "Какое был номер у верного условия {0}?",
                 },
             },
         },
@@ -9731,44 +11479,42 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SRule)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRule.Number] = new()
                 {
                     // English: What was the rule number in {0}?
-                    Question = "What was the rule number in {0}?",
+                    Question = "Какой был номер правила {0}?",
                 },
             },
         },
 
         [typeof(SRuleOfThree)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRuleOfThree.Coordinates] = new()
                 {
                     // English: What was the {1} coordinate of the {2} vertex in {0}?
                     // Example: What was the X coordinate of the red vertex in Rule of Three?
-                    Question = "What was the {1} coordinate of the {2} vertex in {0}?",
+                    Question = "Какая была {1} координата у {2} оси {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["blue"] = "blue",
+                        ["red"] = "красной",
+                        ["yellow"] = "жёлтой",
+                        ["blue"] = "синей",
                     },
                 },
                 [SRuleOfThree.Cycles] = new()
                 {
                     // English: What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?
                     // Example: What was the position of the red sphere on the X axis in the first cycle in Rule of Three?
-                    Question = "What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?",
+                    Question = "Где находилась {1} сфера на {2} оси в {3}-м цикле {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["blue"] = "blue",
+                        ["red"] = "красная",
+                        ["yellow"] = "жёлтая",
+                        ["blue"] = "синяя",
                     },
                 },
             },
@@ -9783,59 +11529,75 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the digit displayed on the {1} diamond in {0}?
                     // Example: What was the digit displayed on the red diamond in Safety Square?
-                    Question = "What was the digit displayed on the {1} diamond in {0}?",
+                    Question = "Какая цифра была показана на {1} ромбе {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["blue"] = "blue",
+                        ["red"] = "красном",
+                        ["yellow"] = "жёлтом",
+                        ["blue"] = "синем",
                     },
                 },
                 [SSafetySquare.SpecialRule] = new()
                 {
                     // English: What was the special rule displayed on the white diamond in {0}?
-                    Question = "What was the special rule displayed on the white diamond in {0}?",
+                    Question = "Какое правило было показано на белом ромбе {0}?",
+                    Answers = new()
+                    {
+                        ["No special rule"] = "No special rule",
+                        ["Reacts with water"] = "Reacts with water",
+                        ["Simple asphyxiant"] = "Simple asphyxiant",
+                        ["Oxidizer"] = "Oxidizer",
+                    },
                 },
             },
         },
 
         [typeof(SSamsung)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSamsung.AppPositions] = new()
                 {
                     // English: Where was {1} in {0}?
                     // Example: Where was Duolingo in Samsung?
-                    Question = "Where was {1} in {0}?",
+                    Question = "Где было приложение {1} {0}?",
+                    Answers = new()
+                    {
+                        ["TL"] = "Сверху слева",
+                        ["TM"] = "Сверху посередине",
+                        ["TR"] = "Сверху справа",
+                        ["ML"] = "Посередине слева",
+                        ["MM"] = "В центре",
+                        ["MR"] = "Посередине справа",
+                        ["BL"] = "Снизу слева",
+                        ["BM"] = "Снизу посередине",
+                        ["BR"] = "Снизу справа",
+                    },
                 },
             },
         },
 
         [typeof(SSaturn)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSaturn.Goal] = new()
                 {
                     // English: Where was the goal in {0}?
-                    Question = "Where was the goal in {0}?",
+                    Question = "Где была цель {0}?",
                 },
             },
         },
 
         [typeof(SSbemailSongs)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSbemailSongs.Songs] = new()
                 {
                     // English: What was the displayed song for stage {1} (hexadecimal) of {0}?
                     // Example: What was the displayed song for stage 01 (hexadecimal) of Sbemail Songs?
-                    Question = "What was the displayed song for stage {1} (hexadecimal) of {0}?",
+                    Question = "Какая песня была показана на этапе {1} (16-ричное число) {0}?",
                 },
             },
             Discriminators = new()
@@ -9844,31 +11606,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)
                     // Example: the Sbemail Songs which displayed ‘Oh, who is the guy that…’ in stage 01 (hexadecimal)
-                    Discriminator = "the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)",
+                    Discriminator = "в Sbemail Songs, где на этапе {1} (16-ричное число) была показана песня {0}",
                 },
             },
         },
 
         [typeof(SScavengerHunt)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SScavengerHunt.KeySquare] = new()
                 {
                     // English: Which tile was correctly submitted in the first stage of {0}?
-                    Question = "Which tile was correctly submitted in the first stage of {0}?",
+                    Question = "Какая плитка была верным ответом на первом этапе {0}?",
                 },
                 [SScavengerHunt.ColoredTiles] = new()
                 {
                     // English: Which of these tiles was {1} in the first stage of {0}?
                     // Example: Which of these tiles was red in the first stage of Scavenger Hunt?
-                    Question = "Which of these tiles was {1} in the first stage of {0}?",
+                    Question = "Какая из этих плиток была {1} на первом этапе {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красной",
+                        ["green"] = "зелёной",
+                        ["blue"] = "синей",
                     },
                 },
             },
@@ -9876,70 +11638,74 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSchlagDenBomb)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSchlagDenBomb.ContestantName] = new()
                 {
                     // English: What was the contestant’s name in {0}?
-                    Question = "What was the contestant’s name in {0}?",
+                    Question = "Какое было имя у участника {0}?",
                 },
                 [SSchlagDenBomb.ContestantScore] = new()
                 {
                     // English: What was the contestant’s score in {0}?
-                    Question = "What was the contestant’s score in {0}?",
+                    Question = "Какой был счёт у участника {0}?",
                 },
                 [SSchlagDenBomb.BombScore] = new()
                 {
                     // English: What was the bomb’s score in {0}?
-                    Question = "What was the bomb’s score in {0}?",
+                    Question = "Какой был счёт у бомбы {0}?",
                 },
             },
         },
 
         [typeof(SScramboozledEggain)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SScramboozledEggain.Word] = new()
                 {
                     // English: What was the {1} encrypted word in {0}?
                     // Example: What was the first encrypted word in Scramboozled Eggain?
-                    Question = "What was the {1} encrypted word in {0}?",
+                    Question = "Какое было {1}-е зашифрованное слово {0}?",
                 },
             },
         },
 
         [typeof(SScripting)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SScripting.VariableDataType] = new()
                 {
                     // English: What was the submitted data type of the variable in {0}?
-                    Question = "What was the submitted data type of the variable in {0}?",
+                    Question = "Какой был верный тип данных у переменной {0}?",
                 },
             },
         },
 
         [typeof(SScrutinySquares)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SScrutinySquares.FirstDifference] = new()
                 {
                     // English: What was the modified property of the first display in {0}?
-                    Question = "What was the modified property of the first display in {0}?",
+                    Question = "Какое свойство отличалось на первом экране {0}?",
+                    Answers = new()
+                    {
+                        ["Word"] = "Слово",
+                        ["Color around word"] = "Цвет вокруг слова",
+                        ["Color of background"] = "Цвет фона",
+                        ["Color of word"] = "Цвет слова",
+                    },
                 },
             },
         },
 
         [typeof(SSeaShells)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Морских ракушках",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SSeaShells.Question1] = new()
@@ -9965,23 +11731,30 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSemamorse)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSemamorse.Color] = new()
                 {
                     // English: What was the color of the display involved in the starting value in {0}?
-                    Question = "What was the color of the display involved in the starting value in {0}?",
+                    Question = "Какого цвета светодиоды использовались в начальном значении {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["green"] = "Зелёного",
+                        ["cyan"] = "Голубого",
+                        ["indigo"] = "Индиго",
+                        ["pink"] = "Розового",
+                    },
                 },
                 [SSemamorse.Letters] = new()
                 {
                     // English: What was the {1} letter involved in the starting value in {0}?
                     // Example: What was the Morse letter involved in the starting value in Semamorse?
-                    Question = "What was the {1} letter involved in the starting value in {0}?",
+                    Question = "Какая была буква {1}, использованная в начальном значении {0}?",
                     Arguments = new()
                     {
-                        ["Morse"] = "Morse",
-                        ["semaphore"] = "semaphore",
+                        ["Morse"] = "Морзе",
+                        ["semaphore"] = "семафора",
                     },
                 },
             },
@@ -9989,53 +11762,51 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSequencyclopedia)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSequencyclopedia.Sequence] = new()
                 {
                     // English: What sequence was used in {0}?
-                    Question = "What sequence was used in {0}?",
+                    Question = "Какая была последовательность {0}?",
                 },
             },
         },
 
         [typeof(SSetTheory)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSetTheory.Equations] = new()
                 {
                     // English: What equation was shown in the {1} stage of {0}?
                     // Example: What equation was shown in the first stage of S.E.T. Theory?
-                    Question = "What equation was shown in the {1} stage of {0}?",
+                    Question = "Какое уравнение было показано на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SShapesAndBombs)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SShapesAndBombs.InitialLetter] = new()
                 {
                     // English: What was the initial letter in {0}?
-                    Question = "What was the initial letter in {0}?",
+                    Question = "Какая была начальная буква {0}?",
                 },
             },
         },
 
         [typeof(SShapeShift)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Изменении формы",
             Questions = new()
             {
                 [SShapeShift.InitialShape] = new()
                 {
                     // English: What was the initial shape in {0}?
-                    Question = "What was the initial shape in {0}?",
+                    Question = "Какая была изначальная фигура {0}?",
                 },
             },
         },
@@ -10049,13 +11820,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What color was the {1} marker in {0}?
                     // Example: What color was the top-left marker in Shifted Maze?
-                    Question = "What color was the {1} marker in {0}?",
+                    Question = "Какого цвета был {1} маркер {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "White",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["Green"] = "Green",
+                    },
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхний левый",
+                        ["top-right"] = "верхний правый",
+                        ["bottom-left"] = "нижний левый",
+                        ["bottom-right"] = "нижний правый",
                     },
                 },
             },
@@ -10063,13 +11842,12 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SShiftingMaze)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SShiftingMaze.Seed] = new()
                 {
                     // English: What was the seed in {0}?
-                    Question = "What was the seed in {0}?",
+                    Question = "Какое было зерно {0}?",
                 },
             },
         },
@@ -10082,58 +11860,104 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SShogiIdentification.Piece] = new()
                 {
                     // English: What was the displayed piece in {0}?
-                    Question = "What was the displayed piece in {0}?",
+                    Question = "Какая фигура была показана {0}?",
+                    Answers = new()
+                    {
+                        ["Go-Between"] = "Go-Between",
+                        ["Pawn"] = "Pawn",
+                        ["Side Mover"] = "Side Mover",
+                        ["Vertical Mover"] = "Vertical Mover",
+                        ["Bishop"] = "Bishop",
+                        ["Rook"] = "Rook",
+                        ["Dragon Horse"] = "Dragon Horse",
+                        ["Dragon King"] = "Dragon King",
+                        ["Lance"] = "Lance",
+                        ["Reverse Chariot"] = "Reverse Chariot",
+                        ["Blind Tiger"] = "Blind Tiger",
+                        ["Ferocious Leopard"] = "Ferocious Leopard",
+                        ["Copper General"] = "Copper General",
+                        ["Silver General"] = "Silver General",
+                        ["Gold General"] = "Gold General",
+                        ["Drunk Elephant"] = "Drunk Elephant",
+                        ["Kirin"] = "Kirin",
+                        ["Phoenix"] = "Phoenix",
+                        ["Queen"] = "Queen",
+                        ["Flying Stag"] = "Flying Stag",
+                        ["Flying Ox"] = "Flying Ox",
+                        ["Free Boar"] = "Free Boar",
+                        ["Whale"] = "Whale",
+                        ["White Horse"] = "White Horse",
+                        ["King"] = "King",
+                        ["Prince"] = "Prince",
+                        ["Horned Falcon"] = "Horned Falcon",
+                        ["Soaring Eagle"] = "Soaring Eagle",
+                        ["Lion"] = "Lion",
+                    },
                 },
             },
         },
 
         [typeof(SSignLanguage)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSignLanguage.Word] = new()
                 {
                     // English: What was the deciphered word in {0}?
-                    Question = "What was the deciphered word in {0}?",
+                    Question = "Какое слово было расшифровано {0}?",
                 },
             },
         },
 
         [typeof(SSillySlots)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Однорукого бандита",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSillySlots.Question] = new()
                 {
                     // English: What was the {1} slot in the {2} stage in {0}?
                     // Example: What was the first slot in the first stage in Silly Slots?
-                    Question = "What was the {1} slot in the {2} stage in {0}?",
+                    Question = "Какой был {1}-й слот на {2}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["red bomb"] = "Красная бомба",
+                        ["red cherry"] = "Красная вишня",
+                        ["red coin"] = "Красная монета",
+                        ["red grape"] = "Красная гроздь",
+                        ["green bomb"] = "Зелёная бомба",
+                        ["green cherry"] = "Зелёная вишня",
+                        ["green coin"] = "Зелёная монета",
+                        ["green grape"] = "Зелёная гроздь",
+                        ["blue bomb"] = "Синяя бомба",
+                        ["blue cherry"] = "Синяя вишня",
+                        ["blue coin"] = "Синяя монета",
+                        ["blue grape"] = "Синяя гроздь",
+                    },
                 },
             },
         },
 
         [typeof(SSiloAuthorization)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSiloAuthorization.MessageType] = new()
                 {
                     // English: What was the message type in {0}?
-                    Question = "What was the message type in {0}?",
+                    Question = "Какой был тип сообщения {0}?",
                 },
                 [SSiloAuthorization.EncryptedMessage] = new()
                 {
                     // English: What was the {1} part of the encrypted message in {0}?
                     // Example: What was the first part of the encrypted message in Silo Authorization?
-                    Question = "What was the {1} part of the encrypted message in {0}?",
+                    Question = "Какая была {1}-я часть зашифрованного сообщения {0}?",
                 },
                 [SSiloAuthorization.AuthCode] = new()
                 {
                     // English: What was the received authentication code in {0}?
-                    Question = "What was the received authentication code in {0}?",
+                    Question = "Какой код авторизации был получен {0}?",
                 },
             },
         },
@@ -10148,25 +11972,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color flashed {1} in the final sequence of {0}?
                     // Example: What color flashed first in the final sequence of Simon Said?
                     Question = "What color flashed {1} in the final sequence of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
             },
         },
 
         [typeof(SSimonSamples)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonSamples.Samples] = new()
                 {
                     // English: What were the call samples {1} of {0}?
                     // Example: What were the call samples played in the first stage of Simon Samples?
-                    Question = "What were the call samples {1} of {0}?",
+                    Question = "Какие семплы были {1} {0}?",
                     Arguments = new()
                     {
-                        ["played in the first stage"] = "played in the first stage",
-                        ["added in the second stage"] = "added in the second stage",
-                        ["added in the third stage"] = "added in the third stage",
+                        ["played in the first stage"] = "проиграны на 1-м этапе",
+                        ["added in the second stage"] = "добавлены на 2-м этапе",
+                        ["added in the third stage"] = "добавлены на 3-м этапе",
                     },
                 },
             },
@@ -10174,108 +12004,150 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSimonSays)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "\"Саймон говорит\"",
             Questions = new()
             {
                 [SSimonSays.Flash] = new()
                 {
                     // English: What color flashed {1} in the final sequence in {0}?
                     // Example: What color flashed first in the final sequence in Simon Says?
-                    Question = "What color flashed {1} in the final sequence in {0}?",
+                    Question = "Какой цвет горел {1}-м в последовательности {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["yellow"] = "Жёлтый",
+                        ["green"] = "Зелёный",
+                        ["blue"] = "Синий",
+                    },
                 },
             },
         },
 
         [typeof(SSimonScrambles)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonScrambles.Colors] = new()
                 {
                     // English: What color flashed {1} in {0}?
                     // Example: What color flashed first in Simon Scrambles?
-                    Question = "What color flashed {1} in {0}?",
+                    Question = "Какой цвет горел {1}-м {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Yellow"] = "Жёлтый",
+                    },
                 },
             },
         },
 
         [typeof(SSimonScreams)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "\"Саймон кричит\"",
             Questions = new()
             {
                 [SSimonScreams.Flashing] = new()
                 {
                     // English: Which color flashed {1} in the final sequence in {0}?
                     // Example: Which color flashed first in the final sequence in Simon Screams?
-                    Question = "Which color flashed {1} in the final sequence in {0}?",
+                    Question = "Какой цвет горел {1}-м в полной последовательности {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетовый",
+                    },
                 },
                 [SSimonScreams.RuleSimple] = new()
                 {
                     // English: In which stage(s) of {0} was “{1}” the applicable rule?
                     // Example: In which stage(s) of Simon Screams was “a color flashed, then a color two away, then the first again” the applicable rule?
-                    Question = "In which stage(s) of {0} was “{1}” the applicable rule?",
+                    Question = "На каком(-их) этапе(-ах) {0} {1}?",
+                    Answers = new()
+                    {
+                        ["first"] = "На 1-м",
+                        ["second"] = "На 2-м",
+                        ["third"] = "На 3-м",
+                        ["first and second"] = "На 1-м и 2-м",
+                        ["first and third"] = "На 1-м и 3-м",
+                        ["second and third"] = "На 2-м и 3-м",
+                        ["all of them"] = "На всех",
+                    },
                     Arguments = new()
                     {
-                        ["a color flashed, then a color two away, then the first again"] = "a color flashed, then a color two away, then the first again",
-                        ["a color flashed, then a color two away, then the one opposite that"] = "a color flashed, then a color two away, then the one opposite that",
-                        ["a color flashed, then a color two away, then the one opposite the first"] = "a color flashed, then a color two away, then the one opposite the first",
-                        ["a color flashed, then an adjacent color, then the first again"] = "a color flashed, then an adjacent color, then the first again",
-                        ["a color flashed, then another color, then the first"] = "a color flashed, then another color, then the first",
-                        ["a color flashed, then one adjacent, then the one opposite that"] = "a color flashed, then one adjacent, then the one opposite that",
-                        ["a color flashed, then one adjacent, then the one opposite the first"] = "a color flashed, then one adjacent, then the one opposite the first",
-                        ["a color flashed, then the one opposite, then one adjacent to that"] = "a color flashed, then the one opposite, then one adjacent to that",
-                        ["a color flashed, then the one opposite, then one adjacent to the first"] = "a color flashed, then the one opposite, then one adjacent to the first",
-                        ["a color flashed, then the one opposite, then the first again"] = "a color flashed, then the one opposite, then the first again",
-                        ["every color flashed at least once"] = "every color flashed at least once",
-                        ["exactly one color flashed exactly twice"] = "exactly one color flashed exactly twice",
-                        ["exactly one color flashed more than once"] = "exactly one color flashed more than once",
-                        ["exactly two colors flashed exactly twice"] = "exactly two colors flashed exactly twice",
-                        ["exactly two colors flashed more than once"] = "exactly two colors flashed more than once",
-                        ["no color flashed exactly twice"] = "no color flashed exactly twice",
-                        ["no color flashed more than once"] = "no color flashed more than once",
-                        ["no two adjacent colors flashed in clockwise order"] = "no two adjacent colors flashed in clockwise order",
-                        ["no two adjacent colors flashed in counter-clockwise order"] = "no two adjacent colors flashed in counter-clockwise order",
-                        ["no two colors two apart flashed in clockwise order"] = "no two colors two apart flashed in clockwise order",
-                        ["no two colors two apart flashed in counter-clockwise order"] = "no two colors two apart flashed in counter-clockwise order",
-                        ["the colors flashing first and last are adjacent"] = "the colors flashing first and last are adjacent",
-                        ["the colors flashing first and last are different and not adjacent"] = "the colors flashing first and last are different and not adjacent",
-                        ["the colors flashing first and last are the same"] = "the colors flashing first and last are the same",
-                        ["the number of distinct colors that flashed is even"] = "the number of distinct colors that flashed is even",
-                        ["the number of distinct colors that flashed is odd"] = "the number of distinct colors that flashed is odd",
-                        ["there are at least three colors that didn’t flash"] = "there are at least three colors that didn’t flash",
-                        ["there are exactly two colors that didn’t flash"] = "there are exactly two colors that didn’t flash",
-                        ["there are two colors adjacent to each other that didn’t flash"] = "there are two colors adjacent to each other that didn’t flash",
-                        ["there are two colors opposite each other that didn’t flash"] = "there are two colors opposite each other that didn’t flash",
-                        ["there are two colors two away from each other that didn’t flash"] = "there are two colors two away from each other that didn’t flash",
-                        ["there is exactly one color that didn’t flash"] = "there is exactly one color that didn’t flash",
-                        ["three adjacent colors did not flash"] = "three adjacent colors did not flash",
-                        ["three adjacent colors flashed in clockwise order"] = "three adjacent colors flashed in clockwise order",
-                        ["three adjacent colors flashed in counter-clockwise order"] = "three adjacent colors flashed in counter-clockwise order",
-                        ["three colors, each two apart, flashed in clockwise order"] = "three colors, each two apart, flashed in clockwise order",
-                        ["three colors, each two apart, flashed in counter-clockwise order"] = "three colors, each two apart, flashed in counter-clockwise order",
-                        ["two adjacent colors flashed in clockwise order"] = "two adjacent colors flashed in clockwise order",
-                        ["two adjacent colors flashed in counter-clockwise order"] = "two adjacent colors flashed in counter-clockwise order",
-                        ["two colors two apart flashed in clockwise order"] = "two colors two apart flashed in clockwise order",
-                        ["two colors two apart flashed in counter-clockwise order"] = "two colors two apart flashed in counter-clockwise order",
+                        ["a color flashed, then a color two away, then the first again"] = "горела кнопка, затем другая через одну, а после снова первая",
+                        ["a color flashed, then a color two away, then the one opposite that"] = "горела кнопка, затем другая через одну, а после кнопка, стоящая напротив второй",
+                        ["a color flashed, then a color two away, then the one opposite the first"] = "горела кнопка, затем другая через одну, а после кнопка, стоящая напротив первой",
+                        ["a color flashed, then an adjacent color, then the first again"] = "горела кнопка, затем соседняя, а после снова первая",
+                        ["a color flashed, then another color, then the first"] = "горела кнопка, затем другая, а после снова первая",
+                        ["a color flashed, then one adjacent, then the one opposite that"] = "горела кнопка, затем соседняя, а после кнопка, стоящая напротив этой (второй)",
+                        ["a color flashed, then one adjacent, then the one opposite the first"] = "горела кнопка, затем соседняя, а после кнопка, стоящая напротив первой",
+                        ["a color flashed, then the one opposite, then one adjacent to that"] = "горела кнопка, затем стоящая напротив неё, а после соседняя со второй",
+                        ["a color flashed, then the one opposite, then one adjacent to the first"] = "горела кнопка, затем стоящая напротив неё, а после соседняя с первой",
+                        ["a color flashed, then the one opposite, then the first again"] = "горела кнопка, затем стоящая напротив неё, а после снова первая",
+                        ["every color flashed at least once"] = "каждая кнопка горела как минимум один раз",
+                        ["exactly one color flashed exactly twice"] = "ровно одна кнопка горела ровно дважды",
+                        ["exactly one color flashed more than once"] = "ровно одна кнопка горела более одного раза",
+                        ["exactly two colors flashed exactly twice"] = "ровно 2 кнопки горели ровно дважды",
+                        ["exactly two colors flashed more than once"] = "ровно 2 кнопки горели более одного раза",
+                        ["no color flashed exactly twice"] = "ни одна кнопка не горела ровно дважды",
+                        ["no color flashed more than once"] = "ни одна кнопка не горела более одного раза",
+                        ["no two adjacent colors flashed in clockwise order"] = "никакие 2 соседних кнопки не горели по часовой стрелке",
+                        ["no two adjacent colors flashed in counter-clockwise order"] = "никакие 2 соседних кнопки не горели против часовой стрелки",
+                        ["no two colors two apart flashed in clockwise order"] = "никакие 2 кнопки, расположенные через одну, не горели по часовой стрелке",
+                        ["no two colors two apart flashed in counter-clockwise order"] = "никакие 2 кнопки, расположенные через одну, не горели против часовой стрелки",
+                        ["the colors flashing first and last are adjacent"] = "первая и последняя горящие кнопки были соседними",
+                        ["the colors flashing first and last are different and not adjacent"] = "первая и последняя горящие кнопки были разными, но не соседними",
+                        ["the colors flashing first and last are the same"] = "первая горящая кнопка была той же самой, что и последняя горящая",
+                        ["the number of distinct colors that flashed is even"] = "количество различных горящих кнопок было чётным",
+                        ["the number of distinct colors that flashed is odd"] = "количество различных горящих кнопок было нечётным",
+                        ["there are at least three colors that didn’t flash"] = "было как минимум 3 негорящих кнопки",
+                        ["there are exactly two colors that didn’t flash"] = "было ровно 2 негорящих кнопки",
+                        ["there are two colors adjacent to each other that didn’t flash"] = "было 2 соседних негорящих кнопки",
+                        ["there are two colors opposite each other that didn’t flash"] = "было 2 негорящих кнопки, стоящих друг напротив друга",
+                        ["there are two colors two away from each other that didn’t flash"] = "было 2 негорящих кнопки, расположенных через одну",
+                        ["there is exactly one color that didn’t flash"] = "была ровно 1 негорящая кнопка",
+                        ["three adjacent colors did not flash"] = "было 3 соседних негорящих кнопки",
+                        ["three adjacent colors flashed in clockwise order"] = "3 соседние кнопки горели по часовой стрелке",
+                        ["three adjacent colors flashed in counter-clockwise order"] = "3 соседние кнопки горели против часовой стрелки",
+                        ["three colors, each two apart, flashed in clockwise order"] = "3 кнопки, расположенные через одну, горели по часовой стрелке",
+                        ["three colors, each two apart, flashed in counter-clockwise order"] = "3 кнопки, расположенные через одну, горели против часовой стрелки",
+                        ["two adjacent colors flashed in clockwise order"] = "2 соседние кнопки горели по часовой стрелке",
+                        ["two adjacent colors flashed in counter-clockwise order"] = "2 соседние кнопки горели против часовой стрелки",
+                        ["two colors two apart flashed in clockwise order"] = "2 кнопки, расположенные через одну, горели по часовой стрелке",
+                        ["two colors two apart flashed in counter-clockwise order"] = "2 кнопки, расположенные через одну, горели против часовой стрелки",
                     },
                 },
                 [SSimonScreams.RuleComplex] = new()
                 {
                     // English: In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?
                     // Example: In which stage(s) of Simon Screams was “at most one color flashed out of Red, Orange, and Yellow” the applicable rule?
-                    Question = "In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?",
+                    Question = "На каком(-их) этапе(-ах) {0} среди кнопок {2}, {3} и {4} цвета {1}?",
+                    Answers = new()
+                    {
+                        ["first"] = "На 1-м",
+                        ["second"] = "На 2-м",
+                        ["third"] = "На 3-м",
+                        ["first and second"] = "На 1-м и 2-м",
+                        ["first and third"] = "На 1-м и 3-м",
+                        ["second and third"] = "На 2-м и 3-м",
+                        ["all of them"] = "На всех",
+                    },
                     Arguments = new()
                     {
-                        ["at most one color"] = "at most one color",
-                        ["Red"] = "Red",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["at least two colors"] = "at least two colors",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
+                        ["at most one color"] = "горела максимум одна",
+                        ["Red"] = "красного",
+                        ["Orange"] = "оранжевого",
+                        ["Yellow"] = "жёлтого",
+                        ["at least two colors"] = "горели как минимум две",
+                        ["Green"] = "зелёного",
+                        ["Blue"] = "синего",
+                        ["Purple"] = "фиолетового",
                     },
                 },
             },
@@ -10290,26 +12162,36 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which color flashed {1} in the {2} stage of {0}?
                     // Example: Which color flashed first in the first stage of Simon Selects?
-                    Question = "Which color flashed {1} in the {2} stage of {0}?",
+                    Question = "Какой цвет горел {1}-м на {2}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                    },
                 },
             },
         },
 
         [typeof(SSimonSends)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonSends.ReceivedLetters] = new()
                 {
                     // English: What was the {1} received letter in {0}?
                     // Example: What was the red received letter in Simon Sends?
-                    Question = "What was the {1} received letter in {0}?",
+                    Question = "Какая была {1} полученная буква {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красная",
+                        ["green"] = "зелёная",
+                        ["blue"] = "синяя",
                     },
                 },
             },
@@ -10324,46 +12206,79 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Who flashed {1} in course {2} of {0}?
                     // Example: Who flashed first in course 1 of Simon Serves?
-                    Question = "Who flashed {1} in course {2} of {0}?",
+                    Question = "Кто горел {1}-м на {2}-й подаче в {0}?",
                 },
                 [SSimonServes.Food] = new()
                 {
                     // English: Which item was not served in course {1} of {0}?
                     // Example: Which item was not served in course 1 of Simon Serves?
-                    Question = "Which item was not served in course {1} of {0}?",
+                    Question = "Что не подавалось гостям на {1}-й подаче в {0}?",
+                    Answers = new()
+                    {
+                        ["Baked Batterys"] = "Baked Batterys",
+                        ["Bamboozling Waffles"] = "Bamboozling Waffles",
+                        ["Big Boom Tortellini"] = "Big Boom Tortellini",
+                        ["Blast Shrimps"] = "Blast Shrimps",
+                        ["Blastwave Compote"] = "Blastwave Compote",
+                        ["Bomb Brûlée"] = "Bomb Brûlée",
+                        ["Boolean Waffles"] = "Boolean Waffles",
+                        ["Boom Lager Beer"] = "Boom Lager Beer",
+                        ["Caesar Salad"] = "Caesar Salad",
+                        ["Centurion Wings"] = "Centurion Wings",
+                        ["Colored Spare Ribs"] = "Colored Spare Ribs",
+                        ["Cruelo Juice"] = "Cruelo Juice",
+                        ["Defuse Juice"] = "Defuse Juice",
+                        ["Defuse au Chocolat"] = "Defuse au Chocolat",
+                        ["Deto Bull"] = "Deto Bull",
+                        ["Edgework Toast"] = "Edgework Toast",
+                        ["Forget Cocktail"] = "Forget Cocktail",
+                        ["Forghetti Bombognese"] = "Forghetti Bombognese",
+                        ["Indicator Tar Tar"] = "Indicator Tar Tar",
+                        ["Morse Soup"] = "Morse Soup",
+                        ["NATO Shrimps"] = "NATO Shrimps",
+                        ["Not Ice Cream"] = "Not Ice Cream",
+                        ["Omelette au Bombage"] = "Omelette au Bombage",
+                        ["Simon’s Special Mix"] = "Simon’s Special Mix",
+                        ["Solve Cake"] = "Solve Cake",
+                        ["Status Light Rolls"] = "Status Light Rolls",
+                        ["Strike Pie"] = "Strike Pie",
+                        ["Tasha’s Drink"] = "Tasha’s Drink",
+                        ["Ticking Timecakes"] = "Ticking Timecakes",
+                        ["Veggie Blast Plate"] = "Veggie Blast Plate",
+                        ["Wire Shake"] = "Wire Shake",
+                        ["Wire Spaghetti"] = "Wire Spaghetti",
+                    },
                 },
             },
         },
 
         [typeof(SSimonShapes)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonShapes.SubmittedShape] = new()
                 {
                     // English: What was the shape submitted at the end of {0}?
-                    Question = "What was the shape submitted at the end of {0}?",
+                    Question = "Какая фигура была введена в конце {0}?",
                 },
             },
         },
 
         [typeof(SSimonShouts)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonShouts.FlashingLetter] = new()
                 {
                     // English: Which letter flashed on the {1} button in {0}?
                     // Example: Which letter flashed on the top button in Simon Shouts?
-                    Question = "Which letter flashed on the {1} button in {0}?",
+                    Question = " Какая буква горела на {1} кнопке в {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["left"] = "left",
-                        ["right"] = "right",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхней",
+                        ["left"] = "левой",
+                        ["right"] = "правой",
+                        ["bottom"] = "нижней",
                     },
                 },
             },
@@ -10371,14 +12286,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSimonShrieks)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonShrieks.FlashingButton] = new()
                 {
                     // English: How many spaces clockwise from the arrow was the {1} flash in the final sequence in {0}?
                     // Example: How many spaces clockwise from the arrow was the first flash in the final sequence in Simon Shrieks?
-                    Question = "How many spaces clockwise from the arrow was the {1} flash in the final sequence in {0}?",
+                    Question = "В скольки кнопках от стрелки (по часовой) была {1}-я вспышка в финальной последовательности в {0}?",
                 },
             },
         },
@@ -10399,98 +12313,108 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSimonSignals)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonSignals.ColorToShape] = new()
                 {
                     // English: What shape was the {1} arrow in {0}?
                     // Example: What shape was the red arrow in Simon Signals?
-                    Question = "What shape was the {1} arrow in {0}?",
+                    Question = "Какой формы была {1} стрелка в {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["gray"] = "gray",
+                        ["red"] = "красная",
+                        ["green"] = "зелёная",
+                        ["blue"] = "синяя",
+                        ["gray"] = "серая",
                     },
                 },
                 [SSimonSignals.ColorToRotations] = new()
                 {
                     // English: How many directions did the {1} arrow in {0} have?
                     // Example: How many directions did the red arrow in Simon Signals have?
-                    Question = "How many directions did the {1} arrow in {0} have?",
+                    Question = "Сколько направлений было у {1} стрелки в {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["gray"] = "gray",
+                        ["red"] = "красной",
+                        ["green"] = "зелёной",
+                        ["blue"] = "синей",
+                        ["gray"] = "серой",
                     },
                 },
                 [SSimonSignals.ShapeToColor] = new()
                 {
                     // English: What color was the arrow with this shape in {0}?
-                    Question = "What color was the arrow with this shape in {0}?",
+                    Question = "Какого цвета была стрелка этой формы в {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["green"] = "Зелёного",
+                        ["blue"] = "Синего",
+                        ["gray"] = "Серого",
+                    },
                 },
                 [SSimonSignals.ShapeToRotations] = new()
                 {
                     // English: How many directions did the arrow with this shape have in {0}?
-                    Question = "How many directions did the arrow with this shape have in {0}?",
+                    Question = "Сколько направлений было у стрелки с этой формой в {0}?",
                 },
                 [SSimonSignals.RotationsToColor] = new()
                 {
                     // English: What color was the arrow with {1} possible directions in {0}?
                     // Example: What color was the arrow with 3 possible directions in Simon Signals?
-                    Question = "What color was the arrow with {1} possible directions in {0}?",
+                    Question = "Какого цвета была стрелка с {1}-мя возможными направлениями в {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["green"] = "Зелёного",
+                        ["blue"] = "Синего",
+                        ["gray"] = "Серого",
+                    },
                 },
                 [SSimonSignals.RotationsToShape] = new()
                 {
                     // English: What shape was the arrow with {1} possible directions in {0}?
                     // Example: What shape was the arrow with 3 possible directions in Simon Signals?
-                    Question = "What shape was the arrow with {1} possible directions in {0}?",
+                    Question = "Какой формы была стрелка с {1}-мя возможными направлениями {0}?",
                 },
             },
         },
 
         [typeof(SSimonSimons)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonSimons.FlashingColors] = new()
                 {
                     // English: What was the {1} flash in the final sequence in {0}?
                     // Example: What was the first flash in the final sequence in Simon Simons?
-                    Question = "What was the {1} flash in the final sequence in {0}?",
+                    Question = "Какая была {1}-я вспышка в полной последовательности в {0}?",
                 },
             },
         },
 
         [typeof(SSimonSings)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonSings.Flashing] = new()
                 {
                     // English: Which key’s color flashed {1} in the {2} stage of {0}?
                     // Example: Which key’s color flashed first in the first stage of Simon Sings?
-                    Question = "Which key’s color flashed {1} in the {2} stage of {0}?",
+                    Question = "Какой цвет кнопки горел {1}-м на {2}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SSimonSmiles)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonSmiles.Sounds] = new()
                 {
                     // English: What sound did the {1} button press make {0}?
                     // Example: What sound did the first button press make Simon Smiles?
-                    Question = "What sound did the {1} button press make {0}?",
+                    Question = "Как звук был у {1}-й кнопки {0}?",
                 },
             },
         },
@@ -10504,126 +12428,226 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the color of the {1} flash in {0}?
                     // Example: What was the color of the first flash in Simon Smothers?
-                    Question = "What was the color of the {1} flash in {0}?",
+                    Question = "Какой был цвет у {1}-й вспышки в {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                    },
                 },
                 [SSimonSmothers.Directions] = new()
                 {
                     // English: What was the direction of the {1} flash in {0}?
                     // Example: What was the direction of the first flash in Simon Smothers?
-                    Question = "What was the direction of the {1} flash in {0}?",
+                    Question = "Какое направление было у {1}-й вспышки в {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Вверх",
+                        ["Down"] = "Вниз",
+                        ["Left"] = "Влево",
+                        ["Right"] = "Вправо",
+                    },
                 },
             },
         },
 
         [typeof(SSimonSounds)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonSounds.FlashingColors] = new()
                 {
                     // English: Which sample button sounded {1} in the final sequence in {0}?
                     // Example: Which sample button sounded first in the final sequence in Simon Sounds?
-                    Question = "Which sample button sounded {1} in the final sequence in {0}?",
+                    Question = "Какая кнопка семпла звучала {1}-й в полной последовательности в {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["blue"] = "Синего",
+                        ["yellow"] = "Жёлтого",
+                        ["green"] = "Зелёного",
+                    },
                 },
             },
         },
 
         [typeof(SSimonSpeaks)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "\"Саймон общается\"",
             Questions = new()
             {
                 [SSimonSpeaks.Positions] = new()
                 {
                     // English: Which bubble flashed first in {0}?
-                    Question = "Which bubble flashed first in {0}?",
+                    Question = "Какое диалоговое облако горело первым {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "Сверху слева",
+                        ["top-middle"] = "Сверху посередине",
+                        ["top-right"] = "Сверху справа",
+                        ["middle-left"] = "Посередине слева",
+                        ["middle-center"] = "Центральное",
+                        ["middle-right"] = "Посередине справа",
+                        ["bottom-left"] = "Снизу слева",
+                        ["bottom-middle"] = "Снизу посередине",
+                        ["bottom-right"] = "Снизу справа",
+                    },
                 },
                 [SSimonSpeaks.Shapes] = new()
                 {
                     // English: Which bubble flashed second in {0}?
-                    Question = "Which bubble flashed second in {0}?",
+                    Question = "Какое диалоговое облако загорелось вторым {0}?",
                 },
                 [SSimonSpeaks.Languages] = new()
                 {
                     // English: Which language was the bubble that flashed third in {0} in?
-                    Question = "Which language was the bubble that flashed third in {0} in?",
+                    Question = "Какого языка была надпись на третьем загоревшемся диалоговом облаке {0}?",
                 },
                 [SSimonSpeaks.Words] = new()
                 {
                     // English: Which word was in the bubble that flashed fourth in {0}?
-                    Question = "Which word was in the bubble that flashed fourth in {0}?",
+                    Question = "Какое слово было в четвёртом загоревшемся диалоговом окне {0}?",
                 },
                 [SSimonSpeaks.Colors] = new()
                 {
                     // English: What color was the bubble that flashed fifth in {0}?
-                    Question = "What color was the bubble that flashed fifth in {0}?",
+                    Question = "Какого цвета было пятое загоревшееся диалоговое окно {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "Чёрный",
+                        ["blue"] = "Синий",
+                        ["green"] = "Зелёный",
+                        ["cyan"] = "Голубой",
+                        ["red"] = "Красный",
+                        ["purple"] = "Фиолетовый",
+                        ["yellow"] = "Жёлтый",
+                        ["white"] = "Белый",
+                        ["gray"] = "Серый",
+                    },
                 },
             },
         },
 
         [typeof(SSimonsStar)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonsStar.Colors] = new()
                 {
                     // English: Which color flashed {1} in {0}?
                     // Example: Which color flashed first in Simon’s Star?
-                    Question = "Which color flashed {1} in {0}?",
+                    Question = "Какой цвет горел {1}-м в {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "красный",
+                        ["yellow"] = "жёлтый",
+                        ["green"] = "зелёный",
+                        ["blue"] = "синий",
+                        ["purple"] = "фиолетовый",
+                    },
                 },
             },
         },
 
         [typeof(SSimonStacks)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonStacks.Colors] = new()
                 {
                     // English: Which color flashed in the {1} stage of {0}?
                     // Example: Which color flashed in the first stage of Simon Stacks?
-                    Question = "Which color flashed in the {1} stage of {0}?",
+                    Question = "Какой цвет горел на {1}-м этапе в {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Yellow"] = "Жёлтый",
+                    },
                 },
             },
         },
 
         [typeof(SSimonStages)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "\"Саймон выступает\"",
             Questions = new()
             {
                 [SSimonStages.Indicator] = new()
                 {
                     // English: What color was the indicator in the {1} stage in {0}?
                     // Example: What color was the indicator in the first stage in Simon Stages?
-                    Question = "What color was the indicator in the {1} stage in {0}?",
+                    Question = "Какого цвета был индикатор на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["blue"] = "Синего",
+                        ["yellow"] = "Жёлтого",
+                        ["orange"] = "Оранжевого",
+                        ["magenta"] = "Маджента",
+                        ["green"] = "Зелёного",
+                        ["pink"] = "Розового",
+                        ["lime"] = "Лаймового",
+                        ["cyan"] = "Голубого",
+                        ["white"] = "Белого",
+                    },
                 },
                 [SSimonStages.Flashes] = new()
                 {
                     // English: Which color flashed {1} in the {2} stage in {0}?
                     // Example: Which color flashed first in the first stage in Simon Stages?
-                    Question = "Which color flashed {1} in the {2} stage in {0}?",
+                    Question = "Какой цвет горел {1}-м на {2}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["blue"] = "Синий",
+                        ["yellow"] = "Жёлтый",
+                        ["orange"] = "Оранжевый",
+                        ["magenta"] = "Пурпурный",
+                        ["green"] = "Зелёный",
+                        ["pink"] = "Розовый",
+                        ["lime"] = "Лаймовый",
+                        ["cyan"] = "Голубой",
+                        ["white"] = "Белый",
+                    },
                 },
             },
         },
 
         [typeof(SSimonStates)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "\"Саймон утверждает\"",
             Questions = new()
             {
                 [SSimonStates.Display] = new()
                 {
                     // English: Which {1} in the {2} stage in {0}?
                     // Example: Which color(s) flashed in the first stage in Simon States?
-                    Question = "Which {1} in the {2} stage in {0}?",
+                    Question = "Какой(-ие) цвет(а) {1} на {2}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Red, Yellow"] = "К, Ж",
+                        ["Red, Green"] = "К, З",
+                        ["Red, Blue"] = "К, С",
+                        ["Yellow, Green"] = "Ж, З",
+                        ["Yellow, Blue"] = "Ж, С",
+                        ["Green, Blue"] = "З, С",
+                        ["all 4"] = "Все 4",
+                        ["none"] = "Никакой",
+                    },
                     Arguments = new()
                     {
-                        ["color(s) flashed"] = "color(s) flashed",
-                        ["color(s) didn’t flash"] = "color(s) didn’t flash",
+                        ["color(s) flashed"] = "горел(и)",
+                        ["color(s) didn’t flash"] = "не горел(и)",
                     },
                 },
             },
@@ -10631,14 +12655,22 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSimonStops)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonStops.Colors] = new()
                 {
                     // English: Which color flashed {1} in the output sequence in {0}?
                     // Example: Which color flashed first in the output sequence in Simon Stops?
-                    Question = "Which color flashed {1} in the output sequence in {0}?",
+                    Question = "Какой цвет горел {1}-м в последовательности вспышек в {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Violet"] = "Фиолетовый",
+                    },
                 },
             },
         },
@@ -10652,11 +12684,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which color {1} {2} in the final sequence of {0}?
                     // Example: Which color flashed first in the final sequence of Simon Stores?
-                    Question = "Which color {1} {2} in the final sequence of {0}?",
+                    Question = "Какой цвет {1} {2} в последовательности в {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                     Arguments = new()
                     {
-                        ["flashed"] = "flashed",
-                        ["was among the colors flashed"] = "was among the colors flashed",
+                        ["flashed"] = "горел",
+                        ["was among the colors flashed"] = "был среди цветов на этапе",
                     },
                 },
             },
@@ -10664,13 +12705,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSimonSubdivides)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimonSubdivides.Button] = new()
                 {
                     // English: What color was the button at this position in {0}?
-                    Question = "What color was the button at this position in {0}?",
+                    Question = "Какого цвета была кнопка на этой позиции в {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Синий",
+                        ["Green"] = "Зелёный",
+                        ["Red"] = "Красный",
+                        ["Violet"] = "Фиолетовый",
+                    },
                 },
             },
         },
@@ -10684,7 +12731,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} topic in {0}?
                     // Example: What was the first topic in Simon Supports?
-                    Question = "What was the {1} topic in {0}?",
+                    Question = "Какая была {1}-я тема в {0}?",
+                    Answers = new()
+                    {
+                        ["Boss"] = "Boss",
+                        ["Cruel"] = "Cruel",
+                        ["Faulty"] = "Faulty",
+                        ["Lookalike"] = "Lookalike",
+                        ["Puzzle"] = "Puzzle",
+                        ["Simon"] = "Simon",
+                        ["Time-Based"] = "Time-Based",
+                        ["Translated"] = "Translated",
+                    },
                 },
             },
         },
@@ -10698,7 +12756,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Where was {1} in {0}?
                     // Example: Where was OFF in Simon Swizzles?
-                    Question = "Where was {1} in {0}?",
+                    Question = "Где было {1} in {0}?",
                     Arguments = new()
                     {
                         ["OFF"] = "OFF",
@@ -10729,27 +12787,34 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSimultaneousSimons)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSimultaneousSimons.Flash] = new()
                 {
                     // English: What color flashed {1} on the {2} Simon in {0}?
                     // Example: What color flashed first on the first Simon in Simultaneous Simons?
-                    Question = "What color flashed {1} on the {2} Simon in {0}?",
+                    Question = "Какой цвет горел {1}-м на {2}-м Саймоне в {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Синий",
+                        ["Yellow"] = "Жёлтый",
+                        ["Red"] = "Красный",
+                        ["Green"] = "Зелёный",
+                    },
                 },
             },
         },
 
         [typeof(SSkewedSlots)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Искажённых слотах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SSkewedSlots.OriginalNumbers] = new()
                 {
                     // English: What were the original numbers in {0}?
-                    Question = "What were the original numbers in {0}?",
+                    Question = "Какие были изначальные цифры {0}?",
                 },
             },
         },
@@ -10762,7 +12827,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SSkewers.Color] = new()
                 {
                     // English: What color was this gem in {0}?
-                    Question = "What color was this gem in {0}?",
+                    Question = "Какого цвета был этот камень {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Black",
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -10775,40 +12851,99 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SSkyrim.Race] = new()
                 {
                     // English: Which race was selectable, but not the solution, in {0}?
-                    Question = "Which race was selectable, but not the solution, in {0}?",
+                    Question = "Какая раса присутствовала, но не являлась решением {0}?",
+                    Answers = new()
+                    {
+                        ["Nord"] = "Nord",
+                        ["Khajiit"] = "Khajiit",
+                        ["Breton"] = "Breton",
+                        ["Argonian"] = "Argonian",
+                        ["Dunmer"] = "Dunmer",
+                        ["Altmer"] = "Altmer",
+                        ["Redguard"] = "Redguard",
+                        ["Orc"] = "Orc",
+                        ["Imperial"] = "Imperial",
+                    },
                 },
                 [SSkyrim.Weapon] = new()
                 {
                     // English: Which weapon was selectable, but not the solution, in {0}?
-                    Question = "Which weapon was selectable, but not the solution, in {0}?",
+                    Question = "Какое оружие присутствовало, но не являлось решением {0}?",
+                    Answers = new()
+                    {
+                        ["Axe of Whiterun"] = "Axe of Whiterun",
+                        ["Dawnbreaker"] = "Dawnbreaker",
+                        ["Windshear"] = "Windshear",
+                        ["Blade of Woe"] = "Blade of Woe",
+                        ["Firiniel’s End"] = "Firiniel’s End",
+                        ["Bow of Hunt"] = "Bow of Hunt",
+                        ["Volendrung"] = "Volendrung",
+                        ["Chillrend"] = "Chillrend",
+                        ["Mace of Molag Bal"] = "Mace of Molag Bal",
+                    },
                 },
                 [SSkyrim.Enemy] = new()
                 {
                     // English: Which enemy was selectable, but not the solution, in {0}?
-                    Question = "Which enemy was selectable, but not the solution, in {0}?",
+                    Question = "Какой враг присутствовал, но не являлся решением {0}?",
+                    Answers = new()
+                    {
+                        ["Alduin"] = "Alduin",
+                        ["Blood Dragon"] = "Blood Dragon",
+                        ["Cave Bear"] = "Cave Bear",
+                        ["Dragon Priest"] = "Dragon Priest",
+                        ["Draugr"] = "Draugr",
+                        ["Draugr Overlord"] = "Draugr Overlord",
+                        ["Frost Troll"] = "Frost Troll",
+                        ["Frostbite Spider"] = "Frostbite Spider",
+                        ["Mudcrab"] = "Mudcrab",
+                    },
                 },
                 [SSkyrim.City] = new()
                 {
                     // English: Which city was selectable, but not the solution, in {0}?
-                    Question = "Which city was selectable, but not the solution, in {0}?",
+                    Question = "Какой город присутствовал, но не являлся решением {0}?",
+                    Answers = new()
+                    {
+                        ["Dawnstar"] = "Dawnstar",
+                        ["Ivarstead"] = "Ivarstead",
+                        ["Markarth"] = "Markarth",
+                        ["Riverwood"] = "Riverwood",
+                        ["Rorikstead"] = "Rorikstead",
+                        ["Solitude"] = "Solitude",
+                        ["Whiterun"] = "Whiterun",
+                        ["Windhelm"] = "Windhelm",
+                        ["Winterhold"] = "Winterhold",
+                    },
                 },
                 [SSkyrim.DragonShout] = new()
                 {
                     // English: Which dragon shout was selectable, but not the solution, in {0}?
-                    Question = "Which dragon shout was selectable, but not the solution, in {0}?",
+                    Question = "Какой крик дракона присутствовал, но не являлся решением {0}?",
+                    Answers = new()
+                    {
+                        ["Disarm"] = "Disarm",
+                        ["Dismay"] = "Dismay",
+                        ["Dragonrend"] = "Dragonrend",
+                        ["Fire Breath"] = "Fire Breath",
+                        ["Ice Form"] = "Ice Form",
+                        ["Kyne’s Peace"] = "Kyne’s Peace",
+                        ["Slow Time"] = "Slow Time",
+                        ["Unrelenting Force"] = "Unrelenting Force",
+                        ["Whirlwind Sprint"] = "Whirlwind Sprint",
+                    },
                 },
             },
         },
 
         [typeof(SSlowMath)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSlowMath.LastLetters] = new()
                 {
                     // English: What was the last triplet of letters in {0}?
-                    Question = "What was the last triplet of letters in {0}?",
+                    Question = "Какие три буквы были последними {0}?",
                 },
             },
         },
@@ -10816,23 +12951,46 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SSmallCircle)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SSmallCircle.Shift] = new()
                 {
                     // English: How much did the sequence shift by in {0}?
-                    Question = "How much did the sequence shift by in {0}?",
+                    Question = "На сколько сместилась последовательность на {0}?",
                 },
                 [SSmallCircle.Wedge] = new()
                 {
                     // English: Which wedge made the different noise in the beginning of {0}?
-                    Question = "Which wedge made the different noise in the beginning of {0}?",
+                    Question = "Какой сегмент {0} издал другой звук в начале?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                        ["Black"] = "Black",
+                    },
                 },
                 [SSmallCircle.Solution] = new()
                 {
                     // English: Which color was {1} in the solution to {0}?
                     // Example: Which color was first in the solution to Small Circle?
-                    Question = "Which color was {1} in the solution to {0}?",
+                    Question = "Какой цвет был {1}-м в решении на {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                        ["Black"] = "Black",
+                    },
                 },
             },
         },
@@ -10853,20 +13011,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSmashMarryKill)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSmashMarryKill.Category] = new()
                 {
                     // English: In what category was {1} for {0}?
                     // Example: In what category was The Button for Smash, Marry, Kill?
-                    Question = "In what category was {1} for {0}?",
+                    Question = "В какой категории был {1} {0}?",
                 },
                 [SSmashMarryKill.Module] = new()
                 {
                     // English: Which module was in the {1} category for {0}?
                     // Example: Which module was in the SMASH category for Smash, Marry, Kill?
-                    Question = "Which module was in the {1} category for {0}?",
+                    Question = "Какой модуль был в {1} категории {0}?",
                 },
             },
             Discriminators = new()
@@ -10881,33 +13038,32 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSnooker)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSnooker.Reds] = new()
                 {
                     // English: How many red balls were there at the start of {0}?
-                    Question = "How many red balls were there at the start of {0}?",
+                    Question = "Сколько красных шаров было в начале {0}?",
                 },
             },
         },
 
         [typeof(SSnowflakes)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSnowflakes.DisplayedSnowflakes] = new()
                 {
                     // English: Which snowflake was on the {1} button of {0}?
                     // Example: Which snowflake was on the top button of Snowflakes?
-                    Question = "Which snowflake was on the {1} button of {0}?",
+                    Question = "Какая снежинка была на {1} кнопке {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["right"] = "right",
-                        ["bottom"] = "bottom",
-                        ["left"] = "left",
+                        ["top"] = "верхней",
+                        ["right"] = "правой",
+                        ["bottom"] = "нижней",
+                        ["left"] = "левой",
                     },
                 },
             },
@@ -10915,23 +13071,22 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSonicKnuckles)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSonicKnuckles.Sounds] = new()
                 {
                     // English: Which sound was played but not featured in the chosen zone in {0}?
-                    Question = "Which sound was played but not featured in the chosen zone in {0}?",
+                    Question = "Какой звук воспроизводился, но не присутствовал в выбранной зоне {0}?",
                 },
                 [SSonicKnuckles.Badnik] = new()
                 {
                     // English: Which badnik was shown in {0}?
-                    Question = "Which badnik was shown in {0}?",
+                    Question = "Какой бадник был показан {0}?",
                 },
                 [SSonicKnuckles.Monitor] = new()
                 {
                     // English: Which monitor was shown in {0}?
-                    Question = "Which monitor was shown in {0}?",
+                    Question = "Какой монитор был показан {0}?",
                 },
             },
         },
@@ -10945,13 +13100,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} picture on {0}?
                     // Example: What was the first picture on Sonic the Hedgehog?
-                    Question = "What was the {1} picture on {0}?",
+                    Question = "Какая была {1}-я картинка {0}?",
                 },
                 [SSonicTheHedgehog.Sounds] = new()
                 {
                     // English: Which sound was played by the {1} screen on {0}?
                     // Example: Which sound was played by the Running Boots screen on Sonic the Hedgehog?
-                    Question = "Which sound was played by the {1} screen on {0}?",
+                    Question = "Какой звук воспроизводился на экране \"{1}\" {0}?",
                     Arguments = new()
                     {
                         ["Running Boots"] = "Running Boots",
@@ -10965,26 +13120,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSorting)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Сортировке",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SSorting.LastSwap] = new()
                 {
                     // English: What positions were the last swap used to solve {0}?
-                    Question = "What positions were the last swap used to solve {0}?",
+                    Question = "Какие позиции участвовали в последней замене чисел {0}?",
                 },
             },
         },
 
         [typeof(SSouvenir)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Сувенире",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSouvenir.FirstQuestion] = new()
                 {
                     // English: What was the first module asked about in the other Souvenir on this bomb?
-                    Question = "What was the first module asked about in the other Souvenir on this bomb?",
+                    Question = "О каком модуле был первый вопрос на другом Сувенире?",
                 },
             },
             Discriminators = new()
@@ -10999,171 +13156,179 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSpaceTraders)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSpaceTraders.MaxTax] = new()
                 {
                     // English: What was the maximum tax amount per vessel in {0}?
-                    Question = "What was the maximum tax amount per vessel in {0}?",
+                    Question = "Какой был максимальный налог за каждое судно {0}?",
                 },
             },
         },
 
         [typeof(SSpellingBee)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Правописании",
             Questions = new()
             {
                 [SSpellingBee.Word] = new()
                 {
                     // English: What word was asked to be spelled in {0}?
-                    Question = "What word was asked to be spelled in {0}?",
+                    Question = "Какое слово нужно было произнести {0}?",
                 },
             },
         },
 
         [typeof(SSphere)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSphere.Colors] = new()
                 {
                     // English: What was the {1} flashed color in {0}?
                     // Example: What was the first flashed color in Sphere?
-                    Question = "What was the {1} flashed color in {0}?",
+                    Question = "Какой цвет загорелся {1}-м {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["blue"] = "Синий",
+                        ["green"] = "Зелёный",
+                        ["orange"] = "Оранжевый",
+                        ["pink"] = "Розовый",
+                        ["purple"] = "Фиолетовый",
+                        ["grey"] = "Серый",
+                        ["white"] = "Белый",
+                    },
                 },
             },
         },
 
         [typeof(SSplittingTheLoot)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Разделении добычи",
             Questions = new()
             {
                 [SSplittingTheLoot.ColoredBag] = new()
                 {
                     // English: What bag was initially colored in {0}?
-                    Question = "What bag was initially colored in {0}?",
+                    Question = "Какой мешок был изначально окрашен {0}?",
                 },
             },
         },
 
         [typeof(SSpongebobBirthdayIdentification)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSpongebobBirthdayIdentification.Children] = new()
                 {
                     // English: Who was the {1} child displayed in {0}?
                     // Example: Who was the first child displayed in Spongebob Birthday Identification?
-                    Question = "Who was the {1} child displayed in {0}?",
+                    Question = "Кто был {1}-м показаным ребёнком {0}?",
                 },
             },
         },
 
         [typeof(SStability)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SStability.LedColors] = new()
                 {
                     // English: What was the color of the {1} lit LED in {0}?
                     // Example: What was the color of the first lit LED in Stability?
-                    Question = "What was the color of the {1} lit LED in {0}?",
+                    Question = "Какого цвета был {1}-й горящик светодиод {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Blue"] = "Синий",
+                    },
                 },
                 [SStability.IdNumber] = new()
                 {
                     // English: What was the identification number in {0}?
-                    Question = "What was the identification number in {0}?",
+                    Question = "Какое было идентификационное число {0}?",
                 },
             },
         },
 
         [typeof(SStableTimeSignatures)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SStableTimeSignatures.Signatures] = new()
                 {
                     // English: What was the {1} time signature in {0}?
                     // Example: What was the first time signature in Stable Time Signatures?
-                    Question = "What was the {1} time signature in {0}?",
+                    Question = "Какая была {1}-я сигнатура времени {0}?",
                 },
             },
         },
 
         [typeof(SStackedSequences)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SStackedSequences.Question] = new()
                 {
                     // English: Which of these is the length of a sequence in {0}?
-                    Question = "Which of these is the length of a sequence in {0}?",
+                    Question = "Который ответ является длиной последовательности {0}?",
                 },
             },
         },
 
         [typeof(SStars)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SStars.Center] = new()
                 {
                     // English: What was the digit in the center of {0}?
-                    Question = "What was the digit in the center of {0}?",
+                    Question = "Какая цифра была в центре {0}?",
                 },
             },
         },
 
         [typeof(SStarstruck)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SStarstruck.Star] = new()
                 {
                     // English: Which star was present on {0}?
-                    Question = "Which star was present on {0}?",
+                    Question = "Какая звезда присутствовала {0}?",
                 },
             },
         },
 
         [typeof(SStateOfAggregation)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SStateOfAggregation.Element] = new()
                 {
                     // English: What was the element shown in {0}?
-                    Question = "What was the element shown in {0}?",
+                    Question = "Какой элемент был отображён {0}?",
                 },
             },
         },
 
         [typeof(SStellar)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SStellar.Letters] = new()
                 {
                     // English: What was the {1} letter in {0}?
                     // Example: What was the Morse code letter in Stellar?
-                    Question = "What was the {1} letter in {0}?",
+                    Question = "Какая была буква в {1} {0}?",
                     Arguments = new()
                     {
-                        ["Morse code"] = "Morse code",
-                        ["tap code"] = "tap code",
-                        ["Braille"] = "Braille",
+                        ["Morse code"] = "коде Морзе",
+                        ["tap code"] = "коде стука",
+                        ["Braille"] = "Браилле",
                     },
                 },
             },
@@ -11185,28 +13350,36 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} submitted word’s color in {0}?
                     // Example: What was the first submitted word’s color in Stroop’s Test?
                     Question = "What was the {1} submitted word’s color in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
 
         [typeof(SStupidSlots)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SStupidSlots.Values] = new()
                 {
                     // English: What was the value of the {1} arrow in {0}?
                     // Example: What was the value of the top-left arrow in Stupid Slots?
-                    Question = "What was the value of the {1} arrow in {0}?",
+                    Question = "Какое было значение {1} стрелки {0}?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхней левой",
+                        ["top-middle"] = "верхней средней",
+                        ["top-right"] = "верхней правой",
+                        ["bottom-left"] = "нижней левой",
+                        ["bottom-middle"] = "нижней средней",
+                        ["bottom-right"] = "нижней правой",
                     },
                 },
             },
@@ -11214,13 +13387,12 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSubblyJubbly)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSubblyJubbly.Substitutions] = new()
                 {
                     // English: What was a substitution word in {0}?
-                    Question = "What was a substitution word in {0}?",
+                    Question = "На какое слово была замена {0}?",
                 },
             },
         },
@@ -11234,7 +13406,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: How many subscribers does {1} have in {0}?
                     // Example: How many subscribers does PewDiePie have in Subscribe to Pewdiepie?
-                    Question = "How many subscribers does {1} have in {0}?",
+                    Question = "Сколько подписчиков было у {1} {0}?",
                     Arguments = new()
                     {
                         ["PewDiePie"] = "PewDiePie",
@@ -11246,48 +13418,46 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSubway)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSubway.Bread] = new()
                 {
                     // English: Which bread did the customer ask for in {0}?
-                    Question = "Which bread did the customer ask for in {0}?",
+                    Question = "Какой хлеб попросил покупатель {0}?",
                 },
                 [SSubway.Items] = new()
                 {
                     // English: Which of these was not asked for in {0}?
-                    Question = "Which of these was not asked for in {0}?",
+                    Question = "Что из этого покупатель не просил {0}?",
                 },
             },
         },
 
         [typeof(SSugarSkulls)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSugarSkulls.Skull] = new()
                 {
                     // English: What skull was shown on the {1} square in {0}?
                     // Example: What skull was shown on the top square in Sugar Skulls?
-                    Question = "What skull was shown on the {1} square in {0}?",
+                    Question = "Какой череп был показан на {1} квадрате {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top"] = "верхнем",
+                        ["bottom-left"] = "нижнем левом",
+                        ["bottom-right"] = "нижнем правом",
                     },
                 },
                 [SSugarSkulls.Availability] = new()
                 {
                     // English: Which skull {1} present in {0}?
                     // Example: Which skull was present in Sugar Skulls?
-                    Question = "Which skull {1} present in {0}?",
+                    Question = "Какой череп {1} {0}?",
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "присутствовал",
+                        ["was not"] = "отсутствовал",
                     },
                 },
             },
@@ -11315,44 +13485,52 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSuperparsing)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSuperparsing.Displayed] = new()
                 {
                     // English: What was the displayed word in {0}?
-                    Question = "What was the displayed word in {0}?",
+                    Question = "Какое слово было показано {0}?",
                 },
             },
         },
 
         [typeof(SSUSadmin)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SSUSadmin.Security] = new()
                 {
                     // English: Which security protocol was installed in {0}?
-                    Question = "Which security protocol was installed in {0}?",
+                    Question = "Какой протокол безопасности был установлен на {0}?",
                 },
             },
         },
 
         [typeof(SSwitch)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSwitch.InitialColor] = new()
                 {
                     // English: What color was the {1} LED on the {2} flip of {0}?
                     // Example: What color was the top LED on the first flip of Switch?
-                    Question = "What color was the {1} LED on the {2} flip of {0}?",
+                    Question = "Какого цвета был {1} светодиод при {2}-м нажатии {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["orange"] = "Оранжевого",
+                        ["yellow"] = "Жёлтого",
+                        ["green"] = "Зелёного",
+                        ["blue"] = "Синего",
+                        ["purple"] = "Фиолетового",
+                    },
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхний",
+                        ["bottom"] = "нижний",
                     },
                 },
             },
@@ -11360,13 +13538,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSwitches)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSwitches.InitialPosition] = new()
                 {
                     // English: What was the initial position of the switches in {0}?
-                    Question = "What was the initial position of the switches in {0}?",
+                    Question = "Какое было начальное положение {0}?",
                 },
             },
         },
@@ -11374,35 +13552,45 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SSwitchingMaze)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSwitchingMaze.Seed] = new()
                 {
                     // English: What was the seed in {0}?
-                    Question = "What was the seed in {0}?",
+                    Question = "Какое было зерно у {0}?",
                 },
                 [SSwitchingMaze.Color] = new()
                 {
                     // English: What was the starting maze color in {0}?
-                    Question = "What was the starting maze color in {0}?",
+                    Question = "Какой был цвет начального {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Orange"] = "Orange",
+                        ["Red"] = "Red",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
 
         [typeof(SSymbolCycle)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSymbolCycle.SymbolCounts] = new()
                 {
                     // English: How many symbols were cycling on the {1} screen in {0}?
                     // Example: How many symbols were cycling on the left screen in Symbol Cycle?
-                    Question = "How many symbols were cycling on the {1} screen in {0}?",
+                    Question = "Сколько символов было на {1} экране {0}?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "левом",
+                        ["right"] = "правом",
                     },
                 },
             },
@@ -11430,30 +13618,41 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSymbolicTasha)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSymbolicTasha.Flashes] = new()
                 {
                     // English: Which button flashed {1} in the final sequence of {0}?
                     // Example: Which button flashed first in the final sequence of Symbolic Tasha?
-                    Question = "Which button flashed {1} in the final sequence of {0}?",
+                    Question = "Какая кнопка горела {1}-й в финальной последовательности {0}?",
+                    Answers = new()
+                    {
+                        ["Top"] = "Верхняя",
+                        ["Right"] = "Правая",
+                        ["Bottom"] = "Нижняя",
+                        ["Left"] = "Левая",
+                        ["Pink"] = "Розовая",
+                        ["Green"] = "Зелёная",
+                        ["Yellow"] = "Жёлтая",
+                        ["Blue"] = "Синяя",
+                    },
                 },
                 [SSymbolicTasha.Symbols] = new()
                 {
                     // English: Which symbol was on the {1} button in {0}?
                     // Example: Which symbol was on the top button in Symbolic Tasha?
-                    Question = "Which symbol was on the {1} button in {0}?",
+                    Question = "Какой символ был на {1} кнопке {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["right"] = "right",
-                        ["bottom"] = "bottom",
-                        ["left"] = "left",
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["yellow"] = "yellow",
-                        ["pink"] = "pink",
+                        ["top"] = "верхней",
+                        ["right"] = "правой",
+                        ["bottom"] = "нижней",
+                        ["left"] = "левой",
+                        ["blue"] = "синей",
+                        ["green"] = "зелёной",
+                        ["yellow"] = "жёлтой",
+                        ["pink"] = "розовой",
                     },
                 },
             },
@@ -11487,40 +13686,37 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSync125_3)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSync125_3.Word] = new()
                 {
                     // English: What was displayed on the screen in the {1} stage of {0}?
                     // Example: What was displayed on the screen in the first stage of SYNC-125 [3]?
-                    Question = "What was displayed on the screen in the {1} stage of {0}?",
+                    Question = "Что было на экране на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SSynonyms)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSynonyms.Number] = new()
                 {
                     // English: Which number was displayed on {0}?
-                    Question = "Which number was displayed on {0}?",
+                    Question = "Какое число было отображено {0}?",
                 },
             },
         },
 
         [typeof(SSysadmin)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSysadmin.FixedErrorCodes] = new()
                 {
                     // English: What error code did you fix in {0}?
-                    Question = "What error code did you fix in {0}?",
+                    Question = "Какой код ошибки вы исправили {0}?",
                 },
             },
         },
@@ -11534,7 +13730,33 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which card was {1} in the swap in {0}?
                     // Example: Which card was given away in the swap in TAC?
-                    Question = "Which card was {1} in the swap in {0}?",
+                    Question = "Which card was {1} your partner in {0}?",
+                    Answers = new()
+                    {
+                        ["1"] = "1",
+                        ["2"] = "2",
+                        ["3"] = "3",
+                        ["4"] = "4",
+                        ["5"] = "5",
+                        ["6"] = "6",
+                        ["7"] = "7",
+                        ["8"] = "8",
+                        ["9"] = "9",
+                        ["10"] = "10",
+                        ["11"] = "11",
+                        ["12"] = "12",
+                        ["13"] = "13",
+                        ["backwards 3"] = "backwards 3",
+                        ["backwards 4"] = "backwards 4",
+                        ["backwards 5"] = "backwards 5",
+                        ["single-step 6"] = "single-step 6",
+                        ["single-step 7"] = "single-step 7",
+                        ["8 or discard"] = "8 or discard",
+                        ["9 or discard"] = "9 or discard",
+                        ["10 or discard"] = "10 or discard",
+                        ["Warrior"] = "Warrior",
+                        ["Trickster"] = "Trickster",
+                    },
                     Arguments = new()
                     {
                         ["given away"] = "given away",
@@ -11545,73 +13767,101 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which card was in your hand in {0}?
                     Question = "Which card was in your hand in {0}?",
+                    Answers = new()
+                    {
+                        ["1"] = "1",
+                        ["2"] = "2",
+                        ["3"] = "3",
+                        ["4"] = "4",
+                        ["5"] = "5",
+                        ["6"] = "6",
+                        ["7"] = "7",
+                        ["8"] = "8",
+                        ["9"] = "9",
+                        ["10"] = "10",
+                        ["11"] = "11",
+                        ["12"] = "12",
+                        ["13"] = "13",
+                        ["backwards 3"] = "backwards 3",
+                        ["backwards 4"] = "backwards 4",
+                        ["backwards 5"] = "backwards 5",
+                        ["single-step 6"] = "single-step 6",
+                        ["single-step 7"] = "single-step 7",
+                        ["8 or discard"] = "8 or discard",
+                        ["9 or discard"] = "9 or discard",
+                        ["10 or discard"] = "10 or discard",
+                        ["Warrior"] = "Warrior",
+                        ["Trickster"] = "Trickster",
+                    },
                 },
             },
         },
 
         [typeof(STapCode)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STapCode.ReceivedWord] = new()
                 {
                     // English: What was the received word in {0}?
-                    Question = "What was the received word in {0}?",
+                    Question = "Какое слово было передано {0}?",
                 },
             },
         },
 
         [typeof(STashaSqueals)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STashaSqueals.Colors] = new()
                 {
                     // English: What was the {1} flashed color in {0}?
                     // Example: What was the first flashed color in Tasha Squeals?
-                    Question = "What was the {1} flashed color in {0}?",
+                    Question = "Какой цвет горел {1}-м {0}?",
+                    Answers = new()
+                    {
+                        ["Pink"] = "Розовый",
+                        ["Green"] = "Зелёный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Blue"] = "Синий",
+                    },
                 },
             },
         },
 
         [typeof(STasqueManaging)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STasqueManaging.StartingPos] = new()
                 {
                     // English: Where was the starting position in {0}?
-                    Question = "Where was the starting position in {0}?",
+                    Question = "Где была начальная позиция {0}?",
                 },
             },
         },
 
         [typeof(STeaSet)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STeaSet.DisplayedIngredients] = new()
                 {
                     // English: Which ingredient was displayed {1}, from left to right, in {0}?
                     // Example: Which ingredient was displayed first, from left to right, in Tea Set?
-                    Question = "Which ingredient was displayed {1}, from left to right, in {0}?",
+                    Question = "Какой ингридиент был показан {1}-м, слева направо {0}?",
                 },
             },
         },
 
         [typeof(STechnicalKeypad)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STechnicalKeypad.DisplayedDigits] = new()
                 {
                     // This question is depicted visually, rather than with words. The translation here will only be used for logging.
-                    Question = "What was the {1} displayed digit in {0}?",
+                    Question = "Какая была {1}-я отображённая цифра {0}?",
                 },
             },
         },
@@ -11625,7 +13875,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the initial color of the {1} button in the {2} stage of {0}?
                     // Example: What was the initial color of the first button in the first stage of Ten-Button Color Code?
-                    Question = "What was the initial color of the {1} button in the {2} stage of {0}?",
+                    Question = "Какой был начальный цвет {1}-й кнопки на {2}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красный",
+                        ["green"] = "Зелёный",
+                        ["blue"] = "Синий",
+                    },
                 },
             },
         },
@@ -11639,12 +13895,27 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} split in {0}?
                     // Example: What was the red split in Tenpins?
-                    Question = "What was the {1} split in {0}?",
+                    Question = "Какой был {1} сплит {0}?",
+                    Answers = new()
+                    {
+                        ["Goal Posts"] = "Goal Posts",
+                        ["Cincinnati"] = "Cincinnati",
+                        ["Woolworth Store"] = "Woolworth Store",
+                        ["Lily"] = "Lily",
+                        ["3-7 Split"] = "3-7 Split",
+                        ["Cocked Hat"] = "Cocked Hat",
+                        ["4-7-10 Split"] = "4-7-10 Split",
+                        ["Big Four"] = "Big Four",
+                        ["Greek Church"] = "Greek Church",
+                        ["Big Five"] = "Big Five",
+                        ["Big Six"] = "Big Six",
+                        ["HOW"] = "HOW",
+                    },
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красный",
+                        ["green"] = "зелёный",
+                        ["blue"] = "синий",
                     },
                 },
             },
@@ -11659,20 +13930,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What colour triangle pulsed {1} in {0}?
                     // Example: What colour triangle pulsed first in Tetriamonds?
-                    Question = "What colour triangle pulsed {1} in {0}?",
+                    Question = "Какой цветной треугольник пульсировал {1}-м {0}?",
+                    Answers = new()
+                    {
+                        ["orange"] = "orange",
+                        ["lime"] = "lime",
+                        ["jade"] = "jade",
+                        ["azure"] = "azure",
+                        ["violet"] = "violet",
+                        ["rose"] = "rose",
+                        ["grey"] = "grey",
+                    },
                 },
             },
         },
 
         [typeof(STextField)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Поле из букв",
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [STextField.Display] = new()
                 {
                     // English: What was the displayed letter in {0}?
-                    Question = "What was the displayed letter in {0}?",
+                    Question = "Какая буква присутствовала на {0}?",
                 },
             },
         },
@@ -11680,74 +13962,88 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SThinkingWires)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SThinkingWires.FirstWire] = new()
                 {
                     // English: What was the position from top to bottom of the first wire needing to be cut in {0}?
-                    Question = "What was the position from top to bottom of the first wire needing to be cut in {0}?",
+                    Question = "Где находился первый провод который нужно было перерезать (сверху вниз) на {0}?",
                 },
                 [SThinkingWires.SecondWire] = new()
                 {
                     // English: What color did the second valid wire to cut have to have in {0}?
-                    Question = "What color did the second valid wire to cut have to have in {0}?",
+                    Question = "Какой цвет был у второго верно порезаного провода {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                        ["Black"] = "Black",
+                        ["Any"] = "Any",
+                    },
                 },
                 [SThinkingWires.DisplayNumber] = new()
                 {
                     // English: What was the display number in {0}?
-                    Question = "What was the display number in {0}?",
+                    Question = "Какое было число на экране {0}?",
                 },
             },
         },
 
         [typeof(SThirdBase)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "\"А меня – Сава\"",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SThirdBase.Display] = new()
                 {
                     // English: What was the display word in the {1} stage on {0}?
                     // Example: What was the display word in the first stage on Third Base?
-                    Question = "What was the display word in the {1} stage on {0}?",
+                    Question = "Какое слово было на экране на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SThirtyDollarModule)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SThirtyDollarModule.Sounds] = new()
                 {
                     // English: Which sound was used in {0}?
-                    Question = "Which sound was used in {0}?",
+                    Question = "Какой звук был использован {0}?",
                 },
             },
         },
 
         [typeof(STicTacToe)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Крестиках-ноликах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [STicTacToe.InitialState] = new()
                 {
                     // English: What was on the {1} button at the start of {0}?
                     // Example: What was on the top-left button at the start of Tic Tac Toe?
-                    Question = "What was on the {1} button at the start of {0}?",
+                    Question = "Что было на {1} кнопке в начале игры {0}?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["middle-center"] = "middle-center",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхней левой",
+                        ["top-middle"] = "верхней средней",
+                        ["top-right"] = "верхней правой",
+                        ["middle-left"] = "средней левой",
+                        ["middle-center"] = "центральной",
+                        ["middle-right"] = "средней правой",
+                        ["bottom-left"] = "нижней левой",
+                        ["bottom-middle"] = "нижней средней",
+                        ["bottom-right"] = "нижней правой",
                     },
                 },
             },
@@ -11755,32 +14051,30 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(STimeSignatures)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STimeSignatures.Signatures] = new()
                 {
                     // English: What was the {1} time signature in {0}?
                     // Example: What was the first time signature in Time Signatures?
-                    Question = "What was the {1} time signature in {0}?",
+                    Question = "Какая была {1}-я сигнатура времени {0}?",
                 },
             },
         },
 
         [typeof(STimezone)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STimezone.Cities] = new()
                 {
                     // English: What was the {1} city in {0}?
                     // Example: What was the departure city in Timezone?
-                    Question = "What was the {1} city in {0}?",
+                    Question = "Какой был город {1} {0}?",
                     Arguments = new()
                     {
-                        ["departure"] = "departure",
-                        ["destination"] = "destination",
+                        ["departure"] = "отправления",
+                        ["destination"] = "прибытия",
                     },
                 },
             },
@@ -11788,27 +14082,25 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(STipToe)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STipToe.SafeSquares] = new()
                 {
                     // English: Which of these squares was safe in row {1} in {0}?
                     // Example: Which of these squares was safe in row 9 in Tip Toe?
-                    Question = "Which of these squares was safe in row {1} in {0}?",
+                    Question = "Какой из этих квадратов был безопасным в {1}-м ряду {0}?",
                 },
             },
         },
 
         [typeof(STopsyTurvy)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STopsyTurvy.Word] = new()
                 {
                     // English: What was the word initially shown in {0}?
-                    Question = "What was the word initially shown in {0}?",
+                    Question = "Какое было начальное слово {0}?",
                 },
             },
         },
@@ -11821,26 +14113,32 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [STouchTransmission.Word] = new()
                 {
                     // English: What was the transmitted word in {0}?
-                    Question = "What was the transmitted word in {0}?",
+                    Question = "Какое слово было передано {0}?",
                 },
                 [STouchTransmission.Order] = new()
                 {
                     // English: In what order was the Braille read in {0}?
-                    Question = "In what order was the Braille read in {0}?",
+                    Question = "Какой порядок чтения был у Браилля {0}?",
+                    Answers = new()
+                    {
+                        ["Standard Braille Order"] = "Standard Braille Order",
+                        ["Individual Reading Order"] = "Individual Reading Order",
+                        ["Merged Reading Order"] = "Merged Reading Order",
+                        ["Chinese Reading Order"] = "Chinese Reading Order",
+                    },
                 },
             },
         },
 
         [typeof(STransmittedMorse)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STransmittedMorse.Message] = new()
                 {
                     // English: What was the {1} received message in {0}?
                     // Example: What was the first received message in Transmitted Morse?
-                    Question = "What was the {1} received message in {0}?",
+                    Question = "Какое было {1}-е полученное сообщение {0}?",
                 },
             },
         },
@@ -11854,7 +14152,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What colour triangle pulsed {1} in {0}?
                     // Example: What colour triangle pulsed first in Triamonds?
-                    Question = "What colour triangle pulsed {1} in {0}?",
+                    Question = "Какого цвета был {1}-й пульсирующий треугольник {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "black",
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["blue"] = "blue",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "cyan",
+                        ["white"] = "white",
+                    },
                 },
             },
         },
@@ -11868,7 +14177,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} name in {0}?
                     // Example: What was the northeast name in Tribal Council?
-                    Question = "What was the {1} name in {0}?",
+                    Question = "Who was your closest ally in {0}?",
                     Arguments = new()
                     {
                         ["northeast"] = "northeast",
@@ -11880,60 +14189,58 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(STripleTerm)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STripleTerm.Passwords] = new()
                 {
                     // English: Which of these was one of the passwords in {0}?
-                    Question = "Which of these was one of the passwords in {0}?",
+                    Question = "Что из этого было одним из паролей {0}?",
                 },
             },
         },
 
         [typeof(STurtleRobot)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STurtleRobot.CodeLines] = new()
                 {
                     // English: What was the {1} line you commented out in {0}?
                     // Example: What was the first line you commented out in Turtle Robot?
-                    Question = "What was the {1} line you commented out in {0}?",
+                    Question = "Какую строку вы закомментировали {1}-й {0}?",
                 },
             },
         },
 
         [typeof(STwoBits)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Двух битах",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [STwoBits.Response] = new()
                 {
                     // English: What was the {1} correct query response from {0}?
                     // Example: What was the first correct query response from Two Bits?
-                    Question = "What was the {1} correct query response from {0}?",
+                    Question = "Какой был ответ на {1}-й запрос {0}?",
                 },
             },
         },
 
         [typeof(SUltimateCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUltimateCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Ultimate Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "среднем",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -11961,67 +14268,88 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SUltracube)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SUltracube.Rotations] = new()
                 {
                     // English: What was the {1} rotation in {0}?
                     // Example: What was the first rotation in Ultracube?
-                    Question = "What was the {1} rotation in {0}?",
+                    Question = "Каким было {1}-е вращение {0}?",
                 },
             },
         },
 
         [typeof(SUltraStores)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUltraStores.SingleRotation] = new()
                 {
                     // English: What was the {1} rotation in the {2} stage of {0}?
                     // Example: What was the first rotation in the first stage of UltraStores?
-                    Question = "What was the {1} rotation in the {2} stage of {0}?",
+                    Question = "Какой был {1}-й поворот на {2}-м этапе {0}?",
                 },
                 [SUltraStores.MultiRotation] = new()
                 {
                     // English: What was the {1} rotation in the {2} stage of {0}?
                     // Example: What was the first rotation in the first stage of UltraStores?
-                    Question = "What was the {1} rotation in the {2} stage of {0}?",
+                    Question = "Какой был {1}-й поворот на {2}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SUncoloredSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Неокрашенных квадратов",
+            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [SUncoloredSquares.FirstStage] = new()
                 {
                     // English: What was the {1} color in reading order used in the first stage of {0}?
                     // Example: What was the first color in reading order used in the first stage of Uncolored Squares?
-                    Question = "What was the {1} color in reading order used in the first stage of {0}?",
+                    Question = "Какой был {1}-й цвет в порядке чтения, использованный на первом этапе {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "Белый",
+                        ["Red"] = "Красный",
+                        ["Blue"] = "Синий",
+                        ["Green"] = "Зелёный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Magenta"] = "Розовый",
+                    },
                 },
             },
         },
 
         [typeof(SUncoloredSwitches)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Бесцветных переключателей",
+            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [SUncoloredSwitches.InitialState] = new()
                 {
                     // English: What was the initial state of the switches in {0}?
-                    Question = "What was the initial state of the switches in {0}?",
+                    Question = "Какое было исходное состояние {0}?",
                 },
                 [SUncoloredSwitches.LedColors] = new()
                 {
                     // English: What color was the {1} LED in reading order in {0}?
                     // Example: What color was the first LED in reading order in Uncolored Switches?
-                    Question = "What color was the {1} LED in reading order in {0}?",
+                    Question = "Какого цвета был {1}-й светодиод в порядке чтения {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["green"] = "Зелёного",
+                        ["blue"] = "Синего",
+                        ["turquoise"] = "Голубого",
+                        ["orange"] = "Оранжевого",
+                        ["purple"] = "Фиолетового",
+                        ["white"] = "Белого",
+                        ["black"] = "Чёрного",
+                    },
                 },
             },
         },
@@ -12035,49 +14363,46 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the {1} in the {2} position of the {3} sequence of {0}?
                     // Example: What was the word in the first position of the “YES” sequence of Uncolour Flash?
-                    Question = "What was the {1} in the {2} position of the {3} sequence of {0}?",
+                    Question = "What was the {1} displayed in the {2} sequence of {0}?",
                 },
             },
         },
 
         [typeof(SUnfairCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUnfairCipher.Instructions] = new()
                 {
                     // English: What was the {1} received instruction in {0}?
                     // Example: What was the first received instruction in Unfair Cipher?
-                    Question = "What was the {1} received instruction in {0}?",
+                    Question = "Какая {1}-я инструкция была зашифрована {0}?",
                 },
             },
         },
 
         [typeof(SUnfairsRevenge)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUnfairsRevenge.Instructions] = new()
                 {
                     // English: What was the {1} decrypted instruction in {0}?
                     // Example: What was the first decrypted instruction in Unfair’s Revenge?
-                    Question = "What was the {1} decrypted instruction in {0}?",
+                    Question = "Какая {1}-я инструкция была зашифрована {0}?",
                 },
             },
         },
 
         [typeof(SUnicode)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUnicode.SortedAnswer] = new()
                 {
                     // English: What was the {1} submitted code in {0}?
                     // Example: What was the first submitted code in Unicode?
-                    Question = "What was the {1} submitted code in {0}?",
+                    Question = "Какой был {1}-й отправленный ответ {0}?",
                 },
             },
         },
@@ -12091,46 +14416,102 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the initial card in {0}?
                     Question = "What was the initial card in {0}?",
+                    Answers = new()
+                    {
+                        ["Red 0"] = "Red 0",
+                        ["Red 1"] = "Red 1",
+                        ["Red 2"] = "Red 2",
+                        ["Red 3"] = "Red 3",
+                        ["Red 4"] = "Red 4",
+                        ["Red 5"] = "Red 5",
+                        ["Red 6"] = "Red 6",
+                        ["Red 7"] = "Red 7",
+                        ["Red 8"] = "Red 8",
+                        ["Red 9"] = "Red 9",
+                        ["Red +2"] = "Red +2",
+                        ["Red Skip"] = "Red Skip",
+                        ["Red Reverse"] = "Red Reverse",
+                        ["Green 0"] = "Green 0",
+                        ["Green 1"] = "Green 1",
+                        ["Green 2"] = "Green 2",
+                        ["Green 3"] = "Green 3",
+                        ["Green 4"] = "Green 4",
+                        ["Green 5"] = "Green 5",
+                        ["Green 6"] = "Green 6",
+                        ["Green 7"] = "Green 7",
+                        ["Green 8"] = "Green 8",
+                        ["Green 9"] = "Green 9",
+                        ["Green +2"] = "Green +2",
+                        ["Green Skip"] = "Green Skip",
+                        ["Green Reverse"] = "Green Reverse",
+                        ["Yellow 0"] = "Yellow 0",
+                        ["Yellow 1"] = "Yellow 1",
+                        ["Yellow 2"] = "Yellow 2",
+                        ["Yellow 3"] = "Yellow 3",
+                        ["Yellow 4"] = "Yellow 4",
+                        ["Yellow 5"] = "Yellow 5",
+                        ["Yellow 6"] = "Yellow 6",
+                        ["Yellow 7"] = "Yellow 7",
+                        ["Yellow 8"] = "Yellow 8",
+                        ["Yellow 9"] = "Yellow 9",
+                        ["Yellow +2"] = "Yellow +2",
+                        ["Yellow Skip"] = "Yellow Skip",
+                        ["Yellow Reverse"] = "Yellow Reverse",
+                        ["Blue 0"] = "Blue 0",
+                        ["Blue 1"] = "Blue 1",
+                        ["Blue 2"] = "Blue 2",
+                        ["Blue 3"] = "Blue 3",
+                        ["Blue 4"] = "Blue 4",
+                        ["Blue 5"] = "Blue 5",
+                        ["Blue 6"] = "Blue 6",
+                        ["Blue 7"] = "Blue 7",
+                        ["Blue 8"] = "Blue 8",
+                        ["Blue 9"] = "Blue 9",
+                        ["Blue +2"] = "Blue +2",
+                        ["Blue Skip"] = "Blue Skip",
+                        ["Blue Reverse"] = "Blue Reverse",
+                        ["+4"] = "+4",
+                        ["Wild"] = "Wild",
+                    },
                 },
             },
         },
 
         [typeof(SUnorderedKeys)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SUnorderedKeys.KeyColor] = new()
                 {
                     // English: What color was this key in the {1} stage of {0}?
                     // Example: What color was this key in the first stage of Unordered Keys?
-                    Question = "What color was this key in the {1} stage of {0}?",
+                    Question = "Какого цвета была эта клавиша на {1}-м этапе {0}?",
                 },
                 [SUnorderedKeys.LabelColor] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}?
                     // Example: What color was the label of this key in the first stage of Unordered Keys?
-                    Question = "What color was the label of this key in the {1} stage of {0}?",
+                    Question = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
                 },
                 [SUnorderedKeys.Label] = new()
                 {
                     // English: What was the label of this key in the {1} stage of {0}?
                     // Example: What was the label of this key in the first stage of Unordered Keys?
-                    Question = "What was the label of this key in the {1} stage of {0}?",
+                    Question = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SUnownCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUnownCipher.Answers] = new()
                 {
                     // English: What was the {1} submitted letter in {0}?
                     // Example: What was the first submitted letter in Unown Cipher?
-                    Question = "What was the {1} submitted letter in {0}?",
+                    Question = "Какая буква была отправлена {1}-й {0}?",
                 },
             },
         },
@@ -12144,29 +14525,46 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the color of this square in {0}?
                     Question = "What was the color of this square in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Jade"] = "Jade",
+                        ["Azure"] = "Azure",
+                        ["Violet"] = "Violet",
+                    },
                 },
             },
         },
 
         [typeof(SUpdog)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SUpdog.Word] = new()
                 {
                     // English: What was the text on {0}?
-                    Question = "What was the text on {0}?",
+                    Question = "Какой был текст на {0}?",
                 },
                 [SUpdog.Color] = new()
                 {
                     // English: What was the {1} color in the sequence on {0}?
                     // Example: What was the first color in the sequence on Updog?
-                    Question = "What was the {1} color in the sequence on {0}?",
+                    Question = "Какой был {1} цвет в последовательности {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Orange"] = "Оранжевый",
+                        ["Green"] = "Зелёный",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетовый",
+                    },
                     Arguments = new()
                     {
-                        ["first"] = "first",
-                        ["last"] = "last",
+                        ["first"] = "первый",
+                        ["last"] = "последний",
                     },
                 },
             },
@@ -12174,44 +14572,43 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SUSACycle)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SUSACycle.Displayed] = new()
                 {
                     // English: Which state was displayed in {0}?
-                    Question = "Which state was displayed in {0}?",
+                    Question = "Какой штат был показан на {0}?",
                 },
             },
         },
 
         [typeof(SUSAMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Американском лабиринте",
             Questions = new()
             {
                 [SUSAMaze.Origin] = new()
                 {
                     // English: Which state did you depart from in {0}?
-                    Question = "Which state did you depart from in {0}?",
+                    Question = "Из какого штата вы отправились {0}?",
                 },
             },
         },
 
         [typeof(SV)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SV.Words] = new()
                 {
                     // English: Which word {1} shown in {0}?
                     // Example: Which word was shown in V?
-                    Question = "Which word {1} shown in {0}?",
+                    Question = "Какое слово {1} показано {0}?",
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "было",
+                        ["was not"] = "не было",
                     },
                 },
             },
@@ -12219,26 +14616,36 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SValves)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SValves.InitialState] = new()
                 {
                     // English: What was the initial state of {0}?
-                    Question = "What was the initial state of {0}?",
+                    Question = "Какое было начальное состояние {0}?",
                 },
             },
         },
 
         [typeof(SVaricoloredSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Разноцветных квадратах",
+            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SVaricoloredSquares.InitialColor] = new()
                 {
                     // English: What was the initially pressed color on {0}?
-                    Question = "What was the initially pressed color on {0}?",
+                    Question = "Какой был первый нажатый цвет на {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "Белый",
+                        ["Red"] = "Красный",
+                        ["Blue"] = "Синий",
+                        ["Green"] = "Зелёный",
+                        ["Yellow"] = "Жёлтый",
+                        ["Magenta"] = "Розовый",
+                    },
                 },
             },
         },
@@ -12252,13 +14659,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the word of the {1} goal in {0}?
                     // Example: What was the word of the first goal in Varicolour Flash?
-                    Question = "What was the word of the {1} goal in {0}?",
+                    Question = "Какое было слово у {1}-й цели {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                 },
                 [SVaricolourFlash.Colors] = new()
                 {
                     // English: What was the color of the {1} goal in {0}?
                     // Example: What was the color of the first goal in Varicolour Flash?
-                    Question = "What was the color of the {1} goal in {0}?",
+                    Question = "Какой был цвет у {1}-й цели {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -12271,23 +14696,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SVariety.LED] = new()
                 {
                     // English: What color was the LED flashing in {0}?
-                    Question = "What color was the LED flashing in {0}?",
+                    Question = "Каким цветом горел светодиод {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красным",
+                        ["Yellow"] = "Жёлтым",
+                        ["Blue"] = "Синим",
+                        ["White"] = "Белым",
+                        ["Black"] = "Чёрным",
+                    },
                 },
                 [SVariety.DigitDisplay] = new()
                 {
                     // English: What digit was displayed, but not the answer, for the digit display in {0}?
-                    Question = "What digit was displayed, but not the answer, for the digit display in {0}?",
+                    Question = "Какая цифра была показана на цифровом экране, но не была для него ответом {0}?",
                 },
                 [SVariety.LetterDisplay] = new()
                 {
                     // English: What word could be formed, but was not the answer, for the letter display in {0}?
-                    Question = "What word could be formed, but was not the answer, for the letter display in {0}?",
+                    Question = "Какое слово могло быть составленно на буквенном экране, но не было для него ответом {0}?",
                 },
                 [SVariety.Timer] = new()
                 {
                     // English: What was the maximum display for the {1} in {0}?
                     // Example: What was the maximum display for the timer in Variety?
-                    Question = "What was the maximum display for the {1} in {0}?",
+                    Question = "Какой был максимальный экран на {1}таймере {0}?",
                     Arguments = new()
                     {
                         ["timer"] = "timer",
@@ -12299,7 +14732,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was n for the {1} in {0}?
                     // Example: What was n for the knob in Variety?
-                    Question = "What was n for the {1} in {0}?",
+                    Question = "Чему было равно n у {1}ручки {0}?",
                     Arguments = new()
                     {
                         ["knob"] = "knob",
@@ -12314,7 +14747,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was n for the {1} in {0}?
                     // Example: What was n for the bulb in Variety?
-                    Question = "What was n for the {1} in {0}?",
+                    Question = "Чему было равно n у {1}лампочки {0}?",
                     Arguments = new()
                     {
                         ["bulb"] = "bulb",
@@ -12336,33 +14769,41 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SVcrcs)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SVcrcs.Word] = new()
                 {
                     // English: What was the word in {0}?
-                    Question = "What was the word in {0}?",
+                    Question = "Какое было слово {0}?",
                 },
             },
         },
 
         [typeof(SVectors)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SVectors.Colors] = new()
                 {
                     // English: What was the color of the {1} vector in {0}?
                     // Example: What was the color of the first vector in Vectors?
-                    Question = "What was the color of the {1} vector in {0}?",
+                    Question = "Какого цвета был {1} вектор из {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красного",
+                        ["Orange"] = "Оранжевого",
+                        ["Yellow"] = "Жёлтого",
+                        ["Green"] = "Зелёного",
+                        ["Blue"] = "Синего",
+                        ["Purple"] = "Фиолетового",
+                    },
                     Arguments = new()
                     {
-                        ["first"] = "first",
-                        ["second"] = "second",
-                        ["third"] = "third",
-                        ["only"] = "only",
+                        ["first"] = "1-й",
+                        ["second"] = "2-й",
+                        ["third"] = "3-й",
+                        ["only"] = "единственный",
                     },
                 },
             },
@@ -12370,33 +14811,42 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SVexillology)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SVexillology.Colors] = new()
                 {
                     // English: What was the {1} flagpole color on {0}?
                     // Example: What was the first flagpole color on Vexillology?
-                    Question = "What was the {1} flagpole color on {0}?",
+                    Question = "Какого цвета был {1}-й флагшток {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красного",
+                        ["Orange"] = "Оранжевого",
+                        ["Green"] = "Зелёного",
+                        ["Yellow"] = "Жёлтого",
+                        ["Blue"] = "Синего",
+                        ["Aqua"] = "Аква",
+                        ["White"] = "Белого",
+                        ["Black"] = "Чёрного",
+                    },
                 },
             },
         },
 
         [typeof(SVioletCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SVioletCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Violet Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -12404,66 +14854,72 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SVisualImpairment)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Повреждённого зрения",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SVisualImpairment.Colors] = new()
                 {
                     // English: What was the desired color in the {1} stage on {0}?
                     // Example: What was the desired color in the first stage on Visual Impairment?
-                    Question = "What was the desired color in the {1} stage on {0}?",
+                    Question = "Какой был целевой цвет на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Синий",
+                        ["Green"] = "Зелёный",
+                        ["Red"] = "Красный",
+                        ["White"] = "Белый",
+                    },
                 },
             },
         },
 
         [typeof(SWalkingCube)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SWalkingCube.Path] = new()
                 {
                     // English: Which of these cells was part of the cube’s path in {0}?
-                    Question = "Which of these cells was part of the cube’s path in {0}?",
+                    Question = "Какая из этих клеток была частью пути кубика {0}?",
                 },
             },
         },
 
         [typeof(SWarningSigns)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SWarningSigns.DisplayedSign] = new()
                 {
                     // English: What was the displayed sign in {0}?
-                    Question = "What was the displayed sign in {0}?",
+                    Question = "Какой знак был показан на {0}?",
                 },
             },
         },
 
         [typeof(SWasd)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SWasd.DisplayedLocation] = new()
                 {
                     // English: What was the location displayed in {0}?
-                    Question = "What was the location displayed in {0}?",
+                    Question = "Какая локация была показана {0}?",
                 },
             },
         },
 
         [typeof(SWatchingPaintDry)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SWatchingPaintDry.StrokeCount] = new()
                 {
                     // English: How many brush strokes were heard in {0}?
-                    Question = "How many brush strokes were heard in {0}?",
+                    Question = "Сколько мазков кистью было слышно на {0}?",
                 },
             },
         },
@@ -12477,43 +14933,61 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the correct pattern on the {1} stage in {0}?
                     // Example: What was the correct pattern on the first stage in Wavetapping?
-                    Question = "What was the correct pattern on the {1} stage in {0}?",
+                    Question = "Какой был верный узор на {1}-м этапе {0}?",
                 },
                 [SWavetapping.Colors] = new()
                 {
                     // English: What was the color on the {1} stage in {0}?
                     // Example: What was the color on the first stage in Wavetapping?
-                    Question = "What was the color on the {1} stage in {0}?",
+                    Question = "Какой цвет был на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Orange-Yellow"] = "Orange-Yellow",
+                        ["Chartreuse"] = "Chartreuse",
+                        ["Lime"] = "Lime",
+                        ["Green"] = "Green",
+                        ["Seafoam Green"] = "Seafoam Green",
+                        ["Cyan-Green"] = "Cyan-Green",
+                        ["Turquoise"] = "Turquoise",
+                        ["Dark Blue"] = "Dark Blue",
+                        ["Indigo"] = "Indigo",
+                        ["Purple"] = "Purple",
+                        ["Purple-Magenta"] = "Purple-Magenta",
+                        ["Magenta"] = "Magenta",
+                        ["Pink"] = "Pink",
+                        ["Gray"] = "Gray",
+                    },
                 },
             },
         },
 
         [typeof(SWeakestLink)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SWeakestLink.Elimination] = new()
                 {
                     // English: Who did you eliminate in {0}?
-                    Question = "Who did you eliminate in {0}?",
+                    Question = "Кого вы устранили {0}?",
                 },
                 [SWeakestLink.MoneyPhaseName] = new()
                 {
                     // English: Who made it to the Money Phase with you in {0}?
-                    Question = "Who made it to the Money Phase with you in {0}?",
+                    Question = "Кто дошёл до Money Phase с вами {0}?",
                 },
                 [SWeakestLink.Skill] = new()
                 {
                     // English: What was {1}’s skill in {0}?
                     // Example: What was Annie’s skill in Weakest Link?
-                    Question = "What was {1}’s skill in {0}?",
+                    Question = "Какой навык был у {1} {0}?",
                 },
                 [SWeakestLink.Ratio] = new()
                 {
                     // English: What ratio did {1} get in the Question Phase in {0}?
                     // Example: What ratio did Annie get in the Question Phase in Weakest Link?
-                    Question = "What ratio did {1} get in the Question Phase in {0}?",
+                    Question = "На какой процент вопросов ответил(а) {1} в Question Phase {0}?",
                 },
             },
         },
@@ -12527,13 +15001,22 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the display text in the {1} stage of {0}?
                     // Example: What was the display text in the first stage of What’s on Second?
-                    Question = "What was the display text in the {1} stage of {0}?",
+                    Question = "Какой текст был на {1}-м этапе {0}?",
                 },
                 [SWhatsOnSecond.DisplayColor] = new()
                 {
                     // English: What was the display text color in the {1} stage of {0}?
                     // Example: What was the display text color in the first stage of What’s on Second?
-                    Question = "What was the display text color in the {1} stage of {0}?",
+                    Question = "Какого цвета был текст на {1}-м этапе {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Green"] = "Green",
+                        ["Magenta"] = "Magenta",
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
             },
         },
@@ -12570,19 +15053,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SWhiteCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SWhiteCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in White Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -12590,28 +15072,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SWhoOF)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SWhoOF.Display] = new()
                 {
                     // English: What was the display in the {1} stage on {0}?
                     // Example: What was the display in the first stage on WhoOF?
-                    Question = "What was the display in the {1} stage on {0}?",
+                    Question = "Что было на экране на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SWhosOnFirst)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "\"Меня зовут Авас, а Вас\"",
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SWhosOnFirst.Display] = new()
                 {
                     // English: What was the display in the {1} stage on {0}?
                     // Example: What was the display in the first stage on Who’s on First?
-                    Question = "What was the display in the {1} stage on {0}?",
+                    Question = "Какое слово было на экране на {1}-м этапе {0}?",
                 },
             },
         },
@@ -12625,91 +15107,122 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the display in the first phase of the {1} stage on {0}?
                     // Example: What was the display in the first phase of the first stage on Who’s on Gas?
-                    Question = "What was the display in the first phase of the {1} stage on {0}?",
+                    Question = "What was the display in the {1} stage on {0}?",
                 },
             },
         },
 
         [typeof(SWhosOnMorse)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SWhosOnMorse.TransmitDisplay] = new()
                 {
                     // English: What word was transmitted in the {1} stage on {0}?
                     // Example: What word was transmitted in the first stage on Who’s on Morse?
-                    Question = "What word was transmitted in the {1} stage on {0}?",
+                    Question = "Какое слово было передано на {1}-м этапе {0}?",
                 },
             },
         },
 
         [typeof(SWire)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SWire.DialColors] = new()
                 {
                     // English: What was the color of the {1} dial in {0}?
                     // Example: What was the color of the top dial in Wire?
-                    Question = "What was the color of the {1} dial in {0}?",
+                    Question = "Какого цвета был {1} диск {0}?",
+                    Answers = new()
+                    {
+                        ["blue"] = "Синего",
+                        ["green"] = "Зелёного",
+                        ["grey"] = "Серого",
+                        ["orange"] = "Оранжевого",
+                        ["purple"] = "Фиолетового",
+                        ["red"] = "Красного",
+                    },
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top"] = "верхний",
+                        ["bottom-left"] = "нижний левый",
+                        ["bottom-right"] = "нижний правый",
                     },
                 },
                 [SWire.DisplayedNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
-                    Question = "What was the displayed number in {0}?",
+                    Question = "Какое было отображённое число {0}?",
                 },
             },
         },
 
         [typeof(SWireOrdering)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SWireOrdering.DisplayColor] = new()
                 {
                     // English: What color was the {1} display from the left in {0}?
                     // Example: What color was the first display from the left in Wire Ordering?
-                    Question = "What color was the {1} display from the left in {0}?",
+                    Question = "Какого цвета был {1}-й экран слева на {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["orange"] = "Оранжевого",
+                        ["yellow"] = "Жёлтого",
+                        ["green"] = "Зелёного",
+                        ["blue"] = "Синего",
+                        ["purple"] = "Фиолетового",
+                        ["white"] = "Белого",
+                        ["black"] = "Чёрного",
+                    },
                 },
                 [SWireOrdering.DisplayNumber] = new()
                 {
                     // English: What number was on the {1} display from the left in {0}?
                     // Example: What number was on the first display from the left in Wire Ordering?
-                    Question = "What number was on the {1} display from the left in {0}?",
+                    Question = "Какое число было на {1}-м экране слева на {0}?",
                 },
                 [SWireOrdering.WireColor] = new()
                 {
                     // English: What color was the {1} wire from the left in {0}?
                     // Example: What color was the first wire from the left in Wire Ordering?
-                    Question = "What color was the {1} wire from the left in {0}?",
+                    Question = "Какого цвета был {1}-й провод слева на {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "Красного",
+                        ["orange"] = "Оранжевого",
+                        ["yellow"] = "Жёлтого",
+                        ["green"] = "Зелёного",
+                        ["blue"] = "Синего",
+                        ["purple"] = "Фиолетового",
+                        ["white"] = "Белого",
+                        ["black"] = "Чёрного",
+                    },
                 },
             },
         },
 
         [typeof(SWireSequence)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Последовательности проводов",
+            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SWireSequence.ColorCount] = new()
                 {
                     // English: How many {1} wires were there in {0}?
                     // Example: How many red wires were there in Wire Sequence?
-                    Question = "How many {1} wires were there in {0}?",
+                    Question = "Сколько было {1} проводов {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["blue"] = "blue",
-                        ["black"] = "black",
+                        ["red"] = "красных",
+                        ["blue"] = "синих",
+                        ["black"] = "чёрных",
                     },
                 },
             },
@@ -12717,24 +15230,23 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SWolfGoatAndCabbage)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SWolfGoatAndCabbage.Animals] = new()
                 {
                     // English: Which of these was {1} on {0}?
                     // Example: Which of these was present on Wolf, Goat, and Cabbage?
-                    Question = "Which of these was {1} on {0}?",
+                    Question = "Что из этого {1} {0}?",
                     Arguments = new()
                     {
-                        ["present"] = "present",
-                        ["not present"] = "not present",
+                        ["present"] = "присутствовало",
+                        ["not present"] = "отсутствовало",
                     },
                 },
                 [SWolfGoatAndCabbage.BoatSize] = new()
                 {
                     // English: What was the boat size in {0}?
-                    Question = "What was the boat size in {0}?",
+                    Question = "Какого размера была лодка {0}?",
                 },
             },
         },
@@ -12754,124 +15266,131 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SWorkingTitle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Рабочем названии",
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SWorkingTitle.Label] = new()
                 {
                     // English: What was the label shown in {0}?
-                    Question = "What was the label shown in {0}?",
+                    Question = "Какая надпись была показана на {0}?",
                 },
             },
         },
 
         [typeof(SWumbo)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SWumbo.Number] = new()
                 {
                     // English: What was the number in {0}?
-                    Question = "What was the number in {0}?",
+                    Question = "Какое было число {0}?",
                 },
             },
         },
 
         [typeof(SXenocryst)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SXenocryst.Question] = new()
                 {
                     // English: What was the color of the {1} flash in {0}?
                     // Example: What was the color of the first flash in Xenocryst?
-                    Question = "What was the color of the {1} flash in {0}?",
+                    Question = "Какого цвета была {1}-я вспышка {0}?",
                 },
             },
         },
 
         [typeof(SXmORseCode)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SXmORseCode.Word] = new()
                 {
                     // English: What word did you decrypt in {0}?
-                    Question = "What word did you decrypt in {0}?",
+                    Question = "Какое слово вы расшифровали {0}?",
                 },
                 [SXmORseCode.DisplayedLetters] = new()
                 {
                     // English: What was the {1} displayed letter (in reading order) in {0}?
                     // Example: What was the first displayed letter (in reading order) in XmORse Code?
-                    Question = "What was the {1} displayed letter (in reading order) in {0}?",
+                    Question = "Какая была {1}-я показанная буква (в порядке чтения) {0}?",
                 },
             },
         },
 
         [typeof(SXobekuJehT)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SXobekuJehT.Song] = new()
                 {
                     // English: What song was played on {0}?
-                    Question = "What song was played on {0}?",
+                    Question = "Какая песня звучала {0}?",
                 },
             },
         },
 
         [typeof(SXRing)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SXRing.Symbol] = new()
                 {
                     // English: Which symbol was scanned in {0}?
-                    Question = "Which symbol was scanned in {0}?",
+                    Question = "Какой символ был просканирован {0}?",
                 },
             },
         },
 
         [typeof(SXYRay)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SXYRay.Shapes] = new()
                 {
                     // English: Which shape was scanned by {0}?
-                    Question = "Which shape was scanned by {0}?",
+                    Question = "Какая фигура была просканирована {0}?",
                 },
             },
         },
 
         [typeof(SYahtzee)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Покере на костях",
             Questions = new()
             {
                 [SYahtzee.InitialRoll] = new()
                 {
                     // English: What was the initial roll on {0}?
-                    Question = "What was the initial roll on {0}?",
+                    Question = "Какой был первый бросок {0}?",
+                    Answers = new()
+                    {
+                        ["Yahtzee"] = "Покер",
+                        ["large straight"] = "Большой стрит",
+                        ["small straight"] = "Малый стрит",
+                        ["four of a kind"] = "Каре",
+                        ["full house"] = "Фулл-хаус",
+                        ["three of a kind"] = "Тройка",
+                        ["two pairs"] = "Две пары",
+                        ["pair"] = "Пара",
+                    },
                 },
             },
         },
 
         [typeof(SYellowArrows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Жёлтых стрелках",
+            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SYellowArrows.StartingRow] = new()
                 {
                     // English: What was the starting row letter in {0}?
-                    Question = "What was the starting row letter in {0}?",
+                    Question = "Какая была буква у начальной строки {0}?",
                 },
             },
         },
@@ -12879,45 +15398,53 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SYellowButton)] = new()
         {
             NeedsTranslation = true,
+            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SYellowButton.Colors] = new()
                 {
                     // English: What was the {1} color in {0}?
                     // Example: What was the first color in Yellow Button?
-                    Question = "What was the {1} color in {0}?",
+                    Question = "Какой был {1}-й цвет в последовательности {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Cyan"] = "Cyan",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
             },
         },
 
         [typeof(SYellowButtont)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SYellowButtont.Filename] = new()
                 {
                     // English: What was the filename in {0}?
-                    Question = "What was the filename in {0}?",
+                    Question = "Какое было название файла {0}?",
                 },
             },
         },
 
         [typeof(SYellowCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SYellowCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Yellow Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Что было на {1} экране на {2}-й странице {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "верхнем",
+                        ["middle"] = "центральном",
+                        ["bottom"] = "нижнем",
                     },
                 },
             },
@@ -12932,38 +15459,49 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Where was the {1} square in {0}?
                     // Example: Where was the red square in Zero, Zero?
-                    Question = "Where was the {1} square in {0}?",
+                    Question = "Где был {1} квадрат {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "красный",
+                        ["green"] = "зелёный",
+                        ["blue"] = "синий",
                     },
                 },
                 [SZeroZero.StarColors] = new()
                 {
                     // English: What color was the {1} star in {0}?
                     // Example: What color was the top-left star in Zero, Zero?
-                    Question = "What color was the {1} star in {0}?",
+                    Question = "Какого цвета была {1} звезда {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "black",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["red"] = "red",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["white"] = "white",
+                    },
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхняя левая",
+                        ["top-right"] = "верхняя правая",
+                        ["bottom-left"] = "нижняя левая",
+                        ["bottom-right"] = "нижняя правая",
                     },
                 },
                 [SZeroZero.StarPoints] = new()
                 {
                     // English: How many points were on the {1} star in {0}?
                     // Example: How many points were on the top-left star in Zero, Zero?
-                    Question = "How many points were on the {1} star in {0}?",
+                    Question = "Сколько вершин было у {1} звезды {0}?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "верхней левой",
+                        ["top-right"] = "верхней правой",
+                        ["bottom-left"] = "нижней левой",
+                        ["bottom-right"] = "нижней правой",
                     },
                 },
             },
@@ -12971,27 +15509,26 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SZoni)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SZoni.Words] = new()
                 {
                     // English: What was the {1} word in {0}?
                     // Example: What was the first word in Zoni?
-                    Question = "What was the {1} word in {0}?",
+                    Question = "Какое было {1}-е расшифрованное слово {0}?",
                 },
             },
         },
 
         [typeof(SÉpelleMoiÇa)] = new()
         {
-            NeedsTranslation = true,
+            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SÉpelleMoiÇa.Word] = new()
                 {
                     // English: What word was asked to be spelled in {0}?
-                    Question = "What word was asked to be spelled in {0}?",
+                    Question = "Какое слово нужно было написать на {0}?",
                 },
             },
         },

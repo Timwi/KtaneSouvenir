@@ -53,91 +53,92 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         #region Translatable strings
         [typeof(S0)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S0.Number] = new()
                 {
                     // English: What was the initially displayed number in {0}?
-                    Question = "What was the initially displayed number in {0}?",
+                    Question = "Was war bei {0} die anfänglich angezeigte Zahl?",
                 },
             },
         },
 
         [typeof(S1000Words)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "1000 Wörter",
+            Gender = Gender.Plural,
+            ModuleNameDative = "1000 Wörtern",
             Questions = new()
             {
                 [S1000Words.Words] = new()
                 {
                     // English: What was the {1} word shown in {0}?
                     // Example: What was the first word shown in 1000 Words?
-                    Question = "What was the {1} word shown in {0}?",
+                    Question = "Was war bei {0} das {1}e angezeigte Wort?",
                 },
             },
         },
 
         [typeof(S100LevelsOfDefusal)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "100 Ebenen der Entschärfung",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [S100LevelsOfDefusal.Letters] = new()
                 {
                     // English: What was the {1} displayed letter in {0}?
                     // Example: What was the first displayed letter in 100 Levels of Defusal?
-                    Question = "What was the {1} displayed letter in {0}?",
+                    Question = "Was war bei {0} der {1}e angezeigte Buchstabe?",
                 },
             },
         },
 
         [typeof(S123Game)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S123Game.Profile] = new()
                 {
                     // English: Who was the opponent in {0}?
-                    Question = "Who was the opponent in {0}?",
+                    Question = "Wer war bei {0} der Gegner?",
                 },
                 [S123Game.Name] = new()
                 {
                     // English: Who was the opponent in {0}?
-                    Question = "Who was the opponent in {0}?",
+                    Question = "Wer war bei {0} der Gegner?",
                 },
             },
         },
 
         [typeof(S1DChess)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "1D-Schach",
             Questions = new()
             {
                 [S1DChess.Moves] = new()
                 {
                     // English: What was {1} in {0}?
                     // Example: What was your first move in 1D Chess?
-                    Question = "What was {1} in {0}?",
+                    Question = "Was war bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["your first move"] = "your first move",
-                        ["Rustmate’s first move"] = "Rustmate’s first move",
-                        ["your second move"] = "your second move",
-                        ["Rustmate’s second move"] = "Rustmate’s second move",
-                        ["your third move"] = "your third move",
-                        ["Rustmate’s third move"] = "Rustmate’s third move",
-                        ["your fourth move"] = "your fourth move",
-                        ["Rustmate’s fourth move"] = "Rustmate’s fourth move",
-                        ["your fifth move"] = "your fifth move",
-                        ["Rustmate’s fifth move"] = "Rustmate’s fifth move",
-                        ["your sixth move"] = "your sixth move",
-                        ["Rustmate’s sixth move"] = "Rustmate’s sixth move",
-                        ["your seventh move"] = "your seventh move",
-                        ["Rustmate’s seventh move"] = "Rustmate’s seventh move",
-                        ["your eighth move"] = "your eighth move",
-                        ["Rustmate’s eighth move"] = "Rustmate’s eighth move",
+                        ["your first move"] = "dein erster Zug",
+                        ["Rustmate’s first move"] = "Rustmates erster Zug",
+                        ["your second move"] = "dein zweiter Zug",
+                        ["Rustmate’s second move"] = "Rustmates zweiter Zug",
+                        ["your third move"] = "dein dritter Zug",
+                        ["Rustmate’s third move"] = "Rustmates dritter Zug",
+                        ["your fourth move"] = "dein vierter Zug",
+                        ["Rustmate’s fourth move"] = "Rustmates vierter Zug",
+                        ["your fifth move"] = "dein fünfter Zug",
+                        ["Rustmate’s fifth move"] = "Rustmates fünfter Zug",
+                        ["your sixth move"] = "dein sechster Zug",
+                        ["Rustmate’s sixth move"] = "Rustmates sechster Zug",
+                        ["your seventh move"] = "dein siebter Zug",
+                        ["Rustmate’s seventh move"] = "Rustmates siebter Zug",
+                        ["your eighth move"] = "dein achter Zug",
+                        ["Rustmate’s eighth move"] = "Rustmates achter Zug",
                     },
                 },
             },
@@ -145,388 +146,430 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(S21)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S21.DisplayedNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
-                    Question = "What was the displayed number in {0}?",
+                    Question = "Was war bei {0} die angezeigte Zahl?",
                 },
             },
         },
 
         [typeof(S3DMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "3D-Labyrinth",
             Questions = new()
             {
                 [S3DMaze.Markings] = new()
                 {
                     // English: What were the markings in {0}?
-                    Question = "What were the markings in {0}?",
+                    Question = "Was waren bei {0} die Markierungen?",
                 },
                 [S3DMaze.Bearing] = new()
                 {
                     // English: What was the cardinal direction in {0}?
-                    Question = "What was the cardinal direction in {0}?",
+                    Question = "Was war bei {0} die Himmelsrichtung?",
+                    Answers = new()
+                    {
+                        ["North"] = "Norden",
+                        ["South"] = "Süden",
+                        ["West"] = "Westen",
+                        ["East"] = "Osten",
+                    },
                 },
             },
         },
 
         [typeof(S3DTapCode)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "3D-Klopfzeichen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [S3DTapCode.Word] = new()
                 {
                     // English: What was the received word in {0}?
-                    Question = "What was the received word in {0}?",
+                    Question = "Was war bei {0} das empfangene Wort?",
                 },
             },
         },
 
         [typeof(S3DTunnels)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "3D-Tunnels",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [S3DTunnels.TargetNode] = new()
                 {
                     // English: What was the {1} goal node in {0}?
                     // Example: What was the first goal node in 3D Tunnels?
-                    Question = "What was the {1} goal node in {0}?",
+                    Question = "Was war bei {0} der Zielpunkt?",
                 },
             },
         },
 
         [typeof(S3LEDs)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S3LEDs.InitialState] = new()
                 {
                     // English: What was the initial state of the LEDs in {0} (in reading order)?
-                    Question = "What was the initial state of the LEDs in {0} (in reading order)?",
+                    Question = "Was war bei {0} der Anfangszustand in Lesereihenfolge?",
+                    Answers = new()
+                    {
+                        ["off/off/off"] = "aus/aus/aus",
+                        ["off/off/on"] = "aus/aus/an",
+                        ["off/on/off"] = "aus/an/aus",
+                        ["off/on/on"] = "aus/an/an",
+                        ["on/off/off"] = "an/aus/aus",
+                        ["on/off/on"] = "an/aus/an",
+                        ["on/on/off"] = "an/an/aus",
+                        ["on/on/on"] = "an/an/an",
+                    },
                 },
             },
         },
 
         [typeof(S3NPlus1)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S3NPlus1.Question] = new()
                 {
                     // English: What number was initially displayed in {0}?
-                    Question = "What number was initially displayed in {0}?",
+                    Question = "Welche Zahl war bei {0} anfänglich zu sehen?",
                 },
             },
         },
 
         [typeof(S64)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S64.DisplayedNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
-                    Question = "What was the displayed number in {0}?",
+                    Question = "Was war die bei {0} angezeigte Zahl?",
                 },
             },
         },
 
         [typeof(S7)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S7.InitialValues] = new()
                 {
                     // English: What was the {1} channel’s initial value in {0}?
                     // Example: What was the red channel’s initial value in 7?
-                    Question = "What was the {1} channel’s initial value in {0}?",
+                    Question = "Was war bei {0} der Anfangswert im {1}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "Rotkanal",
+                        ["green"] = "Grünkanal",
+                        ["blue"] = "Blaukanal",
                     },
                 },
                 [S7.LedColors] = new()
                 {
                     // English: What LED color was shown in stage {1} of {0}?
                     // Example: What LED color was shown in stage 0 of 7?
-                    Question = "What LED color was shown in stage {1} of {0}?",
+                    Question = "Was war beim {1}en Schritt von {0} die LED-Farbe?",
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["white"] = "weiß",
+                    },
                 },
             },
         },
 
         [typeof(S9Ball)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [S9Ball.Letters] = new()
                 {
                     // English: What was the number of ball {1} in {0}?
                     // Example: What was the number of ball A in 9-Ball?
-                    Question = "What was the number of ball {1} in {0}?",
+                    Question = "Welche Zahl hatte bei {0} die Kugel {1}?",
                 },
                 [S9Ball.Numbers] = new()
                 {
                     // English: What was the letter of ball {1} in {0}?
                     // Example: What was the letter of ball 2 in 9-Ball?
-                    Question = "What was the letter of ball {1} in {0}?",
+                    Question = "Welchen Buchstaben hatte bei {0} die Kugel {1}?",
                 },
             },
         },
 
         [typeof(SAbyss)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAbyss.Seed] = new()
                 {
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on Abyss?
-                    Question = "What was the {1} character displayed on {0}?",
+                    Question = "Welcher Buchstabe wurde bei {0} als {1}es angezeigt?",
                 },
             },
         },
 
         [typeof(SAccumulation)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Akkumulator",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SAccumulation.BorderColor] = new()
                 {
                     // English: What was the border color in {0}?
-                    Question = "What was the border color in {0}?",
+                    Question = "Was war bei {0} die Rahmenfarbe?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blau",
+                        ["Brown"] = "Braun",
+                        ["Green"] = "Grün",
+                        ["Grey"] = "Grau",
+                        ["Lime"] = "Limette",
+                        ["Orange"] = "Orange",
+                        ["Pink"] = "Pink",
+                        ["Red"] = "Rot",
+                        ["White"] = "Weiß",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
                 [SAccumulation.BackgroundColor] = new()
                 {
                     // English: What was the background color on the {1} stage in {0}?
                     // Example: What was the background color on the first stage in Accumulation?
-                    Question = "What was the background color on the {1} stage in {0}?",
+                    Question = "Was war bei {0} die Hintergrundfarbe im {1}en Schritt?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blau",
+                        ["Brown"] = "Braun",
+                        ["Green"] = "Grün",
+                        ["Grey"] = "Grau",
+                        ["Lime"] = "Limette",
+                        ["Orange"] = "Orange",
+                        ["Pink"] = "Pink",
+                        ["Red"] = "Rot",
+                        ["White"] = "Weiß",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
             },
         },
 
         [typeof(SAdventureGame)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAdventureGame.CorrectItem] = new()
                 {
                     // English: Which item was the {1} correct item you used in {0}?
                     // Example: Which item was the first correct item you used in Adventure Game?
-                    Question = "Which item was the {1} correct item you used in {0}?",
+                    Question = "Welches Objekt wurde bei {0} als {1}es korrekt verwendet?",
                 },
                 [SAdventureGame.Enemy] = new()
                 {
                     // English: What enemy were you fighting in {0}?
-                    Question = "What enemy were you fighting in {0}?",
+                    Question = "Welcher Gegner wurde bei {0} bekämpft?",
                 },
             },
         },
 
         [typeof(SAffineCycle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Affine Schiffer",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Affinen Schiffer",
             Questions = new()
             {
                 [SAffineCycle.DialDirections] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Affine Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SAffineCycle.DialLabels] = new()
                 {
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Affine Cycle?
-                    Question = "What letter was written on the {1} dial in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
         },
 
         [typeof(SAlcoholicRampage)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Amoksauf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SAlcoholicRampage.Mercenaries] = new()
                 {
                     // English: Who was the {1} mercenary displayed in {0}?
                     // Example: Who was the first mercenary displayed in Alcoholic Rampage?
-                    Question = "Who was the {1} mercenary displayed in {0}?",
+                    Question = "Welcher Söldner wurde bei {0} als {1}er angezeigt?",
                 },
             },
         },
 
         [typeof(SALetter)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "A Buachstob",
             Questions = new()
             {
                 [SALetter.InitialLetter] = new()
                 {
                     // English: What was the initial letter in {0}?
-                    Question = "What was the initial letter in {0}?",
+                    Question = "Was war bei {0} der Anfangsbuchstabe?",
                 },
             },
         },
 
         [typeof(SAlfaBravo)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlfaBravo.PressedLetter] = new()
                 {
                     // English: Which letter was pressed in {0}?
-                    Question = "Which letter was pressed in {0}?",
+                    Question = "Welcher Buchstabe wurde bei {0} eingegeben?",
                 },
                 [SAlfaBravo.LeftPressedLetter] = new()
                 {
                     // English: Which letter was to the left of the pressed one in {0}?
-                    Question = "Which letter was to the left of the pressed one in {0}?",
+                    Question = "Welcher Buchstabe war bei {0} links vom eingegebenen?",
                 },
                 [SAlfaBravo.RightPressedLetter] = new()
                 {
                     // English: Which letter was to the right of the pressed one in {0}?
-                    Question = "Which letter was to the right of the pressed one in {0}?",
+                    Question = "Welcher Buchstabe war bei {0} rechts vom eingegebenen?",
                 },
                 [SAlfaBravo.Digit] = new()
                 {
                     // English: What was the last digit on the small display in {0}?
-                    Question = "What was the last digit on the small display in {0}?",
+                    Question = "Was war bei {0} die letzte Ziffer in der kleinen Anzeige?",
                 },
             },
         },
 
         [typeof(SAlgebra)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlgebra.Equation1] = new()
                 {
                     // English: What was the first equation in {0}?
-                    Question = "What was the first equation in {0}?",
+                    Question = "Was war bei {0} die erste Gleichung?",
                 },
                 [SAlgebra.Equation2] = new()
                 {
                     // English: What was the second equation in {0}?
-                    Question = "What was the second equation in {0}?",
+                    Question = "Was war bei {0} die zweite Gleichung?",
                 },
             },
         },
 
         [typeof(SAlgorithmia)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlgorithmia.Positions] = new()
                 {
                     // English: Which position was the {1} position in {0}?
                     // Example: Which position was the starting position in Algorithmia?
-                    Question = "Which position was the {1} position in {0}?",
+                    Question = "Was war bei {0} die {1}?",
                     Arguments = new()
                     {
-                        ["starting"] = "starting",
-                        ["goal"] = "goal",
+                        ["starting"] = "Anfangsposition",
+                        ["goal"] = "Zielposition",
                     },
                 },
                 [SAlgorithmia.Color] = new()
                 {
                     // English: What was the color of the colored bulb in {0}?
-                    Question = "What was the color of the colored bulb in {0}?",
+                    Question = "Welche Farbe hatte die gefärbte Glühlampe bei {0}?",
                 },
                 [SAlgorithmia.Seed] = new()
                 {
                     // English: Which number was present in the seed in {0}?
-                    Question = "Which number was present in the seed in {0}?",
+                    Question = "Welche Zahl war bei {0} im Startwert enthalten?",
                 },
             },
         },
 
         [typeof(SAlphabeticalRuling)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlphabeticalRuling.Letter] = new()
                 {
                     // English: What was the letter displayed in the {1} stage of {0}?
                     // Example: What was the letter displayed in the first stage of Alphabetical Ruling?
-                    Question = "What was the letter displayed in the {1} stage of {0}?",
+                    Question = "Welcher Buchstabe wurde bei {0} im {1}en Schritt angezeigt?",
                 },
                 [SAlphabeticalRuling.Number] = new()
                 {
                     // English: What was the number displayed in the {1} stage of {0}?
                     // Example: What was the number displayed in the first stage of Alphabetical Ruling?
-                    Question = "What was the number displayed in the {1} stage of {0}?",
+                    Question = "Welche Zahl wurde bei {0} im {1}en Schritt angezeigt?",
                 },
             },
         },
 
         [typeof(SAlphabetNumbers)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlphabetNumbers.DisplayedNumbers] = new()
                 {
                     // English: Which of these numbers was on one of the buttons in the {1} stage of {0}?
                     // Example: Which of these numbers was on one of the buttons in the first stage of Alphabet Numbers?
-                    Question = "Which of these numbers was on one of the buttons in the {1} stage of {0}?",
+                    Question = "Welche Zahl war auf einem der Knöpfe im {1}en Schritt von {0} zu sehen?",
                 },
             },
         },
 
         [typeof(SAlphabetTiles)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlphabetTiles.Cycle] = new()
                 {
                     // English: What was the {1} letter shown during the cycle in {0}?
                     // Example: What was the first letter shown during the cycle in Alphabet Tiles?
-                    Question = "What was the {1} letter shown during the cycle in {0}?",
+                    Question = "Welcher Buchstabe war im Zyklus bei {0} als {1}es zu sehen?",
                 },
                 [SAlphabetTiles.MissingLetter] = new()
                 {
                     // English: What was the missing letter in {0}?
-                    Question = "What was the missing letter in {0}?",
+                    Question = "Was war bei {0} der fehlende Buchstabe?",
                 },
             },
         },
 
         [typeof(SAlphaBits)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAlphaBits.DisplayedCharacters] = new()
                 {
                     // English: What character was displayed on the {1} screen on the {2} in {0}?
                     // Example: What character was displayed on the first screen on the left in Alpha-Bits?
-                    Question = "What character was displayed on the {1} screen on the {2} in {0}?",
+                    Question = "Welches Zeichen wurde bei {0} im {1}en {2} Display angezeigt?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "linken",
+                        ["right"] = "rechten",
                     },
                 },
             },
@@ -534,87 +577,89 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SAMessage)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "A Nachricht",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SAMessage.AMessage] = new()
                 {
                     // English: What was the initial message in {0}?
-                    Question = "What was the initial message in {0}?",
+                    Question = "Was war bei {0} die Anfangsnachricht?",
                 },
             },
         },
 
         [typeof(SAmusementParks)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Freizeitparks",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SAmusementParks.Rides] = new()
                 {
                     // English: Which ride was available in {0}?
-                    Question = "Which ride was available in {0}?",
+                    Question = "Welche Attraktion wurde bei {0} angeboten?",
                 },
             },
         },
 
         [typeof(SAngelHernandez)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SAngelHernandez.MainLetter] = new()
                 {
                     // English: What letter was shown by the raised buttons on the {1} stage on {0}?
                     // Example: What letter was shown by the raised buttons on the first stage on Ángel Hernández?
-                    Question = "What letter was shown by the raised buttons on the {1} stage on {0}?",
+                    Question = "Welcher Buchstabe wurde im {1}en Schritt von {0} durch die erhöhten Knöpfe dargestellt?",
                 },
             },
         },
 
         [typeof(SArena)] = new()
         {
-            NeedsTranslation = true,
+            Gender = Gender.Feminine,
+            ModuleNameWithThe = "Die Arena",
             Questions = new()
             {
                 [SArena.Damage] = new()
                 {
                     // English: What was the maximum weapon damage of the attack phase in {0}?
-                    Question = "What was the maximum weapon damage of the attack phase in {0}?",
+                    Question = "Was war bei {0} in der Angriffsphase der maximale Waffenschaden?",
                 },
                 [SArena.Enemies] = new()
                 {
                     // English: Which enemy was present in the defend phase of {0}?
-                    Question = "Which enemy was present in the defend phase of {0}?",
+                    Question = "Welcher Gegner war bei {0} in der Verteidigungsphase anwesend?",
                 },
                 [SArena.Numbers] = new()
                 {
                     // English: Which was a number present in the grab phase of {0}?
-                    Question = "Which was a number present in the grab phase of {0}?",
+                    Question = "Welche Zahl war bei {0} in der Sammelphase dabei?",
                 },
             },
         },
 
         [typeof(SArithmelogic)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Arithmologik",
             Questions = new()
             {
                 [SArithmelogic.Submit] = new()
                 {
                     // English: What was the symbol on the submit button in {0}?
-                    Question = "What was the symbol on the submit button in {0}?",
+                    Question = "Welches Symbol war bei {0} auf dem Eingabeknopf?",
                 },
                 [SArithmelogic.Numbers] = new()
                 {
                     // English: Which number was selectable, but not the solution, in the {1} screen on {0}?
                     // Example: Which number was selectable, but not the solution, in the left screen on Arithmelogic?
-                    Question = "Which number was selectable, but not the solution, in the {1} screen on {0}?",
+                    Question = "Welche Zahl war bei {0} im {1} Bildschirm auswählbar, aber nicht die Lösung?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["middle"] = "middle",
-                        ["right"] = "right",
+                        ["left"] = "linken",
+                        ["middle"] = "mittleren",
+                        ["right"] = "rechten",
                     },
                 },
             },
@@ -622,81 +667,82 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SASCIIMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "ASCII-Labyrinth",
             Questions = new()
             {
                 [SASCIIMaze.Characters] = new()
                 {
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on ASCII Maze?
-                    Question = "What was the {1} character displayed on {0}?",
+                    Question = "Was war bei {0} das {1}e angezeigte Zeichen?",
                 },
             },
         },
 
         [typeof(SASquare)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Ein Quadrat",
             Questions = new()
             {
                 [SASquare.IndexColors] = new()
                 {
                     // English: Which of these was an index color in {0}?
-                    Question = "Which of these was an index color in {0}?",
+                    Question = "Welche Indexfarbe kam bei {0} vor?",
                 },
                 [SASquare.CorrectColors] = new()
                 {
                     // English: Which color was submitted {1} in {0}?
                     // Example: Which color was submitted first in A Square?
-                    Question = "Which color was submitted {1} in {0}?",
+                    Question = "Welche Farbe wurde bei {0} als {1}es eingegeben?",
                 },
             },
         },
 
         [typeof(SAudioMorse)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Audio-Morse",
             Questions = new()
             {
                 [SAudioMorse.Sound] = new()
                 {
                     // English: What was signaled in {0}?
-                    Question = "What was signaled in {0}?",
+                    Question = "Was war bei {0} zu hören?",
                 },
             },
         },
 
         [typeof(SAzureButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Azurfarbenen Knopf",
+            ModuleNameWithThe = "Der Azurfarbene Knopf",
             Questions = new()
             {
                 [SAzureButton.QDecoyArrowDirection] = new()
                 {
                     // English: What was the {1} direction in the decoy arrow in {0}?
                     // Example: What was the first direction in the decoy arrow in Azure Button?
-                    Question = "What was the {1} direction in the decoy arrow in {0}?",
+                    Question = "Was war bei {0} die {1}e Richtung im ungenutzten Pfeil?",
                 },
                 [SAzureButton.QNonDecoyArrowDirection] = new()
                 {
                     // English: What was the {1} direction in the {2} non-decoy arrow in {0}?
                     // Example: What was the first direction in the first non-decoy arrow in Azure Button?
-                    Question = "What was the {1} direction in the {2} non-decoy arrow in {0}?",
+                    Question = "Was war bei {0} die {1}e Richtung im {2}en genutzten Pfeil?",
                 },
                 [SAzureButton.QT] = new()
                 {
                     // English: What was T in {0}?
-                    Question = "What was T in {0}?",
+                    Question = "Was war bei {0} T?",
                 },
                 [SAzureButton.QNotT] = new()
                 {
                     // English: Which of these cards was shown in Stage 1, but not T, in {0}?
-                    Question = "Which of these cards was shown in Stage 1, but not T, in {0}?",
+                    Question = "Welche Karte war bei {0} in Schritt 1 zu sehen, aber nicht T?",
                 },
                 [SAzureButton.QM] = new()
                 {
                     // English: What was M in {0}?
-                    Question = "What was M in {0}?",
+                    Question = "Was war bei {0} M?",
                 },
             },
             Discriminators = new()
@@ -704,76 +750,133 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SAzureButton.DCard] = new()
                 {
                     // English: the Azure Button that had this card in Stage 1
-                    Discriminator = "the Azure Button that had this card in Stage 1",
+                    Discriminator = "dem Azurfarbenen Knopf, bei dem in Schritt 1 diese Karte vorkam,",
                 },
                 [SAzureButton.DM] = new()
                 {
                     // English: the Azure Button where M was {0}
                     // Example: the Azure Button where M was 1
-                    Discriminator = "the Azure Button where M was {0}",
+                    Discriminator = "dem Azurfarbenen Knopf, bei dem M {0} war,",
                 },
                 [SAzureButton.DDecoyArrowDirection] = new()
                 {
                     // English: the Azure Button where the decoy arrow went {0} at some point
                     // Example: the Azure Button where the decoy arrow went north at some point
-                    Discriminator = "the Azure Button where the decoy arrow went {0} at some point",
+                    Discriminator = "dem Azurfarbenen Knopf, dessen ungenutzter Pfeil einmal nach {0} ging",
+                    Arguments = new()
+                    {
+                        ["north"] = "Norden",
+                        ["north-east"] = "Nordosten",
+                        ["east"] = "Osten",
+                        ["south-east"] = "Südosten",
+                        ["south"] = "Süden",
+                        ["south-west"] = "Südwesten",
+                        ["west"] = "Westen",
+                        ["north-west"] = "Nordwesten",
+                    },
                 },
                 [SAzureButton.DNonDecoyArrowDirection] = new()
                 {
                     // English: the Azure Button where the {1} non-decoy arrow went {0} at some point
                     // Example: the Azure Button where the first non-decoy arrow went north at some point
-                    Discriminator = "the Azure Button where the {1} non-decoy arrow went {0} at some point",
+                    Discriminator = "dem Azurfarbenen Knopf, dessen {1}er genutzter Pfeil einmal nach {0} ging",
+                    Arguments = new()
+                    {
+                        ["north"] = "Norden",
+                        ["north-east"] = "Nordosten",
+                        ["east"] = "Osten",
+                        ["south-east"] = "Südosten",
+                        ["south"] = "Süden",
+                        ["south-west"] = "Südwesten",
+                        ["west"] = "Westen",
+                        ["north-west"] = "Nordwesten",
+                    },
                 },
             },
         },
 
         [typeof(SBakery)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Bäckerei",
             Questions = new()
             {
                 [SBakery.Items] = new()
                 {
                     // English: Which menu item was present in {0}?
-                    Question = "Which menu item was present in {0}?",
+                    Question = "Was stand bei {0} auf dem Menü angeboten?",
                 },
             },
         },
 
         [typeof(SBamboozledAgain)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Wieder Übers Ohr Gehauen",
             Questions = new()
             {
                 [SBamboozledAgain.ButtonText] = new()
                 {
                     // English: What was the text on the {1} correct button in {0}?
                     // Example: What was the text on the first correct button in Bamboozled Again?
-                    Question = "What was the text on the {1} correct button in {0}?",
+                    Question = "Was war bei {0} die Aufschrift des {1}en korrekten Knopfes?",
                 },
                 [SBamboozledAgain.ButtonColor] = new()
                 {
                     // English: What color was the {1} correct button in {0}?
                     // Example: What color was the first correct button in Bamboozled Again?
-                    Question = "What color was the {1} correct button in {0}?",
+                    Question = "Welche Farbe hatte der {0}e korrekte Knopf bei {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Lime"] = "Limette",
+                        ["Green"] = "Grün",
+                        ["Jade"] = "Jade",
+                        ["Cyan"] = "Türkis",
+                        ["Azure"] = "Azur",
+                        ["Blue"] = "Blau",
+                        ["Violet"] = "Violett",
+                        ["Magenta"] = "Magenta",
+                        ["Rose"] = "Rosa",
+                        ["White"] = "Weiß",
+                        ["Grey"] = "Grau",
+                        ["Black"] = "Schwarz",
+                    },
                 },
                 [SBamboozledAgain.DisplayTexts1] = new()
                 {
                     // English: What was the {1} decrypted text on the display in {0}?
                     // Example: What was the first decrypted text on the display in Bamboozled Again?
-                    Question = "What was the {1} decrypted text on the display in {0}?",
+                    Question = "Was war bei {0} der {1}e Text auf dem Display, aber entschlüsselt?",
                 },
                 [SBamboozledAgain.DisplayTexts2] = new()
                 {
                     // English: What was the {1} decrypted text on the display in {0}?
                     // Example: What was the first decrypted text on the display in Bamboozled Again?
-                    Question = "What was the {1} decrypted text on the display in {0}?",
+                    Question = "Was war bei {0} der {1}e Text auf dem Display, aber entschlüsselt?",
                 },
                 [SBamboozledAgain.DisplayColor] = new()
                 {
                     // English: What color was the {1} text on the display in {0}?
                     // Example: What color was the first text on the display in Bamboozled Again?
-                    Question = "What color was the {1} text on the display in {0}?",
+                    Question = "In welcher Farbe wurde bei {0} der {1}e Text auf dem Display angezeigt?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Lime"] = "Limette",
+                        ["Green"] = "Grün",
+                        ["Jade"] = "Jade",
+                        ["Cyan"] = "Türkis",
+                        ["Azure"] = "Azur",
+                        ["Blue"] = "Blau",
+                        ["Violet"] = "Violett",
+                        ["Magenta"] = "Magenta",
+                        ["Rose"] = "Rosa",
+                        ["White"] = "Weiß",
+                        ["Grey"] = "Grau",
+                    },
                 },
             },
         },
@@ -787,29 +890,64 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the button in the {1} stage of {0}?
                     // Example: What color was the button in the first stage of Bamboozling Button?
-                    Question = "What color was the button in the {1} stage of {0}?",
+                    Question = "Welche Farbe hatte der Knopf bei {0} im {1}en Schritt?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Lime"] = "Limette",
+                        ["Green"] = "Grün",
+                        ["Jade"] = "Jade",
+                        ["Cyan"] = "Türkis",
+                        ["Azure"] = "Azur",
+                        ["Blue"] = "Blau",
+                        ["Violet"] = "Violett",
+                        ["Magenta"] = "Magenta",
+                        ["Rose"] = "Rosa",
+                        ["White"] = "Weiß",
+                        ["Grey"] = "Grau",
+                        ["Black"] = "Schwarz",
+                    },
                 },
                 [SBamboozlingButton.DisplayColor] = new()
                 {
                     // English: What was the color of the {2} display in the {1} stage of {0}?
                     // Example: What was the color of the first display in the first stage of Bamboozling Button?
-                    Question = "What was the color of the {2} display in the {1} stage of {0}?",
+                    Question = "In welcher Farbe erschien bei {0} im {1}en Schritt die {2}e Anzeige auf dem Display?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Lime"] = "Limette",
+                        ["Green"] = "Grün",
+                        ["Jade"] = "Jade",
+                        ["Cyan"] = "Türkis",
+                        ["Azure"] = "Azur",
+                        ["Blue"] = "Blau",
+                        ["Violet"] = "Violett",
+                        ["Magenta"] = "Magenta",
+                        ["Rose"] = "Rosa",
+                        ["White"] = "Weiß",
+                        ["Grey"] = "Grau",
+                    },
                 },
                 [SBamboozlingButton.Display] = new()
                 {
                     // English: What was the {2} display in the {1} stage of {0}?
                     // Example: What was the first display in the first stage of Bamboozling Button?
-                    Question = "What was the {2} display in the {1} stage of {0}?",
+                    Question = "Was war bei {0} im {1}en Schritt die {2}e Anzeige auf dem Display?",
                 },
                 [SBamboozlingButton.Label] = new()
                 {
                     // English: What was the {2} label on the button in the {1} stage of {0}?
                     // Example: What was the top label on the button in the first stage of Bamboozling Button?
-                    Question = "What was the {2} label on the button in the {1} stage of {0}?",
+                    Question = "Was war bei {0} im {1}en Schritt die {2} Aufschrift auf dem Knopf?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
+                        ["top"] = "obere",
+                        ["bottom"] = "untere",
                     },
                 },
             },
@@ -817,42 +955,51 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SBarCharts)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Balkendiagramme",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Balkendiagrammen",
             Questions = new()
             {
                 [SBarCharts.Category] = new()
                 {
                     // English: What was the category of {0}?
-                    Question = "What was the category of {0}?",
+                    Question = "Was war bei {0} die Kategorie?",
                 },
                 [SBarCharts.Unit] = new()
                 {
                     // English: What was the unit of {0}?
-                    Question = "What was the unit of {0}?",
+                    Question = "Was war bei {0} die Einheit?",
                 },
                 [SBarCharts.Label] = new()
                 {
                     // English: What was the label of the {1} bar in {0}?
                     // Example: What was the label of the first bar in Bar Charts?
-                    Question = "What was the label of the {1} bar in {0}?",
+                    Question = "Was war bei {0} die Beschriftung des {1}en Balkens?",
                 },
                 [SBarCharts.Color] = new()
                 {
                     // English: What was the color of the {1} bar in {0}?
                     // Example: What was the color of the first bar in Bar Charts?
-                    Question = "What was the color of the {1} bar in {0}?",
+                    Question = "Was war bei {0} die Farbe des {1}en Balkens?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                    },
                 },
                 [SBarCharts.Height] = new()
                 {
                     // English: What was the position of the {1} bar in {0}?
                     // Example: What was the position of the shortest bar in Bar Charts?
-                    Question = "What was the position of the {1} bar in {0}?",
+                    Question = "An welcher Position war bei {0} der {1} Balken?",
                     Arguments = new()
                     {
-                        ["shortest"] = "shortest",
-                        ["second shortest"] = "second shortest",
-                        ["second tallest"] = "second tallest",
-                        ["tallest"] = "tallest",
+                        ["shortest"] = "kürzeste",
+                        ["second shortest"] = "zweitkürzeste",
+                        ["second tallest"] = "zweithöchste",
+                        ["tallest"] = "höchste",
                     },
                 },
             },
@@ -860,85 +1007,136 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SBarcodeCipher)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBarcodeCipher.ScreenNumber] = new()
                 {
                     // English: What was the screen number in {0}?
-                    Question = "What was the screen number in {0}?",
+                    Question = "Welche Zahl war bei {0} auf dem Display?",
                 },
                 [SBarcodeCipher.BarcodeEdgework] = new()
                 {
                     // English: What was the edgework represented by the {1} barcode in {0}?
                     // Example: What was the edgework represented by the first barcode in Barcode Cipher?
-                    Question = "What was the edgework represented by the {1} barcode in {0}?",
+                    Question = "Was wurde bei {0} vom {1}en Barcode wiedergegeben?",
+                    Answers = new()
+                    {
+                        ["SERIAL NUMBER"] = "SERIAL NUMBER",
+                        ["BATTERIES"] = "BATTERIES",
+                        ["BATTERY HOLDERS"] = "BATTERY HOLDERS",
+                        ["PORTS"] = "PORTS",
+                        ["PORT PLATES"] = "PORT PLATES",
+                        ["LIT INDICATORS"] = "LIT INDICATORS",
+                        ["UNLIT INDICATORS"] = "UNLIT INDICATORS",
+                        ["INDICATORS"] = "INDICATORS",
+                    },
                 },
                 [SBarcodeCipher.BarcodeAnswers] = new()
                 {
                     // English: What was the answer for the {1} barcode in {0}?
                     // Example: What was the answer for the first barcode in Barcode Cipher?
-                    Question = "What was the answer for the {1} barcode in {0}?",
+                    Question = "Was war bei {0} die Lösung für den {1}en Barcode?",
                 },
             },
         },
 
         [typeof(SBartending)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Bartender",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SBartending.Ingredients] = new()
                 {
                     // English: Which ingredient was in the {1} position on {0}?
                     // Example: Which ingredient was in the first position on Bartending?
-                    Question = "Which ingredient was in the {1} position on {0}?",
+                    Question = "Was war bei {0} die Zutat an {1}er Stelle?",
+                    Answers = new()
+                    {
+                        ["Adelhyde"] = "Adelhyde",
+                        ["Flanergide"] = "Flanergide",
+                        ["Bronson Extract"] = "Bronson Extract",
+                        ["Karmotrine"] = "Karmotrine",
+                        ["Powdered Delta"] = "Powdered Delta",
+                    },
                 },
             },
         },
 
         [typeof(SBeans)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Bohnen",
             Questions = new()
             {
                 [SBeans.Colors] = new()
                 {
                     // English: What was this bean in {0}?
-                    Question = "What was this bean in {0}?",
+                    Question = "Was war bei {0} diese Bohne?",
+                    Answers = new()
+                    {
+                        ["Wobbly Orange"] = "Orange wackelnd",
+                        ["Wobbly Yellow"] = "Gelb wackelnd",
+                        ["Wobbly Green"] = "Grün wackelnd",
+                        ["Not Wobbly Orange"] = "Orange nicht wackelnd",
+                        ["Not Wobbly Yellow"] = "Gelb nicht wackelnd",
+                        ["Not Wobbly Green"] = "Grün nicht wackelnd",
+                    },
                 },
             },
         },
 
         [typeof(SBeanSprouts)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Bohnensprossen",
             Questions = new()
             {
                 [SBeanSprouts.Colors] = new()
                 {
                     // English: What was sprout {1} in {0}?
                     // Example: What was sprout 1 in Bean Sprouts?
-                    Question = "What was sprout {1} in {0}?",
+                    Question = "Was war bei {0} der Spross {1}?",
+                    Answers = new()
+                    {
+                        ["Raw"] = "Roh",
+                        ["Cooked"] = "Gekocht",
+                        ["Burnt"] = "Angebrannt",
+                        ["Fake"] = "Falsch",
+                    },
                 },
                 [SBeanSprouts.Beans] = new()
                 {
                     // English: What bean was on sprout {1} in {0}?
                     // Example: What bean was on sprout 1 in Bean Sprouts?
-                    Question = "What bean was on sprout {1} in {0}?",
+                    Question = "Welche Bohne war bei {0} auf Spross {1}?",
+                    Answers = new()
+                    {
+                        ["Left"] = "Die linke",
+                        ["Right"] = "Die rechte",
+                        ["None"] = "Keine",
+                        ["Both"] = "Beide",
+                    },
                 },
             },
         },
 
         [typeof(SBigBean)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Großbohne",
             Questions = new()
             {
                 [SBigBean.Color] = new()
                 {
                     // English: What was the bean in {0}?
-                    Question = "What was the bean in {0}?",
+                    Question = "Was war bei {0} die Bohne?",
+                    Answers = new()
+                    {
+                        ["Wobbly Orange"] = "Orange wackelnd",
+                        ["Wobbly Yellow"] = "Gelb wackelnd",
+                        ["Wobbly Green"] = "Grün wackelnd",
+                        ["Not Wobbly Orange"] = "Orange nicht wackelnd",
+                        ["Not Wobbly Yellow"] = "Gelb nicht wackelnd",
+                        ["Not Wobbly Green"] = "Grün nicht wackelnd",
+                    },
                 },
             },
         },
@@ -946,99 +1144,136 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBigCircle)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Großer Kreis",
+            ModuleNameDative = "Großen Kreis",
             Questions = new()
             {
                 [SBigCircle.Colors] = new()
                 {
                     // English: What color was {1} in the solution to {0}?
                     // Example: What color was first in the solution to Big Circle?
-                    Question = "What color was {1} in the solution to {0}?",
+                    Question = "Welche Farbe war bei {0} die {1}e Farbe in der Lösung?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "Weiß",
+                        ["Black"] = "Schwarz",
+                    },
                 },
             },
         },
 
         [typeof(SBinary)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Binär-LEDs",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SBinary.Word] = new()
                 {
                     // English: What word was displayed in {0}?
-                    Question = "What word was displayed in {0}?",
+                    Question = "Welches Wort wurde bei {0} angezeigt?",
                 },
             },
         },
 
         [typeof(SBinaryLEDs)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Binär-LEDs",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SBinaryLEDs.Value] = new()
                 {
                     // English: At which numeric value did you cut the correct wire in {0}?
-                    Question = "At which numeric value did you cut the correct wire in {0}?",
+                    Question = "Bei welchem Zahlenwert wurde bei {0} der korrekte Draht durchtrennt?",
                 },
             },
         },
 
         [typeof(SBinaryShift)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBinaryShift.InitialNumber] = new()
                 {
                     // English: What was the {1} initial number in {0}?
                     // Example: What was the top-left initial number in Binary Shift?
-                    Question = "What was the {1} initial number in {0}?",
+                    Question = "Was war bei {0} die {1} Anfangszahl?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["left-middle"] = "left-middle",
-                        ["center"] = "center",
-                        ["right-middle"] = "right-middle",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "obere linke",
+                        ["top-middle"] = "obere mittlere",
+                        ["top-right"] = "obere rechte",
+                        ["left-middle"] = "linke mittlere",
+                        ["center"] = "mittlere",
+                        ["right-middle"] = "rechte mittlere",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-middle"] = "untere mittlere",
+                        ["bottom-right"] = "untere rechte",
                     },
                 },
                 [SBinaryShift.SelectedNumberPossition] = new()
                 {
                     // English: What number was selected at stage {1} in {0}?
                     // Example: What number was selected at stage 0 in Binary Shift?
-                    Question = "What number was selected at stage {1} in {0}?",
+                    Question = "Welche Zahl wurde bei {0} in Schritt {1} ausgewählt?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "oben links",
+                        ["top-middle"] = "oben Mitte",
+                        ["top-right"] = "oben rechts",
+                        ["left-middle"] = "Mitte links",
+                        ["center"] = "Mitte Mitte",
+                        ["right-middle"] = "Mitte rechts",
+                        ["bottom-left"] = "unten links",
+                        ["bottom-middle"] = "unten Mitte",
+                        ["bottom-right"] = "unten rechts",
+                    },
                 },
                 [SBinaryShift.NotSelectedNumberPossition] = new()
                 {
                     // English: What number was not selected at stage {1} in {0}?
                     // Example: What number was not selected at stage 0 in Binary Shift?
-                    Question = "What number was not selected at stage {1} in {0}?",
+                    Question = "Welche Zahl wurde bei {0} in Schritt {1} nicht ausgewählt?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "oben links",
+                        ["top-middle"] = "oben Mitte",
+                        ["top-right"] = "oben rechts",
+                        ["left-middle"] = "Mitte links",
+                        ["center"] = "Mitte Mitte",
+                        ["right-middle"] = "Mitte rechts",
+                        ["bottom-left"] = "unten links",
+                        ["bottom-middle"] = "unten Mitte",
+                        ["bottom-right"] = "unten rechts",
+                    },
                 },
             },
         },
 
         [typeof(SBitmaps)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBitmaps.Question] = new()
                 {
                     // English: How many pixels were {1} in the {2} quadrant in {0}?
                     // Example: How many pixels were white in the top left quadrant in Bitmaps?
-                    Question = "How many pixels were {1} in the {2} quadrant in {0}?",
+                    Question = "Wie viele Pixels waren bei {0} im {2} Quadranten {1}?",
                     Arguments = new()
                     {
-                        ["white"] = "white",
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
-                        ["black"] = "black",
+                        ["white"] = "weiß",
+                        ["top left"] = "oberen linken",
+                        ["top right"] = "oberen rechten",
+                        ["bottom left"] = "unteren linken",
+                        ["bottom right"] = "unteren rechten",
+                        ["black"] = "schwarz",
                     },
                 },
             },
@@ -1046,19 +1281,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SBlackCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Schwarze Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Schwarzen Geheimschrift",
             Questions = new()
             {
                 [SBlackCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Black Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -1067,96 +1304,129 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBlindfoldedYahtzee)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Blindes Yahtzee",
+            ModuleNameDative = "Blinden Yahtzee",
             Questions = new()
             {
                 [SBlindfoldedYahtzee.Claim] = new()
                 {
                     // English: What roll did the module claim in the {1} stage of {0}?
                     // Example: What roll did the module claim in the first stage of Blindfolded Yahtzee?
-                    Question = "What roll did the module claim in the {1} stage of {0}?",
+                    Question = "Was hat das Modul bei {0} in der {1}en Stufe verzeichnet?",
+                    Answers = new()
+                    {
+                        ["Yahtzee"] = "Yahtzee",
+                        ["Large Straight"] = "Große Straße",
+                        ["Small Straight"] = "Kleine Straße",
+                        ["Full House"] = "Full House",
+                        ["Four of a Kind"] = "Vierling",
+                        ["Chance"] = "Chance",
+                        ["Three of a Kind"] = "Drilling",
+                        ["1s"] = "Einsen",
+                        ["2s"] = "Zweien",
+                        ["3s"] = "Dreien",
+                        ["4s"] = "Vieren",
+                        ["5s"] = "Fünfen",
+                        ["6s"] = "Sechsen",
+                    },
                 },
             },
         },
 
         [typeof(SBlindMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Blinder Irrgarten",
             Questions = new()
             {
                 [SBlindMaze.Colors] = new()
                 {
                     // English: What color was the {1} button in {0}?
                     // Example: What color was the north button in Blind Maze?
-                    Question = "What color was the {1} button in {0}?",
+                    Question = "Welche Farbe hatte der Knopf gen {1} bei {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Gray"] = "Grau",
+                        ["Yellow"] = "Gelb",
+                    },
                     Arguments = new()
                     {
-                        ["north"] = "north",
-                        ["east"] = "east",
-                        ["west"] = "west",
-                        ["south"] = "south",
+                        ["north"] = "Norden",
+                        ["east"] = "Osten",
+                        ["west"] = "Westen",
+                        ["south"] = "Süden",
                     },
                 },
                 [SBlindMaze.Maze] = new()
                 {
                     // English: Which maze did you solve {0} on?
-                    Question = "Which maze did you solve {0} on?",
+                    Question = "In welchem Labyrinth wurde {0} gelöst?",
                 },
             },
         },
 
         [typeof(SBlinkingNotes)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Blinkende Noten",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Blinkenden Noten",
             Questions = new()
             {
                 [SBlinkingNotes.Song] = new()
                 {
                     // English: What song was flashed in {0}?
-                    Question = "What song was flashed in {0}?",
+                    Question = "Welcher Song blinkte bei {0} auf?",
                 },
             },
         },
 
         [typeof(SBlinkstop)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBlinkstop.NumberOfFlashes] = new()
                 {
                     // English: How many times did the LED flash in {0}?
-                    Question = "How many times did the LED flash in {0}?",
+                    Question = "Wie oft hat bei {0} die LED geblinkt?",
                 },
                 [SBlinkstop.FewestFlashedColor] = new()
                 {
                     // English: Which color did the LED flash the fewest times in {0}?
-                    Question = "Which color did the LED flash the fewest times in {0}?",
+                    Question = "Welche Farbe hat die LED bei {0} am wenigsten gezeigt?",
+                    Answers = new()
+                    {
+                        ["Purple"] = "Lila",
+                        ["Cyan"] = "Türkis",
+                        ["Yellow"] = "Gelb",
+                        ["Multicolor"] = "Mehrfarbig",
+                    },
                 },
             },
         },
 
         [typeof(SBlockbusters)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBlockbusters.LastLetter] = new()
                 {
                     // English: What was the last letter pressed on {0}?
-                    Question = "What was the last letter pressed on {0}?",
+                    Question = "Welcher Buchstabe wurde bei {0} als letztes eingegeben?",
                 },
             },
         },
 
         [typeof(SBlueArrows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Blaue Pfeile",
             Questions = new()
             {
                 [SBlueArrows.InitialCharacters] = new()
                 {
                     // English: What were the characters on the screen in {0}?
-                    Question = "What were the characters on the screen in {0}?",
+                    Question = "Welche Zeichen waren bei {0} auf dem Bildschirm?",
                 },
             },
         },
@@ -1164,43 +1434,54 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBlueButton)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Blauen Knopf",
+            ModuleNameWithThe = "Der Blaue Knopf",
             Questions = new()
             {
                 [SBlueButton.D] = new()
                 {
                     // English: What was D in {0}?
-                    Question = "What was D in {0}?",
+                    Question = "Was war bei {0} D?",
                 },
                 [SBlueButton.EFGH] = new()
                 {
                     // English: What was {1} in {0}?
                     // Example: What was E in Blue Button?
-                    Question = "What was {1} in {0}?",
+                    Question = "Was war bei {0} {1}?",
                 },
                 [SBlueButton.M] = new()
                 {
                     // English: What was M in {0}?
-                    Question = "What was M in {0}?",
+                    Question = "Was war bei {0} M?",
                 },
                 [SBlueButton.N] = new()
                 {
                     // English: What was N in {0}?
-                    Question = "What was N in {0}?",
+                    Question = "Was war bei {0} N?",
                 },
                 [SBlueButton.P] = new()
                 {
                     // English: What was P in {0}?
-                    Question = "What was P in {0}?",
+                    Question = "Was war bei {0} P?",
                 },
                 [SBlueButton.Q] = new()
                 {
                     // English: What was Q in {0}?
-                    Question = "What was Q in {0}?",
+                    Question = "Was war bei {0} D?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Cyan"] = "Cyan",
+                        ["Red"] = "Red",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SBlueButton.X] = new()
                 {
                     // English: What was X in {0}?
-                    Question = "What was X in {0}?",
+                    Question = "Was war bei {0} X?",
                 },
             },
             Discriminators = new()
@@ -1223,26 +1504,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SBlueButton.DOther] = new()
                 {
                     // English: the Blue Button where {0} was {1}
-                    Discriminator = "the Blue Button where {0} was {1}",
+                    Discriminator = "dem Blauen Knopf, bei dem {0} {1} war,",
                 },
             },
         },
 
         [typeof(SBlueCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Blaue Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Blauen Geheimschrift",
             Questions = new()
             {
                 [SBlueCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -1250,131 +1533,135 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SBobBarks)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBobBarks.Indicators] = new()
                 {
                     // English: What was the {1} indicator label in {0}?
                     // Example: What was the top left indicator label in Bob Barks?
-                    Question = "What was the {1} indicator label in {0}?",
+                    Question = "Welche Beschriftung hatte der {1} Indikator bei {0}?",
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "obere linke",
+                        ["top right"] = "obere rechte",
+                        ["bottom left"] = "untere linke",
+                        ["bottom right"] = "untere rechte",
                     },
                 },
                 [SBobBarks.Positions] = new()
                 {
                     // English: Which button flashed {1} in sequence in {0}?
                     // Example: Which button flashed first in sequence in Bob Barks?
-                    Question = "Which button flashed {1} in sequence in {0}?",
+                    Question = "Welcher Knopf blinkte als {1}er bei {0}?",
+                    Answers = new()
+                    {
+                        ["top left"] = "oben links",
+                        ["top right"] = "oben rechts",
+                        ["bottom left"] = "unten links",
+                        ["bottom right"] = "unten rechts",
+                    },
                 },
             },
         },
 
         [typeof(SBoggle)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBoggle.Letters] = new()
                 {
                     // English: What letter was initially visible on {0}?
-                    Question = "What letter was initially visible on {0}?",
+                    Question = "Welcher dieser Buchstaben war bei {0} anfänglich sichtbar?",
                 },
             },
         },
 
         [typeof(SBombDiffusal)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBombDiffusal.LicenseNumber] = new()
                 {
                     // English: What was the license number in {0}?
-                    Question = "What was the license number in {0}?",
+                    Question = "Was war bei {0} die Lizenznummer?",
                 },
             },
         },
 
         [typeof(SBoneAppleTea)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Bonner Partie",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SBoneAppleTea.Phrase] = new()
                 {
                     // English: Which phrase was shown on {0}?
-                    Question = "Which phrase was shown on {0}?",
+                    Question = "Welcher Satz war bei {0} zu sehen?",
                 },
             },
         },
 
         [typeof(SBoobTube)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBoobTube.Word] = new()
                 {
                     // English: Which word was shown on {0}?
-                    Question = "Which word was shown on {0}?",
+                    Question = "Welches Word war bei {0} zu sehen?",
                 },
             },
         },
 
         [typeof(SBookOfMario)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBookOfMario.Pictures] = new()
                 {
                     // English: Who said the {1} quote in {0}?
                     // Example: Who said the first quote in Book of Mario?
-                    Question = "Who said the {1} quote in {0}?",
+                    Question = "Wer sprach bei {0} das {1}e Zitat?",
                 },
                 [SBookOfMario.Quotes] = new()
                 {
                     // English: What did {1} say in the {2} stage of {0}?
                     // Example: What did Goombell say in the first stage of Book of Mario?
-                    Question = "What did {1} say in the {2} stage of {0}?",
+                    Question = "Was sagte {1} bei {0} im {2}en Schritt?",
                 },
             },
         },
 
         [typeof(SBooleanWires)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Boolesche Drähte",
             Questions = new()
             {
                 [SBooleanWires.EnteredOperators] = new()
                 {
                     // English: Which operator did you submit in the {1} stage of {0}?
                     // Example: Which operator did you submit in the first stage of Boolean Wires?
-                    Question = "Which operator did you submit in the {1} stage of {0}?",
+                    Question = "Welcher Operator wurde bei {0} im {1}en Schritt eingegeben?",
                 },
             },
         },
 
         [typeof(SBoomtarTheGreat)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Boomtar der Große",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SBoomtarTheGreat.Rules] = new()
                 {
                     // English: What was rule {1} in {0}?
                     // Example: What was rule one in Boomtar the Great?
-                    Question = "What was rule {1} in {0}?",
+                    Question = "Was war bei {0} Regel Nr. {1}?",
                     Arguments = new()
                     {
-                        ["one"] = "one",
-                        ["two"] = "two",
+                        ["one"] = "1",
+                        ["two"] = "2",
                     },
                 },
             },
@@ -1389,83 +1676,108 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} key’s border color when it was pressed in {0}?
                     // Example: What was the first key’s border color when it was pressed in Bordered Keys?
-                    Question = "What was the {1} key’s border color when it was pressed in {0}?",
+                    Question = "Was war beim Druck auf den {1}en Knopf bei {0} die Randfarbe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
                 [SBorderedKeys.Digit] = new()
                 {
                     // English: What was the digit displayed when the {1} key was pressed in {0}?
                     // Example: What was the digit displayed when the first key was pressed in Bordered Keys?
-                    Question = "What was the digit displayed when the {1} key was pressed in {0}?",
+                    Question = "Was war beim Druck auf den {1}en Knopf bei {0} die angezeigte Ziffer?",
                 },
                 [SBorderedKeys.KeyColor] = new()
                 {
                     // English: What was the {1} key’s key color when it was pressed in {0}?
                     // Example: What was the first key’s key color when it was pressed in Bordered Keys?
-                    Question = "What was the {1} key’s key color when it was pressed in {0}?",
+                    Question = "Was war beim Druck auf den {1}en Knopf bei {0} die Knopffarbe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
                 [SBorderedKeys.Label] = new()
                 {
                     // English: What was the {1} key’s label when it was pressed in {0}?
                     // Example: What was the first key’s label when it was pressed in Bordered Keys?
-                    Question = "What was the {1} key’s label when it was pressed in {0}?",
+                    Question = "Was war beim Druck auf den {1}en Knopf bei {0} die Aufschrift?",
                 },
                 [SBorderedKeys.LabelColor] = new()
                 {
                     // English: What was the {1} key’s label color when it was pressed in {0}?
                     // Example: What was the first key’s label color when it was pressed in Bordered Keys?
-                    Question = "What was the {1} key’s label color when it was pressed in {0}?",
+                    Question = "Was war beim Druck auf den {1}en Knopf bei {0} die Aufschriftfarbe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
             },
         },
 
         [typeof(SBottomGear)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBottomGear.Tweet] = new()
                 {
                     // English: What tweet was shown in {0}?
-                    Question = "What tweet was shown in {0}?",
+                    Question = "Welcher Tweet war bei {0} zu sehen?",
                 },
             },
         },
 
         [typeof(SBoxing)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBoxing.StrengthByContestant] = new()
                 {
                     // English: What was {1}’s strength rating on {0}?
                     // Example: What was Muhammad’s strength rating on Boxing?
-                    Question = "What was {1}’s strength rating on {0}?",
+                    Question = "Was war bei {0} die Kraftstufe von {1}?",
                 },
                 [SBoxing.ContestantByStrength] = new()
                 {
                     // English: What was the {1} of the contestant with strength rating {2} on {0}?
                     // Example: What was the first name of the contestant with strength rating 0 on Boxing?
-                    Question = "What was the {1} of the contestant with strength rating {2} on {0}?",
+                    Question = "Was war bei {0} der {1} des Kandidaten mit Kraftstufe {2}?",
                     Arguments = new()
                     {
-                        ["first name"] = "first name",
-                        ["last name"] = "last name",
-                        ["substitute’s first name"] = "substitute’s first name",
-                        ["substitute’s last name"] = "substitute’s last name",
+                        ["first name"] = "Vorname",
+                        ["last name"] = "Nachname",
+                        ["substitute’s first name"] = "Vorname des Ersatzmanns",
+                        ["substitute’s last name"] = "Nachname des Ersatzmanns",
                     },
                 },
                 [SBoxing.Names] = new()
                 {
                     // English: Which {1} appeared on {0}?
                     // Example: Which contestant’s first name appeared on Boxing?
-                    Question = "Which {1} appeared on {0}?",
+                    Question = "Was war bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["contestant’s first name"] = "contestant’s first name",
-                        ["contestant’s last name"] = "contestant’s last name",
-                        ["substitute’s first name"] = "substitute’s first name",
-                        ["substitute’s last name"] = "substitute’s last name",
+                        ["contestant’s first name"] = "der Vorname eines Kandidaten",
+                        ["contestant’s last name"] = "der Nachname eines Kandidaten",
+                        ["substitute’s first name"] = "der Vorname eines Ersatzmanns",
+                        ["substitute’s last name"] = "der Nachname eines Ersatzmanns",
                     },
                 },
             },
@@ -1473,14 +1785,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SBraille)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Blindenschrift",
             Questions = new()
             {
                 [SBraille.Pattern] = new()
                 {
                     // English: What was the {1} pattern in {0}?
                     // Example: What was the first pattern in Braille?
-                    Question = "What was the {1} pattern in {0}?",
+                    Question = "Was war bei {0} das {1}e Zeichen?",
                 },
             },
         },
@@ -1488,63 +1800,80 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBreakfastEgg)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Frühstücksei",
             Questions = new()
             {
                 [SBreakfastEgg.Color] = new()
                 {
                     // English: Which color appeared on the egg in {0}?
-                    Question = "Which color appeared on the egg in {0}?",
+                    Question = "Welche Farbe erschien bei {0} auf dem Ei?",
+                    Answers = new()
+                    {
+                        ["Crimson"] = "Karmin",
+                        ["Orange"] = "Orange",
+                        ["Pink"] = "Pink",
+                        ["Beige"] = "Beige",
+                        ["Cyan"] = "Türkis",
+                        ["Lime"] = "Limette",
+                        ["Petrol"] = "Benzin",
+                    },
                 },
             },
         },
 
         [typeof(SBrokenButtons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Kaputte Knöpfe",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Kaputten Knöpfen",
             Questions = new()
             {
                 [SBrokenButtons.Question] = new()
                 {
                     // English: What was the {1} correct button you pressed in {0}?
                     // Example: What was the first correct button you pressed in Broken Buttons?
-                    Question = "What was the {1} correct button you pressed in {0}?",
+                    Question = "Was war bei {0} der als {1}e korrekt gedrückte Knopf?",
                 },
             },
         },
 
         [typeof(SBrokenGuitarChords)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Kaputte Gitarrenakkorde",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Kaputten Gitarrenakkorden",
             Questions = new()
             {
                 [SBrokenGuitarChords.DisplayedChord] = new()
                 {
                     // English: What was the displayed chord in {0}?
-                    Question = "What was the displayed chord in {0}?",
+                    Question = "Welcher Akkord wurde bei {0} angezeigt?",
                 },
                 [SBrokenGuitarChords.MutedString] = new()
                 {
                     // English: In which position, from left to right, was the broken string in {0}?
-                    Question = "In which position, from left to right, was the broken string in {0}?",
+                    Question = "An welcher Position, von links nach rechts, war bei {0} die kaputte Saite?",
                 },
             },
         },
 
         [typeof(SBrownCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Braune Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Braunen Geheimschrift",
             Questions = new()
             {
                 [SBrownCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Brown Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -1558,96 +1887,128 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SBrushStrokes.MiddleColor] = new()
                 {
                     // English: What was the color of the middle contact point in {0}?
-                    Question = "What was the color of the middle contact point in {0}?",
+                    Question = "Was war bei {0} die Farbe des mittleren Kontaktes?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Lime"] = "Limette",
+                        ["Green"] = "Grün",
+                        ["Cyan"] = "Türkis",
+                        ["Sky"] = "Himmelblau",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["Magenta"] = "Magenta",
+                        ["Brown"] = "Braun",
+                        ["White"] = "Weiß",
+                        ["Gray"] = "Grau",
+                        ["Black"] = "Schwarz",
+                        ["Pink"] = "Pink",
+                    },
                 },
             },
         },
 
         [typeof(SBulb)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Glühlampe",
+            Gender = Gender.Feminine,
+            ModuleNameWithThe = "Die Glühlampe",
             Questions = new()
             {
                 [SBulb.InitialState] = new()
                 {
                     // English: Was the bulb initially lit in {0}?
-                    Question = "Was the bulb initially lit in {0}?",
+                    Question = "War die Glühlampe bei {0} anfänglich an?",
                 },
             },
         },
 
         [typeof(SBurgerAlarm)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Alarmbeilage",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SBurgerAlarm.Digits] = new()
                 {
                     // English: What was the {1} displayed digit in {0}?
                     // Example: What was the first displayed digit in Burger Alarm?
-                    Question = "What was the {1} displayed digit in {0}?",
+                    Question = "Was war bei {0} die {1}e Ziffer auf dem Display?",
                 },
                 [SBurgerAlarm.OrderNumbers] = new()
                 {
                     // English: What was the {1} order number in {0}?
                     // Example: What was the first order number in Burger Alarm?
-                    Question = "What was the {1} order number in {0}?",
+                    Question = "Was war bei {0} die {1} Auftragsnummer?",
                 },
             },
         },
 
         [typeof(SBurglarAlarm)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Alarmanlage",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SBurglarAlarm.Digits] = new()
                 {
                     // English: What was the {1} displayed digit in {0}?
                     // Example: What was the first displayed digit in Burglar Alarm?
-                    Question = "What was the {1} displayed digit in {0}?",
+                    Question = "Was war bei {0} die {1}e Ziffer auf dem Display?",
                 },
             },
         },
 
         [typeof(SButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Knopf",
+            Gender = Gender.Masculine,
+            ModuleNameWithThe = "Der Knopf",
             Questions = new()
             {
                 [SButton.LightColor] = new()
                 {
                     // English: What color did the light glow in {0}?
-                    Question = "What color did the light glow in {0}?",
+                    Question = "In welcher Farbe leuchtete bei {0} der Streifen?",
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
+                        ["white"] = "weiß",
+                    },
                 },
             },
         },
 
         [typeof(SButtonage)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Knopferei",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SButtonage.Buttons] = new()
                 {
                     // English: How many {1} buttons were there on {0}?
                     // Example: How many red buttons were there on Buttonage?
-                    Question = "How many {1} buttons were there on {0}?",
+                    Question = "Wie viele {1} waren bei {0} zu sehen?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["orange"] = "orange",
-                        ["blue"] = "blue",
-                        ["pink"] = "pink",
-                        ["white"] = "white",
-                        ["black"] = "black",
-                        ["white-bordered"] = "white-bordered",
-                        ["pink-bordered"] = "pink-bordered",
-                        ["gray-bordered"] = "gray-bordered",
-                        ["red-bordered"] = "red-bordered",
-                        ["“P”"] = "“P”",
-                        ["special"] = "special",
+                        ["red"] = "rote Tasten",
+                        ["green"] = "grüne Tasten",
+                        ["orange"] = "orangene Tasten",
+                        ["blue"] = "blaue Tasten",
+                        ["pink"] = "pinke Tasten",
+                        ["white"] = "weiße Tasten",
+                        ["black"] = "schwarze Tasten",
+                        ["white-bordered"] = "weiß umrandete Tasten",
+                        ["pink-bordered"] = "pink umrandete Tasten",
+                        ["gray-bordered"] = "grau umrandete Tasten",
+                        ["red-bordered"] = "rot umrandete Tasten",
+                        ["“P”"] = "“P”-Tasten",
+                        ["special"] = "Spezialtasten",
                     },
                 },
             },
@@ -1655,20 +2016,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SButtonSequence)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Knopffolgen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SButtonSequence.sColorOccurrences] = new()
                 {
                     // English: How many of the buttons in {0} were {1}?
                     // Example: How many of the buttons in Button Sequence were red?
-                    Question = "How many of the buttons in {0} were {1}?",
+                    Question = "Wie viele der Knöpfe bei {0} waren {1}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["blue"] = "blue",
-                        ["yellow"] = "yellow",
-                        ["white"] = "white",
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
+                        ["white"] = "weiß",
                     },
                 },
             },
@@ -1677,111 +2039,142 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCactisConundrum)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Kakteen-Zwickmühle",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCactisConundrum.Color] = new()
                 {
                     // English: What color was the LED in the {1} stage of {0}?
                     // Example: What color was the LED in the first stage of Cacti’s Conundrum?
-                    Question = "What color was the LED in the {1} stage of {0}?",
+                    Question = "Welche Farbe hatte bei {0} die LED in der {1}en Stufe?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blau",
+                        ["Lime"] = "Limette",
+                        ["Orange"] = "Orange",
+                        ["Red"] = "Rot",
+                    },
                 },
             },
         },
 
         [typeof(SCaesarCycle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Cäsar-Schiffer",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCaesarCycle.DialDirections] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Caesar Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
                 },
                 [SCaesarCycle.DialLabels] = new()
                 {
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Caesar Cycle?
-                    Question = "What letter was written on the {1} dial in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
         },
 
         [typeof(SCaesarPsycho)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Cäsar-Psycho",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SCaesarPsycho.ScreenTexts] = new()
                 {
                     // English: What text was on the top display in the {1} stage of {0}?
                     // Example: What text was on the top display in the first stage of Caesar Psycho?
-                    Question = "What text was on the top display in the {1} stage of {0}?",
+                    Question = "Welcher Text war bei {0} in der {1}en Stufe auf dem oberen Display zu sehen?",
                 },
                 [SCaesarPsycho.ScreenColor] = new()
                 {
                     // English: What color was the text on the top display in the second stage of {0}?
-                    Question = "What color was the text on the top display in the second stage of {0}?",
+                    Question = "Welche Farbe hatte bei {0} in der {1}en Stufe der Text auf dem oberen Display?",
                 },
             },
         },
 
         [typeof(SCalendar)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Kalender",
             Questions = new()
             {
                 [SCalendar.LedColor] = new()
                 {
                     // English: What was the LED color in {0}?
-                    Question = "What was the LED color in {0}?",
+                    Question = "Welche Farbe hatte die LED bei {0}?",
+                    Answers = new()
+                    {
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                    },
                 },
             },
         },
 
         [typeof(SCARPS)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCARPS.Cell] = new()
                 {
                     // English: What color was this cell initially in {0}?
-                    Question = "What color was this cell initially in {0}?",
+                    Question = "Welche Farbe hatte diese Zelle bei {0} am Anfang?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Black"] = "Schwarz",
+                    },
                 },
             },
         },
 
         [typeof(SCartinese)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Cartinesisch",
             Questions = new()
             {
                 [SCartinese.ButtonColors] = new()
                 {
                     // English: What color was the {1} button in {0}?
                     // Example: What color was the up button in Cartinese?
-                    Question = "What color was the {1} button in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                    },
                     Arguments = new()
                     {
-                        ["up"] = "up",
-                        ["right"] = "right",
-                        ["down"] = "down",
-                        ["left"] = "left",
+                        ["up"] = "Hoch-Taste",
+                        ["right"] = "Rechts-Taste",
+                        ["down"] = "Runter-Taste",
+                        ["left"] = "Links-Taste",
                     },
                 },
                 [SCartinese.Lyrics] = new()
                 {
                     // English: What lyric was played by the {1} button in {0}?
                     // Example: What lyric was played by the up button in Cartinese?
-                    Question = "What lyric was played by the {1} button in {0}?",
+                    Question = "Welcher Songtext wurde bei {0} von der {1} abgespielt?",
                     Arguments = new()
                     {
-                        ["up"] = "up",
-                        ["right"] = "right",
-                        ["down"] = "down",
-                        ["left"] = "left",
+                        ["up"] = "Hoch-Taste",
+                        ["right"] = "Rechts-Taste",
+                        ["down"] = "Runter-Taste",
+                        ["left"] = "Links-Taste",
                     },
                 },
             },
@@ -1796,13 +2189,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the colour of the {1} panel in {0}?
                     // Example: What was the colour of the top-left panel in Catchphrase?
-                    Question = "What was the colour of the {1} panel in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1} Tafel?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Orange"] = "Orange",
+                        ["Purple"] = "Lila",
+                        ["Yellow"] = "Gelb",
+                    },
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "obere linke",
+                        ["top-right"] = "obere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
                     },
                 },
             },
@@ -1810,79 +2212,81 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SChallengeAndContact)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SChallengeAndContact.Answers] = new()
                 {
                     // English: What was the {1} submitted answer in {0}?
                     // Example: What was the first submitted answer in Challenge & Contact?
-                    Question = "What was the {1} submitted answer in {0}?",
+                    Question = "Was war bei {0} die als {1}e eingegebene Antwort?",
                 },
             },
         },
 
         [typeof(SCharacterCodes)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Zeichencodes",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SCharacterCodes.Character] = new()
                 {
                     // English: What was the {1} character in {0}?
                     // Example: What was the first character in Character Codes?
-                    Question = "What was the {1} character in {0}?",
+                    Question = "Was war bei {0} das {1}e Zeichen?",
                 },
             },
         },
 
         [typeof(SCharacterShift)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Zeichenschieber",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SCharacterShift.Letters] = new()
                 {
                     // English: Which letter was present but not submitted on the left slider of {0}?
-                    Question = "Which letter was present but not submitted on the left slider of {0}?",
+                    Question = "Welcher Buchstabe war bei {0} auf dem linken Schieber zu sehen, aber nicht Teil der Lösung?",
                 },
                 [SCharacterShift.Digits] = new()
                 {
                     // English: Which digit was present but not submitted on the right slider of {0}?
-                    Question = "Which digit was present but not submitted on the right slider of {0}?",
+                    Question = "Welche Ziffer war bei {0} auf dem rechten Schieber zu sehen, aber nicht Teil der Lösung?",
                 },
             },
         },
 
         [typeof(SCharacterSlots)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Figurenkabinett",
             Questions = new()
             {
                 [SCharacterSlots.DisplayedCharacters] = new()
                 {
                     // English: Who was displayed in the {1} slot in the {2} stage of {0}?
                     // Example: Who was displayed in the first slot in the first stage of Character Slots?
-                    Question = "Who was displayed in the {1} slot in the {2} stage of {0}?",
+                    Question = "Wer war bei {0} in der {2}en Stufe an {1}er Stelle zu sehen?",
                 },
             },
         },
 
         [typeof(SCheapCheckout)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Klingelkasse",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCheapCheckout.Paid] = new()
                 {
                     // English: What was {1} in {0}?
                     // Example: What was the paid amount in Cheap Checkout?
-                    Question = "What was {1} in {0}?",
+                    Question = "Was war bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["the paid amount"] = "the paid amount",
-                        ["the first paid amount"] = "the first paid amount",
-                        ["the second paid amount"] = "the second paid amount",
+                        ["the paid amount"] = "der Betrag",
+                        ["the first paid amount"] = "der erste Betrag",
+                        ["the second paid amount"] = "der zweite Betrag",
                     },
                 },
             },
@@ -1890,25 +2294,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCheatCheckout)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Schlingelkasse",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCheatCheckout.Currency] = new()
                 {
                     // English: What was the cryptocurrency of {0}?
-                    Question = "What was the cryptocurrency of {0}?",
+                    Question = "Was war bei {0} die Kryptowährung?",
                 },
                 [SCheatCheckout.Hack] = new()
                 {
                     // English: What was the hack method for the {1} hack of {0}?
                     // Example: What was the hack method for the first hack of Cheat Checkout?
-                    Question = "What was the hack method for the {1} hack of {0}?",
+                    Question = "Was war bei {0} die {1}e Exploitmethode?",
                 },
                 [SCheatCheckout.Site] = new()
                 {
                     // English: What was the site for the {1} hack of {0}?
                     // Example: What was the site for the first hack of Cheat Checkout?
-                    Question = "What was the site for the {1} hack of {0}?",
+                    Question = "Welche Domain wurde bei {0} vom {1}en Exploit angegriffen?",
                 },
             },
         },
@@ -1916,17 +2321,48 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCheepCheckout)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Zwitscherkasse",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCheepCheckout.Birds] = new()
                 {
                     // English: Which bird {1} present in {0}?
                     // Example: Which bird was present in Cheep Checkout?
-                    Question = "Which bird {1} present in {0}?",
+                    Question = "Welcher Vogel war bei {0} {1}?",
+                    Answers = new()
+                    {
+                        ["Auklet"] = "Alk",
+                        ["Bluebird"] = "Berghüttensänger",
+                        ["Chickadee"] = "Chickadee-Meise",
+                        ["Dove"] = "Diamanttaube",
+                        ["Egret"] = "Europa-Reiher",
+                        ["Finch"] = "Fink",
+                        ["Godwit"] = "Gugelschnepfe",
+                        ["Hummingbird"] = "Hainkolibri",
+                        ["Ibis"] = "Ibis",
+                        ["Jay"] = "Jagdhäher",
+                        ["Kinglet"] = "Königsgoldhähnchen",
+                        ["Loon"] = "Lagunentaucher",
+                        ["Magpie"] = "Meerelster",
+                        ["Nuthatch"] = "Nusskleiber",
+                        ["Oriole"] = "Opern-Pirol",
+                        ["Pipit"] = "Pieper",
+                        ["Quail"] = "Quantwachtel",
+                        ["Raven"] = "Rabe",
+                        ["Shrike"] = "Siebentöter",
+                        ["Thrush"] = "Taunus-Drossel",
+                        ["Umbrellabird"] = "Urschirmvogel",
+                        ["Vireo"] = "Vireo",
+                        ["Warbler"] = "Waldsänger",
+                        ["Xantus’s Hummingbird"] = "Xantus-Kolibri",
+                        ["Yellowlegs"] = "Yukon-Gelbschenkel",
+                        ["Zigzag Heron"] = "Zickzackreiher",
+                    },
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "zu sehen",
+                        ["was not"] = "nicht zu sehen",
                     },
                 },
             },
@@ -1934,14 +2370,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SChess)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Schach",
             Questions = new()
             {
                 [SChess.Coordinate] = new()
                 {
                     // English: What was the {1} coordinate in {0}?
                     // Example: What was the first coordinate in Chess?
-                    Question = "What was the {1} coordinate in {0}?",
+                    Question = "Was war bei {0} die {1}e Koordinate?",
                 },
             },
         },
@@ -1949,17 +2385,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SChineseCounting)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Chinesisch Zählen",
             Questions = new()
             {
                 [SChineseCounting.LED] = new()
                 {
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the left LED in Chinese Counting?
-                    Question = "What color was the {1} LED in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1} LED?",
+                    Answers = new()
+                    {
+                        ["White"] = "Weiß",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Orange"] = "Orange",
+                    },
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "linke",
+                        ["right"] = "rechte",
                     },
                 },
             },
@@ -1967,65 +2411,67 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SChineseRemainderTheorem)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Chinesischer Restsatz",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Chinesischen Restsatz",
             Questions = new()
             {
                 [SChineseRemainderTheorem.Equations] = new()
                 {
                     // English: Which equation was used in {0}?
-                    Question = "Which equation was used in {0}?",
+                    Question = "Welche Gleichung wurde bei {0} verwendet?",
                 },
             },
         },
 
         [typeof(SChordQualities)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Akkordqualität",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SChordQualities.Notes] = new()
                 {
                     // English: Which note was part of the given chord in {0}?
-                    Question = "Which note was part of the given chord in {0}?",
+                    Question = "Welche Note war bei {0} Teil des vorgegebenen Akkords?",
                 },
             },
         },
 
         [typeof(SClockCounter)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SClockCounter.Arrows] = new()
                 {
                     // English: Which arrow was shown in {0}?
-                    Question = "Which arrow was shown in {0}?",
+                    Question = "Welcher Pfeil war bei {0} zu sehen?",
                 },
             },
         },
 
         [typeof(SCode)] = new()
         {
-            NeedsTranslation = true,
+            Gender = Gender.Masculine,
+            ModuleNameWithThe = "Der Code",
             Questions = new()
             {
                 [SCode.DisplayNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
-                    Question = "What was the displayed number in {0}?",
+                    Question = "Welche Zahl wurde bei {0} angezeigt?",
                 },
             },
         },
 
         [typeof(SCodenames)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCodenames.Answers] = new()
                 {
                     // English: Which of these words was submitted in {0}?
-                    Question = "Which of these words was submitted in {0}?",
+                    Question = "Welches Wort war bei {0} ein Lösungswort?",
                 },
             },
         },
@@ -2033,58 +2479,66 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCoffeeBeans)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Kaffeebohnen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SCoffeeBeans.Movements] = new()
                 {
                     // English: What was the {1} movement in {0}?
                     // Example: What was the first movement in Coffee Beans?
-                    Question = "What was the {1} movement in {0}?",
+                    Question = "Was war bei {0} die {1}e Bewegung?",
+                    Answers = new()
+                    {
+                        ["Horizontal"] = "Horizontal",
+                        ["Vertical"] = "Vertikal",
+                        ["Diagonal"] = "Diagonal",
+                        ["Nothing"] = "Keine",
+                    },
                 },
             },
         },
 
         [typeof(SCoffeebucks)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCoffeebucks.Coffee] = new()
                 {
                     // English: What was the last served coffee in {0}?
-                    Question = "What was the last served coffee in {0}?",
+                    Question = "Welcher Kaffee wurde bei {0} als letzter serviert?",
                 },
             },
         },
 
         [typeof(SCoinage)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Münzerei",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCoinage.Flip] = new()
                 {
                     // English: Which coin was flipped in {0}?
-                    Question = "Which coin was flipped in {0}?",
+                    Question = "Welche Münze wurde bei {0} umgedreht?",
                 },
             },
         },
 
         [typeof(SColorAddition)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SColorAddition.Numbers] = new()
                 {
                     // English: What was {1}’s number in {0}?
                     // Example: What was red’s number in Color Addition?
-                    Question = "What was {1}’s number in {0}?",
+                    Question = "Was war bei {0} die Zahl im {1}-Kanal?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "Rot",
+                        ["green"] = "Grün",
+                        ["blue"] = "Blau",
                     },
                 },
             },
@@ -2093,12 +2547,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SColorBraille)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Farbbraille",
             Questions = new()
             {
                 [SColorBraille.Color] = new()
                 {
                     // English: What color was this dot in {0}?
-                    Question = "What color was this dot in {0}?",
+                    Question = "Welche Farbe hatte dieser Punkt bei {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Schwarz",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Cyan"] = "Türkis",
+                        ["Red"] = "Rot",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                        ["White"] = "Weiß",
+                    },
                 },
             },
         },
@@ -2106,24 +2572,41 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SColorDecoding)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Farbdekodierung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SColorDecoding.IndicatorColors] = new()
                 {
                     // English: Which color {1} in the {2}-stage indicator pattern in {0}?
                     // Example: Which color appeared in the first-stage indicator pattern in Color Decoding?
-                    Question = "Which color {1} in the {2}-stage indicator pattern in {0}?",
+                    Question = "Welche Farbe kam bei {0} im Indikatormuster der {2}en Stufe {1}?",
+                    Answers = new()
+                    {
+                        ["Green"] = "Grün",
+                        ["Purple"] = "Lila",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                    },
                     Arguments = new()
                     {
-                        ["appeared"] = "appeared",
-                        ["did not appear"] = "did not appear",
+                        ["appeared"] = "vor",
+                        ["did not appear"] = "nicht vor",
                     },
                 },
                 [SColorDecoding.IndicatorPattern] = new()
                 {
                     // English: What was the {1}-stage indicator pattern in {0}?
                     // Example: What was the first-stage indicator pattern in Color Decoding?
-                    Question = "What was the {1}-stage indicator pattern in {0}?",
+                    Question = "Was war bei {0} das Indikatormuster der {1}en Stufe?",
+                    Answers = new()
+                    {
+                        ["Checkered"] = "Schachbrett",
+                        ["Horizontal"] = "Horizontal",
+                        ["Vertical"] = "Vertikal",
+                        ["Solid"] = "Einfarbig",
+                    },
                 },
             },
         },
@@ -2131,42 +2614,72 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SColoredKeys)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Gefärbte Tasten",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Gefärbten Tasten",
             Questions = new()
             {
                 [SColoredKeys.DisplayWord] = new()
                 {
                     // English: What was the displayed word in {0}?
-                    Question = "What was the displayed word in {0}?",
+                    Question = "Was war bei {0} das Wort auf dem Display?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
+                    },
                 },
                 [SColoredKeys.DisplayWordColor] = new()
                 {
                     // English: What was the displayed word’s color in {0}?
-                    Question = "What was the displayed word’s color in {0}?",
+                    Question = "Welche Farbe hatte bei {0} das Wort auf dem Display?",
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["yellow"] = "gelb",
+                        ["purple"] = "lila",
+                        ["white"] = "weiß",
+                    },
                 },
                 [SColoredKeys.KeyLetter] = new()
                 {
                     // English: What letter was on the {1} key in {0}?
                     // Example: What letter was on the top-left key in Colored Keys?
-                    Question = "What letter was on the {1} key in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf der {1} Taste?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "obere linken",
+                        ["top-right"] = "obere rechten",
+                        ["bottom-left"] = "untere linken",
+                        ["bottom-right"] = "untere rechten",
                     },
                 },
                 [SColoredKeys.KeyColor] = new()
                 {
                     // English: What was the color of the {1} key in {0}?
                     // Example: What was the color of the top-left key in Colored Keys?
-                    Question = "What was the color of the {1} key in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1} Taste?",
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["yellow"] = "gelb",
+                        ["purple"] = "lila",
+                        ["white"] = "weiß",
+                    },
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "obere linke",
+                        ["top-right"] = "obere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
                     },
                 },
             },
@@ -2175,30 +2688,44 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SColoredSquares)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Gefärbte Felder",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Gefärbten Feldern",
             Questions = new()
             {
                 [SColoredSquares.FirstGroup] = new()
                 {
                     // English: What was the first color group in {0}?
-                    Question = "What was the first color group in {0}?",
+                    Question = "Was war bei {0} die erste Farbgruppe?",
+                    Answers = new()
+                    {
+                        ["White"] = "Weiß",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
             },
         },
 
         [typeof(SColoredSwitches)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Gefärbte Schalter",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Gefärbten Schaltern",
             Questions = new()
             {
                 [SColoredSwitches.InitialPosition] = new()
                 {
                     // English: What was the initial position of the switches in {0}?
-                    Question = "What was the initial position of the switches in {0}?",
+                    Question = "Wie lagen bei {0} die Schalter am Anfang?",
                 },
                 [SColoredSwitches.WhenLEDsCameOn] = new()
                 {
                     // English: What was the position of the switches when the LEDs came on in {0}?
-                    Question = "What was the position of the switches when the LEDs came on in {0}?",
+                    Question = "Wie lagen bei {0} die Schalter, als die LEDs angingen?",
                 },
             },
         },
@@ -2206,37 +2733,56 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SColorMorse)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Gefärbte Morsezeichen",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Gefärbten Morsezeichen",
             Questions = new()
             {
                 [SColorMorse.Color] = new()
                 {
                     // English: What was the color of the {1} LED in {0}?
                     // Example: What was the color of the first LED in Color Morse?
-                    Question = "What was the color of the {1} LED in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1}e LED?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Orange"] = "Orange",
+                        ["Purple"] = "Lila",
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["White"] = "Weiß",
+                    },
                 },
                 [SColorMorse.Character] = new()
                 {
                     // English: What character was flashed by the {1} LED in {0}?
                     // Example: What character was flashed by the first LED in Color Morse?
-                    Question = "What character was flashed by the {1} LED in {0}?",
+                    Question = "Welches Zeichen wurde bei {0} von der {1}en LED signalisiert?",
                 },
             },
         },
 
         [typeof(SColorOneTwo)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SColorOneTwo.Color] = new()
                 {
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the left LED in Color One Two?
-                    Question = "What color was the {1} LED in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1} LED?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                    },
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "linke",
+                        ["right"] = "rechte",
                     },
                 },
             },
@@ -2244,19 +2790,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SColorsMaximization)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Farbmaximierung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SColorsMaximization.ColorCount] = new()
                 {
                     // English: How many buttons were {1} in {0}?
                     // Example: How many buttons were red in Colors Maximization?
-                    Question = "How many buttons were {1} in {0}?",
+                    Question = "Wie viele Tasten war bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
                     },
                 },
             },
@@ -2265,17 +2812,50 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SColouredCubes)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Farbwürfel",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Farbwürfeln",
             Questions = new()
             {
                 [SColouredCubes.Colours] = new()
                 {
                     // English: What was the colour of this {1} in the {2} stage of {0}?
                     // Example: What was the colour of this cube in the first stage of Coloured Cubes?
-                    Question = "What was the colour of this {1} in the {2} stage of {0}?",
+                    Question = "Welche Farbe hatte {1} bei {0} in der {2}en Stufe?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Schwarz",
+                        ["Indigo"] = "Indigo",
+                        ["Blue"] = "Blau",
+                        ["Forest"] = "Waldgrün",
+                        ["Teal"] = "Dunkeltürkis",
+                        ["Azure"] = "Azur",
+                        ["Green"] = "Grün",
+                        ["Jade"] = "Jade",
+                        ["Cyan"] = "Helltürkis",
+                        ["Maroon"] = "Kastanie",
+                        ["Plum"] = "Pflaume",
+                        ["Violet"] = "Violett",
+                        ["Olive"] = "Olivgrün",
+                        ["Grey"] = "Grau",
+                        ["Maya"] = "Maya",
+                        ["Lime"] = "Limette",
+                        ["Mint"] = "Minze",
+                        ["Aqua"] = "Aquamarin",
+                        ["Red"] = "Rot",
+                        ["Rose"] = "Rosenrot",
+                        ["Magenta"] = "Magenta",
+                        ["Orange"] = "Orange",
+                        ["Salmon"] = "Lachs",
+                        ["Pink"] = "Pink",
+                        ["Yellow"] = "Gelb",
+                        ["Cream"] = "Cremegelb",
+                        ["White"] = "Weiß",
+                    },
                     Arguments = new()
                     {
-                        ["cube"] = "cube",
-                        ["stage light"] = "stage light",
+                        ["cube"] = "dieser Würfel",
+                        ["stage light"] = "dieser Stufenindikator",
                     },
                 },
             },
@@ -2283,14 +2863,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SColouredCylinder)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Gefärbter Zylinder",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Gefärbten Zylinder",
             Questions = new()
             {
                 [SColouredCylinder.Colours] = new()
                 {
                     // English: What was the {1} colour flashed on the cylinder in {0}?
                     // Example: What was the first colour flashed on the cylinder in Coloured Cylinder?
-                    Question = "What was the {1} colour flashed on the cylinder in {0}?",
+                    Question = "Welche Farbe erschien bei {0} auf dem Zylinder als {1}e?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Rosa",
+                        ["White"] = "Weiß",
+                        ["Black"] = "Schwarz",
+                    },
                 },
             },
         },
@@ -2298,25 +2890,37 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SColourFlash)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Farbfolge",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SColourFlash.LastColor] = new()
                 {
                     // English: What was the color of the last word in the sequence in {0}?
-                    Question = "What was the color of the last word in the sequence in {0}?",
+                    Question = "Welche Farbe hatte bei {0} das letzte Wort in der Folge?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "Weiß",
+                    },
                 },
             },
         },
 
         [typeof(SConcentration)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Konzentrationsspiel",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SConcentration.StartingDigit] = new()
                 {
                     // English: What number began here in {0}?
-                    Question = "What number began here in {0}?",
+                    Question = "Welche Zahl war bei {0} am Anfang hier?",
                 },
             },
             Discriminators = new()
@@ -2325,7 +2929,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Concentration which began with {1} in the {0} position (in reading order)
                     // Example: the Concentration which began with 1 in the first position (in reading order)
-                    Discriminator = "the Concentration which began with {1} in the {0} position (in reading order)",
+                    Discriminator = "dem Konzentrationsspiel, bei dem in der {0}en Position (in Lesereihenfolge) am Anfang eine {1} war,",
                 },
             },
         },
@@ -2333,12 +2937,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SConditionalButtons)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Bedingte Knöpfe",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Bedingten Knöpfen",
             Questions = new()
             {
                 [SConditionalButtons.Colors] = new()
                 {
                     // English: What was the color of this button in {0}?
-                    Question = "What was the color of this button in {0}?",
+                    Question = "Was war bei {0} die Farbe von diesem Knopf?",
+                    Answers = new()
+                    {
+                        ["black"] = "schwarz",
+                        ["blue"] = "blau",
+                        ["dark green"] = "dunkelgrün",
+                        ["light green"] = "hellgrün",
+                        ["orange"] = "orange",
+                        ["pink"] = "pink",
+                        ["purple"] = "lila",
+                        ["red"] = "rot",
+                        ["white"] = "weiß",
+                        ["yellow"] = "gelb",
+                    },
                 },
             },
         },
@@ -2346,36 +2966,58 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SConnectedMonitors)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Verbundene Monitore",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Verbundenen Monitoren",
             Questions = new()
             {
                 [SConnectedMonitors.Number] = new()
                 {
                     // English: What number was initially displayed on this screen in {0}?
-                    Question = "What number was initially displayed on this screen in {0}?",
+                    Question = "Welche Zahl war bei {0} anfänglich auf diesem Display zu sehen?",
                 },
                 [SConnectedMonitors.SingleIndicator] = new()
                 {
                     // English: What colour was the indicator on this screen in {0}?
-                    Question = "What colour was the indicator on this screen in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der Indikator auf diesem Display?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["White"] = "Weiß",
+                    },
                 },
                 [SConnectedMonitors.OrdinalIndicator] = new()
                 {
                     // English: What colour was the {1} indicator on this screen in {0}?
                     // Example: What colour was the first indicator on this screen in Connected Monitors?
-                    Question = "What colour was the {1} indicator on this screen in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der {1}e Indikator auf diesem Display?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["White"] = "Weiß",
+                    },
                 },
             },
         },
 
         [typeof(SConnectionCheck)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verbindungsprüfung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SConnectionCheck.Numbers] = new()
                 {
                     // English: What pair of numbers was present in {0}?
-                    Question = "What pair of numbers was present in {0}?",
+                    Question = "Welches Zahlenpaar war bei {0} vorhanden?",
                 },
             },
             Discriminators = new()
@@ -2384,86 +3026,89 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Connection Check with no {0}s
                     // Example: the Connection Check with no 1s
-                    Discriminator = "the Connection Check with no {0}s",
+                    Discriminator = "der Verbindungsprüfung mit keiner {0}",
                 },
                 [SConnectionCheck.OneN] = new()
                 {
                     // English: the Connection Check with one {0}
                     // Example: the Connection Check with one 1
-                    Discriminator = "the Connection Check with one {0}",
+                    Discriminator = "der Verbindungsprüfung mit einer {0}",
                 },
                 [SConnectionCheck.TwoNs] = new()
                 {
                     // English: the Connection Check with two {0}s
                     // Example: the Connection Check with two 1s
-                    Discriminator = "the Connection Check with two {0}s",
+                    Discriminator = "der Verbindungsprüfung mit zwei {0}en",
                 },
                 [SConnectionCheck.ThreeNs] = new()
                 {
                     // English: the Connection Check with three {0}s
                     // Example: the Connection Check with three 1s
-                    Discriminator = "the Connection Check with three {0}s",
+                    Discriminator = "der Verbindungsprüfung mit drei {0}en",
                 },
                 [SConnectionCheck.FourNs] = new()
                 {
                     // English: the Connection Check with four {0}s
                     // Example: the Connection Check with four 1s
-                    Discriminator = "the Connection Check with four {0}s",
+                    Discriminator = "der Verbindungsprüfung mit vier {0}en",
                 },
             },
         },
 
         [typeof(SCoordinates)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Koordinaten",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SCoordinates.FirstSolution] = new()
                 {
                     // English: What was the solution you selected first in {0}?
-                    Question = "What was the solution you selected first in {0}?",
+                    Question = "Welche Lösung wurde bei {0} als erstes gewählt?",
                 },
                 [SCoordinates.Size] = new()
                 {
                     // English: What was the grid size in {0}?
-                    Question = "What was the grid size in {0}?",
+                    Question = "Was war bei {0} die Rastergröße?",
                 },
             },
         },
 
         [typeof(SCoordination)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Koordinierung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCoordination.Label] = new()
                 {
                     // English: What was the label of the starting coordinate in {0}?
-                    Question = "What was the label of the starting coordinate in {0}?",
+                    Question = "Was war bei {0} die Aufschrift der Startkoordinate?",
                 },
                 [SCoordination.Position] = new()
                 {
                     // English: Where was the starting coordinate in {0}?
-                    Question = "Where was the starting coordinate in {0}?",
+                    Question = "Was war bei {0} die Startkoordinate?",
                 },
             },
         },
 
         [typeof(SCoralCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Korall-Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCoralCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Coral Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -2472,6 +3117,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCorners)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Ecken",
             Questions = new()
             {
                 [SCorners.Colors] = new()
@@ -2479,6 +3125,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} corner in {0}?
                     // Example: What was the color of the top-left corner in Corners?
                     Question = "What was the color of the {1} corner in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                    },
                     Arguments = new()
                     {
                         ["top-left"] = "top-left",
@@ -2505,19 +3158,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCornflowerCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Kornblumen-Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCornflowerCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Cornflower Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -2525,7 +3179,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCosmic)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Kosmik",
             Questions = new()
             {
                 [SCosmic.Number] = new()
@@ -2538,32 +3192,36 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCrazyHamburger)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verrückter Hamburger",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Verrückten Hamburger",
             Questions = new()
             {
                 [SCrazyHamburger.Ingredient] = new()
                 {
                     // English: What was the {1} ingredient shown in {0}?
                     // Example: What was the first ingredient shown in Crazy Hamburger?
-                    Question = "What was the {1} ingredient shown in {0}?",
+                    Question = "Was war bei {0} die {1}e Zutat?",
                 },
             },
         },
 
         [typeof(SCrazyMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verrückter Irrgarten",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Verrückten Irrgarten",
             Questions = new()
             {
                 [SCrazyMaze.StartOrGoal] = new()
                 {
                     // English: What was the {1} location in {0}?
                     // Example: What was the starting location in Crazy Maze?
-                    Question = "What was the {1} location in {0}?",
+                    Question = "Was war bei {0} die {1}?",
                     Arguments = new()
                     {
-                        ["starting"] = "starting",
-                        ["goal"] = "goal",
+                        ["starting"] = "Anfangsposition",
+                        ["goal"] = "Zielposition",
                     },
                 },
             },
@@ -2571,19 +3229,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCreamCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Creme-Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCreamCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Cream Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -2591,33 +3250,42 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCreation)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Schöpfung",
             Questions = new()
             {
                 [SCreation.Weather] = new()
                 {
                     // English: What were the weather conditions on the {1} day in {0}?
                     // Example: What were the weather conditions on the first day in Creation?
-                    Question = "What were the weather conditions on the {1} day in {0}?",
+                    Question = "Was waren die Wetterbedingungen am {1} Tag in {0}?",
+                    Answers = new()
+                    {
+                        ["Clear"] = "Wolkenlos",
+                        ["Heat Wave"] = "Hitzewelle",
+                        ["Meteor Shower"] = "Meteorschauer",
+                        ["Rain"] = "Regen",
+                        ["Windy"] = "Wind",
+                    },
                 },
             },
         },
 
         [typeof(SCrimsonCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Karmin-Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCrimsonCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Crimson Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -2626,25 +3294,36 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCritters)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Kriechtiere",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Kriechtieren",
             Questions = new()
             {
                 [SCritters.Color] = new()
                 {
                     // English: What was the color in {0}?
-                    Question = "What was the color in {0}?",
+                    Question = "Was war die Farbe bei {0}?",
+                    Answers = new()
+                    {
+                        ["Yellow"] = "Gelb",
+                        ["Pink"] = "Pink",
+                        ["Blue"] = "Blau",
+                        ["White"] = "Weiß",
+                    },
                 },
             },
         },
 
         [typeof(SCruelBinary)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Höllisches Binärsystem",
+            ModuleNameDative = "Höllischen Binärsystem",
             Questions = new()
             {
                 [SCruelBinary.DisplayedWord] = new()
                 {
                     // English: What was the displayed word in {0}?
-                    Question = "What was the displayed word in {0}?",
+                    Question = "Was war bei {0} das Wort auf dem Display?",
                 },
             },
         },
@@ -2652,101 +3331,125 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCruelKeypads)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Höllische Tastenfelder",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Höllischen Tastenfelder",
             Questions = new()
             {
                 [SCruelKeypads.Colors] = new()
                 {
                     // English: What was the color of the bar in the {1} stage of {0}?
                     // Example: What was the color of the bar in the first stage of Cruel Keypads?
-                    Question = "What was the color of the bar in the {1} stage of {0}?",
+                    Question = "Was war bei {0} die Farbe des Balkens in der {1}en Stufe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "Weiß",
+                    },
                 },
                 [SCruelKeypads.DisplayedSymbols] = new()
                 {
                     // English: Which of these characters appeared in the {1} stage of {0}?
                     // Example: Which of these characters appeared in the first stage of Cruel Keypads?
-                    Question = "Which of these characters appeared in the {1} stage of {0}?",
+                    Question = "Welches dieser Zeichen war bei {0} in der ersten Stufe zu sehen?",
                 },
             },
         },
 
         [typeof(SCRule)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "CRegel",
+            Gender = Gender.Feminine,
+            ModuleNameWithThe = "Die CRegel",
             Questions = new()
             {
                 [SCRule.SymbolPair] = new()
                 {
                     // English: Which symbol pair was here in {0}?
-                    Question = "Which symbol pair was here in {0}?",
+                    Question = "Welches Symbolpaar war bei {0} an dieser Stelle?",
                 },
                 [SCRule.SymbolPairCell] = new()
                 {
                     // English: Where was {1} in {0}?
                     // Example: Where was ♤♤ in cRule?
-                    Question = "Where was {1} in {0}?",
+                    Question = "Wo war {1} bei {0}?",
                 },
                 [SCRule.SymbolPairPresent] = new()
                 {
                     // English: Which symbol pair was present on {0}?
-                    Question = "Which symbol pair was present on {0}?",
+                    Question = "Welches Symbolpaar kam bei {0} vor?",
                 },
                 [SCRule.Prefilled] = new()
                 {
                     // English: Which cell was pre-filled at the start of {0}?
-                    Question = "Which cell was pre-filled at the start of {0}?",
+                    Question = "Welche Zelle war bei {0} am Anfang vorgegeben?",
                 },
             },
         },
 
         [typeof(SCrypticCycle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Kryptische Schiffer",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Kryptischen Schiffer",
             Questions = new()
             {
                 [SCrypticCycle.DialDirections] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Cryptic Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
                 },
                 [SCrypticCycle.DialLabels] = new()
                 {
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Cryptic Cycle?
-                    Question = "What letter was written on the {1} dial in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
         },
 
         [typeof(SCrypticKeypad)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Kryptisches Tastenfeld",
+            ModuleNameDative = "Kryptischen Tastenfeld",
             Questions = new()
             {
                 [SCrypticKeypad.Labels] = new()
                 {
                     // English: What was the label of the {1} key in {0}?
                     // Example: What was the label of the top-left key in Cryptic Keypad?
-                    Question = "What was the label of the {1} key in {0}?",
+                    Question = "Was war bei {0} die Aufschrift auf der {1} Tasten?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "oben-linken",
+                        ["top-right"] = "oben-rechten",
+                        ["bottom-left"] = "unten-linken",
+                        ["bottom-right"] = "unten-rechten",
                     },
                 },
                 [SCrypticKeypad.Rotations] = new()
                 {
                     // English: Which cardinal direction was the {1} key rotated to in {0}?
                     // Example: Which cardinal direction was the top-left key rotated to in Cryptic Keypad?
-                    Question = "Which cardinal direction was the {1} key rotated to in {0}?",
+                    Question = "In welche Himmelsrichtung wurde bei {0} die {1} Taste gedreht?",
+                    Answers = new()
+                    {
+                        ["North"] = "Norden",
+                        ["East"] = "Osten",
+                        ["South"] = "Süden",
+                        ["West"] = "Westen",
+                    },
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "obere linke",
+                        ["top-right"] = "obere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
                     },
                 },
             },
@@ -2754,55 +3457,81 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCube)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Würfel",
+            Gender = Gender.Masculine,
+            ModuleNameWithThe = "Der Würfel",
             Questions = new()
             {
                 [SCube.Rotations] = new()
                 {
                     // English: What was the {1} cube rotation in {0}?
                     // Example: What was the first cube rotation in Cube?
-                    Question = "What was the {1} cube rotation in {0}?",
+                    Question = "Was war bei {0} die {1}e Rotation?",
+                    Answers = new()
+                    {
+                        ["rotate cw"] = "im Uhrzeigersinn",
+                        ["tip left"] = "nach links gekippt",
+                        ["tip backwards"] = "nach hinten gekippt",
+                        ["rotate ccw"] = "gegen den Uhrzeigersinn",
+                        ["tip right"] = "nach rechts gekippt",
+                        ["tip forwards"] = "nach vorne gekippt",
+                    },
                 },
             },
         },
 
         [typeof(SCursedDoubleOh)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verfluchte Doppel-Null",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Verflüchten Doppel-Null",
             Questions = new()
             {
                 [SCursedDoubleOh.InitialPosition] = new()
                 {
                     // English: What was the first digit of the initially displayed number in {0}?
-                    Question = "What was the first digit of the initially displayed number in {0}?",
+                    Question = "Was war bei {0} am Anfang die erste Ziffer auf dem Display?",
                 },
             },
         },
 
         [typeof(SCustomerIdentification)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Kundenidentifikation",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCustomerIdentification.Customer] = new()
                 {
                     // English: Who was the {1} customer in {0}?
                     // Example: Who was the first customer in Customer Identification?
-                    Question = "Who was the {1} customer in {0}?",
+                    Question = "Wer war bei {0} der {1}e Kunde?",
                 },
             },
         },
 
         [typeof(SCyanButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Türkiser Knopf",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Türkisen Knopf",
+            ModuleNameWithThe = "Der Türkise Knopf",
             Questions = new()
             {
                 [SCyanButton.Positions] = new()
                 {
                     // English: Where was the button at the {1} stage in {0}?
                     // Example: Where was the button at the first stage in Cyan Button?
-                    Question = "Where was the button at the {1} stage in {0}?",
+                    Question = "Wo war bei {0} der Knopf in der {1}en Stufe?",
+                    Answers = new()
+                    {
+                        ["top left"] = "oben links",
+                        ["top middle"] = "oben Mitte",
+                        ["top right"] = "oben rechts",
+                        ["bottom left"] = "unten links",
+                        ["bottom middle"] = "unten Mitte",
+                        ["bottom right"] = "unten rechts",
+                    },
                 },
             },
         },
@@ -2810,38 +3539,100 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDACHMaze)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "DACH-Irrgarten",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SDACHMaze.Origin] = new()
                 {
                     // English: Which region did you depart from in {0}?
-                    Question = "Which region did you depart from in {0}?",
+                    Question = "Wo ging’s bei {0} los?",
+                    Answers = new()
+                    {
+                        ["Burgenland, A"] = "Burgenland, A",
+                        ["Carinthia, A"] = "Kärnten, A",
+                        ["Lower Austria, A"] = "Niederösterreich, A",
+                        ["North Tyrol, A"] = "Nordtirol, A",
+                        ["Upper Austria, A"] = "Oberösterreich, A",
+                        ["East Tyrol, A"] = "Osttirol, A",
+                        ["Salzburg, A"] = "Salzburg, A",
+                        ["Styria, A"] = "Steiermark, A",
+                        ["Vorarlberg, A"] = "Vorarlberg, A",
+                        ["Vienna, A"] = "Wien, A",
+                        ["Aargau, CH"] = "Aargau, CH",
+                        ["Appenzell Inner Rhodes, CH"] = "Appenzell Innerrhoden, CH",
+                        ["Appenzell Outer Rhodes, CH"] = "Appenzell Ausserrhoden, CH",
+                        ["Basel Country, CH"] = "Baselland, CH",
+                        ["Bern, CH"] = "Bern, CH",
+                        ["Basel City, CH"] = "Baselstadt, CH",
+                        ["Fribourg, CH"] = "Freiburg, CH",
+                        ["Geneva, CH"] = "Genf, CH",
+                        ["Glarus, CH"] = "Glarus, CH",
+                        ["Grisons, CH"] = "Graubünden, CH",
+                        ["Jura, CH"] = "Jura, CH",
+                        ["Luzern, CH"] = "Luzern, CH",
+                        ["Nidwalden, CH"] = "Nidwalden, CH",
+                        ["Neuchâtel, CH"] = "Neuenburg, CH",
+                        ["Obwalden, CH"] = "Obwalden, CH",
+                        ["Schaffhausen, CH"] = "Schaffhausen, CH",
+                        ["St. Gallen, CH"] = "St. Gallen, CH",
+                        ["Solothurn, CH"] = "Solothurn, CH",
+                        ["Schwyz, CH"] = "Schwyz, CH",
+                        ["Thurgau, CH"] = "Thurgau, CH",
+                        ["Ticino, CH"] = "Tessin, CH",
+                        ["Uri, CH"] = "Uri, CH",
+                        ["Vaud, CH"] = "Vaud, CH",
+                        ["Valais, CH"] = "Wallis, CH",
+                        ["Zug, CH"] = "Zug, CH",
+                        ["Zürich, CH"] = "Zürich, CH",
+                        ["Brandenburg, D"] = "Brandenburg, D",
+                        ["Berlin, D"] = "Berlin, D",
+                        ["Baden-Württemberg, D"] = "Baden-Württemberg, D",
+                        ["Bavaria, D"] = "Bayern, D",
+                        ["Bremen, D"] = "Bremen, D",
+                        ["Hesse, D"] = "Hessen, D",
+                        ["Hamburg, D"] = "Hamburg, D",
+                        ["Mecklenburg-Vorpommern, D"] = "Mecklenburg-Vorpommern, D",
+                        ["Lower Saxony, D"] = "Niedersachsen, D",
+                        ["North Rhine-Westphalia, D"] = "Nordrhein-Westfalen, D",
+                        ["Rhineland-Palatinate, D"] = "Rheinland-Pfalz, D",
+                        ["Schleswig-Holstein, D"] = "Schleswig-Holstein, D",
+                        ["Saarland, D"] = "Saarland, D",
+                        ["Saxony, D"] = "Sachsen, D",
+                        ["Saxony-Anhalt, D"] = "Sachsen-Anhalt, D",
+                        ["Thuringia, D"] = "Thüringen, D",
+                        ["Liechtenstein"] = "Liechtenstein",
+                    },
                 },
             },
         },
 
         [typeof(SDeafAlley)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Taube Gasse",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Tauben Gasse",
             Questions = new()
             {
                 [SDeafAlley.Shape] = new()
                 {
                     // English: What was the shape generated in {0}?
-                    Question = "What was the shape generated in {0}?",
+                    Question = "Was war bei {0} die generierte Form?",
                 },
             },
         },
 
         [typeof(SDeckOfManyThings)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Stapel Vieler Dinge",
+            Gender = Gender.Masculine,
+            ModuleNameWithThe = "Der Stapel Vieler Dinge",
             Questions = new()
             {
                 [SDeckOfManyThings.FirstCard] = new()
                 {
                     // English: What deck did the first card of {0} belong to?
-                    Question = "What deck did the first card of {0} belong to?",
+                    Question = "Zu welchem Deck gehörte bei {0} die erste Karte?",
                 },
             },
         },
@@ -2855,11 +3646,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the starting {1} defining color in {0}?
                     // Example: What was the starting column defining color in Decolored Squares?
-                    Question = "What was the starting {1} defining color in {0}?",
+                    Question = "Welche Farbe hat bei {0} die {1} bestimmt?",
+                    Answers = new()
+                    {
+                        ["White"] = "Weiß",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Magenta",
+                    },
                     Arguments = new()
                     {
-                        ["column"] = "column",
-                        ["row"] = "row",
+                        ["column"] = "Spalte",
+                        ["row"] = "Reihe",
                     },
                 },
             },
@@ -2874,11 +3674,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} of the {2} goal in {0}?
                     // Example: What was the colour of the first goal in Decolour Flash?
-                    Question = "What was the {1} of the {2} goal in {0}?",
+                    Question = "Was war bei {0} {1} vom {2}en Ziel?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Red"] = "Rot",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                        ["White"] = "Weiß",
+                    },
                     Arguments = new()
                     {
-                        ["colour"] = "colour",
-                        ["word"] = "word",
+                        ["colour"] = "die Farbe",
+                        ["word"] = "das Wort",
                     },
                 },
             },
@@ -2886,126 +3695,127 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SDenialDisplays)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Dementi-Displays",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SDenialDisplays.Displays] = new()
                 {
                     // English: What number was initially shown on display {1} in {0}?
                     // Example: What number was initially shown on display A in Denial Displays?
-                    Question = "What number was initially shown on display {1} in {0}?",
+                    Question = "Welche Zahl war bei {0} am Anfang auf Display {1}?",
                 },
             },
         },
 
         [typeof(SDetoNATO)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDetoNATO.Display] = new()
                 {
                     // English: What was the {1} display in {0}?
                     // Example: What was the first display in DetoNATO?
-                    Question = "What was the {1} display in {0}?",
+                    Question = "Was stand bei {0} als {1}es auf dem Display?",
                 },
             },
         },
 
         [typeof(SDevilishEggs)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Teufelseier",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Teufelseiern",
             Questions = new()
             {
                 [SDevilishEggs.Rotations] = new()
                 {
                     // English: What was the {1} egg’s {2} rotation in {0}?
                     // Example: What was the top egg’s first rotation in Devilish Eggs?
-                    Question = "What was the {1} egg’s {2} rotation in {0}?",
+                    Question = "Was war bei {0} die {2}e Rotation vom {1} Ei?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["bottom"] = "unteren",
                     },
                 },
                 [SDevilishEggs.Numbers] = new()
                 {
                     // English: What was the {1} digit in the string of numbers on {0}?
                     // Example: What was the first digit in the string of numbers on Devilish Eggs?
-                    Question = "What was the {1} digit in the string of numbers on {0}?",
+                    Question = "Was war bei {0} die {1}e Ziffer in dem Zahlensalat?",
                 },
                 [SDevilishEggs.Letters] = new()
                 {
                     // English: What was the {1} letter in the string of letters on {0}?
                     // Example: What was the first letter in the string of letters on Devilish Eggs?
-                    Question = "What was the {1} letter in the string of letters on {0}?",
+                    Question = "Was war bei {0} der {1}e Buchstabe in dem Buchstabensalat?",
                 },
             },
         },
 
         [typeof(SDialtones)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Freizeichen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SDialtones.Dialtones] = new()
                 {
                     // English: What dialtones were heard in {0}?
-                    Question = "What dialtones were heard in {0}?",
+                    Question = "Welches Freizeichen war bei {0} zu hören?",
                 },
             },
         },
 
         [typeof(SDigisibility)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDigisibility.DisplayedNumber] = new()
                 {
                     // English: What was the number on the {1} button in {0}?
                     // Example: What was the number on the first button in Digisibility?
-                    Question = "What was the number on the {1} button in {0}?",
+                    Question = "Welche Zahl war bei {0} auf dem {1}en Knopf?",
                 },
             },
         },
 
         [typeof(SDigitString)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SDigitString.InitialNumber] = new()
                 {
                     // English: What was the initial number in {0}?
-                    Question = "What was the initial number in {0}?",
+                    Question = "Was war bei {0} die Anfangszahl?",
                 },
             },
         },
 
         [typeof(SDimensionDisruption)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Dimensionsspaltung",
             Questions = new()
             {
                 [SDimensionDisruption.VisibleLetters] = new()
                 {
                     // English: Which of these was a visible character in {0}?
-                    Question = "Which of these was a visible character in {0}?",
+                    Question = "Welches dieser Zeichen war bei {0} zu sehen?",
                 },
             },
         },
 
         [typeof(SDirectionalButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Richtungsknopf",
             Questions = new()
             {
                 [SDirectionalButton.ButtonCount] = new()
                 {
                     // English: How many times did you press the button in the {1} stage of {0}?
                     // Example: How many times did you press the button in the first stage of Directional Button?
-                    Question = "How many times did you press the button in the {1} stage of {0}?",
+                    Question = "Wie oft wurde bei {0} in der {1}en Phase der Knopf gedrückt?",
                 },
             },
         },
@@ -3019,13 +3829,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was {1}’s remembered position in {0}?
                     // Example: What was Blue’s remembered position in Discolored Squares?
-                    Question = "What was {1}’s remembered position in {0}?",
+                    Question = "Was war bei {0} die notierte Position von {1}?",
                     Arguments = new()
                     {
-                        ["Blue"] = "Blue",
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
+                        ["Blue"] = "Blau",
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
                         ["Magenta"] = "Magenta",
                     },
                 },
@@ -3041,61 +3851,114 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the missing information for the {1} key in {0}?
                     // Example: What was the missing information for the first key in Disordered Keys?
-                    Question = "What was the missing information for the {1} key in {0}?",
+                    Question = "Welche Information fehlte bei {0} auf dem {1}en Knopf?",
+                    Answers = new()
+                    {
+                        ["Key color"] = "Knopffarbe",
+                        ["Label color"] = "Aufschriftfarbe",
+                        ["Label"] = "Aufschrift",
+                    },
                 },
                 [SDisorderedKeys.UnrevealedKeyColor] = new()
                 {
                     // English: What was the unrevealed key color for the {1} key in {0}?
                     // Example: What was the unrevealed key color for the first key in Disordered Keys?
-                    Question = "What was the unrevealed key color for the {1} key in {0}?",
+                    Question = "Was war bei {0} die unaufgedeckte Knopffarbe des {1}en Knopfes?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
                 [SDisorderedKeys.UnrevealedLabelColor] = new()
                 {
                     // English: What was the unrevealed label color for the {1} key in {0}?
                     // Example: What was the unrevealed label color for the first key in Disordered Keys?
-                    Question = "What was the unrevealed label color for the {1} key in {0}?",
+                    Question = "Was war bei {0} die unaufgedeckte Aufschriftfarbe des {1}en Knopfes?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
                 [SDisorderedKeys.UnrevealedKeyLabel] = new()
                 {
                     // English: What was the unrevealed label for the {1} key in {0}?
                     // Example: What was the unrevealed label for the first key in Disordered Keys?
-                    Question = "What was the unrevealed label for the {1} key in {0}?",
+                    Question = "Was war bei {0} die unaufgedeckte Aufschrift des {1}en Knopfes?",
                 },
                 [SDisorderedKeys.RevealedKeyColor] = new()
                 {
                     // English: What was the revealed key color for the {1} key in {0}?
                     // Example: What was the revealed key color for the first key in Disordered Keys?
-                    Question = "What was the revealed key color for the {1} key in {0}?",
+                    Question = "Was war bei {0} die aufgedeckte Knopffarbe des {1}en Knopfes?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
                 [SDisorderedKeys.RevealedLabelColor] = new()
                 {
                     // English: What was the revealed label color for the {1} key in {0}?
                     // Example: What was the revealed label color for the first key in Disordered Keys?
-                    Question = "What was the revealed label color for the {1} key in {0}?",
+                    Question = "Was war bei {0} die aufgedeckte Aufschriftfarbe des {1}en Knopfes?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
                 [SDisorderedKeys.RevealedLabel] = new()
                 {
                     // English: What was the revealed label for the {1} key in {0}?
                     // Example: What was the revealed label for the first key in Disordered Keys?
-                    Question = "What was the revealed label for the {1} key in {0}?",
+                    Question = "Was war bei {0} die aufgedeckte Aufschrift des {1}en Knopfes?",
                 },
             },
         },
 
         [typeof(SDividedSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Geteilte Kacheln",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Geteilten Kacheln",
             Questions = new()
             {
                 [SDividedSquares.Color] = new()
                 {
                     // English: What color was {1} while pressing it in {0}?
                     // Example: What color was the square while pressing it in Divided Squares?
-                    Question = "What color was {1} while pressing it in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1} beim Gedrückthalten?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Black"] = "Schwarz",
+                        ["White"] = "Weiß",
+                    },
                     Arguments = new()
                     {
-                        ["the square"] = "the square",
-                        ["the correct square"] = "the correct square",
+                        ["the square"] = "Kachel",
+                        ["the correct square"] = "korrekte Kachel",
                     },
                 },
             },
@@ -3103,76 +3966,95 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SDivisibleNumbers)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Teilbare Zahlen",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Teilbaren Zahlen",
             Questions = new()
             {
                 [SDivisibleNumbers.Numbers] = new()
                 {
                     // English: What was the {1} stage’s number in {0}?
                     // Example: What was the first stage’s number in Divisible Numbers?
-                    Question = "What was the {1} stage’s number in {0}?",
+                    Question = "Was war bei {0} die Zahl in der {1}en Phase?",
                 },
             },
         },
 
         [typeof(SDoofenshmirtzEvilInc)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Doofenshmirtz Gesellschaft mit böswilliger Haftung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SDoofenshmirtzEvilInc.Jingles] = new()
                 {
                     // English: What jingle played in {0}?
-                    Question = "What jingle played in {0}?",
+                    Question = "Welcher Jingle war bei {0} zu hören?",
                 },
                 [SDoofenshmirtzEvilInc.Inators] = new()
                 {
                     // English: Which image was shown in {0}?
-                    Question = "Which image was shown in {0}?",
+                    Question = "Welches Bild war bei {0} zu sehen?",
                 },
             },
         },
 
         [typeof(SDoubleArrows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Doppelpfeile",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Doppelpfeilen",
             Questions = new()
             {
                 [SDoubleArrows.Start] = new()
                 {
                     // English: What was the starting position in {0}?
-                    Question = "What was the starting position in {0}?",
+                    Question = "Was war bei {0} die Anfangsposition?",
                 },
                 [SDoubleArrows.Movement] = new()
                 {
                     // English: Which direction in the grid did the {1} arrow move in {0}?
                     // Example: Which direction in the grid did the inner up arrow move in Double Arrows?
-                    Question = "Which direction in the grid did the {1} arrow move in {0}?",
+                    Question = "Welche Bewegungsrichtung im Raster bewirkte bei {0} der {1}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Hoch",
+                        ["Right"] = "Rechts",
+                        ["Left"] = "Links",
+                        ["Down"] = "Runter",
+                    },
                     Arguments = new()
                     {
-                        ["inner up"] = "inner up",
-                        ["inner down"] = "inner down",
-                        ["inner left"] = "inner left",
-                        ["inner right"] = "inner right",
-                        ["outer up"] = "outer up",
-                        ["outer down"] = "outer down",
-                        ["outer left"] = "outer left",
-                        ["outer right"] = "outer right",
+                        ["inner up"] = "innere Pfeil nach oben",
+                        ["inner down"] = "innere Pfeil nach unten",
+                        ["inner left"] = "innere Pfeil nach links",
+                        ["inner right"] = "innere Pfeil nach rechts",
+                        ["outer up"] = "äußere Pfeil nach oben",
+                        ["outer down"] = "äußere Pfeil nach unten",
+                        ["outer left"] = "äußere Pfeil nach links",
+                        ["outer right"] = "äußere Pfeil nach rechts",
                     },
                 },
                 [SDoubleArrows.Arrow] = new()
                 {
                     // English: Which {1} arrow moved {2} in the grid in {0}?
                     // Example: Which inner arrow moved up in the grid in Double Arrows?
-                    Question = "Which {1} arrow moved {2} in the grid in {0}?",
+                    Question = "Welcher {1} Pfeil ging bei {0} nach {2}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Hoch",
+                        ["Right"] = "Rechts",
+                        ["Left"] = "Links",
+                        ["Down"] = "Runter",
+                    },
                     Arguments = new()
                     {
-                        ["inner"] = "inner",
-                        ["up"] = "up",
-                        ["outer"] = "outer",
-                        ["down"] = "down",
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["inner"] = "innere",
+                        ["up"] = "oben",
+                        ["outer"] = "äußere",
+                        ["down"] = "unten",
+                        ["left"] = "links",
+                        ["right"] = "rechts",
                     },
                 },
             },
@@ -3181,31 +4063,42 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDoubleColor)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Doppelfarben",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SDoubleColor.Colors] = new()
                 {
                     // English: What was the screen color on the {1} stage of {0}?
                     // Example: What was the screen color on the first stage of Double Color?
-                    Question = "What was the screen color on the {1} stage of {0}?",
+                    Question = "Was war bei {0} die Farbe des Displays in der {1}en Stufe?",
+                    Answers = new()
+                    {
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Red"] = "Rot",
+                        ["Pink"] = "Pink",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
             },
         },
 
         [typeof(SDoubleDigits)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Doppelziffern",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SDoubleDigits.Displays] = new()
                 {
                     // English: What was the digit on the {1} display in {0}?
                     // Example: What was the digit on the left display in Double Digits?
-                    Question = "What was the digit on the {1} display in {0}?",
+                    Question = "Was war bei {0} die Ziffer auf dem {1} Display?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "linken",
+                        ["right"] = "rechten",
                     },
                 },
             },
@@ -3213,62 +4106,72 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SDoubleExpert)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Doppelexperte",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Doppelexperten",
             Questions = new()
             {
                 [SDoubleExpert.StartingKeyNumber] = new()
                 {
                     // English: What was the starting key number in {0}?
-                    Question = "What was the starting key number in {0}?",
+                    Question = "Was war bei {0} die anfängliche Schlüsselzahl?",
                 },
                 [SDoubleExpert.SubmittedWord] = new()
                 {
                     // English: What was the word you submitted in {0}?
-                    Question = "What was the word you submitted in {0}?",
+                    Question = "Was war bei {0} das eingegebene Wort?",
                 },
             },
         },
 
         [typeof(SDoubleListening)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Doppelt Zuhören",
             Questions = new()
             {
                 [SDoubleListening.Sounds] = new()
                 {
                     // English: What clip was played in {0}?
-                    Question = "What clip was played in {0}?",
+                    Question = "Welcher dieser Clips kam bei {0} vor?",
                 },
             },
         },
 
         [typeof(SDoubleOh)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Doppel-Null",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SDoubleOh.SubmitButton] = new()
                 {
                     // English: Which button was the submit button in {0}?
-                    Question = "Which button was the submit button in {0}?",
+                    Question = "Welcher Knopf war bei {0} der Eingabeknopf?",
                 },
             },
         },
 
         [typeof(SDoubleScreen)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Doppel-Display",
             Questions = new()
             {
                 [SDoubleScreen.Colors] = new()
                 {
                     // English: What color was the {1} screen in the {2} stage of {0}?
                     // Example: What color was the top screen in the first stage of Double Screen?
-                    Question = "What color was the {1} screen in the {2} stage of {0}?",
+                    Question = "Welche Farbe war bei {0} auf dem {1} Display in der {2}en Stufe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                    },
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -3276,31 +4179,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SDrDoctor)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Arztpraxis",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SDrDoctor.Diseases] = new()
                 {
                     // English: Which of these diseases was listed on {0}, but not the one treated?
-                    Question = "Which of these diseases was listed on {0}, but not the one treated?",
+                    Question = "Welche dieser Krankheiten war bei {0} aufgelistet, aber nicht die behandelte?",
                 },
                 [SDrDoctor.Symptoms] = new()
                 {
                     // English: Which of these symptoms was listed on {0}?
-                    Question = "Which of these symptoms was listed on {0}?",
+                    Question = "Welches dieser Symptome war bei {0} aufgelistet?",
                 },
             },
         },
 
         [typeof(SDreamcipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Traumschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SDreamcipher.Word] = new()
                 {
                     // English: What was the decrypted word in {0}?
-                    Question = "What was the decrypted word in {0}?",
+                    Question = "Was war bei {0} das entschlüsselte Wort?",
                 },
             },
         },
@@ -3308,30 +4213,42 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDuck)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Ente",
+            Gender = Gender.Feminine,
+            ModuleNameWithThe = "Die Ente",
             Questions = new()
             {
                 [SDuck.CurtainColor] = new()
                 {
                     // English: What was the color of the curtain in {0}?
-                    Question = "What was the color of the curtain in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der Vorhang?",
+                    Answers = new()
+                    {
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["orange"] = "orange",
+                        ["red"] = "rot",
+                    },
                 },
             },
         },
 
         [typeof(SDumbWaiters)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Speisenaufzug",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SDumbWaiters.PlayerAvailable] = new()
                 {
                     // English: Which player {1} present in {0}?
                     // Example: Which player was present in Dumb Waiters?
-                    Question = "Which player {1} present in {0}?",
+                    Question = "Welcher Spieler war bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "dabei",
+                        ["was not"] = "nicht dabei",
                     },
                 },
             },
@@ -3339,18 +4256,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SEarthbound)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SEarthbound.Background] = new()
                 {
                     // English: What was the background in {0}?
-                    Question = "What was the background in {0}?",
+                    Question = "Was war bei {0} im Hintergrund?",
                 },
                 [SEarthbound.Monster] = new()
                 {
                     // English: Which monster was displayed in {0}?
-                    Question = "Which monster was displayed in {0}?",
+                    Question = "Welches Monster kam bei {0} vor?",
                 },
             },
         },
@@ -3370,60 +4286,61 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SEight)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Acht",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SEight.LastSmallDisplayDigit] = new()
                 {
                     // English: What was the last digit on the small display in {0}?
-                    Question = "What was the last digit on the small display in {0}?",
+                    Question = "Welche Ziffer war bei {0} auf dem kleineren Display?",
                 },
                 [SEight.LastBrokenDigitPosition] = new()
                 {
                     // English: What was the position of the last broken digit in {0}?
-                    Question = "What was the position of the last broken digit in {0}?",
+                    Question = "An welcher Stelle war bei {0} die letzte kaputte Ziffer?",
                 },
                 [SEight.LastResultingDigits] = new()
                 {
                     // English: What were the last resulting digits in {0}?
-                    Question = "What were the last resulting digits in {0}?",
+                    Question = "Was waren bei {0} die letzten Ergebnisziffern?",
                 },
                 [SEight.LastDisplayedNumber] = new()
                 {
                     // English: What was the last displayed number in {0}?
-                    Question = "What was the last displayed number in {0}?",
+                    Question = "Welche Zahl wurde bei {0} zuletzt angezeigt?",
                 },
             },
         },
 
         [typeof(SElderFuthark)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Älteres Futhark",
+            ModuleNameDative = "Älteren Futhark",
             Questions = new()
             {
                 [SElderFuthark.Runes] = new()
                 {
                     // English: What was the {1} rune shown on {0}?
                     // Example: What was the first rune shown on Elder Futhark?
-                    Question = "What was the {1} rune shown on {0}?",
+                    Question = "Was war bei {0} die {1}e Rune?",
                 },
             },
         },
 
         [typeof(SEmoji)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SEmoji.Emoji] = new()
                 {
                     // English: What was the {1} emoji in {0}?
                     // Example: What was the left emoji in Emoji?
-                    Question = "What was the {1} emoji in {0}?",
+                    Question = "Welches Emoji war bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "links",
+                        ["right"] = "rechts",
                     },
                 },
             },
@@ -3431,52 +4348,57 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SEnaCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "ƎNA-Chiffre",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SEnaCipher.KeywordAnswer] = new()
                 {
                     // English: What was the {1} keyword in {0}?
                     // Example: What was the first keyword in ƎNA Cipher?
-                    Question = "What was the {1} keyword in {0}?",
+                    Question = "Was war bei {0} das {1}e Schlüsselwort?",
                 },
                 [SEnaCipher.ExtAnswer] = new()
                 {
                     // English: What was the transposition key in {0}?
-                    Question = "What was the transposition key in {0}?",
+                    Question = "Was war bei {0} der Transpositionsschlüssel?",
                 },
                 [SEnaCipher.EncryptedAnswer] = new()
                 {
                     // English: What was the encrypted word in {0}?
-                    Question = "What was the encrypted word in {0}?",
+                    Question = "Was war bei {0} das verschlüsselte Wort?",
                 },
             },
         },
 
         [typeof(SEncryptedDice)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verschlüsselte Würfel",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Verschlüsselten Würfel",
             Questions = new()
             {
                 [SEncryptedDice.Question] = new()
                 {
                     // English: Which of these numbers appeared on a die in the {1} stage of {0}?
                     // Example: Which of these numbers appeared on a die in the first stage of Encrypted Dice?
-                    Question = "Which of these numbers appeared on a die in the {1} stage of {0}?",
+                    Question = "Welche dieser Zahlen war bei {0} auf einem der Würfel in der {1}en Stufe zu sehen?",
                 },
             },
         },
 
         [typeof(SEncryptedEquations)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verschlüsselte Gleichungen",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Verschlüsselten Gleichungen",
             Questions = new()
             {
                 [SEncryptedEquations.Shapes] = new()
                 {
                     // English: Which shape was the {1} operand in {0}?
                     // Example: Which shape was the first operand in Encrypted Equations?
-                    Question = "Which shape was the {1} operand in {0}?",
+                    Question = "Welche Form hatte bei {0} der {1} Operand?",
                 },
             },
         },
@@ -3495,6 +4417,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What method of encryption was used by {0}?
                     Question = "What method of encryption was used by {0}?",
+                    Answers = new()
+                    {
+                        ["Caesar Cipher"] = "Caesar Cipher",
+                        ["Atbash Cipher"] = "Atbash Cipher",
+                        ["Rot-13 Cipher"] = "Rot-13 Cipher",
+                        ["Affine Cipher"] = "Affine Cipher",
+                        ["Modern Cipher"] = "Modern Cipher",
+                        ["Vigenère Cipher"] = "Vigenère Cipher",
+                        ["Playfair Cipher"] = "Playfair Cipher",
+                    },
                 },
             },
         },
@@ -3546,6 +4478,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the first encoding used in {0}?
                     Question = "What was the first encoding used in {0}?",
+                    Answers = new()
+                    {
+                        ["Morse Code"] = "Morse Code",
+                        ["Tap Code"] = "Tap Code",
+                        ["Maritime Flags"] = "Maritime Flags",
+                        ["Semaphore"] = "Semaphore",
+                        ["Pigpen"] = "Pigpen",
+                        ["Lombax"] = "Lombax",
+                        ["Braille"] = "Braille",
+                        ["Wingdings"] = "Wingdings",
+                        ["Zoni"] = "Zoni",
+                        ["Galatic Alphabet"] = "Galatic Alphabet",
+                        ["Arrow"] = "Arrow",
+                        ["Listening"] = "Listening",
+                        ["Regular Number"] = "Regular Number",
+                        ["Chinese Number"] = "Chinese Number",
+                        ["Cube Symbols"] = "Cube Symbols",
+                        ["Runes"] = "Runes",
+                        ["New York Point"] = "New York Point",
+                        ["Fontana"] = "Fontana",
+                        ["ASCII Hex Code"] = "ASCII Hex Code",
+                    },
                 },
             },
         },
@@ -3565,32 +4519,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SEnigmaCycle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Enigma-Schiffer",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SEnigmaCycle.DialDirectionsThree] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Enigma Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
                 },
                 [SEnigmaCycle.DialDirectionsTwelve] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Enigma Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
                 },
                 [SEnigmaCycle.DialDirectionsEight] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Enigma Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
                 },
                 [SEnigmaCycle.DialLabels] = new()
                 {
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Enigma Cycle?
-                    Question = "What letter was written on the {1} dial in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
         },
@@ -3618,7 +4573,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} digit in the {2} number shown in {0}?
                     // Example: What was the first digit in the first number shown in Entry Number One?
-                    Question = "What was the {1} digit in the {2} number shown in {0}?",
+                    Question = "What was the{1} digit in the {2} number shown in {0}?",
                 },
             },
         },
@@ -3672,6 +4627,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the starting target planet in {0}?
                     Question = "What was the starting target planet in {0}?",
+                    Answers = new()
+                    {
+                        ["outer"] = "outer",
+                        ["middle"] = "middle",
+                        ["inner"] = "inner",
+                        ["none"] = "none",
+                    },
                 },
                 [SExoplanets.StartingTargetDigit] = new()
                 {
@@ -3682,6 +4644,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the final target planet in {0}?
                     Question = "What was the final target planet in {0}?",
+                    Answers = new()
+                    {
+                        ["outer"] = "outer",
+                        ["middle"] = "middle",
+                        ["inner"] = "inner",
+                        ["none"] = "none",
+                    },
                 },
                 [SExoplanets.TargetDigit] = new()
                 {
@@ -3727,6 +4696,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} faerie in {0}?
                     // Example: What color was the first faerie in Faerie Fires?
                     Question = "What color was the {1} faerie in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
                 [SFaerieFires.PitchOrdinal] = new()
                 {
@@ -3932,6 +4910,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color flashed {1} black on the relevant arrow in {0}?
                     // Example: What color flashed before black on the relevant arrow in Flashing Arrows?
                     Question = "What color flashed {1} black on the relevant arrow in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["White"] = "White",
+                    },
                     Arguments = new()
                     {
                         ["before"] = "before",
@@ -4015,25 +5003,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} flashing direction in {0}?
                     // Example: What was the first flashing direction in Follow Me?
                     Question = "What was the {1} flashing direction in {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Up",
+                        ["Down"] = "Down",
+                        ["Left"] = "Left",
+                        ["Right"] = "Right",
+                    },
                 },
             },
         },
 
         [typeof(SForestCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Wald-Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SForestCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Forest Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -4042,24 +5038,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetAnyColor)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Vergiss Jede Farbe",
             Questions = new()
             {
                 [SForgetAnyColor.QCylinder] = new()
                 {
                     // English: What colors were the cylinders during the {1} stage of {0}?
                     // Example: What colors were the cylinders during the first stage of Forget Any Color?
-                    Question = "What colors were the cylinders during the {1} stage of {0}?",
+                    Question = "Was waren bei {0} die Zylinderfarben in der {1}en Stufe?",
                     Additional = new()
                     {
                         ["{0}, {1}, {2}"] = "{0}, {1}, {2}",
-                        ["Red"] = "Red",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Cyan"] = "Cyan",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
-                        ["White"] = "White",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Cyan"] = "Türkis",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["White"] = "Weiß",
                         ["L"] = "L",
                         ["M"] = "M",
                         ["R"] = "R",
@@ -4078,27 +5075,27 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget Any Color whose cylinders in the {1} stage were {0}
                     // Example: the Forget Any Color whose cylinders in the first stage were Orange, Yellow, Green
-                    Discriminator = "the Forget Any Color whose cylinders in the {1} stage were {0}",
+                    Discriminator = "dem Vergiss Jede Farbe, in dessen {1}er Stufe die Zylinderfarben {0} waren,",
                 },
                 [SForgetAnyColor.DFigure] = new()
                 {
                     // English: the Forget Any Color which used figure {0} in the {1} stage
                     // Example: the Forget Any Color which used figure LLLMR in the first stage
-                    Discriminator = "the Forget Any Color which used figure {0} in the {1} stage",
+                    Discriminator = "dem Vergiss Jede Farbe, in dessen {1}er Stufe die Figur {0} verwendet wurde,",
                 },
             },
         },
 
         [typeof(SForgetEverything)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Vergiss Alles",
             Questions = new()
             {
                 [SForgetEverything.QStageOneDisplay] = new()
                 {
                     // English: What was the {1} displayed digit in the first stage of {0}?
                     // Example: What was the first displayed digit in the first stage of Forget Everything?
-                    Question = "What was the {1} displayed digit in the first stage of {0}?",
+                    Question = "Was war bei {0} die {1}e Ziffer in der ersten Stufe?",
                 },
             },
             Discriminators = new()
@@ -4107,7 +5104,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget Everything whose {0} displayed digit in that stage was {1}
                     // Example: the Forget Everything whose first displayed digit in that stage was 1
-                    Discriminator = "the Forget Everything whose {0} displayed digit in that stage was {1}",
+                    Discriminator = "dem Vergiss Alles, dessen {0}e Ziffer in der ersten Stufe {1} war,",
                 },
             },
         },
@@ -4140,14 +5137,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SForgetMeNot)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Vergissmeinnicht",
             Questions = new()
             {
                 [SForgetMeNot.Question] = new()
                 {
                     // English: What was the digit displayed in the {1} stage of {0}?
                     // Example: What was the digit displayed in the first stage of Forget Me Not?
-                    Question = "What was the digit displayed in the {1} stage of {0}?",
+                    Question = "Welche Ziffer wurde bei {0} in der {1}en Stufe angezeigt?",
                 },
             },
             Discriminators = new()
@@ -4156,7 +5153,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget Me Not which displayed a {0} in the {1} stage
                     // Example: the Forget Me Not which displayed a 1 in the first stage
-                    Discriminator = "the Forget Me Not which displayed a {0} in the {1} stage",
+                    Discriminator = "dem Vergissmeinnicht, in dessen {1}er Stufe {0} angezeigt wurde,",
                 },
             },
         },
@@ -4178,13 +5175,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetOurVoices)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Vergiss Unsere Stimmen",
             Questions = new()
             {
                 [SForgetOurVoices.Voice] = new()
                 {
                     // English: What was played in the {1} stage of {0}?
                     // Example: What was played in the first stage of Forget Our Voices?
-                    Question = "What was played in the {1} stage of {0}?",
+                    Question = "Was war bei {0} in der {1}en Stufe zu hören?",
                 },
             },
             Discriminators = new()
@@ -4193,7 +5191,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget Our Voices which played a {0} in {1}’s voice in the {2} stage
                     // Example: the Forget Our Voices which played a 1 in Umbra Moruka’s voice in the first stage
-                    Discriminator = "the Forget Our Voices which played a {0} in {1}’s voice in the {2} stage",
+                    Discriminator = "dem Vergiss Unsere Stimmen, bei dem in der {2}en Stufe eine {0} in {1}s Stimme zu hören war,",
                     Arguments = new()
                     {
                         ["Umbra Moruka"] = "Umbra Moruka",
@@ -4254,6 +5252,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} method used in {0}?
                     // Example: What was the first method used in Forget’s Ultimate Showdown?
                     Question = "What was the {1} method used in {0}?",
+                    Answers = new()
+                    {
+                        ["Forget Me Not"] = "Forget Me Not",
+                        ["Simon’s Stages"] = "Simon’s Stages",
+                        ["Forget Me Later"] = "Forget Me Later",
+                        ["Forget Infinity"] = "Forget Infinity",
+                        ["A>N<D"] = "A>N<D",
+                        ["Forget Me Now"] = "Forget Me Now",
+                        ["Forget Everything"] = "Forget Everything",
+                        ["Forget Us Not"] = "Forget Us Not",
+                    },
                 },
             },
         },
@@ -4261,37 +5270,66 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetTheColors)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Vergiss Die Farben",
             Questions = new()
             {
                 [SForgetTheColors.QGearNumber] = new()
                 {
                     // English: What number was on the gear during stage {1} of {0}?
                     // Example: What number was on the gear during stage 0 of Forget The Colors?
-                    Question = "What number was on the gear during stage {1} of {0}?",
+                    Question = "Welche Zahl war bei {0} in Stufe {1} auf dem Zahnrad?",
                 },
                 [SForgetTheColors.QLargeDisplay] = new()
                 {
                     // English: What number was on the large display during stage {1} of {0}?
                     // Example: What number was on the large display during stage 0 of Forget The Colors?
-                    Question = "What number was on the large display during stage {1} of {0}?",
+                    Question = "Welche Zahl war bei {0} in Stufe {1} auf dem großen Display?",
                 },
                 [SForgetTheColors.QSineNumber] = new()
                 {
                     // English: What was the last decimal in the sine number received during stage {1} of {0}?
                     // Example: What was the last decimal in the sine number received during stage 0 of Forget The Colors?
-                    Question = "What was the last decimal in the sine number received during stage {1} of {0}?",
+                    Question = "Was war bei {0} die letzte Ziffer in der in Stufe {1} erhaltenen Sinuszahl?",
                 },
                 [SForgetTheColors.QGearColor] = new()
                 {
                     // English: What color was the gear during stage {1} of {0}?
                     // Example: What color was the gear during stage 0 of Forget The Colors?
-                    Question = "What color was the gear during stage {1} of {0}?",
+                    Question = "Welche Farbe hatte bei {0} das Zahnrad in Stufe {1}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Cyan"] = "Türkis",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["Pink"] = "Pink",
+                        ["Maroon"] = "Kastanie",
+                        ["White"] = "Weiß",
+                        ["Gray"] = "Grau",
+                    },
                 },
                 [SForgetTheColors.QRuleColor] = new()
                 {
                     // English: Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?
                     // Example: Which edgework-based rule was applied to the sum of nixies and gear during stage 0 of Forget The Colors?
-                    Question = "Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?",
+                    Question = "Welche peripheriebasierte Regel wurde bei {0} in Stufe {1} auf die Summe der Nixies und des Zahnrads angewandt?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Cyan"] = "Türkis",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["Pink"] = "Pink",
+                        ["Maroon"] = "Kastanie",
+                        ["White"] = "Weiß",
+                        ["Gray"] = "Grau",
+                    },
                 },
             },
             Discriminators = new()
@@ -4300,19 +5338,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget The Colors whose gear number was {0} in stage {1}
                     // Example: the Forget The Colors whose gear number was 1 in stage 1
-                    Discriminator = "the Forget The Colors whose gear number was {0} in stage {1}",
+                    Discriminator = "dem Vergiss die Farben, dessen Zahnradzahl in Stufe {1} {0} war,",
                 },
                 [SForgetTheColors.DLargeDisplay] = new()
                 {
                     // English: the Forget The Colors which had {0} on its large display in stage {1}
                     // Example: the Forget The Colors which had 426 on its large display in stage 1
-                    Discriminator = "the Forget The Colors which had {0} on its large display in stage {1}",
+                    Discriminator = "dem Vergiss die Farben, dessen großes Display in Stufe {1} {0} anzeigte,",
                 },
                 [SForgetTheColors.DSineNumber] = new()
                 {
                     // English: the Forget The Colors whose received sine number in stage {1} ended with a {0}
                     // Example: the Forget The Colors whose received sine number in stage 1 ended with a 0
-                    Discriminator = "the Forget The Colors whose received sine number in stage {1} ended with a {0}",
+                    Discriminator = "dem Vergiss die Farben, dessen erhaltene Sinuszahl in Stufe {1} auf {0} endete,",
                 },
                 [SForgetTheColors.DColor] = new()
                 {
@@ -4342,19 +5380,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetThis)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Vergiss Dies",
             Questions = new()
             {
                 [SForgetThis.QColors] = new()
                 {
                     // English: What color was the LED in the {1} stage of {0}?
                     // Example: What color was the LED in the first stage of Forget This?
-                    Question = "What color was the LED in the {1} stage of {0}?",
+                    Question = "Welche Farbe hatte bei {0} die LED in Stufe {1}?",
+                    Answers = new()
+                    {
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                        ["Black"] = "Schwarz",
+                        ["White"] = "Weiß",
+                        ["Green"] = "Grün",
+                    },
                 },
                 [SForgetThis.QDigits] = new()
                 {
                     // English: What was the digit displayed in the {1} stage of {0}?
                     // Example: What was the digit displayed in the first stage of Forget This?
-                    Question = "What was the digit displayed in the {1} stage of {0}?",
+                    Question = "Welche Ziffer wurde bei {0} in der {1}en Stufe angezeigt?",
                 },
             },
             Discriminators = new()
@@ -4363,10 +5411,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget This whose LED was {0} in the {1} stage
                     // Example: the Forget This whose LED was cyan in the first stage
-                    Discriminator = "the Forget This whose LED was {0} in the {1} stage",
+                    Discriminator = "dem Vergiss Dies, dessen LED in der {1}en Stufe {0} war,",
                     Arguments = new()
                     {
-                        ["cyan"] = "cyan",
+                        ["cyan"] = "türkis",
                         ["magenta"] = "magenta",
                         ["yellow"] = "yellow",
                         ["black"] = "black",
@@ -4378,7 +5426,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget This which displayed {0} in the {1} stage
                     // Example: the Forget This which displayed A in the first stage
-                    Discriminator = "the Forget This which displayed {0} in the {1} stage",
+                    Discriminator = "dem Vergiss Dies, das in der {1}en Stufe {0} anzeigte,",
                 },
             },
         },
@@ -4415,6 +5463,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the player token in {0}?
                     Question = "What was the player token in {0}?",
+                    Answers = new()
+                    {
+                        ["Dog"] = "Dog",
+                        ["Wheelbarrow"] = "Wheelbarrow",
+                        ["Cat"] = "Cat",
+                        ["Iron"] = "Iron",
+                        ["Top Hat"] = "Top Hat",
+                        ["Car"] = "Car",
+                        ["Battleship"] = "Battleship",
+                    },
                 },
             },
         },
@@ -4449,18 +5507,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SFuseBox)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Sicherungskasten",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SFuseBox.Flashes] = new()
                 {
                     // This question is depicted visually, rather than with words. The translation here will only be used for logging.
-                    Question = "What color flashed {1} in {0}?",
+                    Question = "Welche Farbe ist bei {0} als {1}e vorgekommen?",
                 },
                 [SFuseBox.Arrows] = new()
                 {
                     // This question is depicted visually, rather than with words. The translation here will only be used for logging.
-                    Question = "What arrow was shown {1} in {0}?",
+                    Question = "Welcher Pfeil war bei {0} der {1}e?",
                 },
             },
         },
@@ -4615,7 +5674,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SGrandPiano.FinalKey] = new()
                 {
                     // English: Which key was the fifth set in {0}?
-                    Question = "Which key was the fifth set in {0}?",
+                    Question = "Which key made up the fifth set in {0}?",
                 },
             },
         },
@@ -4641,19 +5700,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SGrayCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Graue Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Grauen Geheimschrift",
             Questions = new()
             {
                 [SGrayCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Gray Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -4675,6 +5736,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} color in {0}?
                     // Example: What was the first color in Great Void?
                     Question = "What was the {1} color in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -4707,19 +5778,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SGreenCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Grüne Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Grünen Geheimschrift",
             Questions = new()
             {
                 [SGreenCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Green Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -4734,6 +5807,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the starting color in {0}?
                     Question = "What was the starting color in {0}?",
+                    Answers = new()
+                    {
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                    },
                 },
                 [SGridLock.StartingLocation] = new()
                 {
@@ -4802,6 +5882,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the top LED in Gyromaze?
                     Question = "What color was the {1} LED in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                    },
                     Arguments = new()
                     {
                         ["top"] = "top",
@@ -4833,6 +5920,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which fruit were there five of in {0}?
                     Question = "Which fruit were there five of in {0}?",
+                    Answers = new()
+                    {
+                        ["Strawberries"] = "Strawberries",
+                        ["Melons"] = "Melons",
+                        ["Lemons"] = "Lemons",
+                        ["Raspberries"] = "Raspberries",
+                        ["Bananas"] = "Bananas",
+                    },
                 },
                 [SHalliGalli.Counts] = new()
                 {
@@ -4877,6 +5972,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the pawn in {0}?
                     Question = "What was the color of the pawn in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Cyan"] = "Cyan",
+                        ["Blue"] = "Blue",
+                        ["Pink"] = "Pink",
+                    },
                 },
             },
         },
@@ -4932,13 +6036,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SHickoryDickoryDock)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Tickitie-Tackitie-Tock",
             Questions = new()
             {
                 [SHickoryDickoryDock.Time] = new()
                 {
                     // English: What time was shown when the clock struck {1} on {0}?
                     // Example: What time was shown when the clock struck 1:00 on Hickory Dickory Dock?
-                    Question = "What time was shown when the clock struck {1} on {0}?",
+                    Question = "Welche Uhrzeit war bei {0} zu sehen, als die Uhr {1} schlug?",
                 },
             },
             Discriminators = new()
@@ -4961,6 +6066,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the main LED in {0}?
                     Question = "What was the color of the main LED in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Orange"] = "Orange",
+                        ["Purple"] = "Purple",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -5009,20 +6125,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SHillCycle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Hill-Schiffer",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SHillCycle.DialDirections] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Hill Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
                 },
                 [SHillCycle.DialLabels] = new()
                 {
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Hill Cycle?
-                    Question = "What letter was written on the {1} dial in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
         },
@@ -5030,17 +6147,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SHinges)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Scharniere",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Scharnieren",
             Questions = new()
             {
                 [SHinges.Initial] = new()
                 {
                     // English: Which of these hinges was initially {1} {0}?
                     // Example: Which of these hinges was initially present on Hinges?
-                    Question = "Which of these hinges was initially {1} {0}?",
+                    Question = "Welches dieser Scharniere war bei {0} anfänglich {1}?",
                     Arguments = new()
                     {
-                        ["present on"] = "present on",
-                        ["absent from"] = "absent from",
+                        ["present on"] = "vorhanden",
+                        ["absent from"] = "abwesend",
                     },
                 },
             },
@@ -5069,13 +6189,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which House was {1} solved for in {0}?
                     // Example: Which House was Binary Puzzle solved for in Hogwarts?
-                    Question = "Which House was {1} solved for in {0}?",
+                    Question = "Für welches Haus wurde bei {0} {1} gelöst?",
+                    Answers = new()
+                    {
+                        ["Gryffindor"] = "Gryffindor",
+                        ["Hufflepuff"] = "Hufflepuff",
+                        ["Slytherin"] = "Slytherin",
+                        ["Ravenclaw"] = "Ravenclaw",
+                    },
                 },
                 [SHogwarts.Module] = new()
                 {
                     // English: Which module was solved for {1} in {0}?
                     // Example: Which module was solved for Gryffindor in Hogwarts?
-                    Question = "Which module was solved for {1} in {0}?",
+                    Question = "Welches Modul wurde bei {0} für {1} gelöst?",
                     Arguments = new()
                     {
                         ["Gryffindor"] = "Gryffindor",
@@ -5089,28 +6216,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SHoldUps)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHoldUps.Shadows] = new()
                 {
                     // English: What was the name of the {1} shadow shown in {0}?
                     // Example: What was the name of the first shadow shown in Hold Ups?
-                    Question = "What was the name of the {1} shadow shown in {0}?",
+                    Question = "Was war bei {0} der Name des ersten Schattens?",
                 },
             },
         },
 
         [typeof(SHomophones)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Teekesselchen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SHomophones.DisplayedPhrases] = new()
                 {
                     // English: What was the {1} displayed phrase in {0}?
                     // Example: What was the first displayed phrase in Homophones?
-                    Question = "What was the {1} displayed phrase in {0}?",
+                    Question = "Was wurde bei {0} als {1}es angezeigt?",
                 },
             },
         },
@@ -5118,54 +6245,66 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SHorribleMemory)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Grausiges Memory",
+            ModuleNameDative = "Grausigen Memory",
             Questions = new()
             {
                 [SHorribleMemory.Positions] = new()
                 {
                     // English: In what position was the button pressed on the {1} stage of {0}?
                     // Example: In what position was the button pressed on the first stage of Horrible Memory?
-                    Question = "In what position was the button pressed on the {1} stage of {0}?",
+                    Question = "In welcher Position war bei {0} die gedrückte Taste in Stufe {1}?",
                 },
                 [SHorribleMemory.Labels] = new()
                 {
                     // English: What was the label of the button pressed on the {1} stage of {0}?
                     // Example: What was the label of the button pressed on the first stage of Horrible Memory?
-                    Question = "What was the label of the button pressed on the {1} stage of {0}?",
+                    Question = "Welche Aufschrift hatte bei {0} die gedrückte Taste in Stufe {1}?",
                 },
                 [SHorribleMemory.Colors] = new()
                 {
                     // English: What color was the button pressed on the {1} stage of {0}?
                     // Example: What color was the button pressed on the first stage of Horrible Memory?
-                    Question = "What color was the button pressed on the {1} stage of {0}?",
+                    Question = "Welche Farbe hatte bei {0} die gedrückte Taste in Stufe {1}?",
+                    Answers = new()
+                    {
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["red"] = "rot",
+                        ["orange"] = "orange",
+                        ["purple"] = "lila",
+                        ["pink"] = "pink",
+                    },
                 },
             },
         },
 
         [typeof(SHumanResources)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Personalabteilung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SHumanResources.Descriptors] = new()
                 {
                     // English: Which was a descriptor shown in {1} in {0}?
                     // Example: Which was a descriptor shown in red in Human Resources?
-                    Question = "Which was a descriptor shown in {1} in {0}?",
+                    Question = "Welcher Deskriptor kam bei {0} in {1} vor?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
                     },
                 },
                 [SHumanResources.HiredFired] = new()
                 {
                     // English: Who was {1} in {0}?
                     // Example: Who was fired in Human Resources?
-                    Question = "Who was {1} in {0}?",
+                    Question = "Wer wurde bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["fired"] = "fired",
-                        ["hired"] = "hired",
+                        ["fired"] = "gefeuert",
+                        ["hired"] = "eingestellt",
                     },
                 },
             },
@@ -5180,11 +6319,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which of the first three stages of {0} had the {1} symbol {2}?
                     // Example: Which of the first three stages of Hunting had the column symbol first?
-                    Question = "Which of the first three stages of {0} had the {1} symbol {2}?",
+                    Question = "In welchen der ersten drei Stufen von {0} war das {1} das {2}e?",
+                    Answers = new()
+                    {
+                        ["none"] = "keine",
+                        ["first"] = "erste",
+                        ["second"] = "zweite",
+                        ["first two"] = "erste & zweite",
+                        ["third"] = "dritte",
+                        ["first & third"] = "erste & dritte",
+                        ["second & third"] = "zweite & dritte",
+                        ["all three"] = "alle drei",
+                    },
                     Arguments = new()
                     {
-                        ["column"] = "column",
-                        ["row"] = "row",
+                        ["column"] = "Spaltensymbol",
+                        ["row"] = "Reihensymbol",
                     },
                 },
             },
@@ -5192,28 +6342,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SHypercube)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHypercube.Rotations] = new()
                 {
                     // English: What was the {1} rotation in {0}?
                     // Example: What was the first rotation in Hypercube?
-                    Question = "What was the {1} rotation in {0}?",
+                    Question = "Was war die {1}e Rotation in {0}?",
                 },
             },
         },
 
         [typeof(SHyperForget)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHyperForget.Rotations] = new()
                 {
                     // English: What was the rotation for the {1} stage in {0}?
                     // Example: What was the rotation for the first stage in HyperForget?
-                    Question = "What was the rotation for the {1} stage in {0}?",
+                    Question = "Was war bei {0} die Rotation in der {1}en Stufe?",
                 },
             },
             Discriminators = new()
@@ -5222,71 +6370,87 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the HyperForget whose rotation in the {1} stage was {0}
                     // Example: the HyperForget whose rotation in the first stage was XY
-                    Discriminator = "the HyperForget whose rotation in the {1} stage was {0}",
+                    Discriminator = "dem HyperForget, dessen Rotation in der {1}en Stufe {0} war,",
                 },
             },
         },
 
         [typeof(SHyperlink)] = new()
         {
-            NeedsTranslation = true,
+            Gender = Gender.Masculine,
+            ModuleNameWithThe = "Der Hyperlink",
             Questions = new()
             {
                 [SHyperlink.Characters] = new()
                 {
                     // English: What was the {1} character of the hyperlink in {0}?
                     // Example: What was the first character of the hyperlink in Hyperlink?
-                    Question = "What was the {1} character of the hyperlink in {0}?",
+                    Question = "Was war bei {0} das erste Zeichen im Hyperlink?",
                 },
                 [SHyperlink.Answer] = new()
                 {
                     // English: Which module was referenced on {0}?
-                    Question = "Which module was referenced on {0}?",
+                    Question = "Auf welches Modul wurde bei {0} verwiesen?",
                 },
             },
         },
 
         [typeof(SIceCream)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Eiscreme",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SIceCream.Flavour] = new()
                 {
                     // English: Which one of these flavours {1} to the {2} customer in {0}?
                     // Example: Which one of these flavours was on offer, but not sold, to the first customer in Ice Cream?
-                    Question = "Which one of these flavours {1} to the {2} customer in {0}?",
+                    Question = "Welche Geschmacksrichtung wurde bei {0} dem/der {2}en Kunden/Kundin {1}?",
                     Arguments = new()
                     {
-                        ["was on offer, but not sold,"] = "was on offer, but not sold,",
-                        ["was not on offer"] = "was not on offer",
+                        ["was on offer, but not sold,"] = "angeboten, aber nicht verkauft",
+                        ["was not on offer"] = "nicht angeboten",
                     },
                 },
                 [SIceCream.Customer] = new()
                 {
                     // English: Who was the {1} customer in {0}?
                     // Example: Who was the first customer in Ice Cream?
-                    Question = "Who was the {1} customer in {0}?",
+                    Question = "Wer war bei {0} der/die {1}e Kunde/Kundin?",
                 },
             },
         },
 
         [typeof(SIdentificationCrisis)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Identifikationskrise",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SIdentificationCrisis.Shape] = new()
                 {
                     // English: What was the {1} shape used in {0}?
                     // Example: What was the first shape used in Identification Crisis?
-                    Question = "What was the {1} shape used in {0}?",
+                    Question = "Was war bei {0} die {1} verwendete Form?",
                 },
                 [SIdentificationCrisis.Dataset] = new()
                 {
                     // English: What was the {1} identification module used in {0}?
                     // Example: What was the first identification module used in Identification Crisis?
-                    Question = "What was the {1} identification module used in {0}?",
+                    Question = "Was war bei {0} das {1}e Identifikationsmodul?",
+                    Answers = new()
+                    {
+                        ["Morse Identification"] = "Morse-Identifikation",
+                        ["Boozleglyph Identification"] = "Boozleglyph-Identifikation",
+                        ["Plant Identification"] = "Pflanzen-Identifikation",
+                        ["Pickup Identification"] = "Pickup-Identifikation",
+                        ["Emotiguy Identification"] = "Emotiguy-Identifikation",
+                        ["Ars Goetia Identification"] = "Ars-Goetia-Identifikation",
+                        ["Mii Identification"] = "Mii-Identifikation",
+                        ["Customer Identification"] = "Kunden-Identifikation",
+                        ["Spongebob Birthday Identification"] = "Spongebob-Geburtstags-Identifikation",
+                        ["VTuber Identification"] = "VTuber-Identifikation",
+                    },
                 },
             },
         },
@@ -5347,19 +6511,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SIndigoCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Indigo-Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SIndigoCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Indigo Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -5405,6 +6570,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the LED in {0}?
                     Question = "What color was the LED in {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Black",
+                        ["Blue"] = "Blue",
+                        ["Red"] = "Red",
+                        ["White"] = "White",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                    },
                 },
                 [SInnerConnections.Morse] = new()
                 {
@@ -5484,20 +6658,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SJumbleCycle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Wirrwarr-Schiffer",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SJumbleCycle.DialDirections] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Jumble Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
                 },
                 [SJumbleCycle.DialLabels] = new()
                 {
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Jumble Cycle?
-                    Question = "What letter was written on the {1} dial in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
         },
@@ -5511,6 +6686,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of this square in {0}?
                     Question = "What was the color of this square in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Magenta"] = "Magenta",
+                        ["Orange"] = "Orange",
+                        ["Cyan"] = "Cyan",
+                        ["Purple"] = "Purple",
+                        ["Chestnut"] = "Chestnut",
+                        ["Brown"] = "Brown",
+                        ["Mauve"] = "Mauve",
+                        ["Azure"] = "Azure",
+                        ["Jade"] = "Jade",
+                        ["Forest"] = "Forest",
+                        ["Gray"] = "Gray",
+                        ["Black"] = "Black",
+                    },
                 },
                 [SJuxtacoloredSquares.PositionsByColor] = new()
                 {
@@ -5576,11 +6770,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} word in {0}?
                     // Example: What was the starting word in KayMazey Talk?
-                    Question = "What was the {1} word in {0}?",
+                    Question = "Was war bei {0} das {1}?",
                     Arguments = new()
                     {
-                        ["starting"] = "starting",
-                        ["goal"] = "goal",
+                        ["starting"] = "Startwort",
+                        ["goal"] = "Zielwort",
                     },
                 },
             },
@@ -5623,6 +6817,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the position of the LED in {0}?
                     Question = "What was the position of the LED in {0}?",
+                    Answers = new()
+                    {
+                        ["Top-left"] = "Top-left",
+                        ["Top-right"] = "Top-right",
+                        ["Bottom-left"] = "Bottom-left",
+                        ["Bottom-right"] = "Bottom-right",
+                    },
                 },
             },
         },
@@ -5649,7 +6850,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was this key’s label on the {1} panel in {0}?
                     // Example: What was this key’s label on the first panel in Keypad Sequence?
-                    Question = "What was this key’s label on the {1} panel in {0}?",
+                    Question = "What was the label on this button on the {1} panel in {0}?",
                 },
             },
         },
@@ -5669,13 +6870,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SKlaxon)] = new()
         {
-            NeedsTranslation = true,
+            ModuleNameWithThe = "Das Klaxon",
             Questions = new()
             {
                 [SKlaxon.FirstModule] = new()
                 {
                     // English: What was the first module to set off {0}?
-                    Question = "What was the first module to set off {0}?",
+                    Question = "Welches Modul hat als erstes {0} ausgelöst?",
                 },
             },
         },
@@ -5689,11 +6890,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which way was the arrow pointing in {0}?
                     Question = "Which way was the arrow pointing in {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Up",
+                        ["Down"] = "Down",
+                        ["Left"] = "Left",
+                        ["Right"] = "Right",
+                    },
                 },
                 [SKnowYourWay.Led] = new()
                 {
                     // English: Which LED was green in {0}?
                     Question = "Which LED was green in {0}?",
+                    Answers = new()
+                    {
+                        ["Top"] = "Top",
+                        ["Bottom"] = "Bottom",
+                        ["Right"] = "Right",
+                        ["Left"] = "Left",
+                    },
                 },
             },
         },
@@ -5708,6 +6923,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} button’s LED in {0}?
                     // Example: What color was the top-left button’s LED in Kooky Keypad?
                     Question = "What color was the {1} button’s LED in {0}?",
+                    Answers = new()
+                    {
+                        ["Crimson"] = "Crimson",
+                        ["Red"] = "Red",
+                        ["Coral"] = "Coral",
+                        ["Orange"] = "Orange",
+                        ["Lemon Chiffon"] = "Lemon Chiffon",
+                        ["Medium Spring Green"] = "Medium Spring Green",
+                        ["Deep Sea Green"] = "Deep Sea Green",
+                        ["Cadet Blue"] = "Cadet Blue",
+                        ["Slate Blue"] = "Slate Blue",
+                        ["Dark Magenta"] = "Dark Magenta",
+                        ["Unlit"] = "Unlit",
+                    },
                     Arguments = new()
                     {
                         ["top-left"] = "top-left",
@@ -5741,22 +6970,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SKugelblitz)] = new()
         {
             NeedsTranslation = true,
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SKugelblitz.BlackOrangeYellowIndigoViolet] = new()
                 {
                     // English: Which particles were present for the {1} stage of {0}?
                     // Example: Which particles were present for the first stage of Kugelblitz?
-                    Question = "Which particles were present for the {1} stage of {0}?",
+                    Question = "Welche Partikel waren bei {0} in der {1}en Stufe zu sehen?",
                 },
                 [SKugelblitz.RedGreenBlue] = new()
                 {
                     // English: What were the particles’ values for the {1} stage of {0}?
                     // Example: What were the particles’ values for the first stage of Kugelblitz?
-                    Question = "What were the particles’ values for the {1} stage of {0}?",
+                    Question = "Was waren bei {0} die Partikelwerte in der {1}en Stufe?",
                     Additional = new()
                     {
-                        ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"] = "R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}",
+                        ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"] = "Ro={0}, Or={1}, Ge={2}, Gr={3}, Bl={4}, In={5}, Vi={6}",
                     },
                 },
             },
@@ -5766,7 +6996,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the {0} Kugelblitz
                     // Example: the black Kugelblitz
-                    Discriminator = "the {0} Kugelblitz",
+                    Discriminator = "dem {0} Kugelblitz",
                     Arguments = new()
                     {
                         ["black"] = "black",
@@ -5775,14 +7005,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["yellow"] = "yellow",
                         ["green"] = "green",
                         ["blue"] = "blue",
-                        ["indigo"] = "indigo",
-                        ["violet"] = "violet",
+                        ["indigo"] = "indigofarbenen",
+                        ["violet"] = "violetten",
                     },
                 },
                 [SKugelblitz.NoLinks] = new()
                 {
                     // English: the Kugelblitz linked with no other Kugelblitzes
-                    Discriminator = "the Kugelblitz linked with no other Kugelblitzes",
+                    Discriminator = "dem Kugelblitz, der mit keinem anderen Kugelblitzen gekoppelt ist,",
                 },
                 [SKugelblitz.Links] = new()
                 {
@@ -5813,13 +7043,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SKuro)] = new()
         {
-            NeedsTranslation = true,
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SKuro.Mood] = new()
                 {
                     // English: What was Kuro’s mood in {0}?
-                    Question = "What was Kuro’s mood in {0}?",
+                    Question = "Was war bei {0} Kuros Stimmung?",
                 },
             },
         },
@@ -5847,6 +7077,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: In which layer was this portal in {0}?
                     Question = "In which layer was this portal in {0}?",
+                    Answers = new()
+                    {
+                        ["1 (Red)"] = "1 (Red)",
+                        ["2 (Orange)"] = "2 (Orange)",
+                        ["3 (Yellow)"] = "3 (Yellow)",
+                        ["4 (Green)"] = "4 (Green)",
+                        ["5 (Blue)"] = "5 (Blue)",
+                    },
                 },
             },
         },
@@ -5873,11 +7111,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which color was present on the second ladder in {0}?
                     Question = "Which color was present on the second ladder in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Purple"] = "Purple",
+                        ["Gray"] = "Gray",
+                    },
                 },
                 [SLadders.Stage3Missing] = new()
                 {
                     // English: What color was missing on the third ladder in {0}?
                     Question = "What color was missing on the third ladder in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Purple"] = "Purple",
+                        ["Gray"] = "Gray",
+                    },
                 },
             },
         },
@@ -5964,6 +7224,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was {1} in {0}?
                     // Example: What color was LED A in LED Math?
                     Question = "What color was {1} in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                    },
                     Arguments = new()
                     {
                         ["LED A"] = "LED A",
@@ -5983,6 +7250,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the initial color of the changed LED in {0}?
                     Question = "What was the initial color of the changed LED in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Black"] = "Black",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -6039,6 +7317,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} bulb in {0}?
                     // Example: What was the color of the left bulb in Light Bulbs?
                     Question = "What was the color of the {1} bulb in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                    },
                     Arguments = new()
                     {
                         ["left"] = "left",
@@ -6050,14 +7339,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SLinq)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SLinq.Function] = new()
                 {
                     // English: What was the {1} function in {0}?
                     // Example: What was the first function in Linq?
-                    Question = "What was the {1} function in {0}?",
+                    Question = "Was war bei {0} die {1}e Funktion?",
                 },
             },
             Discriminators = new()
@@ -6066,7 +7354,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Linq whose {0} function was {1}
                     // Example: the Linq whose first function was First
-                    Discriminator = "the Linq whose {0} function was {1}",
+                    Discriminator = "dem Linq, dessen {0}e Funktion {1} war,",
                 },
             },
         },
@@ -6104,13 +7392,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SLiteralMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Buchstäbliches Labyrinth",
+            ModuleNameDative = "Buchstäblichen Labyrinth",
             Questions = new()
             {
                 [SLiteralMaze.Letter] = new()
                 {
                     // English: Which letter was in this position in {0}?
-                    Question = "Which letter was in this position in {0}?",
+                    Question = "Welcher Buchstabe war bei {0} an dieser Stelle?",
                 },
             },
         },
@@ -6125,6 +7414,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} button in the {2} stage of {0}?
                     // Example: What was the color of the top button in the first stage of Logical Buttons?
                     Question = "What was the color of the {1} button in the {2} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Purple"] = "Purple",
+                        ["White"] = "White",
+                        ["Orange"] = "Orange",
+                        ["Cyan"] = "Cyan",
+                        ["Grey"] = "Grey",
+                    },
                     Arguments = new()
                     {
                         ["top"] = "top",
@@ -6260,19 +7561,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SMagentaCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Magenta-Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SMagentaCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Magenta Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -6306,7 +7608,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which main page did the {1} button’s effect come from in {0}?
                     // Example: Which main page did the toons button’s effect come from in Main Page?
-                    Question = "Which main page did the {1} button’s effect come from in {0}?",
+                    Question = "Which main page did the {1} button's effect come from in {0}?",
                     Arguments = new()
                     {
                         ["toons"] = "toons",
@@ -6332,6 +7634,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which color did the bubble not display in {0}?
                     Question = "Which color did the bubble not display in {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SMainPage.BubbleMessages] = new()
                 {
@@ -6357,6 +7666,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the text on the {1} button in {0}?
                     // Example: What color was the text on the first button in M&Ms?
                     Question = "What color was the text on the {1} button in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["orange"] = "orange",
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                        ["brown"] = "brown",
+                    },
                 },
                 [SMandMs.Labels] = new()
                 {
@@ -6377,6 +7695,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the text on the {1} button in {0}?
                     // Example: What color was the text on the first button in M&Ns?
                     Question = "What color was the text on the {1} button in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["orange"] = "orange",
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                        ["brown"] = "brown",
+                    },
                 },
                 [SMandNs.Label] = new()
                 {
@@ -6418,7 +7745,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which letter was shown by the {2} in the {1} position in {0}?
                     // Example: Which letter was shown by the left flag in the first position in Maritime Semaphore?
-                    Question = "Which letter was shown by the {2} in the {1} position in {0}?",
+                    Question = "Which letter was shown by the {2} for the {1} position in {0}?",
                     Arguments = new()
                     {
                         ["left flag"] = "left flag",
@@ -6444,19 +7771,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SMaroonCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Kastanien-Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SMaroonCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Maroon Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -6517,6 +7845,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of this tile before the shuffle on {0}?
                     Question = "What was the color of this tile before the shuffle on {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "White",
+                        ["Bronze"] = "Bronze",
+                        ["Silver"] = "Silver",
+                        ["Gold"] = "Gold",
+                    },
                 },
                 [SMathEm.Label] = new()
                 {
@@ -6574,6 +7909,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the starting face in {0}?
                     Question = "What was the color of the starting face in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Magenta"] = "Magenta",
+                        ["Orange"] = "Orange",
+                    },
                 },
             },
         },
@@ -6595,10 +7939,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "What was the function of button {1} in {0}?",
                     Answers = new()
                     {
-                        ["forwards"] = "forwards",
-                        ["clockwise"] = "clockwise",
-                        ["backwards"] = "backwards",
-                        ["counter-clockwise"] = "counter-clockwise",
+                        ["Forwards"] = "Forwards",
+                        ["Clockwise"] = "Clockwise",
+                        ["Backwards"] = "Backwards",
+                        ["Counter-clockwise"] = "Counter-clockwise",
                     },
                 },
                 [SMazeIdentification.Func] = new()
@@ -6645,16 +7989,52 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the starting position on {0}?
                     Question = "What was the starting position on {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["middle-middle"] = "middle-middle",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
+                    },
                 },
                 [SMazeScrambler.Goal] = new()
                 {
                     // English: What was the goal on {0}?
                     Question = "What was the goal on {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["middle-middle"] = "middle-middle",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
+                    },
                 },
                 [SMazeScrambler.Indicators] = new()
                 {
                     // English: Which of these positions was a maze marking on {0}?
                     Question = "Which of these positions was a maze marking on {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["center"] = "center",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
+                    },
                 },
             },
         },
@@ -6703,18 +8083,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SMegaMan2)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMegaMan2.Master] = new()
                 {
                     // English: Which master was shown in {0}?
-                    Question = "Which master was shown in {0}?",
+                    Question = "Welcher Meister war bei {0} zu sehen?",
                 },
                 [SMegaMan2.Weapon] = new()
                 {
                     // English: Which weapon was shown in {0}?
-                    Question = "Which weapon was shown in {0}?",
+                    Question = "Welche Waffe war bei {0} zu sehen?",
                 },
             },
         },
@@ -6789,6 +8168,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the colour of wire {1} in {0}?
                     // Example: What was the colour of wire 1 in Memory Wires?
                     Question = "What was the colour of wire {1} in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                        ["White"] = "White",
+                        ["Black"] = "Black",
+                    },
                 },
                 [SMemoryWires.DisplayedDigits] = new()
                 {
@@ -6814,39 +8201,39 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SMetapuzzle)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMetapuzzle.Answer] = new()
                 {
                     // English: What was the final answer in {0}?
-                    Question = "What was the final answer in {0}?",
+                    Question = "Was war bei {0} die abschließende Antwort?",
                 },
             },
         },
 
         [typeof(SMinskMetro)] = new()
         {
-            NeedsTranslation = true,
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SMinskMetro.Station] = new()
                 {
                     // English: What was the name of starting station in {0}?
-                    Question = "What was the name of starting station in {0}?",
+                    Question = "Wie hieß bei {0} die Anfangshaltestelle?",
                 },
             },
         },
 
         [typeof(SMirror)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Spiegel",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SMirror.Word] = new()
                 {
                     // English: What was the second word written by the original ghost in {0}?
-                    Question = "What was the second word written by the original ghost in {0}?",
+                    Question = "Was war bei {0} das zweite Wort, das der ursprüngliche Geist geschrieben hat?",
                 },
             },
         },
@@ -6860,6 +8247,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Where was the SpongeBob Bar on {0}?
                     Question = "Where was the SpongeBob Bar on {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["middle-middle"] = "middle-middle",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
+                    },
                 },
                 [SMisterSoftee.TreatsPresent] = new()
                 {
@@ -6925,12 +8324,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SModuleManeuvers)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Modulmanöver",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Modulmanövern",
             Questions = new()
             {
                 [SModuleManeuvers.Goal] = new()
                 {
                     // English: What was the goal location in {0}?
-                    Question = "What was the goal location in {0}?",
+                    Question = "Was war bei {0} die Zielposition?",
                     Additional = new()
                     {
                         ["{0}, {1}"] = "{0}, {1}",
@@ -7060,6 +8462,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} set in clockwise order in {0}?
                     // Example: What was the first initially lit set in clockwise order in Moon?
                     Question = "What was the {1} set in clockwise order in {0}?",
+                    Answers = new()
+                    {
+                        ["south"] = "south",
+                        ["south-west"] = "south-west",
+                        ["west"] = "west",
+                        ["north-west"] = "north-west",
+                        ["north"] = "north",
+                        ["north-east"] = "north-east",
+                        ["east"] = "east",
+                        ["south-east"] = "south-east",
+                    },
                     Arguments = new()
                     {
                         ["first initially lit"] = "first initially lit",
@@ -7127,6 +8540,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color flashed by the {1} button in {0}?
                     // Example: What was the color flashed by the first button in Morse Buttons?
                     Question = "What was the color flashed by the {1} button in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["orange"] = "orange",
+                        ["purple"] = "purple",
+                    },
                 },
             },
         },
@@ -7159,7 +8581,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?
                     // Example: What were the LEDs in the bottom row in Morse War (1 = on, 0 = off)?
-                    Question = "What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?",
+                    Question = "What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?",
                     Arguments = new()
                     {
                         ["bottom"] = "bottom",
@@ -7172,14 +8594,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SMorseWoF)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMorseWoF.Displays] = new()
                 {
                     // English: What was the display in the {1} stage on {0}?
                     // Example: What was the display in the first stage on .--/---/..-.?
-                    Question = "What was the display in the {1} stage on {0}?",
+                    Question = "Was stand bei {0} in der {1}en Stufe auf dem Display?",
                 },
             },
         },
@@ -7193,11 +8614,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which color sphere was the goal in {0}?
                     Question = "Which color sphere was the goal in {0}?",
+                    Answers = new()
+                    {
+                        ["white"] = "white",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                    },
                 },
                 [SMouseInTheMaze.Torus] = new()
                 {
                     // English: What color was the torus in {0}?
                     Question = "What color was the torus in {0}?",
+                    Answers = new()
+                    {
+                        ["white"] = "white",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                    },
                 },
             },
         },
@@ -7224,17 +8659,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMssngvWls)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "\uE001Fhl Ndv Kl\uE002",
+            Gender = Gender.Plural,
+            ModuleNameDative = "\uE001Fh Lnd Nvkln\uE002",
             Questions = new()
             {
                 [SMssngvWls.MssNgvwL] = new()
                 {
                     // English: {1}
                     // Example: Whc hvw lwsm ssn gn {0}?
-                    Question = "{1}",
+                    Question = "Welcher Vokal hat bei {0} gefehlt?",
                     Additional = new()
                     {
                         ["Which vowel was missing in {0}?"] = "Which vowel was missing in {0}?",
-                        ["AEIOU"] = "AEIOU",
+                        ["AEIOU"] = "AEIOUÄÖÜ",
                     },
                 },
             },
@@ -7250,6 +8688,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?
                     // Example: What color was the first LED on the top row when the tiny LED was lit in Multicolored Switches?
                     Question = "What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "black",
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["blue"] = "blue",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "cyan",
+                        ["white"] = "white",
+                    },
                     Arguments = new()
                     {
                         ["top"] = "top",
@@ -7271,6 +8720,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which of these was {1} in {0}?
                     // Example: Which of these was a suspect but not the murderer in Murder?
                     Question = "Which of these was {1} in {0}?",
+                    Answers = new()
+                    {
+                        ["Miss Scarlett"] = "Miss Scarlett",
+                        ["Professor Plum"] = "Professor Plum",
+                        ["Mrs Peacock"] = "Mrs Peacock",
+                        ["Reverend Green"] = "Reverend Green",
+                        ["Colonel Mustard"] = "Colonel Mustard",
+                        ["Mrs White"] = "Mrs White",
+                    },
                     Arguments = new()
                     {
                         ["a suspect but not the murderer"] = "a suspect but not the murderer",
@@ -7282,6 +8740,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which of these was {1} in {0}?
                     // Example: Which of these was a potential weapon but not the murder weapon in Murder?
                     Question = "Which of these was {1} in {0}?",
+                    Answers = new()
+                    {
+                        ["Candlestick"] = "Candlestick",
+                        ["Dagger"] = "Dagger",
+                        ["Lead Pipe"] = "Lead Pipe",
+                        ["Revolver"] = "Revolver",
+                        ["Rope"] = "Rope",
+                        ["Spanner"] = "Spanner",
+                    },
                     Arguments = new()
                     {
                         ["a potential weapon but not the murder weapon"] = "a potential weapon but not the murder weapon",
@@ -7292,6 +8759,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Where was the body found in {0}?
                     Question = "Where was the body found in {0}?",
+                    Answers = new()
+                    {
+                        ["Dining Room"] = "Dining Room",
+                        ["Study"] = "Study",
+                        ["Kitchen"] = "Kitchen",
+                        ["Lounge"] = "Lounge",
+                        ["Billiard Room"] = "Billiard Room",
+                        ["Conservatory"] = "Conservatory",
+                        ["Ballroom"] = "Ballroom",
+                        ["Hall"] = "Hall",
+                        ["Library"] = "Library",
+                    },
                 },
             },
         },
@@ -7323,6 +8802,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Where was the skull in {0}?
                     Question = "Where was the skull in {0}?",
+                    Answers = new()
+                    {
+                        ["top left"] = "top left",
+                        ["top middle"] = "top middle",
+                        ["top right"] = "top right",
+                        ["middle left"] = "middle left",
+                        ["center"] = "center",
+                        ["middle right"] = "middle right",
+                        ["bottom left"] = "bottom left",
+                        ["bottom middle"] = "bottom middle",
+                        ["bottom right"] = "bottom right",
+                    },
                 },
             },
         },
@@ -7387,6 +8878,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which color was missing in the third stage of {0}?
                     Question = "Which color was missing in the third stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Orange"] = "Orange",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Brown"] = "Brown",
+                    },
                 },
             },
         },
@@ -7400,6 +8900,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the maze in {0}?
                     Question = "What was the color of the maze in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                    },
                 },
                 [SNavigationDetermination.Label] = new()
                 {
@@ -7419,6 +8926,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} directional button pressed in {0}?
                     // Example: What was the first directional button pressed in Navinums?
                     Question = "What was the {1} directional button pressed in {0}?",
+                    Answers = new()
+                    {
+                        ["up"] = "up",
+                        ["left"] = "left",
+                        ["right"] = "right",
+                        ["down"] = "down",
+                    },
                 },
                 [SNavinums.MiddleDigit] = new()
                 {
@@ -7431,23 +8945,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNavyButton)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Der Königsblaue Knopf",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Königsblauen Knopf",
             Questions = new()
             {
                 [SNavyButton.QGreekLetters] = new()
                 {
                     // English: Which Greek letter appeared on {0} (case-sensitive)?
-                    Question = "Which Greek letter appeared on {0} (case-sensitive)?",
+                    Question = "Welcher griechische Buchstabe kam bei {0} vor (auf Groß-/Kleinschreibung achten)?",
                 },
                 [SNavyButton.QGiven] = new()
                 {
                     // English: What was the {1} of the given in {0}?
                     // Example: What was the (0-indexed) column of the given in Navy Button?
-                    Question = "What was the {1} of the given in {0}?",
+                    Question = "Was war bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["(0-indexed) column"] = "(0-indexed) column",
-                        ["(0-indexed) row"] = "(0-indexed) row",
-                        ["value"] = "value",
+                        ["(0-indexed) column"] = "die (0-basierte) Spalte des vorgegebenen Wertes",
+                        ["(0-indexed) row"] = "die (0-basierte) Reihe des vorgegebenen Wertes",
+                        ["value"] = "der vorgegebene Wert",
                     },
                 },
             },
@@ -7457,13 +8974,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Navy Button that had a {0} on it
                     // Example: the Navy Button that had a Β on it
-                    Discriminator = "the Navy Button that had a {0} on it",
+                    Discriminator = "dem Königsblauen Knopf, bei dem ein {0} vorkam,",
                 },
                 [SNavyButton.DGreekLettersV] = new()
                 {
                     // English: the Navy Button that had an {0} on it
                     // Example: the Navy Button that had an Α on it
-                    Discriminator = "the Navy Button that had an {0} on it",
+                    Discriminator = "dem Königsblauen Knopf, bei dem ein {0} vorkam,",
                 },
                 [SNavyButton.DGiven] = new()
                 {
@@ -7482,7 +8999,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNecronomicon)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Königsblaue Knopf",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Königsblauen Knopf",
             Questions = new()
             {
                 [SNecronomicon.Chapters] = new()
@@ -7534,6 +9053,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the acid’s color in {0}?
                     Question = "What was the acid’s color in {0}?",
+                    Answers = new()
+                    {
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                    },
                 },
                 [SNeutralization.Volume] = new()
                 {
@@ -7552,19 +9078,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the first wire in {0}?
                     Question = "What color was the first wire in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Black"] = "Black",
+                        ["White"] = "White",
+                        ["Gray"] = "Gray",
+                    },
                 },
             },
         },
 
         [typeof(SNonverbalSimon)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNonverbalSimon.Flashes] = new()
                 {
                     // This question is depicted visually, rather than with words. The translation here will only be used for logging.
-                    Question = "Which button flashed in the {1} stage in {0}?",
+                    Question = "Welcher Knopf ist bei {0} in der {1}en Stufe aufgeleuchtet?",
                 },
             },
         },
@@ -7604,13 +9140,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was {1} in the displayed word sequence in {0}?
                     // Example: What was first in the displayed word sequence in Not Colour Flash?
-                    Question = "What was {1} in the displayed word sequence in {0}?",
+                    Question = "What was the initial word on {0}?",
                 },
                 [SNotColourFlash.InitialColour] = new()
                 {
                     // English: What was {1} in the displayed colour sequence in {0}?
                     // Example: What was first in the displayed colour sequence in Not Colour Flash?
-                    Question = "What was {1} in the displayed colour sequence in {0}?",
+                    Question = "What was the initial colour of the word on {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -7686,6 +9231,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color flashed {1} in the final sequence in {0}?
                     // Example: What color flashed first in the final sequence in Not Keypad?
                     Question = "What color flashed {1} in the final sequence in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["orange"] = "orange",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["blue"] = "blue",
+                        ["purple"] = "purple",
+                        ["magenta"] = "magenta",
+                        ["pink"] = "pink",
+                        ["brown"] = "brown",
+                        ["grey"] = "grey",
+                        ["white"] = "white",
+                    },
                 },
                 [SNotKeypad.Symbol] = new()
                 {
@@ -7739,13 +9299,27 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotMurder)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Mord Mal Anders",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SNotMurder.Room] = new()
                 {
                     // English: What room was {1} in initially on {0}?
                     // Example: What room was Miss Scarlett in initially on Not Murder?
-                    Question = "What room was {1} in initially on {0}?",
+                    Question = "In welchem Zimmer war {1} bei {0} am Anfang?",
+                    Answers = new()
+                    {
+                        ["Ballroom"] = "Musikzimmer",
+                        ["Billiard Room"] = "Billardzimmer",
+                        ["Conservatory"] = "Wintergarten",
+                        ["Dining Room"] = "Speisezimmer",
+                        ["Hall"] = "Halle",
+                        ["Kitchen"] = "Küche",
+                        ["Library"] = "Bibliothek",
+                        ["Lounge"] = "Salon",
+                        ["Study"] = "Arbeitszimmer",
+                    },
                     Arguments = new()
                     {
                         ["Miss Scarlett"] = "Miss Scarlett",
@@ -7760,7 +9334,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What weapon did {1} possess initially on {0}?
                     // Example: What weapon did Miss Scarlett possess initially on Not Murder?
-                    Question = "What weapon did {1} possess initially on {0}?",
+                    Question = "Welche Waffe hatte {1} bei {0} am Anfang?",
+                    Answers = new()
+                    {
+                        ["Candlestick"] = "Kerzenleuchter",
+                        ["Dagger"] = "Dolch",
+                        ["Lead Pipe"] = "Bleirohr",
+                        ["Revolver"] = "Pistole",
+                        ["Rope"] = "Seil",
+                        ["Spanner"] = "Rohrzange",
+                    },
                     Arguments = new()
                     {
                         ["Miss Scarlett"] = "Miss Scarlett",
@@ -7860,18 +9443,42 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the position of the {1} flashing peg on {0}?
                     // Example: What was the position of the first flashing peg on Not Perspective Pegs?
                     Question = "What was the position of the {1} flashing peg on {0}?",
+                    Answers = new()
+                    {
+                        ["top"] = "top",
+                        ["top-right"] = "top-right",
+                        ["bottom-right"] = "bottom-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["top-left"] = "top-left",
+                    },
                 },
                 [SNotPerspectivePegs.Perspective] = new()
                 {
                     // English: From what perspective did the {1} peg flash on {0}?
                     // Example: From what perspective did the first peg flash on Not Perspective Pegs?
                     Question = "From what perspective did the {1} peg flash on {0}?",
+                    Answers = new()
+                    {
+                        ["top"] = "top",
+                        ["top-right"] = "top-right",
+                        ["bottom-right"] = "bottom-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["top-left"] = "top-left",
+                    },
                 },
                 [SNotPerspectivePegs.Color] = new()
                 {
                     // English: What was the color of the {1} flashing peg on {0}?
                     // Example: What was the color of the first flashing peg on Not Perspective Pegs?
                     Question = "What was the color of the {1} flashing peg on {0}?",
+                    Answers = new()
+                    {
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["purple"] = "purple",
+                        ["red"] = "red",
+                        ["yellow"] = "yellow",
+                    },
                 },
             },
         },
@@ -7921,16 +9528,103 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which maze was used in {0}?
                     Question = "Which maze was used in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["orange"] = "orange",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["purple"] = "purple",
+                    },
                 },
                 [SNotSimaze.Start] = new()
                 {
                     // English: What was the starting position in {0}?
                     Question = "What was the starting position in {0}?",
+                    Answers = new()
+                    {
+                        ["(red, red)"] = "(red, red)",
+                        ["(red, orange)"] = "(red, orange)",
+                        ["(red, yellow)"] = "(red, yellow)",
+                        ["(red, green)"] = "(red, green)",
+                        ["(red, blue)"] = "(red, blue)",
+                        ["(red, purple)"] = "(red, purple)",
+                        ["(orange, red)"] = "(orange, red)",
+                        ["(orange, orange)"] = "(orange, orange)",
+                        ["(orange, yellow)"] = "(orange, yellow)",
+                        ["(orange, green)"] = "(orange, green)",
+                        ["(orange, blue)"] = "(orange, blue)",
+                        ["(orange, purple)"] = "(orange, purple)",
+                        ["(yellow, red)"] = "(yellow, red)",
+                        ["(yellow, orange)"] = "(yellow, orange)",
+                        ["(yellow, yellow)"] = "(yellow, yellow)",
+                        ["(yellow, green)"] = "(yellow, green)",
+                        ["(yellow, blue)"] = "(yellow, blue)",
+                        ["(yellow, purple)"] = "(yellow, purple)",
+                        ["(green, red)"] = "(green, red)",
+                        ["(green, orange)"] = "(green, orange)",
+                        ["(green, yellow)"] = "(green, yellow)",
+                        ["(green, green)"] = "(green, green)",
+                        ["(green, blue)"] = "(green, blue)",
+                        ["(green, purple)"] = "(green, purple)",
+                        ["(blue, red)"] = "(blue, red)",
+                        ["(blue, orange)"] = "(blue, orange)",
+                        ["(blue, yellow)"] = "(blue, yellow)",
+                        ["(blue, green)"] = "(blue, green)",
+                        ["(blue, blue)"] = "(blue, blue)",
+                        ["(blue, purple)"] = "(blue, purple)",
+                        ["(purple, red)"] = "(purple, red)",
+                        ["(purple, orange)"] = "(purple, orange)",
+                        ["(purple, yellow)"] = "(purple, yellow)",
+                        ["(purple, green)"] = "(purple, green)",
+                        ["(purple, blue)"] = "(purple, blue)",
+                        ["(purple, purple)"] = "(purple, purple)",
+                    },
                 },
                 [SNotSimaze.Goal] = new()
                 {
                     // English: What was the goal position in {0}?
                     Question = "What was the goal position in {0}?",
+                    Answers = new()
+                    {
+                        ["(red, red)"] = "(red, red)",
+                        ["(red, orange)"] = "(red, orange)",
+                        ["(red, yellow)"] = "(red, yellow)",
+                        ["(red, green)"] = "(red, green)",
+                        ["(red, blue)"] = "(red, blue)",
+                        ["(red, purple)"] = "(red, purple)",
+                        ["(orange, red)"] = "(orange, red)",
+                        ["(orange, orange)"] = "(orange, orange)",
+                        ["(orange, yellow)"] = "(orange, yellow)",
+                        ["(orange, green)"] = "(orange, green)",
+                        ["(orange, blue)"] = "(orange, blue)",
+                        ["(orange, purple)"] = "(orange, purple)",
+                        ["(yellow, red)"] = "(yellow, red)",
+                        ["(yellow, orange)"] = "(yellow, orange)",
+                        ["(yellow, yellow)"] = "(yellow, yellow)",
+                        ["(yellow, green)"] = "(yellow, green)",
+                        ["(yellow, blue)"] = "(yellow, blue)",
+                        ["(yellow, purple)"] = "(yellow, purple)",
+                        ["(green, red)"] = "(green, red)",
+                        ["(green, orange)"] = "(green, orange)",
+                        ["(green, yellow)"] = "(green, yellow)",
+                        ["(green, green)"] = "(green, green)",
+                        ["(green, blue)"] = "(green, blue)",
+                        ["(green, purple)"] = "(green, purple)",
+                        ["(blue, red)"] = "(blue, red)",
+                        ["(blue, orange)"] = "(blue, orange)",
+                        ["(blue, yellow)"] = "(blue, yellow)",
+                        ["(blue, green)"] = "(blue, green)",
+                        ["(blue, blue)"] = "(blue, blue)",
+                        ["(blue, purple)"] = "(blue, purple)",
+                        ["(purple, red)"] = "(purple, red)",
+                        ["(purple, orange)"] = "(purple, orange)",
+                        ["(purple, yellow)"] = "(purple, yellow)",
+                        ["(purple, green)"] = "(purple, green)",
+                        ["(purple, blue)"] = "(purple, blue)",
+                        ["(purple, purple)"] = "(purple, purple)",
+                    },
                 },
             },
         },
@@ -7967,11 +9661,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the bulb on {0}?
                     Question = "What color was the bulb on {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Purple"] = "Purple",
+                        ["White"] = "White",
+                    },
                 },
                 [SNotTheBulb.ScrewCap] = new()
                 {
                     // English: What was the material of the screw cap on {0}?
                     Question = "What was the material of the screw cap on {0}?",
+                    Answers = new()
+                    {
+                        ["Copper"] = "Copper",
+                        ["Silver"] = "Silver",
+                        ["Gold"] = "Gold",
+                        ["Plastic"] = "Plastic",
+                        ["Carbon Fibre"] = "Carbon Fibre",
+                        ["Ceramic"] = "Ceramic",
+                    },
                 },
             },
         },
@@ -7985,6 +9697,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What colors did the light glow in {0}?
                     Question = "What colors did the light glow in {0}?",
+                    Answers = new()
+                    {
+                        ["white"] = "white",
+                        ["red"] = "red",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["white/red"] = "white/red",
+                        ["white/yellow"] = "white/yellow",
+                        ["white/green"] = "white/green",
+                        ["white/blue"] = "white/blue",
+                        ["red/yellow"] = "red/yellow",
+                        ["red/green"] = "red/green",
+                        ["red/blue"] = "red/blue",
+                        ["yellow/green"] = "yellow/green",
+                        ["yellow/blue"] = "yellow/blue",
+                        ["green/blue"] = "green/blue",
+                    },
                 },
             },
         },
@@ -7998,6 +9728,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color did the background flash in {0}?
                     Question = "What color did the background flash in {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Black",
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -8025,6 +9766,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: In which position was the button you pressed in the {1} stage on {0}?
                     // Example: In which position was the button you pressed in the first stage on Not Who’s on First?
                     Question = "In which position was the button you pressed in the {1} stage on {0}?",
+                    Answers = new()
+                    {
+                        ["top left"] = "top left",
+                        ["top right"] = "top right",
+                        ["middle left"] = "middle left",
+                        ["middle right"] = "middle right",
+                        ["bottom left"] = "bottom left",
+                        ["bottom right"] = "bottom right",
+                    },
                 },
                 [SNotWhosOnFirst.PressedLabel] = new()
                 {
@@ -8037,6 +9787,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: In which position was the reference button in the {1} stage on {0}?
                     // Example: In which position was the reference button in the first stage on Not Who’s on First?
                     Question = "In which position was the reference button in the {1} stage on {0}?",
+                    Answers = new()
+                    {
+                        ["top left"] = "top left",
+                        ["top right"] = "top right",
+                        ["middle left"] = "middle left",
+                        ["middle right"] = "middle right",
+                        ["bottom left"] = "bottom left",
+                        ["bottom right"] = "bottom right",
+                    },
                 },
                 [SNotWhosOnFirst.ReferenceLabel] = new()
                 {
@@ -8098,6 +9857,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the scanner color in {0}?
                     Question = "What was the scanner color in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                        ["White"] = "White",
+                    },
                 },
                 [SNotXRay.Table] = new()
                 {
@@ -8109,6 +9875,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What direction was button {1} in {0}?
                     // Example: What direction was button 1 in Not X-Ray?
                     Question = "What direction was button {1} in {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Up",
+                        ["Right"] = "Right",
+                        ["Down"] = "Down",
+                        ["Left"] = "Left",
+                    },
                 },
                 [SNotXRay.Buttons] = new()
                 {
@@ -8174,6 +9947,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the number on {0}?
                     Question = "What was the color of the number on {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                    },
                 },
                 [SNumpath.Digit] = new()
                 {
@@ -8185,64 +9967,64 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SObjectShows)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SObjectShows.Contestants] = new()
                 {
                     // English: Which of these was a contestant on {0}?
-                    Question = "Which of these was a contestant on {0}?",
+                    Question = "Which of these was a contestant on {0} but not the final winner?",
                 },
             },
         },
 
         [typeof(SOctadecayotton)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SOctadecayotton.Sphere] = new()
                 {
                     // English: What was the starting sphere in {0}?
-                    Question = "What was the starting sphere in {0}?",
+                    Question = "Was war bei {0} die Startkugel?",
                 },
                 [SOctadecayotton.Rotations] = new()
                 {
                     // English: What was one of the subrotations in the {1} rotation in {0}?
                     // Example: What was one of the subrotations in the first rotation in Octadecayotton?
-                    Question = "What was one of the subrotations in the {1} rotation in {0}?",
+                    Question = "Welche Teilrotation kam bei {0} bei der {1}en Rotation vor?",
                 },
             },
         },
 
         [typeof(SOddOneOut)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Was Nicht Passt",
             Questions = new()
             {
                 [SOddOneOut.Button] = new()
                 {
                     // English: What was the button you pressed in the {1} stage of {0}?
                     // Example: What was the button you pressed in the first stage of Odd One Out?
-                    Question = "What was the button you pressed in the {1} stage of {0}?",
+                    Question = "Was war bei {0} die in der {1}en Stufe gedrückte Taste?",
                 },
             },
         },
 
         [typeof(SOffKeys)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verstimmte Tasten",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Verstimmten Tasten",
             Questions = new()
             {
                 [SOffKeys.IncorrectPitch] = new()
                 {
                     // English: Which of these keys played at an incorrect pitch in {0}?
-                    Question = "Which of these keys played at an incorrect pitch in {0}?",
+                    Question = "Welche dieser Tasten war bei {0} verstimmt?",
                 },
                 [SOffKeys.Runes] = new()
                 {
                     // English: Which of these runes was displayed in {0}?
-                    Question = "Which of these runes was displayed in {0}?",
+                    Question = "Welche dieser Runen war bei {0} zu sehen?",
                 },
             },
         },
@@ -8275,6 +10057,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the initial color of the status light in {0}?
                     Question = "What was the initial color of the status light in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -8307,6 +10099,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which Egyptian hieroglyph was in the {1} in {0}?
                     // Example: Which Egyptian hieroglyph was in the top left in Only Connect?
                     Question = "Which Egyptian hieroglyph was in the {1} in {0}?",
+                    Answers = new()
+                    {
+                        ["Two Reeds"] = "Two Reeds",
+                        ["Lion"] = "Lion",
+                        ["Twisted Flax"] = "Twisted Flax",
+                        ["Horned Viper"] = "Horned Viper",
+                        ["Water"] = "Water",
+                        ["Eye of Horus"] = "Eye of Horus",
+                    },
                     Arguments = new()
                     {
                         ["top left"] = "top left",
@@ -8322,33 +10123,41 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SOrangeArrows)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SOrangeArrows.Sequences] = new()
                 {
                     // English: What was the {1} arrow on the display of the {2} stage of {0}?
                     // Example: What was the first arrow on the display of the first stage of Orange Arrows?
-                    Question = "What was the {1} arrow on the display of the {2} stage of {0}?",
+                    Question = "Was war bei {0} in der {2} Stufe der {1}e Pfeil auf dem Display?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Hoch",
+                        ["Right"] = "Rechts",
+                        ["Down"] = "Runter",
+                        ["Left"] = "Links",
+                    },
                 },
             },
         },
 
         [typeof(SOrangeCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Orangene Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Orangenen Geheimschrift",
             Questions = new()
             {
                 [SOrangeCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Orange Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -8363,58 +10172,85 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was this key in the {1} stage of {0}?
                     // Example: What color was this key in the first stage of Ordered Keys?
-                    Question = "What color was this key in the {1} stage of {0}?",
+                    Question = "What color was the {2} key in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
                 [SOrderedKeys.Labels] = new()
                 {
                     // English: What was the label of this key in the {1} stage of {0}?
                     // Example: What was the label of this key in the first stage of Ordered Keys?
-                    Question = "What was the label of this key in the {1} stage of {0}?",
+                    Question = "What was the label on the {2} key in the {1} stage of {0}?",
                 },
                 [SOrderedKeys.LabelColors] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}?
                     // Example: What color was the label of this key in the first stage of Ordered Keys?
-                    Question = "What color was the label of this key in the {1} stage of {0}?",
+                    Question = "What color was the label of the {2} key in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
             },
         },
 
         [typeof(SOrderPicking)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Kommissionierung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SOrderPicking.Order] = new()
                 {
                     // English: What was the order ID in the {1} order of {0}?
                     // Example: What was the order ID in the first order of Order Picking?
-                    Question = "What was the order ID in the {1} order of {0}?",
+                    Question = "Was war bei {0} die Auftragsnummer des {1}en Auftrags?",
                 },
                 [SOrderPicking.Product] = new()
                 {
                     // English: What was the product ID in the {1} order of {0}?
                     // Example: What was the product ID in the first order of Order Picking?
-                    Question = "What was the product ID in the {1} order of {0}?",
+                    Question = "Was war bei {0} die Produktnummer des {1}en Auftrags?",
                 },
                 [SOrderPicking.Pallet] = new()
                 {
                     // English: What was the pallet in the {1} order of {0}?
                     // Example: What was the pallet in the first order of Order Picking?
-                    Question = "What was the pallet in the {1} order of {0}?",
+                    Question = "Was war bei {0} die Palette für den {1}en Auftrag?",
                 },
             },
         },
 
         [typeof(SOrientationCube)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Orientierungswürfel",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SOrientationCube.InitialObserverPosition] = new()
                 {
                     // English: What was the observer’s initial position in {0}?
-                    Question = "What was the observer’s initial position in {0}?",
+                    Question = "Was war bei {0} die Anfangsposition des Beobachters?",
+                    Answers = new()
+                    {
+                        ["front"] = "vorne",
+                        ["left"] = "links",
+                        ["back"] = "hinten",
+                        ["right"] = "rechts",
+                    },
                 },
             },
         },
@@ -8422,49 +10258,70 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SOrientationHypercube)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Orientierungshyperwürfel",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SOrientationHypercube.InitialFaceColour] = new()
                 {
                     // English: What was the initial colour of the {1} face in {0}?
                     // Example: What was the initial colour of the right face in Orientation Hypercube?
-                    Question = "What was the initial colour of the {1} face in {0}?",
+                    Question = "Was war bei {0} die Anfangsfarbe der {1} Seite?",
+                    Answers = new()
+                    {
+                        ["black"] = "schwarz",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["yellow"] = "gelb",
+                        ["blue"] = "blau",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
+                    },
                     Arguments = new()
                     {
-                        ["right"] = "right",
-                        ["left"] = "left",
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
-                        ["back"] = "back",
-                        ["front"] = "front",
-                        ["zag"] = "zag",
-                        ["zig"] = "zig",
+                        ["right"] = "rechten",
+                        ["left"] = "linken",
+                        ["top"] = "oberen",
+                        ["bottom"] = "unteren",
+                        ["back"] = "hinteren",
+                        ["front"] = "vorderen",
+                        ["zag"] = "zackeren",
+                        ["zig"] = "zickeren",
                     },
                 },
                 [SOrientationHypercube.InitialObserverPosition] = new()
                 {
                     // English: What was the observer’s initial position in {0}?
-                    Question = "What was the observer’s initial position in {0}?",
+                    Question = "Was war bei {0} die Anfangsposition des Beobachters?",
+                    Answers = new()
+                    {
+                        ["front"] = "vorne",
+                        ["left"] = "links",
+                        ["back"] = "hinten",
+                        ["right"] = "rechts",
+                    },
                 },
             },
         },
 
         [typeof(SPalindromes)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Palindrome",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SPalindromes.Numbers] = new()
                 {
                     // English: What was {1}’s {2} digit from the right in {0}?
                     // Example: What was X’s first digit from the right in Palindromes?
-                    Question = "What was {1}’s {2} digit from the right in {0}?",
+                    Question = "Was war bei {0} die {2}e Ziffer von rechts {1}?",
                     Arguments = new()
                     {
-                        ["X"] = "X",
-                        ["Y"] = "Y",
-                        ["Z"] = "Z",
-                        ["the screen"] = "the screen",
+                        ["X"] = "von X",
+                        ["Y"] = "von Y",
+                        ["Z"] = "von Z",
+                        ["the screen"] = "auf dem Display",
                     },
                 },
             },
@@ -8491,13 +10348,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SParity)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Parität",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SParity.Display] = new()
                 {
                     // English: What was shown on the display on {0}?
-                    Question = "What was shown on the display on {0}?",
+                    Question = "Was war bei {0} auf dem Display?",
                 },
             },
         },
@@ -8505,33 +10363,46 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SPartialDerivatives)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Partielle Ableitungen",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Partiellen Ableitungen",
             Questions = new()
             {
                 [SPartialDerivatives.LedColors] = new()
                 {
                     // English: What was the LED color in the {1} stage of {0}?
                     // Example: What was the LED color in the first stage of Partial Derivatives?
-                    Question = "What was the LED color in the {1} stage of {0}?",
+                    Question = "Was war bei {0} die LED-Farbe in der {1}en Stufe?",
+                    Answers = new()
+                    {
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["orange"] = "orange",
+                        ["purple"] = "lila",
+                        ["red"] = "rot",
+                        ["yellow"] = "gelb",
+                    },
                 },
                 [SPartialDerivatives.Terms] = new()
                 {
                     // English: What was the {1} term in {0}?
                     // Example: What was the first term in Partial Derivatives?
-                    Question = "What was the {1} term in {0}?",
+                    Question = "Was war bei {0} der {1}e Term?",
                 },
             },
         },
 
         [typeof(SPassportControl)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Passkontrolle",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SPassportControl.Passenger] = new()
                 {
                     // English: What was the passport expiration year of the {1} inspected passenger in {0}?
                     // Example: What was the passport expiration year of the first inspected passenger in Passport Control?
-                    Question = "What was the passport expiration year of the {1} inspected passenger in {0}?",
+                    Question = "Was war bei {0} das Auslaufjahr des {1}en inspizierten Passagiers?",
                 },
             },
         },
@@ -8551,13 +10422,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPatternCube)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Musterwürfel",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SPatternCube.HighlightedSymbol] = new()
                 {
                     // English: Which symbol was highlighted in {0}?
-                    Question = "Which symbol was highlighted in {0}?",
+                    Question = "Welches Symbol war in {0} hervorgehoben?",
                 },
             },
         },
@@ -8565,12 +10437,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SPentabutton)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Pentaknopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SPentabutton.BaseColor] = new()
                 {
                     // English: What was the base colour in {0}?
-                    Question = "What was the base colour in {0}?",
+                    Question = "Was war bei {0} die Basisfarbe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["White"] = "Weiß",
+                    },
                 },
             },
             Discriminators = new()
@@ -8579,35 +10463,46 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Pentabutton labelled “{0}”
                     // Example: the Pentabutton labelled “press”
-                    Discriminator = "the Pentabutton labelled “{0}”",
+                    Discriminator = "dem Pentaknopf mit der Aufschrift “{0}”",
                 },
             },
         },
 
         [typeof(SPeriodicWords)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Periodische Wörter",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Periodischen Wörtern",
             Questions = new()
             {
                 [SPeriodicWords.DisplayedWords] = new()
                 {
                     // English: What word was on the display in the {1} stage of {0}?
                     // Example: What word was on the display in the first stage of Periodic Words?
-                    Question = "What word was on the display in the {1} stage of {0}?",
+                    Question = "Welches Wort war in der {1}en Stufe von {0} auf dem Display?",
                 },
             },
         },
 
         [typeof(SPerspectivePegs)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Perspektivstöpsel",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SPerspectivePegs.ColorSequence] = new()
                 {
                     // English: What was the {1} color in the initial sequence in {0}?
                     // Example: What was the first color in the initial sequence in Perspective Pegs?
-                    Question = "What was the {1} color in the initial sequence in {0}?",
+                    Question = "Was war bei {0} die {1}e Farbe in der Ausgangsfolge?",
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["purple"] = "lila",
+                    },
                 },
             },
         },
@@ -8615,92 +10510,120 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SPhosphorescence)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Phosphoreszenz",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SPhosphorescence.ButtonPresses] = new()
                 {
                     // English: What was the {1} button press in {0}?
                     // Example: What was the first button press in Phosphorescence?
-                    Question = "What was the {1} button press in {0}?",
+                    Question = "Was war bei {0} die {1}e Eingabe?",
+                    Answers = new()
+                    {
+                        ["Azure"] = "Azure",
+                        ["Blue"] = "Blue",
+                        ["Crimson"] = "Crimson",
+                        ["Diamond"] = "Diamond",
+                        ["Emerald"] = "Emerald",
+                        ["Fuchsia"] = "Fuchsia",
+                        ["Green"] = "Green",
+                        ["Hazel"] = "Hazel",
+                        ["Ice"] = "Ice",
+                        ["Jade"] = "Jade",
+                        ["Kiwi"] = "Kiwi",
+                        ["Lime"] = "Lime",
+                        ["Magenta"] = "Magenta",
+                        ["Navy"] = "Navy",
+                        ["Orange"] = "Orange",
+                        ["Purple"] = "Purple",
+                        ["Quartz"] = "Quartz",
+                        ["Red"] = "Red",
+                        ["Salmon"] = "Salmon",
+                        ["Tan"] = "Tan",
+                        ["Ube"] = "Ube",
+                        ["Vibe"] = "Vibe",
+                        ["White"] = "White",
+                        ["Xotic"] = "Xotic",
+                        ["Yellow"] = "Yellow",
+                        ["Zen"] = "Zen",
+                    },
                 },
                 [SPhosphorescence.Offset] = new()
                 {
                     // English: What was the offset in {0}?
-                    Question = "What was the offset in {0}?",
+                    Question = "Was war bei {0} das Offset?",
                 },
             },
         },
 
         [typeof(SPickupIdentification)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPickupIdentification.Item] = new()
                 {
                     // English: What pickup was shown in the {1} stage of {0}?
                     // Example: What pickup was shown in the first stage of Pickup Identification?
-                    Question = "What pickup was shown in the {1} stage of {0}?",
+                    Question = "Welches Sammlerstück war bei {0} in der {1}en Stufe zu sehen?",
                 },
             },
         },
 
         [typeof(SPictionary)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPictionary.Code] = new()
                 {
                     // English: What was the code in {0}?
-                    Question = "What was the code in {0}?",
+                    Question = "Was war bei {0} der Code?",
                 },
             },
         },
 
         [typeof(SPie)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPie.Digits] = new()
                 {
                     // English: What was the {1} digit of the displayed number in {0}?
                     // Example: What was the first digit of the displayed number in Pie?
-                    Question = "What was the {1} digit of the displayed number in {0}?",
+                    Question = "Was war die {1}e Ziffer der bei {0} angezeigten Zahl?",
                 },
             },
         },
 
         [typeof(SPieFlash)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPieFlash.Digits] = new()
                 {
                     // English: What number was not displayed in {0}?
-                    Question = "What number was not displayed in {0}?",
+                    Question = "Welche Zahl war bei {0} nicht zu sehen?",
                 },
             },
         },
 
         [typeof(SPigpenCycle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Freimaurer-Schiffer",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SPigpenCycle.DialDirections] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Pigpen Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
                 },
                 [SPigpenCycle.DialLabels] = new()
                 {
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Pigpen Cycle?
-                    Question = "What letter was written on the {1} dial in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
         },
@@ -8708,50 +10631,64 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SPinkButton)] = new()
         {
             NeedsTranslation = true,
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Pinkfarbenen Knopf",
+            ModuleNameWithThe = "Der Pinkfarbene Knopf",
             Questions = new()
             {
                 [SPinkButton.Words] = new()
                 {
                     // English: What was the {1} word in {0}?
                     // Example: What was the first word in Pink Button?
-                    Question = "What was the {1} word in {0}?",
+                    Question = "Was war bei {0} das erste Wort?",
                 },
                 [SPinkButton.Colors] = new()
                 {
                     // English: What was the {1} color in {0}?
                     // Example: What was the first color in Pink Button?
-                    Question = "What was the {1} color in {0}?",
+                    Question = "Was war bei {0} die {1}e Farbe?",
+                    Answers = new()
+                    {
+                        ["black"] = "schwarz",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["yellow"] = "gelb",
+                        ["blue"] = "blau",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
+                    },
                 },
             },
         },
 
         [typeof(SPinpoint)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPinpoint.Points] = new()
                 {
                     // English: Which point occurred in {0}?
-                    Question = "Which point occurred in {0}?",
+                    Question = "Welche Koordinate kam in {0} vor?",
                 },
                 [SPinpoint.Distances] = new()
                 {
                     // English: Which distance occurred in {0}?
-                    Question = "Which distance occurred in {0}?",
+                    Question = "Welche Distanz kam in {0} vor?",
                 },
             },
         },
 
         [typeof(SPixelCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Pixelgeheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SPixelCipher.Keyword] = new()
                 {
                     // English: What was the keyword in {0}?
-                    Question = "What was the keyword in {0}?",
+                    Question = "Was war bei {0} das Schlüsselwort?",
                 },
             },
         },
@@ -8807,6 +10744,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} strip (from the top) in {0}?
                     // Example: What was the color of the first strip (from the top) in Planets?
                     Question = "What was the color of the {1} strip (from the top) in {0}?",
+                    Answers = new()
+                    {
+                        ["Aqua"] = "Aqua",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Lime"] = "Lime",
+                        ["Orange"] = "Orange",
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                        ["Off"] = "Off",
+                    },
                 },
                 [SPlanets.Planet] = new()
                 {
@@ -8818,20 +10767,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPlayfairCycle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Playfair-Schiffer",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SPlayfairCycle.DialDirections] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Playfair Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
                 },
                 [SPlayfairCycle.DialLabels] = new()
                 {
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Playfair Cycle?
-                    Question = "What letter was written on the {1} dial in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
         },
@@ -8852,14 +10802,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPointlessMachines)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Sinnlose Maschinen",
             Questions = new()
             {
                 [SPointlessMachines.Flashes] = new()
                 {
                     // English: What color flashed {1} in {0}?
                     // Example: What color flashed first in Pointless Machines?
-                    Question = "What color flashed {1} in {0}?",
+                    Question = "Welche Farbe hat bei {0} geblinkt?",
+                    Answers = new()
+                    {
+                        ["White"] = "Weiß",
+                        ["Purple"] = "Lila",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
             },
         },
@@ -8879,13 +10837,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPolyhedralMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Polyederlabyrinth",
             Questions = new()
             {
                 [SPolyhedralMaze.StartPosition] = new()
                 {
                     // English: What was the starting position in {0}?
-                    Question = "What was the starting position in {0}?",
+                    Question = "Was war bei {0} die Startposition?",
                 },
             },
             Discriminators = new()
@@ -8920,7 +10878,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SPrisonBreak.Prisoner] = new()
                 {
                     // English: Which cell did the prisoner start in in {0}?
-                    Question = "Which cell did the prisoner start in in {0}?",
+                    Question = "Where did the prisoner start in {0}?",
                 },
                 [SPrisonBreak.Defuser] = new()
                 {
@@ -9022,6 +10980,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What game was the {1} puzzle in {0} from?
                     // Example: What game was the first puzzle in Puzzle Identification from?
                     Question = "What game was the {1} puzzle in {0} from?",
+                    Answers = new()
+                    {
+                        ["Professor Layton and the Curious Village"] = "Professor Layton and the Curious Village",
+                        ["Professor Layton and Pandora's Box"] = "Professor Layton and Pandora's Box",
+                        ["Professor Layton and the Lost Future"] = "Professor Layton and the Lost Future",
+                        ["Professor Layton and the Spectre's Call"] = "Professor Layton and the Spectre's Call",
+                        ["Professor Layton and the Miracle Mask"] = "Professor Layton and the Miracle Mask",
+                        ["Professor Layton and the Azran Legacy"] = "Professor Layton and the Azran Legacy",
+                        ["Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy"] = "Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy",
+                        ["Professor Layton vs. Phoenix Wright: Ace Attorney"] = "Professor Layton vs. Phoenix Wright: Ace Attorney",
+                    },
                 },
                 [SPuzzleIdentification.Name] = new()
                 {
@@ -9092,7 +11061,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SQuantumPasswords.Word] = new()
                 {
                     // English: Which word was used in {0}?
-                    Question = "Which word was used in {0}?",
+                    Question = "Which word was use in {0}?",
                 },
             },
         },
@@ -9147,6 +11116,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} color in the primary sequence in {0}?
                     // Example: What was the first color in the primary sequence in Quick Arithmetic?
                     Question = "What was the {1} color in the primary sequence in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["white"] = "white",
+                        ["black"] = "black",
+                        ["orange"] = "orange",
+                        ["pink"] = "pink",
+                        ["purple"] = "purple",
+                        ["cyan"] = "cyan",
+                        ["brown"] = "brown",
+                    },
                 },
                 [SQuickArithmetic.PrimSecDigits] = new()
                 {
@@ -9178,6 +11161,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} digit in the {2} slot in {0}?
                     // Example: What color was the first digit in the first slot in Quintuples?
                     Question = "What color was the {1} digit in the {2} slot in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                        ["orange"] = "orange",
+                        ["green"] = "green",
+                        ["pink"] = "pink",
+                    },
                 },
                 [SQuintuples.ColorCounts] = new()
                 {
@@ -9258,7 +11249,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} car in {0}?
                     // Example: What was the first car in Railway Cargo Loading?
-                    Question = "What was the {1} car in {0}?",
+                    Question = "What was the {1} coupled car in {0}?",
                 },
                 [SRailwayCargoLoading.FreightTableRules] = new()
                 {
@@ -9297,6 +11288,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} LED in {0}?
                     // Example: What was the color of the first LED in Recolored Switches?
                     Question = "What was the color of the {1} LED in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["orange"] = "orange",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
+                    },
                 },
             },
         },
@@ -9334,32 +11335,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SRedButtont)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRedButtont.Word] = new()
                 {
                     // English: What was the word before “SUBMIT” in {0}?
-                    Question = "What was the word before “SUBMIT” in {0}?",
+                    Question = "What was the word before 'SUBMIT' in {0}?",
                 },
             },
         },
 
         [typeof(SRedCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Rote Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Roten Geheimschrift",
             Questions = new()
             {
                 [SRedCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Red Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -9387,12 +11389,35 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which condition was the solving condition in {0}?
                     Question = "Which condition was the solving condition in {0}?",
+                    Answers = new()
+                    {
+                        ["second"] = "second",
+                        ["third"] = "third",
+                        ["4th"] = "4th",
+                        ["5th"] = "5th",
+                        ["6th"] = "6th",
+                        ["7th"] = "7th",
+                        ["8th"] = "8th",
+                    },
                 },
                 [SReformedRoleReversal.Wire] = new()
                 {
                     // English: What color was the {1} wire in {0}?
                     // Example: What color was the first wire in Reformed Role Reversal?
                     Question = "What color was the {1} wire in {0}?",
+                    Answers = new()
+                    {
+                        ["Navy"] = "Navy",
+                        ["Lapis"] = "Lapis",
+                        ["Blue"] = "Blue",
+                        ["Sky"] = "Sky",
+                        ["Teal"] = "Teal",
+                        ["Plum"] = "Plum",
+                        ["Violet"] = "Violet",
+                        ["Purple"] = "Purple",
+                        ["Magenta"] = "Magenta",
+                        ["Lavender"] = "Lavender",
+                    },
                 },
             },
         },
@@ -9425,6 +11450,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the embellishment of the solution phrase in {0}?
                     Question = "What was the embellishment of the solution phrase in {0}?",
+                    Answers = new()
+                    {
+                        ["[PHRASE]"] = "[PHRASE]",
+                        ["It says: [PHRASE]"] = "It says: [PHRASE]",
+                        ["Quote: [PHRASE] End quote"] = "Quote: [PHRASE] End quote",
+                        ["“[PHRASE]”"] = "“[PHRASE]”",
+                        ["It says: “[PHRASE]”"] = "It says: “[PHRASE]”",
+                        ["“It says: [PHRASE]”"] = "“It says: [PHRASE]”",
+                    },
                 },
             },
         },
@@ -9439,18 +11473,36 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was this key in the {1} stage of {0}?
                     // Example: What color was this key in the first stage of Reordered Keys?
                     Question = "What color was this key in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SReorderedKeys.LabelColor] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}?
                     // Example: What color was the label of this key in the first stage of Reordered Keys?
                     Question = "What color was the label of this key in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SReorderedKeys.Label] = new()
                 {
                     // English: What was the label of this key in the {1} stage of {0}?
                     // Example: What was the label of this key in the first stage of Reordered Keys?
-                    Question = "What was the label of this key in the {1} stage of {0}?",
+                    Question = "What color was the label of this key in the {1} stage of {0}?",
                 },
                 [SReorderedKeys.Pivot] = new()
                 {
@@ -9548,6 +11600,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} LED in {0}?
                     // Example: What was the color of the first LED in RGB Sequences?
                     Question = "What was the color of the {1} LED in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -9561,6 +11623,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color in {0}?
                     Question = "What was the color in {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
             },
         },
@@ -9568,6 +11637,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SRNGCrystal)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "RNG-Kristall",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SRNGCrystal.Taps] = new()
@@ -9593,59 +11664,58 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SRobotProgramming)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRobotProgramming.Color] = new()
                 {
                     // English: What was the color of the {1} robot in {0}?
                     // Example: What was the color of the first robot in Robot Programming?
-                    Question = "What was the color of the {1} robot in {0}?",
+                    Question = "Welche Farbe hatte der {1}e Roboter bei {0}?",
                 },
                 [SRobotProgramming.Shape] = new()
                 {
                     // English: What was the shape of the {1} robot in {0}?
                     // Example: What was the shape of the first robot in Robot Programming?
-                    Question = "What was the shape of the {1} robot in {0}?",
+                    Question = "Welche Form hatte der {1}e Roboter bei {0}?",
                 },
             },
         },
 
         [typeof(SRoger)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SRoger.Seed] = new()
                 {
                     // English: What four-digit number was given in {0}?
-                    Question = "What four-digit number was given in {0}?",
+                    Question = "Welche vierstellige Zahl war bei {0} vorgegeben?",
                 },
             },
         },
 
         [typeof(SRoleReversal)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Rollenumkehr",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SRoleReversal.Wires] = new()
                 {
                     // English: How many {1} wires were there in {0}?
                     // Example: How many warm-colored wires were there in Role Reversal?
-                    Question = "How many {1} wires were there in {0}?",
+                    Question = "Wie viele der Drähte bei {0} hatten eine {1} Farbe?",
                     Arguments = new()
                     {
-                        ["warm-colored"] = "warm-colored",
-                        ["cold-colored"] = "cold-colored",
-                        ["primary-colored"] = "primary-colored",
-                        ["secondary-colored"] = "secondary-colored",
+                        ["warm-colored"] = "warme",
+                        ["cold-colored"] = "kalte",
+                        ["primary-colored"] = "primäre",
+                        ["secondary-colored"] = "sekundäre",
                     },
                 },
                 [SRoleReversal.Number] = new()
                 {
                     // English: What was the number corresponding to the correct condition in {0}?
-                    Question = "What was the number corresponding to the correct condition in {0}?",
+                    Question = "Welche Zahl entspricht der Bedingung, die bei {0} zutraf?",
                 },
             },
         },
@@ -9659,19 +11729,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which round did the {1} team {2} in {0}?
                     // Example: Which round did the red team win in RPS Judging?
-                    Question = "Which round did the {1} team {2} in {0}?",
+                    Question = "In welcher Runde hat bei {0} das {1} Team {2}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["win"] = "win",
-                        ["blue"] = "blue",
-                        ["lose"] = "lose",
+                        ["red"] = "rote",
+                        ["win"] = "gewonnen",
+                        ["blue"] = "blaue",
+                        ["lose"] = "verloren",
                     },
                 },
                 [SRPSJudging.QDraw] = new()
                 {
                     // English: Which round was a draw in {0}?
-                    Question = "Which round was a draw in {0}?",
+                    Question = "In welcher Runde war bei {0} unentschieden?",
                 },
             },
             Discriminators = new()
@@ -9680,12 +11750,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the RPS Judging where the {0} team {1} the {2} round
                     // Example: the RPS Judging where the red team won the first round
-                    Discriminator = "the RPS Judging where the {0} team {1} the {2} round",
+                    Discriminator = "dem RPS Judging, bei dem das {0} Team die {2}e Runde {1},",
                     Arguments = new()
                     {
                         ["red"] = "red",
-                        ["won"] = "won",
-                        ["lost"] = "lost",
+                        ["won"] = "gewann",
+                        ["lost"] = "verlor",
                         ["blue"] = "blue",
                     },
                 },
@@ -9693,51 +11763,55 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the RPS Judging with a draw in the {0} round
                     // Example: the RPS Judging with a draw in the first round
-                    Discriminator = "the RPS Judging with a draw in the {0} round",
+                    Discriminator = "dem RPS Judging, bei dem in der {0}en Runde unentschieden war,",
                 },
             },
         },
 
         [typeof(SRule)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Regel",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Regel",
+            ModuleNameWithThe = "Die Regel",
             Questions = new()
             {
                 [SRule.Number] = new()
                 {
                     // English: What was the rule number in {0}?
-                    Question = "What was the rule number in {0}?",
+                    Question = "Was war bei {0} die Regelnummer?",
                 },
             },
         },
 
         [typeof(SRuleOfThree)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Dreierregel",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SRuleOfThree.Coordinates] = new()
                 {
                     // English: What was the {1} coordinate of the {2} vertex in {0}?
                     // Example: What was the X coordinate of the red vertex in Rule of Three?
-                    Question = "What was the {1} coordinate of the {2} vertex in {0}?",
+                    Question = "Was war bei {0} die {1}-Koordinate der {2}en Ecke?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["blue"] = "blue",
+                        ["red"] = "rot",
+                        ["yellow"] = "gelb",
+                        ["blue"] = "blau",
                     },
                 },
                 [SRuleOfThree.Cycles] = new()
                 {
                     // English: What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?
                     // Example: What was the position of the red sphere on the X axis in the first cycle in Rule of Three?
-                    Question = "What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?",
+                    Question = "Was war bei {0} die Position der {1} Kugel auf der {2}-Achse im {3}en Zyklus?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["blue"] = "blue",
+                        ["red"] = "rot",
+                        ["yellow"] = "gelb",
+                        ["blue"] = "blau",
                     },
                 },
             },
@@ -9764,6 +11838,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the special rule displayed on the white diamond in {0}?
                     Question = "What was the special rule displayed on the white diamond in {0}?",
+                    Answers = new()
+                    {
+                        ["No special rule"] = "No special rule",
+                        ["Reacts with water"] = "Reacts with water",
+                        ["Simple asphyxiant"] = "Simple asphyxiant",
+                        ["Oxidizer"] = "Oxidizer",
+                    },
                 },
             },
         },
@@ -9778,6 +11859,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Where was {1} in {0}?
                     // Example: Where was Duolingo in Samsung?
                     Question = "Where was {1} in {0}?",
+                    Answers = new()
+                    {
+                        ["TL"] = "TL",
+                        ["TM"] = "TM",
+                        ["TR"] = "TR",
+                        ["ML"] = "ML",
+                        ["MM"] = "MM",
+                        ["MR"] = "MR",
+                        ["BL"] = "BL",
+                        ["BM"] = "BM",
+                        ["BR"] = "BR",
+                    },
                 },
             },
         },
@@ -9797,14 +11890,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SSbemailSongs)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Sbemail-Lieder",
             Questions = new()
             {
                 [SSbemailSongs.Songs] = new()
                 {
                     // English: What was the displayed song for stage {1} (hexadecimal) of {0}?
                     // Example: What was the displayed song for stage 01 (hexadecimal) of Sbemail Songs?
-                    Question = "What was the displayed song for stage {1} (hexadecimal) of {0}?",
+                    Question = "Was war bei {0} das in Stufe {1} (hexadezimal) angezeigte Lied?",
                 },
             },
             Discriminators = new()
@@ -9813,7 +11906,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)
                     // Example: the Sbemail Songs which displayed ‘Oh, who is the guy that…’ in stage 01 (hexadecimal)
-                    Discriminator = "the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)",
+                    Discriminator = "den Sbemail-Liedern, deren Stufe {1} (hexadezimal) ‘{0}’ anzeigten,",
                 },
             },
         },
@@ -9902,6 +11995,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the modified property of the first display in {0}?
                     Question = "What was the modified property of the first display in {0}?",
+                    Answers = new()
+                    {
+                        ["Word"] = "Word",
+                        ["Color around word"] = "Color around word",
+                        ["Color of background"] = "Color of background",
+                        ["Color of word"] = "Color of word",
+                    },
                 },
             },
         },
@@ -9941,6 +12041,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the display involved in the starting value in {0}?
                     Question = "What was the color of the display involved in the starting value in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["indigo"] = "indigo",
+                        ["pink"] = "pink",
+                    },
                 },
                 [SSemamorse.Letters] = new()
                 {
@@ -10019,6 +12127,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} marker in {0}?
                     // Example: What color was the top-left marker in Shifted Maze?
                     Question = "What color was the {1} marker in {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "White",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["Green"] = "Green",
+                    },
                     Arguments = new()
                     {
                         ["top-left"] = "top-left",
@@ -10052,6 +12168,38 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the displayed piece in {0}?
                     Question = "What was the displayed piece in {0}?",
+                    Answers = new()
+                    {
+                        ["Go-Between"] = "Go-Between",
+                        ["Pawn"] = "Pawn",
+                        ["Side Mover"] = "Side Mover",
+                        ["Vertical Mover"] = "Vertical Mover",
+                        ["Bishop"] = "Bishop",
+                        ["Rook"] = "Rook",
+                        ["Dragon Horse"] = "Dragon Horse",
+                        ["Dragon King"] = "Dragon King",
+                        ["Lance"] = "Lance",
+                        ["Reverse Chariot"] = "Reverse Chariot",
+                        ["Blind Tiger"] = "Blind Tiger",
+                        ["Ferocious Leopard"] = "Ferocious Leopard",
+                        ["Copper General"] = "Copper General",
+                        ["Silver General"] = "Silver General",
+                        ["Gold General"] = "Gold General",
+                        ["Drunk Elephant"] = "Drunk Elephant",
+                        ["Kirin"] = "Kirin",
+                        ["Phoenix"] = "Phoenix",
+                        ["Queen"] = "Queen",
+                        ["Flying Stag"] = "Flying Stag",
+                        ["Flying Ox"] = "Flying Ox",
+                        ["Free Boar"] = "Free Boar",
+                        ["Whale"] = "Whale",
+                        ["White Horse"] = "White Horse",
+                        ["King"] = "King",
+                        ["Prince"] = "Prince",
+                        ["Horned Falcon"] = "Horned Falcon",
+                        ["Soaring Eagle"] = "Soaring Eagle",
+                        ["Lion"] = "Lion",
+                    },
                 },
             },
         },
@@ -10079,6 +12227,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} slot in the {2} stage in {0}?
                     // Example: What was the first slot in the first stage in Silly Slots?
                     Question = "What was the {1} slot in the {2} stage in {0}?",
+                    Answers = new()
+                    {
+                        ["red bomb"] = "red bomb",
+                        ["red cherry"] = "red cherry",
+                        ["red coin"] = "red coin",
+                        ["red grape"] = "red grape",
+                        ["green bomb"] = "green bomb",
+                        ["green cherry"] = "green cherry",
+                        ["green coin"] = "green coin",
+                        ["green grape"] = "green grape",
+                        ["blue bomb"] = "blue bomb",
+                        ["blue cherry"] = "blue cherry",
+                        ["blue coin"] = "blue coin",
+                        ["blue grape"] = "blue grape",
+                    },
                 },
             },
         },
@@ -10109,33 +12272,41 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SSimonSaid)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Sagte",
             Questions = new()
             {
                 [SSimonSaid.Flashes] = new()
                 {
                     // English: What color flashed {1} in the final sequence of {0}?
                     // Example: What color flashed first in the final sequence of Simon Said?
-                    Question = "What color flashed {1} in the final sequence of {0}?",
+                    Question = "Welche Farbe ist bei {0} in der vollen Sequenz als {1}es aufgeleuchtet?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
             },
         },
 
         [typeof(SSimonSamples)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simons Samples",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SSimonSamples.Samples] = new()
                 {
                     // English: What were the call samples {1} of {0}?
                     // Example: What were the call samples played in the first stage of Simon Samples?
-                    Question = "What were the call samples {1} of {0}?",
+                    Question = "Welche Rufsamples wurden bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["played in the first stage"] = "played in the first stage",
-                        ["added in the second stage"] = "added in the second stage",
-                        ["added in the third stage"] = "added in the third stage",
+                        ["played in the first stage"] = "in der ersten Stufe gespielt",
+                        ["added in the second stage"] = "in der zweiten Stufe hinzugefügt",
+                        ["added in the third stage"] = "in der dritten Stufe hinzugefügt",
                     },
                 },
             },
@@ -10151,6 +12322,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color flashed {1} in the final sequence in {0}?
                     // Example: What color flashed first in the final sequence in Simon Says?
                     Question = "What color flashed {1} in the final sequence in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                    },
                 },
             },
         },
@@ -10165,6 +12343,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color flashed {1} in {0}?
                     // Example: What color flashed first in Simon Scrambles?
                     Question = "What color flashed {1} in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
             },
         },
@@ -10179,72 +12364,101 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which color flashed {1} in the final sequence in {0}?
                     // Example: Which color flashed first in the final sequence in Simon Screams?
                     Question = "Which color flashed {1} in the final sequence in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                    },
                 },
                 [SSimonScreams.RuleSimple] = new()
                 {
                     // English: In which stage(s) of {0} was “{1}” the applicable rule?
                     // Example: In which stage(s) of Simon Screams was “a color flashed, then a color two away, then the first again” the applicable rule?
-                    Question = "In which stage(s) of {0} was “{1}” the applicable rule?",
+                    Question = "In welcher/-n Stufe(n) bei {0} war “{1}” die zutreffende Regel?",
+                    Answers = new()
+                    {
+                        ["first"] = "erste",
+                        ["second"] = "zweite",
+                        ["third"] = "dritte",
+                        ["first and second"] = "erste und zweite",
+                        ["first and third"] = "erste und dritte",
+                        ["second and third"] = "zweite und dritte",
+                        ["all of them"] = "alle",
+                    },
                     Arguments = new()
                     {
-                        ["a color flashed, then a color two away, then the first again"] = "a color flashed, then a color two away, then the first again",
-                        ["a color flashed, then a color two away, then the one opposite that"] = "a color flashed, then a color two away, then the one opposite that",
-                        ["a color flashed, then a color two away, then the one opposite the first"] = "a color flashed, then a color two away, then the one opposite the first",
-                        ["a color flashed, then an adjacent color, then the first again"] = "a color flashed, then an adjacent color, then the first again",
-                        ["a color flashed, then another color, then the first"] = "a color flashed, then another color, then the first",
-                        ["a color flashed, then one adjacent, then the one opposite that"] = "a color flashed, then one adjacent, then the one opposite that",
-                        ["a color flashed, then one adjacent, then the one opposite the first"] = "a color flashed, then one adjacent, then the one opposite the first",
-                        ["a color flashed, then the one opposite, then one adjacent to that"] = "a color flashed, then the one opposite, then one adjacent to that",
-                        ["a color flashed, then the one opposite, then one adjacent to the first"] = "a color flashed, then the one opposite, then one adjacent to the first",
-                        ["a color flashed, then the one opposite, then the first again"] = "a color flashed, then the one opposite, then the first again",
-                        ["every color flashed at least once"] = "every color flashed at least once",
-                        ["exactly one color flashed exactly twice"] = "exactly one color flashed exactly twice",
-                        ["exactly one color flashed more than once"] = "exactly one color flashed more than once",
-                        ["exactly two colors flashed exactly twice"] = "exactly two colors flashed exactly twice",
-                        ["exactly two colors flashed more than once"] = "exactly two colors flashed more than once",
-                        ["no color flashed exactly twice"] = "no color flashed exactly twice",
-                        ["no color flashed more than once"] = "no color flashed more than once",
-                        ["no two adjacent colors flashed in clockwise order"] = "no two adjacent colors flashed in clockwise order",
-                        ["no two adjacent colors flashed in counter-clockwise order"] = "no two adjacent colors flashed in counter-clockwise order",
-                        ["no two colors two apart flashed in clockwise order"] = "no two colors two apart flashed in clockwise order",
-                        ["no two colors two apart flashed in counter-clockwise order"] = "no two colors two apart flashed in counter-clockwise order",
-                        ["the colors flashing first and last are adjacent"] = "the colors flashing first and last are adjacent",
-                        ["the colors flashing first and last are different and not adjacent"] = "the colors flashing first and last are different and not adjacent",
-                        ["the colors flashing first and last are the same"] = "the colors flashing first and last are the same",
-                        ["the number of distinct colors that flashed is even"] = "the number of distinct colors that flashed is even",
-                        ["the number of distinct colors that flashed is odd"] = "the number of distinct colors that flashed is odd",
-                        ["there are at least three colors that didn’t flash"] = "there are at least three colors that didn’t flash",
-                        ["there are exactly two colors that didn’t flash"] = "there are exactly two colors that didn’t flash",
-                        ["there are two colors adjacent to each other that didn’t flash"] = "there are two colors adjacent to each other that didn’t flash",
-                        ["there are two colors opposite each other that didn’t flash"] = "there are two colors opposite each other that didn’t flash",
-                        ["there are two colors two away from each other that didn’t flash"] = "there are two colors two away from each other that didn’t flash",
-                        ["there is exactly one color that didn’t flash"] = "there is exactly one color that didn’t flash",
-                        ["three adjacent colors did not flash"] = "three adjacent colors did not flash",
-                        ["three adjacent colors flashed in clockwise order"] = "three adjacent colors flashed in clockwise order",
-                        ["three adjacent colors flashed in counter-clockwise order"] = "three adjacent colors flashed in counter-clockwise order",
-                        ["three colors, each two apart, flashed in clockwise order"] = "three colors, each two apart, flashed in clockwise order",
-                        ["three colors, each two apart, flashed in counter-clockwise order"] = "three colors, each two apart, flashed in counter-clockwise order",
-                        ["two adjacent colors flashed in clockwise order"] = "two adjacent colors flashed in clockwise order",
-                        ["two adjacent colors flashed in counter-clockwise order"] = "two adjacent colors flashed in counter-clockwise order",
-                        ["two colors two apart flashed in clockwise order"] = "two colors two apart flashed in clockwise order",
-                        ["two colors two apart flashed in counter-clockwise order"] = "two colors two apart flashed in counter-clockwise order",
+                        ["a color flashed, then a color two away, then the first again"] = "eine Farbe blinkt, dann eine mit einer Abstand, und dann die erste nochmal",
+                        ["a color flashed, then a color two away, then the one opposite that"] = "eine Farbe blinkt, dann eine mit einer Abstand, und dann die gegenüberliegende davon",
+                        ["a color flashed, then a color two away, then the one opposite the first"] = "eine Farbe blinkt, dann eine mit einer Abstand, und dann die gegenüberliegende der ersten",
+                        ["a color flashed, then an adjacent color, then the first again"] = "eine Farbe blinkt, dann eine daneben, und dann die erste nochmal",
+                        ["a color flashed, then another color, then the first"] = "eine Farbe blinkt, dann eine andere, dann die erste nochmal",
+                        ["a color flashed, then one adjacent, then the one opposite that"] = "eine Farbe blinkt, dann eine daneben, und dann die gegenüberliegende",
+                        ["a color flashed, then one adjacent, then the one opposite the first"] = "eine Farbe blinkt, dann eine daneben, und dann die gegenüberliegende der ersten",
+                        ["a color flashed, then the one opposite, then one adjacent to that"] = "eine Farbe blinkt, dann die gegenüberliegende, und dann eine daneben",
+                        ["a color flashed, then the one opposite, then one adjacent to the first"] = "eine Farbe blinkt, dann die gegenüberliegende, und dann eine neben der ersten",
+                        ["a color flashed, then the one opposite, then the first again"] = "eine Farbe blinkt, dann die gegenüberliegende, dann die erste nochmal",
+                        ["every color flashed at least once"] = "jede Farbe blinkt mindestens einmal",
+                        ["exactly one color flashed exactly twice"] = "genau eine Farbe blinkt genau zweimal",
+                        ["exactly one color flashed more than once"] = "genau eine Farbe blinkt mehr als einmal",
+                        ["exactly two colors flashed exactly twice"] = "genau zwei Farben blinken genau zweimal",
+                        ["exactly two colors flashed more than once"] = "genau zwei Farben blinken mehr als einmal",
+                        ["no color flashed exactly twice"] = "keine Farbe blinkt genau zweimal",
+                        ["no color flashed more than once"] = "keine Farbe blinkt mehr als einmal",
+                        ["no two adjacent colors flashed in clockwise order"] = "keine zwei nebeneinanderliegenden Farben blinken im Uhrzeigersinn",
+                        ["no two adjacent colors flashed in counter-clockwise order"] = "keine zwei nebeneinanderliegenden Farben blinken gegen den Uhrzeigersinn",
+                        ["no two colors two apart flashed in clockwise order"] = "keine zwei Farben mit einer Farbe dazwischen blinken im Uhrzeigersinn",
+                        ["no two colors two apart flashed in counter-clockwise order"] = "keine zwei Farben, mit einer Farbe dazwischen, blinken gegen den Uhrzeigersinn",
+                        ["the colors flashing first and last are adjacent"] = "die erste und letzte blinkende Farbe liegen nebeneinander",
+                        ["the colors flashing first and last are different and not adjacent"] = "die erste und letzte blinkende Farbe sind verschieden und liegen nicht nebeneinander",
+                        ["the colors flashing first and last are the same"] = "die erste und letzte blinkende Farbe ist die selbe",
+                        ["the number of distinct colors that flashed is even"] = "die Anzahl der unterschiedlichen blinkenden Farben ist gerade",
+                        ["the number of distinct colors that flashed is odd"] = "die Anzahl der unterschiedlichen blinkenden Farben ist ungerade",
+                        ["there are at least three colors that didn’t flash"] = "mindestens drei Farben blinken nicht",
+                        ["there are exactly two colors that didn’t flash"] = "genau zwei Farben blinken nicht",
+                        ["there are two colors adjacent to each other that didn’t flash"] = "zwei nebeneinander liegende Farben blinken nicht",
+                        ["there are two colors opposite each other that didn’t flash"] = "zwei gegenüberliegende Farben blinken nicht",
+                        ["there are two colors two away from each other that didn’t flash"] = "zwei Farben, mit einer Farbe dazwischen, blinken nicht",
+                        ["there is exactly one color that didn’t flash"] = "genau eine Farbe blinkt nicht",
+                        ["three adjacent colors did not flash"] = "drei nebeneinanderliegende Farben blinken nicht",
+                        ["three adjacent colors flashed in clockwise order"] = "drei nebeneinanderliegende Farben blinken im Uhrzeigersinn",
+                        ["three adjacent colors flashed in counter-clockwise order"] = "drei nebeneinanderliegende Farben blinken gegen den Uhrzeigersinn",
+                        ["three colors, each two apart, flashed in clockwise order"] = "drei Farben mit jeweils einer dazwischen blinken im Uhrzeigersinn",
+                        ["three colors, each two apart, flashed in counter-clockwise order"] = "drei Farben mit jeweils einer dazwischen blinken gegen den Uhrzeigersinn",
+                        ["two adjacent colors flashed in clockwise order"] = "zwei nebeneinanderliegende Farben blinken im Uhrzeigersinn",
+                        ["two adjacent colors flashed in counter-clockwise order"] = "zwei nebeneinanderliegende Farben blinken gegen den Uhrzeigersinn",
+                        ["two colors two apart flashed in clockwise order"] = "zwei Farben mit einer Farbe dazwischen blinken im Uhrzeigersinn",
+                        ["two colors two apart flashed in counter-clockwise order"] = "zwei Farben mit einer Farbe dazwischen blinken gegen den Uhrzeigersinn",
                     },
                 },
                 [SSimonScreams.RuleComplex] = new()
                 {
                     // English: In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?
                     // Example: In which stage(s) of Simon Screams was “at most one color flashed out of Red, Orange, and Yellow” the applicable rule?
-                    Question = "In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?",
+                    Question = "In welcher/-n Stufe(n) bei {0} war “{1} der Farben {2}, {3} und {4} blinkt” die zutreffende Regel?",
+                    Answers = new()
+                    {
+                        ["first"] = "erste",
+                        ["second"] = "zweite",
+                        ["third"] = "dritte",
+                        ["first and second"] = "erste und zweite",
+                        ["first and third"] = "erste und dritte",
+                        ["second and third"] = "zweite und dritte",
+                        ["all of them"] = "alle",
+                    },
                     Arguments = new()
                     {
-                        ["at most one color"] = "at most one color",
-                        ["Red"] = "Red",
+                        ["at most one color"] = "maximal eine",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["at least two colors"] = "at least two colors",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
+                        ["Yellow"] = "Gelb",
+                        ["at least two colors"] = "mindestens zwei",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
                     },
                 },
             },
@@ -10260,6 +12474,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which color flashed {1} in the {2} stage of {0}?
                     // Example: Which color flashed first in the first stage of Simon Selects?
                     Question = "Which color flashed {1} in the {2} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                    },
                 },
             },
         },
@@ -10300,6 +12525,41 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which item was not served in course {1} of {0}?
                     // Example: Which item was not served in course 1 of Simon Serves?
                     Question = "Which item was not served in course {1} of {0}?",
+                    Answers = new()
+                    {
+                        ["Baked Batterys"] = "Baked Batterys",
+                        ["Bamboozling Waffles"] = "Bamboozling Waffles",
+                        ["Big Boom Tortellini"] = "Big Boom Tortellini",
+                        ["Blast Shrimps"] = "Blast Shrimps",
+                        ["Blastwave Compote"] = "Blastwave Compote",
+                        ["Bomb Brûlée"] = "Bomb Brûlée",
+                        ["Boolean Waffles"] = "Boolean Waffles",
+                        ["Boom Lager Beer"] = "Boom Lager Beer",
+                        ["Caesar Salad"] = "Caesar Salad",
+                        ["Centurion Wings"] = "Centurion Wings",
+                        ["Colored Spare Ribs"] = "Colored Spare Ribs",
+                        ["Cruelo Juice"] = "Cruelo Juice",
+                        ["Defuse Juice"] = "Defuse Juice",
+                        ["Defuse au Chocolat"] = "Defuse au Chocolat",
+                        ["Deto Bull"] = "Deto Bull",
+                        ["Edgework Toast"] = "Edgework Toast",
+                        ["Forget Cocktail"] = "Forget Cocktail",
+                        ["Forghetti Bombognese"] = "Forghetti Bombognese",
+                        ["Indicator Tar Tar"] = "Indicator Tar Tar",
+                        ["Morse Soup"] = "Morse Soup",
+                        ["NATO Shrimps"] = "NATO Shrimps",
+                        ["Not Ice Cream"] = "Not Ice Cream",
+                        ["Omelette au Bombage"] = "Omelette au Bombage",
+                        ["Simon’s Special Mix"] = "Simon’s Special Mix",
+                        ["Solve Cake"] = "Solve Cake",
+                        ["Status Light Rolls"] = "Status Light Rolls",
+                        ["Strike Pie"] = "Strike Pie",
+                        ["Tasha’s Drink"] = "Tasha’s Drink",
+                        ["Ticking Timecakes"] = "Ticking Timecakes",
+                        ["Veggie Blast Plate"] = "Veggie Blast Plate",
+                        ["Wire Shake"] = "Wire Shake",
+                        ["Wire Spaghetti"] = "Wire Spaghetti",
+                    },
                 },
             },
         },
@@ -10401,6 +12661,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the arrow with this shape in {0}?
                     Question = "What color was the arrow with this shape in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["gray"] = "gray",
+                    },
                 },
                 [SSimonSignals.ShapeToRotations] = new()
                 {
@@ -10412,6 +12679,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the arrow with {1} possible directions in {0}?
                     // Example: What color was the arrow with 3 possible directions in Simon Signals?
                     Question = "What color was the arrow with {1} possible directions in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["gray"] = "gray",
+                    },
                 },
                 [SSimonSignals.RotationsToShape] = new()
                 {
@@ -10474,12 +12748,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} flash in {0}?
                     // Example: What was the color of the first flash in Simon Smothers?
                     Question = "What was the color of the {1} flash in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                    },
                 },
                 [SSimonSmothers.Directions] = new()
                 {
                     // English: What was the direction of the {1} flash in {0}?
                     // Example: What was the direction of the first flash in Simon Smothers?
                     Question = "What was the direction of the {1} flash in {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Up",
+                        ["Down"] = "Down",
+                        ["Left"] = "Left",
+                        ["Right"] = "Right",
+                    },
                 },
             },
         },
@@ -10494,6 +12784,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which sample button sounded {1} in the final sequence in {0}?
                     // Example: Which sample button sounded first in the final sequence in Simon Sounds?
                     Question = "Which sample button sounded {1} in the final sequence in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                    },
                 },
             },
         },
@@ -10507,6 +12804,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which bubble flashed first in {0}?
                     Question = "Which bubble flashed first in {0}?",
+                    Answers = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["middle-center"] = "middle-center",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
+                    },
                 },
                 [SSimonSpeaks.Shapes] = new()
                 {
@@ -10527,20 +12836,41 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the bubble that flashed fifth in {0}?
                     Question = "What color was the bubble that flashed fifth in {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "black",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["red"] = "red",
+                        ["purple"] = "purple",
+                        ["yellow"] = "yellow",
+                        ["white"] = "white",
+                        ["gray"] = "gray",
+                    },
                 },
             },
         },
 
         [typeof(SSimonsStar)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simons Stern",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SSimonsStar.Colors] = new()
                 {
                     // English: Which color flashed {1} in {0}?
                     // Example: Which color flashed first in Simon’s Star?
-                    Question = "Which color flashed {1} in {0}?",
+                    Question = "Welche Farbe ist bei {0} als {1}es aufgeleuchtet?",
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["purple"] = "lila",
+                    },
                 },
             },
         },
@@ -10555,6 +12885,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which color flashed in the {1} stage of {0}?
                     // Example: Which color flashed in the first stage of Simon Stacks?
                     Question = "Which color flashed in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
             },
         },
@@ -10562,37 +12899,80 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonStages)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Simon-Stufen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SSimonStages.Indicator] = new()
                 {
                     // English: What color was the indicator in the {1} stage in {0}?
                     // Example: What color was the indicator in the first stage in Simon Stages?
-                    Question = "What color was the indicator in the {1} stage in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der Indikator in der {1}en Stufe?",
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
+                        ["orange"] = "orange",
+                        ["magenta"] = "magenta",
+                        ["green"] = "grün",
+                        ["pink"] = "pink",
+                        ["lime"] = "limette",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
+                    },
                 },
                 [SSimonStages.Flashes] = new()
                 {
                     // English: Which color flashed {1} in the {2} stage in {0}?
                     // Example: Which color flashed first in the first stage in Simon Stages?
-                    Question = "Which color flashed {1} in the {2} stage in {0}?",
+                    Question = "Welche Farbe ist bei {0} als {1}e in der {2}en Stufe aufgeleuchtet?",
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
+                        ["orange"] = "orange",
+                        ["magenta"] = "magenta",
+                        ["green"] = "grün",
+                        ["pink"] = "pink",
+                        ["lime"] = "limette",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
+                    },
                 },
             },
         },
 
         [typeof(SSimonStates)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Statuiert",
             Questions = new()
             {
                 [SSimonStates.Display] = new()
                 {
                     // English: Which {1} in the {2} stage in {0}?
                     // Example: Which color(s) flashed in the first stage in Simon States?
-                    Question = "Which {1} in the {2} stage in {0}?",
+                    Question = "Welche Farbe(n) sind bei {0} in der {2}en Stufe {1}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Red, Yellow"] = "Rot, Gelb",
+                        ["Red, Green"] = "Rot, Grün",
+                        ["Red, Blue"] = "Rot, Blau",
+                        ["Yellow, Green"] = "Gelb, Grün",
+                        ["Yellow, Blue"] = "Gelb, Blau",
+                        ["Green, Blue"] = "Grün, Blau",
+                        ["all 4"] = "alle 4",
+                        ["none"] = "keine",
+                    },
                     Arguments = new()
                     {
-                        ["color(s) flashed"] = "color(s) flashed",
-                        ["color(s) didn’t flash"] = "color(s) didn’t flash",
+                        ["color(s) flashed"] = "aufgeleuchtet",
+                        ["color(s) didn’t flash"] = "nicht aufgeleuchtet",
                     },
                 },
             },
@@ -10608,6 +12988,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which color flashed {1} in the output sequence in {0}?
                     // Example: Which color flashed first in the output sequence in Simon Stops?
                     Question = "Which color flashed {1} in the output sequence in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Violet"] = "Violet",
+                    },
                 },
             },
         },
@@ -10622,6 +13011,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which color {1} {2} in the final sequence of {0}?
                     // Example: Which color flashed first in the final sequence of Simon Stores?
                     Question = "Which color {1} {2} in the final sequence of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                     Arguments = new()
                     {
                         ["flashed"] = "flashed",
@@ -10640,6 +13038,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the button at this position in {0}?
                     Question = "What color was the button at this position in {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Red"] = "Red",
+                        ["Violet"] = "Violet",
+                    },
                 },
             },
         },
@@ -10654,6 +13059,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} topic in {0}?
                     // Example: What was the first topic in Simon Supports?
                     Question = "What was the {1} topic in {0}?",
+                    Answers = new()
+                    {
+                        ["Boss"] = "Boss",
+                        ["Cruel"] = "Cruel",
+                        ["Faulty"] = "Faulty",
+                        ["Lookalike"] = "Lookalike",
+                        ["Puzzle"] = "Puzzle",
+                        ["Simon"] = "Simon",
+                        ["Time-Based"] = "Time-Based",
+                        ["Translated"] = "Translated",
+                    },
                 },
             },
         },
@@ -10706,6 +13122,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color flashed {1} on the {2} Simon in {0}?
                     // Example: What color flashed first on the first Simon in Simultaneous Simons?
                     Question = "What color flashed {1} on the {2} Simon in {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                    },
                 },
             },
         },
@@ -10732,6 +13155,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was this gem in {0}?
                     Question = "What color was this gem in {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Black",
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -10745,39 +13179,98 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which race was selectable, but not the solution, in {0}?
                     Question = "Which race was selectable, but not the solution, in {0}?",
+                    Answers = new()
+                    {
+                        ["Nord"] = "Nord",
+                        ["Khajiit"] = "Khajiit",
+                        ["Breton"] = "Breton",
+                        ["Argonian"] = "Argonian",
+                        ["Dunmer"] = "Dunmer",
+                        ["Altmer"] = "Altmer",
+                        ["Redguard"] = "Redguard",
+                        ["Orc"] = "Orc",
+                        ["Imperial"] = "Imperial",
+                    },
                 },
                 [SSkyrim.Weapon] = new()
                 {
                     // English: Which weapon was selectable, but not the solution, in {0}?
                     Question = "Which weapon was selectable, but not the solution, in {0}?",
+                    Answers = new()
+                    {
+                        ["Axe of Whiterun"] = "Axe of Whiterun",
+                        ["Dawnbreaker"] = "Dawnbreaker",
+                        ["Windshear"] = "Windshear",
+                        ["Blade of Woe"] = "Blade of Woe",
+                        ["Firiniel’s End"] = "Firiniel’s End",
+                        ["Bow of Hunt"] = "Bow of Hunt",
+                        ["Volendrung"] = "Volendrung",
+                        ["Chillrend"] = "Chillrend",
+                        ["Mace of Molag Bal"] = "Mace of Molag Bal",
+                    },
                 },
                 [SSkyrim.Enemy] = new()
                 {
                     // English: Which enemy was selectable, but not the solution, in {0}?
                     Question = "Which enemy was selectable, but not the solution, in {0}?",
+                    Answers = new()
+                    {
+                        ["Alduin"] = "Alduin",
+                        ["Blood Dragon"] = "Blood Dragon",
+                        ["Cave Bear"] = "Cave Bear",
+                        ["Dragon Priest"] = "Dragon Priest",
+                        ["Draugr"] = "Draugr",
+                        ["Draugr Overlord"] = "Draugr Overlord",
+                        ["Frost Troll"] = "Frost Troll",
+                        ["Frostbite Spider"] = "Frostbite Spider",
+                        ["Mudcrab"] = "Mudcrab",
+                    },
                 },
                 [SSkyrim.City] = new()
                 {
                     // English: Which city was selectable, but not the solution, in {0}?
                     Question = "Which city was selectable, but not the solution, in {0}?",
+                    Answers = new()
+                    {
+                        ["Dawnstar"] = "Dawnstar",
+                        ["Ivarstead"] = "Ivarstead",
+                        ["Markarth"] = "Markarth",
+                        ["Riverwood"] = "Riverwood",
+                        ["Rorikstead"] = "Rorikstead",
+                        ["Solitude"] = "Solitude",
+                        ["Whiterun"] = "Whiterun",
+                        ["Windhelm"] = "Windhelm",
+                        ["Winterhold"] = "Winterhold",
+                    },
                 },
                 [SSkyrim.DragonShout] = new()
                 {
                     // English: Which dragon shout was selectable, but not the solution, in {0}?
                     Question = "Which dragon shout was selectable, but not the solution, in {0}?",
+                    Answers = new()
+                    {
+                        ["Disarm"] = "Disarm",
+                        ["Dismay"] = "Dismay",
+                        ["Dragonrend"] = "Dragonrend",
+                        ["Fire Breath"] = "Fire Breath",
+                        ["Ice Form"] = "Ice Form",
+                        ["Kyne’s Peace"] = "Kyne’s Peace",
+                        ["Slow Time"] = "Slow Time",
+                        ["Unrelenting Force"] = "Unrelenting Force",
+                        ["Whirlwind Sprint"] = "Whirlwind Sprint",
+                    },
                 },
             },
         },
 
         [typeof(SSlowMath)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSlowMath.LastLetters] = new()
                 {
                     // English: What was the last triplet of letters in {0}?
-                    Question = "What was the last triplet of letters in {0}?",
+                    Question = "What was the last pair of letters in {0}?",
                 },
             },
         },
@@ -10796,12 +13289,34 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which wedge made the different noise in the beginning of {0}?
                     Question = "Which wedge made the different noise in the beginning of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                        ["Black"] = "Black",
+                    },
                 },
                 [SSmallCircle.Solution] = new()
                 {
                     // English: Which color was {1} in the solution to {0}?
                     // Example: Which color was first in the solution to Small Circle?
                     Question = "Which color was {1} in the solution to {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                        ["Black"] = "Black",
+                    },
                 },
             },
         },
@@ -11002,6 +13517,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} flashed color in {0}?
                     // Example: What was the first flashed color in Sphere?
                     Question = "What was the {1} flashed color in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["orange"] = "orange",
+                        ["pink"] = "pink",
+                        ["purple"] = "purple",
+                        ["grey"] = "grey",
+                        ["white"] = "white",
+                    },
                 },
             },
         },
@@ -11043,6 +13569,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} lit LED in {0}?
                     // Example: What was the color of the first lit LED in Stability?
                     Question = "What was the color of the {1} lit LED in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                    },
                 },
                 [SStability.IdNumber] = new()
                 {
@@ -11154,6 +13686,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} submitted word’s color in {0}?
                     // Example: What was the first submitted word’s color in Stroop’s Test?
                     Question = "What was the {1} submitted word’s color in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -11318,6 +13859,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} LED on the {2} flip of {0}?
                     // Example: What color was the top LED on the first flip of Switch?
                     Question = "What color was the {1} LED on the {2} flip of {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["orange"] = "orange",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["purple"] = "purple",
+                    },
                     Arguments = new()
                     {
                         ["top"] = "top",
@@ -11354,6 +13904,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the starting maze color in {0}?
                     Question = "What was the starting maze color in {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Orange"] = "Orange",
+                        ["Red"] = "Red",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -11407,6 +13966,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which button flashed {1} in the final sequence of {0}?
                     // Example: Which button flashed first in the final sequence of Symbolic Tasha?
                     Question = "Which button flashed {1} in the final sequence of {0}?",
+                    Answers = new()
+                    {
+                        ["Top"] = "Top",
+                        ["Right"] = "Right",
+                        ["Bottom"] = "Bottom",
+                        ["Left"] = "Left",
+                        ["Pink"] = "Pink",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                    },
                 },
                 [SSymbolicTasha.Symbols] = new()
                 {
@@ -11456,14 +14026,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SSync125_3)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSync125_3.Word] = new()
                 {
                     // English: What was displayed on the screen in the {1} stage of {0}?
                     // Example: What was displayed on the screen in the first stage of SYNC-125 [3]?
-                    Question = "What was displayed on the screen in the {1} stage of {0}?",
+                    Question = "What was displayed on the screen in stage {1} of {0}?",
                 },
             },
         },
@@ -11503,7 +14072,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which card was {1} in the swap in {0}?
                     // Example: Which card was given away in the swap in TAC?
-                    Question = "Which card was {1} in the swap in {0}?",
+                    Question = "Which card was {1} your partner in {0}?",
+                    Answers = new()
+                    {
+                        ["1"] = "1",
+                        ["2"] = "2",
+                        ["3"] = "3",
+                        ["4"] = "4",
+                        ["5"] = "5",
+                        ["6"] = "6",
+                        ["7"] = "7",
+                        ["8"] = "8",
+                        ["9"] = "9",
+                        ["10"] = "10",
+                        ["11"] = "11",
+                        ["12"] = "12",
+                        ["13"] = "13",
+                        ["backwards 3"] = "backwards 3",
+                        ["backwards 4"] = "backwards 4",
+                        ["backwards 5"] = "backwards 5",
+                        ["single-step 6"] = "single-step 6",
+                        ["single-step 7"] = "single-step 7",
+                        ["8 or discard"] = "8 or discard",
+                        ["9 or discard"] = "9 or discard",
+                        ["10 or discard"] = "10 or discard",
+                        ["Warrior"] = "Warrior",
+                        ["Trickster"] = "Trickster",
+                    },
                     Arguments = new()
                     {
                         ["given away"] = "given away",
@@ -11514,6 +14109,32 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which card was in your hand in {0}?
                     Question = "Which card was in your hand in {0}?",
+                    Answers = new()
+                    {
+                        ["1"] = "1",
+                        ["2"] = "2",
+                        ["3"] = "3",
+                        ["4"] = "4",
+                        ["5"] = "5",
+                        ["6"] = "6",
+                        ["7"] = "7",
+                        ["8"] = "8",
+                        ["9"] = "9",
+                        ["10"] = "10",
+                        ["11"] = "11",
+                        ["12"] = "12",
+                        ["13"] = "13",
+                        ["backwards 3"] = "backwards 3",
+                        ["backwards 4"] = "backwards 4",
+                        ["backwards 5"] = "backwards 5",
+                        ["single-step 6"] = "single-step 6",
+                        ["single-step 7"] = "single-step 7",
+                        ["8 or discard"] = "8 or discard",
+                        ["9 or discard"] = "9 or discard",
+                        ["10 or discard"] = "10 or discard",
+                        ["Warrior"] = "Warrior",
+                        ["Trickster"] = "Trickster",
+                    },
                 },
             },
         },
@@ -11541,6 +14162,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} flashed color in {0}?
                     // Example: What was the first flashed color in Tasha Squeals?
                     Question = "What was the {1} flashed color in {0}?",
+                    Answers = new()
+                    {
+                        ["Pink"] = "Pink",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                    },
                 },
             },
         },
@@ -11574,13 +14202,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(STechnicalKeypad)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Technisches Tastenfeld",
+            ModuleNameDative = "Technischen Tastenfeld",
             Questions = new()
             {
                 [STechnicalKeypad.DisplayedDigits] = new()
                 {
                     // This question is depicted visually, rather than with words. The translation here will only be used for logging.
-                    Question = "What was the {1} displayed digit in {0}?",
+                    Question = "Was war bei {0} die {1}e Ziffer auf dem Display?",
                 },
             },
         },
@@ -11595,6 +14224,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the initial color of the {1} button in the {2} stage of {0}?
                     // Example: What was the initial color of the first button in the first stage of Ten-Button Color Code?
                     Question = "What was the initial color of the {1} button in the {2} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                    },
                 },
             },
         },
@@ -11609,6 +14244,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} split in {0}?
                     // Example: What was the red split in Tenpins?
                     Question = "What was the {1} split in {0}?",
+                    Answers = new()
+                    {
+                        ["Goal Posts"] = "Goal Posts",
+                        ["Cincinnati"] = "Cincinnati",
+                        ["Woolworth Store"] = "Woolworth Store",
+                        ["Lily"] = "Lily",
+                        ["3-7 Split"] = "3-7 Split",
+                        ["Cocked Hat"] = "Cocked Hat",
+                        ["4-7-10 Split"] = "4-7-10 Split",
+                        ["Big Four"] = "Big Four",
+                        ["Greek Church"] = "Greek Church",
+                        ["Big Five"] = "Big Five",
+                        ["Big Six"] = "Big Six",
+                        ["HOW"] = "HOW",
+                    },
                     Arguments = new()
                     {
                         ["red"] = "red",
@@ -11629,6 +14279,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What colour triangle pulsed {1} in {0}?
                     // Example: What colour triangle pulsed first in Tetriamonds?
                     Question = "What colour triangle pulsed {1} in {0}?",
+                    Answers = new()
+                    {
+                        ["orange"] = "orange",
+                        ["lime"] = "lime",
+                        ["jade"] = "jade",
+                        ["azure"] = "azure",
+                        ["violet"] = "violet",
+                        ["rose"] = "rose",
+                        ["grey"] = "grey",
+                    },
                 },
             },
         },
@@ -11660,6 +14320,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color did the second valid wire to cut have to have in {0}?
                     Question = "What color did the second valid wire to cut have to have in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                        ["Black"] = "Black",
+                        ["Any"] = "Any",
+                    },
                 },
                 [SThinkingWires.DisplayNumber] = new()
                 {
@@ -11796,6 +14468,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: In what order was the Braille read in {0}?
                     Question = "In what order was the Braille read in {0}?",
+                    Answers = new()
+                    {
+                        ["Standard Braille Order"] = "Standard Braille Order",
+                        ["Individual Reading Order"] = "Individual Reading Order",
+                        ["Merged Reading Order"] = "Merged Reading Order",
+                        ["Chinese Reading Order"] = "Chinese Reading Order",
+                    },
                 },
             },
         },
@@ -11824,6 +14503,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What colour triangle pulsed {1} in {0}?
                     // Example: What colour triangle pulsed first in Triamonds?
                     Question = "What colour triangle pulsed {1} in {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "black",
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["blue"] = "blue",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "cyan",
+                        ["white"] = "white",
+                    },
                 },
             },
         },
@@ -11837,7 +14527,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} name in {0}?
                     // Example: What was the northeast name in Tribal Council?
-                    Question = "What was the {1} name in {0}?",
+                    Question = "Who was your closest ally in {0}?",
                     Arguments = new()
                     {
                         ["northeast"] = "northeast",
@@ -11890,19 +14580,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUltimateCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Ultimative Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Ultimativen Geheimschrift",
             Questions = new()
             {
                 [SUltimateCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Ultimate Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -11910,34 +14602,35 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUltimateCycle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Ultimative Schiffer",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Ultimativen Schiffer",
             Questions = new()
             {
                 [SUltimateCycle.DialDirections] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Ultimate Cycle?
-                    Question = "Which direction was the {1} dial pointing in {0}?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
                 },
                 [SUltimateCycle.DialLabels] = new()
                 {
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Ultimate Cycle?
-                    Question = "What letter was written on the {1} dial in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
         },
 
         [typeof(SUltracube)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUltracube.Rotations] = new()
                 {
                     // English: What was the {1} rotation in {0}?
                     // Example: What was the first rotation in Ultracube?
-                    Question = "What was the {1} rotation in {0}?",
+                    Question = "Was war die {1}e Rotation in {0}?",
                 },
             },
         },
@@ -11972,6 +14665,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} color in reading order used in the first stage of {0}?
                     // Example: What was the first color in reading order used in the first stage of Uncolored Squares?
                     Question = "What was the {1} color in reading order used in the first stage of {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "White",
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
             },
         },
@@ -11991,6 +14693,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} LED in reading order in {0}?
                     // Example: What color was the first LED in reading order in Uncolored Switches?
                     Question = "What color was the {1} LED in reading order in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["turquoise"] = "turquoise",
+                        ["orange"] = "orange",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
+                        ["black"] = "black",
+                    },
                 },
             },
         },
@@ -12004,7 +14717,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} in the {2} position of the {3} sequence of {0}?
                     // Example: What was the word in the first position of the “YES” sequence of Uncolour Flash?
-                    Question = "What was the {1} in the {2} position of the {3} sequence of {0}?",
+                    Question = "What was the {1} displayed in the {2} sequence of {0}?",
                 },
             },
         },
@@ -12060,6 +14773,63 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the initial card in {0}?
                     Question = "What was the initial card in {0}?",
+                    Answers = new()
+                    {
+                        ["Red 0"] = "Red 0",
+                        ["Red 1"] = "Red 1",
+                        ["Red 2"] = "Red 2",
+                        ["Red 3"] = "Red 3",
+                        ["Red 4"] = "Red 4",
+                        ["Red 5"] = "Red 5",
+                        ["Red 6"] = "Red 6",
+                        ["Red 7"] = "Red 7",
+                        ["Red 8"] = "Red 8",
+                        ["Red 9"] = "Red 9",
+                        ["Red +2"] = "Red +2",
+                        ["Red Skip"] = "Red Skip",
+                        ["Red Reverse"] = "Red Reverse",
+                        ["Green 0"] = "Green 0",
+                        ["Green 1"] = "Green 1",
+                        ["Green 2"] = "Green 2",
+                        ["Green 3"] = "Green 3",
+                        ["Green 4"] = "Green 4",
+                        ["Green 5"] = "Green 5",
+                        ["Green 6"] = "Green 6",
+                        ["Green 7"] = "Green 7",
+                        ["Green 8"] = "Green 8",
+                        ["Green 9"] = "Green 9",
+                        ["Green +2"] = "Green +2",
+                        ["Green Skip"] = "Green Skip",
+                        ["Green Reverse"] = "Green Reverse",
+                        ["Yellow 0"] = "Yellow 0",
+                        ["Yellow 1"] = "Yellow 1",
+                        ["Yellow 2"] = "Yellow 2",
+                        ["Yellow 3"] = "Yellow 3",
+                        ["Yellow 4"] = "Yellow 4",
+                        ["Yellow 5"] = "Yellow 5",
+                        ["Yellow 6"] = "Yellow 6",
+                        ["Yellow 7"] = "Yellow 7",
+                        ["Yellow 8"] = "Yellow 8",
+                        ["Yellow 9"] = "Yellow 9",
+                        ["Yellow +2"] = "Yellow +2",
+                        ["Yellow Skip"] = "Yellow Skip",
+                        ["Yellow Reverse"] = "Yellow Reverse",
+                        ["Blue 0"] = "Blue 0",
+                        ["Blue 1"] = "Blue 1",
+                        ["Blue 2"] = "Blue 2",
+                        ["Blue 3"] = "Blue 3",
+                        ["Blue 4"] = "Blue 4",
+                        ["Blue 5"] = "Blue 5",
+                        ["Blue 6"] = "Blue 6",
+                        ["Blue 7"] = "Blue 7",
+                        ["Blue 8"] = "Blue 8",
+                        ["Blue 9"] = "Blue 9",
+                        ["Blue +2"] = "Blue +2",
+                        ["Blue Skip"] = "Blue Skip",
+                        ["Blue Reverse"] = "Blue Reverse",
+                        ["+4"] = "+4",
+                        ["Wild"] = "Wild",
+                    },
                 },
             },
         },
@@ -12085,7 +14855,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the label of this key in the {1} stage of {0}?
                     // Example: What was the label of this key in the first stage of Unordered Keys?
-                    Question = "What was the label of this key in the {1} stage of {0}?",
+                    Question = "What color was the label of this key in the {1} stage of {0}?",
                 },
             },
         },
@@ -12113,6 +14883,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of this square in {0}?
                     Question = "What was the color of this square in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Jade"] = "Jade",
+                        ["Azure"] = "Azure",
+                        ["Violet"] = "Violet",
+                    },
                 },
             },
         },
@@ -12125,17 +14903,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SUpdog.Word] = new()
                 {
                     // English: What was the text on {0}?
-                    Question = "What was the text on {0}?",
+                    Question = "Wie lautete bei {0} der Text?",
                 },
                 [SUpdog.Color] = new()
                 {
                     // English: What was the {1} color in the sequence on {0}?
                     // Example: What was the first color in the sequence on Updog?
-                    Question = "What was the {1} color in the sequence on {0}?",
+                    Question = "Was war bei {0} die {1} Farbe in der Farbsequenz?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Orange"] = "Orange",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                    },
                     Arguments = new()
                     {
-                        ["first"] = "first",
-                        ["last"] = "last",
+                        ["first"] = "erste",
+                        ["last"] = "letzte",
                     },
                 },
             },
@@ -12208,6 +14995,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the initially pressed color on {0}?
                     Question = "What was the initially pressed color on {0}?",
+                    Answers = new()
+                    {
+                        ["White"] = "White",
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
             },
         },
@@ -12222,12 +15018,30 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the word of the {1} goal in {0}?
                     // Example: What was the word of the first goal in Varicolour Flash?
                     Question = "What was the word of the {1} goal in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
                 },
                 [SVaricolourFlash.Colors] = new()
                 {
                     // English: What was the color of the {1} goal in {0}?
                     // Example: What was the color of the first goal in Varicolour Flash?
-                    Question = "What was the color of the {1} goal in {0}?",
+                    Question = "What was the colour of the {1} goal in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Gelb",
+                        ["White"] = "Weiß",
+                    },
                 },
             },
         },
@@ -12235,28 +15049,38 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SVariety)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Vielfalt",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SVariety.LED] = new()
                 {
                     // English: What color was the LED flashing in {0}?
-                    Question = "What color was the LED flashing in {0}?",
+                    Question = "Welche Farbe ist bei {0} bei der LED vorgekommen?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Blue"] = "Blau",
+                        ["White"] = "Weiß",
+                        ["Black"] = "Schwarz",
+                    },
                 },
                 [SVariety.DigitDisplay] = new()
                 {
                     // English: What digit was displayed, but not the answer, for the digit display in {0}?
-                    Question = "What digit was displayed, but not the answer, for the digit display in {0}?",
+                    Question = "Welche Ziffer kam bei {0} auf dem Zifferndisplay vor, war aber nicht die Lösung?",
                 },
                 [SVariety.LetterDisplay] = new()
                 {
                     // English: What word could be formed, but was not the answer, for the letter display in {0}?
-                    Question = "What word could be formed, but was not the answer, for the letter display in {0}?",
+                    Question = "Welches Wort konnte bei {0} mit dem Buchstabendisplay gebildet werden, war aber nicht die Lösung?",
                 },
                 [SVariety.Timer] = new()
                 {
                     // English: What was the maximum display for the {1} in {0}?
                     // Example: What was the maximum display for the timer in Variety?
-                    Question = "What was the maximum display for the {1} in {0}?",
+                    Question = "Was war bei {0} die höchste Zahl auf dem {1}Timer?",
                     Arguments = new()
                     {
                         ["timer"] = "timer",
@@ -12268,7 +15092,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was n for the {1} in {0}?
                     // Example: What was n for the knob in Variety?
-                    Question = "What was n for the {1} in {0}?",
+                    Question = "Was war bei {0} der Wert n beim {1}Drehregler?",
                     Arguments = new()
                     {
                         ["knob"] = "knob",
@@ -12283,7 +15107,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was n for the {1} in {0}?
                     // Example: What was n for the bulb in Variety?
-                    Question = "What was n for the {1} in {0}?",
+                    Question = "Was war bei {0} der Wert n bei der {1}Glühlampe?",
                     Arguments = new()
                     {
                         ["bulb"] = "bulb",
@@ -12298,20 +15122,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Variety that has {0}
                     // Example: the Variety that has one (LED)
-                    Discriminator = "the Variety that has {0}",
+                    Discriminator = "der Vielfalt mit {0}",
                 },
             },
         },
 
         [typeof(SVcrcs)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SVcrcs.Word] = new()
                 {
                     // English: What was the word in {0}?
-                    Question = "What was the word in {0}?",
+                    Question = "Was war das Wort bei {0}?",
                 },
             },
         },
@@ -12319,19 +15142,30 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SVectors)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Vektoren",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SVectors.Colors] = new()
                 {
                     // English: What was the color of the {1} vector in {0}?
                     // Example: What was the color of the first vector in Vectors?
-                    Question = "What was the color of the {1} vector in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der {1} Vektor?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Violett",
+                    },
                     Arguments = new()
                     {
-                        ["first"] = "first",
-                        ["second"] = "second",
-                        ["third"] = "third",
-                        ["only"] = "only",
+                        ["first"] = "erste",
+                        ["second"] = "zweite",
+                        ["third"] = "dritte",
+                        ["only"] = "einzige",
                     },
                 },
             },
@@ -12347,25 +15181,38 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} flagpole color on {0}?
                     // Example: What was the first flagpole color on Vexillology?
                     Question = "What was the {1} flagpole color on {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                        ["Aqua"] = "Aqua",
+                        ["White"] = "White",
+                        ["Black"] = "Black",
+                    },
                 },
             },
         },
 
         [typeof(SVioletCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Violette Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Violetten Geheimschrift",
             Questions = new()
             {
                 [SVioletCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Violet Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -12381,6 +15228,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the desired color in the {1} stage on {0}?
                     // Example: What was the desired color in the first stage on Visual Impairment?
                     Question = "What was the desired color in the {1} stage on {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Red"] = "Red",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -12393,7 +15247,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SWalkingCube.Path] = new()
                 {
                     // English: Which of these cells was part of the cube’s path in {0}?
-                    Question = "Which of these cells was part of the cube’s path in {0}?",
+                    Question = "Which of these cells was part of the cube's path in {0}?",
                 },
             },
         },
@@ -12453,6 +15307,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color on the {1} stage in {0}?
                     // Example: What was the color on the first stage in Wavetapping?
                     Question = "What was the color on the {1} stage in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Orange-Yellow"] = "Orange-Yellow",
+                        ["Chartreuse"] = "Chartreuse",
+                        ["Lime"] = "Lime",
+                        ["Green"] = "Green",
+                        ["Seafoam Green"] = "Seafoam Green",
+                        ["Cyan-Green"] = "Cyan-Green",
+                        ["Turquoise"] = "Turquoise",
+                        ["Dark Blue"] = "Dark Blue",
+                        ["Indigo"] = "Indigo",
+                        ["Purple"] = "Purple",
+                        ["Purple-Magenta"] = "Purple-Magenta",
+                        ["Magenta"] = "Magenta",
+                        ["Pink"] = "Pink",
+                        ["Gray"] = "Gray",
+                    },
                 },
             },
         },
@@ -12503,6 +15376,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the display text color in the {1} stage of {0}?
                     // Example: What was the display text color in the first stage of What’s on Second?
                     Question = "What was the display text color in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Green"] = "Green",
+                        ["Magenta"] = "Magenta",
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
             },
         },
@@ -12539,19 +15421,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SWhiteCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Weiße Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Weißen Geheimschrift",
             Questions = new()
             {
                 [SWhiteCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in White Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -12594,7 +15478,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the display in the first phase of the {1} stage on {0}?
                     // Example: What was the display in the first phase of the first stage on Who’s on Gas?
-                    Question = "What was the display in the first phase of the {1} stage on {0}?",
+                    Question = "What was the display in the {1} stage on {0}?",
                 },
             },
         },
@@ -12623,6 +15507,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} dial in {0}?
                     // Example: What was the color of the top dial in Wire?
                     Question = "What was the color of the {1} dial in {0}?",
+                    Answers = new()
+                    {
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["grey"] = "grey",
+                        ["orange"] = "orange",
+                        ["purple"] = "purple",
+                        ["red"] = "red",
+                    },
                     Arguments = new()
                     {
                         ["top"] = "top",
@@ -12648,6 +15541,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} display from the left in {0}?
                     // Example: What color was the first display from the left in Wire Ordering?
                     Question = "What color was the {1} display from the left in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["orange"] = "orange",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
+                        ["black"] = "black",
+                    },
                 },
                 [SWireOrdering.DisplayNumber] = new()
                 {
@@ -12660,6 +15564,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} wire from the left in {0}?
                     // Example: What color was the first wire from the left in Wire Ordering?
                     Question = "What color was the {1} wire from the left in {0}?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["orange"] = "orange",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
+                        ["black"] = "black",
+                    },
                 },
             },
         },
@@ -12828,6 +15743,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the initial roll on {0}?
                     Question = "What was the initial roll on {0}?",
+                    Answers = new()
+                    {
+                        ["Yahtzee"] = "Yahtzee",
+                        ["large straight"] = "large straight",
+                        ["small straight"] = "small straight",
+                        ["four of a kind"] = "four of a kind",
+                        ["full house"] = "full house",
+                        ["three of a kind"] = "three of a kind",
+                        ["two pairs"] = "two pairs",
+                        ["pair"] = "pair",
+                    },
                 },
             },
         },
@@ -12855,6 +15781,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} color in {0}?
                     // Example: What was the first color in Yellow Button?
                     Question = "What was the {1} color in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Cyan"] = "Cyan",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
             },
         },
@@ -12874,19 +15809,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SYellowCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Gelbe Geheimschrift",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Gelben Geheimschrift",
             Questions = new()
             {
                 [SYellowCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Yellow Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "ober",
+                        ["middle"] = "mittler",
+                        ["bottom"] = "unter",
                     },
                 },
             },
@@ -12914,6 +15851,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} star in {0}?
                     // Example: What color was the top-left star in Zero, Zero?
                     Question = "What color was the {1} star in {0}?",
+                    Answers = new()
+                    {
+                        ["black"] = "black",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["red"] = "red",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["white"] = "white",
+                    },
                     Arguments = new()
                     {
                         ["top-left"] = "top-left",
@@ -12940,14 +15888,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SZoni)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SZoni.Words] = new()
                 {
                     // English: What was the {1} word in {0}?
                     // Example: What was the first word in Zoni?
-                    Question = "What was the {1} word in {0}?",
+                    Question = "Was war bei {0} das {1}e Wort?",
                 },
             },
         },

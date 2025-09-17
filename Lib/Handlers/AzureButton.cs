@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -28,10 +28,10 @@ public enum SAzureButton
     [SouvenirDiscriminator("the Azure Button where M was {0}", Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
     DM,
 
-    [SouvenirDiscriminator("the Azure Button where the decoy arrow went {0} at some point", Arguments = ["north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"], ArgumentGroupSize = 1)]
+    [SouvenirDiscriminator("the Azure Button where the decoy arrow went {0} at some point", Arguments = ["north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DDecoyArrowDirection,
 
-    [SouvenirDiscriminator("the Azure Button where the {1} non-decoy arrow went {0} at some point", Arguments = ["north", QandA.Ordinal, "north-east", QandA.Ordinal, "east", QandA.Ordinal, "south-east", QandA.Ordinal, "south", QandA.Ordinal, "south-west", QandA.Ordinal, "west", QandA.Ordinal, "north-west"], ArgumentGroupSize = 2)]
+    [SouvenirDiscriminator("the Azure Button where the {1} non-decoy arrow went {0} at some point", Arguments = ["north", QandA.Ordinal, "north-east", QandA.Ordinal, "east", QandA.Ordinal, "south-east", QandA.Ordinal, "south", QandA.Ordinal, "south-west", QandA.Ordinal, "west", QandA.Ordinal, "north-west", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DNonDecoyArrowDirection,
 }
 
