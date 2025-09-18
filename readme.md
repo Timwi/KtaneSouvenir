@@ -2,8 +2,9 @@
 
 ## Intro
 
-[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.questionsCount&label=Questions&color=green)](/Lib/Question.cs)
-[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.modulesCount&label=Modules%20Supported&color=green)](/Lib/Modules_General.cs)
+![Number of supported modules](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.modulesCount&label=Modules%20Supported&color=green)
+![Total number of questions](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.questionsCount&label=Questions&color=green)
+![Total number of discriminators](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.discriminatorsCount&label=Discriminators&color=green)
 
 This is a mod module for [_Keep Talking and Nobody Explodes_](https://keeptalkinggame.com/). This module asks you questions about some of the other modules on your bomb after you’ve solved them. It requires you to remember or write down things that you used to solve those other modules.
 
