@@ -939,7 +939,7 @@ public partial class SouvenirModule : MonoBehaviour
             var questionHasQuestionSprite = q.QuestionStump is TextQuestionStump { QuestionSprite: { } } or SpriteQuestionStump;
             string moduleFormat = null;
             Sprite questionSpriteFromDiscriminator = null;
-            float questionSpriteRotationFromDiscriminator = 0f;
+            var questionSpriteRotationFromDiscriminator = 0f;
             if (info.NumModules > 1)
             {
                 if (info.Discriminators.Get(module) is { Count: > 0 } discrRaw)

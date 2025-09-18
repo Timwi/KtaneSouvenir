@@ -40,8 +40,8 @@ public partial class SouvenirModule
         var directions = new[] { "Up", "Right", "Down", "Left" };
 
         string format(int dir, int col) => string.Format(
-            TranslateQuestionString(SWhiteArrows.Arrows, "{0} {1}"), 
-            TranslateQuestionString(SWhiteArrows.Arrows, colors[col]), 
+            TranslateQuestionString(SWhiteArrows.Arrows, "{0} {1}"),
+            TranslateQuestionString(SWhiteArrows.Arrows, colors[col]),
             TranslateQuestionString(SWhiteArrows.Arrows, directions[dir]));
 
         var all = (from d in Enumerable.Range(0, 4) from c in Enumerable.Range(0, 8) select format(d, c)).ToArray();

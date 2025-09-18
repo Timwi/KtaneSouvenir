@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -42,7 +42,7 @@ public partial class SouvenirModule
 
         var args = new[] { "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)" };
         for (var layer = 0; layer < 5; layer++)
-            yield return question(SLabyrinth.PortalLocations,args:[args[layer]]).Answers([new Coord(6, 7, portals[layer][0]), new Coord(6, 7, portals[layer][1])],preferredWrong:distinctPortals.Select(i => new Coord(6, 7, i)).ToArray());
+            yield return question(SLabyrinth.PortalLocations, args: [args[layer]]).Answers([new Coord(6, 7, portals[layer][0]), new Coord(6, 7, portals[layer][1])], preferredWrong: distinctPortals.Select(i => new Coord(6, 7, i)).ToArray());
 
         foreach (var p in distinctPortals)
         {
@@ -52,7 +52,7 @@ public partial class SouvenirModule
                     correct.Add(args[i / 2]); // Integer division gives layer #
             if (correct.Distinct().Count() > 2)
                 continue; // Don't have a question with less than 4 answers
-            yield return question(SLabyrinth.PortalStage,questionSprite:Sprites.GenerateGridSprite(new Coord(6, 7, p))).Answers(correct.Distinct().ToArray());
+            yield return question(SLabyrinth.PortalStage, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 7, p))).Answers(correct.Distinct().ToArray());
         }
     }
 }
