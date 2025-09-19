@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Souvenir;
 
-public sealed class TextAnswerSet(AnswerLayout layout, string[] answers, int correctIndex, TextAnswerInfo info) : AnswerSet(answers.Length, correctIndex, layout)
+public sealed class TextAnswerSet(string[] answers, int correctIndex, SouvenirQuestionAttribute qAttr, TextAnswerInfo info) : AnswerSet(answers.Length, correctIndex, qAttr.Layout)
 {
     public override IEnumerable<string> DebugAnswers => answers;
     protected override int NumAnswersProvided => answers.Length;
@@ -20,11 +20,11 @@ public sealed class TextAnswerSet(AnswerLayout layout, string[] answers, int cor
             mesh.gameObject.SetActive(true);
 
             mesh.text = i < answers.Length ? answers[i] : "•";
-            mesh.font = info.Font ?? souvenir.Fonts[0];
-            mesh.fontSize = info.FontSize ?? (_layout == AnswerLayout.OneColumn4Answers ? 40 : 48);
-            mesh.characterSize = info.CharacterSize ?? 1;
-            mesh.GetComponent<MeshRenderer>().material = info.FontMaterial ?? souvenir.FontMaterial;
-            mesh.GetComponent<MeshRenderer>().material.mainTexture = info.FontTexture ?? souvenir.FontTextures[0];
+            mesh.font = qAttr.Type == AnswerType.DynamicFont ? info.Font : souvenir.Fonts[(int) qAttr.Type];
+            mesh.fontSize = qAttr.FontSize;
+            mesh.characterSize = qAttr.CharacterSize;
+            mesh.GetComponent<MeshRenderer>().material = (qAttr.Type == AnswerType.DynamicFont ? info.FontMaterial : null) ?? souvenir.FontMaterial;
+            mesh.GetComponent<MeshRenderer>().material.mainTexture = qAttr.Type == AnswerType.DynamicFont ? info.FontTexture : souvenir.FontTextures[(int) qAttr.Type];
 
             // Determine size of the answer and if it’s too long, shrink it horizontally to make it fit
             var origRotation = mesh.transform.localRotation;

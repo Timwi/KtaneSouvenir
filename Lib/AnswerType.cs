@@ -17,7 +17,7 @@ public enum AnswerType
     CrypticCycleBoozleglyphFont = 11,
     AMessageFont = 12,
 
-    Sprites = -1,     // Special value for answers that use sprites
-    DynamicFont = -2, // Special value to indicate that the module handler will obtain the font from the client module
+    DynamicFont = -1, // Special value to indicate that the module handler will obtain the font from the client module
+    Sprites = -2,     // Special value for answers that use sprites
     Audio = -3        // Special value for answers that are audio clips
 }

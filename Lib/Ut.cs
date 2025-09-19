@@ -512,6 +512,7 @@ public static class Ut
         float f => f.ToString(),
         bool b => b ? "true" : "false",
         string s => $"“{s}”",
+        Sprite spr => $"Sprite ({spr.name})",
         object o when o.GetType().IsGenericType && o.GetType().GetGenericTypeDefinition() == typeof(KeyValuePair<,>) => $"[{o.GetFieldValue<object>("key").Stringify()}] = {o.GetFieldValue<object>("value").Stringify()}",
         _ => $"{{{value.GetType().FullName}|{value}}}"
     };

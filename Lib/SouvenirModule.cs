@@ -360,7 +360,7 @@ public partial class SouvenirModule : MonoBehaviour
                         {
                             case AnswerType.Sprites:
                                 if (qAttr.AnswerGenerators != null && qAttr.AnswerGenerators.Any(g => g is not AnswerGeneratorAttribute<Sprite>))
-                                    Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses an answer generator for something other than sprites. Change the answer type or specify a sprite answer generator specify an answer generator (e.g. [AnswerGenerator.Grid(4, 4)]).");
+                                    Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses an answer generator for something other than sprites. Change the answer type or specify a sprite answer generator (e.g. [AnswerGenerator.Grid(4, 4)]).");
                                 break;
 
                             case AnswerType.Audio:
@@ -530,9 +530,7 @@ public partial class SouvenirModule : MonoBehaviour
                     answers.Shuffle();
                     answers.RemoveRange(qAttr.NumAnswers, answers.Count - qAttr.NumAnswers);
                 }
-                var fontIndex = qAttr.Type is AnswerType.DynamicFont or AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) qAttr.Type;
-                answerSet = new TextAnswerSet(qAttr.Layout, answers.Select(ans => qAttr.TranslateAnswers ? TranslateAnswer(qAttr.EnumValue, ans) : ans).ToArray(),
-                    0, new(Fonts[fontIndex], FontTextures[fontIndex], FontMaterial, qAttr.FontSize, qAttr.CharacterSize));
+                answerSet = new TextAnswerSet(answers.Select(ans => qAttr.TranslateAnswers ? TranslateAnswer(qAttr.EnumValue, ans) : ans).ToArray(), 0, qAttr, new());
                 break;
         }
         disappear();
@@ -821,7 +819,6 @@ public partial class SouvenirModule : MonoBehaviour
             Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Not supported.");
             yield break;
         }
-        hAttr.Handler ??= (Func<ModuleData, IEnumerator<SouvenirInstruction>>) Delegate.CreateDelegate(typeof(Func<ModuleData, IEnumerator<SouvenirInstruction>>), this, hAttr.Method);
 
         _coroutinesActive++;
 
@@ -847,7 +844,7 @@ public partial class SouvenirModule : MonoBehaviour
         {
             // Unfortunately C# doesn’t allow ‘yield return’ inside of a ‘try’ block with a ‘catch’ clause,
             // so we have to instantiate the enumerator and put the ‘try’/‘catch’ around just the e.MoveNext() call
-            using var e = hAttr.Handler(data);
+            using var e = (IEnumerator<SouvenirInstruction>) hAttr.Method.Invoke(this, [data]);
             _activeProcessors.Add(module.ModuleDisplayName);
             while (true)
             {
@@ -905,6 +902,13 @@ public partial class SouvenirModule : MonoBehaviour
                             _showWarning = true;
                             yield break;
                         }
+                        if (q.Stump.QuestionStump.QuestionAttribute.Type == AnswerType.DynamicFont &&
+                            q.Stump.AnswerStump is not TextAnswerStump { Info: { Font: not null, FontTexture: not null } })
+                        {
+                            Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because the question {q.Stump.QuestionStump.EnumValue.GetType().Name}.{q.Stump.QuestionStump.EnumValue} is marked as using a dynamic font, but no font or font texture was specified. You must provide both a font and a font texture by passing a {nameof(TextAnswerInfo)} object.");
+                            _showWarning = true;
+                            yield break;
+                        }
                         questions.Add(q.Stump);
                         break;
                 }
@@ -926,16 +930,22 @@ public partial class SouvenirModule : MonoBehaviour
         while (info.NumFinished < info.NumModules)
             yield return null;
 
-        if (questions.Count == 0 && !_legitimatelyNoQuestions.Contains(module))
+        if (questions.Count == 0)
         {
-            Debug.Log($"[Souvenir #{_moduleId}] There was no question generated for {module.ModuleDisplayName}. Please report this to Timwi or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.");
-            _showWarning = true;
+            if (!_legitimatelyNoQuestions.Contains(module))
+            {
+                Debug.Log($"[Souvenir #{_moduleId}] There was no question generated for {module.ModuleDisplayName}. Please report this to Timwi or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.");
+                _showWarning = true;
+            }
         }
         else
         {
             // Construct the answers first, then pick a discriminator that doesn’t conflict with them
             var q = questions.PickRandom();
             var answerSet = q.AnswerStump.GenerateAnswerSet(q.QuestionStump, this);
+            if (answerSet == null)
+                // An error message will have already been logged
+                yield break;
             var questionHasQuestionSprite = q.QuestionStump is TextQuestionStump { QuestionSprite: { } } or SpriteQuestionStump;
             string moduleFormat = null;
             Sprite questionSpriteFromDiscriminator = null;

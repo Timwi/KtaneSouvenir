@@ -2,12 +2,13 @@
 using System.Linq;
 using UnityEngine;
 
+using Rnd = UnityEngine.Random;
+
 namespace Souvenir;
 
 public abstract class AnswerStump
 {
     public abstract AnswerSet GenerateAnswerSet(QuestionStump questionStump, SouvenirModule souvenir);
-    protected static readonly AnswerType[] _standardAnswerTypes = Ut.GetEnumValues<AnswerType>().Where(a => (int) a >= 0).ToArray();
     protected abstract AnswerType[] acceptableTypes { get; }
 }
 
@@ -17,19 +18,19 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
     public T[] PreferredWrong { get; } = preferredWrong;
     public T[] All { get; } = all;
 
-    protected abstract AnswerSet MakeAnswerSet(T[] answers, int correctIndex, AnswerLayout layout, SouvenirModule souvenir);
+    protected abstract AnswerSet MakeAnswerSet(T[] answers, int correctIndex, SouvenirQuestionAttribute qAttr, SouvenirModule souvenir);
 
     public override AnswerSet GenerateAnswerSet(QuestionStump questionStump, SouvenirModule souvenir)
     {
         var question = questionStump.EnumValue;
         if (question.GetQuestionAttribute() is not { } attr)
         {
-            Debug.LogError($"<Souvenir #{souvenir._moduleId}> Question {question.GetType().Name}.{question} has no SouvenirQuestionAttribute.");
+            Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question} has no SouvenirQuestionAttribute.");
             return null;
         }
         if (!acceptableTypes.Contains(attr.Type))
         {
-            Debug.LogError($"<Souvenir #{souvenir._moduleId}> The module handler for {questionStump.HandlerAttribute.ModuleName} attempted to generate Question {question.GetType().Name}.{question} (type={attr.Type}) but used the wrong answer type.");
+            Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: The module handler for {questionStump.HandlerAttribute.ModuleName} attempted to generate Question {question.GetType().Name}.{question} (type={attr.Type}) but used the wrong answer type.");
             return null;
         }
 
@@ -40,7 +41,7 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
             var inconsistency = Correct.Except(allAnswers).FirstOrDefault();
             if (inconsistency != null)
             {
-                Debug.LogError($"<Souvenir #{souvenir._moduleId}> Question {question.GetType().Name}.{question}: invalid answer: {inconsistency}.\nallAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]\ncorrectAnswers: [{Correct.Select(s => s.DebugExamine()).JoinString(", ")}]");
+                Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question}: invalid answer: {inconsistency}. allAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]; correctAnswers: [{Correct.Select(s => s.DebugExamine()).JoinString(", ")}]");
                 return null;
             }
             if (PreferredWrong != null)
@@ -48,7 +49,7 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
                 var inconsistency2 = PreferredWrong.Except(allAnswers).FirstOrDefault();
                 if (inconsistency2 != null)
                 {
-                    Debug.LogError($"<Souvenir #{souvenir._moduleId}> Question {question.GetType().Name}.{question}: invalid preferred wrong answer: {inconsistency2}.\nallAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]\npreferred wrong answer: [{Correct.Select(s => s.DebugExamine()).JoinString(", ")}]");
+                    Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question}: invalid preferred wrong answer: {inconsistency2}. allAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]");
                     return null;
                 }
             }
@@ -59,7 +60,7 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
         {
             if (PreferredWrong == null || PreferredWrong.Length == 0)
             {
-                Debug.LogError($"<Souvenir #{souvenir._moduleId}> Question {question.GetType().Name}.{question} has no answers. You must specify either the full set of possible answers in the attribute, use an AnswerGenerator, or provide answers through the preferredWrong or all parameters on .Answers().");
+                Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question} has no answers. You must specify either the full set of possible answers in the attribute, use an AnswerGenerator, or provide answers through the preferredWrong or all parameters on .Answers().");
                 return null;
             }
             answers.AddRange(PreferredWrong.Except(Correct).Distinct());
@@ -75,7 +76,7 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
                     answers.AddRange(attr.AnswerGenerators.OfType<AnswerGeneratorAttribute<T>>().GetAnswers(souvenir).Except(answers.Concat(Correct)).Distinct().Take(attr.NumAnswers - 1 - answers.Count));
                 if (answers.Count == 0 && (PreferredWrong == null || PreferredWrong.Length == 0))
                 {
-                    Debug.LogError($"<Souvenir #{souvenir._moduleId}> Question {question.GetType().Name}.{question}’s answer generator did not generate any answers.");
+                    Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question}’s answer generator did not generate any answers.");
                     return null;
                 }
             }
@@ -92,11 +93,11 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
         if (answers.Count >= attr.NumAnswers)
             answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
 
-        var correctIndex = UnityEngine.Random.Range(0, answers.Count + 1);
+        var correctIndex = Rnd.Range(0, answers.Count + 1);
         answers.Insert(correctIndex, Correct.PickRandom());
         if (answers[0] is string && attr.TranslateAnswers)
             for (var i = 0; i < answers.Count; i++)
                 answers[i] = (T) (object) souvenir.TranslateAnswer(question, (string) (object) answers[i]);
-        return MakeAnswerSet(answers.ToArray(), correctIndex, attr.Layout, souvenir);
+        return MakeAnswerSet(answers.ToArray(), correctIndex, attr, souvenir);
     }
 }
