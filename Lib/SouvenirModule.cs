@@ -961,7 +961,7 @@ public partial class SouvenirModule : MonoBehaviour
                             // avoid discriminators that clash with one of the answers we already selected
                             d.AvoidAnswers?.Intersect(answerSet.Answers).Any() != true &&
                             // can’t use a question sprite if the question already uses one
-                            (d.QuestionSprite == null || !questionHasQuestionSprite) ||
+                            (d.QuestionSprite == null || !questionHasQuestionSprite) &&
                             // use this discriminator only if its value is actually unique
                             info.Discriminators.Values.Count(ds => ds.TryGetValue(d.Id, out var cd) && Equals(cd.Value, d.Value)) == 1)
                         .GroupBy(d => d.PriorityFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? d.Priority)

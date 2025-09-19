@@ -42,7 +42,7 @@ public enum SBlueButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("BlueButtonModule", "Blue Button", typeof(SBlueButton), "Timwi", AddThe = true)]
-    private IEnumerable<SouvenirInstruction> ProcessBlueButton(ModuleData module)
+    private IEnumerator<SouvenirInstruction> ProcessBlueButton(ModuleData module)
     {
         var comp = GetComponent(module, "BlueButtonScript");
 
