@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -38,8 +38,8 @@ public partial class SouvenirModule
         for (var i = 0; i < allAnswers.Length; i++)
             allAnswers[i] = char.ToUpperInvariant(allAnswers[i][0]) + allAnswers[i].Substring(1);
 
-        yield return question(SChallengeAndContact.Answers, args: [Ordinal(1)]).Answers(answers[0], preferredWrong: allAnswers.Where(x => x[0] == answers[0][0]).ToArray());
-        yield return question(SChallengeAndContact.Answers, args: [Ordinal(2)]).Answers(answers[1], preferredWrong: allAnswers.Where(x => x[0] == answers[1][0]).ToArray());
-        yield return question(SChallengeAndContact.Answers, args: [Ordinal(3)]).Answers(answers[2], preferredWrong: allAnswers.Where(x => x[0] == answers[2][0]).ToArray());
+        yield return question(SChallengeAndContact.Answers, args: [Ordinal(1)]).Answers(answers[0], preferredWrong: answers);
+        yield return question(SChallengeAndContact.Answers, args: [Ordinal(2)]).Answers(answers[1], preferredWrong: answers);
+        yield return question(SChallengeAndContact.Answers, args: [Ordinal(3)]).Answers(answers[2], preferredWrong: answers);
     }
 }

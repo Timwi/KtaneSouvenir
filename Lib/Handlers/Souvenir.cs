@@ -20,14 +20,11 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessSouvenir(ModuleData module)
     {
         var comp = module.Module.GetComponent<SouvenirModule>();
-        if (comp == this)
+        if (comp == this || module.Info.NumModules > 2)
         {
             _legitimatelyNoQuestions.Add(module.Module);
             yield break;
         }
-
-        if (module.Info.NumModules > 2)
-            yield return legitimatelyNoQuestion(module, "There are more than two Souvenir modules on this bomb.");
 
         // Prefer names of supported modules on the bomb other than Souvenir.
         var preferredWrongAnswers = new List<string>();
