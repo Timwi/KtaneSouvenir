@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
 
 public enum SDoubleColor
 {
-    [SouvenirQuestion("What was the screen color on the {1} stage of {0}?", ThreeColumns6Answers, "Green", "Blue", "Red", "Pink", "Yellow", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the screen color on the {1} stage of {0}?", TwoColumns4Answers, "Green", "Blue", "Red", "Pink", "Yellow", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }
 
