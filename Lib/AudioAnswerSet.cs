@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace Souvenir;
 
-public class AudioAnswerSet(AnswerLayout layout, AudioClip[] answers, int correctIndex, SouvenirModule parent, AudioAnswerInfo info)
-    : SpriteAnswerSet(layout, answers.Select(c => Sprites.RenderWaveform(c, parent, info.Multiplier)).ToArray(), correctIndex)
+public class AudioAnswerSet(SouvenirQuestionAttribute qAttr, AudioClip[] answers, int correctIndex, SouvenirModule parent)
+    : SpriteAnswerSet(qAttr.Layout, answers.Select(c => Sprites.RenderWaveform(c, parent, qAttr.AudioSizeMultiplier)).ToArray(), correctIndex)
 {
     private readonly AudioClip[] _clips = answers.ToArray();
+    private readonly string _foreignAudioID = qAttr.ForeignAudioID;
     internal int _selected = -1;
     private Coroutine _coroutine;
     private KMAudio.KMAudioRef _audioRef;
@@ -78,9 +79,9 @@ public class AudioAnswerSet(AnswerLayout layout, AudioClip[] answers, int correc
         var head = parent.Answers[_selected].transform.Find("PlayHead");
         head.gameObject.SetActive(true);
 
-        _audioRef = info.ForeignKey == null || Application.isEditor
+        _audioRef = _foreignAudioID == null || Application.isEditor
             ? parent.Audio.HandlePlaySoundAtTransformWithRef?.Invoke(_clips[index].name, parent.transform, false)
-            : Sounds.PlayForeignClip(info.ForeignKey, _clips[index].name, parent.transform);
+            : Sounds.PlayForeignClip(_foreignAudioID, _clips[index].name, parent.transform);
         _coroutine = parent.StartCoroutine(AnimatePlayHead(head, _layout switch
         {
             AnswerLayout.OneColumn3Answers => 30,

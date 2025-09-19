@@ -506,7 +506,7 @@ public partial class SouvenirModule : MonoBehaviour
             case AnswerType.Audio:
                 var audioClips = qAttr.AudioFieldName == null ? ExampleAudio : (AudioClip[]) typeof(SouvenirModule).GetField(qAttr.AudioFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleAudio;
                 audioClips = audioClips?.Shuffle().Take(qAttr.NumAnswers).ToArray();
-                answerSet = new AudioAnswerSet(qAttr.Layout, audioClips, 0, this, new(qAttr.AudioSizeMultiplier, qAttr.ForeignAudioID));
+                answerSet = new AudioAnswerSet(qAttr, audioClips, 0, this);
                 break;
             case AnswerType.Sprites:
                 var answerSprites = qAttr.SpriteFieldName == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(qAttr.SpriteFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;

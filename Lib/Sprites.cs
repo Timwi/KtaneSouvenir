@@ -176,7 +176,7 @@ public static class Sprites
             };
 
             answer.LoadAudioData();
-            var result = Enumerable.Repeat((Color) new Color32(0xFF, 0xF8, 0xDD, 0x00), _width * _height).ToArray();
+            var result = Ut.NewArray<Color>(_width * _height, _ => new Color32(0xFF, 0xF8, 0xDD, 0x00));
             tex.SetPixels(result);
             tex.Apply(false, false);
 
@@ -295,13 +295,5 @@ public static class Sprites
         RenderTexture.ReleaseTemporary(renderTex);
         dest.name = source.name;
         return dest;
-
-        //var tex = new Texture2D(source.width, source.height, source.format, mipmap: true, true);
-        //var colors = source.GetPixels32();
-        //for (int i = 0; i < colors.Length; i++)
-        //    colors[i] = new Color32(r, g, b, colors[i].a);
-        //tex.SetPixels32(colors);
-        //tex.Apply(true);
-        //return tex;
     }
 }
