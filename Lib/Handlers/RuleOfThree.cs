@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -9,7 +9,7 @@ public enum SRuleOfThree
     [AnswerGenerator.Integers(-13, 13)]
     Coordinates,
 
-    [SouvenirQuestion("What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?", TwoColumns4Answers, "-", "0", "+", TranslateArguments = [true, false, false], Arguments = ["red", "X", QandA.Ordinal, "yellow", "Y", QandA.Ordinal, "blue", "Z", QandA.Ordinal], ArgumentGroupSize = 3)]
+    [SouvenirQuestion("What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?", ThreeColumns3Answers, "-", "0", "+", TranslateArguments = [true, false, false], Arguments = ["red", "X", QandA.Ordinal, "yellow", "Y", QandA.Ordinal, "blue", "Z", QandA.Ordinal], ArgumentGroupSize = 3)]
     Cycles
 }
 
@@ -37,9 +37,10 @@ public partial class SouvenirModule
         var yellowCoords = GetArrayField<int[]>(comp, "_yellowCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
         var blueCoords = GetArrayField<int[]>(comp, "_blueCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
         var coords = new[] { redCoords, yellowCoords, blueCoords };
+        var coordNames = new[] { "-", "0", "+" };
         for (var color = 0; color < 3; color++)
             for (var axis = 0; axis < 3; axis++)
                 for (var cycle = 0; cycle < 3; cycle++)
-                    yield return question(SRuleOfThree.Cycles, args: [colorNames[color], "XYZ"[axis].ToString(), Ordinal(cycle + 1)]).Answers(coords[color][cycle][axis].ToString());
+                    yield return question(SRuleOfThree.Cycles, args: [colorNames[color], "XYZ"[axis].ToString(), Ordinal(cycle + 1)]).Answers(coordNames[coords[color][cycle][axis] + 1]);
     }
 }
