@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -19,7 +19,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "MWoFScript");
         var wordList = new string[] { "COULD", "SMALL", "BELOW", "LARGE", "STUDY", "FIRST", "RIGHT", "THINK", "PLANT", "SOUND", "SIXTY", "BROWN", "VIRUS", "BUSHY", "FUNGI", "OPTED", "YOUNG", "ICHOR", "QUILL", "WRONG", "ZILCH", "JERKY", "BANJO", "PUNCH", "IVORY", "COQUI", "TOPAZ", "JAUNT", "NUDGE", "MAJOR" };
         var fldStage = GetIntField(comp, "stage");
-        var display = GetField<TextMesh[]>(comp, "displays", isPublic: true).Get()[6];
+        var display = GetArrayField<TextMesh>(comp, "displays", isPublic: true).Get(expectedLength: 7)[6];
 
         var displays = new string[4];
         while (module.Unsolved)

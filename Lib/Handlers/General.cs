@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -155,7 +155,7 @@ public partial class SouvenirModule
                         .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}"));
 
                 // Screens that have a word on them: pick other words of the same length as wrong answers
-                if (text.Length >= 4 && text.Length <= 8 && allWords[text.Length - 4].Contains(text))
+                if (text.Length is >= 4 and <= 8 && allWords[text.Length - 4].Contains(text))
                     yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
                         .Answers(text, preferredWrong: allWords[text.Length - 4].ToArray());
 

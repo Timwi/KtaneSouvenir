@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -7,11 +7,11 @@ using static Souvenir.AnswerLayout;
 public enum SPinpoint
 {
     [SouvenirQuestion("Which point occurred in {0}?", ThreeColumns6Answers)]
-    [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), new object[] { new string[] { "A-J" } }, typeof(AnswerGenerator.Integers), new object[] { 1, 10 })]
+    [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), [new string[] { "A-J" }], typeof(AnswerGenerator.Integers), [1, 10])]
     Points,
 
     [SouvenirQuestion("Which distance occurred in {0}?", ThreeColumns6Answers)]
-    [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Integers), new object[] { 0, 99 }, typeof(AnswerGenerator.Strings), new object[] { new string[] { ".", "0-9", "0-9", "0-9" } })]
+    [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Integers), [0, 99], typeof(AnswerGenerator.Strings), [new string[] { ".", "0-9", "0-9", "0-9" }])]
     Distances
 }
 
