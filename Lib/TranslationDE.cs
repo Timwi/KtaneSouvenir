@@ -13958,24 +13958,34 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SSymbolicTasha)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Symbole-Tasha",
+            Gender = Gender.Feminine,
             Questions = new()
             {
-                [SSymbolicTasha.Flashes] = new()
+                [SSymbolicTasha.DirectionFlashes] = new()
                 {
                     // English: Which button flashed {1} in the final sequence of {0}?
                     // Example: Which button flashed first in the final sequence of Symbolic Tasha?
-                    Question = "Which button flashed {1} in the final sequence of {0}?",
+                    Question = "Welche Taste hat bei {0} als {1}e geblinkt?",
                     Answers = new()
                     {
-                        ["Top"] = "Top",
-                        ["Right"] = "Right",
-                        ["Bottom"] = "Bottom",
-                        ["Left"] = "Left",
-                        ["Pink"] = "Pink",
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
-                        ["Blue"] = "Blue",
+                        ["Top"] = "obere",
+                        ["Right"] = "rechte",
+                        ["Bottom"] = "untere",
+                        ["Left"] = "linke",
+                    },
+                },
+                [SSymbolicTasha.ColorFlashes] = new()
+                {
+                    // English: Which button flashed {1} in the final sequence of {0}?
+                    // Example: Which button flashed first in the final sequence of Symbolic Tasha?
+                    Question = "Welche Taste hat bei {0} als {1}e geblinkt?",
+                    Answers = new()
+                    {
+                        ["Pink"] = "pink",
+                        ["Green"] = "grün",
+                        ["Yellow"] = "gelb",
+                        ["Blue"] = "blau",
                     },
                 },
                 [SSymbolicTasha.Symbols] = new()

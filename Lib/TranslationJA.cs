@@ -13697,7 +13697,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             ModuleName = "シンボルターシャ",
             Questions = new()
             {
-                [SSymbolicTasha.Flashes] = new()
+                [SSymbolicTasha.DirectionFlashes] = new()
                 {
                     // English: Which button flashed {1} in the final sequence of {0}?
                     // Example: Which button flashed first in the final sequence of Symbolic Tasha?
@@ -13708,6 +13708,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Right"] = "右",
                         ["Bottom"] = "下",
                         ["Left"] = "左",
+                    },
+                },
+                [SSymbolicTasha.ColorFlashes] = new()
+                {
+                    // English: Which button flashed {1} in the final sequence of {0}?
+                    // Example: Which button flashed first in the final sequence of Symbolic Tasha?
+                    Question = "{0}の最後のシークエンスで{1}番目に点滅したものは？",
+                    Answers = new()
+                    {
                         ["Pink"] = "ピンク",
                         ["Green"] = "緑",
                         ["Yellow"] = "黄",

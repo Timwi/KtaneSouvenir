@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -21,6 +21,9 @@ public partial class SouvenirModule
         var selected = GetIntField(comp, "tokenIndex").Get(0, tokens.Length - 1);
 
         yield return WaitForSolve;
+        var baseMoney = GetIntField(comp, "baseMoneyInt").Get();
+        if (baseMoney == 0)
+            yield return legitimatelyNoQuestion(module, "Base money was $0. Assuming unicorn rule.");
 
         yield return question(SFreeParking.Token).Answers(tokens[selected].name);
     }

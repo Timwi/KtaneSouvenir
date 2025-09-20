@@ -13621,7 +13621,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
-                [SSymbolicTasha.Flashes] = new()
+                [SSymbolicTasha.DirectionFlashes] = new()
                 {
                     // English: Which button flashed {1} in the final sequence of {0}?
                     // Example: Which button flashed first in the final sequence of Symbolic Tasha?
@@ -13632,6 +13632,15 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                         ["Right"] = "Правая",
                         ["Bottom"] = "Нижняя",
                         ["Left"] = "Левая",
+                    },
+                },
+                [SSymbolicTasha.ColorFlashes] = new()
+                {
+                    // English: Which button flashed {1} in the final sequence of {0}?
+                    // Example: Which button flashed first in the final sequence of Symbolic Tasha?
+                    Question = "Какая кнопка горела {1}-й в финальной последовательности {0}?",
+                    Answers = new()
+                    {
                         ["Pink"] = "Розовая",
                         ["Green"] = "Зелёная",
                         ["Yellow"] = "Жёлтая",
