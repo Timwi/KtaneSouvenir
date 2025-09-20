@@ -19,8 +19,8 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir, str
 
     public QandAStump Answers(string correct, string[] preferredWrong = null, string[] all = null, TextAnswerInfo info = default) => Answers([correct], preferredWrong, all, info);
     public QandAStump Answers(string[] correct, string[] preferredWrong = null, string[] all = null, TextAnswerInfo info = default) => new(this, new TextAnswerStump(correct, preferredWrong, all, info));
-    public QandAStump Answers(Sprite correct, Sprite[] preferredWrong = null, Sprite[] all = null) => Answers([correct], preferredWrong, all ?? EnumValue.GetAllSprites(Souvenir));
-    public QandAStump Answers(Sprite[] correct, Sprite[] preferredWrong = null, Sprite[] all = null) => new(this, new SpriteAnswerStump(correct, preferredWrong, all));
+    public QandAStump Answers(Sprite correct, Sprite[] preferredWrong = null, Sprite[] all = null) => Answers([correct], preferredWrong, all);
+    public QandAStump Answers(Sprite[] correct, Sprite[] preferredWrong = null, Sprite[] all = null) => new(this, new SpriteAnswerStump(correct, preferredWrong, all ?? EnumValue.GetAllSprites(Souvenir)));
     public QandAStump Answers(AudioClip correct, AudioClip[] preferredWrong = null, AudioClip[] all = null) => Answers([correct], preferredWrong, all);
     public QandAStump Answers(AudioClip[] correct, AudioClip[] preferredWrong = null, AudioClip[] all = null) => new(this, new AudioAnswerStump(correct, preferredWrong, all ?? EnumValue.GetAllSounds(Souvenir)));
     public QandAStump Answers(Coord correct, Coord[] preferredWrong = null) => Answers([correct], preferredWrong);

@@ -8042,18 +8042,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 {
                     // English: Where was the SpongeBob Bar on {0}?
                     Question = "{0}のスポンジボブ・バーがあった場所は？",
-                    Answers = new()
-                    {
-                        ["top-left"] = "左上",
-                        ["top-middle"] = "上",
-                        ["top-right"] = "右上",
-                        ["middle-left"] = "左",
-                        ["middle-middle"] = "中央",
-                        ["middle-right"] = "右",
-                        ["bottom-left"] = "左下",
-                        ["bottom-middle"] = "下",
-                        ["bottom-right"] = "右下",
-                    },
                 },
                 [SMisterSoftee.TreatsPresent] = new()
                 {
@@ -11607,18 +11595,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Where was {1} in {0}?
                     // Example: Where was Duolingo in Samsung?
                     Question = "{0}の{1}はどこ？",
-                    Answers = new()
-                    {
-                        ["TL"] = "左上",
-                        ["TM"] = "上",
-                        ["TR"] = "右上",
-                        ["ML"] = "左",
-                        ["MM"] = "中央",
-                        ["MR"] = "右",
-                        ["BL"] = "左下",
-                        ["BM"] = "下",
-                        ["BR"] = "右下",
-                    },
                 },
             },
         },

@@ -8032,18 +8032,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Where was the SpongeBob Bar on {0}?
                     Question = "Где был SpongeBob Bar {0}?",
-                    Answers = new()
-                    {
-                        ["top-left"] = "Сверху слева",
-                        ["top-middle"] = "Сверху посередине",
-                        ["top-right"] = "Сверху справа",
-                        ["middle-left"] = "Посередине слева",
-                        ["middle-middle"] = "В центре",
-                        ["middle-right"] = "Посередине справа",
-                        ["bottom-left"] = "Снизу слева",
-                        ["bottom-middle"] = "Снизу посередине",
-                        ["bottom-right"] = "Снизу справа",
-                    },
                 },
                 [SMisterSoftee.TreatsPresent] = new()
                 {
@@ -11561,18 +11549,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Where was {1} in {0}?
                     // Example: Where was Duolingo in Samsung?
                     Question = "Где было приложение {1} {0}?",
-                    Answers = new()
-                    {
-                        ["TL"] = "Сверху слева",
-                        ["TM"] = "Сверху посередине",
-                        ["TR"] = "Сверху справа",
-                        ["ML"] = "Посередине слева",
-                        ["MM"] = "В центре",
-                        ["MR"] = "Посередине справа",
-                        ["BL"] = "Снизу слева",
-                        ["BM"] = "Снизу посередине",
-                        ["BR"] = "Снизу справа",
-                    },
                 },
             },
         },
