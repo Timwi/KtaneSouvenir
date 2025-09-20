@@ -930,12 +930,19 @@ public partial class SouvenirModule : MonoBehaviour
         while (info.NumFinished < info.NumModules)
             yield return null;
 
+        var bossTried = false;
+        tryAgain:
         if (questions.Count == 0)
         {
             if (!_legitimatelyNoQuestions.Contains(module))
             {
-                Debug.Log($"[Souvenir #{_moduleId}] There was no question generated for {module.ModuleDisplayName}. Please report this to Timwi or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.");
-                _showWarning = true;
+                if (bossTried)
+                    Debug.Log($"[Souvenir #{_moduleId}] There was no question for {module.ModuleDisplayName} because it is a boss module and there were no applicable discriminators.");
+                else
+                {
+                    Debug.Log($"[Souvenir #{_moduleId}] The handler for {module.ModuleDisplayName} did not generate any questions. Please report this to the contributor for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.");
+                    _showWarning = true;
+                }
             }
         }
         else
@@ -966,12 +973,18 @@ public partial class SouvenirModule : MonoBehaviour
                             info.Discriminators.Values.Count(ds => ds.TryGetValue(d.Id, out var cd) && Equals(cd.Value, d.Value)) == 1)
                         .GroupBy(d => d.PriorityFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? d.Priority)
                         .OrderBy(gr => gr.Key)
-                        .First()
-                        .Concat(hAttr.IsBossModule ? [] : [null])   // use null to represent the solve-count discriminator
-                        .ToArray();
+                        .FirstOrDefault()?.ToArray();
+
+                    if (discrs == null && hAttr.IsBossModule)
+                    {
+                        Debug.Log($"<Souvenir #{_moduleId}> No applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with args {q.QuestionStump.Args.Stringify()} and answers {answerSet.DebugAnswers.Stringify()}.");
+                        questions.Remove(q);
+                        bossTried = true;
+                        goto tryAgain;
+                    }
 
                     // If this is false, the solve-count discriminator was picked and ‘moduleFormat’ will default to it later
-                    if (discrs.PickRandom() is { } discr && discr.EnumValue.GetDiscriminatorAttribute() is var dAttr)
+                    if (discrs?.Concat(hAttr.IsBossModule ? [] : [null]).PickRandom() is { } discr && discr.EnumValue.GetDiscriminatorAttribute() is var dAttr)
                     {
                         moduleFormat = string.Format(
                             TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText),
@@ -985,7 +998,7 @@ public partial class SouvenirModule : MonoBehaviour
 
                 if (moduleFormat == null && hAttr.IsBossModule)
                 {
-                    Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because there was no applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with answers [{answerSet.DebugAnswers.JoinString(", ")}].");
+                    Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because there was no applicable discriminator.");
                     yield break;
                 }
             }

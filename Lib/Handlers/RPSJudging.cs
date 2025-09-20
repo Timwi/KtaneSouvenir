@@ -78,17 +78,26 @@ public partial class SouvenirModule
             }
         }
 
+        var any = false;
         if (draws.Count > 0 && pickAnswers(draws, out var correct, out var incorrect))
+        {
             yield return question(SRPSJudging.QDraw).Answers(correct, preferredWrong: incorrect);
+            any = true;
+        }
         if (blueWins.Count > 0 && pickAnswers(blueWins, out correct, out incorrect))
         {
             yield return question(SRPSJudging.QWinner, args: ["blue", "win"]).Answers(correct, preferredWrong: incorrect);
             yield return question(SRPSJudging.QWinner, args: ["red", "lose"]).Answers(correct, preferredWrong: incorrect);
+            any = true;
         }
         if (redWins.Count > 0 && pickAnswers(redWins, out correct, out incorrect))
         {
             yield return question(SRPSJudging.QWinner, args: ["blue", "lose"]).Answers(correct, preferredWrong: incorrect);
             yield return question(SRPSJudging.QWinner, args: ["red", "win"]).Answers(correct, preferredWrong: incorrect);
+            any = true;
         }
+
+        if (!any)
+            yield return legitimatelyNoQuestion(module, "Every stage had the same outcome.");
     }
 }
