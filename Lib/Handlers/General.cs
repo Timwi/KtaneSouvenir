@@ -139,10 +139,15 @@ public partial class SouvenirModule
                     yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
                         .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'F')));
 
-                // Cornflower Cipher special case: three letters and a digit
-                else if (Regex.IsMatch(text, @"^[A-Z]{3} \d$"))
+                // Cornflower Cipher special case: only letters A–P
+                else if (Regex.IsMatch(text, @"^[A-P]{6}$"))
                     yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]}{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]}{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]} {Rnd.Range(0, 10)}"));
+                        .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'P')));
+
+                // Cornflower Cipher special case: three letters A–P and a digit
+                else if (Regex.IsMatch(text, @"^[A-P]{3} \d$"))
+                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                        .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]}{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]}{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]} {Rnd.Range(0, 10)}"));
 
                 // Indigo Cipher special case: 24 ? 52 = 12
                 else if (Regex.IsMatch(text, @"^\d+ \? \d+ = \d+$"))
