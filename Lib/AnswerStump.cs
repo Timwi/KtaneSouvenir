@@ -41,7 +41,7 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
             var inconsistency = Correct.Except(allAnswers).FirstOrDefault();
             if (inconsistency != null)
             {
-                Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question}: invalid answer: {inconsistency}. allAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]; correctAnswers: [{Correct.Select(s => s.DebugExamine()).JoinString(", ")}]");
+                Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question}: invalid answer: {inconsistency}. allAnswers ({(allAnswersWasNull ? "was null" : "was not null")}): {allAnswers.Stringify()}; correctAnswers: {Correct.Stringify()}");
                 return null;
             }
             if (PreferredWrong != null)
@@ -49,7 +49,7 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
                 var inconsistency2 = PreferredWrong.Except(allAnswers).FirstOrDefault();
                 if (inconsistency2 != null)
                 {
-                    Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question}: invalid preferred wrong answer: {inconsistency2}. allAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]");
+                    Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question}: invalid preferred wrong answer: {inconsistency2}. allAnswers ({(allAnswersWasNull ? "was null" : "was not null")}): {allAnswers.Stringify()}");
                     return null;
                 }
             }
