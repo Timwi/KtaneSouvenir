@@ -30,8 +30,8 @@ public partial class SouvenirModule
             var fldHand = GetField<IList>(comp, "_hand");
             while (module.Unsolved)
             {
-                var hand = fldHand.Get();
-                topCard = hand.Cast<object>().SingleOrDefault(o => o is not null) ?? topCard;
+                if (fldHand.Get().Cast<object>().Where(card => card is not null).ToArray() is { Length: 1 } cards)
+                    topCard = cards[0];
                 yield return null;
             }
         }
@@ -54,7 +54,7 @@ public partial class SouvenirModule
             cards.RemoveAt(missing);
             validCards = cards
                 .Select(c => c.ToString())
-                .Concat(new[] { $"backwards {backwards}", $"single-step {singleStep}", $"{discard} or discard", "Trickster", "Warrior" })
+                .Concat([$"backwards {backwards}", $"single-step {singleStep}", $"{discard} or discard", "Trickster", "Warrior"])
                 .ToArray();
         }
 
