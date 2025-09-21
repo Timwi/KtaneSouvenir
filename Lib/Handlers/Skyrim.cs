@@ -10,7 +10,7 @@ public enum SSkyrim
     [SouvenirQuestion("Which race was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Nord", "Khajiit", "Breton", "Argonian", "Dunmer", "Altmer", "Redguard", "Orc", "Imperial", TranslateAnswers = true)]
     Race,
 
-    [SouvenirQuestion("Which weapon was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Axe of Whiterun", "Dawnbreaker", "Windshear", "Blade of Woe", "Firiniel’s End", "Bow of Hunt", "Volendrung", "Chillrend", "Mace of Molag Bal", TranslateAnswers = true)]
+    [SouvenirQuestion("Which weapon was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Axe of Whiterun", "Dawnbreaker", "Windshear", "Blade of Woe", "Firiniel’s End", "Bow of the Hunt", "Volendrung", "Chillrend", "Mace of Molag Bal", TranslateAnswers = true)]
     Weapon,
 
     [SouvenirQuestion("Which enemy was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Alduin", "Blood Dragon", "Cave Bear", "Dragon Priest", "Draugr", "Draugr Overlord", "Frost Troll", "Frostbite Spider", "Mudcrab", TranslateAnswers = true)]
@@ -19,7 +19,7 @@ public enum SSkyrim
     [SouvenirQuestion("Which city was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Dawnstar", "Ivarstead", "Markarth", "Riverwood", "Rorikstead", "Solitude", "Whiterun", "Windhelm", "Winterhold", TranslateAnswers = true)]
     City,
 
-    [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Disarm", "Dismay", "Dragonrend", "Fire Breath", "Ice Form", "Kyne’s Peace", "Slow Time", "Unrelenting Force", "Whirlwind Sprint", TranslateAnswers = true)]
+    [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", TwoColumns4Answers, "fus ro dah", "zun hal vik", "liz slen nus", "wuld nah kest", "jor zah frul", "fas ru mar", "yol tor shul", "kan drem ov", "tid klo ul", Type = AnswerType.DynamicFont)]
     DragonShout
 }
 
@@ -44,15 +44,15 @@ public partial class SouvenirModule
         }
         var questions = new[] { SSkyrim.Race, SSkyrim.Weapon, SSkyrim.Enemy, SSkyrim.City };
         var fieldNames = new[] { "race", "weapon", "enemy", "city" };
-        var flds = fieldNames.Select(name => GetListField<Texture>(comp, name + "Images", isPublic: true)).ToArray();
-        var fldsCorrect = new[] { "correctRace", "correctWeapon", "correctEnemy", "correctCity" }.Select(name => GetField<Texture>(comp, name)).ToArray();
-        for (var i = 0; i < fieldNames.Length; i++)
-        {
-            var list = flds[i].Get(expectedLength: 3);
-            var correct = fldsCorrect[i].Get();
-            yield return question(questions[i]).Answers(list.Except([correct]).Select(t => t.name.Replace("'", "’")).ToArray());
-        }
-        var shoutNames = GetListField<string>(comp, "shoutNameOptions").Get(expectedLength: 3);
-        yield return question(SSkyrim.DragonShout).Answers(shoutNames.Except([GetField<string>(comp, "shoutName").Get()]).Select(n => n.Replace("'", "’")).ToArray());
+        var lists = fieldNames.Select(name => GetListField<Texture>(comp, name + "Images", isPublic: true).Get(expectedLength: 3)).ToArray();
+        var answers = new[] { "correctRace", "correctWeapon", "correctEnemy", "correctCity" }.Select(name => GetField<Texture>(comp, name).Get()).ToArray();
+
+        for (var i = 0; i < 4; i++)
+            yield return question(questions[i]).Answers(lists[i].Except([answers[i]]).Select(t => t.name.Replace("'", "’")).ToArray());
+
+        var textMesh = GetField<TextMesh>(comp, "shoutText", isPublic: true).Get();
+        var fontInfo = new TextAnswerInfo(font: textMesh.font, fontTexture: textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture);
+        var shouts = GetListField<string>(comp, "shoutOptions").Get(expectedLength: 3);
+        yield return question(SSkyrim.DragonShout).Answers(shouts.Except([GetField<string>(comp, "correctShout").Get()]).Select(n => n.Replace("\n", " ")).ToArray(), info: fontInfo);
     }
 }

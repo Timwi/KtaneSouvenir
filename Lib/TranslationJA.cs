@@ -12920,7 +12920,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Windshear"] = "ウィンドシア",
                         ["Blade of Woe"] = "悲痛の短剣",
                         ["Firiniel’s End"] = "フィリニエルズエンド",
-                        ["Bow of Hunt"] = "狩りの弓",
+                        ["Bow of the Hunt"] = "狩りの弓",
                         ["Volendrung"] = "ヴォレンドラング",
                         ["Chillrend"] = "チルレンド",
                         ["Mace of Molag Bal"] = "モラグ・バルのメイス",
@@ -12964,18 +12964,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 {
                     // English: Which dragon shout was selectable, but not the solution, in {0}?
                     Question = "{0}において、選択可能だが解除策ではなかったドラゴンシャウトは？",
-                    Answers = new()
-                    {
-                        ["Disarm"] = "武装解除",
-                        ["Dismay"] = "不安",
-                        ["Dragonrend"] = "ドラゴンレンド",
-                        ["Fire Breath"] = "ファイアブレス",
-                        ["Ice Form"] = "氷晶",
-                        ["Kyne’s Peace"] = "カイネの安らぎ",
-                        ["Slow Time"] = "時間減速",
-                        ["Unrelenting Force"] = "揺るぎ無き力",
-                        ["Whirlwind Sprint"] = "旋風の疾走",
-                    },
                 },
             },
         },

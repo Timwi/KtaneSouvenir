@@ -12852,7 +12852,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                         ["Windshear"] = "Windshear",
                         ["Blade of Woe"] = "Blade of Woe",
                         ["Firiniel’s End"] = "Firiniel’s End",
-                        ["Bow of Hunt"] = "Bow of Hunt",
+                        ["Bow of the Hunt"] = "Bow of the Hunt",
                         ["Volendrung"] = "Volendrung",
                         ["Chillrend"] = "Chillrend",
                         ["Mace of Molag Bal"] = "Mace of Molag Bal",
@@ -12896,18 +12896,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which dragon shout was selectable, but not the solution, in {0}?
                     Question = "Какой крик дракона присутствовал, но не являлся решением {0}?",
-                    Answers = new()
-                    {
-                        ["Disarm"] = "Disarm",
-                        ["Dismay"] = "Dismay",
-                        ["Dragonrend"] = "Dragonrend",
-                        ["Fire Breath"] = "Fire Breath",
-                        ["Ice Form"] = "Ice Form",
-                        ["Kyne’s Peace"] = "Kyne’s Peace",
-                        ["Slow Time"] = "Slow Time",
-                        ["Unrelenting Force"] = "Unrelenting Force",
-                        ["Whirlwind Sprint"] = "Whirlwind Sprint",
-                    },
                 },
             },
         },
