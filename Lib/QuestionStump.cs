@@ -61,4 +61,6 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir, str
 
         return string.Format(Souvenir.TranslateQuestion(EnumValue), allFormatArgs);
     }
+
+    public override string ToString() => $"{EnumValue.GetType().Name}.{EnumValue} {Args.Stringify()}{(DiscriminatorsToAvoid == null ? "" : $" (avoid: {DiscriminatorsToAvoid.Stringify()})")}{(DiscriminatorIdsToAvoid == null ? "" : $" (avoid: {DiscriminatorIdsToAvoid.Stringify()})")}";
 }

@@ -17,5 +17,5 @@ public class Discriminator(Enum discriminator, string id, object value = null, s
     public Func<Enum, int> PriorityFromQuestion { get; set; }
     public Func<Enum, string[]> ArgumentsFromQuestion { get; set; }
 
-    public override string ToString() => $"Discriminator {EnumValue}/{Id}={Value.Stringify()}, {(Arguments ?? ArgumentsFromQuestion?.Invoke(null)).Stringify()}{(QuestionSprite == null ? "" : $", question sprite={QuestionSprite}{(QuestionSpriteRotation != 0 ? $" (rot {QuestionSpriteRotation})" : "")}")}, avoid answers: {AvoidAnswers.Stringify()}{(Priority != 0 ? $" (P{Priority})" : "")}{(PriorityFromQuestion != null ? $" (PQ)" : "")}";
+    public override string ToString() => $"Discriminator {EnumValue}/{Id}={Value.Stringify()} {(ArgumentsFromQuestion != null ? "(dynamic)" : Arguments.Stringify())}{(QuestionSprite == null ? "" : $", question sprite={QuestionSprite}{(QuestionSpriteRotation != 0 ? $" (rot {QuestionSpriteRotation})" : "")}")}{(AvoidAnswers is { Length: > 0 } a ? $"; avoid answers: {a.Stringify()}" : "")}{(PriorityFromQuestion != null || Priority != 0 ? $" (P={(PriorityFromQuestion != null ? "dynamic" : Priority.Stringify())})" : "")}";
 }

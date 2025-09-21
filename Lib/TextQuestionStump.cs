@@ -12,4 +12,6 @@ public class TextQuestionStump(Enum enumValue, SouvenirModule souvenir, string[]
         new TextQuestion(FormattedQuestion(moduleFormat), EnumValue.GetQuestionAttribute().Layout,
             questionSpriteFromDiscriminator ?? QuestionSprite,
             questionSpriteFromDiscriminator == null ? QuestionSpriteRotation : questionSpriteRotationFromDiscriminator);
+
+    public override string ToString() => $"{base.ToString()}{(QuestionSprite == null ? "" : $" question sprite={QuestionSprite.name}{(QuestionSpriteRotation != 0 ? $" (rot {QuestionSpriteRotation})" : "")}")}";
 }

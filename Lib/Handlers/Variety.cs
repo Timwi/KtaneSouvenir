@@ -51,7 +51,7 @@ public partial class SouvenirModule
             var c1 = GetProperty<object>(led, "Color1", isPublic: true).Get(null, v => (int) v is < 0 or > 4 ? $"Unknown LED color {v}" : null).ToString();
             var c2 = GetProperty<object>(led, "Color2", isPublic: true).Get(null, v => (int) v is < 0 or > 4 ? $"Unknown LED color {v}" : null).ToString();
             yield return question(SVariety.LED).Answers([c1, c2]);
-            yield return new Discriminator(SVariety.Has, "led", true)
+            yield return new Discriminator(SVariety.Has, "led")
             {
                 ArgumentsFromQuestion = q => SVariety.LED.Equals(q) ? ["one\uE003 (LED)"] : ["an LED"],
                 PriorityFromQuestion = q => SVariety.LED.Equals(q) ? 0 : 1
@@ -71,7 +71,7 @@ public partial class SouvenirModule
                 var ans = Enumerable.Range(0, amount).Except([solution]).Select(ix => displays[ix].ToString()).ToArray();
                 yield return question(SVariety.DigitDisplay).Answers(ans, preferredWrong: [displays[solution].ToString()]);
             }
-            yield return new Discriminator(SVariety.Has, "digit", true)
+            yield return new Discriminator(SVariety.Has, "digit")
             {
                 ArgumentsFromQuestion = q => SVariety.DigitDisplay.Equals(q) ? ["one\uE003 (digit display)"] : ["a digit display"],
                 PriorityFromQuestion = q => SVariety.DigitDisplay.Equals(q) ? 0 : 1
@@ -90,7 +90,7 @@ public partial class SouvenirModule
                 var solution = GetProperty<int>(display, "State", isPublic: true).Get(v => v is < 0 || v >= words.Length ? $"Bad letter display solution state {v}" : null);
                 yield return question(SVariety.LetterDisplay).Answers(words.Where((_, i) => i != solution).ToArray(), preferredWrong: [words[solution]]);
             }
-            yield return new Discriminator(SVariety.Has, "letter", true)
+            yield return new Discriminator(SVariety.Has, "letter")
             {
                 ArgumentsFromQuestion = q => SVariety.LetterDisplay.Equals(q) ? ["one\uE003 (letter display)"] : ["a letter display"],
                 PriorityFromQuestion = q => SVariety.LetterDisplay.Equals(q) ? 0 : 1
@@ -112,7 +112,7 @@ public partial class SouvenirModule
                 yield return question(SVariety.Timer, args: [timers.Length == 1 ? "timer" : flavorNames[flavor]]).Answers($"{a - 1} {b - 1}");
                 yield return new Discriminator(SVariety.Has, $"timer-{flavor}", args: [flavor == 0 ? "an ascending timer" : "a descending timer"]) { Priority = 2 };
             }
-            yield return new Discriminator(SVariety.Has, "timer", true)
+            yield return new Discriminator(SVariety.Has, "timer")
             {
                 ArgumentsFromQuestion = q => SVariety.Timer.Equals(q) ? ["one\uE003 (timer)"] : ["a timer"],
                 PriorityFromQuestion = q => SVariety.Timer.Equals(q) ? 0 : 1
@@ -133,7 +133,7 @@ public partial class SouvenirModule
                 yield return question(SVariety.ColoredKnob, args: [format ?? $"{flavor} knob"]).Answers(ans.ToString());
                 yield return new Discriminator(SVariety.Has, $"cknob-{flavor}", args: [$"a {flavor} knob"]) { Priority = 3 };
             }
-            yield return new Discriminator(SVariety.Has, "cknob", true)
+            yield return new Discriminator(SVariety.Has, "cknob")
             {
                 ArgumentsFromQuestion = q => SVariety.ColoredKnob.Equals(q) ? ["one\uE003 (colored knob)"] : ["a colored knob"],
                 PriorityFromQuestion = q => SVariety.ColoredKnob.Equals(q) ? 0 : 2
@@ -152,7 +152,7 @@ public partial class SouvenirModule
                 yield return question(SVariety.Bulb, args: [format ?? $"{flavor} bulb"]).Answers(ans.ToString());
                 yield return new Discriminator(SVariety.Has, $"bulb-{flavor}", args: [$"a {flavor} bulb"]) { Priority = 2 };
             }
-            yield return new Discriminator(SVariety.Has, "bulb", true)
+            yield return new Discriminator(SVariety.Has, "bulb")
             {
                 ArgumentsFromQuestion = q => SVariety.Bulb.Equals(q) ? ["one\uE003 (bulb)"] : ["a bulb"],
                 PriorityFromQuestion = q => SVariety.Bulb.Equals(q) ? 0 : 1
@@ -183,17 +183,7 @@ public partial class SouvenirModule
             yield return new Discriminator(SVariety.Has, "knob", args: ["a knob"]) { Priority = 1 };
 
         if (items.Get("Knob") != null)
-            yield return new Discriminator(SVariety.Has, "white-knob", args: ["a white knob"]) { Priority = 2 };
-
-        if (items.Get("ColoredKnob") is { } knobs)
-        {
-            foreach (var item in knobs)
-            {
-                var color = GetProperty<object>(item, "Color", isPublic: true).Get().ToString().ToLowerInvariant();
-                yield return new Discriminator(SVariety.Has, $"colored-knob-{color}", args: [$"a {color.Substring(0, color.Length - 4)} knob"]) { Priority = 3 };
-            }
-            yield return new Discriminator(SVariety.Has, "colored-knob", args: ["a colored knob"]) { Priority = 2 };
-        }
+            yield return new Discriminator(SVariety.Has, "wknob", args: ["a white knob"]) { Priority = 2 };
 
         if (items.Get("BrailleDisplay") != null)
             yield return new Discriminator(SVariety.Has, "braille", args: ["a Braille display"]) { Priority = 1 };
@@ -212,7 +202,7 @@ public partial class SouvenirModule
         {
             foreach (var die in dice)
             {
-                var flavor = GetProperty<bool>(die, "_flavor").Get();
+                var flavor = GetField<bool>(die, "_flavor").Get();
                 yield return new Discriminator(SVariety.Has, $"die-{flavor}", args: [flavor ? "a dark-on-light die" : "a light-on-dark die"]) { Priority = 2 };
             }
             yield return new Discriminator(SVariety.Has, "die", args: ["a die"]) { Priority = 1 };

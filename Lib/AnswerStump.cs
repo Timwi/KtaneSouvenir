@@ -10,6 +10,8 @@ public abstract class AnswerStump
 {
     public abstract AnswerSet GenerateAnswerSet(QuestionStump questionStump, SouvenirModule souvenir);
     protected abstract AnswerType[] acceptableTypes { get; }
+    public abstract object[] CorrectAnswers { get; }
+    public abstract override string ToString();
 }
 
 public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) : AnswerStump
@@ -17,6 +19,8 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
     public T[] Correct { get; } = correct;
     public T[] PreferredWrong { get; } = preferredWrong;
     public T[] All { get; } = all;
+
+    public override object[] CorrectAnswers => Correct?.Cast<object>().ToArray();
 
     protected abstract AnswerSet MakeAnswerSet(T[] answers, int correctIndex, SouvenirQuestionAttribute qAttr, SouvenirModule souvenir);
 

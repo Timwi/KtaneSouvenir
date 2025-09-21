@@ -4,4 +4,5 @@ public class CoordAnswerStump(Coord[] correct, Coord[] preferredWrong, Coord[] a
 {
     protected override AnswerType[] acceptableTypes => [AnswerType.Sprites];
     protected override AnswerSet MakeAnswerSet(Coord[] answers, int correctIndex, SouvenirQuestionAttribute qAttr, SouvenirModule souvenir) => new CoordAnswerSet(qAttr.Layout, answers, correctIndex);
+    public override string ToString() => $"grid {Correct.Stringify()}";
 }

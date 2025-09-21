@@ -930,6 +930,10 @@ public partial class SouvenirModule : MonoBehaviour
         while (info.NumFinished < info.NumModules)
             yield return null;
 
+        Debug.Log($"<Souvenir #{_moduleId}> Questions for {module.ModuleDisplayName}:\n{questions.Select(q => $"• {q}").JoinString("\n")}");
+        if (info.Discriminators.Get(module) is { Count: > 0 } logDiscr)
+            Debug.Log($"<Souvenir #{_moduleId}> Discriminators for {module.ModuleDisplayName}:\n{logDiscr.Select(d => $"• {d.Value}").JoinString("\n")}");
+
         var bossTried = false;
         tryAgain:
         if (questions.Count == 0)
