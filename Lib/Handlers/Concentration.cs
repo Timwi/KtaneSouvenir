@@ -40,7 +40,7 @@ public partial class SouvenirModule
         yield return WaitForUnignoredModules;
 
         foreach (var ix in swappedPositions)
-            yield return question(SConcentration.StartingDigit, questionSprite: Sprites.GenerateGridSprite(3, 5, ix)).Answers((stage[ix] + 1).ToString());
+            yield return question(SConcentration.StartingDigit, questionSprite: Sprites.GenerateGridSprite(3, 5, ix)).AvoidDiscriminators($"pos-{ix}").Answers((stage[ix] + 1).ToString());
         for (var ix = 0; ix < 15; ix++)
             yield return new Discriminator(SConcentration.Discriminator, $"pos-{ix}", stage[ix], args: [Ordinal(ix + 1), (stage[ix] + 1).ToString()]) { Priority = swappedPositions.Contains(ix) ? 0 : 1 };
     }
