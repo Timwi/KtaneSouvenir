@@ -25,7 +25,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var textMesh = GetArrayField<TextMesh>(comp, "mazeIndex", isPublic: true).Get(expectedLength: 36)[0];
-        var info = new TextAnswerInfo(font: textMesh.font, fontTexture: textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture);
+        var info = new TextAnswerInfo(font: textMesh.font, fontTexture: textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture, raiseBy: 1.5f);
         yield return question(SEncryptedMaze.Symbols, args: ["clockwise"])
             .Answers(markerCharacters[shapeCw, markerCw], preferredWrong: [markerCharacters[shapeCcw, markerCcw]], info: info);
         yield return question(SEncryptedMaze.Symbols, args: ["counter-clockwise"])

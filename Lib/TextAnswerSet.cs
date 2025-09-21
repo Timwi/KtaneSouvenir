@@ -28,8 +28,8 @@ public sealed class TextAnswerSet(string[] answers, int correctIndex, SouvenirQu
 
             // Determine size of the answer and if it’s too long, shrink it horizontally to make it fit
             var origRotation = mesh.transform.localRotation;
-            mesh.transform.eulerAngles = new Vector3(90, 0, 0);
-            mesh.transform.localScale = new Vector3(1, 1, 1);
+            mesh.transform.eulerAngles = new(90, 0, 0);
+            mesh.transform.localScale = new(1, 1, 1);
             var bounds = mesh.GetComponent<Renderer>().bounds.size;
             var fac = _layout switch
             {
@@ -42,8 +42,9 @@ public sealed class TextAnswerSet(string[] answers, int correctIndex, SouvenirQu
                 _ => throw new InvalidOperationException("Invalid AnswerLayout.")
             };
             if (bounds.x > fac)
-                mesh.transform.localScale = new Vector3((float) (fac / bounds.x), 1, 1);
+                mesh.transform.localScale = new((float) (fac / bounds.x), 1, 1);
             mesh.transform.localRotation = origRotation;
+            mesh.transform.localPosition = new(0, info.RaiseBy, 0);
         }
     }
 }
