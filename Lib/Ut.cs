@@ -514,6 +514,7 @@ public static class Ut
         bool b => b ? "true" : "false",
         string s => $"“{s}”",
         Sprite spr => $"Sprite ({spr.name})",
+        AudioClip audio => $"Audio ({audio.name})",
         object o when o.GetType().IsGenericType && o.GetType().GetGenericTypeDefinition() == typeof(KeyValuePair<,>) => $"[{o.GetFieldValue<object>("key").Stringify()}] = {o.GetFieldValue<object>("value").Stringify()}",
         _ => $"{{{value.GetType().FullName}|{value}}}"
     };

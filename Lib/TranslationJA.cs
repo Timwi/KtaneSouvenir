@@ -12451,8 +12451,8 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             {
                 [SSimonSmiles.Sounds] = new()
                 {
-                    // English: What sound did the {1} button press make {0}?
-                    // Example: What sound did the first button press make Simon Smiles?
+                    // English: What sound did the {1} button press make in {0}?
+                    // Example: What sound did the first button press make in Simon Smiles?
                     Question = "{0}で{1}番目に押したボタンが鳴らした音は？",
                 },
             },

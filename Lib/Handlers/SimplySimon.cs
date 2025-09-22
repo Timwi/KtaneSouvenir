@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -15,28 +16,36 @@ public enum SSimplySimon
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simplysimon", "Simply Simon", typeof(SSimplySimon), "Anonymous")]
+    [SouvenirHandler("simplysimon", "Simply Simon", typeof(SSimplySimon), "Timwi")]
     private IEnumerator<SouvenirInstruction> ProcessSimplySimon(ModuleData module)
     {
         var comp = GetComponent(module, "simplysimon");
-        var flashes = new List<string>();
+        var prevStages = new List<(string flash, string answer)>();
         var fldFlash = GetField<string>(comp, "flsh");
+        var fldAnswer = GetField<string>(comp, "ans");
         var fldStage = GetIntField(comp, "_stagesDone");
 
-        bool onstrike() { flashes.Clear(); return true; }
+        bool onstrike() { prevStages.Clear(); return true; }
         module.Module.OnStrike += onstrike;
 
         while (module.Unsolved)
         {
+            // _stagesDone does not advance for the last stage (it is in fact always set to 3, even if there was already a stage 3).
+            // The only other way to detect a new stage is if the flashes or the answer has changed.
+            // Fortunately, ‘flsh’, ‘ans’ and ‘_stagesDone’ all change in tandem.
+            // Therefore, the only times we miss the last stage is when it is identical to the previous stage.
             var stage = fldStage.Get(min: 0);
-            if (stage > flashes.Count)
-                flashes.Add(fldFlash.Get(v => Regex.IsMatch(v, "^[RGBY]{1,4}$") ? null : "Expected match for /^[RGBY]{1,4}$/"));
+            var flash = fldFlash.Get(v => Regex.IsMatch(v, "^[RGBY]{1,4}$") ? null : "Expected 1–4 RGBY");
+            var answer = fldAnswer.Get(v => v.Length != flash.Length ? $"Expected answer of same length as flash ({flash})" : !Regex.IsMatch(v, "^[RGBY]*$") ? "Expected only RGBY" : null);
+            if (stage > prevStages.Count || flash != prevStages.Last().flash || answer != prevStages.Last().answer)
+                prevStages.Add((flash, answer));
             yield return null;
         }
 
         module.Module.OnStrike -= onstrike;
 
-        for (var i = 0; i < flashes.Count; i++)
-            yield return question(SSimplySimon.Flash, args: [Ordinal(i + 1)]).Answers(flashes[i], preferredWrong: flashes.ToArray());
+        var flashes = prevStages.Select(stage => stage.flash).ToArray();
+        for (var i = 0; i < prevStages.Count; i++)
+            yield return question(SSimplySimon.Flash, args: [Ordinal(i + 1)]).Answers(flashes[i], preferredWrong: flashes);
     }
 }

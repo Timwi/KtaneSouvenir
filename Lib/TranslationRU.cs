@@ -12388,8 +12388,8 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SSimonSmiles.Sounds] = new()
                 {
-                    // English: What sound did the {1} button press make {0}?
-                    // Example: What sound did the first button press make Simon Smiles?
+                    // English: What sound did the {1} button press make in {0}?
+                    // Example: What sound did the first button press make in Simon Smiles?
                     Question = "Как звук был у {1}-й кнопки {0}?",
                 },
             },
