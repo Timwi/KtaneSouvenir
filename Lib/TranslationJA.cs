@@ -8444,12 +8444,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             {
                 [SMssngvWls.MssNgvwL] = new()
                 {
-                    // English: {1}
-                    // Example: Whc hvw lwsm ssn gn {0}?
+                    // English: Which vowel was missing in {0}?
+                    // Example: Which vowel was missing in Mssngv Wls?
                     Question = "{0} de kaketeita boin ha?",
-                    Additional = new()
+                    Arguments = new()
                     {
-                        ["Which vowel was missing in {0}?"] = "Which vowel was missing in {0}?",
                         ["AEIOU"] = "AEIOU",
                     },
                 },

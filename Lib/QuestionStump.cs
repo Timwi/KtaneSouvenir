@@ -59,7 +59,7 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir, str
             for (var i = 0; i < Args.Length; i++)
                 allFormatArgs[i + 1] = SouvenirModule.Snip(attr.TranslateArguments is { } ta && ta[i] ? Souvenir.TranslateQuestionArgument(EnumValue, Args[i]) : Args[i]);
 
-        return string.Format(Souvenir.TranslateQuestion(EnumValue), allFormatArgs);
+        return attr.Gimmicks.Aggregate(string.Format(Souvenir.TranslateQuestion(EnumValue), allFormatArgs), (prev, gimmick) => gimmick.ApplyGimmick(prev, allFormatArgs));
     }
 
     public override string ToString() => $"{EnumValue.GetType().Name}.{EnumValue} {Args.Stringify()}{(DiscriminatorsToAvoid == null ? "" : $" (avoid: {DiscriminatorsToAvoid.Stringify()})")}{(DiscriminatorIdsToAvoid == null ? "" : $" (avoid: {DiscriminatorIdsToAvoid.Stringify()})")}";

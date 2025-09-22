@@ -8428,12 +8428,11 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SMssngvWls.MssNgvwL] = new()
                 {
-                    // English: {1}
-                    // Example: Whc hvw lwsm ssn gn {0}?
+                    // English: Which vowel was missing in {0}?
+                    // Example: Which vowel was missing in Mssngv Wls?
                     Question = "Какая гласная отсутствовала {0}?",
-                    Additional = new()
+                    Arguments = new()
                     {
-                        ["Which vowel was missing in {0}?"] = "Which vowel was missing in {0}?",
                         ["AEIOU"] = "АИОУЭЯЫЁЮЕ",
                     },
                 },

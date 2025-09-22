@@ -489,6 +489,7 @@ public static class Ut
                     {
                         if (field.GetCustomAttributes(typeof(AnswerGeneratorAttribute), false) is AnswerGeneratorAttribute[] agAttrs)
                             qAttr.AnswerGenerators = agAttrs.Length == 0 ? null : agAttrs;
+                        qAttr.Gimmicks = field.GetCustomAttributes(typeof(SouvenirGimmickAttribute), false).Cast<SouvenirGimmickAttribute>().ToArray();
                         qAttr.EnumValue = (Enum) field.GetValue(null);
                         qAttr.Handler = hAttr;
                         Attributes.Add((Enum) field.GetValue(null), (hAttr, qAttr, null));

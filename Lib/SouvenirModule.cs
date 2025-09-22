@@ -495,7 +495,8 @@ public partial class SouvenirModule : MonoBehaviour
             for (var i = 0; i < args.Length; i++)
                 fmt[i + 1] = args[i] == QandA.Ordinal ? Ordinal(Rnd.Range(1, 11)) : Snip(TranslateQuestionArgument(qAttr.EnumValue, args[i]));
 
-        var questionText = string.Format(TranslateQuestion(qAttr.EnumValue), fmt);
+        string questionText = qAttr.Gimmicks.Aggregate(string.Format(TranslateQuestion(qAttr.EnumValue), fmt), (prev, gimmick) => gimmick.ApplyGimmick(prev, fmt));
+
         QuestionBase question = qAttr.IsEntireQuestionSprite
             ? new SpriteQuestion(questionText, WavetappingSprites[0])
             : new TextQuestion(questionText, qAttr.Layout, qAttr.UsesQuestionSprite ? SymbolicCoordinatesSprites[0] : null, 0);

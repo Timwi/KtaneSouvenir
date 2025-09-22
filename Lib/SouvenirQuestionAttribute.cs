@@ -10,6 +10,7 @@ public sealed class SouvenirQuestionAttribute(string questionText, AnswerLayout 
     public string QuestionText { get; private set; } = questionText;
     public string[] AllAnswers { get; private set; } = allAnswers == null || allAnswers.Length == 0 ? null : allAnswers;
     public AnswerGeneratorAttribute[] AnswerGenerators { get; internal set; }
+    public SouvenirGimmickAttribute[] Gimmicks { get; internal set; }
 
     public string[] Arguments { get; set; }
     public int ArgumentGroupSize { get; set; }
