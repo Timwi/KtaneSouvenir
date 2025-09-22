@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SNandNs
 {
-    [SouvenirQuestion("Which label was present in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which label was present in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings(5, 'M', 'N')]
     Label,
 

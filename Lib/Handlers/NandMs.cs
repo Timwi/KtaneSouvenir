@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
 
 public enum SNandMs
 {
-    [SouvenirQuestion("What was the label of the correct button in {0}?", ThreeColumns6Answers)]
+    [SouvenirQuestion("What was the label of the correct button in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings(5, 'M', 'N')]
     Answer
 }
