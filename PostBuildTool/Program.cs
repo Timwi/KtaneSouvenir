@@ -149,7 +149,6 @@ public static class Program
                 outerSb.AppendLine($"{indent()}{{");
                 indentation += 4;
 
-
                 var sb = new StringBuilder();
                 var prospectiveModuleName = (string) alreadyHandler?.ModuleName;
                 if (prospectiveModuleName != null && prospectiveModuleName != handler.ModuleName)
@@ -178,6 +177,8 @@ public static class Program
                 foreach (var (enumValue, qAttr, _) in questionsAndDiscriminators.Where(tup => tup.qAttr != null))
                 {
                     dynamic alreadyQuestion = already?.TranslateQuestion((Enum) enumValue);
+                    if (alreadyQuestion == null)
+                        needsTranslation = true;
 
                     sb.AppendLine($"{indent()}[{enumValue.GetType().Name}.{enumValue}] = new()");
                     sb.AppendLine($"{indent()}{{");
@@ -187,9 +188,10 @@ public static class Program
                         sb.AppendLine($"{indent()}// This question is depicted visually, rather than with words. The translation here will only be used for logging.");
                     else
                     {
-                        sb.AppendLine($@"{indent()}// English: {qAttr.QuestionText}");
+                        var extra = qAttr.UsesQuestionSprite ? $@" (+ sprite)" : "";
+                        sb.AppendLine($@"{indent()}// English: {qAttr.QuestionText}{extra}");
                         if (qAttr.Arguments is string[] args)
-                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) qAttr.QuestionText, (object[]) [handler.ModuleName, .. ordinals(args.Take((int) qAttr.ArgumentGroupSize))])}");
+                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) qAttr.QuestionText, (object[]) [handler.ModuleName, .. ordinals(args.Take((int) qAttr.ArgumentGroupSize))])}{extra}");
                     }
                     sb.AppendLine($@"{indent()}Question = ""{((string) (alreadyQuestion?.Question ?? qAttr.QuestionText)).CLiteralEscape()}"",");
 
@@ -231,6 +233,8 @@ public static class Program
                     foreach (var (enumValue, _, dAttr) in questionsAndDiscriminators.Where(tup => tup.dAttr != null))
                     {
                         dynamic alreadyDiscriminator = already?.TranslateDiscriminator((Enum) enumValue);
+                        if (alreadyDiscriminator == null)
+                            needsTranslation = true;
 
                         sb.AppendLine($"{indent()}[{enumValue.GetType().Name}.{enumValue}] = new()");
                         sb.AppendLine($"{indent()}{{");

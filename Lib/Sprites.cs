@@ -90,11 +90,11 @@ public static class Sprites
 
     public static Sprite GenerateGridSprite(Coord coord)
     {
-        var tw = 4 * coord.Width + 1;
-        var th = 4 * coord.Height + 1;
         var key = $"{coord.Width}:{coord.Height}:{coord.Index}";
         if (!_gridSpriteCache.TryGetValue(key, out var sprite))
         {
+            var tw = 4 * coord.Width + 1;
+            var th = 4 * coord.Height + 1;
             var tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
             tx.SetPixels32(Ut.NewArray(tw * th, ix =>
                 (ix % tw) % 4 == 0 || (ix / tw) % 4 == 0 ? new Color32(0xFF, 0xF8, 0xDD, 0xFF) :

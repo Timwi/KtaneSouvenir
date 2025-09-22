@@ -1093,7 +1093,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SBeans.Colors] = new()
                 {
-                    // English: What was this bean in {0}?
+                    // English: What was this bean in {0}? (+ sprite)
                     Question = "Каким был данный боб {0}?",
                     Answers = new()
                     {
@@ -2127,7 +2127,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SCARPS.Cell] = new()
                 {
-                    // English: What color was this cell initially in {0}?
+                    // English: What color was this cell initially in {0}? (+ sprite)
                     Question = "Какого цвета была эта клетка в начале {0}?",
                     Answers = new()
                     {
@@ -2533,7 +2533,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SColorBraille.Color] = new()
                 {
-                    // English: What color was this dot in {0}?
+                    // English: What color was this dot in {0}? (+ sprite)
                     Question = "Какого цвета была эта точка {0}?",
                     Answers = new()
                     {
@@ -2790,8 +2790,8 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SColouredCubes.Colours] = new()
                 {
-                    // English: What was the colour of this {1} in the {2} stage of {0}?
-                    // Example: What was the colour of this cube in the first stage of Coloured Cubes?
+                    // English: What was the colour of this {1} in the {2} stage of {0}? (+ sprite)
+                    // Example: What was the colour of this cube in the first stage of Coloured Cubes? (+ sprite)
                     Question = "Какой был цвет данного {1} на {2}-м этапе {0}?",
                     Answers = new()
                     {
@@ -2885,7 +2885,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SConcentration.StartingDigit] = new()
                 {
-                    // English: What number began here in {0}?
+                    // English: What number began here in {0}? (+ sprite)
                     Question = "Какое число было здесь изначально {0}?",
                 },
             },
@@ -2907,7 +2907,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SConditionalButtons.Colors] = new()
                 {
-                    // English: What was the color of this button in {0}?
+                    // English: What was the color of this button in {0}? (+ sprite)
                     Question = "Какого цвета была эта кнопка на {0}?",
                     Answers = new()
                     {
@@ -2932,12 +2932,12 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SConnectedMonitors.Number] = new()
                 {
-                    // English: What number was initially displayed on this screen in {0}?
+                    // English: What number was initially displayed on this screen in {0}? (+ sprite)
                     Question = "Какое число было изначально отображено на данном экране {0}?",
                 },
                 [SConnectedMonitors.SingleIndicator] = new()
                 {
-                    // English: What colour was the indicator on this screen in {0}?
+                    // English: What colour was the indicator on this screen in {0}? (+ sprite)
                     Question = "Какого цвета был индикатор на данном экране {0}?",
                     Answers = new()
                     {
@@ -2951,8 +2951,8 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 },
                 [SConnectedMonitors.OrdinalIndicator] = new()
                 {
-                    // English: What colour was the {1} indicator on this screen in {0}?
-                    // Example: What colour was the first indicator on this screen in Connected Monitors?
+                    // English: What colour was the {1} indicator on this screen in {0}? (+ sprite)
+                    // Example: What colour was the first indicator on this screen in Connected Monitors? (+ sprite)
                     Question = "Какого цвета был {1}-й индикатор на данном экране {0}?",
                     Answers = new()
                     {
@@ -3304,7 +3304,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SCRule.SymbolPair] = new()
                 {
-                    // English: Which symbol pair was here in {0}?
+                    // English: Which symbol pair was here in {0}? (+ sprite)
                     Question = "Какая пара символов была здесь {0}?",
                 },
                 [SCRule.SymbolPairCell] = new()
@@ -4629,19 +4629,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SFaultyButtons)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
                 [SFaultyButtons.ReferredToThisButton] = new()
                 {
-                    // English: Which button referred to the {1} button in reading order in {0}?
-                    // Example: Which button referred to the first button in reading order in Faulty Buttons?
-                    Question = "Какая кнопка ссылалась на {1}-ю кнопку в порядке чтения {0}?",
+                    // English: Which button referred to this button in {0}? (+ sprite)
+                    // Example: Which button referred to this button in Faulty Buttons? (+ sprite)
+                    Question = "Which button referred to this button in {0}?",
                 },
                 [SFaultyButtons.ThisButtonReferredTo] = new()
                 {
-                    // English: Which button did the {1} button in reading order refer to in {0}?
-                    // Example: Which button did the first button in reading order refer to in Faulty Buttons?
-                    Question = "На какую кнопку ссылалась {1}-я кнопка в порядке чтения {0}?",
+                    // English: Which button did this button refer to in {0}? (+ sprite)
+                    // Example: Which button did this button refer to in Faulty Buttons? (+ sprite)
+                    Question = "Which button did this button refer to in {0}?",
                 },
             },
         },
@@ -6503,7 +6504,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SJuxtacoloredSquares.ColorsByPosition] = new()
                 {
-                    // English: What was the color of this square in {0}?
+                    // English: What was the color of this square in {0}? (+ sprite)
                     Question = "Какого цвета был этот квадрат на {0}?",
                     Answers = new()
                     {
@@ -6664,8 +6665,8 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SKeypadSequence.Labels] = new()
                 {
-                    // English: What was this key’s label on the {1} panel in {0}?
-                    // Example: What was this key’s label on the first panel in Keypad Sequence?
+                    // English: What was this key’s label on the {1} panel in {0}? (+ sprite)
+                    // Example: What was this key’s label on the first panel in Keypad Sequence? (+ sprite)
                     Question = "Какая была надпись на этой кнопке на {1}-й панели {0}?",
                 },
             },
@@ -6886,7 +6887,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 },
                 [SLabyrinth.PortalStage] = new()
                 {
-                    // English: In which layer was this portal in {0}?
+                    // English: In which layer was this portal in {0}? (+ sprite)
                     Question = "На каком слое находился этот портал {0}?",
                     Answers = new()
                     {
@@ -7635,7 +7636,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SMathEm.Color] = new()
                 {
-                    // English: What was the color of this tile before the shuffle on {0}?
+                    // English: What was the color of this tile before the shuffle on {0}? (+ sprite)
                     Question = "Какого цвета была эта плитка до перемешивания {0}?",
                     Answers = new()
                     {
@@ -7647,7 +7648,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 },
                 [SMathEm.Label] = new()
                 {
-                    // English: What was the design on this tile before the shuffle on {0}?
+                    // English: What was the design on this tile before the shuffle on {0}? (+ sprite)
                     Question = "Какой узор был на этой плитке до перемешивания {0}?",
                 },
             },
@@ -7835,7 +7836,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SMazeseeker.Cell] = new()
                 {
-                    // English: How many walls surrounded this cell in {0}?
+                    // English: How many walls surrounded this cell in {0}? (+ sprite)
                     Question = "Сколько стен окружало эту клетку {0}?",
                 },
                 [SMazeseeker.Start] = new()
@@ -9907,8 +9908,8 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SOrderedKeys.Colors] = new()
                 {
-                    // English: What color was this key in the {1} stage of {0}?
-                    // Example: What color was this key in the first stage of Ordered Keys?
+                    // English: What color was this key in the {1} stage of {0}? (+ sprite)
+                    // Example: What color was this key in the first stage of Ordered Keys? (+ sprite)
                     Question = "Какого цвета была эта клавиша на {1}-м этапе {0}?",
                     Answers = new()
                     {
@@ -9922,14 +9923,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 },
                 [SOrderedKeys.Labels] = new()
                 {
-                    // English: What was the label of this key in the {1} stage of {0}?
-                    // Example: What was the label of this key in the first stage of Ordered Keys?
+                    // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
+                    // Example: What was the label of this key in the first stage of Ordered Keys? (+ sprite)
                     Question = "Какая была надпись на этой клавише на {1}-м этапе {0}?",
                 },
                 [SOrderedKeys.LabelColors] = new()
                 {
-                    // English: What color was the label of this key in the {1} stage of {0}?
-                    // Example: What color was the label of this key in the first stage of Ordered Keys?
+                    // English: What color was the label of this key in the {1} stage of {0}? (+ sprite)
+                    // Example: What color was the label of this key in the first stage of Ordered Keys? (+ sprite)
                     Question = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
                     Answers = new()
                     {
@@ -11172,8 +11173,8 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SReorderedKeys.KeyColor] = new()
                 {
-                    // English: What color was this key in the {1} stage of {0}?
-                    // Example: What color was this key in the first stage of Reordered Keys?
+                    // English: What color was this key in the {1} stage of {0}? (+ sprite)
+                    // Example: What color was this key in the first stage of Reordered Keys? (+ sprite)
                     Question = "What color was this key in the {1} stage of {0}?",
                     Answers = new()
                     {
@@ -11187,8 +11188,8 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 },
                 [SReorderedKeys.LabelColor] = new()
                 {
-                    // English: What color was the label of this key in the {1} stage of {0}?
-                    // Example: What color was the label of this key in the first stage of Reordered Keys?
+                    // English: What color was the label of this key in the {1} stage of {0}? (+ sprite)
+                    // Example: What color was the label of this key in the first stage of Reordered Keys? (+ sprite)
                     Question = "What color was the label of this key in the {1} stage of {0}?",
                     Answers = new()
                     {
@@ -11202,8 +11203,8 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 },
                 [SReorderedKeys.Label] = new()
                 {
-                    // English: What was the label of this key in the {1} stage of {0}?
-                    // Example: What was the label of this key in the first stage of Reordered Keys?
+                    // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
+                    // Example: What was the label of this key in the first stage of Reordered Keys? (+ sprite)
                     Question = "What color was the label of this key in the {1} stage of {0}?",
                 },
                 [SReorderedKeys.Pivot] = new()
@@ -12318,7 +12319,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 },
                 [SSimonSignals.ShapeToColor] = new()
                 {
-                    // English: What color was the arrow with this shape in {0}?
+                    // English: What color was the arrow with this shape in {0}? (+ sprite)
                     Question = "Какого цвета была стрелка этой формы в {0}?",
                     Answers = new()
                     {
@@ -12330,7 +12331,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 },
                 [SSimonSignals.ShapeToRotations] = new()
                 {
-                    // English: How many directions did the arrow with this shape have in {0}?
+                    // English: How many directions did the arrow with this shape have in {0}? (+ sprite)
                     Question = "Сколько направлений было у стрелки с этой формой в {0}?",
                 },
                 [SSimonSignals.RotationsToColor] = new()
@@ -12684,7 +12685,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SSimonSubdivides.Button] = new()
                 {
-                    // English: What color was the button at this position in {0}?
+                    // English: What color was the button at this position in {0}? (+ sprite)
                     Question = "Какого цвета была кнопка на этой позиции в {0}?",
                     Answers = new()
                     {
@@ -12801,7 +12802,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SSkewers.Color] = new()
                 {
-                    // English: What color was this gem in {0}?
+                    // English: What color was this gem in {0}? (+ sprite)
                     Question = "Какого цвета был этот камень {0}?",
                     Answers = new()
                     {
@@ -13433,14 +13434,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SSuitsAndColours.Colour] = new()
                 {
-                    // English: What was the colour of this cell in {0}?
-                    // Example: What was the colour of this cell in Suits and Colours?
+                    // English: What was the colour of this cell in {0}? (+ sprite)
+                    // Example: What was the colour of this cell in Suits and Colours? (+ sprite)
                     Question = "What was the colour of this cell in {0}?",
                 },
                 [SSuitsAndColours.Suit] = new()
                 {
-                    // English: What was the suit of this cell in {0}?
-                    // Example: What was the suit of this cell in Suits and Colours?
+                    // English: What was the suit of this cell in {0}? (+ sprite)
+                    // Example: What was the suit of this cell in Suits and Colours? (+ sprite)
                     Question = "What was the suit of this cell in {0}?",
                 },
             },
@@ -14456,20 +14457,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SUnorderedKeys.KeyColor] = new()
                 {
-                    // English: What color was this key in the {1} stage of {0}?
-                    // Example: What color was this key in the first stage of Unordered Keys?
+                    // English: What color was this key in the {1} stage of {0}? (+ sprite)
+                    // Example: What color was this key in the first stage of Unordered Keys? (+ sprite)
                     Question = "Какого цвета была эта клавиша на {1}-м этапе {0}?",
                 },
                 [SUnorderedKeys.LabelColor] = new()
                 {
-                    // English: What color was the label of this key in the {1} stage of {0}?
-                    // Example: What color was the label of this key in the first stage of Unordered Keys?
+                    // English: What color was the label of this key in the {1} stage of {0}? (+ sprite)
+                    // Example: What color was the label of this key in the first stage of Unordered Keys? (+ sprite)
                     Question = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
                 },
                 [SUnorderedKeys.Label] = new()
                 {
-                    // English: What was the label of this key in the {1} stage of {0}?
-                    // Example: What was the label of this key in the first stage of Unordered Keys?
+                    // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
+                    // Example: What was the label of this key in the first stage of Unordered Keys? (+ sprite)
                     Question = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
                 },
             },
@@ -14495,7 +14496,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 [SUnpleasantSquares.Color] = new()
                 {
-                    // English: What was the color of this square in {0}?
+                    // English: What was the color of this square in {0}? (+ sprite)
                     Question = "What was the color of this square in {0}?",
                     Answers = new()
                     {

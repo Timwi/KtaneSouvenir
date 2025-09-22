@@ -1,15 +1,14 @@
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
 
 public enum SFaultyButtons
 {
-    [SouvenirQuestion("Which button referred to the {1} button in reading order in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which button referred to this button in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(4, 4)]
     ReferredToThisButton,
 
-    [SouvenirQuestion("Which button did the {1} button in reading order refer to in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which button did this button refer to in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(4, 4)]
     ThisButtonReferredTo
 }
@@ -26,10 +25,10 @@ public partial class SouvenirModule
         var referredButtons = GetField<int[]>(comp, "ReferredButtons").Get();
         for (var pos = 0; pos < 16; pos++)
         {
+            var thisButton = new Coord(4, 4, pos);
             var buttonRefersTo = new Coord(4, 4, referredButtons[pos]);
-            var refersToButton = new Coord(4, 4, Array.IndexOf(referredButtons, pos));
-            yield return question(SFaultyButtons.ReferredToThisButton, args: [Ordinal(pos + 1)]).Answers(refersToButton, preferredWrong: [buttonRefersTo]);
-            yield return question(SFaultyButtons.ThisButtonReferredTo, args: [Ordinal(pos + 1)]).Answers(buttonRefersTo, preferredWrong: [refersToButton]);
+            yield return question(SFaultyButtons.ThisButtonReferredTo, questionSprite: Sprites.GenerateGridSprite(thisButton)).Answers(buttonRefersTo);
+            yield return question(SFaultyButtons.ReferredToThisButton, questionSprite: Sprites.GenerateGridSprite(buttonRefersTo)).Answers(thisButton);
         }
     }
 }
