@@ -31,15 +31,13 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "qFunctions");
         yield return WaitForSolve;
 
-        var lastDigit = GetIntField(comp, "firstLastDigit").Get(-1, 9);
-        if (lastDigit == -1)
-            yield return legitimatelyNoQuestion(module, "It was solved with no queries! This isn’t a bug, just impressive (or cheating).");
-
         var lNum = GetIntField(comp, "numberA").Get(1, 999);
         var rNum = GetIntField(comp, "numberB").Get(1, 999);
         var theLetter = GetField<string>(comp, "ruleLetter").Get(s => s.Length != 1 ? "expected length 1" : null);
 
-        yield return question(SFunctions.LastDigit).Answers(lastDigit.ToString());
+        var lastDigit = GetIntField(comp, "firstLastDigit").Get(-1, 9);
+        if (lastDigit != -1)
+            yield return question(SFunctions.LastDigit).Answers(lastDigit.ToString());
         yield return question(SFunctions.LeftNumber).Answers(lNum.ToString(), preferredWrong: Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray());
         yield return question(SFunctions.Letter).Answers(theLetter);
         yield return question(SFunctions.RightNumber).Answers(rNum.ToString(), preferredWrong: Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray());
