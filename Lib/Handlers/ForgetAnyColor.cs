@@ -32,26 +32,34 @@ public partial class SouvenirModule
         var calculate = GetField<object>(init, "calculate").Get();
         var fldFigures = GetListField<int>(calculate, "figureSequences");
 
-        var activated = false;
-        module.Module.OnActivate += () => activated = true;
-        while (!activated)
-            yield return null;
+        yield return WaitForActivate;
+
         yield return null; // Wait one extra frame to ensure that maxStage has been set.
 
         var maxStage = GetIntField(init, "maxStage").Get(min: 0);
         if (maxStage == 0)
             yield return legitimatelyNoQuestion(module, "There were no stages.");
 
-        var myCylinders = fldCylinders.Get(v => v.Rank != 2 || v.GetLength(0) != maxStage + 1 || v.GetLength(1) != 3 ? $"expected a {maxStage + 1}×3 2D array" : null);
-        var myFigures = fldFigures.Get();
-
-        yield return WaitForUnignoredModules;
-
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" }
             .Select(str => TranslateQuestionString(SForgetAnyColor.QCylinder, str)).ToArray();
         var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" }
             .Select(str => str.Select(ch => TranslateQuestionString(SForgetAnyColor.QCylinder, ch.ToString())).JoinString()).ToArray();
         var cylinderFormatter = TranslateQuestionString(SForgetAnyColor.QCylinder, "{0}, {1}, {2}");
+
+        var myCylinders = fldCylinders.Get(v =>
+        {
+            if (v.Rank != 2 || v.GetLength(0) != maxStage + 1 || v.GetLength(1) != 3)
+                return $"expected a {maxStage + 1}×3 2D array";
+            for (var i = 0; i < v.GetLength(0); i++)
+                for (var j = 0; j < v.GetLength(1); j++)
+                    if ((int) v.GetValue(i, j) is int w && (w < 0 || w >= colorNames.Length))
+                        return $"index [{i}, {j}] is {w}, expected 0–{colorNames.Length - 1}";
+            return null;
+        });
+
+        yield return WaitForUnignoredModules;
+
+        var myFigures = fldFigures.Get(expectedLength: maxStage, validator: w => w < 0 || w >= figureNames.Length ? $"expected 0–{figureNames.Length - 1}" : null);
 
         string getCylinders(Array cylinders, int stage) => string.Format(cylinderFormatter,
             Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(stage, ix)]).ToArray());
@@ -60,7 +68,7 @@ public partial class SouvenirModule
         while (preferredCylinders.Count < 7)
             preferredCylinders.Add(string.Format(cylinderFormatter, colorNames.PickRandom(), colorNames.PickRandom(), colorNames.PickRandom()));
 
-        for (var stage = 0; stage < myCylinders.Length; stage++)
+        for (var stage = 0; stage < maxStage; stage++)
         {
             var correctCylinders = getCylinders(myCylinders, stage);
             var correctFigure = figureNames[myFigures[stage]];
