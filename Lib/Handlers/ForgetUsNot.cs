@@ -10,7 +10,7 @@ public enum SForgetUsNot
     [SouvenirQuestion("Which module name was used for stage {1} in {0}?", OneColumn4Answers, ExampleAnswers = ["Souvenir", "The Button", "The Needlessly Complicated Button", "8", "Eight", "Zero, Zero"], Arguments = ["1", "2", "3", "4", "5"], ArgumentGroupSize = 1)]
     Stage,
 
-    [SouvenirDiscriminator("the Forget Us Not in which {0} was used for stage {1}", Arguments = ["1", "1", "1", "2", "2", "1", "2", "2"], ArgumentGroupSize = 2)]
+    [SouvenirDiscriminator("the Forget Us Not in which {0} was used for stage {1}", Arguments = ["Memory", "1", "The Button", "2", "Polyhedral Maze", "1", "Coordinates", "2"], ArgumentGroupSize = 2)]
     Discriminator
 }
 
@@ -53,9 +53,8 @@ public partial class SouvenirModule
 
         for (var i = 0; i < order.Count; i++)
         {
-            var n = order[i];
-            yield return new Discriminator(SForgetUsNot.Discriminator, $"stage{i}", n, args: [n, (i + 1).ToString()]);
-            yield return question(SForgetUsNot.Stage, args: [(i + 1).ToString()]).Answers(n, all: allAnswers, preferredWrong: wrongAnswers);
+            yield return new Discriminator(SForgetUsNot.Discriminator, $"stage{i}", order[i], args: [order[i], (i + 1).ToString()]);
+            yield return question(SForgetUsNot.Stage, args: [(i + 1).ToString()]).AvoidDiscriminators($"stage{i}").Answers(order[i], all: allAnswers, preferredWrong: wrongAnswers);
         }
     }
 }

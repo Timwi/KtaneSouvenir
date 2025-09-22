@@ -11,7 +11,7 @@ public class CoordAnswerSet(AnswerLayout layout, Coord[] answers, int correctInd
 
     protected override float _multiColumnVerticalSpacing => 7.75f;
 
-    public override IEnumerable<string> DebugAnswers => _answers.Select(a => a.ToString());
+    public override IEnumerable<string> DebugAnswers => _answers.Distinct().Select(a => a.ToString());
     protected override int NumAnswersProvided => _answers.Length;
 
     public override void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex) => souvenir.Answers[answerIndex].transform.Find("SpriteHolder").gameObject.SetActive(on);

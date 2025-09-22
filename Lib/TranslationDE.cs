@@ -5448,7 +5448,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SForgetUsNot.Discriminator] = new()
                 {
                     // English: the Forget Us Not in which {0} was used for stage {1}
-                    // Example: the Forget Us Not in which 1 was used for stage 1
+                    // Example: the Forget Us Not in which Memory was used for stage 1
                     Discriminator = "the Forget Us Not in which {0} was used for stage {1}",
                 },
             },

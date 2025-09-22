@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class AudioAnswerSet(SouvenirQuestionAttribute qAttr, AudioClip[] answers
     internal int _selected = -1;
     private Coroutine _coroutine;
     private KMAudio.KMAudioRef _audioRef;
+    public override IEnumerable<string> DebugAnswers => _clips.Distinct().Select(c => c.name);
 
     public override void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex)
     {

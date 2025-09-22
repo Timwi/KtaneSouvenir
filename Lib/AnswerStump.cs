@@ -73,7 +73,7 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
         {
             // Pick 𝑛−1 random wrong answers.
             if (allAnswers != null)
-                answers.AddRange(allAnswers.Except(Correct));
+                answers.AddRange(allAnswers.Except(Correct).Distinct());
             if (answers.Count <= attr.NumAnswers - 1)
             {
                 if (attr.AnswerGenerators?.FirstOrDefault() is AnswerGeneratorAttribute<T>)

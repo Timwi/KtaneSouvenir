@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Souvenir;
 
 public sealed class TextAnswerSet(string[] answers, int correctIndex, SouvenirQuestionAttribute qAttr, TextAnswerInfo info) : AnswerSet(answers.Length, correctIndex, qAttr.Layout)
 {
-    public override IEnumerable<string> DebugAnswers => answers;
+    public override IEnumerable<string> DebugAnswers => answers.Distinct();
     protected override int NumAnswersProvided => answers.Length;
     public override object[] Answers => answers;
 
