@@ -40,8 +40,8 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         yield return new Discriminator(SNavyButton.DGiven, "given-v", givenValue, ["value", givenValue.ToString()]);
-        yield return new Discriminator(SNavyButton.DGiven, "given-c", givenValue, ["(0-indexed) column", (givenIndex % 4).ToString()]);
-        yield return new Discriminator(SNavyButton.DGiven, "given-r", givenValue, ["(0-indexed) row", (givenIndex / 4).ToString()]);
+        yield return new Discriminator(SNavyButton.DGiven, "given-c", givenIndex % 4, ["(0-indexed) column", (givenIndex % 4).ToString()]);
+        yield return new Discriminator(SNavyButton.DGiven, "given-r", givenIndex / 4, ["(0-indexed) row", (givenIndex / 4).ToString()]);
         for (var grLtrIx = 0; grLtrIx < allGreekLetters.Length; grLtrIx++)
             yield return new Discriminator(
                 vowelGreekLetters.Contains(allGreekLetters[grLtrIx]) ? SNavyButton.DGreekLettersV : SNavyButton.DGreekLettersNV,
