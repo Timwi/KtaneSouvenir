@@ -49,16 +49,13 @@ public partial class SouvenirModule
             stages[c - 1] = (h + 1, Array.IndexOf(validMinutes, m));
         }
 
-        if (module.Info.NumModules == 1)
-        {
-            for (var c = 0; c < stages.Length; c++)
-                if (stages[c] is not (0, 0))
-                {
-                    var struck = $"{c + 1}:00";
-                    var time = $"{stages[c].h}:{minuteValues[stages[c].m]:00}";
-                    yield return question(SHickoryDickoryDock.Time, args: [struck]).Answers(time);
-                    yield return new Discriminator(SHickoryDickoryDock.Discriminator, $"stage{c}", time, args: [time, struck]);
-                }
-        }
+        for (var c = 0; c < stages.Length; c++)
+            if (stages[c] is not (0, 0))
+            {
+                var struck = $"{c + 1}:00";
+                var time = $"{stages[c].h}:{minuteValues[stages[c].m]:00}";
+                yield return question(SHickoryDickoryDock.Time, args: [struck]).Answers(time);
+                yield return new Discriminator(SHickoryDickoryDock.Discriminator, $"stage{c}", time, args: [time, struck]);
+            }
     }
 }

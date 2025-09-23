@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -28,11 +28,14 @@ public partial class SouvenirModule
         var materials = GetArrayField<Material>(comp, "PuzzleMats", isPublic: true).Get(expectedLength: 2);
         var puzzleCount = puzzlePiecesMeshRenders.Count(mr => mr.material.name.Substring(0, 6).Trim() == materials[1].name);
 
+        yield return question(SGarfieldKart.Track).Answers(allAnswers[answerIndex], all: allAnswers.ToArray());
+        yield return question(SGarfieldKart.PuzzleCount).Answers(puzzleCount.ToString());
+
+        // Allow other Souvenirs to get the puzzle count
+        yield return null;
+
         // Change the puzzle pieces to orange
         foreach (var mr in puzzlePiecesMeshRenders)
             mr.material = materials[0];
-
-        yield return question(SGarfieldKart.Track).Answers(allAnswers[answerIndex], all: allAnswers.ToArray());
-        yield return question(SGarfieldKart.PuzzleCount).Answers(puzzleCount.ToString());
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SStability
 {
-    [SouvenirQuestion("What was the color of the {1} lit LED in {0}?", TwoColumns4Answers, "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [SouvenirQuestion("What was the color of the {1} lit LED in {0}?", OneColumn3Answers, "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     LedColors,
 
     [SouvenirQuestion("What was the identification number in {0}?", ThreeColumns6Answers)]
