@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -8,7 +8,7 @@ public enum SSuitsAndColours
     [SouvenirQuestion("What was the colour of this cell in {0}?", TwoColumns4Answers, "yellow", "green", "orange", "red", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colour,
 
-    [SouvenirQuestion("What was the suit of this cell in {0}?", TwoColumns4Answers, "spades", "diamonds", "clubs", "hearts", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the suit of this cell in {0}?", TwoColumns4Answers, "spades", "hearts", "clubs", "diamonds", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Suit
 }
 
@@ -28,7 +28,7 @@ public partial class SouvenirModule
         {
             var coordinate = new Coord(3, 3, i);
             yield return question(SSuitsAndColours.Colour, questionSprite: Sprites.GenerateGridSprite(coordinate)).Answers(colours[correctColourIndices[i]]);
-            yield return question(SSuitsAndColours.Suit, questionSprite: Sprites.GenerateGridSprite(coordinate)).Answers(colours[correctSuitIndices[i]]);
+            yield return question(SSuitsAndColours.Suit, questionSprite: Sprites.GenerateGridSprite(coordinate)).Answers(suits[correctSuitIndices[i]]);
         }
     }
 }
