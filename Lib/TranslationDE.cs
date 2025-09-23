@@ -13633,35 +13633,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        [typeof(SStroopsTest)] = new()
-        {
-            NeedsTranslation = true,
-            Questions = new()
-            {
-                [SStroopsTest.Word] = new()
-                {
-                    // English: What was the {1} submitted word in {0}?
-                    // Example: What was the first submitted word in Stroop’s Test?
-                    Question = "What was the {1} submitted word in {0}?",
-                },
-                [SStroopsTest.Color] = new()
-                {
-                    // English: What was the {1} submitted word’s color in {0}?
-                    // Example: What was the first submitted word’s color in Stroop’s Test?
-                    Question = "What was the {1} submitted word’s color in {0}?",
-                    Answers = new()
-                    {
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Magenta"] = "Magenta",
-                        ["White"] = "White",
-                    },
-                },
-            },
-        },
-
         [typeof(SStupidSlots)] = new()
         {
             NeedsTranslation = true,
@@ -13801,13 +13772,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SSUSadmin)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSUSadmin.Security] = new()
                 {
                     // English: Which security protocol was installed in {0}?
-                    Question = "Which security protocol was installed in {0}?",
+                    Question = "Welches Sicherheitsprotokoll war bei {0} installiert?",
+                },
+                [SSUSadmin.Version] = new()
+                {
+                    // English: What was the version number in {0}?
+                    Question = "Was war bei {0} die Versionsnummer?",
                 },
             },
         },

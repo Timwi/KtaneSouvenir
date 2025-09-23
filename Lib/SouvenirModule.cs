@@ -983,7 +983,7 @@ public partial class SouvenirModule : MonoBehaviour
 
                     if (discrs == null && hAttr.IsBossModule)
                     {
-                        Debug.Log($"<Souvenir #{_moduleId}> No applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with args {q.QuestionStump.Args.Stringify()} and answers {answerSet.DebugAnswers.Stringify()}.");
+                        Debug.Log($"<Souvenir #{_moduleId}> No applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with args {q.QuestionStump.Args.Stringify()} and answers {answerSet.DebugAnswers.ToArray().Stringify()}.");
                         questions.Remove(q);
                         bossTried = true;
                         goto tryAgain;

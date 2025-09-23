@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SHyperForget
@@ -28,14 +28,13 @@ public partial class SouvenirModule
 
         yield return WaitForUnignoredModules;
 
-        var currentStage = GetField<int>(comp, "currentStage").Get();
-        if (currentStage < 1)
+        if (rots.Count < 1)
             yield return legitimatelyNoQuestion(module, "No question for HyperForget because not enough stages were shown.");
 
-        for (var stage = 0; stage < currentStage; stage++)
+        for (var stage = 0; stage < rots.Count; stage++)
         {
             yield return new Discriminator(SHyperForget.Discriminator, $"stage{stage}", rots[stage], [rots[stage], Ordinal(stage + 1)]);
-            yield return question(SHyperForget.Rotations, args: [Ordinal(stage + 1)]).Answers(rots[stage]);
+            yield return question(SHyperForget.Rotations, args: [Ordinal(stage + 1)]).AvoidDiscriminators($"stage{stage}").Answers(rots[stage]);
         }
     }
 }

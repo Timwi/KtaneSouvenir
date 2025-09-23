@@ -13371,35 +13371,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
-        [typeof(SStroopsTest)] = new()
-        {
-            ModuleName = "ストループ検査",
-            Questions = new()
-            {
-                [SStroopsTest.Word] = new()
-                {
-                    // English: What was the {1} submitted word in {0}?
-                    // Example: What was the first submitted word in Stroop’s Test?
-                    Question = "{0}で{1}番目に送信した単語は？",
-                },
-                [SStroopsTest.Color] = new()
-                {
-                    // English: What was the {1} submitted word’s color in {0}?
-                    // Example: What was the first submitted word’s color in Stroop’s Test?
-                    Question = "{0}で{1}番目に送信した単語の色は？",
-                    Answers = new()
-                    {
-                        ["Red"] = "赤",
-                        ["Yellow"] = "黄",
-                        ["Green"] = "緑",
-                        ["Blue"] = "青",
-                        ["Magenta"] = "マゼンタ",
-                        ["White"] = "白",
-                    },
-                },
-            },
-        },
-
         [typeof(SStupidSlots)] = new()
         {
             ModuleName = "馬鹿スロット",
@@ -13538,6 +13509,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(SSUSadmin)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "システム侵入者",
             Questions = new()
             {
@@ -13545,6 +13517,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 {
                     // English: Which security protocol was installed in {0}?
                     Question = "{0}にインストールされたセキュリティプロトコルは？",
+                },
+                [SSUSadmin.Version] = new()
+                {
+                    // English: What was the version number in {0}?
+                    Question = "What was the version number in {0}?",
                 },
             },
         },

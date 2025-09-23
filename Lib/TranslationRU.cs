@@ -13298,35 +13298,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             },
         },
 
-        [typeof(SStroopsTest)] = new()
-        {
-            NeedsTranslation = true,
-            Questions = new()
-            {
-                [SStroopsTest.Word] = new()
-                {
-                    // English: What was the {1} submitted word in {0}?
-                    // Example: What was the first submitted word in Stroop’s Test?
-                    Question = "What was the {1} submitted word in {0}?",
-                },
-                [SStroopsTest.Color] = new()
-                {
-                    // English: What was the {1} submitted word’s color in {0}?
-                    // Example: What was the first submitted word’s color in Stroop’s Test?
-                    Question = "What was the {1} submitted word’s color in {0}?",
-                    Answers = new()
-                    {
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Magenta"] = "Magenta",
-                        ["White"] = "White",
-                    },
-                },
-            },
-        },
-
         [typeof(SStupidSlots)] = new()
         {
             Questions = new()
@@ -13461,6 +13432,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SSUSadmin)] = new()
         {
+            NeedsTranslation = true,
             Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
@@ -13468,6 +13440,11 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Which security protocol was installed in {0}?
                     Question = "Какой протокол безопасности был установлен на {0}?",
+                },
+                [SSUSadmin.Version] = new()
+                {
+                    // English: What was the version number in {0}?
+                    Question = "What was the version number in {0}?",
                 },
             },
         },
