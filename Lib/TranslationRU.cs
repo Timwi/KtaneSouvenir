@@ -13530,12 +13530,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     Question = "Какой был цвет начального {0}?",
                     Answers = new()
                     {
-                        ["Blue"] = "Blue",
-                        ["Cyan"] = "Cyan",
-                        ["Magenta"] = "Magenta",
-                        ["Orange"] = "Orange",
                         ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                        ["Yellow"] = "Yellow",
+                        ["Black"] = "Black",
                         ["White"] = "White",
+                        ["Gray"] = "Gray",
+                        ["Orange"] = "Orange",
+                        ["Pink"] = "Pink",
+                        ["Brown"] = "Brown",
                     },
                 },
             },
@@ -13636,12 +13642,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             NeedsTranslation = true,
             Questions = new()
             {
-                [SSynapseSays.Displays] = new()
-                {
-                    // English: What number was displayed in the {1} stage of {0}?
-                    // Example: What number was displayed in the first stage of Synapse Says?
-                    Question = "What number was displayed in the {1} stage of {0}?",
-                },
                 [SSynapseSays.Flashes] = new()
                 {
                     // English: What color flashed {1} in the {2} stage of {0}?

@@ -13592,6 +13592,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(SSwitchingMaze)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "切り替え迷路",
             Questions = new()
             {
@@ -13606,12 +13607,18 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Question = "{0}の開始迷路の色は？",
                     Answers = new()
                     {
-                        ["Blue"] = "青",
-                        ["Cyan"] = "シアン",
-                        ["Magenta"] = "マゼンタ",
-                        ["Orange"] = "オレンジ",
                         ["Red"] = "赤",
+                        ["Green"] = "Green",
+                        ["Blue"] = "青",
+                        ["Magenta"] = "マゼンタ",
+                        ["Cyan"] = "シアン",
+                        ["Yellow"] = "Yellow",
+                        ["Black"] = "Black",
                         ["White"] = "白",
+                        ["Gray"] = "Gray",
+                        ["Orange"] = "オレンジ",
+                        ["Pink"] = "Pink",
+                        ["Brown"] = "Brown",
                     },
                 },
             },
@@ -13712,12 +13719,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             NeedsTranslation = true,
             Questions = new()
             {
-                [SSynapseSays.Displays] = new()
-                {
-                    // English: What number was displayed in the {1} stage of {0}?
-                    // Example: What number was displayed in the first stage of Synapse Says?
-                    Question = "What number was displayed in the {1} stage of {0}?",
-                },
                 [SSynapseSays.Flashes] = new()
                 {
                     // English: What color flashed {1} in the {2} stage of {0}?

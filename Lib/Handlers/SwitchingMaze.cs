@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
@@ -11,7 +11,7 @@ public enum SSwitchingMaze
     [AnswerGenerator.Strings(8, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/")]
     Seed,
 
-    [SouvenirQuestion("What was the starting maze color in {0}?", ThreeColumns6Answers, "Blue", "Cyan", "Magenta", "Orange", "Red", "White", TranslateAnswers = true)]
+    [SouvenirQuestion("What was the starting maze color in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Cyan", "Yellow", "Black", "White", "Gray", "Orange", "Pink", "Brown", TranslateAnswers = true)]
     Color
 }
 
