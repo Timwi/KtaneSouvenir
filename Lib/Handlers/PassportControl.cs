@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -17,6 +17,10 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessPassportControl(ModuleData module)
     {
         var comp = GetComponent(module, "passportControlScript");
+
+        if (GetField<bool>(comp, "allPass").Get() || GetField<bool>(comp, "allDeny").Get())
+            yield return legitimatelyNoQuestion(module, "One of the unicorn rules (all pass or all deny) was in effect.");
+
         var fldPassages = GetIntField(comp, "passages");
         var fldExpiration = GetArrayField<int>(comp, "expiration");
         var stamps = GetArrayField<KMSelectable>(comp, "stamps", isPublic: true).Get();
