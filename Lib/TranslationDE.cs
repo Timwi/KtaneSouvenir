@@ -5137,7 +5137,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SForgetMeNot)] = new()
         {
-            ModuleName = "Vergissmeinnicht",
+            ModuleName = "Vergiss Mein Nicht",
             Questions = new()
             {
                 [SForgetMeNot.Question] = new()
@@ -5153,7 +5153,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget Me Not which displayed a {0} in the {1} stage
                     // Example: the Forget Me Not which displayed a 1 in the first stage
-                    Discriminator = "dem Vergissmeinnicht, in dessen {1}er Stufe {0} angezeigt wurde,",
+                    Discriminator = "dem Vergiss Mein Nicht, in dessen {1}er Stufe {0} angezeigt wurde,",
                 },
             },
         },
@@ -5233,28 +5233,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} digit of the answer in {0}?
                     // Example: What was the first digit of the answer in Forget’s Ultimate Showdown?
-                    Question = "What was the {1} digit of the answer in {0}?",
+                    Question = "Was war bei {0} die {1}e Ziffer in der Lösung?",
                 },
                 [SForgetsUltimateShowdown.Bottom] = new()
                 {
                     // English: What was the {1} digit of the bottom number in {0}?
                     // Example: What was the first digit of the bottom number in Forget’s Ultimate Showdown?
-                    Question = "What was the {1} digit of the bottom number in {0}?",
+                    Question = "Was war bei {0} die {1}e Ziffer in der unteren Zahl?",
                 },
                 [SForgetsUltimateShowdown.Initial] = new()
                 {
                     // English: What was the {1} digit of the initial number in {0}?
                     // Example: What was the first digit of the initial number in Forget’s Ultimate Showdown?
-                    Question = "What was the {1} digit of the initial number in {0}?",
+                    Question = "Was war bei {0} die {1}e Ziffer in der Anfangszahl?",
                 },
                 [SForgetsUltimateShowdown.Method] = new()
                 {
                     // English: What was the {1} method used in {0}?
                     // Example: What was the first method used in Forget’s Ultimate Showdown?
-                    Question = "What was the {1} method used in {0}?",
+                    Question = "Was war bei {0} die als {1}e verwendete Methode?",
                     Answers = new()
                     {
-                        ["Forget Me Not"] = "Forget Me Not",
+                        ["Forget Me Not"] = "Vergiss Mein Nicht",
                         ["Simon’s Stages"] = "Simon’s Stages",
                         ["Forget Me Later"] = "Forget Me Later",
                         ["Forget Infinity"] = "Forget Infinity",
@@ -6969,7 +6969,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SKugelblitz)] = new()
         {
-            NeedsTranslation = true,
             Gender = Gender.Masculine,
             Questions = new()
             {
@@ -6999,12 +6998,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Discriminator = "dem {0} Kugelblitz",
                     Arguments = new()
                     {
-                        ["black"] = "black",
-                        ["red"] = "red",
-                        ["orange"] = "orange",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["black"] = "schwarzen",
+                        ["red"] = "roten",
+                        ["orange"] = "orangenen",
+                        ["yellow"] = "gelben",
+                        ["green"] = "grünen",
+                        ["blue"] = "blauen",
                         ["indigo"] = "indigofarbenen",
                         ["violet"] = "violetten",
                     },
@@ -7012,30 +7011,30 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SKugelblitz.NoLinks] = new()
                 {
                     // English: the Kugelblitz linked with no other Kugelblitzes
-                    Discriminator = "dem Kugelblitz, der mit keinem anderen Kugelblitzen gekoppelt ist,",
+                    Discriminator = "dem mit keinem anderen Kugelblitz gekoppelten Kugelblitz",
                 },
                 [SKugelblitz.Links] = new()
                 {
                     // English: the {0} Kugelblitz linked with {1}
                     // Example: the black Kugelblitz linked with one other Kugelblitz
-                    Discriminator = "the {0} Kugelblitz linked with {1}",
+                    Discriminator = "dem {0} mit {1} gekoppelten Kugelblitz",
                     Arguments = new()
                     {
-                        ["black"] = "black",
-                        ["one other Kugelblitz"] = "one other Kugelblitz",
-                        ["red"] = "red",
-                        ["two other Kugelblitzes"] = "two other Kugelblitzes",
-                        ["orange"] = "orange",
-                        ["three other Kugelblitzes"] = "three other Kugelblitzes",
-                        ["yellow"] = "yellow",
-                        ["four other Kugelblitzes"] = "four other Kugelblitzes",
-                        ["green"] = "green",
-                        ["five other Kugelblitzes"] = "five other Kugelblitzes",
-                        ["blue"] = "blue",
-                        ["six other Kugelblitzes"] = "six other Kugelblitzes",
-                        ["indigo"] = "indigo",
-                        ["seven other Kugelblitzes"] = "seven other Kugelblitzes",
-                        ["violet"] = "violet",
+                        ["black"] = "schwarzen",
+                        ["one other Kugelblitz"] = "einem anderen Kugelblitz",
+                        ["red"] = "roten",
+                        ["two other Kugelblitzes"] = "zwei anderen Kugelblitzen",
+                        ["orange"] = "orangenen",
+                        ["three other Kugelblitzes"] = "drei anderen Kugelblitzen",
+                        ["yellow"] = "gelben",
+                        ["four other Kugelblitzes"] = "vier anderen Kugelblitzen",
+                        ["green"] = "grünen",
+                        ["five other Kugelblitzes"] = "fünf anderen Kugelblitzen",
+                        ["blue"] = "blauen",
+                        ["six other Kugelblitzes"] = "sechs anderen Kugelblitzen",
+                        ["indigo"] = "indigofarbenen",
+                        ["seven other Kugelblitzes"] = "sieben anderen Kugelblitzen",
+                        ["violet"] = "violetten",
                     },
                 },
             },
@@ -8667,31 +8666,30 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SMulticoloredSwitches)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SMulticoloredSwitches.LedColor] = new()
                 {
                     // English: What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?
                     // Example: What color was the first LED on the top row when the tiny LED was lit in Multicolored Switches?
-                    Question = "What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1}e LED in der {2} Reihe, als die Mini-LED {3} war?",
                     Answers = new()
                     {
-                        ["black"] = "black",
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["yellow"] = "yellow",
-                        ["blue"] = "blue",
+                        ["black"] = "schwarz",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["yellow"] = "gelb",
+                        ["blue"] = "blau",
                         ["magenta"] = "magenta",
-                        ["cyan"] = "cyan",
-                        ["white"] = "white",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
                     },
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["lit"] = "lit",
-                        ["bottom"] = "bottom",
-                        ["unlit"] = "unlit",
+                        ["top"] = "oberen",
+                        ["lit"] = "an",
+                        ["bottom"] = "unteren",
+                        ["unlit"] = "aus",
                     },
                 },
             },
@@ -9149,33 +9147,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNotConnectionCheck)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verbindungsprüfung Mal Anders",
             Questions = new()
             {
                 [SNotConnectionCheck.Flashes] = new()
                 {
                     // English: What symbol flashed on the {1} button in {0}?
                     // Example: What symbol flashed on the top left button in Not Connection Check?
-                    Question = "What symbol flashed on the {1} button in {0}?",
+                    Question = "Welches Symbol ist bei {0} auf der {1} Taste aufgeleuchtet?",
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "oberen linken",
+                        ["top right"] = "oberen rechten",
+                        ["bottom left"] = "unteren linken",
+                        ["bottom right"] = "unteren rechten",
                     },
                 },
                 [SNotConnectionCheck.Values] = new()
                 {
                     // English: What was the value of the {1} button in {0}?
                     // Example: What was the value of the top left button in Not Connection Check?
-                    Question = "What was the value of the {1} button in {0}?",
+                    Question = "Welchen Wert hatte bei {0} die {1} Taste?",
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "obere linke",
+                        ["top right"] = "obere rechte",
+                        ["bottom left"] = "untere linke",
+                        ["bottom right"] = "untere rechte",
                     },
                 },
             },
@@ -10152,14 +10150,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SOrderedKeys)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SOrderedKeys.Colors] = new()
                 {
                     // English: What color was this key in the {1} stage of {0}? (+ sprite)
                     // Example: What color was this key in the first stage of Ordered Keys? (+ sprite)
-                    Question = "What color was the {2} key in the {1} stage of {0}?",
+                    Question = "Welche Farbe hatte bei {0} diese Taste in der {1}en Stufe?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -10174,13 +10171,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What was the label of this key in the first stage of Ordered Keys? (+ sprite)
-                    Question = "What was the label on the {2} key in the {1} stage of {0}?",
+                    Question = "Welche Aufschrift hatte bei {0} diese Taste in der {1}en Stufe?",
                 },
                 [SOrderedKeys.LabelColors] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What color was the label of this key in the first stage of Ordered Keys? (+ sprite)
-                    Question = "What color was the label of the {2} key in the {1} stage of {0}?",
+                    Question = "Welche Farbe hatte bei {0} die Aufschrift dieser Taste in der {1}en Stufe?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -12331,22 +12328,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SSimonScreams)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Schreit",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SSimonScreams.Flashing] = new()
                 {
                     // English: Which color flashed {1} in the final sequence in {0}?
                     // Example: Which color flashed first in the final sequence in Simon Screams?
-                    Question = "Which color flashed {1} in the final sequence in {0}?",
+                    Question = "Welche Farbe hat bei {0} als {1}e geblinkt?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
                     },
                 },
                 [SSimonScreams.RuleSimple] = new()
@@ -12554,20 +12552,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SSimonShouts)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Ruft",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SSimonShouts.FlashingLetter] = new()
                 {
                     // English: Which letter flashed on the {1} button in {0}?
                     // Example: Which letter flashed on the top button in Simon Shouts?
-                    Question = "Which letter flashed on the {1} button in {0}?",
+                    Question = "Welcher Buchstabe wurde bei {0} durch die {1} signalisiert?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["left"] = "left",
-                        ["right"] = "right",
-                        ["bottom"] = "bottom",
+                        ["top"] = "Hoch-Taste",
+                        ["left"] = "Links-Taste",
+                        ["right"] = "Rechts-Taste",
+                        ["bottom"] = "Runter-Taste",
                     },
                 },
             },
@@ -12575,14 +12574,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SSimonShrieks)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Kreischt",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SSimonShrieks.FlashingButton] = new()
                 {
                     // English: How many spaces clockwise from the arrow was the {1} flash in the final sequence in {0}?
                     // Example: How many spaces clockwise from the arrow was the first flash in the final sequence in Simon Shrieks?
-                    Question = "How many spaces clockwise from the arrow was the {1} flash in the final sequence in {0}?",
+                    Question = "Wie weit vom Pfeil im Uhrzeigersinn war bei {0} die als {1}e aufgeleuchtete Taste?",
                 },
             },
         },
