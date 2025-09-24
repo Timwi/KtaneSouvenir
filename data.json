@@ -1,6 +1,7 @@
 {
     "contributorsCount": 36,
-    "modulesCount": 683,
-    "questionsCount": 1019,
-    "translationProgress": { "de": "40.63%", "ja": "91.56%", "ru": "89.50%" }
+    "modulesCount": 682,
+    "questionsCount": 1018,
+    "discriminatorsCount": 46,
+    "translationProgress": { "de": "34.46%", "ja": "87.98%", "ru": "77.86%" }
 }

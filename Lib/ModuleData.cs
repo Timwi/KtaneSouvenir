@@ -10,4 +10,6 @@ public sealed class ModuleData
     public bool Unsolved = true;
     /// <summary>The order in which this module has been solved, or <see langword="0"/> if it is currently unsolved.</summary>
     public int SolveIndex;
+    /// <summary>Contains information about multiple modules of the same type on the bomb.</summary>
+    public ModuleTypeInfo Info;
 }

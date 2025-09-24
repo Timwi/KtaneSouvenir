@@ -67,7 +67,7 @@ dotnet_style_prefer_inferred_tuple_names = true
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true
 dotnet_style_prefer_simplified_boolean_expressions = true
 dotnet_style_prefer_simplified_interpolation = true
-dotnet_style_prefer_collection_expression = false
+dotnet_style_prefer_collection_expression = true
 
 # Field preferences
 dotnet_style_readonly_field = false
@@ -193,9 +193,9 @@ csharp_preserve_single_line_statements = true
 # IDE1006: Naming conventions
 dotnet_diagnostic.ide1006.severity = none
 
-# IDE0028: Collection initialization can be simplified — the way List<QandA>s are populated in Souvenir, this reduces readability
-dotnet_diagnostic.ide0028.severity = none
-
 # IDE0057: Substring can be simplified — I prefer to sometimes use .Substring
 dotnet_diagnostic.ide0057.severity = none
+
+# IDE0305: I want to be able to use .ToArray()/.ToList()
+dotnet_diagnostic.IDE0305.severity = none
 

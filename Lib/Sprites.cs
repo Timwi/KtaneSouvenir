@@ -11,9 +11,9 @@ public static class Sprites
 {
     public static Material ColorBlit { set; get; }
 
-    private static readonly Dictionary<string, Sprite> _circleSpriteCache = new();
-    private static readonly Dictionary<string, Sprite> _gridSpriteCache = new();
-    private static readonly Dictionary<AudioClip, Sprite> _audioSpriteCache = new();
+    private static readonly Dictionary<string, Sprite> _circleSpriteCache = [];
+    private static readonly Dictionary<string, Sprite> _gridSpriteCache = [];
+    private static readonly Dictionary<AudioClip, Sprite> _audioSpriteCache = [];
 
     private static bool IsPointInCircle(int pixelX, int pixelY, int radius, int gap, int dotX, int dotY)
     {
@@ -90,11 +90,11 @@ public static class Sprites
 
     public static Sprite GenerateGridSprite(Coord coord)
     {
-        var tw = 4 * coord.Width + 1;
-        var th = 4 * coord.Height + 1;
         var key = $"{coord.Width}:{coord.Height}:{coord.Index}";
         if (!_gridSpriteCache.TryGetValue(key, out var sprite))
         {
+            var tw = 4 * coord.Width + 1;
+            var th = 4 * coord.Height + 1;
             var tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
             tx.SetPixels32(Ut.NewArray(tw * th, ix =>
                 (ix % tw) % 4 == 0 || (ix / tw) % 4 == 0 ? new Color32(0xFF, 0xF8, 0xDD, 0xFF) :
@@ -176,7 +176,7 @@ public static class Sprites
             };
 
             answer.LoadAudioData();
-            var result = Enumerable.Repeat((Color) new Color32(0xFF, 0xF8, 0xDD, 0x00), _width * _height).ToArray();
+            var result = Ut.NewArray<Color>(_width * _height, _ => new Color32(0xFF, 0xF8, 0xDD, 0x00));
             tex.SetPixels(result);
             tex.Apply(false, false);
 
@@ -295,13 +295,5 @@ public static class Sprites
         RenderTexture.ReleaseTemporary(renderTex);
         dest.name = source.name;
         return dest;
-
-        //var tex = new Texture2D(source.width, source.height, source.format, mipmap: true, true);
-        //var colors = source.GetPixels32();
-        //for (int i = 0; i < colors.Length; i++)
-        //    colors[i] = new Color32(r, g, b, colors[i].a);
-        //tex.SetPixels32(colors);
-        //tex.Apply(true);
-        //return tex;
     }
 }

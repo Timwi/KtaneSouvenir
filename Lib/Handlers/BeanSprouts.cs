@@ -1,0 +1,37 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Souvenir;
+using UnityEngine;
+
+using static Souvenir.AnswerLayout;
+
+public enum SBeanSprouts
+{
+    [SouvenirQuestion("What was sprout {1} in {0}?", TwoColumns4Answers, "Raw", "Cooked", "Burnt", "Fake", TranslateAnswers = true, ArgumentGroupSize = 1, Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"])]
+    Colors,
+
+    [SouvenirQuestion("What bean was on sprout {1} in {0}?", TwoColumns4Answers, "Left", "Right", "None", "Both", TranslateAnswers = true, ArgumentGroupSize = 1, Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"])]
+    Beans
+}
+
+public partial class SouvenirModule
+{
+    [SouvenirHandler("beanSprouts", "Bean Sprouts", typeof(SBeanSprouts), "Anonymous")]
+    private IEnumerator<SouvenirInstruction> ProcessBeanSprouts(ModuleData module)
+    {
+        var comp = GetComponent(module, "beanSproutsScript");
+        yield return WaitForSolve;
+
+        var bns = GetField<int[]>(comp, "beanArray").Get(a => a.Length != 9 ? "Bad length" : a.Any(i => i is < 0 or >= 9) ? "Bad bean value" : null);
+        var eaten = GetField<KMSelectable[]>(comp, "Beans", true).Get(a => a.Length != 9 ? "Bad length" : null);
+
+        var flavors = new[] { "Raw", "Cooked", "Burnt" };
+        var flavors2 = new[] { "Left", "None", "Right" };
+        for (var i = 0; i < 9; i++)
+            if (eaten[i].transform.localScale.magnitude <= Mathf.Epsilon)
+            {
+                yield return question(SBeanSprouts.Colors, args: [(i + 1).ToString()]).Answers(flavors[bns[i] % 3]);
+                yield return question(SBeanSprouts.Beans, args: [(i + 1).ToString()]).Answers(flavors2[bns[i] / 3]);
+            }
+    }
+}

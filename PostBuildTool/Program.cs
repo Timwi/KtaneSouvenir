@@ -4,6 +4,9 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using RT.CommandLine;
+using RT.Json;
+using RT.Serialization;
+using RT.Util;
 using RT.Util.ExtensionMethods;
 using RT.Util.Text;
 
@@ -43,15 +46,11 @@ public static class Program
 
     private static void DoContributorStuff(string filepath, Assembly assembly)
     {
-        var moduleType = assembly.GetType("SouvenirModule");
-        var module = Activator.CreateInstance(moduleType);
-        var awakeMethod = moduleType.GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance);
-        awakeMethod.Invoke(module, null);
-        var fldDictionary = moduleType.GetField("_moduleProcessors", BindingFlags.NonPublic | BindingFlags.Instance);
-        var dictionary = (IDictionary) fldDictionary.GetValue(module);
+        var handlerAttrType = assembly.GetType("Souvenir.SouvenirHandlerAttribute");
         var contributorToModules = new Dictionary<string, List<string>>();
-        foreach (DictionaryEntry entry in dictionary)
-            contributorToModules.AddSafe((string) ((dynamic) entry.Value).Contributor, (string) ((dynamic) entry.Value).ModuleName);
+        foreach (dynamic attr in assembly.GetType("SouvenirModule").GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Select(m => m.GetCustomAttribute(handlerAttrType)).ToArray())
+            if (attr != null)
+                contributorToModules.AddSafe((string) attr.Contributor, ((string) attr.ModuleName).Replace("\uE001", "").Replace("\uE002", "").Apply(m => attr.AddThe ? $"{m}, The" : m));
 
         const int numColumns = 5;
 
@@ -95,22 +94,13 @@ public static class Program
 
     private static Dictionary<string, string> DoTranslationStuff(string translationFilePath, Assembly assembly)
     {
-        var questionsType = assembly.GetType("Souvenir.Question");
-        var attributeType = assembly.GetType("Souvenir.SouvenirQuestionAttribute");
+        var handlerAttrType = assembly.GetType("Souvenir.SouvenirHandlerAttribute");
+        var questionAttrType = assembly.GetType("Souvenir.SouvenirQuestionAttribute");
+        var discrAttrType = assembly.GetType("Souvenir.SouvenirDiscriminatorAttribute");
         var languages = (assembly.GetType("Souvenir.TranslationInfo").GetField("AllTranslations", BindingFlags.Static | BindingFlags.Public).GetValue(null) as IDictionary).Keys.Cast<string>().ToArray();
 
         var allInfos = new Dictionary<string, List<(FieldInfo fld, dynamic attr)>>();
         var addThe = new Dictionary<string, bool>();
-
-        foreach (var fld in questionsType.GetFields(BindingFlags.Public | BindingFlags.Static))
-        {
-            dynamic attr = fld.GetCustomAttribute(attributeType);
-            var key = (string) attr.ModuleName;
-            if (!allInfos.ContainsKey(key))
-                allInfos.Add(key, []);
-            allInfos[key].Add((fld, attr));
-            addThe[key] = attr.AddThe;
-        }
 
         var translationStats = new Dictionary<string, string>();
         foreach (var language in languages)
@@ -129,7 +119,8 @@ public static class Program
                 Console.Error.WriteLine($@"File {path} does not contain the “#region Translatable strings” and “#endregion” directives. Please put them back in.");
                 continue;
             }
-            var indent = alreadyFile[p1].Substring(0, alreadyFile[p1].IndexOf('#'));
+            var indentation = alreadyFile[p1].IndexOf('#');
+            string indent() => new(' ', indentation);
 
             var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
             var baseType = alreadyType;
@@ -140,142 +131,207 @@ public static class Program
             var tiFields = translationInfoType.GetFields().ToArray();
 
             var already = alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType);
-            var sb = new StringBuilder();
+            var outerSb = new StringBuilder();
             var translatedCount = 0;
             var totalCount = 0;
-            foreach (var kvp in allInfos)
+
+            // for each module handler...
+            foreach (var handlerMethod in assembly.GetType("SouvenirModule").GetMethods(BindingFlags.Instance | BindingFlags.NonPublic))
             {
-                sb.AppendLine($"{indent}// {(addThe[kvp.Key] ? "The " : "")}{kvp.Key.Replace("\uE001", "").Replace("\uE002", "")}");
-                foreach (var (qFld, attr) in kvp.Value)
+                dynamic handler = handlerMethod.GetCustomAttribute(handlerAttrType);
+                if (handler == null)
+                    continue;
+
+                var enumType = (Type) handler.EnumType;
+                dynamic alreadyHandler = already?.TranslateModule(enumType);
+
+                outerSb.AppendLine($"{indent()}[typeof({enumType.Name})] = new()");
+                outerSb.AppendLine($"{indent()}{{");
+                indentation += 4;
+
+                var sb = new StringBuilder();
+                var prospectiveModuleName = (string) alreadyHandler?.ModuleName;
+                if (prospectiveModuleName != null && prospectiveModuleName != handler.ModuleName)
+                    sb.AppendLine($@"{indent()}ModuleName = ""{prospectiveModuleName.CLiteralEscape()}"",");
+
+                var needsTranslation = already == null || alreadyHandler == null || alreadyHandler.NeedsTranslation;
+                var skip = "NeedsTranslation,ModuleName,Questions,Discriminators".Split(',');
+                if (alreadyHandler != null)
+                    foreach (var f in tiFields)
+                        if (!skip.Contains(f.Name) && f.GetValue(alreadyHandler) is object v && !v.Equals(f.GetValue(translationInfoPrototype)))
+                            sb.AppendLine($@"{indent()}{f.Name} = {(
+                                f.FieldType == typeof(string) ? $@"""{((string) v).CLiteralEscape()}""" :
+                                f.FieldType.IsEnum ? $@"{f.FieldType.Name}.{v}" :
+                                throw new NotImplementedException()
+                            )},");
+
+                var questionsAndDiscriminators = enumType.GetFields(BindingFlags.Static | BindingFlags.Public)
+                    .Select(f => (enumValue: f.GetValue(null), qAttr: (dynamic) f.GetCustomAttribute(questionAttrType), dAttr: (dynamic) f.GetCustomAttribute(discrAttrType)))
+                    .ToArray();
+
+                sb.AppendLine($"{indent()}Questions = new()");
+                sb.AppendLine($"{indent()}{{");
+                indentation += 4;
+
+                // for each QUESTION...
+                foreach (var (enumValue, qAttr, _) in questionsAndDiscriminators.Where(tup => tup.qAttr != null))
                 {
-                    var qId = (dynamic) qFld.GetValue(null);
-                    var qText = (string) attr.QuestionText;
-                    sb.AppendLine($"{indent}// {qText}");
-                    var exFormatArgs = new[] { ((string) attr.ModuleNameWithThe).Replace("\u00a0", " ").Replace("\uE001", "\\uE001").Replace("\uE002", "\\uE002") };
-                    if (attr.ExampleFormatArguments != null)
-                        exFormatArgs = exFormatArgs.Concat(((string[]) attr.ExampleFormatArguments).Take((int) attr.ExampleFormatArgumentGroupSize).Select(str => str == "\uE047ordinal" ? "first" : str)).ToArray();
-                    string formatArgsComment = null;
-                    try { formatArgsComment = string.Format(qText, exFormatArgs); }
-                    catch { }
-                    if (formatArgsComment != null)
-                        sb.AppendLine($"{indent}// {formatArgsComment}");
-                    if (attr.IsEntireQuestionSprite)
-                        sb.AppendLine($"{indent}// Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.");
-                    dynamic ti = already?.Translate(qId);
-                    sb.AppendLine($@"{indent}[Question.{qId}] = new()");
-                    sb.AppendLine($"{indent}{{");
+                    dynamic alreadyQuestion = already?.TranslateQuestion((Enum) enumValue);
+                    if (alreadyQuestion == null || alreadyQuestion.Question == null)
+                        needsTranslation = true;
 
-                    var sbFields = new StringBuilder();
-                    var translationChanged = false;
-                    var skip = "QuestionText,ModuleName,FormatArgs,Answers,TranslatableStrings,NeedsTranslation".Split(',');
-                    if (ti != null)
-                        foreach (var f in tiFields)
-                            if (!skip.Contains(f.Name) && f.GetValue(ti) is object v && !v.Equals(f.GetValue(translationInfoPrototype)))
-                                sbFields.AppendLine($@"{indent}    {f.Name} = {(
-                                    f.FieldType == typeof(string) ? $@"""{((string) v).CLiteralEscape()}""" :
-                                    f.FieldType.IsEnum ? $@"{f.FieldType.Name}.{v}" :
-                                    throw new NotImplementedException()
-                                )},");
+                    sb.AppendLine($"{indent()}[{enumValue.GetType().Name}.{enumValue}] = new()");
+                    sb.AppendLine($"{indent()}{{");
+                    indentation += 4;
 
-                    sbFields.AppendLine($@"{indent}    QuestionText = ""{((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
-                    if (ti?.ModuleName != null)
-                        sbFields.AppendLine($@"{indent}    ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
-
-                    void AddDictionaryField(string fieldName, string[] originals, dynamic trdic, string comment = null)
+                    if (qAttr.IsEntireQuestionSprite)
+                        sb.AppendLine($"{indent()}// This question is depicted visually, rather than with words. The translation here will only be used for logging.");
+                    else
                     {
-                        sbFields.AppendLine($"{indent}    {fieldName} = new Dictionary<string, string>{(comment is null ? "" : $" // {comment}")}");
-                        sbFields.AppendLine($"{indent}    {{");
-                        foreach (var english in originals)
-                            sbFields.AppendLine($@"{indent}        [""{english.CLiteralEscape()}""] = ""{(trdic?.ContainsKey(english) == true ? (string) trdic[english] : english).CLiteralEscape()}"",");
-                        sbFields.AppendLine($"{indent}    }},");
-                        if (trdic == null || originals.Any(str => !trdic.ContainsKey(str)) || ((IEnumerable<string>) trdic.Keys).Any(k => !originals.Contains(k)))
-                            translationChanged = true;
+                        var extra = qAttr.UsesQuestionSprite ? $@" (+ sprite)" : "";
+                        sb.AppendLine($@"{indent()}// English: {qAttr.QuestionText}{extra}");
+                        if (qAttr.Arguments is string[] args)
+                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) qAttr.QuestionText, (object[]) [handler.ModuleName, .. ordinals(args.Take((int) qAttr.ArgumentGroupSize))])}{extra}");
+                    }
+                    sb.AppendLine($@"{indent()}Question = ""{((string) (alreadyQuestion?.Question ?? qAttr.QuestionText)).CLiteralEscape()}"",");
+
+                    void AddDictionary(string name, IEnumerable<string> original, Dictionary<string, string> already)
+                    {
+                        sb.AppendLine($"{indent()}{name} = new()");
+                        sb.AppendLine($"{indent()}{{");
+                        indentation += 4;
+                        foreach (var str in original)
+                            sb.AppendLine($@"{indent()}[""{str.CLiteralEscape()}""] = ""{(already?.Get(str, null) ?? str).CLiteralEscape()}"",");
+                        indentation -= 4;
+                        sb.AppendLine($"{indent()}}},");
+
+                        if (already == null || original.Any(str => !already.ContainsKey(str)) || already.Keys.Any(k => !original.Contains(k)))
+                            needsTranslation = true;
                     }
 
-                    if (attr.ExampleFormatArguments is string[] efas && efas.Length > 0 && attr.TranslateFormatArgs is bool[] trFAs && trFAs.Length > 0)
-                        AddDictionaryField("FormatArgs", efas.Split((int) attr.ExampleFormatArgumentGroupSize)
-                            .SelectMany(chunk => Enumerable.Range(0, trFAs.Length).Where(ix => trFAs[ix]).Select(ix => chunk.Skip(ix).First()))
-                            .Distinct().Except(["\uE047ordinal"]).ToArray(), ti?.FormatArgs);
+                    if (qAttr.AllAnswers is string[] { Length: > 0 } origAnswers && (bool) qAttr.TranslateAnswers)
+                        AddDictionary("Answers", origAnswers.Distinct(), alreadyQuestion?.Answers);
+                    if (qAttr.Arguments is string[] { Length: > 0 } origArguments && qAttr.ArgumentGroupSize is int groupSize && qAttr.TranslateArguments is bool[] trArgs)
+                        AddDictionary("Arguments", origArguments.Select((str, ix) => trArgs[ix % groupSize] ? str : null).Where(s => s != null).Distinct(), alreadyQuestion?.Arguments);
+                    if (qAttr.TranslatableStrings is string[] { Length: > 0 } origStrings)
+                        AddDictionary("Additional", origStrings.Distinct(), alreadyQuestion?.Additional);
 
-                    if ((bool) attr.TranslateAnswers && attr.AllAnswers is string[] aas && aas.Length > 0)
-                        AddDictionaryField("Answers", aas, ti?.Answers);
-
-                    if (attr.TranslatableStrings is string[] tss && tss.Length > 0)
-                        AddDictionaryField("TranslatableStrings", tss, ti?.TranslatableStrings, "See translations.md for more information on this question.");
-
-                    if (ti == null || ti.NeedsTranslation || translationChanged)
-                        sb.AppendLine($"{indent}    NeedsTranslation = true,");
-                    else
-                        translatedCount++;
-                    totalCount++;
-
-                    sb.Append(sbFields);
-                    sb.AppendLine($"{indent}}},");
+                    indentation -= 4;
+                    sb.AppendLine($"{indent()}}},");
                 }
-                sb.AppendLine("");
+
+                indentation -= 4;
+                sb.AppendLine($"{indent()}}},");
+
+                if (questionsAndDiscriminators.Where(tup => tup.dAttr != null).Any())
+                {
+                    sb.AppendLine($"{indent()}Discriminators = new()");
+                    sb.AppendLine($"{indent()}{{");
+                    indentation += 4;
+
+                    // for each DISCRIMINATOR...
+                    foreach (var (enumValue, _, dAttr) in questionsAndDiscriminators.Where(tup => tup.dAttr != null))
+                    {
+                        dynamic alreadyDiscriminator = already?.TranslateDiscriminator((Enum) enumValue);
+                        if (alreadyDiscriminator == null || alreadyDiscriminator.Discriminator == null)
+                            needsTranslation = true;
+
+                        sb.AppendLine($"{indent()}[{enumValue.GetType().Name}.{enumValue}] = new()");
+                        sb.AppendLine($"{indent()}{{");
+                        indentation += 4;
+
+                        sb.AppendLine($@"{indent()}// English: {dAttr.DiscriminatorText}");
+                        if (dAttr.Arguments is string[] args)
+                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) dAttr.DiscriminatorText, ordinals(args.Take((int) dAttr.ArgumentGroupSize)).ToArray())}");
+                        sb.AppendLine($@"{indent()}Discriminator = ""{((string) (alreadyDiscriminator?.Discriminator ?? dAttr.DiscriminatorText)).CLiteralEscape()}"",");
+
+                        void AddDictionary(string name, IEnumerable<string> original, Dictionary<string, string> already)
+                        {
+                            sb.AppendLine($"{indent()}{name} = new()");
+                            sb.AppendLine($"{indent()}{{");
+                            indentation += 4;
+                            foreach (var str in original)
+                                sb.AppendLine($@"{indent()}[""{str.CLiteralEscape()}""] = ""{(already?.Get(str, null) ?? str).CLiteralEscape()}"",");
+                            indentation -= 4;
+                            sb.AppendLine($"{indent()}}},");
+
+                            if (already == null || original.Any(str => !already.ContainsKey(str)) || already.Keys.Any(k => !original.Contains(k)))
+                                needsTranslation = true;
+                        }
+
+                        if (dAttr.Arguments is string[] { Length: > 0 } origArguments && dAttr.ArgumentGroupSize is int groupSize && dAttr.TranslateArguments is bool[] trArgs)
+                            AddDictionary("Arguments", origArguments.Select((str, ix) => trArgs[ix % groupSize] ? str : null).Where(s => s != null).Distinct(), alreadyDiscriminator?.Arguments);
+                        if (dAttr.TranslatableStrings is string[] { Length: > 0 } origStrings)
+                            AddDictionary("Additional", origStrings.Distinct(), alreadyDiscriminator?.Additional);
+
+                        indentation -= 4;
+                        sb.AppendLine($"{indent()}}},");
+                    }
+                    indentation -= 4;
+                    sb.AppendLine($"{indent()}}},");
+                }
+
+                if (needsTranslation)
+                    outerSb.AppendLine($"{indent()}NeedsTranslation = true,");
+                outerSb.Append(sb);
+
+                indentation -= 4;
+                outerSb.AppendLine($"{indent()}}},");
+                outerSb.AppendLine();
+
+                totalCount++;
+                if (!needsTranslation)
+                    translatedCount++;
             }
 
             translationStats[language] = $"{((float) translatedCount / totalCount * 100f).ToString("f2", CultureInfo.InvariantCulture)}%";
-
-            File.WriteAllText(path, $"{string.Join(Environment.NewLine, alreadyFile.Take(p1 + 1))}{Environment.NewLine}{sb}{string.Join(Environment.NewLine, alreadyFile.Skip(p2))}");
+            File.WriteAllText(path, $"{alreadyFile.Take(p1 + 1).JoinString(Environment.NewLine)}{Environment.NewLine}{outerSb}{alreadyFile.Skip(p2).JoinString(Environment.NewLine)}");
         }
         return translationStats;
     }
+
+    private static IEnumerable<string> ordinals(IEnumerable<string> source) => source.Select(str => str == "\uE047ordinal" ? "first" : str);
 
     private static void DoDataFileStuff(string path, Assembly assembly, Dictionary<string, string> translationStats)
     {
         var moduleType = assembly.GetType("SouvenirModule");
         var languages = (assembly.GetType("Souvenir.TranslationInfo").GetField("AllTranslations", BindingFlags.Static | BindingFlags.Public).GetValue(null) as IDictionary).Keys.Cast<string>().ToArray();
-        var module = Activator.CreateInstance(moduleType);
-        var awakeMethod = moduleType.GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance);
-        awakeMethod.Invoke(module, null);
-        var fldDictionary = moduleType.GetField("_moduleProcessors", BindingFlags.NonPublic | BindingFlags.Instance);
-        var dictionary = (IDictionary) fldDictionary.GetValue(module);
+        var handlerAttrType = assembly.GetType("Souvenir.SouvenirHandlerAttribute");
+        var questionAttrType = assembly.GetType("Souvenir.SouvenirQuestionAttribute");
+        var discrAttrType = assembly.GetType("Souvenir.SouvenirDiscriminatorAttribute");
+
+        var modules = 0;
+        var questions = 0;
+        var discriminators = 0;
         var contributors = new HashSet<string>();
-        var modules = new HashSet<string>();
-        foreach (DictionaryEntry entry in dictionary)
+
+        foreach (var method in moduleType.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance))
         {
-            contributors.Add(((dynamic) entry.Value).Contributor);
-            modules.Add(((dynamic) entry.Value).ModuleName);
-        }
+            dynamic handler = method.GetCustomAttribute(handlerAttrType);
+            if (handler == null)
+                continue;
+            modules++;
+            contributors.Add(handler.Contributor);
 
-        var questionsType = assembly.GetType("Souvenir.Question");
-
-        if (translationStats is null)
-        {
-            translationStats = [];
-
-            foreach (var language in languages)
+            var enumType = (Type) handler.EnumType;
+            foreach (var value in enumType.GetFields(BindingFlags.Public | BindingFlags.Static))
             {
-                var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
-                var translationsProp = alreadyType.GetProperty("_translations", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-                var already = alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType);
-                if (already == null)
-                {
-                    translationStats[language] = "Unknown";
-                    continue;
-                }
-                var translations = translationsProp.GetValue(already);
-
-                var count = 0;
-                var done = 0;
-                foreach (var tr in translations?.Values)
-                {
-                    count++;
-                    if (!tr.NeedsTranslation)
-                        done++;
-                }
-                var percent = (float) done / count * 100f;
-                translationStats.Add(language, $"{percent:f2}%");
+                if (value.GetCustomAttribute(questionAttrType) != null)
+                    questions++;
+                if (value.GetCustomAttribute(discrAttrType) != null)
+                    discriminators++;
             }
         }
+
+        translationStats ??= ClassifyJson.Deserialize<Dictionary<string, string>>(JsonDict.Parse(File.ReadAllText(path))["translationProgress"]);
 
         File.WriteAllText(path, $$"""
         {
             "contributorsCount": {{contributors.Count}},
-            "modulesCount": {{modules.Count}},
-            "questionsCount": {{Enum.GetValues(questionsType).Length}},
-            "translationProgress": { {{languages.Select(lang => $@"""{lang}"": ""{translationStats[lang]}""").JoinString(", ")}} }
+            "modulesCount": {{modules}},
+            "questionsCount": {{questions}},
+            "discriminatorsCount": {{discriminators}},
+            "translationProgress": { {{languages.Select(lang => $@"""{lang}"": ""{translationStats.Get(lang, "0%")}""").JoinString(", ")}} }
         }
         """);
     }
@@ -305,16 +361,16 @@ public static class Program
                 case '\\': result.Append(@"\\"); break;
                 case '"': result.Append(@"\"""); break;
                 default:
-                    if (c >= 0xE000 && c < 0xF900) // Private Use Area
+                    if (c is >= '\uE000' and < '\uF900') // Private Use Area
                         result.AppendFormat(@"\u{0:X4}", (int) c);
-                    else if (c >= 0xD800 && c < 0xDC00)
+                    else if (c is >= '\uD800' and < '\uDC00')
                     {
                         if (i == value.Length - 1) // string ends on a broken surrogate pair
                             result.AppendFormat(@"\u{0:X4}", (int) c);
                         else
                         {
                             var c2 = value[i + 1];
-                            if (c2 >= 0xDC00 && c2 <= 0xDFFF)
+                            if (c2 is >= '\uDC00' and <= '\uDFFF')
                             {
                                 // nothing wrong with this surrogate pair
                                 i++;
@@ -325,7 +381,7 @@ public static class Program
                                 result.AppendFormat(@"\u{0:X4}", (int) c);
                         }
                     }
-                    else if (c >= 0xDC00 && c <= 0xDFFF) // the second half of a broken surrogate pair
+                    else if (c is >= '\uDC00' and <= '\uDFFF') // the second half of a broken surrogate pair
                         result.AppendFormat(@"\u{0:X4}", (int) c);
                     else if (c >= ' ')
                         result.Append(c);

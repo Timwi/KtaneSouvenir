@@ -5,26 +5,25 @@ using UnityEngine;
 namespace Souvenir;
 
 [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
-public sealed class SouvenirQuestionAttribute : Attribute
+public sealed class SouvenirQuestionAttribute(string questionText, AnswerLayout layout, params string[] allAnswers) : Attribute
 {
-    public string QuestionText { get; private set; }
-    public string ModuleName { get; private set; }
-    public string[] AllAnswers { get; private set; }
+    public string QuestionText { get; private set; } = questionText;
+    public string[] AllAnswers { get; private set; } = allAnswers == null || allAnswers.Length == 0 ? null : allAnswers;
     public AnswerGeneratorAttribute[] AnswerGenerators { get; internal set; }
+    public SouvenirGimmickAttribute[] Gimmicks { get; internal set; }
 
-    public string[] ExampleFormatArguments { get; set; }
-    public int ExampleFormatArgumentGroupSize { get; set; }
-    public bool AddThe { get; set; }
+    public string[] Arguments { get; set; }
+    public int ArgumentGroupSize { get; set; }
     public bool TranslateAnswers { get; set; }
-    public bool[] TranslateFormatArgs { get; set; }
+    public bool[] TranslateArguments { get; set; }
     public string[] TranslatableStrings { get; set; }
     public bool UsesQuestionSprite { get; set; }
     public string[] ExampleAnswers { get; set; }
-    public AnswerType Type { get; set; }
-    public AnswerLayout Layout { get; set; }
+    public AnswerType Type { get; set; } = AnswerType.Default;
+    public AnswerLayout Layout { get; set; } = layout;
     public string ForeignAudioID { get; set; }
     public float AudioSizeMultiplier { get; set; } = 2f;
-    public int FontSize { get; set; }
+    public int FontSize { get; set; } = layout == AnswerLayout.OneColumn4Answers ? 40 : 48;
     public float CharacterSize { get; set; } = 1;
     public bool IsEntireQuestionSprite { get; set; }
 
@@ -42,8 +41,6 @@ public sealed class SouvenirQuestionAttribute : Attribute
     private FieldInfo _audioFieldCache;
     public FieldInfo AudioField => _audioFieldCache ??= getField(AudioFieldName, typeof(AudioClip[]));
 
-    public string ModuleNameWithThe => (AddThe ? "The\u00a0" : "") + ModuleName;
-
     public int NumAnswers => Layout switch
     {
         AnswerLayout.OneColumn3Answers => 3,
@@ -55,13 +52,6 @@ public sealed class SouvenirQuestionAttribute : Attribute
         _ => throw new InvalidOperationException("Unexpected AnswerLayout value."),
     };
 
-    public SouvenirQuestionAttribute(string questionText, string moduleName, AnswerLayout layout, params string[] allAnswers)
-    {
-        QuestionText = questionText;
-        ModuleName = moduleName;
-        Layout = layout;
-        AllAnswers = allAnswers == null || allAnswers.Length == 0 ? null : allAnswers;
-        Type = AnswerType.Default;
-        FontSize = layout == AnswerLayout.OneColumn4Answers ? 40 : 48;
-    }
+    public Enum EnumValue { get; set; }
+    public SouvenirHandlerAttribute Handler { get; set; }
 }

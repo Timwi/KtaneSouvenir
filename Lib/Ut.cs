@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 using Rnd = UnityEngine.Random;
@@ -12,8 +13,6 @@ namespace Souvenir;
 
 public static class Ut
 {
-    public static Vector3 SetX(this Vector3 orig, float x) => new(x, orig.y, orig.z);
-
     /// <summary>
     ///     Returns all fields contained in the specified type, including private fields inherited from base classes.</summary>
     /// <param name="type">
@@ -113,8 +112,40 @@ public static class Ut
         if (key == null)
             throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.");
         if (!dic.ContainsKey(key))
-            dic[key] = new List<V>();
+            dic[key] = [];
         dic[key].Add(value);
+    }
+
+    /// <summary>
+    ///     Adds an element to a two-level Dictionary&lt;,&gt;. If the specified key does not exist in the outer Dictionary, a
+    ///     new Dictionary is created.</summary>
+    /// <typeparam name="K1">
+    ///     Type of the key of the outer Dictionary.</typeparam>
+    /// <typeparam name="K2">
+    ///     Type of the key of the inner Dictionary.</typeparam>
+    /// <typeparam name="V">
+    ///     Type of the values in the inner Dictionary.</typeparam>
+    /// <param name="dic">
+    ///     Dictionary to operate on.</param>
+    /// <param name="key1">
+    ///     Key at which the inner Dictionary is located in the outer Dictionary.</param>
+    /// <param name="key2">
+    ///     Key at which the value is located in the inner Dictionary.</param>
+    /// <param name="value">
+    ///     Value to add to the inner Dictionary.</param>
+    /// <param name="comparer">
+    ///     Optional equality comparer to pass into the inner dictionary if a new one is created.</param>
+    public static void AddSafe<K1, K2, V>(this IDictionary<K1, Dictionary<K2, V>> dic, K1 key1, K2 key2, V value, IEqualityComparer<K2> comparer = null)
+    {
+        if (dic == null)
+            throw new ArgumentNullException(nameof(dic));
+        if (key1 == null)
+            throw new ArgumentNullException(nameof(key1), "Null values cannot be used for keys in dictionaries.");
+        if (key2 == null)
+            throw new ArgumentNullException(nameof(key2), "Null values cannot be used for keys in dictionaries.");
+        if (!dic.ContainsKey(key1))
+            dic[key1] = new Dictionary<K2, V>(comparer);
+        dic[key1].Add(key2, value);
     }
 
     /// <summary>
@@ -130,11 +161,10 @@ public static class Ut
     ///     The amount by which to increment the integer.</param>
     /// <returns>
     ///     The new value at the specified key.</returns>
-    public static int IncSafe<K>(this IDictionary<K, int> dic, K key, int amount = 1) => dic == null
-            ? throw new ArgumentNullException("dic")
-            : key == null
-            ? throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.")
-            : !dic.ContainsKey(key) ? (dic[key] = amount) : (dic[key] = dic[key] + amount);
+    public static int IncSafe<K>(this IDictionary<K, int> dic, K key, int amount = 1) =>
+        dic == null ? throw new ArgumentNullException("dic") :
+        key == null ? throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.") :
+        !dic.ContainsKey(key) ? (dic[key] = amount) : (dic[key] = dic[key] + amount);
 
     /// <summary>
     ///     Gets a value from a dictionary by key. If the key does not exist in the dictionary, the default value is returned
@@ -145,11 +175,10 @@ public static class Ut
     ///     Key to look up.</param>
     /// <param name="defaultVal">
     ///     Value to return if key is not contained in the dictionary.</param>
-    public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultVal = default) => dict == null
-            ? throw new ArgumentNullException("dict")
-            : key == null
-            ? throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.")
-            : dict.TryGetValue(key, out var value) ? value : defaultVal;
+    public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultVal = default) =>
+        dict == null ? throw new ArgumentNullException("dict") :
+        key == null ? throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.") :
+        dict.TryGetValue(key, out var value) ? value : defaultVal;
 
     public static T[] NewArray<T>(params T[] array) => array;
     public static List<T> NewList<T>(params T[] array) => array.ToList();
@@ -231,10 +260,10 @@ public static class Ut
 
     private static readonly string[] _joshi = "でなければ|について|かしら|くらい|けれど|なのか|ばかり|ながら|ことよ|こそ|こと|さえ|しか|した|たり|だけ|だに|だの|つつ|ても|てよ|でも|とも|から|など|なり|ので|のに|ほど|まで|もの|やら|より|って|で|と|な|に|ね|の|も|は|ば|へ|や|わ|を|か|が|さ|し|ぞ|て".Split('|');
     private static readonly string _punctuation = ".,。、！!？?〉》」』｣)）]】〕〗〙〛}>)❩❫❭❯❱❳❵｝";
-    private static readonly (char from, char to)[] _breakableRanges = new (char from, char to)[] {
+    private static readonly (char from, char to)[] _breakableRanges = [
         ('\u4E00', '\u9FA0'),   // CJK
         ('\u3041','\u30ff'),    // Hiragana + Katakana
-    };
+    ];
 
     public static IEnumerable<string> WordWrap(this string text, Func<int, double> wrapWidth, double widthOfASpace, Func<string, double> measure, bool allowBreakingWordsApart)
     {
@@ -436,39 +465,57 @@ public static class Ut
         value = source.Value;
     }
 
+    public static Dictionary<string, SouvenirHandlerAttribute> ModuleHandlers = [];
+    public static Dictionary<Enum, (SouvenirHandlerAttribute h, SouvenirQuestionAttribute q, SouvenirDiscriminatorAttribute d)> Attributes = new(EnumEqualityComparer.Default);
+    public static (SouvenirHandlerAttribute h, SouvenirQuestionAttribute q, SouvenirDiscriminatorAttribute d) GetAttributes(this Enum value) => Attributes.Get(value, default);
+    public static SouvenirHandlerAttribute GetHandlerAttribute(this Enum questionOrDiscriminator) => GetAttributes(questionOrDiscriminator).h;
+    public static SouvenirQuestionAttribute GetQuestionAttribute(this Enum question) => GetAttributes(question).q;
+    public static SouvenirDiscriminatorAttribute GetDiscriminatorAttribute(this Enum discriminator) => GetAttributes(discriminator).d;
+
+    private static Dictionary<Type, SouvenirHandlerAttribute> _handlerAttributes = [];
+    public static SouvenirHandlerAttribute GetHandlerAttribute(this Type moduleEnumType) => _handlerAttributes.Get(moduleEnumType);
+
     static Ut()
     {
-        Attributes = typeof(Question).GetFields(BindingFlags.Public | BindingFlags.Static)
-            .Select(f => Ut.KeyValuePair((Question) f.GetValue(null), GetQuestionAttribute(f)))
-            .Where(kvp => kvp.Value != null)
-            .ToDictionary();
+        foreach (var method in typeof(SouvenirModule).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic))
+            if (method.GetCustomAttribute<SouvenirHandlerAttribute>() is { } hAttr)
+            {
+                hAttr.Method = method;
+                ModuleHandlers[hAttr.ModuleId] = hAttr;
+                _handlerAttributes[hAttr.EnumType] = hAttr;
+                foreach (var field in hAttr.EnumType.GetFields(BindingFlags.Public | BindingFlags.Static))
+                {
+                    if (field.GetCustomAttribute<SouvenirQuestionAttribute>() is { } qAttr)
+                    {
+                        if (field.GetCustomAttributes(typeof(AnswerGeneratorAttribute), false) is AnswerGeneratorAttribute[] agAttrs)
+                            qAttr.AnswerGenerators = agAttrs.Length == 0 ? null : agAttrs;
+                        qAttr.Gimmicks = field.GetCustomAttributes(typeof(SouvenirGimmickAttribute), false).Cast<SouvenirGimmickAttribute>().ToArray();
+                        qAttr.EnumValue = (Enum) field.GetValue(null);
+                        qAttr.Handler = hAttr;
+                        Attributes.Add((Enum) field.GetValue(null), (hAttr, qAttr, null));
+                    }
+                    else if (field.GetCustomAttribute<SouvenirDiscriminatorAttribute>() is { } dAttr)
+                    {
+                        dAttr.EnumValue = (Enum) field.GetValue(null);
+                        dAttr.Handler = hAttr;
+                        Attributes.Add((Enum) field.GetValue(null), (hAttr, null, dAttr));
+                    }
+                }
+            }
     }
-
-    private static SouvenirQuestionAttribute GetQuestionAttribute(FieldInfo field)
-    {
-        var attribute = field.GetCustomAttribute<SouvenirQuestionAttribute>();
-        if (attribute != null)
-        {
-            attribute.AnswerGenerators = field.GetCustomAttributes(typeof(AnswerGeneratorAttribute), false) as AnswerGeneratorAttribute[];
-            if (attribute.AnswerGenerators.Length is 0)
-                attribute.AnswerGenerators = null;
-        }
-        return attribute;
-    }
-
-    public static Dictionary<Question, SouvenirQuestionAttribute> Attributes;
-    public static bool TryGetAttribute(this Question question, out SouvenirQuestionAttribute attr) => Attributes.TryGetValue(question, out attr);
-    public static SouvenirQuestionAttribute GetAttribute(this Question question) => Attributes[question];
 
     public static string Stringify(this object value) => value switch
     {
         null => "null",
-        IList list => $"[{list.Cast<object>().Select(Stringify).JoinString(", ")}]",
+        ICollection list => $"[{list.Cast<object>().Select(Stringify).JoinString(", ")}]",
         int i => i.ToString(),
         double d => d.ToString(),
         float f => f.ToString(),
         bool b => b ? "true" : "false",
         string s => $"“{s}”",
+        Sprite spr => $"Sprite ({spr.name})",
+        AudioClip audio => $"Audio ({audio.name})",
+        object o when o.GetType().IsGenericType && o.GetType().GetGenericTypeDefinition() == typeof(KeyValuePair<,>) => $"[{o.GetFieldValue<object>("key").Stringify()}] = {o.GetFieldValue<object>("value").Stringify()}",
         _ => $"{{{value.GetType().FullName}|{value}}}"
     };
 
@@ -500,7 +547,7 @@ public static class Ut
         if (selectable != null && _copySettingsFromProxyMethod != null)
             _copySettingsFromProxyMethod.Invoke(
                 selectable.GetComponent(_modSelectableType) ?? selectable.gameObject.AddComponent(_modSelectableType),
-                new object[0]);
+                []);
     }
     private static void InitializeUpdateSettings()
     {
@@ -549,25 +596,25 @@ public static class Ut
         }
     }
 
-    public static string[] GetAnswers(this Question question) => !TryGetAttribute(question, out var attr)
-        ? throw new InvalidOperationException($"Question {question} is missing from the Attributes dictionary.")
+    public static string[] GetAnswers(this Enum question) => GetQuestionAttribute(question) is not { } attr
+        ? throw new InvalidOperationException($"Question {question.GetType().Name}.{question} is missing from the Attributes dictionary.")
         : attr.AllAnswers;
 
-    public static string[] GetExampleAnswers(this Question question) => !TryGetAttribute(question, out var attr)
-        ? throw new InvalidOperationException($"Question {question} is missing from the Attributes dictionary.")
+    public static string[] GetExampleAnswers(this Enum question) => GetQuestionAttribute(question) is not { } attr
+        ? throw new InvalidOperationException($"Question {question.GetType().Name}.{question} is missing from the Attributes dictionary.")
         : attr.ExampleAnswers;
 
-    public static Sprite[] GetAllSprites(this Question question, SouvenirModule souv)
+    public static Sprite[] GetAllSprites(this Enum question, SouvenirModule souv)
     {
-        var attr = question.GetAttribute();
+        var attr = question.GetQuestionAttribute();
         return attr.Type != AnswerType.Sprites
             ? throw new AbandonModuleException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.")
             : attr.SpriteFieldName == null ? null : (Sprite[]) attr.SpriteField.GetValue(souv);
     }
 
-    public static AudioClip[] GetAllSounds(this Question question, SouvenirModule souv)
+    public static AudioClip[] GetAllSounds(this Enum question, SouvenirModule souv)
     {
-        var attr = question.GetAttribute();
+        var attr = question.GetQuestionAttribute();
         return attr.Type != AnswerType.Audio || attr.AudioFieldName == null
             ? throw new AbandonModuleException("GetAllSounds() was called on a question that doesn’t use sounds or doesn’t have an associated sounds field.")
             : (AudioClip[]) attr.AudioField.GetValue(souv);
@@ -595,30 +642,6 @@ public static class Ut
                 weights.RemoveAt(i);
             }
         }
-    }
-
-    /// <summary>Generates a hexdump of the UTF-8 encoding of the string representation of the specified object.</summary>
-    public static string DebugExamine(this object input)
-    {
-        var inf = $"{input} ({input.GetHashCode()}";
-        if (input is string s)
-        {
-            var utf8 = Encoding.UTF8.GetBytes(input.ToString());
-
-            var charArr = new char[utf8.Length * 2];
-            var j = 0;
-            for (var i = 0; i < utf8.Length; i++)
-            {
-                var b = (byte) (utf8[i] >> 4);
-                charArr[j] = (char) (b < 10 ? '0' + b : 'W' + b);   // 'a'-10 = 'W'
-                j++;
-                b = (byte) (utf8[i] & 0xf);
-                charArr[j] = (char) (b < 10 ? '0' + b : 'W' + b);
-                j++;
-            }
-            inf += $"; str: {s.GetHashCode()}, {new string(charArr)}";
-        }
-        return inf + ")";
     }
 
     /// <summary>
@@ -673,5 +696,41 @@ public static class Ut
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    ///     Determines whether the <paramref name="input"/> string matches the specified regular expression <paramref
+    ///     name="pattern"/>.</summary>
+    /// <param name="input">
+    ///     The string to search for a match.</param>
+    /// <param name="pattern">
+    ///     The regular expression pattern to match.</param>
+    /// <param name="match">
+    ///     Receives an object that contains information about the match.</param>
+    /// <returns>
+    ///     A boolean indicating whether a match was found or not.</returns>
+    public static bool RegexMatch(this string input, string pattern, out Match match)
+    {
+        match = Regex.Match(input, pattern);
+        return match.Success;
+    }
+
+    /// <summary>
+    ///     Determines whether the <paramref name="input"/> string matches the specified regular expression <paramref
+    ///     name="pattern"/>.</summary>
+    /// <param name="input">
+    ///     The string to search for a match.</param>
+    /// <param name="pattern">
+    ///     The regular expression pattern to match.</param>
+    /// <param name="options">
+    ///     A bitwise combination of the enumeration values that provide options for matching.</param>
+    /// <param name="match">
+    ///     Receives an object that contains information about the match.</param>
+    /// <returns>
+    ///     A boolean indicating whether a match was found or not.</returns>
+    public static bool RegexMatch(this string input, string pattern, RegexOptions options, out Match match)
+    {
+        match = Regex.Match(input, pattern, options);
+        return match.Success;
     }
 }

@@ -20,6 +20,7 @@
     <WarningLevel>4</WarningLevel>
     <Nullable>disable</Nullable>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <Configurations>Release</Configurations>
   </PropertyGroup>
   <PropertyGroup>
     <GameFolder Condition="'$(GameFolder)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\</GameFolder>
@@ -104,7 +105,7 @@
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <ItemGroup>
-      <SouvenirDlls Include="$(TargetDir)*.dll"/>
+      <SouvenirDlls Include="$(TargetDir)*.dll" />
     </ItemGroup>
     <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(GameFolder)ktane_Data\Managed&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t &quot;$(ProjectDir).&quot;" />
     <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(ProjectDir)..\\Assets\\Plugins\\Managed" />
