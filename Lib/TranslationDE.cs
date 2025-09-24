@@ -810,7 +810,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SBamboozledAgain)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Wieder Übers Ohr Gehauen",
             Questions = new()
             {
@@ -818,13 +817,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What text was initially shown on this button in {0}? (+ sprite)
                     // Example: What text was initially shown on this button in Bamboozled Again? (+ sprite)
-                    Question = "What text was initially shown on this button in {0}?",
+                    Question = "Welcher Text war bei {0} am Anfang auf diesem Knopf?",
                 },
                 [SBamboozledAgain.ButtonColor] = new()
                 {
                     // English: What was the initial color of this button in {0}? (+ sprite)
                     // Example: What was the initial color of this button in Bamboozled Again? (+ sprite)
-                    Question = "What was the initial color of this button in {0}?",
+                    Question = "Welche Farbe hatte bei {0} am Anfang dieser Knopf?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
