@@ -835,20 +835,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SBamboozledAgain)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Повторном надувательстве",
             Questions = new()
             {
                 [SBamboozledAgain.ButtonText] = new()
                 {
-                    // English: What was the text on the {1} correct button in {0}?
-                    // Example: What was the text on the first correct button in Bamboozled Again?
-                    Question = "Какая была надпись на {1}-й правильной кнопке {0}?",
+                    // English: What text was initially shown on this button in {0}? (+ sprite)
+                    // Example: What text was initially shown on this button in Bamboozled Again? (+ sprite)
+                    Question = "What text was initially shown on this button in {0}?",
                 },
                 [SBamboozledAgain.ButtonColor] = new()
                 {
-                    // English: What color was the {1} correct button in {0}?
-                    // Example: What color was the first correct button in Bamboozled Again?
-                    Question = "Какого цвета была {1}-я правильная кнопка {0}?",
+                    // English: What was the initial color of this button in {0}? (+ sprite)
+                    // Example: What was the initial color of this button in Bamboozled Again? (+ sprite)
+                    Question = "What was the initial color of this button in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Красного",

@@ -177,7 +177,7 @@ public static class Program
                 foreach (var (enumValue, qAttr, _) in questionsAndDiscriminators.Where(tup => tup.qAttr != null))
                 {
                     dynamic alreadyQuestion = already?.TranslateQuestion((Enum) enumValue);
-                    if (alreadyQuestion == null)
+                    if (alreadyQuestion == null || alreadyQuestion.Question == null)
                         needsTranslation = true;
 
                     sb.AppendLine($"{indent()}[{enumValue.GetType().Name}.{enumValue}] = new()");
@@ -233,7 +233,7 @@ public static class Program
                     foreach (var (enumValue, _, dAttr) in questionsAndDiscriminators.Where(tup => tup.dAttr != null))
                     {
                         dynamic alreadyDiscriminator = already?.TranslateDiscriminator((Enum) enumValue);
-                        if (alreadyDiscriminator == null)
+                        if (alreadyDiscriminator == null || alreadyDiscriminator.Discriminator == null)
                             needsTranslation = true;
 
                         sb.AppendLine($"{indent()}[{enumValue.GetType().Name}.{enumValue}] = new()");

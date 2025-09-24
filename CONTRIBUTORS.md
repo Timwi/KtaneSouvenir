@@ -75,19 +75,20 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Binary          │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
 
-## Implemented by Quinn Wuest (55)
+## Implemented by Quinn Wuest (56)
 
-    .--/---/..-.       │  Denial Displays           │  Neptune               │  Papa’s Pizzeria      │  Slow Math
-    A Square           │  Double Digits             │  Not Colored Switches  │  Parity               │  Small Talk
-    Affine Cycle       │  English Entries           │  Not Connection Check  │  Pigpen Cycle         │  Synapse Says
-    Alcoholic Rampage  │  Enigma Cycle              │  Not Coordinates       │  Playfair Cycle       │  Triple Term
-    Ángel Hernández    │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Ultimate Cycle
-    Bulb, The          │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Uncolour Flash
-    Caesar Cycle       │  Hill Cycle                │  Not Number Pad        │  Rule of Three        │  Unpleasant Squares
-    Caesar Psycho      │  Jumble Cycle              │  Not Perspective Pegs  │  Scramboozled Eggain  │  Varicolour Flash
-    Coordination       │  Letter Math               │  Not The Bulb          │  Simon Said           │  Who’s on Gas
-    Cryptic Cycle      │  Match Refereeing          │  Not X01               │  Simon Shuffles       │  Word Count
-    Cyan Button, The   │  Navigation Determination  │  Off Keys              │  Simultaneous Simons  │  xobekuJ ehT
+    .--/---/..-.       │  Denial Displays           │  Not Colored Switches  │  Pigpen Cycle         │  Triple Term
+    A Square           │  Double Digits             │  Not Connection Check  │  Playfair Cycle       │  Ultimate Cycle
+    Affine Cycle       │  English Entries           │  Not Coordinates       │  Quadrants            │  Uncolour Flash
+    Alcoholic Rampage  │  Enigma Cycle              │  Not Morsematics       │  Robo-Scanner         │  Unpleasant Squares
+    Ángel Hernández    │  Épelle-moi Ça             │  Not Murder            │  Rule of Three        │  Varicolour Flash
+    Bamboozled Again   │  Guess Who?                │  Not Number Pad        │  Scramboozled Eggain  │  Who’s on Gas
+    Bulb, The          │  Hill Cycle                │  Not Perspective Pegs  │  Simon Said           │  Word Count
+    Caesar Cycle       │  Jumble Cycle              │  Not The Bulb          │  Simon Shuffles       │  xobekuJ ehT
+    Caesar Psycho      │  Letter Math               │  Not X01               │  Simultaneous Simons  │
+    Coordination       │  Match Refereeing          │  Off Keys              │  Slow Math            │
+    Cryptic Cycle      │  Navigation Determination  │  Papa’s Pizzeria       │  Small Talk           │
+    Cyan Button, The   │  Neptune                   │  Parity                │  Synapse Says         │
 
 ## Implemented by luisdiogo98 (45)
 
@@ -141,12 +142,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  LED Math               │  More Code         │  Samsung, The    │
     Codenames           │  M&Ms                   │  N&Ms              │  Simon’s Star    │
 
-## Implemented by kavinkul (17)
+## Implemented by kavinkul (16)
 
-    Bamboozled Again  │  Green Arrows              │  Red Arrows    │  Thinking Wires     │  Yellow Arrows
-    Blue Arrows       │  Hereditary Base Notation  │  RGB Maze      │  Transmitted Morse  │
-    Equations X       │  Orange Arrows             │  Simon Simons  │  Unown Cipher       │
-    Faulty RGB Maze   │  Purple Arrows             │  Simon Stores  │  Vectors            │
+    Blue Arrows      │  Hereditary Base Notation  │  RGB Maze        │  Transmitted Morse
+    Equations X      │  Orange Arrows             │  Simon Simons    │  Unown Cipher
+    Faulty RGB Maze  │  Purple Arrows             │  Simon Stores    │  Vectors
+    Green Arrows     │  Red Arrows                │  Thinking Wires  │  Yellow Arrows
 
 ## Implemented by Andrio Celos (14)
 
