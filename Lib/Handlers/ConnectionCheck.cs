@@ -53,13 +53,13 @@ public partial class SouvenirModule
 
         string stringifyPair((int l, int r) pair) => $"{pair.l} {pair.r}";
         string stringifyReverse((int l, int r) pair) => $"{pair.r} {pair.l}";
-        foreach (var pair in numbersOnModule)
-            yield return question(SConnectionCheck.Numbers).Answers([stringifyPair(pair), stringifyReverse(pair)], preferredWrong: numbersOnModule.Select(stringifyPair).ToArray());
+
+        yield return question(SConnectionCheck.Numbers).Answers(numbersOnModule.SelectMany(pair => new[] { stringifyPair(pair), stringifyReverse(pair) }).ToArray());
 
         var discrs = new[] { SConnectionCheck.NoNs, SConnectionCheck.OneN, SConnectionCheck.TwoNs, SConnectionCheck.ThreeNs, SConnectionCheck.FourNs };
         for (var n = 1; n <= 8; n++)
             if (digitCounts.Get(n, 0) is int count)
-                yield return new Discriminator(discrs[count], $"n-{n}", count);
+                yield return new Discriminator(discrs[count], $"n-{n}", count, args: [n.ToString()]);
 
         var leftDisplays = GetArrayField<GameObject>(comp, "L", true).Get(expectedLength: 4);
         var rightDisplays = GetArrayField<GameObject>(comp, "R", true).Get(expectedLength: 4);
