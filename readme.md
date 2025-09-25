@@ -33,7 +33,7 @@ The following vanilla modules are supported by Souvenir: The Button, Maze, Memor
 ## Building
 
 - In Unity, build Souvenir without a separate assembly (keyboard: F7; menu: “Keep Talking ModKit” → “Build AssetBundle (no assembly)”).
-- The compiled binary `SouvenirLib.dll` is included in the git repo to allow people to build Souvenir in Unity without needing to compile the source.
+- To make this possible, the compiled binary `SouvenirLib.dll` is included in the git repo. Any changes to the source code (in `Lib/`) require a rebuild in Visual Studio, which automatically copies that DLL to the right place for Unity to find it.
 
 ## Translations
 
@@ -48,9 +48,9 @@ For contributing to translations, see [translations.md](translations.md).
 
 First, ensure that there isn’t already a contributor working on adding the module you are hoping to implement. The KTANE Discord server has a thread for this (https://discord.com/channels/160061833166716928/1133454524435148860) where our efforts are coordinated.
 
-The actual source code is in `Lib`. Open `Lib/SouvenirLib.sln` in Visual Studio to get started.
+The actual source code is in `Lib`. Open `Lib/SouvenirLib.sln` in Visual Studio to get started. The module handlers are in `Lib/Handlers`.
 
-If your installation of KTANE is *not* in the default folder (`C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\`), create a `SouvenirLib.csproj.user` file containing this and change the folder accordingly. You MUST end your path with a backslash (`\`).
+If your installation of KTANE is *not* in the default folder (`C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\`), create a `SouvenirLib.csproj.user` file containing the following and change the folder accordingly. You MUST end your path with a backslash (`\`).
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -66,24 +66,11 @@ To add a new module, the following steps are required:
 
 - Unsubscribe from the Workshop version of Souvenir.
 - Build the asset bundle in Unity with no assembly (F7) and copy the result to your game’s `mods` folder. You only need to do this once as long as you keep that local copy of Souvenir there.
-- In `Question.cs`, add a separate value for each possible type of question that can be asked. Keep newlines between the modules; no newlines between questions for the same module.
-    - If your question has a specific set of possible answers, list them all (example: `SuperparsingDisplayed`).
-    - If your handler will obtain the set of possible answers from the module, specify `null` and then use the `ExampleAnswers` field (example: `SpellingBeeWord`).
-    - If the possible answers are random strings of letters or digits, use an answer generator (example: `LasersHatches` (integers); `LEDEncryptionPressedLetters` (strings)).
-    - If your question can be varied with things inserted into the sentence (e.g. “left display” vs. “right display”), use `{1}`, `{2}` etc. for those inserted bits, and then make sure to supply `ExampleExtraFormatArguments` and `ExampleExtraFormatArgumentGroupSize` correctly (examples: `DecoloredSquaresStartingPos` (one piece, so group size is 1); `RedCipherScreen` (two pieces, so group size is 2 and the example arguments come in pairs)).
-    - If the inserted bit is an ordinal number (first, second, third, etc.), use `QandA.Ordinal` instead of a string (example: `SwitchInitialColor`).
-    - If your targeted module’s name starts with “The”, make sure to specify the name without “The” but include `AddThe = true` (example: `DeckOfManyThingsFirstCard`).
-    - Make sure to specify the correct values for `TranslateAnswers` and `TranslateFormatArgs`. If a word or phrase is used to ask a question (e.g. “flash”/“didn’t flash”) or describe something (e.g. color of a button), make it translatable (example: `IndigoCipherScreen`). If a word or phrase is mentioned that is literally shown on the module, then do not make it translatable (example: `IdentityParadeHairColors`).
-- Find an existing handler for a module that is similar to the one you wish to implement. The handlers have names beginning with `Process` (for example: `ProcessMafia` in `ModulesM.cs`). Study it carefully to understand how it works. There is documentation at [documentation.md](documentation.md).
-- Implement a similar handler and place it alphabetically in the correct file (`ModulesA.cs` to `ModulesZ.cs`, or `Modules0.cs`). Omit “The” in the handler name as well.
-    - Make sure to handle the case where the player gets a strike on the module and the information changes. Souvenir must not ask about information from stages that struck.
-    - If there is a corner case where Souvenir should not ask a question, call `legitimatelyNoQuestions` with an appropriate log message (see `ProcessLangtonsAnteater` or `ProcessSimonSignals` for examples).
-- Find the `ModuleType` value on the targeted module’s `KMBombModule` component. This is also sometimes known as the “module ID”. For example, for *3D Maze*, this is `spwiz3DMaze`.
-- Go to `Modules_General.cs`, find the `Awake()` method, and add an entry to the large dictionary mapping from the `ModuleType` to a 3-tuple containing: the method you just created; the display name of the module; and your name (you will be credited in `CONTRIBUTORS.md`).
+- Follow the steps in `documentation.md`. You can either start fresh, or find an existing handler for a module that is similar to the one you wish to implement and take a copy of it.
 - Compile the project.
 - Run Souvenir in Unity and issue a TP command (such as `!1 bulb`) to see your question to make sure that it looks okay.
 - Test your Souvenir modifications in-game (e.g. by using Dynamic Mission Generator). Test all corner cases, including getting a strike on the module.
-- If your question does not show up and/or Souvenir displays a warning triangle, look at your logfile for error messages from Souvenir. You can Ctrl+F in the logfile for `<Souvenir` to find them.
+- If your question does not show up and/or Souvenir displays a warning triangle, look at your logfile (the actual file, not the LFA) for error messages from Souvenir. You can Ctrl+F in the logfile for `<Souvenir` to find them.
 - Please make a separate git commit for each module you implement. If you made multiple commits for the same module, please squash them into one.
 - After submitting the pull request, DM me (Timwi on Discord) the questions to be added to the manual, in the format `Module Name: Question? Question?`, for example:
     ```
