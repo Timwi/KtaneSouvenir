@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -29,7 +29,7 @@ public partial class SouvenirModule
 
         var initialArrangement = fldArrangements.Get().First();
         var props = fldProps.Get();
-        string[] colorNames = { "White", "Bronze", "Silver", "Gold" };
+        var colorNames = new[] { "White", "Bronze", "Silver", "Gold" };
         var displayedMarkings = Enumerable.Range(0, 16).Select(ix => MathEmSprites[(props[initialArrangement[ix], 0] * 10) + props[initialArrangement[ix], 2]]).ToArray();
 
         for (var tileIx = 0; tileIx < 16; tileIx++)

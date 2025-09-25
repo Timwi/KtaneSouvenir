@@ -5614,12 +5614,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
-        [typeof(SGridLock)] = new()
+        [typeof(SGridlock)] = new()
         {
             ModuleName = "グリッドロック",
             Questions = new()
             {
-                [SGridLock.StartingColor] = new()
+                [SGridlock.StartingColor] = new()
                 {
                     // English: What was the starting color in {0}?
                     Question = "{0}の開始地点は何色？",
@@ -5631,12 +5631,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Blue"] = "青",
                     },
                 },
-                [SGridLock.StartingLocation] = new()
+                [SGridlock.StartingLocation] = new()
                 {
                     // English: What was the starting location in {0}?
                     Question = "{0}の開始位置は？",
                 },
-                [SGridLock.EndingLocation] = new()
+                [SGridlock.EndingLocation] = new()
                 {
                     // English: What was the ending location in {0}?
                     Question = "{0}の終了位置は？",
@@ -6781,6 +6781,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which particles were present for the {1} stage of {0}?
                     // Example: Which particles were present for the first stage of Kugelblitz?
                     Question = "Which particles were present for the {1} stage of {0}?",
+                    Additional = new()
+                    {
+                        ["{0}{1}{2}{3}{4}{5}{6}"] = "{0}{1}{2}{3}{4}{5}{6}",
+                        ["None"] = "None",
+                    },
                 },
                 [SKugelblitz.RedGreenBlue] = new()
                 {
@@ -14799,8 +14804,74 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SVariety.Has] = new()
                 {
                     // English: the Variety that has {0}
-                    // Example: the Variety that has one (LED)
+                    // Example: the Variety that has one
                     Discriminator = "the Variety that has {0}",
+                    Arguments = new()
+                    {
+                        ["one\uE003 (LED)"] = "one",
+                        ["one\uE003 (digit display)"] = "one",
+                        ["one\uE003 (letter display)"] = "one",
+                        ["one\uE003 (timer)"] = "one",
+                        ["one\uE003 (knob)"] = "one",
+                        ["one\uE003 (colored knob)"] = "one",
+                        ["one\uE003 (redknob)"] = "one",
+                        ["one\uE003 (yellowknob)"] = "one",
+                        ["one\uE003 (blueknob)"] = "one",
+                        ["one\uE003 (blackknob)"] = "one",
+                        ["one\uE003 (bulb)"] = "one",
+                        ["one\uE003 (redbulb)"] = "one",
+                        ["one\uE003 (yellowbulb)"] = "one",
+                        ["a knob"] = "a knob",
+                        ["a colored knob"] = "a colored knob",
+                        ["a white knob"] = "a white knob",
+                        ["a red knob"] = "a red knob",
+                        ["a black knob"] = "a black knob",
+                        ["a blue knob"] = "a blue knob",
+                        ["a yellow knob"] = "a yellow knob",
+                        ["a keypad"] = "a keypad",
+                        ["a white keypad"] = "a white keypad",
+                        ["a red keypad"] = "a red keypad",
+                        ["a yellow keypad"] = "a yellow keypad",
+                        ["a blue keypad"] = "a blue keypad",
+                        ["a slider"] = "a slider",
+                        ["a horizontal slider"] = "a horizontal slider",
+                        ["a vertical slider"] = "a vertical slider",
+                        ["an LED"] = "an LED",
+                        ["a digit display"] = "a digit display",
+                        ["a wire"] = "a wire",
+                        ["a black wire"] = "a black wire",
+                        ["a blue wire"] = "a blue wire",
+                        ["a red wire"] = "a red wire",
+                        ["a yellow wire"] = "a yellow wire",
+                        ["a white wire"] = "a white wire",
+                        ["a button"] = "a button",
+                        ["a red button"] = "a red button",
+                        ["a yellow button"] = "a yellow button",
+                        ["a blue button"] = "a blue button",
+                        ["a white button"] = "a white button",
+                        ["a letter display"] = "a letter display",
+                        ["a Braille display"] = "a Braille display",
+                        ["a key-in-lock"] = "a key-in-lock",
+                        ["a switch"] = "a switch",
+                        ["a red switch"] = "a red switch",
+                        ["a yellow switch"] = "a yellow switch",
+                        ["a blue switch"] = "a blue switch",
+                        ["a white switch"] = "a white switch",
+                        ["a timer"] = "a timer",
+                        ["an ascending timer"] = "an ascending timer",
+                        ["a descending timer"] = "a descending timer",
+                        ["a die"] = "a die",
+                        ["a light-on-dark die"] = "a light-on-dark die",
+                        ["a dark-on-light die"] = "a dark-on-light die",
+                        ["a bulb"] = "a bulb",
+                        ["a red bulb"] = "a red bulb",
+                        ["a yellow bulb"] = "a yellow bulb",
+                        ["a maze"] = "a maze",
+                        ["a 3×3 maze"] = "a 3×3 maze",
+                        ["a 3×4 maze"] = "a 3×4 maze",
+                        ["a 4×3 maze"] = "a 4×3 maze",
+                        ["a 4×4 maze"] = "a 4×4 maze",
+                    },
                 },
             },
         },

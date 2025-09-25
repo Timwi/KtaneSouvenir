@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -140,7 +140,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         if (wordsWritten.Count != 5)
-            throw new AbandonModuleException("Unable to gather all 5 words in 1000 Words.");
+            throw new AbandonModuleException("Unable to gather all 5 words.");
 
         var wordsWrittenArr = wordsWritten.ToArray();
         yield return question(S1000Words.Words, args: [Ordinal(1)]).Answers(wordsWritten[0], all: phrases, preferredWrong: wordsWrittenArr);

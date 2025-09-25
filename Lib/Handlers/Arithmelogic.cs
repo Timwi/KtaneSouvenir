@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
 using static Souvenir.AnswerLayout;
 
 public enum SArithmelogic
@@ -31,6 +30,7 @@ public partial class SouvenirModule
         yield return question(SArithmelogic.Submit).Answers(ArithmelogicSprites[symbolNum], preferredWrong: ArithmelogicSprites);
         var screens = new[] { "left", "middle", "right" };
         for (var i = 0; i < 3; i++)
-            yield return question(SArithmelogic.Numbers, args: [screens[i]]).Answers(Enumerable.Range(0, 4).Where(ix => ix != curDisp[i]).Select(ix => selVal[i][ix].ToString()).ToArray());
+            yield return question(SArithmelogic.Numbers, args: [screens[i]])
+                .Answers(Enumerable.Range(0, 4).Where(ix => ix != curDisp[i]).Select(ix => selVal[i][ix].ToString()).ToArray());
     }
 }

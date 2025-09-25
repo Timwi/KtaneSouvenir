@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
 
-public enum SGridLock
+public enum SGridlock
 {
     [SouvenirQuestion("What was the starting color in {0}?", TwoColumns4Answers, "Green", "Yellow", "Red", "Blue", TranslateAnswers = true)]
     StartingColor,
@@ -20,12 +20,12 @@ public enum SGridLock
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GridlockModule", "Gridlock", typeof(SGridLock), "CaitSith2")]
-    private IEnumerator<SouvenirInstruction> ProcessGridLock(ModuleData module)
+    [SouvenirHandler("GridlockModule", "Gridlock", typeof(SGridlock), "CaitSith2")]
+    private IEnumerator<SouvenirInstruction> ProcessGridlock(ModuleData module)
     {
         var comp = GetComponent(module, "GridlockModule");
 
-        var colors = SGridLock.StartingColor.GetAnswers();
+        var colors = SGridlock.StartingColor.GetAnswers();
 
         yield return WaitForActivate;
 
@@ -34,8 +34,8 @@ public partial class SouvenirModule
         var start = pages[0].IndexOf(i => (i & 15) == 4);
 
         yield return WaitForSolve;
-        yield return question(SGridLock.StartingLocation).Answers(new Coord(4, 4, start));
-        yield return question(SGridLock.EndingLocation).Answers(new Coord(4, 4, solution));
-        yield return question(SGridLock.StartingColor).Answers(colors[(pages[0][start] >> 4) - 1]);
+        yield return question(SGridlock.StartingLocation).Answers(new Coord(4, 4, start));
+        yield return question(SGridlock.EndingLocation).Answers(new Coord(4, 4, solution));
+        yield return question(SGridlock.StartingColor).Answers(colors[(pages[0][start] >> 4) - 1]);
     }
 }

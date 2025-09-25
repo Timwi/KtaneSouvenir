@@ -9,7 +9,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
     {
         public Gender Gender = Gender.Neuter;
         public string ModuleNameDative;
-        public string ModuleNameWithThe;
     }
 
     public enum Gender
@@ -28,7 +27,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender.Neuter => $"dem als {ordinal(numSolved)}es gelösten {_translations.Get(handler.EnumType)?.ModuleNameDative ?? _translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleName}",
             _ => /* Plural */ $"den als {ordinal(numSolved)}e gelösten {_translations.Get(handler.EnumType)?.ModuleNameDative ?? _translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleName}",
         }
-        : _translations.Get(handler.EnumType)?.ModuleNameWithThe ?? _translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleNameWithThe;
+        : _translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleNameWithThe;
 
     public override string Ordinal(int number) => ordinal(number);
     private string ordinal(int num) => num < 0 ? $"({num})t" : num switch
@@ -618,8 +617,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SArena)] = new()
         {
+            ModuleName = "Die Arena",
             Gender = Gender.Feminine,
-            ModuleNameWithThe = "Die Arena",
+            ModuleNameDative = "Arena",
             Questions = new()
             {
                 [SArena.Damage] = new()
@@ -713,8 +713,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SAzureButton)] = new()
         {
-            ModuleName = "Azurfarbenen Knopf",
-            ModuleNameWithThe = "Der Azurfarbene Knopf",
+            ModuleName = "Der Azurfarbene Knopf",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Azurfarbenen Knopf",
             Questions = new()
             {
                 [SAzureButton.QDecoyArrowDirection] = new()
@@ -1434,8 +1435,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBlueButton)] = new()
         {
             NeedsTranslation = true,
-            ModuleName = "Blauen Knopf",
-            ModuleNameWithThe = "Der Blaue Knopf",
+            ModuleName = "Der Blaue Knopf",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Blauen Knopf",
             Questions = new()
             {
                 [SBlueButton.D] = new()
@@ -1912,9 +1914,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SBulb)] = new()
         {
-            ModuleName = "Glühlampe",
+            ModuleName = "Die Glühlampe",
             Gender = Gender.Feminine,
-            ModuleNameWithThe = "Die Glühlampe",
+            ModuleNameDative = "Glühlampe",
             Questions = new()
             {
                 [SBulb.InitialState] = new()
@@ -1963,9 +1965,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SButton)] = new()
         {
-            ModuleName = "Knopf",
+            ModuleName = "Der Knopf",
             Gender = Gender.Masculine,
-            ModuleNameWithThe = "Der Knopf",
+            ModuleNameDative = "Knopf",
             Questions = new()
             {
                 [SButton.LightColor] = new()
@@ -2452,8 +2454,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCode)] = new()
         {
+            ModuleName = "Der Code",
             Gender = Gender.Masculine,
-            ModuleNameWithThe = "Der Code",
+            ModuleNameDative = "Code",
             Questions = new()
             {
                 [SCode.DisplayNumber] = new()
@@ -3362,9 +3365,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCRule)] = new()
         {
-            ModuleName = "CRegel",
+            ModuleName = "Die CRegel",
             Gender = Gender.Feminine,
-            ModuleNameWithThe = "Die CRegel",
+            ModuleNameDative = "CRegel",
             Questions = new()
             {
                 [SCRule.SymbolPair] = new()
@@ -3457,9 +3460,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCube)] = new()
         {
-            ModuleName = "Würfel",
+            ModuleName = "Der Würfel",
             Gender = Gender.Masculine,
-            ModuleNameWithThe = "Der Würfel",
+            ModuleNameDative = "Würfel",
             Questions = new()
             {
                 [SCube.Rotations] = new()
@@ -3512,10 +3515,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCyanButton)] = new()
         {
-            ModuleName = "Türkiser Knopf",
+            ModuleName = "Der Türkise Knopf",
             Gender = Gender.Masculine,
             ModuleNameDative = "Türkisen Knopf",
-            ModuleNameWithThe = "Der Türkise Knopf",
             Questions = new()
             {
                 [SCyanButton.Positions] = new()
@@ -3624,9 +3626,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SDeckOfManyThings)] = new()
         {
-            ModuleName = "Stapel Vieler Dinge",
+            ModuleName = "Der Stapel Vieler Dinge",
             Gender = Gender.Masculine,
-            ModuleNameWithThe = "Der Stapel Vieler Dinge",
+            ModuleNameDative = "Stapel Vieler Dinge",
             Questions = new()
             {
                 [SDeckOfManyThings.FirstCard] = new()
@@ -4213,9 +4215,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDuck)] = new()
         {
             NeedsTranslation = true,
-            ModuleName = "Ente",
+            ModuleName = "Die Ente",
             Gender = Gender.Feminine,
-            ModuleNameWithThe = "Die Ente",
+            ModuleNameDative = "Ente",
             Questions = new()
             {
                 [SDuck.CurtainColor] = new()
@@ -5803,12 +5805,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        [typeof(SGridLock)] = new()
+        [typeof(SGridlock)] = new()
         {
             NeedsTranslation = true,
             Questions = new()
             {
-                [SGridLock.StartingColor] = new()
+                [SGridlock.StartingColor] = new()
                 {
                     // English: What was the starting color in {0}?
                     Question = "What was the starting color in {0}?",
@@ -5820,12 +5822,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Blue"] = "Blue",
                     },
                 },
-                [SGridLock.StartingLocation] = new()
+                [SGridlock.StartingLocation] = new()
                 {
                     // English: What was the starting location in {0}?
                     Question = "What was the starting location in {0}?",
                 },
-                [SGridLock.EndingLocation] = new()
+                [SGridlock.EndingLocation] = new()
                 {
                     // English: What was the ending location in {0}?
                     Question = "What was the ending location in {0}?",
@@ -6382,8 +6384,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SHyperlink)] = new()
         {
+            ModuleName = "Der Hyperlink",
             Gender = Gender.Masculine,
-            ModuleNameWithThe = "Der Hyperlink",
+            ModuleNameDative = "Hyperlink",
             Questions = new()
             {
                 [SHyperlink.Characters] = new()
@@ -6875,7 +6878,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SKlaxon)] = new()
         {
-            ModuleNameWithThe = "Das Klaxon",
+            ModuleName = "Das Klaxon",
+            ModuleNameDative = "Klaxon",
             Questions = new()
             {
                 [SKlaxon.FirstModule] = new()
@@ -6982,6 +6986,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which particles were present for the {1} stage of {0}?
                     // Example: Which particles were present for the first stage of Kugelblitz?
                     Question = "Welche Partikel waren bei {0} in der {1}en Stufe zu sehen?",
+                    Additional = new()
+                    {
+                        ["{0}{1}{2}{3}{4}{5}{6}"] = "{0}{1}{2}{3}{4}{5}{6}",
+                        ["None"] = "Keine",
+                    },
                 },
                 [SKugelblitz.RedGreenBlue] = new()
                 {
@@ -10624,9 +10633,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SPinkButton)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Der Pinkfarbene Knopf",
             Gender = Gender.Masculine,
             ModuleNameDative = "Pinkfarbenen Knopf",
-            ModuleNameWithThe = "Der Pinkfarbene Knopf",
             Questions = new()
             {
                 [SPinkButton.Words] = new()
@@ -11763,10 +11772,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SRule)] = new()
         {
-            ModuleName = "Regel",
+            ModuleName = "Die Regel",
             Gender = Gender.Feminine,
             ModuleNameDative = "Regel",
-            ModuleNameWithThe = "Die Regel",
             Questions = new()
             {
                 [SRule.Number] = new()
@@ -15005,7 +15013,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SVariety)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Vielfalt",
             Gender = Gender.Feminine,
             Questions = new()
@@ -15037,39 +15044,39 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the maximum display for the {1} in {0}?
                     // Example: What was the maximum display for the timer in Variety?
-                    Question = "Was war bei {0} die höchste Zahl auf dem {1}Timer?",
+                    Question = "Was war bei {0} die höchste Zahl auf dem {1}?",
                     Arguments = new()
                     {
-                        ["timer"] = "timer",
-                        ["ascending timer"] = "ascending timer",
-                        ["descending timer"] = "descending timer",
+                        ["timer"] = "Timer",
+                        ["ascending timer"] = "aufsteigenden Timer",
+                        ["descending timer"] = "absteigenden Timer",
                     },
                 },
                 [SVariety.ColoredKnob] = new()
                 {
                     // English: What was n for the {1} in {0}?
                     // Example: What was n for the knob in Variety?
-                    Question = "Was war bei {0} der Wert n beim {1}Drehregler?",
+                    Question = "Was war bei {0} der Wert n beim {1}?",
                     Arguments = new()
                     {
-                        ["knob"] = "knob",
-                        ["colored knob"] = "colored knob",
-                        ["red knob"] = "red knob",
-                        ["black knob"] = "black knob",
-                        ["blue knob"] = "blue knob",
-                        ["yellow knob"] = "yellow knob",
+                        ["knob"] = "Drehregler",
+                        ["colored knob"] = "farbigen Drehregler",
+                        ["red knob"] = "roten Drehregler",
+                        ["black knob"] = "schwarzen Drehregler",
+                        ["blue knob"] = "blauen Drehregler",
+                        ["yellow knob"] = "gelben Drehregler",
                     },
                 },
                 [SVariety.Bulb] = new()
                 {
                     // English: What was n for the {1} in {0}?
                     // Example: What was n for the bulb in Variety?
-                    Question = "Was war bei {0} der Wert n bei der {1}Glühlampe?",
+                    Question = "Was war bei {0} der Wert n bei der {1}?",
                     Arguments = new()
                     {
-                        ["bulb"] = "bulb",
-                        ["red bulb"] = "red bulb",
-                        ["yellow bulb"] = "yellow bulb",
+                        ["bulb"] = "Glühlampe",
+                        ["red bulb"] = "roten Glühlampe",
+                        ["yellow bulb"] = "gelben Glühlampe",
                     },
                 },
             },
@@ -15078,8 +15085,74 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SVariety.Has] = new()
                 {
                     // English: the Variety that has {0}
-                    // Example: the Variety that has one (LED)
-                    Discriminator = "der Vielfalt mit {0}",
+                    // Example: the Variety that has one
+                    Discriminator = "der Vielfalt{0}",
+                    Arguments = new()
+                    {
+                        ["one\uE003 (LED)"] = ", die eine hat,",
+                        ["one\uE003 (digit display)"] = ", die eins hat,",
+                        ["one\uE003 (letter display)"] = ", die eins hat,",
+                        ["one\uE003 (timer)"] = ", die einen hat,",
+                        ["one\uE003 (knob)"] = ", die einen hat,",
+                        ["one\uE003 (colored knob)"] = ", die einen hat,",
+                        ["one\uE003 (redknob)"] = ", die einen hat,",
+                        ["one\uE003 (yellowknob)"] = ", die einen hat,",
+                        ["one\uE003 (blueknob)"] = ", die einen hat,",
+                        ["one\uE003 (blackknob)"] = ", die einen hat,",
+                        ["one\uE003 (bulb)"] = ", die eine hat,",
+                        ["one\uE003 (redbulb)"] = ", die eine hat,",
+                        ["one\uE003 (yellowbulb)"] = ", die eine hat,",
+                        ["a knob"] = " mit einem Drehregler",
+                        ["a colored knob"] = " mit einem farbigen Drehregler",
+                        ["a white knob"] = " mit einem weißen Drehregler",
+                        ["a red knob"] = " mit einem roten Drehregler",
+                        ["a black knob"] = " mit einem schwarzen Drehregler",
+                        ["a blue knob"] = " mit einem blauen Drehregler",
+                        ["a yellow knob"] = " mit einem gelben Drehregler",
+                        ["a keypad"] = " mit einem Tastenfeld",
+                        ["a white keypad"] = " mit einem weißen Tastenfeld",
+                        ["a red keypad"] = " mit einem roten Tastenfeld",
+                        ["a yellow keypad"] = " mit einem gelben Tastenfeld",
+                        ["a blue keypad"] = " mit einem blauen Tastenfeld",
+                        ["a slider"] = " mit einem Schieber",
+                        ["a horizontal slider"] = " mit einem horizontalen Schieber",
+                        ["a vertical slider"] = " mit einem vertikalen Schieber",
+                        ["an LED"] = " mit einem LED",
+                        ["a digit display"] = " mit einem Zifferndisplay",
+                        ["a wire"] = " mit einem Draht",
+                        ["a black wire"] = " mit einem schwarzen Draht",
+                        ["a blue wire"] = " mit einem blauen Draht",
+                        ["a red wire"] = " mit einem roten Draht",
+                        ["a yellow wire"] = " mit einem gelben Draht",
+                        ["a white wire"] = " mit einem weißen Draht",
+                        ["a button"] = " mit einem Knopf",
+                        ["a red button"] = " mit einem roten Knopf",
+                        ["a yellow button"] = " mit einem gelben Knopf",
+                        ["a blue button"] = " mit einem blauen Knopf",
+                        ["a white button"] = " mit einem weißen Knopf",
+                        ["a letter display"] = " mit einem Buchstaben-Display",
+                        ["a Braille display"] = " mit einem Braille-Display",
+                        ["a key-in-lock"] = " mit einem Schlüssel",
+                        ["a switch"] = " mit einem Schalter",
+                        ["a red switch"] = " mit einem roten Schalter",
+                        ["a yellow switch"] = " mit einem gelben Schalter",
+                        ["a blue switch"] = " mit einem blauen Schalter",
+                        ["a white switch"] = " mit einem weißen Schalter",
+                        ["a timer"] = " mit einem Timer",
+                        ["an ascending timer"] = " mit einem aufsteigenden Timer",
+                        ["a descending timer"] = " mit einem absteigenden Timer",
+                        ["a die"] = " mit einem Würfel",
+                        ["a light-on-dark die"] = " mit einem dunklen Würfel mit hellen Punkten",
+                        ["a dark-on-light die"] = " mit einem hellen Würfel mit dunklen Punkten",
+                        ["a bulb"] = " mit einer Glühlampe",
+                        ["a red bulb"] = " mit einer roten Glühlampe",
+                        ["a yellow bulb"] = " mit einer gelben Glühlampe",
+                        ["a maze"] = " mit einem Labyrinth",
+                        ["a 3×3 maze"] = " mit einem 3×3-Labyrinth",
+                        ["a 3×4 maze"] = " mit einem 3×4-Labyrinth",
+                        ["a 4×3 maze"] = " mit einem 4×3-Labyrinth",
+                        ["a 4×4 maze"] = " mit einem 4×4-Labyrinth",
+                    },
                 },
             },
         },

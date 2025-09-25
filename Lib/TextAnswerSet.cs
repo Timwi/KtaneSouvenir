@@ -24,7 +24,7 @@ public sealed class TextAnswerSet(string[] answers, int correctIndex, SouvenirQu
             mesh.font = qAttr.Type == AnswerType.DynamicFont ? info.Font : souvenir.Fonts[(int) qAttr.Type];
             mesh.fontSize = qAttr.FontSize;
             mesh.characterSize = qAttr.CharacterSize;
-            mesh.GetComponent<MeshRenderer>().material = (qAttr.Type == AnswerType.DynamicFont ? info.FontMaterial : null) ?? souvenir.FontMaterial;
+            mesh.GetComponent<MeshRenderer>().material = souvenir.FontMaterial;
             mesh.GetComponent<MeshRenderer>().material.mainTexture = qAttr.Type == AnswerType.DynamicFont ? info.FontTexture : souvenir.FontTextures[(int) qAttr.Type];
 
             // Determine size of the answer and if it’s too long, shrink it horizontally to make it fit

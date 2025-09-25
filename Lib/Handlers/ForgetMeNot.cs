@@ -11,7 +11,6 @@ public enum SForgetMeNot
     Question,
 
     [SouvenirDiscriminator("the Forget Me Not which displayed a {0} in the {1} stage", Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal], ArgumentGroupSize = 2)]
-    [AnswerGenerator.Integers(0, 9)]
     Discriminator
 }
 

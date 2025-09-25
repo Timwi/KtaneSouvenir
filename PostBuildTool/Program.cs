@@ -173,6 +173,22 @@ public static class Program
                 sb.AppendLine($"{indent()}{{");
                 indentation += 4;
 
+                void AddDictionary(string name, IEnumerable<string> original, Dictionary<string, string> already)
+                {
+                    sb.AppendLine($"{indent()}{name} = new()");
+                    sb.AppendLine($"{indent()}{{");
+                    indentation += 4;
+                    foreach (var str in original)
+                        sb.AppendLine($@"{indent()}[""{str.CLiteralEscape()}""] = ""{(already?.Get(str, null) ?? str)
+                            .Apply(str => str.IndexOf('\uE003') is int p and not -1 ? str.Substring(0, p) : str)
+                            .CLiteralEscape()}"",");
+                    indentation -= 4;
+                    sb.AppendLine($"{indent()}}},");
+
+                    if (already == null || original.Any(str => !already.ContainsKey(str)) || already.Keys.Any(k => !original.Contains(k)))
+                        needsTranslation = true;
+                }
+
                 // for each QUESTION...
                 foreach (var (enumValue, qAttr, _) in questionsAndDiscriminators.Where(tup => tup.qAttr != null))
                 {
@@ -191,23 +207,9 @@ public static class Program
                         var extra = qAttr.UsesQuestionSprite ? $@" (+ sprite)" : "";
                         sb.AppendLine($@"{indent()}// English: {qAttr.QuestionText}{extra}");
                         if (qAttr.Arguments is string[] args)
-                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) qAttr.QuestionText, (object[]) [handler.ModuleName, .. ordinals(args.Take((int) qAttr.ArgumentGroupSize))])}{extra}");
+                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) qAttr.QuestionText, (object[]) [handler.ModuleName, .. processString(args.Take((int) qAttr.ArgumentGroupSize))])}{extra}");
                     }
                     sb.AppendLine($@"{indent()}Question = ""{((string) (alreadyQuestion?.Question ?? qAttr.QuestionText)).CLiteralEscape()}"",");
-
-                    void AddDictionary(string name, IEnumerable<string> original, Dictionary<string, string> already)
-                    {
-                        sb.AppendLine($"{indent()}{name} = new()");
-                        sb.AppendLine($"{indent()}{{");
-                        indentation += 4;
-                        foreach (var str in original)
-                            sb.AppendLine($@"{indent()}[""{str.CLiteralEscape()}""] = ""{(already?.Get(str, null) ?? str).CLiteralEscape()}"",");
-                        indentation -= 4;
-                        sb.AppendLine($"{indent()}}},");
-
-                        if (already == null || original.Any(str => !already.ContainsKey(str)) || already.Keys.Any(k => !original.Contains(k)))
-                            needsTranslation = true;
-                    }
 
                     if (qAttr.AllAnswers is string[] { Length: > 0 } origAnswers && (bool) qAttr.TranslateAnswers)
                         AddDictionary("Answers", origAnswers.Distinct(), alreadyQuestion?.Answers);
@@ -242,22 +244,8 @@ public static class Program
 
                         sb.AppendLine($@"{indent()}// English: {dAttr.DiscriminatorText}");
                         if (dAttr.Arguments is string[] args)
-                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) dAttr.DiscriminatorText, ordinals(args.Take((int) dAttr.ArgumentGroupSize)).ToArray())}");
+                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) dAttr.DiscriminatorText, processString(args.Take((int) dAttr.ArgumentGroupSize)).ToArray())}");
                         sb.AppendLine($@"{indent()}Discriminator = ""{((string) (alreadyDiscriminator?.Discriminator ?? dAttr.DiscriminatorText)).CLiteralEscape()}"",");
-
-                        void AddDictionary(string name, IEnumerable<string> original, Dictionary<string, string> already)
-                        {
-                            sb.AppendLine($"{indent()}{name} = new()");
-                            sb.AppendLine($"{indent()}{{");
-                            indentation += 4;
-                            foreach (var str in original)
-                                sb.AppendLine($@"{indent()}[""{str.CLiteralEscape()}""] = ""{(already?.Get(str, null) ?? str).CLiteralEscape()}"",");
-                            indentation -= 4;
-                            sb.AppendLine($"{indent()}}},");
-
-                            if (already == null || original.Any(str => !already.ContainsKey(str)) || already.Keys.Any(k => !original.Contains(k)))
-                                needsTranslation = true;
-                        }
 
                         if (dAttr.Arguments is string[] { Length: > 0 } origArguments && dAttr.ArgumentGroupSize is int groupSize && dAttr.TranslateArguments is bool[] trArgs)
                             AddDictionary("Arguments", origArguments.Select((str, ix) => trArgs[ix % groupSize] ? str : null).Where(s => s != null).Distinct(), alreadyDiscriminator?.Arguments);
@@ -290,7 +278,7 @@ public static class Program
         return translationStats;
     }
 
-    private static IEnumerable<string> ordinals(IEnumerable<string> source) => source.Select(str => str == "\uE047ordinal" ? "first" : str);
+    private static IEnumerable<string> processString(IEnumerable<string> source) => source.Select(str => str == "\uE047ordinal" ? "first" : str.IndexOf('\uE003') is int p and not -1 ? str.Substring(0, p) : str);
 
     private static void DoDataFileStuff(string path, Assembly assembly, Dictionary<string, string> translationStats)
     {
