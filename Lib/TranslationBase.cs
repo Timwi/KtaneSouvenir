@@ -17,7 +17,7 @@ public abstract class TranslationBase<T> : ITranslation where T : TranslationInf
     private Dictionary<Type, T> _translationsCache = null;
     public TranslationInfo TranslateModule(Type enumType) => (_translationsCache ??= _translations).Get(enumType);
     public QuestionTranslationInfo TranslateQuestion(Enum enumValue) =>
-        TranslateModule(enumValue.GetQuestionAttribute().Handler.EnumType)?.Questions.Get(enumValue);
+        TranslateModule(enumValue.GetQuestionAttribute().Handler.EnumType)?.Questions?.Get(enumValue);
     public DiscriminatorTranslationInfo TranslateDiscriminator(Enum enumValue) =>
-        TranslateModule(enumValue.GetDiscriminatorAttribute().Handler.EnumType)?.Discriminators.Get(enumValue);
+        TranslateModule(enumValue.GetDiscriminatorAttribute().Handler.EnumType)?.Discriminators?.Get(enumValue);
 }

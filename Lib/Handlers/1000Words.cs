@@ -6,7 +6,10 @@ using static Souvenir.AnswerLayout;
 public enum S1000Words
 {
     [SouvenirQuestion("What was the {1} word shown in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Baken", "Ghost", "Tolts", "Oyers", "Sweel", "Rangy", "Noses", "Chapt", "Phuts", "Pingo", "Hylas", "Podia", "Vizor"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    Words
+    Words,
+
+    [SouvenirDiscriminator("the 1000 Words where the {0} word was {1}", Arguments = [QandA.Ordinal, "Baken", QandA.Ordinal, "Ghost", QandA.Ordinal, "Tolts", QandA.Ordinal, "Oyers", QandA.Ordinal, "Sweel", QandA.Ordinal, "Rangy", QandA.Ordinal, "Noses", QandA.Ordinal, "Chapt", QandA.Ordinal, "Phuts", QandA.Ordinal, "Pingo", QandA.Ordinal, "Hylas", QandA.Ordinal, "Podia", QandA.Ordinal, "Vizor"], ArgumentGroupSize = 2)]
+    Discriminator
 }
 
 public partial class SouvenirModule
@@ -143,10 +146,10 @@ public partial class SouvenirModule
             throw new AbandonModuleException("Unable to gather all 5 words.");
 
         var wordsWrittenArr = wordsWritten.ToArray();
-        yield return question(S1000Words.Words, args: [Ordinal(1)]).Answers(wordsWritten[0], all: phrases, preferredWrong: wordsWrittenArr);
-        yield return question(S1000Words.Words, args: [Ordinal(2)]).Answers(wordsWritten[1], all: phrases, preferredWrong: wordsWrittenArr);
-        yield return question(S1000Words.Words, args: [Ordinal(3)]).Answers(wordsWritten[2], all: phrases, preferredWrong: wordsWrittenArr);
-        yield return question(S1000Words.Words, args: [Ordinal(4)]).Answers(wordsWritten[3], all: phrases, preferredWrong: wordsWrittenArr);
-        yield return question(S1000Words.Words, args: [Ordinal(5)]).Answers(wordsWritten[4], all: phrases, preferredWrong: wordsWrittenArr);
+        for (var i = 0; i < 5; i++)
+        {
+            yield return new Discriminator(S1000Words.Discriminator, $"stage{i}", wordsWritten[i], args: [Ordinal(i + 1), wordsWritten[i]]);
+            yield return question(S1000Words.Words, args: [Ordinal(i + 1)]).AvoidDiscriminators($"stage{i}").Answers(wordsWritten[i], all: phrases, preferredWrong: wordsWrittenArr);
+        }
     }
 }

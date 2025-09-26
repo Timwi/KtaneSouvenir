@@ -3,11 +3,12 @@
 The following is a list of modules supported by Souvenir, and the fine people who have contributed their effort to make it happen:
 
 
-## Implemented by Timwi (141)
+## Implemented by Timwi (142)
 
-    3 LEDs               │  Coordinates           │  Ingredients              │  Object Shows         │  Simon Speaks
-    3D Maze              │  Coral Cipher          │  IPA                      │  Only Connect         │  Simon States
-    3D Tunnels           │  Corners               │  Klaxon, The              │  Orientation Cube     │  Simply Simon
+    3 LEDs               │  Colored Switches      │  Identity Parade          │  Not X-Ray            │  Simon Sounds
+    3D Maze              │  Coordinates           │  Ingredients              │  Object Shows         │  Simon Speaks
+    3D Tunnels           │  Coral Cipher          │  IPA                      │  Only Connect         │  Simon States
+    7                    │  Corners               │  Klaxon, The              │  Orientation Cube     │  Simply Simon
     Adventure Game       │  Cornflower Cipher     │  Kudosudoku               │  Partial Derivatives  │  Skewed Slots
     Algebra              │  Crazy Maze            │  Lion’s Share             │  Pattern Cube         │  Skyrim
     Alpha-Bits           │  Cream Cipher          │  Listening                │  Pink Button, The     │  Sonic the Hedgehog
@@ -33,7 +34,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Decoding       │  Hogwarts              │  Navinums                 │  Simon Shrieks        │
     Color Morse          │  Human Resources       │  Navy Button, The         │  Simon Signals        │
     Colored Squares      │  Hunting               │  Neutralization           │  Simon Sings          │
-    Colored Switches     │  Identity Parade       │  Not X-Ray                │  Simon Sounds         │
 
 ## Implemented by Anonymous (108)
 
@@ -167,11 +167,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coinage   │  Linq                 │  Phosphorescence   │  Reformed Role Reversal  │
     Etterna   │  Octadecayotton, The  │  Placeholder Talk  │  Role Reversal           │
 
-## Implemented by VFlyer (12)
+## Implemented by VFlyer (11)
 
-    7               │  Flashing Arrows  │  Pie Flash         │  Unfair’s Revenge
-    Abyss           │  Homophones       │  Prime Encryption  │  Who’s on Morse
-    Color Addition  │  Negativity       │  Quick Arithmetic  │  WhoOF
+    Abyss            │  Homophones  │  Prime Encryption  │  Who’s on Morse
+    Color Addition   │  Negativity  │  Quick Arithmetic  │  WhoOF
+    Flashing Arrows  │  Pie Flash   │  Unfair’s Revenge  │
 
 ## Implemented by GhostSalt (10)
 

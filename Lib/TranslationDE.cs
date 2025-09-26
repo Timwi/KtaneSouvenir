@@ -76,6 +76,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Was war bei {0} das {1}e angezeigte Wort?",
                 },
             },
+            Discriminators = new()
+            {
+                [S1000Words.Discriminator] = new()
+                {
+                    // English: the 1000 Words where the {0} word was {1}
+                    // Example: the 1000 Words where the first word was Baken
+                    Discriminator = "den 1000 Wörtern, bei denen das {0}e Wort {1} war,",
+                },
+            },
         },
 
         [typeof(S100LevelsOfDefusal)] = new()
@@ -89,6 +98,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} displayed letter in {0}?
                     // Example: What was the first displayed letter in 100 Levels of Defusal?
                     Question = "Was war bei {0} der {1}e angezeigte Buchstabe?",
+                },
+            },
+            Discriminators = new()
+            {
+                [S100LevelsOfDefusal.Discriminator] = new()
+                {
+                    // English: the 100 Levels of Defusal where the {0} displayed letter was {1}
+                    // Example: the 100 Levels of Defusal where the first displayed letter was B
+                    Discriminator = "den 100 Ebenen der Entschärfung, deren {0}er Buchstabe {1} war,",
                 },
             },
         },
@@ -141,6 +159,34 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     },
                 },
             },
+            Discriminators = new()
+            {
+                [S1DChess.Discriminator] = new()
+                {
+                    // English: the 1D Chess where {1} was {0}
+                    // Example: the 1D Chess where your first move was B a→c
+                    Discriminator = "dem 1D-Schach, bei dem {1} {0} war,",
+                    Arguments = new()
+                    {
+                        ["your first move"] = "dein erster Zug",
+                        ["Rustmate’s first move"] = "Rustmates erster Zug",
+                        ["your second move"] = "dein zweiter Zug",
+                        ["Rustmate’s second move"] = "Rustmates zweiter Zug",
+                        ["your third move"] = "dein dritter Zug",
+                        ["Rustmate’s third move"] = "Rustmates dritter Zug",
+                        ["your fourth move"] = "dein vierter Zug",
+                        ["Rustmate’s fourth move"] = "Rustmates vierter Zug",
+                        ["your fifth move"] = "dein fünfter Zug",
+                        ["Rustmate’s fifth move"] = "Rustmates fünfter Zug",
+                        ["your sixth move"] = "dein sechster Zug",
+                        ["Rustmate’s sixth move"] = "Rustmates sechster Zug",
+                        ["your seventh move"] = "dein siebter Zug",
+                        ["Rustmate’s seventh move"] = "Rustmates siebter Zug",
+                        ["your eighth move"] = "dein achter Zug",
+                        ["Rustmate’s eighth move"] = "Rustmates achter Zug",
+                    },
+                },
+            },
         },
 
         [typeof(S21)] = new()
@@ -160,16 +206,38 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "3D-Labyrinth",
             Questions = new()
             {
-                [S3DMaze.Markings] = new()
+                [S3DMaze.QMarkings] = new()
                 {
                     // English: What were the markings in {0}?
                     Question = "Was waren bei {0} die Markierungen?",
                 },
-                [S3DMaze.Bearing] = new()
+                [S3DMaze.QBearing] = new()
                 {
                     // English: What was the cardinal direction in {0}?
                     Question = "Was war bei {0} die Himmelsrichtung?",
                     Answers = new()
+                    {
+                        ["North"] = "Norden",
+                        ["South"] = "Süden",
+                        ["West"] = "Westen",
+                        ["East"] = "Osten",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [S3DMaze.DMarkings] = new()
+                {
+                    // English: the 3D Maze whose markings were {0}
+                    // Example: the 3D Maze whose markings were ABC
+                    Discriminator = "dem 3D-Labyrinth, dessen Markierungen {0} waren,",
+                },
+                [S3DMaze.DBearing] = new()
+                {
+                    // English: the 3D Maze whose cardinal direction was {0}
+                    // Example: the 3D Maze whose cardinal direction was North
+                    Discriminator = "dem 3D-Labyrinth, dessen Himmelsrichtung {0} war,",
+                    Arguments = new()
                     {
                         ["North"] = "Norden",
                         ["South"] = "Süden",
@@ -258,9 +326,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(S7)] = new()
         {
+            Gender = Gender.Feminine,
             Questions = new()
             {
-                [S7.InitialValues] = new()
+                [S7.QInitialValues] = new()
                 {
                     // English: What was the {1} channel’s initial value in {0}?
                     // Example: What was the red channel’s initial value in 7?
@@ -272,12 +341,40 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["blue"] = "Blaukanal",
                     },
                 },
-                [S7.LedColors] = new()
+                [S7.QLedColors] = new()
                 {
                     // English: What LED color was shown in stage {1} of {0}?
-                    // Example: What LED color was shown in stage 0 of 7?
-                    Question = "Was war beim {1}en Schritt von {0} die LED-Farbe?",
+                    // Example: What LED color was shown in stage 1 of 7?
+                    Question = "Was war bei {0} die LED-Farbe in Stufe {1}?",
                     Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["white"] = "weiß",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [S7.DInitialValues] = new()
+                {
+                    // English: the 7 whose {0} channel’s initial value was {1}
+                    // Example: the 7 whose red channel’s initial value was -9
+                    Discriminator = "der 7, deren {1} den Anfangswert {0} hatte,",
+                    Arguments = new()
+                    {
+                        ["red"] = "Rotkanal",
+                        ["green"] = "Grünkanal",
+                        ["blue"] = "Blaukanal",
+                    },
+                },
+                [S7.DLedColors] = new()
+                {
+                    // English: the 7 whose stage {0} LED color was {1}
+                    // Example: the 7 whose stage 1 LED color was red
+                    Discriminator = "der 7, deren LED in Stufe {0} {1} war,",
+                    Arguments = new()
                     {
                         ["red"] = "rot",
                         ["blue"] = "blau",

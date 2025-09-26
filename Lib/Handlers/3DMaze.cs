@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -7,10 +7,16 @@ using static Souvenir.AnswerLayout;
 public enum S3DMaze
 {
     [SouvenirQuestion("What were the markings in {0}?", ThreeColumns6Answers, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
-    Markings,
+    QMarkings,
 
     [SouvenirQuestion("What was the cardinal direction in {0}?", TwoColumns4Answers, "North", "South", "West", "East", TranslateAnswers = true)]
-    Bearing
+    QBearing,
+
+    [SouvenirDiscriminator("the 3D Maze whose markings were {0}", Arguments = ["ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH"], ArgumentGroupSize = 1)]
+    DMarkings,
+
+    [SouvenirDiscriminator("the 3D Maze whose cardinal direction was {0}", Arguments = ["North", "South", "West", "East"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    DBearing,
 }
 
 public partial class SouvenirModule
@@ -38,7 +44,10 @@ public partial class SouvenirModule
         var correctMarkings = chars.OrderBy(c => c).JoinString();
 
         yield return WaitForSolve;
-        yield return question(S3DMaze.Markings).Answers(correctMarkings);
-        yield return question(S3DMaze.Bearing).Answers(new[] { "North", "East", "South", "West" }[bearing]);
+        var cardinal = new[] { "North", "East", "South", "West" }[bearing];
+        yield return new Discriminator(S3DMaze.DMarkings, "markings", correctMarkings, args: [correctMarkings]);
+        yield return new Discriminator(S3DMaze.DBearing, "cardinal", cardinal, args: [cardinal]);
+        yield return question(S3DMaze.QMarkings).AvoidDiscriminators(S3DMaze.DMarkings).Answers(correctMarkings);
+        yield return question(S3DMaze.QBearing).AvoidDiscriminators(S3DMaze.DBearing).Answers(cardinal);
     }
 }

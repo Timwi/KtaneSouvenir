@@ -30,6 +30,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(S1000Words)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "1000単語",
             Questions = new()
             {
@@ -40,10 +41,20 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Question = "{0}の{1}番目の単語は何？",
                 },
             },
+            Discriminators = new()
+            {
+                [S1000Words.Discriminator] = new()
+                {
+                    // English: the 1000 Words where the {0} word was {1}
+                    // Example: the 1000 Words where the first word was Baken
+                    Discriminator = "in the 1000 Words where the {0} word was {1}?",
+                },
+            },
         },
 
         [typeof(S100LevelsOfDefusal)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "解除レベル100",
             Questions = new()
             {
@@ -52,6 +63,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the {1} displayed letter in {0}?
                     // Example: What was the first displayed letter in 100 Levels of Defusal?
                     Question = "{0}で{1}番目に表示された文字は何？",
+                },
+            },
+            Discriminators = new()
+            {
+                [S100LevelsOfDefusal.Discriminator] = new()
+                {
+                    // English: the 100 Levels of Defusal where the {0} displayed letter was {1}
+                    // Example: the 100 Levels of Defusal where the first displayed letter was B
+                    Discriminator = "the 100 Levels of Defusal where the {0} displayed letter was {1}",
                 },
             },
         },
@@ -76,6 +96,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(S1DChess)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "1Dチェス",
             Questions = new()
             {
@@ -105,6 +126,34 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     },
                 },
             },
+            Discriminators = new()
+            {
+                [S1DChess.Discriminator] = new()
+                {
+                    // English: the 1D Chess where {1} was {0}
+                    // Example: the 1D Chess where your first move was B a→c
+                    Discriminator = "the 1D Chess where {1} was {0}",
+                    Arguments = new()
+                    {
+                        ["your first move"] = "your first move",
+                        ["Rustmate’s first move"] = "Rustmate’s first move",
+                        ["your second move"] = "your second move",
+                        ["Rustmate’s second move"] = "Rustmate’s second move",
+                        ["your third move"] = "your third move",
+                        ["Rustmate’s third move"] = "Rustmate’s third move",
+                        ["your fourth move"] = "your fourth move",
+                        ["Rustmate’s fourth move"] = "Rustmate’s fourth move",
+                        ["your fifth move"] = "your fifth move",
+                        ["Rustmate’s fifth move"] = "Rustmate’s fifth move",
+                        ["your sixth move"] = "your sixth move",
+                        ["Rustmate’s sixth move"] = "Rustmate’s sixth move",
+                        ["your seventh move"] = "your seventh move",
+                        ["Rustmate’s seventh move"] = "Rustmate’s seventh move",
+                        ["your eighth move"] = "your eighth move",
+                        ["Rustmate’s eighth move"] = "Rustmate’s eighth move",
+                    },
+                },
+            },
         },
 
         [typeof(S21)] = new()
@@ -122,15 +171,16 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(S3DMaze)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "3D迷路",
             Questions = new()
             {
-                [S3DMaze.Markings] = new()
+                [S3DMaze.QMarkings] = new()
                 {
                     // English: What were the markings in {0}?
                     Question = "{0}の迷路の文字は何？",
                 },
-                [S3DMaze.Bearing] = new()
+                [S3DMaze.QBearing] = new()
                 {
                     // English: What was the cardinal direction in {0}?
                     Question = "{0}のゴールの方向はどこ？",
@@ -140,6 +190,28 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["South"] = "南",
                         ["West"] = "西",
                         ["East"] = "東",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [S3DMaze.DMarkings] = new()
+                {
+                    // English: the 3D Maze whose markings were {0}
+                    // Example: the 3D Maze whose markings were ABC
+                    Discriminator = "the 3D Maze whose markings were {0}",
+                },
+                [S3DMaze.DBearing] = new()
+                {
+                    // English: the 3D Maze whose cardinal direction was {0}
+                    // Example: the 3D Maze whose cardinal direction was North
+                    Discriminator = "the 3D Maze whose cardinal direction was {0}",
+                    Arguments = new()
+                    {
+                        ["North"] = "North",
+                        ["South"] = "South",
+                        ["West"] = "West",
+                        ["East"] = "East",
                     },
                 },
             },
@@ -222,9 +294,10 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(S7)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
-                [S7.InitialValues] = new()
+                [S7.QInitialValues] = new()
                 {
                     // English: What was the {1} channel’s initial value in {0}?
                     // Example: What was the red channel’s initial value in 7?
@@ -236,10 +309,10 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["blue"] = "青",
                     },
                 },
-                [S7.LedColors] = new()
+                [S7.QLedColors] = new()
                 {
                     // English: What LED color was shown in stage {1} of {0}?
-                    // Example: What LED color was shown in stage 0 of 7?
+                    // Example: What LED color was shown in stage 1 of 7?
                     Question = "{0}のステージ{1}のLEDの色は何？",
                     Answers = new()
                     {
@@ -247,6 +320,34 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["blue"] = "青",
                         ["green"] = "緑",
                         ["white"] = "白",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [S7.DInitialValues] = new()
+                {
+                    // English: the 7 whose {0} channel’s initial value was {1}
+                    // Example: the 7 whose red channel’s initial value was -9
+                    Discriminator = "the 7 whose {1} channel’s initial value was {0}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                    },
+                },
+                [S7.DLedColors] = new()
+                {
+                    // English: the 7 whose stage {0} LED color was {1}
+                    // Example: the 7 whose stage 1 LED color was red
+                    Discriminator = "the 7 whose stage {0} LED color was {1}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["white"] = "white",
                     },
                 },
             },
