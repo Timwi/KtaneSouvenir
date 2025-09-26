@@ -39,7 +39,7 @@ After the list of answers, several optional parameters can be added. The most im
     [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right"], ArgumentGroupSize = 2)]
 ```
 
-We want the question to vary from time to time: sometimes ask about the top-left quadrat, sometimes the other quadrants; and sometimes the black pixels, sometimes the white. To accommodate this, we note the following:
+We want the question to vary from time to time: sometimes ask about the top-left quadrant, sometimes the other quadrants; and sometimes the black pixels, sometimes the white. To accommodate this, we note the following:
 
 * Use `{1}`, `{2}` etc. as placeholders within the question string (remember to keep `{0}` reserved for the module name).
 * Use `Arguments = [...]` to specify possible arguments (text fragments) that could be inserted for `{1}` etc. In this example, note that the strings alternate between color and quadrant; in other words, it’s `{1}` then `{2}` then `{1}` again then `{2}` etc.
@@ -108,7 +108,7 @@ When it finally comes time to generate questions, you can simply create them as 
 yield return question(S123Game.Name).Answers(names[name]);
 ```
 
-In this very basic example, we are asking the question declared in the enum type `S123Game` with the name `Name`, and we’re providing a single correct answers.
+In this very basic example, we are asking the question declared in the enum type `S123Game` with the name `Name`, and we’re providing a single correct answer.
 
 You should `yield return` every possible question that Souvenir should be able to ask. Souvenir will pick one at random. You can do this anywhere in the handler, not just after waiting for solve.
 
@@ -203,7 +203,7 @@ Discriminator
 * **`ArgumentGroupSize`**: Number of arguments (including `{0}`).
 * **`TranslateArguments`**: Array indicating which arguments need translating into other languages.
 * **`TranslatableStrings`**: Additional strings that can be translated into other languages.
-* **`UsesQuestionSprite`**: Specifies whether the discriminator uses a question sprite (a small image to the right of the question). Souvenir will never pair a question that uses a question sprite with a discriminator that also uses a question sprite, so if all of your questions use a question sprite, none of the discriminators can (and vice versa).
+* **`UsesQuestionSprite`**: Specifies whether the discriminator uses a question sprite (a small image to the right of the question). Souvenir will never pair a question that uses a question sprite with a discriminator that also uses a question sprite, so if all of your questions use a question sprite, you’ll want a discriminator without one (and vice versa).
 
 ### `question(...)` (to be used with `yield return`)
 
@@ -240,9 +240,37 @@ Use this to ensure that the question and the discriminator don’t refer to the 
 * The second parameter (`id`) is a string that internally identifies this discriminator. This must be unique for every discriminator generated. For example, if you have a discriminator such as “the module that had an X in the nth stage”, you can use `$"stage{n}"`.
 * The third parameter (`value`) is the value that must be unique among the modules that the discriminator is here to distinguish. For example, if you have a discriminator such as “the module that had an X in the nth stage”, this would have to be `"X"`.
 * **`args = [...]`** — specifies arguments to be inserted in place of `{0}`, `{1}`, etc. in the discriminator text. Please use `Ordinal(...)` for ordinal numbers (such as “first” as in “the first stage”).
-* **`questionSprite: ...`** — a sprite to be displayed beside the question. Souvenir will not pair a question that uses a question sprite with a discriminator that uses a question sprite, so if all of your discriminators use a question sprite, make sure that none of the questions do.
+* **`questionSprite: ...`** — a sprite to be displayed beside the question. Souvenir will not pair a question that uses a question sprite with a discriminator that uses a question sprite, so if all of your discriminators use a question sprite, make sure that you have a question without one (and vice-versa).
 * **`questionSpriteRotation: ...`** — can be used to display the question sprite at an angle.
 * **`avoidAnswers: [...]`** — can be used to ensure that the discriminator is not paired with a question that displays the specified answer(s), whether it is a wrong answer or the correct answer. For example, *Hinges* uses this to ensure that the discriminator doesn’t accidentally reveal the answer to the question. However, in most cases `.AvoidDiscriminators(...)` should be used on the question instead.
+
+#### Discriminator priorities
+
+It is possible to give some discriminators priority over others. This should generally be used sparingly, but it is currently used for great effect by the following modules:
+
+* In *Concentation*, it will prefer to use the initial positions of numbers that have been moved, rather ones that haven’t.
+* In *Kugelblitz*, it will prefer to disambiguate just by color if it can, and only use the numbers of linked Kugelblitzes if it can’t.
+* In *Variety*, it makes it so that if we’re asking about the colors of the LED on a Variety, it will prefer to say “the Variety that has one” if it can, and only use “the Variety that has a maze” if it can’t.
+
+The priority is assigned as a property after the constructor call. Example from *Kugelblitz*:
+
+```cs
+yield return new Discriminator(SKugelblitz.Links, "colorlink", ...) { Priority = 1 };
+```
+
+When not specified, the priority defaults to `0`. Note that a **lower** value results in **greater** priority: discriminators with priority `0` are considered first, then `1`, then `2`, etc. You do not need to ensure the numbers are consecutive.
+
+You can also have the arguments and priority depend on the question being asked by supplying a lambda. Example from *Variety*:
+
+```cs
+yield return new Discriminator(SVariety.Has, "led")
+{
+	ArgumentsFromQuestion = q => SVariety.LED.Equals(q) ? ["one\uE003 (LED)"] : ["an LED"],
+	PriorityFromQuestion = q => SVariety.LED.Equals(q) ? 0 : 1
+};
+```
+
+In this example, if the question is about the LED, the discriminator will say “the Variety that has one” and the priority is 0. If any other question is asked, the text will be “the Variety that has an LED” and the priority is 1.
 
 ## Reflection helpers
 

@@ -74,8 +74,10 @@ Lib/obj/
 Lib/bin/
 Lib/.vs/
 Lib/packages/
+Lib/*.csproj.user
 PostBuildTool/obj/
 PostBuildTool/bin/
 PostBuildTool/.vs/
 PostBuildTool/packages/
+PostBuildTool/*.csproj.user
 .vscode

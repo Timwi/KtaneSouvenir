@@ -143,7 +143,7 @@ public partial class SouvenirModule
                 .Answers(answers[i], all: isNormal ? allStandardAnswers : null, preferredWrong: isNormal ? null : allRGBAnswers(finalQuirk == 5 ? 2 : 6).ToArray());
         yield return new Discriminator(SKugelblitz.Color, "color", finalQuirk, [quirkNames[finalQuirk]]);
         yield return linkSize == 1
-            ? new Discriminator(SKugelblitz.NoLinks, "nolink", true)
+            ? new Discriminator(SKugelblitz.NoLinks, "nolink")
             : new Discriminator(SKugelblitz.Links, "colorlink", (finalQuirk, linkSize), args: [quirkNames[finalQuirk], templates[linkSize - 2]]) { Priority = 1 };
     }
 }
