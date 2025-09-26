@@ -198,7 +198,7 @@ Since questions about boss modules must be asked before they can be solved, this
 Discriminator
 ```
 
-* The first parameter is the discriminator phrasing. Note that this time, arguments start counting at `{0}` since the module name is included in the clear.
+* The first parameter is the discriminator phrasing. Note that this time, arguments start counting at `{0}`.
 * **`Arguments`**: Specifies a set of possible arguments to be inserted in place of `{0}`, `{1}`, etc. If an argument must be translated into other languages, this must list all possible values for that argument (e.g. don’t just include “top-left” and “top-right” if there is also a “bottom-left” and a “bottom-right”).
 * **`ArgumentGroupSize`**: Number of arguments (including `{0}`).
 * **`TranslateArguments`**: Array indicating which arguments need translating into other languages.
@@ -244,6 +244,8 @@ Use this to ensure that the question and the discriminator don’t refer to the 
 * **`questionSpriteRotation: ...`** — can be used to display the question sprite at an angle.
 * **`avoidAnswers: [...]`** — can be used to ensure that the discriminator is not paired with a question that displays the specified answer(s), whether it is a wrong answer or the correct answer. For example, *Hinges* uses this to ensure that the discriminator doesn’t accidentally reveal the answer to the question. However, in most cases `.AvoidDiscriminators(...)` should be used on the question instead.
 
+Every applicable discriminator *must* be yield-returned even if the current handler can't use it (e.g. because of a strike).
+
 #### Discriminator priorities
 
 It is possible to give some discriminators priority over others. This should generally be used sparingly, but it is currently used for great effect by the following modules:
@@ -272,7 +274,11 @@ yield return new Discriminator(SVariety.Has, "led")
 
 In this example, if the question is about the LED, the discriminator will say “the Variety that has one” and the priority is 0. If any other question is asked, the text will be “the Variety that has an LED” and the priority is 1.
 
-If a discriminator becomes invalid at runtime for a particular module (usually upon a strike), it should still be `yield return`ed but with `AvoidEntirely = true`.
+If a discriminator becomes invalid at runtime for a particular module (usually upon a strike), it should still be `yield return`ed but with `AvoidEntirely = true`:
+
+```cs
+yield return new Discriminator(...) { AvoidEntirely = true };
+```
 
 ## Reflection helpers
 
