@@ -41,7 +41,7 @@ You may wish to look at an existing translation file to follow along with as an 
 	- `Ordinal` should return the ordinal form of any number, e.g. “first”, “second”, “400th”, “-40th”.
 	- `FormatModuleName` determines what the `{0}` in a question string is replaced with:
 		* If `addSolveCount` is `false`, this should just be the module name, including “The” (where relevant).
-		* If `addSolveCount` is `true`, this should return a phrase meaning something like “the Mad Memory that you solved 4th”.
+		* If `addSolveCount` is `true`, this should return a phrase meaning something like “the Mad Memory you solved 4th”.
 		* See below if you need special grammar considerations.
 		* Do not worry about discriminators here.
 
@@ -87,7 +87,7 @@ You may wish to look at an existing translation file to follow along with as an 
 
 	Note that the type of `_translations` has also changed.
 
-	Note that `ModuleNameSpecial` and `Conjugation` are just examples. These additional fields can be used in your implementation of `FormatModuleName` when writing the standard discriminator, “the Module that was solved first”. You should think about what information is necessary to accommodate the grammar of your language. You can only use strings and custom enum types. Refer to the existing translations (e.g. Russian, German) to see examples.
+	Note that `ModuleNameSpecial` and `Conjugation` are just examples. These additional fields can be used in your implementation of `FormatModuleName` when writing the standard discriminator, “the Module you solved first”. You should think about what information is necessary to accommodate the grammar of your language. You can only use strings and custom enum types. Refer to the existing translations (e.g. Russian, German) to see examples.
 
 6. **Compile `SouvenirLib.dll`.** This will automatically run a tool which updates all of the translation files. It will populate your new file with untranslated strings for every Souvenir module, question and discriminator.
 
@@ -95,9 +95,10 @@ You may wish to look at an existing translation file to follow along with as an 
 
 Each **module** has an entry containing the following properties:
 
-- `NeedsTranslation = true` — to help you find which entries are still untranslated or have changed since you last translated them. Once a module is fully translated, you can remove this line.
+- `NeedsTranslation = true` — to help you find which entries are still untranslated or have changed since you last translated them. Once a module is fully translated, remove this line.
 - `ModuleName = "..."` — the name of the module. This is usually what `{0}` is replaced with in the question if there is only one module (no discriminator), but your `FormatModuleName` implementation can use it in any way it desires.
 - All the custom fields you declared in your `TranslationInfo` derived class.
+- Note that these fields do not initially show up on their own, but Visual Studio’s auto-completion recognizes them.
 
 Each **question** has an entry containing the following properties:
 
@@ -162,7 +163,7 @@ Alternatively, you can find `Souvenir-settings.txt` in the `mod-settings` folder
 - `"None"` is used as the answer when no particles were present.
 - `"R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"` is used to generate answers for red, blue, and green Kugelblitzes. Each placeholder will be filled in with a single-digit number.
 
-## Module Manuevers
+## Module Maneuvers
 
 `"{0}, {1}"` is used to construct answers, e.g. `1, -2`
 
@@ -176,7 +177,7 @@ If this is not applicable in your language, feel free to translate `["AEIOU"]` a
 
 ## Variety
 
-The discriminator “the Variety that has one” might need to agree grammatically with the component in question (e.g. gender), so there are separate strings provided for each component that “one” might refer to. The part after the “\uE003” shows the component for your information is not actually part of the string. Do not include “\uE003” or the component name in your translation.
+The discriminator “the Variety that has one” might need to agree grammatically with the component in question (e.g. gender), so there are separate strings provided for each component that “one” might refer to. The part after the “\uE003” shows the component for your information and is not actually part of the string. Do not include “\uE003” or the component name in your translation.
 
 ## White Arrows
 

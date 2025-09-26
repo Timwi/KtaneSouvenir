@@ -1,8 +1,6 @@
 # Documentation
 
-## Intro
-
-This is a brief summary of how to implement Souvenir support for a module.
+This document explains how to implement Souvenir support for a module. We will start simple but we will eventually cover all of the detail.
 
 ## Create a new source file for the module
 
@@ -12,7 +10,7 @@ Inside the `Handlers` folder, you will find a source file for each supported mod
 
 Every Souvenir-supported module gets an enum type whose name is `S` followed by the name of the module (for example: `S3DMaze`). In it, you can declare *questions* that Souvenir can ask about (as well as *discriminators*, which are optional and will be covered later).
 
-To create a new Souvenir question, declare an enum value an give it a `[SouvenirQuestion(...)]` attribute. We will use the two questions for 3D Maze as an example:
+To create a new Souvenir question, declare an enum value and give it a `[SouvenirQuestion(...)]` attribute. We will use the two questions for 3D Maze as an example:
 
 ```cs
 public enum S3DMaze
@@ -27,7 +25,7 @@ public enum S3DMaze
 
 In order, the parameters to the `[SouvenirQuestion(...)]` attributes are:
 
-* The question text. Use {0} instead of the module name, so that Souvenir can use the same question to ask either `What were the markings in 3D Maze?` as well as `What were the markings in the 3D Maze you solved first/second/etc.?`.
+* The question text. Use `{0}` instead of the module name, so that Souvenir can use the same question to ask either `What were the markings in 3D Maze?` as well as `What were the markings in the 3D Maze you solved first/second/etc.?`.
 * An `AnswerLayout` value that determines how many answers are shown and how they are laid out. Take a look at `AnswerLayout.cs` to find out what values are available. Use `OneColumn4Answers` if the answers are going to be rather long (e.g. station names in *London Underground*).
 * A list of possible answers. In our example, we can see that the first question lists all the combinations of markings possible in 3D Maze, while the second includes all of the cardinal directions that could be answers.
 	* Please include this whenever the full set of possible answers is available, even if there are hundreds.
@@ -65,7 +63,7 @@ The actual handler for each module is a method with the following properties:
 * The method must have a `[SouvenirHandler(...)]` attribute with at least 4 arguments, which are as follows:
 	* **Module ID** (also known as `ModuleType` in the `KMBombModule` component) (string)
 	* **Module name without ‘The’** (string)
-	* **Enum type** that we declared in the previous section
+	* **Enum type** that we declared in the previous section, for example: `typeof(S3DMaze)` (Type)
 	* **Contributor** (this name will automatically be credited in `CONTRIBUTORS.md`) (string)
 	* If the module name starts with “The”, **`AddThe = true`**
 	* If the module is a boss module, **`IsBossModule = true`**
@@ -87,7 +85,7 @@ Let’s go through these line by line:
 	* obtaining the field `NameSelector` of type `int`;
 	* getting its value;
 	* verifying that the value is in the range 0–12. We want to be quite strict with this kind of validation of values; if the programming of the module later changes in a way that breaks your Souvenir handler, we want to have useful logging that tells us exactly what went wrong.
-* `GetArrayField`: obtains a reference to a field whose type is an array. Technically, `GetArayField<string>` is the same as `GetField<string[]>`, but using `GetArrayField` means that when we use `.Get()` to obtain the array, we can validate the length of the array (in this example: 13) as well as every element of the array (not shown in this example).
+* `GetArrayField`: obtains a reference to a field whose type is an array. Technically, `GetArrayField<string>` is the same as `GetField<string[]>`, but using `GetArrayField` means that when we use `.Get()` to obtain the array, we can validate the length of the array (in this example: 13) as well as every element of the array (not shown in this example).
 * If the field is public, you *must* specify `isPublic: true` (example: *Boggle*).
 
 ### Waiting
@@ -112,7 +110,7 @@ yield return question(S123Game.Name).Answers(names[name]);
 
 In this very basic example, we are asking the question declared in the enum type `S123Game` with the name `Name`, and we’re providing a single correct answers.
 
-You should `yield return` every possible question that Souvenir should be able to ask and let Souvenir pick one at random.
+You should `yield return` every possible question that Souvenir should be able to ask. Souvenir will pick one at random. You can do this anywhere in the handler, not just after waiting for solve.
 
 *Arithmelogic* provides a more advanced example:
 
@@ -234,7 +232,7 @@ Use this to ensure that the question and the discriminator don’t refer to the 
 * **`info: new(...)`** — specifies font information. Valid only for text answers, and only if the question has `Type = AnswerType.DynamicFont`.
 	* **`font:`** — specifies the font (to be obtained from the module). Required for `Type = AnswerType.DynamicFont`.
 	* **`fontTexture:`** — specifies the font texture (to be obtained from the module). Required for `Type = AnswerType.DynamicFont`.
-	* **`raiseBy:** — optional. Use these in cases where the dynamic font’s baseline does not align with the answer boxes on Souvenir. Currently only used by *Encrypted Maze*, which uses a font containing the symbols.
+	* **`raiseBy:`** — optional. Use this in cases where the dynamic font’s baseline does not align with the answer boxes on Souvenir. Currently only used by *Encrypted Maze*, which uses a font containing the symbols.
 
 ### `new Discriminator(...)` (to be used with `yield return`)
 
@@ -284,7 +282,7 @@ In `GetField` and `GetStaticField`, `T` is the type stored in the field.
 
 In `GetArrayField` and `GetListField`, `T` is the type stored in the collection.
 
-Be sure to use the most applicable method because they make validating data easier (see **Getting Values** below).
+Be sure to use the most applicable method because they make validating data easier (see **Getting values** below).
 
 #### Methods
 
@@ -314,7 +312,7 @@ GetStaticMethod(Type targetType, string name, int numParameters, bool isPublic =
 
 #### After `GetField`/`GetProperty`
 
-All of the functions above section give you an object that has several `Get` methods for retrieving the data stored in a field or property, and validating that data. Each `Get` overload has a corresponding `GetFrom` overload in case you wish to specify a different target. This means you do not need to retrieve the same field reference from several instances of the same type.
+All of the functions in the above section give you an object that has several `Get` methods for retrieving the data stored in a field or property, and validating that data. Each `Get` overload has a corresponding `GetFrom` overload in case you wish to specify a different target. This means you do not need to retrieve the same field reference from several instances of the same type.
 
 ```cs
 Get(Func<T, string> validator = null, bool nullAllowed = false)
