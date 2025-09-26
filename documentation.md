@@ -248,7 +248,7 @@ Use this to ensure that the question and the discriminator don’t refer to the 
 
 It is possible to give some discriminators priority over others. This should generally be used sparingly, but it is currently used for great effect by the following modules:
 
-* In *Concentation*, it will prefer to use the initial positions of numbers that have been moved, rather ones that haven’t.
+* In *Concentation*, it will prefer to use the initial positions of numbers that have been moved, rather than ones that haven’t.
 * In *Kugelblitz*, it will prefer to disambiguate just by color if it can, and only use the numbers of linked Kugelblitzes if it can’t.
 * In *Variety*, it makes it so that if we’re asking about the colors of the LED on a Variety, it will prefer to say “the Variety that has one” if it can, and only use “the Variety that has a maze” if it can’t.
 
@@ -265,7 +265,7 @@ You can also have the arguments and priority depend on the question being asked 
 ```cs
 yield return new Discriminator(SVariety.Has, "led")
 {
-	ArgumentsFromQuestion = q => SVariety.LED.Equals(q) ? ["one\uE003 (LED)"] : ["an LED"],
+	ArgumentsFromQuestion = q => SVariety.LED.Equals(q) ? ["one"] : ["an LED"],
 	PriorityFromQuestion = q => SVariety.LED.Equals(q) ? 0 : 1
 };
 ```
