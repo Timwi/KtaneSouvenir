@@ -13747,6 +13747,59 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        [typeof(SStroopsTest)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SStroopsTest.QWord] = new()
+                {
+                    // English: What was the {1} submitted word in {0}?
+                    // Example: What was the first submitted word in Stroop’s Test?
+                    Question = "What was the {1} submitted word in {0}?",
+                },
+                [SStroopsTest.QColor] = new()
+                {
+                    // English: What was the {1} submitted word’s color in {0}?
+                    // Example: What was the first submitted word’s color in Stroop’s Test?
+                    Question = "What was the {1} submitted word’s color in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SStroopsTest.DWord] = new()
+                {
+                    // English: the Stroop’s Test whose {0} submitted word was “{1}”
+                    // Example: the Stroop’s Test whose first submitted word was “red”
+                    Discriminator = "the Stroop’s Test whose {0} submitted word was “{1}”",
+                },
+                [SStroopsTest.DColor] = new()
+                {
+                    // English: the Stroop’s Test whose {0} submitted word’s color was {1}
+                    // Example: the Stroop’s Test whose first submitted word’s color was red
+                    Discriminator = "the Stroop’s Test whose {0} submitted word’s color was {1}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["magenta"] = "magenta",
+                        ["white"] = "white",
+                    },
+                },
+            },
+        },
+
         [typeof(SStupidSlots)] = new()
         {
             NeedsTranslation = true,
