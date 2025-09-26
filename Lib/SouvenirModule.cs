@@ -968,6 +968,7 @@ public partial class SouvenirModule : MonoBehaviour
                 if (info.Discriminators.Get(module) is { Count: > 0 } discrRaw)
                 {
                     var discrs = discrRaw.Values.Where(d =>
+                            !d.AvoidEntirely &&
                             // avoid discriminators that the question explicitly tells us to avoid
                             q.QuestionStump.DiscriminatorsToAvoid?.Contains(d.EnumValue) != true &&
                             q.QuestionStump.DiscriminatorIdsToAvoid?.Contains(d.Id) != true &&

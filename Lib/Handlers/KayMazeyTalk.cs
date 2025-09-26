@@ -43,7 +43,7 @@ public partial class SouvenirModule
             yield return question(SKayMazeyTalk.QWord, args: ["starting"]).AvoidDiscriminators("start").Answers(startWord);
         yield return question(SKayMazeyTalk.QWord, args: ["goal"]).AvoidDiscriminators("goal").Answers(goalWord);
 
-        yield return new Discriminator(SKayMazeyTalk.DWord, "start", startWord, args: ["starting", startWord], avoidAnswers: [startWord]);
+        yield return new Discriminator(SKayMazeyTalk.DWord, "start", startWord, args: ["starting", startWord], avoidAnswers: [startWord]) { AvoidEntirely = struck };
         yield return new Discriminator(SKayMazeyTalk.DWord, "goal", goalWord, args: ["goal", goalWord], avoidAnswers: [goalWord]);
     }
 }

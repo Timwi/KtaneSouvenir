@@ -13,6 +13,7 @@ public class Discriminator(Enum discriminator, string id, object value = null, s
     public float QuestionSpriteRotation { get; } = questionSpriteRotation;
     public object[] AvoidAnswers { get; } = avoidAnswers;
 
+    public bool AvoidEntirely { get; set; }
     public int Priority { get; set; }
     public Func<Enum, int> PriorityFromQuestion { get; set; }
     public Func<Enum, string[]> ArgumentsFromQuestion { get; set; }

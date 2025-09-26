@@ -272,6 +272,8 @@ yield return new Discriminator(SVariety.Has, "led")
 
 In this example, if the question is about the LED, the discriminator will say “the Variety that has one” and the priority is 0. If any other question is asked, the text will be “the Variety that has an LED” and the priority is 1.
 
+If a discriminator becomes invalid at runtime for a particular module (usually upon a strike), it should still be `yield return`ed but with `AvoidEntirely = true`.
+
 ## Reflection helpers
 
 Souvenir uses reflection to access information on other modules on the bomb. There are several types and methods in order to help with this.
