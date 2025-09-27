@@ -14870,6 +14870,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        [typeof(SUnfairsCruelRevenge)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SUnfairsCruelRevenge.Instructions] = new()
+                {
+                    // English: What was the {1} decrypted instruction in {0}?
+                    // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?
+                    Question = "What was the {1} decrypted instruction in {0}?",
+                },
+            },
+        },
+
         [typeof(SUnfairsRevenge)] = new()
         {
             NeedsTranslation = true,
