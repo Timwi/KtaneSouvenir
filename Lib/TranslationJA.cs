@@ -6148,12 +6148,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 {
                     // English: Which side did this symbol appear in {0}? (+ sprite)
                     Question = "Which side did this symbol appear in {0}?",
-                },
-                [SHolographicMemory.StageSelected] = new()
-                {
-                    // English: Which symbol was selected in the {1} stage of {0}?
-                    // Example: Which symbol was selected in the first stage of Holographic Memory?
-                    Question = "Which symbol was selected in stage {1} of {0}?",
+                    Answers = new()
+                    {
+                        ["Light"] = "Light",
+                        ["Dark"] = "Dark",
+                    },
                 },
             },
         },
@@ -9933,18 +9932,18 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             {
                 [SOffWhiteCipher.TopDisplay] = new()
                 {
-                    // English: What was the top display in {0}?
-                    Question = "What was the top display in {0}?",
+                    // English: What was on the top display in {0}?
+                    Question = "What was on the top display in {0}?",
                 },
                 [SOffWhiteCipher.MiddleDisplay] = new()
                 {
-                    // English: What was the middle display in {0}?
-                    Question = "What was the middle display in {0}?",
+                    // English: What was on the middle display in {0}?
+                    Question = "What was on the middle display in {0}?",
                 },
                 [SOffWhiteCipher.BottomDisplay] = new()
                 {
-                    // English: What was the bottom display in {0}?
-                    Question = "What was the bottom display in {0}?",
+                    // English: What was on the bottom display in {0}?
+                    Question = "What was on the bottom display in {0}?",
                 },
             },
         },

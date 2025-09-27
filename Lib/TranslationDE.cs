@@ -7,8 +7,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 {
     public sealed class TranslationInfo_de : TranslationInfo
     {
-        public Gender Gender = Gender.Neuter;
         public string ModuleNameDative;
+        public Gender Gender = Gender.Neuter;
     }
 
     public enum Gender
@@ -65,8 +65,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(S1000Words)] = new()
         {
             ModuleName = "1000 Wörter",
-            Gender = Gender.Plural,
             ModuleNameDative = "1000 Wörtern",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [S1000Words.Words] = new()
@@ -484,8 +484,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SAffineCycle)] = new()
         {
             ModuleName = "Affine Schiffer",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Affinen Schiffer",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SAffineCycle.DialDirections] = new()
@@ -715,8 +715,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SArena)] = new()
         {
             ModuleName = "Die Arena",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Arena",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SArena.Damage] = new()
@@ -811,8 +811,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SAzureButton)] = new()
         {
             ModuleName = "Der Azurfarbene Knopf",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Azurfarbenen Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SAzureButton.QDecoyArrowDirection] = new()
@@ -1054,8 +1054,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBarCharts)] = new()
         {
             ModuleName = "Balkendiagramme",
-            Gender = Gender.Plural,
             ModuleNameDative = "Balkendiagrammen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SBarCharts.Category] = new()
@@ -1380,8 +1380,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBlackCipher)] = new()
         {
             ModuleName = "Schwarze Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Schwarzen Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SBlackCipher.Screen] = new()
@@ -1468,8 +1468,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBlinkingNotes)] = new()
         {
             ModuleName = "Blinkende Noten",
-            Gender = Gender.Plural,
             ModuleNameDative = "Blinkenden Noten",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SBlinkingNotes.Song] = new()
@@ -1533,8 +1533,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Der Blaue Knopf",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Blauen Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SBlueButton.D] = new()
@@ -1611,8 +1611,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBlueCipher)] = new()
         {
             ModuleName = "Blaue Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Blauen Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SBlueCipher.Screen] = new()
@@ -1923,8 +1923,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBrokenButtons)] = new()
         {
             ModuleName = "Kaputte Knöpfe",
-            Gender = Gender.Plural,
             ModuleNameDative = "Kaputten Knöpfen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SBrokenButtons.Question] = new()
@@ -1939,8 +1939,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBrokenGuitarChords)] = new()
         {
             ModuleName = "Kaputte Gitarrenakkorde",
-            Gender = Gender.Plural,
             ModuleNameDative = "Kaputten Gitarrenakkorden",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SBrokenGuitarChords.DisplayedChord] = new()
@@ -1959,8 +1959,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBrownCipher)] = new()
         {
             ModuleName = "Braune Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Braunen Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SBrownCipher.Screen] = new()
@@ -2012,8 +2012,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBulb)] = new()
         {
             ModuleName = "Die Glühlampe",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Glühlampe",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SBulb.InitialState] = new()
@@ -2063,8 +2063,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SButton)] = new()
         {
             ModuleName = "Der Knopf",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SButton.LightColor] = new()
@@ -2511,8 +2511,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SChineseRemainderTheorem)] = new()
         {
             ModuleName = "Chinesischer Restsatz",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Chinesischen Restsatz",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SChineseRemainderTheorem.Equations] = new()
@@ -2552,8 +2552,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCode)] = new()
         {
             ModuleName = "Der Code",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Code",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SCode.DisplayNumber] = new()
@@ -2715,8 +2715,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Gefärbte Tasten",
-            Gender = Gender.Plural,
             ModuleNameDative = "Gefärbten Tasten",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SColoredKeys.DisplayWord] = new()
@@ -2789,8 +2789,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Gefärbte Felder",
-            Gender = Gender.Plural,
             ModuleNameDative = "Gefärbten Feldern",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SColoredSquares.FirstGroup] = new()
@@ -2813,8 +2813,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SColoredSwitches)] = new()
         {
             ModuleName = "Gefärbte Schalter",
-            Gender = Gender.Plural,
             ModuleNameDative = "Gefärbten Schaltern",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SColoredSwitches.InitialPosition] = new()
@@ -2834,8 +2834,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Gefärbte Morsezeichen",
-            Gender = Gender.Plural,
             ModuleNameDative = "Gefärbten Morsezeichen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SColorMorse.Color] = new()
@@ -2913,8 +2913,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Farbwürfel",
-            Gender = Gender.Plural,
             ModuleNameDative = "Farbwürfeln",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SColouredCubes.Colours] = new()
@@ -2964,8 +2964,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SColouredCylinder)] = new()
         {
             ModuleName = "Gefärbter Zylinder",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Gefärbten Zylinder",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SColouredCylinder.Colours] = new()
@@ -3038,8 +3038,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Bedingte Knöpfe",
-            Gender = Gender.Plural,
             ModuleNameDative = "Bedingten Knöpfen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SConditionalButtons.Colors] = new()
@@ -3067,8 +3067,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Verbundene Monitore",
-            Gender = Gender.Plural,
             ModuleNameDative = "Verbundenen Monitoren",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SConnectedMonitors.Number] = new()
@@ -3293,8 +3293,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCrazyHamburger)] = new()
         {
             ModuleName = "Verrückter Hamburger",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Verrückten Hamburger",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SCrazyHamburger.Ingredient] = new()
@@ -3309,8 +3309,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCrazyMaze)] = new()
         {
             ModuleName = "Verrückter Irrgarten",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Verrückten Irrgarten",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SCrazyMaze.StartOrGoal] = new()
@@ -3395,8 +3395,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Kriechtiere",
-            Gender = Gender.Plural,
             ModuleNameDative = "Kriechtieren",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SCritters.Color] = new()
@@ -3432,8 +3432,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Höllische Tastenfelder",
-            Gender = Gender.Plural,
             ModuleNameDative = "Höllischen Tastenfelder",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SCruelKeypads.Colors] = new()
@@ -3463,8 +3463,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCRule)] = new()
         {
             ModuleName = "Die CRegel",
-            Gender = Gender.Feminine,
             ModuleNameDative = "CRegel",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCRule.SymbolPair] = new()
@@ -3494,8 +3494,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCrypticCycle)] = new()
         {
             ModuleName = "Kryptische Schiffer",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Kryptischen Schiffer",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCrypticCycle.DialDirections] = new()
@@ -3558,8 +3558,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCube)] = new()
         {
             ModuleName = "Der Würfel",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Würfel",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SCube.Rotations] = new()
@@ -3583,8 +3583,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCursedDoubleOh)] = new()
         {
             ModuleName = "Verfluchte Doppel-Null",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Verflüchten Doppel-Null",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SCursedDoubleOh.InitialPosition] = new()
@@ -3613,8 +3613,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCyanButton)] = new()
         {
             ModuleName = "Der Türkise Knopf",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Türkisen Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SCyanButton.Positions] = new()
@@ -3709,8 +3709,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDeafAlley)] = new()
         {
             ModuleName = "Taube Gasse",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Tauben Gasse",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SDeafAlley.Shape] = new()
@@ -3724,8 +3724,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDeckOfManyThings)] = new()
         {
             ModuleName = "Der Stapel Vieler Dinge",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Stapel Vieler Dinge",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SDeckOfManyThings.FirstCard] = new()
@@ -3823,8 +3823,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDevilishEggs)] = new()
         {
             ModuleName = "Teufelseier",
-            Gender = Gender.Plural,
             ModuleNameDative = "Teufelseiern",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SDevilishEggs.Rotations] = new()
@@ -4036,8 +4036,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDividedSquares)] = new()
         {
             ModuleName = "Geteilte Kacheln",
-            Gender = Gender.Plural,
             ModuleNameDative = "Geteilten Kacheln",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SDividedSquares.Color] = new()
@@ -4066,8 +4066,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDivisibleNumbers)] = new()
         {
             ModuleName = "Teilbare Zahlen",
-            Gender = Gender.Plural,
             ModuleNameDative = "Teilbaren Zahlen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SDivisibleNumbers.Numbers] = new()
@@ -4101,8 +4101,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDoubleArrows)] = new()
         {
             ModuleName = "Doppelpfeile",
-            Gender = Gender.Plural,
             ModuleNameDative = "Doppelpfeilen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SDoubleArrows.Start] = new()
@@ -4206,8 +4206,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDoubleExpert)] = new()
         {
             ModuleName = "Doppelexperte",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Doppelexperten",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SDoubleExpert.StartingKeyNumber] = new()
@@ -4313,8 +4313,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Die Ente",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Ente",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SDuck.CurtainColor] = new()
@@ -4473,8 +4473,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SEncryptedDice)] = new()
         {
             ModuleName = "Verschlüsselte Würfel",
-            Gender = Gender.Plural,
             ModuleNameDative = "Verschlüsselten Würfel",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SEncryptedDice.Question] = new()
@@ -4489,8 +4489,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SEncryptedEquations)] = new()
         {
             ModuleName = "Verschlüsselte Gleichungen",
-            Gender = Gender.Plural,
             ModuleNameDative = "Verschlüsselten Gleichungen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SEncryptedEquations.Shapes] = new()
@@ -5802,8 +5802,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SGrayCipher)] = new()
         {
             ModuleName = "Graue Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Grauen Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SGrayCipher.Screen] = new()
@@ -5868,8 +5868,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SGreenButton)] = new()
         {
             ModuleName = "Der Grüne Knopf",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Grünen Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SGreenButton.Word] = new()
@@ -5883,8 +5883,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SGreenCipher)] = new()
         {
             ModuleName = "Grüne Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Grünen Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SGreenCipher.Screen] = new()
@@ -6252,8 +6252,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Scharniere",
-            Gender = Gender.Plural,
             ModuleNameDative = "Scharnieren",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SHinges.Initial] = new()
@@ -6334,18 +6334,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SHolographicMemory)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Holographisches Gedächtnis",
+            ModuleNameDative = "Holographischen Gedächtnis",
             Questions = new()
             {
                 [SHolographicMemory.InitialGrid] = new()
                 {
                     // English: Which side did this symbol appear in {0}? (+ sprite)
-                    Question = "Which side did this symbol appear in {0}?",
-                },
-                [SHolographicMemory.StageSelected] = new()
-                {
-                    // English: Which symbol was selected in the {1} stage of {0}?
-                    // Example: Which symbol was selected in the first stage of Holographic Memory?
-                    Question = "Which symbol was selected in stage {1} of {0}?",
+                    Question = "Auf welcher Seite tauchte dieses Symbol bei {0} auf?",
+                    Answers = new()
+                    {
+                        ["Light"] = "Hell",
+                        ["Dark"] = "Dunkel",
+                    },
                 },
             },
         },
@@ -6501,8 +6502,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SHyperlink)] = new()
         {
             ModuleName = "Der Hyperlink",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Hyperlink",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SHyperlink.Characters] = new()
@@ -8442,8 +8443,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Modulmanöver",
-            Gender = Gender.Plural,
             ModuleNameDative = "Modulmanövern",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SModuleManeuvers.Goal] = new()
@@ -8778,8 +8779,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Fehlender Vokal",
-            Gender = Gender.Plural,
             ModuleNameDative = "Fehlenden Vokal",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SMssngvWls.MssNgvwL] = new()
@@ -9062,8 +9063,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Der Königsblaue Knopf",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Königsblauen Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SNavyButton.QGreekLetters] = new()
@@ -9116,8 +9117,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNecronomicon)] = new()
         {
             ModuleName = "Der Königsblaue Knopf",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Königsblauen Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SNecronomicon.Chapters] = new()
@@ -10130,8 +10131,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SOffKeys)] = new()
         {
             ModuleName = "Verstimmte Tasten",
-            Gender = Gender.Plural,
             ModuleNameDative = "Verstimmten Tasten",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SOffKeys.IncorrectPitch] = new()
@@ -10149,23 +10150,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SOffWhiteCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Eierschalengeheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SOffWhiteCipher.TopDisplay] = new()
                 {
-                    // English: What was the top display in {0}?
-                    Question = "What was the top display in {0}?",
+                    // English: What was on the top display in {0}?
+                    Question = "Was stand bei {0} auf dem oberen Display?",
                 },
                 [SOffWhiteCipher.MiddleDisplay] = new()
                 {
-                    // English: What was the middle display in {0}?
-                    Question = "What was the middle display in {0}?",
+                    // English: What was on the middle display in {0}?
+                    Question = "Was stand bei {0} auf dem mittleren Display?",
                 },
                 [SOffWhiteCipher.BottomDisplay] = new()
                 {
-                    // English: What was the bottom display in {0}?
-                    Question = "What was the bottom display in {0}?",
+                    // English: What was on the bottom display in {0}?
+                    Question = "Was stand bei {0} auf dem unteren Display?",
                 },
             },
         },
@@ -10285,8 +10287,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SOrangeCipher)] = new()
         {
             ModuleName = "Orangene Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Orangenen Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SOrangeCipher.Screen] = new()
@@ -10447,22 +10449,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPaintingCube)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Malfarbenwürfel",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SPaintingCube.MissingColor] = new()
                 {
                     // English: What color was missing in {0}?
-                    Question = "What color is missing in {0}?",
+                    Question = "Welche Farbe hat bei {0} gefehlt?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
                         ["Indigo"] = "Indigo",
-                        ["Violet"] = "Violet",
+                        ["Violet"] = "Violett",
                     },
                 },
             },
@@ -10528,8 +10531,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Partielle Ableitungen",
-            Gender = Gender.Plural,
             ModuleNameDative = "Partiellen Ableitungen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SPartialDerivatives.LedColors] = new()
@@ -10635,8 +10638,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SPeriodicWords)] = new()
         {
             ModuleName = "Periodische Wörter",
-            Gender = Gender.Plural,
             ModuleNameDative = "Periodischen Wörtern",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SPeriodicWords.DisplayedWords] = new()
@@ -10796,8 +10799,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Der Pinkfarbene Knopf",
-            Gender = Gender.Masculine,
             ModuleNameDative = "Pinkfarbenen Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SPinkButton.Words] = new()
@@ -11512,8 +11515,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SRedCipher)] = new()
         {
             ModuleName = "Rote Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Roten Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SRedCipher.Screen] = new()
@@ -11935,8 +11938,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SRule)] = new()
         {
             ModuleName = "Die Regel",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Regel",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SRule.Number] = new()
@@ -14761,8 +14764,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SUltimateCipher)] = new()
         {
             ModuleName = "Ultimative Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Ultimativen Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SUltimateCipher.Screen] = new()
@@ -14783,8 +14786,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SUltimateCycle)] = new()
         {
             ModuleName = "Ultimative Schiffer",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Ultimativen Schiffer",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SUltimateCycle.DialDirections] = new()
@@ -14918,34 +14921,36 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUnfairsCruelRevenge)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Unfairs Höllische Rache",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SUnfairsCruelRevenge.Instructions] = new()
                 {
                     // English: What was the {1} decrypted instruction in {0}?
                     // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?
-                    Question = "What was the {1} decrypted instruction in {0}?",
+                    Question = "Was war bei {0} die {1}e entschlüsselte Anweisung?",
                 },
                 [SUnfairsCruelRevenge.InstructionsLegacy] = new()
                 {
                     // English: What was the {1} decrypted instruction in {0}?
                     // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?
-                    Question = "What was the {1} decrypted instruction in {0}?",
+                    Question = "Was war bei {0} die {1}e entschlüsselte Anweisung?",
                 },
             },
         },
 
         [typeof(SUnfairsRevenge)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Unfairs Rache",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SUnfairsRevenge.Instructions] = new()
                 {
                     // English: What was the {1} decrypted instruction in {0}?
                     // Example: What was the first decrypted instruction in Unfair’s Revenge?
-                    Question = "What was the {1} decrypted instruction in {0}?",
+                    Question = "Was war bei {0} die {1}e entschlüsselte Anweisung?",
                 },
             },
         },
@@ -14966,69 +14971,68 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUNO)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUNO.InitialCard] = new()
                 {
                     // English: What was the initial card in {0}?
-                    Question = "What was the initial card in {0}?",
+                    Question = "Was war bei {0} die Anfangskarte?",
                     Answers = new()
                     {
-                        ["Red 0"] = "Red 0",
-                        ["Red 1"] = "Red 1",
-                        ["Red 2"] = "Red 2",
-                        ["Red 3"] = "Red 3",
-                        ["Red 4"] = "Red 4",
-                        ["Red 5"] = "Red 5",
-                        ["Red 6"] = "Red 6",
-                        ["Red 7"] = "Red 7",
-                        ["Red 8"] = "Red 8",
-                        ["Red 9"] = "Red 9",
-                        ["Red +2"] = "Red +2",
-                        ["Red Skip"] = "Red Skip",
-                        ["Red Reverse"] = "Red Reverse",
-                        ["Green 0"] = "Green 0",
-                        ["Green 1"] = "Green 1",
-                        ["Green 2"] = "Green 2",
-                        ["Green 3"] = "Green 3",
-                        ["Green 4"] = "Green 4",
-                        ["Green 5"] = "Green 5",
-                        ["Green 6"] = "Green 6",
-                        ["Green 7"] = "Green 7",
-                        ["Green 8"] = "Green 8",
-                        ["Green 9"] = "Green 9",
-                        ["Green +2"] = "Green +2",
-                        ["Green Skip"] = "Green Skip",
-                        ["Green Reverse"] = "Green Reverse",
-                        ["Yellow 0"] = "Yellow 0",
-                        ["Yellow 1"] = "Yellow 1",
-                        ["Yellow 2"] = "Yellow 2",
-                        ["Yellow 3"] = "Yellow 3",
-                        ["Yellow 4"] = "Yellow 4",
-                        ["Yellow 5"] = "Yellow 5",
-                        ["Yellow 6"] = "Yellow 6",
-                        ["Yellow 7"] = "Yellow 7",
-                        ["Yellow 8"] = "Yellow 8",
-                        ["Yellow 9"] = "Yellow 9",
-                        ["Yellow +2"] = "Yellow +2",
-                        ["Yellow Skip"] = "Yellow Skip",
-                        ["Yellow Reverse"] = "Yellow Reverse",
-                        ["Blue 0"] = "Blue 0",
-                        ["Blue 1"] = "Blue 1",
-                        ["Blue 2"] = "Blue 2",
-                        ["Blue 3"] = "Blue 3",
-                        ["Blue 4"] = "Blue 4",
-                        ["Blue 5"] = "Blue 5",
-                        ["Blue 6"] = "Blue 6",
-                        ["Blue 7"] = "Blue 7",
-                        ["Blue 8"] = "Blue 8",
-                        ["Blue 9"] = "Blue 9",
-                        ["Blue +2"] = "Blue +2",
-                        ["Blue Skip"] = "Blue Skip",
-                        ["Blue Reverse"] = "Blue Reverse",
+                        ["Red 0"] = "Rote 0",
+                        ["Red 1"] = "Rote 1",
+                        ["Red 2"] = "Rote 2",
+                        ["Red 3"] = "Rote 3",
+                        ["Red 4"] = "Rote 4",
+                        ["Red 5"] = "Rote 5",
+                        ["Red 6"] = "Rote 6",
+                        ["Red 7"] = "Rote 7",
+                        ["Red 8"] = "Rote 8",
+                        ["Red 9"] = "Rote 9",
+                        ["Red +2"] = "Rote +2",
+                        ["Red Skip"] = "Rote Aussetzen-Karte",
+                        ["Red Reverse"] = "Rote Richtungswechsel-Karte",
+                        ["Green 0"] = "Grüne 0",
+                        ["Green 1"] = "Grüne 1",
+                        ["Green 2"] = "Grüne 2",
+                        ["Green 3"] = "Grüne 3",
+                        ["Green 4"] = "Grüne 4",
+                        ["Green 5"] = "Grüne 5",
+                        ["Green 6"] = "Grüne 6",
+                        ["Green 7"] = "Grüne 7",
+                        ["Green 8"] = "Grüne 8",
+                        ["Green 9"] = "Grüne 9",
+                        ["Green +2"] = "Grüne +2",
+                        ["Green Skip"] = "Grüne Aussetzen-Karte",
+                        ["Green Reverse"] = "Grüne Richtungswechsel-Karte",
+                        ["Yellow 0"] = "Gelbe 0",
+                        ["Yellow 1"] = "Gelbe 1",
+                        ["Yellow 2"] = "Gelbe 2",
+                        ["Yellow 3"] = "Gelbe 3",
+                        ["Yellow 4"] = "Gelbe 4",
+                        ["Yellow 5"] = "Gelbe 5",
+                        ["Yellow 6"] = "Gelbe 6",
+                        ["Yellow 7"] = "Gelbe 7",
+                        ["Yellow 8"] = "Gelbe 8",
+                        ["Yellow 9"] = "Gelbe 9",
+                        ["Yellow +2"] = "Gelbe +2",
+                        ["Yellow Skip"] = "Gelbe Aussetzen-Karte",
+                        ["Yellow Reverse"] = "Gelbe Richtungswechsel-Karte",
+                        ["Blue 0"] = "Blaue 0",
+                        ["Blue 1"] = "Blaue 1",
+                        ["Blue 2"] = "Blaue 2",
+                        ["Blue 3"] = "Blaue 3",
+                        ["Blue 4"] = "Blaue 4",
+                        ["Blue 5"] = "Blaue 5",
+                        ["Blue 6"] = "Blaue 6",
+                        ["Blue 7"] = "Blaue 7",
+                        ["Blue 8"] = "Blaue 8",
+                        ["Blue 9"] = "Blaue 9",
+                        ["Blue +2"] = "Blaue +2",
+                        ["Blue Skip"] = "Blaue Aussetzen-Karte",
+                        ["Blue Reverse"] = "Blaue Richtungswechsel-Karte",
                         ["+4"] = "+4",
-                        ["Wild"] = "Wild",
+                        ["Wild"] = "Farbwunsch-Karte",
                     },
                 },
             },
@@ -15062,34 +15066,36 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUnownCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Unown-Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SUnownCipher.Answers] = new()
                 {
                     // English: What was the {1} submitted letter in {0}?
                     // Example: What was the first submitted letter in Unown Cipher?
-                    Question = "What was the {1} submitted letter in {0}?",
+                    Question = "Was war bei {0} der als {1}e übermittelte Buchstabe?",
                 },
             },
         },
 
         [typeof(SUnpleasantSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Unangenehme Quadrate",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SUnpleasantSquares.Color] = new()
                 {
                     // English: What was the color of this square in {0}? (+ sprite)
-                    Question = "What was the color of this square in {0}?",
+                    Question = "Welche Farbe hatte dieses Quadrat bei {0}?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
                         ["Jade"] = "Jade",
-                        ["Azure"] = "Azure",
-                        ["Violet"] = "Violet",
+                        ["Azure"] = "Azur",
+                        ["Violet"] = "Violett",
                     },
                 },
             },
@@ -15097,7 +15103,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUpdog)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUpdog.Word] = new()
@@ -15130,44 +15135,44 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUSACycle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "USA-Schiffer",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SUSACycle.Displayed] = new()
                 {
                     // English: Which state was displayed in {0}?
-                    Question = "Which state was displayed in {0}?",
+                    Question = "Welcher Bundesstaat kam bei {0} vor?",
                 },
             },
         },
 
         [typeof(SUSAMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "USA-Labyrinth",
             Questions = new()
             {
                 [SUSAMaze.Origin] = new()
                 {
                     // English: Which state did you depart from in {0}?
-                    Question = "Which state did you depart from in {0}?",
+                    Question = "In welchem Bundesstaat ging es bei {0} los?",
                 },
             },
         },
 
         [typeof(SV)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SV.Words] = new()
                 {
                     // English: Which word {1} shown in {0}?
                     // Example: Which word was shown in V?
-                    Question = "Which word {1} shown in {0}?",
+                    Question = "Welches Wort kam bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["was"] = "was",
-                        ["was not"] = "was not",
+                        ["was"] = "vor",
+                        ["was not"] = "nicht vor",
                     },
                 },
             },
@@ -15175,13 +15180,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SValves)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Ventile",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SValves.InitialState] = new()
                 {
                     // English: What was the initial state of {0}?
-                    Question = "What was the initial state of {0}?",
+                    Question = "Was war bei {0} der Anfangszustand?",
                 },
             },
         },
@@ -15406,7 +15412,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SVectors)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Vektoren",
             Gender = Gender.Plural,
             Questions = new()
@@ -15415,7 +15420,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the {1} vector in {0}?
                     // Example: What was the color of the first vector in Vectors?
-                    Question = "Welche Farbe hatte bei {0} der {1} Vektor?",
+                    Question = "Welche Farbe hatte der {1} Vektor bei {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -15438,24 +15443,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SVexillology)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Flaggenkunde",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SVexillology.Colors] = new()
                 {
                     // English: What was the {1} flagpole color on {0}?
                     // Example: What was the first flagpole color on Vexillology?
-                    Question = "What was the {1} flagpole color on {0}?",
+                    Question = "Welche Farbe hatte bei {0} der {1}e Fahnenmast?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
-                        ["Blue"] = "Blue",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Blue"] = "Blau",
                         ["Aqua"] = "Aqua",
-                        ["White"] = "White",
-                        ["Black"] = "Black",
+                        ["White"] = "Weiß",
+                        ["Black"] = "Schwarz",
                     },
                 },
             },
@@ -15464,20 +15470,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SVioletCipher)] = new()
         {
             ModuleName = "Violette Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Violetten Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SVioletCipher.Screen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Violet Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -15485,20 +15491,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SVisualImpairment)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Sehbehinderung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SVisualImpairment.Colors] = new()
                 {
                     // English: What was the desired color in the {1} stage on {0}?
                     // Example: What was the desired color in the first stage on Visual Impairment?
-                    Question = "What was the desired color in the {1} stage on {0}?",
+                    Question = "Welche Farbe wurde bei {0} in der {1}en Stufe verlangt?",
                     Answers = new()
                     {
-                        ["Blue"] = "Blue",
-                        ["Green"] = "Green",
-                        ["Red"] = "Red",
-                        ["White"] = "White",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Red"] = "Rot",
+                        ["White"] = "Weiß",
                     },
                 },
             },
@@ -15506,90 +15513,93 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SWalkingCube)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Wandernder Würfel",
+            ModuleNameDative = "Wandernden Würfel",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SWalkingCube.Path] = new()
                 {
                     // English: Which of these cells was part of the cube’s path in {0}?
-                    Question = "Which of these cells was part of the cube's path in {0}?",
+                    Question = "Welche dieser Zellen kamen bei {0} im Pfad des Würfels vor?",
                 },
             },
         },
 
         [typeof(SWarningSigns)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Warnschilder",
+            ModuleNameDative = "Warnschildern",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SWarningSigns.DisplayedSign] = new()
                 {
                     // English: What was the displayed sign in {0}?
-                    Question = "What was the displayed sign in {0}?",
+                    Question = "Welches Schild wurde bei {0} angezeigt?",
                 },
             },
         },
 
         [typeof(SWasd)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SWasd.DisplayedLocation] = new()
                 {
                     // English: What was the location displayed in {0}?
-                    Question = "What was the location displayed in {0}?",
+                    Question = "Welche Örtlichkeit kam bei {0} vor?",
                 },
             },
         },
 
         [typeof(SWatchingPaintDry)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Farbe Beim Trocknen Zusehen",
             Questions = new()
             {
                 [SWatchingPaintDry.StrokeCount] = new()
                 {
                     // English: How many brush strokes were heard in {0}?
-                    Question = "How many brush strokes were heard in {0}?",
+                    Question = "Wie viele Pinselstriche waren bei {0} zu hören?",
                 },
             },
         },
 
         [typeof(SWavetapping)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Wellenschlagen",
             Questions = new()
             {
                 [SWavetapping.Patterns] = new()
                 {
                     // English: What was the correct pattern on the {1} stage in {0}?
                     // Example: What was the correct pattern on the first stage in Wavetapping?
-                    Question = "What was the correct pattern on the {1} stage in {0}?",
+                    Question = "Was war bei {0} das richtige Muster in der {1}en Stufe?",
                 },
                 [SWavetapping.Colors] = new()
                 {
                     // English: What was the color on the {1} stage in {0}?
                     // Example: What was the color on the first stage in Wavetapping?
-                    Question = "What was the color on the {1} stage in {0}?",
+                    Question = "Was war bei {0} die Farbe in der {1}en Stufe?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Orange-Yellow"] = "Orange-Yellow",
+                        ["Orange-Yellow"] = "Orange-Gelb",
                         ["Chartreuse"] = "Chartreuse",
-                        ["Lime"] = "Lime",
-                        ["Green"] = "Green",
-                        ["Seafoam Green"] = "Seafoam Green",
-                        ["Cyan-Green"] = "Cyan-Green",
-                        ["Turquoise"] = "Turquoise",
-                        ["Dark Blue"] = "Dark Blue",
+                        ["Lime"] = "Limette",
+                        ["Green"] = "Grün",
+                        ["Seafoam Green"] = "Seeschaumgrün",
+                        ["Cyan-Green"] = "Türkisgrün",
+                        ["Turquoise"] = "Türkis",
+                        ["Dark Blue"] = "Dunkelblau",
                         ["Indigo"] = "Indigo",
-                        ["Purple"] = "Purple",
-                        ["Purple-Magenta"] = "Purple-Magenta",
+                        ["Purple"] = "Lila",
+                        ["Purple-Magenta"] = "Lila-Magenta",
                         ["Magenta"] = "Magenta",
                         ["Pink"] = "Pink",
-                        ["Gray"] = "Gray",
+                        ["Gray"] = "Grau",
                     },
                 },
             },
@@ -15597,58 +15607,58 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SWeakestLink)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Schwächstes Glied",
+            ModuleNameDative = "Schwächsten Glied",
             Questions = new()
             {
                 [SWeakestLink.Elimination] = new()
                 {
                     // English: Who did you eliminate in {0}?
-                    Question = "Who did you eliminate in {0}?",
+                    Question = "Wer wurde bei {0} eliminiert?",
                 },
                 [SWeakestLink.MoneyPhaseName] = new()
                 {
                     // English: Who made it to the Money Phase with you in {0}?
-                    Question = "Who made it to the Money Phase with you in {0}?",
+                    Question = "Wer hat es bei {0} mit uns in die Geldphase geschafft?",
                 },
                 [SWeakestLink.Skill] = new()
                 {
                     // English: What was {1}’s skill in {0}?
                     // Example: What was Annie’s skill in Weakest Link?
-                    Question = "What was {1}’s skill in {0}?",
+                    Question = "Was war {1}s Fachgebiet bei {0}?",
                 },
                 [SWeakestLink.Ratio] = new()
                 {
                     // English: What ratio did {1} get in the Question Phase in {0}?
                     // Example: What ratio did Annie get in the Question Phase in Weakest Link?
-                    Question = "What ratio did {1} get in the Question Phase in {0}?",
+                    Question = "Welches Verhältnis hat {1} in der Fragenphase bei {0} erreicht?",
                 },
             },
         },
 
         [typeof(SWhatsOnSecond)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SWhatsOnSecond.DisplayText] = new()
                 {
                     // English: What was the display text in the {1} stage of {0}?
                     // Example: What was the display text in the first stage of What’s on Second?
-                    Question = "What was the display text in the {1} stage of {0}?",
+                    Question = "Welcher Text erschien bei {0} in der {1}en Stufe?",
                 },
                 [SWhatsOnSecond.DisplayColor] = new()
                 {
                     // English: What was the display text color in the {1} stage of {0}?
                     // Example: What was the display text color in the first stage of What’s on Second?
-                    Question = "What was the display text color in the {1} stage of {0}?",
+                    Question = "In welcher Farbe erschien bei {0} der Text in der {1}en Stufe?",
                     Answers = new()
                     {
-                        ["Blue"] = "Blue",
-                        ["Cyan"] = "Cyan",
-                        ["Green"] = "Green",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Green"] = "Grün",
                         ["Magenta"] = "Magenta",
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
                     },
                 },
             },
@@ -15656,28 +15666,30 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SWhiteArrows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Weiße Pfeile",
+            ModuleNameDative = "Weißen Pfeilen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SWhiteArrows.Arrows] = new()
                 {
                     // English: What was the {1} non-white arrow in {0}?
                     // Example: What was the first non-white arrow in White Arrows?
-                    Question = "What was the {1} non-white arrow in {0}?",
+                    Question = "Was war bei {0} der {1}e nicht-weiße Pfeil?",
                     Additional = new()
                     {
-                        ["Blue"] = "Blue",
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Purple"] = "Purple",
+                        ["Blue"] = "Blau",
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Purple"] = "Lila",
                         ["Orange"] = "Orange",
-                        ["Cyan"] = "Cyan",
-                        ["Teal"] = "Teal",
-                        ["Up"] = "Up",
-                        ["Right"] = "Right",
-                        ["Down"] = "Down",
-                        ["Left"] = "Left",
+                        ["Cyan"] = "Türkis",
+                        ["Teal"] = "Blaugrün",
+                        ["Up"] = "Hoch",
+                        ["Right"] = "Rechts",
+                        ["Down"] = "Runter",
+                        ["Left"] = "Links",
                         ["{0} {1}"] = "{0} {1}",
                     },
                 },
@@ -15687,8 +15699,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SWhiteCipher)] = new()
         {
             ModuleName = "Weiße Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Weißen Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SWhiteCipher.Screen] = new()
@@ -16075,8 +16087,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SYellowCipher)] = new()
         {
             ModuleName = "Gelbe Geheimschrift",
-            Gender = Gender.Feminine,
             ModuleNameDative = "Gelben Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SYellowCipher.Screen] = new()

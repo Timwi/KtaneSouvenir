@@ -24,8 +24,8 @@ If you wish to see another module added, you can contribute development by submi
 * No questions about things that can be re-deduced by re-solving the module (e.g. offset in Caesar Cipher).
 * No questions about random things that aren’t required for solving a module (e.g. initial red/green state in Connection Check).
 * No questions that could under any circumstances be impossible to answer. This includes things that are removed/reset when striking on a module.
-* No questions about modules that are part of an ongoing [manual challenge](https://ktane.timwi.de/More/Glossary.html#manual-challenge).
-* Questions about [boss modules](https://ktane.timwi.de/More/Glossary.html#boss-module) are allowed as long as they satisfy the above guidelines. The boss modules should remain on Souvenir’s ignore list.
+* Modules that are the subject of an ongoing [manual challenge](https://ktane.timwi.de/More/Glossary.html#manual-challenge) should wait until the challenge is over.
+* Questions about [boss modules](https://ktane.timwi.de/More/Glossary.html#boss-module) are allowed, although they require discriminators that have a high likelihood of being used. The boss modules should remain on Souvenir’s ignore list.
 * Prefer questions that ask what was actually shown on the module rather than what the defuser had to input to solve it (e.g. prefer displayed digits over calculated digits in Forget Me Not).
 
 The following vanilla modules are supported by Souvenir: The Button, Maze, Memory, Simon Says, Wire Sequence. These may be excluded using a setting in the ModSettings file. This file will be created the first time a Souvenir module is loaded on a bomb. After that, the mod settings may be edited using a text editor or the [Mod Selector](https://steamcommunity.com/sharedfiles/filedetails/?id=801400247) tablet with the [Tweaks](https://steamcommunity.com/sharedfiles/filedetails/?id=1366808675) mod. Souvenir itself and other boss modules may also be excluded this way.

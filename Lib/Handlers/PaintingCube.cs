@@ -2,7 +2,6 @@
 using Souvenir;
 using static Souvenir.AnswerLayout;
 
-
 public enum SPaintingCube
 {
     [SouvenirQuestion("What color was missing in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", TranslateAnswers = true)]
@@ -17,10 +16,10 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "PaintingCubeScript");
         yield return WaitForSolve;
 
-        var fldMissingColor = GetField<object>(comp, "missingColor").Get();
+        var missingColor = GetField<object>(comp, "missingColor").Get();
 
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
 
-        yield return question(SPaintingCube.MissingColor).Answers(colorNames[(int) fldMissingColor], colorNames);
+        yield return question(SPaintingCube.MissingColor).Answers(colorNames[(int) missingColor], colorNames);
     }
 }
