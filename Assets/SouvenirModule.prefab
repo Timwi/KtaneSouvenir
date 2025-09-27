@@ -1763,6 +1763,23 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e7edec542ccf84a4399346280fd04b45, type: 3}
   - {fileID: 8300000, guid: 540acc488ec3e014d8b0abc8cce963c0, type: 3}
   - {fileID: 8300000, guid: 03aaddf7ed3a5d44ba7423aed33dfaa6, type: 3}
+  MultiverseHotlineAudio:
+  - {fileID: 8300000, guid: 1e44efa2ff66bd04cb1784ca16bf4fe7, type: 3}
+  - {fileID: 8300000, guid: 461a82a5e1e67564cb15f2f93b951451, type: 3}
+  - {fileID: 8300000, guid: 339e47d505abf17469cda90113b817ac, type: 3}
+  - {fileID: 8300000, guid: 6dd578648ca5d7544a16795a456ab572, type: 3}
+  - {fileID: 8300000, guid: a53e24c940bf69749b7f0476534ddf22, type: 3}
+  - {fileID: 8300000, guid: 368c729a8ecff8146979f08310f273a4, type: 3}
+  - {fileID: 8300000, guid: ad157ed536587e249b2e6299a7d43f90, type: 3}
+  - {fileID: 8300000, guid: 105df059915225447aeff0e7f925fcb1, type: 3}
+  - {fileID: 8300000, guid: 5b4ba15c5f1234d4a89f147373070da2, type: 3}
+  - {fileID: 8300000, guid: 2d98429797e682b48a68502eb284f539, type: 3}
+  - {fileID: 8300000, guid: 1445cff8bef046948a7fbc5495a41392, type: 3}
+  - {fileID: 8300000, guid: b96bece76a7e8ba4988aa9269a3b1c3b, type: 3}
+  - {fileID: 8300000, guid: d0577cb7aea47b643b266cf73e9528dd, type: 3}
+  - {fileID: 8300000, guid: 5e2e437b8000c4e41a8db4a37da4c556, type: 3}
+  - {fileID: 8300000, guid: aa39277f52907c24e9bf5e71523a01a0, type: 3}
+  - {fileID: 8300000, guid: b3f44b400e698c7459e160d290c1e2cd, type: 3}
   SimonSamplesAudio:
   - {fileID: 8300000, guid: 83226d8d75bafd846aaa32b8bc37226f, type: 3}
   - {fileID: 8300000, guid: e447b9a7531a6ac4587f124636d840a9, type: 3}

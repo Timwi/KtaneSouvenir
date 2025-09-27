@@ -8846,6 +8846,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        [typeof(SMultiverseHotline)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SMultiverseHotline.UniverseOrigin] = new()
+                {
+                    // English: What was the universe origin in {0}?
+                    Question = "What was the universe origin in {0}?",
+                },
+                [SMultiverseHotline.UniverseOriginInitNumber] = new()
+                {
+                    // English: What was the universe origin's initial number in {0}?
+                    Question = "What was the universe origin's initial number in {0}?",
+                },
+            },
+        },
+
         [typeof(SMurder)] = new()
         {
             NeedsTranslation = true,
