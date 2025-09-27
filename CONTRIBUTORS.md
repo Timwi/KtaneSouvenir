@@ -216,6 +216,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris
     Gryphons                 │  JerryEris
+    Holographic Memory       │  KiloBites
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
     Mahjong                  │  River

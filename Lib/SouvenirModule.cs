@@ -48,6 +48,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] GadgetronVendorIconSprites;
     public Sprite[] GadgetronVendorWeaponSprites;
     public Sprite[] HingesSprites;
+    public Sprite[] HolographicMemorySprites;
     public Sprite[] JengaSprites;
     public Sprite[] KeypadSprites;
     public Sprite[] LadderLotterySprites;

@@ -6139,6 +6139,25 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        [typeof(SHolographicMemory)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SHolographicMemory.InitialGrid] = new()
+                {
+                    // English: Which side did this symbol appear in {0}? (+ sprite)
+                    Question = "Which side did this symbol appear in {0}?",
+                },
+                [SHolographicMemory.StageSelected] = new()
+                {
+                    // English: Which symbol was selected in the {1} stage of {0}?
+                    // Example: Which symbol was selected in the first stage of Holographic Memory?
+                    Question = "Which symbol was selected in stage {1} of {0}?",
+                },
+            },
+        },
+
         [typeof(SHomophones)] = new()
         {
             ModuleName = "同音異義語",
