@@ -207,7 +207,7 @@ public static class Program
                         var extra = qAttr.UsesQuestionSprite ? $@" (+ sprite)" : "";
                         sb.AppendLine($@"{indent()}// English: {qAttr.QuestionText}{extra}");
                         if (qAttr.Arguments is string[] args)
-                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) qAttr.QuestionText, (object[]) [handler.ModuleName, .. processString(args.Take((int) qAttr.ArgumentGroupSize))])}{extra}");
+                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) qAttr.QuestionText, (object[]) [(handler.AddThe ? "The " : "") + handler.ModuleName, .. processString(args.Take((int) qAttr.ArgumentGroupSize))])}{extra}");
                     }
                     sb.AppendLine($@"{indent()}Question = ""{((string) (alreadyQuestion?.Question ?? qAttr.QuestionText)).CLiteralEscape()}"",");
 

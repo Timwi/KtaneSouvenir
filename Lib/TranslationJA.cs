@@ -788,13 +788,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SAzureButton.QDecoyArrowDirection] = new()
                 {
                     // English: What was the {1} direction in the decoy arrow in {0}?
-                    // Example: What was the first direction in the decoy arrow in Azure Button?
+                    // Example: What was the first direction in the decoy arrow in The Azure Button?
                     Question = "{0}の囮の矢印が{1}番目に示した方向は？",
                 },
                 [SAzureButton.QNonDecoyArrowDirection] = new()
                 {
                     // English: What was the {1} direction in the {2} non-decoy arrow in {0}?
-                    // Example: What was the first direction in the first non-decoy arrow in Azure Button?
+                    // Example: What was the first direction in the first non-decoy arrow in The Azure Button?
                     Question = "{0}の囮ではない{2}番目の矢印が{1}番目に示した方向は？",
                 },
                 [SAzureButton.QT] = new()
@@ -1505,7 +1505,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SBlueButton.EFGH] = new()
                 {
                     // English: What was {1} in {0}?
-                    // Example: What was E in Blue Button?
+                    // Example: What was E in The Blue Button?
                     Question = "{0}のEはどれだったか？",
                 },
                 [SBlueButton.M] = new()
@@ -3351,7 +3351,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SCRule.SymbolPairCell] = new()
                 {
                     // English: Where was {1} in {0}?
-                    // Example: Where was ♤♤ in cRule?
+                    // Example: Where was ♤♤ in The cRule?
                     Question = "{0}で{1}はどこにあった？",
                 },
                 [SCRule.SymbolPairPresent] = new()
@@ -3436,7 +3436,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SCube.Rotations] = new()
                 {
                     // English: What was the {1} cube rotation in {0}?
-                    // Example: What was the first cube rotation in Cube?
+                    // Example: What was the first cube rotation in The Cube?
                     Question = "{0}の{1}回目のキューブの回転は？",
                     Answers = new()
                     {
@@ -3486,7 +3486,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SCyanButton.Positions] = new()
                 {
                     // English: Where was the button at the {1} stage in {0}?
-                    // Example: Where was the button at the first stage in Cyan Button?
+                    // Example: Where was the button at the first stage in The Cyan Button?
                     Question = "{0}のステージ{1}のボタンはどこにあった？",
                     Answers = new()
                     {
@@ -5518,7 +5518,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SGarnetThief.Claim] = new()
                 {
                     // English: Which faction did {1} claim to be in {0}?
-                    // Example: Which faction did Jungmoon claim to be in Garnet Thief?
+                    // Example: Which faction did Jungmoon claim to be in The Garnet Thief?
                     Question = "{0}の{1}が所属を主張していた派閥は？",
                 },
             },
@@ -5608,7 +5608,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SGrayButton.Coordinates] = new()
                 {
                     // English: What was the {1} coordinate on the display in {0}?
-                    // Example: What was the horizontal coordinate on the display in Gray Button?
+                    // Example: What was the horizontal coordinate on the display in The Gray Button?
                     Question = "{0}のディスプレー上に表示された{1}の座標は？",
                     Arguments = new()
                     {
@@ -5647,13 +5647,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SGreatVoid.Digit] = new()
                 {
                     // English: What was the {1} digit in {0}?
-                    // Example: What was the first digit in Great Void?
+                    // Example: What was the first digit in The Great Void?
                     Question = "{0}の{1}番目の数字は？",
                 },
                 [SGreatVoid.Color] = new()
                 {
                     // English: What was the {1} color in {0}?
-                    // Example: What was the first color in Great Void?
+                    // Example: What was the first color in The Great Void?
                     Question = "{0}の{1}番目の色は？",
                     Answers = new()
                     {
@@ -6274,7 +6274,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SHypercube.Rotations] = new()
                 {
                     // English: What was the {1} rotation in {0}?
-                    // Example: What was the first rotation in Hypercube?
+                    // Example: What was the first rotation in The Hypercube?
                     Question = "{0}の{1}番目の回転方向は？",
                 },
             },
@@ -6311,7 +6311,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SHyperlink.Characters] = new()
                 {
                     // English: What was the {1} character of the hyperlink in {0}?
-                    // Example: What was the first character of the hyperlink in Hyperlink?
+                    // Example: What was the first character of the hyperlink in The Hyperlink?
                     Question = "{0}のリンクの{1}文字目は？",
                 },
                 [SHyperlink.Answer] = new()
@@ -6547,7 +6547,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SiPhone.Digits] = new()
                 {
                     // English: What was the {1} PIN digit in {0}?
-                    // Example: What was the first PIN digit in iPhone?
+                    // Example: What was the first PIN digit in The iPhone?
                     Question = "{0}の{1}番目のPINの数字は？",
                 },
             },
@@ -6574,7 +6574,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SJewelVault.Wheels] = new()
                 {
                     // English: What number was wheel {1} in {0}?
-                    // Example: What number was wheel A in Jewel Vault?
+                    // Example: What number was wheel A in The Jewel Vault?
                     Question = "{0}の輪{1}の数字は？",
                 },
             },
@@ -6988,7 +6988,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SLabyrinth.PortalLocations] = new()
                 {
                     // English: Where was one of the portals in layer {1} in {0}?
-                    // Example: Where was one of the portals in layer 1 (Red) in Labyrinth?
+                    // Example: Where was one of the portals in layer 1 (Red) in The Labyrinth?
                     Question = "{0}の層{1}にあったポータルの一つは？",
                     Arguments = new()
                     {
@@ -7428,7 +7428,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SLondonUnderground.Stations] = new()
                 {
                     // English: Where did the {1} journey on {0} {2}?
-                    // Example: Where did the first journey on London Underground depart from?
+                    // Example: Where did the first journey on The London Underground depart from?
                     Question = "{0}の{1}番目の経路における{2}は？",
                     Arguments = new()
                     {
@@ -8365,7 +8365,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SMoon.LitUnlit] = new()
                 {
                     // English: What was the {1} set in clockwise order in {0}?
-                    // Example: What was the first initially lit set in clockwise order in Moon?
+                    // Example: What was the first initially lit set in clockwise order in The Moon?
                     Question = "{0}で時計回りに見て{1}セットは？",
                     Answers = new()
                     {
@@ -8858,7 +8858,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SNavyButton.QGiven] = new()
                 {
                     // English: What was the {1} of the given in {0}?
-                    // Example: What was the (0-indexed) column of the given in Navy Button?
+                    // Example: What was the (0-indexed) column of the given in The Navy Button?
                     Question = "{0}で得られた{1}は(0から開始)？",
                     Arguments = new()
                     {
@@ -8905,7 +8905,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SNecronomicon.Chapters] = new()
                 {
                     // English: What was the chapter number of the {1} page in {0}?
-                    // Example: What was the chapter number of the first page in Necronomicon?
+                    // Example: What was the chapter number of the first page in The Necronomicon?
                     Question = "{0}の{1}番目のページの章番号は？",
                 },
             },
@@ -9887,7 +9887,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SOctadecayotton.Rotations] = new()
                 {
                     // English: What was one of the subrotations in the {1} rotation in {0}?
-                    // Example: What was one of the subrotations in the first rotation in Octadecayotton?
+                    // Example: What was one of the subrotations in the first rotation in The Octadecayotton?
                     Question = "{0}で{1}番目の回転の二次変形の一つであるのは？",
                 },
             },
@@ -10562,13 +10562,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SPinkButton.Words] = new()
                 {
                     // English: What was the {1} word in {0}?
-                    // Example: What was the first word in Pink Button?
+                    // Example: What was the first word in The Pink Button?
                     Question = "{0}の{1}番目の単語は？",
                 },
                 [SPinkButton.Colors] = new()
                 {
                     // English: What was the {1} color in {0}?
-                    // Example: What was the first color in Pink Button?
+                    // Example: What was the first color in The Pink Button?
                     Question = "{0}の{1}番目の色は？",
                     Answers = new()
                     {
@@ -10878,7 +10878,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SPurpleButton.Numbers] = new()
                 {
                     // English: What was the {1} number in the cyclic sequence on {0}?
-                    // Example: What was the first number in the cyclic sequence on Purple Button?
+                    // Example: What was the first number in the cyclic sequence on The Purple Button?
                     Question = "{0}におけるシーケンスの{1}番目の数字は？",
                 },
             },
@@ -11764,7 +11764,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SSamsung.AppPositions] = new()
                 {
                     // English: Where was {1} in {0}?
-                    // Example: Where was Duolingo in Samsung?
+                    // Example: Where was Duolingo in The Samsung?
                     Question = "{0}の{1}はどこ？",
                 },
             },
@@ -13390,7 +13390,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SSphere.Colors] = new()
                 {
                     // English: What was the {1} flashed color in {0}?
-                    // Example: What was the first flashed color in Sphere?
+                    // Example: What was the first flashed color in The Sphere?
                     Question = "{0}にて{1}番目に点滅した色は？",
                     Answers = new()
                     {
@@ -13758,7 +13758,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SSwitch.InitialColor] = new()
                 {
                     // English: What color was the {1} LED on the {2} flip of {0}?
-                    // Example: What color was the top LED on the first flip of Switch?
+                    // Example: What color was the top LED on the first flip of The Switch?
                     Question = "{0}の{2}回目の切り替え時の{1}部のLEDの色は？",
                     Answers = new()
                     {
@@ -14104,7 +14104,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [STeaSet.DisplayedIngredients] = new()
                 {
                     // English: Which ingredient was displayed {1}, from left to right, in {0}?
-                    // Example: Which ingredient was displayed first, from left to right, in Tea Set?
+                    // Example: Which ingredient was displayed first, from left to right, in The Tea Set?
                     Question = "{0}で左から{1}番目に表示された材料は？",
                 },
             },
@@ -14532,7 +14532,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SUltracube.Rotations] = new()
                 {
                     // English: What was the {1} rotation in {0}?
-                    // Example: What was the first rotation in Ultracube?
+                    // Example: What was the first rotation in The Ultracube?
                     Question = "{0}の{1}番目の回転方向は？",
                 },
             },
@@ -15329,13 +15329,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SWeakestLink.Skill] = new()
                 {
                     // English: What was {1}’s skill in {0}?
-                    // Example: What was Annie’s skill in Weakest Link?
+                    // Example: What was Annie’s skill in The Weakest Link?
                     Question = "{0}における{1}のスキルは？",
                 },
                 [SWeakestLink.Ratio] = new()
                 {
                     // English: What ratio did {1} get in the Question Phase in {0}?
-                    // Example: What ratio did Annie get in the Question Phase in Weakest Link?
+                    // Example: What ratio did Annie get in the Question Phase in The Weakest Link?
                     Question = "{0}の質問フェイズで{1}が獲得した倍率は？",
                 },
             },
@@ -15485,7 +15485,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SWire.DialColors] = new()
                 {
                     // English: What was the color of the {1} dial in {0}?
-                    // Example: What was the color of the top dial in Wire?
+                    // Example: What was the color of the top dial in The Wire?
                     Question = "{0}の{1}の位置にあったダイヤルの色は？",
                     Answers = new()
                     {
@@ -15618,12 +15618,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(SWorkingTitle)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ワーキングタイトル",
             Questions = new()
             {
-                [SWorkingTitle.Label] = new()
+                [SWorkingTitle.Display] = new()
                 {
-                    // English: What was the label shown in {0}?
+                    // English: What was on the display in {0}?
                     Question = "{0}にて表示されたラベルは？",
                 },
             },
@@ -15649,7 +15650,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SXenocryst.Question] = new()
                 {
                     // English: What was the color of the {1} flash in {0}?
-                    // Example: What was the color of the first flash in Xenocryst?
+                    // Example: What was the color of the first flash in The Xenocryst?
                     Question = "{0}の{1}番目の点滅の色は？",
                 },
             },
@@ -15758,7 +15759,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 [SYellowButton.Colors] = new()
                 {
                     // English: What was the {1} color in {0}?
-                    // Example: What was the first color in Yellow Button?
+                    // Example: What was the first color in The Yellow Button?
                     Question = "{0}の{1}番目の色は？",
                     Answers = new()
                     {

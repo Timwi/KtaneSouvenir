@@ -847,13 +847,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SAzureButton.QDecoyArrowDirection] = new()
                 {
                     // English: What was the {1} direction in the decoy arrow in {0}?
-                    // Example: What was the first direction in the decoy arrow in Azure Button?
+                    // Example: What was the first direction in the decoy arrow in The Azure Button?
                     Question = "Какое было {1}-е направление у стрелки-ловушки {0}?",
                 },
                 [SAzureButton.QNonDecoyArrowDirection] = new()
                 {
                     // English: What was the {1} direction in the {2} non-decoy arrow in {0}?
-                    // Example: What was the first direction in the first non-decoy arrow in Azure Button?
+                    // Example: What was the first direction in the first non-decoy arrow in The Azure Button?
                     Question = "Какое было {1}-е направление у {2}-й стрелки (не ловушки) {0}?",
                 },
                 [SAzureButton.QT] = new()
@@ -1562,7 +1562,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SBlueButton.EFGH] = new()
                 {
                     // English: What was {1} in {0}?
-                    // Example: What was E in Blue Button?
+                    // Example: What was E in The Blue Button?
                     Question = "Какое значение было у {1} на {0}?",
                 },
                 [SBlueButton.M] = new()
@@ -3412,7 +3412,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SCRule.SymbolPairCell] = new()
                 {
                     // English: Where was {1} in {0}?
-                    // Example: Where was ♤♤ in cRule?
+                    // Example: Where was ♤♤ in The cRule?
                     Question = "Где находилось {1} {0}?",
                 },
                 [SCRule.SymbolPairPresent] = new()
@@ -3497,7 +3497,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SCube.Rotations] = new()
                 {
                     // English: What was the {1} cube rotation in {0}?
-                    // Example: What was the first cube rotation in Cube?
+                    // Example: What was the first cube rotation in The Cube?
                     Question = "Какое было {1}-е вращение у {0}?",
                     Answers = new()
                     {
@@ -3545,7 +3545,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SCyanButton.Positions] = new()
                 {
                     // English: Where was the button at the {1} stage in {0}?
-                    // Example: Where was the button at the first stage in Cyan Button?
+                    // Example: Where was the button at the first stage in The Cyan Button?
                     Question = "Где был {0} на своём {1}-м этапе?",
                     Answers = new()
                     {
@@ -5552,7 +5552,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SGarnetThief.Claim] = new()
                 {
                     // English: Which faction did {1} claim to be in {0}?
-                    // Example: Which faction did Jungmoon claim to be in Garnet Thief?
+                    // Example: Which faction did Jungmoon claim to be in The Garnet Thief?
                     Question = "К какой фракции {1} заявлял, что он принадлежит {0}?",
                 },
             },
@@ -5641,7 +5641,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SGrayButton.Coordinates] = new()
                 {
                     // English: What was the {1} coordinate on the display in {0}?
-                    // Example: What was the horizontal coordinate on the display in Gray Button?
+                    // Example: What was the horizontal coordinate on the display in The Gray Button?
                     Question = "Какие были {1} координаты на экране {0}?",
                     Arguments = new()
                     {
@@ -5679,13 +5679,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SGreatVoid.Digit] = new()
                 {
                     // English: What was the {1} digit in {0}?
-                    // Example: What was the first digit in Great Void?
+                    // Example: What was the first digit in The Great Void?
                     Question = "Какая была {1}-я цифра {0}?",
                 },
                 [SGreatVoid.Color] = new()
                 {
                     // English: What was the {1} color in {0}?
-                    // Example: What was the first color in Great Void?
+                    // Example: What was the first color in The Great Void?
                     Question = "Какой был {1}-й цвет {0}?",
                     Answers = new()
                     {
@@ -6299,7 +6299,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SHypercube.Rotations] = new()
                 {
                     // English: What was the {1} rotation in {0}?
-                    // Example: What was the first rotation in Hypercube?
+                    // Example: What was the first rotation in The Hypercube?
                     Question = "Каким было {1}-е вращение {0}?",
                 },
             },
@@ -6334,7 +6334,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SHyperlink.Characters] = new()
                 {
                     // English: What was the {1} character of the hyperlink in {0}?
-                    // Example: What was the first character of the hyperlink in Hyperlink?
+                    // Example: What was the first character of the hyperlink in The Hyperlink?
                     Question = "Какой был {1}-й символ ссылки {0}?",
                 },
                 [SHyperlink.Answer] = new()
@@ -6564,7 +6564,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SiPhone.Digits] = new()
                 {
                     // English: What was the {1} PIN digit in {0}?
-                    // Example: What was the first PIN digit in iPhone?
+                    // Example: What was the first PIN digit in The iPhone?
                     Question = "Какая была {1}-я цифра пинкода {0}?",
                 },
             },
@@ -6590,7 +6590,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SJewelVault.Wheels] = new()
                 {
                     // English: What number was wheel {1} in {0}?
-                    // Example: What number was wheel A in Jewel Vault?
+                    // Example: What number was wheel A in The Jewel Vault?
                     Question = "Какой был номер у колеса {1} {0}?",
                 },
             },
@@ -6999,7 +6999,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SLabyrinth.PortalLocations] = new()
                 {
                     // English: Where was one of the portals in layer {1} in {0}?
-                    // Example: Where was one of the portals in layer 1 (Red) in Labyrinth?
+                    // Example: Where was one of the portals in layer 1 (Red) in The Labyrinth?
                     Question = "Где находился один из порталов на {1} слое {0}?",
                     Arguments = new()
                     {
@@ -7432,7 +7432,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SLondonUnderground.Stations] = new()
                 {
                     // English: Where did the {1} journey on {0} {2}?
-                    // Example: Where did the first journey on London Underground depart from?
+                    // Example: Where did the first journey on The London Underground depart from?
                     Question = "{2} отправился {1}-й рейс {0}?",
                     Arguments = new()
                     {
@@ -8352,7 +8352,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SMoon.LitUnlit] = new()
                 {
                     // English: What was the {1} set in clockwise order in {0}?
-                    // Example: What was the first initially lit set in clockwise order in Moon?
+                    // Example: What was the first initially lit set in clockwise order in The Moon?
                     Question = "Какой {1} по часовой стрелке {0}?",
                     Answers = new()
                     {
@@ -8842,7 +8842,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SNavyButton.QGiven] = new()
                 {
                     // English: What was the {1} of the given in {0}?
-                    // Example: What was the (0-indexed) column of the given in Navy Button?
+                    // Example: What was the (0-indexed) column of the given in The Navy Button?
                     Question = "{1} (с индексом 0) на {0}?",
                     Arguments = new()
                     {
@@ -8889,7 +8889,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SNecronomicon.Chapters] = new()
                 {
                     // English: What was the chapter number of the {1} page in {0}?
-                    // Example: What was the chapter number of the first page in Necronomicon?
+                    // Example: What was the chapter number of the first page in The Necronomicon?
                     Question = "Какой был номер главы {1}-й страницы {0}?",
                 },
             },
@@ -9855,7 +9855,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SOctadecayotton.Rotations] = new()
                 {
                     // English: What was one of the subrotations in the {1} rotation in {0}?
-                    // Example: What was one of the subrotations in the first rotation in Octadecayotton?
+                    // Example: What was one of the subrotations in the first rotation in The Octadecayotton?
                     Question = "Каким было одно из промежуточных вращений в {1}-м вращении {0}?",
                 },
             },
@@ -10527,13 +10527,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SPinkButton.Words] = new()
                 {
                     // English: What was the {1} word in {0}?
-                    // Example: What was the first word in Pink Button?
+                    // Example: What was the first word in The Pink Button?
                     Question = "Какое было {1}-е слово {0}?",
                 },
                 [SPinkButton.Colors] = new()
                 {
                     // English: What was the {1} color in {0}?
-                    // Example: What was the first color in Pink Button?
+                    // Example: What was the first color in The Pink Button?
                     Question = "Какой был {1}-й цвет на {0}?",
                     Answers = new()
                     {
@@ -10843,7 +10843,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SPurpleButton.Numbers] = new()
                 {
                     // English: What was the {1} number in the cyclic sequence on {0}?
-                    // Example: What was the first number in the cyclic sequence on Purple Button?
+                    // Example: What was the first number in the cyclic sequence on The Purple Button?
                     Question = "Какое было {1}-е число в зацикленной последовательности {0}?",
                 },
             },
@@ -11718,7 +11718,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SSamsung.AppPositions] = new()
                 {
                     // English: Where was {1} in {0}?
-                    // Example: Where was Duolingo in Samsung?
+                    // Example: Where was Duolingo in The Samsung?
                     Question = "Где было приложение {1} {0}?",
                 },
             },
@@ -13321,7 +13321,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SSphere.Colors] = new()
                 {
                     // English: What was the {1} flashed color in {0}?
-                    // Example: What was the first flashed color in Sphere?
+                    // Example: What was the first flashed color in The Sphere?
                     Question = "Какой цвет загорелся {1}-м {0}?",
                     Answers = new()
                     {
@@ -13681,7 +13681,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SSwitch.InitialColor] = new()
                 {
                     // English: What color was the {1} LED on the {2} flip of {0}?
-                    // Example: What color was the top LED on the first flip of Switch?
+                    // Example: What color was the top LED on the first flip of The Switch?
                     Question = "Какого цвета был {1} светодиод при {2}-м нажатии {0}?",
                     Answers = new()
                     {
@@ -14022,7 +14022,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [STeaSet.DisplayedIngredients] = new()
                 {
                     // English: Which ingredient was displayed {1}, from left to right, in {0}?
-                    // Example: Which ingredient was displayed first, from left to right, in Tea Set?
+                    // Example: Which ingredient was displayed first, from left to right, in The Tea Set?
                     Question = "Какой ингридиент был показан {1}-м, слева направо {0}?",
                 },
             },
@@ -14448,7 +14448,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SUltracube.Rotations] = new()
                 {
                     // English: What was the {1} rotation in {0}?
-                    // Example: What was the first rotation in Ultracube?
+                    // Example: What was the first rotation in The Ultracube?
                     Question = "Каким было {1}-е вращение {0}?",
                 },
             },
@@ -15240,13 +15240,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SWeakestLink.Skill] = new()
                 {
                     // English: What was {1}’s skill in {0}?
-                    // Example: What was Annie’s skill in Weakest Link?
+                    // Example: What was Annie’s skill in The Weakest Link?
                     Question = "Какой навык был у {1} {0}?",
                 },
                 [SWeakestLink.Ratio] = new()
                 {
                     // English: What ratio did {1} get in the Question Phase in {0}?
-                    // Example: What ratio did Annie get in the Question Phase in Weakest Link?
+                    // Example: What ratio did Annie get in the Question Phase in The Weakest Link?
                     Question = "На какой процент вопросов ответил(а) {1} в Question Phase {0}?",
                 },
             },
@@ -15393,7 +15393,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SWire.DialColors] = new()
                 {
                     // English: What was the color of the {1} dial in {0}?
-                    // Example: What was the color of the top dial in Wire?
+                    // Example: What was the color of the top dial in The Wire?
                     Question = "Какого цвета был {1} диск {0}?",
                     Answers = new()
                     {
@@ -15526,13 +15526,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SWorkingTitle)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Рабочем названии",
             Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
-                [SWorkingTitle.Label] = new()
+                [SWorkingTitle.Display] = new()
                 {
-                    // English: What was the label shown in {0}?
+                    // English: What was on the display in {0}?
                     Question = "Какая надпись была показана на {0}?",
                 },
             },
@@ -15557,7 +15558,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SXenocryst.Question] = new()
                 {
                     // English: What was the color of the {1} flash in {0}?
-                    // Example: What was the color of the first flash in Xenocryst?
+                    // Example: What was the color of the first flash in The Xenocryst?
                     Question = "Какого цвета была {1}-я вспышка {0}?",
                 },
             },
@@ -15664,7 +15665,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SYellowButton.Colors] = new()
                 {
                     // English: What was the {1} color in {0}?
-                    // Example: What was the first color in Yellow Button?
+                    // Example: What was the first color in The Yellow Button?
                     Question = "Какой был {1}-й цвет в последовательности {0}?",
                     Answers = new()
                     {
