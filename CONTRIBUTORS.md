@@ -225,6 +225,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Melody Sequencer         │  Goofy
     Minsk Metro              │  rand06
     Module Maze              │  River
+    Off-White Cipher         │  KiloBites
     Old AI                   │  noting3548
     Order Picking            │  Brawlboxgaming
     Painting Cube            │  KiloBites

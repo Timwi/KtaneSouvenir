@@ -9926,6 +9926,29 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        [typeof(SOffWhiteCipher)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SOffWhiteCipher.TopDisplay] = new()
+                {
+                    // English: What was the top display in {0}?
+                    Question = "What was the top display in {0}?",
+                },
+                [SOffWhiteCipher.MiddleDisplay] = new()
+                {
+                    // English: What was the middle display in {0}?
+                    Question = "What was the middle display in {0}?",
+                },
+                [SOffWhiteCipher.BottomDisplay] = new()
+                {
+                    // English: What was the bottom display in {0}?
+                    Question = "What was the bottom display in {0}?",
+                },
+            },
+        },
+
         [typeof(SOldAI)] = new()
         {
             ModuleName = "オールドAI",
