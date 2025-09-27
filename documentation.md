@@ -2,6 +2,17 @@
 
 This document explains how to implement Souvenir support for a module. We will start simple but we will eventually cover all of the detail.
 
+## Build the mod
+
+To begin, to the following:
+
+* Unsubscribe from the Workshop version of Souvenir.
+* Build the asset bundle in Unity with no assembly (F7) and copy the result to your game’s `mods` folder.
+
+You only need to do this once as long as you keep that local copy of Souvenir there.
+
+Just be aware that keeping the local copy of Souvenir means that you will not automatically receive changes from the Steam Workshop. If you wish to actually play the game (as opposed to just testing stuff), you should delete the local mod and re-subscribe to the Workshop version. Then you will have to do the above steps again the next time you want to make changes to Souvenir.
+
 ## Create a new source file for the module
 
 Inside the `Handlers` folder, you will find a source file for each supported module. Feel free to create a new one, or — since many existing Souvenir implementations are very similar — take a copy of one and rename it.
@@ -53,6 +64,22 @@ We want the question to vary from time to time: sometimes ask about the top-left
 	* Another `AnswerType` value if the answers are to be rendered in a font provided by Souvenir
 
 A full list of the options is available below in the section titled “Full list of options”.
+
+## Testing in Unity (TestHarness)
+
+At this point you can already see what your new question will look like by running Souvenir in TestHarness. Souvenir will begin by showing the first question of the first module alphabetically. You can use TP commands to navigate to other modules or change the language:
+
+* **`!1 point`** — will move to the first module alphabetically that contains “point” (at time of writing, that is *Pinpoint*).
+* **`!1 lang en`** — changes the language (`en` = English, `de` = German, `ja` = Japanese, `ru` = Russian).
+
+After that, you can use the six buttons to navigate between modules, questions, discriminators etc. You will notice that you can always access all six buttons — even when the current question shows only four answers, the remaining two buttons are off to the right, outside the frame of the module.
+
+* Button 1 (usually top-left): cycle through the modules alphabetically.
+* Button 2 (usually bottom-left): cycle through the intro texts.
+* Button 3 (usually top-middle): cycle through the questions for the current module.
+* Button 4 (usually bottom-middle): cycle through the sets of example arguments for the current question.
+* Button 5 (usually top-right): cycle through the discriminators for the current question.
+* Button 6 (usually bottom-right): cycle through the sets of example arguments for the current discriminator.
 
 ## The handler
 
@@ -162,6 +189,23 @@ There are a few different ways to create a question that uses sprites or audio c
 	* Please sort the field alphabetically among the others starting in `SouvenirModule.cs` line 30 (sprites)/line 88 (audio).
 	* In the `[SouvenirQuestion(...)]` attribute, use `Type = AnswerType.Sprites`/`Type = AnswerType.Audio` and specify either `SpriteFieldName = "..."` or `AudioFieldName = "..."` (insert the name of the new field you just added).
 	* Now you can simply use these sprites/audio clips in your call to `.Answers(...)`.
+
+## Testing in-game and submitting
+
+When you are done, you need to test your new Souvenir support, and then submit the changes to me (Timwi). To do so, follow these steps.
+
+* Compile the DLL.
+* Run Souvenir in Unity and issue a TP command (such as `!1 bulb`) to see your question to make sure that it looks okay.
+* Test your Souvenir modifications in-game (e.g. by using Dynamic Mission Generator). Test all corner cases, including getting a strike on the module.
+* If your question does not show up and/or Souvenir displays a warning triangle, look at your logfile (the actual file, not the LFA) for error messages from Souvenir. You can Ctrl+F in the logfile for `<Souvenir` to find them.
+* Please make a separate git commit for each module you implement. If you made multiple commits for the same module, please squash them into one.
+* After submitting the pull request, DM me (Timwi on Discord) the questions to be added to the manual, in the format `Module Name: Question? Question?`, for example:
+	```
+	Quiz Buzz: What was the number initially on the display?
+	Memory Wires: What were the wire colours? What were the displayed digits?
+	The Matrix: Which word was part of the latest access code? What was the glitched word?
+	```
+	I will do the rest to update the manual and the info on the repo.
 
 ## Full list of options
 
