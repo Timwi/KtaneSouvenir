@@ -2141,6 +2141,27 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        [typeof(SCaesarsMaths)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SCaesarsMaths.LED] = new()
+                {
+                    // English: What color was the {1} LED in {0}?
+                    // Example: What color was the first LED in Caesar's Maths?
+                    Question = "What color was the {1} LED in {0}?",
+                    Answers = new()
+                    {
+                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blue",
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                    },
+                },
+            },
+        },
+
         [typeof(SCalendar)] = new()
         {
             ModuleName = "カレンダー",

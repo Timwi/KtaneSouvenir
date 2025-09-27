@@ -198,6 +198,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Catchphrase   │  Long Words  │  Qwirkle
     Digit String  │  Metapuzzle  │  Raiding Temples
 
+## Implemented by KiloBites (6)
+
+    Caesar's Maths  │  Holographic Memory  │  Painting Cube
+    ƎNA Cipher      │  Off-White Cipher    │  Unfair's Cruel Revenge
+
 ## Others
 
     MODULE                   │  IMPLEMENTED BY
@@ -212,11 +217,9 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Divisible Numbers        │  shortc1rcuit
     Elder Futhark            │  Goofy
     Exoplanets               │  Brawlboxgaming
-    ƎNA Cipher               │  KiloBites
     Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris
     Gryphons                 │  JerryEris
-    Holographic Memory       │  KiloBites
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
     Mahjong                  │  River
@@ -225,10 +228,8 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Melody Sequencer         │  Goofy
     Minsk Metro              │  rand06
     Module Maze              │  River
-    Off-White Cipher         │  KiloBites
     Old AI                   │  noting3548
     Order Picking            │  Brawlboxgaming
-    Painting Cube            │  KiloBites
     Placement Roulette       │  Brawlboxgaming
     Planets                  │  KingSlendy
     Railway Cargo Loading    │  LotsOfS
@@ -241,7 +242,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Simon Sends              │  EternityShack
     Simon Stages             │  Espik
     Simon Stops              │  JerryEris
-    Unfair's Cruel Revenge   │  KiloBites
     Wavetapping              │  KingSlendy
     XmORse Code              │  shortc1rcuit
 
