@@ -193,15 +193,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Critters        │  Infinite Loop  │  Numbered Buttons    │  Pixel Cipher
     Factoring Maze  │  Interpunct     │  Password Destroyer  │
 
+## Implemented by KiloBites (7)
+
+    Caesar's Maths  │  Holographic Memory       │  Off-White Cipher  │  Unfair's Cruel Revenge
+    ƎNA Cipher      │  Multiverse Hotline, The  │  Painting Cube     │
+
 ## Implemented by GoodHood (6)
 
     Catchphrase   │  Long Words  │  Qwirkle
     Digit String  │  Metapuzzle  │  Raiding Temples
-
-## Implemented by KiloBites (6)
-
-    Caesar's Maths  │  Holographic Memory  │  Painting Cube
-    ƎNA Cipher      │  Off-White Cipher    │  Unfair's Cruel Revenge
 
 ## Others
 

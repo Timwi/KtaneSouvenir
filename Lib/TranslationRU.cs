@@ -8619,6 +8619,24 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             },
         },
 
+        [typeof(SMultiverseHotline)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SMultiverseHotline.UniverseOrigin] = new()
+                {
+                    // English: What was the universe origin in {0}?
+                    Question = "What was the universe origin in {0}?",
+                },
+                [SMultiverseHotline.UniverseOriginInitNumber] = new()
+                {
+                    // English: What was the universe origin's initial number in {0}?
+                    Question = "What was the universe origin's initial number in {0}?",
+                },
+            },
+        },
+
         [typeof(SMurder)] = new()
         {
             NeedsTranslation = true,
