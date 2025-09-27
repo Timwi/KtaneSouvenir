@@ -10195,6 +10195,29 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        [typeof(SPaintingCube)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SPaintingCube.MissingColor] = new()
+                {
+                    // English: What color was missing in {0}?
+                    Question = "What color is missing in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Indigo"] = "Indigo",
+                        ["Violet"] = "Violet",
+                    },
+                },
+            },
+        },
+
         [typeof(SPalindromes)] = new()
         {
             NeedsTranslation = true,
@@ -14600,6 +14623,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             Questions = new()
             {
                 [SUnfairsCruelRevenge.Instructions] = new()
+                {
+                    // English: What was the {1} decrypted instruction in {0}?
+                    // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?
+                    Question = "What was the {1} decrypted instruction in {0}?",
+                },
+                [SUnfairsCruelRevenge.InstructionsLegacy] = new()
                 {
                     // English: What was the {1} decrypted instruction in {0}?
                     // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?

@@ -227,6 +227,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Module Maze              │  River
     Old AI                   │  noting3548
     Order Picking            │  Brawlboxgaming
+    Painting Cube            │  KiloBites
     Placement Roulette       │  Brawlboxgaming
     Planets                  │  KingSlendy
     Railway Cargo Loading    │  LotsOfS
