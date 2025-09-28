@@ -349,6 +349,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             },
         },
 
+        [typeof(S4DTunnels)] = new()
+        {
+            ModuleName = "4D тоннелях",
+            Conjugation = Conjugation.в_PrepositivePlural,
+            Questions = new()
+            {
+                [S4DTunnels.TargetNode] = new()
+                {
+                    // English: What was the {1} goal node in {0}?
+                    // Example: What was the first goal node in 4D Tunnels?
+                    Question = "Какой символ был вашей {1}-й целью {0}?",
+                },
+            },
+        },
+
         [typeof(S64)] = new()
         {
             Conjugation = Conjugation.PrepositiveMascNeuter,
@@ -9013,6 +9028,26 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             },
         },
 
+        [typeof(SNim)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SNim.MatchCountFirstRow] = new()
+                {
+                    // English: How many matches were in the {1} row in {0}?
+                    // Example: How many matches were in the first row in Nim?
+                    Question = "How many matches were in the {1} row in {0}?",
+                },
+                [SNim.MatchCountOtherRows] = new()
+                {
+                    // English: How many matches were in the {1} row in {0}?
+                    // Example: How many matches were in the first row in Nim?
+                    Question = "How many matches were in the {1} row in {0}?",
+                },
+            },
+        },
+
         [typeof(SNonverbalSimon)] = new()
         {
             Conjugation = Conjugation.GenitiveMascNeuter,
@@ -11460,6 +11495,26 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What character was used in the {1} round of {0}?
                     // Example: What character was used in the first round of Reverse Polish Notation?
                     Question = "Какой символ был использован на {1}-м этапе {0}?",
+                },
+            },
+        },
+
+        [typeof(SRGBEncryption)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SRGBEncryption.MorseSequence] = new()
+                {
+                    // English: What was the {1} Morse code sequence in {0}?
+                    // Example: What was the first Morse code sequence in RGB Encryption?
+                    Question = "What was the {1} Morse code sequence in {0}?",
+                },
+                [SRGBEncryption.ColorSequence] = new()
+                {
+                    // English: What was the {1} color sequence in {0}?
+                    // Example: What was the first color sequence in RGB Encryption?
+                    Question = "What was the {1} color sequence in {0}?",
                 },
             },
         },

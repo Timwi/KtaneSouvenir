@@ -312,6 +312,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        [typeof(S4DTunnels)] = new()
+        {
+            ModuleName = "4D-Tunnels",
+            Gender = Gender.Plural,
+            Questions = new()
+            {
+                [S4DTunnels.TargetNode] = new()
+                {
+                    // English: What was the {1} goal node in {0}?
+                    // Example: What was the first goal node in 4D Tunnels?
+                    Question = "Was war bei {0} der Zielpunkt?",
+                },
+            },
+        },
+
         [typeof(S64)] = new()
         {
             Questions = new()
@@ -9247,6 +9262,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        [typeof(SNim)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SNim.MatchCountFirstRow] = new()
+                {
+                    // English: How many matches were in the {1} row in {0}?
+                    // Example: How many matches were in the first row in Nim?
+                    Question = "How many matches were in the {1} row in {0}?",
+                },
+                [SNim.MatchCountOtherRows] = new()
+                {
+                    // English: How many matches were in the {1} row in {0}?
+                    // Example: How many matches were in the first row in Nim?
+                    Question = "How many matches were in the {1} row in {0}?",
+                },
+            },
+        },
+
         [typeof(SNonverbalSimon)] = new()
         {
             Questions = new()
@@ -11753,6 +11788,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What character was used in the {1} round of {0}?
                     // Example: What character was used in the first round of Reverse Polish Notation?
                     Question = "What character was used in the {1} round of {0}?",
+                },
+            },
+        },
+
+        [typeof(SRGBEncryption)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SRGBEncryption.MorseSequence] = new()
+                {
+                    // English: What was the {1} Morse code sequence in {0}?
+                    // Example: What was the first Morse code sequence in RGB Encryption?
+                    Question = "What was the {1} Morse code sequence in {0}?",
+                },
+                [SRGBEncryption.ColorSequence] = new()
+                {
+                    // English: What was the {1} color sequence in {0}?
+                    // Example: What was the first color sequence in RGB Encryption?
+                    Question = "What was the {1} color sequence in {0}?",
                 },
             },
         },

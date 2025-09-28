@@ -280,6 +280,20 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        [typeof(S4DTunnels)] = new()
+        {
+            ModuleName = "4Dトンネル",
+            Questions = new()
+            {
+                [S4DTunnels.TargetNode] = new()
+                {
+                    // English: What was the {1} goal node in {0}?
+                    // Example: What was the first goal node in 4D Tunnels?
+                    Question = "{0}の{1}番目のゴールの目印は何？",
+                },
+            },
+        },
+
         [typeof(S64)] = new()
         {
             Questions = new()
@@ -9030,6 +9044,26 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        [typeof(SNim)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SNim.MatchCountFirstRow] = new()
+                {
+                    // English: How many matches were in the {1} row in {0}?
+                    // Example: How many matches were in the first row in Nim?
+                    Question = "How many matches were in the {1} row in {0}?",
+                },
+                [SNim.MatchCountOtherRows] = new()
+                {
+                    // English: How many matches were in the {1} row in {0}?
+                    // Example: How many matches were in the first row in Nim?
+                    Question = "How many matches were in the {1} row in {0}?",
+                },
+            },
+        },
+
         [typeof(SNonverbalSimon)] = new()
         {
             Questions = new()
@@ -11504,6 +11538,26 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What character was used in the {1} round of {0}?
                     // Example: What character was used in the first round of Reverse Polish Notation?
                     Question = "{0}のラウンド{1}で使用された文字は？",
+                },
+            },
+        },
+
+        [typeof(SRGBEncryption)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SRGBEncryption.MorseSequence] = new()
+                {
+                    // English: What was the {1} Morse code sequence in {0}?
+                    // Example: What was the first Morse code sequence in RGB Encryption?
+                    Question = "What was the {1} Morse code sequence in {0}?",
+                },
+                [SRGBEncryption.ColorSequence] = new()
+                {
+                    // English: What was the {1} color sequence in {0}?
+                    // Example: What was the first color sequence in RGB Encryption?
+                    Question = "What was the {1} color sequence in {0}?",
                 },
             },
         },

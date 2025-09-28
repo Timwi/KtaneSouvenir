@@ -16,6 +16,7 @@ public enum AnswerType
     SixtyFourFont = 10,
     CrypticCycleBoozleglyphFont = 11,
     AMessageFont = 12,
+    FourDTunnelsFont = 13,
 
     DynamicFont = -1, // Special value to indicate that the module handler will obtain the font from the client module
     Sprites = -2,     // Special value for answers that use sprites
