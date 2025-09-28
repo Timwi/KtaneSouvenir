@@ -178,6 +178,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     9-Ball             │  Entry Number One    │  Maze Identification  │  Not The Screw          │  Stacked Sequences
     Entry Number Four  │  Game of Life Cruel  │  Mazeseeker           │  Puzzle Identification  │  Xenocryst, The
 
+## Implemented by KiloBites (8)
+
+    Caesar's Maths  │  Holographic Memory       │  Off-White Cipher  │  Unfair's Cruel Revenge
+    ƎNA Cipher      │  Multiverse Hotline, The  │  Painting Cube     │  X-Rotor
+
 ## Implemented by Marksam (8)
 
     Brown Cipher                │  Great Void, The  │  Mashematics  │  Unicode
@@ -192,11 +197,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     Critters        │  Infinite Loop  │  Numbered Buttons    │  Pixel Cipher
     Factoring Maze  │  Interpunct     │  Password Destroyer  │
-
-## Implemented by KiloBites (7)
-
-    Caesar's Maths  │  Holographic Memory       │  Off-White Cipher  │  Unfair's Cruel Revenge
-    ƎNA Cipher      │  Multiverse Hotline, The  │  Painting Cube     │
 
 ## Implemented by GoodHood (6)
 

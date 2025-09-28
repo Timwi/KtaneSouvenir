@@ -16216,6 +16216,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        [typeof(SXRotor)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SXRotor.Symbol] = new()
+                {
+                    // English: Which symbol was scanned in {0}?
+                    Question = "Which symbol was scanned in {0}?",
+                },
+            },
+        },
+
         [typeof(SXYRay)] = new()
         {
             ModuleName = "XY-Scanner",
