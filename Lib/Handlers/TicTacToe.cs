@@ -7,7 +7,10 @@ using static Souvenir.AnswerLayout;
 public enum STicTacToe
 {
     [SouvenirQuestion("What was on the {1} button at the start of {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "O", "X", Type = AnswerType.TicTacToeFont, Arguments = ["top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    InitialState
+    InitialState,
+
+    [SouvenirDiscriminator("the Tic Tac Toe where the {0} button was {1}", Arguments = ["top-left", "1", "top-middle", "2", "top-right", "3", "middle-left", "4", "middle-center", "5", "middle-right", "6", "bottom-left", "7", "bottom-middle", "8", "bottom-right", "9", "bottom-right", "O", "bottom-right", "X"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    Discriminator
 }
 
 public partial class SouvenirModule
@@ -31,7 +34,11 @@ public partial class SouvenirModule
 
         var buttonNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
         for (var ix = 0; ix < 9; ix++)
-            yield return question(STicTacToe.InitialState, args: [buttonNames[Array.IndexOf(keypadPhysical, keypadButtons[ix])]])
-                .Answers(placedX[ix] == null ? (ix + 1).ToString() : placedX[ix].Value ? "X" : "O");
+        {
+            var buttonName = buttonNames[Array.IndexOf(keypadPhysical, keypadButtons[ix])];
+            var value = placedX[ix] == null ? (ix + 1).ToString() : placedX[ix].Value ? "X" : "O";
+            yield return new Discriminator(STicTacToe.Discriminator, $"position{ix}", value, args: [buttonName, value]);
+            yield return question(STicTacToe.InitialState, args: [buttonName]).AvoidDiscriminators($"position{ix}").Answers(value);
+        }
     }
 }

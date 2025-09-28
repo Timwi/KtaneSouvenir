@@ -211,10 +211,15 @@ public static class Program
                     }
                     sb.AppendLine($@"{indent()}Question = ""{((string) (alreadyQuestion?.Question ?? qAttr.QuestionText)).CLiteralEscape()}"",");
 
+#warning MOVE THESE
                     if (qAttr.AllAnswers is string[] { Length: > 0 } origAnswers && (bool) qAttr.TranslateAnswers)
                         AddDictionary("Answers", origAnswers.Distinct(), alreadyQuestion?.Answers);
                     if (qAttr.Arguments is string[] { Length: > 0 } origArguments && qAttr.ArgumentGroupSize is int groupSize && qAttr.TranslateArguments is bool[] trArgs)
-                        AddDictionary("Arguments", origArguments.Select((str, ix) => trArgs[ix % groupSize] ? str : null).Where(s => s != null).Distinct(), alreadyQuestion?.Arguments);
+                        AddDictionary("Arguments",
+#warning INSTATE THIS
+                            //Enumerable.Range(0, groupSize).Where(ix => trArgs[ix]).SelectMany(ix => Enumerable.Range(0, origArguments.Length/groupSize).Select(jx => origArguments[jx * groupSize + ix])).Distinct(),
+                            origArguments.Select((str, ix) => trArgs[ix % groupSize] ? str : null).Where(s => s != null).Distinct(),
+                            alreadyQuestion?.Arguments);
                     if (qAttr.TranslatableStrings is string[] { Length: > 0 } origStrings)
                         AddDictionary("Additional", origStrings.Distinct(), alreadyQuestion?.Additional);
 

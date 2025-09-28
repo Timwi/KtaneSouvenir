@@ -6103,21 +6103,38 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SHexamaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Hexalabyrinth",
             Questions = new()
             {
                 [SHexamaze.PawnColor] = new()
                 {
                     // English: What was the color of the pawn in {0}?
-                    Question = "What was the color of the pawn in {0}?",
+                    Question = "Welche Farbe hatte die Spielfigur bei {0}?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Cyan"] = "Cyan",
-                        ["Blue"] = "Blue",
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Cyan"] = "Türkis",
+                        ["Blue"] = "Blau",
                         ["Pink"] = "Pink",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SHexamaze.Discriminator] = new()
+                {
+                    // English: the Hexamaze that {0} a {1} marking on it
+                    // Example: the Hexamaze that has a triangle marking on it
+                    Discriminator = "dem Hexalabyrinth, das {0} {1}-Markierung hat",
+                    Arguments = new()
+                    {
+                        ["has"] = "eine",
+                        ["triangle"] = "Dreieck",
+                        ["circle"] = "Kreis",
+                        ["doesn’t have"] = "keine",
+                        ["hexagon"] = "Sechseck",
                     },
                 },
             },
@@ -12048,7 +12065,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Feminine,
             Questions = new()
             {
-                [SRuleOfThree.Coordinates] = new()
+                [SRuleOfThree.QCoordinates] = new()
                 {
                     // English: What was the {1} coordinate of the {2} vertex in {0}?
                     // Example: What was the X coordinate of the red vertex in Rule of Three?
@@ -12060,7 +12077,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["blue"] = "blau",
                     },
                 },
-                [SRuleOfThree.Cycles] = new()
+                [SRuleOfThree.QCycles] = new()
                 {
                     // English: What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?
                     // Example: What was the position of the red sphere on the X axis in the first cycle in Rule of Three?
@@ -12069,6 +12086,36 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     {
                         ["red"] = "rot",
                         ["yellow"] = "gelb",
+                        ["blue"] = "blau",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SRuleOfThree.DCoordinates] = new()
+                {
+                    // English: the Rule of Three where the {1} coordinate of the {2} vertex was {0}
+                    // Example: the Rule of Three where the X coordinate of the red vertex was 0
+                    Discriminator = "die Dreierregel, bei der die {1}-Koordinate des {2}en Eckpunkts {0} war,",
+                    Arguments = new()
+                    {
+                        ["red"] = "rot",
+                        ["yellow"] = "gelb",
+                        ["blue"] = "blau",
+                    },
+                },
+                [SRuleOfThree.DCycles] = new()
+                {
+                    // English: the Rule of Three where the {1} sphere was {0} on the {2} axis in the {3} cycle
+                    // Example: the Rule of Three where the red sphere was positive on the X axis in the first cycle
+                    Discriminator = "die Dreierregel, bei der die {1}e Kugel auf der {2}-Achse {3} war,",
+                    Arguments = new()
+                    {
+                        ["positive"] = "positiv",
+                        ["red"] = "rot",
+                        ["negative"] = "negativ",
+                        ["yellow"] = "gelb",
+                        ["zero"] = "null",
                         ["blue"] = "blau",
                     },
                 },
@@ -14645,25 +14692,46 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(STicTacToe)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Tic-Tac-Toe",
             Questions = new()
             {
                 [STicTacToe.InitialState] = new()
                 {
                     // English: What was on the {1} button at the start of {0}?
                     // Example: What was on the top-left button at the start of Tic Tac Toe?
-                    Question = "What was on the {1} button at the start of {0}?",
+                    Question = "Was war bei {0} am Anfang auf der {1} Taste?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["middle-center"] = "middle-center",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "oberen linken",
+                        ["top-middle"] = "oberen mittleren",
+                        ["top-right"] = "oberen rechten",
+                        ["middle-left"] = "mittleren linken",
+                        ["middle-center"] = "mittigen",
+                        ["middle-right"] = "mittleren rechten",
+                        ["bottom-left"] = "unteren linken",
+                        ["bottom-middle"] = "unteren mittleren",
+                        ["bottom-right"] = "unteren rechten",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [STicTacToe.Discriminator] = new()
+                {
+                    // English: the Tic Tac Toe where the {0} button was {1}
+                    // Example: the Tic Tac Toe where the top-left button was 1
+                    Discriminator = "dem Tic-Tac-Toe, bei dem die {0} Taste {1} zeigte,",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "obere linke",
+                        ["top-middle"] = "obere mittlere",
+                        ["top-right"] = "obere rechte",
+                        ["middle-left"] = "mittlere linke",
+                        ["middle-center"] = "mittige",
+                        ["middle-right"] = "mittlere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-middle"] = "untere mittlere",
+                        ["bottom-right"] = "untere rechte",
                     },
                 },
             },
@@ -14986,13 +15054,34 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SUncolourFlash)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Unfarbfolge",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SUncolourFlash.Displays] = new()
                 {
-                    // English: What was the {1} in the {2} position of the {3} sequence of {0}?
+                    // English: What was the {1} in the {2} position of the “{3}” sequence of {0}?
                     // Example: What was the word in the first position of the “YES” sequence of Uncolour Flash?
-                    Question = "What was the {1} displayed in the {2} sequence of {0}?",
+                    Question = "Was war bei {0} {1} in der {2}en Position der „{3}“-Folge?",
+                    Arguments = new()
+                    {
+                        ["word"] = "das Wort",
+                        ["colour of the word"] = "die Wortfarbe",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SUncolourFlash.Discriminator] = new()
+                {
+                    // English: the Uncolour Flash where the {0} in the {1} position of the “{2}” sequence was {3}
+                    // Example: the Uncolour Flash where the word in the first position of the “YES” sequence was Red
+                    Discriminator = "der Unfarbfolge, bei der {0} in der {1}en Position der „{2}“-Folge {3} war,",
+                    Arguments = new()
+                    {
+                        ["word"] = "das Wort",
+                        ["colour of the word"] = "die Wortfarbe",
+                    },
                 },
             },
         },
