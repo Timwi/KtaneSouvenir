@@ -8887,32 +8887,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SMultiverseHotline)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Multiversum-Hotline",
+            Gender = Gender.Feminine,
             Questions = new()
             {
-                [SMultiverseHotline.UniverseOrigin] = new()
+                [SMultiverseHotline.OriginUniverse] = new()
                 {
-                    // English: What was the universe origin in {0}?
-                    Question = "What was the universe origin in {0}?",
+                    // English: What was the origin universe in {0}?
+                    Question = "Was war bei {0} das Ursprungsuniversum?",
                 },
-                [SMultiverseHotline.UniverseOriginInitNumber] = new()
+                [SMultiverseHotline.OriginUniverseInitNumber] = new()
                 {
-                    // English: What was the universe origin's initial number in {0}?
-                    Question = "What was the universe origin's initial number in {0}?",
+                    // English: What was the origin universe’s initial number in {0}?
+                    Question = "Was war bei {0} die Anfangszahl des Ursprungsuniversums?",
                 },
             },
         },
 
         [typeof(SMurder)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Mord",
             Questions = new()
             {
                 [SMurder.Suspect] = new()
                 {
                     // English: Which of these was {1} in {0}?
                     // Example: Which of these was a suspect but not the murderer in Murder?
-                    Question = "Which of these was {1} in {0}?",
+                    Question = "Wer war bei {0} {1}?",
                     Answers = new()
                     {
                         ["Miss Scarlett"] = "Miss Scarlett",
@@ -8924,45 +8925,45 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     },
                     Arguments = new()
                     {
-                        ["a suspect but not the murderer"] = "a suspect but not the murderer",
-                        ["not a suspect"] = "not a suspect",
+                        ["a suspect but not the murderer"] = "ein Tatverdächtiger, aber nicht der Mörder",
+                        ["not a suspect"] = "kein Tatverdächtiger",
                     },
                 },
                 [SMurder.Weapon] = new()
                 {
                     // English: Which of these was {1} in {0}?
                     // Example: Which of these was a potential weapon but not the murder weapon in Murder?
-                    Question = "Which of these was {1} in {0}?",
+                    Question = "Welche der folgenden Waffen war bei {0} {1}?",
                     Answers = new()
                     {
-                        ["Candlestick"] = "Candlestick",
-                        ["Dagger"] = "Dagger",
-                        ["Lead Pipe"] = "Lead Pipe",
-                        ["Revolver"] = "Revolver",
-                        ["Rope"] = "Rope",
-                        ["Spanner"] = "Spanner",
+                        ["Candlestick"] = "Kerzenleuchter",
+                        ["Dagger"] = "Dolch",
+                        ["Lead Pipe"] = "Bleirohr",
+                        ["Revolver"] = "Pistole",
+                        ["Rope"] = "Seil",
+                        ["Spanner"] = "Rohrzange",
                     },
                     Arguments = new()
                     {
-                        ["a potential weapon but not the murder weapon"] = "a potential weapon but not the murder weapon",
-                        ["not a potential weapon"] = "not a potential weapon",
+                        ["a potential weapon but not the murder weapon"] = "vorhanden aber nicht die Tatwaffe",
+                        ["not a potential weapon"] = "nicht vorhanden",
                     },
                 },
                 [SMurder.BodyFound] = new()
                 {
                     // English: Where was the body found in {0}?
-                    Question = "Where was the body found in {0}?",
+                    Question = "Wo wurde bei {0} die Leiche gefunden?",
                     Answers = new()
                     {
-                        ["Dining Room"] = "Dining Room",
-                        ["Study"] = "Study",
-                        ["Kitchen"] = "Kitchen",
-                        ["Lounge"] = "Lounge",
-                        ["Billiard Room"] = "Billiard Room",
-                        ["Conservatory"] = "Conservatory",
-                        ["Ballroom"] = "Ballroom",
-                        ["Hall"] = "Hall",
-                        ["Library"] = "Library",
+                        ["Dining Room"] = "Esszimmer",
+                        ["Study"] = "Arbeitszimmer",
+                        ["Kitchen"] = "Küche",
+                        ["Lounge"] = "Salon",
+                        ["Billiard Room"] = "Billard-Zimmer",
+                        ["Conservatory"] = "Wintergarten",
+                        ["Ballroom"] = "Musikzimmer",
+                        ["Hall"] = "Halle",
+                        ["Library"] = "Bibliothek",
                     },
                 },
             },

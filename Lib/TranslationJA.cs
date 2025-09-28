@@ -8676,14 +8676,14 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             NeedsTranslation = true,
             Questions = new()
             {
-                [SMultiverseHotline.UniverseOrigin] = new()
+                [SMultiverseHotline.OriginUniverse] = new()
                 {
-                    // English: What was the universe origin in {0}?
+                    // English: What was the origin universe in {0}?
                     Question = "What was the universe origin in {0}?",
                 },
-                [SMultiverseHotline.UniverseOriginInitNumber] = new()
+                [SMultiverseHotline.OriginUniverseInitNumber] = new()
                 {
-                    // English: What was the universe origin's initial number in {0}?
+                    // English: What was the origin universe’s initial number in {0}?
                     Question = "What was the universe origin's initial number in {0}?",
                 },
             },
