@@ -2045,6 +2045,11 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: Was the bulb initially lit in {0}?
                     Question = "Was the bulb initially lit in {0}?",
+                    Answers = new()
+                    {
+                        ["Yes"] = "Yes",
+                        ["No"] = "No",
+                    },
                 },
             },
         },
@@ -14562,6 +14567,31 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} correct query response from {0}?
                     // Example: What was the first correct query response from Two Bits?
                     Question = "Какой был ответ на {1}-й запрос {0}?",
+                },
+            },
+        },
+
+        [typeof(STwodoku)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [STwodoku.Givens] = new()
+                {
+                    // English: Which of these squares in {0} was {1}?
+                    // Example: Which of these squares in Twodoku was a given digit?
+                    Question = "Which of these squares in {0} was {1}?",
+                    Arguments = new()
+                    {
+                        ["a given digit"] = "a given digit",
+                        ["a given shape"] = "a given shape",
+                        ["highlighted"] = "highlighted",
+                    },
+                },
+                [STwodoku.GridPositions] = new()
+                {
+                    // English: What was in this grid position in {0}? (+ sprite)
+                    Question = "What was in this grid position in {0}?",
                 },
             },
         },

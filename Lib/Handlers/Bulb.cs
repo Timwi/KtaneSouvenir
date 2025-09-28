@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SBulb
 {
-    [SouvenirQuestion("Was the bulb initially lit in {0}?", TwoColumns2Answers, "Yes", "No")]
+    [SouvenirQuestion("Was the bulb initially lit in {0}?", TwoColumns2Answers, "Yes", "No", TranslateAnswers = true)]
     InitialState
 }
 

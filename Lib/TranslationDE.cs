@@ -264,7 +264,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(S3DTunnels)] = new()
         {
-            ModuleName = "3D-Tunnels",
+            ModuleName = "3D-Tunnel",
+            ModuleNameDative = "3D-Tunneln",
             Gender = Gender.Plural,
             Questions = new()
             {
@@ -314,7 +315,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(S4DTunnels)] = new()
         {
-            ModuleName = "4D-Tunnels",
+            ModuleName = "4D-Tunnel",
+            ModuleNameDative = "4D-Tunneln",
             Gender = Gender.Plural,
             Questions = new()
             {
@@ -2033,6 +2035,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Was the bulb initially lit in {0}?
                     Question = "War die Glühlampe bei {0} anfänglich an?",
+                    Answers = new()
+                    {
+                        ["Yes"] = "Ja",
+                        ["No"] = "Nein",
+                    },
                 },
             },
         },
@@ -9281,20 +9288,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNim)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SNim.MatchCountFirstRow] = new()
                 {
                     // English: How many matches were in the {1} row in {0}?
                     // Example: How many matches were in the first row in Nim?
-                    Question = "How many matches were in the {1} row in {0}?",
+                    Question = "Wie viele Streichhölzer waren bei {0} in der {1}en Reihe?",
                 },
                 [SNim.MatchCountOtherRows] = new()
                 {
                     // English: How many matches were in the {1} row in {0}?
                     // Example: How many matches were in the first row in Nim?
-                    Question = "How many matches were in the {1} row in {0}?",
+                    Question = "Wie viele Streichhölzer waren bei {0} in der {1}en Reihe?",
                 },
             },
         },
@@ -11811,20 +11817,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SRGBEncryption)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "RGB-Verschlüsselung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SRGBEncryption.MorseSequence] = new()
                 {
                     // English: What was the {1} Morse code sequence in {0}?
                     // Example: What was the first Morse code sequence in RGB Encryption?
-                    Question = "What was the {1} Morse code sequence in {0}?",
+                    Question = "Was waren die Morsezeichen in der {1}en Sequenz bei {0}?",
                 },
                 [SRGBEncryption.ColorSequence] = new()
                 {
                     // English: What was the {1} color sequence in {0}?
                     // Example: What was the first color sequence in RGB Encryption?
-                    Question = "What was the {1} color sequence in {0}?",
+                    Question = "Was waren die Farben in der {1}en Sequenz bei {0}?",
                 },
             },
         },
@@ -14917,6 +14924,31 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} correct query response from {0}?
                     // Example: What was the first correct query response from Two Bits?
                     Question = "What was the {1} correct query response from {0}?",
+                },
+            },
+        },
+
+        [typeof(STwodoku)] = new()
+        {
+            ModuleName = "Zwodoku",
+            Questions = new()
+            {
+                [STwodoku.Givens] = new()
+                {
+                    // English: Which of these squares in {0} was {1}?
+                    // Example: Which of these squares in Twodoku was a given digit?
+                    Question = "Welche dieser Felder bei {0} war {1}?",
+                    Arguments = new()
+                    {
+                        ["a given digit"] = "eine vorgegebene Ziffer",
+                        ["a given shape"] = "eine vorgegebene Form",
+                        ["highlighted"] = "hervorgehoben",
+                    },
+                },
+                [STwodoku.GridPositions] = new()
+                {
+                    // English: What was in this grid position in {0}? (+ sprite)
+                    Question = "Was war bei {0} an dieser Stelle im Gitter?",
                 },
             },
         },

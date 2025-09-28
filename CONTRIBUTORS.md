@@ -3,7 +3,7 @@
 The following is a list of modules supported by Souvenir, and the fine people who have contributed their effort to make it happen:
 
 
-## Implemented by Timwi (142)
+## Implemented by Timwi (143)
 
     3 LEDs               │  Colored Switches      │  Identity Parade          │  Not X-Ray            │  Simon Sounds
     3D Maze              │  Coordinates           │  Ingredients              │  Object Shows         │  Simon Speaks
@@ -23,15 +23,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Boxing               │  Encrypted Equations   │  Memorable Buttons        │  S.E.T. Theory        │  Tic Tac Toe
     Braille              │  Encrypted Hangman     │  Mirror                   │  Scavenger Hunt       │  Timezone
     Broken Buttons       │  Encrypted Maze        │  Monsplode Trading Cards  │  Sea Shells           │  Two Bits
-    Burglar Alarm        │  Fast Math             │  Monsplode, Fight!        │  Semamorse            │  Uncolored Squares
-    Button Sequence      │  Flags                 │  Moon, The                │  Shape Shift          │  Uncolored Switches
-    Calendar             │  Forest Cipher         │  Morse War                │  Shifted Maze         │  Vcrcs
-    Cartinese            │  Gamepad, The          │  Morsematics              │  Silly Slots          │  Visual Impairment
-    Cheap Checkout       │  Glitched Button, The  │  Mouse in the Maze        │  Silo Authorization   │  Wire, The
-    Chess                │  Gray Button, The      │  Multicolored Switches    │  Simon Samples        │  Yahtzee
-    Chord Qualities      │  Green Button, The     │  Murder                   │  Simon Screams        │  Yellow Button, The
-    Color Braille        │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Zero, Zero
-    Color Decoding       │  Hogwarts              │  Navinums                 │  Simon Shrieks        │
+    Burglar Alarm        │  Fast Math             │  Monsplode, Fight!        │  Semamorse            │  Twodoku
+    Button Sequence      │  Flags                 │  Moon, The                │  Shape Shift          │  Uncolored Squares
+    Calendar             │  Forest Cipher         │  Morse War                │  Shifted Maze         │  Uncolored Switches
+    Cartinese            │  Gamepad, The          │  Morsematics              │  Silly Slots          │  Vcrcs
+    Cheap Checkout       │  Glitched Button, The  │  Mouse in the Maze        │  Silo Authorization   │  Visual Impairment
+    Chess                │  Gray Button, The      │  Multicolored Switches    │  Simon Samples        │  Wire, The
+    Chord Qualities      │  Green Button, The     │  Murder                   │  Simon Screams        │  Yahtzee
+    Color Braille        │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Yellow Button, The
+    Color Decoding       │  Hogwarts              │  Navinums                 │  Simon Shrieks        │  Zero, Zero
     Color Morse          │  Human Resources       │  Navy Button, The         │  Simon Signals        │
     Colored Squares      │  Hunting               │  Neutralization           │  Simon Sings          │
 
