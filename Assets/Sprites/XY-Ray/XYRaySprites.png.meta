@@ -70,7 +70,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 4000
+  spritePixelsToUnits: 600
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,9 +110,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 10613.333
-        width: 1365.3334
-        height: 1326.6666
+        y: 0
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,10 +123,10 @@ TextureImporter:
       name: Spherical Cone
       rect:
         serializedVersion: 2
-        x: 1365
-        y: 10613.333
-        width: 1365.3334
-        height: 1326.6666
+        x: 200
+        y: 0
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +137,10 @@ TextureImporter:
       name: Rhombic Triacontahedron
       rect:
         serializedVersion: 2
-        x: 2730
-        y: 10613.333
-        width: 1365.3334
-        height: 1326.6666
+        x: 400
+        y: 0
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,9 +152,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 9287.333
-        width: 1365.3334
-        height: 1326.6666
+        y: 200
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,10 +165,10 @@ TextureImporter:
       name: Dodecahedron
       rect:
         serializedVersion: 2
-        x: 1365
-        y: 9287.333
-        width: 1365.3334
-        height: 1326.6666
+        x: 200
+        y: 200
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,10 +179,10 @@ TextureImporter:
       name: Rhombohedron
       rect:
         serializedVersion: 2
-        x: 2730
-        y: 9287.333
-        width: 1365.3334
-        height: 1326.6666
+        x: 400
+        y: 200
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,9 +194,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 7961.3335
-        width: 1365.3334
-        height: 1326.6666
+        y: 400
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,10 +207,10 @@ TextureImporter:
       name: Trapezohedron
       rect:
         serializedVersion: 2
-        x: 1376
-        y: 7972
-        width: 1365
-        height: 1327
+        x: 200
+        y: 400
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,10 +221,10 @@ TextureImporter:
       name: Bicone
       rect:
         serializedVersion: 2
-        x: 2731
-        y: 7979
-        width: 1365
-        height: 1327
+        x: 400
+        y: 400
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,9 +236,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 6635.3335
-        width: 1365.3334
-        height: 1326.6666
+        y: 600
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,10 +249,10 @@ TextureImporter:
       name: Octahedron
       rect:
         serializedVersion: 2
-        x: 1365
-        y: 6635.3335
-        width: 1365.3334
-        height: 1326.6666
+        x: 200
+        y: 600
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,10 +263,10 @@ TextureImporter:
       name: Cylinder
       rect:
         serializedVersion: 2
-        x: 2730
-        y: 6635.3335
-        width: 1365.3334
-        height: 1326.6666
+        x: 400
+        y: 600
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,9 +278,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 5309.3335
-        width: 1365.3334
-        height: 1326.6666
+        y: 800
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -291,10 +291,10 @@ TextureImporter:
       name: Sphere
       rect:
         serializedVersion: 2
-        x: 1365
-        y: 5309.3335
-        width: 1365.3334
-        height: 1326.6666
+        x: 200
+        y: 800
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,10 +305,10 @@ TextureImporter:
       name: Rhombic Dodecahedron
       rect:
         serializedVersion: 2
-        x: 2730
-        y: 5309.3335
-        width: 1365.3334
-        height: 1326.6666
+        x: 400
+        y: 800
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -319,10 +319,10 @@ TextureImporter:
       name: Cone
       rect:
         serializedVersion: 2
-        x: 24
-        y: 3960
-        width: 1365
-        height: 1327
+        x: 0
+        y: 1000
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -333,10 +333,10 @@ TextureImporter:
       name: Cube
       rect:
         serializedVersion: 2
-        x: 1365
-        y: 3983.3335
-        width: 1365.3334
-        height: 1326.6666
+        x: 200
+        y: 1000
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -347,10 +347,10 @@ TextureImporter:
       name: Triangular Bipyramid
       rect:
         serializedVersion: 2
-        x: 2730
-        y: 3983.3335
-        width: 1365.3334
-        height: 1326.6666
+        x: 400
+        y: 1000
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,9 +362,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2657.3335
-        width: 1365.3334
-        height: 1326.6666
+        y: 1200
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -375,10 +375,10 @@ TextureImporter:
       name: Gyrobifastigium
       rect:
         serializedVersion: 2
-        x: 1365
-        y: 2657.3335
-        width: 1365.3334
-        height: 1326.6666
+        x: 200
+        y: 1200
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -389,10 +389,10 @@ TextureImporter:
       name: Icosidodecahedron
       rect:
         serializedVersion: 2
-        x: 2730
-        y: 2657.3335
-        width: 1365.3334
-        height: 1326.6666
+        x: 400
+        y: 1200
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,9 +404,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1331.3334
-        width: 1365.3334
-        height: 1326.6666
+        y: 1400
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -417,10 +417,10 @@ TextureImporter:
       name: Icosahedron
       rect:
         serializedVersion: 2
-        x: 1365
-        y: 1304
-        width: 1365
-        height: 1327
+        x: 200
+        y: 1400
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -431,10 +431,10 @@ TextureImporter:
       name: Prolate Spheroid
       rect:
         serializedVersion: 2
-        x: 2730
-        y: 1331.3334
-        width: 1365.3334
-        height: 1326.6666
+        x: 400
+        y: 1400
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -446,9 +446,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 5.333374
-        width: 1365.3334
-        height: 1326.6666
+        y: 1600
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -459,10 +459,10 @@ TextureImporter:
       name: Spherical Wedge
       rect:
         serializedVersion: 2
-        x: 1366
-        y: 0
-        width: 1310
-        height: 1293
+        x: 200
+        y: 1600
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -473,10 +473,10 @@ TextureImporter:
       name: Rhombotriangular Dodecahedron
       rect:
         serializedVersion: 2
-        x: 2730
-        y: 5.333374
-        width: 1365.3334
-        height: 1326.6666
+        x: 400
+        y: 1600
+        width: 200
+        height: 200
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
