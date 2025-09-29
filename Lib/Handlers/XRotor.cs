@@ -18,7 +18,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var chosenSymbols = GetArrayField<int[]>(comp, "choosesymb").Get()[1];
+        var chosenSymbols = GetArrayField<int[]>(comp, "choosesymb").Get(expectedLength: 2, validator: arr => arr.Length != 5 ? "expected length 5" : null)[1];
 
         yield return question(SXRotor.Symbol).Answers(chosenSymbols.Select(x => XRotorSprites[x]).ToArray());
     }
