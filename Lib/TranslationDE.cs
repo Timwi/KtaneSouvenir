@@ -5667,90 +5667,93 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SGadgetronVendor)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Gadgetron-Verkäufer",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SGadgetronVendor.CurrentWeapon] = new()
                 {
                     // English: What was your current weapon in {0}?
-                    Question = "What was your current weapon in {0}?",
+                    Question = "Was war bei {0} deine aktuelle Waffe?",
                 },
                 [SGadgetronVendor.WeaponForSale] = new()
                 {
                     // English: What was the weapon up for sale in {0}?
-                    Question = "What was the weapon up for sale in {0}?",
+                    Question = "Welche Waffe wurde bei {0} zum Verkauf angeboten?",
                 },
             },
         },
 
         [typeof(SGameOfLifeCruel)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Höllisches Spiel des Lebens",
+            ModuleNameDative = "Höllischen Spiel des Lebens",
             Questions = new()
             {
                 [SGameOfLifeCruel.Colors] = new()
                 {
                     // English: Which of these was a color combination that occurred in {0}?
-                    Question = "Which of these was a color combination that occurred in {0}?",
+                    Question = "Welche Farbkombination kam bei {0} vor?",
                 },
             },
         },
 
         [typeof(SGamepad)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGamepad.Numbers] = new()
                 {
                     // English: What were the numbers on {0}?
-                    Question = "What were the numbers on {0}?",
+                    Question = "Welche Zahlen waren bei {0} zu sehen?",
                 },
             },
         },
 
         [typeof(SGarfieldKart)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGarfieldKart.Track] = new()
                 {
                     // English: What was the track in {0}?
-                    Question = "What was the track in {0}?",
+                    Question = "Welche Rennstrecke kam bei {0} vor?",
                 },
                 [SGarfieldKart.PuzzleCount] = new()
                 {
                     // English: How many puzzle pieces did {0} have?
-                    Question = "How many puzzle pieces did {0} have?",
+                    Question = "Wie viele Puzzleteile hatte {0}?",
                 },
             },
         },
 
         [typeof(SGarnetThief)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Granatdieb",
+            ModuleNameDative = "Granatdieb",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SGarnetThief.Claim] = new()
                 {
                     // English: Which faction did {1} claim to be in {0}?
                     // Example: Which faction did Jungmoon claim to be in The Garnet Thief?
-                    Question = "Which faction did {1} claim to be in {0}?",
+                    Question = "Welcher Fraktion hat bei {0} {1} behauptet anzugehören?",
                 },
             },
         },
 
         [typeof(SGhostMovement)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Geisterbewegung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SGhostMovement.Position] = new()
                 {
                     // English: Where was {1} in {0}?
                     // Example: Where was Inky in Ghost Movement?
-                    Question = "Where was {1} in {0}?",
+                    Question = "Wo war {1} bei {0}?",
                 },
             },
         },
