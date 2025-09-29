@@ -6,5 +6,5 @@ public class AudioAnswerStump(AudioClip[] correct, AudioClip[] preferredWrong, A
 {
     protected override AnswerType[] acceptableTypes => [AnswerType.Audio];
     protected override AnswerSet MakeAnswerSet(AudioClip[] answers, int correctIndex, SouvenirQuestionAttribute qAttr, SouvenirModule souvenir) => new AudioAnswerSet(qAttr, answers, correctIndex, souvenir);
-    public override string ToString() => $"audio {Correct.Stringify()}";
+    public override string ToString() => Correct.Stringify();
 }

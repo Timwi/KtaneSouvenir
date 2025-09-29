@@ -31,8 +31,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] ArithmelogicSprites;
     public Sprite[] AudioSprites;
     public Sprite[] AzureButtonSprites;
-    public Sprite[] BookOfMarioSprites;
-    public Sprite[] CharacterSlotsSprites;
     public Sprite[] ClockCounterSprites;
     public Sprite[] ConnectedMonitorsSprites;
     public Sprite[] CycleModuleThreeSprites;
@@ -45,8 +43,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] FlagsSprites;
     public Sprite[] FuseBoxColorSprites;
     public Sprite[] FuseBoxArrowSprites;
-    public Sprite[] GadgetronVendorIconSprites;
-    public Sprite[] GadgetronVendorWeaponSprites;
     public Sprite[] HingesSprites;
     public Sprite[] HolographicMemorySprites;
     public Sprite[] JengaSprites;
