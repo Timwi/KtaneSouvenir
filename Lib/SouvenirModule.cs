@@ -83,7 +83,6 @@ public partial class SouvenirModule : MonoBehaviour
     public AudioClip[] ListeningAudio;
     public AudioClip[] SimonSamplesAudio;
     public AudioClip[] SimonSmilesAudio;
-    public AudioClip[] SonicTheHedgehogAudio;
 
     private readonly List<UnityEngine.Object> _unityObjectsToDestroyLater = [];
 
