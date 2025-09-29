@@ -60,7 +60,7 @@ public partial class SouvenirModule
         {
             var (charIx, quoteIx) = answers[i];
             yield return question(SBookOfMario.Pictures, args: [Ordinal(i + 1)]).Answers(sprites[charIx], all: sprites);
-            if (charIx != 1 /* Bob */ && charIx != 2 /* God Browser */ && charIx != 4 /* Flavio */ && charIx != 7 /* Make */ && charIx != 11 /* Quiz Thwomb */ && charIx != 12 /* Yoshi Kid */)
+            if (charIx != 12 /* Yoshi Kid — has only three quotes */)
                 yield return question(SBookOfMario.Quotes, args: [quotes[charIx][0], Ordinal(i + 1)])
                     .Answers(quotes[charIx][quoteIx], all: quotes[charIx].Skip(1).ToArray());
         }
