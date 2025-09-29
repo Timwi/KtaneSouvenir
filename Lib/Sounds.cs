@@ -74,7 +74,8 @@ public static class Sounds
             var offset = c.EmptySize;
             var count = Mathf.Min(c.DataSize, bufferSize - offset);
             var data = new float[count];
-            c.Clip.LoadAudioData();
+            if (c.Clip.loadState != AudioDataLoadState.Loaded)
+                c.Clip.LoadAudioData();
             c.Clip.GetData(data, 0);
             for (var i = 0; i < count; i++)
                 buffer[offset + i] += data[i];
