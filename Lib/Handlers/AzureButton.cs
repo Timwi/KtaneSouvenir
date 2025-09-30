@@ -58,11 +58,6 @@ public partial class SouvenirModule
 
         yield return new Discriminator(SAzureButton.DM, "m", m, [m.ToString()]);
 
-        for (var arrowIx = 0; arrowIx < 5; arrowIx++)
-            foreach (var dir in arrowDirections[arrowIx])
-                yield return new Discriminator(arrowIx == 0 ? SAzureButton.DDecoyArrowDirection : SAzureButton.DNonDecoyArrowDirection,
-                    $"arr-{arrowIx}-{dir}", true, [dirNames[dir], Ordinal(arrowIx)]);
-
         var preferredWrongAnswers = cards.Select(c => AzureButtonSprites[c]).ToArray();
         yield return question(SAzureButton.QT).AvoidDiscriminators(SAzureButton.DCard).Answers(AzureButtonSprites[cardT], preferredWrong: preferredWrongAnswers);
         yield return question(SAzureButton.QNotT).AvoidDiscriminators(SAzureButton.DCard).Answers(cards.Take(6).Select(c => AzureButtonSprites[c]).ToArray(), preferredWrong: preferredWrongAnswers);
@@ -70,8 +65,12 @@ public partial class SouvenirModule
 
         for (var arrowIx = 0; arrowIx < 5; arrowIx++)
             for (var dirIx = 0; dirIx < 3; dirIx++)
+            {
                 yield return question(arrowIx == 0 ? SAzureButton.QDecoyArrowDirection : SAzureButton.QNonDecoyArrowDirection, args: [Ordinal(dirIx + 1), Ordinal(arrowIx)])
                     .AvoidDiscriminators(SAzureButton.DDecoyArrowDirection, SAzureButton.DNonDecoyArrowDirection)
                     .Answers(dirNames[arrowDirections[arrowIx][dirIx]]);
+                yield return new Discriminator(arrowIx == 0 ? SAzureButton.DDecoyArrowDirection : SAzureButton.DNonDecoyArrowDirection,
+                    $"arr-{arrowIx}-{dirIx}", true, [dirNames[arrowDirections[arrowIx][dirIx]], Ordinal(arrowIx)]);
+            }
     }
 }

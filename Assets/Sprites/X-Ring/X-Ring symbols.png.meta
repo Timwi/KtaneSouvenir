@@ -1,0 +1,1046 @@
+fileFormatVersion: 2
+guid: 1c5bbad2b0381184ea56e0c30a75efaa
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Symbol0
+    21300002: Symbol1
+    21300004: Symbol2
+    21300006: Symbol3
+    21300008: Symbol4
+    21300010: Symbol5
+    21300012: Symbol6
+    21300014: Symbol7
+    21300016: Symbol8
+    21300018: Symbol9
+    21300020: Symbol10
+    21300022: Symbol11
+    21300024: Symbol12
+    21300026: Symbol13
+    21300028: Symbol14
+    21300030: Symbol15
+    21300032: Symbol16
+    21300034: Symbol17
+    21300036: Symbol18
+    21300038: Symbol19
+    21300040: Symbol20
+    21300042: Symbol21
+    21300044: Symbol22
+    21300046: Symbol23
+    21300048: Symbol24
+    21300050: Symbol25
+    21300052: Symbol26
+    21300054: Symbol27
+    21300056: Symbol28
+    21300058: Symbol29
+    21300060: Symbol30
+    21300062: Symbol31
+    21300064: Symbol32
+    21300066: Symbol33
+    21300068: Symbol34
+    21300070: Symbol35
+    21300072: Symbol36
+    21300074: Symbol37
+    21300076: Symbol38
+    21300078: Symbol39
+    21300080: Symbol40
+    21300082: Symbol41
+    21300084: Symbol42
+    21300086: Symbol43
+    21300088: Symbol44
+    21300090: Symbol45
+    21300092: Symbol46
+    21300094: Symbol47
+    21300096: Symbol48
+    21300098: Symbol49
+    21300100: Symbol50
+    21300102: Symbol51
+    21300104: Symbol52
+    21300106: Symbol53
+    21300108: Symbol54
+    21300110: Symbol55
+    21300112: Symbol56
+    21300114: Symbol57
+    21300116: Symbol58
+    21300118: Symbol59
+    21300120: Symbol60
+    21300122: Symbol61
+    21300124: Symbol62
+    21300126: Symbol63
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 350
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Symbol0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 715
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol1
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 715
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol2
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 715
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol3
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 715
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol4
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 715
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol5
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 715
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol6
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 715
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol7
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 715
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 613
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol9
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 613
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol10
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 613
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol11
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 613
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol12
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 613
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol13
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 613
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol14
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 613
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol15
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 613
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 511
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol17
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 511
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol18
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 511
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol19
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 511
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol20
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 511
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol21
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 511
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol22
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 511
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol23
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 511
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol24
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 409
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol25
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 409
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol26
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 409
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol27
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 409
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol28
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 409
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol29
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 409
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol30
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 409
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol31
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 409
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol32
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 307
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol33
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 307
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol34
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 307
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol35
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 307
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol36
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 307
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol37
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 307
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol38
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 307
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol39
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 307
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 205
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol41
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 205
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol42
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 205
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol43
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 205
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol44
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 205
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol45
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 205
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol46
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 205
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol47
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 205
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol48
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 103
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol49
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 103
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol50
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 103
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol51
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 103
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol52
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 103
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol53
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 103
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol54
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 103
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol55
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 103
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol56
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol57
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 1
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol58
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 1
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol59
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 1
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol60
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 1
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol61
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 1
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol62
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 1
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Symbol63
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 1
+        width: 100
+        height: 100
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
