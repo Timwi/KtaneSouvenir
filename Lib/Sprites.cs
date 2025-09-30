@@ -154,9 +154,9 @@ public static class Sprites
     public static IEnumerable<Sprite> TranslateSpritesScaled(this IEnumerable<Sprite> sprites, float pixelsPerUnitMultiplier = 1f) =>
         (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, spr.pixelsPerUnit * pixelsPerUnitMultiplier));
 
-    public static Sprite ToSprite(this Texture2D texture, float? pixelsPerUnit = null)
+    public static Sprite ToSprite(this Texture2D texture, float? pixelsPerUnit = null, Vector2? pivot = null)
     {
-        var newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, .5f), pixelsPerUnit ?? texture.height * (60f / 17));
+        var newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), pivot ?? new Vector2(0, .5f), pixelsPerUnit ?? texture.height * (60f / 17));
         newSprite.name = texture.name;
         return newSprite;
     }
