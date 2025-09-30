@@ -27,7 +27,7 @@ public partial class SouvenirModule
         var sprites = GetArrayField<Texture>(comp, "iceCreamTextures", isPublic: true)
             .Get(expectedLength: 15, validator: tex => tex is Texture2D ? null : "expected Texture2D instances")
             .Where(tex => tex.name != "SpongeBob Bar")
-            .Select(tex => Sprites.TranslateSprite((Texture2D) tex, 1500f))
+            .Select(tex => ((Texture2D) tex).ToSprite(1500f))
             .ToArray();
         var ix = Array.IndexOf(iceCreams, 14);
         var displayedIceCreamSprites = iceCreams.Where(x => x != 14).Select(index => sprites.First(sprite => sprite.name == iceCreamNames[index])).ToArray();

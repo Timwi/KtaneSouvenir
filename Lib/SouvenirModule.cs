@@ -27,7 +27,6 @@ public partial class SouvenirModule : MonoBehaviour
     public KMSelectable[] Answers;
     public GameObject AnswersParent;
     public GameObject[] TpNumbers;
-    public Sprite[] AlcoholicRampageSprites;
     public Sprite[] ArithmelogicSprites;
     public Sprite[] AudioSprites;
     public Sprite[] AzureButtonSprites;
@@ -44,7 +43,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] FuseBoxColorSprites;
     public Sprite[] FuseBoxArrowSprites;
     public Sprite[] HingesSprites;
-    public Sprite[] HolographicMemorySprites;
     public Sprite[] JengaSprites;
     public Sprite[] KeypadSprites;
     public Sprite[] LadderLotterySprites;
@@ -55,7 +53,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] NonverbalSimonSprites;
     public Sprite[] OffKeysSprites;
     public Sprite[] OrderedKeysSprites;
-    public Sprite[] PatternCubeSprites;
     public Sprite[] PlanetsSprites;
     public Sprite[] PolygonsSprites;
     public Sprite[] QuestionMarkSprites;

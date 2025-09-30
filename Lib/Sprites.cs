@@ -148,22 +148,15 @@ public static class Sprites
         return newSprite;
     }
 
-    public static Sprite TranslateSprite(this Texture2D texture, float pixelsPerUnit, string name = null)
-    {
-        var newSprite = Sprite.Create(texture ?? throw new ArgumentNullException(nameof(texture)), new Rect(0, 0, texture.width, texture.height), new Vector2(0, .5f), pixelsPerUnit);
-        newSprite.name = name ?? texture.name;
-        return newSprite;
-    }
-
     public static IEnumerable<Sprite> TranslateSprites(this IEnumerable<Sprite> sprites, float? pixelsPerUnit, Vector2? pivot = null) =>
         (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, pixelsPerUnit, spr.name, pivot));
 
     public static IEnumerable<Sprite> TranslateSpritesScaled(this IEnumerable<Sprite> sprites, float pixelsPerUnitMultiplier = 1f) =>
         (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, spr.pixelsPerUnit * pixelsPerUnitMultiplier));
 
-    public static Sprite ToSprite(this Texture2D texture)
+    public static Sprite ToSprite(this Texture2D texture, float? pixelsPerUnit = null)
     {
-        var newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, .5f), texture.height * (60f / 17));
+        var newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, .5f), pixelsPerUnit ?? texture.height * (60f / 17));
         newSprite.name = texture.name;
         return newSprite;
     }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -27,7 +27,7 @@ public partial class SouvenirModule
         // Make sure to use only the sprites relevant to the current rule seed
         Sprite[] GetSprites(string fieldName) => GetArrayField<Texture2D>(comp, fieldName, isPublic: true).Get()
             .Where(tx => robotMasters.Contains(tx.name))
-            .Select(Sprites.ToSprite)
+            .Select(tx => tx.ToSprite())
             .ToArray();
 
         var applicableMasters = GetSprites("RobotMasters");
