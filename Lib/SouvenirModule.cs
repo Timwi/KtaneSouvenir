@@ -47,7 +47,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] KeypadSprites;
     public Sprite[] LadderLotterySprites;
     public Sprite[] MahjongSprites;
-    public Sprite[] MathEmSprites;
     public Sprite[] MemorySprites;
     public Sprite[] NonverbalSimonSprites;
     public Sprite[] OffKeysSprites;
@@ -66,7 +65,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] SymbolicTashaSprites;
     public Sprite[] TasqueManagingSprites;
     public Sprite[] TeaSetSprites;
-    public Sprite[] USACycleSprites;
     public Sprite[] ValvesSprites;
     public Sprite[] WarningSignsSprites;
     public Sprite[] WavetappingSprites;

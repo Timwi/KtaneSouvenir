@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Souvenir;
 
-public class SpriteAnswerSet(AnswerLayout layout, Sprite[] answers, int correctIndex) : AnswerSet(answers.Length, correctIndex, layout)
+public class SpriteAnswerSet(AnswerLayout layout, Sprite[] answers, int correctIndex, float xStretch = 1f) : AnswerSet(answers.Length, correctIndex, layout)
 {
     protected readonly Sprite[] _answers = answers;
     public override object[] Answers => _answers;
@@ -23,7 +23,7 @@ public class SpriteAnswerSet(AnswerLayout layout, Sprite[] answers, int correctI
             var spriteRenderer = souvenir.Answers[i].transform.Find("SpriteHolder").GetComponent<SpriteRenderer>();
             spriteRenderer.gameObject.SetActive(i < _answers.Length);
             spriteRenderer.sprite = i < _answers.Length ? _answers[i] : null;
-            spriteRenderer.transform.localScale = new Vector3(20, 20, 1);
+            spriteRenderer.transform.localScale = new Vector3(20 * xStretch, 20, 1);
         }
     }
 }
