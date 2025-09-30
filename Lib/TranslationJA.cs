@@ -8217,6 +8217,24 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        [typeof(SMissingLetter)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SMissingLetter.ResultedNumber] = new()
+                {
+                    // English: What was the resulted number in {0}?
+                    Question = "What was the resulted number in {0}?",
+                },
+                [SMissingLetter.MissingLetter] = new()
+                {
+                    // English: What letter was missing in {0}?
+                    Question = "What letter was missing in {0}?",
+                },
+            },
+        },
+
         [typeof(SMisterSoftee)] = new()
         {
             ModuleName = "ミスター・ソフティー",

@@ -8429,6 +8429,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        [typeof(SMissingLetter)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SMissingLetter.ResultedNumber] = new()
+                {
+                    // English: What was the resulted number in {0}?
+                    Question = "What was the resulted number in {0}?",
+                },
+                [SMissingLetter.MissingLetter] = new()
+                {
+                    // English: What letter was missing in {0}?
+                    Question = "What letter was missing in {0}?",
+                },
+            },
+        },
+
         [typeof(SMisterSoftee)] = new()
         {
             NeedsTranslation = true,
