@@ -440,7 +440,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Masculine,
             Questions = new()
             {
-                [SAccumulation.BorderColor] = new()
+                [SAccumulation.QBorderColor] = new()
                 {
                     // English: What was the border color in {0}?
                     Question = "Was war bei {0} die Rahmenfarbe?",
@@ -458,10 +458,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Yellow"] = "Gelb",
                     },
                 },
-                [SAccumulation.BackgroundColor] = new()
+                [SAccumulation.QBackgroundColor] = new()
                 {
-                    // English: What was the background color on the {1} stage in {0}?
-                    // Example: What was the background color on the first stage in Accumulation?
+                    // English: What was the background color in the {1} stage in {0}?
+                    // Example: What was the background color in the first stage in Accumulation?
                     Question = "Was war bei {0} die Hintergrundfarbe im {1}en Schritt?",
                     Answers = new()
                     {
@@ -475,6 +475,47 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Red"] = "Rot",
                         ["White"] = "Weiß",
                         ["Yellow"] = "Gelb",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SAccumulation.DBorderColor] = new()
+                {
+                    // English: the Accumulation whose border was {0}
+                    // Example: the Accumulation whose border was blue
+                    Discriminator = "der Akkumulator, dessen Rahmen {0} war",
+                    Arguments = new()
+                    {
+                        ["blue"] = "blau",
+                        ["brown"] = "braun",
+                        ["green"] = "grün",
+                        ["grey"] = "grau",
+                        ["lime"] = "limette",
+                        ["orange"] = "orange",
+                        ["pink"] = "pink",
+                        ["red"] = "rot",
+                        ["white"] = "weiß",
+                        ["yellow"] = "gelb",
+                    },
+                },
+                [SAccumulation.DBackgroundColor] = new()
+                {
+                    // English: the Accumulation whose background in the {1} stage was {0}
+                    // Example: the Accumulation whose background in the first stage was blue
+                    Discriminator = "der Akkumulator, dessen Hintergrund im {1}en Schritt {0} war",
+                    Arguments = new()
+                    {
+                        ["blue"] = "blau",
+                        ["brown"] = "braun",
+                        ["green"] = "grün",
+                        ["grey"] = "grau",
+                        ["lime"] = "limette",
+                        ["orange"] = "orange",
+                        ["pink"] = "pink",
+                        ["red"] = "rot",
+                        ["white"] = "weiß",
+                        ["yellow"] = "gelb",
                     },
                 },
             },

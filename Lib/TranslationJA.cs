@@ -403,10 +403,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(SAccumulation)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "蓄積",
             Questions = new()
             {
-                [SAccumulation.BorderColor] = new()
+                [SAccumulation.QBorderColor] = new()
                 {
                     // English: What was the border color in {0}?
                     Question = "{0}の境界線の色は何？",
@@ -424,10 +425,10 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Yellow"] = "黄",
                     },
                 },
-                [SAccumulation.BackgroundColor] = new()
+                [SAccumulation.QBackgroundColor] = new()
                 {
-                    // English: What was the background color on the {1} stage in {0}?
-                    // Example: What was the background color on the first stage in Accumulation?
+                    // English: What was the background color in the {1} stage in {0}?
+                    // Example: What was the background color in the first stage in Accumulation?
                     Question = "{0}のステージ{1}の背景の色は何？",
                     Answers = new()
                     {
@@ -441,6 +442,47 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Red"] = "赤",
                         ["White"] = "白",
                         ["Yellow"] = "黄",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SAccumulation.DBorderColor] = new()
+                {
+                    // English: the Accumulation whose border was {0}
+                    // Example: the Accumulation whose border was blue
+                    Discriminator = "the Accumulation whose border was {0}",
+                    Arguments = new()
+                    {
+                        ["blue"] = "blue",
+                        ["brown"] = "brown",
+                        ["green"] = "green",
+                        ["grey"] = "grey",
+                        ["lime"] = "lime",
+                        ["orange"] = "orange",
+                        ["pink"] = "pink",
+                        ["red"] = "red",
+                        ["white"] = "white",
+                        ["yellow"] = "yellow",
+                    },
+                },
+                [SAccumulation.DBackgroundColor] = new()
+                {
+                    // English: the Accumulation whose background in the {1} stage was {0}
+                    // Example: the Accumulation whose background in the first stage was blue
+                    Discriminator = "the Accumulation whose background in the {1} stage was {0}",
+                    Arguments = new()
+                    {
+                        ["blue"] = "blue",
+                        ["brown"] = "brown",
+                        ["green"] = "green",
+                        ["grey"] = "grey",
+                        ["lime"] = "lime",
+                        ["orange"] = "orange",
+                        ["pink"] = "pink",
+                        ["red"] = "red",
+                        ["white"] = "white",
+                        ["yellow"] = "yellow",
                     },
                 },
             },
