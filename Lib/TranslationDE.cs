@@ -1929,7 +1929,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SBreakfastEgg)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Frühstücksei",
             Questions = new()
             {
@@ -2011,7 +2010,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SBrushStrokes)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Pinselstriche",
+            ModuleNameDative = "Pinselstrichen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SBrushStrokes.MiddleColor] = new()
@@ -2173,7 +2174,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCactisConundrum)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Kakteen-Zwickmühle",
             Gender = Gender.Feminine,
             Questions = new()
@@ -2237,20 +2237,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCaesarsMaths)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Cäsars Mathe",
             Questions = new()
             {
                 [SCaesarsMaths.LED] = new()
                 {
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the first LED in Caesar's Maths?
-                    Question = "What color was the {1} LED in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1}e LED?",
                     Answers = new()
                     {
-                        ["Yellow"] = "Yellow",
-                        ["Blue"] = "Blue",
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
+                        ["Yellow"] = "Gelb",
+                        ["Blue"] = "Blau",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
                     },
                 },
             },
@@ -2338,7 +2338,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCatchphrase)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SCatchphrase.Colour] = new()
@@ -2476,7 +2475,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SCheepCheckout)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Zwitscherkasse",
             Gender = Gender.Feminine,
             Questions = new()
