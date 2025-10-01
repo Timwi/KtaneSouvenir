@@ -5,9 +5,6 @@ using static Souvenir.AnswerLayout;
 
 public enum SMissingLetter
 {
-    [SouvenirQuestion("What was the resulted number in {0}?", TwoColumns4Answers)]
-    [AnswerGenerator.Integers(1, 5)]
-    ResultedNumber,
     [SouvenirQuestion("What letter was missing in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
     MissingLetter
@@ -24,7 +21,6 @@ public partial class SouvenirModule
         var letters = GetListField<char>(comp, "alph").Get(expectedLength: 26);
         var n = GetIntField(comp, "resultN").Get(min: 1, max: 5);
 
-        yield return question(SMissingLetter.ResultedNumber).Answers(n.ToString());
         yield return question(SMissingLetter.MissingLetter).Answers(letters.Last().ToString());
     }
 }

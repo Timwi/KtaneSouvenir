@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Souvenir;
+using Souvenir.Reflection;
 using static Souvenir.AnswerLayout;
 
 public enum SUndertunneling
@@ -15,24 +16,27 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessUndertunneling(ModuleData module)
     {
         var comp = GetComponent(module, "UndertunnelingScript");
-        var hasEnteredStage2 = GetField<bool>(comp, "stage2");
+        var fldIsInStage2 = GetField<bool>(comp, "stage2");
+        var fldMaze = GetField<object>(comp, "maze");
 
-        var startingPos = (int?) null;
+        int? startingPos = null;
+        IntFieldInfo fldCurPos = null;
 
         while (module.Unsolved)
         {
             yield return null;
-            var maze = GetField<object>(comp, "maze").Get();
 
-            if (hasEnteredStage2.Get() && startingPos == null)
-                startingPos = GetIntField(maze, "_curPos").Get(min: 0, max: 48);
-
-            else if (!hasEnteredStage2.Get() && startingPos != null)
+            if (fldIsInStage2.Get() && startingPos == null)
+            {
+                var maze = fldMaze.Get();
+                startingPos = (fldCurPos ??= GetIntField(maze, "_curPos")).GetFrom(maze, min: 0, max: 48);
+            }
+            else if (!fldIsInStage2.Get())
                 startingPos = null;
         }
 
         if (startingPos == null)
-            throw new AbandonModuleException("The starting position can't be found!");
+            throw new AbandonModuleException("Undertunneling was solved without reaching stage 2.");
 
         yield return question(SUndertunneling.PositionInMazeAfterPhaseOne).Answers(new Coord(7, 7, startingPos.Value));
     }

@@ -623,19 +623,35 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(SAlphabetTiles)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アルファベットタイル",
             Questions = new()
             {
-                [SAlphabetTiles.Cycle] = new()
+                [SAlphabetTiles.QCycle] = new()
                 {
                     // English: What was the {1} letter shown during the cycle in {0}?
                     // Example: What was the first letter shown during the cycle in Alphabet Tiles?
                     Question = "{0}のサイクルで{1}番目に表示された文字は？",
                 },
-                [SAlphabetTiles.MissingLetter] = new()
+                [SAlphabetTiles.QMissingLetter] = new()
                 {
                     // English: What was the missing letter in {0}?
                     Question = "{0}で隠されている文字は何？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAlphabetTiles.DCycle] = new()
+                {
+                    // English: the Alphabet Tiles where the {1} letter in the cycle was {0}
+                    // Example: the Alphabet Tiles where the X letter in the cycle was first
+                    Discriminator = "the Alphabet Tiles where the {1} letter in the cycle was {0}",
+                },
+                [SAlphabetTiles.DMissingLetter] = new()
+                {
+                    // English: the Alphabet Tiles whose missing letter was {0}
+                    // Example: the Alphabet Tiles whose missing letter was A
+                    Discriminator = "the Alphabet Tiles whose missing letter was {0}",
                 },
             },
         },
@@ -8222,11 +8238,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             NeedsTranslation = true,
             Questions = new()
             {
-                [SMissingLetter.ResultedNumber] = new()
-                {
-                    // English: What was the resulted number in {0}?
-                    Question = "What was the resulted number in {0}?",
-                },
                 [SMissingLetter.MissingLetter] = new()
                 {
                     // English: What letter was missing in {0}?
@@ -10486,11 +10497,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 {
                     // English: What was the repeating pattern in {0}?
                     Question = "What was the repeating pattern in {0}?",
-                },
-                [SPatternRecognition.Freq] = new()
-                {
-                    // English: What frequency was available to transmit in {0}?
-                    Question = "What frequency was available to transmit in {0}?",
                 },
             },
         },

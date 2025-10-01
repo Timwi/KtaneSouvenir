@@ -654,18 +654,35 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SAlphabetTiles)] = new()
         {
+            ModuleName = "Alphabet-Kacheln",
+            Gender = Gender.Plural,
             Questions = new()
             {
-                [SAlphabetTiles.Cycle] = new()
+                [SAlphabetTiles.QCycle] = new()
                 {
                     // English: What was the {1} letter shown during the cycle in {0}?
                     // Example: What was the first letter shown during the cycle in Alphabet Tiles?
                     Question = "Welcher Buchstabe war im Zyklus bei {0} als {1}es zu sehen?",
                 },
-                [SAlphabetTiles.MissingLetter] = new()
+                [SAlphabetTiles.QMissingLetter] = new()
                 {
                     // English: What was the missing letter in {0}?
                     Question = "Was war bei {0} der fehlende Buchstabe?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAlphabetTiles.DCycle] = new()
+                {
+                    // English: the Alphabet Tiles where the {1} letter in the cycle was {0}
+                    // Example: the Alphabet Tiles where the X letter in the cycle was first
+                    Discriminator = "den Alphabet-Kacheln, deren {1}er Buchstabe im Zyklus {0} war,",
+                },
+                [SAlphabetTiles.DMissingLetter] = new()
+                {
+                    // English: the Alphabet Tiles whose missing letter was {0}
+                    // Example: the Alphabet Tiles whose missing letter was A
+                    Discriminator = "den Alphabet-Kacheln, deren fehlender Buchstabe {0} war,",
                 },
             },
         },
@@ -1783,7 +1800,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SBorderedKeys)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBorderedKeys.BorderColor] = new()
@@ -8431,36 +8447,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SMissingLetter)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Fehlende Buchstabe",
+            ModuleNameDative = "Fehlenden Buchstaben",
+            Gender = Gender.Masculine,
             Questions = new()
             {
-                [SMissingLetter.ResultedNumber] = new()
-                {
-                    // English: What was the resulted number in {0}?
-                    Question = "What was the resulted number in {0}?",
-                },
                 [SMissingLetter.MissingLetter] = new()
                 {
                     // English: What letter was missing in {0}?
-                    Question = "What letter was missing in {0}?",
+                    Question = "Welcher Buchstabe hat bei {0} gefehlt?",
                 },
             },
         },
 
         [typeof(SMisterSoftee)] = new()
         {
-            NeedsTranslation = true,
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SMisterSoftee.SpongebobPosition] = new()
                 {
                     // English: Where was the SpongeBob Bar on {0}?
-                    Question = "Where was the SpongeBob Bar on {0}?",
+                    Question = "Wo war bei {0} das Spongebob-Eis?",
                 },
                 [SMisterSoftee.TreatsPresent] = new()
                 {
                     // English: Which treat was present on {0}?
-                    Question = "Which treat was present on {0}?",
+                    Question = "Welches Eis war bei {0} im Angebot?",
                 },
             },
         },
@@ -10720,18 +10733,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPatternRecognition)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Mustererkennung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SPatternRecognition.Pattern] = new()
                 {
                     // English: What was the repeating pattern in {0}?
-                    Question = "What was the repeating pattern in {0}?",
-                },
-                [SPatternRecognition.Freq] = new()
-                {
-                    // English: What frequency was available to transmit in {0}?
-                    Question = "What frequency was available to transmit in {0}?",
+                    Question = "Was war bei {0} das wiederkehrende Muster?",
                 },
             },
         },
@@ -15072,21 +15081,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUncoloredSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Ungefärbte Felder",
+            ModuleNameDative = "Ungefärbten Felder",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SUncoloredSquares.FirstStage] = new()
                 {
                     // English: What was the {1} color in reading order used in the first stage of {0}?
                     // Example: What was the first color in reading order used in the first stage of Uncolored Squares?
-                    Question = "What was the {1} color in reading order used in the first stage of {0}?",
+                    Question = "Was war bei {0} in der ersten Stufe die in Leserichtung {1}e verwendete Farbe?",
                     Answers = new()
                     {
-                        ["White"] = "White",
-                        ["Red"] = "Red",
-                        ["Blue"] = "Blue",
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
+                        ["White"] = "Weiß",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
                         ["Magenta"] = "Magenta",
                     },
                 },
@@ -15095,29 +15106,31 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUncoloredSwitches)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Ungefärbte Schalter",
+            ModuleNameDative = "Ungefärbten Schaltern",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SUncoloredSwitches.InitialState] = new()
                 {
                     // English: What was the initial state of the switches in {0}?
-                    Question = "What was the initial state of the switches in {0}?",
+                    Question = "Wie sahen bei {0} die Schalter am Anfang aus?",
                 },
                 [SUncoloredSwitches.LedColors] = new()
                 {
                     // English: What color was the {1} LED in reading order in {0}?
                     // Example: What color was the first LED in reading order in Uncolored Switches?
-                    Question = "What color was the {1} LED in reading order in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die in Leserichtung {1}e LED?",
                     Answers = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["turquoise"] = "turquoise",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["turquoise"] = "türkis",
                         ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["white"] = "white",
-                        ["black"] = "black",
+                        ["purple"] = "lila",
+                        ["white"] = "weiß",
+                        ["black"] = "schwarz",
                     },
                 },
             },
@@ -15125,7 +15138,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUncolourFlash)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Unfarbfolge",
             Gender = Gender.Feminine,
             Questions = new()
@@ -15160,27 +15172,30 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUndertunneling)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Untertunnelung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SUndertunneling.PositionInMazeAfterPhaseOne] = new()
                 {
                     // English: What was the position in the maze after the first phase in {0}?
-                    Question = "What was the position in the maze after the first phase in {0}?",
+                    Question = "Wo waren wir bei {0} nach der ersten Phase in Labyrinth?",
                 },
             },
         },
 
         [typeof(SUnfairCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Unfaire Geheimschrift",
+            ModuleNameDative = "Unfairen Geheimschrift",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SUnfairCipher.Instructions] = new()
                 {
                     // English: What was the {1} received instruction in {0}?
                     // Example: What was the first received instruction in Unfair Cipher?
-                    Question = "What was the {1} received instruction in {0}?",
+                    Question = "Was war bei {0} die {1}e empfangene Anweisung?",
                 },
             },
         },
@@ -15223,14 +15238,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUnicode)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUnicode.SortedAnswer] = new()
                 {
                     // English: What was the {1} submitted code in {0}?
                     // Example: What was the first submitted code in Unicode?
-                    Question = "What was the {1} submitted code in {0}?",
+                    Question = "Was war bei {0} der als {1}e eingegebene Code?",
                 },
             },
         },
@@ -15306,26 +15320,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SUnorderedKeys)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SUnorderedKeys.KeyColor] = new()
                 {
                     // English: What color was this key in the {1} stage of {0}? (+ sprite)
                     // Example: What color was this key in the first stage of Unordered Keys? (+ sprite)
-                    Question = "What color was this key in the {1} stage of {0}?",
+                    Question = "Welche Farbe hatte diese Taste in der {1}en Stufe von {0}?",
                 },
                 [SUnorderedKeys.LabelColor] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What color was the label of this key in the first stage of Unordered Keys? (+ sprite)
-                    Question = "What color was the label of this key in the {1} stage of {0}?",
+                    Question = "Welche Farbe hatte die Aufschrift dieser Taste in der {1}en Stufe von {0}?",
                 },
                 [SUnorderedKeys.Label] = new()
                 {
                     // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What was the label of this key in the first stage of Unordered Keys? (+ sprite)
-                    Question = "What color was the label of this key in the {1} stage of {0}?",
+                    Question = "Welche Aufschrift hatte diese Taste in der {1}en Stufe von {0}?",
                 },
             },
         },
@@ -15460,20 +15473,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SVaricoloredSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Mischgefärbte Felder",
+            ModuleNameDative = "Mischgefärbten Feldern",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SVaricoloredSquares.InitialColor] = new()
                 {
                     // English: What was the initially pressed color on {0}?
-                    Question = "What was the initially pressed color on {0}?",
+                    Question = "Welche Farbe wurde bei {0} anfangs gedrückt?",
                     Answers = new()
                     {
-                        ["White"] = "White",
-                        ["Red"] = "Red",
-                        ["Blue"] = "Blue",
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
+                        ["White"] = "Weiß",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
                         ["Magenta"] = "Magenta",
                     },
                 },
@@ -15482,14 +15497,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SVaricolourFlash)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Mischfarbfolge",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SVaricolourFlash.Words] = new()
                 {
                     // English: What was the word of the {1} goal in {0}?
                     // Example: What was the word of the first goal in Varicolour Flash?
-                    Question = "What was the word of the {1} goal in {0}?",
+                    Question = "Was war bei {0} das {1}e Zielwort?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -15504,7 +15520,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the {1} goal in {0}?
                     // Example: What was the color of the first goal in Varicolour Flash?
-                    Question = "What was the colour of the {1} goal in {0}?",
+                    Question = "Was war bei {0} die {1}e Zielfarbe?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
