@@ -14874,6 +14874,19 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        [typeof(SUndertunneling)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SUndertunneling.PositionInMazeAfterPhaseOne] = new()
+                {
+                    // English: What was the position in the maze after the first phase in {0}?
+                    Question = "What was the position in the maze after the first phase in {0}?",
+                },
+            },
+        },
+
         [typeof(SUnfairCipher)] = new()
         {
             ModuleName = "アンフェア暗号",

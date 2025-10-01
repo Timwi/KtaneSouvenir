@@ -15158,6 +15158,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        [typeof(SUndertunneling)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SUndertunneling.PositionInMazeAfterPhaseOne] = new()
+                {
+                    // English: What was the position in the maze after the first phase in {0}?
+                    Question = "What was the position in the maze after the first phase in {0}?",
+                },
+            },
+        },
+
         [typeof(SUnfairCipher)] = new()
         {
             NeedsTranslation = true,

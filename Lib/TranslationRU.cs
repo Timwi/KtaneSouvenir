@@ -14792,6 +14792,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             },
         },
 
+        [typeof(SUndertunneling)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SUndertunneling.PositionInMazeAfterPhaseOne] = new()
+                {
+                    // English: What was the position in the maze after the first phase in {0}?
+                    Question = "What was the position in the maze after the first phase in {0}?",
+                },
+            },
+        },
+
         [typeof(SUnfairCipher)] = new()
         {
             Questions = new()
