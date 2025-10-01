@@ -10446,6 +10446,24 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             },
         },
 
+        [typeof(SPatternRecognition)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SPatternRecognition.Pattern] = new()
+                {
+                    // English: What was the repeating pattern in {0}?
+                    Question = "What was the repeating pattern in {0}?",
+                },
+                [SPatternRecognition.Freq] = new()
+                {
+                    // English: What frequency was available to transmit in {0}?
+                    Question = "What frequency was available to transmit in {0}?",
+                },
+            },
+        },
+
         [typeof(SPentabutton)] = new()
         {
             NeedsTranslation = true,
