@@ -12,36 +12,23 @@ public partial class SouvenirModule
 {
     /* Generalized handlers for modules that are extremely similar */
 
-    // Used by Speakingevil’s Cycle modules. question[0] is the dial rotations. question[1] is the dial labels.
-    private IEnumerator<SouvenirInstruction> processSpeakingEvilCycle(ModuleData module, string componentName, Enum rotQ, Enum labelQ, Sprite[] overrideAnswers = null)
+    // Used by Speakingevil’s Cycle modules
+    private IEnumerator<SouvenirInstruction> processSpeakingEvilCycle(ModuleData module, string componentName,
+        Enum rotQ, Enum labelQ, Enum labelDiscriminator, Func<Component, string> getDialLabels = null, Sprite[] answerSprites = null, Sprite[] all = null)
     {
         var comp = GetComponent(module, componentName);
         yield return WaitForSolve;
 
-        var rotComp = GetArrayField<int[]>(comp, "rot").Get();
-        var dialLabels = componentName switch
-        {
-            "UltimateCycleScript" => GetArrayField<string[]>(comp, "ciphertext").Get()[0][8],
-            "JumbleCycleScript" => GetArrayField<string[]>(comp, "ciphertext").Get()[0][4],
-            _ => GetArrayField<string>(comp, "ciphertext").Get()[0],
-        };
+        var rotComp = GetArrayField<int[]>(comp, "rot").Get(expectedLength: 2, validator: arr => arr.Length != 8 ? "expected length 8" : null);
+        var dialLabels = getDialLabels == null ? GetArrayField<string>(comp, "ciphertext").Get()[0] : getDialLabels(comp);
+
         for (var dial = 0; dial < 8; dial++)
         {
-            switch (componentName)
-            {
-                case "PlayfairCycleScript":
-                case "HillCycleScript":
-                    yield return question(rotQ, args: [Ordinal(dial + 1)]).Answers(CycleModuleFiveSprites[rotComp[0][dial]], all: CycleModuleFiveSprites);
-                    break;
-                case "CrypticCycleScript":
-                    yield return question(rotQ, args: [Ordinal(dial + 1)]).Answers(CycleModuleCrypticSprites[rotComp[0][dial]], all: CycleModuleCrypticSprites);
-                    break;
-                default:
-                    yield return question(rotQ, args: [Ordinal(dial + 1)]).Answers(CycleModuleEightSprites[rotComp[0][dial]], all: overrideAnswers ?? CycleModuleEightSprites);
-                    break;
-            }
-            yield return question(labelQ, args: [Ordinal(dial + 1)]).Answers(dialLabels[dial].ToString());
+            yield return question(rotQ, args: [Ordinal(dial + 1)]).Answers((answerSprites ?? CycleModuleEightSprites)[rotComp[0][dial]], all: all ?? CycleModuleEightSprites);
+            yield return question(labelQ, args: [Ordinal(dial + 1)]).AvoidDiscriminators(labelDiscriminator).Answers(dialLabels[dial].ToString());
         }
+        foreach (var ltr in dialLabels.Distinct())
+            yield return new Discriminator(labelDiscriminator, $"ltr-{ltr}", args: [ltr.ToString()]);
     }
 
     // Used by the World Mazes modules (currently: USA Maze, DACH Maze)

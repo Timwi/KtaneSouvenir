@@ -490,19 +490,35 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(SAdventureGame)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アドベンチャーゲーム",
             Questions = new()
             {
-                [SAdventureGame.CorrectItem] = new()
+                [SAdventureGame.QCorrectItem] = new()
                 {
                     // English: Which item was the {1} correct item you used in {0}?
                     // Example: Which item was the first correct item you used in Adventure Game?
                     Question = "{0}で{1}番目に正しく使用したアイテムはどれ？",
                 },
-                [SAdventureGame.Enemy] = new()
+                [SAdventureGame.QEnemy] = new()
                 {
                     // English: What enemy were you fighting in {0}?
                     Question = "{0}で戦った敵は？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAdventureGame.DCorrectItem] = new()
+                {
+                    // English: the Adventure Game where the {0} was used
+                    // Example: the Adventure Game where the Broadsword was used
+                    Discriminator = "the Adventure Game where the {0} was used",
+                },
+                [SAdventureGame.DEnemy] = new()
+                {
+                    // English: the Adventure Game where the enemy was {0}
+                    // Example: the Adventure Game where the enemy was Dragon
+                    Discriminator = "the Adventure Game where the enemy was {0}",
                 },
             },
         },
@@ -523,6 +539,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Affine Cycle?
                     Question = "What letter was written on the {1} dial in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAffineCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Affine Cycle that had the letter {0} on a dial
+                    // Example: the Affine Cycle that had the letter A on a dial
+                    Discriminator = "the Affine Cycle that had the letter {0} on a dial",
                 },
             },
         },
@@ -2198,6 +2223,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Question = "What letter was written on the {1} dial in {0}?",
                 },
             },
+            Discriminators = new()
+            {
+                [SCaesarCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Caesar Cycle that had the letter {0} on a dial
+                    // Example: the Caesar Cycle that had the letter A on a dial
+                    Discriminator = "the Caesar Cycle that had the letter {0} on a dial",
+                },
+            },
         },
 
         [typeof(SCaesarPsycho)] = new()
@@ -3483,6 +3517,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Question = "What letter was written on the {1} dial in {0}?",
                 },
             },
+            Discriminators = new()
+            {
+                [SCrypticCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Cryptic Cycle that had the letter {0} on a dial
+                    // Example: the Cryptic Cycle that had the letter A on a dial
+                    Discriminator = "the Cryptic Cycle that had the letter {0} on a dial",
+                },
+            },
         },
 
         [typeof(SCrypticKeypad)] = new()
@@ -4572,6 +4615,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Enigma Cycle?
                     Question = "What letter was written on the {1} dial in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SEnigmaCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Enigma Cycle that had the letter {0} on a dial
+                    // Example: the Enigma Cycle that had the letter A on a dial
+                    Discriminator = "the Enigma Cycle that had the letter {0} on a dial",
                 },
             },
         },
@@ -6171,6 +6223,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Question = "What letter was written on the {1} dial in {0}?",
                 },
             },
+            Discriminators = new()
+            {
+                [SHillCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Hill Cycle that had the letter {0} on a dial
+                    // Example: the Hill Cycle that had the letter A on a dial
+                    Discriminator = "the Hill Cycle that had the letter {0} on a dial",
+                },
+            },
         },
 
         [typeof(SHinges)] = new()
@@ -6712,6 +6773,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Jumble Cycle?
                     Question = "What letter was written on the {1} dial in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SJumbleCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Jumble Cycle that had the letter {0} on a dial
+                    // Example: the Jumble Cycle that had the letter A on a dial
+                    Discriminator = "the Jumble Cycle that had the letter {0} on a dial",
                 },
             },
         },
@@ -10732,6 +10802,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Question = "What letter was written on the {1} dial in {0}?",
                 },
             },
+            Discriminators = new()
+            {
+                [SPigpenCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Pigpen Cycle that had the letter {0} on a dial
+                    // Example: the Pigpen Cycle that had the letter A on a dial
+                    Discriminator = "the Pigpen Cycle that had the letter {0} on a dial",
+                },
+            },
         },
 
         [typeof(SPinkButton)] = new()
@@ -10884,6 +10963,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Playfair Cycle?
                     Question = "What letter was written on the {1} dial in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SPlayfairCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Playfair Cycle that had the letter {0} on a dial
+                    // Example: the Playfair Cycle that had the letter A on a dial
+                    Discriminator = "the Playfair Cycle that had the letter {0} on a dial",
                 },
             },
         },
@@ -14798,6 +14886,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Ultimate Cycle?
                     Question = "What letter was written on the {1} dial in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SUltimateCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Ultimate Cycle that had the letter {0} on a dial
+                    // Example: the Ultimate Cycle that had the letter A on a dial
+                    Discriminator = "the Ultimate Cycle that had the letter {0} on a dial",
                 },
             },
         },

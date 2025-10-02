@@ -525,16 +525,31 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             Questions = new()
             {
-                [SAdventureGame.CorrectItem] = new()
+                [SAdventureGame.QCorrectItem] = new()
                 {
                     // English: Which item was the {1} correct item you used in {0}?
                     // Example: Which item was the first correct item you used in Adventure Game?
                     Question = "Welches Objekt wurde bei {0} als {1}es korrekt verwendet?",
                 },
-                [SAdventureGame.Enemy] = new()
+                [SAdventureGame.QEnemy] = new()
                 {
                     // English: What enemy were you fighting in {0}?
                     Question = "Welcher Gegner wurde bei {0} bekämpft?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAdventureGame.DCorrectItem] = new()
+                {
+                    // English: the Adventure Game where the {0} was used
+                    // Example: the Adventure Game where the Broadsword was used
+                    Discriminator = "dem Adventure Game, bei dem {0} verwendet wurde,",
+                },
+                [SAdventureGame.DEnemy] = new()
+                {
+                    // English: the Adventure Game where the enemy was {0}
+                    // Example: the Adventure Game where the enemy was Dragon
+                    Discriminator = "dem Adventure Game mit {0} als Gegner",
                 },
             },
         },
@@ -557,6 +572,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Affine Cycle?
                     Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAffineCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Affine Cycle that had the letter {0} on a dial
+                    // Example: the Affine Cycle that had the letter A on a dial
+                    Discriminator = "der Affinen Schiffer, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -2254,6 +2278,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
+            Discriminators = new()
+            {
+                [SCaesarCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Caesar Cycle that had the letter {0} on a dial
+                    // Example: the Caesar Cycle that had the letter A on a dial
+                    Discriminator = "der Cäsar-Schiffer, bei der der Buchstabe {0} vorkam,",
+                },
+            },
         },
 
         [typeof(SCaesarPsycho)] = new()
@@ -3607,6 +3640,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
+            Discriminators = new()
+            {
+                [SCrypticCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Cryptic Cycle that had the letter {0} on a dial
+                    // Example: the Cryptic Cycle that had the letter A on a dial
+                    Discriminator = "der Kryptischen Schiffer, bei der der Buchstabe {0} vorkam,",
+                },
+            },
         },
 
         [typeof(SCrypticKeypad)] = new()
@@ -4722,25 +4764,34 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Enigma Cycle?
-                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SEnigmaCycle.DialDirectionsTwelve] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Enigma Cycle?
-                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SEnigmaCycle.DialDirectionsEight] = new()
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Enigma Cycle?
-                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SEnigmaCycle.DialLabels] = new()
                 {
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Enigma Cycle?
                     Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SEnigmaCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Enigma Cycle that had the letter {0} on a dial
+                    // Example: the Enigma Cycle that had the letter A on a dial
+                    Discriminator = "der Enigma-Schiffer, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -6362,6 +6413,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
+            Discriminators = new()
+            {
+                [SHillCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Hill Cycle that had the letter {0} on a dial
+                    // Example: the Hill Cycle that had the letter A on a dial
+                    Discriminator = "der Hill-Schiffer, bei der der Buchstabe {0} vorkam,",
+                },
+            },
         },
 
         [typeof(SHinges)] = new()
@@ -6914,6 +6974,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Jumble Cycle?
                     Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SJumbleCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Jumble Cycle that had the letter {0} on a dial
+                    // Example: the Jumble Cycle that had the letter A on a dial
+                    Discriminator = "der Wirrwarr-Schiffer, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -10976,6 +11045,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
+            Discriminators = new()
+            {
+                [SPigpenCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Pigpen Cycle that had the letter {0} on a dial
+                    // Example: the Pigpen Cycle that had the letter A on a dial
+                    Discriminator = "der Freimaurer-Schiffer, bei der der Buchstabe {0} vorkam,",
+                },
+            },
         },
 
         [typeof(SPinkButton)] = new()
@@ -11132,6 +11210,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Playfair Cycle?
                     Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SPlayfairCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Playfair Cycle that had the letter {0} on a dial
+                    // Example: the Playfair Cycle that had the letter A on a dial
+                    Discriminator = "der Playfair-Schiffer, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -15081,6 +15168,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Ultimate Cycle?
                     Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SUltimateCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Ultimate Cycle that had the letter {0} on a dial
+                    // Example: the Ultimate Cycle that had the letter A on a dial
+                    Discriminator = "der Ultimativen Schiffer, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
