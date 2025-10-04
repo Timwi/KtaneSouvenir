@@ -10283,66 +10283,70 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNumberedButtons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Nummerierte Knöpfe",
+            ModuleNameDative = "Nummerierten Knöpfen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SNumberedButtons.Buttons] = new()
                 {
                     // English: Which number was correctly pressed on {0}?
-                    Question = "Which number was correctly pressed on {0}?",
+                    Question = "Welche Zahl wurde bei {0} korrekt gedrückt?",
                 },
             },
         },
 
         [typeof(SNumberGame)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Zahlenspiel",
             Questions = new()
             {
                 [SNumberGame.Maximum] = new()
                 {
                     // English: What was the maximum number in {0}?
-                    Question = "What was the maximum number in {0}?",
+                    Question = "Was war bei {0} die Höchstzahl?",
                 },
             },
         },
 
         [typeof(SNumbers)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Zahlen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SNumbers.TwoDigit] = new()
                 {
                     // English: What two-digit number was given in {0}?
-                    Question = "What two-digit number was given in {0}?",
+                    Question = "Was war bei {0} die zweistellige Zahl?",
                 },
             },
         },
 
         [typeof(SNumpath)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Zahlenpfad",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SNumpath.Color] = new()
                 {
                     // English: What was the color of the number on {0}?
-                    Question = "What was the color of the number on {0}?",
+                    Question = "Welche Farbe hatte bei {0} die Zahl auf dem Display?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
                     },
                 },
                 [SNumpath.Digit] = new()
                 {
                     // English: What was the number displayed on {0}?
-                    Question = "What was the number displayed on {0}?",
+                    Question = "Welche Zahl war bei {0} auf dem Display?",
                 },
             },
         },
@@ -10354,7 +10358,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SObjectShows.Contestants] = new()
                 {
                     // English: Which of these was a contestant on {0}?
-                    Question = "Which of these was a contestant on {0} but not the final winner?",
+                    Question = "Wer war bei {0} ein Kandidat?",
                 },
             },
         },
@@ -10437,18 +10441,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SOldAI)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Alte KI",
+            ModuleNameDative = "Alten KI",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SOldAI.Group] = new()
                 {
                     // English: What was the {1} of the numbers shown in {0}?
                     // Example: What was the group of the numbers shown in Old AI?
-                    Question = "What was the {1} of the numbers shown in {0}?",
+                    Question = "Zu welcher {1} gehörten die bei {0} angezeigten Zahlen?",
                     Arguments = new()
                     {
-                        ["group"] = "group",
-                        ["sub-group"] = "sub-group",
+                        ["group"] = "Gruppe",
+                        ["sub-group"] = "Untergruppe",
                     },
                 },
             },
@@ -10456,22 +10462,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SOldFogey)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Alter Kauz",
+            ModuleNameDative = "Alten Kauz",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SOldFogey.StartingColor] = new()
                 {
                     // English: What was the initial color of the status light in {0}?
-                    Question = "What was the initial color of the status light in {0}?",
+                    Question = "Welche Farbe hatte bei {0} das Statuslicht am Anfang?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
-                        ["Blue"] = "Blue",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Blue"] = "Blau",
                         ["Magenta"] = "Magenta",
-                        ["Cyan"] = "Cyan",
-                        ["White"] = "White",
+                        ["Cyan"] = "Türkis",
+                        ["White"] = "Weiß",
                     },
                 },
             },
@@ -10485,43 +10493,42 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SOneLinksToAll.Start] = new()
                 {
                     // English: What was the starting article in {0}?
-                    Question = "What was the starting article in {0}?",
+                    Question = "Was war bei {0} der Anfangsartikel?",
                 },
                 [SOneLinksToAll.End] = new()
                 {
                     // English: What was the ending article in {0}?
-                    Question = "What was the ending article in {0}?",
+                    Question = "Was war bei {0} der Zielartikel?",
                 },
             },
         },
 
         [typeof(SOnlyConnect)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SOnlyConnect.Hieroglyphs] = new()
                 {
                     // English: Which Egyptian hieroglyph was in the {1} in {0}?
                     // Example: Which Egyptian hieroglyph was in the top left in Only Connect?
-                    Question = "Which Egyptian hieroglyph was in the {1} in {0}?",
+                    Question = "Welches ägyptische Hieroglyph war bei {0} {1}?",
                     Answers = new()
                     {
-                        ["Two Reeds"] = "Two Reeds",
-                        ["Lion"] = "Lion",
-                        ["Twisted Flax"] = "Twisted Flax",
-                        ["Horned Viper"] = "Horned Viper",
-                        ["Water"] = "Water",
-                        ["Eye of Horus"] = "Eye of Horus",
+                        ["Two Reeds"] = "Zwei Riede",
+                        ["Lion"] = "Löwe",
+                        ["Twisted Flax"] = "Gedrehter Flachs",
+                        ["Horned Viper"] = "Gehörnte Viper",
+                        ["Water"] = "Wasser",
+                        ["Eye of Horus"] = "Auge des Horus",
                     },
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top middle"] = "top middle",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom middle"] = "bottom middle",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "oben links",
+                        ["top middle"] = "oben Mitte",
+                        ["top right"] = "oben rechts",
+                        ["bottom left"] = "unten links",
+                        ["bottom middle"] = "unten Mitte",
+                        ["bottom right"] = "unten rechts",
                     },
                 },
             },
