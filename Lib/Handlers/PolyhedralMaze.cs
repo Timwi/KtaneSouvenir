@@ -8,7 +8,7 @@ public enum SPolyhedralMaze
     [AnswerGenerator.Integers(0, 61)]
     StartPosition,
 
-    [SouvenirDiscriminator("{0}", Arguments = ["the 4-truncated deltoidal icositetrahedral Polyhedral Maze", "the chamfered dodecahedral Polyhedral Maze", "the chamfered icosahedral Polyhedral Maze", "the deltoidal hexecontahedral Polyhedral Maze", "the disdyakis dodecahedral Polyhedral Maze", "the joined snub cubic Polyhedral Maze", "the joined rhombicuboctahedral Polyhedral Maze", "the pentagonal hexecontahedral Polyhedral Maze", "the orthokis propello cubic Polyhedral Maze", "the pentakis dodecahedral Polyhedral Maze", "the rectified rhombicuboctahedral Polyhedral Maze", "the triakis icosahedral Polyhedral Maze", "the rhombicosidodecahedral Polyhedral Maze", "the canonical rectified snub cubic Polyhedral Maze"], ArgumentGroupSize = 1)]
+    [SouvenirDiscriminator("{0}", Arguments = ["the 4-truncated deltoidal icositetrahedral Polyhedral Maze", "the chamfered dodecahedral Polyhedral Maze", "the chamfered icosahedral Polyhedral Maze", "the deltoidal hexecontahedral Polyhedral Maze", "the disdyakis dodecahedral Polyhedral Maze", "the joined snub cubic Polyhedral Maze", "the joined rhombicuboctahedral Polyhedral Maze", "the pentagonal hexecontahedral Polyhedral Maze", "the orthokis propello cubic Polyhedral Maze", "the pentakis dodecahedral Polyhedral Maze", "the rectified rhombicuboctahedral Polyhedral Maze", "the triakis icosahedral Polyhedral Maze", "the rhombicosidodecahedral Polyhedral Maze", "the canonical rectified snub cubic Polyhedral Maze"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     MazeShape
 }
 

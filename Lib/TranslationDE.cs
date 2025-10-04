@@ -10669,7 +10669,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SOrientationHypercube)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Orientierungshyperwürfel",
             Gender = Gender.Masculine,
             Questions = new()
@@ -10799,7 +10798,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPartialDerivatives)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Partielle Ableitungen",
             ModuleNameDative = "Partiellen Ableitungen",
             Gender = Gender.Plural,
@@ -10846,13 +10844,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPasswordDestroyer)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Passwortzerstörer",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SPasswordDestroyer.TwoFactorV2] = new()
                 {
                     // English: What was the 2FAST™ value when you solved {0}?
-                    Question = "What was the 2FAST™ value when you solved {0}?",
+                    Question = "Was war beim Entschärfen von {0} der 2FAST™-Wert?",
                 },
             },
         },
@@ -10887,7 +10886,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPentabutton)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Pentaknopf",
             Gender = Gender.Masculine,
             Questions = new()
@@ -10960,7 +10958,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPhosphorescence)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Phosphoreszenz",
             Gender = Gender.Feminine,
             Questions = new()
@@ -11090,7 +11087,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPinkButton)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Der Pinkfarbene Knopf",
             ModuleNameDative = "Pinkfarbenen Knopf",
             Gender = Gender.Masculine,
@@ -11155,72 +11151,72 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPlaceholderTalk)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPlaceholderTalk.FirstPhrase] = new()
                 {
                     // English: What was the first half of the first phrase in {0}?
-                    Question = "What was the first half of the first phrase in {0}?",
+                    Question = "Was war bei {0} die erste Hälfte der ersten Phrase?",
                 },
                 [SPlaceholderTalk.Ordinal] = new()
                 {
                     // English: What was the last half of the first phrase in {0}?
-                    Question = "What was the last half of the first phrase in {0}?",
+                    Question = "Was war bei {0} die zweite Hälfte der ersten Phrase?",
                 },
             },
         },
 
         [typeof(SPlacementRoulette)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Platzierungsroulette",
             Questions = new()
             {
                 [SPlacementRoulette.Char] = new()
                 {
                     // English: What was the character listed on the information display in {0}?
-                    Question = "What was the character listed on the information display in {0}?",
+                    Question = "Welche Figur wurde bei {0} auf dem Informationsdisplay angezeigt?",
                 },
                 [SPlacementRoulette.Track] = new()
                 {
                     // English: What was the track listed on the information display in {0}?
-                    Question = "What was the track listed on the information display in {0}?",
+                    Question = "Welche Rennstrecke wurde bei {0} auf dem Informationsdisplay angezeigt?",
                 },
                 [SPlacementRoulette.Vehicle] = new()
                 {
                     // English: What was the vehicle listed on the information display in {0}?
-                    Question = "What was the vehicle listed on the information display in {0}?",
+                    Question = "Welches Fahrzeug wurde bei {0} auf dem Informationsdisplay angezeigt?",
                 },
             },
         },
 
         [typeof(SPlanets)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Planeten",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SPlanets.Strips] = new()
                 {
                     // English: What was the color of the {1} strip (from the top) in {0}?
                     // Example: What was the color of the first strip (from the top) in Planets?
-                    Question = "What was the color of the {1} strip (from the top) in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der {1}e Streifen von oben?",
                     Answers = new()
                     {
                         ["Aqua"] = "Aqua",
-                        ["Blue"] = "Blue",
-                        ["Green"] = "Green",
-                        ["Lime"] = "Lime",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Lime"] = "Limette",
                         ["Orange"] = "Orange",
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["White"] = "White",
-                        ["Off"] = "Off",
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["White"] = "Weiß",
+                        ["Off"] = "Aus",
                     },
                 },
                 [SPlanets.Planet] = new()
                 {
                     // English: What was the planet shown in {0}?
-                    Question = "What was the planet shown in {0}?",
+                    Question = "Welcher Planet kam bei {0} vor?",
                 },
             },
         },
@@ -11257,14 +11253,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPoetry)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Poesie",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SPoetry.Answers] = new()
                 {
                     // English: What was the {1} correct answer you pressed in {0}?
                     // Example: What was the first correct answer you pressed in Poetry?
-                    Question = "What was the {1} correct answer you pressed in {0}?",
+                    Question = "Was war bei {0} die als {1}e korrekt gedrückte Antwort?",
                 },
             },
         },
@@ -11293,19 +11290,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPolygons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Polygone",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SPolygons.Polygon] = new()
                 {
                     // English: Which polygon was present on {0}?
-                    Question = "Which polygon was present on {0}?",
+                    Question = "Welches Polygon kam bei {0} vor?",
                 },
             },
         },
 
         [typeof(SPolyhedralMaze)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Polyederlabyrinth",
             Questions = new()
             {
@@ -11321,60 +11320,80 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: {0}
                     // Example: the 4-truncated deltoidal icositetrahedral Polyhedral Maze
-                    Discriminator = "{0}",
+                    Discriminator = "dem Polyederlabyrinth mit einem {0}",
+                    Arguments = new()
+                    {
+                        ["the 4-truncated deltoidal icositetrahedral Polyhedral Maze"] = "4-gestumpften Deltoidikositetraeder",
+                        ["the chamfered dodecahedral Polyhedral Maze"] = "abgekanteten Dodekaeder",
+                        ["the chamfered icosahedral Polyhedral Maze"] = "abgekanteten Ikosaeder",
+                        ["the deltoidal hexecontahedral Polyhedral Maze"] = "Deltoidhexakontaeder",
+                        ["the disdyakis dodecahedral Polyhedral Maze"] = "Disdyakisdodekaeder",
+                        ["the joined snub cubic Polyhedral Maze"] = "verbundenen abgeschrägten Hexaeder",
+                        ["the joined rhombicuboctahedral Polyhedral Maze"] = "verbundenen Rhombenkuboktaeder",
+                        ["the pentagonal hexecontahedral Polyhedral Maze"] = "Pentagonhexakontaeder",
+                        ["the orthokis propello cubic Polyhedral Maze"] = "Orthokis-Propello-Würfel",
+                        ["the pentakis dodecahedral Polyhedral Maze"] = "Pentakisdodekaeder",
+                        ["the rectified rhombicuboctahedral Polyhedral Maze"] = "Rhombenkuboktaederstumpf",
+                        ["the triakis icosahedral Polyhedral Maze"] = "Triakisikosaeder",
+                        ["the rhombicosidodecahedral Polyhedral Maze"] = "Rhombenikosidodekaeder",
+                        ["the canonical rectified snub cubic Polyhedral Maze"] = "kanonischen abgeschrägten Hexaederstumpf",
+                    },
                 },
             },
         },
 
         [typeof(SPrimeEncryption)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Primverschlüsselung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SPrimeEncryption.DisplayedValue] = new()
                 {
                     // English: What was the number shown in {0}?
-                    Question = "What was the number shown in {0}?",
+                    Question = "Welche Zahl wurde bei {0} angezeigt?",
                 },
             },
         },
 
         [typeof(SPrisonBreak)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Gefängnisausbruch",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SPrisonBreak.Prisoner] = new()
                 {
                     // English: Which cell did the prisoner start in in {0}?
-                    Question = "Where did the prisoner start in {0}?",
+                    Question = "Welche Zelle hatte der Gefangene bei {0} am Anfang?",
                 },
                 [SPrisonBreak.Defuser] = new()
                 {
                     // English: Where did you start in {0}?
-                    Question = "Where did you start in {0}?",
+                    Question = "Wo ging’s bei {0} los?",
                 },
             },
         },
 
         [typeof(SProbing)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Sondierung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SProbing.Frequencies] = new()
                 {
                     // English: What was the missing frequency in the {1} wire in {0}?
                     // Example: What was the missing frequency in the red-white wire in Probing?
-                    Question = "What was the missing frequency in the {1} wire in {0}?",
+                    Question = "Was war bei {0} die fehlende Frequenz im {1}en Draht?",
                     Arguments = new()
                     {
-                        ["red-white"] = "red-white",
-                        ["yellow-black"] = "yellow-black",
-                        ["green"] = "green",
-                        ["gray"] = "gray",
-                        ["yellow-red"] = "yellow-red",
-                        ["red-blue"] = "red-blue",
+                        ["red-white"] = "rot-weißen",
+                        ["yellow-black"] = "gelb-schwarzen",
+                        ["green"] = "grünen",
+                        ["gray"] = "grauen",
+                        ["yellow-red"] = "gelb-roten",
+                        ["red-blue"] = "rot-blauen",
                     },
                 },
             },
@@ -11382,26 +11401,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SProceduralMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Prozedurales Labyrinth",
+            ModuleNameDative = "Prozeduralen Labyrinth",
             Questions = new()
             {
                 [SProceduralMaze.InitialSeed] = new()
                 {
                     // English: What was the initial seed in {0}?
-                    Question = "What was the initial seed in {0}?",
+                    Question = "Was war bei {0} der Anfangswert?",
                 },
             },
         },
 
         [typeof(SPunctuationMarks)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Interpunktionszeichen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SPunctuationMarks.DisplayedNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
-                    Question = "What was the displayed number in {0}?",
+                    Question = "Welche Zahl wurde bei {0} angezeigt?",
                 },
             },
         },
