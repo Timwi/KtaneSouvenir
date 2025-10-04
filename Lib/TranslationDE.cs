@@ -11442,34 +11442,35 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SPurpleButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Lilane Knopf",
+            ModuleNameDative = "Lilanen Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SPurpleButton.Numbers] = new()
                 {
                     // English: What was the {1} number in the cyclic sequence on {0}?
                     // Example: What was the first number in the cyclic sequence on The Purple Button?
-                    Question = "What was the {1} number in the cyclic sequence on {0}?",
+                    Question = "Was war bei {0} die {1}e Zahl in der zyklischen Folge?",
                 },
             },
         },
 
         [typeof(SPuzzleIdentification)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SPuzzleIdentification.Num] = new()
                 {
                     // English: What was the {1} puzzle number in {0}?
                     // Example: What was the first puzzle number in Puzzle Identification?
-                    Question = "What was the {1} puzzle number in {0}?",
+                    Question = "Was war bei {0} die {1}e Rätselnummer?",
                 },
                 [SPuzzleIdentification.Game] = new()
                 {
                     // English: What game was the {1} puzzle in {0} from?
                     // Example: What game was the first puzzle in Puzzle Identification from?
-                    Question = "What game was the {1} puzzle in {0} from?",
+                    Question = "Aus welchem Spiel war bei {0} das {1}e Rätsel?",
                     Answers = new()
                     {
                         ["Professor Layton and the Curious Village"] = "Professor Layton and the Curious Village",
@@ -11486,30 +11487,32 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} puzzle in {0}?
                     // Example: What was the first puzzle in Puzzle Identification?
-                    Question = "What was the {1} puzzle in {0}?",
+                    Question = "Was war bei {0} das {1}e Rätsel?",
                 },
             },
         },
 
         [typeof(SPuzzlingHexabuttons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Rätselhafte Hexaknöpfe",
+            ModuleNameDative = "Rätselhaften Hexaknöpfen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SPuzzlingHexabuttons.Letter] = new()
                 {
                     // English: What letter was displayed on the {1} hexabutton when submitting in {0}?
                     // Example: What letter was displayed on the top-left hexabutton when submitting in Puzzling Hexabuttons?
-                    Question = "What letter was displayed on the {1} hexabutton when submitting in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} im Eingabemodus auf dem {1} Hexaknopf?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["center"] = "center",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "oberen linken",
+                        ["top-right"] = "oberen rechten",
+                        ["middle-left"] = "mittleren linken",
+                        ["center"] = "mittleren",
+                        ["middle-right"] = "mittleren rechten",
+                        ["bottom-left"] = "unteren linken",
+                        ["bottom-right"] = "unteren rechten",
                     },
                 },
             },
@@ -11517,81 +11520,82 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SQnA)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SQnA.Questions] = new()
                 {
                     // English: What was the {1} question asked in {0}?
                     // Example: What was the first question asked in Q & A?
-                    Question = "What was the {1} question asked in {0}?",
+                    Question = "Was war bei {0} die {1}e gestellte Frage?",
                 },
             },
         },
 
         [typeof(SQuadrants)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Quadranten",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SQuadrants.Buttons] = new()
                 {
                     // English: What was on the {1} button of the {2} stage in {0}?
                     // Example: What was on the first button of the first stage in Quadrants?
-                    Question = "What was on the {1} button of the {2} stage in {0}?",
+                    Question = "Was stand bei {0} in der {2}en Stufe auf der {1}en Taste?",
                 },
             },
         },
 
         [typeof(SQuantumPasswords)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Quantenpasswörter",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SQuantumPasswords.Word] = new()
                 {
                     // English: Which word was used in {0}?
-                    Question = "Which word was use in {0}?",
+                    Question = "Welches Wort kam bei {0} vor?",
                 },
             },
         },
 
         [typeof(SQuantumTernaryConverter)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Quanten-Ternär-Konverter",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SQuantumTernaryConverter.Number] = new()
                 {
                     // English: Which number was shown in {0}?
-                    Question = "Which number was shown in {0}?",
+                    Question = "Welche Zahl wurde bei {0} angezeigt?",
                 },
             },
         },
 
         [typeof(SQuaver)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SQuaver.Arrows] = new()
                 {
                     // English: What was the {1} sequence’s answer in {0}?
                     // Example: What was the first sequence’s answer in Quaver?
-                    Question = "What was the {1} sequence’s answer in {0}?",
+                    Question = "Was war bei {0} die Lösung zur {1}en Sequenz?",
                 },
             },
         },
 
         [typeof(SQuestionMark)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Fragezeichen",
             Questions = new()
             {
                 [SQuestionMark.FlashedSymbols] = new()
                 {
                     // English: Which of these symbols was part of the flashing sequence in {0}?
-                    Question = "Which of these symbols was part of the flashing sequence in {0}?",
+                    Question = "Welches Symbol kam bei {0} in der Blinksequenz vor?",
                 },
             },
         },
