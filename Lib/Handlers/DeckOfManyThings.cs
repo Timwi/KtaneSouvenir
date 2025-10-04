@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
 
 public enum SDeckOfManyThings
 {
-    [SouvenirQuestion("What deck did the first card of {0} belong to?", TwoColumns4Answers, "Standard", "Metropolitan", "Maritime", "Arctic", "Tropical", "Oasis", "Celestial")]
+    [SouvenirQuestion("What deck did the first card of {0} belong to?", TwoColumns4Answers, "Standard", "Metropolitan", "Maritime", "Arctic", "Tropical", "Oasis", "Celestial", TranslateAnswers = true)]
     FirstCard
 }
 

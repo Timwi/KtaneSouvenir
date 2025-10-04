@@ -2916,7 +2916,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SColoredSquares)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Gefärbte Felder",
             ModuleNameDative = "Gefärbten Feldern",
             Gender = Gender.Plural,
@@ -3870,6 +3869,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What deck did the first card of {0} belong to?
                     Question = "Zu welchem Deck gehörte bei {0} die erste Karte?",
+                    Answers = new()
+                    {
+                        ["Standard"] = "Französisches Blatt",
+                        ["Metropolitan"] = "Großstadt",
+                        ["Maritime"] = "Schifffahrt",
+                        ["Arctic"] = "Arktis",
+                        ["Tropical"] = "Tropen",
+                        ["Oasis"] = "Oase",
+                        ["Celestial"] = "Tarot",
+                    },
                 },
             },
         },
@@ -9462,54 +9471,58 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNotColoredSquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Gefärbte Felder Mal Anders",
+            ModuleNameDative = "Gefärbten Feldern Mal Anders",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SNotColoredSquares.InitialPosition] = new()
                 {
                     // English: What was the position of the square you initially pressed in {0}?
-                    Question = "What was the position of the square you initially pressed in {0}?",
+                    Question = "Welches Feld wurde bei {0} zuerst gedrückt?",
                 },
             },
         },
 
         [typeof(SNotColoredSwitches)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Gefärbte Schalter Mal Anders",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SNotColoredSwitches.Word] = new()
                 {
                     // English: What was the encrypted word in {0}?
-                    Question = "What was the encrypted word in {0}?",
+                    Question = "Was war bei {0} das verschlüsselte Wort?",
                 },
             },
         },
 
         [typeof(SNotColourFlash)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Farbfolge Mal Anders",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SNotColourFlash.InitialWord] = new()
                 {
                     // English: What was {1} in the displayed word sequence in {0}?
                     // Example: What was first in the displayed word sequence in Not Colour Flash?
-                    Question = "What was the initial word on {0}?",
+                    Question = "Was war bei {0} das {1}e Wort in der angezeigten Wortfolge?",
                 },
                 [SNotColourFlash.InitialColour] = new()
                 {
                     // English: What was {1} in the displayed colour sequence in {0}?
                     // Example: What was first in the displayed colour sequence in Not Colour Flash?
-                    Question = "What was the initial colour of the word on {0}?",
+                    Question = "Was war bei {0} die {1}e Farbe in der angezeigten Farbfolge?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
                         ["Magenta"] = "Magenta",
-                        ["Yellow"] = "Yellow",
-                        ["White"] = "White",
+                        ["Yellow"] = "Gelb",
+                        ["White"] = "Weiß",
                     },
                 },
             },
@@ -9551,109 +9564,112 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNotCoordinates)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Koordinaten Mal Anders",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SNotCoordinates.SquareCoords] = new()
                 {
                     // English: Which coordinate was part of the square in {0}?
-                    Question = "Which coordinate was part of the square in {0}?",
+                    Question = "Welche Koordinate war bei {0} Teil des Quadrats?",
                 },
             },
         },
 
         [typeof(SNotDoubleOh)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Doppel-Null Mal Anders",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SNotDoubleOh.Position] = new()
                 {
                     // English: What was the {1} displayed position in the second stage of {0}?
                     // Example: What was the first displayed position in the second stage of Not Double-Oh?
-                    Question = "What was the {1} displayed position in the second stage of {0}?",
+                    Question = "Was war bei {0} die {1}e angezeigte Position in der zweiten Stufe?",
                 },
             },
         },
 
         [typeof(SNotKeypad)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Tastenfeld Mal Anders",
             Questions = new()
             {
                 [SNotKeypad.Color] = new()
                 {
                     // English: What color flashed {1} in the final sequence in {0}?
                     // Example: What color flashed first in the final sequence in Not Keypad?
-                    Question = "What color flashed {1} in the final sequence in {0}?",
+                    Question = "Welche Farbe ist bei {0} in der letzten Sequenz als {1}e aufgeleuchtet?",
                     Answers = new()
                     {
-                        ["red"] = "red",
+                        ["red"] = "rot",
                         ["orange"] = "orange",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["cyan"] = "cyan",
-                        ["blue"] = "blue",
-                        ["purple"] = "purple",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["cyan"] = "türkis",
+                        ["blue"] = "blau",
+                        ["purple"] = "lila",
                         ["magenta"] = "magenta",
                         ["pink"] = "pink",
-                        ["brown"] = "brown",
-                        ["grey"] = "grey",
-                        ["white"] = "white",
+                        ["brown"] = "braun",
+                        ["grey"] = "grau",
+                        ["white"] = "weiß",
                     },
                 },
                 [SNotKeypad.Symbol] = new()
                 {
                     // English: Which symbol was on the button that flashed {1} in the final sequence in {0}?
                     // Example: Which symbol was on the button that flashed first in the final sequence in Not Keypad?
-                    Question = "Which symbol was on the button that flashed {1} in the final sequence in {0}?",
+                    Question = "Welches Symbol war bei {0} auf der Taste, die als {1}e in der letzten Sequenz aufgeleuchtet ist?",
                 },
             },
         },
 
         [typeof(SNotMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Labyrinth Mal Anders",
             Questions = new()
             {
                 [SNotMaze.StartingDistance] = new()
                 {
                     // English: What was the starting distance in {0}?
-                    Question = "What was the starting distance in {0}?",
+                    Question = "Was war bei {0} die Anfangsdistanz?",
                 },
             },
         },
 
         [typeof(SNotMorseCode)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Morsezeichen Mal Anders",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SNotMorseCode.Word] = new()
                 {
                     // English: What was the {1} correct word you submitted in {0}?
                     // Example: What was the first correct word you submitted in Not Morse Code?
-                    Question = "What was the {1} correct word you submitted in {0}?",
+                    Question = "Was war bei {0} das {1}e korrekt eingegebene Wort?",
                 },
             },
         },
 
         [typeof(SNotMorsematics)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Morsematik Mal Anders",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SNotMorsematics.Word] = new()
                 {
                     // English: What was the transmitted word on {0}?
-                    Question = "What was the transmitted word on {0}?",
+                    Question = "Was war bei {0} das übertragene Wort?",
                 },
             },
         },
 
         [typeof(SNotMurder)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Mord Mal Anders",
             Gender = Gender.Masculine,
             Questions = new()
@@ -9716,41 +9732,41 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Not Murder where {0} was present
                     // Example: the Not Murder where he was present
-                    Discriminator = "the Not Murder where {0} was present",
+                    Discriminator = "dem Mord Mal Anders, bei dem {0} anwesend war,",
                     Arguments = new()
                     {
-                        ["he"] = "he",
-                        ["she"] = "she",
+                        ["he"] = "er",
+                        ["she"] = "sie",
                     },
                 },
                 [SNotMurder.InitialWeapon] = new()
                 {
                     // English: the Not Murder where {0} initially held the {1}
                     // Example: the Not Murder where he initially held the Candlestick
-                    Discriminator = "the Not Murder where {0} initially held the {1}",
+                    Discriminator = "dem Mord Mal Anders, bei dem {0} am Anfang {1} hatte,",
                     Arguments = new()
                     {
-                        ["he"] = "he",
-                        ["Candlestick"] = "Candlestick",
-                        ["Dagger"] = "Dagger",
-                        ["she"] = "she",
-                        ["Lead Pipe"] = "Lead Pipe",
-                        ["Revolver"] = "Revolver",
+                        ["he"] = "er",
+                        ["Candlestick"] = "den Kerzenleuchter",
+                        ["Dagger"] = "den Dolch",
+                        ["she"] = "sie",
+                        ["Lead Pipe"] = "das Bleirohr",
+                        ["Revolver"] = "die Pistole",
                     },
                 },
                 [SNotMurder.InitialRoom] = new()
                 {
                     // English: the Not Murder where {0} started in the {1}
                     // Example: the Not Murder where he started in the Ballroom
-                    Discriminator = "the Not Murder where {0} started in the {1}",
+                    Discriminator = "dem Mord Mal Anders, bei dem {0} im {1} anfing,",
                     Arguments = new()
                     {
-                        ["he"] = "he",
-                        ["Ballroom"] = "Ballroom",
-                        ["Billiard Room"] = "Billiard Room",
-                        ["she"] = "she",
-                        ["Conservatory"] = "Conservatory",
-                        ["Dining Room"] = "Dining Room",
+                        ["he"] = "er",
+                        ["Ballroom"] = "Musikzimmer",
+                        ["Billiard Room"] = "Billardzimmer",
+                        ["she"] = "sie",
+                        ["Conservatory"] = "Wintergarten",
+                        ["Dining Room"] = "Speisezimmer",
                     },
                 },
             },
@@ -9758,18 +9774,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNotNumberPad)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Zahlenfeld Mal Anders",
             Questions = new()
             {
                 [SNotNumberPad.Flashes] = new()
                 {
                     // English: Which of these numbers {1} at the {2} stage of {0}?
                     // Example: Which of these numbers flashed at the first stage of Not Number Pad?
-                    Question = "Which of these numbers {1} at the {2} stage of {0}?",
+                    Question = "Welche Zahl ist bei {0} in der {2}en Stufe {1}?",
                     Arguments = new()
                     {
-                        ["flashed"] = "flashed",
-                        ["did not flash"] = "did not flash",
+                        ["flashed"] = "aufgeleuchtet",
+                        ["did not flash"] = "nicht aufgeleuchtet",
                     },
                 },
             },
@@ -9777,13 +9793,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNotPassword)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Passwort Mal Anders",
             Questions = new()
             {
                 [SNotPassword.Letter] = new()
                 {
                     // English: Which letter was missing from {0}?
-                    Question = "Which letter was missing from {0}?",
+                    Question = "Welcher Buchstabe hat bei {0} gefehlt?",
                 },
             },
         },
@@ -9878,109 +9894,109 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNotSimaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simobyrinth Mal Anders",
             Questions = new()
             {
                 [SNotSimaze.Maze] = new()
                 {
                     // English: Which maze was used in {0}?
-                    Question = "Which maze was used in {0}?",
+                    Question = "Welches Labyrinth wurde bei {0} verwendet?",
                     Answers = new()
                     {
-                        ["red"] = "red",
+                        ["red"] = "rot",
                         ["orange"] = "orange",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["purple"] = "purple",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["purple"] = "lila",
                     },
                 },
                 [SNotSimaze.Start] = new()
                 {
                     // English: What was the starting position in {0}?
-                    Question = "What was the starting position in {0}?",
+                    Question = "Was war bei {0} die Startposition?",
                     Answers = new()
                     {
-                        ["(red, red)"] = "(red, red)",
-                        ["(red, orange)"] = "(red, orange)",
-                        ["(red, yellow)"] = "(red, yellow)",
-                        ["(red, green)"] = "(red, green)",
-                        ["(red, blue)"] = "(red, blue)",
-                        ["(red, purple)"] = "(red, purple)",
-                        ["(orange, red)"] = "(orange, red)",
+                        ["(red, red)"] = "(rot, rot)",
+                        ["(red, orange)"] = "(rot, orange)",
+                        ["(red, yellow)"] = "(rot, gelb)",
+                        ["(red, green)"] = "(rot, grün)",
+                        ["(red, blue)"] = "(rot, blau)",
+                        ["(red, purple)"] = "(rot, lila)",
+                        ["(orange, red)"] = "(orange, rot)",
                         ["(orange, orange)"] = "(orange, orange)",
-                        ["(orange, yellow)"] = "(orange, yellow)",
-                        ["(orange, green)"] = "(orange, green)",
-                        ["(orange, blue)"] = "(orange, blue)",
-                        ["(orange, purple)"] = "(orange, purple)",
-                        ["(yellow, red)"] = "(yellow, red)",
-                        ["(yellow, orange)"] = "(yellow, orange)",
-                        ["(yellow, yellow)"] = "(yellow, yellow)",
-                        ["(yellow, green)"] = "(yellow, green)",
-                        ["(yellow, blue)"] = "(yellow, blue)",
-                        ["(yellow, purple)"] = "(yellow, purple)",
-                        ["(green, red)"] = "(green, red)",
-                        ["(green, orange)"] = "(green, orange)",
-                        ["(green, yellow)"] = "(green, yellow)",
-                        ["(green, green)"] = "(green, green)",
-                        ["(green, blue)"] = "(green, blue)",
-                        ["(green, purple)"] = "(green, purple)",
-                        ["(blue, red)"] = "(blue, red)",
-                        ["(blue, orange)"] = "(blue, orange)",
-                        ["(blue, yellow)"] = "(blue, yellow)",
-                        ["(blue, green)"] = "(blue, green)",
-                        ["(blue, blue)"] = "(blue, blue)",
-                        ["(blue, purple)"] = "(blue, purple)",
-                        ["(purple, red)"] = "(purple, red)",
-                        ["(purple, orange)"] = "(purple, orange)",
-                        ["(purple, yellow)"] = "(purple, yellow)",
-                        ["(purple, green)"] = "(purple, green)",
-                        ["(purple, blue)"] = "(purple, blue)",
-                        ["(purple, purple)"] = "(purple, purple)",
+                        ["(orange, yellow)"] = "(orange, gelb)",
+                        ["(orange, green)"] = "(orange, grün)",
+                        ["(orange, blue)"] = "(orange, blau)",
+                        ["(orange, purple)"] = "(orange, lila)",
+                        ["(yellow, red)"] = "(gelb, rot)",
+                        ["(yellow, orange)"] = "(gelb, orange)",
+                        ["(yellow, yellow)"] = "(gelb, gelb)",
+                        ["(yellow, green)"] = "(gelb, grün)",
+                        ["(yellow, blue)"] = "(gelb, blau)",
+                        ["(yellow, purple)"] = "(gelb, lila)",
+                        ["(green, red)"] = "(grün, rot)",
+                        ["(green, orange)"] = "(grün, orange)",
+                        ["(green, yellow)"] = "(grün, gelb)",
+                        ["(green, green)"] = "(grün, grün)",
+                        ["(green, blue)"] = "(grün, blau)",
+                        ["(green, purple)"] = "(grün, lila)",
+                        ["(blue, red)"] = "(blau, rot)",
+                        ["(blue, orange)"] = "(blau, orange)",
+                        ["(blue, yellow)"] = "(blau, gelb)",
+                        ["(blue, green)"] = "(blau, grün)",
+                        ["(blue, blue)"] = "(blau, blau)",
+                        ["(blue, purple)"] = "(blau, lila)",
+                        ["(purple, red)"] = "(lila, rot)",
+                        ["(purple, orange)"] = "(lila, orange)",
+                        ["(purple, yellow)"] = "(lila, gelb)",
+                        ["(purple, green)"] = "(lila, grün)",
+                        ["(purple, blue)"] = "(lila, blau)",
+                        ["(purple, purple)"] = "(lila, lila)",
                     },
                 },
                 [SNotSimaze.Goal] = new()
                 {
                     // English: What was the goal position in {0}?
-                    Question = "What was the goal position in {0}?",
+                    Question = "Was war bei {0} die Zielposition?",
                     Answers = new()
                     {
-                        ["(red, red)"] = "(red, red)",
-                        ["(red, orange)"] = "(red, orange)",
-                        ["(red, yellow)"] = "(red, yellow)",
-                        ["(red, green)"] = "(red, green)",
-                        ["(red, blue)"] = "(red, blue)",
-                        ["(red, purple)"] = "(red, purple)",
-                        ["(orange, red)"] = "(orange, red)",
+                        ["(red, red)"] = "(rot, rot)",
+                        ["(red, orange)"] = "(rot, orange)",
+                        ["(red, yellow)"] = "(rot, gelb)",
+                        ["(red, green)"] = "(rot, grün)",
+                        ["(red, blue)"] = "(rot, blau)",
+                        ["(red, purple)"] = "(rot, lila)",
+                        ["(orange, red)"] = "(orange, rot)",
                         ["(orange, orange)"] = "(orange, orange)",
-                        ["(orange, yellow)"] = "(orange, yellow)",
-                        ["(orange, green)"] = "(orange, green)",
-                        ["(orange, blue)"] = "(orange, blue)",
-                        ["(orange, purple)"] = "(orange, purple)",
-                        ["(yellow, red)"] = "(yellow, red)",
-                        ["(yellow, orange)"] = "(yellow, orange)",
-                        ["(yellow, yellow)"] = "(yellow, yellow)",
-                        ["(yellow, green)"] = "(yellow, green)",
-                        ["(yellow, blue)"] = "(yellow, blue)",
-                        ["(yellow, purple)"] = "(yellow, purple)",
-                        ["(green, red)"] = "(green, red)",
-                        ["(green, orange)"] = "(green, orange)",
-                        ["(green, yellow)"] = "(green, yellow)",
-                        ["(green, green)"] = "(green, green)",
-                        ["(green, blue)"] = "(green, blue)",
-                        ["(green, purple)"] = "(green, purple)",
-                        ["(blue, red)"] = "(blue, red)",
-                        ["(blue, orange)"] = "(blue, orange)",
-                        ["(blue, yellow)"] = "(blue, yellow)",
-                        ["(blue, green)"] = "(blue, green)",
-                        ["(blue, blue)"] = "(blue, blue)",
-                        ["(blue, purple)"] = "(blue, purple)",
-                        ["(purple, red)"] = "(purple, red)",
-                        ["(purple, orange)"] = "(purple, orange)",
-                        ["(purple, yellow)"] = "(purple, yellow)",
-                        ["(purple, green)"] = "(purple, green)",
-                        ["(purple, blue)"] = "(purple, blue)",
-                        ["(purple, purple)"] = "(purple, purple)",
+                        ["(orange, yellow)"] = "(orange, gelb)",
+                        ["(orange, green)"] = "(orange, grün)",
+                        ["(orange, blue)"] = "(orange, blau)",
+                        ["(orange, purple)"] = "(orange, lila)",
+                        ["(yellow, red)"] = "(gelb, rot)",
+                        ["(yellow, orange)"] = "(gelb, orange)",
+                        ["(yellow, yellow)"] = "(gelb, gelb)",
+                        ["(yellow, green)"] = "(gelb, grün)",
+                        ["(yellow, blue)"] = "(gelb, blau)",
+                        ["(yellow, purple)"] = "(gelb, lila)",
+                        ["(green, red)"] = "(grün, rot)",
+                        ["(green, orange)"] = "(grün, orange)",
+                        ["(green, yellow)"] = "(grün, gelb)",
+                        ["(green, green)"] = "(grün, grün)",
+                        ["(green, blue)"] = "(grün, blau)",
+                        ["(green, purple)"] = "(grün, lila)",
+                        ["(blue, red)"] = "(blau, rot)",
+                        ["(blue, orange)"] = "(blau, orange)",
+                        ["(blue, yellow)"] = "(blau, gelb)",
+                        ["(blue, green)"] = "(blau, grün)",
+                        ["(blue, blue)"] = "(blau, blau)",
+                        ["(blue, purple)"] = "(blau, lila)",
+                        ["(purple, red)"] = "(lila, rot)",
+                        ["(purple, orange)"] = "(lila, orange)",
+                        ["(purple, yellow)"] = "(lila, gelb)",
+                        ["(purple, green)"] = "(lila, grün)",
+                        ["(purple, blue)"] = "(lila, blau)",
+                        ["(purple, purple)"] = "(lila, lila)",
                     },
                 },
             },
@@ -9988,58 +10004,60 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNotTextField)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Textfeld Mal Anders",
             Questions = new()
             {
                 [SNotTextField.BackgroundLetter] = new()
                 {
                     // English: Which letter appeared 9 times at the start of {0}?
-                    Question = "Which letter appeared 9 times at the start of {0}?",
+                    Question = "Welcher Buchstabe war bei {0} am Anfang 9-mal vorhanden?",
                 },
                 [SNotTextField.InitialPresses] = new()
                 {
                     // English: Which letter was pressed in the first stage of {0}?
-                    Question = "Which letter was pressed in the first stage of {0}?",
+                    Question = "Welcher Buchstabe wurde bei {0} in der ersten Stufe gedrückt?",
                 },
             },
         },
 
         [typeof(SNotTheBulb)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Die Glühlampe Mal Anders",
+            ModuleNameDative = "Glühlampe Mal Anders",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SNotTheBulb.Word] = new()
                 {
                     // English: What word flashed on {0}?
-                    Question = "What word flashed on {0}?",
+                    Question = "Welches Wort wurde bei {0} geblinkt?",
                 },
                 [SNotTheBulb.Color] = new()
                 {
                     // English: What color was the bulb on {0}?
-                    Question = "What color was the bulb on {0}?",
+                    Question = "Welche Farbe hatte die Glühlampe bei {0}?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Yellow"] = "Yellow",
-                        ["Purple"] = "Purple",
-                        ["White"] = "White",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Purple"] = "Lila",
+                        ["White"] = "Weiß",
                     },
                 },
                 [SNotTheBulb.ScrewCap] = new()
                 {
                     // English: What was the material of the screw cap on {0}?
-                    Question = "What was the material of the screw cap on {0}?",
+                    Question = "Welches Material hatte der Schraubverschluss bei {0}?",
                     Answers = new()
                     {
-                        ["Copper"] = "Copper",
-                        ["Silver"] = "Silver",
+                        ["Copper"] = "Kupfer",
+                        ["Silver"] = "Silber",
                         ["Gold"] = "Gold",
-                        ["Plastic"] = "Plastic",
-                        ["Carbon Fibre"] = "Carbon Fibre",
-                        ["Ceramic"] = "Ceramic",
+                        ["Plastic"] = "Plastik",
+                        ["Carbon Fibre"] = "Kohlenstofffaser",
+                        ["Ceramic"] = "Keramik",
                     },
                 },
             },
@@ -10047,30 +10065,32 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNotTheButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Knopf Mal Anders",
+            ModuleNameDative = "Knopf Mal Anders",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SNotTheButton.LightColor] = new()
                 {
                     // English: What colors did the light glow in {0}?
-                    Question = "What colors did the light glow in {0}?",
+                    Question = "In welchen Farben leuchtete das Licht bei {0}?",
                     Answers = new()
                     {
-                        ["white"] = "white",
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["white/red"] = "white/red",
-                        ["white/yellow"] = "white/yellow",
-                        ["white/green"] = "white/green",
-                        ["white/blue"] = "white/blue",
-                        ["red/yellow"] = "red/yellow",
-                        ["red/green"] = "red/green",
-                        ["red/blue"] = "red/blue",
-                        ["yellow/green"] = "yellow/green",
-                        ["yellow/blue"] = "yellow/blue",
-                        ["green/blue"] = "green/blue",
+                        ["white"] = "weiß",
+                        ["red"] = "rot",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["white/red"] = "weiß/rot",
+                        ["white/yellow"] = "weiß/gelb",
+                        ["white/green"] = "weiß/grün",
+                        ["white/blue"] = "weiß/blau",
+                        ["red/yellow"] = "rot/gelb",
+                        ["red/green"] = "rot/grün",
+                        ["red/blue"] = "rot/blau",
+                        ["yellow/green"] = "gelb/grün",
+                        ["yellow/blue"] = "gelb/blau",
+                        ["green/blue"] = "grün/blau",
                     },
                 },
             },
@@ -10078,23 +10098,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNotThePlungerButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Kolbenknopf Mal Anders",
+            ModuleNameDative = "Kolbenknopf Mal Anders",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SNotThePlungerButton.Background] = new()
                 {
                     // English: What color did the background flash in {0}?
-                    Question = "What color did the background flash in {0}?",
+                    Question = "In welcher Farbe blinkte der Hintergrund bei {0}?",
                     Answers = new()
                     {
-                        ["Black"] = "Black",
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Cyan"] = "Cyan",
+                        ["Black"] = "Schwarz",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
                         ["Magenta"] = "Magenta",
-                        ["Yellow"] = "Yellow",
-                        ["White"] = "White",
+                        ["Yellow"] = "Gelb",
+                        ["White"] = "Weiß",
                     },
                 },
             },
@@ -10102,86 +10124,89 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SNotTheScrew)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Die Schraube Mal Anders",
+            ModuleNameDative = "Schraube Mal Anders",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SNotTheScrew.InitialPosition] = new()
                 {
                     // English: What was the initial position in {0}?
-                    Question = "What was the initial position in {0}?",
+                    Question = "Was war bei {0} die Startposition?",
                 },
             },
         },
 
         [typeof(SNotWhosOnFirst)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Who’s On First Mal Anders",
             Questions = new()
             {
                 [SNotWhosOnFirst.PressedPosition] = new()
                 {
                     // English: In which position was the button you pressed in the {1} stage on {0}?
                     // Example: In which position was the button you pressed in the first stage on Not Who’s on First?
-                    Question = "In which position was the button you pressed in the {1} stage on {0}?",
+                    Question = "Welche Taste wurde bei {0} in der {1}en Stufe gedrückt?",
                     Answers = new()
                     {
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["middle left"] = "middle left",
-                        ["middle right"] = "middle right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "oben links",
+                        ["top right"] = "oben rechts",
+                        ["middle left"] = "Mitte links",
+                        ["middle right"] = "Mitte rechts",
+                        ["bottom left"] = "unten links",
+                        ["bottom right"] = "unten rechts",
                     },
                 },
                 [SNotWhosOnFirst.PressedLabel] = new()
                 {
                     // English: What was the label on the button you pressed in the {1} stage on {0}?
                     // Example: What was the label on the button you pressed in the first stage on Not Who’s on First?
-                    Question = "What was the label on the button you pressed in the {1} stage on {0}?",
+                    Question = "Was stand auf der Taste, die bei {0} in der {1}en Stufe gedrückt wurde?",
                 },
                 [SNotWhosOnFirst.ReferencePosition] = new()
                 {
                     // English: In which position was the reference button in the {1} stage on {0}?
                     // Example: In which position was the reference button in the first stage on Not Who’s on First?
-                    Question = "In which position was the reference button in the {1} stage on {0}?",
+                    Question = "Welche Taste war bei {0} in der {1}en Stufe die Referenztaste?",
                     Answers = new()
                     {
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["middle left"] = "middle left",
-                        ["middle right"] = "middle right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "oben links",
+                        ["top right"] = "oben rechts",
+                        ["middle left"] = "Mitte links",
+                        ["middle right"] = "Mitte rechts",
+                        ["bottom left"] = "unten links",
+                        ["bottom right"] = "unten rechts",
                     },
                 },
                 [SNotWhosOnFirst.ReferenceLabel] = new()
                 {
                     // English: What was the label on the reference button in the {1} stage on {0}?
                     // Example: What was the label on the reference button in the first stage on Not Who’s on First?
-                    Question = "What was the label on the reference button in the {1} stage on {0}?",
+                    Question = "Was stand auf der Referenztaste, die bei {0} in der {1}en Stufe verwendet wurde?",
                 },
                 [SNotWhosOnFirst.Sum] = new()
                 {
                     // English: What was the calculated number in the second stage on {0}?
-                    Question = "What was the calculated number in the second stage on {0}?",
+                    Question = "Was war bei {0} in der zweiten Stufe die berechnete Zahl?",
                 },
             },
         },
 
         [typeof(SNotWordSearch)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Wortsuche Mal Anders",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SNotWordSearch.Missing] = new()
                 {
                     // English: Which of these consonants was missing in {0}?
-                    Question = "Which of these consonants was missing in {0}?",
+                    Question = "Welcher dieser Konsonanten hat bei {0} gefehlt?",
                 },
                 [SNotWordSearch.FirstPress] = new()
                 {
                     // English: What was the first correctly pressed letter in {0}?
-                    Question = "What was the first correctly pressed letter in {0}?",
+                    Question = "Welcher Buchstabe wurde bei {0} als erstes korrekt gedrückt?",
                 },
             },
         },

@@ -3785,12 +3785,23 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
         [typeof(SDeckOfManyThings)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
                 [SDeckOfManyThings.FirstCard] = new()
                 {
                     // English: What deck did the first card of {0} belong to?
                     Question = "Какой колоде принадлежала первая карта {0}?",
+                    Answers = new()
+                    {
+                        ["Standard"] = "Standard",
+                        ["Metropolitan"] = "Metropolitan",
+                        ["Maritime"] = "Maritime",
+                        ["Arctic"] = "Arctic",
+                        ["Tropical"] = "Tropical",
+                        ["Oasis"] = "Oasis",
+                        ["Celestial"] = "Celestial",
+                    },
                 },
             },
         },

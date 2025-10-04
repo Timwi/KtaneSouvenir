@@ -3726,6 +3726,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(SDeckOfManyThings)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "多種デッキ",
             Questions = new()
             {
@@ -3733,6 +3734,16 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 {
                     // English: What deck did the first card of {0} belong to?
                     Question = "{0}の最初のカードが属していたデッキは？",
+                    Answers = new()
+                    {
+                        ["Standard"] = "Standard",
+                        ["Metropolitan"] = "Metropolitan",
+                        ["Maritime"] = "Maritime",
+                        ["Arctic"] = "Arctic",
+                        ["Tropical"] = "Tropical",
+                        ["Oasis"] = "Oasis",
+                        ["Celestial"] = "Celestial",
+                    },
                 },
             },
         },

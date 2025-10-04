@@ -185,7 +185,7 @@ public static class Program
                     indentation -= 4;
                     sb.AppendLine($"{indent()}}},");
 
-                    if (already == null || original.Any(str => !already.ContainsKey(str)) || already.Keys.Any(k => !original.Contains(k)))
+                    if (already == null || original.Any(str => !already.ContainsKey(str)))
                         needsTranslation = true;
                 }
 
