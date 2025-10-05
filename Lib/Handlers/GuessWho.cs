@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SGuessWho
 {
-    [SouvenirQuestion("Did {1} flash “YES” in {0}?", TwoColumns2Answers, "Yes", "No")]
+    [SouvenirQuestion("Did {1} flash “YES” in {0}?", TwoColumns2Answers, "Yes", "No", TranslateAnswers = true,  ArgumentGroupSize = 1, TranslateArguments = [true])]
     Colors
 }
 
