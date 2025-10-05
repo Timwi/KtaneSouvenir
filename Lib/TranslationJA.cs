@@ -14709,10 +14709,10 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Question = "{0}のこのマスの色は？",
                     Answers = new()
                     {
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["orange"] = "orange",
-                        ["red"] = "red",
+                        ["yellow"] = "黄",
+                        ["green"] = "緑",
+                        ["orange"] = "オレンジ",
+                        ["red"] = "赤",
                     },
                 },
                 [SSuitsAndColours.Suit] = new()
@@ -14722,10 +14722,10 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Question = "{0}のこのマスのスートは？",
                     Answers = new()
                     {
-                        ["spades"] = "spades",
-                        ["hearts"] = "hearts",
-                        ["clubs"] = "clubs",
-                        ["diamonds"] = "diamonds",
+                        ["spades"] = "スペード",
+                        ["hearts"] = "ハート",
+                        ["clubs"] = "クラブ",
+                        ["diamonds"] = "ダイヤ",
                     },
                 },
             },
