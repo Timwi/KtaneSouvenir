@@ -6124,13 +6124,30 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 
         [typeof(SGuessWho)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Wer ist es?",
             Questions = new()
             {
                 [SGuessWho.Colors] = new()
                 {
                     // English: Did {1} flash “YES” in {0}?
-                    Question = "Did {1} flash “YES” in {0}?",
+                    // Example: Did Red flash “YES” in Guess Who??
+                    Question = "Ist bei {0} “JA” in {1} vorgekommen?",
+                    Answers = new()
+                    {
+                        ["Yes"] = "Ja",
+                        ["No"] = "Nein",
+                    },
+                    Arguments = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Violet"] = "Violett",
+                        ["Cyan"] = "Türkis",
+                        ["Pink"] = "Pink",
+                    },
                 },
             },
         },
@@ -7299,6 +7316,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Partikel waren bei {0} in der {1}en Stufe zu sehen?",
                     Additional = new()
                     {
+                        ["R"] = "Ro",
+                        ["O"] = "Or",
+                        ["Y"] = "Ge",
+                        ["G"] = "Gr",
+                        ["B"] = "Bl",
+                        ["I"] = "In",
+                        ["V"] = "Vi",
                         ["{0}{1}{2}{3}{4}{5}{6}"] = "{0}{1}{2}{3}{4}{5}{6}",
                         ["None"] = "Keine",
                     },

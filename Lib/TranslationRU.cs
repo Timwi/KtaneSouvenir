@@ -5975,7 +5975,24 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 [SGuessWho.Colors] = new()
                 {
                     // English: Did {1} flash “YES” in {0}?
+                    // Example: Did Red flash “YES” in Guess Who??
                     Question = "Did {1} flash “YES” in {0}?",
+                    Answers = new()
+                    {
+                        ["Yes"] = "Yes",
+                        ["No"] = "No",
+                    },
+                    Arguments = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Violet"] = "Violet",
+                        ["Cyan"] = "Cyan",
+                        ["Pink"] = "Pink",
+                    },
                 },
             },
         },
@@ -7112,6 +7129,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     Question = "Which particles were present for the {1} stage of {0}?",
                     Additional = new()
                     {
+                        ["R"] = "R",
+                        ["O"] = "O",
+                        ["Y"] = "Y",
+                        ["G"] = "G",
+                        ["B"] = "B",
+                        ["I"] = "I",
+                        ["V"] = "V",
                         ["{0}{1}{2}{3}{4}{5}{6}"] = "{0}{1}{2}{3}{4}{5}{6}",
                         ["None"] = "None",
                     },

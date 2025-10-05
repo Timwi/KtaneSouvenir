@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SKugelblitz
 {
-    [SouvenirQuestion("Which particles were present for the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ExampleAnswers = ["None", "RGB", "RYV", "ROYGBIV", "YIV", "O"], TranslatableStrings = ["{0}{1}{2}{3}{4}{5}{6}", "None"])]
+    [SouvenirQuestion("Which particles were present for the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ExampleAnswers = ["None", "RGB", "RYV", "ROYGBIV", "YIV", "O"], TranslatableStrings = ["R", "O", "Y", "G", "B", "I", "V", "{0}{1}{2}{3}{4}{5}{6}", "None"])]
     BlackOrangeYellowIndigoViolet,
 
     [SouvenirQuestion("What were the particles’ values for the {1} stage of {0}?", OneColumn4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ExampleAnswers = ["R=0, O=0, Y=0, G=0, B=0, I=0, V=0", "R=1, O=0, Y=2, G=3, B=4, I=1, V=6", "R=1, O=0, Y=1, G=1, B=1, I=1, V=0", "R=6, O=5, Y=2, G=4, B=3, I=1, V=2"], TranslatableStrings = ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"])]

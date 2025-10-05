@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
 
 public enum SGuessWho
 {
-    [SouvenirQuestion("Did {1} flash “YES” in {0}?", TwoColumns2Answers, "Yes", "No", TranslateAnswers = true,  ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [SouvenirQuestion("Did {1} flash “YES” in {0}?", TwoColumns2Answers, "Yes", "No", TranslateAnswers = true, Arguments = ["Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Cyan", "Pink"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Colors
 }
 
