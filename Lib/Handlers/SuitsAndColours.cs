@@ -5,10 +5,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SSuitsAndColours
 {
-    [SouvenirQuestion("What was the colour of this cell in {0}?", TwoColumns4Answers, "yellow", "green", "orange", "red", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the colour of this cell in {0}?", TwoColumns4Answers, "yellow", "green", "orange", "red", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Colour,
 
-    [SouvenirQuestion("What was the suit of this cell in {0}?", TwoColumns4Answers, "spades", "hearts", "clubs", "diamonds", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the suit of this cell in {0}?", TwoColumns4Answers, "spades", "hearts", "clubs", "diamonds", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Suit
 }
 

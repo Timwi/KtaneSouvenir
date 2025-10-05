@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -1880,7 +1880,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(SBottomGear)] = new()
         {
-                NeedsTranslation = true,
+            NeedsTranslation = true,
             Questions = new()
             {
                 [SBottomGear.Tweet] = new()
@@ -2226,7 +2226,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(SCaesarPsycho)] = new()
         {
-                NeedsTranslation = true,
+            NeedsTranslation = true,
             Questions = new()
             {
                 [SCaesarPsycho.ScreenTexts] = new()
@@ -14096,6 +14096,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
 
         [typeof(SSuitsAndColours)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "スートと色",
             Questions = new()
             {
@@ -14104,12 +14105,26 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the colour of this cell in {0}? (+ sprite)
                     // Example: What was the colour of this cell in Suits and Colours? (+ sprite)
                     Question = "{0}のこのマスの色は？",
+                    Answers = new()
+                    {
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["orange"] = "orange",
+                        ["red"] = "red",
+                    },
                 },
                 [SSuitsAndColours.Suit] = new()
                 {
                     // English: What was the suit of this cell in {0}? (+ sprite)
                     // Example: What was the suit of this cell in Suits and Colours? (+ sprite)
                     Question = "{0}のこのマスのスートは？",
+                    Answers = new()
+                    {
+                        ["spades"] = "spades",
+                        ["hearts"] = "hearts",
+                        ["clubs"] = "clubs",
+                        ["diamonds"] = "diamonds",
+                    },
                 },
             },
         },

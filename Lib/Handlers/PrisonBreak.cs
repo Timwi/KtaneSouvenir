@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
@@ -11,7 +11,7 @@ public enum SPrisonBreak
     Prisoner,
 
     [SouvenirQuestion("Where did you start in {0}?", ThreeColumns6Answers)]
-    [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), new object[] { 'A', 'L' }, typeof(AnswerGenerator.Integers), new object[] { 1, 12 })]
+    [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), ['A', 'L'], typeof(AnswerGenerator.Integers), [1, 12])]
     Defuser
 }
 

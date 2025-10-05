@@ -14004,12 +14004,26 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the colour of this cell in {0}? (+ sprite)
                     // Example: What was the colour of this cell in Suits and Colours? (+ sprite)
                     Question = "What was the colour of this cell in {0}?",
+                    Answers = new()
+                    {
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["orange"] = "orange",
+                        ["red"] = "red",
+                    },
                 },
                 [SSuitsAndColours.Suit] = new()
                 {
                     // English: What was the suit of this cell in {0}? (+ sprite)
                     // Example: What was the suit of this cell in Suits and Colours? (+ sprite)
                     Question = "What was the suit of this cell in {0}?",
+                    Answers = new()
+                    {
+                        ["spades"] = "spades",
+                        ["hearts"] = "hearts",
+                        ["clubs"] = "clubs",
+                        ["diamonds"] = "diamonds",
+                    },
                 },
             },
         },
