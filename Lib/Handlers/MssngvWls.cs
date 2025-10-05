@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMssngvWls
 {
-    [SouvenirQuestion("Which vowel was missing in {0}?", TwoColumns4Answers, "A", "E", "I", "O", "U", Arguments = ["AEIOU"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [SouvenirQuestion("Which vowel was missing in {0}?", TwoColumns4Answers, "A", "E", "I", "O", "U", Arguments = ["AEIOU"], ArgumentGroupSize = 1, TranslateArguments = [true], ReferenceDocumentation = true)]
     [MssNgvWlsGimmick]
     MssNgvwL
 }

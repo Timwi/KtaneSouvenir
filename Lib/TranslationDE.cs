@@ -50,6 +50,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
     protected override Dictionary<Type, TranslationInfo_de> _translations => new()
     {
         #region Translatable strings
+        // 0
         [typeof(S0)] = new()
         {
             Questions = new()
@@ -62,6 +63,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 1000 Words
         [typeof(S1000Words)] = new()
         {
             ModuleName = "1000 Wörter",
@@ -87,6 +89,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 100 Levels of Defusal
         [typeof(S100LevelsOfDefusal)] = new()
         {
             ModuleName = "100 Ebenen der Entschärfung",
@@ -111,6 +114,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The 1, 2, 3 Game
         [typeof(S123Game)] = new()
         {
             Questions = new()
@@ -128,6 +132,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 1D Chess
         [typeof(S1DChess)] = new()
         {
             ModuleName = "1D-Schach",
@@ -189,6 +194,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 21
         [typeof(S21)] = new()
         {
             Questions = new()
@@ -201,6 +207,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 3D Maze
         [typeof(S3DMaze)] = new()
         {
             ModuleName = "3D-Labyrinth",
@@ -248,6 +255,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 3D Tap Code
         [typeof(S3DTapCode)] = new()
         {
             ModuleName = "3D-Klopfzeichen",
@@ -262,6 +270,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 3D Tunnels
         [typeof(S3DTunnels)] = new()
         {
             ModuleName = "3D-Tunnel",
@@ -278,6 +287,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 3 LEDs
         [typeof(S3LEDs)] = new()
         {
             Questions = new()
@@ -301,6 +311,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 3N+1
         [typeof(S3NPlus1)] = new()
         {
             Questions = new()
@@ -313,6 +324,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 4D Tunnels
         [typeof(S4DTunnels)] = new()
         {
             ModuleName = "4D-Tunnel",
@@ -329,6 +341,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 64
         [typeof(S64)] = new()
         {
             Questions = new()
@@ -341,6 +354,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 7
         [typeof(S7)] = new()
         {
             Gender = Gender.Feminine,
@@ -402,6 +416,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 9-Ball
         [typeof(S9Ball)] = new()
         {
             Questions = new()
@@ -421,6 +436,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Abyss
         [typeof(SAbyss)] = new()
         {
             Questions = new()
@@ -434,6 +450,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Accumulation
         [typeof(SAccumulation)] = new()
         {
             ModuleName = "Akkumulator",
@@ -521,6 +538,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Adventure Game
         [typeof(SAdventureGame)] = new()
         {
             Questions = new()
@@ -554,6 +572,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Affine Cycle
         [typeof(SAffineCycle)] = new()
         {
             ModuleName = "Affine Schiffer",
@@ -585,6 +604,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Alcoholic Rampage
         [typeof(SAlcoholicRampage)] = new()
         {
             ModuleName = "Amoksauf",
@@ -600,6 +620,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // A Letter
         [typeof(SALetter)] = new()
         {
             ModuleName = "A Buachstob",
@@ -613,6 +634,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Alfa-Bravo
         [typeof(SAlfaBravo)] = new()
         {
             Questions = new()
@@ -640,6 +662,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Algebra
         [typeof(SAlgebra)] = new()
         {
             Questions = new()
@@ -657,6 +680,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Algorithmia
         [typeof(SAlgorithmia)] = new()
         {
             Questions = new()
@@ -685,6 +709,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Alphabetical Ruling
         [typeof(SAlphabeticalRuling)] = new()
         {
             Questions = new()
@@ -704,6 +729,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Alphabet Numbers
         [typeof(SAlphabetNumbers)] = new()
         {
             Questions = new()
@@ -717,6 +743,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Alphabet Tiles
         [typeof(SAlphabetTiles)] = new()
         {
             ModuleName = "Alphabet-Kacheln",
@@ -752,6 +779,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Alpha-Bits
         [typeof(SAlphaBits)] = new()
         {
             Questions = new()
@@ -770,6 +798,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // A Message
         [typeof(SAMessage)] = new()
         {
             ModuleName = "A Nachricht",
@@ -784,6 +813,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Amusement Parks
         [typeof(SAmusementParks)] = new()
         {
             ModuleName = "Freizeitparks",
@@ -798,6 +828,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Ángel Hernández
         [typeof(SAngelHernandez)] = new()
         {
             Questions = new()
@@ -811,6 +842,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Arena
         [typeof(SArena)] = new()
         {
             ModuleName = "Die Arena",
@@ -836,6 +868,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Arithmelogic
         [typeof(SArithmelogic)] = new()
         {
             ModuleName = "Arithmologik",
@@ -861,6 +894,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // ASCII Maze
         [typeof(SASCIIMaze)] = new()
         {
             ModuleName = "ASCII-Labyrinth",
@@ -875,6 +909,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // A Square
         [typeof(SASquare)] = new()
         {
             ModuleName = "A Quadrat",
@@ -894,6 +929,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Audio Morse
         [typeof(SAudioMorse)] = new()
         {
             ModuleName = "Audio-Morse",
@@ -907,6 +943,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Azure Button
         [typeof(SAzureButton)] = new()
         {
             ModuleName = "Der Azurfarbene Knopf",
@@ -992,6 +1029,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bakery
         [typeof(SBakery)] = new()
         {
             ModuleName = "Bäckerei",
@@ -1005,6 +1043,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bamboozled Again
         [typeof(SBamboozledAgain)] = new()
         {
             ModuleName = "Wieder Übers Ohr Gehauen",
@@ -1078,6 +1117,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bamboozling Button
         [typeof(SBamboozlingButton)] = new()
         {
             ModuleName = "Wieder Übern Knopf Gehauen",
@@ -1151,6 +1191,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bar Charts
         [typeof(SBarCharts)] = new()
         {
             ModuleName = "Balkendiagramme",
@@ -1203,6 +1244,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Barcode Cipher
         [typeof(SBarcodeCipher)] = new()
         {
             Questions = new()
@@ -1238,6 +1280,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bartending
         [typeof(SBartending)] = new()
         {
             ModuleName = "Bartender",
@@ -1261,6 +1304,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Beans
         [typeof(SBeans)] = new()
         {
             ModuleName = "Bohnen",
@@ -1283,6 +1327,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bean Sprouts
         [typeof(SBeanSprouts)] = new()
         {
             ModuleName = "Bohnensprossen",
@@ -1317,6 +1362,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Big Bean
         [typeof(SBigBean)] = new()
         {
             ModuleName = "Großbohne",
@@ -1339,6 +1385,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Big Circle
         [typeof(SBigCircle)] = new()
         {
             ModuleName = "Großer Kreis",
@@ -1365,6 +1412,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Binary
         [typeof(SBinary)] = new()
         {
             ModuleName = "Binär-LEDs",
@@ -1379,6 +1427,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Binary LEDs
         [typeof(SBinaryLEDs)] = new()
         {
             ModuleName = "Binär-LEDs",
@@ -1393,6 +1442,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Binary Shift
         [typeof(SBinaryShift)] = new()
         {
             Questions = new()
@@ -1454,6 +1504,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bitmaps
         [typeof(SBitmaps)] = new()
         {
             Questions = new()
@@ -1466,16 +1517,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Arguments = new()
                     {
                         ["white"] = "weiß",
+                        ["black"] = "schwarz",
                         ["top left"] = "oberen linken",
                         ["top right"] = "oberen rechten",
                         ["bottom left"] = "unteren linken",
                         ["bottom right"] = "unteren rechten",
-                        ["black"] = "schwarz",
                     },
                 },
             },
         },
 
+        // Black Cipher
         [typeof(SBlackCipher)] = new()
         {
             ModuleName = "Schwarze Geheimschrift",
@@ -1498,6 +1550,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Blindfolded Yahtzee
         [typeof(SBlindfoldedYahtzee)] = new()
         {
             ModuleName = "Blindes Kniffel",
@@ -1529,6 +1582,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Blind Maze
         [typeof(SBlindMaze)] = new()
         {
             ModuleName = "Blinder Irrgarten",
@@ -1539,6 +1593,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} button in {0}?
                     // Example: What color was the north button in Blind Maze?
                     Question = "Welche Farbe hatte der Knopf gen {1} bei {0}?",
+                    Arguments = new()
+                    {
+                        ["north"] = "Norden",
+                        ["east"] = "Osten",
+                        ["west"] = "Westen",
+                        ["south"] = "Süden",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -1546,13 +1607,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Blue"] = "Blau",
                         ["Gray"] = "Grau",
                         ["Yellow"] = "Gelb",
-                    },
-                    Arguments = new()
-                    {
-                        ["north"] = "Norden",
-                        ["east"] = "Osten",
-                        ["west"] = "Westen",
-                        ["south"] = "Süden",
                     },
                 },
                 [SBlindMaze.Maze] = new()
@@ -1563,6 +1617,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Blinking Notes
         [typeof(SBlinkingNotes)] = new()
         {
             ModuleName = "Blinkende Noten",
@@ -1578,6 +1633,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Blinkstop
         [typeof(SBlinkstop)] = new()
         {
             Questions = new()
@@ -1602,6 +1658,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Blockbusters
         [typeof(SBlockbusters)] = new()
         {
             Questions = new()
@@ -1614,6 +1671,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Blue Arrows
         [typeof(SBlueArrows)] = new()
         {
             ModuleName = "Blaue Pfeile",
@@ -1627,6 +1685,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Blue Button
         [typeof(SBlueButton)] = new()
         {
             ModuleName = "Der Blaue Knopf",
@@ -1705,6 +1764,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Blue Cipher
         [typeof(SBlueCipher)] = new()
         {
             ModuleName = "Blaue Geheimschrift",
@@ -1727,6 +1787,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bob Barks
         [typeof(SBobBarks)] = new()
         {
             Questions = new()
@@ -1760,6 +1821,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Boggle
         [typeof(SBoggle)] = new()
         {
             Questions = new()
@@ -1772,6 +1834,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bomb Diffusal
         [typeof(SBombDiffusal)] = new()
         {
             Questions = new()
@@ -1784,6 +1847,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bone Apple Tea
         [typeof(SBoneAppleTea)] = new()
         {
             ModuleName = "Bonner Partie",
@@ -1798,6 +1862,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Boob Tube
         [typeof(SBoobTube)] = new()
         {
             Questions = new()
@@ -1810,6 +1875,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Book of Mario
         [typeof(SBookOfMario)] = new()
         {
             Questions = new()
@@ -1829,6 +1895,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Boolean Wires
         [typeof(SBooleanWires)] = new()
         {
             ModuleName = "Boolesche Drähte",
@@ -1843,6 +1910,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Boomtar the Great
         [typeof(SBoomtarTheGreat)] = new()
         {
             ModuleName = "Boomtar der Große",
@@ -1863,6 +1931,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bordered Keys
         [typeof(SBorderedKeys)] = new()
         {
             Questions = new()
@@ -1927,6 +1996,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bottom Gear
         [typeof(SBottomGear)] = new()
         {
             Questions = new()
@@ -1939,6 +2009,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Boxing
         [typeof(SBoxing)] = new()
         {
             Questions = new()
@@ -1978,6 +2049,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Braille
         [typeof(SBraille)] = new()
         {
             ModuleName = "Blindenschrift",
@@ -1992,6 +2064,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Breakfast Egg
         [typeof(SBreakfastEgg)] = new()
         {
             ModuleName = "Frühstücksei",
@@ -2015,6 +2088,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Broken Buttons
         [typeof(SBrokenButtons)] = new()
         {
             ModuleName = "Kaputte Knöpfe",
@@ -2031,6 +2105,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Broken Guitar Chords
         [typeof(SBrokenGuitarChords)] = new()
         {
             ModuleName = "Kaputte Gitarrenakkorde",
@@ -2051,6 +2126,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Brown Cipher
         [typeof(SBrownCipher)] = new()
         {
             ModuleName = "Braune Geheimschrift",
@@ -2073,6 +2149,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Brush Strokes
         [typeof(SBrushStrokes)] = new()
         {
             ModuleName = "Pinselstriche",
@@ -2106,6 +2183,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Bulb
         [typeof(SBulb)] = new()
         {
             ModuleName = "Die Glühlampe",
@@ -2126,6 +2204,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Burger Alarm
         [typeof(SBurgerAlarm)] = new()
         {
             ModuleName = "Alarmbeilage",
@@ -2147,6 +2226,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Burglar Alarm
         [typeof(SBurglarAlarm)] = new()
         {
             ModuleName = "Alarmanlage",
@@ -2162,6 +2242,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Button
         [typeof(SButton)] = new()
         {
             ModuleName = "Der Knopf",
@@ -2184,6 +2265,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Buttonage
         [typeof(SButtonage)] = new()
         {
             ModuleName = "Knopferei",
@@ -2215,6 +2297,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Button Sequence
         [typeof(SButtonSequence)] = new()
         {
             ModuleName = "Knopffolgen",
@@ -2237,6 +2320,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cacti’s Conundrum
         [typeof(SCactisConundrum)] = new()
         {
             ModuleName = "Kakteen-Zwickmühle",
@@ -2259,6 +2343,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Caesar Cycle
         [typeof(SCaesarCycle)] = new()
         {
             ModuleName = "Cäsar-Schiffer",
@@ -2289,6 +2374,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Caesar Psycho
         [typeof(SCaesarPsycho)] = new()
         {
             ModuleName = "Cäsar-Psycho",
@@ -2309,6 +2395,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Caesar's Maths
         [typeof(SCaesarsMaths)] = new()
         {
             ModuleName = "Cäsars Mathe",
@@ -2330,6 +2417,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Calendar
         [typeof(SCalendar)] = new()
         {
             ModuleName = "Kalender",
@@ -2350,6 +2438,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // CA-RPS
         [typeof(SCARPS)] = new()
         {
             Questions = new()
@@ -2369,6 +2458,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cartinese
         [typeof(SCartinese)] = new()
         {
             ModuleName = "Cartinesisch",
@@ -2379,19 +2469,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} button in {0}?
                     // Example: What color was the up button in Cartinese?
                     Question = "Welche Farbe hatte bei {0} die {1}?",
-                    Answers = new()
-                    {
-                        ["Red"] = "Rot",
-                        ["Yellow"] = "Gelb",
-                        ["Green"] = "Grün",
-                        ["Blue"] = "Blau",
-                    },
                     Arguments = new()
                     {
                         ["up"] = "Hoch-Taste",
                         ["right"] = "Rechts-Taste",
                         ["down"] = "Runter-Taste",
                         ["left"] = "Links-Taste",
+                    },
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
                     },
                 },
                 [SCartinese.Lyrics] = new()
@@ -2410,6 +2500,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Catchphrase
         [typeof(SCatchphrase)] = new()
         {
             Questions = new()
@@ -2419,6 +2510,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the colour of the {1} panel in {0}?
                     // Example: What was the colour of the top-left panel in Catchphrase?
                     Question = "Welche Farbe hatte bei {0} die {1} Tafel?",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "obere linke",
+                        ["top-right"] = "obere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -2428,17 +2526,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Purple"] = "Lila",
                         ["Yellow"] = "Gelb",
                     },
-                    Arguments = new()
-                    {
-                        ["top-left"] = "obere linke",
-                        ["top-right"] = "obere rechte",
-                        ["bottom-left"] = "untere linke",
-                        ["bottom-right"] = "untere rechte",
-                    },
                 },
             },
         },
 
+        // Challenge & Contact
         [typeof(SChallengeAndContact)] = new()
         {
             Questions = new()
@@ -2452,6 +2544,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Character Codes
         [typeof(SCharacterCodes)] = new()
         {
             ModuleName = "Zeichencodes",
@@ -2467,6 +2560,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Character Shift
         [typeof(SCharacterShift)] = new()
         {
             ModuleName = "Zeichenschieber",
@@ -2486,6 +2580,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Character Slots
         [typeof(SCharacterSlots)] = new()
         {
             ModuleName = "Figurenkabinett",
@@ -2500,6 +2595,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cheap Checkout
         [typeof(SCheapCheckout)] = new()
         {
             ModuleName = "Klingelkasse",
@@ -2521,6 +2617,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cheat Checkout
         [typeof(SCheatCheckout)] = new()
         {
             ModuleName = "Schlingelkasse",
@@ -2547,6 +2644,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cheep Checkout
         [typeof(SCheepCheckout)] = new()
         {
             ModuleName = "Zwitscherkasse",
@@ -2558,6 +2656,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which bird {1} present in {0}?
                     // Example: Which bird was present in Cheep Checkout?
                     Question = "Welcher Vogel war bei {0} {1}?",
+                    Arguments = new()
+                    {
+                        ["was"] = "zu sehen",
+                        ["was not"] = "nicht zu sehen",
+                    },
                     Answers = new()
                     {
                         ["Auklet"] = "Alk",
@@ -2587,15 +2690,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Yellowlegs"] = "Yukon-Gelbschenkel",
                         ["Zigzag Heron"] = "Zickzackreiher",
                     },
-                    Arguments = new()
-                    {
-                        ["was"] = "zu sehen",
-                        ["was not"] = "nicht zu sehen",
-                    },
                 },
             },
         },
 
+        // Chess
         [typeof(SChess)] = new()
         {
             ModuleName = "Schach",
@@ -2610,6 +2709,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Chinese Counting
         [typeof(SChineseCounting)] = new()
         {
             ModuleName = "Chinesisch Zählen",
@@ -2620,6 +2720,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the left LED in Chinese Counting?
                     Question = "Welche Farbe hatte bei {0} die {1} LED?",
+                    Arguments = new()
+                    {
+                        ["left"] = "linke",
+                        ["right"] = "rechte",
+                    },
                     Answers = new()
                     {
                         ["White"] = "Weiß",
@@ -2627,15 +2732,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Green"] = "Grün",
                         ["Orange"] = "Orange",
                     },
-                    Arguments = new()
-                    {
-                        ["left"] = "linke",
-                        ["right"] = "rechte",
-                    },
                 },
             },
         },
 
+        // Chinese Remainder Theorem
         [typeof(SChineseRemainderTheorem)] = new()
         {
             ModuleName = "Chinesischer Restsatz",
@@ -2651,6 +2752,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Chord Qualities
         [typeof(SChordQualities)] = new()
         {
             ModuleName = "Akkordqualität",
@@ -2665,6 +2767,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // ↻↺
         [typeof(SClockCounter)] = new()
         {
             Questions = new()
@@ -2677,6 +2780,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Code
         [typeof(SCode)] = new()
         {
             ModuleName = "Der Code",
@@ -2692,6 +2796,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Codenames
         [typeof(SCodenames)] = new()
         {
             Questions = new()
@@ -2704,6 +2809,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Coffee Beans
         [typeof(SCoffeeBeans)] = new()
         {
             ModuleName = "Kaffeebohnen",
@@ -2726,6 +2832,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Coffeebucks
         [typeof(SCoffeebucks)] = new()
         {
             Questions = new()
@@ -2738,6 +2845,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Coinage
         [typeof(SCoinage)] = new()
         {
             ModuleName = "Münzerei",
@@ -2752,6 +2860,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Color Addition
         [typeof(SColorAddition)] = new()
         {
             Questions = new()
@@ -2771,6 +2880,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Color Braille
         [typeof(SColorBraille)] = new()
         {
             ModuleName = "Farbbraille",
@@ -2795,6 +2905,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Color Decoding
         [typeof(SColorDecoding)] = new()
         {
             ModuleName = "Farbdekodierung",
@@ -2806,6 +2917,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which color {1} in the {2}-stage indicator pattern in {0}?
                     // Example: Which color appeared in the first-stage indicator pattern in Color Decoding?
                     Question = "Welche Farbe kam bei {0} im Indikatormuster der {2}en Stufe {1}?",
+                    Arguments = new()
+                    {
+                        ["appeared"] = "vor",
+                        ["did not appear"] = "nicht vor",
+                    },
                     Answers = new()
                     {
                         ["Green"] = "Grün",
@@ -2813,11 +2929,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Red"] = "Rot",
                         ["Blue"] = "Blau",
                         ["Yellow"] = "Gelb",
-                    },
-                    Arguments = new()
-                    {
-                        ["appeared"] = "vor",
-                        ["did not appear"] = "nicht vor",
                     },
                 },
                 [SColorDecoding.IndicatorPattern] = new()
@@ -2836,6 +2947,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Colored Keys
         [typeof(SColoredKeys)] = new()
         {
             ModuleName = "Gefärbte Tasten",
@@ -2889,6 +3001,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} key in {0}?
                     // Example: What was the color of the top-left key in Colored Keys?
                     Question = "Welche Farbe hatte bei {0} die {1} Taste?",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "obere linke",
+                        ["top-right"] = "obere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
+                    },
                     Answers = new()
                     {
                         ["red"] = "rot",
@@ -2898,17 +3017,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["purple"] = "lila",
                         ["white"] = "weiß",
                     },
-                    Arguments = new()
-                    {
-                        ["top-left"] = "obere linke",
-                        ["top-right"] = "obere rechte",
-                        ["bottom-left"] = "untere linke",
-                        ["bottom-right"] = "untere rechte",
-                    },
                 },
             },
         },
 
+        // Colored Squares
         [typeof(SColoredSquares)] = new()
         {
             ModuleName = "Gefärbte Felder",
@@ -2933,6 +3046,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Colored Switches
         [typeof(SColoredSwitches)] = new()
         {
             ModuleName = "Gefärbte Schalter",
@@ -2953,6 +3067,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Color Morse
         [typeof(SColorMorse)] = new()
         {
             ModuleName = "Gefärbte Morsezeichen",
@@ -2985,6 +3100,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Color One Two
         [typeof(SColorOneTwo)] = new()
         {
             Questions = new()
@@ -2994,6 +3110,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the left LED in Color One Two?
                     Question = "Welche Farbe hatte bei {0} die {1} LED?",
+                    Arguments = new()
+                    {
+                        ["left"] = "linke",
+                        ["right"] = "rechte",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -3001,15 +3122,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Green"] = "Grün",
                         ["Yellow"] = "Gelb",
                     },
-                    Arguments = new()
-                    {
-                        ["left"] = "linke",
-                        ["right"] = "rechte",
-                    },
                 },
             },
         },
 
+        // Colors Maximization
         [typeof(SColorsMaximization)] = new()
         {
             ModuleName = "Farbmaximierung",
@@ -3031,6 +3148,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Coloured Cubes
         [typeof(SColouredCubes)] = new()
         {
             ModuleName = "Gefärbte Würfel",
@@ -3043,6 +3161,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the colour of this {1} in the {2} stage of {0}? (+ sprite)
                     // Example: What was the colour of this cube in the first stage of Coloured Cubes? (+ sprite)
                     Question = "Welche Farbe hatte {1} bei {0} in der {2}en Stufe?",
+                    Arguments = new()
+                    {
+                        ["cube"] = "dieser Würfel",
+                        ["stage light"] = "dieser Stufenindikator",
+                    },
                     Answers = new()
                     {
                         ["Black"] = "Schwarz",
@@ -3073,15 +3196,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Cream"] = "Cremegelb",
                         ["White"] = "Weiß",
                     },
-                    Arguments = new()
-                    {
-                        ["cube"] = "dieser Würfel",
-                        ["stage light"] = "dieser Stufenindikator",
-                    },
                 },
             },
         },
 
+        // Coloured Cylinder
         [typeof(SColouredCylinder)] = new()
         {
             ModuleName = "Gefärbter Zylinder",
@@ -3108,6 +3227,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Colour Flash
         [typeof(SColourFlash)] = new()
         {
             ModuleName = "Gefärbte Folge",
@@ -3132,6 +3252,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Concentration
         [typeof(SConcentration)] = new()
         {
             ModuleName = "Konzentrationsspiel",
@@ -3155,6 +3276,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Conditional Buttons
         [typeof(SConditionalButtons)] = new()
         {
             ModuleName = "Bedingte Knöpfe",
@@ -3183,6 +3305,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Connected Monitors
         [typeof(SConnectedMonitors)] = new()
         {
             ModuleName = "Verbundene Monitore",
@@ -3227,6 +3350,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Connection Check
         [typeof(SConnectionCheck)] = new()
         {
             ModuleName = "Verbindungsprüfung",
@@ -3274,6 +3398,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Coordinates
         [typeof(SCoordinates)] = new()
         {
             ModuleName = "Koordinaten",
@@ -3293,6 +3418,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Coordination
         [typeof(SCoordination)] = new()
         {
             ModuleName = "Koordinierung",
@@ -3312,6 +3438,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Coral Cipher
         [typeof(SCoralCipher)] = new()
         {
             ModuleName = "Korall-Geheimschrift",
@@ -3333,6 +3460,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Corners
         [typeof(SCorners)] = new()
         {
             ModuleName = "Ecken",
@@ -3344,19 +3472,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} corner in {0}?
                     // Example: What was the color of the top-left corner in Corners?
                     Question = "Welche Farbe hatte bei {0} die {1}e Ecke?",
-                    Answers = new()
-                    {
-                        ["red"] = "rot",
-                        ["green"] = "grün",
-                        ["blue"] = "blau",
-                        ["yellow"] = "gelb",
-                    },
                     Arguments = new()
                     {
                         ["top-left"] = "obere linke",
                         ["top-right"] = "obere rechte",
                         ["bottom-right"] = "untere rechte",
                         ["bottom-left"] = "untere linke",
+                    },
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
                     },
                 },
                 [SCorners.ColorCount] = new()
@@ -3375,6 +3503,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cornflower Cipher
         [typeof(SCornflowerCipher)] = new()
         {
             ModuleName = "Kornblumen-Geheimschrift",
@@ -3396,6 +3525,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cosmic
         [typeof(SCosmic)] = new()
         {
             ModuleName = "Kosmik",
@@ -3409,6 +3539,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Crazy Hamburger
         [typeof(SCrazyHamburger)] = new()
         {
             ModuleName = "Verrückter Hamburger",
@@ -3425,6 +3556,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Crazy Maze
         [typeof(SCrazyMaze)] = new()
         {
             ModuleName = "Verrückter Irrgarten",
@@ -3446,6 +3578,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cream Cipher
         [typeof(SCreamCipher)] = new()
         {
             ModuleName = "Creme-Geheimschrift",
@@ -3467,6 +3600,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Creation
         [typeof(SCreation)] = new()
         {
             ModuleName = "Schöpfung",
@@ -3489,6 +3623,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Crimson Cipher
         [typeof(SCrimsonCipher)] = new()
         {
             ModuleName = "Karmin-Geheimschrift",
@@ -3510,6 +3645,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Critters
         [typeof(SCritters)] = new()
         {
             ModuleName = "Kriechtiere",
@@ -3532,6 +3668,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cruel Binary
         [typeof(SCruelBinary)] = new()
         {
             ModuleName = "Höllisches Binärsystem",
@@ -3546,6 +3683,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cruel Keypads
         [typeof(SCruelKeypads)] = new()
         {
             ModuleName = "Höllische Tastenfelder",
@@ -3577,6 +3715,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The cRule
         [typeof(SCRule)] = new()
         {
             ModuleName = "Die CRegel",
@@ -3608,6 +3747,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cryptic Cycle
         [typeof(SCrypticCycle)] = new()
         {
             ModuleName = "Kryptische Schiffer",
@@ -3639,6 +3779,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cryptic Keypad
         [typeof(SCrypticKeypad)] = new()
         {
             ModuleName = "Kryptisches Tastenfeld",
@@ -3663,13 +3804,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which cardinal direction was the {1} key rotated to in {0}?
                     // Example: Which cardinal direction was the top-left key rotated to in Cryptic Keypad?
                     Question = "In welche Himmelsrichtung wurde bei {0} die {1} Taste gedreht?",
-                    Answers = new()
-                    {
-                        ["North"] = "Norden",
-                        ["East"] = "Osten",
-                        ["South"] = "Süden",
-                        ["West"] = "Westen",
-                    },
                     Arguments = new()
                     {
                         ["top-left"] = "obere linke",
@@ -3677,10 +3811,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["bottom-left"] = "untere linke",
                         ["bottom-right"] = "untere rechte",
                     },
+                    Answers = new()
+                    {
+                        ["North"] = "Norden",
+                        ["East"] = "Osten",
+                        ["South"] = "Süden",
+                        ["West"] = "Westen",
+                    },
                 },
             },
         },
 
+        // The Cube
         [typeof(SCube)] = new()
         {
             ModuleName = "Der Würfel",
@@ -3706,6 +3848,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cursed Double-Oh
         [typeof(SCursedDoubleOh)] = new()
         {
             ModuleName = "Verfluchte Doppel-Null",
@@ -3721,6 +3864,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Customer Identification
         [typeof(SCustomerIdentification)] = new()
         {
             ModuleName = "Kundenidentifikation",
@@ -3736,6 +3880,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Cyan Button
         [typeof(SCyanButton)] = new()
         {
             ModuleName = "Der Türkise Knopf",
@@ -3761,6 +3906,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // DACH Maze
         [typeof(SDACHMaze)] = new()
         {
             ModuleName = "DACH-Irrgarten",
@@ -3831,6 +3977,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Deaf Alley
         [typeof(SDeafAlley)] = new()
         {
             ModuleName = "Taube Gasse",
@@ -3846,6 +3993,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Deck of Many Things
         [typeof(SDeckOfManyThings)] = new()
         {
             ModuleName = "Der Stapel Vieler Dinge",
@@ -3871,6 +4019,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Decolored Squares
         [typeof(SDecoloredSquares)] = new()
         {
             ModuleName = "Entfärbte Felder",
@@ -3883,6 +4032,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the starting {1} defining color in {0}?
                     // Example: What was the starting column defining color in Decolored Squares?
                     Question = "Welche Farbe hat bei {0} die {1} bestimmt?",
+                    Arguments = new()
+                    {
+                        ["column"] = "Spalte",
+                        ["row"] = "Reihe",
+                    },
                     Answers = new()
                     {
                         ["White"] = "Weiß",
@@ -3892,15 +4046,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Yellow"] = "Gelb",
                         ["Magenta"] = "Magenta",
                     },
-                    Arguments = new()
-                    {
-                        ["column"] = "Spalte",
-                        ["row"] = "Reihe",
-                    },
                 },
             },
         },
 
+        // Decolour Flash
         [typeof(SDecolourFlash)] = new()
         {
             ModuleName = "Entfärbte Folge",
@@ -3913,6 +4063,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} of the {2} goal in {0}?
                     // Example: What was the colour of the first goal in Decolour Flash?
                     Question = "Was war bei {0} {1} vom {2}en Ziel?",
+                    Arguments = new()
+                    {
+                        ["colour"] = "die Farbe",
+                        ["word"] = "das Wort",
+                    },
                     Answers = new()
                     {
                         ["Blue"] = "Blau",
@@ -3922,15 +4077,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Yellow"] = "Gelb",
                         ["White"] = "Weiß",
                     },
-                    Arguments = new()
-                    {
-                        ["colour"] = "die Farbe",
-                        ["word"] = "das Wort",
-                    },
                 },
             },
         },
 
+        // Denial Displays
         [typeof(SDenialDisplays)] = new()
         {
             ModuleName = "Dementi-Displays",
@@ -3946,6 +4097,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // DetoNATO
         [typeof(SDetoNATO)] = new()
         {
             Questions = new()
@@ -3959,6 +4111,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Devilish Eggs
         [typeof(SDevilishEggs)] = new()
         {
             ModuleName = "Teufelseier",
@@ -3992,6 +4145,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Dialtones
         [typeof(SDialtones)] = new()
         {
             ModuleName = "Freizeichen",
@@ -4006,6 +4160,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Digisibility
         [typeof(SDigisibility)] = new()
         {
             Questions = new()
@@ -4019,6 +4174,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Digit String
         [typeof(SDigitString)] = new()
         {
             Questions = new()
@@ -4031,6 +4187,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Dimension Disruption
         [typeof(SDimensionDisruption)] = new()
         {
             ModuleName = "Dimensionsspaltung",
@@ -4044,6 +4201,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Directional Button
         [typeof(SDirectionalButton)] = new()
         {
             ModuleName = "Richtungsknopf",
@@ -4058,6 +4216,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Discolored Squares
         [typeof(SDiscoloredSquares)] = new()
         {
             ModuleName = "Verfärbte Felder",
@@ -4082,6 +4241,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Disordered Keys
         [typeof(SDisorderedKeys)] = new()
         {
             Questions = new()
@@ -4173,6 +4333,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Divided Squares
         [typeof(SDividedSquares)] = new()
         {
             ModuleName = "Geteilte Kacheln",
@@ -4185,6 +4346,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was {1} while pressing it in {0}?
                     // Example: What color was the square while pressing it in Divided Squares?
                     Question = "Welche Farbe hatte bei {0} die {1} beim Gedrückthalten?",
+                    Arguments = new()
+                    {
+                        ["the square"] = "Kachel",
+                        ["the correct square"] = "korrekte Kachel",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -4194,15 +4360,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Black"] = "Schwarz",
                         ["White"] = "Weiß",
                     },
-                    Arguments = new()
-                    {
-                        ["the square"] = "Kachel",
-                        ["the correct square"] = "korrekte Kachel",
-                    },
                 },
             },
         },
 
+        // Divisible Numbers
         [typeof(SDivisibleNumbers)] = new()
         {
             ModuleName = "Teilbare Zahlen",
@@ -4219,6 +4381,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Doofenshmirtz Evil Inc.
         [typeof(SDoofenshmirtzEvilInc)] = new()
         {
             ModuleName = "Doofenshmirtz Gesellschaft mit böswilliger Haftung",
@@ -4238,6 +4401,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Double Arrows
         [typeof(SDoubleArrows)] = new()
         {
             ModuleName = "Doppelpfeile",
@@ -4255,13 +4419,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which direction in the grid did the {1} arrow move in {0}?
                     // Example: Which direction in the grid did the inner up arrow move in Double Arrows?
                     Question = "Welche Bewegungsrichtung im Raster bewirkte bei {0} der {1}?",
-                    Answers = new()
-                    {
-                        ["Up"] = "Hoch",
-                        ["Right"] = "Rechts",
-                        ["Left"] = "Links",
-                        ["Down"] = "Runter",
-                    },
                     Arguments = new()
                     {
                         ["inner up"] = "innere Pfeil nach oben",
@@ -4273,12 +4430,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["outer left"] = "äußere Pfeil nach links",
                         ["outer right"] = "äußere Pfeil nach rechts",
                     },
-                },
-                [SDoubleArrows.Arrow] = new()
-                {
-                    // English: Which {1} arrow moved {2} in the grid in {0}?
-                    // Example: Which inner arrow moved up in the grid in Double Arrows?
-                    Question = "Welcher {1} Pfeil ging bei {0} nach {2}?",
                     Answers = new()
                     {
                         ["Up"] = "Hoch",
@@ -4286,19 +4437,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Left"] = "Links",
                         ["Down"] = "Runter",
                     },
+                },
+                [SDoubleArrows.Arrow] = new()
+                {
+                    // English: Which {1} arrow moved {2} in the grid in {0}?
+                    // Example: Which inner arrow moved up in the grid in Double Arrows?
+                    Question = "Welcher {1} Pfeil ging bei {0} nach {2}?",
                     Arguments = new()
                     {
                         ["inner"] = "innere",
-                        ["up"] = "oben",
                         ["outer"] = "äußere",
+                        ["up"] = "oben",
                         ["down"] = "unten",
                         ["left"] = "links",
                         ["right"] = "rechts",
+                    },
+                    Answers = new()
+                    {
+                        ["Up"] = "Hoch",
+                        ["Right"] = "Rechts",
+                        ["Left"] = "Links",
+                        ["Down"] = "Runter",
                     },
                 },
             },
         },
 
+        // Double Color
         [typeof(SDoubleColor)] = new()
         {
             ModuleName = "Doppelfarben",
@@ -4322,6 +4487,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Double Digits
         [typeof(SDoubleDigits)] = new()
         {
             ModuleName = "Doppelziffern",
@@ -4342,6 +4508,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Double Expert
         [typeof(SDoubleExpert)] = new()
         {
             ModuleName = "Doppelexperte",
@@ -4362,6 +4529,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Double Listening
         [typeof(SDoubleListening)] = new()
         {
             ModuleName = "Doppelt Zuhören",
@@ -4375,6 +4543,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Double-Oh
         [typeof(SDoubleOh)] = new()
         {
             ModuleName = "Doppel-Null",
@@ -4389,6 +4558,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Double Screen
         [typeof(SDoubleScreen)] = new()
         {
             ModuleName = "Doppel-Display",
@@ -4399,6 +4569,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} screen in the {2} stage of {0}?
                     // Example: What color was the top screen in the first stage of Double Screen?
                     Question = "Welche Farbe war bei {0} auf dem {1} Display in der {2}en Stufe?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["bottom"] = "unteren",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -4406,15 +4581,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Green"] = "Grün",
                         ["Blue"] = "Blau",
                     },
-                    Arguments = new()
-                    {
-                        ["top"] = "oberen",
-                        ["bottom"] = "unteren",
-                    },
                 },
             },
         },
 
+        // Dr. Doctor
         [typeof(SDrDoctor)] = new()
         {
             ModuleName = "Arztpraxis",
@@ -4434,6 +4605,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Dreamcipher
         [typeof(SDreamcipher)] = new()
         {
             ModuleName = "Traumschrift",
@@ -4448,6 +4620,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Duck
         [typeof(SDuck)] = new()
         {
             ModuleName = "Die Ente",
@@ -4471,6 +4644,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Dumb Waiters
         [typeof(SDumbWaiters)] = new()
         {
             ModuleName = "Speisenaufzug",
@@ -4491,6 +4665,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Earthbound
         [typeof(SEarthbound)] = new()
         {
             Questions = new()
@@ -4508,6 +4683,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // eeB gnillepS
         [typeof(SEeBgnillepS)] = new()
         {
             Questions = new()
@@ -4520,6 +4696,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Eight
         [typeof(SEight)] = new()
         {
             ModuleName = "Acht",
@@ -4549,6 +4726,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Elder Futhark
         [typeof(SElderFuthark)] = new()
         {
             ModuleName = "Älteres Futhark",
@@ -4564,6 +4742,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Emoji
         [typeof(SEmoji)] = new()
         {
             Questions = new()
@@ -4582,6 +4761,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // ƎNA Cipher
         [typeof(SEnaCipher)] = new()
         {
             ModuleName = "ƎNA-Chiffre",
@@ -4607,6 +4787,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Encrypted Dice
         [typeof(SEncryptedDice)] = new()
         {
             ModuleName = "Verschlüsselte Würfel",
@@ -4623,6 +4804,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Encrypted Equations
         [typeof(SEncryptedEquations)] = new()
         {
             ModuleName = "Verschlüsselte Gleichungen",
@@ -4639,6 +4821,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Encrypted Hangman
         [typeof(SEncryptedHangman)] = new()
         {
             NeedsTranslation = true,
@@ -4667,6 +4850,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Encrypted Maze
         [typeof(SEncryptedMaze)] = new()
         {
             NeedsTranslation = true,
@@ -4686,6 +4870,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Encrypted Morse
         [typeof(SEncryptedMorse)] = new()
         {
             NeedsTranslation = true,
@@ -4705,6 +4890,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Encryption Bingo
         [typeof(SEncryptionBingo)] = new()
         {
             NeedsTranslation = true,
@@ -4740,6 +4926,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // English Entries
         [typeof(SEnglishEntries)] = new()
         {
             NeedsTranslation = true,
@@ -4753,6 +4940,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Enigma Cycle
         [typeof(SEnigmaCycle)] = new()
         {
             ModuleName = "Enigma-Schiffer",
@@ -4795,6 +4983,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Entry Number Four
         [typeof(SEntryNumberFour)] = new()
         {
             NeedsTranslation = true,
@@ -4809,6 +4998,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Entry Number One
         [typeof(SEntryNumberOne)] = new()
         {
             NeedsTranslation = true,
@@ -4823,6 +5013,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Equations X
         [typeof(SEquationsX)] = new()
         {
             NeedsTranslation = true,
@@ -4836,6 +5027,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Error Codes
         [typeof(SErrorCodes)] = new()
         {
             NeedsTranslation = true,
@@ -4849,6 +5041,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Etterna
         [typeof(SEtterna)] = new()
         {
             NeedsTranslation = true,
@@ -4863,6 +5056,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Exoplanets
         [typeof(SExoplanets)] = new()
         {
             NeedsTranslation = true,
@@ -4905,6 +5099,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Factoring Maze
         [typeof(SFactoringMaze)] = new()
         {
             NeedsTranslation = true,
@@ -4918,6 +5113,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Factory Maze
         [typeof(SFactoryMaze)] = new()
         {
             NeedsTranslation = true,
@@ -4931,6 +5127,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Faerie Fires
         [typeof(SFaerieFires)] = new()
         {
             NeedsTranslation = true,
@@ -4975,6 +5172,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Fast Math
         [typeof(SFastMath)] = new()
         {
             ModuleName = "Mathe in Zeitraffer",
@@ -4989,6 +5187,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Fast Playfair Cipher
         [typeof(SFastPlayfairCipher)] = new()
         {
             NeedsTranslation = true,
@@ -5002,6 +5201,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Faulty Buttons
         [typeof(SFaultyButtons)] = new()
         {
             NeedsTranslation = true,
@@ -5022,6 +5222,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Faulty RGB Maze
         [typeof(SFaultyRGBMaze)] = new()
         {
             NeedsTranslation = true,
@@ -5059,6 +5260,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Find The Date
         [typeof(SFindTheDate)] = new()
         {
             NeedsTranslation = true,
@@ -5085,6 +5287,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Five Letter Words
         [typeof(SFiveLetterWords)] = new()
         {
             NeedsTranslation = true,
@@ -5098,6 +5301,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // FizzBuzz
         [typeof(SFizzBuzz)] = new()
         {
             NeedsTranslation = true,
@@ -5118,6 +5322,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Flags
         [typeof(SFlags)] = new()
         {
             NeedsTranslation = true,
@@ -5141,6 +5346,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Flashing Arrows
         [typeof(SFlashingArrows)] = new()
         {
             NeedsTranslation = true,
@@ -5156,6 +5362,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color flashed {1} black on the relevant arrow in {0}?
                     // Example: What color flashed before black on the relevant arrow in Flashing Arrows?
                     Question = "What color flashed {1} black on the relevant arrow in {0}?",
+                    Arguments = new()
+                    {
+                        ["before"] = "before",
+                        ["after"] = "after",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -5166,15 +5377,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Purple"] = "Purple",
                         ["White"] = "White",
                     },
-                    Arguments = new()
-                    {
-                        ["before"] = "before",
-                        ["after"] = "after",
-                    },
                 },
             },
         },
 
+        // Flashing Lights
         [typeof(SFlashingLights)] = new()
         {
             NeedsTranslation = true,
@@ -5188,17 +5395,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Arguments = new()
                     {
                         ["top"] = "top",
+                        ["bottom"] = "bottom",
                         ["cyan"] = "cyan",
                         ["green"] = "green",
                         ["red"] = "red",
                         ["purple"] = "purple",
                         ["orange"] = "orange",
-                        ["bottom"] = "bottom",
                     },
                 },
             },
         },
 
+        // Flavor Text
         [typeof(SFlavorText)] = new()
         {
             NeedsTranslation = true,
@@ -5212,6 +5420,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Flavor Text EX
         [typeof(SFlavorTextEX)] = new()
         {
             NeedsTranslation = true,
@@ -5226,6 +5435,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Flyswatting
         [typeof(SFlyswatting)] = new()
         {
             NeedsTranslation = true,
@@ -5239,6 +5449,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Follow Me
         [typeof(SFollowMe)] = new()
         {
             NeedsTranslation = true,
@@ -5260,6 +5471,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forest Cipher
         [typeof(SForestCipher)] = new()
         {
             ModuleName = "Wald-Geheimschrift",
@@ -5281,6 +5493,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forget Any Color
         [typeof(SForgetAnyColor)] = new()
         {
             NeedsTranslation = true,
@@ -5292,6 +5505,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What colors were the cylinders during the {1} stage of {0}?
                     // Example: What colors were the cylinders during the first stage of Forget Any Color?
                     Question = "Was waren bei {0} die Zylinderfarben in der {1}en Stufe?",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["{0}, {1}, {2}"] = "{0}, {1}, {2}",
@@ -5332,6 +5546,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forget Everything
         [typeof(SForgetEverything)] = new()
         {
             ModuleName = "Vergiss Alles",
@@ -5355,6 +5570,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forget Me
         [typeof(SForgetMe)] = new()
         {
             NeedsTranslation = true,
@@ -5381,6 +5597,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forget Me Not
         [typeof(SForgetMeNot)] = new()
         {
             ModuleName = "Vergiss Mein Nicht",
@@ -5404,6 +5621,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forget Me Now
         [typeof(SForgetMeNow)] = new()
         {
             NeedsTranslation = true,
@@ -5418,6 +5636,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forget Our Voices
         [typeof(SForgetOurVoices)] = new()
         {
             NeedsTranslation = true,
@@ -5470,6 +5689,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forget’s Ultimate Showdown
         [typeof(SForgetsUltimateShowdown)] = new()
         {
             NeedsTranslation = true,
@@ -5513,6 +5733,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forget The Colors
         [typeof(SForgetTheColors)] = new()
         {
             NeedsTranslation = true,
@@ -5623,6 +5844,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forget This
         [typeof(SForgetThis)] = new()
         {
             NeedsTranslation = true,
@@ -5677,6 +5899,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Forget Us Not
         [typeof(SForgetUsNot)] = new()
         {
             NeedsTranslation = true,
@@ -5700,6 +5923,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Free Parking
         [typeof(SFreeParking)] = new()
         {
             NeedsTranslation = true,
@@ -5723,6 +5947,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Functions
         [typeof(SFunctions)] = new()
         {
             NeedsTranslation = true,
@@ -5751,6 +5976,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Fuse Box
         [typeof(SFuseBox)] = new()
         {
             ModuleName = "Sicherungskasten",
@@ -5770,6 +5996,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Gadgetron Vendor
         [typeof(SGadgetronVendor)] = new()
         {
             ModuleName = "Gadgetron-Verkäufer",
@@ -5789,6 +6016,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Game of Life Cruel
         [typeof(SGameOfLifeCruel)] = new()
         {
             ModuleName = "Höllisches Spiel des Lebens",
@@ -5803,6 +6031,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Gamepad
         [typeof(SGamepad)] = new()
         {
             Questions = new()
@@ -5815,6 +6044,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Garfield Kart
         [typeof(SGarfieldKart)] = new()
         {
             Questions = new()
@@ -5832,6 +6062,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Garnet Thief
         [typeof(SGarnetThief)] = new()
         {
             ModuleName = "Der Granatdieb",
@@ -5848,6 +6079,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Ghost Movement
         [typeof(SGhostMovement)] = new()
         {
             ModuleName = "Geisterbewegung",
@@ -5863,6 +6095,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Girlfriend
         [typeof(SGirlfriend)] = new()
         {
             NeedsTranslation = true,
@@ -5876,6 +6109,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Glitched Button
         [typeof(SGlitchedButton)] = new()
         {
             NeedsTranslation = true,
@@ -5889,6 +6123,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Goofy’s Game
         [typeof(SGoofysGame)] = new()
         {
             NeedsTranslation = true,
@@ -5909,6 +6144,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Grand Piano
         [typeof(SGrandPiano)] = new()
         {
             ModuleName = "Konzertflügel",
@@ -5929,6 +6165,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Gray Button
         [typeof(SGrayButton)] = new()
         {
             NeedsTranslation = true,
@@ -5948,6 +6185,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Gray Cipher
         [typeof(SGrayCipher)] = new()
         {
             ModuleName = "Graue Geheimschrift",
@@ -5970,6 +6208,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Great Void
         [typeof(SGreatVoid)] = new()
         {
             NeedsTranslation = true,
@@ -6000,6 +6239,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Green Arrows
         [typeof(SGreenArrows)] = new()
         {
             ModuleName = "Grüne Pfeile",
@@ -6014,6 +6254,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Green Button
         [typeof(SGreenButton)] = new()
         {
             ModuleName = "Der Grüne Knopf",
@@ -6029,6 +6270,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Green Cipher
         [typeof(SGreenCipher)] = new()
         {
             ModuleName = "Grüne Geheimschrift",
@@ -6051,6 +6293,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Gridlock
         [typeof(SGridlock)] = new()
         {
             NeedsTranslation = true,
@@ -6081,6 +6324,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Grocery Store
         [typeof(SGroceryStore)] = new()
         {
             NeedsTranslation = true,
@@ -6094,6 +6338,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Gryphons
         [typeof(SGryphons)] = new()
         {
             NeedsTranslation = true,
@@ -6112,6 +6357,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Guess Who?
         [typeof(SGuessWho)] = new()
         {
             ModuleName = "Wer ist es?",
@@ -6122,11 +6368,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Did {1} flash “YES” in {0}?
                     // Example: Did Red flash “YES” in Guess Who??
                     Question = "Ist bei {0} “JA” in {1} vorgekommen?",
-                    Answers = new()
-                    {
-                        ["Yes"] = "Ja",
-                        ["No"] = "Nein",
-                    },
                     Arguments = new()
                     {
                         ["Red"] = "Rot",
@@ -6138,10 +6379,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Cyan"] = "Türkis",
                         ["Pink"] = "Pink",
                     },
+                    Answers = new()
+                    {
+                        ["Yes"] = "Ja",
+                        ["No"] = "Nein",
+                    },
                 },
             },
         },
 
+        // Gyromaze
         [typeof(SGyromaze)] = new()
         {
             NeedsTranslation = true,
@@ -6152,6 +6399,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the top LED in Gyromaze?
                     Question = "What color was the {1} LED in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["bottom"] = "bottom",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -6159,15 +6411,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Green"] = "Green",
                         ["Yellow"] = "Yellow",
                     },
-                    Arguments = new()
-                    {
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
-                    },
                 },
             },
         },
 
+        // h
         [typeof(SH)] = new()
         {
             NeedsTranslation = true,
@@ -6181,6 +6429,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Halli Galli
         [typeof(SHalliGalli)] = new()
         {
             NeedsTranslation = true,
@@ -6207,6 +6456,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Hereditary Base Notation
         [typeof(SHereditaryBaseNotation)] = new()
         {
             NeedsTranslation = true,
@@ -6220,6 +6470,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
             NeedsTranslation = true,
@@ -6233,6 +6484,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Hexamaze
         [typeof(SHexamaze)] = new()
         {
             ModuleName = "Hexalabyrinth",
@@ -6272,6 +6524,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // hexOrbits
         [typeof(SHexOrbits)] = new()
         {
             NeedsTranslation = true,
@@ -6291,6 +6544,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // hexOS
         [typeof(SHexOS)] = new()
         {
             NeedsTranslation = true,
@@ -6320,6 +6574,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Hickory Dickory Dock
         [typeof(SHickoryDickoryDock)] = new()
         {
             NeedsTranslation = true,
@@ -6344,6 +6599,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Hidden Colors
         [typeof(SHiddenColors)] = new()
         {
             NeedsTranslation = true,
@@ -6368,6 +6624,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Hidden Value
         [typeof(SHiddenValue)] = new()
         {
             NeedsTranslation = true,
@@ -6377,6 +6634,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was displayed on {0}?
                     Question = "What was displayed on {0}?",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["Red"] = "Red",
@@ -6392,6 +6650,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The High Score
         [typeof(SHighScore)] = new()
         {
             NeedsTranslation = true,
@@ -6410,6 +6669,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Hill Cycle
         [typeof(SHillCycle)] = new()
         {
             ModuleName = "Hill-Schiffer",
@@ -6440,6 +6700,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Hinges
         [typeof(SHinges)] = new()
         {
             NeedsTranslation = true,
@@ -6476,6 +6737,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Hogwarts
         [typeof(SHogwarts)] = new()
         {
             NeedsTranslation = true,
@@ -6510,6 +6772,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Hold Ups
         [typeof(SHoldUps)] = new()
         {
             Questions = new()
@@ -6523,6 +6786,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Holographic Memory
         [typeof(SHolographicMemory)] = new()
         {
             NeedsTranslation = true,
@@ -6543,6 +6807,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Homophones
         [typeof(SHomophones)] = new()
         {
             ModuleName = "Teekesselchen",
@@ -6558,6 +6823,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Horrible Memory
         [typeof(SHorribleMemory)] = new()
         {
             NeedsTranslation = true,
@@ -6595,6 +6861,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Human Resources
         [typeof(SHumanResources)] = new()
         {
             ModuleName = "Personalabteilung",
@@ -6626,6 +6893,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Hunting
         [typeof(SHunting)] = new()
         {
             NeedsTranslation = true,
@@ -6636,6 +6904,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which of the first three stages of {0} had the {1} symbol {2}?
                     // Example: Which of the first three stages of Hunting had the column symbol first?
                     Question = "In welchen der ersten drei Stufen von {0} war das {1} das {2}e?",
+                    Arguments = new()
+                    {
+                        ["column"] = "Spaltensymbol",
+                        ["row"] = "Reihensymbol",
+                    },
                     Answers = new()
                     {
                         ["none"] = "keine",
@@ -6647,15 +6920,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["second & third"] = "zweite & dritte",
                         ["all three"] = "alle drei",
                     },
-                    Arguments = new()
-                    {
-                        ["column"] = "Spaltensymbol",
-                        ["row"] = "Reihensymbol",
-                    },
                 },
             },
         },
 
+        // The Hypercube
         [typeof(SHypercube)] = new()
         {
             Questions = new()
@@ -6669,6 +6938,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // HyperForget
         [typeof(SHyperForget)] = new()
         {
             Questions = new()
@@ -6691,6 +6961,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Hyperlink
         [typeof(SHyperlink)] = new()
         {
             ModuleName = "Der Hyperlink",
@@ -6712,6 +6983,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Ice Cream
         [typeof(SIceCream)] = new()
         {
             ModuleName = "Eiscreme",
@@ -6738,6 +7010,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Identification Crisis
         [typeof(SIdentificationCrisis)] = new()
         {
             ModuleName = "Identifikationskrise",
@@ -6772,6 +7045,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Identity Parade
         [typeof(SIdentityParade)] = new()
         {
             NeedsTranslation = true,
@@ -6813,6 +7087,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Impostor
         [typeof(SImpostor)] = new()
         {
             NeedsTranslation = true,
@@ -6826,6 +7101,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Indigo Cipher
         [typeof(SIndigoCipher)] = new()
         {
             ModuleName = "Indigo-Geheimschrift",
@@ -6847,6 +7123,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Infinite Loop
         [typeof(SInfiniteLoop)] = new()
         {
             NeedsTranslation = true,
@@ -6860,6 +7137,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Ingredients
         [typeof(SIngredients)] = new()
         {
             NeedsTranslation = true,
@@ -6878,6 +7156,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Inner Connections
         [typeof(SInnerConnections)] = new()
         {
             NeedsTranslation = true,
@@ -6905,6 +7184,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Interpunct
         [typeof(SInterpunct)] = new()
         {
             NeedsTranslation = true,
@@ -6919,6 +7199,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // IPA
         [typeof(SIPA)] = new()
         {
             NeedsTranslation = true,
@@ -6932,6 +7213,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The iPhone
         [typeof(SiPhone)] = new()
         {
             NeedsTranslation = true,
@@ -6946,6 +7228,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Jenga
         [typeof(SJenga)] = new()
         {
             NeedsTranslation = true,
@@ -6959,6 +7242,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Jewel Vault
         [typeof(SJewelVault)] = new()
         {
             NeedsTranslation = true,
@@ -6973,6 +7257,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Jumble Cycle
         [typeof(SJumbleCycle)] = new()
         {
             ModuleName = "Wirrwarr-Schiffer",
@@ -7003,6 +7288,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Juxtacolored Squares
         [typeof(SJuxtacoloredSquares)] = new()
         {
             ModuleName = "Gefärbte Nachbarfelder",
@@ -7062,6 +7348,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Kanji
         [typeof(SKanji)] = new()
         {
             NeedsTranslation = true,
@@ -7076,6 +7363,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Kanye Encounter
         [typeof(SKanyeEncounter)] = new()
         {
             NeedsTranslation = true,
@@ -7089,6 +7377,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // KayMazey Talk
         [typeof(SKayMazeyTalk)] = new()
         {
             NeedsTranslation = true,
@@ -7122,6 +7411,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Keypad Combinations
         [typeof(SKeypadCombination)] = new()
         {
             NeedsTranslation = true,
@@ -7136,6 +7426,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Keypad Magnified
         [typeof(SKeypadMagnified)] = new()
         {
             NeedsTranslation = true,
@@ -7156,6 +7447,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Keypad Maze
         [typeof(SKeypadMaze)] = new()
         {
             NeedsTranslation = true,
@@ -7169,6 +7461,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Keypad Sequence
         [typeof(SKeypadSequence)] = new()
         {
             NeedsTranslation = true,
@@ -7183,6 +7476,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Keywords
         [typeof(SKeywords)] = new()
         {
             NeedsTranslation = true,
@@ -7196,6 +7490,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Klaxon
         [typeof(SKlaxon)] = new()
         {
             ModuleName = "Das Klaxon",
@@ -7210,6 +7505,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Know Your Way
         [typeof(SKnowYourWay)] = new()
         {
             NeedsTranslation = true,
@@ -7242,6 +7538,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Kooky Keypad
         [typeof(SKookyKeypad)] = new()
         {
             NeedsTranslation = true,
@@ -7252,6 +7549,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} button’s LED in {0}?
                     // Example: What color was the top-left button’s LED in Kooky Keypad?
                     Question = "What color was the {1} button’s LED in {0}?",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-right"] = "top-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-right"] = "bottom-right",
+                    },
                     Answers = new()
                     {
                         ["Crimson"] = "Crimson",
@@ -7266,17 +7570,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Dark Magenta"] = "Dark Magenta",
                         ["Unlit"] = "Unlit",
                     },
-                    Arguments = new()
-                    {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
-                    },
                 },
             },
         },
 
+        // Kudosudoku
         [typeof(SKudosudoku)] = new()
         {
             NeedsTranslation = true,
@@ -7296,6 +7594,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Kugelblitz
         [typeof(SKugelblitz)] = new()
         {
             Gender = Gender.Masculine,
@@ -7306,6 +7605,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which particles were present for the {1} stage of {0}?
                     // Example: Which particles were present for the first stage of Kugelblitz?
                     Question = "Welche Partikel waren bei {0} in der {1}en Stufe zu sehen?",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["R"] = "Ro",
@@ -7324,6 +7624,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What were the particles’ values for the {1} stage of {0}?
                     // Example: What were the particles’ values for the first stage of Kugelblitz?
                     Question = "Was waren bei {0} die Partikelwerte in der {1}en Stufe?",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"] = "Ro={0}, Or={1}, Ge={2}, Gr={3}, Bl={4}, In={5}, Vi={6}",
@@ -7381,6 +7682,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Kuro
         [typeof(SKuro)] = new()
         {
             Gender = Gender.Masculine,
@@ -7394,6 +7696,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Labyrinth
         [typeof(SLabyrinth)] = new()
         {
             NeedsTranslation = true,
@@ -7429,6 +7732,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Ladder Lottery
         [typeof(SLadderLottery)] = new()
         {
             NeedsTranslation = true,
@@ -7442,6 +7746,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Ladders
         [typeof(SLadders)] = new()
         {
             NeedsTranslation = true,
@@ -7482,6 +7787,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Langton’s Anteater
         [typeof(SLangtonsAnteater)] = new()
         {
             NeedsTranslation = true,
@@ -7501,6 +7807,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Lasers
         [typeof(SLasers)] = new()
         {
             NeedsTranslation = true,
@@ -7527,6 +7834,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // LED Encryption
         [typeof(SLEDEncryption)] = new()
         {
             NeedsTranslation = true,
@@ -7541,6 +7849,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // LED Grid
         [typeof(SLEDGrid)] = new()
         {
             NeedsTranslation = true,
@@ -7554,6 +7863,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // LED Math
         [typeof(SLEDMath)] = new()
         {
             NeedsTranslation = true,
@@ -7564,6 +7874,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was {1} in {0}?
                     // Example: What color was LED A in LED Math?
                     Question = "What color was {1} in {0}?",
+                    Arguments = new()
+                    {
+                        ["LED A"] = "LED A",
+                        ["LED B"] = "LED B",
+                        ["the operator LED"] = "the operator LED",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -7571,16 +7887,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Yellow"] = "Yellow",
                         ["Green"] = "Green",
                     },
-                    Arguments = new()
-                    {
-                        ["LED A"] = "LED A",
-                        ["LED B"] = "LED B",
-                        ["the operator LED"] = "the operator LED",
-                    },
                 },
             },
         },
 
+        // LEDs
         [typeof(SLEDs)] = new()
         {
             NeedsTranslation = true,
@@ -7605,6 +7916,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // LEGOs
         [typeof(SLEGOs)] = new()
         {
             NeedsTranslation = true,
@@ -7628,6 +7940,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Letter Math
         [typeof(SLetterMath)] = new()
         {
             NeedsTranslation = true,
@@ -7647,6 +7960,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Light Bulbs
         [typeof(SLightBulbs)] = new()
         {
             NeedsTranslation = true,
@@ -7657,6 +7971,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} bulb in {0}?
                     // Example: What was the color of the left bulb in Light Bulbs?
                     Question = "What was the color of the {1} bulb in {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -7668,15 +7987,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Cyan"] = "Cyan",
                         ["Magenta"] = "Magenta",
                     },
-                    Arguments = new()
-                    {
-                        ["left"] = "left",
-                        ["right"] = "right",
-                    },
                 },
             },
         },
 
+        // Linq
         [typeof(SLinq)] = new()
         {
             Questions = new()
@@ -7699,6 +8014,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Lion’s Share
         [typeof(SLionsShare)] = new()
         {
             NeedsTranslation = true,
@@ -7717,6 +8033,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Listening
         [typeof(SListening)] = new()
         {
             NeedsTranslation = true,
@@ -7730,6 +8047,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Literal Maze
         [typeof(SLiteralMaze)] = new()
         {
             ModuleName = "Buchstäbliches Labyrinth",
@@ -7744,6 +8062,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Logical Buttons
         [typeof(SLogicalButtons)] = new()
         {
             NeedsTranslation = true,
@@ -7754,6 +8073,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} button in the {2} stage of {0}?
                     // Example: What was the color of the top button in the first stage of Logical Buttons?
                     Question = "What was the color of the {1} button in the {2} stage of {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-right"] = "bottom-right",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -7765,12 +8090,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Orange"] = "Orange",
                         ["Cyan"] = "Cyan",
                         ["Grey"] = "Grey",
-                    },
-                    Arguments = new()
-                    {
-                        ["top"] = "top",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
                     },
                 },
                 [SLogicalButtons.Label] = new()
@@ -7794,6 +8113,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Logic Gates
         [typeof(SLogicGates)] = new()
         {
             NeedsTranslation = true,
@@ -7819,6 +8139,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Lombax Cubes
         [typeof(SLombaxCubes)] = new()
         {
             NeedsTranslation = true,
@@ -7833,6 +8154,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The London Underground
         [typeof(SLondonUnderground)] = new()
         {
             NeedsTranslation = true,
@@ -7852,6 +8174,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Long Words
         [typeof(SLongWords)] = new()
         {
             NeedsTranslation = true,
@@ -7865,6 +8188,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mad Memory
         [typeof(SMadMemory)] = new()
         {
             NeedsTranslation = true,
@@ -7886,6 +8210,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mafia
         [typeof(SMafia)] = new()
         {
             NeedsTranslation = true,
@@ -7899,6 +8224,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Magenta Cipher
         [typeof(SMagentaCipher)] = new()
         {
             ModuleName = "Magenta-Geheimschrift",
@@ -7920,6 +8246,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mahjong
         [typeof(SMahjong)] = new()
         {
             NeedsTranslation = true,
@@ -7939,6 +8266,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Main Page
         [typeof(SMainPage)] = new()
         {
             NeedsTranslation = true,
@@ -7996,6 +8324,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // M&Ms
         [typeof(SMandMs)] = new()
         {
             NeedsTranslation = true,
@@ -8025,6 +8354,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // M&Ns
         [typeof(SMandNs)] = new()
         {
             NeedsTranslation = true,
@@ -8053,6 +8383,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Maritime Flags
         [typeof(SMaritimeFlags)] = new()
         {
             NeedsTranslation = true,
@@ -8071,6 +8402,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Maritime Semaphore
         [typeof(SMaritimeSemaphore)] = new()
         {
             NeedsTranslation = true,
@@ -8096,6 +8428,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Maroon Button
         [typeof(SMaroonButton)] = new()
         {
             NeedsTranslation = true,
@@ -8109,6 +8442,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Maroon Cipher
         [typeof(SMaroonCipher)] = new()
         {
             ModuleName = "Kastanien-Geheimschrift",
@@ -8130,6 +8464,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mashematics
         [typeof(SMashematics)] = new()
         {
             NeedsTranslation = true,
@@ -8149,6 +8484,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Master Tapes
         [typeof(SMasterTapes)] = new()
         {
             NeedsTranslation = true,
@@ -8162,6 +8498,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Match Refereeing
         [typeof(SMatchRefereeing)] = new()
         {
             NeedsTranslation = true,
@@ -8176,6 +8513,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Math ’em
         [typeof(SMathEm)] = new()
         {
             NeedsTranslation = true,
@@ -8201,6 +8539,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Matrix
         [typeof(SMatrix)] = new()
         {
             NeedsTranslation = true,
@@ -8219,6 +8558,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Maze
         [typeof(SMaze)] = new()
         {
             NeedsTranslation = true,
@@ -8232,14 +8572,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Arguments = new()
                     {
                         ["column"] = "column",
-                        ["left"] = "left",
                         ["row"] = "row",
+                        ["left"] = "left",
                         ["top"] = "top",
                     },
                 },
             },
         },
 
+        // Maze³
         [typeof(SMaze3)] = new()
         {
             NeedsTranslation = true,
@@ -8262,6 +8603,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Maze Identification
         [typeof(SMazeIdentification)] = new()
         {
             NeedsTranslation = true,
@@ -8301,6 +8643,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mazematics
         [typeof(SMazematics)] = new()
         {
             NeedsTranslation = true,
@@ -8320,6 +8663,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Maze Scrambler
         [typeof(SMazeScrambler)] = new()
         {
             NeedsTranslation = true,
@@ -8379,6 +8723,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mazeseeker
         [typeof(SMazeseeker)] = new()
         {
             NeedsTranslation = true,
@@ -8402,6 +8747,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Maze Swap
         [typeof(SMazeSwap)] = new()
         {
             NeedsTranslation = true,
@@ -8421,6 +8767,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mega Man 2
         [typeof(SMegaMan2)] = new()
         {
             Questions = new()
@@ -8438,6 +8785,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Melody Sequencer
         [typeof(SMelodySequencer)] = new()
         {
             NeedsTranslation = true,
@@ -8458,6 +8806,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Memorable Buttons
         [typeof(SMemorableButtons)] = new()
         {
             NeedsTranslation = true,
@@ -8472,6 +8821,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Memory
         [typeof(SMemory)] = new()
         {
             NeedsTranslation = true,
@@ -8498,6 +8848,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Memory Wires
         [typeof(SMemoryWires)] = new()
         {
             NeedsTranslation = true,
@@ -8526,6 +8877,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Metamorse
         [typeof(SMetamorse)] = new()
         {
             NeedsTranslation = true,
@@ -8539,6 +8891,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Metapuzzle
         [typeof(SMetapuzzle)] = new()
         {
             Questions = new()
@@ -8551,6 +8904,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Minsk Metro
         [typeof(SMinskMetro)] = new()
         {
             Gender = Gender.Feminine,
@@ -8564,6 +8918,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mirror
         [typeof(SMirror)] = new()
         {
             ModuleName = "Spiegel",
@@ -8578,6 +8933,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Missing Letter
         [typeof(SMissingLetter)] = new()
         {
             ModuleName = "Der Fehlende Buchstabe",
@@ -8593,6 +8949,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mister Softee
         [typeof(SMisterSoftee)] = new()
         {
             Gender = Gender.Masculine,
@@ -8611,6 +8968,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mixometer
         [typeof(SMixometer)] = new()
         {
             NeedsTranslation = true,
@@ -8624,6 +8982,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Modern Cipher
         [typeof(SModernCipher)] = new()
         {
             NeedsTranslation = true,
@@ -8638,6 +8997,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Module Listening
         [typeof(SModuleListening)] = new()
         {
             NeedsTranslation = true,
@@ -8664,6 +9024,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Module Maneuvers
         [typeof(SModuleManeuvers)] = new()
         {
             NeedsTranslation = true,
@@ -8676,6 +9037,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the goal location in {0}?
                     Question = "Was war bei {0} die Zielposition?",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["{0}, {1}"] = "{0}, {1}",
@@ -8684,6 +9046,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Module Maze
         [typeof(SModuleMaze)] = new()
         {
             NeedsTranslation = true,
@@ -8697,6 +9060,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Module Movements
         [typeof(SModuleMovements)] = new()
         {
             NeedsTranslation = true,
@@ -8711,6 +9075,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Money Game
         [typeof(SMoneyGame)] = new()
         {
             NeedsTranslation = true,
@@ -8737,6 +9102,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Monsplode, Fight!
         [typeof(SMonsplodeFight)] = new()
         {
             NeedsTranslation = true,
@@ -8761,6 +9127,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Monsplode Trading Cards
         [typeof(SMonsplodeTradingCards)] = new()
         {
             NeedsTranslation = true,
@@ -8795,6 +9162,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Moon
         [typeof(SMoon)] = new()
         {
             NeedsTranslation = true,
@@ -8805,17 +9173,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} set in clockwise order in {0}?
                     // Example: What was the first initially lit set in clockwise order in The Moon?
                     Question = "What was the {1} set in clockwise order in {0}?",
-                    Answers = new()
-                    {
-                        ["south"] = "south",
-                        ["south-west"] = "south-west",
-                        ["west"] = "west",
-                        ["north-west"] = "north-west",
-                        ["north"] = "north",
-                        ["north-east"] = "north-east",
-                        ["east"] = "east",
-                        ["south-east"] = "south-east",
-                    },
                     Arguments = new()
                     {
                         ["first initially lit"] = "first initially lit",
@@ -8827,10 +9184,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["third initially unlit"] = "third initially unlit",
                         ["fourth initially unlit"] = "fourth initially unlit",
                     },
+                    Answers = new()
+                    {
+                        ["south"] = "south",
+                        ["south-west"] = "south-west",
+                        ["west"] = "west",
+                        ["north-west"] = "north-west",
+                        ["north"] = "north",
+                        ["north-east"] = "north-east",
+                        ["east"] = "east",
+                        ["south-east"] = "south-east",
+                    },
                 },
             },
         },
 
+        // More Code
         [typeof(SMoreCode)] = new()
         {
             NeedsTranslation = true,
@@ -8844,6 +9213,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Morse-A-Maze
         [typeof(SMorseAMaze)] = new()
         {
             NeedsTranslation = true,
@@ -8867,6 +9237,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Morse Buttons
         [typeof(SMorseButtons)] = new()
         {
             NeedsTranslation = true,
@@ -8896,6 +9267,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Morsematics
         [typeof(SMorsematics)] = new()
         {
             NeedsTranslation = true,
@@ -8910,6 +9282,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Morse War
         [typeof(SMorseWar)] = new()
         {
             NeedsTranslation = true,
@@ -8935,6 +9308,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // .--/---/..-.
         [typeof(SMorseWoF)] = new()
         {
             ModuleName = ".--/.../.-/-../-.-",
@@ -8949,6 +9323,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mouse in the Maze
         [typeof(SMouseInTheMaze)] = new()
         {
             ModuleName = "Maus im Labyrinth",
@@ -8982,6 +9357,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // M-Seq
         [typeof(SMSeq)] = new()
         {
             Questions = new()
@@ -9000,6 +9376,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mssngv Wls
         [typeof(SMssngvWls)] = new()
         {
             NeedsTranslation = true,
@@ -9013,6 +9390,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which vowel was missing in {0}?
                     // Example: Which vowel was missing in Mssngv Wls?
                     Question = "Welcher Vokal hat bei {0} gefehlt?",
+                    // Refer to translations.md to understand the weird strings
                     Arguments = new()
                     {
                         ["AEIOU"] = "AEIOUÄÖÜ",
@@ -9021,6 +9399,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Multicolored Switches
         [typeof(SMulticoloredSwitches)] = new()
         {
             ModuleName = "Vielfarbige Schalter",
@@ -9033,6 +9412,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?
                     // Example: What color was the first LED on the top row when the tiny LED was lit in Multicolored Switches?
                     Question = "Welche Farbe hatte bei {0} die {1}e LED in der {2} Reihe, als die Mini-LED {3} war?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["bottom"] = "unteren",
+                        ["lit"] = "an",
+                        ["unlit"] = "aus",
+                    },
                     Answers = new()
                     {
                         ["black"] = "schwarz",
@@ -9044,17 +9430,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["cyan"] = "türkis",
                         ["white"] = "weiß",
                     },
-                    Arguments = new()
-                    {
-                        ["top"] = "oberen",
-                        ["lit"] = "an",
-                        ["bottom"] = "unteren",
-                        ["unlit"] = "aus",
-                    },
                 },
             },
         },
 
+        // The Multiverse Hotline
         [typeof(SMultiverseHotline)] = new()
         {
             ModuleName = "Multiversum-Hotline",
@@ -9074,6 +9454,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Murder
         [typeof(SMurder)] = new()
         {
             ModuleName = "Mord",
@@ -9084,6 +9465,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which of these was {1} in {0}?
                     // Example: Which of these was a suspect but not the murderer in Murder?
                     Question = "Wer war bei {0} {1}?",
+                    Arguments = new()
+                    {
+                        ["a suspect but not the murderer"] = "ein Tatverdächtiger, aber nicht der Mörder",
+                        ["not a suspect"] = "kein Tatverdächtiger",
+                    },
                     Answers = new()
                     {
                         ["Miss Scarlett"] = "Miss Scarlett",
@@ -9093,17 +9479,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Colonel Mustard"] = "Colonel Mustard",
                         ["Mrs White"] = "Mrs White",
                     },
-                    Arguments = new()
-                    {
-                        ["a suspect but not the murderer"] = "ein Tatverdächtiger, aber nicht der Mörder",
-                        ["not a suspect"] = "kein Tatverdächtiger",
-                    },
                 },
                 [SMurder.Weapon] = new()
                 {
                     // English: Which of these was {1} in {0}?
                     // Example: Which of these was a potential weapon but not the murder weapon in Murder?
                     Question = "Welche der folgenden Waffen war bei {0} {1}?",
+                    Arguments = new()
+                    {
+                        ["a potential weapon but not the murder weapon"] = "vorhanden aber nicht die Tatwaffe",
+                        ["not a potential weapon"] = "nicht vorhanden",
+                    },
                     Answers = new()
                     {
                         ["Candlestick"] = "Kerzenleuchter",
@@ -9112,11 +9498,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Revolver"] = "Pistole",
                         ["Rope"] = "Seil",
                         ["Spanner"] = "Rohrzange",
-                    },
-                    Arguments = new()
-                    {
-                        ["a potential weapon but not the murder weapon"] = "vorhanden aber nicht die Tatwaffe",
-                        ["not a potential weapon"] = "nicht vorhanden",
                     },
                 },
                 [SMurder.BodyFound] = new()
@@ -9139,6 +9520,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mystery Module
         [typeof(SMysteryModule)] = new()
         {
             NeedsTranslation = true,
@@ -9157,6 +9539,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Mystic Square
         [typeof(SMysticSquare)] = new()
         {
             NeedsTranslation = true,
@@ -9182,6 +9565,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Name Codes
         [typeof(SNameCodes)] = new()
         {
             NeedsTranslation = true,
@@ -9201,6 +9585,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Naming Conventions
         [typeof(SNamingConventions)] = new()
         {
             NeedsTranslation = true,
@@ -9214,6 +9599,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // N&Ms
         [typeof(SNandMs)] = new()
         {
             NeedsTranslation = true,
@@ -9227,6 +9613,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // N&Ns
         [typeof(SNandNs)] = new()
         {
             NeedsTranslation = true,
@@ -9255,6 +9642,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Navigation Determination
         [typeof(SNavigationDetermination)] = new()
         {
             Questions = new()
@@ -9279,6 +9667,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Navinums
         [typeof(SNavinums)] = new()
         {
             ModuleName = "Navinummern",
@@ -9306,6 +9695,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Navy Button
         [typeof(SNavyButton)] = new()
         {
             NeedsTranslation = true,
@@ -9361,6 +9751,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Necronomicon
         [typeof(SNecronomicon)] = new()
         {
             ModuleName = "Der Königsblaue Knopf",
@@ -9377,6 +9768,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Negativity
         [typeof(SNegativity)] = new()
         {
             NeedsTranslation = true,
@@ -9395,6 +9787,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Neptune
         [typeof(SNeptune)] = new()
         {
             NeedsTranslation = true,
@@ -9408,6 +9801,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Neutralization
         [typeof(SNeutralization)] = new()
         {
             NeedsTranslation = true,
@@ -9433,6 +9827,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Next In Line
         [typeof(SNextInLine)] = new()
         {
             NeedsTranslation = true,
@@ -9457,6 +9852,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Nim
         [typeof(SNim)] = new()
         {
             Questions = new()
@@ -9476,6 +9872,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // ❖
         [typeof(SNonverbalSimon)] = new()
         {
             Questions = new()
@@ -9488,6 +9885,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Colored Squares
         [typeof(SNotColoredSquares)] = new()
         {
             ModuleName = "Gefärbte Felder Mal Anders",
@@ -9503,6 +9901,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Colored Switches
         [typeof(SNotColoredSwitches)] = new()
         {
             ModuleName = "Gefärbte Schalter Mal Anders",
@@ -9517,6 +9916,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Colour Flash
         [typeof(SNotColourFlash)] = new()
         {
             ModuleName = "Gefärbte Folge Mal Anders",
@@ -9548,6 +9948,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Connection Check
         [typeof(SNotConnectionCheck)] = new()
         {
             ModuleName = "Verbindungsprüfung Mal Anders",
@@ -9582,6 +9983,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Coordinates
         [typeof(SNotCoordinates)] = new()
         {
             ModuleName = "Koordinaten Mal Anders",
@@ -9596,6 +9998,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Double-Oh
         [typeof(SNotDoubleOh)] = new()
         {
             ModuleName = "Doppel-Null Mal Anders",
@@ -9611,6 +10014,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Keypad
         [typeof(SNotKeypad)] = new()
         {
             ModuleName = "Tastenfeld Mal Anders",
@@ -9646,6 +10050,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Maze
         [typeof(SNotMaze)] = new()
         {
             ModuleName = "Labyrinth Mal Anders",
@@ -9659,6 +10064,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Morse Code
         [typeof(SNotMorseCode)] = new()
         {
             ModuleName = "Morsezeichen Mal Anders",
@@ -9674,6 +10080,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Morsematics
         [typeof(SNotMorsematics)] = new()
         {
             ModuleName = "Morsematik Mal Anders",
@@ -9688,6 +10095,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Murder
         [typeof(SNotMurder)] = new()
         {
             ModuleName = "Mord Mal Anders",
@@ -9699,6 +10107,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What room was {1} in initially on {0}?
                     // Example: What room was Miss Scarlett in initially on Not Murder?
                     Question = "In welchem Zimmer war {1} bei {0} am Anfang?",
+                    Arguments = new()
+                    {
+                        ["Miss Scarlett"] = "Miss Scarlett",
+                        ["Colonel Mustard"] = "Colonel Mustard",
+                        ["Reverend Green"] = "Reverend Green",
+                        ["Mrs Peacock"] = "Mrs Peacock",
+                        ["Professor Plum"] = "Professor Plum",
+                        ["Mrs White"] = "Mrs White",
+                    },
                     Answers = new()
                     {
                         ["Ballroom"] = "Musikzimmer",
@@ -9711,6 +10128,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Lounge"] = "Salon",
                         ["Study"] = "Arbeitszimmer",
                     },
+                },
+                [SNotMurder.Weapon] = new()
+                {
+                    // English: What weapon did {1} possess initially on {0}?
+                    // Example: What weapon did Miss Scarlett possess initially on Not Murder?
+                    Question = "Welche Waffe hatte {1} bei {0} am Anfang?",
                     Arguments = new()
                     {
                         ["Miss Scarlett"] = "Miss Scarlett",
@@ -9720,12 +10143,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Professor Plum"] = "Professor Plum",
                         ["Mrs White"] = "Mrs White",
                     },
-                },
-                [SNotMurder.Weapon] = new()
-                {
-                    // English: What weapon did {1} possess initially on {0}?
-                    // Example: What weapon did Miss Scarlett possess initially on Not Murder?
-                    Question = "Welche Waffe hatte {1} bei {0} am Anfang?",
                     Answers = new()
                     {
                         ["Candlestick"] = "Kerzenleuchter",
@@ -9734,15 +10151,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Revolver"] = "Pistole",
                         ["Rope"] = "Seil",
                         ["Spanner"] = "Rohrzange",
-                    },
-                    Arguments = new()
-                    {
-                        ["Miss Scarlett"] = "Miss Scarlett",
-                        ["Colonel Mustard"] = "Colonel Mustard",
-                        ["Reverend Green"] = "Reverend Green",
-                        ["Mrs Peacock"] = "Mrs Peacock",
-                        ["Professor Plum"] = "Professor Plum",
-                        ["Mrs White"] = "Mrs White",
                     },
                 },
             },
@@ -9792,6 +10200,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Number Pad
         [typeof(SNotNumberPad)] = new()
         {
             ModuleName = "Zahlenfeld Mal Anders",
@@ -9811,6 +10220,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Password
         [typeof(SNotPassword)] = new()
         {
             ModuleName = "Passwort Mal Anders",
@@ -9824,6 +10234,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Perspective Pegs
         [typeof(SNotPerspectivePegs)] = new()
         {
             ModuleName = "Perspektivstöpsel Mal Anders",
@@ -9875,6 +10286,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Piano Keys
         [typeof(SNotPianoKeys)] = new()
         {
             ModuleName = "Klavier Mal Anders",
@@ -9898,6 +10310,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Red Arrows
         [typeof(SNotRedArrows)] = new()
         {
             ModuleName = "Rote Pfeile Mal Anders",
@@ -9912,6 +10325,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Simaze
         [typeof(SNotSimaze)] = new()
         {
             ModuleName = "Simobyrinth Mal Anders",
@@ -10022,6 +10436,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Text Field
         [typeof(SNotTextField)] = new()
         {
             ModuleName = "Textfeld Mal Anders",
@@ -10040,6 +10455,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not The Bulb
         [typeof(SNotTheBulb)] = new()
         {
             ModuleName = "Die Glühlampe Mal Anders",
@@ -10083,6 +10499,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not The Button
         [typeof(SNotTheButton)] = new()
         {
             ModuleName = "Der Knopf Mal Anders",
@@ -10116,6 +10533,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not The Plunger Button
         [typeof(SNotThePlungerButton)] = new()
         {
             ModuleName = "Der Kolbenknopf Mal Anders",
@@ -10142,6 +10560,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not The Screw
         [typeof(SNotTheScrew)] = new()
         {
             ModuleName = "Die Schraube Mal Anders",
@@ -10157,6 +10576,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Who’s on First
         [typeof(SNotWhosOnFirst)] = new()
         {
             ModuleName = "Who’s On First Mal Anders",
@@ -10212,6 +10632,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not Word Search
         [typeof(SNotWordSearch)] = new()
         {
             ModuleName = "Wortsuche Mal Anders",
@@ -10231,6 +10652,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not X01
         [typeof(SNotX01)] = new()
         {
             ModuleName = "X01 Mal Anders",
@@ -10250,6 +10672,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Not X-Ray
         [typeof(SNotXRay)] = new()
         {
             ModuleName = "Röntgen Mal Anders",
@@ -10301,6 +10724,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Numbered Buttons
         [typeof(SNumberedButtons)] = new()
         {
             ModuleName = "Nummerierte Knöpfe",
@@ -10316,6 +10740,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Number Game
         [typeof(SNumberGame)] = new()
         {
             ModuleName = "Zahlenspiel",
@@ -10329,6 +10754,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Numbers
         [typeof(SNumbers)] = new()
         {
             ModuleName = "Zahlen",
@@ -10343,6 +10769,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Numpath
         [typeof(SNumpath)] = new()
         {
             ModuleName = "Zahlenpfad",
@@ -10371,6 +10798,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Object Shows
         [typeof(SObjectShows)] = new()
         {
             Questions = new()
@@ -10383,6 +10811,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Octadecayotton
         [typeof(SOctadecayotton)] = new()
         {
             Questions = new()
@@ -10401,6 +10830,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Odd One Out
         [typeof(SOddOneOut)] = new()
         {
             ModuleName = "Was Nicht Passt",
@@ -10415,6 +10845,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Off Keys
         [typeof(SOffKeys)] = new()
         {
             ModuleName = "Verstimmte Tasten",
@@ -10435,6 +10866,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Off-White Cipher
         [typeof(SOffWhiteCipher)] = new()
         {
             ModuleName = "Eierschalengeheimschrift",
@@ -10459,6 +10891,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Old AI
         [typeof(SOldAI)] = new()
         {
             ModuleName = "Alte KI",
@@ -10480,6 +10913,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Old Fogey
         [typeof(SOldFogey)] = new()
         {
             ModuleName = "Alter Kauz",
@@ -10505,6 +10939,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // One Links To All
         [typeof(SOneLinksToAll)] = new()
         {
             NeedsTranslation = true,
@@ -10523,6 +10958,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Only Connect
         [typeof(SOnlyConnect)] = new()
         {
             Questions = new()
@@ -10532,15 +10968,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which Egyptian hieroglyph was in the {1} in {0}?
                     // Example: Which Egyptian hieroglyph was in the top left in Only Connect?
                     Question = "Welches ägyptische Hieroglyph war bei {0} {1}?",
-                    Answers = new()
-                    {
-                        ["Two Reeds"] = "Zwei Riede",
-                        ["Lion"] = "Löwe",
-                        ["Twisted Flax"] = "Gedrehter Flachs",
-                        ["Horned Viper"] = "Gehörnte Viper",
-                        ["Water"] = "Wasser",
-                        ["Eye of Horus"] = "Auge des Horus",
-                    },
                     Arguments = new()
                     {
                         ["top left"] = "oben links",
@@ -10550,10 +10977,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["bottom middle"] = "unten Mitte",
                         ["bottom right"] = "unten rechts",
                     },
+                    Answers = new()
+                    {
+                        ["Two Reeds"] = "Zwei Riede",
+                        ["Lion"] = "Löwe",
+                        ["Twisted Flax"] = "Gedrehter Flachs",
+                        ["Horned Viper"] = "Gehörnte Viper",
+                        ["Water"] = "Wasser",
+                        ["Eye of Horus"] = "Auge des Horus",
+                    },
                 },
             },
         },
 
+        // Orange Arrows
         [typeof(SOrangeArrows)] = new()
         {
             Questions = new()
@@ -10574,6 +11011,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Orange Cipher
         [typeof(SOrangeCipher)] = new()
         {
             ModuleName = "Orangene Geheimschrift",
@@ -10596,6 +11034,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Ordered Keys
         [typeof(SOrderedKeys)] = new()
         {
             Questions = new()
@@ -10639,6 +11078,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Order Picking
         [typeof(SOrderPicking)] = new()
         {
             ModuleName = "Kommissionierung",
@@ -10666,6 +11106,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Orientation Cube
         [typeof(SOrientationCube)] = new()
         {
             ModuleName = "Orientierungswürfel",
@@ -10687,6 +11128,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Orientation Hypercube
         [typeof(SOrientationHypercube)] = new()
         {
             ModuleName = "Orientierungshyperwürfel",
@@ -10698,17 +11140,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the initial colour of the {1} face in {0}?
                     // Example: What was the initial colour of the right face in Orientation Hypercube?
                     Question = "Was war bei {0} die Anfangsfarbe der {1} Seite?",
-                    Answers = new()
-                    {
-                        ["black"] = "schwarz",
-                        ["red"] = "rot",
-                        ["green"] = "grün",
-                        ["yellow"] = "gelb",
-                        ["blue"] = "blau",
-                        ["magenta"] = "magenta",
-                        ["cyan"] = "türkis",
-                        ["white"] = "weiß",
-                    },
                     Arguments = new()
                     {
                         ["right"] = "rechten",
@@ -10719,6 +11150,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["front"] = "vorderen",
                         ["zag"] = "zackeren",
                         ["zig"] = "zickeren",
+                    },
+                    Answers = new()
+                    {
+                        ["black"] = "schwarz",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["yellow"] = "gelb",
+                        ["blue"] = "blau",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
                     },
                 },
                 [SOrientationHypercube.InitialObserverPosition] = new()
@@ -10736,6 +11178,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Painting Cube
         [typeof(SPaintingCube)] = new()
         {
             ModuleName = "Malfarbenwürfel",
@@ -10760,6 +11203,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Palindromes
         [typeof(SPalindromes)] = new()
         {
             ModuleName = "Palindrome",
@@ -10782,6 +11226,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Papa’s Pizzeria
         [typeof(SPapasPizzeria)] = new()
         {
             ModuleName = "Papas Pizzeria",
@@ -10802,6 +11247,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Parity
         [typeof(SParity)] = new()
         {
             ModuleName = "Parität",
@@ -10816,6 +11262,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Partial Derivatives
         [typeof(SPartialDerivatives)] = new()
         {
             ModuleName = "Partielle Ableitungen",
@@ -10847,6 +11294,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Passport Control
         [typeof(SPassportControl)] = new()
         {
             ModuleName = "Passkontrolle",
@@ -10862,6 +11310,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Password Destroyer
         [typeof(SPasswordDestroyer)] = new()
         {
             ModuleName = "Passwortzerstörer",
@@ -10876,6 +11325,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Pattern Cube
         [typeof(SPatternCube)] = new()
         {
             ModuleName = "Musterwürfel",
@@ -10890,6 +11340,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Pattern Recognition
         [typeof(SPatternRecognition)] = new()
         {
             ModuleName = "Mustererkennung",
@@ -10904,6 +11355,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Pentabutton
         [typeof(SPentabutton)] = new()
         {
             ModuleName = "Pentaknopf",
@@ -10937,6 +11389,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Periodic Words
         [typeof(SPeriodicWords)] = new()
         {
             ModuleName = "Periodische Wörter",
@@ -10953,6 +11406,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Perspective Pegs
         [typeof(SPerspectivePegs)] = new()
         {
             ModuleName = "Perspektivstöpsel",
@@ -10976,6 +11430,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Phosphorescence
         [typeof(SPhosphorescence)] = new()
         {
             ModuleName = "Phosphoreszenz",
@@ -11025,6 +11480,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Pickup Identification
         [typeof(SPickupIdentification)] = new()
         {
             Questions = new()
@@ -11038,6 +11494,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Pictionary
         [typeof(SPictionary)] = new()
         {
             Questions = new()
@@ -11050,6 +11507,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Pie
         [typeof(SPie)] = new()
         {
             Questions = new()
@@ -11063,6 +11521,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Pie Flash
         [typeof(SPieFlash)] = new()
         {
             Questions = new()
@@ -11075,6 +11534,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Pigpen Cycle
         [typeof(SPigpenCycle)] = new()
         {
             ModuleName = "Freimaurer-Schiffer",
@@ -11105,6 +11565,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Pink Button
         [typeof(SPinkButton)] = new()
         {
             ModuleName = "Der Pinkfarbene Knopf",
@@ -11138,6 +11599,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Pinpoint
         [typeof(SPinpoint)] = new()
         {
             Questions = new()
@@ -11155,6 +11617,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Pixel Cipher
         [typeof(SPixelCipher)] = new()
         {
             ModuleName = "Pixelgeheimschrift",
@@ -11169,6 +11632,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Placeholder Talk
         [typeof(SPlaceholderTalk)] = new()
         {
             Questions = new()
@@ -11186,6 +11650,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Placement Roulette
         [typeof(SPlacementRoulette)] = new()
         {
             ModuleName = "Platzierungsroulette",
@@ -11209,6 +11674,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Planets
         [typeof(SPlanets)] = new()
         {
             ModuleName = "Planeten",
@@ -11241,6 +11707,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Playfair Cycle
         [typeof(SPlayfairCycle)] = new()
         {
             ModuleName = "Playfair-Schiffer",
@@ -11271,6 +11738,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Poetry
         [typeof(SPoetry)] = new()
         {
             ModuleName = "Poesie",
@@ -11286,6 +11754,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Pointless Machines
         [typeof(SPointlessMachines)] = new()
         {
             ModuleName = "Sinnlose Maschinen",
@@ -11308,6 +11777,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Polygons
         [typeof(SPolygons)] = new()
         {
             ModuleName = "Polygone",
@@ -11322,6 +11792,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Polyhedral Maze
         [typeof(SPolyhedralMaze)] = new()
         {
             NeedsTranslation = true,
@@ -11362,6 +11833,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Prime Encryption
         [typeof(SPrimeEncryption)] = new()
         {
             ModuleName = "Primverschlüsselung",
@@ -11376,6 +11848,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Prison Break
         [typeof(SPrisonBreak)] = new()
         {
             ModuleName = "Gefängnisausbruch",
@@ -11395,6 +11868,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Probing
         [typeof(SProbing)] = new()
         {
             ModuleName = "Sondierung",
@@ -11419,6 +11893,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Procedural Maze
         [typeof(SProceduralMaze)] = new()
         {
             ModuleName = "Prozedurales Labyrinth",
@@ -11433,6 +11908,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // ...?
         [typeof(SPunctuationMarks)] = new()
         {
             ModuleName = "Interpunktionszeichen",
@@ -11447,6 +11923,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Purple Arrows
         [typeof(SPurpleArrows)] = new()
         {
             NeedsTranslation = true,
@@ -11460,6 +11937,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Purple Button
         [typeof(SPurpleButton)] = new()
         {
             ModuleName = "Der Lilane Knopf",
@@ -11476,6 +11954,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Puzzle Identification
         [typeof(SPuzzleIdentification)] = new()
         {
             Questions = new()
@@ -11512,6 +11991,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Puzzling Hexabuttons
         [typeof(SPuzzlingHexabuttons)] = new()
         {
             ModuleName = "Rätselhafte Hexaknöpfe",
@@ -11538,6 +12018,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Q & A
         [typeof(SQnA)] = new()
         {
             Questions = new()
@@ -11551,6 +12032,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Quadrants
         [typeof(SQuadrants)] = new()
         {
             ModuleName = "Quadranten",
@@ -11566,6 +12048,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Quantum Passwords
         [typeof(SQuantumPasswords)] = new()
         {
             ModuleName = "Quantenpasswörter",
@@ -11580,6 +12063,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Quantum Ternary Converter
         [typeof(SQuantumTernaryConverter)] = new()
         {
             ModuleName = "Quanten-Ternär-Konverter",
@@ -11594,6 +12078,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Quaver
         [typeof(SQuaver)] = new()
         {
             Questions = new()
@@ -11607,6 +12092,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Question Mark
         [typeof(SQuestionMark)] = new()
         {
             ModuleName = "Fragezeichen",
@@ -11620,6 +12106,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Quick Arithmetic
         [typeof(SQuickArithmetic)] = new()
         {
             NeedsTranslation = true,
@@ -11659,6 +12146,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Quintuples
         [typeof(SQuintuples)] = new()
         {
             NeedsTranslation = true,
@@ -11701,6 +12189,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Quiplash
         [typeof(SQuiplash)] = new()
         {
             NeedsTranslation = true,
@@ -11714,6 +12203,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Quiz Buzz
         [typeof(SQuizBuzz)] = new()
         {
             NeedsTranslation = true,
@@ -11727,6 +12217,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Qwirkle
         [typeof(SQwirkle)] = new()
         {
             NeedsTranslation = true,
@@ -11741,6 +12232,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Raiding Temples
         [typeof(SRaidingTemples)] = new()
         {
             NeedsTranslation = true,
@@ -11754,6 +12246,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Railway Cargo Loading
         [typeof(SRailwayCargoLoading)] = new()
         {
             NeedsTranslation = true,
@@ -11779,6 +12272,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Rainbow Arrows
         [typeof(SRainbowArrows)] = new()
         {
             NeedsTranslation = true,
@@ -11792,6 +12286,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Recolored Switches
         [typeof(SRecoloredSwitches)] = new()
         {
             NeedsTranslation = true,
@@ -11819,6 +12314,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Recursive Password
         [typeof(SRecursivePassword)] = new()
         {
             NeedsTranslation = true,
@@ -11837,6 +12333,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Red Arrows
         [typeof(SRedArrows)] = new()
         {
             NeedsTranslation = true,
@@ -11850,6 +12347,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Red Button’t
         [typeof(SRedButtont)] = new()
         {
             Questions = new()
@@ -11862,6 +12360,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Red Cipher
         [typeof(SRedCipher)] = new()
         {
             ModuleName = "Rote Geheimschrift",
@@ -11884,6 +12383,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Red Herring
         [typeof(SRedHerring)] = new()
         {
             NeedsTranslation = true,
@@ -11897,6 +12397,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Reformed Role Reversal
         [typeof(SReformedRoleReversal)] = new()
         {
             NeedsTranslation = true,
@@ -11939,6 +12440,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // ReGret-B Filtering
         [typeof(SReGretBFiltering)] = new()
         {
             NeedsTranslation = true,
@@ -11953,6 +12455,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Regular Crazy Talk
         [typeof(SRegularCrazyTalk)] = new()
         {
             NeedsTranslation = true,
@@ -11980,6 +12483,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Reordered Keys
         [typeof(SReorderedKeys)] = new()
         {
             NeedsTranslation = true,
@@ -12029,6 +12533,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Retirement
         [typeof(SRetirement)] = new()
         {
             NeedsTranslation = true,
@@ -12042,6 +12547,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Reverse Morse
         [typeof(SReverseMorse)] = new()
         {
             NeedsTranslation = true,
@@ -12056,6 +12562,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Reverse Polish Notation
         [typeof(SReversePolishNotation)] = new()
         {
             NeedsTranslation = true,
@@ -12070,6 +12577,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // RGB Encryption
         [typeof(SRGBEncryption)] = new()
         {
             ModuleName = "RGB-Verschlüsselung",
@@ -12091,6 +12599,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // RGB Maze
         [typeof(SRGBMaze)] = new()
         {
             NeedsTranslation = true,
@@ -12128,6 +12637,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // RGB Sequences
         [typeof(SRGBSequences)] = new()
         {
             NeedsTranslation = true,
@@ -12152,6 +12662,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Rhythms
         [typeof(SRhythms)] = new()
         {
             NeedsTranslation = true,
@@ -12172,6 +12683,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // RNG Crystal
         [typeof(SRNGCrystal)] = new()
         {
             NeedsTranslation = true,
@@ -12187,6 +12699,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Robo-Scanner
         [typeof(SRoboScanner)] = new()
         {
             NeedsTranslation = true,
@@ -12200,6 +12713,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Robot Programming
         [typeof(SRobotProgramming)] = new()
         {
             Questions = new()
@@ -12219,6 +12733,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Roger
         [typeof(SRoger)] = new()
         {
             Questions = new()
@@ -12231,6 +12746,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Role Reversal
         [typeof(SRoleReversal)] = new()
         {
             ModuleName = "Rollenumkehr",
@@ -12258,6 +12774,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // RPS Judging
         [typeof(SRPSJudging)] = new()
         {
             NeedsTranslation = true,
@@ -12271,8 +12788,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Arguments = new()
                     {
                         ["red"] = "rote",
-                        ["win"] = "gewonnen",
                         ["blue"] = "blaue",
+                        ["win"] = "gewonnen",
                         ["lose"] = "verloren",
                     },
                 },
@@ -12306,6 +12823,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Rule
         [typeof(SRule)] = new()
         {
             ModuleName = "Die Regel",
@@ -12321,6 +12839,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Rule of Three
         [typeof(SRuleOfThree)] = new()
         {
             ModuleName = "Dreierregel",
@@ -12384,6 +12903,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Safety Square
         [typeof(SSafetySquare)] = new()
         {
             NeedsTranslation = true,
@@ -12416,6 +12936,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Samsung
         [typeof(SSamsung)] = new()
         {
             NeedsTranslation = true,
@@ -12430,6 +12951,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Saturn
         [typeof(SSaturn)] = new()
         {
             NeedsTranslation = true,
@@ -12443,6 +12965,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Sbemail Songs
         [typeof(SSbemailSongs)] = new()
         {
             ModuleName = "Sbemail-Lieder",
@@ -12466,6 +12989,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Scavenger Hunt
         [typeof(SScavengerHunt)] = new()
         {
             NeedsTranslation = true,
@@ -12491,6 +13015,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Schlag den Bomb
         [typeof(SSchlagDenBomb)] = new()
         {
             NeedsTranslation = true,
@@ -12514,6 +13039,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Scramboozled Eggain
         [typeof(SScramboozledEggain)] = new()
         {
             ModuleName = "Wieder Mal Das Ei Gerührt",
@@ -12528,6 +13054,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Scripting
         [typeof(SScripting)] = new()
         {
             Questions = new()
@@ -12540,6 +13067,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Scrutiny Squares
         [typeof(SScrutinySquares)] = new()
         {
             NeedsTranslation = true,
@@ -12560,6 +13088,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Sea Shells
         [typeof(SSeaShells)] = new()
         {
             NeedsTranslation = true,
@@ -12586,6 +13115,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Semamorse
         [typeof(SSemamorse)] = new()
         {
             NeedsTranslation = true,
@@ -12618,6 +13148,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Sequencyclopedia
         [typeof(SSequencyclopedia)] = new()
         {
             NeedsTranslation = true,
@@ -12631,6 +13162,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // S.E.T. Theory
         [typeof(SSetTheory)] = new()
         {
             Questions = new()
@@ -12644,6 +13176,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Shapes And Bombs
         [typeof(SShapesAndBombs)] = new()
         {
             NeedsTranslation = true,
@@ -12657,6 +13190,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Shape Shift
         [typeof(SShapeShift)] = new()
         {
             NeedsTranslation = true,
@@ -12670,6 +13204,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Shifted Maze
         [typeof(SShiftedMaze)] = new()
         {
             NeedsTranslation = true,
@@ -12680,6 +13215,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} marker in {0}?
                     // Example: What color was the top-left marker in Shifted Maze?
                     Question = "What color was the {1} marker in {0}?",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-right"] = "top-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-right"] = "bottom-right",
+                    },
                     Answers = new()
                     {
                         ["White"] = "White",
@@ -12688,17 +13230,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Magenta"] = "Magenta",
                         ["Green"] = "Green",
                     },
-                    Arguments = new()
-                    {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
-                    },
                 },
             },
         },
 
+        // Shifting Maze
         [typeof(SShiftingMaze)] = new()
         {
             NeedsTranslation = true,
@@ -12712,6 +13248,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Shogi Identification
         [typeof(SShogiIdentification)] = new()
         {
             NeedsTranslation = true,
@@ -12757,6 +13294,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Sign Language
         [typeof(SSignLanguage)] = new()
         {
             NeedsTranslation = true,
@@ -12770,6 +13308,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Silly Slots
         [typeof(SSillySlots)] = new()
         {
             NeedsTranslation = true,
@@ -12799,6 +13338,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Silo Authorization
         [typeof(SSiloAuthorization)] = new()
         {
             NeedsTranslation = true,
@@ -12823,6 +13363,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Said
         [typeof(SSimonSaid)] = new()
         {
             ModuleName = "Simon Sagte",
@@ -12844,6 +13385,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Samples
         [typeof(SSimonSamples)] = new()
         {
             ModuleName = "Simons Samples",
@@ -12865,6 +13407,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Says
         [typeof(SSimonSays)] = new()
         {
             NeedsTranslation = true,
@@ -12886,6 +13429,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Scrambles
         [typeof(SSimonScrambles)] = new()
         {
             NeedsTranslation = true,
@@ -12907,6 +13451,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Screams
         [typeof(SSimonScreams)] = new()
         {
             ModuleName = "Simon Schreit",
@@ -12933,16 +13478,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: In which stage(s) of {0} was “{1}” the applicable rule?
                     // Example: In which stage(s) of Simon Screams was “a color flashed, then a color two away, then the first again” the applicable rule?
                     Question = "In welcher/-n Stufe(n) bei {0} war “{1}” die zutreffende Regel?",
-                    Answers = new()
-                    {
-                        ["first"] = "erste",
-                        ["second"] = "zweite",
-                        ["third"] = "dritte",
-                        ["first and second"] = "erste und zweite",
-                        ["first and third"] = "erste und dritte",
-                        ["second and third"] = "zweite und dritte",
-                        ["all of them"] = "alle",
-                    },
                     Arguments = new()
                     {
                         ["a color flashed, then a color two away, then the first again"] = "eine Farbe blinkt, dann eine mit einer Abstand, und dann die erste nochmal",
@@ -12987,12 +13522,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["two colors two apart flashed in clockwise order"] = "zwei Farben mit einer Farbe dazwischen blinken im Uhrzeigersinn",
                         ["two colors two apart flashed in counter-clockwise order"] = "zwei Farben mit einer Farbe dazwischen blinken gegen den Uhrzeigersinn",
                     },
-                },
-                [SSimonScreams.RuleComplex] = new()
-                {
-                    // English: In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?
-                    // Example: In which stage(s) of Simon Screams was “at most one color flashed out of Red, Orange, and Yellow” the applicable rule?
-                    Question = "In welcher/-n Stufe(n) bei {0} war “{1} der Farben {2}, {3} und {4} blinkt” die zutreffende Regel?",
                     Answers = new()
                     {
                         ["first"] = "erste",
@@ -13003,21 +13532,38 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["second and third"] = "zweite und dritte",
                         ["all of them"] = "alle",
                     },
+                },
+                [SSimonScreams.RuleComplex] = new()
+                {
+                    // English: In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?
+                    // Example: In which stage(s) of Simon Screams was “at most one color flashed out of Red, Orange, and Yellow” the applicable rule?
+                    Question = "In welcher/-n Stufe(n) bei {0} war “{1} der Farben {2}, {3} und {4} blinkt” die zutreffende Regel?",
                     Arguments = new()
                     {
                         ["at most one color"] = "maximal eine",
-                        ["Red"] = "Rot",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Gelb",
                         ["at least two colors"] = "mindestens zwei",
+                        ["Red"] = "Rot",
                         ["Green"] = "Grün",
+                        ["Orange"] = "Orange",
                         ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
                         ["Purple"] = "Lila",
+                    },
+                    Answers = new()
+                    {
+                        ["first"] = "erste",
+                        ["second"] = "zweite",
+                        ["third"] = "dritte",
+                        ["first and second"] = "erste und zweite",
+                        ["first and third"] = "erste und dritte",
+                        ["second and third"] = "zweite und dritte",
+                        ["all of them"] = "alle",
                     },
                 },
             },
         },
 
+        // Simon Selects
         [typeof(SSimonSelects)] = new()
         {
             NeedsTranslation = true,
@@ -13043,6 +13589,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Sends
         [typeof(SSimonSends)] = new()
         {
             NeedsTranslation = true,
@@ -13063,6 +13610,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Serves
         [typeof(SSimonServes)] = new()
         {
             NeedsTranslation = true,
@@ -13118,6 +13666,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Shapes
         [typeof(SSimonShapes)] = new()
         {
             NeedsTranslation = true,
@@ -13131,6 +13680,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Shouts
         [typeof(SSimonShouts)] = new()
         {
             ModuleName = "Simon Ruft",
@@ -13153,6 +13703,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Shrieks
         [typeof(SSimonShrieks)] = new()
         {
             ModuleName = "Simon Kreischt",
@@ -13168,6 +13719,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Shuffles
         [typeof(SSimonShuffles)] = new()
         {
             NeedsTranslation = true,
@@ -13182,6 +13734,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Signals
         [typeof(SSimonSignals)] = new()
         {
             NeedsTranslation = true,
@@ -13252,6 +13805,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Simons
         [typeof(SSimonSimons)] = new()
         {
             NeedsTranslation = true,
@@ -13266,6 +13820,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Sings
         [typeof(SSimonSings)] = new()
         {
             NeedsTranslation = true,
@@ -13280,6 +13835,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Smiles
         [typeof(SSimonSmiles)] = new()
         {
             NeedsTranslation = true,
@@ -13294,6 +13850,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Smothers
         [typeof(SSimonSmothers)] = new()
         {
             NeedsTranslation = true,
@@ -13330,6 +13887,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Sounds
         [typeof(SSimonSounds)] = new()
         {
             NeedsTranslation = true,
@@ -13351,6 +13909,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Speaks
         [typeof(SSimonSpeaks)] = new()
         {
             NeedsTranslation = true,
@@ -13408,6 +13967,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon’s Star
         [typeof(SSimonsStar)] = new()
         {
             ModuleName = "Simons Stern",
@@ -13431,6 +13991,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Stacks
         [typeof(SSimonStacks)] = new()
         {
             NeedsTranslation = true,
@@ -13452,6 +14013,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Stages
         [typeof(SSimonStages)] = new()
         {
             NeedsTranslation = true,
@@ -13500,6 +14062,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon States
         [typeof(SSimonStates)] = new()
         {
             ModuleName = "Simon Statuiert",
@@ -13510,6 +14073,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which {1} in the {2} stage in {0}?
                     // Example: Which color(s) flashed in the first stage in Simon States?
                     Question = "Welche Farbe(n) sind bei {0} in der {2}en Stufe {1}?",
+                    Arguments = new()
+                    {
+                        ["color(s) flashed"] = "aufgeleuchtet",
+                        ["color(s) didn’t flash"] = "nicht aufgeleuchtet",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -13525,15 +14093,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["all 4"] = "alle 4",
                         ["none"] = "keine",
                     },
-                    Arguments = new()
-                    {
-                        ["color(s) flashed"] = "aufgeleuchtet",
-                        ["color(s) didn’t flash"] = "nicht aufgeleuchtet",
-                    },
                 },
             },
         },
 
+        // Simon Stops
         [typeof(SSimonStops)] = new()
         {
             NeedsTranslation = true,
@@ -13557,6 +14121,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Stores
         [typeof(SSimonStores)] = new()
         {
             NeedsTranslation = true,
@@ -13567,6 +14132,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which color {1} {2} in the final sequence of {0}?
                     // Example: Which color flashed first in the final sequence of Simon Stores?
                     Question = "Which color {1} {2} in the final sequence of {0}?",
+                    Arguments = new()
+                    {
+                        ["flashed"] = "flashed",
+                        ["was among the colors flashed"] = "was among the colors flashed",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -13576,15 +14146,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Magenta"] = "Magenta",
                         ["Yellow"] = "Yellow",
                     },
-                    Arguments = new()
-                    {
-                        ["flashed"] = "flashed",
-                        ["was among the colors flashed"] = "was among the colors flashed",
-                    },
                 },
             },
         },
 
+        // Simon Subdivides
         [typeof(SSimonSubdivides)] = new()
         {
             NeedsTranslation = true,
@@ -13605,6 +14171,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Supports
         [typeof(SSimonSupports)] = new()
         {
             NeedsTranslation = true,
@@ -13630,6 +14197,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon Swizzles
         [typeof(SSimonSwizzles)] = new()
         {
             NeedsTranslation = true,
@@ -13654,6 +14222,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simply Simon
         [typeof(SSimplySimon)] = new()
         {
             NeedsTranslation = true,
@@ -13668,6 +14237,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simultaneous Simons
         [typeof(SSimultaneousSimons)] = new()
         {
             NeedsTranslation = true,
@@ -13689,6 +14259,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Skewed Slots
         [typeof(SSkewedSlots)] = new()
         {
             NeedsTranslation = true,
@@ -13702,6 +14273,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Skewers
         [typeof(SSkewers)] = new()
         {
             NeedsTranslation = true,
@@ -13726,6 +14298,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Skyrim
         [typeof(SSkyrim)] = new()
         {
             NeedsTranslation = true,
@@ -13807,6 +14380,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Slow Math
         [typeof(SSlowMath)] = new()
         {
             ModuleName = "Mathe in Zeitlupe",
@@ -13821,6 +14395,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Small Circle
         [typeof(SSmallCircle)] = new()
         {
             NeedsTranslation = true,
@@ -13867,6 +14442,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Small Talk
         [typeof(SSmallTalk)] = new()
         {
             NeedsTranslation = true,
@@ -13881,6 +14457,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Smash, Marry, Kill
         [typeof(SSmashMarryKill)] = new()
         {
             NeedsTranslation = true,
@@ -13909,6 +14486,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Snooker
         [typeof(SSnooker)] = new()
         {
             NeedsTranslation = true,
@@ -13922,6 +14500,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Snowflakes
         [typeof(SSnowflakes)] = new()
         {
             NeedsTranslation = true,
@@ -13943,6 +14522,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Sonic & Knuckles
         [typeof(SSonicKnuckles)] = new()
         {
             NeedsTranslation = true,
@@ -13966,6 +14546,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Sonic the Hedgehog
         [typeof(SSonicTheHedgehog)] = new()
         {
             NeedsTranslation = true,
@@ -13993,6 +14574,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Sorting
         [typeof(SSorting)] = new()
         {
             NeedsTranslation = true,
@@ -14006,6 +14588,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Souvenir
         [typeof(SSouvenir)] = new()
         {
             NeedsTranslation = true,
@@ -14027,6 +14610,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Space Traders
         [typeof(SSpaceTraders)] = new()
         {
             NeedsTranslation = true,
@@ -14040,6 +14624,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Spelling Bee
         [typeof(SSpellingBee)] = new()
         {
             Questions = new()
@@ -14052,6 +14637,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Sphere
         [typeof(SSphere)] = new()
         {
             ModuleName = "Die Kugel",
@@ -14079,6 +14665,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Splitting The Loot
         [typeof(SSplittingTheLoot)] = new()
         {
             ModuleName = "Beute Aufteilen",
@@ -14092,6 +14679,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Spongebob Birthday Identification
         [typeof(SSpongebobBirthdayIdentification)] = new()
         {
             Questions = new()
@@ -14105,6 +14693,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Stability
         [typeof(SStability)] = new()
         {
             ModuleName = "Stabilität",
@@ -14131,6 +14720,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Stable Time Signatures
         [typeof(SStableTimeSignatures)] = new()
         {
             ModuleName = "Stabile Taktarten",
@@ -14147,6 +14737,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Stacked Sequences
         [typeof(SStackedSequences)] = new()
         {
             ModuleName = "Gestapelte Folgen",
@@ -14162,6 +14753,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Stars
         [typeof(SStars)] = new()
         {
             ModuleName = "Sterne",
@@ -14177,6 +14769,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Starstruck
         [typeof(SStarstruck)] = new()
         {
             ModuleName = "Sternenbegeisterung",
@@ -14191,6 +14784,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // State of Aggregation
         [typeof(SStateOfAggregation)] = new()
         {
             ModuleName = "Aggregatzustand",
@@ -14205,6 +14799,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Stellar
         [typeof(SStellar)] = new()
         {
             ModuleName = "Sternchen",
@@ -14225,6 +14820,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Stroop’s Test
         [typeof(SStroopsTest)] = new()
         {
             ModuleName = "Stroop-Test",
@@ -14279,6 +14875,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Stupid Slots
         [typeof(SStupidSlots)] = new()
         {
             ModuleName = "Dummer Automat",
@@ -14304,6 +14901,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Subbly Jubbly
         [typeof(SSubblyJubbly)] = new()
         {
             Questions = new()
@@ -14316,6 +14914,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Subscribe to Pewdiepie
         [typeof(SSubscribeToPewdiepie)] = new()
         {
             Questions = new()
@@ -14334,6 +14933,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Subway
         [typeof(SSubway)] = new()
         {
             Questions = new()
@@ -14351,6 +14951,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Sugar Skulls
         [typeof(SSugarSkulls)] = new()
         {
             ModuleName = "Zuckerschädel",
@@ -14383,6 +14984,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Suits and Colours
         [typeof(SSuitsAndColours)] = new()
         {
             Questions = new()
@@ -14416,6 +15018,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Superparsing
         [typeof(SSuperparsing)] = new()
         {
             Questions = new()
@@ -14428,6 +15031,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // SUSadmin
         [typeof(SSUSadmin)] = new()
         {
             Questions = new()
@@ -14445,6 +15049,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Switch
         [typeof(SSwitch)] = new()
         {
             ModuleName = "Der Schalter",
@@ -14457,6 +15062,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} LED on the {2} flip of {0}?
                     // Example: What color was the top LED on the first flip of The Switch?
                     Question = "Welche Farbe hatte bei {0} die {1} LED beim {2}en Umschalten?",
+                    Arguments = new()
+                    {
+                        ["top"] = "obere",
+                        ["bottom"] = "untere",
+                    },
                     Answers = new()
                     {
                         ["red"] = "rot",
@@ -14466,15 +15076,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["blue"] = "blau",
                         ["purple"] = "lila",
                     },
-                    Arguments = new()
-                    {
-                        ["top"] = "obere",
-                        ["bottom"] = "untere",
-                    },
                 },
             },
         },
 
+        // Switches
         [typeof(SSwitches)] = new()
         {
             ModuleName = "Schalter",
@@ -14489,6 +15095,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Switching Maze
         [typeof(SSwitchingMaze)] = new()
         {
             NeedsTranslation = true,
@@ -14522,6 +15129,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Symbol Cycle
         [typeof(SSymbolCycle)] = new()
         {
             NeedsTranslation = true,
@@ -14541,6 +15149,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Symbolic Coordinates
         [typeof(SSymbolicCoordinates)] = new()
         {
             NeedsTranslation = true,
@@ -14561,6 +15170,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Symbolic Tasha
         [typeof(SSymbolicTasha)] = new()
         {
             ModuleName = "Symbole-Tasha",
@@ -14613,6 +15223,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Synapse Says
         [typeof(SSynapseSays)] = new()
         {
             NeedsTranslation = true,
@@ -14633,6 +15244,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // SYNC-125 [3]
         [typeof(SSync125_3)] = new()
         {
             Questions = new()
@@ -14646,6 +15258,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Synonyms
         [typeof(SSynonyms)] = new()
         {
             NeedsTranslation = true,
@@ -14659,6 +15272,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Sysadmin
         [typeof(SSysadmin)] = new()
         {
             NeedsTranslation = true,
@@ -14672,6 +15286,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // TAC
         [typeof(STAC)] = new()
         {
             NeedsTranslation = true,
@@ -14682,6 +15297,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which card was {1} in the swap in {0}?
                     // Example: Which card was given away in the swap in TAC?
                     Question = "Which card was {1} your partner in {0}?",
+                    Arguments = new()
+                    {
+                        ["given away"] = "given away",
+                        ["received"] = "received",
+                    },
                     Answers = new()
                     {
                         ["1"] = "1",
@@ -14707,11 +15327,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["10 or discard"] = "10 or discard",
                         ["Warrior"] = "Warrior",
                         ["Trickster"] = "Trickster",
-                    },
-                    Arguments = new()
-                    {
-                        ["given away"] = "given away",
-                        ["received"] = "received",
                     },
                 },
                 [STAC.HeldCard] = new()
@@ -14748,6 +15363,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Tap Code
         [typeof(STapCode)] = new()
         {
             NeedsTranslation = true,
@@ -14761,6 +15377,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Tasha Squeals
         [typeof(STashaSqueals)] = new()
         {
             NeedsTranslation = true,
@@ -14782,6 +15399,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Tasque Managing
         [typeof(STasqueManaging)] = new()
         {
             NeedsTranslation = true,
@@ -14795,6 +15413,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Tea Set
         [typeof(STeaSet)] = new()
         {
             NeedsTranslation = true,
@@ -14809,6 +15428,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Technical Keypad
         [typeof(STechnicalKeypad)] = new()
         {
             ModuleName = "Technisches Tastenfeld",
@@ -14823,6 +15443,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Ten-Button Color Code
         [typeof(STenButtonColorCode)] = new()
         {
             NeedsTranslation = true,
@@ -14843,6 +15464,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Tenpins
         [typeof(STenpins)] = new()
         {
             NeedsTranslation = true,
@@ -14853,6 +15475,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} split in {0}?
                     // Example: What was the red split in Tenpins?
                     Question = "What was the {1} split in {0}?",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                    },
                     Answers = new()
                     {
                         ["Goal Posts"] = "Goal Posts",
@@ -14868,16 +15496,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Big Six"] = "Big Six",
                         ["HOW"] = "HOW",
                     },
-                    Arguments = new()
-                    {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                    },
                 },
             },
         },
 
+        // Tetriamonds
         [typeof(STetriamonds)] = new()
         {
             NeedsTranslation = true,
@@ -14902,6 +15525,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Text Field
         [typeof(STextField)] = new()
         {
             NeedsTranslation = true,
@@ -14915,6 +15539,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Thinking Wires
         [typeof(SThinkingWires)] = new()
         {
             NeedsTranslation = true,
@@ -14950,6 +15575,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Third Base
         [typeof(SThirdBase)] = new()
         {
             NeedsTranslation = true,
@@ -14964,6 +15590,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Thirty Dollar Module
         [typeof(SThirtyDollarModule)] = new()
         {
             NeedsTranslation = true,
@@ -14977,6 +15604,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Tic Tac Toe
         [typeof(STicTacToe)] = new()
         {
             ModuleName = "Tic-Tac-Toe",
@@ -15024,6 +15652,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Time Signatures
         [typeof(STimeSignatures)] = new()
         {
             NeedsTranslation = true,
@@ -15038,6 +15667,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Timezone
         [typeof(STimezone)] = new()
         {
             NeedsTranslation = true,
@@ -15057,6 +15687,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Tip Toe
         [typeof(STipToe)] = new()
         {
             NeedsTranslation = true,
@@ -15071,6 +15702,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Topsy Turvy
         [typeof(STopsyTurvy)] = new()
         {
             NeedsTranslation = true,
@@ -15084,6 +15716,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Touch Transmission
         [typeof(STouchTransmission)] = new()
         {
             NeedsTranslation = true,
@@ -15109,6 +15742,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Transmitted Morse
         [typeof(STransmittedMorse)] = new()
         {
             NeedsTranslation = true,
@@ -15123,6 +15757,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Triamonds
         [typeof(STriamonds)] = new()
         {
             NeedsTranslation = true,
@@ -15148,6 +15783,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Tribal Council
         [typeof(STribalCouncil)] = new()
         {
             NeedsTranslation = true,
@@ -15167,6 +15803,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Triple Term
         [typeof(STripleTerm)] = new()
         {
             NeedsTranslation = true,
@@ -15180,6 +15817,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Turtle Robot
         [typeof(STurtleRobot)] = new()
         {
             NeedsTranslation = true,
@@ -15194,6 +15832,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Two Bits
         [typeof(STwoBits)] = new()
         {
             NeedsTranslation = true,
@@ -15208,6 +15847,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Twodoku
         [typeof(STwodoku)] = new()
         {
             ModuleName = "Zwodoku",
@@ -15233,6 +15873,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Ultimate Cipher
         [typeof(SUltimateCipher)] = new()
         {
             ModuleName = "Ultimative Geheimschrift",
@@ -15255,6 +15896,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Ultimate Cycle
         [typeof(SUltimateCycle)] = new()
         {
             ModuleName = "Ultimative Schiffer",
@@ -15286,6 +15928,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Ultracube
         [typeof(SUltracube)] = new()
         {
             Questions = new()
@@ -15299,6 +15942,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // UltraStores
         [typeof(SUltraStores)] = new()
         {
             NeedsTranslation = true,
@@ -15319,6 +15963,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Uncolored Squares
         [typeof(SUncoloredSquares)] = new()
         {
             ModuleName = "Ungefärbte Felder",
@@ -15344,6 +15989,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Uncolored Switches
         [typeof(SUncoloredSwitches)] = new()
         {
             ModuleName = "Ungefärbte Schalter",
@@ -15376,6 +16022,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Uncolour Flash
         [typeof(SUncolourFlash)] = new()
         {
             ModuleName = "Ungefärbte Folge",
@@ -15411,6 +16058,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Undertunneling
         [typeof(SUndertunneling)] = new()
         {
             ModuleName = "Untertunnelung",
@@ -15425,6 +16073,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Unfair Cipher
         [typeof(SUnfairCipher)] = new()
         {
             ModuleName = "Unfaire Geheimschrift",
@@ -15441,6 +16090,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Unfair's Cruel Revenge
         [typeof(SUnfairsCruelRevenge)] = new()
         {
             ModuleName = "Unfairs Höllische Rache",
@@ -15462,6 +16112,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Unfair’s Revenge
         [typeof(SUnfairsRevenge)] = new()
         {
             ModuleName = "Unfairs Rache",
@@ -15477,6 +16128,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Unicode
         [typeof(SUnicode)] = new()
         {
             Questions = new()
@@ -15490,6 +16142,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // UNO!
         [typeof(SUNO)] = new()
         {
             Questions = new()
@@ -15559,6 +16212,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Unordered Keys
         [typeof(SUnorderedKeys)] = new()
         {
             Questions = new()
@@ -15584,6 +16238,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Unown Cipher
         [typeof(SUnownCipher)] = new()
         {
             ModuleName = "Unown-Geheimschrift",
@@ -15599,6 +16254,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Unpleasant Squares
         [typeof(SUnpleasantSquares)] = new()
         {
             ModuleName = "Unangenehme Quadrate",
@@ -15621,6 +16277,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Updog
         [typeof(SUpdog)] = new()
         {
             Questions = new()
@@ -15635,6 +16292,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} color in the sequence on {0}?
                     // Example: What was the first color in the sequence on Updog?
                     Question = "Was war bei {0} die {1} Farbe in der Farbsequenz?",
+                    Arguments = new()
+                    {
+                        ["first"] = "erste",
+                        ["last"] = "letzte",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -15644,15 +16306,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Blue"] = "Blau",
                         ["Purple"] = "Lila",
                     },
-                    Arguments = new()
-                    {
-                        ["first"] = "erste",
-                        ["last"] = "letzte",
-                    },
                 },
             },
         },
 
+        // USA Cycle
         [typeof(SUSACycle)] = new()
         {
             ModuleName = "USA-Schiffer",
@@ -15667,6 +16325,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // USA Maze
         [typeof(SUSAMaze)] = new()
         {
             ModuleName = "USA-Labyrinth",
@@ -15680,6 +16339,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // V
         [typeof(SV)] = new()
         {
             Questions = new()
@@ -15698,6 +16358,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Valves
         [typeof(SValves)] = new()
         {
             ModuleName = "Ventile",
@@ -15712,6 +16373,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Varicolored Squares
         [typeof(SVaricoloredSquares)] = new()
         {
             ModuleName = "Mischgefärbte Felder",
@@ -15736,6 +16398,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Varicolour Flash
         [typeof(SVaricolourFlash)] = new()
         {
             ModuleName = "Farbenfrohe Folge",
@@ -15776,6 +16439,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Variety
         [typeof(SVariety)] = new()
         {
             ModuleName = "Vielfalt",
@@ -15852,6 +16516,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: the Variety that has {0}
                     // Example: the Variety that has one
                     Discriminator = "der Vielfalt{0}",
+                    // Refer to translations.md to understand the weird strings
                     Arguments = new()
                     {
                         ["one\uE003 (LED)"] = ", die eine hat,",
@@ -15922,6 +16587,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Vcrcs
         [typeof(SVcrcs)] = new()
         {
             Questions = new()
@@ -15934,6 +16600,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Vectors
         [typeof(SVectors)] = new()
         {
             ModuleName = "Vektoren",
@@ -15945,6 +16612,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} vector in {0}?
                     // Example: What was the color of the first vector in Vectors?
                     Question = "Welche Farbe hatte der {1} Vektor bei {0}?",
+                    Arguments = new()
+                    {
+                        ["first"] = "erste",
+                        ["second"] = "zweite",
+                        ["third"] = "dritte",
+                        ["only"] = "einzige",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -15954,17 +16628,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Blue"] = "Blau",
                         ["Purple"] = "Violett",
                     },
-                    Arguments = new()
-                    {
-                        ["first"] = "erste",
-                        ["second"] = "zweite",
-                        ["third"] = "dritte",
-                        ["only"] = "einzige",
-                    },
                 },
             },
         },
 
+        // Vexillology
         [typeof(SVexillology)] = new()
         {
             ModuleName = "Flaggenkunde",
@@ -15991,6 +16659,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Violet Cipher
         [typeof(SVioletCipher)] = new()
         {
             ModuleName = "Violette Geheimschrift",
@@ -16013,6 +16682,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Visual Impairment
         [typeof(SVisualImpairment)] = new()
         {
             ModuleName = "Sehbehinderung",
@@ -16035,6 +16705,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Walking Cube
         [typeof(SWalkingCube)] = new()
         {
             ModuleName = "Wandernder Würfel",
@@ -16050,6 +16721,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Warning Signs
         [typeof(SWarningSigns)] = new()
         {
             ModuleName = "Warnschilder",
@@ -16065,6 +16737,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // WASD
         [typeof(SWasd)] = new()
         {
             Questions = new()
@@ -16077,6 +16750,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Watching Paint Dry
         [typeof(SWatchingPaintDry)] = new()
         {
             ModuleName = "Farbe Beim Trocknen Zusehen",
@@ -16090,6 +16764,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Wavetapping
         [typeof(SWavetapping)] = new()
         {
             ModuleName = "Wellenschlagen",
@@ -16129,6 +16804,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Weakest Link
         [typeof(SWeakestLink)] = new()
         {
             ModuleName = "Schwächstes Glied",
@@ -16160,6 +16836,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // What’s on Second
         [typeof(SWhatsOnSecond)] = new()
         {
             Questions = new()
@@ -16188,6 +16865,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // White Arrows
         [typeof(SWhiteArrows)] = new()
         {
             ModuleName = "Weiße Pfeile",
@@ -16200,6 +16878,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} non-white arrow in {0}?
                     // Example: What was the first non-white arrow in White Arrows?
                     Question = "Was war bei {0} der {1}e nicht-weiße Pfeil?",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["Blue"] = "Blau",
@@ -16220,6 +16899,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // White Cipher
         [typeof(SWhiteCipher)] = new()
         {
             ModuleName = "Weiße Geheimschrift",
@@ -16242,6 +16922,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // WhoOF
         [typeof(SWhoOF)] = new()
         {
             Questions = new()
@@ -16255,6 +16936,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Who’s on First
         [typeof(SWhosOnFirst)] = new()
         {
             Questions = new()
@@ -16268,6 +16950,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Who’s on Gas
         [typeof(SWhosOnGas)] = new()
         {
             Questions = new()
@@ -16281,6 +16964,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Who’s on Morse
         [typeof(SWhosOnMorse)] = new()
         {
             Questions = new()
@@ -16294,6 +16978,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Wire
         [typeof(SWire)] = new()
         {
             ModuleName = "Der Draht",
@@ -16306,6 +16991,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} dial in {0}?
                     // Example: What was the color of the top dial in The Wire?
                     Question = "Welche Farbe hatte bei {0} der {1} Drehregler?",
+                    Arguments = new()
+                    {
+                        ["top"] = "obere",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
+                    },
                     Answers = new()
                     {
                         ["blue"] = "blau",
@@ -16314,12 +17005,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["orange"] = "orange",
                         ["purple"] = "lila",
                         ["red"] = "rot",
-                    },
-                    Arguments = new()
-                    {
-                        ["top"] = "obere",
-                        ["bottom-left"] = "untere linke",
-                        ["bottom-right"] = "untere rechte",
                     },
                 },
                 [SWire.DisplayedNumber] = new()
@@ -16330,6 +17015,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Wire Ordering
         [typeof(SWireOrdering)] = new()
         {
             ModuleName = "Draht-Reihenfolge",
@@ -16379,6 +17065,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Wire Sequence
         [typeof(SWireSequence)] = new()
         {
             ModuleName = "Drahtfolge",
@@ -16400,6 +17087,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Wolf, Goat, and Cabbage
         [typeof(SWolfGoatAndCabbage)] = new()
         {
             ModuleName = "Wolf, Ziege und Kohl",
@@ -16424,6 +17112,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Word Count
         [typeof(SWordCount)] = new()
         {
             ModuleName = "Wortzähler",
@@ -16438,6 +17127,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Working Title
         [typeof(SWorkingTitle)] = new()
         {
             ModuleName = "Arbeitstitel",
@@ -16452,6 +17142,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Wumbo
         [typeof(SWumbo)] = new()
         {
             Questions = new()
@@ -16464,6 +17155,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Xenocryst
         [typeof(SXenocryst)] = new()
         {
             ModuleName = "Der Xenokrist",
@@ -16480,6 +17172,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // XmORse Code
         [typeof(SXmORseCode)] = new()
         {
             ModuleName = "XmORsezeichen",
@@ -16500,6 +17193,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // xobekuJ ehT
         [typeof(SXobekuJehT)] = new()
         {
             ModuleName = "xobkisuM eiD",
@@ -16513,6 +17207,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // X-Ring
         [typeof(SXRing)] = new()
         {
             Gender = Gender.Masculine,
@@ -16526,6 +17221,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // X-Rotor
         [typeof(SXRotor)] = new()
         {
             NeedsTranslation = true,
@@ -16539,6 +17235,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // XY-Ray
         [typeof(SXYRay)] = new()
         {
             ModuleName = "XY-Scanner",
@@ -16552,6 +17249,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Yahtzee
         [typeof(SYahtzee)] = new()
         {
             ModuleName = "Kniffel",
@@ -16576,6 +17274,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Yellow Arrows
         [typeof(SYellowArrows)] = new()
         {
             ModuleName = "Gelbe Pfeile",
@@ -16591,6 +17290,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The Yellow Button
         [typeof(SYellowButton)] = new()
         {
             ModuleName = "Der Gelbe Knopf",
@@ -16616,6 +17316,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Yellow Button’t
         [typeof(SYellowButtont)] = new()
         {
             ModuleName = "Gelber Knopf Mal Anders",
@@ -16630,6 +17331,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Yellow Cipher
         [typeof(SYellowCipher)] = new()
         {
             ModuleName = "Gelbe Geheimschrift",
@@ -16652,6 +17354,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Zero, Zero
         [typeof(SZeroZero)] = new()
         {
             ModuleName = "Null, Null",
@@ -16674,6 +17377,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the {1} star in {0}?
                     // Example: What color was the top-left star in Zero, Zero?
                     Question = "Welche Farbe hatte bei {0} der {1} Stern?",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "obere linke",
+                        ["top-right"] = "obere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
+                    },
                     Answers = new()
                     {
                         ["black"] = "schwarze",
@@ -16684,13 +17394,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["magenta"] = "magentafarbene",
                         ["yellow"] = "gelbe",
                         ["white"] = "weiße",
-                    },
-                    Arguments = new()
-                    {
-                        ["top-left"] = "obere linke",
-                        ["top-right"] = "obere rechte",
-                        ["bottom-left"] = "untere linke",
-                        ["bottom-right"] = "untere rechte",
                     },
                 },
                 [SZeroZero.StarPoints] = new()
@@ -16709,6 +17412,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Zoni
         [typeof(SZoni)] = new()
         {
             Questions = new()
@@ -16722,6 +17426,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Épelle-moi Ça
         [typeof(SÉpelleMoiÇa)] = new()
         {
             Questions = new()

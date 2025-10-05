@@ -11,6 +11,7 @@ public sealed class SouvenirDiscriminatorAttribute(string discriminatorText) : A
     public int ArgumentGroupSize { get; set; }
     public bool[] TranslateArguments { get; set; }
     public string[] TranslatableStrings { get; set; }
+    public bool ReferenceDocumentation { get; set; }
     public bool UsesQuestionSprite { get; set; }
 
     public Enum EnumValue { get; internal set; }

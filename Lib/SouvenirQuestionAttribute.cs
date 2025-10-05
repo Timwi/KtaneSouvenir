@@ -17,6 +17,7 @@ public sealed class SouvenirQuestionAttribute(string questionText, AnswerLayout 
     public bool TranslateAnswers { get; set; }
     public bool[] TranslateArguments { get; set; }
     public string[] TranslatableStrings { get; set; }
+    public bool ReferenceDocumentation { get; set; }
     public bool UsesQuestionSprite { get; set; }
     public string[] ExampleAnswers { get; set; }
     public AnswerType Type { get; set; } = AnswerType.Default;

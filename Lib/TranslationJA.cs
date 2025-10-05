@@ -16,6 +16,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
     protected override Dictionary<Type, TranslationInfo> _translations => new()
     {
         #region Translatable strings
+        // 0
         [typeof(S0)] = new()
         {
             Questions = new()
@@ -28,6 +29,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 1000 Words
         [typeof(S1000Words)] = new()
         {
             ModuleName = "1000単語",
@@ -51,6 +53,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 100 Levels of Defusal
         [typeof(S100LevelsOfDefusal)] = new()
         {
             ModuleName = "解除レベル100",
@@ -74,6 +77,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The 1, 2, 3 Game
         [typeof(S123Game)] = new()
         {
             ModuleName = "123ゲーム",
@@ -92,6 +96,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 1D Chess
         [typeof(S1DChess)] = new()
         {
             ModuleName = "1Dチェス",
@@ -153,6 +158,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 21
         [typeof(S21)] = new()
         {
             Questions = new()
@@ -165,6 +171,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 3D Maze
         [typeof(S3DMaze)] = new()
         {
             ModuleName = "3D迷路",
@@ -212,6 +219,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 3D Tap Code
         [typeof(S3DTapCode)] = new()
         {
             ModuleName = "3Dタップ・コード",
@@ -225,6 +233,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 3D Tunnels
         [typeof(S3DTunnels)] = new()
         {
             ModuleName = "3Dトンネル",
@@ -239,6 +248,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 3 LEDs
         [typeof(S3LEDs)] = new()
         {
             ModuleName = "3つのLED",
@@ -263,6 +273,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 3N+1
         [typeof(S3NPlus1)] = new()
         {
             Questions = new()
@@ -275,6 +286,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 4D Tunnels
         [typeof(S4DTunnels)] = new()
         {
             ModuleName = "4Dトンネル",
@@ -289,6 +301,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 64
         [typeof(S64)] = new()
         {
             Questions = new()
@@ -301,6 +314,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 7
         [typeof(S7)] = new()
         {
             Questions = new()
@@ -361,6 +375,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // 9-Ball
         [typeof(S9Ball)] = new()
         {
             ModuleName = "9ボール",
@@ -381,6 +396,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Abyss
         [typeof(SAbyss)] = new()
         {
             ModuleName = "アビス",
@@ -395,6 +411,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Accumulation
         [typeof(SAccumulation)] = new()
         {
             ModuleName = "蓄積",
@@ -481,6 +498,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Adventure Game
         [typeof(SAdventureGame)] = new()
         {
             ModuleName = "アドベンチャーゲーム",
@@ -515,6 +533,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Affine Cycle
         [typeof(SAffineCycle)] = new()
         {
             ModuleName = "アフィンサイクル",
@@ -544,6 +563,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Alcoholic Rampage
         [typeof(SAlcoholicRampage)] = new()
         {
             ModuleName = "アルコール中毒",
@@ -558,6 +578,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // A Letter
         [typeof(SALetter)] = new()
         {
             ModuleName = "英字",
@@ -571,6 +592,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Alfa-Bravo
         [typeof(SAlfaBravo)] = new()
         {
             ModuleName = "アルファブラボー",
@@ -599,6 +621,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Algebra
         [typeof(SAlgebra)] = new()
         {
             ModuleName = "方程式",
@@ -617,6 +640,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Algorithmia
         [typeof(SAlgorithmia)] = new()
         {
             ModuleName = "アルゴリズム",
@@ -646,6 +670,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Alphabetical Ruling
         [typeof(SAlphabeticalRuling)] = new()
         {
             ModuleName = "アルファベットルール",
@@ -666,6 +691,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Alphabet Numbers
         [typeof(SAlphabetNumbers)] = new()
         {
             ModuleName = "アルファベット番号",
@@ -680,6 +706,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Alphabet Tiles
         [typeof(SAlphabetTiles)] = new()
         {
             ModuleName = "アルファベットタイル",
@@ -714,6 +741,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Alpha-Bits
         [typeof(SAlphaBits)] = new()
         {
             ModuleName = "アルファビッツ",
@@ -733,6 +761,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // A Message
         [typeof(SAMessage)] = new()
         {
             ModuleName = "Aメッセージ",
@@ -746,6 +775,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Amusement Parks
         [typeof(SAmusementParks)] = new()
         {
             ModuleName = "遊園地",
@@ -759,6 +789,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Ángel Hernández
         [typeof(SAngelHernandez)] = new()
         {
             ModuleName = "アンヘル・エルナンデス",
@@ -773,6 +804,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Arena
         [typeof(SArena)] = new()
         {
             ModuleName = "アリーナ",
@@ -796,6 +828,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Arithmelogic
         [typeof(SArithmelogic)] = new()
         {
             ModuleName = "計算論理",
@@ -821,6 +854,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // ASCII Maze
         [typeof(SASCIIMaze)] = new()
         {
             ModuleName = "アスキー迷路",
@@ -835,6 +869,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // A Square
         [typeof(SASquare)] = new()
         {
             ModuleName = "正方型",
@@ -854,6 +889,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Audio Morse
         [typeof(SAudioMorse)] = new()
         {
             ModuleName = "音声モールス",
@@ -867,6 +903,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Azure Button
         [typeof(SAzureButton)] = new()
         {
             ModuleName = "空色ボタン",
@@ -950,6 +987,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bakery
         [typeof(SBakery)] = new()
         {
             ModuleName = "クッキー屋",
@@ -963,6 +1001,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bamboozled Again
         [typeof(SBamboozledAgain)] = new()
         {
             ModuleName = "再錯綜",
@@ -1036,6 +1075,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bamboozling Button
         [typeof(SBamboozlingButton)] = new()
         {
             ModuleName = "錯綜ボタン",
@@ -1108,6 +1148,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bar Charts
         [typeof(SBarCharts)] = new()
         {
             ModuleName = "棒グラフ",
@@ -1158,6 +1199,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Barcode Cipher
         [typeof(SBarcodeCipher)] = new()
         {
             ModuleName = "バーコード暗号",
@@ -1194,6 +1236,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bartending
         [typeof(SBartending)] = new()
         {
             ModuleName = "バーテンディング",
@@ -1216,6 +1259,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Beans
         [typeof(SBeans)] = new()
         {
             ModuleName = "豆",
@@ -1238,6 +1282,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bean Sprouts
         [typeof(SBeanSprouts)] = new()
         {
             ModuleName = "もやし",
@@ -1272,6 +1317,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Big Bean
         [typeof(SBigBean)] = new()
         {
             ModuleName = "大きい豆",
@@ -1294,6 +1340,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Big Circle
         [typeof(SBigCircle)] = new()
         {
             ModuleName = "ビッグサークル",
@@ -1319,6 +1366,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Binary
         [typeof(SBinary)] = new()
         {
             ModuleName = "二進法LED",
@@ -1332,6 +1380,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Binary LEDs
         [typeof(SBinaryLEDs)] = new()
         {
             ModuleName = "二進法LED",
@@ -1345,6 +1394,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Binary Shift
         [typeof(SBinaryShift)] = new()
         {
             ModuleName = "二進数シフト",
@@ -1407,6 +1457,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bitmaps
         [typeof(SBitmaps)] = new()
         {
             ModuleName = "ビットマップ",
@@ -1420,16 +1471,17 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Arguments = new()
                     {
                         ["white"] = "白",
+                        ["black"] = "黒",
                         ["top left"] = "左上",
                         ["top right"] = "右上",
                         ["bottom left"] = "左下",
                         ["bottom right"] = "右下",
-                        ["black"] = "黒",
                     },
                 },
             },
         },
 
+        // Black Cipher
         [typeof(SBlackCipher)] = new()
         {
             ModuleName = "黒色暗号",
@@ -1450,6 +1502,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Blindfolded Yahtzee
         [typeof(SBlindfoldedYahtzee)] = new()
         {
             ModuleName = "目隠しヤッツィー",
@@ -1480,6 +1533,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Blind Maze
         [typeof(SBlindMaze)] = new()
         {
             ModuleName = "ブラインド迷路",
@@ -1490,6 +1544,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} button in {0}?
                     // Example: What color was the north button in Blind Maze?
                     Question = "{0}の{1}のボタンの色は？",
+                    Arguments = new()
+                    {
+                        ["north"] = "北",
+                        ["east"] = "東",
+                        ["west"] = "西",
+                        ["south"] = "南",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -1497,13 +1558,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Blue"] = "青",
                         ["Gray"] = "灰",
                         ["Yellow"] = "黄",
-                    },
-                    Arguments = new()
-                    {
-                        ["north"] = "北",
-                        ["east"] = "東",
-                        ["west"] = "西",
-                        ["south"] = "南",
                     },
                 },
                 [SBlindMaze.Maze] = new()
@@ -1514,6 +1568,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Blinking Notes
         [typeof(SBlinkingNotes)] = new()
         {
             ModuleName = "点滅音符",
@@ -1527,6 +1582,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Blinkstop
         [typeof(SBlinkstop)] = new()
         {
             ModuleName = "瞬きの停止",
@@ -1552,6 +1608,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Blockbusters
         [typeof(SBlockbusters)] = new()
         {
             ModuleName = "ブロックバスター",
@@ -1565,6 +1622,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Blue Arrows
         [typeof(SBlueArrows)] = new()
         {
             ModuleName = "青色矢印",
@@ -1578,6 +1636,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Blue Button
         [typeof(SBlueButton)] = new()
         {
             ModuleName = "青色ボタン",
@@ -1654,6 +1713,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Blue Cipher
         [typeof(SBlueCipher)] = new()
         {
             ModuleName = "青色暗号",
@@ -1674,6 +1734,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bob Barks
         [typeof(SBobBarks)] = new()
         {
             ModuleName = "ボブの咆哮",
@@ -1708,6 +1769,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Boggle
         [typeof(SBoggle)] = new()
         {
             ModuleName = "ボグル",
@@ -1721,6 +1783,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bomb Diffusal
         [typeof(SBombDiffusal)] = new()
         {
             ModuleName = "爆弾拡散",
@@ -1734,6 +1797,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bone Apple Tea
         [typeof(SBoneAppleTea)] = new()
         {
             ModuleName = "ボーンアップルティー",
@@ -1747,6 +1811,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Boob Tube
         [typeof(SBoobTube)] = new()
         {
             ModuleName = "ブーブチューブ",
@@ -1760,6 +1825,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Book of Mario
         [typeof(SBookOfMario)] = new()
         {
             ModuleName = "ブック・オブ・マリオ",
@@ -1780,6 +1846,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Boolean Wires
         [typeof(SBooleanWires)] = new()
         {
             ModuleName = "論理ワイヤ",
@@ -1794,6 +1861,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Boomtar the Great
         [typeof(SBoomtarTheGreat)] = new()
         {
             ModuleName = "偉大なるブームター",
@@ -1813,6 +1881,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bordered Keys
         [typeof(SBorderedKeys)] = new()
         {
             ModuleName = "境界音板",
@@ -1878,6 +1947,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Bottom Gear
         [typeof(SBottomGear)] = new()
         {
             NeedsTranslation = true,
@@ -1891,6 +1961,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Boxing
         [typeof(SBoxing)] = new()
         {
             ModuleName = "ボクシング",
@@ -1931,6 +2002,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Braille
         [typeof(SBraille)] = new()
         {
             ModuleName = "点字",
@@ -1945,6 +2017,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Breakfast Egg
         [typeof(SBreakfastEgg)] = new()
         {
             ModuleName = "目玉焼き",
@@ -1968,6 +2041,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Broken Buttons
         [typeof(SBrokenButtons)] = new()
         {
             ModuleName = "壊れたボタン",
@@ -1982,6 +2056,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Broken Guitar Chords
         [typeof(SBrokenGuitarChords)] = new()
         {
             ModuleName = "壊れたギター・コード",
@@ -2000,6 +2075,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Brown Cipher
         [typeof(SBrownCipher)] = new()
         {
             ModuleName = "茶色暗号",
@@ -2020,6 +2096,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Brush Strokes
         [typeof(SBrushStrokes)] = new()
         {
             ModuleName = "ブラシストローク",
@@ -2051,6 +2128,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Bulb
         [typeof(SBulb)] = new()
         {
             ModuleName = "ザ・電球",
@@ -2069,6 +2147,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Burger Alarm
         [typeof(SBurgerAlarm)] = new()
         {
             ModuleName = "ハンバーガー警報",
@@ -2089,6 +2168,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Burglar Alarm
         [typeof(SBurglarAlarm)] = new()
         {
             ModuleName = "盗難警報",
@@ -2103,6 +2183,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Button
         [typeof(SButton)] = new()
         {
             ModuleName = "ボタン",
@@ -2123,6 +2204,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Buttonage
         [typeof(SButtonage)] = new()
         {
             ModuleName = "大量ボタン",
@@ -2153,6 +2235,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Button Sequence
         [typeof(SButtonSequence)] = new()
         {
             ModuleName = "順番ボタン",
@@ -2174,6 +2257,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cacti’s Conundrum
         [typeof(SCactisConundrum)] = new()
         {
             ModuleName = "サボテン難問",
@@ -2195,6 +2279,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Caesar Cycle
         [typeof(SCaesarCycle)] = new()
         {
             ModuleName = "カエサルサイクル",
@@ -2224,6 +2309,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Caesar Psycho
         [typeof(SCaesarPsycho)] = new()
         {
             NeedsTranslation = true,
@@ -2243,6 +2329,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Caesar's Maths
         [typeof(SCaesarsMaths)] = new()
         {
             ModuleName = "カエサル数学",
@@ -2264,6 +2351,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Calendar
         [typeof(SCalendar)] = new()
         {
             ModuleName = "カレンダー",
@@ -2284,6 +2372,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // CA-RPS
         [typeof(SCARPS)] = new()
         {
             ModuleName = "じゃんけんグリッド",
@@ -2304,6 +2393,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cartinese
         [typeof(SCartinese)] = new()
         {
             NeedsTranslation = true,
@@ -2314,19 +2404,19 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} button in {0}?
                     // Example: What color was the up button in Cartinese?
                     Question = "{0}の{1}のボタンの色は？",
-                    Answers = new()
-                    {
-                        ["Red"] = "赤",
-                        ["Yellow"] = "黄",
-                        ["Green"] = "緑",
-                        ["Blue"] = "青",
-                    },
                     Arguments = new()
                     {
                         ["up"] = "上",
                         ["right"] = "右",
                         ["down"] = "下",
                         ["left"] = "左",
+                    },
+                    Answers = new()
+                    {
+                        ["Red"] = "赤",
+                        ["Yellow"] = "黄",
+                        ["Green"] = "緑",
+                        ["Blue"] = "青",
                     },
                 },
                 [SCartinese.Lyrics] = new()
@@ -2345,6 +2435,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Catchphrase
         [typeof(SCatchphrase)] = new()
         {
             ModuleName = "キャッチフレーズ",
@@ -2355,6 +2446,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the colour of the {1} panel in {0}?
                     // Example: What was the colour of the top-left panel in Catchphrase?
                     Question = "{0}の{1}のパネルの色は？",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "左上",
+                        ["top-right"] = "右上",
+                        ["bottom-left"] = "左下",
+                        ["bottom-right"] = "右下",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -2364,17 +2462,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Purple"] = "紫",
                         ["Yellow"] = "黄",
                     },
-                    Arguments = new()
-                    {
-                        ["top-left"] = "左上",
-                        ["top-right"] = "右上",
-                        ["bottom-left"] = "左下",
-                        ["bottom-right"] = "右下",
-                    },
                 },
             },
         },
 
+        // Challenge & Contact
         [typeof(SChallengeAndContact)] = new()
         {
             ModuleName = "チャレンジ＆コンタクト",
@@ -2389,6 +2481,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Character Codes
         [typeof(SCharacterCodes)] = new()
         {
             ModuleName = "文字コード",
@@ -2403,6 +2496,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Character Shift
         [typeof(SCharacterShift)] = new()
         {
             ModuleName = "文字シフト",
@@ -2421,6 +2515,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Character Slots
         [typeof(SCharacterSlots)] = new()
         {
             NeedsTranslation = true,
@@ -2435,6 +2530,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cheap Checkout
         [typeof(SCheapCheckout)] = new()
         {
             ModuleName = "安勘定",
@@ -2455,6 +2551,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cheat Checkout
         [typeof(SCheatCheckout)] = new()
         {
             ModuleName = "狡勘定",
@@ -2480,6 +2577,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cheep Checkout
         [typeof(SCheepCheckout)] = new()
         {
             ModuleName = "鳥勘定",
@@ -2490,6 +2588,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which bird {1} present in {0}?
                     // Example: Which bird was present in Cheep Checkout?
                     Question = "{0}に存在して{1}のは？",
+                    Arguments = new()
+                    {
+                        ["was"] = "いた",
+                        ["was not"] = "いなかった",
+                    },
                     Answers = new()
                     {
                         ["Auklet"] = "ウミスズメ",
@@ -2519,15 +2622,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Yellowlegs"] = "オオキアシシギ",
                         ["Zigzag Heron"] = "コビトサギ",
                     },
-                    Arguments = new()
-                    {
-                        ["was"] = "いた",
-                        ["was not"] = "いなかった",
-                    },
                 },
             },
         },
 
+        // Chess
         [typeof(SChess)] = new()
         {
             ModuleName = "チェス",
@@ -2542,6 +2641,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Chinese Counting
         [typeof(SChineseCounting)] = new()
         {
             ModuleName = "中国の数え方",
@@ -2552,6 +2652,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the left LED in Chinese Counting?
                     Question = "{0}の{1}のLEDの色は？",
+                    Arguments = new()
+                    {
+                        ["left"] = "左",
+                        ["right"] = "右",
+                    },
                     Answers = new()
                     {
                         ["White"] = "白",
@@ -2559,15 +2664,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Green"] = "緑",
                         ["Orange"] = "オレンジ",
                     },
-                    Arguments = new()
-                    {
-                        ["left"] = "左",
-                        ["right"] = "右",
-                    },
                 },
             },
         },
 
+        // Chinese Remainder Theorem
         [typeof(SChineseRemainderTheorem)] = new()
         {
             NeedsTranslation = true,
@@ -2581,6 +2682,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Chord Qualities
         [typeof(SChordQualities)] = new()
         {
             ModuleName = "コードクオリティー",
@@ -2594,6 +2696,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // ↻↺
         [typeof(SClockCounter)] = new()
         {
             NeedsTranslation = true,
@@ -2607,6 +2710,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Code
         [typeof(SCode)] = new()
         {
             ModuleName = "コード",
@@ -2620,6 +2724,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Codenames
         [typeof(SCodenames)] = new()
         {
             ModuleName = "コードネーム",
@@ -2633,6 +2738,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Coffee Beans
         [typeof(SCoffeeBeans)] = new()
         {
             ModuleName = "コーヒー豆",
@@ -2654,6 +2760,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Coffeebucks
         [typeof(SCoffeebucks)] = new()
         {
             ModuleName = "コーヒーバックス",
@@ -2667,6 +2774,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Coinage
         [typeof(SCoinage)] = new()
         {
             ModuleName = "大量コイン",
@@ -2680,6 +2788,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Color Addition
         [typeof(SColorAddition)] = new()
         {
             ModuleName = "色の加算",
@@ -2700,6 +2809,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Color Braille
         [typeof(SColorBraille)] = new()
         {
             ModuleName = "色付き点字",
@@ -2724,6 +2834,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Color Decoding
         [typeof(SColorDecoding)] = new()
         {
             ModuleName = "色の解読",
@@ -2734,6 +2845,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which color {1} in the {2}-stage indicator pattern in {0}?
                     // Example: Which color appeared in the first-stage indicator pattern in Color Decoding?
                     Question = "{0}のステージ{2}で表示されて{1}色は？",
+                    Arguments = new()
+                    {
+                        ["appeared"] = "いた",
+                        ["did not appear"] = "いなかった",
+                    },
                     Answers = new()
                     {
                         ["Green"] = "緑",
@@ -2741,11 +2857,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Red"] = "赤",
                         ["Blue"] = "青",
                         ["Yellow"] = "黄",
-                    },
-                    Arguments = new()
-                    {
-                        ["appeared"] = "いた",
-                        ["did not appear"] = "いなかった",
                     },
                 },
                 [SColorDecoding.IndicatorPattern] = new()
@@ -2764,6 +2875,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Colored Keys
         [typeof(SColoredKeys)] = new()
         {
             ModuleName = "色付きキーパッド",
@@ -2815,6 +2927,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the color of the {1} key in {0}?
                     // Example: What was the color of the top-left key in Colored Keys?
                     Question = "{0}の{1}のキーの色は？",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "左上",
+                        ["top-right"] = "右上",
+                        ["bottom-left"] = "左下",
+                        ["bottom-right"] = "右下",
+                    },
                     Answers = new()
                     {
                         ["red"] = "赤",
@@ -2824,17 +2943,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["purple"] = "紫",
                         ["white"] = "白",
                     },
-                    Arguments = new()
-                    {
-                        ["top-left"] = "左上",
-                        ["top-right"] = "右上",
-                        ["bottom-left"] = "左下",
-                        ["bottom-right"] = "右下",
-                    },
                 },
             },
         },
 
+        // Colored Squares
         [typeof(SColoredSquares)] = new()
         {
             ModuleName = "色付き格子",
@@ -2857,6 +2970,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Colored Switches
         [typeof(SColoredSwitches)] = new()
         {
             ModuleName = "色付きスイッチ",
@@ -2875,6 +2989,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Color Morse
         [typeof(SColorMorse)] = new()
         {
             ModuleName = "カラーモールス",
@@ -2905,6 +3020,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Color One Two
         [typeof(SColorOneTwo)] = new()
         {
             ModuleName = "色の1と2",
@@ -2915,6 +3031,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the left LED in Color One Two?
                     Question = "{0}の{1}側のLEDの色は？",
+                    Arguments = new()
+                    {
+                        ["left"] = "左",
+                        ["right"] = "右",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -2922,15 +3043,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Green"] = "緑",
                         ["Yellow"] = "黄",
                     },
-                    Arguments = new()
-                    {
-                        ["left"] = "左",
-                        ["right"] = "右",
-                    },
                 },
             },
         },
 
+        // Colors Maximization
         [typeof(SColorsMaximization)] = new()
         {
             ModuleName = "最大色",
@@ -2951,6 +3068,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Coloured Cubes
         [typeof(SColouredCubes)] = new()
         {
             ModuleName = "色付きキューブ",
@@ -2961,6 +3079,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the colour of this {1} in the {2} stage of {0}? (+ sprite)
                     // Example: What was the colour of this cube in the first stage of Coloured Cubes? (+ sprite)
                     Question = "{0}のステージ{2}におけるこの{1}の色は？",
+                    Arguments = new()
+                    {
+                        ["cube"] = "キューブ",
+                        ["stage light"] = "ステータスライト",
+                    },
                     Answers = new()
                     {
                         ["Black"] = "黒",
@@ -2991,15 +3114,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Cream"] = "クリーム",
                         ["White"] = "白",
                     },
-                    Arguments = new()
-                    {
-                        ["cube"] = "キューブ",
-                        ["stage light"] = "ステータスライト",
-                    },
                 },
             },
         },
 
+        // Coloured Cylinder
         [typeof(SColouredCylinder)] = new()
         {
             ModuleName = "色付きシリンダー",
@@ -3024,6 +3143,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Colour Flash
         [typeof(SColourFlash)] = new()
         {
             ModuleName = "カラーフラッシュ",
@@ -3046,6 +3166,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Concentration
         [typeof(SConcentration)] = new()
         {
             ModuleName = "集中",
@@ -3068,6 +3189,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Conditional Buttons
         [typeof(SConditionalButtons)] = new()
         {
             ModuleName = "条件ボタン",
@@ -3094,6 +3216,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Connected Monitors
         [typeof(SConnectedMonitors)] = new()
         {
             NeedsTranslation = true,
@@ -3136,6 +3259,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Connection Check
         [typeof(SConnectionCheck)] = new()
         {
             ModuleName = "接続確認",
@@ -3182,6 +3306,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Coordinates
         [typeof(SCoordinates)] = new()
         {
             ModuleName = "座標",
@@ -3200,6 +3325,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Coordination
         [typeof(SCoordination)] = new()
         {
             ModuleName = "座標グリッド",
@@ -3218,6 +3344,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Coral Cipher
         [typeof(SCoralCipher)] = new()
         {
             ModuleName = "珊瑚色暗号",
@@ -3238,6 +3365,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Corners
         [typeof(SCorners)] = new()
         {
             ModuleName = "コーナー",
@@ -3248,19 +3376,19 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the color of the {1} corner in {0}?
                     // Example: What was the color of the top-left corner in Corners?
                     Question = "{0}の{1}の角は何色？",
-                    Answers = new()
-                    {
-                        ["red"] = "赤",
-                        ["green"] = "緑",
-                        ["blue"] = "青",
-                        ["yellow"] = "黄",
-                    },
                     Arguments = new()
                     {
                         ["top-left"] = "左上",
                         ["top-right"] = "右上",
                         ["bottom-right"] = "右下",
                         ["bottom-left"] = "左下",
+                    },
+                    Answers = new()
+                    {
+                        ["red"] = "赤",
+                        ["green"] = "緑",
+                        ["blue"] = "青",
+                        ["yellow"] = "黄",
                     },
                 },
                 [SCorners.ColorCount] = new()
@@ -3279,6 +3407,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cornflower Cipher
         [typeof(SCornflowerCipher)] = new()
         {
             ModuleName = "矢車菊色暗号",
@@ -3299,6 +3428,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cosmic
         [typeof(SCosmic)] = new()
         {
             ModuleName = "宇宙",
@@ -3312,6 +3442,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Crazy Hamburger
         [typeof(SCrazyHamburger)] = new()
         {
             ModuleName = "クレイジーハンバーガー",
@@ -3326,6 +3457,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Crazy Maze
         [typeof(SCrazyMaze)] = new()
         {
             ModuleName = "クレイジー迷路",
@@ -3345,6 +3477,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cream Cipher
         [typeof(SCreamCipher)] = new()
         {
             ModuleName = "鳥子色暗号",
@@ -3365,6 +3498,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Creation
         [typeof(SCreation)] = new()
         {
             ModuleName = "クリエーション",
@@ -3387,6 +3521,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Crimson Cipher
         [typeof(SCrimsonCipher)] = new()
         {
             ModuleName = "紅色暗号",
@@ -3407,6 +3542,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Critters
         [typeof(SCritters)] = new()
         {
             NeedsTranslation = true,
@@ -3427,6 +3563,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cruel Binary
         [typeof(SCruelBinary)] = new()
         {
             ModuleName = "残忍二進数",
@@ -3440,6 +3577,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cruel Keypads
         [typeof(SCruelKeypads)] = new()
         {
             ModuleName = "残忍キーパッド",
@@ -3469,6 +3607,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The cRule
         [typeof(SCRule)] = new()
         {
             NeedsTranslation = true,
@@ -3498,6 +3637,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cryptic Cycle
         [typeof(SCrypticCycle)] = new()
         {
             ModuleName = "暗号サイクル",
@@ -3527,6 +3667,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cryptic Keypad
         [typeof(SCrypticKeypad)] = new()
         {
             ModuleName = "暗号化キーパッド",
@@ -3550,13 +3691,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which cardinal direction was the {1} key rotated to in {0}?
                     // Example: Which cardinal direction was the top-left key rotated to in Cryptic Keypad?
                     Question = "{0}で{1}のキーパッドの回転方向は？",
-                    Answers = new()
-                    {
-                        ["North"] = "北",
-                        ["East"] = "東",
-                        ["South"] = "南",
-                        ["West"] = "西",
-                    },
                     Arguments = new()
                     {
                         ["top-left"] = "左上",
@@ -3564,10 +3698,18 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["bottom-left"] = "左下",
                         ["bottom-right"] = "右下",
                     },
+                    Answers = new()
+                    {
+                        ["North"] = "北",
+                        ["East"] = "東",
+                        ["South"] = "南",
+                        ["West"] = "西",
+                    },
                 },
             },
         },
 
+        // The Cube
         [typeof(SCube)] = new()
         {
             ModuleName = "キューブ",
@@ -3591,6 +3733,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Cursed Double-Oh
         [typeof(SCursedDoubleOh)] = new()
         {
             ModuleName = "呪いのダブル・オー",
@@ -3604,6 +3747,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Customer Identification
         [typeof(SCustomerIdentification)] = new()
         {
             ModuleName = "顧客識別",
@@ -3618,6 +3762,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Cyan Button
         [typeof(SCyanButton)] = new()
         {
             ModuleName = "シアンボタン",
@@ -3641,6 +3786,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // DACH Maze
         [typeof(SDACHMaze)] = new()
         {
             ModuleName = "DACH迷路",
@@ -3710,6 +3856,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Deaf Alley
         [typeof(SDeafAlley)] = new()
         {
             ModuleName = "デフ・アレイ",
@@ -3723,6 +3870,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Deck of Many Things
         [typeof(SDeckOfManyThings)] = new()
         {
             ModuleName = "多種デッキ",
@@ -3746,6 +3894,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Decolored Squares
         [typeof(SDecoloredSquares)] = new()
         {
             ModuleName = "色抜き格子",
@@ -3756,6 +3905,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the starting {1} defining color in {0}?
                     // Example: What was the starting column defining color in Decolored Squares?
                     Question = "{0}の開始位置の{1}は何色？",
+                    Arguments = new()
+                    {
+                        ["column"] = "列",
+                        ["row"] = "段",
+                    },
                     Answers = new()
                     {
                         ["White"] = "白",
@@ -3765,15 +3919,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Yellow"] = "黄",
                         ["Magenta"] = "マゼンタ",
                     },
-                    Arguments = new()
-                    {
-                        ["column"] = "列",
-                        ["row"] = "段",
-                    },
                 },
             },
         },
 
+        // Decolour Flash
         [typeof(SDecolourFlash)] = new()
         {
             ModuleName = "デカラーフラッシュ",
@@ -3784,6 +3934,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the {1} of the {2} goal in {0}?
                     // Example: What was the colour of the first goal in Decolour Flash?
                     Question = "{0}で{2}番目のゴールの{1}は？",
+                    Arguments = new()
+                    {
+                        ["colour"] = "色",
+                        ["word"] = "単語",
+                    },
                     Answers = new()
                     {
                         ["Blue"] = "青",
@@ -3793,15 +3948,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Yellow"] = "黄",
                         ["White"] = "白",
                     },
-                    Arguments = new()
-                    {
-                        ["colour"] = "色",
-                        ["word"] = "単語",
-                    },
                 },
             },
         },
 
+        // Denial Displays
         [typeof(SDenialDisplays)] = new()
         {
             NeedsTranslation = true,
@@ -3816,6 +3967,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // DetoNATO
         [typeof(SDetoNATO)] = new()
         {
             ModuleName = "デトナト",
@@ -3830,6 +3982,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Devilish Eggs
         [typeof(SDevilishEggs)] = new()
         {
             ModuleName = "悪魔の卵",
@@ -3861,6 +4014,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Dialtones
         [typeof(SDialtones)] = new()
         {
             ModuleName = "ダイヤル音声",
@@ -3874,6 +4028,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Digisibility
         [typeof(SDigisibility)] = new()
         {
             NeedsTranslation = true,
@@ -3888,6 +4043,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Digit String
         [typeof(SDigitString)] = new()
         {
             ModuleName = "数字列",
@@ -3901,6 +4057,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Dimension Disruption
         [typeof(SDimensionDisruption)] = new()
         {
             ModuleName = "次元破壊",
@@ -3914,6 +4071,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Directional Button
         [typeof(SDirectionalButton)] = new()
         {
             ModuleName = "方向ボタン",
@@ -3928,6 +4086,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Discolored Squares
         [typeof(SDiscoloredSquares)] = new()
         {
             ModuleName = "色変え格子",
@@ -3950,6 +4109,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Disordered Keys
         [typeof(SDisorderedKeys)] = new()
         {
             ModuleName = "欠陥順番音板",
@@ -4042,6 +4202,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Divided Squares
         [typeof(SDividedSquares)] = new()
         {
             ModuleName = "分割スクエア",
@@ -4052,6 +4213,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was {1} while pressing it in {0}?
                     // Example: What color was the square while pressing it in Divided Squares?
                     Question = "{0}で{1}を押している間の色は？",
+                    Arguments = new()
+                    {
+                        ["the square"] = "正方形",
+                        ["the correct square"] = "正しい正方形",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4061,15 +4227,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Black"] = "黒",
                         ["White"] = "白",
                     },
-                    Arguments = new()
-                    {
-                        ["the square"] = "正方形",
-                        ["the correct square"] = "正しい正方形",
-                    },
                 },
             },
         },
 
+        // Divisible Numbers
         [typeof(SDivisibleNumbers)] = new()
         {
             ModuleName = "割り切れる数字",
@@ -4084,6 +4246,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Doofenshmirtz Evil Inc.
         [typeof(SDoofenshmirtzEvilInc)] = new()
         {
             NeedsTranslation = true,
@@ -4102,6 +4265,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Double Arrows
         [typeof(SDoubleArrows)] = new()
         {
             ModuleName = "ダブル矢印",
@@ -4117,13 +4281,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which direction in the grid did the {1} arrow move in {0}?
                     // Example: Which direction in the grid did the inner up arrow move in Double Arrows?
                     Question = "{0}で{1}矢印を押すとどの方向に進んだ？",
-                    Answers = new()
-                    {
-                        ["Up"] = "上",
-                        ["Right"] = "右",
-                        ["Left"] = "左",
-                        ["Down"] = "下",
-                    },
                     Arguments = new()
                     {
                         ["inner up"] = "内側の上",
@@ -4135,12 +4292,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["outer left"] = "外側の左",
                         ["outer right"] = "外側の右",
                     },
-                },
-                [SDoubleArrows.Arrow] = new()
-                {
-                    // English: Which {1} arrow moved {2} in the grid in {0}?
-                    // Example: Which inner arrow moved up in the grid in Double Arrows?
-                    Question = "{0}で{2}に移動する{1}の矢印はどれ？",
                     Answers = new()
                     {
                         ["Up"] = "上",
@@ -4148,19 +4299,33 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Left"] = "左",
                         ["Down"] = "下",
                     },
+                },
+                [SDoubleArrows.Arrow] = new()
+                {
+                    // English: Which {1} arrow moved {2} in the grid in {0}?
+                    // Example: Which inner arrow moved up in the grid in Double Arrows?
+                    Question = "{0}で{2}に移動する{1}の矢印はどれ？",
                     Arguments = new()
                     {
                         ["inner"] = "内側",
-                        ["up"] = "上",
                         ["outer"] = "外側",
+                        ["up"] = "上",
                         ["down"] = "下",
                         ["left"] = "左",
                         ["right"] = "右",
+                    },
+                    Answers = new()
+                    {
+                        ["Up"] = "上",
+                        ["Right"] = "右",
+                        ["Left"] = "左",
+                        ["Down"] = "下",
                     },
                 },
             },
         },
 
+        // Double Color
         [typeof(SDoubleColor)] = new()
         {
             ModuleName = "二色",
@@ -4183,6 +4348,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Double Digits
         [typeof(SDoubleDigits)] = new()
         {
             ModuleName = "二桁",
@@ -4202,6 +4368,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Double Expert
         [typeof(SDoubleExpert)] = new()
         {
             ModuleName = "ダブル・エキスパート",
@@ -4220,6 +4387,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Double Listening
         [typeof(SDoubleListening)] = new()
         {
             ModuleName = "ダブルリスニング",
@@ -4233,6 +4401,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Double-Oh
         [typeof(SDoubleOh)] = new()
         {
             ModuleName = "ダブル・オー",
@@ -4246,6 +4415,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Double Screen
         [typeof(SDoubleScreen)] = new()
         {
             ModuleName = "二画面",
@@ -4256,6 +4426,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} screen in the {2} stage of {0}?
                     // Example: What color was the top screen in the first stage of Double Screen?
                     Question = "{0}でステージ{2}の{1}画面の色は？",
+                    Arguments = new()
+                    {
+                        ["top"] = "上",
+                        ["bottom"] = "下",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4263,15 +4438,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Green"] = "緑",
                         ["Blue"] = "青",
                     },
-                    Arguments = new()
-                    {
-                        ["top"] = "上",
-                        ["bottom"] = "下",
-                    },
                 },
             },
         },
 
+        // Dr. Doctor
         [typeof(SDrDoctor)] = new()
         {
             ModuleName = "医学博士",
@@ -4290,6 +4461,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Dreamcipher
         [typeof(SDreamcipher)] = new()
         {
             ModuleName = "夢想暗号",
@@ -4303,6 +4475,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Duck
         [typeof(SDuck)] = new()
         {
             ModuleName = "アヒル",
@@ -4324,6 +4497,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Dumb Waiters
         [typeof(SDumbWaiters)] = new()
         {
             ModuleName = "小荷物専用昇降機",
@@ -4343,6 +4517,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Earthbound
         [typeof(SEarthbound)] = new()
         {
             ModuleName = "MOTHER",
@@ -4361,6 +4536,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // eeB gnillepS
         [typeof(SEeBgnillepS)] = new()
         {
             ModuleName = "ービ・グンリペス",
@@ -4374,6 +4550,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Eight
         [typeof(SEight)] = new()
         {
             ModuleName = "八",
@@ -4402,6 +4579,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Elder Futhark
         [typeof(SElderFuthark)] = new()
         {
             ModuleName = "エルダー・フサルク",
@@ -4416,6 +4594,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Emoji
         [typeof(SEmoji)] = new()
         {
             NeedsTranslation = true,
@@ -4435,6 +4614,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // ƎNA Cipher
         [typeof(SEnaCipher)] = new()
         {
             ModuleName = "エナ暗号",
@@ -4459,6 +4639,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Encrypted Dice
         [typeof(SEncryptedDice)] = new()
         {
             ModuleName = "暗号化ダイス",
@@ -4473,6 +4654,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Encrypted Equations
         [typeof(SEncryptedEquations)] = new()
         {
             ModuleName = "暗号化方程式",
@@ -4487,6 +4669,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Encrypted Hangman
         [typeof(SEncryptedHangman)] = new()
         {
             ModuleName = "暗号化ハングマン",
@@ -4515,6 +4698,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Encrypted Maze
         [typeof(SEncryptedMaze)] = new()
         {
             ModuleName = "暗号化迷路",
@@ -4534,6 +4718,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Encrypted Morse
         [typeof(SEncryptedMorse)] = new()
         {
             ModuleName = "暗号化モールス信号",
@@ -4553,6 +4738,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Encryption Bingo
         [typeof(SEncryptionBingo)] = new()
         {
             ModuleName = "暗号化ビンゴ",
@@ -4588,6 +4774,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // English Entries
         [typeof(SEnglishEntries)] = new()
         {
             NeedsTranslation = true,
@@ -4601,6 +4788,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Enigma Cycle
         [typeof(SEnigmaCycle)] = new()
         {
             ModuleName = "エニグマサイクル",
@@ -4642,6 +4830,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Entry Number Four
         [typeof(SEntryNumberFour)] = new()
         {
             ModuleName = "エントリーナンバー4",
@@ -4656,6 +4845,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Entry Number One
         [typeof(SEntryNumberOne)] = new()
         {
             ModuleName = "エントリーナンバー1",
@@ -4670,6 +4860,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Equations X
         [typeof(SEquationsX)] = new()
         {
             ModuleName = "方程式X",
@@ -4683,6 +4874,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Error Codes
         [typeof(SErrorCodes)] = new()
         {
             ModuleName = "エラーコード",
@@ -4696,6 +4888,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Etterna
         [typeof(SEtterna)] = new()
         {
             ModuleName = "エテルナ",
@@ -4710,6 +4903,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Exoplanets
         [typeof(SExoplanets)] = new()
         {
             ModuleName = "太陽系外惑星",
@@ -4752,6 +4946,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Factoring Maze
         [typeof(SFactoringMaze)] = new()
         {
             ModuleName = "因数迷路",
@@ -4765,6 +4960,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Factory Maze
         [typeof(SFactoryMaze)] = new()
         {
             ModuleName = "工場迷路",
@@ -4778,6 +4974,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Faerie Fires
         [typeof(SFaerieFires)] = new()
         {
             ModuleName = "妖精の火",
@@ -4822,6 +5019,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Fast Math
         [typeof(SFastMath)] = new()
         {
             ModuleName = "速算",
@@ -4835,6 +5033,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Fast Playfair Cipher
         [typeof(SFastPlayfairCipher)] = new()
         {
             ModuleName = "速プレイフェア暗号",
@@ -4848,6 +5047,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Faulty Buttons
         [typeof(SFaultyButtons)] = new()
         {
             ModuleName = "欠陥ボタン",
@@ -4868,6 +5068,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Faulty RGB Maze
         [typeof(SFaultyRGBMaze)] = new()
         {
             ModuleName = "欠陥RGB迷路",
@@ -4905,6 +5106,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Find The Date
         [typeof(SFindTheDate)] = new()
         {
             ModuleName = "曜日の特定",
@@ -4931,6 +5133,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Five Letter Words
         [typeof(SFiveLetterWords)] = new()
         {
             ModuleName = "5文字の単語",
@@ -4944,6 +5147,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // FizzBuzz
         [typeof(SFizzBuzz)] = new()
         {
             ModuleName = "フィズバズ",
@@ -4964,6 +5168,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Flags
         [typeof(SFlags)] = new()
         {
             ModuleName = "国旗",
@@ -4987,6 +5192,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Flashing Arrows
         [typeof(SFlashingArrows)] = new()
         {
             ModuleName = "点滅矢印",
@@ -5002,6 +5208,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color flashed {1} black on the relevant arrow in {0}?
                     // Example: What color flashed before black on the relevant arrow in Flashing Arrows?
                     Question = "{0}で関連する矢印について黒色の{1}に点滅した色は？",
+                    Arguments = new()
+                    {
+                        ["before"] = "前",
+                        ["after"] = "後",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -5012,15 +5223,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Purple"] = "紫",
                         ["White"] = "白",
                     },
-                    Arguments = new()
-                    {
-                        ["before"] = "前",
-                        ["after"] = "後",
-                    },
                 },
             },
         },
 
+        // Flashing Lights
         [typeof(SFlashingLights)] = new()
         {
             ModuleName = "点滅ライト",
@@ -5034,17 +5241,18 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Arguments = new()
                     {
                         ["top"] = "上",
+                        ["bottom"] = "下",
                         ["cyan"] = "シアン",
                         ["green"] = "緑",
                         ["red"] = "赤",
                         ["purple"] = "紫",
                         ["orange"] = "オレンジ",
-                        ["bottom"] = "下",
                     },
                 },
             },
         },
 
+        // Flavor Text
         [typeof(SFlavorText)] = new()
         {
             ModuleName = "フレーバーテキスト",
@@ -5058,6 +5266,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Flavor Text EX
         [typeof(SFlavorTextEX)] = new()
         {
             ModuleName = "フレーバーテキストEX",
@@ -5072,6 +5281,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Flyswatting
         [typeof(SFlyswatting)] = new()
         {
             ModuleName = "ハエ叩き",
@@ -5085,6 +5295,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Follow Me
         [typeof(SFollowMe)] = new()
         {
             NeedsTranslation = true,
@@ -5106,6 +5317,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forest Cipher
         [typeof(SForestCipher)] = new()
         {
             ModuleName = "柚葉色暗号",
@@ -5126,6 +5338,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forget Any Color
         [typeof(SForgetAnyColor)] = new()
         {
             ModuleName = "全色忘る",
@@ -5136,6 +5349,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What colors were the cylinders during the {1} stage of {0}?
                     // Example: What colors were the cylinders during the first stage of Forget Any Color?
                     Question = "{0}のステージ{1}におけるシリンダーは？",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["{0}, {1}, {2}"] = "{0}, {1}, {2}",
@@ -5176,6 +5390,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forget Everything
         [typeof(SForgetEverything)] = new()
         {
             ModuleName = "須く忘る",
@@ -5199,6 +5414,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forget Me
         [typeof(SForgetMe)] = new()
         {
             ModuleName = "我忘る",
@@ -5225,6 +5441,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forget Me Not
         [typeof(SForgetMeNot)] = new()
         {
             ModuleName = "我忘る勿かれ",
@@ -5248,6 +5465,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forget Me Now
         [typeof(SForgetMeNow)] = new()
         {
             ModuleName = "我忘るる",
@@ -5262,6 +5480,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forget Our Voices
         [typeof(SForgetOurVoices)] = new()
         {
             NeedsTranslation = true,
@@ -5313,6 +5532,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forget’s Ultimate Showdown
         [typeof(SForgetsUltimateShowdown)] = new()
         {
             ModuleName = "忘る者の究極の対決",
@@ -5356,6 +5576,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forget The Colors
         [typeof(SForgetTheColors)] = new()
         {
             ModuleName = "色忘る",
@@ -5465,6 +5686,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forget This
         [typeof(SForgetThis)] = new()
         {
             ModuleName = "之忘る",
@@ -5518,6 +5740,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Forget Us Not
         [typeof(SForgetUsNot)] = new()
         {
             ModuleName = "我等忘る勿かれ",
@@ -5541,6 +5764,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Free Parking
         [typeof(SFreeParking)] = new()
         {
             ModuleName = "無料駐車場",
@@ -5564,6 +5788,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Functions
         [typeof(SFunctions)] = new()
         {
             ModuleName = "関数",
@@ -5592,6 +5817,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Fuse Box
         [typeof(SFuseBox)] = new()
         {
             ModuleName = "ヒューズボックス",
@@ -5610,6 +5836,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Gadgetron Vendor
         [typeof(SGadgetronVendor)] = new()
         {
             ModuleName = "ガラクトロン・ベンダー",
@@ -5628,6 +5855,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Game of Life Cruel
         [typeof(SGameOfLifeCruel)] = new()
         {
             ModuleName = "残忍ライフゲーム",
@@ -5641,6 +5869,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Gamepad
         [typeof(SGamepad)] = new()
         {
             ModuleName = "ゲームパッド",
@@ -5654,6 +5883,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Garfield Kart
         [typeof(SGarfieldKart)] = new()
         {
             ModuleName = "ガーフィールドカート",
@@ -5672,6 +5902,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Garnet Thief
         [typeof(SGarnetThief)] = new()
         {
             ModuleName = "宝石泥棒",
@@ -5686,6 +5917,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Ghost Movement
         [typeof(SGhostMovement)] = new()
         {
             NeedsTranslation = true,
@@ -5700,6 +5932,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Girlfriend
         [typeof(SGirlfriend)] = new()
         {
             NeedsTranslation = true,
@@ -5713,6 +5946,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Glitched Button
         [typeof(SGlitchedButton)] = new()
         {
             ModuleName = "グリッチボタン",
@@ -5726,6 +5960,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Goofy’s Game
         [typeof(SGoofysGame)] = new()
         {
             ModuleName = "グーフィーのゲーム",
@@ -5746,6 +5981,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Grand Piano
         [typeof(SGrandPiano)] = new()
         {
             ModuleName = "グランドピアノ",
@@ -5765,6 +6001,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Gray Button
         [typeof(SGrayButton)] = new()
         {
             ModuleName = "灰色ボタン",
@@ -5784,6 +6021,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Gray Cipher
         [typeof(SGrayCipher)] = new()
         {
             ModuleName = "灰色暗号",
@@ -5804,6 +6042,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Great Void
         [typeof(SGreatVoid)] = new()
         {
             ModuleName = "超空洞",
@@ -5834,6 +6073,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Green Arrows
         [typeof(SGreenArrows)] = new()
         {
             ModuleName = "緑色矢印",
@@ -5847,6 +6087,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Green Button
         [typeof(SGreenButton)] = new()
         {
             ModuleName = "緑色ボタン",
@@ -5860,6 +6101,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Green Cipher
         [typeof(SGreenCipher)] = new()
         {
             ModuleName = "緑色暗号",
@@ -5880,6 +6122,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Gridlock
         [typeof(SGridlock)] = new()
         {
             ModuleName = "グリッドロック",
@@ -5910,6 +6153,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Grocery Store
         [typeof(SGroceryStore)] = new()
         {
             ModuleName = "食料品店",
@@ -5923,6 +6167,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Gryphons
         [typeof(SGryphons)] = new()
         {
             ModuleName = "グリフォン",
@@ -5941,6 +6186,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Guess Who?
         [typeof(SGuessWho)] = new()
         {
             ModuleName = "だーれだ？",
@@ -5951,11 +6197,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Did {1} flash “YES” in {0}?
                     // Example: Did Red flash “YES” in Guess Who??
                     Question = "{0}で{1}は「YES」と点滅した？",
-                    Answers = new()
-                    {
-                        ["Yes"] = "はい",
-                        ["No"] = "いいえ",
-                    },
                     Arguments = new()
                     {
                         ["Red"] = "赤",
@@ -5967,10 +6208,16 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Cyan"] = "シアン",
                         ["Pink"] = "ピンク",
                     },
+                    Answers = new()
+                    {
+                        ["Yes"] = "はい",
+                        ["No"] = "いいえ",
+                    },
                 },
             },
         },
 
+        // Gyromaze
         [typeof(SGyromaze)] = new()
         {
             ModuleName = "ジャイロ迷路",
@@ -5981,6 +6228,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the top LED in Gyromaze?
                     Question = "{0}の{1}のLEDの色は？",
+                    Arguments = new()
+                    {
+                        ["top"] = "上",
+                        ["bottom"] = "下",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -5988,15 +6240,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Green"] = "緑",
                         ["Yellow"] = "黄",
                     },
-                    Arguments = new()
-                    {
-                        ["top"] = "上",
-                        ["bottom"] = "下",
-                    },
                 },
             },
         },
 
+        // h
         [typeof(SH)] = new()
         {
             ModuleName = "H",
@@ -6010,6 +6258,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Halli Galli
         [typeof(SHalliGalli)] = new()
         {
             ModuleName = "ハリガリ",
@@ -6036,6 +6285,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Hereditary Base Notation
         [typeof(SHereditaryBaseNotation)] = new()
         {
             ModuleName = "遺伝的基数表記",
@@ -6049,6 +6299,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
             ModuleName = "六角形ボタン",
@@ -6062,6 +6313,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Hexamaze
         [typeof(SHexamaze)] = new()
         {
             ModuleName = "六角迷路",
@@ -6101,6 +6353,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // hexOrbits
         [typeof(SHexOrbits)] = new()
         {
             NeedsTranslation = true,
@@ -6120,6 +6373,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // hexOS
         [typeof(SHexOS)] = new()
         {
             ModuleName = "HexOS",
@@ -6149,6 +6403,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Hickory Dickory Dock
         [typeof(SHickoryDickoryDock)] = new()
         {
             NeedsTranslation = true,
@@ -6172,6 +6427,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Hidden Colors
         [typeof(SHiddenColors)] = new()
         {
             ModuleName = "隠し色",
@@ -6196,6 +6452,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Hidden Value
         [typeof(SHiddenValue)] = new()
         {
             ModuleName = "隠し値",
@@ -6205,6 +6462,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 {
                     // English: What was displayed on {0}?
                     Question = "{0}に表示されたのは？",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["Red"] = "赤",
@@ -6220,6 +6478,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The High Score
         [typeof(SHighScore)] = new()
         {
             ModuleName = "ハイスコア",
@@ -6238,6 +6497,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Hill Cycle
         [typeof(SHillCycle)] = new()
         {
             ModuleName = "ヒルサイクル",
@@ -6267,6 +6527,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Hinges
         [typeof(SHinges)] = new()
         {
             ModuleName = "蝶番",
@@ -6300,6 +6561,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Hogwarts
         [typeof(SHogwarts)] = new()
         {
             ModuleName = "ホグワーツ",
@@ -6334,6 +6596,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Hold Ups
         [typeof(SHoldUps)] = new()
         {
             ModuleName = "ホールドアップ",
@@ -6348,6 +6611,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Holographic Memory
         [typeof(SHolographicMemory)] = new()
         {
             ModuleName = "ホログラム記憶",
@@ -6366,6 +6630,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Homophones
         [typeof(SHomophones)] = new()
         {
             ModuleName = "同音異義語",
@@ -6380,6 +6645,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Horrible Memory
         [typeof(SHorribleMemory)] = new()
         {
             ModuleName = "恐怖記憶",
@@ -6415,6 +6681,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Human Resources
         [typeof(SHumanResources)] = new()
         {
             ModuleName = "人事部",
@@ -6445,6 +6712,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Hunting
         [typeof(SHunting)] = new()
         {
             ModuleName = "狩猟",
@@ -6455,6 +6723,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which of the first three stages of {0} had the {1} symbol {2}?
                     // Example: Which of the first three stages of Hunting had the column symbol first?
                     Question = "{0}の最初3つのステージのうち、{2}番目に{1}シンボルを持っていたのはどれ？",
+                    Arguments = new()
+                    {
+                        ["column"] = "列",
+                        ["row"] = "段",
+                    },
                     Answers = new()
                     {
                         ["none"] = "なし",
@@ -6466,15 +6739,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["second & third"] = "2番目と最後",
                         ["all three"] = "3つ全て",
                     },
-                    Arguments = new()
-                    {
-                        ["column"] = "列",
-                        ["row"] = "段",
-                    },
                 },
             },
         },
 
+        // The Hypercube
         [typeof(SHypercube)] = new()
         {
             ModuleName = "超立方体",
@@ -6489,6 +6758,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // HyperForget
         [typeof(SHyperForget)] = new()
         {
             ModuleName = "超忘る",
@@ -6512,6 +6782,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Hyperlink
         [typeof(SHyperlink)] = new()
         {
             ModuleName = "ハイパーリンク",
@@ -6531,6 +6802,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Ice Cream
         [typeof(SIceCream)] = new()
         {
             ModuleName = "アイスクリーム",
@@ -6556,6 +6828,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Identification Crisis
         [typeof(SIdentificationCrisis)] = new()
         {
             ModuleName = "識別危機",
@@ -6589,6 +6862,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Identity Parade
         [typeof(SIdentityParade)] = new()
         {
             ModuleName = "容疑者特定",
@@ -6630,6 +6904,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Impostor
         [typeof(SImpostor)] = new()
         {
             ModuleName = "ニセモノ",
@@ -6643,6 +6918,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Indigo Cipher
         [typeof(SIndigoCipher)] = new()
         {
             ModuleName = "藍色暗号",
@@ -6663,6 +6939,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Infinite Loop
         [typeof(SInfiniteLoop)] = new()
         {
             ModuleName = "無限ループ",
@@ -6676,6 +6953,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Ingredients
         [typeof(SIngredients)] = new()
         {
             ModuleName = "食材",
@@ -6694,6 +6972,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Inner Connections
         [typeof(SInnerConnections)] = new()
         {
             ModuleName = "内部接続",
@@ -6721,6 +7000,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Interpunct
         [typeof(SInterpunct)] = new()
         {
             ModuleName = "句読点",
@@ -6735,6 +7015,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // IPA
         [typeof(SIPA)] = new()
         {
             Questions = new()
@@ -6747,6 +7028,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The iPhone
         [typeof(SiPhone)] = new()
         {
             ModuleName = "アイフォン",
@@ -6761,6 +7043,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Jenga
         [typeof(SJenga)] = new()
         {
             ModuleName = "ジェンガ",
@@ -6774,6 +7057,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Jewel Vault
         [typeof(SJewelVault)] = new()
         {
             ModuleName = "宝石金庫",
@@ -6788,6 +7072,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Jumble Cycle
         [typeof(SJumbleCycle)] = new()
         {
             ModuleName = "寄せ集めサイクル",
@@ -6817,6 +7102,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Juxtacolored Squares
         [typeof(SJuxtacoloredSquares)] = new()
         {
             ModuleName = "色比べ格子",
@@ -6874,6 +7160,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Kanji
         [typeof(SKanji)] = new()
         {
             ModuleName = "漢字",
@@ -6888,6 +7175,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Kanye Encounter
         [typeof(SKanyeEncounter)] = new()
         {
             ModuleName = "カニエ・ウエストとの遭遇",
@@ -6901,6 +7189,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // KayMazey Talk
         [typeof(SKayMazeyTalk)] = new()
         {
             ModuleName = "K迷路トーク",
@@ -6934,6 +7223,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Keypad Combinations
         [typeof(SKeypadCombination)] = new()
         {
             ModuleName = "キーパッドコンビネーション",
@@ -6948,6 +7238,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Keypad Magnified
         [typeof(SKeypadMagnified)] = new()
         {
             ModuleName = "拡大キーパッド",
@@ -6968,6 +7259,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Keypad Maze
         [typeof(SKeypadMaze)] = new()
         {
             ModuleName = "キーパッド迷路",
@@ -6981,6 +7273,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Keypad Sequence
         [typeof(SKeypadSequence)] = new()
         {
             ModuleName = "順番キーパッド",
@@ -6995,6 +7288,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Keywords
         [typeof(SKeywords)] = new()
         {
             ModuleName = "キーワード",
@@ -7008,6 +7302,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Klaxon
         [typeof(SKlaxon)] = new()
         {
             ModuleName = "クラクション",
@@ -7021,6 +7316,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Know Your Way
         [typeof(SKnowYourWay)] = new()
         {
             ModuleName = "方向感覚",
@@ -7053,6 +7349,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Kooky Keypad
         [typeof(SKookyKeypad)] = new()
         {
             ModuleName = "狂ったキーパッド",
@@ -7063,6 +7360,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} button’s LED in {0}?
                     // Example: What color was the top-left button’s LED in Kooky Keypad?
                     Question = "{0}の{1}のボタンのLEDの色は？",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "左上",
+                        ["top-right"] = "右上",
+                        ["bottom-left"] = "左下",
+                        ["bottom-right"] = "右下",
+                    },
                     Answers = new()
                     {
                         ["Crimson"] = "紅",
@@ -7077,17 +7381,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Dark Magenta"] = "赤紫",
                         ["Unlit"] = "消灯",
                     },
-                    Arguments = new()
-                    {
-                        ["top-left"] = "左上",
-                        ["top-right"] = "右上",
-                        ["bottom-left"] = "左下",
-                        ["bottom-right"] = "右下",
-                    },
                 },
             },
         },
 
+        // Kudosudoku
         [typeof(SKudosudoku)] = new()
         {
             ModuleName = "クド数独",
@@ -7107,6 +7405,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Kugelblitz
         [typeof(SKugelblitz)] = new()
         {
             ModuleName = "クーゲルブリッツ",
@@ -7117,6 +7416,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which particles were present for the {1} stage of {0}?
                     // Example: Which particles were present for the first stage of Kugelblitz?
                     Question = "{0}の{1}番目のステージで存在した粒子は？",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["R"] = "赤",
@@ -7135,6 +7435,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What were the particles’ values for the {1} stage of {0}?
                     // Example: What were the particles’ values for the first stage of Kugelblitz?
                     Question = "{0}の{1}番目のステージでの粒子の値は？",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"] = "赤={0}, 橙={1}, 黄={2}, 緑={3}, 青={4}, 藍={5}, 紫={6}",
@@ -7192,6 +7493,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Kuro
         [typeof(SKuro)] = new()
         {
             NeedsTranslation = true,
@@ -7205,6 +7507,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Labyrinth
         [typeof(SLabyrinth)] = new()
         {
             ModuleName = "迷宮",
@@ -7240,6 +7543,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Ladder Lottery
         [typeof(SLadderLottery)] = new()
         {
             ModuleName = "あみだくじ",
@@ -7253,6 +7557,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Ladders
         [typeof(SLadders)] = new()
         {
             ModuleName = "梯子",
@@ -7293,6 +7598,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Langton’s Anteater
         [typeof(SLangtonsAnteater)] = new()
         {
             NeedsTranslation = true,
@@ -7312,6 +7618,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Lasers
         [typeof(SLasers)] = new()
         {
             ModuleName = "レーザー",
@@ -7338,6 +7645,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // LED Encryption
         [typeof(SLEDEncryption)] = new()
         {
             ModuleName = "暗号化LED",
@@ -7352,6 +7660,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // LED Grid
         [typeof(SLEDGrid)] = new()
         {
             ModuleName = "LEDグリッド",
@@ -7365,6 +7674,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // LED Math
         [typeof(SLEDMath)] = new()
         {
             ModuleName = "LED算",
@@ -7375,6 +7685,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was {1} in {0}?
                     // Example: What color was LED A in LED Math?
                     Question = "{0}における{1}の色は？",
+                    Arguments = new()
+                    {
+                        ["LED A"] = "LED A",
+                        ["LED B"] = "LED B",
+                        ["the operator LED"] = "演算子のLED",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -7382,16 +7698,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Yellow"] = "黄",
                         ["Green"] = "緑",
                     },
-                    Arguments = new()
-                    {
-                        ["LED A"] = "LED A",
-                        ["LED B"] = "LED B",
-                        ["the operator LED"] = "演算子のLED",
-                    },
                 },
             },
         },
 
+        // LEDs
         [typeof(SLEDs)] = new()
         {
             ModuleName = "LEDセット",
@@ -7416,6 +7727,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // LEGOs
         [typeof(SLEGOs)] = new()
         {
             ModuleName = "LEGO",
@@ -7439,6 +7751,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Letter Math
         [typeof(SLetterMath)] = new()
         {
             ModuleName = "英字数学",
@@ -7458,6 +7771,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Light Bulbs
         [typeof(SLightBulbs)] = new()
         {
             ModuleName = "電球セット",
@@ -7468,6 +7782,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the color of the {1} bulb in {0}?
                     // Example: What was the color of the left bulb in Light Bulbs?
                     Question = "{0}の{1}の電球の色は？",
+                    Arguments = new()
+                    {
+                        ["left"] = "左",
+                        ["right"] = "右",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -7479,15 +7798,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Cyan"] = "シアン",
                         ["Magenta"] = "マゼンタ",
                     },
-                    Arguments = new()
-                    {
-                        ["left"] = "左",
-                        ["right"] = "右",
-                    },
                 },
             },
         },
 
+        // Linq
         [typeof(SLinq)] = new()
         {
             NeedsTranslation = true,
@@ -7512,6 +7827,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Lion’s Share
         [typeof(SLionsShare)] = new()
         {
             ModuleName = "ライオンの分け前",
@@ -7530,6 +7846,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Listening
         [typeof(SListening)] = new()
         {
             ModuleName = "リスニング",
@@ -7543,6 +7860,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Literal Maze
         [typeof(SLiteralMaze)] = new()
         {
             NeedsTranslation = true,
@@ -7556,6 +7874,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Logical Buttons
         [typeof(SLogicalButtons)] = new()
         {
             ModuleName = "論理ボタン",
@@ -7566,6 +7885,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the color of the {1} button in the {2} stage of {0}?
                     // Example: What was the color of the top button in the first stage of Logical Buttons?
                     Question = "{0}のステージ{2}における{1}のボタンの色は？",
+                    Arguments = new()
+                    {
+                        ["top"] = "上",
+                        ["bottom-left"] = "左下",
+                        ["bottom-right"] = "右下",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -7577,12 +7902,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Orange"] = "オレンジ",
                         ["Cyan"] = "シアン",
                         ["Grey"] = "灰",
-                    },
-                    Arguments = new()
-                    {
-                        ["top"] = "上",
-                        ["bottom-left"] = "左下",
-                        ["bottom-right"] = "右下",
                     },
                 },
                 [SLogicalButtons.Label] = new()
@@ -7606,6 +7925,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Logic Gates
         [typeof(SLogicGates)] = new()
         {
             ModuleName = "論理ゲート",
@@ -7631,6 +7951,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Lombax Cubes
         [typeof(SLombaxCubes)] = new()
         {
             ModuleName = "ロンバックスキューブ",
@@ -7645,6 +7966,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The London Underground
         [typeof(SLondonUnderground)] = new()
         {
             ModuleName = "ロンドン地下鉄",
@@ -7664,6 +7986,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Long Words
         [typeof(SLongWords)] = new()
         {
             NeedsTranslation = true,
@@ -7677,6 +8000,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mad Memory
         [typeof(SMadMemory)] = new()
         {
             ModuleName = "狂気記憶",
@@ -7698,6 +8022,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mafia
         [typeof(SMafia)] = new()
         {
             ModuleName = "マフィア",
@@ -7711,6 +8036,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Magenta Cipher
         [typeof(SMagentaCipher)] = new()
         {
             ModuleName = "マゼンタ暗号",
@@ -7731,6 +8057,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mahjong
         [typeof(SMahjong)] = new()
         {
             ModuleName = "麻雀パズル",
@@ -7750,6 +8077,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Main Page
         [typeof(SMainPage)] = new()
         {
             NeedsTranslation = true,
@@ -7807,6 +8135,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // M&Ms
         [typeof(SMandMs)] = new()
         {
             ModuleName = "MとM",
@@ -7836,6 +8165,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // M&Ns
         [typeof(SMandNs)] = new()
         {
             ModuleName = "MとN",
@@ -7864,6 +8194,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Maritime Flags
         [typeof(SMaritimeFlags)] = new()
         {
             ModuleName = "海上旗",
@@ -7882,6 +8213,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Maritime Semaphore
         [typeof(SMaritimeSemaphore)] = new()
         {
             ModuleName = "海上セマフォア信号",
@@ -7907,6 +8239,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Maroon Button
         [typeof(SMaroonButton)] = new()
         {
             NeedsTranslation = true,
@@ -7920,6 +8253,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Maroon Cipher
         [typeof(SMaroonCipher)] = new()
         {
             ModuleName = "栗色暗号",
@@ -7940,6 +8274,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mashematics
         [typeof(SMashematics)] = new()
         {
             ModuleName = "連打算数",
@@ -7959,6 +8294,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Master Tapes
         [typeof(SMasterTapes)] = new()
         {
             ModuleName = "マスターテープ",
@@ -7972,6 +8308,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Match Refereeing
         [typeof(SMatchRefereeing)] = new()
         {
             NeedsTranslation = true,
@@ -7986,6 +8323,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Math ’em
         [typeof(SMathEm)] = new()
         {
             ModuleName = "計算神経衰弱",
@@ -8011,6 +8349,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Matrix
         [typeof(SMatrix)] = new()
         {
             ModuleName = "マトリックス",
@@ -8029,6 +8368,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Maze
         [typeof(SMaze)] = new()
         {
             ModuleName = "迷路",
@@ -8042,14 +8382,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Arguments = new()
                     {
                         ["column"] = "列",
-                        ["left"] = "左",
                         ["row"] = "段",
+                        ["left"] = "左",
                         ["top"] = "上",
                     },
                 },
             },
         },
 
+        // Maze³
         [typeof(SMaze3)] = new()
         {
             ModuleName = "迷路³",
@@ -8072,6 +8413,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Maze Identification
         [typeof(SMazeIdentification)] = new()
         {
             NeedsTranslation = true,
@@ -8111,6 +8453,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mazematics
         [typeof(SMazematics)] = new()
         {
             ModuleName = "計算迷路",
@@ -8130,6 +8473,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Maze Scrambler
         [typeof(SMazeScrambler)] = new()
         {
             ModuleName = "迷路スクランブラー",
@@ -8189,6 +8533,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mazeseeker
         [typeof(SMazeseeker)] = new()
         {
             NeedsTranslation = true,
@@ -8212,6 +8557,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Maze Swap
         [typeof(SMazeSwap)] = new()
         {
             ModuleName = "入れ替え迷路",
@@ -8231,6 +8577,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mega Man 2
         [typeof(SMegaMan2)] = new()
         {
             ModuleName = "ロックマン2",
@@ -8249,6 +8596,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Melody Sequencer
         [typeof(SMelodySequencer)] = new()
         {
             ModuleName = "メロディーシークエンス",
@@ -8269,6 +8617,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Memorable Buttons
         [typeof(SMemorableButtons)] = new()
         {
             ModuleName = "記憶ボタン",
@@ -8283,6 +8632,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Memory
         [typeof(SMemory)] = new()
         {
             ModuleName = "記憶",
@@ -8309,6 +8659,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Memory Wires
         [typeof(SMemoryWires)] = new()
         {
             ModuleName = "記憶ワイヤ",
@@ -8337,6 +8688,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Metamorse
         [typeof(SMetamorse)] = new()
         {
             ModuleName = "メタモールス",
@@ -8350,6 +8702,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Metapuzzle
         [typeof(SMetapuzzle)] = new()
         {
             ModuleName = "メタパズル",
@@ -8363,6 +8716,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Minsk Metro
         [typeof(SMinskMetro)] = new()
         {
             NeedsTranslation = true,
@@ -8376,6 +8730,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mirror
         [typeof(SMirror)] = new()
         {
             ModuleName = "鏡",
@@ -8389,6 +8744,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Missing Letter
         [typeof(SMissingLetter)] = new()
         {
             ModuleName = "欠落英字",
@@ -8402,6 +8758,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mister Softee
         [typeof(SMisterSoftee)] = new()
         {
             ModuleName = "ミスター・ソフティー",
@@ -8420,6 +8777,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mixometer
         [typeof(SMixometer)] = new()
         {
             NeedsTranslation = true,
@@ -8433,6 +8791,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Modern Cipher
         [typeof(SModernCipher)] = new()
         {
             ModuleName = "現代暗号",
@@ -8447,6 +8806,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Module Listening
         [typeof(SModuleListening)] = new()
         {
             ModuleName = "モジュールリスニング",
@@ -8473,6 +8833,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Module Maneuvers
         [typeof(SModuleManeuvers)] = new()
         {
             NeedsTranslation = true,
@@ -8482,6 +8843,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 {
                     // English: What was the goal location in {0}?
                     Question = "{0}のゴール地点は？",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["{0}, {1}"] = "{0}, {1}",
@@ -8490,6 +8852,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Module Maze
         [typeof(SModuleMaze)] = new()
         {
             ModuleName = "モジュール迷路",
@@ -8503,6 +8866,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Module Movements
         [typeof(SModuleMovements)] = new()
         {
             ModuleName = "モジュール追跡",
@@ -8517,6 +8881,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Money Game
         [typeof(SMoneyGame)] = new()
         {
             ModuleName = "マネーゲーム",
@@ -8543,6 +8908,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Monsplode, Fight!
         [typeof(SMonsplodeFight)] = new()
         {
             ModuleName = "モンスプロード・ファイト！",
@@ -8567,6 +8933,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Monsplode Trading Cards
         [typeof(SMonsplodeTradingCards)] = new()
         {
             ModuleName = "モンスプロード・カードゲーム",
@@ -8601,6 +8968,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Moon
         [typeof(SMoon)] = new()
         {
             ModuleName = "月",
@@ -8611,17 +8979,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the {1} set in clockwise order in {0}?
                     // Example: What was the first initially lit set in clockwise order in The Moon?
                     Question = "{0}で時計回りに見て{1}セットは？",
-                    Answers = new()
-                    {
-                        ["south"] = "南",
-                        ["south-west"] = "南西",
-                        ["west"] = "西",
-                        ["north-west"] = "北西",
-                        ["north"] = "北",
-                        ["north-east"] = "北東",
-                        ["east"] = "東",
-                        ["south-east"] = "南東",
-                    },
                     Arguments = new()
                     {
                         ["first initially lit"] = "1番目の点灯",
@@ -8633,10 +8990,22 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["third initially unlit"] = "3番目の消灯",
                         ["fourth initially unlit"] = "4番目の消灯",
                     },
+                    Answers = new()
+                    {
+                        ["south"] = "南",
+                        ["south-west"] = "南西",
+                        ["west"] = "西",
+                        ["north-west"] = "北西",
+                        ["north"] = "北",
+                        ["north-east"] = "北東",
+                        ["east"] = "東",
+                        ["south-east"] = "南東",
+                    },
                 },
             },
         },
 
+        // More Code
         [typeof(SMoreCode)] = new()
         {
             ModuleName = "新モールス信号",
@@ -8650,6 +9019,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Morse-A-Maze
         [typeof(SMorseAMaze)] = new()
         {
             ModuleName = "モールス迷路",
@@ -8673,6 +9043,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Morse Buttons
         [typeof(SMorseButtons)] = new()
         {
             ModuleName = "モールスボタン",
@@ -8702,6 +9073,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Morsematics
         [typeof(SMorsematics)] = new()
         {
             ModuleName = "モールスマティック",
@@ -8716,6 +9088,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Morse War
         [typeof(SMorseWar)] = new()
         {
             ModuleName = "モールス戦争",
@@ -8741,6 +9114,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // .--/---/..-.
         [typeof(SMorseWoF)] = new()
         {
             ModuleName = "--..-_--_..-_--..-_.-.._...-",
@@ -8755,6 +9129,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mouse in the Maze
         [typeof(SMouseInTheMaze)] = new()
         {
             ModuleName = "迷路のネズミ",
@@ -8787,6 +9162,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // M-Seq
         [typeof(SMSeq)] = new()
         {
             ModuleName = "リズム正方型",
@@ -8806,6 +9182,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mssngv Wls
         [typeof(SMssngvWls)] = new()
         {
             ModuleName = "欠落母音",
@@ -8816,6 +9193,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which vowel was missing in {0}?
                     // Example: Which vowel was missing in Mssngv Wls?
                     Question = "{0} de kaketeita boin ha?",
+                    // Refer to translations.md to understand the weird strings
                     Arguments = new()
                     {
                         ["AEIOU"] = "AEIOU",
@@ -8824,6 +9202,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Multicolored Switches
         [typeof(SMulticoloredSwitches)] = new()
         {
             ModuleName = "色どりスイッチ",
@@ -8834,6 +9213,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?
                     // Example: What color was the first LED on the top row when the tiny LED was lit in Multicolored Switches?
                     Question = "{0}で小さなLEDが{3}時の{2}段LEDの{1}番目は？",
+                    Arguments = new()
+                    {
+                        ["top"] = "上",
+                        ["bottom"] = "下",
+                        ["lit"] = "点灯した",
+                        ["unlit"] = "点灯していない",
+                    },
                     Answers = new()
                     {
                         ["black"] = "黒",
@@ -8845,17 +9231,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["cyan"] = "シアン",
                         ["white"] = "白",
                     },
-                    Arguments = new()
-                    {
-                        ["top"] = "上",
-                        ["lit"] = "点灯した",
-                        ["bottom"] = "下",
-                        ["unlit"] = "点灯していない",
-                    },
                 },
             },
         },
 
+        // The Multiverse Hotline
         [typeof(SMultiverseHotline)] = new()
         {
             NeedsTranslation = true,
@@ -8874,6 +9254,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Murder
         [typeof(SMurder)] = new()
         {
             ModuleName = "殺人",
@@ -8884,6 +9265,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which of these was {1} in {0}?
                     // Example: Which of these was a suspect but not the murderer in Murder?
                     Question = "{0}の{1}に含まれるのは？",
+                    Arguments = new()
+                    {
+                        ["a suspect but not the murderer"] = "殺人鬼ではなかった容疑者",
+                        ["not a suspect"] = "容疑者ではなかった人物",
+                    },
                     Answers = new()
                     {
                         ["Miss Scarlett"] = "Miss Scarlett",
@@ -8893,17 +9279,17 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Colonel Mustard"] = "Colonel Mustard",
                         ["Mrs White"] = "Mrs White",
                     },
-                    Arguments = new()
-                    {
-                        ["a suspect but not the murderer"] = "殺人鬼ではなかった容疑者",
-                        ["not a suspect"] = "容疑者ではなかった人物",
-                    },
                 },
                 [SMurder.Weapon] = new()
                 {
                     // English: Which of these was {1} in {0}?
                     // Example: Which of these was a potential weapon but not the murder weapon in Murder?
                     Question = "{0}の{1}に含まれるのは？",
+                    Arguments = new()
+                    {
+                        ["a potential weapon but not the murder weapon"] = "凶器ではない候補にあった武器",
+                        ["not a potential weapon"] = "候補に無かった武器",
+                    },
                     Answers = new()
                     {
                         ["Candlestick"] = "Candlestick",
@@ -8912,11 +9298,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Revolver"] = "Revolver",
                         ["Rope"] = "Rope",
                         ["Spanner"] = "Spanner",
-                    },
-                    Arguments = new()
-                    {
-                        ["a potential weapon but not the murder weapon"] = "凶器ではない候補にあった武器",
-                        ["not a potential weapon"] = "候補に無かった武器",
                     },
                 },
                 [SMurder.BodyFound] = new()
@@ -8939,6 +9320,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mystery Module
         [typeof(SMysteryModule)] = new()
         {
             ModuleName = "ミステリーモジュール",
@@ -8957,6 +9339,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Mystic Square
         [typeof(SMysticSquare)] = new()
         {
             ModuleName = "神秘スクエア",
@@ -8982,6 +9365,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Name Codes
         [typeof(SNameCodes)] = new()
         {
             ModuleName = "名前コード",
@@ -9001,6 +9385,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Naming Conventions
         [typeof(SNamingConventions)] = new()
         {
             ModuleName = "命名規則",
@@ -9014,6 +9399,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // N&Ms
         [typeof(SNandMs)] = new()
         {
             ModuleName = "NとM",
@@ -9027,6 +9413,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // N&Ns
         [typeof(SNandNs)] = new()
         {
             ModuleName = "NとN",
@@ -9055,6 +9442,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Navigation Determination
         [typeof(SNavigationDetermination)] = new()
         {
             ModuleName = "ナビ決定",
@@ -9080,6 +9468,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Navinums
         [typeof(SNavinums)] = new()
         {
             ModuleName = "ナビ数字",
@@ -9106,6 +9495,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Navy Button
         [typeof(SNavyButton)] = new()
         {
             NeedsTranslation = true,
@@ -9158,6 +9548,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Necronomicon
         [typeof(SNecronomicon)] = new()
         {
             ModuleName = "ネクロノミコン",
@@ -9172,6 +9563,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Negativity
         [typeof(SNegativity)] = new()
         {
             ModuleName = "負極性",
@@ -9190,6 +9582,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Neptune
         [typeof(SNeptune)] = new()
         {
             ModuleName = "海王星",
@@ -9203,6 +9596,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Neutralization
         [typeof(SNeutralization)] = new()
         {
             ModuleName = "中和滴定",
@@ -9228,6 +9622,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Next In Line
         [typeof(SNextInLine)] = new()
         {
             ModuleName = "ネクストライン",
@@ -9252,6 +9647,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Nim
         [typeof(SNim)] = new()
         {
             NeedsTranslation = true,
@@ -9272,6 +9668,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // ❖
         [typeof(SNonverbalSimon)] = new()
         {
             Questions = new()
@@ -9284,6 +9681,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Colored Squares
         [typeof(SNotColoredSquares)] = new()
         {
             ModuleName = "偽色付き格子",
@@ -9297,6 +9695,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Colored Switches
         [typeof(SNotColoredSwitches)] = new()
         {
             ModuleName = "偽色付きスイッチ",
@@ -9310,6 +9709,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Colour Flash
         [typeof(SNotColourFlash)] = new()
         {
             ModuleName = "偽カラーフラッシュ",
@@ -9339,6 +9739,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Connection Check
         [typeof(SNotConnectionCheck)] = new()
         {
             ModuleName = "偽接続確認",
@@ -9373,6 +9774,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Coordinates
         [typeof(SNotCoordinates)] = new()
         {
             ModuleName = "偽座標",
@@ -9386,6 +9788,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Double-Oh
         [typeof(SNotDoubleOh)] = new()
         {
             ModuleName = "偽ダブル・オー",
@@ -9400,6 +9803,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Keypad
         [typeof(SNotKeypad)] = new()
         {
             ModuleName = "偽キーパッド",
@@ -9435,6 +9839,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Maze
         [typeof(SNotMaze)] = new()
         {
             ModuleName = "偽迷路",
@@ -9448,6 +9853,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Morse Code
         [typeof(SNotMorseCode)] = new()
         {
             ModuleName = "偽モールス信号",
@@ -9462,6 +9868,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Morsematics
         [typeof(SNotMorsematics)] = new()
         {
             ModuleName = "偽モールスマティック",
@@ -9475,6 +9882,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Murder
         [typeof(SNotMurder)] = new()
         {
             ModuleName = "偽殺人",
@@ -9485,6 +9893,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What room was {1} in initially on {0}?
                     // Example: What room was Miss Scarlett in initially on Not Murder?
                     Question = "{1}が{0}で最初にいたのはどの部屋？",
+                    Arguments = new()
+                    {
+                        ["Miss Scarlett"] = "Miss Scarlett",
+                        ["Colonel Mustard"] = "Colonel Mustard",
+                        ["Reverend Green"] = "Reverend Green",
+                        ["Mrs Peacock"] = "Mrs Peacock",
+                        ["Professor Plum"] = "Professor Plum",
+                        ["Mrs White"] = "Mrs White",
+                    },
                     Answers = new()
                     {
                         ["Ballroom"] = "Ballroom",
@@ -9497,6 +9914,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Lounge"] = "Lounge",
                         ["Study"] = "Study",
                     },
+                },
+                [SNotMurder.Weapon] = new()
+                {
+                    // English: What weapon did {1} possess initially on {0}?
+                    // Example: What weapon did Miss Scarlett possess initially on Not Murder?
+                    Question = "{1}が{0}で最初に所持していたのはどの武器？",
                     Arguments = new()
                     {
                         ["Miss Scarlett"] = "Miss Scarlett",
@@ -9506,12 +9929,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Professor Plum"] = "Professor Plum",
                         ["Mrs White"] = "Mrs White",
                     },
-                },
-                [SNotMurder.Weapon] = new()
-                {
-                    // English: What weapon did {1} possess initially on {0}?
-                    // Example: What weapon did Miss Scarlett possess initially on Not Murder?
-                    Question = "{1}が{0}で最初に所持していたのはどの武器？",
                     Answers = new()
                     {
                         ["Candlestick"] = "Candlestick",
@@ -9520,15 +9937,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Revolver"] = "Revolver",
                         ["Rope"] = "Rope",
                         ["Spanner"] = "Spanner",
-                    },
-                    Arguments = new()
-                    {
-                        ["Miss Scarlett"] = "Miss Scarlett",
-                        ["Colonel Mustard"] = "Colonel Mustard",
-                        ["Reverend Green"] = "Reverend Green",
-                        ["Mrs Peacock"] = "Mrs Peacock",
-                        ["Professor Plum"] = "Professor Plum",
-                        ["Mrs White"] = "Mrs White",
                     },
                 },
             },
@@ -9578,6 +9986,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Number Pad
         [typeof(SNotNumberPad)] = new()
         {
             ModuleName = "偽ナンバーパッド",
@@ -9597,6 +10006,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Password
         [typeof(SNotPassword)] = new()
         {
             ModuleName = "偽パスワード",
@@ -9610,6 +10020,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Perspective Pegs
         [typeof(SNotPerspectivePegs)] = new()
         {
             ModuleName = "偽奥行きペグ",
@@ -9660,6 +10071,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Piano Keys
         [typeof(SNotPianoKeys)] = new()
         {
             ModuleName = "偽鍵盤",
@@ -9683,6 +10095,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Red Arrows
         [typeof(SNotRedArrows)] = new()
         {
             ModuleName = "偽赤色矢印",
@@ -9696,6 +10109,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Simaze
         [typeof(SNotSimaze)] = new()
         {
             ModuleName = "偽サイモンゲーム",
@@ -9806,6 +10220,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Text Field
         [typeof(SNotTextField)] = new()
         {
             ModuleName = "偽テキストフィールド",
@@ -9824,6 +10239,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not The Bulb
         [typeof(SNotTheBulb)] = new()
         {
             ModuleName = "偽電球",
@@ -9865,6 +10281,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not The Button
         [typeof(SNotTheButton)] = new()
         {
             ModuleName = "偽ボタン",
@@ -9896,6 +10313,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not The Plunger Button
         [typeof(SNotThePlungerButton)] = new()
         {
             ModuleName = "偽プランジャーボタン",
@@ -9920,6 +10338,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not The Screw
         [typeof(SNotTheScrew)] = new()
         {
             ModuleName = "偽ザ・ネジ",
@@ -9933,6 +10352,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Who’s on First
         [typeof(SNotWhosOnFirst)] = new()
         {
             ModuleName = "偽表比較",
@@ -9988,6 +10408,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not Word Search
         [typeof(SNotWordSearch)] = new()
         {
             ModuleName = "偽ワードサーチ",
@@ -10006,6 +10427,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not X01
         [typeof(SNotX01)] = new()
         {
             ModuleName = "偽ダーツ",
@@ -10025,6 +10447,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Not X-Ray
         [typeof(SNotXRay)] = new()
         {
             ModuleName = "偽レントゲン",
@@ -10076,6 +10499,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Numbered Buttons
         [typeof(SNumberedButtons)] = new()
         {
             ModuleName = "番号ボタン",
@@ -10089,6 +10513,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Number Game
         [typeof(SNumberGame)] = new()
         {
             NeedsTranslation = true,
@@ -10102,6 +10527,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Numbers
         [typeof(SNumbers)] = new()
         {
             ModuleName = "ナンバー",
@@ -10115,6 +10541,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Numpath
         [typeof(SNumpath)] = new()
         {
             ModuleName = "ナンパス",
@@ -10142,6 +10569,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Object Shows
         [typeof(SObjectShows)] = new()
         {
             ModuleName = "オブジェクトショー",
@@ -10155,6 +10583,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Octadecayotton
         [typeof(SOctadecayotton)] = new()
         {
             ModuleName = "9次元超立方体",
@@ -10174,6 +10603,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Odd One Out
         [typeof(SOddOneOut)] = new()
         {
             ModuleName = "仲間外れ",
@@ -10188,6 +10618,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Off Keys
         [typeof(SOffKeys)] = new()
         {
             ModuleName = "音痴鍵盤",
@@ -10206,6 +10637,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Off-White Cipher
         [typeof(SOffWhiteCipher)] = new()
         {
             ModuleName = "乳白色暗号",
@@ -10229,6 +10661,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Old AI
         [typeof(SOldAI)] = new()
         {
             ModuleName = "オールドAI",
@@ -10248,6 +10681,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Old Fogey
         [typeof(SOldFogey)] = new()
         {
             ModuleName = "耄碌爺",
@@ -10271,6 +10705,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // One Links To All
         [typeof(SOneLinksToAll)] = new()
         {
             NeedsTranslation = true,
@@ -10289,6 +10724,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Only Connect
         [typeof(SOnlyConnect)] = new()
         {
             ModuleName = "オンリーコネクト",
@@ -10299,15 +10735,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which Egyptian hieroglyph was in the {1} in {0}?
                     // Example: Which Egyptian hieroglyph was in the top left in Only Connect?
                     Question = "{0}の{1}のヒエログリフは？",
-                    Answers = new()
-                    {
-                        ["Two Reeds"] = "二本の葦",
-                        ["Lion"] = "ライオン",
-                        ["Twisted Flax"] = "よりあわせた亜麻糸",
-                        ["Horned Viper"] = "ヘビ",
-                        ["Water"] = "水",
-                        ["Eye of Horus"] = "ホルスの目",
-                    },
                     Arguments = new()
                     {
                         ["top left"] = "左上",
@@ -10317,10 +10744,20 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["bottom middle"] = "下",
                         ["bottom right"] = "右下",
                     },
+                    Answers = new()
+                    {
+                        ["Two Reeds"] = "二本の葦",
+                        ["Lion"] = "ライオン",
+                        ["Twisted Flax"] = "よりあわせた亜麻糸",
+                        ["Horned Viper"] = "ヘビ",
+                        ["Water"] = "水",
+                        ["Eye of Horus"] = "ホルスの目",
+                    },
                 },
             },
         },
 
+        // Orange Arrows
         [typeof(SOrangeArrows)] = new()
         {
             ModuleName = "橙色矢印",
@@ -10342,6 +10779,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Orange Cipher
         [typeof(SOrangeCipher)] = new()
         {
             ModuleName = "橙色暗号",
@@ -10362,6 +10800,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Ordered Keys
         [typeof(SOrderedKeys)] = new()
         {
             ModuleName = "順番音板",
@@ -10406,6 +10845,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Order Picking
         [typeof(SOrderPicking)] = new()
         {
             ModuleName = "注文ピッキング",
@@ -10432,6 +10872,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Orientation Cube
         [typeof(SOrientationCube)] = new()
         {
             ModuleName = "方向キューブ",
@@ -10452,6 +10893,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Orientation Hypercube
         [typeof(SOrientationHypercube)] = new()
         {
             NeedsTranslation = true,
@@ -10462,17 +10904,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the initial colour of the {1} face in {0}?
                     // Example: What was the initial colour of the right face in Orientation Hypercube?
                     Question = "{0}の初期状態における{1}面の色は？",
-                    Answers = new()
-                    {
-                        ["black"] = "黒",
-                        ["red"] = "赤",
-                        ["green"] = "緑",
-                        ["yellow"] = "黄",
-                        ["blue"] = "青",
-                        ["magenta"] = "マゼンタ",
-                        ["cyan"] = "シアン",
-                        ["white"] = "白",
-                    },
                     Arguments = new()
                     {
                         ["right"] = "右",
@@ -10483,6 +10914,17 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["front"] = "前",
                         ["zag"] = "甲",
                         ["zig"] = "乙",
+                    },
+                    Answers = new()
+                    {
+                        ["black"] = "黒",
+                        ["red"] = "赤",
+                        ["green"] = "緑",
+                        ["yellow"] = "黄",
+                        ["blue"] = "青",
+                        ["magenta"] = "マゼンタ",
+                        ["cyan"] = "シアン",
+                        ["white"] = "白",
                     },
                 },
                 [SOrientationHypercube.InitialObserverPosition] = new()
@@ -10500,6 +10942,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Painting Cube
         [typeof(SPaintingCube)] = new()
         {
             ModuleName = "色塗りキューブ",
@@ -10523,6 +10966,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Palindromes
         [typeof(SPalindromes)] = new()
         {
             ModuleName = "回文",
@@ -10544,6 +10988,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Papa’s Pizzeria
         [typeof(SPapasPizzeria)] = new()
         {
             ModuleName = "パパのピザ屋さん",
@@ -10563,6 +11008,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Parity
         [typeof(SParity)] = new()
         {
             ModuleName = "偶奇性",
@@ -10576,6 +11022,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Partial Derivatives
         [typeof(SPartialDerivatives)] = new()
         {
             ModuleName = "偏微分",
@@ -10605,6 +11052,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Passport Control
         [typeof(SPassportControl)] = new()
         {
             ModuleName = "パスポートコントロール",
@@ -10619,6 +11067,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Password Destroyer
         [typeof(SPasswordDestroyer)] = new()
         {
             ModuleName = "パスワード破壊",
@@ -10632,6 +11081,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Pattern Cube
         [typeof(SPatternCube)] = new()
         {
             ModuleName = "パターンキューブ",
@@ -10645,6 +11095,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Pattern Recognition
         [typeof(SPatternRecognition)] = new()
         {
             ModuleName = "パターン識別",
@@ -10658,6 +11109,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Pentabutton
         [typeof(SPentabutton)] = new()
         {
             ModuleName = "五角形ボタン",
@@ -10690,6 +11142,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Periodic Words
         [typeof(SPeriodicWords)] = new()
         {
             ModuleName = "周期単語",
@@ -10704,6 +11157,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Perspective Pegs
         [typeof(SPerspectivePegs)] = new()
         {
             ModuleName = "奥行きペグ",
@@ -10726,6 +11180,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Phosphorescence
         [typeof(SPhosphorescence)] = new()
         {
             ModuleName = "燐光",
@@ -10774,6 +11229,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Pickup Identification
         [typeof(SPickupIdentification)] = new()
         {
             ModuleName = "アイテム識別",
@@ -10788,6 +11244,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Pictionary
         [typeof(SPictionary)] = new()
         {
             ModuleName = "画像ロジック",
@@ -10801,6 +11258,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Pie
         [typeof(SPie)] = new()
         {
             ModuleName = "パイ",
@@ -10815,6 +11273,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Pie Flash
         [typeof(SPieFlash)] = new()
         {
             ModuleName = "点滅パイ",
@@ -10828,6 +11287,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Pigpen Cycle
         [typeof(SPigpenCycle)] = new()
         {
             ModuleName = "ピッグペンサイクル",
@@ -10857,6 +11317,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Pink Button
         [typeof(SPinkButton)] = new()
         {
             ModuleName = "桃色ボタン",
@@ -10888,6 +11349,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Pinpoint
         [typeof(SPinpoint)] = new()
         {
             ModuleName = "ピンポイント",
@@ -10906,6 +11368,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Pixel Cipher
         [typeof(SPixelCipher)] = new()
         {
             ModuleName = "ピクセル暗号",
@@ -10919,6 +11382,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Placeholder Talk
         [typeof(SPlaceholderTalk)] = new()
         {
             ModuleName = "プレースホルダートーク",
@@ -10937,6 +11401,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Placement Roulette
         [typeof(SPlacementRoulette)] = new()
         {
             ModuleName = "マリオカート",
@@ -10960,6 +11425,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Planets
         [typeof(SPlanets)] = new()
         {
             ModuleName = "惑星",
@@ -10991,6 +11457,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Playfair Cycle
         [typeof(SPlayfairCycle)] = new()
         {
             ModuleName = "プレイフェアサイクル",
@@ -11020,6 +11487,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Poetry
         [typeof(SPoetry)] = new()
         {
             ModuleName = "詩",
@@ -11034,6 +11502,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Pointless Machines
         [typeof(SPointlessMachines)] = new()
         {
             ModuleName = "無意味なマシーン",
@@ -11056,6 +11525,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Polygons
         [typeof(SPolygons)] = new()
         {
             ModuleName = "多角形",
@@ -11069,6 +11539,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Polyhedral Maze
         [typeof(SPolyhedralMaze)] = new()
         {
             ModuleName = "多面体迷路",
@@ -11108,6 +11579,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Prime Encryption
         [typeof(SPrimeEncryption)] = new()
         {
             ModuleName = "素数暗号",
@@ -11121,6 +11593,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Prison Break
         [typeof(SPrisonBreak)] = new()
         {
             NeedsTranslation = true,
@@ -11139,6 +11612,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Probing
         [typeof(SProbing)] = new()
         {
             ModuleName = "回路接続",
@@ -11162,6 +11636,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Procedural Maze
         [typeof(SProceduralMaze)] = new()
         {
             NeedsTranslation = true,
@@ -11175,6 +11650,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // ...?
         [typeof(SPunctuationMarks)] = new()
         {
             ModuleName = "...？",
@@ -11188,6 +11664,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Purple Arrows
         [typeof(SPurpleArrows)] = new()
         {
             ModuleName = "紫色矢印",
@@ -11201,6 +11678,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Purple Button
         [typeof(SPurpleButton)] = new()
         {
             ModuleName = "紫色ボタン",
@@ -11215,6 +11693,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Puzzle Identification
         [typeof(SPuzzleIdentification)] = new()
         {
             ModuleName = "パズル識別",
@@ -11252,6 +11731,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Puzzling Hexabuttons
         [typeof(SPuzzlingHexabuttons)] = new()
         {
             ModuleName = "困惑六角形ボタン",
@@ -11276,6 +11756,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Q & A
         [typeof(SQnA)] = new()
         {
             ModuleName = "Q&A",
@@ -11290,6 +11771,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Quadrants
         [typeof(SQuadrants)] = new()
         {
             NeedsTranslation = true,
@@ -11304,6 +11786,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Quantum Passwords
         [typeof(SQuantumPasswords)] = new()
         {
             ModuleName = "量子パスワード",
@@ -11317,6 +11800,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Quantum Ternary Converter
         [typeof(SQuantumTernaryConverter)] = new()
         {
             NeedsTranslation = true,
@@ -11330,6 +11814,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Quaver
         [typeof(SQuaver)] = new()
         {
             Questions = new()
@@ -11343,6 +11828,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Question Mark
         [typeof(SQuestionMark)] = new()
         {
             ModuleName = "疑問符",
@@ -11356,6 +11842,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Quick Arithmetic
         [typeof(SQuickArithmetic)] = new()
         {
             ModuleName = "瞬速計算",
@@ -11395,6 +11882,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Quintuples
         [typeof(SQuintuples)] = new()
         {
             ModuleName = "五重",
@@ -11437,6 +11925,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Quiplash
         [typeof(SQuiplash)] = new()
         {
             ModuleName = "クイプラッシュ",
@@ -11450,6 +11939,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Quiz Buzz
         [typeof(SQuizBuzz)] = new()
         {
             ModuleName = "クィズバズ",
@@ -11463,6 +11953,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Qwirkle
         [typeof(SQwirkle)] = new()
         {
             ModuleName = "クワークル",
@@ -11477,6 +11968,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Raiding Temples
         [typeof(SRaidingTemples)] = new()
         {
             ModuleName = "神殿探検",
@@ -11490,6 +11982,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Railway Cargo Loading
         [typeof(SRailwayCargoLoading)] = new()
         {
             ModuleName = "鉄道貨物積載センター",
@@ -11515,6 +12008,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Rainbow Arrows
         [typeof(SRainbowArrows)] = new()
         {
             ModuleName = "虹色矢印",
@@ -11528,6 +12022,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Recolored Switches
         [typeof(SRecoloredSwitches)] = new()
         {
             ModuleName = "色変えスイッチ",
@@ -11552,6 +12047,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Recursive Password
         [typeof(SRecursivePassword)] = new()
         {
             ModuleName = "桃色ボタン",
@@ -11570,6 +12066,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Red Arrows
         [typeof(SRedArrows)] = new()
         {
             ModuleName = "赤色矢印",
@@ -11583,6 +12080,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Red Button’t
         [typeof(SRedButtont)] = new()
         {
             ModuleName = "偽赤色ボタン",
@@ -11596,6 +12094,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Red Cipher
         [typeof(SRedCipher)] = new()
         {
             ModuleName = "赤色暗号",
@@ -11616,6 +12115,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Red Herring
         [typeof(SRedHerring)] = new()
         {
             ModuleName = "レッドヘリング",
@@ -11629,6 +12129,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Reformed Role Reversal
         [typeof(SReformedRoleReversal)] = new()
         {
             NeedsTranslation = true,
@@ -11671,6 +12172,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // ReGret-B Filtering
         [typeof(SReGretBFiltering)] = new()
         {
             NeedsTranslation = true,
@@ -11685,6 +12187,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Regular Crazy Talk
         [typeof(SRegularCrazyTalk)] = new()
         {
             ModuleName = "レギュラークレイジートーク",
@@ -11712,6 +12215,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Reordered Keys
         [typeof(SReorderedKeys)] = new()
         {
             ModuleName = "順番替え音板",
@@ -11761,6 +12265,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Retirement
         [typeof(SRetirement)] = new()
         {
             ModuleName = "退職",
@@ -11774,6 +12279,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Reverse Morse
         [typeof(SReverseMorse)] = new()
         {
             ModuleName = "逆モールス信号",
@@ -11788,6 +12294,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Reverse Polish Notation
         [typeof(SReversePolishNotation)] = new()
         {
             ModuleName = "逆ポーランド記法",
@@ -11802,6 +12309,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // RGB Encryption
         [typeof(SRGBEncryption)] = new()
         {
             NeedsTranslation = true,
@@ -11822,6 +12330,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // RGB Maze
         [typeof(SRGBMaze)] = new()
         {
             ModuleName = "RGB迷路",
@@ -11859,6 +12368,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // RGB Sequences
         [typeof(SRGBSequences)] = new()
         {
             ModuleName = "RGBシークエンス",
@@ -11883,6 +12393,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Rhythms
         [typeof(SRhythms)] = new()
         {
             ModuleName = "リズム",
@@ -11903,6 +12414,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // RNG Crystal
         [typeof(SRNGCrystal)] = new()
         {
             ModuleName = "乱数クリスタル",
@@ -11916,6 +12428,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Robo-Scanner
         [typeof(SRoboScanner)] = new()
         {
             NeedsTranslation = true,
@@ -11929,6 +12442,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Robot Programming
         [typeof(SRobotProgramming)] = new()
         {
             ModuleName = "ロボットプログラミング",
@@ -11949,6 +12463,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Roger
         [typeof(SRoger)] = new()
         {
             ModuleName = "ロジャー",
@@ -11962,6 +12477,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Role Reversal
         [typeof(SRoleReversal)] = new()
         {
             NeedsTranslation = true,
@@ -11988,6 +12504,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // RPS Judging
         [typeof(SRPSJudging)] = new()
         {
             NeedsTranslation = true,
@@ -12001,8 +12518,8 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Arguments = new()
                     {
                         ["red"] = "赤",
-                        ["win"] = "勝った",
                         ["blue"] = "青",
+                        ["win"] = "勝った",
                         ["lose"] = "負けた",
                     },
                 },
@@ -12036,6 +12553,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Rule
         [typeof(SRule)] = new()
         {
             ModuleName = "ザ・ルール",
@@ -12049,6 +12567,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Rule of Three
         [typeof(SRuleOfThree)] = new()
         {
             NeedsTranslation = true,
@@ -12111,6 +12630,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Safety Square
         [typeof(SSafetySquare)] = new()
         {
             ModuleName = "セイフティスクエア",
@@ -12143,6 +12663,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Samsung
         [typeof(SSamsung)] = new()
         {
             NeedsTranslation = true,
@@ -12157,6 +12678,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Saturn
         [typeof(SSaturn)] = new()
         {
             ModuleName = "土星",
@@ -12170,6 +12692,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Sbemail Songs
         [typeof(SSbemailSongs)] = new()
         {
             NeedsTranslation = true,
@@ -12193,6 +12716,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Scavenger Hunt
         [typeof(SScavengerHunt)] = new()
         {
             ModuleName = "宝探し",
@@ -12218,6 +12742,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Schlag den Bomb
         [typeof(SSchlagDenBomb)] = new()
         {
             ModuleName = "シュラグ・デン・ボム",
@@ -12241,6 +12766,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Scramboozled Eggain
         [typeof(SScramboozledEggain)] = new()
         {
             ModuleName = "再卵炒",
@@ -12255,6 +12781,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Scripting
         [typeof(SScripting)] = new()
         {
             ModuleName = "スクリプト修正",
@@ -12268,6 +12795,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Scrutiny Squares
         [typeof(SScrutinySquares)] = new()
         {
             ModuleName = "正方形精査",
@@ -12288,6 +12816,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Sea Shells
         [typeof(SSeaShells)] = new()
         {
             ModuleName = "シーシェル",
@@ -12314,6 +12843,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Semamorse
         [typeof(SSemamorse)] = new()
         {
             ModuleName = "セマモールス",
@@ -12346,6 +12876,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Sequencyclopedia
         [typeof(SSequencyclopedia)] = new()
         {
             NeedsTranslation = true,
@@ -12359,6 +12890,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // S.E.T. Theory
         [typeof(SSetTheory)] = new()
         {
             NeedsTranslation = true,
@@ -12373,6 +12905,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Shapes And Bombs
         [typeof(SShapesAndBombs)] = new()
         {
             ModuleName = "形と爆弾",
@@ -12386,6 +12919,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Shape Shift
         [typeof(SShapeShift)] = new()
         {
             ModuleName = "形状変化",
@@ -12399,6 +12933,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Shifted Maze
         [typeof(SShiftedMaze)] = new()
         {
             ModuleName = "シフト迷路",
@@ -12409,6 +12944,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} marker in {0}?
                     // Example: What color was the top-left marker in Shifted Maze?
                     Question = "{0}の{1}にあるマークの色は？",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "左上",
+                        ["top-right"] = "右上",
+                        ["bottom-left"] = "左下",
+                        ["bottom-right"] = "右下",
+                    },
                     Answers = new()
                     {
                         ["White"] = "白",
@@ -12417,17 +12959,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Magenta"] = "マゼンタ",
                         ["Green"] = "緑",
                     },
-                    Arguments = new()
-                    {
-                        ["top-left"] = "左上",
-                        ["top-right"] = "右上",
-                        ["bottom-left"] = "左下",
-                        ["bottom-right"] = "右下",
-                    },
                 },
             },
         },
 
+        // Shifting Maze
         [typeof(SShiftingMaze)] = new()
         {
             ModuleName = "シフト中迷路",
@@ -12441,6 +12977,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Shogi Identification
         [typeof(SShogiIdentification)] = new()
         {
             ModuleName = "将棋識別",
@@ -12486,6 +13023,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Sign Language
         [typeof(SSignLanguage)] = new()
         {
             ModuleName = "手話",
@@ -12499,6 +13037,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Silly Slots
         [typeof(SSillySlots)] = new()
         {
             ModuleName = "ヘンテコスロット",
@@ -12528,6 +13067,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Silo Authorization
         [typeof(SSiloAuthorization)] = new()
         {
             ModuleName = "シロ認証",
@@ -12552,6 +13092,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Said
         [typeof(SSimonSaid)] = new()
         {
             ModuleName = "サイモンの残響",
@@ -12573,6 +13114,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Samples
         [typeof(SSimonSamples)] = new()
         {
             ModuleName = "サイモンの音源",
@@ -12593,6 +13135,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Says
         [typeof(SSimonSays)] = new()
         {
             ModuleName = "サイモンゲーム",
@@ -12614,6 +13157,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Scrambles
         [typeof(SSimonScrambles)] = new()
         {
             ModuleName = "サイモンの撹拌",
@@ -12635,6 +13179,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Screams
         [typeof(SSimonScreams)] = new()
         {
             ModuleName = "サイモンの絶叫",
@@ -12660,16 +13205,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: In which stage(s) of {0} was “{1}” the applicable rule?
                     // Example: In which stage(s) of Simon Screams was “a color flashed, then a color two away, then the first again” the applicable rule?
                     Question = "{0}で「{1}」のルールが当てはまったのはどのステージ？",
-                    Answers = new()
-                    {
-                        ["first"] = "1",
-                        ["second"] = "2",
-                        ["third"] = "3",
-                        ["first and second"] = "1と2",
-                        ["first and third"] = "1と3",
-                        ["second and third"] = "2と3",
-                        ["all of them"] = "すべて",
-                    },
                     Arguments = new()
                     {
                         ["a color flashed, then a color two away, then the first again"] = "ある色が点滅した直後、2つ離れた色が点滅し、その直後に最初の色が再び点滅した",
@@ -12714,12 +13249,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["two colors two apart flashed in clockwise order"] = "2つ離れた2色が、時計回りに点滅した",
                         ["two colors two apart flashed in counter-clockwise order"] = "2つ離れた2色が、反時計回りに点滅した",
                     },
-                },
-                [SSimonScreams.RuleComplex] = new()
-                {
-                    // English: In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?
-                    // Example: In which stage(s) of Simon Screams was “at most one color flashed out of Red, Orange, and Yellow” the applicable rule?
-                    Question = "{0}「flashed out of {2}、 {3}、{4}のうち{1}」のルールが当てはまったのはどのステージ？",
                     Answers = new()
                     {
                         ["first"] = "1",
@@ -12730,21 +13259,38 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["second and third"] = "2と3",
                         ["all of them"] = "すべて",
                     },
+                },
+                [SSimonScreams.RuleComplex] = new()
+                {
+                    // English: In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?
+                    // Example: In which stage(s) of Simon Screams was “at most one color flashed out of Red, Orange, and Yellow” the applicable rule?
+                    Question = "{0}「flashed out of {2}、 {3}、{4}のうち{1}」のルールが当てはまったのはどのステージ？",
                     Arguments = new()
                     {
                         ["at most one color"] = "多くとも1色しか点滅していない",
-                        ["Red"] = "赤",
-                        ["Orange"] = "橙",
-                        ["Yellow"] = "黄",
                         ["at least two colors"] = "少なくとも2色が点滅した",
+                        ["Red"] = "赤",
                         ["Green"] = "緑",
+                        ["Orange"] = "橙",
                         ["Blue"] = "青",
+                        ["Yellow"] = "黄",
                         ["Purple"] = "紫",
+                    },
+                    Answers = new()
+                    {
+                        ["first"] = "1",
+                        ["second"] = "2",
+                        ["third"] = "3",
+                        ["first and second"] = "1と2",
+                        ["first and third"] = "1と3",
+                        ["second and third"] = "2と3",
+                        ["all of them"] = "すべて",
                     },
                 },
             },
         },
 
+        // Simon Selects
         [typeof(SSimonSelects)] = new()
         {
             ModuleName = "サイモンの選択",
@@ -12770,6 +13316,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Sends
         [typeof(SSimonSends)] = new()
         {
             ModuleName = "サイモンの送信",
@@ -12790,6 +13337,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Serves
         [typeof(SSimonServes)] = new()
         {
             ModuleName = "サイモンの給仕",
@@ -12845,6 +13393,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Shapes
         [typeof(SSimonShapes)] = new()
         {
             ModuleName = "サイモンの形状",
@@ -12858,6 +13407,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Shouts
         [typeof(SSimonShouts)] = new()
         {
             ModuleName = "サイモンの叫び",
@@ -12879,6 +13429,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Shrieks
         [typeof(SSimonShrieks)] = new()
         {
             ModuleName = "サイモンの悲鳴",
@@ -12893,6 +13444,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Shuffles
         [typeof(SSimonShuffles)] = new()
         {
             ModuleName = "サイモンの交雑",
@@ -12907,6 +13459,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Signals
         [typeof(SSimonSignals)] = new()
         {
             ModuleName = "サイモンの信号",
@@ -12977,6 +13530,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Simons
         [typeof(SSimonSimons)] = new()
         {
             ModuleName = "サイモンのサイモン",
@@ -12991,6 +13545,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Sings
         [typeof(SSimonSings)] = new()
         {
             ModuleName = "サイモンの歌唱",
@@ -13005,6 +13560,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Smiles
         [typeof(SSimonSmiles)] = new()
         {
             ModuleName = "サイモンの笑顔",
@@ -13019,6 +13575,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Smothers
         [typeof(SSimonSmothers)] = new()
         {
             ModuleName = "サイモンの隠匿",
@@ -13055,6 +13612,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Sounds
         [typeof(SSimonSounds)] = new()
         {
             ModuleName = "サイモンの響き",
@@ -13076,6 +13634,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Speaks
         [typeof(SSimonSpeaks)] = new()
         {
             ModuleName = "サイモンの発話",
@@ -13133,6 +13692,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon’s Star
         [typeof(SSimonsStar)] = new()
         {
             ModuleName = "サイモンの星",
@@ -13155,6 +13715,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Stacks
         [typeof(SSimonStacks)] = new()
         {
             ModuleName = "六角形サイモン",
@@ -13176,6 +13737,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Stages
         [typeof(SSimonStages)] = new()
         {
             ModuleName = "サイモンステージ",
@@ -13222,6 +13784,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon States
         [typeof(SSimonStates)] = new()
         {
             ModuleName = "サイモンの陳述",
@@ -13232,6 +13795,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which {1} in the {2} stage in {0}?
                     // Example: Which color(s) flashed in the first stage in Simon States?
                     Question = "{0}のステージ{2}ではどの{1}？",
+                    Arguments = new()
+                    {
+                        ["color(s) flashed"] = "色が点滅した",
+                        ["color(s) didn’t flash"] = "色が点滅しなかった",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -13247,15 +13815,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["all 4"] = "4色すべて",
                         ["none"] = "なし",
                     },
-                    Arguments = new()
-                    {
-                        ["color(s) flashed"] = "色が点滅した",
-                        ["color(s) didn’t flash"] = "色が点滅しなかった",
-                    },
                 },
             },
         },
 
+        // Simon Stops
         [typeof(SSimonStops)] = new()
         {
             ModuleName = "サイモンの停止",
@@ -13279,6 +13843,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Stores
         [typeof(SSimonStores)] = new()
         {
             ModuleName = "サイモンの貯留",
@@ -13289,6 +13854,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which color {1} {2} in the final sequence of {0}?
                     // Example: Which color flashed first in the final sequence of Simon Stores?
                     Question = "{0}の最終シークエンスにおいて、{2}番目に{1}色は？",
+                    Arguments = new()
+                    {
+                        ["flashed"] = "点滅した",
+                        ["was among the colors flashed"] = "点滅した色に含まれる",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -13298,15 +13868,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Magenta"] = "マゼンタ",
                         ["Yellow"] = "黄",
                     },
-                    Arguments = new()
-                    {
-                        ["flashed"] = "点滅した",
-                        ["was among the colors flashed"] = "点滅した色に含まれる",
-                    },
                 },
             },
         },
 
+        // Simon Subdivides
         [typeof(SSimonSubdivides)] = new()
         {
             ModuleName = "サイモンの分割",
@@ -13327,6 +13893,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Supports
         [typeof(SSimonSupports)] = new()
         {
             ModuleName = "サイモンの支持",
@@ -13352,6 +13919,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simon Swizzles
         [typeof(SSimonSwizzles)] = new()
         {
             NeedsTranslation = true,
@@ -13376,6 +13944,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simply Simon
         [typeof(SSimplySimon)] = new()
         {
             ModuleName = "シンプルサイモン",
@@ -13390,6 +13959,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Simultaneous Simons
         [typeof(SSimultaneousSimons)] = new()
         {
             ModuleName = "同時サイモン",
@@ -13411,6 +13981,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Skewed Slots
         [typeof(SSkewedSlots)] = new()
         {
             ModuleName = "歪曲スロット",
@@ -13424,6 +13995,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Skewers
         [typeof(SSkewers)] = new()
         {
             ModuleName = "剣刺し",
@@ -13448,6 +14020,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Skyrim
         [typeof(SSkyrim)] = new()
         {
             ModuleName = "スカイリム",
@@ -13529,6 +14102,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Slow Math
         [typeof(SSlowMath)] = new()
         {
             NeedsTranslation = true,
@@ -13542,6 +14116,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Small Circle
         [typeof(SSmallCircle)] = new()
         {
             ModuleName = "スモールサークル",
@@ -13588,6 +14163,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Small Talk
         [typeof(SSmallTalk)] = new()
         {
             ModuleName = "スモールトーク",
@@ -13602,6 +14178,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Smash, Marry, Kill
         [typeof(SSmashMarryKill)] = new()
         {
             ModuleName = "SMASH・MARRY・KILL",
@@ -13630,6 +14207,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Snooker
         [typeof(SSnooker)] = new()
         {
             ModuleName = "スヌーカー",
@@ -13643,6 +14221,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Snowflakes
         [typeof(SSnowflakes)] = new()
         {
             ModuleName = "雪の結晶",
@@ -13664,6 +14243,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Sonic & Knuckles
         [typeof(SSonicKnuckles)] = new()
         {
             ModuleName = "ソニック＆ナックルズ",
@@ -13687,6 +14267,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Sonic the Hedgehog
         [typeof(SSonicTheHedgehog)] = new()
         {
             ModuleName = "ソニック・ザ・ヘッジホッグ",
@@ -13714,6 +14295,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Sorting
         [typeof(SSorting)] = new()
         {
             ModuleName = "並び替え",
@@ -13727,6 +14309,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Souvenir
         [typeof(SSouvenir)] = new()
         {
             ModuleName = "思い出",
@@ -13748,6 +14331,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Space Traders
         [typeof(SSpaceTraders)] = new()
         {
             NeedsTranslation = true,
@@ -13761,6 +14345,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Spelling Bee
         [typeof(SSpellingBee)] = new()
         {
             ModuleName = "スペリング・ビー",
@@ -13774,6 +14359,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Sphere
         [typeof(SSphere)] = new()
         {
             ModuleName = "球",
@@ -13799,6 +14385,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Splitting The Loot
         [typeof(SSplittingTheLoot)] = new()
         {
             ModuleName = "戦利品分割",
@@ -13812,6 +14399,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Spongebob Birthday Identification
         [typeof(SSpongebobBirthdayIdentification)] = new()
         {
             ModuleName = "スポンジ・ボブ誕生日カード識別",
@@ -13826,6 +14414,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Stability
         [typeof(SStability)] = new()
         {
             NeedsTranslation = true,
@@ -13851,6 +14440,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Stable Time Signatures
         [typeof(SStableTimeSignatures)] = new()
         {
             ModuleName = "安定拍子記号",
@@ -13865,6 +14455,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Stacked Sequences
         [typeof(SStackedSequences)] = new()
         {
             NeedsTranslation = true,
@@ -13878,6 +14469,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Stars
         [typeof(SStars)] = new()
         {
             ModuleName = "星",
@@ -13891,6 +14483,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Starstruck
         [typeof(SStarstruck)] = new()
         {
             NeedsTranslation = true,
@@ -13904,6 +14497,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // State of Aggregation
         [typeof(SStateOfAggregation)] = new()
         {
             ModuleName = "元素状態",
@@ -13917,6 +14511,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Stellar
         [typeof(SStellar)] = new()
         {
             ModuleName = "星型十二面体",
@@ -13937,6 +14532,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Stroop’s Test
         [typeof(SStroopsTest)] = new()
         {
             ModuleName = "ストループ検査",
@@ -13990,6 +14586,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Stupid Slots
         [typeof(SStupidSlots)] = new()
         {
             ModuleName = "馬鹿スロット",
@@ -14013,6 +14610,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Subbly Jubbly
         [typeof(SSubblyJubbly)] = new()
         {
             NeedsTranslation = true,
@@ -14026,6 +14624,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Subscribe to Pewdiepie
         [typeof(SSubscribeToPewdiepie)] = new()
         {
             ModuleName = "ピューディパイの登録",
@@ -14045,6 +14644,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Subway
         [typeof(SSubway)] = new()
         {
             ModuleName = "SUBWAY",
@@ -14063,6 +14663,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Sugar Skulls
         [typeof(SSugarSkulls)] = new()
         {
             ModuleName = "シュガースカル",
@@ -14094,6 +14695,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Suits and Colours
         [typeof(SSuitsAndColours)] = new()
         {
             NeedsTranslation = true,
@@ -14129,6 +14731,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Superparsing
         [typeof(SSuperparsing)] = new()
         {
             ModuleName = "超解析",
@@ -14142,6 +14745,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // SUSadmin
         [typeof(SSUSadmin)] = new()
         {
             ModuleName = "システム侵入者",
@@ -14160,6 +14764,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Switch
         [typeof(SSwitch)] = new()
         {
             ModuleName = "ザ・スイッチ",
@@ -14170,6 +14775,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} LED on the {2} flip of {0}?
                     // Example: What color was the top LED on the first flip of The Switch?
                     Question = "{0}の{2}回目の切り替え時の{1}部のLEDの色は？",
+                    Arguments = new()
+                    {
+                        ["top"] = "上",
+                        ["bottom"] = "下",
+                    },
                     Answers = new()
                     {
                         ["red"] = "赤",
@@ -14179,15 +14789,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["blue"] = "青",
                         ["purple"] = "紫",
                     },
-                    Arguments = new()
-                    {
-                        ["top"] = "上",
-                        ["bottom"] = "下",
-                    },
                 },
             },
         },
 
+        // Switches
         [typeof(SSwitches)] = new()
         {
             ModuleName = "スイッチ",
@@ -14201,6 +14807,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Switching Maze
         [typeof(SSwitchingMaze)] = new()
         {
             ModuleName = "切り替え迷路",
@@ -14234,6 +14841,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Symbol Cycle
         [typeof(SSymbolCycle)] = new()
         {
             ModuleName = "シンボルサイクル",
@@ -14253,6 +14861,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Symbolic Coordinates
         [typeof(SSymbolicCoordinates)] = new()
         {
             ModuleName = "シンボル座標",
@@ -14273,6 +14882,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Symbolic Tasha
         [typeof(SSymbolicTasha)] = new()
         {
             ModuleName = "シンボルターシャ",
@@ -14324,6 +14934,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Synapse Says
         [typeof(SSynapseSays)] = new()
         {
             NeedsTranslation = true,
@@ -14345,6 +14956,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // SYNC-125 [3]
         [typeof(SSync125_3)] = new()
         {
             Questions = new()
@@ -14358,6 +14970,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Synonyms
         [typeof(SSynonyms)] = new()
         {
             ModuleName = "同義語",
@@ -14371,6 +14984,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Sysadmin
         [typeof(SSysadmin)] = new()
         {
             ModuleName = "システム管理者",
@@ -14384,6 +14998,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // TAC
         [typeof(STAC)] = new()
         {
             ModuleName = "タック",
@@ -14394,6 +15009,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: Which card was {1} in the swap in {0}?
                     // Example: Which card was given away in the swap in TAC?
                     Question = "{0}のカード交換で{1}カードは？",
+                    Arguments = new()
+                    {
+                        ["given away"] = "捨てた",
+                        ["received"] = "引いた",
+                    },
                     Answers = new()
                     {
                         ["1"] = "通常1",
@@ -14419,11 +15039,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["10 or discard"] = "ダイヤ付き10",
                         ["Warrior"] = "Warrior",
                         ["Trickster"] = "Trickster",
-                    },
-                    Arguments = new()
-                    {
-                        ["given away"] = "捨てた",
-                        ["received"] = "引いた",
                     },
                 },
                 [STAC.HeldCard] = new()
@@ -14460,6 +15075,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Tap Code
         [typeof(STapCode)] = new()
         {
             ModuleName = "タップ・コード",
@@ -14473,6 +15089,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Tasha Squeals
         [typeof(STashaSqueals)] = new()
         {
             ModuleName = "ターシャの悲鳴",
@@ -14494,6 +15111,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Tasque Managing
         [typeof(STasqueManaging)] = new()
         {
             ModuleName = "タスク管理",
@@ -14507,6 +15125,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Tea Set
         [typeof(STeaSet)] = new()
         {
             NeedsTranslation = true,
@@ -14521,6 +15140,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Technical Keypad
         [typeof(STechnicalKeypad)] = new()
         {
             ModuleName = "テクニックキーパッド",
@@ -14534,6 +15154,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Ten-Button Color Code
         [typeof(STenButtonColorCode)] = new()
         {
             ModuleName = "10ボタン色コード",
@@ -14554,6 +15175,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Tenpins
         [typeof(STenpins)] = new()
         {
             ModuleName = "テンピン",
@@ -14564,6 +15186,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the {1} split in {0}?
                     // Example: What was the red split in Tenpins?
                     Question = "{0}の{1}のスプリットは？",
+                    Arguments = new()
+                    {
+                        ["red"] = "赤",
+                        ["green"] = "緑",
+                        ["blue"] = "青",
+                    },
                     Answers = new()
                     {
                         ["Goal Posts"] = "ゴールポスト",
@@ -14579,16 +15207,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Big Six"] = "ビッグシックス",
                         ["HOW"] = "HOW",
                     },
-                    Arguments = new()
-                    {
-                        ["red"] = "赤",
-                        ["green"] = "緑",
-                        ["blue"] = "青",
-                    },
                 },
             },
         },
 
+        // Tetriamonds
         [typeof(STetriamonds)] = new()
         {
             NeedsTranslation = true,
@@ -14613,6 +15236,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Text Field
         [typeof(STextField)] = new()
         {
             ModuleName = "テキストフィールド",
@@ -14626,6 +15250,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Thinking Wires
         [typeof(SThinkingWires)] = new()
         {
             ModuleName = "思考ワイヤ",
@@ -14661,6 +15286,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Third Base
         [typeof(SThirdBase)] = new()
         {
             ModuleName = "サードベース",
@@ -14675,6 +15301,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Thirty Dollar Module
         [typeof(SThirtyDollarModule)] = new()
         {
             NeedsTranslation = true,
@@ -14688,6 +15315,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Tic Tac Toe
         [typeof(STicTacToe)] = new()
         {
             NeedsTranslation = true,
@@ -14736,6 +15364,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Time Signatures
         [typeof(STimeSignatures)] = new()
         {
             ModuleName = "拍子記号",
@@ -14750,6 +15379,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Timezone
         [typeof(STimezone)] = new()
         {
             ModuleName = "タイムゾーン",
@@ -14769,6 +15399,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Tip Toe
         [typeof(STipToe)] = new()
         {
             NeedsTranslation = true,
@@ -14783,6 +15414,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Topsy Turvy
         [typeof(STopsyTurvy)] = new()
         {
             ModuleName = "トプシー・タービー",
@@ -14796,6 +15428,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Touch Transmission
         [typeof(STouchTransmission)] = new()
         {
             ModuleName = "接触送信",
@@ -14821,6 +15454,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Transmitted Morse
         [typeof(STransmittedMorse)] = new()
         {
             ModuleName = "送信モールス",
@@ -14835,6 +15469,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Triamonds
         [typeof(STriamonds)] = new()
         {
             NeedsTranslation = true,
@@ -14860,6 +15495,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Tribal Council
         [typeof(STribalCouncil)] = new()
         {
             NeedsTranslation = true,
@@ -14879,6 +15515,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Triple Term
         [typeof(STripleTerm)] = new()
         {
             ModuleName = "三単語",
@@ -14892,6 +15529,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Turtle Robot
         [typeof(STurtleRobot)] = new()
         {
             ModuleName = "亀型ロボット",
@@ -14906,6 +15544,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Two Bits
         [typeof(STwoBits)] = new()
         {
             ModuleName = "ツービッツ",
@@ -14920,6 +15559,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Twodoku
         [typeof(STwodoku)] = new()
         {
             NeedsTranslation = true,
@@ -14945,6 +15585,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Ultimate Cipher
         [typeof(SUltimateCipher)] = new()
         {
             ModuleName = "究極暗号",
@@ -14965,6 +15606,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Ultimate Cycle
         [typeof(SUltimateCycle)] = new()
         {
             ModuleName = "究極サイクル",
@@ -14994,6 +15636,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Ultracube
         [typeof(SUltracube)] = new()
         {
             ModuleName = "極立方体",
@@ -15008,6 +15651,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // UltraStores
         [typeof(SUltraStores)] = new()
         {
             ModuleName = "極貯留",
@@ -15028,6 +15672,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Uncolored Squares
         [typeof(SUncoloredSquares)] = new()
         {
             ModuleName = "色無し格子",
@@ -15051,6 +15696,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Uncolored Switches
         [typeof(SUncoloredSwitches)] = new()
         {
             ModuleName = "色無しスイッチ",
@@ -15081,6 +15727,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Uncolour Flash
         [typeof(SUncolourFlash)] = new()
         {
             ModuleName = "アンカラーフラッシュ",
@@ -15114,6 +15761,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Undertunneling
         [typeof(SUndertunneling)] = new()
         {
             NeedsTranslation = true,
@@ -15127,6 +15775,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Unfair Cipher
         [typeof(SUnfairCipher)] = new()
         {
             ModuleName = "アンフェア暗号",
@@ -15141,6 +15790,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Unfair's Cruel Revenge
         [typeof(SUnfairsCruelRevenge)] = new()
         {
             ModuleName = "アンフェアの残忍逆襲",
@@ -15161,6 +15811,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Unfair’s Revenge
         [typeof(SUnfairsRevenge)] = new()
         {
             ModuleName = "アンフェアの逆襲",
@@ -15175,6 +15826,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Unicode
         [typeof(SUnicode)] = new()
         {
             ModuleName = "ユニコード",
@@ -15189,6 +15841,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // UNO!
         [typeof(SUNO)] = new()
         {
             ModuleName = "UNO",
@@ -15259,6 +15912,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Unordered Keys
         [typeof(SUnorderedKeys)] = new()
         {
             ModuleName = "順番無し音板",
@@ -15285,6 +15939,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Unown Cipher
         [typeof(SUnownCipher)] = new()
         {
             ModuleName = "アンノーン暗号",
@@ -15299,6 +15954,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Unpleasant Squares
         [typeof(SUnpleasantSquares)] = new()
         {
             ModuleName = "不愉快な正方形",
@@ -15320,6 +15976,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Updog
         [typeof(SUpdog)] = new()
         {
             ModuleName = "うざいイヌ",
@@ -15335,6 +15992,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the {1} color in the sequence on {0}?
                     // Example: What was the first color in the sequence on Updog?
                     Question = "{0}のシーケンスにおける{1}の色は？",
+                    Arguments = new()
+                    {
+                        ["first"] = "最初",
+                        ["last"] = "最後",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -15344,15 +16006,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Blue"] = "青",
                         ["Purple"] = "紫",
                     },
-                    Arguments = new()
-                    {
-                        ["first"] = "最初",
-                        ["last"] = "最後",
-                    },
                 },
             },
         },
 
+        // USA Cycle
         [typeof(SUSACycle)] = new()
         {
             ModuleName = "USAサイクル",
@@ -15366,6 +16024,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // USA Maze
         [typeof(SUSAMaze)] = new()
         {
             ModuleName = "USA迷路",
@@ -15379,6 +16038,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // V
         [typeof(SV)] = new()
         {
             Questions = new()
@@ -15397,6 +16057,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Valves
         [typeof(SValves)] = new()
         {
             ModuleName = "バルブ",
@@ -15410,6 +16071,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Varicolored Squares
         [typeof(SVaricoloredSquares)] = new()
         {
             ModuleName = "色どり格子",
@@ -15432,6 +16094,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Varicolour Flash
         [typeof(SVaricolourFlash)] = new()
         {
             ModuleName = "バリカラーフラッシュ",
@@ -15470,6 +16133,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Variety
         [typeof(SVariety)] = new()
         {
             ModuleName = "寄せ集め",
@@ -15545,6 +16209,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: the Variety that has {0}
                     // Example: the Variety that has one
                     Discriminator = "{0}があった寄せ集め",
+                    // Refer to translations.md to understand the weird strings
                     Arguments = new()
                     {
                         ["one\uE003 (LED)"] = "LED",
@@ -15615,6 +16280,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Vcrcs
         [typeof(SVcrcs)] = new()
         {
             ModuleName = "単語識別",
@@ -15628,6 +16294,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Vectors
         [typeof(SVectors)] = new()
         {
             ModuleName = "ベクトル",
@@ -15638,6 +16305,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the color of the {1} vector in {0}?
                     // Example: What was the color of the first vector in Vectors?
                     Question = "{0}にあった{1}のベクトルの色は？",
+                    Arguments = new()
+                    {
+                        ["first"] = "1番目",
+                        ["second"] = "2番目",
+                        ["third"] = "3番目",
+                        ["only"] = "唯一",
+                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -15647,17 +16321,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Blue"] = "青",
                         ["Purple"] = "紫",
                     },
-                    Arguments = new()
-                    {
-                        ["first"] = "1番目",
-                        ["second"] = "2番目",
-                        ["third"] = "3番目",
-                        ["only"] = "唯一",
-                    },
                 },
             },
         },
 
+        // Vexillology
         [typeof(SVexillology)] = new()
         {
             ModuleName = "旗章学",
@@ -15683,6 +16351,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Violet Cipher
         [typeof(SVioletCipher)] = new()
         {
             ModuleName = "紫色暗号",
@@ -15703,6 +16372,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Visual Impairment
         [typeof(SVisualImpairment)] = new()
         {
             ModuleName = "視覚障害",
@@ -15724,6 +16394,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Walking Cube
         [typeof(SWalkingCube)] = new()
         {
             NeedsTranslation = true,
@@ -15737,6 +16408,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Warning Signs
         [typeof(SWarningSigns)] = new()
         {
             ModuleName = "警戒標識",
@@ -15750,6 +16422,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // WASD
         [typeof(SWasd)] = new()
         {
             Questions = new()
@@ -15762,6 +16435,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Watching Paint Dry
         [typeof(SWatchingPaintDry)] = new()
         {
             ModuleName = "ペンキの乾燥観察",
@@ -15775,6 +16449,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Wavetapping
         [typeof(SWavetapping)] = new()
         {
             ModuleName = "ウェーブタッピング",
@@ -15814,6 +16489,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Weakest Link
         [typeof(SWeakestLink)] = new()
         {
             NeedsTranslation = true,
@@ -15844,6 +16520,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // What’s on Second
         [typeof(SWhatsOnSecond)] = new()
         {
             ModuleName = "色付き表比較",
@@ -15873,6 +16550,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // White Arrows
         [typeof(SWhiteArrows)] = new()
         {
             ModuleName = "白色矢印",
@@ -15883,6 +16561,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the {1} non-white arrow in {0}?
                     // Example: What was the first non-white arrow in White Arrows?
                     Question = "{0}における{1}番目の白ではない矢印は？",
+                    // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
                         ["Blue"] = "青",
@@ -15903,6 +16582,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // White Cipher
         [typeof(SWhiteCipher)] = new()
         {
             ModuleName = "白色暗号",
@@ -15923,6 +16603,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // WhoOF
         [typeof(SWhoOF)] = new()
         {
             ModuleName = "表比",
@@ -15937,6 +16618,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Who’s on First
         [typeof(SWhosOnFirst)] = new()
         {
             ModuleName = "表比較",
@@ -15951,6 +16633,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Who’s on Gas
         [typeof(SWhosOnGas)] = new()
         {
             ModuleName = "ガス比較",
@@ -15965,6 +16648,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Who’s on Morse
         [typeof(SWhosOnMorse)] = new()
         {
             ModuleName = "モールス比較",
@@ -15979,6 +16663,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Wire
         [typeof(SWire)] = new()
         {
             ModuleName = "ザ・ワイヤ",
@@ -15989,6 +16674,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What was the color of the {1} dial in {0}?
                     // Example: What was the color of the top dial in The Wire?
                     Question = "{0}の{1}の位置にあったダイヤルの色は？",
+                    Arguments = new()
+                    {
+                        ["top"] = "上",
+                        ["bottom-left"] = "左下",
+                        ["bottom-right"] = "右下",
+                    },
                     Answers = new()
                     {
                         ["blue"] = "青",
@@ -15997,12 +16688,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["orange"] = "オレンジ",
                         ["purple"] = "紫",
                         ["red"] = "赤",
-                    },
-                    Arguments = new()
-                    {
-                        ["top"] = "上",
-                        ["bottom-left"] = "左下",
-                        ["bottom-right"] = "右下",
                     },
                 },
                 [SWire.DisplayedNumber] = new()
@@ -16013,6 +16698,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Wire Ordering
         [typeof(SWireOrdering)] = new()
         {
             ModuleName = "順序ワイヤ",
@@ -16061,6 +16747,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Wire Sequence
         [typeof(SWireSequence)] = new()
         {
             ModuleName = "順番ワイヤ",
@@ -16081,6 +16768,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Wolf, Goat, and Cabbage
         [typeof(SWolfGoatAndCabbage)] = new()
         {
             ModuleName = "川渡り問題",
@@ -16105,6 +16793,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Word Count
         [typeof(SWordCount)] = new()
         {
             ModuleName = "単語カウント",
@@ -16118,6 +16807,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Working Title
         [typeof(SWorkingTitle)] = new()
         {
             ModuleName = "ワーキングタイトル",
@@ -16131,6 +16821,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Wumbo
         [typeof(SWumbo)] = new()
         {
             ModuleName = "ウンボ",
@@ -16144,6 +16835,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Xenocryst
         [typeof(SXenocryst)] = new()
         {
             ModuleName = "ゼノクリスト",
@@ -16158,6 +16850,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // XmORse Code
         [typeof(SXmORseCode)] = new()
         {
             ModuleName = "Xモールス信号",
@@ -16177,6 +16870,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // xobekuJ ehT
         [typeof(SXobekuJehT)] = new()
         {
             ModuleName = "スクッボクーュジ",
@@ -16190,6 +16884,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // X-Ring
         [typeof(SXRing)] = new()
         {
             ModuleName = "円形レントゲン",
@@ -16203,6 +16898,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // X-Rotor
         [typeof(SXRotor)] = new()
         {
             ModuleName = "回転レントゲン",
@@ -16216,6 +16912,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // XY-Ray
         [typeof(SXYRay)] = new()
         {
             ModuleName = "XYレントゲン",
@@ -16229,6 +16926,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Yahtzee
         [typeof(SYahtzee)] = new()
         {
             ModuleName = "ヤッツィー",
@@ -16253,6 +16951,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Yellow Arrows
         [typeof(SYellowArrows)] = new()
         {
             ModuleName = "黄色矢印",
@@ -16266,6 +16965,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // The Yellow Button
         [typeof(SYellowButton)] = new()
         {
             ModuleName = "黄色ボタン",
@@ -16289,6 +16989,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Yellow Button’t
         [typeof(SYellowButtont)] = new()
         {
             ModuleName = "偽黄色ボタン",
@@ -16302,6 +17003,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Yellow Cipher
         [typeof(SYellowCipher)] = new()
         {
             ModuleName = "黄色暗号",
@@ -16322,6 +17024,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Zero, Zero
         [typeof(SZeroZero)] = new()
         {
             ModuleName = "ゼロ・ゼロ",
@@ -16344,6 +17047,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     // English: What color was the {1} star in {0}?
                     // Example: What color was the top-left star in Zero, Zero?
                     Question = "{0}の{1}の位置の星の色は？",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "左上",
+                        ["top-right"] = "右上",
+                        ["bottom-left"] = "左下",
+                        ["bottom-right"] = "右下",
+                    },
                     Answers = new()
                     {
                         ["black"] = "黒",
@@ -16354,13 +17064,6 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["magenta"] = "マゼンタ",
                         ["yellow"] = "黄",
                         ["white"] = "白",
-                    },
-                    Arguments = new()
-                    {
-                        ["top-left"] = "左上",
-                        ["top-right"] = "右上",
-                        ["bottom-left"] = "左下",
-                        ["bottom-right"] = "右下",
                     },
                 },
                 [SZeroZero.StarPoints] = new()
@@ -16379,6 +17082,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Zoni
         [typeof(SZoni)] = new()
         {
             ModuleName = "ゾニ文字",
@@ -16393,6 +17097,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
+        // Épelle-moi Ça
         [typeof(SÉpelleMoiÇa)] = new()
         {
             NeedsTranslation = true,

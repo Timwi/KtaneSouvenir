@@ -145,6 +145,7 @@ public static class Program
                 var enumType = (Type) handler.EnumType;
                 dynamic alreadyHandler = already?.TranslateModule(enumType);
 
+                outerSb.AppendLine($"{indent()}// {(handler.AddThe ? "The " : "")}{handler.ModuleName}");
                 outerSb.AppendLine($"{indent()}[typeof({enumType.Name})] = new()");
                 outerSb.AppendLine($"{indent()}{{");
                 indentation += 4;
@@ -211,15 +212,13 @@ public static class Program
                     }
                     sb.AppendLine($@"{indent()}Question = ""{((string) (alreadyQuestion?.Question ?? qAttr.QuestionText)).CLiteralEscape()}"",");
 
-#warning MOVE THESE
+                    if (qAttr.ReferenceDocumentation || qAttr.TranslatableStrings is string[] { Length: > 0 })
+                        sb.AppendLine($@"{indent()}// Refer to translations.md to understand the weird strings");
+
+                    if (qAttr.Arguments is string[] { Length: > 0 } origArguments && qAttr.ArgumentGroupSize is int groupSize && qAttr.TranslateArguments is bool[] trArgs)
+                        AddDictionary("Arguments", Enumerable.Range(0, groupSize).Where(ix => trArgs[ix]).SelectMany(ix => Enumerable.Range(0, origArguments.Length / groupSize).Select(jx => origArguments[jx * groupSize + ix])).Distinct(), alreadyQuestion?.Arguments);
                     if (qAttr.AllAnswers is string[] { Length: > 0 } origAnswers && (bool) qAttr.TranslateAnswers)
                         AddDictionary("Answers", origAnswers.Distinct(), alreadyQuestion?.Answers);
-                    if (qAttr.Arguments is string[] { Length: > 0 } origArguments && qAttr.ArgumentGroupSize is int groupSize && qAttr.TranslateArguments is bool[] trArgs)
-                        AddDictionary("Arguments",
-#warning INSTATE THIS
-                            //Enumerable.Range(0, groupSize).Where(ix => trArgs[ix]).SelectMany(ix => Enumerable.Range(0, origArguments.Length/groupSize).Select(jx => origArguments[jx * groupSize + ix])).Distinct(),
-                            origArguments.Select((str, ix) => trArgs[ix % groupSize] ? str : null).Where(s => s != null).Distinct(),
-                            alreadyQuestion?.Arguments);
                     if (qAttr.TranslatableStrings is string[] { Length: > 0 } origStrings)
                         AddDictionary("Additional", origStrings.Distinct(), alreadyQuestion?.Additional);
 
@@ -251,6 +250,9 @@ public static class Program
                         if (dAttr.Arguments is string[] args)
                             sb.AppendLine($@"{indent()}// Example: {string.Format((string) dAttr.DiscriminatorText, processString(args.Take((int) dAttr.ArgumentGroupSize)).ToArray())}");
                         sb.AppendLine($@"{indent()}Discriminator = ""{((string) (alreadyDiscriminator?.Discriminator ?? dAttr.DiscriminatorText)).CLiteralEscape()}"",");
+
+                        if (dAttr.ReferenceDocumentation || dAttr.TranslatableStrings is string[] { Length: > 0 })
+                            sb.AppendLine($@"{indent()}// Refer to translations.md to understand the weird strings");
 
                         if (dAttr.Arguments is string[] { Length: > 0 } origArguments && dAttr.ArgumentGroupSize is int groupSize && dAttr.TranslateArguments is bool[] trArgs)
                             AddDictionary("Arguments", origArguments.Select((str, ix) => trArgs[ix % groupSize] ? str : null).Where(s => s != null).Distinct(), alreadyDiscriminator?.Arguments);
