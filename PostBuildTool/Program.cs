@@ -255,7 +255,8 @@ public static class Program
                             sb.AppendLine($@"{indent()}// Refer to translations.md to understand the weird strings");
 
                         if (dAttr.Arguments is string[] { Length: > 0 } origArguments && dAttr.ArgumentGroupSize is int groupSize && dAttr.TranslateArguments is bool[] trArgs)
-                            AddDictionary("Arguments", origArguments.Select((str, ix) => trArgs[ix % groupSize] ? str : null).Where(s => s != null).Distinct(), alreadyDiscriminator?.Arguments);
+                            AddDictionary("Arguments", Enumerable.Range(0, groupSize).Where(ix => trArgs[ix]).SelectMany(ix => Enumerable.Range(0, origArguments.Length / groupSize).Select(jx => origArguments[jx * groupSize + ix])).Distinct(), alreadyDiscriminator?.Arguments);
+
                         if (dAttr.TranslatableStrings is string[] { Length: > 0 } origStrings)
                             AddDictionary("Additional", origStrings.Distinct(), alreadyDiscriminator?.Additional);
 
