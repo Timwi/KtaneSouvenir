@@ -4966,7 +4966,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Braille"] = "Blindenschrift",
                         ["Wingdings"] = "Wingdings",
                         ["Zoni"] = "Zoni",
-                        ["Galatic Alphabet"] = "Galaktisches Alphabet",
+                        ["Galactic Alphabet"] = "Galaktisches Alphabet",
                         ["Arrow"] = "Pfeile",
                         ["Listening"] = "Zuhören",
                         ["Regular Number"] = "Normale Zahl",

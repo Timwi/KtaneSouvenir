@@ -4811,7 +4811,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["Braille"] = "点字",
                         ["Wingdings"] = "Wingdings",
                         ["Zoni"] = "ゾ二",
-                        ["Galatic Alphabet"] = "銀河標準語",
+                        ["Galactic Alphabet"] = "銀河標準語",
                         ["Arrow"] = "矢印",
                         ["Listening"] = "リスニング",
                         ["Regular Number"] = "数字",

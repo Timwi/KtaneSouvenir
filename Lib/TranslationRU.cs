@@ -4856,7 +4856,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                         ["Braille"] = "Braille",
                         ["Wingdings"] = "Wingdings",
                         ["Zoni"] = "Zoni",
-                        ["Galatic Alphabet"] = "Galatic Alphabet",
+                        ["Galactic Alphabet"] = "Galactic Alphabet",
                         ["Arrow"] = "Arrow",
                         ["Listening"] = "Listening",
                         ["Regular Number"] = "Regular Number",
