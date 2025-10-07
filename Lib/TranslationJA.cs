@@ -624,6 +624,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         // Algebra
         [typeof(SAlgebra)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "方程式",
             Questions = new()
             {
@@ -638,15 +639,31 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                     Question = "{0}の二番目の方程式は？",
                 },
             },
+            Discriminators = new()
+            {
+                [SAlgebra.Discriminator1] = new()
+                {
+                    // English: the Algebra where the first equation was {0}
+                    // Example: the Algebra where the first equation was a=3z
+                    Discriminator = "the Algebra where the first equation was {0}",
+                },
+                [SAlgebra.Discriminator2] = new()
+                {
+                    // English: the Algebra where the second equation was {0}
+                    // Example: the Algebra where the second equation was b=(2x/10)-y
+                    Discriminator = "the Algebra where the second equation was {0}",
+                },
+            },
         },
 
         // Algorithmia
         [typeof(SAlgorithmia)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アルゴリズム",
             Questions = new()
             {
-                [SAlgorithmia.Positions] = new()
+                [SAlgorithmia.QPositions] = new()
                 {
                     // English: Which position was the {1} position in {0}?
                     // Example: Which position was the starting position in Algorithmia?
@@ -657,15 +674,50 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                         ["goal"] = "終了",
                     },
                 },
-                [SAlgorithmia.Color] = new()
+                [SAlgorithmia.QColor] = new()
                 {
                     // English: What was the color of the colored bulb in {0}?
                     Question = "{0}の色付き電球の色は？",
                 },
-                [SAlgorithmia.Seed] = new()
+                [SAlgorithmia.QSeed] = new()
                 {
                     // English: Which number was present in the seed in {0}?
                     Question = "{0}のシード内にある数字は？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAlgorithmia.DPositions] = new()
+                {
+                    // English: the Algorithmia where this was the {0} position
+                    // Example: the Algorithmia where this was the starting position
+                    Discriminator = "the Algorithmia where this was the {0} position",
+                    Arguments = new()
+                    {
+                        ["starting"] = "starting",
+                        ["goal"] = "goal",
+                    },
+                },
+                [SAlgorithmia.DColor] = new()
+                {
+                    // English: the Algorithmia whose colored bulb was {0}
+                    // Example: the Algorithmia whose colored bulb was red
+                    Discriminator = "the Algorithmia whose bulb was {0}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["yellow"] = "yellow",
+                        ["magenta"] = "magenta",
+                    },
+                },
+                [SAlgorithmia.DSeed] = new()
+                {
+                    // English: the Algorithmia that had a {0} in the seed
+                    // Example: the Algorithmia that had a 01 in the seed
+                    Discriminator = "the Algorithmia that had a {0} in the seed",
                 },
             },
         },

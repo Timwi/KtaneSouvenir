@@ -665,6 +665,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Algebra
         [typeof(SAlgebra)] = new()
         {
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SAlgebra.Equation1] = new()
@@ -678,6 +679,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Was war bei {0} die zweite Gleichung?",
                 },
             },
+            Discriminators = new()
+            {
+                [SAlgebra.Discriminator1] = new()
+                {
+                    // English: the Algebra where the first equation was {0}
+                    // Example: the Algebra where the first equation was a=3z
+                    Discriminator = "der Algebra, deren erste Gleichung {0} war,",
+                },
+                [SAlgebra.Discriminator2] = new()
+                {
+                    // English: the Algebra where the second equation was {0}
+                    // Example: the Algebra where the second equation was b=(2x/10)-y
+                    Discriminator = "der Algebra, deren zweite Gleichung {0} war,",
+                },
+            },
         },
 
         // Algorithmia
@@ -685,7 +701,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             Questions = new()
             {
-                [SAlgorithmia.Positions] = new()
+                [SAlgorithmia.QPositions] = new()
                 {
                     // English: Which position was the {1} position in {0}?
                     // Example: Which position was the starting position in Algorithmia?
@@ -696,15 +712,50 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["goal"] = "Zielposition",
                     },
                 },
-                [SAlgorithmia.Color] = new()
+                [SAlgorithmia.QColor] = new()
                 {
                     // English: What was the color of the colored bulb in {0}?
                     Question = "Welche Farbe hatte die gefärbte Glühlampe bei {0}?",
                 },
-                [SAlgorithmia.Seed] = new()
+                [SAlgorithmia.QSeed] = new()
                 {
                     // English: Which number was present in the seed in {0}?
-                    Question = "Welche Zahl war bei {0} im Startwert enthalten?",
+                    Question = "Welche Zahl war bei {0} unter den Startwerten enthalten?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAlgorithmia.DPositions] = new()
+                {
+                    // English: the Algorithmia where this was the {0} position
+                    // Example: the Algorithmia where this was the starting position
+                    Discriminator = "dem Algorithmia, bei dem {0} hier war,",
+                    Arguments = new()
+                    {
+                        ["starting"] = "die Startposition",
+                        ["goal"] = "das Ziel",
+                    },
+                },
+                [SAlgorithmia.DColor] = new()
+                {
+                    // English: the Algorithmia whose colored bulb was {0}
+                    // Example: the Algorithmia whose colored bulb was red
+                    Discriminator = "dem Algorithmia, dessen farbige Glühlampe {0} war,",
+                    Arguments = new()
+                    {
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["cyan"] = "türkis",
+                        ["yellow"] = "gelb",
+                        ["magenta"] = "magenta",
+                    },
+                },
+                [SAlgorithmia.DSeed] = new()
+                {
+                    // English: the Algorithmia that had a {0} in the seed
+                    // Example: the Algorithmia that had a 01 in the seed
+                    Discriminator = "dem Algorithmia, bei dessen Startwerten {0} vorkam,",
                 },
             },
         },
@@ -5936,28 +5987,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Functions
         [typeof(SFunctions)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Funktionen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SFunctions.LastDigit] = new()
                 {
                     // English: What was the last digit of your first query’s result in {0}?
-                    Question = "What was the last digit of your first query’s result in {0}?",
+                    Question = "Was war bei {0} die letzte Ziffer des ersten Abfrageergebnisses?",
                 },
                 [SFunctions.LeftNumber] = new()
                 {
                     // English: What number was to the left of the displayed letter in {0}?
-                    Question = "What number was to the left of the displayed letter in {0}?",
+                    Question = "Welche Zahl war bei {0} auf dem Display links vom Buchstaben?",
                 },
                 [SFunctions.Letter] = new()
                 {
                     // English: What letter was displayed in {0}?
-                    Question = "What letter was displayed in {0}?",
+                    Question = "Welcher Buchstabe war bei {0} auf dem Display?",
                 },
                 [SFunctions.RightNumber] = new()
                 {
                     // English: What number was to the right of the displayed letter in {0}?
-                    Question = "What number was to the right of the displayed letter in {0}?",
+                    Question = "Welche Zahl war bei {0} auf dem Display rechts vom Buchstaben?",
                 },
             },
         },

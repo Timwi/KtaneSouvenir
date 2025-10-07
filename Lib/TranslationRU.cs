@@ -702,6 +702,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Algebra
         [typeof(SAlgebra)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Алгебре",
             Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
@@ -717,14 +718,30 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     Question = "Какое было второе уравнение {0}?",
                 },
             },
+            Discriminators = new()
+            {
+                [SAlgebra.Discriminator1] = new()
+                {
+                    // English: the Algebra where the first equation was {0}
+                    // Example: the Algebra where the first equation was a=3z
+                    Discriminator = "the Algebra where the first equation was {0}",
+                },
+                [SAlgebra.Discriminator2] = new()
+                {
+                    // English: the Algebra where the second equation was {0}
+                    // Example: the Algebra where the second equation was b=(2x/10)-y
+                    Discriminator = "the Algebra where the second equation was {0}",
+                },
+            },
         },
 
         // Algorithmia
         [typeof(SAlgorithmia)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SAlgorithmia.Positions] = new()
+                [SAlgorithmia.QPositions] = new()
                 {
                     // English: Which position was the {1} position in {0}?
                     // Example: Which position was the starting position in Algorithmia?
@@ -735,15 +752,50 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                         ["goal"] = "целевой",
                     },
                 },
-                [SAlgorithmia.Color] = new()
+                [SAlgorithmia.QColor] = new()
                 {
                     // English: What was the color of the colored bulb in {0}?
                     Question = "Какого цвета была цветная лампочка {0}?",
                 },
-                [SAlgorithmia.Seed] = new()
+                [SAlgorithmia.QSeed] = new()
                 {
                     // English: Which number was present in the seed in {0}?
                     Question = "Какое число присутствовало в зерне {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAlgorithmia.DPositions] = new()
+                {
+                    // English: the Algorithmia where this was the {0} position
+                    // Example: the Algorithmia where this was the starting position
+                    Discriminator = "the Algorithmia where this was the {0} position",
+                    Arguments = new()
+                    {
+                        ["starting"] = "starting",
+                        ["goal"] = "goal",
+                    },
+                },
+                [SAlgorithmia.DColor] = new()
+                {
+                    // English: the Algorithmia whose colored bulb was {0}
+                    // Example: the Algorithmia whose colored bulb was red
+                    Discriminator = "the Algorithmia whose bulb was {0}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["yellow"] = "yellow",
+                        ["magenta"] = "magenta",
+                    },
+                },
+                [SAlgorithmia.DSeed] = new()
+                {
+                    // English: the Algorithmia that had a {0} in the seed
+                    // Example: the Algorithmia that had a 01 in the seed
+                    Discriminator = "the Algorithmia that had a {0} in the seed",
                 },
             },
         },
