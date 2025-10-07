@@ -5458,13 +5458,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Flyswatting
         [typeof(SFlyswatting)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Fliegenschlagen",
             Questions = new()
             {
                 [SFlyswatting.Unpressed] = new()
                 {
                     // English: Which fly was present, but not in the solution in {0}?
-                    Question = "Which fly was present, but not in the solution in {0}?",
+                    Question = "Welche Fliege war bei {0} anwesend, aber nicht Teil der Lösung?",
                 },
             },
         },
@@ -6418,26 +6418,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Halli Galli
         [typeof(SHalliGalli)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHalliGalli.Fruit] = new()
                 {
                     // English: Which fruit were there five of in {0}?
-                    Question = "Which fruit were there five of in {0}?",
+                    Question = "Von welcher Frucht gab es bei {0} fünf?",
                     Answers = new()
                     {
-                        ["Strawberries"] = "Strawberries",
-                        ["Melons"] = "Melons",
-                        ["Lemons"] = "Lemons",
-                        ["Raspberries"] = "Raspberries",
-                        ["Bananas"] = "Bananas",
+                        ["Strawberries"] = "Erdbeeren",
+                        ["Melons"] = "Melonen",
+                        ["Lemons"] = "Zitronen",
+                        ["Raspberries"] = "Himbeeren",
+                        ["Bananas"] = "Bananen",
                     },
                 },
                 [SHalliGalli.Counts] = new()
                 {
                     // English: What were the relevant counts in {0}?
-                    Question = "What were the relevant counts in {0}?",
+                    Question = "In welcher Anzahl kamen die relevanten Früchte bei {0} vor?",
                 },
             },
         },
@@ -6445,13 +6444,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Hereditary Base Notation
         [typeof(SHereditaryBaseNotation)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHereditaryBaseNotation.InitialNumber] = new()
                 {
                     // English: What was the given number in {0}?
-                    Question = "What was the given number in {0}?",
+                    Question = "Welche Zahl war bei {0} vorgegeben?",
                 },
             },
         },
@@ -11914,13 +11912,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Purple Arrows
         [typeof(SPurpleArrows)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Lilane Pfeile",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SPurpleArrows.Finish] = new()
                 {
                     // English: What was the target word on {0}?
-                    Question = "What was the target word on {0}?",
+                    Question = "Was war bei {0} das Zielwort?",
                 },
             },
         },
@@ -12237,24 +12236,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Railway Cargo Loading
         [typeof(SRailwayCargoLoading)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Bahnfrachtverladung",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SRailwayCargoLoading.Cars] = new()
                 {
                     // English: What was the {1} car in {0}?
                     // Example: What was the first car in Railway Cargo Loading?
-                    Question = "What was the {1} coupled car in {0}?",
+                    Question = "Welcher Waggon wurde bei {0} als {1}er gekoppelt?",
                 },
                 [SRailwayCargoLoading.FreightTableRules] = new()
                 {
                     // English: Which freight table rule {1} in {0}?
                     // Example: Which freight table rule was met in Railway Cargo Loading?
-                    Question = "Which freight table rule {1} in {0}?",
+                    Question = "Welche Frachtregel in der Tabelle traf bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["was met"] = "was met",
-                        ["wasn’t met"] = "wasn’t met",
+                        ["was met"] = "zu",
+                        ["wasn’t met"] = "nicht zu",
                     },
                 },
             },
@@ -12927,14 +12927,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Samsung
         [typeof(SSamsung)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Das Samsung",
+            ModuleNameDative = "Samsung",
             Questions = new()
             {
                 [SSamsung.AppPositions] = new()
                 {
                     // English: Where was {1} in {0}?
                     // Example: Where was Duolingo in The Samsung?
-                    Question = "Where was {1} in {0}?",
+                    Question = "Wo war bei {0} {1}?",
                 },
             },
         },
@@ -12942,13 +12943,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Saturn
         [typeof(SSaturn)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSaturn.Goal] = new()
                 {
                     // English: Where was the goal in {0}?
-                    Question = "Where was the goal in {0}?",
+                    Question = "Wo war bei {0} das Ziel?",
                 },
             },
         },
@@ -14513,23 +14513,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Sonic & Knuckles
         [typeof(SSonicKnuckles)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSonicKnuckles.Sounds] = new()
                 {
                     // English: Which sound was played but not featured in the chosen zone in {0}?
-                    Question = "Which sound was played but not featured in the chosen zone in {0}?",
+                    Question = "Welcher Ton wurde bei {0} abgespielt, war aber nicht der angezeigten Zone zugehörig?",
                 },
                 [SSonicKnuckles.Badnik] = new()
                 {
                     // English: Which badnik was shown in {0}?
-                    Question = "Which badnik was shown in {0}?",
+                    Question = "Welcher Gegner kam bei {0} vor?",
                 },
                 [SSonicKnuckles.Monitor] = new()
                 {
                     // English: Which monitor was shown in {0}?
-                    Question = "Which monitor was shown in {0}?",
+                    Question = "Welcher Monitor kam bei {0} vor?",
                 },
             },
         },
@@ -14537,26 +14536,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Sonic the Hedgehog
         [typeof(SSonicTheHedgehog)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SSonicTheHedgehog.Pictures] = new()
                 {
                     // English: What was the {1} picture on {0}?
                     // Example: What was the first picture on Sonic the Hedgehog?
-                    Question = "What was the {1} picture on {0}?",
+                    Question = "Was war bei {0} das {1}e Bild?",
                 },
                 [SSonicTheHedgehog.Sounds] = new()
                 {
                     // English: Which sound was played by the {1} screen on {0}?
                     // Example: Which sound was played by the Running Boots screen on Sonic the Hedgehog?
-                    Question = "Which sound was played by the {1} screen on {0}?",
+                    Question = "Welcher Ton wurde bei {0} über den {1}-Bildschirm abgespielt?",
                     Arguments = new()
                     {
-                        ["Running Boots"] = "Running Boots",
-                        ["Invincibility"] = "Invincibility",
-                        ["Extra Life"] = "Extra Life",
-                        ["Rings"] = "Rings",
+                        ["Running Boots"] = "Rennstiefel",
+                        ["Invincibility"] = "Unbesiegbarkeit",
+                        ["Extra Life"] = "Extraleben",
+                        ["Rings"] = "Ringe",
                     },
                 },
             },
@@ -15284,11 +15282,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which card was {1} in the swap in {0}?
                     // Example: Which card was given away in the swap in TAC?
-                    Question = "Which card was {1} your partner in {0}?",
+                    Question = "Welche Karte wurde bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["given away"] = "given away",
-                        ["received"] = "received",
+                        ["given away"] = "weggegeben",
+                        ["received"] = "erhalten",
                     },
                     Answers = new()
                     {
@@ -15305,22 +15303,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["11"] = "11",
                         ["12"] = "12",
                         ["13"] = "13",
-                        ["backwards 3"] = "backwards 3",
-                        ["backwards 4"] = "backwards 4",
-                        ["backwards 5"] = "backwards 5",
-                        ["single-step 6"] = "single-step 6",
-                        ["single-step 7"] = "single-step 7",
-                        ["8 or discard"] = "8 or discard",
-                        ["9 or discard"] = "9 or discard",
-                        ["10 or discard"] = "10 or discard",
-                        ["Warrior"] = "Warrior",
-                        ["Trickster"] = "Trickster",
+                        ["backwards 3"] = "rückwärts 3",
+                        ["backwards 4"] = "rückwärts 4",
+                        ["backwards 5"] = "rückwärts 5",
+                        ["single-step 6"] = "Einzelschritt 6",
+                        ["single-step 7"] = "Einzelschritt 7",
+                        ["8 or discard"] = "8 oder Aussetzen",
+                        ["9 or discard"] = "9 oder Aussetzen",
+                        ["10 or discard"] = "10 oder Aussetzen",
+                        ["Warrior"] = "Krieger",
+                        ["Trickster"] = "Trickser",
                     },
                 },
                 [STAC.HeldCard] = new()
                 {
                     // English: Which card was in your hand in {0}?
-                    Question = "Which card was in your hand in {0}?",
+                    Question = "Welche Karte hatten wir war bei {0} auf der Hand?",
                     Answers = new()
                     {
                         ["1"] = "1",
@@ -15336,16 +15334,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["11"] = "11",
                         ["12"] = "12",
                         ["13"] = "13",
-                        ["backwards 3"] = "backwards 3",
-                        ["backwards 4"] = "backwards 4",
-                        ["backwards 5"] = "backwards 5",
-                        ["single-step 6"] = "single-step 6",
-                        ["single-step 7"] = "single-step 7",
-                        ["8 or discard"] = "8 or discard",
-                        ["9 or discard"] = "9 or discard",
-                        ["10 or discard"] = "10 or discard",
-                        ["Warrior"] = "Warrior",
-                        ["Trickster"] = "Trickster",
+                        ["backwards 3"] = "rückwärts 3",
+                        ["backwards 4"] = "rückwärts 4",
+                        ["backwards 5"] = "rückwärts 5",
+                        ["single-step 6"] = "Einzelschritt 6",
+                        ["single-step 7"] = "Einzelschritt 7",
+                        ["8 or discard"] = "8 oder Aussetzen",
+                        ["9 or discard"] = "9 oder Aussetzen",
+                        ["10 or discard"] = "10 oder Aussetzen",
+                        ["Warrior"] = "Krieger",
+                        ["Trickster"] = "Trickser",
                     },
                 },
             },
@@ -15354,13 +15352,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Tap Code
         [typeof(STapCode)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Klopfzeichen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [STapCode.ReceivedWord] = new()
                 {
                     // English: What was the received word in {0}?
-                    Question = "What was the received word in {0}?",
+                    Question = "Welches Wort wurde bei {0} empfangen?",
                 },
             },
         },
@@ -15390,13 +15389,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Tasque Managing
         [typeof(STasqueManaging)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [STasqueManaging.StartingPos] = new()
                 {
                     // English: Where was the starting position in {0}?
-                    Question = "Where was the starting position in {0}?",
+                    Question = "Wo ging es bei {0} los?",
                 },
             },
         },
@@ -15404,14 +15402,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Tea Set
         [typeof(STeaSet)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Das Teeservice",
+            ModuleNameDative = "Teeservice",
             Questions = new()
             {
                 [STeaSet.DisplayedIngredients] = new()
                 {
                     // English: Which ingredient was displayed {1}, from left to right, in {0}?
                     // Example: Which ingredient was displayed first, from left to right, in The Tea Set?
-                    Question = "Which ingredient was displayed {1}, from left to right, in {0}?",
+                    Question = "Welche Zutat war bei {0} die {1}e von links?",
                 },
             },
         },
@@ -15434,19 +15433,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ten-Button Color Code
         [typeof(STenButtonColorCode)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Zehn-Tasten-Farbcode",
             Questions = new()
             {
                 [STenButtonColorCode.InitialColors] = new()
                 {
                     // English: What was the initial color of the {1} button in the {2} stage of {0}?
                     // Example: What was the initial color of the first button in the first stage of Ten-Button Color Code?
-                    Question = "What was the initial color of the {1} button in the {2} stage of {0}?",
+                    Question = "Was war bei {0} am Anfang der {2}en Stufe die Farbe der {1}en Taste?",
                     Answers = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
                     },
                 },
             },
@@ -15456,18 +15455,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STenpins)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Tenpin-Bowling",
             Questions = new()
             {
                 [STenpins.Splits] = new()
                 {
                     // English: What was the {1} split in {0}?
                     // Example: What was the red split in Tenpins?
-                    Question = "What was the {1} split in {0}?",
+                    Question = "Welcher Split war bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
                     },
                     Answers = new()
                     {
