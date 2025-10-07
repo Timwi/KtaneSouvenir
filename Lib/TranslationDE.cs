@@ -6136,13 +6136,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Girlfriend
         [typeof(SGirlfriend)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Freundin",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SGirlfriend.Language] = new()
                 {
                     // English: What was the language sung in {0}?
-                    Question = "What was the language sung in {0}?",
+                    Question = "In welcher Sprache wurde in {0} gesungen?",
                 },
             },
         },
@@ -6150,13 +6151,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Glitched Button
         [typeof(SGlitchedButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Gestörte Knopf",
+            ModuleNameDative = "Gestörten Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SGlitchedButton.Sequence] = new()
                 {
                     // English: What was the cycling bit sequence in {0}?
-                    Question = "What was the cycling bit sequence in {0}?",
+                    Question = "Was war bei {0} die zyklische Bitfolge?",
                 },
             },
         },
@@ -6164,19 +6167,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Goofy’s Game
         [typeof(SGoofysGame)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Goofys Spiel",
             Questions = new()
             {
                 [SGoofysGame.Number] = new()
                 {
                     // English: What number was flashed by the {1} LED in {0}?
                     // Example: What number was flashed by the left LED in Goofy’s Game?
-                    Question = "What number was flashed by the {1} LED in {0}?",
+                    Question = "Welche Zahl hat bei {0} die {1} LED geblinkt?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
-                        ["center"] = "center",
+                        ["left"] = "linke",
+                        ["right"] = "rechte",
+                        ["center"] = "mittlere",
                     },
                 },
             },
@@ -6206,18 +6209,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Gray Button
         [typeof(SGrayButton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Graue Knopf",
+            ModuleNameDative = "Grauen Knopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SGrayButton.Coordinates] = new()
                 {
                     // English: What was the {1} coordinate on the display in {0}?
                     // Example: What was the horizontal coordinate on the display in The Gray Button?
-                    Question = "What was the {1} coordinate on the display in {0}?",
+                    Question = "Was war bei {0} die {1} Koordinate auf dem Display?",
                     Arguments = new()
                     {
-                        ["horizontal"] = "horizontal",
-                        ["vertical"] = "vertical",
+                        ["horizontal"] = "horizontale",
+                        ["vertical"] = "vertikale",
                     },
                 },
             },
@@ -6249,29 +6254,31 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Great Void
         [typeof(SGreatVoid)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Die Große Leere",
+            ModuleNameDative = "Großen Leere",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SGreatVoid.Digit] = new()
                 {
                     // English: What was the {1} digit in {0}?
                     // Example: What was the first digit in The Great Void?
-                    Question = "What was the {1} digit in {0}?",
+                    Question = "Was war bei {0} die {1}e Ziffer?",
                 },
                 [SGreatVoid.Color] = new()
                 {
                     // English: What was the {1} color in {0}?
                     // Example: What was the first color in The Great Void?
-                    Question = "What was the {1} color in {0}?",
+                    Question = "Was war bei {0} die {1}e Farbe?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
                         ["Magenta"] = "Magenta",
-                        ["Yellow"] = "Yellow",
-                        ["Cyan"] = "Cyan",
-                        ["White"] = "White",
+                        ["Yellow"] = "Gelb",
+                        ["Cyan"] = "Türkis",
+                        ["White"] = "Weiß",
                     },
                 },
             },
@@ -6334,30 +6341,31 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Gridlock
         [typeof(SGridlock)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verkehrsstau",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SGridlock.StartingColor] = new()
                 {
                     // English: What was the starting color in {0}?
-                    Question = "What was the starting color in {0}?",
+                    Question = "Was war bei {0} die Startfarbe?",
                     Answers = new()
                     {
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
-                        ["Red"] = "Red",
-                        ["Blue"] = "Blue",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
                     },
                 },
                 [SGridlock.StartingLocation] = new()
                 {
                     // English: What was the starting location in {0}?
-                    Question = "What was the starting location in {0}?",
+                    Question = "Was war bei {0} die Startposition?",
                 },
                 [SGridlock.EndingLocation] = new()
                 {
                     // English: What was the ending location in {0}?
-                    Question = "What was the ending location in {0}?",
+                    Question = "Was war bei {0} die Endposition?",
                 },
             },
         },
@@ -6365,13 +6373,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Grocery Store
         [typeof(SGroceryStore)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Supermarkt",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SGroceryStore.FirstItem] = new()
                 {
                     // English: What was the first item shown in {0}?
-                    Question = "What was the first item shown in {0}?",
+                    Question = "Welcher Artikel wurde bei {0} als erster angezeigt?",
                 },
             },
         },
@@ -6379,18 +6388,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Gryphons
         [typeof(SGryphons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Greifen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SGryphons.Name] = new()
                 {
                     // English: What was the gryphon’s name in {0}?
-                    Question = "What was the gryphon’s name in {0}?",
+                    Question = "Was war bei {0} der Name des Greifen?",
                 },
                 [SGryphons.Age] = new()
                 {
                     // English: What was the gryphon’s age in {0}?
-                    Question = "What was the gryphon’s age in {0}?",
+                    Question = "Was war bei {0} das Alter des Greifen?",
                 },
             },
         },
@@ -6429,25 +6439,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Gyromaze
         [typeof(SGyromaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Gyrolabyrinth",
             Questions = new()
             {
                 [SGyromaze.LEDColor] = new()
                 {
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the top LED in Gyromaze?
-                    Question = "What color was the {1} LED in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1} LED?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom"] = "bottom",
+                        ["top"] = "obere",
+                        ["bottom"] = "untere",
                     },
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Blue"] = "Blue",
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
                     },
                 },
             },
@@ -6509,13 +6519,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Hexaknopf",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SHexabutton.Label] = new()
                 {
                     // English: What label was printed on {0}?
-                    Question = "What label was printed on {0}?",
+                    Question = "Welche Aufschrift war bei {0} drauf?",
                 },
             },
         },
