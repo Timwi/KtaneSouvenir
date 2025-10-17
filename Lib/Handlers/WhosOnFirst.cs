@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -40,6 +40,7 @@ public partial class SouvenirModule
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
+        module.SolveIndex = module.Info.NumSolved++;
 
         for (var stage = 0; stage < displayWords.Length; stage++)
             yield return question(SWhosOnFirst.Display, args: [Ordinal(stage + 1)]).Answers(displayWords[stage], preferredWrong: displayWords);

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -26,6 +26,9 @@ public partial class SouvenirModule
             color = ledOff.activeSelf ? -1 : (int) propLightColor.Get();
             yield return new WaitForSeconds(.1f);
         }
+
+        module.SolveIndex = module.Info.NumSolved++;
+
         if (color < 0)
             yield return legitimatelyNoQuestion(module, "The button was tapped (or I missed the light color).");
 

@@ -22,6 +22,7 @@ public partial class SouvenirModule
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
+        module.SolveIndex = module.Info.NumSolved++;
 
         var wireSequence = GetField<IEnumerable>(comp, "wireSequence").Get();
 

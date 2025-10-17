@@ -27,6 +27,7 @@ public partial class SouvenirModule
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
+        module.SolveIndex = module.Info.NumSolved++;
 
         var displaySequence = GetProperty<string>(comp, "DisplaySequence", true).Get();
         var indices = GetListField<int>(comp, "buttonIndicesPressed", false).Get();
