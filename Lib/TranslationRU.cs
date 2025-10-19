@@ -45,42 +45,46 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         DativePlural,
     }
 
-    public override string FormatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved) =>
-        _translations.Get(qAttr.Handler.EnumType) is not { } tr ? base.FormatModuleName(qAttr, addSolveCount, numSolved) :
-        tr.Questions.Get(qAttr.EnumValue) is not { } qtr ? base.FormatModuleName(qAttr, addSolveCount, numSolved) :
-        addSolveCount ? qtr.Conjugation switch
-        {
-            NominativeMasculine => $"{Ordinal(numSolved)}-й решённый {tr.ModuleName}",
-            NominativeFeminine => $"{Ordinal(numSolved)}-я решённая {tr.ModuleName}",
-            NominativeNeuter => $"{Ordinal(numSolved)}-е решённое {tr.ModuleName}",
-            NominativePlural => $"{Ordinal(numSolved)}-е решённые {tr.ModuleName}",
-            GenitiveMascNeuter => $"{Ordinal(numSolved)}-го решённого {tr.ModuleName}",
-            GenitiveFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
-            GenitivePlural => $"{Ordinal(numSolved)}-х решённых {tr.ModuleName}",
-            PrepositiveMascNeuter => $"{Ordinal(numSolved)}-м решённом {tr.ModuleName}",
-            PrepositiveFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
-            PrepositivePlural => $"{Ordinal(numSolved)}-х решённых {tr.ModuleName}",
-            InstrumentalMascNeuter => $"{Ordinal(numSolved)}-м решённым {tr.ModuleName}",
-            InstrumentalFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
-            InstrumentalPlural => $"{Ordinal(numSolved)}-ми решёнными {tr.ModuleName}",
-            DativeMascNeuter => $"{Ordinal(numSolved)}-му решённому {tr.ModuleName}",
-            DativeFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
-            DativePlural => $"{Ordinal(numSolved)}-м решённым {tr.ModuleName}",
-            в_PrepositiveMascNeuter or во_PrepositiveMascNeuter => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-м решённом {tr.ModuleName}",
-            в_PrepositiveFeminine or во_PrepositiveFeminine => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-й решённой {tr.ModuleName}",
-            в_PrepositivePlural or во_PrepositivePlural => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-х решённых {tr.ModuleName}",
-            _ => throw new InvalidOperationException($"Unknown conjugation: {qtr.Conjugation}")
-        } :
-        qtr.Conjugation switch
-        {
-            в_PrepositiveMascNeuter or в_PrepositiveFeminine or в_PrepositivePlural => $"в {tr.ModuleName}",
-            во_PrepositiveMascNeuter or во_PrepositiveFeminine or во_PrepositivePlural => $"во {tr.ModuleName}",
-            _ => tr.ModuleName,
-        };
+    public override string FormatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved)
+    {
+        if (_translations.Get(qAttr.Handler.EnumType) is not { } tr || tr.Questions.Get(qAttr.EnumValue) is not { } qtr)
+            return base.FormatModuleName(qAttr, addSolveCount, numSolved);
+        var moduleName = tr.ModuleName ?? qAttr.Handler.ModuleNameWithThe;
+        return
+            addSolveCount ? qtr.Conjugation switch
+            {
+                NominativeMasculine => $"{Ordinal(numSolved)}-й решённый {moduleName}",
+                NominativeFeminine => $"{Ordinal(numSolved)}-я решённая {moduleName}",
+                NominativeNeuter => $"{Ordinal(numSolved)}-е решённое {moduleName}",
+                NominativePlural => $"{Ordinal(numSolved)}-е решённые {moduleName}",
+                GenitiveMascNeuter => $"{Ordinal(numSolved)}-го решённого {moduleName}",
+                GenitiveFeminine => $"{Ordinal(numSolved)}-й решённой {moduleName}",
+                GenitivePlural => $"{Ordinal(numSolved)}-х решённых {moduleName}",
+                PrepositiveMascNeuter => $"{Ordinal(numSolved)}-м решённом {moduleName}",
+                PrepositiveFeminine => $"{Ordinal(numSolved)}-й решённой {moduleName}",
+                PrepositivePlural => $"{Ordinal(numSolved)}-х решённых {moduleName}",
+                InstrumentalMascNeuter => $"{Ordinal(numSolved)}-м решённым {moduleName}",
+                InstrumentalFeminine => $"{Ordinal(numSolved)}-й решённой {moduleName}",
+                InstrumentalPlural => $"{Ordinal(numSolved)}-ми решёнными {moduleName}",
+                DativeMascNeuter => $"{Ordinal(numSolved)}-му решённому {moduleName}",
+                DativeFeminine => $"{Ordinal(numSolved)}-й решённой {moduleName}",
+                DativePlural => $"{Ordinal(numSolved)}-м решённым {moduleName}",
+                в_PrepositiveMascNeuter or во_PrepositiveMascNeuter => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-м решённом {moduleName}",
+                в_PrepositiveFeminine or во_PrepositiveFeminine => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-й решённой {moduleName}",
+                в_PrepositivePlural or во_PrepositivePlural => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-х решённых {moduleName}",
+                _ => throw new InvalidOperationException($"Unknown conjugation: {qtr.Conjugation}")
+            } :
+            qtr.Conjugation switch
+            {
+                в_PrepositiveMascNeuter or в_PrepositiveFeminine or в_PrepositivePlural => $"в {moduleName}",
+                во_PrepositiveMascNeuter or во_PrepositiveFeminine or во_PrepositivePlural => $"во {moduleName}",
+                _ => moduleName
+            };
+    }
 
     public override string Ordinal(int number) => number.ToString();
 
-    protected override Dictionary<Type, TranslationInfo<Translation_ru.QuestionTranslationInfo_ru>> _translations => new()
+    protected override Dictionary<Type, TranslationInfo<QuestionTranslationInfo_ru>> _translations => new()
     {
         #region Translatable strings
         // 0
