@@ -8,7 +8,7 @@ public interface ITranslation
     int DefaultFontIndex { get; }
     float LineSpacing { get; }
 
-    string FormatModuleName(SouvenirHandlerAttribute handler, bool addSolveCount, int numSolved);
+    string FormatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved);
     string Ordinal(int number);
     TranslationInfo TranslateModule(Type enumType);
     QuestionTranslationInfo TranslateQuestion(Enum enumValue);

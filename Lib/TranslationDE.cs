@@ -5,7 +5,7 @@ namespace Souvenir;
 
 public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 {
-    public sealed class TranslationInfo_de : TranslationInfo
+    public sealed class TranslationInfo_de : TranslationInfo<QuestionTranslationInfo>
     {
         public string ModuleNameDative;
         public Gender Gender = Gender.Neuter;
@@ -19,15 +19,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         Plural
     }
 
-    public override string FormatModuleName(SouvenirHandlerAttribute handler, bool addSolveCount, int numSolved) => addSolveCount
-        ? (_translations.Get(handler.EnumType)?.Gender ?? Gender.Neuter) switch
+    public override string FormatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved) => addSolveCount
+        ? (_translations.Get(qAttr.Handler.EnumType)?.Gender ?? Gender.Neuter) switch
         {
-            Gender.Feminine => $"der als {ordinal(numSolved)}e gelösten {_translations.Get(handler.EnumType)?.ModuleNameDative ?? _translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleName}",
-            Gender.Masculine => $"dem als {ordinal(numSolved)}en gelösten {_translations.Get(handler.EnumType)?.ModuleNameDative ?? _translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleName}",
-            Gender.Neuter => $"dem als {ordinal(numSolved)}es gelösten {_translations.Get(handler.EnumType)?.ModuleNameDative ?? _translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleName}",
-            _ => /* Plural */ $"den als {ordinal(numSolved)}e gelösten {_translations.Get(handler.EnumType)?.ModuleNameDative ?? _translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleName}",
+            Gender.Feminine => $"der als {ordinal(numSolved)}e gelösten {_translations.Get(qAttr.Handler.EnumType)?.ModuleNameDative ?? _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleName}",
+            Gender.Masculine => $"dem als {ordinal(numSolved)}en gelösten {_translations.Get(qAttr.Handler.EnumType)?.ModuleNameDative ?? _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleName}",
+            Gender.Neuter => $"dem als {ordinal(numSolved)}es gelösten {_translations.Get(qAttr.Handler.EnumType)?.ModuleNameDative ?? _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleName}",
+            _ => /* Plural */ $"den als {ordinal(numSolved)}e gelösten {_translations.Get(qAttr.Handler.EnumType)?.ModuleNameDative ?? _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleName}",
         }
-        : _translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleNameWithThe;
+        : _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleNameWithThe;
 
     public override string Ordinal(int number) => ordinal(number);
     private string ordinal(int num) => num < 0 ? $"({num})t" : num switch

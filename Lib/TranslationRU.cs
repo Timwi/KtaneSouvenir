@@ -4,9 +4,9 @@ using static Souvenir.Translation_ru.Conjugation;
 
 namespace Souvenir;
 
-public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
+public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.QuestionTranslationInfo_ru>>
 {
-    public sealed class TranslationInfo_ru : TranslationInfo
+    public sealed class QuestionTranslationInfo_ru : QuestionTranslationInfo
     {
         public Conjugation Conjugation = в_PrepositiveMascNeuter;
     }
@@ -45,9 +45,10 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         DativePlural,
     }
 
-    public override string FormatModuleName(SouvenirHandlerAttribute handler, bool addSolveCount, int numSolved) =>
-        _translations.Get(handler.EnumType) is not TranslationInfo_ru tr ? base.FormatModuleName(handler, addSolveCount, numSolved) :
-        addSolveCount ? tr.Conjugation switch
+    public override string FormatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved) =>
+        _translations.Get(qAttr.Handler.EnumType) is not { } tr ? base.FormatModuleName(qAttr, addSolveCount, numSolved) :
+        tr.Questions.Get(qAttr.EnumValue) is not { } qtr ? base.FormatModuleName(qAttr, addSolveCount, numSolved) :
+        addSolveCount ? qtr.Conjugation switch
         {
             NominativeMasculine => $"{Ordinal(numSolved)}-й решённый {tr.ModuleName}",
             NominativeFeminine => $"{Ordinal(numSolved)}-я решённая {tr.ModuleName}",
@@ -68,9 +69,9 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             в_PrepositiveMascNeuter or во_PrepositiveMascNeuter => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-м решённом {tr.ModuleName}",
             в_PrepositiveFeminine or во_PrepositiveFeminine => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-й решённой {tr.ModuleName}",
             в_PrepositivePlural or во_PrepositivePlural => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-х решённых {tr.ModuleName}",
-            _ => throw new InvalidOperationException($"Unknown conjugation: {tr.Conjugation}")
+            _ => throw new InvalidOperationException($"Unknown conjugation: {qtr.Conjugation}")
         } :
-        tr.Conjugation switch
+        qtr.Conjugation switch
         {
             в_PrepositiveMascNeuter or в_PrepositiveFeminine or в_PrepositivePlural => $"в {tr.ModuleName}",
             во_PrepositiveMascNeuter or во_PrepositiveFeminine or во_PrepositivePlural => $"во {tr.ModuleName}",
@@ -79,19 +80,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
 
     public override string Ordinal(int number) => number.ToString();
 
-    protected override Dictionary<Type, TranslationInfo_ru> _translations => new()
+    protected override Dictionary<Type, TranslationInfo<Translation_ru.QuestionTranslationInfo_ru>> _translations => new()
     {
         #region Translatable strings
         // 0
         [typeof(S0)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [S0.Number] = new()
                 {
                     // English: What was the initially displayed number in {0}?
                     Question = "Какое число было изначально показано на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -101,7 +102,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         {
             NeedsTranslation = true,
             ModuleName = "1000 слов",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [S1000Words.Words] = new()
@@ -109,6 +109,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} word shown in {0}?
                     // Example: What was the first word shown in 1000 Words?
                     Question = "Какое было {1}-е показанное слово {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
             Discriminators = new()
@@ -127,7 +128,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         {
             NeedsTranslation = true,
             ModuleName = "100 уровнях обезвреживания",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [S100LevelsOfDefusal.Letters] = new()
@@ -135,6 +135,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} displayed letter in {0}?
                     // Example: What was the first displayed letter in 100 Levels of Defusal?
                     Question = "Какая была {1}-я показанная буква {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
             Discriminators = new()
@@ -247,18 +248,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         {
             NeedsTranslation = true,
             ModuleName = "3D лабиринт",
-            Conjugation = Conjugation.NominativeMasculine,
             Questions = new()
             {
                 [S3DMaze.QMarkings] = new()
                 {
                     // English: What were the markings in {0}?
                     Question = "Какими буквами был обозначен ваш {0}?",
+                    Conjugation = Conjugation.NominativeMasculine,
                 },
                 [S3DMaze.QBearing] = new()
                 {
                     // English: What was the cardinal direction in {0}?
                     Question = "Какое было направление нужной стены {0}?",
+                    Conjugation = Conjugation.NominativeMasculine,
                     Answers = new()
                     {
                         ["North"] = "Север",
@@ -309,7 +311,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(S3DTunnels)] = new()
         {
             ModuleName = "3D тоннелях",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [S3DTunnels.TargetNode] = new()
@@ -317,6 +318,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} goal node in {0}?
                     // Example: What was the first goal node in 3D Tunnels?
                     Question = "Какой символ был вашей {1}-й целью {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -324,13 +326,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 3 LEDs
         [typeof(S3LEDs)] = new()
         {
-            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [S3LEDs.InitialState] = new()
                 {
                     // English: What was the initial state of the LEDs in {0} (in reading order)?
                     Question = "Какое было исходное состояние у {0} (в порядке чтения)?",
+                    Conjugation = Conjugation.GenitivePlural,
                     Answers = new()
                     {
                         ["off/off/off"] = "выкл/выкл/выкл",
@@ -349,13 +351,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 3N+1
         [typeof(S3NPlus1)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [S3NPlus1.Question] = new()
                 {
                     // English: What number was initially displayed in {0}?
                     Question = "Какое число было изначально показано на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -364,7 +366,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(S4DTunnels)] = new()
         {
             ModuleName = "4D тоннелях",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [S4DTunnels.TargetNode] = new()
@@ -372,6 +373,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} goal node in {0}?
                     // Example: What was the first goal node in 4D Tunnels?
                     Question = "Какой символ был вашей {1}-й целью {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -379,13 +381,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // 64
         [typeof(S64)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [S64.DisplayedNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
                     Question = "Какое число было показано на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -394,7 +396,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(S7)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [S7.QInitialValues] = new()
@@ -402,6 +403,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} channel’s initial value in {0}?
                     // Example: What was the red channel’s initial value in 7?
                     Question = "Какое было начальное значение {1} канала у {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["red"] = "красного",
@@ -414,6 +416,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What LED color was shown in stage {1} of {0}?
                     // Example: What LED color was shown in stage 1 of 7?
                     Question = "Какой цвет был у светодиода на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["red"] = "Красный",
@@ -492,13 +495,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         {
             NeedsTranslation = true,
             ModuleName = "Накопления",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SAccumulation.QBorderColor] = new()
                 {
                     // English: What was the border color in {0}?
                     Question = "Какого цвета было обрамление у {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Blue"] = "Синего",
@@ -518,6 +521,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the background color in the {1} stage in {0}?
                     // Example: What was the background color in the first stage in Accumulation?
                     Question = "Какого цвета была подложка на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Blue"] = "Синего",
@@ -660,13 +664,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // A Letter
         [typeof(SALetter)] = new()
         {
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SALetter.InitialLetter] = new()
                 {
                     // English: What was the initial letter in {0}?
                     Question = "Какая была начальная буква {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
         },
@@ -704,18 +708,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         {
             NeedsTranslation = true,
             ModuleName = "Алгебре",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SAlgebra.Equation1] = new()
                 {
                     // English: What was the first equation in {0}?
                     Question = "Какое было первое уравнение {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
                 [SAlgebra.Equation2] = new()
                 {
                     // English: What was the second equation in {0}?
                     Question = "Какое было второе уравнение {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
             Discriminators = new()
@@ -803,7 +808,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Alphabetical Ruling
         [typeof(SAlphabeticalRuling)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SAlphabeticalRuling.Letter] = new()
@@ -811,12 +815,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the letter displayed in the {1} stage of {0}?
                     // Example: What was the letter displayed in the first stage of Alphabetical Ruling?
                     Question = "Какая буква была показана на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SAlphabeticalRuling.Number] = new()
                 {
                     // English: What was the number displayed in the {1} stage of {0}?
                     // Example: What was the number displayed in the first stage of Alphabetical Ruling?
                     Question = "Какое число было показано на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -839,7 +845,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SAlphabetTiles)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SAlphabetTiles.QCycle] = new()
@@ -847,11 +852,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} letter shown during the cycle in {0}?
                     // Example: What was the first letter shown during the cycle in Alphabet Tiles?
                     Question = "В цикле {0}, какая была {1}-я буква?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SAlphabetTiles.QMissingLetter] = new()
                 {
                     // English: What was the missing letter in {0}?
                     Question = "Какая буква отсутствовала {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
             Discriminators = new()
@@ -1200,7 +1207,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bamboozling Button
         [typeof(SBamboozlingButton)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBamboozlingButton.Color] = new()
@@ -1208,6 +1214,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was the button in the {1} stage of {0}?
                     // Example: What color was the button in the first stage of Bamboozling Button?
                     Question = "Какого цвета была кнопка на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Красный",
@@ -1232,6 +1239,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the color of the {2} display in the {1} stage of {0}?
                     // Example: What was the color of the first display in the first stage of Bamboozling Button?
                     Question = "Какого цвета был {2}-й экран на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Красный",
@@ -1255,12 +1263,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {2} display in the {1} stage of {0}?
                     // Example: What was the first display in the first stage of Bamboozling Button?
                     Question = "Какой был {2}-й экран на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SBamboozlingButton.Label] = new()
                 {
                     // English: What was the {2} label on the button in the {1} stage of {0}?
                     // Example: What was the top label on the button in the first stage of Bamboozling Button?
                     Question = "Какая была {2} надпись на кнопке на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["top"] = "верхняя",
@@ -1273,30 +1283,33 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Bar Charts
         [typeof(SBarCharts)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBarCharts.Category] = new()
                 {
                     // English: What was the category of {0}?
                     Question = "Какая была категория у {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SBarCharts.Unit] = new()
                 {
                     // English: What was the unit of {0}?
                     Question = "Какая была единица измерения у {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SBarCharts.Label] = new()
                 {
                     // English: What was the label of the {1} bar in {0}?
                     // Example: What was the label of the first bar in Bar Charts?
                     Question = "Какая надпись была у {1}-го столбца {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SBarCharts.Color] = new()
                 {
                     // English: What was the color of the {1} bar in {0}?
                     // Example: What was the color of the first bar in Bar Charts?
                     Question = "Какого цвета был {1}-й столбец {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Красного",
@@ -1310,6 +1323,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the position of the {1} bar in {0}?
                     // Example: What was the position of the shortest bar in Bar Charts?
                     Question = "Где находился {1} столбец {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["shortest"] = "самый короткий",
@@ -1466,7 +1480,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBigCircle)] = new()
         {
             ModuleName = "Большом круге",
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBigCircle.Colors] = new()
@@ -1474,6 +1487,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was {1} in the solution to {0}?
                     // Example: What color was first in the solution to Big Circle?
                     Question = "Какой правильный цвет был {1}-м на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Красный",
@@ -1493,13 +1507,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBinary)] = new()
         {
             ModuleName = "Двоичных светодиодах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SBinary.Word] = new()
                 {
                     // English: What word was displayed in {0}?
                     Question = "Какое слово было отображено на {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -1508,13 +1522,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBinaryLEDs)] = new()
         {
             ModuleName = "Двоичных светодиодах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SBinaryLEDs.Value] = new()
                 {
                     // English: At which numeric value did you cut the correct wire in {0}?
                     Question = "На каком числе вы перерезали верный провод {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -1585,7 +1599,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBitmaps)] = new()
         {
             ModuleName = "Битовых изображениях",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SBitmaps.Question] = new()
@@ -1593,6 +1606,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: How many pixels were {1} in the {2} quadrant in {0}?
                     // Example: How many pixels were white in the top left quadrant in Bitmaps?
                     Question = "Сколько было {1} пикселей в {2} квадранте {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["white"] = "белых",
@@ -1694,13 +1708,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Blinking Notes
         [typeof(SBlinkingNotes)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBlinkingNotes.Song] = new()
                 {
                     // English: What song was flashed in {0}?
                     Question = "Какая песня мигала на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -1760,39 +1774,44 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBlueButton)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBlueButton.D] = new()
                 {
                     // English: What was D in {0}?
                     Question = "Какое значение было у D на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SBlueButton.EFGH] = new()
                 {
                     // English: What was {1} in {0}?
                     // Example: What was E in The Blue Button?
                     Question = "Какое значение было у {1} на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SBlueButton.M] = new()
                 {
                     // English: What was M in {0}?
                     Question = "Какое значение было у M на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SBlueButton.N] = new()
                 {
                     // English: What was N in {0}?
                     Question = "Какое значение было у N на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SBlueButton.P] = new()
                 {
                     // English: What was P in {0}?
                     Question = "Какое значение было у P на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SBlueButton.Q] = new()
                 {
                     // English: What was Q in {0}?
                     Question = "Какое значение было у D на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["Blue"] = "Blue",
@@ -1807,6 +1826,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was X in {0}?
                     Question = "Какое значение было у X на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
             Discriminators = new()
@@ -1891,13 +1911,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Boggle
         [typeof(SBoggle)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBoggle.Letters] = new()
                 {
                     // English: What letter was initially visible on {0}?
                     Question = "Какая буква была изначально видна на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -1919,13 +1939,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBoneAppleTea)] = new()
         {
             ModuleName = "Еле-еле ели ели",
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBoneAppleTea.Phrase] = new()
                 {
                     // English: Which phrase was shown on {0}?
                     Question = "Какая фраза была показана на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -1933,13 +1953,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Boob Tube
         [typeof(SBoobTube)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBoobTube.Word] = new()
                 {
                     // English: Which word was shown on {0}?
                     Question = "Какое слово было показано на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -1967,7 +1987,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Boolean Wires
         [typeof(SBooleanWires)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBooleanWires.EnteredOperators] = new()
@@ -1975,6 +1994,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which operator did you submit in the {1} stage of {0}?
                     // Example: Which operator did you submit in the first stage of Boolean Wires?
                     Question = "Какой оператор был ответом на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -2002,7 +2022,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBorderedKeys)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBorderedKeys.BorderColor] = new()
@@ -2010,6 +2029,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} key’s border color when it was pressed in {0}?
                     // Example: What was the first key’s border color when it was pressed in Bordered Keys?
                     Question = "Какого цвета была рамка, когда вы нажали {1}-ю клавишу {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -2025,12 +2045,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the digit displayed when the {1} key was pressed in {0}?
                     // Example: What was the digit displayed when the first key was pressed in Bordered Keys?
                     Question = "Какая цифра отображалась на дисплее, когда вы нажали {1}-ю клавишу {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SBorderedKeys.KeyColor] = new()
                 {
                     // English: What was the {1} key’s key color when it was pressed in {0}?
                     // Example: What was the first key’s key color when it was pressed in Bordered Keys?
                     Question = "Какого цвета была клавиша, когда вы нажали {1}-ю клавишу {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -2046,12 +2068,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} key’s label when it was pressed in {0}?
                     // Example: What was the first key’s label when it was pressed in Bordered Keys?
                     Question = "Какая была надпись, когда вы нажали {1}-ю клавишу {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SBorderedKeys.LabelColor] = new()
                 {
                     // English: What was the {1} key’s label color when it was pressed in {0}?
                     // Example: What was the first key’s label color when it was pressed in Bordered Keys?
                     Question = "Какого цвета была надпись, когда вы нажали {1}-ю клавишу {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -2081,7 +2105,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Boxing
         [typeof(SBoxing)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBoxing.StrengthByContestant] = new()
@@ -2089,12 +2112,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was {1}’s strength rating on {0}?
                     // Example: What was Muhammad’s strength rating on Boxing?
                     Question = "Какая была оценка силы у {1} {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SBoxing.ContestantByStrength] = new()
                 {
                     // English: What was the {1} of the contestant with strength rating {2} on {0}?
                     // Example: What was the first name of the contestant with strength rating 0 on Boxing?
                     Question = "{1} участника с оценкой силы {2} {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Arguments = new()
                     {
                         ["first name"] = "Какое было имя",
@@ -2108,6 +2133,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which {1} appeared on {0}?
                     // Example: Which contestant’s first name appeared on Boxing?
                     Question = "{1} было показано на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Arguments = new()
                     {
                         ["contestant’s first name"] = "Какое имя участника",
@@ -2123,7 +2149,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBraille)] = new()
         {
             ModuleName = "Шрифта Брайля",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBraille.Pattern] = new()
@@ -2131,6 +2156,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} pattern in {0}?
                     // Example: What was the first pattern in Braille?
                     Question = "Какой был {1}-й паттерн {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -2139,13 +2165,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBreakfastEgg)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBreakfastEgg.Color] = new()
                 {
                     // English: Which color appeared on the egg in {0}?
                     Question = "Какой был цвет у {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Crimson"] = "Crimson",
@@ -2164,7 +2190,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBrokenButtons)] = new()
         {
             ModuleName = "Сломанных кнопках",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SBrokenButtons.Question] = new()
@@ -2172,6 +2197,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} correct button you pressed in {0}?
                     // Example: What was the first correct button you pressed in Broken Buttons?
                     Question = "Какая была {1}-я правильная нажатая кнопка {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -2179,18 +2205,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Broken Guitar Chords
         [typeof(SBrokenGuitarChords)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SBrokenGuitarChords.DisplayedChord] = new()
                 {
                     // English: What was the displayed chord in {0}?
                     Question = "Какой аккорд был показан на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SBrokenGuitarChords.MutedString] = new()
                 {
                     // English: In which position, from left to right, was the broken string in {0}?
                     Question = "На какой позиции (слева направо) была сломанная струна {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -2219,13 +2246,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBrushStrokes)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SBrushStrokes.MiddleColor] = new()
                 {
                     // English: What was the color of the middle contact point in {0}?
                     Question = "Какого цвета была центральная точка {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -2291,7 +2318,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SBurglarAlarm)] = new()
         {
             ModuleName = "Сигнализации",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SBurglarAlarm.Digits] = new()
@@ -2299,6 +2325,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} displayed digit in {0}?
                     // Example: What was the first displayed digit in Burglar Alarm?
                     Question = "Какая была {1}-я цифра {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
         },
@@ -2307,13 +2334,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SButton)] = new()
         {
             ModuleName = "Кнопки",
-            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SButton.LightColor] = new()
                 {
                     // English: What color did the light glow in {0}?
                     Question = "Каким цветом горела цветная полоска {0}?",
+                    Conjugation = Conjugation.GenitiveFeminine,
                     Answers = new()
                     {
                         ["red"] = "Красным",
@@ -2328,7 +2355,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Buttonage
         [typeof(SButtonage)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SButtonage.Buttons] = new()
@@ -2336,6 +2362,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: How many {1} buttons were there on {0}?
                     // Example: How many red buttons were there on Buttonage?
                     Question = "Сколько {1} было на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Arguments = new()
                     {
                         ["red"] = "кнопок красного цвета",
@@ -2360,7 +2387,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SButtonSequence)] = new()
         {
             ModuleName = "Последовательности кнопок",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SButtonSequence.sColorOccurrences] = new()
@@ -2368,6 +2394,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: How many of the buttons in {0} were {1}?
                     // Example: How many of the buttons in Button Sequence were red?
                     Question = "Сколько было {1} кнопок {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Arguments = new()
                     {
                         ["red"] = "красных",
@@ -2476,13 +2503,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SCalendar)] = new()
         {
             ModuleName = "Календаре",
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SCalendar.LedColor] = new()
                 {
                     // English: What was the LED color in {0}?
                     Question = "Какого цвета был индикатор на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["Green"] = "Зелёный",
@@ -2498,13 +2525,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SCARPS)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCARPS.Cell] = new()
                 {
                     // English: What color was this cell initially in {0}? (+ sprite)
                     Question = "Какого цвета была эта клетка в начале {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -2636,7 +2663,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Character Slots
         [typeof(SCharacterSlots)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCharacterSlots.DisplayedCharacters] = new()
@@ -2644,6 +2670,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Who was displayed in the {1} slot in the {2} stage of {0}?
                     // Example: Who was displayed in the first slot in the first stage of Character Slots?
                     Question = "Кто был показан в {1}-м слоте на {2}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -2652,7 +2679,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SCheapCheckout)] = new()
         {
             ModuleName = "Свободной кассе",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SCheapCheckout.Paid] = new()
@@ -2660,6 +2686,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was {1} in {0}?
                     // Example: What was the paid amount in Cheap Checkout?
                     Question = "{1} {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Arguments = new()
                     {
                         ["the paid amount"] = "Сколько всего денег было заплачено",
@@ -2749,7 +2776,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SChess)] = new()
         {
             ModuleName = "Шахматах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SChess.Coordinate] = new()
@@ -2757,6 +2783,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} coordinate in {0}?
                     // Example: What was the first coordinate in Chess?
                     Question = "Какие были {1}-е координаты {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -2804,13 +2831,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SChordQualities)] = new()
         {
             ModuleName = "Аккордных ладах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SChordQualities.Notes] = new()
                 {
                     // English: Which note was part of the given chord in {0}?
                     Question = "Какая нота присутствовала в начальном аккорде {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -2951,7 +2978,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SColorDecoding)] = new()
         {
             ModuleName = "Расшифровки цветов",
-            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SColorDecoding.IndicatorColors] = new()
@@ -2959,6 +2985,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which color {1} in the {2}-stage indicator pattern in {0}?
                     // Example: Which color appeared in the first-stage indicator pattern in Color Decoding?
                     Question = "Какой цвет {1} на узоре индикатора на {2}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveFeminine,
                     Arguments = new()
                     {
                         ["appeared"] = "присутствовал",
@@ -2978,6 +3005,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1}-stage indicator pattern in {0}?
                     // Example: What was the first-stage indicator pattern in Color Decoding?
                     Question = "Какой был узор индикатора на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveFeminine,
                     Answers = new()
                     {
                         ["Checkered"] = "Шахматный",
@@ -2993,13 +3021,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SColoredKeys)] = new()
         {
             ModuleName = "Цветных кнопках",
-            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SColoredKeys.DisplayWord] = new()
                 {
                     // English: What was the displayed word in {0}?
                     Question = "Какое слово было отображено на дисплее на {0}?",
+                    Conjugation = Conjugation.PrepositivePlural,
                     Answers = new()
                     {
                         ["red"] = "Red",
@@ -3014,6 +3042,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the displayed word’s color in {0}?
                     Question = "Какого цвета было отображённое слово {0}?",
+                    Conjugation = Conjugation.PrepositivePlural,
                     Answers = new()
                     {
                         ["red"] = "Красного",
@@ -3029,6 +3058,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What letter was on the {1} key in {0}?
                     // Example: What letter was on the top-left key in Colored Keys?
                     Question = "Какая буква была на {1} кнопке на {0}?",
+                    Conjugation = Conjugation.PrepositivePlural,
                     Arguments = new()
                     {
                         ["top-left"] = "верхней левой",
@@ -3042,6 +3072,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the color of the {1} key in {0}?
                     // Example: What was the color of the top-left key in Colored Keys?
                     Question = "Какого цвета была {1} кнопка {0}?",
+                    Conjugation = Conjugation.PrepositivePlural,
                     Arguments = new()
                     {
                         ["top-left"] = "верхняя левая",
@@ -3066,13 +3097,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SColoredSquares)] = new()
         {
             ModuleName = "Цветных квадратах",
-            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SColoredSquares.FirstGroup] = new()
                 {
                     // English: What was the first color group in {0}?
                     Question = "Какого цвета была первая группа на {0}?",
+                    Conjugation = Conjugation.PrepositivePlural,
                     Answers = new()
                     {
                         ["White"] = "Белая",
@@ -3090,18 +3121,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SColoredSwitches)] = new()
         {
             ModuleName = "Цветных переключателей",
-            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [SColoredSwitches.InitialPosition] = new()
                 {
                     // English: What was the initial position of the switches in {0}?
                     Question = "Какое было начальное положение {0}?",
+                    Conjugation = Conjugation.GenitivePlural,
                 },
                 [SColoredSwitches.WhenLEDsCameOn] = new()
                 {
                     // English: What was the position of the switches when the LEDs came on in {0}?
                     Question = "Какое было положение у {0}, когда загорелись светодиоды?",
+                    Conjugation = Conjugation.GenitivePlural,
                 },
             },
         },
@@ -3110,7 +3142,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SColorMorse)] = new()
         {
             ModuleName = "Цветной азбуке Морзе",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SColorMorse.Color] = new()
@@ -3118,6 +3149,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the color of the {1} LED in {0}?
                     // Example: What was the color of the first LED in Color Morse?
                     Question = "Какой был цвет {1}-го светодиода {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Answers = new()
                     {
                         ["Blue"] = "Синий",
@@ -3134,6 +3166,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What character was flashed by the {1} LED in {0}?
                     // Example: What character was flashed by the first LED in Color Morse?
                     Question = "Какой символ передавался через Морзе {1}-м светодиодом {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
         },
@@ -3142,7 +3175,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SColorOneTwo)] = new()
         {
             ModuleName = "\"Цвет раз два\"",
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SColorOneTwo.Color] = new()
@@ -3150,6 +3182,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was the {1} LED in {0}?
                     // Example: What color was the left LED in Color One Two?
                     Question = "Какого цвета был {1} светодиод на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Arguments = new()
                     {
                         ["left"] = "левый",
@@ -3190,7 +3223,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SColouredCubes)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SColouredCubes.Colours] = new()
@@ -3198,6 +3230,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the colour of this {1} in the {2} stage of {0}? (+ sprite)
                     // Example: What was the colour of this cube in the first stage of Coloured Cubes? (+ sprite)
                     Question = "Какой был цвет данного {1} на {2}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["cube"] = "куба",
@@ -3266,13 +3299,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SColourFlash)] = new()
         {
             ModuleName = "Цветной вспышки",
-            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SColourFlash.LastColor] = new()
                 {
                     // English: What was the color of the last word in the sequence in {0}?
                     Question = "Какого цвета было последнее слово в последовательности {0}?",
+                    Conjugation = Conjugation.GenitiveFeminine,
                     Answers = new()
                     {
                         ["Red"] = "Красный",
@@ -3311,13 +3344,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Conditional Buttons
         [typeof(SConditionalButtons)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SConditionalButtons.Colors] = new()
                 {
                     // English: What was the color of this button in {0}? (+ sprite)
                     Question = "Какого цвета была эта кнопка на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["black"] = "Чёрного",
@@ -3382,13 +3415,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         {
             NeedsTranslation = true,
             ModuleName = "Проверке соединения",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SConnectionCheck.Numbers] = new()
                 {
                     // English: What pair of numbers was present in {0}?
                     Question = "Какая пара чисел присутствовала {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
             Discriminators = new()
@@ -3430,18 +3463,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SCoordinates)] = new()
         {
             ModuleName = "Координатах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SCoordinates.FirstSolution] = new()
                 {
                     // English: What was the solution you selected first in {0}?
                     Question = "Какую координату вы выбрали первой {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
                 [SCoordinates.Size] = new()
                 {
                     // English: What was the grid size in {0}?
                     Question = "В каком формате был указан размер сетки {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -3489,7 +3523,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SCorners)] = new()
         {
             ModuleName = "Углах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SCorners.Colors] = new()
@@ -3497,6 +3530,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the color of the {1} corner in {0}?
                     // Example: What was the color of the top-left corner in Corners?
                     Question = "Какого цвета был {1} угол {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["top-left"] = "верхний левый",
@@ -3517,6 +3551,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: How many corners in {0} were {1}?
                     // Example: How many corners in Corners were red?
                     Question = "Сколько было {1} углов {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["red"] = "красных",
@@ -3618,7 +3653,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SCreation)] = new()
         {
             ModuleName = "Творения",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCreation.Weather] = new()
@@ -3626,6 +3660,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What were the weather conditions on the {1} day in {0}?
                     // Example: What were the weather conditions on the first day in Creation?
                     Question = "Какая погода была на {1}-м дне {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Clear"] = "Ясно",
@@ -3695,7 +3730,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SCruelKeypads)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCruelKeypads.Colors] = new()
@@ -3703,6 +3737,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the color of the bar in the {1} stage of {0}?
                     // Example: What was the color of the bar in the first stage of Cruel Keypads?
                     Question = "Какого цвета была шкала на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -3718,6 +3753,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which of these characters appeared in the {1} stage of {0}?
                     // Example: Which of these characters appeared in the first stage of Cruel Keypads?
                     Question = "Какой из этих символов появился на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -3725,29 +3761,32 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The cRule
         [typeof(SCRule)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCRule.SymbolPair] = new()
                 {
                     // English: Which symbol pair was here in {0}? (+ sprite)
                     Question = "Какая пара символов была здесь {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SCRule.SymbolPairCell] = new()
                 {
                     // English: Where was {1} in {0}?
                     // Example: Where was ♤♤ in The cRule?
                     Question = "Где находилось {1} {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SCRule.SymbolPairPresent] = new()
                 {
                     // English: Which symbol pair was present on {0}?
                     Question = "Какая пара символов присутствовала {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SCRule.Prefilled] = new()
                 {
                     // English: Which cell was pre-filled at the start of {0}?
                     Question = "Какая клетка была уже заполнена в начале {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -3827,7 +3866,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SCube)] = new()
         {
             ModuleName = "Куба",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SCube.Rotations] = new()
@@ -3835,6 +3873,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} cube rotation in {0}?
                     // Example: What was the first cube rotation in The Cube?
                     Question = "Какое было {1}-е вращение у {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["rotate cw"] = "поворот по часовой",
@@ -3878,7 +3917,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Cyan Button
         [typeof(SCyanButton)] = new()
         {
-            Conjugation = Conjugation.NominativeMasculine,
             Questions = new()
             {
                 [SCyanButton.Positions] = new()
@@ -3886,6 +3924,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Where was the button at the {1} stage in {0}?
                     // Example: Where was the button at the first stage in The Cyan Button?
                     Question = "Где был {0} на своём {1}-м этапе?",
+                    Conjugation = Conjugation.NominativeMasculine,
                     Answers = new()
                     {
                         ["top left"] = "Сверху слева",
@@ -4010,7 +4049,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SDecoloredSquares)] = new()
         {
             ModuleName = "Обесцвеченных квадратах",
-            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SDecoloredSquares.StartingPos] = new()
@@ -4018,6 +4056,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the starting {1} defining color in {0}?
                     // Example: What was the starting column defining color in Decolored Squares?
                     Question = "Какой цвет определил {1} схемы на {0}?",
+                    Conjugation = Conjugation.PrepositivePlural,
                     Arguments = new()
                     {
                         ["column"] = "начальный столбец",
@@ -4082,7 +4121,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // DetoNATO
         [typeof(SDetoNATO)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SDetoNATO.Display] = new()
@@ -4090,6 +4128,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} display in {0}?
                     // Example: What was the first display in DetoNATO?
                     Question = "Что было на дисплее на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -4182,7 +4221,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SDirectionalButton)] = new()
         {
             ModuleName = "Направляющей кнопки",
-            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SDirectionalButton.ButtonCount] = new()
@@ -4190,6 +4228,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: How many times did you press the button in the {1} stage of {0}?
                     // Example: How many times did you press the button in the first stage of Directional Button?
                     Question = "Сколько раз вы нажали кнопку на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveFeminine,
                 },
             },
         },
@@ -4198,7 +4237,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SDiscoloredSquares)] = new()
         {
             ModuleName = "Бесцветных квадратах",
-            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SDiscoloredSquares.RememberedPositions] = new()
@@ -4206,6 +4244,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was {1}’s remembered position in {0}?
                     // Example: What was Blue’s remembered position in Discolored Squares?
                     Question = "В какой позиции находился {1} квадрат в самом начале на {0}?",
+                    Conjugation = Conjugation.PrepositivePlural,
                     Arguments = new()
                     {
                         ["Blue"] = "синий",
@@ -4343,7 +4382,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Divisible Numbers
         [typeof(SDivisibleNumbers)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SDivisibleNumbers.Numbers] = new()
@@ -4351,6 +4389,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} stage’s number in {0}?
                     // Example: What was the first stage’s number in Divisible Numbers?
                     Question = "Какое было число {1}-го этапа {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -4378,19 +4417,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SDoubleArrows)] = new()
         {
             ModuleName = "Двойных стрелках",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SDoubleArrows.Start] = new()
                 {
                     // English: What was the starting position in {0}?
                     Question = "Какая была начальная позиция {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
                 [SDoubleArrows.Movement] = new()
                 {
                     // English: Which direction in the grid did the {1} arrow move in {0}?
                     // Example: Which direction in the grid did the inner up arrow move in Double Arrows?
                     Question = "В какую сторону вас переместила стрелка {1} {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["inner up"] = "внутри вверх",
@@ -4415,6 +4455,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which {1} arrow moved {2} in the grid in {0}?
                     // Example: Which inner arrow moved up in the grid in Double Arrows?
                     Question = "Которая стрелка {1} переместила вас {2} {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["inner"] = "внутри",
@@ -4438,7 +4479,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Double Color
         [typeof(SDoubleColor)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SDoubleColor.Colors] = new()
@@ -4446,6 +4486,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the screen color on the {1} stage of {0}?
                     // Example: What was the screen color on the first stage of Double Color?
                     Question = "Какого цвета был экран на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Green"] = "Зелёного",
@@ -4461,7 +4502,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Double Digits
         [typeof(SDoubleDigits)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SDoubleDigits.Displays] = new()
@@ -4469,6 +4509,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the digit on the {1} display in {0}?
                     // Example: What was the digit on the left display in Double Digits?
                     Question = "Какая цифра была на {1} дисплее {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["left"] = "левом",
@@ -4526,7 +4567,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Double Screen
         [typeof(SDoubleScreen)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SDoubleScreen.Colors] = new()
@@ -4534,6 +4574,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was the {1} screen in the {2} stage of {0}?
                     // Example: What color was the top screen in the first stage of Double Screen?
                     Question = "Какого цвета был {1} экран на {2}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["top"] = "верхний",
@@ -4605,7 +4646,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Dumb Waiters
         [typeof(SDumbWaiters)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SDumbWaiters.PlayerAvailable] = new()
@@ -4613,6 +4653,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which player {1} present in {0}?
                     // Example: Which player was present in Dumb Waiters?
                     Question = "Какой игрок {1} на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Arguments = new()
                     {
                         ["was"] = "присутствовал",
@@ -4625,18 +4666,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Earthbound
         [typeof(SEarthbound)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SEarthbound.Background] = new()
                 {
                     // English: What was the background in {0}?
                     Question = "Какой был фон на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SEarthbound.Monster] = new()
                 {
                     // English: Which monster was displayed in {0}?
                     Question = "Какой монстр был показан на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -4960,13 +5002,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Equations X
         [typeof(SEquationsX)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SEquationsX.Symbols] = new()
                 {
                     // English: What was the displayed symbol in {0}?
                     Question = "Какой символ был показан на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -4974,13 +5016,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Error Codes
         [typeof(SErrorCodes)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SErrorCodes.ActiveError] = new()
                 {
                     // English: What was the active error code in {0}?
                     Question = "Какой код был активным на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -5002,13 +5044,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Exoplanets
         [typeof(SExoplanets)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SExoplanets.StartingTargetPlanet] = new()
                 {
                     // English: What was the starting target planet in {0}?
                     Question = "Какая была начальная целевая планета из {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["outer"] = "Внешняя",
@@ -5021,11 +5063,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the starting target digit in {0}?
                     Question = "Какая была начальная целевая цифра {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SExoplanets.TargetPlanet] = new()
                 {
                     // English: What was the final target planet in {0}?
                     Question = "Какая была финальная целевая планета из {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["outer"] = "Внешняя",
@@ -5038,6 +5082,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the final target digit in {0}?
                     Question = "Какая была финальная целевая цифра {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -5117,13 +5162,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SFastMath)] = new()
         {
             ModuleName = "Быстрой математике",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SFastMath.LastLetters] = new()
                 {
                     // English: What was the last pair of letters in {0}?
                     Question = "Какая пара букв была последней {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
         },
@@ -5343,13 +5388,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Flavor Text
         [typeof(SFlavorText)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SFlavorText.Module] = new()
                 {
                     // English: Which module’s flavor text was shown in {0}?
                     Question = "К какому модулю был показан флейвор текст на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -5426,7 +5471,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SForgetAnyColor)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SForgetAnyColor.QCylinder] = new()
@@ -5434,6 +5478,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What colors were the cylinders during the {1} stage of {0}?
                     // Example: What colors were the cylinders during the first stage of Forget Any Color?
                     Question = "Какие были цилиндры на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
@@ -5456,6 +5501,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which figure was used during the {1} stage of {0}?
                     // Example: Which figure was used during the first stage of Forget Any Color?
                     Question = "Which figure was used during the {1} stage of {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
             Discriminators = new()
@@ -5479,7 +5525,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SForgetEverything)] = new()
         {
             ModuleName = "Полного забвения",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SForgetEverything.QStageOneDisplay] = new()
@@ -5487,6 +5532,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} displayed digit in the first stage of {0}?
                     // Example: What was the first displayed digit in the first stage of Forget Everything?
                     Question = "Какая была {1}-я отображённая цифра на первом этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
             Discriminators = new()
@@ -5530,7 +5576,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SForgetMeNot)] = new()
         {
             ModuleName = "Незабудки",
-            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SForgetMeNot.Question] = new()
@@ -5538,6 +5583,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the digit displayed in the {1} stage of {0}?
                     // Example: What was the digit displayed in the first stage of Forget Me Not?
                     Question = "Какая цифра была отображена на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveFeminine,
                 },
             },
             Discriminators = new()
@@ -5555,7 +5601,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SForgetMeNow)] = new()
         {
             ModuleName = "Забудке",
-            Conjugation = Conjugation.PrepositiveFeminine,
             Questions = new()
             {
                 [SForgetMeNow.DisplayedDigits] = new()
@@ -5563,6 +5608,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} displayed digit in {0}?
                     // Example: What was the first displayed digit in Forget Me Now?
                     Question = "Какая была {1}-я отображённая цифра на {0}?",
+                    Conjugation = Conjugation.PrepositiveFeminine,
                 },
             },
         },
@@ -5595,7 +5641,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SForgetsUltimateShowdown)] = new()
         {
             ModuleName = "Финальной битве забвения",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SForgetsUltimateShowdown.Answer] = new()
@@ -5603,24 +5648,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} digit of the answer in {0}?
                     // Example: What was the first digit of the answer in Forget’s Ultimate Showdown?
                     Question = "Какая была {1}-я цифра финального кода {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
                 [SForgetsUltimateShowdown.Bottom] = new()
                 {
                     // English: What was the {1} digit of the bottom number in {0}?
                     // Example: What was the first digit of the bottom number in Forget’s Ultimate Showdown?
                     Question = "Какая была {1}-я цифра нижнего числа {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
                 [SForgetsUltimateShowdown.Initial] = new()
                 {
                     // English: What was the {1} digit of the initial number in {0}?
                     // Example: What was the first digit of the initial number in Forget’s Ultimate Showdown?
                     Question = "Какая была {1}-я цифра изначального кодового числа {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
                 [SForgetsUltimateShowdown.Method] = new()
                 {
                     // English: What was the {1} method used in {0}?
                     // Example: What was the first method used in Forget’s Ultimate Showdown?
                     Question = "Какой был {1}-й использованный метод {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Answers = new()
                     {
                         ["Forget Me Not"] = "Незабудка",
@@ -5641,7 +5690,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         {
             NeedsTranslation = true,
             ModuleName = "\"Забудь цвета\"",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SForgetTheColors.QGearNumber] = new()
@@ -5649,24 +5697,28 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What number was on the gear during stage {1} of {0}?
                     // Example: What number was on the gear during stage 0 of Forget The Colors?
                     Question = "Какое число было на шестерёнке на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SForgetTheColors.QLargeDisplay] = new()
                 {
                     // English: What number was on the large display during stage {1} of {0}?
                     // Example: What number was on the large display during stage 0 of Forget The Colors?
                     Question = "Какое число было на большом экране на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SForgetTheColors.QSineNumber] = new()
                 {
                     // English: What was the last decimal in the sine number received during stage {1} of {0}?
                     // Example: What was the last decimal in the sine number received during stage 0 of Forget The Colors?
                     Question = "Какая была последняя дробная цифра полученного числа синуса на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SForgetTheColors.QGearColor] = new()
                 {
                     // English: What color was the gear during stage {1} of {0}?
                     // Example: What color was the gear during stage 0 of Forget The Colors?
                     Question = "Какого цвета была шестерёнка на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Красный",
@@ -5687,6 +5739,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?
                     // Example: Which edgework-based rule was applied to the sum of nixies and gear during stage 0 of Forget The Colors?
                     Question = "Какого цвета было правило, по которому вы сложили числа на лампах и шестерёнках на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Красный",
@@ -5930,13 +5983,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SGamepad)] = new()
         {
             ModuleName = "Геймпада",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SGamepad.Numbers] = new()
                 {
                     // English: What were the numbers on {0}?
                     Question = "Какие числа были на экране {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -5944,18 +5997,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Garfield Kart
         [typeof(SGarfieldKart)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SGarfieldKart.Track] = new()
                 {
                     // English: What was the track in {0}?
                     Question = "Какая была трасса на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SGarfieldKart.PuzzleCount] = new()
                 {
                     // English: How many puzzle pieces did {0} have?
                     Question = "Сколько было частей пазла на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -6004,13 +6058,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Glitched Button
         [typeof(SGlitchedButton)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SGlitchedButton.Sequence] = new()
                 {
                     // English: What was the cycling bit sequence in {0}?
                     Question = "Какая последовательность битов повторялась на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -6129,13 +6183,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SGreenArrows)] = new()
         {
             ModuleName = "Зелёных стрелках",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SGreenArrows.LastScreen] = new()
                 {
                     // English: What was the last number on the display on {0}?
                     Question = "Какое последнее число было показано на экране {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -6143,13 +6197,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Green Button
         [typeof(SGreenButton)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SGreenButton.Word] = new()
                 {
                     // English: What was the word submitted in {0}?
                     Question = "Какое слово было введено на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -6347,13 +6401,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SHexabutton.Label] = new()
                 {
                     // English: What label was printed on {0}?
                     Question = "Какая была надпись на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -6501,13 +6555,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SHiddenValue)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SHiddenValue.Display] = new()
                 {
                     // English: What was displayed on {0}?
                     Question = "Что было отображено на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
@@ -6577,7 +6631,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         {
             NeedsTranslation = true,
             ModuleName = "Петлях",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SHinges.Initial] = new()
@@ -6585,6 +6638,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which of these hinges was initially {1} {0}?
                     // Example: Which of these hinges was initially present on Hinges?
                     Question = "Какие из петель изначально {1} {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["present on"] = "присутствовали",
@@ -6693,7 +6747,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Horrible Memory
         [typeof(SHorribleMemory)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SHorribleMemory.Positions] = new()
@@ -6701,18 +6754,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: In what position was the button pressed on the {1} stage of {0}?
                     // Example: In what position was the button pressed on the first stage of Horrible Memory?
                     Question = "Какая позиция была нажата на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SHorribleMemory.Labels] = new()
                 {
                     // English: What was the label of the button pressed on the {1} stage of {0}?
                     // Example: What was the label of the button pressed on the first stage of Horrible Memory?
                     Question = "Какая была надпись у нажатой кнопки на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SHorribleMemory.Colors] = new()
                 {
                     // English: What color was the button pressed on the {1} stage of {0}?
                     // Example: What color was the button pressed on the first stage of Horrible Memory?
                     Question = "Какого цвета была нажатая кнопка на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["blue"] = "синий",
@@ -6759,7 +6815,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Hunting
         [typeof(SHunting)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SHunting.ColumnsRows] = new()
@@ -6767,6 +6822,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which of the first three stages of {0} had the {1} symbol {2}?
                     // Example: Which of the first three stages of Hunting had the column symbol first?
                     Question = "На каком из первых трёх этапов {0} символ {1} был {2}-м?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["column"] = "столбца",
@@ -6791,7 +6847,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SHypercube)] = new()
         {
             ModuleName = "Гиперкуба",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SHypercube.Rotations] = new()
@@ -6799,6 +6854,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} rotation in {0}?
                     // Example: What was the first rotation in The Hypercube?
                     Question = "Каким было {1}-е вращение {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -6849,7 +6905,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SIceCream)] = new()
         {
             ModuleName = "Мороженого",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SIceCream.Flavour] = new()
@@ -6857,6 +6912,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which one of these flavours {1} to the {2} customer in {0}?
                     // Example: Which one of these flavours was on offer, but not sold, to the first customer in Ice Cream?
                     Question = "Какой из этих вкусов {0} {1} {2}-му посетителю?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["was on offer, but not sold,"] = "был предложен, но не продан",
@@ -6868,6 +6924,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Who was the {1} customer in {0}?
                     // Example: Who was the first customer in Ice Cream?
                     Question = "Кто был {1}-м посетителем {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -6950,13 +7007,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Impostor
         [typeof(SImpostor)] = new()
         {
-            Conjugation = Conjugation.NominativeMasculine,
             Questions = new()
             {
                 [SImpostor.Disguise] = new()
                 {
                     // English: Which module was {0} pretending to be?
                     Question = "Каким модулем притворялся {0}?",
+                    Conjugation = Conjugation.NominativeMasculine,
                 },
             },
         },
@@ -7143,13 +7200,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SJuxtacoloredSquares)] = new()
         {
             ModuleName = "Смежных цветных квадратах",
-            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SJuxtacoloredSquares.ColorsByPosition] = new()
                 {
                     // English: What was the color of this square in {0}? (+ sprite)
                     Question = "Какого цвета был этот квадрат на {0}?",
+                    Conjugation = Conjugation.PrepositivePlural,
                     Answers = new()
                     {
                         ["Red"] = "Красного",
@@ -7175,6 +7232,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which square was {1} in {0}?
                     // Example: Which square was red in Juxtacolored Squares?
                     Question = "Какой квадрат был {1} цвета на {0}?",
+                    Conjugation = Conjugation.PrepositivePlural,
                     Arguments = new()
                     {
                         ["red"] = "красного",
@@ -7202,7 +7260,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SKanji)] = new()
         {
             ModuleName = "Кандзи",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SKanji.DisplayedWords] = new()
@@ -7210,6 +7267,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the displayed word in the {1} stage of {0}?
                     // Example: What was the displayed word in the first stage of Kanji?
                     Question = "Какое слово было показано на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -7311,7 +7369,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Keypad Sequence
         [typeof(SKeypadSequence)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SKeypadSequence.Labels] = new()
@@ -7319,6 +7376,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was this key’s label on the {1} panel in {0}? (+ sprite)
                     // Example: What was this key’s label on the first panel in Keypad Sequence? (+ sprite)
                     Question = "Какая была надпись на этой кнопке на {1}-й панели {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -7676,7 +7734,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SLEDEncryption)] = new()
         {
             ModuleName = "Шифра светодиодов",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SLEDEncryption.PressedLetters] = new()
@@ -7684,6 +7741,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the correct letter you pressed in the {1} stage of {0}?
                     // Example: What was the correct letter you pressed in the first stage of LED Encryption?
                     Question = "Какая правильная буква была нажата на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -7692,13 +7750,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SLEDGrid)] = new()
         {
             ModuleName = "Сетке светодиодов",
-            Conjugation = Conjugation.PrepositiveFeminine,
             Questions = new()
             {
                 [SLEDGrid.NumBlack] = new()
                 {
                     // English: How many LEDs were unlit in {0}?
                     Question = "Сколько светодиодов не горело на {0}?",
+                    Conjugation = Conjugation.PrepositiveFeminine,
                 },
             },
         },
@@ -7758,7 +7816,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SLEGOs)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SLEGOs.PieceDimensions] = new()
@@ -7766,6 +7823,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What were the dimensions of the {1} piece in {0}?
                     // Example: What were the dimensions of the red piece in LEGOs?
                     Question = "Каких размеров была {1} деталь {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["red"] = "red",
@@ -7902,7 +7960,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Logical Buttons
         [typeof(SLogicalButtons)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SLogicalButtons.Color] = new()
@@ -7910,6 +7967,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the color of the {1} button in the {2} stage of {0}?
                     // Example: What was the color of the top button in the first stage of Logical Buttons?
                     Question = "Какого цвета была {1} кнопка на {2}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["top"] = "верхняя",
@@ -7934,6 +7992,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the label on the {1} button in the {2} stage of {0}?
                     // Example: What was the label on the top button in the first stage of Logical Buttons?
                     Question = "Какая была надпись на {1} кнопке на {2}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["top"] = "верхней",
@@ -7946,6 +8005,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the final operator in the {1} stage of {0}?
                     // Example: What was the final operator in the first stage of Logical Buttons?
                     Question = "Какой был конечный оператор на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -7954,7 +8014,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SLogicGates)] = new()
         {
             ModuleName = "Логических элементах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SLogicGates.Gates] = new()
@@ -7962,6 +8021,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was {1} in {0}?
                     // Example: What was gate A in Logic Gates?
                     Question = "Каким был {1} {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["gate A"] = "элемент A",
@@ -8026,7 +8086,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mad Memory
         [typeof(SMadMemory)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SMadMemory.Displays] = new()
@@ -8034,6 +8093,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was on the display in the {1} stage of {0}?
                     // Example: What was on the display in the first stage of Mad Memory?
                     Question = "Что было на экране на {1} этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["first"] = "первом",
@@ -8049,13 +8109,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SMafia)] = new()
         {
             ModuleName = "Мафии",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SMafia.Players] = new()
                 {
                     // English: Who was a player, but not the Godfather, in {0}?
                     Question = "Кто был игроком, но не являлся крёстным отцом {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
         },
@@ -8260,13 +8320,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Maroon Button
         [typeof(SMaroonButton)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SMaroonButton.A] = new()
                 {
                     // English: What was A in {0}?
                     Question = "Какой был флаг А на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -8406,13 +8466,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SMaze3)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SMaze3.StartingFace] = new()
                 {
                     // English: What was the color of the starting face in {0}?
                     Question = "Какой цвет был у начальной стороны {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -8607,7 +8667,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Melody Sequencer
         [typeof(SMelodySequencer)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SMelodySequencer.Parts] = new()
@@ -8615,12 +8674,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which slot contained part #{1} at the start of {0}?
                     // Example: Which slot contained part #1 at the start of Melody Sequencer?
                     Question = "Какой слот содержал часть №{1} в начале {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SMelodySequencer.Slots] = new()
                 {
                     // English: Which part was in slot #{1} at the start of {0}?
                     // Example: Which part was in slot #1 at the start of Melody Sequencer?
                     Question = "Какая часть была в слоту №{1} в начале {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -8643,7 +8704,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SMemory)] = new()
         {
             ModuleName = "Памяти",
-            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SMemory.Display] = new()
@@ -8651,18 +8711,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the displayed number in the {1} stage of {0}?
                     // Example: What was the displayed number in the first stage of Memory?
                     Question = "Какая цифра была на экране на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveFeminine,
                 },
                 [SMemory.Position] = new()
                 {
                     // English: In what position was the button that you pressed in the {1} stage of {0}?
                     // Example: In what position was the button that you pressed in the first stage of Memory?
                     Question = "На какой позиции была кнопка, которую вы нажали на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveFeminine,
                 },
                 [SMemory.Label] = new()
                 {
                     // English: What was the label of the button that you pressed in the {1} stage of {0}?
                     // Example: What was the label of the button that you pressed in the first stage of Memory?
                     Question = "С каким значением была кнопка, которую вы нажали на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveFeminine,
                 },
             },
         },
@@ -8670,7 +8733,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Memory Wires
         [typeof(SMemoryWires)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SMemoryWires.WireColours] = new()
@@ -8678,6 +8740,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the colour of wire {1} in {0}?
                     // Example: What was the colour of wire 1 in Memory Wires?
                     Question = "Какого цвета был {1}-й провод {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Красный",
@@ -8692,6 +8755,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the digit displayed in the {1} stage of {0}?
                     // Example: What was the digit displayed in the first stage of Memory Wires?
                     Question = "Какая цифра была показана на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -8739,13 +8803,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mirror
         [typeof(SMirror)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SMirror.Word] = new()
                 {
                     // English: What was the second word written by the original ghost in {0}?
                     Question = "Какое было второе слово, написанное оригинальным призраком на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -8798,7 +8862,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Modern Cipher
         [typeof(SModernCipher)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SModernCipher.Word] = new()
@@ -8806,6 +8869,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the decrypted word of the {1} stage in {0}?
                     // Example: What was the decrypted word of the first stage in Modern Cipher?
                     Question = "Какое слово было расшифровано на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -8938,7 +9002,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SMonsplodeTradingCards)] = new()
         {
             ModuleName = "Коллекционных карточках по Монсплодам",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SMonsplodeTradingCards.Cards] = new()
@@ -8946,6 +9009,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} before the last action in {0}?
                     // Example: What was the first card in your hand before the last action in Monsplode Trading Cards?
                     Question = "Какая была {1} перед последним действием {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["first card in your hand"] = "первая карта в вашей руке",
@@ -8959,6 +9023,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the print version of the {1} before the last action in {0}?
                     // Example: What was the print version of the first card in your hand before the last action in Monsplode Trading Cards?
                     Question = "Какое было издание {1} перед последним действием {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["first card in your hand"] = "первой карты в вашей руке",
@@ -9009,13 +9074,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // More Code
         [typeof(SMoreCode)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SMoreCode.Word] = new()
                 {
                     // English: What was the flashing word in {0}?
                     Question = "Какое слово передовалось на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -9076,7 +9141,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SMorsematics)] = new()
         {
             ModuleName = "Морзематике",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SMorsematics.ReceivedLetters] = new()
@@ -9084,6 +9148,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} received letter in {0}?
                     // Example: What was the first received letter in Morsematics?
                     Question = "Какая была {1}-я полученная буква {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
         },
@@ -9132,13 +9197,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SMouseInTheMaze)] = new()
         {
             ModuleName = "Мыши в лабиринте",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SMouseInTheMaze.Sphere] = new()
                 {
                     // English: Which color sphere was the goal in {0}?
                     Question = "Какого цвета была целевая сфера {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Answers = new()
                     {
                         ["white"] = "Белая",
@@ -9151,6 +9216,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What color was the torus in {0}?
                     Question = "Какого цвета было кольцо {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Answers = new()
                     {
                         ["white"] = "Белое",
@@ -9205,7 +9271,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SMulticoloredSwitches)] = new()
         {
             ModuleName = "Многоцветных переключателях",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SMulticoloredSwitches.LedColor] = new()
@@ -9213,6 +9278,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?
                     // Example: What color was the first LED on the top row when the tiny LED was lit in Multicolored Switches?
                     Question = "Какого цвета был {1}-й светодиод на {2} ряду, когда маленький светодиод {3} {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["top"] = "верхнем",
@@ -9324,18 +9390,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Mystery Module
         [typeof(SMysteryModule)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SMysteryModule.FirstKey] = new()
                 {
                     // English: Which module was the first requested to be solved by {0}?
                     Question = "Какой модуль надо было обезвредить первым на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SMysteryModule.HiddenModule] = new()
                 {
                     // English: Which module was hidden by {0}?
                     Question = "Какой модуль был спрятан за {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -9415,7 +9482,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // N&Ns
         [typeof(SNandNs)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNandNs.Label] = new()
@@ -9423,11 +9489,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which label was present in the {1} stage of {0}?
                     // Example: Which label was present in the first stage of N&Ns?
                     Question = "Какая надпись присутствовала на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SNandNs.Color] = new()
                 {
                     // English: Which color was missing in the third stage of {0}?
                     Question = "Какой цвет отсутствовал на 3-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Красный",
@@ -9469,7 +9537,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Navinums
         [typeof(SNavinums)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNavinums.DirectionalButtons] = new()
@@ -9477,6 +9544,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} directional button pressed in {0}?
                     // Example: What was the first directional button pressed in Navinums?
                     Question = "Какая кнопка направления была нажата {1}-й {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["up"] = "вверх",
@@ -9489,6 +9557,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the initial middle digit in {0}?
                     Question = "Какая цифра была изначально в центре {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -9497,19 +9566,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SNavyButton)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SNavyButton.QGreekLetters] = new()
                 {
                     // English: Which Greek letter appeared on {0} (case-sensitive)?
                     Question = "Какая греческая буква (с учётом регистра) появилась на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SNavyButton.QGiven] = new()
                 {
                     // English: What was the {1} of the given in {0}?
                     // Example: What was the (0-indexed) column of the given in The Navy Button?
                     Question = "{1} (с индексом 0) на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Arguments = new()
                     {
                         ["(0-indexed) column"] = "(0-indexed) column",
@@ -9550,7 +9620,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Necronomicon
         [typeof(SNecronomicon)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNecronomicon.Chapters] = new()
@@ -9558,6 +9627,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the chapter number of the {1} page in {0}?
                     // Example: What was the chapter number of the first page in The Necronomicon?
                     Question = "Какой был номер главы {1}-й страницы {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -9598,13 +9668,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SNeutralization)] = new()
         {
             ModuleName = "Нейтрализации",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SNeutralization.Color] = new()
                 {
                     // English: What was the acid’s color in {0}?
                     Question = "Какой цвет был у кислоты {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Answers = new()
                     {
                         ["Yellow"] = "Жёлтый",
@@ -9617,6 +9687,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the acid’s volume in {0}?
                     Question = "Какой был объём кислоты {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
         },
@@ -9669,13 +9740,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // ❖
         [typeof(SNonverbalSimon)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNonverbalSimon.Flashes] = new()
                 {
                     // This question is depicted visually, rather than with words. The translation here will only be used for logging.
                     Question = "Какой кнопка горела на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -9683,13 +9754,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Colored Squares
         [typeof(SNotColoredSquares)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SNotColoredSquares.InitialPosition] = new()
                 {
                     // English: What was the position of the square you initially pressed in {0}?
                     Question = "Какая была позиция квадрата, который вы изначально нажали на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -9787,7 +9858,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Double-Oh
         [typeof(SNotDoubleOh)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNotDoubleOh.Position] = new()
@@ -9795,6 +9865,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} displayed position in the second stage of {0}?
                     // Example: What was the first displayed position in the second stage of Not Double-Oh?
                     Question = "Какая позиция была показана {1}-й на втором этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -9803,7 +9874,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SNotKeypad)] = new()
         {
             ModuleName = "Не клавиатуре",
-            Conjugation = Conjugation.PrepositiveFeminine,
             Questions = new()
             {
                 [SNotKeypad.Color] = new()
@@ -9811,6 +9881,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color flashed {1} in the final sequence in {0}?
                     // Example: What color flashed first in the final sequence in Not Keypad?
                     Question = "Какой цвет горел {1}-м в последовательности на {0}?",
+                    Conjugation = Conjugation.PrepositiveFeminine,
                     Answers = new()
                     {
                         ["red"] = "Красный",
@@ -9832,6 +9903,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which symbol was on the button that flashed {1} in the final sequence in {0}?
                     // Example: Which symbol was on the button that flashed first in the final sequence in Not Keypad?
                     Question = "Какой символ был на кнопке, которая горела {1}-й в последовательности на {0}?",
+                    Conjugation = Conjugation.PrepositiveFeminine,
                 },
             },
         },
@@ -9983,7 +10055,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Number Pad
         [typeof(SNotNumberPad)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNotNumberPad.Flashes] = new()
@@ -9991,6 +10062,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which of these numbers {1} at the {2} stage of {0}?
                     // Example: Which of these numbers flashed at the first stage of Not Number Pad?
                     Question = "Какая их этих цифр {1} на {2}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["flashed"] = "мигала",
@@ -10212,18 +10284,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Text Field
         [typeof(SNotTextField)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SNotTextField.BackgroundLetter] = new()
                 {
                     // English: Which letter appeared 9 times at the start of {0}?
                     Question = "Какая буква появилась 9 раз в начале на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SNotTextField.InitialPresses] = new()
                 {
                     // English: Which letter was pressed in the first stage of {0}?
                     Question = "Какая буква была нажата на первом этапе на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -10231,18 +10304,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not The Bulb
         [typeof(SNotTheBulb)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SNotTheBulb.Word] = new()
                 {
                     // English: What word flashed on {0}?
                     Question = "Какое слово мигало на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SNotTheBulb.Color] = new()
                 {
                     // English: What color was the bulb on {0}?
                     Question = "Какого цвета была лампочка на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Красная",
@@ -10257,6 +10331,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the material of the screw cap on {0}?
                     Question = "Из какого материала был сделан цоколь лампочки на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["Copper"] = "Медь",
@@ -10274,13 +10349,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SNotTheButton)] = new()
         {
             ModuleName = "Не кнопки",
-            Conjugation = Conjugation.GenitiveFeminine,
             Questions = new()
             {
                 [SNotTheButton.LightColor] = new()
                 {
                     // English: What colors did the light glow in {0}?
                     Question = "Какими цветами горела цветная полоска {0}?",
+                    Conjugation = Conjugation.GenitiveFeminine,
                     Answers = new()
                     {
                         ["white"] = "Белым",
@@ -10344,7 +10419,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not Who’s on First
         [typeof(SNotWhosOnFirst)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SNotWhosOnFirst.PressedPosition] = new()
@@ -10352,6 +10426,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: In which position was the button you pressed in the {1} stage on {0}?
                     // Example: In which position was the button you pressed in the first stage on Not Who’s on First?
                     Question = "На какой позиции была кнопка, которую вы нажали на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["top left"] = "сверху слева",
@@ -10367,12 +10442,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the label on the button you pressed in the {1} stage on {0}?
                     // Example: What was the label on the button you pressed in the first stage on Not Who’s on First?
                     Question = "Что было написано на кнопке, которую вы нажали на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SNotWhosOnFirst.ReferencePosition] = new()
                 {
                     // English: In which position was the reference button in the {1} stage on {0}?
                     // Example: In which position was the reference button in the first stage on Not Who’s on First?
                     Question = "На какой позиции была кнопка-ссылка на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["top left"] = "сверху слева",
@@ -10388,11 +10465,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the label on the reference button in the {1} stage on {0}?
                     // Example: What was the label on the reference button in the first stage on Not Who’s on First?
                     Question = "Что было написано на кнопке-ссылке на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SNotWhosOnFirst.Sum] = new()
                 {
                     // English: What was the calculated number in the second stage on {0}?
                     Question = "Какое было рассчитанное число на втором этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -10418,7 +10497,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Not X01
         [typeof(SNotX01)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SNotX01.SectorValues] = new()
@@ -10426,6 +10504,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which sector value {1} present on {0}?
                     // Example: Which sector value was present on Not X01?
                     Question = "Какое значение сектора {1} на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Arguments = new()
                     {
                         ["was"] = "присутствовало",
@@ -10556,13 +10635,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SObjectShows)] = new()
         {
             ModuleName = "Обджект-шоу",
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SObjectShows.Contestants] = new()
                 {
                     // English: Which of these was a contestant on {0}?
                     Question = "Кто среди этих участников присутствовал на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -10646,7 +10725,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Old AI
         [typeof(SOldAI)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SOldAI.Group] = new()
@@ -10654,6 +10732,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} of the numbers shown in {0}?
                     // Example: What was the group of the numbers shown in Old AI?
                     Question = "Какая {1} чисел была показана на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Arguments = new()
                     {
                         ["group"] = "группа",
@@ -10667,13 +10746,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SOldFogey)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SOldFogey.StartingColor] = new()
                 {
                     // English: What was the initial color of the status light in {0}?
                     Question = "Какой был исходный цвет индикатора на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -10743,7 +10822,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SOrangeArrows)] = new()
         {
             ModuleName = "Оранжевых стрелок",
-            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [SOrangeArrows.Sequences] = new()
@@ -10751,6 +10829,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} arrow on the display of the {2} stage of {0}?
                     // Example: What was the first arrow on the display of the first stage of Orange Arrows?
                     Question = "Какая была {1}-я стрелка на экране на {2}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitivePlural,
                     Answers = new()
                     {
                         ["Up"] = "Вверх",
@@ -10786,7 +10865,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SOrderedKeys)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SOrderedKeys.Colors] = new()
@@ -10794,6 +10872,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was this key in the {1} stage of {0}? (+ sprite)
                     // Example: What color was this key in the first stage of Ordered Keys? (+ sprite)
                     Question = "Какого цвета была эта клавиша на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -10809,12 +10888,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What was the label of this key in the first stage of Ordered Keys? (+ sprite)
                     Question = "Какая была надпись на этой клавише на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SOrderedKeys.LabelColors] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What color was the label of this key in the first stage of Ordered Keys? (+ sprite)
                     Question = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -10858,13 +10939,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SOrientationCube)] = new()
         {
             ModuleName = "Ориентации куба",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SOrientationCube.InitialObserverPosition] = new()
                 {
                     // English: What was the observer’s initial position in {0}?
                     Question = "Какая была начальная позиция у наблюдателя {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Answers = new()
                     {
                         ["front"] = "Спереди",
@@ -11006,7 +11087,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Partial Derivatives
         [typeof(SPartialDerivatives)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SPartialDerivatives.LedColors] = new()
@@ -11014,6 +11094,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the LED color in the {1} stage of {0}?
                     // Example: What was the LED color in the first stage of Partial Derivatives?
                     Question = "Какой был цвет светодиода на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["blue"] = "синий",
@@ -11029,6 +11110,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} term in {0}?
                     // Example: What was the first term in Partial Derivatives?
                     Question = "Какой был {1}-й член {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -11036,7 +11118,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Passport Control
         [typeof(SPassportControl)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SPassportControl.Passenger] = new()
@@ -11044,6 +11125,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the passport expiration year of the {1} inspected passenger in {0}?
                     // Example: What was the passport expiration year of the first inspected passenger in Passport Control?
                     Question = "Какой был год истечения паспорта у {1}-го пассажира на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -11051,13 +11133,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Password Destroyer
         [typeof(SPasswordDestroyer)] = new()
         {
-            Conjugation = Conjugation.AccusativeMascNeuter,
             Questions = new()
             {
                 [SPasswordDestroyer.TwoFactorV2] = new()
                 {
                     // English: What was the 2FAST™ value when you solved {0}?
                     Question = "Чему был равен 2FAST™ когда вы обезвредили {0}?",
+                    Conjugation = Conjugation.AccusativeMascNeuter,
                 },
             },
         },
@@ -11066,13 +11148,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SPatternCube)] = new()
         {
             ModuleName = "Развёртке куба",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SPatternCube.HighlightedSymbol] = new()
                 {
                     // English: Which symbol was highlighted in {0}?
                     Question = "Какой символ был подсвечен {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
         },
@@ -11095,13 +11177,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SPentabutton)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SPentabutton.BaseColor] = new()
                 {
                     // English: What was the base colour in {0}?
                     Question = "Какой был цвет у основания {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Красный",
@@ -11143,7 +11225,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SPerspectivePegs)] = new()
         {
             ModuleName = "Взгляде на колышках",
-            Conjugation = Conjugation.во_PrepositiveMascNeuter,
             Questions = new()
             {
                 [SPerspectivePegs.ColorSequence] = new()
@@ -11151,6 +11232,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} color in the initial sequence in {0}?
                     // Example: What was the first color in the initial sequence in Perspective Pegs?
                     Question = "Какой цвет был {1}-м в начальной последовательности {0}?",
+                    Conjugation = Conjugation.во_PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["red"] = "Красный",
@@ -11300,7 +11382,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SPinkButton)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SPinkButton.Words] = new()
@@ -11308,12 +11389,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} word in {0}?
                     // Example: What was the first word in The Pink Button?
                     Question = "Какое было {1}-е слово {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SPinkButton.Colors] = new()
                 {
                     // English: What was the {1} color in {0}?
                     // Example: What was the first color in The Pink Button?
                     Question = "Какой был {1}-й цвет на {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["black"] = "black",
@@ -11406,7 +11489,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SPlanets)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SPlanets.Strips] = new()
@@ -11414,6 +11496,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the color of the {1} strip (from the top) in {0}?
                     // Example: What was the color of the first strip (from the top) in Planets?
                     Question = "Какой был цвет у {1}-й полоски (начиная сверху) на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["Aqua"] = "Aqua",
@@ -11431,6 +11514,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the planet shown in {0}?
                     Question = "Какая планета была показана на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -11469,7 +11553,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SPoetry)] = new()
         {
             ModuleName = "Поэзии",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SPoetry.Answers] = new()
@@ -11477,6 +11560,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} correct answer you pressed in {0}?
                     // Example: What was the first correct answer you pressed in Poetry?
                     Question = "Какое было {1}-е правильное слово, которое вы нажали {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
         },
@@ -11506,13 +11590,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Polygons
         [typeof(SPolygons)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SPolygons.Polygon] = new()
                 {
                     // English: Which polygon was present on {0}?
                     Question = "Какой многоугольник присутствовал на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -11560,13 +11644,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Prime Encryption
         [typeof(SPrimeEncryption)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SPrimeEncryption.DisplayedValue] = new()
                 {
                     // English: What was the number shown in {0}?
                     Question = "Какое число было показано на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -11594,7 +11678,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SProbing)] = new()
         {
             ModuleName = "Прозвонке",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SProbing.Frequencies] = new()
@@ -11602,6 +11685,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the missing frequency in the {1} wire in {0}?
                     // Example: What was the missing frequency in the red-white wire in Probing?
                     Question = "Какая частота отсутствовала в {1} проводе {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Arguments = new()
                     {
                         ["red-white"] = "красно-белом",
@@ -11645,13 +11729,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SPurpleArrows)] = new()
         {
             ModuleName = "Фиолетовых стрелках",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SPurpleArrows.Finish] = new()
                 {
                     // English: What was the target word on {0}?
                     Question = "Какое было целевое слово {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -11659,7 +11743,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Purple Button
         [typeof(SPurpleButton)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SPurpleButton.Numbers] = new()
@@ -11667,6 +11750,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} number in the cyclic sequence on {0}?
                     // Example: What was the first number in the cyclic sequence on The Purple Button?
                     Question = "Какое было {1}-е число в зацикленной последовательности {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -11806,13 +11890,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Question Mark
         [typeof(SQuestionMark)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SQuestionMark.FlashedSymbols] = new()
                 {
                     // English: Which of these symbols was part of the flashing sequence in {0}?
                     Question = "Какой из этих символов был частью мигающей последовательности {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -11902,13 +11986,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Quiplash
         [typeof(SQuiplash)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SQuiplash.Number] = new()
                 {
                     // English: What number was shown on {0}?
                     Question = "Какое число было показано на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -11957,7 +12041,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SRailwayCargoLoading)] = new()
         {
             ModuleName = "Загрузке ЖД состава",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SRailwayCargoLoading.Cars] = new()
@@ -11965,12 +12048,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} car in {0}?
                     // Example: What was the first car in Railway Cargo Loading?
                     Question = "Какой вагон был присоединён {1}-м {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
                 [SRailwayCargoLoading.FreightTableRules] = new()
                 {
                     // English: Which freight table rule {1} in {0}?
                     // Example: Which freight table rule was met in Railway Cargo Loading?
                     Question = "Какое правило из таблицы грузовых вагонов {1} {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Arguments = new()
                     {
                         ["was met"] = "было применено",
@@ -11997,7 +12082,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SRecoloredSwitches)] = new()
         {
             ModuleName = "Перекрашенных переключателей",
-            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [SRecoloredSwitches.LedColors] = new()
@@ -12005,6 +12089,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the color of the {1} LED in {0}?
                     // Example: What was the color of the first LED in Recolored Switches?
                     Question = "Какой был цвет {1}-го светодиода {0}?",
+                    Conjugation = Conjugation.GenitivePlural,
                     Answers = new()
                     {
                         ["red"] = "Красный",
@@ -12041,13 +12126,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SRedArrows)] = new()
         {
             ModuleName = "Красных стрелках",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SRedArrows.StartNumber] = new()
                 {
                     // English: What was the starting number in {0}?
                     Question = "Какое было начальное число {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -12102,13 +12187,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SReformedRoleReversal)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.NominativeMasculine,
             Questions = new()
             {
                 [SReformedRoleReversal.Condition] = new()
                 {
                     // English: Which condition was the solving condition in {0}?
                     Question = "На каком условии был обезврежен {0}?",
+                    Conjugation = Conjugation.NominativeMasculine,
                     Answers = new()
                     {
                         ["second"] = "2-м",
@@ -12125,6 +12210,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was the {1} wire in {0}?
                     // Example: What color was the first wire in Reformed Role Reversal?
                     Question = "Какого цвета был {1}-й провод {0}?",
+                    Conjugation = Conjugation.NominativeMasculine,
                     Answers = new()
                     {
                         ["Navy"] = "Navy",
@@ -12264,7 +12350,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Reverse Polish Notation
         [typeof(SReversePolishNotation)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SReversePolishNotation.Character] = new()
@@ -12272,6 +12357,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What character was used in the {1} round of {0}?
                     // Example: What character was used in the first round of Reverse Polish Notation?
                     Question = "Какой символ был использован на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -12300,7 +12386,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // RGB Maze
         [typeof(SRGBMaze)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SRGBMaze.Keys] = new()
@@ -12308,6 +12393,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Where was the {1} key in {0}?
                     // Example: Where was the red key in RGB Maze?
                     Question = "Где был {1} ключ {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["red"] = "красный",
@@ -12320,6 +12406,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which maze number was the {1} maze in {0}?
                     // Example: Which maze number was the red maze in RGB Maze?
                     Question = "Какой {1} лабиринт был {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["red"] = "красный",
@@ -12331,6 +12418,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the exit coordinate in {0}?
                     Question = "Какая была координата выхода из {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -12364,13 +12452,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SRhythms)] = new()
         {
             ModuleName = "Ритмах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SRhythms.Color] = new()
                 {
                     // English: What was the color in {0}?
                     Question = "Какого цвета был светодиод {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Answers = new()
                     {
                         ["Blue"] = "Синего",
@@ -12679,19 +12767,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Scavenger Hunt
         [typeof(SScavengerHunt)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SScavengerHunt.KeySquare] = new()
                 {
                     // English: Which tile was correctly submitted in the first stage of {0}?
                     Question = "Какая плитка была верным ответом на первом этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SScavengerHunt.ColoredTiles] = new()
                 {
                     // English: Which of these tiles was {1} in the first stage of {0}?
                     // Example: Which of these tiles was red in the first stage of Scavenger Hunt?
                     Question = "Какая из этих плиток была {1} на первом этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["red"] = "красной",
@@ -12776,7 +12865,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SSeaShells)] = new()
         {
             ModuleName = "Морских ракушках",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SSeaShells.Question1] = new()
@@ -12784,18 +12872,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What were the first and second words in the {1} phrase in {0}?
                     // Example: What were the first and second words in the first phrase in Sea Shells?
                     Question = "What were the first and second words in the {1} phrase in {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
                 [SSeaShells.Question2] = new()
                 {
                     // English: What were the third and fourth words in the {1} phrase in {0}?
                     // Example: What were the third and fourth words in the first phrase in Sea Shells?
                     Question = "What were the third and fourth words in the {1} phrase in {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
                 [SSeaShells.Question3] = new()
                 {
                     // English: What was the end of the {1} phrase in {0}?
                     // Example: What was the end of the first phrase in Sea Shells?
                     Question = "What was the end of the {1} phrase in {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -12848,7 +12939,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // S.E.T. Theory
         [typeof(SSetTheory)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSetTheory.Equations] = new()
@@ -12856,6 +12946,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What equation was shown in the {1} stage of {0}?
                     // Example: What equation was shown in the first stage of S.E.T. Theory?
                     Question = "Какое уравнение было показано на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -12993,7 +13084,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SSillySlots)] = new()
         {
             ModuleName = "Однорукого бандита",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSillySlots.Question] = new()
@@ -13001,6 +13091,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} slot in the {2} stage in {0}?
                     // Example: What was the first slot in the first stage in Silly Slots?
                     Question = "Какой был {1}-й слот на {2}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["red bomb"] = "Красная бомба",
@@ -13921,13 +14012,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SSkewedSlots)] = new()
         {
             ModuleName = "Искажённых слотах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SSkewedSlots.OriginalNumbers] = new()
                 {
                     // English: What were the original numbers in {0}?
                     Question = "Какие были изначальные цифры {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -14056,18 +14147,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SSmallCircle)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SSmallCircle.Shift] = new()
                 {
                     // English: How much did the sequence shift by in {0}?
                     Question = "На сколько сместилась последовательность на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SSmallCircle.Wedge] = new()
                 {
                     // English: Which wedge made the different noise in the beginning of {0}?
                     Question = "Какой сегмент {0} издал другой звук в начале?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -14085,6 +14177,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which color was {1} in the solution to {0}?
                     // Example: Which color was first in the solution to Small Circle?
                     Question = "Какой цвет был {1}-м в решении на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -14146,13 +14239,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Snooker
         [typeof(SSnooker)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSnooker.Reds] = new()
                 {
                     // English: How many red balls were there at the start of {0}?
                     Question = "Сколько красных шаров было в начале {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -14233,13 +14326,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SSorting)] = new()
         {
             ModuleName = "Сортировке",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SSorting.LastSwap] = new()
                 {
                     // English: What positions were the last swap used to solve {0}?
                     Question = "Какие позиции участвовали в последней замене чисел {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                 },
             },
         },
@@ -14248,13 +14341,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SSouvenir)] = new()
         {
             ModuleName = "Сувенире",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSouvenir.FirstQuestion] = new()
                 {
                     // English: What was the first module asked about in the other Souvenir on this bomb?
                     Question = "О каком модуле был первый вопрос на другом Сувенире?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
             Discriminators = new()
@@ -14402,13 +14495,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Stars
         [typeof(SStars)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SStars.Center] = new()
                 {
                     // English: What was the digit in the center of {0}?
                     Question = "Какая цифра была в центре {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -14670,18 +14763,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SSUSadmin)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SSUSadmin.Security] = new()
                 {
                     // English: Which security protocol was installed in {0}?
                     Question = "Какой протокол безопасности был установлен на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SSUSadmin.Version] = new()
                 {
                     // English: What was the version number in {0}?
                     Question = "What was the version number in {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -14689,7 +14783,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Switch
         [typeof(SSwitch)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSwitch.InitialColor] = new()
@@ -14697,6 +14790,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was the {1} LED on the {2} flip of {0}?
                     // Example: What color was the top LED on the first flip of The Switch?
                     Question = "Какого цвета был {1} светодиод при {2}-м нажатии {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["top"] = "верхний",
@@ -14718,13 +14812,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Switches
         [typeof(SSwitches)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSwitches.InitialPosition] = new()
                 {
                     // English: What was the initial position of the switches in {0}?
                     Question = "Какое было начальное положение {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -14733,18 +14827,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SSwitchingMaze)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSwitchingMaze.Seed] = new()
                 {
                     // English: What was the seed in {0}?
                     Question = "Какое было зерно у {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SSwitchingMaze.Color] = new()
                 {
                     // English: What was the starting maze color in {0}?
                     Question = "Какой был цвет начального {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -14767,7 +14862,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Symbol Cycle
         [typeof(SSymbolCycle)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSymbolCycle.SymbolCounts] = new()
@@ -14775,6 +14869,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: How many symbols were cycling on the {1} screen in {0}?
                     // Example: How many symbols were cycling on the left screen in Symbol Cycle?
                     Question = "Сколько символов было на {1} экране {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["left"] = "левом",
@@ -14808,7 +14903,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Symbolic Tasha
         [typeof(SSymbolicTasha)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SSymbolicTasha.DirectionFlashes] = new()
@@ -14816,6 +14910,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which button flashed {1} in the final sequence of {0}?
                     // Example: Which button flashed first in the final sequence of Symbolic Tasha?
                     Question = "Какая кнопка горела {1}-й в финальной последовательности {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Top"] = "Верхняя",
@@ -14829,6 +14924,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which button flashed {1} in the final sequence of {0}?
                     // Example: Which button flashed first in the final sequence of Symbolic Tasha?
                     Question = "Какая кнопка горела {1}-й в финальной последовательности {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Pink"] = "Розовая",
@@ -14842,6 +14938,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: Which symbol was on the {1} button in {0}?
                     // Example: Which symbol was on the top button in Symbolic Tasha?
                     Question = "Какой символ был на {1} кнопке {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["top"] = "верхней",
@@ -15155,13 +15252,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(STextField)] = new()
         {
             ModuleName = "Поле из букв",
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [STextField.Display] = new()
                 {
                     // English: What was the displayed letter in {0}?
                     Question = "Какая буква присутствовала на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -15170,18 +15267,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SThinkingWires)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SThinkingWires.FirstWire] = new()
                 {
                     // English: What was the position from top to bottom of the first wire needing to be cut in {0}?
                     Question = "Где находился первый провод который нужно было перерезать (сверху вниз) на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SThinkingWires.SecondWire] = new()
                 {
                     // English: What color did the second valid wire to cut have to have in {0}?
                     Question = "Какой цвет был у второго верно порезаного провода {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -15199,6 +15297,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 {
                     // English: What was the display number in {0}?
                     Question = "Какое было число на экране {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -15207,7 +15306,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SThirdBase)] = new()
         {
             ModuleName = "\"А меня – Сава\"",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SThirdBase.Display] = new()
@@ -15215,6 +15313,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the display word in the {1} stage on {0}?
                     // Example: What was the display word in the first stage on Third Base?
                     Question = "Какое слово было на экране на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -15237,7 +15336,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         {
             NeedsTranslation = true,
             ModuleName = "Крестиках-ноликах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [STicTacToe.InitialState] = new()
@@ -15245,6 +15343,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was on the {1} button at the start of {0}?
                     // Example: What was on the top-left button at the start of Tic Tac Toe?
                     Question = "Что было на {1} кнопке в начале игры {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                     Arguments = new()
                     {
                         ["top-left"] = "верхней левой",
@@ -15459,7 +15558,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(STwoBits)] = new()
         {
             ModuleName = "Двух битах",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [STwoBits.Response] = new()
@@ -15467,6 +15565,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} correct query response from {0}?
                     // Example: What was the first correct query response from Two Bits?
                     Question = "Какой был ответ на {1}-й запрос {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -15550,7 +15649,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // The Ultracube
         [typeof(SUltracube)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SUltracube.Rotations] = new()
@@ -15558,6 +15656,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} rotation in {0}?
                     // Example: What was the first rotation in The Ultracube?
                     Question = "Каким было {1}-е вращение {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -15586,7 +15685,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SUncoloredSquares)] = new()
         {
             ModuleName = "Неокрашенных квадратов",
-            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [SUncoloredSquares.FirstStage] = new()
@@ -15594,6 +15692,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} color in reading order used in the first stage of {0}?
                     // Example: What was the first color in reading order used in the first stage of Uncolored Squares?
                     Question = "Какой был {1}-й цвет в порядке чтения, использованный на первом этапе {0}?",
+                    Conjugation = Conjugation.GenitivePlural,
                     Answers = new()
                     {
                         ["White"] = "Белый",
@@ -15611,19 +15710,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SUncoloredSwitches)] = new()
         {
             ModuleName = "Бесцветных переключателей",
-            Conjugation = Conjugation.GenitivePlural,
             Questions = new()
             {
                 [SUncoloredSwitches.InitialState] = new()
                 {
                     // English: What was the initial state of the switches in {0}?
                     Question = "Какое было исходное состояние {0}?",
+                    Conjugation = Conjugation.GenitivePlural,
                 },
                 [SUncoloredSwitches.LedColors] = new()
                 {
                     // English: What color was the {1} LED in reading order in {0}?
                     // Example: What color was the first LED in reading order in Uncolored Switches?
                     Question = "Какого цвета был {1}-й светодиод в порядке чтения {0}?",
+                    Conjugation = Conjugation.GenitivePlural,
                     Answers = new()
                     {
                         ["red"] = "Красного",
@@ -15824,7 +15924,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Unordered Keys
         [typeof(SUnorderedKeys)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SUnorderedKeys.KeyColor] = new()
@@ -15832,18 +15931,21 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was this key in the {1} stage of {0}? (+ sprite)
                     // Example: What color was this key in the first stage of Unordered Keys? (+ sprite)
                     Question = "Какого цвета была эта клавиша на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SUnorderedKeys.LabelColor] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What color was the label of this key in the first stage of Unordered Keys? (+ sprite)
                     Question = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SUnorderedKeys.Label] = new()
                 {
                     // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What was the label of this key in the first stage of Unordered Keys? (+ sprite)
                     Question = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -15887,19 +15989,20 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Updog
         [typeof(SUpdog)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SUpdog.Word] = new()
                 {
                     // English: What was the text on {0}?
                     Question = "Какой был текст на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SUpdog.Color] = new()
                 {
                     // English: What was the {1} color in the sequence on {0}?
                     // Example: What was the first color in the sequence on Updog?
                     Question = "Какой был {1} цвет в последовательности {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Arguments = new()
                     {
                         ["first"] = "первый",
@@ -15921,13 +16024,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // USA Cycle
         [typeof(SUSACycle)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SUSACycle.Displayed] = new()
                 {
                     // English: Which state was displayed in {0}?
                     Question = "Какой штат был показан на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -15968,13 +16071,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Valves
         [typeof(SValves)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SValves.InitialState] = new()
                 {
                     // English: What was the initial state of {0}?
                     Question = "Какое было начальное состояние {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -15983,13 +16086,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SVaricoloredSquares)] = new()
         {
             ModuleName = "Разноцветных квадратах",
-            Conjugation = Conjugation.PrepositivePlural,
             Questions = new()
             {
                 [SVaricoloredSquares.InitialColor] = new()
                 {
                     // English: What was the initially pressed color on {0}?
                     Question = "Какой был первый нажатый цвет на {0}?",
+                    Conjugation = Conjugation.PrepositivePlural,
                     Answers = new()
                     {
                         ["White"] = "Белый",
@@ -16205,7 +16308,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Vectors
         [typeof(SVectors)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SVectors.Colors] = new()
@@ -16213,6 +16315,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the color of the {1} vector in {0}?
                     // Example: What was the color of the first vector in Vectors?
                     Question = "Какого цвета был {1} вектор из {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
                         ["first"] = "1-й",
@@ -16282,7 +16385,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SVisualImpairment)] = new()
         {
             ModuleName = "Повреждённого зрения",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SVisualImpairment.Colors] = new()
@@ -16290,6 +16392,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the desired color in the {1} stage on {0}?
                     // Example: What was the desired color in the first stage on Visual Impairment?
                     Question = "Какой был целевой цвет на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Blue"] = "Синий",
@@ -16317,13 +16420,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Warning Signs
         [typeof(SWarningSigns)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SWarningSigns.DisplayedSign] = new()
                 {
                     // English: What was the displayed sign in {0}?
                     Question = "Какой знак был показан на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -16344,13 +16447,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Watching Paint Dry
         [typeof(SWatchingPaintDry)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SWatchingPaintDry.StrokeCount] = new()
                 {
                     // English: How many brush strokes were heard in {0}?
                     Question = "Сколько мазков кистью было слышно на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -16525,7 +16628,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SWhosOnFirst)] = new()
         {
             ModuleName = "\"Меня зовут Авас, а Вас\"",
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SWhosOnFirst.Display] = new()
@@ -16533,6 +16635,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the display in the {1} stage on {0}?
                     // Example: What was the display in the first stage on Who’s on First?
                     Question = "Какое слово было на экране на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -16555,7 +16658,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Who’s on Morse
         [typeof(SWhosOnMorse)] = new()
         {
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SWhosOnMorse.TransmitDisplay] = new()
@@ -16563,6 +16665,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What word was transmitted in the {1} stage on {0}?
                     // Example: What word was transmitted in the first stage on Who’s on Morse?
                     Question = "Какое слово было передано на {1}-м этапе {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -16604,7 +16707,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Wire Ordering
         [typeof(SWireOrdering)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SWireOrdering.DisplayColor] = new()
@@ -16612,6 +16714,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What color was the {1} display from the left in {0}?
                     // Example: What color was the first display from the left in Wire Ordering?
                     Question = "Какого цвета был {1}-й экран слева на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["red"] = "Красного",
@@ -16629,12 +16732,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What number was on the {1} display from the left in {0}?
                     // Example: What number was on the first display from the left in Wire Ordering?
                     Question = "Какое число было на {1}-м экране слева на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SWireOrdering.WireColor] = new()
                 {
                     // English: What color was the {1} wire from the left in {0}?
                     // Example: What color was the first wire from the left in Wire Ordering?
                     Question = "Какого цвета был {1}-й провод слева на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {
                         ["red"] = "Красного",
@@ -16654,7 +16759,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SWireSequence)] = new()
         {
             ModuleName = "Последовательности проводов",
-            Conjugation = Conjugation.в_PrepositiveFeminine,
             Questions = new()
             {
                 [SWireSequence.ColorCount] = new()
@@ -16662,6 +16766,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: How many {1} wires were there in {0}?
                     // Example: How many red wires were there in Wire Sequence?
                     Question = "Сколько было {1} проводов {0}?",
+                    Conjugation = Conjugation.в_PrepositiveFeminine,
                     Arguments = new()
                     {
                         ["red"] = "красных",
@@ -16715,13 +16820,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         {
             NeedsTranslation = true,
             ModuleName = "Рабочем названии",
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SWorkingTitle.Display] = new()
                 {
                     // English: What was on the display in {0}?
                     Question = "Какая надпись была показана на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -16854,13 +16959,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SYellowArrows)] = new()
         {
             ModuleName = "Жёлтых стрелках",
-            Conjugation = Conjugation.в_PrepositivePlural,
             Questions = new()
             {
                 [SYellowArrows.StartingRow] = new()
                 {
                     // English: What was the starting row letter in {0}?
                     Question = "Какая была буква у начальной строки {0}?",
+                    Conjugation = Conjugation.в_PrepositivePlural,
                 },
             },
         },
@@ -16869,7 +16974,6 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [typeof(SYellowButton)] = new()
         {
             NeedsTranslation = true,
-            Conjugation = Conjugation.GenitiveMascNeuter,
             Questions = new()
             {
                 [SYellowButton.Colors] = new()
@@ -16877,6 +16981,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                     // English: What was the {1} color in {0}?
                     // Example: What was the first color in The Yellow Button?
                     Question = "Какой был {1}-й цвет в последовательности {0}?",
+                    Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -16998,13 +17103,13 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Épelle-moi Ça
         [typeof(SÉpelleMoiÇa)] = new()
         {
-            Conjugation = Conjugation.PrepositiveMascNeuter,
             Questions = new()
             {
                 [SÉpelleMoiÇa.Word] = new()
                 {
                     // English: What word was asked to be spelled in {0}?
                     Question = "Какое слово нужно было написать на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },

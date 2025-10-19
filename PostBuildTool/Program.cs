@@ -135,6 +135,9 @@ public static class Program
             var translatedCount = 0;
             var totalCount = 0;
 
+            object questionTranslationInfoPrototype = null;
+            FieldInfo[] questionTranslationAdditionalFields = null;
+
             // for each module handler...
             foreach (var handlerMethod in assembly.GetType("SouvenirModule").GetMethods(BindingFlags.Instance | BindingFlags.NonPublic))
             {
@@ -211,6 +214,26 @@ public static class Program
                             sb.AppendLine($@"{indent()}// Example: {string.Format((string) qAttr.QuestionText, (object[]) [(handler.AddThe ? "The " : "") + handler.ModuleName, .. processString(args.Take((int) qAttr.ArgumentGroupSize))])}{extra}");
                     }
                     sb.AppendLine($@"{indent()}Question = ""{((string) (alreadyQuestion?.Question ?? qAttr.QuestionText)).CLiteralEscape()}"",");
+
+                    if (alreadyQuestion != null)
+                    {
+                        var questionType = ((object) alreadyQuestion).GetType();
+                        questionTranslationInfoPrototype ??= Activator.CreateInstance(questionType);
+                        questionTranslationAdditionalFields ??= questionType.GetFields(BindingFlags.Instance | BindingFlags.Public)
+                            .Where(field => !(field.Name is "Question" or "Answers" or "Arguments" or "Additional"))
+                            .ToArray();
+
+                        foreach (var field in questionTranslationAdditionalFields)
+                        {
+                            var value = field.GetValue(alreadyQuestion);
+                            if (!Equals(value, field.GetValue(questionTranslationInfoPrototype)))
+                                sb.AppendLine($@"{indent()}{field.Name} = {(
+                                    value is string v ? $@"""{v.CLiteralEscape()}""" :
+                                    value is Enum e ? $@"{e.GetType().Name}.{e}" :
+                                    value is int i ? i.ToString() :
+                                    throw new InvalidOperationException($"Unsupported field type: {value.GetType().FullName}"))},");
+                        }
+                    }
 
                     if (qAttr.ReferenceDocumentation || qAttr.TranslatableStrings is string[] { Length: > 0 })
                         sb.AppendLine($@"{indent()}// Refer to translations.md to understand the weird strings");

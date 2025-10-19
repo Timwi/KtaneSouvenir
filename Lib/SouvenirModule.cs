@@ -462,12 +462,12 @@ public partial class SouvenirModule : MonoBehaviour
         if (_curExampleDiscriminator == 0)
         {
             // No discriminator
-            fmt[0] = formatModuleName(hAttr, false, 1);
+            fmt[0] = formatModuleName(qAttr, false, 1);
         }
         else if (_curExampleDiscriminator == 1 && !hAttr.IsBossModule)
         {
             // Non-boss modules: solve-count discriminator
-            fmt[0] = formatModuleName(hAttr, true, Rnd.Range(1, 11));
+            fmt[0] = formatModuleName(qAttr, true, Rnd.Range(1, 11));
         }
         else
         {
@@ -998,7 +998,7 @@ public partial class SouvenirModule : MonoBehaviour
                     yield break;
                 }
             }
-            _questions.Add(q.GenerateQandA(answerSet, moduleFormat ?? formatModuleName(hAttr, info.NumModules > 1, data.SolveIndex + 1), Bomb.GetSolvedModuleIDs().Count, questionSpriteFromDiscriminator, questionSpriteRotationFromDiscriminator));
+            _questions.Add(q.GenerateQandA(answerSet, moduleFormat ?? formatModuleName(q.QuestionStump.QuestionAttribute, info.NumModules > 1, data.SolveIndex + 1), Bomb.GetSolvedModuleIDs().Count, questionSpriteFromDiscriminator, questionSpriteRotationFromDiscriminator));
         }
         Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Finished processing.");
     }
@@ -1121,9 +1121,9 @@ public partial class SouvenirModule : MonoBehaviour
     private QuestionStump question(Enum question, Sprite entireQuestionSprite, string[] args = null) =>
         new SpriteQuestionStump(question, this, args, entireQuestionSprite);
 
-    private string formatModuleName(SouvenirHandlerAttribute handler, bool addSolveCount, int numSolved) => _translation != null
-        ? _translation.FormatModuleName(handler, addSolveCount, numSolved)
-        : addSolveCount ? $"the {handler.ModuleName} you solved {Ordinal(numSolved)}" : handler.ModuleNameWithThe;
+    private string formatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved) => _translation != null
+        ? _translation.FormatModuleName(qAttr, addSolveCount, numSolved)
+        : addSolveCount ? $"the {qAttr.Handler.ModuleName} you solved {Ordinal(numSolved)}" : qAttr.Handler.ModuleNameWithThe;
 
     private string titleCase(string str) => str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
 

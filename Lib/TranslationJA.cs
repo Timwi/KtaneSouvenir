@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace Souvenir;
 
-public class Translation_ja : TranslationBase<TranslationInfo>
+public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslationInfo>>
 {
-    public override string FormatModuleName(SouvenirHandlerAttribute handler, bool addSolveCount, int numSolved) => addSolveCount
-        ? $"{Ordinal(numSolved)}番目に解除された{_translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleName}"
-        : _translations.Get(handler.EnumType)?.ModuleName ?? handler.ModuleNameWithThe;
+    public override string FormatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved) => addSolveCount
+        ? $"{Ordinal(numSolved)}番目に解除された{_translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleName}"
+        : _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleNameWithThe;
 
     public override string Ordinal(int number) => number.ToString();
     public override int DefaultFontIndex => 8;
     public override float LineSpacing => 0.7f;
 
-    protected override Dictionary<Type, TranslationInfo> _translations => new()
+    protected override Dictionary<Type, TranslationInfo<QuestionTranslationInfo>> _translations => new()
     {
         #region Translatable strings
         // 0
