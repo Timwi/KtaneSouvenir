@@ -1406,19 +1406,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e7edec542ccf84a4399346280fd04b45, type: 3}
   - {fileID: 8300000, guid: 540acc488ec3e014d8b0abc8cce963c0, type: 3}
   - {fileID: 8300000, guid: 03aaddf7ed3a5d44ba7423aed33dfaa6, type: 3}
-  SimonSamplesAudio:
-  - {fileID: 8300000, guid: 83226d8d75bafd846aaa32b8bc37226f, type: 3}
-  - {fileID: 8300000, guid: e447b9a7531a6ac4587f124636d840a9, type: 3}
-  - {fileID: 8300000, guid: 48020b78f361c7a44aadf62e430bbcaa, type: 3}
-  - {fileID: 8300000, guid: efa0e7d1976b6234a9b27ef94a9a17fa, type: 3}
-  - {fileID: 8300000, guid: 2928e0a05fde4bc4cbc259b778e32ba9, type: 3}
-  - {fileID: 8300000, guid: 211b4fe96e1b8c2479acfd7c81abeb7b, type: 3}
-  - {fileID: 8300000, guid: 69639ffbbdda5c649a3d4ae2ad8ac365, type: 3}
-  - {fileID: 8300000, guid: ed936db3f5d97ea42ae2031968cedb70, type: 3}
-  - {fileID: 8300000, guid: e29ab695806f8b443a0e4cc9b25bcea8, type: 3}
-  - {fileID: 8300000, guid: 1701ff049b07bce42a02af1d1b5a229f, type: 3}
-  - {fileID: 8300000, guid: 395dec67c5fe21440bea64b2abf10566, type: 3}
-  - {fileID: 8300000, guid: e8bcc2e4c9c018b4fa0d64c8eb963760, type: 3}
   SimonSmilesAudio:
   - {fileID: 8300000, guid: e9f9e2045740a8a4aa00d524f12db1a2, type: 3}
   - {fileID: 8300000, guid: c5298a39c2464314da56396c381d3ce9, type: 3}
@@ -1426,23 +1413,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cb1a6ab1c0d764c43a620cc931e95d70, type: 3}
   - {fileID: 8300000, guid: 16a6b1e0f40230246b8cf6656bd991a2, type: 3}
   - {fileID: 8300000, guid: cbb645095a1d24f44aa649fbbce5187c, type: 3}
-  SonicTheHedgehogAudio:
-  - {fileID: 8300000, guid: 49bd880b90f28fb448624de96d7235bd, type: 3}
-  - {fileID: 8300000, guid: c61c4eebe8cda3c47ad2a204ac80494c, type: 3}
-  - {fileID: 8300000, guid: fb69fbce43269a94499cc47ad9879fb4, type: 3}
-  - {fileID: 8300000, guid: fb3288acb4b66754db3ea32f07c93d59, type: 3}
-  - {fileID: 8300000, guid: 69f5e445cfc048041a2e22613386c664, type: 3}
-  - {fileID: 8300000, guid: bc824f091744b014089c4a7b688bb2bf, type: 3}
-  - {fileID: 8300000, guid: 0b11073ba7bc6554c9dc230d2f5b9297, type: 3}
-  - {fileID: 8300000, guid: 456f90525403eaa4789825bfabef5f08, type: 3}
-  - {fileID: 8300000, guid: dcda249c66525994f8193f98d5bfdcf7, type: 3}
-  - {fileID: 8300000, guid: 8273e436846883946b8bbf9f097dc585, type: 3}
-  - {fileID: 8300000, guid: 6ea1f7a89138f6945b4b033008437a72, type: 3}
-  - {fileID: 8300000, guid: f651140b8d6d51241b2003767cec3214, type: 3}
-  - {fileID: 8300000, guid: 22b15f45d12e67940a60368c8a3a11a4, type: 3}
-  - {fileID: 8300000, guid: 262e5afa426a8ec4bb1d252533313235, type: 3}
-  - {fileID: 8300000, guid: 8c07f76b26ee2954598e3e287b476c0e, type: 3}
-  - {fileID: 8300000, guid: 811478d231f019040871059e1d9f1e89, type: 3}
   TextMesh: {fileID: 102000012539687798}
   TextRenderer: {fileID: 23000013337156738}
   SurfaceRenderer: {fileID: 23000012396776310}

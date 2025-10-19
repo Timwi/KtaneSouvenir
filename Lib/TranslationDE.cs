@@ -6466,13 +6466,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // h
         [typeof(SH)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SH.Letter] = new()
                 {
                     // English: What was the transmitted letter in {0}?
-                    Question = "What was the transmitted letter in {0}?",
+                    Question = "Was war bei {0} der übermittelte Buchstabe?",
                 },
             },
         },
@@ -6574,18 +6573,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // hexOrbits
         [typeof(SHexOrbits)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHexOrbits.Shape] = new()
                 {
                     // English: What was the {1} shape for the {2} display in {0}?
                     // Example: What was the fast shape for the first display in hexOrbits?
-                    Question = "What was the {1} shape for the {2} display in {0}?",
+                    Question = "Was war bei {0} in der {2}en Stufe die {1} Form?",
                     Arguments = new()
                     {
-                        ["fast"] = "fast",
-                        ["slow"] = "slow",
+                        ["fast"] = "schnellere",
+                        ["slow"] = "langsamere",
                     },
                 },
             },
@@ -6594,29 +6592,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // hexOS
         [typeof(SHexOS)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHexOS.OctCipher] = new()
                 {
                     // English: What was the deciphered phrase in {0}?
-                    Question = "What was the deciphered phrase in {0}?",
+                    Question = "Welcher Satz wurde bei {0} entschlüsselt?",
                 },
                 [SHexOS.Cipher] = new()
                 {
                     // English: What were the deciphered letters in {0}?
-                    Question = "What were the deciphered letters in {0}?",
+                    Question = "Welche Buchstaben wurden bei {0} entschlüsselt?",
                 },
                 [SHexOS.Sum] = new()
                 {
                     // English: What were the rhythm values in {0}?
-                    Question = "What were the rhythm values in {0}?",
+                    Question = "Welche Rhythmuswerte kamen bei {0} vor?",
                 },
                 [SHexOS.Screen] = new()
                 {
                     // English: What was the {1} 3-digit number cycled by the screen in {0}?
                     // Example: What was the first 3-digit number cycled by the screen in hexOS?
-                    Question = "What was the {1} 3-digit number cycled by the screen in {0}?",
+                    Question = "Was war bei {0} die {1}e dreistellige Zahl im Zahlenzyklus?",
                 },
             },
         },
@@ -6624,7 +6621,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Hickory Dickory Dock
         [typeof(SHickoryDickoryDock)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Tickitie-Tackitie-Tock",
             Questions = new()
             {
@@ -6641,7 +6637,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Hickory Dickory Dock which showed {0} when it struck {1}
                     // Example: the Hickory Dickory Dock which showed 1:30 when it struck 2:00
-                    Discriminator = "the Hickory Dickory Dock which showed {0} when it struck {1}",
+                    Discriminator = "dem Tickitie-Tackitie-Tock, das auf {0} stand als es {1} läutete,",
                 },
             },
         },
@@ -6649,23 +6645,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Hidden Colors
         [typeof(SHiddenColors)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Versteckte Farben",
+            ModuleNameDative = "Versteckten Farben",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SHiddenColors.LED] = new()
                 {
                     // English: What was the color of the main LED in {0}?
-                    Question = "What was the color of the main LED in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die primäre LED?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Blue"] = "Blue",
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
                         ["Orange"] = "Orange",
-                        ["Purple"] = "Purple",
+                        ["Purple"] = "Lila",
                         ["Magenta"] = "Magenta",
-                        ["White"] = "White",
+                        ["White"] = "Weiß",
                     },
                 },
             },
@@ -6674,23 +6672,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Hidden Value
         [typeof(SHiddenValue)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Versteckte Wert",
+            ModuleNameDative = "Versteckten Wert",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SHiddenValue.Display] = new()
                 {
                     // English: What was displayed on {0}?
-                    Question = "What was displayed on {0}?",
+                    Question = "Was wurde bei {0} angezeigt?",
                     // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["White"] = "White",
-                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["White"] = "Weiß",
+                        ["Yellow"] = "Gelb",
                         ["Magenta"] = "Magenta",
-                        ["Cyan"] = "Cyan",
-                        ["Purple"] = "Purple",
+                        ["Cyan"] = "Türkis",
+                        ["Purple"] = "Lila",
                         ["{0} {1}"] = "{0} {1}",
                     },
                 },
@@ -6700,18 +6700,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The High Score
         [typeof(SHighScore)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Die Highscore",
+            ModuleNameDative = "Highscore",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SHighScore.Position] = new()
                 {
                     // English: What was the position of the player in {0}?
-                    Question = "What was the position of the player in {0}?",
+                    Question = "An welcher Stelle stand bei {0} der Spieler?",
                 },
                 [SHighScore.Score] = new()
                 {
                     // English: What was the score of the player in {0}?
-                    Question = "What was the score of the player in {0}?",
+                    Question = "Welche Punktzahl hatte bei {0} der Spieler?",
                 },
             },
         },
