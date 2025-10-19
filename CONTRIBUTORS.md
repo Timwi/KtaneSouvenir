@@ -167,11 +167,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coinage   │  Linq                 │  Phosphorescence   │  Reformed Role Reversal  │
     Etterna   │  Octadecayotton, The  │  Placeholder Talk  │  Role Reversal           │
 
-## Implemented by KiloBites (11)
+## Implemented by KiloBites (12)
 
-    Caesar's Maths      │  Missing Letter, The      │  Painting Cube        │  Unfair's Cruel Revenge
-    ƎNA Cipher          │  Multiverse Hotline, The  │  Pattern Recognition  │  X-Rotor
-    Holographic Memory  │  Off-White Cipher         │  Undertunneling       │
+    Caesar's Maths                   │  Holographic Memory       │  Off-White Cipher     │  Undertunneling
+    ƎNA Cipher                       │  Missing Letter, The      │  Painting Cube        │  Unfair's Cruel Revenge
+    French Republican Calendar, The  │  Multiverse Hotline, The  │  Pattern Recognition  │  X-Rotor
 
 ## Implemented by VFlyer (11)
 

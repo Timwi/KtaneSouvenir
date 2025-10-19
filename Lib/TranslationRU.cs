@@ -5906,6 +5906,27 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // The French Republican Calendar
+        [typeof(SFrenchRepublicanCalendar)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SFrenchRepublicanCalendar.LEDColor] = new()
+                {
+                    // English: What was the color of the LED in {0}?
+                    Question = "What was the color of the LED in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                    },
+                },
+            },
+        },
+
         // Functions
         [typeof(SFunctions)] = new()
         {
