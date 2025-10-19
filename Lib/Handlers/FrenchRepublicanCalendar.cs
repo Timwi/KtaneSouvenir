@@ -18,12 +18,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var ledIx = GetIntField(comp, "ledIndex", isPublic: true).Get(min: 0, max: 3);
-
-        if (ledIx < 0 || ledIx > 3)
-            throw new AbandonModuleException($"The LED color's index isn't in the range of 0-3 inclusive. The LED color's index shown is {ledIx}");
-
         var colorNames = new[] { "Red", "Yellow", "Green", "Blue" };
-
         yield return question(SFrenchRepublicanCalendar.LEDColor).Answers(colorNames[ledIx]);
     }
 }

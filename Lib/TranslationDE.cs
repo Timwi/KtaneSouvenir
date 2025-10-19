@@ -5987,19 +5987,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The French Republican Calendar
         [typeof(SFrenchRepublicanCalendar)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Französische Revolutionskalender",
+            ModuleNameDative = "Französischen Revolutionskalender",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SFrenchRepublicanCalendar.LEDColor] = new()
                 {
                     // English: What was the color of the LED in {0}?
-                    Question = "What was the color of the LED in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die LED?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
                     },
                 },
             },
@@ -6773,7 +6775,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Hinges
         [typeof(SHinges)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Scharniere",
             ModuleNameDative = "Scharnieren",
             Gender = Gender.Plural,
@@ -6797,11 +6798,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Hinges where this hinge was initally {0}
                     // Example: the Hinges where this hinge was initally present
-                    Discriminator = "the Hinges where this hinge was initally {0}",
+                    Discriminator = "den Scharnieren, bei denen dieses Scharnier anfänglich {0},",
                     Arguments = new()
                     {
-                        ["present"] = "present",
-                        ["absent"] = "absent",
+                        ["present"] = "vorhanden war",
+                        ["absent"] = "gefehlt hat",
                     },
                 },
             },
@@ -6810,14 +6811,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Hogwarts
         [typeof(SHogwarts)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SHogwarts.House] = new()
                 {
                     // English: Which House was {1} solved for in {0}?
                     // Example: Which House was Binary Puzzle solved for in Hogwarts?
-                    Question = "Für welches Haus wurde bei {0} {1} gelöst?",
+                    Question = "Von welchem Haus wurde bei {0} {1} entschärft?",
                     Answers = new()
                     {
                         ["Gryffindor"] = "Gryffindor",
@@ -6830,7 +6830,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which module was solved for {1} in {0}?
                     // Example: Which module was solved for Gryffindor in Hogwarts?
-                    Question = "Welches Modul wurde bei {0} für {1} gelöst?",
+                    Question = "Welches Modul wurde bei {0} von {1} entschärft?",
                     Arguments = new()
                     {
                         ["Gryffindor"] = "Gryffindor",
@@ -6859,7 +6859,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Holographic Memory
         [typeof(SHolographicMemory)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Holographisches Gedächtnis",
             ModuleNameDative = "Holographischen Gedächtnis",
             Questions = new()
@@ -6896,7 +6895,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Horrible Memory
         [typeof(SHorribleMemory)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Grausiges Memory",
             ModuleNameDative = "Grausigen Memory",
             Questions = new()
@@ -6966,7 +6964,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Hunting
         [typeof(SHunting)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Jagd",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SHunting.ColumnsRows] = new()
@@ -7003,7 +7002,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} rotation in {0}?
                     // Example: What was the first rotation in The Hypercube?
-                    Question = "Was war die {1}e Rotation in {0}?",
+                    Question = "Was war bei {0} die {1}e Rotation?",
                 },
             },
         },
