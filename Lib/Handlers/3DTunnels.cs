@@ -19,8 +19,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "ThreeDTunnels");
         yield return WaitForSolve;
 
-        var symbols = GetStaticField<string>(comp.GetType(), "_symbols").Get();
-        var targetNodeNames = GetListField<int>(comp, "_targetNodes")
+        var symbols = GetField<string>(comp, "_symbols").Get(v => v.Length != 27 ? "expected length 27" : !v.All(c => (c >= 'a' && c <= 'z') || c == '.') ? "expected a-z and . (period)" : null);
+        var targetNodeNames = GetArrayField<int>(comp, "_targetNodes")
             .Get(tns => tns.Any(tn => tn < 0 || tn >= symbols.Length) ? "invalid symbols" : null)
             .Select(tn => symbols[tn].ToString())
             .ToArray();
