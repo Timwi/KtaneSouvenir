@@ -27,7 +27,7 @@ public partial class SouvenirModule
                 var tones = convert.Invoke(word);
                 // The source code says 0.11f, but the decompilation (and my ears) says 0.2f
                 var sounds = tones.Select((t, i) => (Sounds.AudioPosition) (DialtonesAudio[t - '0'], i * 0.2f)).ToArray();
-                _dialtonesAnswers[tones] = Sounds.Combine(tones, sounds);
+                _dialtonesAnswers[tones] = Sounds.Combine($"Diatones_{tones}", sounds);
             }
         }
 

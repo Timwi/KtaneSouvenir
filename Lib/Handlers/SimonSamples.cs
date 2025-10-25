@@ -23,16 +23,12 @@ public partial class SouvenirModule
 
         var foreignClips = new string[] { "Kick", "Snare", "HiHat", "OpenHiHat" }.Select(s => Sounds.GetForeignClip("simonSamples", s)).ToArray();
 
-        AudioClip generate(string call) =>
-            Sounds.Combine($"samples-{call.Replace('0', 'K').Replace('1', 'S').Replace('2', 'H').Replace('3', 'O')}",
+        var allCalls = possibleCalls.Select(call =>
+            Sounds.Combine($"SimonSamples_{call.Replace('0', 'K').Replace('1', 'S').Replace('2', 'H').Replace('3', 'O')}",
                 (0.0f, foreignClips[int.Parse(call.Substring(0, 1))]),
                 (0.5f, foreignClips[int.Parse(call.Substring(1, 1))]),
                 (1.0f, foreignClips[int.Parse(call.Substring(2, 1))]),
-                (1.5f, foreignClips[int.Parse(call.Substring(3, 1))])
-            );
-
-        AudioClip[] allCalls = possibleCalls.Select(generate).ToArray();
-        _unityObjectsToDestroyLater.AddRange(allCalls);
+                (1.5f, foreignClips[int.Parse(call.Substring(3, 1))]))).ToArray();
 
         yield return WaitForSolve;
 

@@ -32,6 +32,8 @@ public static class Sounds
         public readonly int BufferSize => EmptySize + DataSize;
     }
 
+    private static Dictionary<string, AudioClip> _cachedCombinedAudio = [];
+
     /// <summary>
     ///     Combines multiple audio clips together via addition. Each clip is assumed to have the same sample rate and channel
     ///     count.</summary>
@@ -43,30 +45,15 @@ public static class Sounds
     ///     The clips to combine.</param>
     /// <returns>
     ///     The new audio clip.</returns>
-    public static AudioClip Combine(string name, params AudioPosition[] clips) => Combine(clips, name, null);
-
-    /// <summary>
-    ///     Combines multiple audio clips together via addition. Each clip is assumed to have the same sample rate and channel
-    ///     count. Any sound after the specified length is ignored.</summary>
-    /// <remarks>
-    ///     See <see cref="SouvenirModule.ProcessSynesthesia(ModuleData)"/> for an example of how to use this.</remarks>
-    /// <param name="name">
-    ///     The name of the final clip.</param>
-    /// <param name="name">
-    ///     The length of the final clip.</param>
-    /// <param name="clips">
-    ///     The clips to combine.</param>
-    /// <returns>
-    ///     The new audio clip.</returns>
-    public static AudioClip Combine(string name, float length, params AudioPosition[] clips) => Combine(clips, name, length);
-
-    private static AudioClip Combine(AudioPosition[] clips, string name, float? length)
+    public static AudioClip Combine(string name, params AudioPosition[] clips)
     {
-        if (clips is not { Length: > 0 }) throw new ArgumentException("No clips provided.", "clips");
+        if (_cachedCombinedAudio.TryGetValue(name, out var cachedClip))
+            return cachedClip;
 
-        var bufferSize = length is null
-            ? clips.Select(c => c.BufferSize).Max()
-            : (int) (length * clips[0].Clip.frequency * clips[0].Clip.channels);
+        if (clips is not { Length: > 0 })
+            throw new ArgumentException("No clips provided.", "clips");
+
+        var bufferSize = clips.Select(c => c.BufferSize).Max();
         var buffer = new float[bufferSize];
 
         foreach (var c in clips)
@@ -89,31 +76,17 @@ public static class Sounds
         return clip.Inject();
     }
 
-    /// <summary>
-    ///     Generates an empty audio clip of the given length.</summary>
-    /// <param name="length">
-    ///     The length of the clip in seconds.</param>
-    /// <param name="name">
-    ///     The name of the clip.</param>
-    /// <returns>
-    ///     The audio clip.</returns>
-    public static AudioClip Empty(float length, string name = "Empty") =>
-        AudioClip.Create(name, (int) (length * 44100), 1, 44100, true, (arr) => Array.Clear(arr, 0, arr.Length)).Inject();
-
-    private static Action<List<AudioClip>, string> _injectAudio;
+    private static Action<List<AudioClip>, string, int> _injectAudio;
     private static AudioClip Inject(this AudioClip clip)
     {
         if (_injectAudio is null)
         {
             var type = Type.GetType("Mod, Assembly-CSharp");
-            var nullMod = Expression.Constant(Activator.CreateInstance(type, ""), type);
+            var nullMod = Activator.CreateInstance(type, "");
             var method = type.GetMethod("AddAudioClipsToGroup", BindingFlags.Instance | BindingFlags.NonPublic);
-            var arg1 = Expression.Parameter(typeof(List<AudioClip>), "audioClips");
-            var arg2 = Expression.Parameter(typeof(string), "groupName");
-            var expr = Expression.Call(nullMod, method, arg1, arg2, Expression.Constant(32, typeof(int)));
-            _injectAudio = Expression.Lambda<Action<List<AudioClip>, string>>(expr, arg1, arg2).Compile();
+            _injectAudio = (Action<List<AudioClip>, string, int>) Delegate.CreateDelegate(typeof(Action<List<AudioClip>, string, int>), nullMod, method);
         }
-        _injectAudio([clip], $"{Generated}_{clip.name}");
+        _injectAudio([clip], $"{Generated}_{clip.name}", 32);
         return clip;
     }
 

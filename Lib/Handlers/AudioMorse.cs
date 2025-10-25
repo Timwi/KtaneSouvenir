@@ -53,9 +53,8 @@ public partial class SouvenirModule
                         break;
                 }
             }
-            return Sounds.Combine(k, clips.ToArray());
+            return Sounds.Combine($"AudioMorse_{k}", clips.ToArray());
         }).ToArray();
-        _unityObjectsToDestroyLater.AddRange(clips);
 
         yield return WaitForSolve;
         yield return question(SAudioMorse.Sound).Answers(clips[0], all: clips);
