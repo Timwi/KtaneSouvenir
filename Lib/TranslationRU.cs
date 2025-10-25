@@ -8,6 +8,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
 {
     public sealed class QuestionTranslationInfo_ru : QuestionTranslationInfo
     {
+        public string ModuleName;
         public Conjugation Conjugation = в_PrepositiveMascNeuter;
     }
 
@@ -49,7 +50,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
     {
         if (_translations.Get(qAttr.Handler.EnumType) is not { } tr || tr.Questions.Get(qAttr.EnumValue) is not { } qtr)
             return base.FormatModuleName(qAttr, addSolveCount, numSolved);
-        var moduleName = tr.ModuleName ?? qAttr.Handler.ModuleNameWithThe;
+        var moduleName = qtr.ModuleName ?? tr.ModuleName ?? qAttr.Handler.ModuleNameWithThe;
         return
             addSolveCount ? qtr.Conjugation switch
             {
