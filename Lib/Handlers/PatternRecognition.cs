@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using static Souvenir.AnswerLayout;
 
@@ -17,10 +16,9 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "PatternRecognitionScript");
         yield return WaitForSolve;
 
-        var patterns = GetArrayField<object>(comp, "patterns").Get(expectedLength: 6);
-        var fldPattern = GetField<string>(patterns[0], "Pattern", isPublic: true);
-        var patternStrs = patterns.Select(x => fldPattern.Get().Select(y => (y == '-' ? "▬" : "●")).JoinString(" ")).ToArray();
+        var patterns = GetArrayField<string>(comp, "logPatterns").Get(expectedLength: 6);
+        var selectedPatternIx = GetIntField(comp, "selectedPattern").Get(min: 0, max: 5);
 
-        yield return question(SPatternRecognition.Pattern).Answers(patternStrs[GetIntField(comp, "selectedPattern").Get(min: 0, max: 5)], preferredWrong: patternStrs);
+        yield return question(SPatternRecognition.Pattern).Answers(patterns[selectedPatternIx], preferredWrong: patterns);
     }
 }
