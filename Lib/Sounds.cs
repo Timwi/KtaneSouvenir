@@ -73,7 +73,9 @@ public static class Sounds
 
         var clip = AudioClip.Create(name, bufferSize / clips[0].Clip.channels, clips[0].Clip.channels, clips[0].Clip.frequency, false);
         clip.SetData(buffer, 0);
-        return clip.Inject();
+        var injected = clip.Inject();
+        _cachedCombinedAudio[name] = injected;
+        return injected;
     }
 
     private static Action<List<AudioClip>, string, int> _injectAudio;

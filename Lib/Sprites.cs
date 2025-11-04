@@ -175,7 +175,8 @@ public static class Sprites
                 filterMode = FilterMode.Bilinear
             };
 
-            answer.LoadAudioData();
+            if (answer.loadState != AudioDataLoadState.Loaded)
+                answer.LoadAudioData();
             var result = Ut.NewArray<Color>(_width * _height, _ => new Color32(0xFF, 0xF8, 0xDD, 0x00));
             tex.SetPixels(result);
             tex.Apply(false, false);
