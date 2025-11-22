@@ -9712,6 +9712,20 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // Noise Identification
+        [typeof(SNoiseIdentification)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SNoiseIdentification.Noises] = new()
+                {
+                    // English: What was the first displayed Noise Type in {0}?
+                    Question = "What was the first displayed Noise Type in {0}?",
+                },
+            },
+        },
+
         // ❖
         [typeof(SNonverbalSimon)] = new()
         {

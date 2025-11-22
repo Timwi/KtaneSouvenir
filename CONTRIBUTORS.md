@@ -229,6 +229,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Melody Sequencer         │  Goofy
     Minsk Metro              │  rand06
     Module Maze              │  River
+    Noise Identification     │  thunder725
     Old AI                   │  noting3548
     Order Picking            │  Brawlboxgaming
     Placement Roulette       │  Brawlboxgaming
