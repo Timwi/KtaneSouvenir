@@ -5976,6 +5976,20 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // Giants Cipher
+        [typeof(SGiantsCipher)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SGiantsCipher.Keywords] = new()
+                {
+                    // English: What was the displayed Keyword in {0}?
+                    Question = "What was the displayed Keyword in {0}?",
+                },
+            },
+        },
+
         // Girlfriend
         [typeof(SGirlfriend)] = new()
         {

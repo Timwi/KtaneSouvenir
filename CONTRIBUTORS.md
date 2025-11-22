@@ -220,6 +220,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Exoplanets               │  Brawlboxgaming
     Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris
+    Giants Cipher            │  thunder725
     Gryphons                 │  JerryEris
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
