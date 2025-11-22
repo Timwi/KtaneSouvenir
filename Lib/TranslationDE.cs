@@ -15974,6 +15974,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // UFO Satellites
+        [typeof(SUfoSatellites)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SUfoSatellites.Numbers] = new()
+                {
+                    // English: Which of those numbers was NOT present on {0}?
+                    Question = "Which of those numbers was NOT present on {0}?",
+                },
+            },
+        },
+
         // Ultimate Cipher
         [typeof(SUltimateCipher)] = new()
         {

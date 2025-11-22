@@ -15650,6 +15650,20 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // UFO Satellites
+        [typeof(SUfoSatellites)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SUfoSatellites.Numbers] = new()
+                {
+                    // English: Which of those numbers was NOT present on {0}?
+                    Question = "Which of those numbers was NOT present on {0}?",
+                },
+            },
+        },
+
         // Ultimate Cipher
         [typeof(SUltimateCipher)] = new()
         {
