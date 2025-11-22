@@ -6164,8 +6164,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SGiantsCipher.Keywords] = new()
                 {
-                    // English: What was the displayed Keyword in {0}?
-                    Question = "What was the displayed Keyword in {0}?",
+                    // English: What was the displayed keyword in {0}?
+                    Question = "What was the displayed keyword in {0}?",
                 },
             },
         },
@@ -9965,8 +9965,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SNoiseIdentification.Noises] = new()
                 {
-                    // English: What was the first displayed Noise Type in {0}?
-                    Question = "What was the first displayed Noise Type in {0}?",
+                    // English: What was the first displayed noise type in {0}?
+                    Question = "What was the first displayed noise type in {0}?",
                 },
             },
         },
@@ -15982,8 +15982,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SUfoSatellites.Numbers] = new()
                 {
-                    // English: Which of those numbers was NOT present on {0}?
-                    Question = "Which of those numbers was NOT present on {0}?",
+                    // English: Which number was not present on {0}?
+                    Question = "Which number was not present on {0}?",
                 },
             },
         },

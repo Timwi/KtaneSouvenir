@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
 public enum SNoiseIdentification
 {
-    [SouvenirQuestion("What was the first displayed Noise Type in {0}?", TwoColumns4Answers, "Crystal", "Liquid", "Moisture", "Perlin", "Voronoi", "White")]
+    [SouvenirQuestion("What was the first displayed noise type in {0}?", TwoColumns4Answers, "Crystal", "Liquid", "Moisture", "Perlin", "Voronoi", "White")]
     Noises
 }
 
