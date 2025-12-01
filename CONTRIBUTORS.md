@@ -224,6 +224,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Gryphons                 │  JerryEris
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
+    Lime Arrows              │  thunder725
     Mahjong                  │  River
     Main Page                │  ObjectsCountries
     Mega Man 2               │  Goofy

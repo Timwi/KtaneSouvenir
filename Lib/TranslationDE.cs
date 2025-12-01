@@ -8074,6 +8074,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Lime Arrows
+        [typeof(SLimeArrows)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SLimeArrows.Coordinates] = new()
+                {
+                    // English: What was the starting coordinate in {0}?
+                    Question = "What was the starting coordinate in {0}?",
+                },
+            },
+        },
+
         // Linq
         [typeof(SLinq)] = new()
         {

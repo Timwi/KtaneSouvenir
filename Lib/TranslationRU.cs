@@ -7927,6 +7927,20 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Lime Arrows
+        [typeof(SLimeArrows)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SLimeArrows.Coordinates] = new()
+                {
+                    // English: What was the starting coordinate in {0}?
+                    Question = "What was the starting coordinate in {0}?",
+                },
+            },
+        },
+
         // Linq
         [typeof(SLinq)] = new()
         {
