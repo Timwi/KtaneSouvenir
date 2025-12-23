@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -14,7 +14,7 @@ public enum SMouseInTheMaze
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MouseInTheMaze", "Mouse in the Maze", typeof(SMouseInTheMaze), "Timwi")]
+    [SouvenirHandler("MouseInTheMaze", "Mouse In The Maze", typeof(SMouseInTheMaze), "Timwi")]
     private IEnumerator<SouvenirInstruction> ProcessMouseInTheMaze(ModuleData module)
     {
         var comp = GetComponent(module, "MouseInTheMazeModule");

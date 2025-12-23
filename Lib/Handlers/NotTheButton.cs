@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -11,7 +11,7 @@ public enum SNotTheButton
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NotButton", "Not The Button", typeof(SNotTheButton), "Andrio Celos")]
+    [SouvenirHandler("NotButton", "Not the Button", typeof(SNotTheButton), "Andrio Celos")]
     private IEnumerator<SouvenirInstruction> ProcessNotTheButton(ModuleData module)
     {
         var comp = GetComponent(module, "NotButton");

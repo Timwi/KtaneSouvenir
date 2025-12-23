@@ -9201,7 +9201,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Mouse in the Maze
+        // Mouse In The Maze
         [typeof(SMouseInTheMaze)] = new()
         {
             ModuleName = "迷路のネズミ",
@@ -10367,7 +10367,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Not The Button
+        // Not the Button
         [typeof(SNotTheButton)] = new()
         {
             ModuleName = "偽ボタン",

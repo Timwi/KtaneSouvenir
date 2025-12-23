@@ -9247,7 +9247,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Mouse in the Maze
+        // Mouse In The Maze
         [typeof(SMouseInTheMaze)] = new()
         {
             ModuleName = "Мыши в лабиринте",
@@ -10413,7 +10413,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Not The Button
+        // Not the Button
         [typeof(SNotTheButton)] = new()
         {
             ModuleName = "Не кнопки",

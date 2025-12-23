@@ -29,7 +29,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Caesar Cycle         │  Flags                 │  Moon, The                │  Shape Shift          │  Uncolored Switches
     Calendar             │  Forest Cipher         │  Morse War                │  Shifted Maze         │  Vcrcs
     Cartinese            │  Gamepad, The          │  Morsematics              │  Silly Slots          │  Visual Impairment
-    Cheap Checkout       │  Glitched Button, The  │  Mouse in the Maze        │  Silo Authorization   │  Wire, The
+    Cheap Checkout       │  Glitched Button, The  │  Mouse In The Maze        │  Silo Authorization   │  Wire, The
     Chess                │  Gray Button, The      │  Multicolored Switches    │  Simon Samples        │  Yahtzee
     Chord Qualities      │  Green Button, The     │  Murder                   │  Simon Screams        │  Yellow Button, The
     Color Braille        │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Zero, Zero
@@ -152,7 +152,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 ## Implemented by Andrio Celos (14)
 
     Button, The  │  Not Keypad      │  Not Simaze          │  Perspective Pegs  │  Wire Ordering
-    Maze         │  Not Maze        │  Not The Button      │  Simon Says        │  Wire Sequence
+    Maze         │  Not Maze        │  Not the Button      │  Simon Says        │  Wire Sequence
     Memory       │  Not Morse Code  │  Not Who’s on First  │  Who’s on First    │
 
 ## Implemented by CaitSith2 (13)

@@ -9425,7 +9425,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Mouse in the Maze
+        // Mouse In The Maze
         [typeof(SMouseInTheMaze)] = new()
         {
             ModuleName = "Maus im Labyrinth",
@@ -10616,7 +10616,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Not The Button
+        // Not the Button
         [typeof(SNotTheButton)] = new()
         {
             ModuleName = "Der Knopf Mal Anders",
