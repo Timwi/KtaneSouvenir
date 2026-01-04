@@ -7,10 +7,10 @@ public enum SDNAMutation
     [SouvenirQuestion("What was the letter of the {1} given nucleotide in {0}?", TwoColumns4Answers, "G", "C", "A", "T", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Letter,
 
-    [SouvenirQuestion("What was the color of the {1} given nucleotide in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the color of the {1} given nucleotide in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     NucleotideColor,
 
-    [SouvenirQuestion("What was the color of the {1} given DNA strand in {0}?", TwoColumns4Answers, "Green", "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the color of the {1} given DNA strand in {0}?", TwoColumns4Answers, "Green", "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     StrandColor
 }
 
@@ -31,7 +31,7 @@ public partial class SouvenirModule
         var nucleotideColors = SDNAMutation.NucleotideColor.GetAnswers();
         var strandColors = SDNAMutation.StrandColor.GetAnswers();
 
-        for (var i = 0; i < 9; i ++)
+        for (var i = 0; i < 9; i++)
         {
             yield return question(SDNAMutation.Letter, args: [Ordinal(i + 1)]).Answers(letters[answerChemicals[i]]);
             yield return question(SDNAMutation.NucleotideColor, args: [Ordinal(i + 1)]).Answers(nucleotideColors[answerNucleotideColor[i]]);
