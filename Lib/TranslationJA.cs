@@ -4298,6 +4298,33 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // DNA Mutation
+        [typeof(SDNAMutation)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SDNAMutation.Letter] = new()
+                {
+                    // English: What was the letter of the {1} given nucleotide in {0}?
+                    // Example: What was the letter of the first given nucleotide in DNA Mutation?
+                    Question = "What was the letter of the {1} given nucleotide in {0}?",
+                },
+                [SDNAMutation.NucleotideColor] = new()
+                {
+                    // English: What was the color of the {1} given nucleotide in {0}?
+                    // Example: What was the color of the first given nucleotide in DNA Mutation?
+                    Question = "What was the color of the {1} given nucleotide in {0}?",
+                },
+                [SDNAMutation.StrandColor] = new()
+                {
+                    // English: What was the color of the {1} given DNA strand in {0}?
+                    // Example: What was the color of the first given DNA strand in DNA Mutation?
+                    Question = "What was the color of the {1} given DNA strand in {0}?",
+                },
+            },
+        },
+
         // Doofenshmirtz Evil Inc.
         [typeof(SDoofenshmirtzEvilInc)] = new()
         {

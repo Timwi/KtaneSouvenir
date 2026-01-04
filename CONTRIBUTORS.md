@@ -204,6 +204,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Catchphrase   │  Long Words  │  Qwirkle
     Digit String  │  Metapuzzle  │  Raiding Temples
 
+## Implemented by thunder725 (6)
+
+    DNA Mutation   │  Lime Arrows           │  Toxic Crystals
+    Giants Cipher  │  Noise Identification  │  UFO Satellites
+
 ## Others
 
     MODULE                   │  IMPLEMENTED BY
@@ -220,18 +225,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Exoplanets               │  Brawlboxgaming
     Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris
-    Giants Cipher            │  thunder725
     Gryphons                 │  JerryEris
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
-    Lime Arrows              │  thunder725
     Mahjong                  │  River
     Main Page                │  ObjectsCountries
     Mega Man 2               │  Goofy
     Melody Sequencer         │  Goofy
     Minsk Metro              │  rand06
     Module Maze              │  River
-    Noise Identification     │  thunder725
     Old AI                   │  noting3548
     Order Picking            │  Brawlboxgaming
     Placement Roulette       │  Brawlboxgaming
@@ -246,8 +248,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Simon Sends              │  EternityShack
     Simon Stages             │  Espik
     Simon Stops              │  JerryEris
-    Toxic Crystals           │  thunder725
-    UFO Satellites           │  thunder725
     Wavetapping              │  KingSlendy
     XmORse Code              │  shortc1rcuit
 
