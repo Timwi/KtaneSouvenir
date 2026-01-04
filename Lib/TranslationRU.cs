@@ -15535,6 +15535,20 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Toxic Crystals
+        [typeof(SToxicCrystals)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [SToxicCrystals.Letter] = new()
+                {
+                    // English: What letter was written on the casing when solving {0}?
+                    Question = "What letter was written on the casing when solving {0}?",
+                },
+            },
+        },
+
         // Transmitted Morse
         [typeof(STransmittedMorse)] = new()
         {
