@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -42,7 +42,7 @@ public partial class SouvenirModule
                 currentStage = newStage;
                 dateArr[newStage] = fldDate.Get();
                 monthArr[newStage] = fldMonth.Get();
-                yearArr[newStage] = $"{fldCentury.Get()}{fldYear.Get()}";
+                yearArr[newStage] = $"{fldCentury.Get()}{fldYear.Get():d2}";
             }
             yield return null;
         }
