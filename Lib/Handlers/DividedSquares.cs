@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -18,7 +18,7 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "DividedSquaresModule");
         if (GetField<int?>(comp, "_correctNumSolved").Get(nullAllowed: true) is null)
-            yield return legitimatelyNoQuestion(module, "The module became solvable at any solve count (either solves > 199 or something went wrong)");
+            yield return legitimatelyNoQuestion(module, "Divided Squares became solvable at any solve count (either all unignored modules were solved before it, or solves > 199).");
 
         var len = GetIntField(comp, "_sideLength").Get(1, 13);
         var b = GetIntField(comp, "_colorB").Get(0, 5);
