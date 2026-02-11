@@ -44,8 +44,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var disableSelectables = false;
-
         foreach (var led in items.Get("Led", []))
         {
             var c1 = GetProperty<object>(led, "Color1", isPublic: true).Get(null, v => (int) v is < 0 or > 4 ? $"Unknown LED color {v}" : null).ToString();
@@ -56,7 +54,6 @@ public partial class SouvenirModule
                 ArgumentsFromQuestion = q => SVariety.LED.Equals(q) ? ["one\uE003 (LED)"] : ["an LED"],
                 PriorityFromQuestion = q => SVariety.LED.Equals(q) ? 0 : 1
             };
-            disableSelectables = true;
         }
 
         foreach (var display in items.Get("DigitDisplay", []))
@@ -76,7 +73,6 @@ public partial class SouvenirModule
                 ArgumentsFromQuestion = q => SVariety.DigitDisplay.Equals(q) ? ["one\uE003 (digit display)"] : ["a digit display"],
                 PriorityFromQuestion = q => SVariety.DigitDisplay.Equals(q) ? 0 : 1
             };
-            disableSelectables = true;
         }
 
         foreach (var display in items.Get("LetterDisplay", []))
@@ -95,7 +91,6 @@ public partial class SouvenirModule
                 ArgumentsFromQuestion = q => SVariety.LetterDisplay.Equals(q) ? ["one\uE003 (letter display)"] : ["a letter display"],
                 PriorityFromQuestion = q => SVariety.LetterDisplay.Equals(q) ? 0 : 1
             };
-            disableSelectables = true;
         }
 
         if (items.Get("Timer")?.Select(timer =>
@@ -117,7 +112,6 @@ public partial class SouvenirModule
                 ArgumentsFromQuestion = q => SVariety.Timer.Equals(q) ? ["one\uE003 (timer)"] : ["a timer"],
                 PriorityFromQuestion = q => SVariety.Timer.Equals(q) ? 0 : 1
             };
-            disableSelectables = true;
         }
 
         var cknobs = items.Get("ColoredKnob", []);
@@ -138,7 +132,6 @@ public partial class SouvenirModule
                 ArgumentsFromQuestion = q => SVariety.ColoredKnob.Equals(q) ? ["one\uE003 (colored knob)"] : ["a colored knob"],
                 PriorityFromQuestion = q => SVariety.ColoredKnob.Equals(q) ? 0 : 2
             };
-            disableSelectables = true;
         }
 
         if (items.Get("Bulb") is { } bulbs)
@@ -157,7 +150,6 @@ public partial class SouvenirModule
                 ArgumentsFromQuestion = q => SVariety.Bulb.Equals(q) ? ["one\uE003 (bulb)"] : ["a bulb"],
                 PriorityFromQuestion = q => SVariety.Bulb.Equals(q) ? 0 : 1
             };
-            disableSelectables = true;
         }
 
         if (items.Get("Key") != null)
@@ -248,18 +240,5 @@ public partial class SouvenirModule
             }
             yield return new Discriminator(SVariety.Has, "wire", args: ["a wire"]) { Priority = 1 };
         }
-
-        if (disableSelectables)
-            foreach (var c in GetField<KMSelectable>(comp, "ModuleSelectable", isPublic: true).Get().Children)
-                if (c is not null)
-                {
-                    c.OnInteract = () =>
-                    {
-                        Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, c.transform);
-                        c.AddInteractionPunch(.25f);
-                        return false;
-                    };
-                    c.OnInteractEnded = () => { };
-                }
     }
 }
