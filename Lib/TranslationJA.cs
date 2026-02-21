@@ -8757,18 +8757,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // Example: What was the displayed number in the first stage of Memory?
                     Question = "{0}のステージ{1}で表示された数は？",
                 },
-                [SMemory.Position] = new()
-                {
-                    // English: In what position was the button that you pressed in the {1} stage of {0}?
-                    // Example: In what position was the button that you pressed in the first stage of Memory?
-                    Question = "{0}のステージ{1}で押したボタンの位置は？",
-                },
-                [SMemory.Label] = new()
-                {
-                    // English: What was the label of the button that you pressed in the {1} stage of {0}?
-                    // Example: What was the label of the button that you pressed in the first stage of Memory?
-                    Question = "{0}のステージ{1}で押したボタンのラベルは？",
-                },
             },
         },
 

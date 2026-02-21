@@ -8991,18 +8991,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // Example: What was the displayed number in the first stage of Memory?
                     Question = "What was the displayed number in the {1} stage of {0}?",
                 },
-                [SMemory.Position] = new()
-                {
-                    // English: In what position was the button that you pressed in the {1} stage of {0}?
-                    // Example: In what position was the button that you pressed in the first stage of Memory?
-                    Question = "In what position was the button that you pressed in the {1} stage of {0}?",
-                },
-                [SMemory.Label] = new()
-                {
-                    // English: What was the label of the button that you pressed in the {1} stage of {0}?
-                    // Example: What was the label of the button that you pressed in the first stage of Memory?
-                    Question = "What was the label of the button that you pressed in the {1} stage of {0}?",
-                },
             },
         },
 

@@ -8808,20 +8808,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     Question = "Какая цифра была на экране на {1}-м этапе {0}?",
                     Conjugation = Conjugation.GenitiveFeminine,
                 },
-                [SMemory.Position] = new()
-                {
-                    // English: In what position was the button that you pressed in the {1} stage of {0}?
-                    // Example: In what position was the button that you pressed in the first stage of Memory?
-                    Question = "На какой позиции была кнопка, которую вы нажали на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveFeminine,
-                },
-                [SMemory.Label] = new()
-                {
-                    // English: What was the label of the button that you pressed in the {1} stage of {0}?
-                    // Example: What was the label of the button that you pressed in the first stage of Memory?
-                    Question = "С каким значением была кнопка, которую вы нажали на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveFeminine,
-                },
             },
         },
 
