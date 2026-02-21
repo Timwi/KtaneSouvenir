@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SCatchphrase
@@ -16,14 +16,22 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessCatchphrase(ModuleData module)
     {
         var comp = GetComponent(module, "catchphraseScript");
+        bool[] isPanelSolved = null;
+        module.Module.OnPass += () =>
+        {
+            // Find out which panels were removed (it’s possible to solve the module without removing all of them)
+            isPanelSolved = GetArrayField<KMSelectable>(comp, "panels", isPublic: true).Get(expectedLength: 4)
+                .Select(panel => panel.GetComponentInParent<Animator>().GetBool("shrink"))
+                .ToArray();
+            return false;
+        };
         yield return WaitForSolve;
 
-        var panelColors = GetListField<string>(comp, "selectedColours").Get(expectedLength: 4);
         var panelNames = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
-
-        panelColors = panelColors.Select(x => char.ToUpperInvariant(x[0]) + x.Substring(1)).ToList();
+        var panelColors = GetListField<string>(comp, "selectedColours").Get(expectedLength: 4).Select(x => char.ToUpperInvariant(x[0]) + x.Substring(1)).ToArray();
 
         for (var panel = 0; panel < 4; panel++)
-            yield return question(SCatchphrase.Colour, args: [panelNames[panel]]).Answers(panelColors[panel]);
+            if (isPanelSolved[panel])
+                yield return question(SCatchphrase.Colour, args: [panelNames[panel]]).Answers(panelColors[panel]);
     }
 }
