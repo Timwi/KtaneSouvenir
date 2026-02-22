@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -9419,11 +9419,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             Questions = new()
             {
-                [SMorsematics.ReceivedLetters] = new()
+                [SMorsematics.QReceivedLetters] = new()
                 {
-                    // English: What was the {1} received letter in {0}?
-                    // Example: What was the first received letter in Morsematics?
-                    Question = "What was the {1} received letter in {0}?",
+                    // English: Which of these letters was {1} in {0}?
+                    // Example: Which of these letters was present in Morsematics?
+                    Question = "Which of these letters was {1} in {0}?",
                 },
             },
         },

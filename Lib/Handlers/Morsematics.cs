@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
 
 public enum SMorsematics
 {
-    [SouvenirQuestion("What was the {1} received letter in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    [AnswerGenerator.Strings('A', 'Z')]
-    ReceivedLetters
+    [SouvenirQuestion("Which of these letters was {1} in {0}?", TwoColumns4Answers, Arguments = ["present", "not present"], ArgumentGroupSize = 1)]
+    [AnswerGenerator.Strings("A-Z")]
+    QReceivedLetters,
+
+    [SouvenirDiscriminator("the Morsematics that displayed a {0}", Arguments = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"], ArgumentGroupSize = 1)]
+    DReceivedLetters
 }
 
 public partial class SouvenirModule
@@ -20,7 +24,14 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        for (var i = 0; i < 3; i++)
-            yield return question(SMorsematics.ReceivedLetters, args: [Ordinal(i + 1)]).Answers(chars[i], preferredWrong: chars);
+        var alph = Enumerable.Range('A', 26).Select(c => ((char)c).ToString()).ToArray();
+
+        foreach (var ch in chars)
+            yield return new Discriminator(SMorsematics.DReceivedLetters, "ltrs", ch, [ch], avoidAnswers: [ch]);
+
+        yield return question(SMorsematics.QReceivedLetters, args: ["present"])
+            .Answers(chars);
+        yield return question(SMorsematics.QReceivedLetters, args: ["not present"])
+            .Answers(alph.Where(c => !chars.Contains(c)).ToArray(), preferredWrong: chars);
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -9177,14 +9177,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Morsematics
         [typeof(SMorsematics)] = new()
         {
-            ModuleName = "モールスマティック",
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SMorsematics.ReceivedLetters] = new()
+                [SMorsematics.QReceivedLetters] = new()
                 {
-                    // English: What was the {1} received letter in {0}?
-                    // Example: What was the first received letter in Morsematics?
-                    Question = "{0}で{1}番目に受信した文字は？",
+                    // English: Which of these letters was {1} in {0}?
+                    // Example: Which of these letters was present in Morsematics?
+                    Question = "Which of these letters was {1} in {0}?",
                 },
             },
         },
