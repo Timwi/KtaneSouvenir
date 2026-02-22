@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -18,8 +18,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var initialVirtualViewAngle = GetField<float>(comp, "initialVirtualViewAngle").Get();
-        var initialAnglePos = Array.IndexOf(new[] { 0f, 90f, 180f, 270f }, initialVirtualViewAngle);
+        var initialVirtualViewAngle = GetField<float>(comp, "initialVirtualViewAngle").Get() % 360;
+        var initialAnglePos = Array.IndexOf([0f, 90f, 180f, 270f], initialVirtualViewAngle);
         if (initialAnglePos == -1)
             throw new AbandonModuleException($"‘initialVirtualViewAngle’ has unexpected value: {initialVirtualViewAngle}");
 
