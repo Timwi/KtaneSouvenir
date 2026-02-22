@@ -21,8 +21,8 @@ public abstract class TranslationInfo
 
 public class TranslationInfo<TQ> : TranslationInfo where TQ : QuestionTranslationInfo
 {
-    public Dictionary<Enum, TQ> Questions;
-    public Dictionary<Enum, DiscriminatorTranslationInfo> Discriminators;
+    public Dictionary<Enum, TQ> Questions = [];
+    public Dictionary<Enum, DiscriminatorTranslationInfo> Discriminators = [];
 
     public override QuestionTranslationInfo GetQuestion(Enum enumValue) => Questions.Get(enumValue);
     public override DiscriminatorTranslationInfo GetDiscriminator(Enum enumValue) => Discriminators.Get(enumValue);
