@@ -1,6 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SColourFlash
@@ -17,6 +17,11 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "ColourFlashModule");
 
         yield return WaitForSolve;
+
+        var display = GetField<TextMesh>(comp, "Indicator", isPublic: true).Get();
+
+        if (display.text.Length == 0)
+            yield return legitimatelyNoQuestion(module, "The module was submitted while the display was blank, and therefore it could be determined that the last word's color was white.");
 
         var fldColorSequence = GetArrayField<object>(comp, "_colourSequence").Get(ar => ar.Length != 8 ? "expected length 8" : null);
         var colorValue = GetField<object>(fldColorSequence.GetValue(7), "ColourValue", isPublic: true).Get();
