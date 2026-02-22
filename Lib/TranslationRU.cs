@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using static Souvenir.Translation_ru.Conjugation;
 
@@ -9229,6 +9229,20 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: Which of these letters was {1} in {0}?
                     // Example: Which of these letters was present in Morsematics?
                     Question = "Which of these letters was {1} in {0}?",
+                    Arguments = new()
+                    {
+                        ["present"] = "present",
+                        ["not present"] = "not present",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SMorsematics.DReceivedLetters] = new()
+                {
+                    // English: the Morsematics that displayed the letter {0}
+                    // Example: the Morsematics that displayed the letter A
+                    Discriminator = "the Morsematics that displayed a {0}",
                 },
             },
         },

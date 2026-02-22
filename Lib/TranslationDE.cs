@@ -9416,14 +9416,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Morsematics
         [typeof(SMorsematics)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Morsematik",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SMorsematics.QReceivedLetters] = new()
                 {
                     // English: Which of these letters was {1} in {0}?
                     // Example: Which of these letters was present in Morsematics?
-                    Question = "Which of these letters was {1} in {0}?",
+                    Question = "Welcher Buchstabe kam bei {0} {1}?",
+                    Arguments = new()
+                    {
+                        ["present"] = "vor",
+                        ["not present"] = "nicht vor",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SMorsematics.DReceivedLetters] = new()
+                {
+                    // English: the Morsematics that displayed the letter {0}
+                    // Example: the Morsematics that displayed the letter A
+                    Discriminator = "der Morsematik, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
