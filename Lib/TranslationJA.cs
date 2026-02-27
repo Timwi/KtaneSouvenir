@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -8020,10 +8020,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["gate B"] = "ゲートB",
                         ["gate C"] = "ゲートC",
                         ["gate D"] = "ゲートD",
-                        ["gate E"] = "ゲートE",
-                        ["gate F"] = "ゲートF",
-                        ["gate G"] = "ゲートG",
-                        ["the duplicated gate"] = "重複したゲート",
                     },
                 },
             },

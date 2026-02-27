@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -8247,10 +8247,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["gate B"] = "gate B",
                         ["gate C"] = "gate C",
                         ["gate D"] = "gate D",
-                        ["gate E"] = "gate E",
-                        ["gate F"] = "gate F",
-                        ["gate G"] = "gate G",
-                        ["the duplicated gate"] = "the duplicated gate",
                     },
                 },
             },

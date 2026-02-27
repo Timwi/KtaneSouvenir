@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using static Souvenir.Translation_ru.Conjugation;
 
@@ -8085,10 +8085,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["gate B"] = "элемент B",
                         ["gate C"] = "элемент C",
                         ["gate D"] = "элемент D",
-                        ["gate E"] = "элемент E",
-                        ["gate F"] = "элемент F",
-                        ["gate G"] = "элемент G",
-                        ["the duplicated gate"] = "элемент-дубликат",
                     },
                 },
             },
