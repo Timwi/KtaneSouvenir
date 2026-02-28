@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -37,7 +37,16 @@ public partial class SouvenirModule
             .Select((countryName, countryIx) => FlagsSprites.FirstOrDefault(spr => spr.name == countryName) ?? throw new AbandonModuleException($"Country name “{countryName}” (country #{countryIx}) has no corresponding sprite."))
             .ToArray();
 
+
+        // Checks for the unicorn rule. Since Flags does not have any dedicated edgework/unicorn variables, we will have to check it ourselves.
+        var unicornApplies = false;
+        if (Bomb.GetSerialNumber().Any("WHITEFLAG".Contains) && Bomb.IsIndicatorOff(Indicator.BOB) && otherCountrySprites.Any(sprite => sprite.name == "France"))
+            unicornApplies = true;
+
         yield return WaitForSolve;
+
+        if (unicornApplies)
+            yield return legitimatelyNoQuestion(module, "The unicorn rule applied.");
 
         yield return question(SFlags.DisplayedNumber).Answers(number.ToString());
         yield return question(SFlags.MainCountry).Answers(mainCountrySprite, preferredWrong: otherCountrySprites);
