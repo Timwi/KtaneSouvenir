@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SForgetEverything
@@ -34,7 +35,9 @@ public partial class SouvenirModule
         if (myFirstDisplay.Length != 10)
             throw new AbandonModuleException($"First element of ‘DialDisplay’ had length {myFirstDisplay.Length}, when I expected length 10.");
 
-        yield return WaitForUnignoredModules;
+        // Acts as both WaitForUnignoredModules and WaitForSolve. This is in case there are more than 99 unignored modules, meaning Forget Everything can solve early.
+        while (!_noUnignoredModulesLeft && module.Unsolved)
+            yield return null;
 
         var stageOrdering = GetArrayField<int>(comp, "StageOrdering").Get();
         var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
