@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using static Souvenir.Translation_ru.Conjugation;
 
@@ -7977,11 +7977,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: Which year was displayed on {0}?
                     Question = "Какой год был показан {0}?",
-                },
-                [SLionsShare.RemovedLions] = new()
-                {
-                    // English: Which lion was present but removed in {0}?
-                    Question = "Какой лев изначально присутствовал, но потом был убран {0}?",
                 },
             },
         },

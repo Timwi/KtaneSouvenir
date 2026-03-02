@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -7915,11 +7915,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which year was displayed on {0}?
                     Question = "{0}に表示された年は？",
-                },
-                [SLionsShare.RemovedLions] = new()
-                {
-                    // English: Which lion was present but removed in {0}?
-                    Question = "{0}に存在したが除外されたライオンは？",
                 },
             },
         },
