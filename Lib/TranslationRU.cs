@@ -4882,18 +4882,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Encrypted Morse
         [typeof(SEncryptedMorse)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SEncryptedMorse.CallResponse] = new()
+                [SEncryptedMorse.Key] = new()
                 {
-                    // English: What was the {1} on {0}?
-                    // Example: What was the received call on Encrypted Morse?
-                    Question = "Какое было {1} {0}?",
-                    Arguments = new()
-                    {
-                        ["received call"] = "полученное сообщение",
-                        ["sent response"] = "отправленное сообщение",
-                    },
+                    // English: What was the received key in {0}?
+                    Question = "What was the received key in {0}?",
                 },
             },
         },

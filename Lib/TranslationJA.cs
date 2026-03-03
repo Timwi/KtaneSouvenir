@@ -4792,19 +4792,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Encrypted Morse
         [typeof(SEncryptedMorse)] = new()
         {
-            ModuleName = "暗号化モールス信号",
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SEncryptedMorse.CallResponse] = new()
+                [SEncryptedMorse.Key] = new()
                 {
-                    // English: What was the {1} on {0}?
-                    // Example: What was the received call on Encrypted Morse?
-                    Question = "{0}の{1}は？",
-                    Arguments = new()
-                    {
-                        ["received call"] = "受信した信号",
-                        ["sent response"] = "送信した返答",
-                    },
+                    // English: What was the received key in {0}?
+                    Question = "What was the received key in {0}?",
                 },
             },
         },
