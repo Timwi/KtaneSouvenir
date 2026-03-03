@@ -91,17 +91,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coordination       │  Match Refereeing  │  Not Perspective Pegs      │  Simon Said           │  Word Count
     Cyan Button, The   │  Mystic Square     │  Not The Bulb              │  Simon Shuffles       │  xobekuJ ehT
 
-## Implemented by luisdiogo98 (43)
+## Implemented by luisdiogo98 (42)
 
-    Accumulation         │  Deck of Many Things, The  │  Hypercube, The  │  Necronomicon, The   │  Tasha Squeals
-    Blockbusters         │  Decolored Squares         │  iPhone, The     │  Odd One Out         │  Ultracube, The
-    Boggle               │  Discolored Squares        │  Lasers          │  Passport Control    │  Unfair Cipher
-    Brush Strokes        │  Double Color              │  LEGOs           │  Pie                 │  USA Maze
-    Challenge & Contact  │  Encrypted Morse           │  Maze Scrambler  │  Retirement          │  Varicolored Squares
-    Code, The            │  Factory Maze              │  Maze³           │  Reverse Morse       │  Vexillology
-    Coffeebucks          │  Flashing Lights           │  Mazematics      │  Simon Scrambles     │  Zoni
-    Colored Keys         │  Free Parking              │  Modern Cipher   │  Sphere, The         │
-    Cube, The            │  Hexabutton, The           │  Morse Buttons   │  Splitting The Loot  │
+    Accumulation         │  Deck of Many Things, The  │  iPhone, The        │  Odd One Out         │  Ultracube, The
+    Blockbusters         │  Decolored Squares         │  Lasers             │  Passport Control    │  Unfair Cipher
+    Boggle               │  Discolored Squares        │  LEGOs              │  Pie                 │  USA Maze
+    Brush Strokes        │  Double Color              │  Maze Scrambler     │  Retirement          │  Varicolored Squares
+    Challenge & Contact  │  Factory Maze              │  Maze³              │  Reverse Morse       │  Vexillology
+    Code, The            │  Flashing Lights           │  Mazematics         │  Simon Scrambles     │  Zoni
+    Coffeebucks          │  Free Parking              │  Modern Cipher      │  Sphere, The         │
+    Colored Keys         │  Hexabutton, The           │  Morse Buttons      │  Splitting The Loot  │
+    Cube, The            │  Hypercube, The            │  Necronomicon, The  │  Tasha Squeals       │
 
 ## Implemented by Hawker (41)
 
@@ -223,6 +223,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Crazy Hamburger          │  noting3548
     Divisible Numbers        │  shortc1rcuit
     Elder Futhark            │  Goofy
+    Encrypted Morse          │  Espik
     Exoplanets               │  Brawlboxgaming
     Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris

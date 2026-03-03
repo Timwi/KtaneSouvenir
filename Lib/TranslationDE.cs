@@ -4945,21 +4945,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Encrypted Morse
         [typeof(SEncryptedMorse)] = new()
         {
-            ModuleName = "Verschlüsselte Morsezeichen",
-            ModuleNameDative = "Verschlüsselten Morsezeichen",
-            Gender = Gender.Plural,
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SEncryptedMorse.CallResponse] = new()
+                [SEncryptedMorse.Key] = new()
                 {
-                    // English: What was the {1} on {0}?
-                    // Example: What was the received call on Encrypted Morse?
-                    Question = "Was war bei {0} {1}?",
-                    Arguments = new()
-                    {
-                        ["received call"] = "die empfangene Botschaft",
-                        ["sent response"] = "die gesendete Antwort",
-                    },
+                    // English: What was the received key in {0}?
+                    Question = "What was the received key in {0}?",
                 },
             },
         },
