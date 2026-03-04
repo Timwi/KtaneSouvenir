@@ -12790,15 +12790,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Reverse Morse
         [typeof(SReverseMorse)] = new()
         {
-            ModuleName = "Morsezeichen Umgekehrt",
-            Gender = Gender.Plural,
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SReverseMorse.Characters] = new()
+                [SReverseMorse.Symbols] = new()
                 {
-                    // English: What was the {1} character in the {2} message of {0}?
-                    // Example: What was the first character in the first message of Reverse Morse?
-                    Question = "Was war bei {0} das {1}e Zeichen in der {2}en Nachricht?",
+                    // English: What was the {1} symbol in the {2} message of {0}?
+                    // Example: What was the first symbol in the first message of Reverse Morse?
+                    Question = "What was the {1} symbol in the {2} message of {0}?",
+                },
+                [SReverseMorse.Colors] = new()
+                {
+                    // English: What was the color of the {1} symbol in the {2} message of {0}?
+                    // Example: What was the color of the first symbol in the first message of Reverse Morse?
+                    Question = "What was the color of the {1} symbol in the {2} message of {0}?",
                 },
             },
         },

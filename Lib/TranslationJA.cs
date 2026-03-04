@@ -12466,14 +12466,20 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Reverse Morse
         [typeof(SReverseMorse)] = new()
         {
-            ModuleName = "逆モールス信号",
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SReverseMorse.Characters] = new()
+                [SReverseMorse.Symbols] = new()
                 {
-                    // English: What was the {1} character in the {2} message of {0}?
-                    // Example: What was the first character in the first message of Reverse Morse?
-                    Question = "{0}の{2}つ目のメッセージの{1}文字目は？",
+                    // English: What was the {1} symbol in the {2} message of {0}?
+                    // Example: What was the first symbol in the first message of Reverse Morse?
+                    Question = "What was the {1} symbol in the {2} message of {0}?",
+                },
+                [SReverseMorse.Colors] = new()
+                {
+                    // English: What was the color of the {1} symbol in the {2} message of {0}?
+                    // Example: What was the color of the first symbol in the first message of Reverse Morse?
+                    Question = "What was the color of the {1} symbol in the {2} message of {0}?",
                 },
             },
         },

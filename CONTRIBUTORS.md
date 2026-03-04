@@ -77,19 +77,20 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Binary          │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
 
-## Implemented by Quinn Wuest (55)
+## Implemented by Quinn Wuest (56)
 
-    .--/---/..-.       │  Denial Displays   │  Navigation Determination  │  Not X01              │  Simultaneous Simons
-    4D Tunnels         │  Double Digits     │  Neptune                   │  Off Keys             │  Slow Math
-    A Square           │  English Entries   │  Nim                       │  Papa’s Pizzeria      │  Small Talk
-    Alcoholic Rampage  │  Épelle-moi Ça     │  Not Colored Switches      │  Parity               │  Synapse Says
-    Ángel Hernández    │  Guess Who?        │  Not Connection Check      │  Quadrants            │  Triple Term
-    Bamboozled Again   │  Horrible Memory   │  Not Coordinates           │  RGB Encryption       │  Uncolour Flash
-    Big Circle         │  Hunting           │  Not Morsematics           │  Robo-Scanner         │  Unpleasant Squares
-    Bulb, The          │  Jewel Vault, The  │  Not Murder                │  Rule of Three        │  Varicolour Flash
-    Caesar Psycho      │  Letter Math       │  Not Number Pad            │  Scramboozled Eggain  │  Who’s on Gas
-    Coordination       │  Match Refereeing  │  Not Perspective Pegs      │  Simon Said           │  Word Count
-    Cyan Button, The   │  Mystic Square     │  Not The Bulb              │  Simon Shuffles       │  xobekuJ ehT
+    .--/---/..-.       │  Double Digits             │  Nim                   │  Parity               │  Synapse Says
+    4D Tunnels         │  English Entries           │  Not Colored Switches  │  Quadrants            │  Triple Term
+    A Square           │  Épelle-moi Ça             │  Not Connection Check  │  Reverse Morse        │  Uncolour Flash
+    Alcoholic Rampage  │  Guess Who?                │  Not Coordinates       │  RGB Encryption       │  Unpleasant Squares
+    Ángel Hernández    │  Horrible Memory           │  Not Morsematics       │  Robo-Scanner         │  Varicolour Flash
+    Bamboozled Again   │  Hunting                   │  Not Murder            │  Rule of Three        │  Who’s on Gas
+    Big Circle         │  Jewel Vault, The          │  Not Number Pad        │  Scramboozled Eggain  │  Word Count
+    Bulb, The          │  Letter Math               │  Not Perspective Pegs  │  Simon Said           │  xobekuJ ehT
+    Caesar Psycho      │  Match Refereeing          │  Not The Bulb          │  Simon Shuffles       │
+    Coordination       │  Mystic Square             │  Not X01               │  Simultaneous Simons  │
+    Cyan Button, The   │  Navigation Determination  │  Off Keys              │  Slow Math            │
+    Denial Displays    │  Neptune                   │  Papa’s Pizzeria       │  Small Talk           │
 
 ## Implemented by Hawker (41)
 
@@ -103,17 +104,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Conditional Buttons      │  Flavor Text           │  Ladder Lottery       │  Sonic & Knuckles                   │
     Customer Identification  │  Flavor Text EX        │  LED Grid             │  Spongebob Birthday Identification  │
 
-## Implemented by luisdiogo98 (41)
+## Implemented by luisdiogo98 (40)
 
-    Accumulation              │  Decolored Squares   │  Lasers             │  Passport Control    │  Unfair Cipher
-    Blockbusters              │  Discolored Squares  │  LEGOs              │  Pie                 │  USA Maze
-    Boggle                    │  Double Color        │  Maze Scrambler     │  Retirement          │  Varicolored Squares
-    Brush Strokes             │  Factory Maze        │  Maze³              │  Reverse Morse       │  Vexillology
-    Challenge & Contact       │  Flashing Lights     │  Mazematics         │  Simon Scrambles     │  Zoni
-    Code, The                 │  Free Parking        │  Modern Cipher      │  Sphere, The         │
-    Colored Keys              │  Hexabutton, The     │  Morse Buttons      │  Splitting The Loot  │
-    Cube, The                 │  Hypercube, The      │  Necronomicon, The  │  Tasha Squeals       │
-    Deck of Many Things, The  │  iPhone, The         │  Odd One Out        │  Ultracube, The      │
+    Accumulation         │  Deck of Many Things, The  │  Hypercube, The  │  Morse Buttons      │  Splitting The Loot
+    Blockbusters         │  Decolored Squares         │  iPhone, The     │  Necronomicon, The  │  Tasha Squeals
+    Boggle               │  Discolored Squares        │  Lasers          │  Odd One Out        │  Ultracube, The
+    Brush Strokes        │  Double Color              │  LEGOs           │  Passport Control   │  Unfair Cipher
+    Challenge & Contact  │  Factory Maze              │  Maze Scrambler  │  Pie                │  USA Maze
+    Code, The            │  Flashing Lights           │  Maze³           │  Retirement         │  Varicolored Squares
+    Colored Keys         │  Free Parking              │  Mazematics      │  Simon Scrambles    │  Vexillology
+    Cube, The            │  Hexabutton, The           │  Modern Cipher   │  Sphere, The        │  Zoni
 
 ## Implemented by BigCrunch22 (37)
 

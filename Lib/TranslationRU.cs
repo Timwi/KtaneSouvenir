@@ -12495,13 +12495,20 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Reverse Morse
         [typeof(SReverseMorse)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SReverseMorse.Characters] = new()
+                [SReverseMorse.Symbols] = new()
                 {
-                    // English: What was the {1} character in the {2} message of {0}?
-                    // Example: What was the first character in the first message of Reverse Morse?
-                    Question = "Какой был {1}-й символ в {2}-м сообщении {0}?",
+                    // English: What was the {1} symbol in the {2} message of {0}?
+                    // Example: What was the first symbol in the first message of Reverse Morse?
+                    Question = "What was the {1} symbol in the {2} message of {0}?",
+                },
+                [SReverseMorse.Colors] = new()
+                {
+                    // English: What was the color of the {1} symbol in the {2} message of {0}?
+                    // Example: What was the color of the first symbol in the first message of Reverse Morse?
+                    Question = "What was the color of the {1} symbol in the {2} message of {0}?",
                 },
             },
         },
