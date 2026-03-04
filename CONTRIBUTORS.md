@@ -91,18 +91,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coordination       │  Match Refereeing  │  Not Perspective Pegs      │  Simon Said           │  Word Count
     Cyan Button, The   │  Mystic Square     │  Not The Bulb              │  Simon Shuffles       │  xobekuJ ehT
 
-## Implemented by luisdiogo98 (42)
-
-    Accumulation         │  Deck of Many Things, The  │  iPhone, The        │  Odd One Out         │  Ultracube, The
-    Blockbusters         │  Decolored Squares         │  Lasers             │  Passport Control    │  Unfair Cipher
-    Boggle               │  Discolored Squares        │  LEGOs              │  Pie                 │  USA Maze
-    Brush Strokes        │  Double Color              │  Maze Scrambler     │  Retirement          │  Varicolored Squares
-    Challenge & Contact  │  Factory Maze              │  Maze³              │  Reverse Morse       │  Vexillology
-    Code, The            │  Flashing Lights           │  Mazematics         │  Simon Scrambles     │  Zoni
-    Coffeebucks          │  Free Parking              │  Modern Cipher      │  Sphere, The         │
-    Colored Keys         │  Hexabutton, The           │  Morse Buttons      │  Splitting The Loot  │
-    Cube, The            │  Hypercube, The            │  Necronomicon, The  │  Tasha Squeals       │
-
 ## Implemented by Hawker (41)
 
     3N+1                     │  DetoNATO              │  Garfield Kart        │  Mixometer                          │  Subway
@@ -114,6 +102,18 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cheat Checkout           │  Find The Date         │  Kuro                 │  Simon Serves                       │
     Conditional Buttons      │  Flavor Text           │  Ladder Lottery       │  Sonic & Knuckles                   │
     Customer Identification  │  Flavor Text EX        │  LED Grid             │  Spongebob Birthday Identification  │
+
+## Implemented by luisdiogo98 (41)
+
+    Accumulation              │  Decolored Squares   │  Lasers             │  Passport Control    │  Unfair Cipher
+    Blockbusters              │  Discolored Squares  │  LEGOs              │  Pie                 │  USA Maze
+    Boggle                    │  Double Color        │  Maze Scrambler     │  Retirement          │  Varicolored Squares
+    Brush Strokes             │  Factory Maze        │  Maze³              │  Reverse Morse       │  Vexillology
+    Challenge & Contact       │  Flashing Lights     │  Mazematics         │  Simon Scrambles     │  Zoni
+    Code, The                 │  Free Parking        │  Modern Cipher      │  Sphere, The         │
+    Colored Keys              │  Hexabutton, The     │  Morse Buttons      │  Splitting The Loot  │
+    Cube, The                 │  Hypercube, The      │  Necronomicon, The  │  Tasha Squeals       │
+    Deck of Many Things, The  │  iPhone, The         │  Odd One Out        │  Ultracube, The      │
 
 ## Implemented by BigCrunch22 (37)
 
@@ -200,6 +200,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Critters        │  Infinite Loop  │  Numbered Buttons    │  Pixel Cipher
     Factoring Maze  │  Interpunct     │  Password Destroyer  │
 
+## Implemented by Espik (6)
+
+    100 Levels of Defusal  │  Encrypted Morse  │  Regular Crazy Talk
+    Coffeebucks            │  Hyperlink, The   │  Simon Stages
+
 ## Implemented by GoodHood (6)
 
     Catchphrase   │  Long Words  │  Qwirkle
@@ -214,7 +219,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     MODULE                   │  IMPLEMENTED BY
     ═════════════════════════╪══════════════════
-    100 Levels of Defusal    │  Espik
     A Letter                 │  Sierra
     Arithmelogic             │  JerryEris
     Barcode Cipher           │  Brawlboxgaming
@@ -223,12 +227,10 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Crazy Hamburger          │  noting3548
     Divisible Numbers        │  shortc1rcuit
     Elder Futhark            │  Goofy
-    Encrypted Morse          │  Espik
     Exoplanets               │  Brawlboxgaming
     Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris
     Gryphons                 │  JerryEris
-    Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
     Mahjong                  │  River
     Main Page                │  ObjectsCountries
@@ -241,14 +243,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Placement Roulette       │  Brawlboxgaming
     Planets                  │  KingSlendy
     Railway Cargo Loading    │  LotsOfS
-    Regular Crazy Talk       │  Espik
     Reverse Polish Notation  │  shortc1rcuit
     Sbemail Songs            │  ObjectsCountries
     Schlag den Bomb          │  JerryEris
     Shapes And Bombs         │  KingSlendy
     Simon Selects            │  tachatat18
     Simon Sends              │  EternityShack
-    Simon Stages             │  Espik
     Simon Stops              │  JerryEris
     Wavetapping              │  KingSlendy
     XmORse Code              │  shortc1rcuit
