@@ -4629,21 +4629,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Double-Oh
-        [typeof(SDoubleOh)] = new()
-        {
-            ModuleName = "Doppel-Null",
-            Gender = Gender.Feminine,
-            Questions = new()
-            {
-                [SDoubleOh.SubmitButton] = new()
-                {
-                    // English: Which button was the submit button in {0}?
-                    Question = "Welcher Knopf war bei {0} der Eingabeknopf?",
-                },
-            },
-        },
-
         // Double Screen
         [typeof(SDoubleScreen)] = new()
         {
@@ -8024,33 +8009,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     {
                         ["black"] = "black",
                         ["white"] = "white",
-                    },
-                },
-            },
-        },
-
-        // Lasers
-        [typeof(SLasers)] = new()
-        {
-            NeedsTranslation = true,
-            Questions = new()
-            {
-                [SLasers.Hatches] = new()
-                {
-                    // English: What was the number on the {1} hatch on {0}?
-                    // Example: What was the number on the top-left hatch on Lasers?
-                    Question = "What was the number on the {1} hatch on {0}?",
-                    Arguments = new()
-                    {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["center"] = "center",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
                     },
                 },
             },

@@ -16,6 +16,8 @@ public partial class SouvenirModule
     [SouvenirHandler("CreationModule", "Creation", typeof(SCreation), "CaitSith2")]
     private IEnumerator<SouvenirInstruction> ProcessCreation(ModuleData module)
     {
+        // Note from Quinn Wuest:
+        // Intentionally leaving question/code as is so that other modules don't need to re-translate.
         var comp = GetComponent(module, "CreationModule");
         var fldDay = GetIntField(comp, "Day");
         var fldWeather = GetField<string>(comp, "Weather");
@@ -44,7 +46,6 @@ public partial class SouvenirModule
             currentWeather = fldWeather.Get(cw => !weatherNames.Contains(cw) ? "unknown weather" : null);
         }
 
-        for (var i = 0; i < allWeather.Count; i++)
-            yield return question(SCreation.Weather, args: [Ordinal(i + 1)]).Answers(allWeather[i]);
+        yield return question(SCreation.Weather, args: [Ordinal(1)]).Answers(allWeather[0]);
     }
 }

@@ -4587,20 +4587,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Double-Oh
-        [typeof(SDoubleOh)] = new()
-        {
-            ModuleName = "Агент Ноль-ноль",
-            Questions = new()
-            {
-                [SDoubleOh.SubmitButton] = new()
-                {
-                    // English: Which button was the submit button in {0}?
-                    Question = "Какая кнопка была кнопкой отправки {0}?",
-                },
-            },
-        },
-
         // Double Screen
         [typeof(SDoubleScreen)] = new()
         {
@@ -7865,32 +7851,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     {
                         ["black"] = "чёрным",
                         ["white"] = "белым",
-                    },
-                },
-            },
-        },
-
-        // Lasers
-        [typeof(SLasers)] = new()
-        {
-            Questions = new()
-            {
-                [SLasers.Hatches] = new()
-                {
-                    // English: What was the number on the {1} hatch on {0}?
-                    // Example: What was the number on the top-left hatch on Lasers?
-                    Question = "Какое число было на {1} люке {0}?",
-                    Arguments = new()
-                    {
-                        ["top-left"] = "верхнем левом",
-                        ["top-middle"] = "верхнем среднем",
-                        ["top-right"] = "верхнем правом",
-                        ["middle-left"] = "среднем левом",
-                        ["center"] = "центральном",
-                        ["middle-right"] = "среднем правом",
-                        ["bottom-left"] = "нижнем левом",
-                        ["bottom-middle"] = "нижнем среднем",
-                        ["bottom-right"] = "нижнем правом",
                     },
                 },
             },

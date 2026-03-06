@@ -4487,20 +4487,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Double-Oh
-        [typeof(SDoubleOh)] = new()
-        {
-            ModuleName = "ダブル・オー",
-            Questions = new()
-            {
-                [SDoubleOh.SubmitButton] = new()
-                {
-                    // English: Which button was the submit button in {0}?
-                    Question = "{0}の送信ボタンは？",
-                },
-            },
-        },
-
         // Double Screen
         [typeof(SDoubleScreen)] = new()
         {
@@ -7800,33 +7786,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     {
                         ["black"] = "黒",
                         ["white"] = "白",
-                    },
-                },
-            },
-        },
-
-        // Lasers
-        [typeof(SLasers)] = new()
-        {
-            ModuleName = "レーザー",
-            Questions = new()
-            {
-                [SLasers.Hatches] = new()
-                {
-                    // English: What was the number on the {1} hatch on {0}?
-                    // Example: What was the number on the top-left hatch on Lasers?
-                    Question = "{0}の{1}のハッチの番号は？ ",
-                    Arguments = new()
-                    {
-                        ["top-left"] = "左上",
-                        ["top-middle"] = "上",
-                        ["top-right"] = "右上",
-                        ["middle-left"] = "左",
-                        ["center"] = "中央",
-                        ["middle-right"] = "右",
-                        ["bottom-left"] = "左下",
-                        ["bottom-middle"] = "下",
-                        ["bottom-right"] = "右下",
                     },
                 },
             },
