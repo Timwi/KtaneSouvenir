@@ -141,6 +141,144 @@ public static class Sprites
         return sprite;
     }
 
+    public static Sprite GeneratePolyominoSprite(int width, int[] indices)
+    {
+        if (indices == null)
+            throw new ArgumentNullException(nameof(indices));
+        return GeneratePolyominoSprite("default", width, indices, $"Polyomino({width}:{indices.OrderBy(i => i).JoinString(",")})");
+    }
+
+    public static Sprite GeneratePolyominoSprite(string polyominoName)
+    {
+        if (polyominoName == null)
+            throw new ArgumentNullException(nameof(polyominoName));
+
+        if (!_namedPolyominoes.TryGetValue(polyominoName, out var poly))
+            throw new ArgumentException($"Unknown polyomino name: {polyominoName}", nameof(polyominoName));
+
+        return GeneratePolyominoSprite(poly.width, poly.indices);
+    }
+
+    public static readonly Dictionary<string, (int width, int[] indices)> _namedPolyominoes = new()
+    {
+        ["I1"] = (1, [0]),
+
+        ["I2"] = (2, [0, 1]),
+
+        ["I3"] = (3, [0, 1, 2]),
+        ["V3"] = (2, [0, 1, 2]),
+
+        ["I"] = (1, [0, 1, 2, 3]),
+        ["J"] = (2, [1, 3, 4, 5]),
+        ["L"] = (2, [0, 2, 4, 5]),
+        ["O"] = (2, [0, 1, 2, 3]),
+        ["S"] = (3, [1, 2, 3, 4]),
+        ["T"] = (3, [0, 1, 2, 4]),
+        ["Z"] = (3, [0, 1, 4, 5]),
+
+        ["F5"] = (3, [1, 2, 3, 4, 7]),
+        ["I5"] = (1, [0, 1, 2, 3, 4]),
+        ["L5"] = (4, [0, 1, 2, 3, 4]),
+        ["N5"] = (4, [0, 1, 5, 6, 7]),
+        ["P5"] = (3, [0, 1, 2, 3, 4]),
+        ["T5"] = (3, [0, 1, 2, 4, 7]),
+        ["U5"] = (3, [0, 2, 3, 4, 5]),
+        ["V5"] = (3, [0, 1, 2, 3, 6]),
+        ["W5"] = (3, [0, 3, 4, 7, 8]),
+        ["X5"] = (3, [1, 3, 4, 5, 7]),
+        ["Y5"] = (4, [0, 1, 2, 3, 5]),
+        ["Z5"] = (3, [0, 1, 4, 7, 8])
+    };
+
+    public static Sprite GeneratePolyominoSprite(string spriteKey, int gridWidth, int[] indices, string spriteName)
+    {
+        var sortedIxs = indices.OrderBy(i => i).ToArray();
+        if (indices == null || indices.Length == 0)
+            throw new ArgumentException("indices must contain at least one cell.", nameof(indices));
+        if (gridWidth <= 0)
+            throw new ArgumentException(nameof(gridWidth), "gridWidth must be at least 1.");
+
+        var cells = sortedIxs.Select(i => (x: i % gridWidth, y: i / gridWidth)).ToArray();
+
+        var minX = cells.Min(c => c.x);
+        var maxX = cells.Max(c => c.x);
+        var minY = cells.Min(c => c.y);
+        var maxY = cells.Max(c => c.y);
+
+        var normalizedWidth = maxX - minX + 1;
+        var normalizedHeight = maxY - minY + 1;
+        var normalizedCells = cells.Select(c => (x: c.x - minX, y: c.y - minY)).ToArray();
+        var normalizedIndices = normalizedCells.Select(c => c.x + normalizedWidth * c.y).OrderBy(i => i).ToArray();
+
+        var key = $"{spriteKey}:{normalizedWidth}:{normalizedIndices.JoinString(",")}";
+        if (_gridSpriteCache.TryGetValue(key, out var sprite))
+            return sprite;
+
+        const int cellSize = 5;
+        const int cellPitch = 4;
+        const int padding = 1;
+
+        var fillWidth = (normalizedWidth - 1) * cellPitch + cellSize;
+        var fillHeight = (normalizedHeight - 1) * cellPitch + cellSize;
+
+        var txWidth = fillWidth + 2 * padding;
+        var txHeight = fillHeight + 2 * padding;
+
+        var filled = new bool[txWidth * txHeight];
+        var pixels = Ut.NewArray(txWidth * txHeight, _ => new Color32(0x00, 0x00, 0x00, 0x00));
+
+        var borderColor = new Color32(0xFF, 0xF8, 0xDD, 0xFF);
+        var fillColor = new Color32(0xD8, 0x40, 0x00, 0xFF);
+
+        int PixelIndex(int x, int y) => x + txWidth * y;
+        void SetFilled(int x, int y)
+        {
+            if (x >= 0 && x < txWidth && y >= 0 && y < txHeight)
+                filled[PixelIndex(x, y)] = true;
+        }
+        bool IsFilled(int x, int y) => x >= 0 && x < txWidth && y >= 0 && y < txHeight && filled[PixelIndex(x, y)];
+
+        foreach (var (gx, gy) in normalizedCells)
+        {
+            var localX = padding + gx * cellPitch;
+            var localY = padding + (normalizedHeight - 1 - gy) * cellPitch;
+
+            for (var dy = 0; dy < cellSize; dy++)
+                for (var dx = 0; dx < cellSize; dx++)
+                    SetFilled(localX + dx, localY + dy);
+        }
+
+        for (var y = 0; y < txHeight; y++)
+        {
+            for (var x = 0; x < txWidth; x++)
+            {
+                var ix = PixelIndex(x, y);
+                if (!filled[ix])
+                    continue;
+                var touchesOutside = false;
+                for (var dy = -1; dy <= 1 && !touchesOutside; dy++)
+                    for (var dx = -1; dx <= 1; dx++)
+                        if ((dx != 0 || dy != 0) && !IsFilled(x + dx, y + dy))
+                        {
+                            touchesOutside = true;
+                            break;
+                        }
+                pixels[ix] = touchesOutside ? borderColor : fillColor;
+            }
+        }
+
+        var tx = new Texture2D(txWidth, txHeight, TextureFormat.ARGB32, false);
+        tx.SetPixels32(pixels);
+        tx.Apply();
+        tx.wrapMode = TextureWrapMode.Clamp;
+        tx.filterMode = FilterMode.Point;
+
+        sprite = Sprite.Create(tx, new Rect(0, 0, txWidth, txHeight), new Vector2(0, 0.5f), 60f);
+        sprite.name = spriteName;
+        _gridSpriteCache.Add(key, sprite);
+        return sprite;
+    }
+
     public static Sprite TranslateSprite(this Sprite sprite, float? pixelsPerUnit = null, string name = null, Vector2? pivot = null)
     {
         var newSprite = Sprite.Create((sprite ?? throw new ArgumentNullException(nameof(sprite))).texture, sprite.rect, pivot ?? new Vector2(0, .5f), pixelsPerUnit ?? sprite.pixelsPerUnit);
@@ -248,8 +386,8 @@ public static class Sprites
             }
             var RMSPlus = countPlus == 0 ? 0f : Math.Sqrt(totalPlus / countPlus);
             var RMSMinus = countMinus == 0 ? 0f : Math.Sqrt(totalMinus / countMinus);
-            var creamCountPlus = (int) Mathf.Lerp(_min_line, _height / 2, (float) RMSPlus * multiplier);
-            var creamCountMinus = (int) Mathf.Lerp(_min_line, _height / 2, (float) RMSMinus * multiplier);
+            var creamCountPlus = (int)Mathf.Lerp(_min_line, _height / 2, (float)RMSPlus * multiplier);
+            var creamCountMinus = (int)Mathf.Lerp(_min_line, _height / 2, (float)RMSMinus * multiplier);
             var blackCount = _height / 2 - creamCountPlus;
             var i = 0;
             for (; i < blackCount; i++)
