@@ -16027,18 +16027,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Tricky Tetris Pieces
         [typeof(STrickyTetrisPieces)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Trickreiche Tetris-Teile",
+            ModuleNameDative = "Trickreichen Tetris-Teile",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [STrickyTetrisPieces.FirstShape] = new()
                 {
-                    // English: What was the shape of the first piece you pressed in {0}?
-                    Question = "What was the shape of the first piece you pressed in {0}?",
+                    // English: What was the first piece you pressed in {0}?
+                    Question = "Was war bei {0} das erste gedrückte Teil?",
                 },
                 [STrickyTetrisPieces.SecondPalette] = new()
                 {
                     // English: What was the second color palette the pieces converted to in {0}?
-                    Question = "What was the second color palette the pieces converted to in {0}?",
+                    Question = "Was war bei {0} die zweite Farbpalette, in die sich die Teile verwandelten?",
                 },
             },
         },
@@ -16046,13 +16048,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Triple Term
         [typeof(STripleTerm)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Dreifachbegriff",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [STripleTerm.Passwords] = new()
                 {
                     // English: Which of these was one of the passwords in {0}?
-                    Question = "Which of these was one of the passwords in {0}?",
+                    Question = "Welches Passwort kam bei {0} vor?",
                 },
             },
         },
@@ -16060,14 +16063,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Turtle Robot
         [typeof(STurtleRobot)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Turtle-Roboter",
             Questions = new()
             {
                 [STurtleRobot.CodeLines] = new()
                 {
                     // English: What was the {1} line you commented out in {0}?
                     // Example: What was the first line you commented out in Turtle Robot?
-                    Question = "What was the {1} line you commented out in {0}?",
+                    Question = "Welche Zeile wurde bei {0} als {1}e auskommentiert?",
                 },
             },
         },
@@ -16075,14 +16078,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Two Bits
         [typeof(STwoBits)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Zwei Bits",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [STwoBits.Response] = new()
                 {
                     // English: What was the {1} correct query response from {0}?
                     // Example: What was the first correct query response from Two Bits?
-                    Question = "What was the {1} correct query response from {0}?",
+                    Question = "Was war bei {0} die {1}e richtige Antwort auf eine Abfrage?",
                 },
             },
         },

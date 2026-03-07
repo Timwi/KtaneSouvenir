@@ -153,13 +153,13 @@ public static class Sprites
         if (polyominoName == null)
             throw new ArgumentNullException(nameof(polyominoName));
 
-        if (!_namedPolyominoes.TryGetValue(polyominoName, out var poly))
+        if (!NamedPolyominoes.TryGetValue(polyominoName, out var poly))
             throw new ArgumentException($"Unknown polyomino name: {polyominoName}", nameof(polyominoName));
 
         return GeneratePolyominoSprite(poly.width, poly.indices);
     }
 
-    public static readonly Dictionary<string, (int width, int[] indices)> _namedPolyominoes = new()
+    public static readonly Dictionary<string, (int width, int[] indices)> NamedPolyominoes = new()
     {
         ["I1"] = (1, [0]),
 

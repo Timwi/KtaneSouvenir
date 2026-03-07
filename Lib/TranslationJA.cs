@@ -15686,7 +15686,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [STrickyTetrisPieces.FirstShape] = new()
                 {
-                    // English: What was the shape of the first piece you pressed in {0}?
+                    // English: What was the first piece you pressed in {0}?
                     Question = "What was the shape of the first piece you pressed in {0}?",
                 },
                 [STrickyTetrisPieces.SecondPalette] = new()
