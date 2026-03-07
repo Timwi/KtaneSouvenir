@@ -166,7 +166,7 @@ public static class AnswerGenerator
                 {
                     for (var i = 0; i < Ranges.Length; i += 2)
                     {
-                        if (n < Ranges[i + 1] + 1 - Ranges[i]) return (char)(Ranges[i] + n);
+                        if (n < Ranges[i + 1] + 1 - Ranges[i]) return (char) (Ranges[i] + n);
                         n -= Ranges[i + 1] + 1 - Ranges[i];
                     }
                     // We shouldn't reach here.
@@ -287,7 +287,7 @@ public static class AnswerGenerator
             }
         }
 
-        public override int Count => _characterLists.Select(c => (int)Math.Pow(c.OptionCount, c.Count)).Aggregate((a, b) => a * b);
+        public override int Count => _characterLists.Select(c => (int) Math.Pow(c.OptionCount, c.Count)).Aggregate((a, b) => a * b);
     }
 
     /// <summary>An answer generator that generates answers consisting of randomly selected grid cells.</summary>
@@ -412,8 +412,8 @@ public static class AnswerGenerator
     public class Concatenate(Type g1type, object[] g1args, Type g2type, object[] g2args) : AnswerGeneratorAttribute<string>
     {
         private readonly AnswerGeneratorAttribute<string>[] _generators = Ut.NewArray(
-            (AnswerGeneratorAttribute<string>)Activator.CreateInstance(g1type, g1args),
-            (AnswerGeneratorAttribute<string>)Activator.CreateInstance(g2type, g2args));
+            (AnswerGeneratorAttribute<string>) Activator.CreateInstance(g1type, g1args),
+            (AnswerGeneratorAttribute<string>) Activator.CreateInstance(g2type, g2args));
 
         public override IEnumerable<string> GetAnswers(SouvenirModule module)
         {
@@ -503,8 +503,7 @@ public static class AnswerGenerator
         private readonly bool _excludeEqualRotations = excludeEqualRotations;
 
         private PolyominoData[] _cached;
-        private PolyominoData[] Cached =>
-            _cached ??= GeneratePolyominoes(_minCellCount, _maxCellCount, _minWidth, _maxWidth, _minHeight, _maxHeight, _requireSingleStrokePath, _excludeEqualRotations).ToArray();
+        private PolyominoData[] Cached => _cached ??= generatePolyominoes().ToArray();
 
         public override IEnumerable<Sprite> GetAnswers(SouvenirModule module)
         {
@@ -514,77 +513,66 @@ public static class AnswerGenerator
 
         public override int Count => Cached.Length;
 
-        private static IEnumerable<PolyominoData> GeneratePolyominoes(int minCellCount, int maxCellCount, int minWidth, int? maxWidth, int minHeight, int? maxHeight, bool requireSingleStrokePath, bool excludeEqualRotations)
+        private IEnumerable<PolyominoData> generatePolyominoes()
         {
-            if (minCellCount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(minCellCount));
-            if (maxCellCount < minCellCount)
-                throw new ArgumentOutOfRangeException(nameof(maxCellCount));
-            if (minWidth <= 0)
-                throw new ArgumentOutOfRangeException(nameof(minWidth));
-            if (maxWidth is not null && maxWidth.Value < minWidth)
-                throw new ArgumentOutOfRangeException(nameof(maxWidth));
-            if (minHeight <= 0)
-                throw new ArgumentOutOfRangeException(nameof(minHeight));
-            if (maxHeight is not null && maxHeight.Value < minHeight)
-                throw new ArgumentOutOfRangeException(nameof(maxHeight));
+            if (_minCellCount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(_minCellCount));
+            if (_maxCellCount < _minCellCount)
+                throw new ArgumentOutOfRangeException(nameof(_maxCellCount));
+            if (_minWidth <= 0)
+                throw new ArgumentOutOfRangeException(nameof(_minWidth));
+            if (_maxWidth is not null && _maxWidth.Value < _minWidth)
+                throw new ArgumentOutOfRangeException(nameof(_maxWidth));
+            if (_minHeight <= 0)
+                throw new ArgumentOutOfRangeException(nameof(_minHeight));
+            if (_maxHeight is not null && _maxHeight.Value < _minHeight)
+                throw new ArgumentOutOfRangeException(nameof(_maxHeight));
 
-            var results = new Dictionary<string, PolyominoData>();
-            var start = new HashSet<(int x, int y)> { (0, 0) };
+            var results = new HashSet<PolyominoData>();
 
-            Recurse(start);
-
-            return results.Values;
-
-            void Recurse(HashSet<(int x, int y)> cells)
+            void recurse(HashSet<(int x, int y)> cells, HashSet<(int x, int y)> already)
             {
                 var count = cells.Count;
 
-                if (count >= minCellCount && count <= maxCellCount)
+                if (count >= _minCellCount && count <= _maxCellCount)
                 {
-                    var poly = NormalizeCells(cells);
-                    if (poly.Width >= minWidth && (maxWidth == null || poly.Width <= maxWidth.Value) && poly.Height >= minHeight && (maxHeight == null || poly.Height <= maxHeight.Value) && (!requireSingleStrokePath || HasSingleStrokePath(poly)))
-                    {
-                        if (excludeEqualRotations)
-                        {
-                            var dedupeKey = GetCanonicalTransformKey(poly);
-                            var representative = GetPreferredRotationRepresentative(poly);
-                            results.TryAdd(dedupeKey, representative);
-                        }
-                        else
-                        {
-                            results.TryAdd(poly.Key, poly);
-                        }
-                    }
+                    var poly = normalizeCells(cells);
+                    if (poly.Width >= _minWidth && (_maxWidth == null || poly.Width <= _maxWidth.Value) && poly.Height >= _minHeight && (_maxHeight == null || poly.Height <= _maxHeight.Value) && (!_requireSingleStrokePath || hasSingleStrokePath(poly)))
+                        results.Add(_excludeEqualRotations ? getPreferredRotationRepresentative(poly) : poly);
                 }
 
-                if (count >= maxCellCount)
+                if (count >= _maxCellCount)
                     return;
 
                 var set = new HashSet<(int x, int y)>();
                 foreach (var (x, y) in cells)
                 {
-                    TryAdd(x - 1, y);
-                    TryAdd(x + 1, y);
-                    TryAdd(x, y - 1);
-                    TryAdd(x, y + 1);
+                    tryAdd((x - 1, y));
+                    tryAdd((x + 1, y));
+                    tryAdd((x, y - 1));
+                    tryAdd((x, y + 1));
                 }
 
-                foreach (var next in set.OrderBy(c => c.x).ThenBy(c => c.y))
+                var myAlready = new HashSet<(int x, int y)>(already);
+                foreach (var next in set)
                 {
                     var nextCells = new HashSet<(int x, int y)>(cells) { next };
-                    Recurse(nextCells);
+                    recurse(nextCells, myAlready);
+                    myAlready.Add(next);
                 }
 
-                void TryAdd(int x, int y)
+                void tryAdd((int x, int y) cell)
                 {
-                    if (!cells.Contains((x, y)))
-                        set.Add((x, y));
+                    if (!cells.Contains(cell) && !already.Contains(cell))
+                        set.Add(cell);
                 }
             }
+
+            recurse([(0, 0)], []);
+            return results;
         }
 
-        private static PolyominoData NormalizeCells(IEnumerable<(int x, int y)> cells)
+        private static PolyominoData normalizeCells(IEnumerable<(int x, int y)> cells)
         {
             var arr = cells.ToArray();
 
@@ -600,7 +588,7 @@ public static class AnswerGenerator
             return new PolyominoData(width, height, indices);
         }
 
-        private static bool HasSingleStrokePath(PolyominoData poly)
+        private static bool hasSingleStrokePath(PolyominoData poly)
         {
             var cells = poly.Indices.Select(i => (x: i % poly.Width, y: i / poly.Width)).ToArray();
 
@@ -610,13 +598,13 @@ public static class AnswerGenerator
             foreach (var start in cells)
             {
                 var visited = new HashSet<(int x, int y)> { start };
-                if (DepthFirstSearch(start, visited))
+                if (depthFirstSearch(start, visited))
                     return true;
             }
 
             return false;
 
-            bool DepthFirstSearch((int x, int y) cur, HashSet<(int x, int y)> visited)
+            bool depthFirstSearch((int x, int y) cur, HashSet<(int x, int y)> visited)
             {
                 if (visited.Count == cells.Length)
                     return true;
@@ -626,7 +614,7 @@ public static class AnswerGenerator
                     if (visited.Contains(next))
                         continue;
                     visited.Add(next);
-                    if (DepthFirstSearch(next, visited))
+                    if (depthFirstSearch(next, visited))
                         return true;
                     visited.Remove(next);
                 }
@@ -634,21 +622,7 @@ public static class AnswerGenerator
             }
         }
 
-        private static string GetCanonicalTransformKey(PolyominoData poly)
-        {
-            var cells = poly.Indices.Select(i => (x: i % poly.Width, y: i / poly.Width)).ToArray();
-            var variants = new List<string>();
-
-            foreach (var rotated in GetAllRotations(cells))
-            {
-                var normalized = NormalizeCells(rotated);
-                variants.Add(normalized.Key);
-            }
-
-            return variants.Min();
-        }
-
-        private static IEnumerable<(int x, int y)[]> GetAllRotations((int x, int y)[] cells)
+        private static IEnumerable<(int x, int y)[]> getAllRotations((int x, int y)[] cells)
         {
             yield return cells.Select(c => (c.x, c.y)).ToArray();
             yield return cells.Select(c => (c.y, -c.x)).ToArray();
@@ -656,19 +630,30 @@ public static class AnswerGenerator
             yield return cells.Select(c => (-c.y, c.x)).ToArray();
         }
 
-        private static PolyominoData GetPreferredRotationRepresentative(PolyominoData poly)
+        private static PolyominoData getPreferredRotationRepresentative(PolyominoData poly)
         {
             var cells = poly.Indices.Select(i => (x: i % poly.Width, y: i / poly.Width)).ToArray();
-
-            return GetAllRotations(cells).Select(NormalizeCells).OrderByDescending(p => p.Width).ThenBy(p => p.Height).ThenBy(p => p.Key, StringComparer.Ordinal).First();
+            return getAllRotations(cells).Select(normalizeCells).OrderByDescending(p => p.Width).ThenBy(p => p.Height).ThenBy(p => p.Key, StringComparer.Ordinal).First();
         }
 
-        private sealed class PolyominoData(int width, int height, int[] indices)
+        private readonly struct PolyominoData(int width, int height, int[] indices) : IEquatable<PolyominoData>
         {
             public int Width { get; } = width;
             public int Height { get; } = height;
             public int[] Indices { get; } = indices;
             public string Key { get; } = $"{width}:{indices.JoinString(",")}";
+
+            public bool Equals(PolyominoData other) => other.Width == Width && other.Height == Height && other.Indices.SequenceEqual(Indices);
+            public override bool Equals(object obj) => obj is PolyominoData other && Equals(other);
+            public override int GetHashCode()
+            {
+                var hashCode = 417533683;
+                hashCode = hashCode * -1521134295 + Width;
+                hashCode = hashCode * -1521134295 + Height;
+                foreach (var index in Indices)
+                    hashCode = hashCode * -1521134295 + index;
+                return hashCode;
+            }
         }
     }
 }

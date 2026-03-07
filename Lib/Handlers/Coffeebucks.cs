@@ -5,16 +5,16 @@ using static Souvenir.AnswerLayout;
 
 public enum SCoffeebucks
 {
-    [SouvenirQuestion("What was the last customer's preferred sugar content in {0}?", OneColumn4Answers, "Sugar is murder", "Just a bit", "Loads", "Diabetic in-waiting")]
+    [SouvenirQuestion("What was the last customer’s preferred sugar content in {0}?", OneColumn4Answers, "Sugar is murder", "Just a bit", "Loads", "Diabetic in-waiting")]
     Sugar,
 
-    [SouvenirQuestion("What was the last customer's preferred time of day in {0}?", TwoColumns4Answers, "Morning", "Lunchtime", "Afternoon", "Evening")]
+    [SouvenirQuestion("What was the last customer’s preferred time of day in {0}?", TwoColumns4Answers, "Morning", "Lunchtime", "Afternoon", "Evening")]
     Time,
 
-    [SouvenirQuestion("What was the last customer's preferred stress-level in {0}?", TwoColumns4Answers, "Calm", "Agitated", "Stressed", "Murderous")]
+    [SouvenirQuestion("What was the last customer’s preferred stress-level in {0}?", TwoColumns4Answers, "Calm", "Agitated", "Stressed", "Murderous")]
     Stress,
 
-    [SouvenirQuestion("What was the last customer's preferred size in {0}?", TwoColumns4Answers, "Short", "Tall", "Grande", "Venti")]
+    [SouvenirQuestion("What was the last customer’s preferred size in {0}?", TwoColumns4Answers, "Short", "Tall", "Grande", "Venti")]
     Size
 }
 

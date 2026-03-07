@@ -2808,22 +2808,22 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SCoffeebucks.Sugar] = new()
                 {
-                    // English: What was the last customer's preferred sugar content in {0}?
+                    // English: What was the last customer’s preferred sugar content in {0}?
                     Question = "What was the last customer's preferred sugar content in {0}?",
                 },
                 [SCoffeebucks.Time] = new()
                 {
-                    // English: What was the last customer's preferred time of day in {0}?
+                    // English: What was the last customer’s preferred time of day in {0}?
                     Question = "What was the last customer's preferred time of day in {0}?",
                 },
                 [SCoffeebucks.Stress] = new()
                 {
-                    // English: What was the last customer's preferred stress-level in {0}?
+                    // English: What was the last customer’s preferred stress-level in {0}?
                     Question = "What was the last customer's preferred stress-level in {0}?",
                 },
                 [SCoffeebucks.Size] = new()
                 {
-                    // English: What was the last customer's preferred size in {0}?
+                    // English: What was the last customer’s preferred size in {0}?
                     Question = "What was the last customer's preferred size in {0}?",
                 },
             },

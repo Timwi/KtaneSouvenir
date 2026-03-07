@@ -2878,22 +2878,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SCoffeebucks.Sugar] = new()
                 {
-                    // English: What was the last customer's preferred sugar content in {0}?
+                    // English: What was the last customer’s preferred sugar content in {0}?
                     Question = "What was the last customer's preferred sugar content in {0}?",
                 },
                 [SCoffeebucks.Time] = new()
                 {
-                    // English: What was the last customer's preferred time of day in {0}?
+                    // English: What was the last customer’s preferred time of day in {0}?
                     Question = "What was the last customer's preferred time of day in {0}?",
                 },
                 [SCoffeebucks.Stress] = new()
                 {
-                    // English: What was the last customer's preferred stress-level in {0}?
+                    // English: What was the last customer’s preferred stress-level in {0}?
                     Question = "What was the last customer's preferred stress-level in {0}?",
                 },
                 [SCoffeebucks.Size] = new()
                 {
-                    // English: What was the last customer's preferred size in {0}?
+                    // English: What was the last customer’s preferred size in {0}?
                     Question = "What was the last customer's preferred size in {0}?",
                 },
             },
@@ -4946,13 +4946,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Encrypted Morse
         [typeof(SEncryptedMorse)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verschlüsselte Morsezeichen",
+            ModuleNameDative = "Verschlüsselten Morsezeichen",
+            Gender = Gender.Plural,
             Questions = new()
             {
                 [SEncryptedMorse.Key] = new()
                 {
                     // English: What was the received key in {0}?
-                    Question = "What was the received key in {0}?",
+                    Question = "Welcher Schlüssel wurde bei {0} empfangen?",
                 },
             },
         },
@@ -6917,21 +6919,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Horrible Memory
         [typeof(SHorribleMemory)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Grausiges Memory",
+            ModuleNameDative = "Grausigen Memory",
             Questions = new()
             {
                 [SHorribleMemory.QColorsByPosition] = new()
                 {
                     // English: What was the color of the button in the {1} position in the {2} stage of {0}?
                     // Example: What was the color of the button in the first position in the first stage of Horrible Memory?
-                    Question = "What color was the button in the {1} position of the {2} stage of {0}?",
+                    Question = "Welche Farbe hatte bei {0} der Knopf in der {1}en Position in der {2}en Stufe?",
                     Answers = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["red"] = "rot",
                         ["orange"] = "orange",
-                        ["purple"] = "purple",
+                        ["purple"] = "lila",
                         ["pink"] = "pink",
                     },
                 },
@@ -6939,14 +6942,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the button labeled {1} in the {2} stage of {0}?
                     // Example: What was the color of the button labeled 1 in the first stage of Horrible Memory?
-                    Question = "What color was the button labeled {1} in the {2} stage of {0}?",
+                    Question = "Welche Farbe hatte bei {0} der Knopf mit der Aufschrift {1} in der {2}en Stufe?",
                     Answers = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["red"] = "rot",
                         ["orange"] = "orange",
-                        ["purple"] = "purple",
+                        ["purple"] = "lila",
                         ["pink"] = "pink",
                     },
                 },
@@ -6954,67 +6957,67 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the label of the button in the {1} position in the {2} stage of {0}?
                     // Example: What was the label of the button in the first position in the first stage of Horrible Memory?
-                    Question = "What was the label of the button in the {1} position of the {2} stage of {0}?",
+                    Question = "Welche Aufschrift hatte bei {0} der Knopf in der {1}en Position in der {2}en Stufe?",
                 },
                 [SHorribleMemory.QLabelsByColor] = new()
                 {
                     // English: What was the label of the {1} button in the {2} stage of {0}?
                     // Example: What was the label of the blue button in the first stage of Horrible Memory?
-                    Question = "What was the label of the {1} button in the {2} stage of {0}?",
+                    Question = "Welche Aufschrift hatte bei {0} der {1} Knopf in der {2}en Stufe?",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["pink"] = "pink",
+                        ["blue"] = "blaue",
+                        ["green"] = "grüne",
+                        ["red"] = "rote",
+                        ["orange"] = "orangene",
+                        ["purple"] = "lilane",
+                        ["pink"] = "pinke",
                     },
                 },
                 [SHorribleMemory.QPositionsByColor] = new()
                 {
                     // English: What was the position of the {1} button in the {2} stage of {0}?
                     // Example: What was the position of the blue button in the first stage of Horrible Memory?
-                    Question = "What was the position of the {1} button in the {2} stage of {0}?",
+                    Question = "An welcher Position war bei {0} der {1} Knopf in der {2}en Stufe?",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["pink"] = "pink",
+                        ["blue"] = "blaue",
+                        ["green"] = "grüne",
+                        ["red"] = "rote",
+                        ["orange"] = "orangene",
+                        ["purple"] = "lilane",
+                        ["pink"] = "pinke",
                     },
                     Answers = new()
                     {
-                        ["first"] = "first",
-                        ["second"] = "second",
-                        ["third"] = "third",
-                        ["fourth"] = "fourth",
-                        ["fifth"] = "fifth",
-                        ["sixth"] = "sixth",
+                        ["first"] = "eins",
+                        ["second"] = "zwei",
+                        ["third"] = "drei",
+                        ["fourth"] = "vier",
+                        ["fifth"] = "fünf",
+                        ["sixth"] = "sechs",
                     },
                 },
                 [SHorribleMemory.QPositionsByLabel] = new()
                 {
                     // English: What was the position of the button labeled {1} in the {2} stage of {0}?
                     // Example: What was the position of the button labeled 1 in the first stage of Horrible Memory?
-                    Question = "What was the position of the button labeled {1} in the {2} stage of {0}?",
+                    Question = "An welcher Position war bei {0} der Knopf mit der Aufschrift {1} in der {2}en Stufe?",
                     Answers = new()
                     {
-                        ["first"] = "first",
-                        ["second"] = "second",
-                        ["third"] = "third",
-                        ["fourth"] = "fourth",
-                        ["fifth"] = "fifth",
-                        ["sixth"] = "sixth",
+                        ["first"] = "eins",
+                        ["second"] = "zwei",
+                        ["third"] = "drei",
+                        ["fourth"] = "vier",
+                        ["fifth"] = "fünf",
+                        ["sixth"] = "sechs",
                     },
                 },
                 [SHorribleMemory.QDisplays] = new()
                 {
                     // English: What number was displayed in the {1} stage of {0}?
                     // Example: What number was displayed in the first stage of Horrible Memory?
-                    Question = "What number was displayed in the {1} stage of {0}?",
+                    Question = "Welche Ziffer war bei {0} in der {1}en Stufe auf dem Display?",
                 },
             },
             Discriminators = new()
@@ -7023,14 +7026,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Horrible Memory that had a {0} button in the {1} position in the {2} stage
                     // Example: the Horrible Memory that had a blue button in the first position in the first stage
-                    Discriminator = "the Horrible Memory that had a {0} button in the {1} position in the {2} stage",
+                    Discriminator = "dem Grausigen Memory, bei dem der Knopf in der {1}en Position in der {2}en Stufe {0} war,",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["red"] = "rot",
                         ["orange"] = "orange",
-                        ["purple"] = "purple",
+                        ["purple"] = "lila",
                         ["pink"] = "pink",
                     },
                 },
@@ -7038,28 +7041,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Horrible Memory that had a button labeled {0} in the {1} position in the {2} stage
                     // Example: the Horrible Memory that had a button labeled 1 in the first position in the first stage
-                    Discriminator = "the Horrible Memory that had a button labeled {0} in the {1} position in the {2} stage",
+                    Discriminator = "dem Grausigen Memory, bei dem der Knopf in der {1}en Position in der {2}en Stufe die Aufschrift {0} hatte,",
                 },
                 [SHorribleMemory.DColorAndLabel] = new()
                 {
                     // English: the Horrible Memory that had a {0} button labeled {1} in the {2} stage
                     // Example: the Horrible Memory that had a blue button labeled 1 in the first stage
-                    Discriminator = "the Horrible Memory that had a {0} button labeled {1} in the {2} stage",
+                    Discriminator = "dem Grausigen Memory, bei dem der {0} Knopf in der {2}en Stufe die Aufschrift {1} hatte,",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["pink"] = "pink",
+                        ["blue"] = "blaue",
+                        ["green"] = "grüne",
+                        ["red"] = "rote",
+                        ["orange"] = "orangene",
+                        ["purple"] = "lilane",
+                        ["pink"] = "pinke",
                     },
                 },
                 [SHorribleMemory.DDisplay] = new()
                 {
                     // English: the Horrible Memory that displayed a {0} in the {1} stage
                     // Example: the Horrible Memory that displayed a 1 in the first stage
-                    Discriminator = "the Horrible Memory that displayed a {0} in the {1} stage",
+                    Discriminator = "dem Grausigen Memory, bei dem in der {1}en Stufe eine {0} auf dem Display war,",
                 },
             },
         },
