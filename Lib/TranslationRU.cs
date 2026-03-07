@@ -15667,6 +15667,25 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Tricky Tetris Pieces
+        [typeof(STrickyTetrisPieces)] = new()
+        {
+            NeedsTranslation = true,
+            Questions = new()
+            {
+                [STrickyTetrisPieces.FirstShape] = new()
+                {
+                    // English: What was the shape of the first piece you pressed in {0}?
+                    Question = "What was the shape of the first piece you pressed in {0}?",
+                },
+                [STrickyTetrisPieces.SecondPalette] = new()
+                {
+                    // English: What was the second color palette the pieces converted to in {0}?
+                    Question = "What was the second color palette the pieces converted to in {0}?",
+                },
+            },
+        },
+
         // Triple Term
         [typeof(STripleTerm)] = new()
         {
