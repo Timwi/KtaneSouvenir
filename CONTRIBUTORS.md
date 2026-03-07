@@ -199,10 +199,10 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Critters        │  Infinite Loop  │  Numbered Buttons    │  Pixel Cipher
     Factoring Maze  │  Interpunct     │  Password Destroyer  │
 
-## Implemented by Espik (6)
+## Implemented by Espik (7)
 
-    100 Levels of Defusal  │  Encrypted Morse  │  Regular Crazy Talk
-    Coffeebucks            │  Hyperlink, The   │  Simon Stages
+    100 Levels of Defusal  │  Encrypted Morse  │  Regular Crazy Talk  │  Tricky Tetris Pieces
+    Coffeebucks            │  Hyperlink, The   │  Simon Stages        │
 
 ## Implemented by GoodHood (6)
 
