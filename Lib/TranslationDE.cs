@@ -8452,12 +8452,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which tile was shown in the bottom-left of {0}?
                     Question = "Which tile was shown in the bottom-left of {0}?",
                 },
-                [SMahjong.Matches] = new()
-                {
-                    // English: Which tile was part of the {1} matched pair in {0}?
-                    // Example: Which tile was part of the first matched pair in Mahjong?
-                    Question = "Which tile was part of the {1} matched pair in {0}?",
-                },
             },
         },
 
