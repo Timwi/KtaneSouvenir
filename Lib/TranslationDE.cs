@@ -8023,12 +8023,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             Questions = new()
             {
-                [SLEDEncryption.PressedLetters] = new()
-                {
-                    // English: What was the correct letter you pressed in the {1} stage of {0}?
-                    // Example: What was the correct letter you pressed in the first stage of LED Encryption?
-                    Question = "What was the correct letter you pressed in the {1} stage of {0}?",
-                },
                 [SLEDEncryption.PresentLetters] = new()
                 {
                     // English: Which of these letters was present in the {1} stage of {0}?
@@ -9326,6 +9320,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["card on offer"] = "card on offer",
                     },
                 },
+                [SMonsplodeTradingCards.CardsAny] = new()
+                {
+                    // English: Which of these cards was in your hand before the last action in {0}?
+                    Question = "Which of these cards was in your hand before the last action in {0}?",
+                },
                 [SMonsplodeTradingCards.PrintVersions] = new()
                 {
                     // English: What was the print version of the {1} before the last action in {0}?
@@ -9338,6 +9337,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["third card in your hand"] = "third card in your hand",
                         ["card on offer"] = "card on offer",
                     },
+                },
+                [SMonsplodeTradingCards.PrintVersionsAny] = new()
+                {
+                    // English: Which of these print versions was present on a card in your hand before the last action in {0}?
+                    Question = "Which of these print versions was present on a card in your hand before the last action in {0}?",
                 },
             },
         },

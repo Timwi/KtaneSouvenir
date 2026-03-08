@@ -7862,12 +7862,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             Questions = new()
             {
-                [SLEDEncryption.PressedLetters] = new()
-                {
-                    // English: What was the correct letter you pressed in the {1} stage of {0}?
-                    // Example: What was the correct letter you pressed in the first stage of LED Encryption?
-                    Question = "What was the correct letter you pressed in the {1} stage of {0}?",
-                },
                 [SLEDEncryption.PresentLetters] = new()
                 {
                     // English: Which of these letters was present in the {1} stage of {0}?
@@ -9117,6 +9111,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Monsplode Trading Cards
         [typeof(SMonsplodeTradingCards)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Коллекционных карточках по Монсплодам",
             Questions = new()
             {
@@ -9134,6 +9129,11 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["card on offer"] = "карта на обмен",
                     },
                 },
+                [SMonsplodeTradingCards.CardsAny] = new()
+                {
+                    // English: Which of these cards was in your hand before the last action in {0}?
+                    Question = "Which of these cards was in your hand before the last action in {0}?",
+                },
                 [SMonsplodeTradingCards.PrintVersions] = new()
                 {
                     // English: What was the print version of the {1} before the last action in {0}?
@@ -9147,6 +9147,11 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["third card in your hand"] = "третьей карты в вашей руке",
                         ["card on offer"] = "карты на обмен",
                     },
+                },
+                [SMonsplodeTradingCards.PrintVersionsAny] = new()
+                {
+                    // English: Which of these print versions was present on a card in your hand before the last action in {0}?
+                    Question = "Which of these print versions was present on a card in your hand before the last action in {0}?",
                 },
             },
         },
