@@ -27,11 +27,13 @@ public partial class SouvenirModule
         };
         yield return WaitForSolve;
 
+        if (isPanelSolved.Any(x => !x))
+            yield return legitimatelyNoQuestion(module, "Not all panels were pressed at the time of solve.");
+
         var panelNames = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
         var panelColors = GetListField<string>(comp, "selectedColours").Get(expectedLength: 4).Select(x => char.ToUpperInvariant(x[0]) + x.Substring(1)).ToArray();
 
         for (var panel = 0; panel < 4; panel++)
-            if (isPanelSolved[panel])
-                yield return question(SCatchphrase.Colour, args: [panelNames[panel]]).Answers(panelColors[panel]);
+            yield return question(SCatchphrase.Colour, args: [panelNames[panel]]).Answers(panelColors[panel]);
     }
 }
