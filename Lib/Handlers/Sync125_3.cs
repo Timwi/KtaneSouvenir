@@ -38,6 +38,6 @@ public partial class SouvenirModule
 
         var info = new TextAnswerInfo(font: screenText.font, fontTexture: screenText.GetComponent<MeshRenderer>().sharedMaterial.mainTexture);
         for (var stage = 0; stage < 3; stage++)
-            yield return question(SSync125_3.Word, args: [(stage + 1).ToString()]).Answers(words[textIds[stage]], preferredWrong: words, info: info);
+            yield return question(SSync125_3.Word, args: [Ordinal(stage + 1)]).Answers(words[textIds[stage]], preferredWrong: words, info: info);
     }
 }
