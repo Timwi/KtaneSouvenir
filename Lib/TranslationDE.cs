@@ -9307,36 +9307,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             Questions = new()
             {
-                [SMonsplodeTradingCards.Cards] = new()
-                {
-                    // English: What was the {1} before the last action in {0}?
-                    // Example: What was the first card in your hand before the last action in Monsplode Trading Cards?
-                    Question = "What was the {1} before the last action in {0}?",
-                    Arguments = new()
-                    {
-                        ["first card in your hand"] = "first card in your hand",
-                        ["second card in your hand"] = "second card in your hand",
-                        ["third card in your hand"] = "third card in your hand",
-                        ["card on offer"] = "card on offer",
-                    },
-                },
                 [SMonsplodeTradingCards.CardsAny] = new()
                 {
                     // English: Which of these cards was in your hand before the last action in {0}?
                     Question = "Which of these cards was in your hand before the last action in {0}?",
-                },
-                [SMonsplodeTradingCards.PrintVersions] = new()
-                {
-                    // English: What was the print version of the {1} before the last action in {0}?
-                    // Example: What was the print version of the first card in your hand before the last action in Monsplode Trading Cards?
-                    Question = "What was the print version of the {1} before the last action in {0}?",
-                    Arguments = new()
-                    {
-                        ["first card in your hand"] = "first card in your hand",
-                        ["second card in your hand"] = "second card in your hand",
-                        ["third card in your hand"] = "third card in your hand",
-                        ["card on offer"] = "card on offer",
-                    },
                 },
                 [SMonsplodeTradingCards.PrintVersionsAny] = new()
                 {

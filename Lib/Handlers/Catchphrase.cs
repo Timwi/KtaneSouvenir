@@ -27,14 +27,8 @@ public partial class SouvenirModule
         };
         yield return WaitForSolve;
 
-        for (var panel = 0; panel < 4; panel++)
-        {
-            if (!isPanelSolved[panel])
-            {
-                yield return legitimatelyNoQuestion(module, "Not all of the panels were removed.");
-                break;
-            }
-        }
+        if (isPanelSolved.Contains(false))
+            yield return legitimatelyNoQuestion(module, "Not all of the panels were removed.");
 
         var panelNames = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
         var panelColors = GetListField<string>(comp, "selectedColours").Get(expectedLength: 4).Select(x => char.ToUpperInvariant(x[0]) + x.Substring(1)).ToArray();

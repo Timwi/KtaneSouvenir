@@ -9073,36 +9073,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "モンスプロード・カードゲーム",
             Questions = new()
             {
-                [SMonsplodeTradingCards.Cards] = new()
-                {
-                    // English: What was the {1} before the last action in {0}?
-                    // Example: What was the first card in your hand before the last action in Monsplode Trading Cards?
-                    Question = "{0}の最後の行動前における{1}は？",
-                    Arguments = new()
-                    {
-                        ["first card in your hand"] = "手札の1枚目",
-                        ["second card in your hand"] = "手札の2枚目",
-                        ["third card in your hand"] = "手札の3枚目",
-                        ["card on offer"] = "相手のカード",
-                    },
-                },
                 [SMonsplodeTradingCards.CardsAny] = new()
                 {
                     // English: Which of these cards was in your hand before the last action in {0}?
                     Question = "Which of these cards was in your hand before the last action in {0}?",
-                },
-                [SMonsplodeTradingCards.PrintVersions] = new()
-                {
-                    // English: What was the print version of the {1} before the last action in {0}?
-                    // Example: What was the print version of the first card in your hand before the last action in Monsplode Trading Cards?
-                    Question = "{0}の最後の行動前における{1}に書かれた印刷バージョンは？",
-                    Arguments = new()
-                    {
-                        ["first card in your hand"] = "手札の1枚目",
-                        ["second card in your hand"] = "手札の2枚目",
-                        ["third card in your hand"] = "手札の3枚目",
-                        ["card on offer"] = "相手のカード",
-                    },
                 },
                 [SMonsplodeTradingCards.PrintVersionsAny] = new()
                 {

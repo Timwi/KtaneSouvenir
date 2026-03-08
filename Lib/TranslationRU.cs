@@ -9115,38 +9115,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ModuleName = "Коллекционных карточках по Монсплодам",
             Questions = new()
             {
-                [SMonsplodeTradingCards.Cards] = new()
-                {
-                    // English: What was the {1} before the last action in {0}?
-                    // Example: What was the first card in your hand before the last action in Monsplode Trading Cards?
-                    Question = "Какая была {1} перед последним действием {0}?",
-                    Conjugation = Conjugation.в_PrepositivePlural,
-                    Arguments = new()
-                    {
-                        ["first card in your hand"] = "первая карта в вашей руке",
-                        ["second card in your hand"] = "вторая карта в вашей руке",
-                        ["third card in your hand"] = "третья карта в вашей руке",
-                        ["card on offer"] = "карта на обмен",
-                    },
-                },
                 [SMonsplodeTradingCards.CardsAny] = new()
                 {
                     // English: Which of these cards was in your hand before the last action in {0}?
                     Question = "Which of these cards was in your hand before the last action in {0}?",
-                },
-                [SMonsplodeTradingCards.PrintVersions] = new()
-                {
-                    // English: What was the print version of the {1} before the last action in {0}?
-                    // Example: What was the print version of the first card in your hand before the last action in Monsplode Trading Cards?
-                    Question = "Какое было издание {1} перед последним действием {0}?",
-                    Conjugation = Conjugation.в_PrepositivePlural,
-                    Arguments = new()
-                    {
-                        ["first card in your hand"] = "первой карты в вашей руке",
-                        ["second card in your hand"] = "второй карты в вашей руке",
-                        ["third card in your hand"] = "третьей карты в вашей руке",
-                        ["card on offer"] = "карты на обмен",
-                    },
                 },
                 [SMonsplodeTradingCards.PrintVersionsAny] = new()
                 {
