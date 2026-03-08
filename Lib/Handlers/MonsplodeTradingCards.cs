@@ -50,13 +50,7 @@ public partial class SouvenirModule
         
         yield return question(SMonsplodeTradingCards.Cards, args: ["card on offer"]).Answers(monsplodes[0], preferredWrong: monsplodeNames);
         yield return question(SMonsplodeTradingCards.CardsAny).Answers(new[] { monsplodes[1], monsplodes[2], monsplodes[3] }, preferredWrong: monsplodeNames);
-        //yield return question(SMonsplodeTradingCards.Cards, args: ["first card in your hand"]).Answers(monsplodes[1], preferredWrong: monsplodeNames);
-        //yield return question(SMonsplodeTradingCards.Cards, args: ["second card in your hand"]).Answers(monsplodes[2], preferredWrong: monsplodeNames);
-        //yield return question(SMonsplodeTradingCards.Cards, args: ["third card in your hand"]).Answers(monsplodes[3], preferredWrong: monsplodeNames);
         yield return question(SMonsplodeTradingCards.PrintVersions, args: ["card on offer"]).Answers(printVersions[0], preferredWrong: printVersions);
         yield return question(SMonsplodeTradingCards.PrintVersionsAny).Answers(new[] { printVersions[1], printVersions[2], printVersions[3] }, preferredWrong: printVersions);
-        //yield return question(SMonsplodeTradingCards.PrintVersions, args: ["first card in your hand"]).Answers(printVersions[1], preferredWrong: printVersions);
-        //yield return question(SMonsplodeTradingCards.PrintVersions, args: ["second card in your hand"]).Answers(printVersions[2], preferredWrong: printVersions);
-        //yield return question(SMonsplodeTradingCards.PrintVersions, args: ["third card in your hand"]).Answers(printVersions[3], preferredWrong: printVersions);
     }
 }
