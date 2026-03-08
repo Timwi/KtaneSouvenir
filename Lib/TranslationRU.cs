@@ -7859,15 +7859,20 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // LED Encryption
         [typeof(SLEDEncryption)] = new()
         {
-            ModuleName = "Шифра светодиодов",
+            NeedsTranslation = true,
             Questions = new()
             {
                 [SLEDEncryption.PressedLetters] = new()
                 {
                     // English: What was the correct letter you pressed in the {1} stage of {0}?
                     // Example: What was the correct letter you pressed in the first stage of LED Encryption?
-                    Question = "Какая правильная буква была нажата на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    Question = "What was the correct letter you pressed in the {1} stage of {0}?",
+                },
+                [SLEDEncryption.PresentLetters] = new()
+                {
+                    // English: Which of these letters was present in the {1} stage of {0}?
+                    // Example: Which of these letters was present in the first stage of LED Encryption?
+                    Question = "What was the correct letter you pressed in the {1} stage of {0}?",
                 },
             },
         },

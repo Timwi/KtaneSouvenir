@@ -7794,14 +7794,20 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // LED Encryption
         [typeof(SLEDEncryption)] = new()
         {
-            ModuleName = "暗号化LED",
+            NeedsTranslation = true,
             Questions = new()
             {
                 [SLEDEncryption.PressedLetters] = new()
                 {
                     // English: What was the correct letter you pressed in the {1} stage of {0}?
                     // Example: What was the correct letter you pressed in the first stage of LED Encryption?
-                    Question = "{0}のステージ{1}で押した正しい文字は？",
+                    Question = "What was the correct letter you pressed in the {1} stage of {0}?",
+                },
+                [SLEDEncryption.PresentLetters] = new()
+                {
+                    // English: Which of these letters was present in the {1} stage of {0}?
+                    // Example: Which of these letters was present in the first stage of LED Encryption?
+                    Question = "What was the correct letter you pressed in the {1} stage of {0}?",
                 },
             },
         },

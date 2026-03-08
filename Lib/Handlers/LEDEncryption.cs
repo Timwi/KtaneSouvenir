@@ -7,9 +7,9 @@ using static Souvenir.AnswerLayout;
 
 public enum SLEDEncryption
 {
-    [SouvenirQuestion("What was the correct letter you pressed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which of these letters was present in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings('A', 'Z')]
-    PressedLetters
+    PresentLetters
 }
 
 public partial class SouvenirModule
@@ -28,42 +28,25 @@ public partial class SouvenirModule
 
         var multipliers = GetArrayField<int>(comp, "layerMultipliers").Get(minLength: 2, maxLength: 5, validator: m => m is < 2 or > 7 ? "expected range 2–7" : null);
         var numStages = multipliers.Length;
-        var pressedLetters = new string[numStages];
-        var wrongLetters = new HashSet<string>();
-        var fldStage = GetIntField(comp, "layer");
 
-        void reassignButton(KMSelectable btn, TextMesh lbl)
-        {
-            var prevInteract = btn.OnInteract;
-            var stage = fldStage.Get();
-            btn.OnInteract = delegate
-            {
-                var label = lbl.text;
-                var ret = prevInteract();
-                if (fldStage.Get() > stage)
-                    pressedLetters[stage] = label;
-                return ret;
-            };
-        }
+        var fldStage = GetIntField(comp, "layer");
+        var fullLetters = new string[numStages][];
 
         while (fldStage.Get() < numStages)
         {
-            foreach (var lbl in buttonLabels)
-                wrongLetters.Add(lbl.text);
-
-            // LED Encryption re-hooks the buttons at every press, so we have to re-hook it at each stage as well
-            for (var i = 0; i < 4; i++)
-                reassignButton(buttons[i], buttonLabels[i]);
-
             var stage = fldStage.Get();
+            fullLetters[stage] = new string[4];
+
+            for (var i = 0; i < 4; i++)
+                fullLetters[stage][i] = buttonLabels[i].text;
+            
             while (fldStage.Get() == stage)
                 yield return null;
         }
 
         yield return WaitForSolve;
 
-        for (var stage = 0; stage < pressedLetters.Length - 1 + 0; stage++)
-            if (pressedLetters[stage] != null)
-                yield return question(SLEDEncryption.PressedLetters, args: [Ordinal(stage + 1)]).Answers(pressedLetters[stage], preferredWrong: wrongLetters.ToArray());
+        for (var stage = 0; stage < numStages - 1; stage++)
+            yield return question(SLEDEncryption.PresentLetters, args: [Ordinal(stage + 1)]).Answers(fullLetters[stage]);
     }
 }

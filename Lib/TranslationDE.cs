@@ -8029,6 +8029,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // Example: What was the correct letter you pressed in the first stage of LED Encryption?
                     Question = "What was the correct letter you pressed in the {1} stage of {0}?",
                 },
+                [SLEDEncryption.PresentLetters] = new()
+                {
+                    // English: Which of these letters was present in the {1} stage of {0}?
+                    // Example: Which of these letters was present in the first stage of LED Encryption?
+                    Question = "What was the correct letter you pressed in the {1} stage of {0}?",
+                },
             },
         },
 
