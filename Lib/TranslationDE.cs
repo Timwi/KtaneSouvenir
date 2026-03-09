@@ -2571,13 +2571,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Challenge & Contact
         [typeof(SChallengeAndContact)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SChallengeAndContact.Answers] = new()
+                [SChallengeAndContact.Letters] = new()
                 {
-                    // English: What was the {1} submitted answer in {0}?
-                    // Example: What was the first submitted answer in Challenge & Contact?
-                    Question = "Was war bei {0} die als {1}e eingegebene Antwort?",
+                    // English: What was the {1} displayed letter in {0}?
+                    // Example: What was the first displayed letter in Challenge & Contact?
+                    Question = "What was the {1} displayed letter in {0}?",
                 },
             },
         },

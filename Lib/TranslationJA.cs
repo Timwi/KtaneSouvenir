@@ -2509,14 +2509,15 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Challenge & Contact
         [typeof(SChallengeAndContact)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "チャレンジ＆コンタクト",
             Questions = new()
             {
-                [SChallengeAndContact.Answers] = new()
+                [SChallengeAndContact.Letters] = new()
                 {
-                    // English: What was the {1} submitted answer in {0}?
-                    // Example: What was the first submitted answer in Challenge & Contact?
-                    Question = "{0}の{1}番目に送信された回答は？",
+                    // English: What was the {1} displayed letter in {0}?
+                    // Example: What was the first displayed letter in Challenge & Contact?
+                    Question = "What was the {1} displayed letter in {0}?",
                 },
             },
         },

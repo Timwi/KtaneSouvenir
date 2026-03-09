@@ -103,16 +103,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Conditional Buttons      │  Flavor Text           │  Ladder Lottery       │  Sonic & Knuckles                   │
     Customer Identification  │  Flavor Text EX        │  LED Grid             │  Spongebob Birthday Identification  │
 
-## Implemented by luisdiogo98 (39)
+## Implemented by luisdiogo98 (38)
 
-    Accumulation         │  Deck of Many Things, The  │  Hypercube, The  │  Necronomicon, The   │  Tasha Squeals
-    Blockbusters         │  Decolored Squares         │  iPhone, The     │  Odd One Out         │  Ultracube, The
-    Boggle               │  Discolored Squares        │  LEGOs           │  Passport Control    │  Unfair Cipher
-    Brush Strokes        │  Double Color              │  Maze Scrambler  │  Pie                 │  USA Maze
-    Challenge & Contact  │  Factory Maze              │  Maze³           │  Retirement          │  Varicolored Squares
-    Code, The            │  Flashing Lights           │  Mazematics      │  Simon Scrambles     │  Vexillology
-    Colored Keys         │  Free Parking              │  Modern Cipher   │  Sphere, The         │  Zoni
-    Cube, The            │  Hexabutton, The           │  Morse Buttons   │  Splitting The Loot  │
+    Accumulation              │  Decolored Squares   │  iPhone, The        │  Odd One Out         │  Ultracube, The
+    Blockbusters              │  Discolored Squares  │  LEGOs              │  Passport Control    │  Unfair Cipher
+    Boggle                    │  Double Color        │  Maze Scrambler     │  Pie                 │  USA Maze
+    Brush Strokes             │  Factory Maze        │  Maze³              │  Retirement          │  Varicolored Squares
+    Code, The                 │  Flashing Lights     │  Mazematics         │  Simon Scrambles     │  Vexillology
+    Colored Keys              │  Free Parking        │  Modern Cipher      │  Sphere, The         │  Zoni
+    Cube, The                 │  Hexabutton, The     │  Morse Buttons      │  Splitting The Loot  │
+    Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Tasha Squeals       │
 
 ## Implemented by BigCrunch22 (37)
 
@@ -184,6 +184,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     9-Ball             │  Entry Number One    │  Maze Identification  │  Not The Screw          │  Stacked Sequences
     Entry Number Four  │  Game of Life Cruel  │  Mazeseeker           │  Puzzle Identification  │  Xenocryst, The
 
+## Implemented by Espik (8)
+
+    100 Levels of Defusal  │  Coffeebucks      │  Hyperlink, The      │  Simon Stages
+    Challenge & Contact    │  Encrypted Morse  │  Regular Crazy Talk  │  Tricky Tetris Pieces
+
 ## Implemented by Marksam (8)
 
     Brown Cipher                │  Great Void, The  │  Mashematics  │  Unicode
@@ -198,11 +203,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     Critters        │  Infinite Loop  │  Numbered Buttons    │  Pixel Cipher
     Factoring Maze  │  Interpunct     │  Password Destroyer  │
-
-## Implemented by Espik (7)
-
-    100 Levels of Defusal  │  Encrypted Morse  │  Regular Crazy Talk  │  Tricky Tetris Pieces
-    Coffeebucks            │  Hyperlink, The   │  Simon Stages        │
 
 ## Implemented by GoodHood (6)
 
