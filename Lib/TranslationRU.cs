@@ -6946,6 +6946,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Human Resources
         [typeof(SHumanResources)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
                 [SHumanResources.Descriptors] = new()
@@ -6959,15 +6960,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["green"] = "зелёным",
                     },
                 },
-                [SHumanResources.HiredFired] = new()
+                [SHumanResources.Employees] = new()
                 {
-                    // English: Who was {1} in {0}?
-                    // Example: Who was fired in Human Resources?
-                    Question = "Кто из {0} был {1}?",
+                    // English: Who was {1} at the start of {0}?
+                    // Example: Who was an employee at the start of Human Resources?
+                    Question = "Who was {1} at the start of {0}?",
                     Arguments = new()
                     {
-                        ["fired"] = "уволен",
-                        ["hired"] = "нанят",
+                        ["an employee"] = "an employee",
+                        ["an applicant"] = "an applicant",
                     },
                 },
             },

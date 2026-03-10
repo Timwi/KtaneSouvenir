@@ -7071,6 +7071,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Human Resources
         [typeof(SHumanResources)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Personalabteilung",
             Gender = Gender.Feminine,
             Questions = new()
@@ -7086,15 +7087,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["green"] = "grün",
                     },
                 },
-                [SHumanResources.HiredFired] = new()
+                [SHumanResources.Employees] = new()
                 {
-                    // English: Who was {1} in {0}?
-                    // Example: Who was fired in Human Resources?
-                    Question = "Wer wurde bei {0} {1}?",
+                    // English: Who was {1} at the start of {0}?
+                    // Example: Who was an employee at the start of Human Resources?
+                    Question = "Who was {1} at the start of {0}?",
                     Arguments = new()
                     {
-                        ["fired"] = "gefeuert",
-                        ["hired"] = "eingestellt",
+                        ["an employee"] = "an employee",
+                        ["an applicant"] = "an applicant",
                     },
                 },
             },

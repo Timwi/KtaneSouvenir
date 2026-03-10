@@ -6866,6 +6866,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Human Resources
         [typeof(SHumanResources)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "人事部",
             Questions = new()
             {
@@ -6880,15 +6881,15 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["green"] = "緑",
                     },
                 },
-                [SHumanResources.HiredFired] = new()
+                [SHumanResources.Employees] = new()
                 {
-                    // English: Who was {1} in {0}?
-                    // Example: Who was fired in Human Resources?
-                    Question = "{0}で{1}のは誰？",
+                    // English: Who was {1} at the start of {0}?
+                    // Example: Who was an employee at the start of Human Resources?
+                    Question = "Who was {1} at the start of {0}?",
                     Arguments = new()
                     {
-                        ["fired"] = "解雇した",
-                        ["hired"] = "雇用した",
+                        ["an employee"] = "an employee",
+                        ["an applicant"] = "an applicant",
                     },
                 },
             },
