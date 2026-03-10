@@ -46,6 +46,9 @@ public partial class SouvenirModule
             currentWeather = fldWeather.Get(cw => !weatherNames.Contains(cw) ? "unknown weather" : null);
         }
 
+        if (allWeather[0] == "Clear" && GetComponent<KMBombInfo>().GetBatteryHolderCount() >= 3)
+            yield return legitimatelyNoQuestion(module, "This specific answer can be reverse engineered.");
+
         yield return question(SCreation.Weather, args: [Ordinal(1)]).Answers(allWeather[0]);
     }
 }
