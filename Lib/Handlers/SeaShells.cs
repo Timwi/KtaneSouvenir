@@ -60,7 +60,9 @@ public partial class SouvenirModule
         {
             yield return question(SSeaShells.Question1, args: [Ordinal(i + 1)]).Answers(new[] { "she sells", "she shells", "sea shells", "sea sells" }[rows[i]]);
             yield return question(SSeaShells.Question2, args: [Ordinal(i + 1)]).Answers(new[] { "sea shells", "she shells", "sea sells", "she sells" }[cols[i]]);
-            yield return question(SSeaShells.Question3, args: [Ordinal(i + 1)]).Answers(new[] { "sea shore", "she sore", "she sure", "seesaw" }[keynums[i]]);
+
+            if (i != 2)
+                yield return question(SSeaShells.Question3, args: [Ordinal(i + 1)]).Answers(new[] { "sea shore", "she sore", "she sure", "seesaw" }[keynums[i]]);
         }
     }
 }
