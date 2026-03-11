@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -25,6 +25,23 @@ public partial class SouvenirModule
             paids.Add(paid);
 
         yield return WaitForSolve;
+
+        // Stops the left/right buttons from working so the defuser cannot see all the items
+        var leftButton = GetField<KMSelectable>(comp, "MoveLeft", isPublic: true).Get();
+        var rightButton = GetField<KMSelectable>(comp, "MoveRight", isPublic: true).Get();
+
+        leftButton.OnInteract = delegate
+        {
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.Module.transform);
+            leftButton.AddInteractionPunch(0.5f);
+            return false;
+        };
+        rightButton.OnInteract = delegate
+        {
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.Module.transform);
+            rightButton.AddInteractionPunch(0.5f);
+            return false;
+        };
 
         for (var i = 0; i < paids.Count; i++)
             yield return question(SCheapCheckout.Paid, args: [paids.Count == 1 ? "the paid amount" : i == 0 ? "the first paid amount" : "the second paid amount"])
