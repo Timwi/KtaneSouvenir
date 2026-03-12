@@ -2394,20 +2394,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Calendar
         [typeof(SCalendar)] = new()
         {
-            ModuleName = "カレンダー",
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SCalendar.LedColor] = new()
+                [SCalendar.Holiday] = new()
                 {
-                    // English: What was the LED color in {0}?
-                    Question = "{0}のLEDの色は？",
-                    Answers = new()
-                    {
-                        ["Green"] = "緑",
-                        ["Yellow"] = "黄",
-                        ["Red"] = "赤",
-                        ["Blue"] = "青",
-                    },
+                    // English: What was the holiday in {0}?
+                    Question = "What was the holiday in {0}?",
                 },
             },
         },

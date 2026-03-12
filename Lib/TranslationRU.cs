@@ -2494,21 +2494,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Calendar
         [typeof(SCalendar)] = new()
         {
-            ModuleName = "Календаре",
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SCalendar.LedColor] = new()
+                [SCalendar.Holiday] = new()
                 {
-                    // English: What was the LED color in {0}?
-                    Question = "Какого цвета был индикатор на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                    Answers = new()
-                    {
-                        ["Green"] = "Зелёный",
-                        ["Yellow"] = "Жёлтый",
-                        ["Red"] = "Красный",
-                        ["Blue"] = "Синий",
-                    },
+                    // English: What was the holiday in {0}?
+                    Question = "What was the holiday in {0}?",
                 },
             },
         },

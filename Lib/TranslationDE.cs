@@ -2458,20 +2458,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Calendar
         [typeof(SCalendar)] = new()
         {
-            ModuleName = "Kalender",
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SCalendar.LedColor] = new()
+                [SCalendar.Holiday] = new()
                 {
-                    // English: What was the LED color in {0}?
-                    Question = "Welche Farbe hatte die LED bei {0}?",
-                    Answers = new()
-                    {
-                        ["Green"] = "Grün",
-                        ["Yellow"] = "Gelb",
-                        ["Red"] = "Rot",
-                        ["Blue"] = "Blau",
-                    },
+                    // English: What was the holiday in {0}?
+                    Question = "What was the holiday in {0}?",
                 },
             },
         },
