@@ -6363,13 +6363,24 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
-            ModuleName = "六角形ボタン",
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SHexabutton.Label] = new()
+                [SHexabutton.Color] = new()
                 {
-                    // English: What label was printed on {0}?
-                    Question = "{0}に記されたラベルは？",
+                    // English: What was {1} of {0} when it was held?
+                    // Example: What was the color of The Hexabutton when it was held?
+                    Question = "What was the color of {0} when it was held?",
+                    Arguments = new()
+                    {
+                        ["the color"] = "the color",
+                        ["the flickering color"] = "the flickering color",
+                    },
+                },
+                [SHexabutton.Letter] = new()
+                {
+                    // English: What Morse Code letter was transmitted by {0}?
+                    Question = "What Morse Code letter was transmitted by {0}?",
                 },
             },
         },

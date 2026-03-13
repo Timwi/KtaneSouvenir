@@ -1,24 +1,42 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
 
 public enum SHexabutton
 {
-    [SouvenirQuestion("What label was printed on {0}?", ThreeColumns6Answers, "Jump", "Boom", "Claim", "Button", "Hold", "Blue")]
-    Label
+    [SouvenirQuestion("What was {1} of {0} when it was held?", ThreeColumns6Answers, "blue", "cyan", "gray", "green", "magenta", "purple", "white", TranslateArguments = [true], Arguments = ["the color", "the flickering color"], ArgumentGroupSize = 1)]
+    Color,
+
+    [SouvenirQuestion("What Morse Code letter was transmitted by {0}?", ThreeColumns6Answers)]
+    [AnswerGenerator.Strings('A', 'Z')]
+    Letter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("hexabutton", "Hexabutton", typeof(SHexabutton), "luisdiogo98", AddThe = true)]
+    [SouvenirHandler("hexabutton", "Hexabutton", typeof(SHexabutton), "Espik", AddThe = true)]
     private IEnumerator<SouvenirInstruction> ProcessHexabutton(ModuleData module)
     {
         var comp = GetComponent(module, "hexabuttonScript");
-        var labels = GetArrayField<string>(comp, "labels").Get();
-        var index = GetIntField(comp, "labelNum").Get(0, labels.Length - 1);
+
+        var colors = GetArrayField<string>(comp, "stripColors").Get();
 
         yield return WaitForSolve;
-        yield return question(SHexabutton.Label).Answers(labels[index]);
+
+        var isTap = GetField<bool>(comp, "answerIsTap").Get();
+
+        if (isTap)
+            yield return legitimatelyNoQuestion(module, "The button was meant to be tapped.");
+
+        var flashType = GetIntField(comp, "typeOfLight").Get();
+        var flashColor = GetIntField(comp, "lightColor").Get();
+        var flashLetter = GetIntField(comp, "letter").Get();
+
+        if (flashType == 2)
+            yield return question(SHexabutton.Letter).Answers(((char) ('A' + flashLetter)).ToString());
+
+        else
+            yield return question(SHexabutton.Color, args: [flashType == 1 ? "the flickering color" : "the color"]).Answers(colors[flashColor]);
     }
 }

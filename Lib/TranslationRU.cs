@@ -6442,13 +6442,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SHexabutton.Label] = new()
+                [SHexabutton.Color] = new()
                 {
-                    // English: What label was printed on {0}?
-                    Question = "Какая была надпись на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
+                    // English: What was {1} of {0} when it was held?
+                    // Example: What was the color of The Hexabutton when it was held?
+                    Question = "What was the color of {0} when it was held?",
+                    Arguments = new()
+                    {
+                        ["the color"] = "the color",
+                        ["the flickering color"] = "the flickering color",
+                    },
+                },
+                [SHexabutton.Letter] = new()
+                {
+                    // English: What Morse Code letter was transmitted by {0}?
+                    Question = "What Morse Code letter was transmitted by {0}?",
                 },
             },
         },

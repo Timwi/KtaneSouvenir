@@ -114,16 +114,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
     Deaf Alley      │  Indigo Cipher  │  Spelling Bee           │  V                       │
 
-## Implemented by luisdiogo98 (37)
+## Implemented by luisdiogo98 (36)
 
-    Accumulation              │  Decolored Squares   │  iPhone, The        │  Odd One Out         │  Ultracube, The
-    Blockbusters              │  Discolored Squares  │  LEGOs              │  Passport Control    │  USA Maze
-    Boggle                    │  Double Color        │  Maze Scrambler     │  Pie                 │  Varicolored Squares
-    Brush Strokes             │  Factory Maze        │  Maze³              │  Retirement          │  Vexillology
-    Code, The                 │  Flashing Lights     │  Mazematics         │  Simon Scrambles     │  Zoni
-    Colored Keys              │  Free Parking        │  Modern Cipher      │  Sphere, The         │
-    Cube, The                 │  Hexabutton, The     │  Morse Buttons      │  Splitting The Loot  │
-    Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Tasha Squeals       │
+    Accumulation              │  Decolored Squares   │  LEGOs              │  Passport Control    │  USA Maze
+    Blockbusters              │  Discolored Squares  │  Maze Scrambler     │  Pie                 │  Varicolored Squares
+    Boggle                    │  Double Color        │  Maze³              │  Retirement          │  Vexillology
+    Brush Strokes             │  Factory Maze        │  Mazematics         │  Simon Scrambles     │  Zoni
+    Code, The                 │  Flashing Lights     │  Modern Cipher      │  Sphere, The         │
+    Colored Keys              │  Free Parking        │  Morse Buttons      │  Splitting The Loot  │
+    Cube, The                 │  Hypercube, The      │  Necronomicon, The  │  Tasha Squeals       │
+    Deck of Many Things, The  │  iPhone, The         │  Odd One Out        │  Ultracube, The      │
 
 ## Implemented by tandyCake (27)
 
@@ -173,16 +173,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Gridlock   │  Morse-A-Maze    │  Symbolic Coordinates  │  Turtle Robot
     Ice Cream  │  Souvenir        │  Text Field            │
 
+## Implemented by Espik (11)
+
+    100 Levels of Defusal  │  Coffeebucks      │  Hyperlink, The      │  Tricky Tetris Pieces
+    Calendar               │  Encrypted Morse  │  Regular Crazy Talk  │  Unfair Cipher
+    Challenge & Contact    │  Hexabutton, The  │  Simon Stages        │
+
 ## Implemented by VFlyer (11)
 
     Abyss            │  Homophones  │  Prime Encryption  │  Who’s on Morse
     Color Addition   │  Negativity  │  Quick Arithmetic  │  WhoOF
     Flashing Arrows  │  Pie Flash   │  Unfair’s Revenge  │
-
-## Implemented by Espik (10)
-
-    100 Levels of Defusal  │  Challenge & Contact  │  Encrypted Morse  │  Regular Crazy Talk  │  Tricky Tetris Pieces
-    Calendar               │  Coffeebucks          │  Hyperlink, The   │  Simon Stages        │  Unfair Cipher
 
 ## Implemented by GhostSalt (10)
 
