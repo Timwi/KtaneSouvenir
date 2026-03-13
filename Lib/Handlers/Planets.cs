@@ -21,7 +21,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "planetsModScript");
         var planetShown = GetIntField(comp, "planetShown").Get(0, 9);
         var stripColors = GetArrayField<int>(comp, "stripColours").Get(expectedLength: 5, validator: x => x is < 0 or > 8 ? "expected range 0–8" : null);
-        var preferredWrong = DateTime.Now is { Month: 4, Day: 1 } ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray();
+        var preferredWrong = PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray();
 
         yield return WaitForSolve;
 
@@ -30,6 +30,7 @@ public partial class SouvenirModule
             yield return question(SPlanets.Strips, args: [Ordinal(count + 1)])
                 .Answers(stripNames[stripColors[count]]);
 
-        yield return question(SPlanets.Planet).Answers(PlanetsSprites[planetShown], preferredWrong: preferredWrong);
+        if (!(DateTime.Now is { Month: 4, Day: 1 })) // If it's April 1st, only the "Other" planets appear
+            yield return question(SPlanets.Planet).Answers(PlanetsSprites[planetShown], preferredWrong: preferredWrong);
     }
 }
