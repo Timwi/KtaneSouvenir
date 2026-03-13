@@ -15948,14 +15948,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Unfair Cipher
         [typeof(SUnfairCipher)] = new()
         {
-            ModuleName = "アンフェア暗号",
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SUnfairCipher.Instructions] = new()
+                [SUnfairCipher.Letters] = new()
                 {
-                    // English: What was the {1} received instruction in {0}?
-                    // Example: What was the first received instruction in Unfair Cipher?
-                    Question = "{0}で{1}番目に受け取った指示は？",
+                    // English: What was the {1} letter of the encrypted message in {0}?
+                    // Example: What was the first letter of the encrypted message in Unfair Cipher?
+                    Question = "What was the {1} letter of the encrypted message in {0}?",
                 },
             },
         },

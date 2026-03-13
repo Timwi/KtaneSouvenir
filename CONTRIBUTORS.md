@@ -103,17 +103,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Conditional Buttons      │  Flavor Text           │  Ladder Lottery       │  Sonic & Knuckles                   │
     Customer Identification  │  Flavor Text EX        │  LED Grid             │  Spongebob Birthday Identification  │
 
-## Implemented by luisdiogo98 (38)
-
-    Accumulation              │  Decolored Squares   │  iPhone, The        │  Odd One Out         │  Ultracube, The
-    Blockbusters              │  Discolored Squares  │  LEGOs              │  Passport Control    │  Unfair Cipher
-    Boggle                    │  Double Color        │  Maze Scrambler     │  Pie                 │  USA Maze
-    Brush Strokes             │  Factory Maze        │  Maze³              │  Retirement          │  Varicolored Squares
-    Code, The                 │  Flashing Lights     │  Mazematics         │  Simon Scrambles     │  Vexillology
-    Colored Keys              │  Free Parking        │  Modern Cipher      │  Sphere, The         │  Zoni
-    Cube, The                 │  Hexabutton, The     │  Morse Buttons      │  Splitting The Loot  │
-    Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Tasha Squeals       │
-
 ## Implemented by BigCrunch22 (37)
 
     1000 Words      │  Dreamcipher    │  Matrix, The            │  Stars                   │  Violet Cipher
@@ -124,6 +113,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cheep Checkout  │  Grocery Store  │  Sequencyclopedia, The  │  Topsy Turvy             │
     Cosmic          │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
     Deaf Alley      │  Indigo Cipher  │  Spelling Bee           │  V                       │
+
+## Implemented by luisdiogo98 (37)
+
+    Accumulation              │  Decolored Squares   │  iPhone, The        │  Odd One Out         │  Ultracube, The
+    Blockbusters              │  Discolored Squares  │  LEGOs              │  Passport Control    │  USA Maze
+    Boggle                    │  Double Color        │  Maze Scrambler     │  Pie                 │  Varicolored Squares
+    Brush Strokes             │  Factory Maze        │  Maze³              │  Retirement          │  Vexillology
+    Code, The                 │  Flashing Lights     │  Mazematics         │  Simon Scrambles     │  Zoni
+    Colored Keys              │  Free Parking        │  Modern Cipher      │  Sphere, The         │
+    Cube, The                 │  Hexabutton, The     │  Morse Buttons      │  Splitting The Loot  │
+    Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Tasha Squeals       │
 
 ## Implemented by tandyCake (27)
 
@@ -179,15 +179,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Addition   │  Negativity  │  Quick Arithmetic  │  WhoOF
     Flashing Arrows  │  Pie Flash   │  Unfair’s Revenge  │
 
+## Implemented by Espik (10)
+
+    100 Levels of Defusal  │  Challenge & Contact  │  Encrypted Morse  │  Regular Crazy Talk  │  Tricky Tetris Pieces
+    Calendar               │  Coffeebucks          │  Hyperlink, The   │  Simon Stages        │  Unfair Cipher
+
 ## Implemented by GhostSalt (10)
 
     9-Ball             │  Entry Number One    │  Maze Identification  │  Not The Screw          │  Stacked Sequences
     Entry Number Four  │  Game of Life Cruel  │  Mazeseeker           │  Puzzle Identification  │  Xenocryst, The
-
-## Implemented by Espik (9)
-
-    100 Levels of Defusal  │  Challenge & Contact  │  Encrypted Morse  │  Regular Crazy Talk  │  Tricky Tetris Pieces
-    Calendar               │  Coffeebucks          │  Hyperlink, The   │  Simon Stages        │
 
 ## Implemented by Marksam (8)
 

@@ -16308,16 +16308,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unfair Cipher
         [typeof(SUnfairCipher)] = new()
         {
-            ModuleName = "Unfaire Geheimschrift",
-            ModuleNameDative = "Unfairen Geheimschrift",
-            Gender = Gender.Feminine,
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SUnfairCipher.Instructions] = new()
+                [SUnfairCipher.Letters] = new()
                 {
-                    // English: What was the {1} received instruction in {0}?
-                    // Example: What was the first received instruction in Unfair Cipher?
-                    Question = "Was war bei {0} die {1}e empfangene Anweisung?",
+                    // English: What was the {1} letter of the encrypted message in {0}?
+                    // Example: What was the first letter of the encrypted message in Unfair Cipher?
+                    Question = "What was the {1} letter of the encrypted message in {0}?",
                 },
             },
         },
