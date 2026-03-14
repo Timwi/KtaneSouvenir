@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -16659,7 +16659,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Purple-Magenta"] = "赤紫",
                         ["Magenta"] = "マゼンタ",
                         ["Pink"] = "ピンク",
-                        ["Grey"] = "Grey",
+                        ["Grey"] = "灰",
                     },
                 },
             },

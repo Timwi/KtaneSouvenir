@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -17007,7 +17007,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Wavetapping
         [typeof(SWavetapping)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Wellenschlagen",
             Questions = new()
             {
@@ -17033,7 +17032,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Purple-Magenta"] = "Lila-Magenta",
                         ["Magenta"] = "Magenta",
                         ["Pink"] = "Pink",
-                        ["Grey"] = "Grey",
+                        ["Grey"] = "Grau",
                     },
                 },
             },
