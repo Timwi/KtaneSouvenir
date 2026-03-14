@@ -16633,15 +16633,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Wavetapping
         [typeof(SWavetapping)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ウェーブタッピング",
             Questions = new()
             {
-                [SWavetapping.Patterns] = new()
-                {
-                    // English: What was the correct pattern on the {1} stage in {0}?
-                    // Example: What was the correct pattern on the first stage in Wavetapping?
-                    Question = "{0}にてステージ{1}の正しいパターンは？",
-                },
                 [SWavetapping.Colors] = new()
                 {
                     // English: What was the color on the {1} stage in {0}?
@@ -16664,7 +16659,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Purple-Magenta"] = "赤紫",
                         ["Magenta"] = "マゼンタ",
                         ["Pink"] = "ピンク",
-                        ["Gray"] = "灰",
+                        ["Grey"] = "Grey",
                     },
                 },
             },

@@ -16619,12 +16619,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             Questions = new()
             {
-                [SWavetapping.Patterns] = new()
-                {
-                    // English: What was the correct pattern on the {1} stage in {0}?
-                    // Example: What was the correct pattern on the first stage in Wavetapping?
-                    Question = "Какой был верный узор на {1}-м этапе {0}?",
-                },
                 [SWavetapping.Colors] = new()
                 {
                     // English: What was the color on the {1} stage in {0}?
@@ -16647,7 +16641,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Purple-Magenta"] = "Purple-Magenta",
                         ["Magenta"] = "Magenta",
                         ["Pink"] = "Pink",
-                        ["Gray"] = "Gray",
+                        ["Grey"] = "Grey",
                     },
                 },
             },

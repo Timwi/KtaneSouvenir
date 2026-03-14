@@ -17007,15 +17007,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Wavetapping
         [typeof(SWavetapping)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Wellenschlagen",
             Questions = new()
             {
-                [SWavetapping.Patterns] = new()
-                {
-                    // English: What was the correct pattern on the {1} stage in {0}?
-                    // Example: What was the correct pattern on the first stage in Wavetapping?
-                    Question = "Was war bei {0} das richtige Muster in der {1}en Stufe?",
-                },
                 [SWavetapping.Colors] = new()
                 {
                     // English: What was the color on the {1} stage in {0}?
@@ -17038,7 +17033,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Purple-Magenta"] = "Lila-Magenta",
                         ["Magenta"] = "Magenta",
                         ["Pink"] = "Pink",
-                        ["Gray"] = "Grau",
+                        ["Grey"] = "Grey",
                     },
                 },
             },

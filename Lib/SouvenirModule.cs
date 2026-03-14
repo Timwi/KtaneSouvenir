@@ -67,7 +67,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] TeaSetSprites;
     public Sprite[] ValvesSprites;
     public Sprite[] WarningSignsSprites;
-    public Sprite[] WavetappingSprites;
     public Sprite[] XRingSprites;
     public Sprite[] XRotorSprites;
     public Sprite[] XYRaySprites;
@@ -487,7 +486,7 @@ public partial class SouvenirModule : MonoBehaviour
         var questionText = qAttr.Gimmicks.Aggregate(string.Format(TranslateQuestion(qAttr.EnumValue), fmt), (prev, gimmick) => gimmick.ApplyGimmick(prev, fmt));
 
         QuestionBase question = qAttr.IsEntireQuestionSprite
-            ? new SpriteQuestion(questionText, WavetappingSprites[0])
+            ? new SpriteQuestion(questionText, SymbolicCoordinatesSprites[0])
             : new TextQuestion(questionText, qAttr.Layout, qAttr.UsesQuestionSprite ? SymbolicCoordinatesSprites[0] : null, 0);
 
         AnswerSet answerSet;
