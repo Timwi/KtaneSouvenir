@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -14717,11 +14717,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             Questions = new()
             {
-                [SSonicKnuckles.Sounds] = new()
-                {
-                    // English: Which sound was played but not featured in the chosen zone in {0}?
-                    Question = "Welcher Ton wurde bei {0} abgespielt, war aber nicht der angezeigten Zone zugehörig?",
-                },
                 [SSonicKnuckles.Badnik] = new()
                 {
                     // English: Which badnik was shown in {0}?

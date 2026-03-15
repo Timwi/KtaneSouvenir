@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -14383,11 +14383,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "ソニック＆ナックルズ",
             Questions = new()
             {
-                [SSonicKnuckles.Sounds] = new()
-                {
-                    // English: Which sound was played but not featured in the chosen zone in {0}?
-                    Question = "{0}で選ばれたゾーンに含まれなかったが再生された音は？",
-                },
                 [SSonicKnuckles.Badnik] = new()
                 {
                     // English: Which badnik was shown in {0}?

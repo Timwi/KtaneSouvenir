@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using static Souvenir.Translation_ru.Conjugation;
 
@@ -14383,11 +14383,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             Questions = new()
             {
-                [SSonicKnuckles.Sounds] = new()
-                {
-                    // English: Which sound was played but not featured in the chosen zone in {0}?
-                    Question = "Какой звук воспроизводился, но не присутствовал в выбранной зоне {0}?",
-                },
                 [SSonicKnuckles.Badnik] = new()
                 {
                     // English: Which badnik was shown in {0}?
