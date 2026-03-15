@@ -1470,21 +1470,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Binary LEDs
-        [typeof(SBinaryLEDs)] = new()
-        {
-            ModuleName = "Binär-LEDs",
-            Gender = Gender.Plural,
-            Questions = new()
-            {
-                [SBinaryLEDs.Value] = new()
-                {
-                    // English: At which numeric value did you cut the correct wire in {0}?
-                    Question = "Bei welchem Zahlenwert wurde bei {0} der korrekte Draht durchtrennt?",
-                },
-            },
-        },
-
         // Binary Shift
         [typeof(SBinaryShift)] = new()
         {
@@ -2126,23 +2111,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Broken Buttons
-        [typeof(SBrokenButtons)] = new()
-        {
-            ModuleName = "Kaputte Knöpfe",
-            ModuleNameDative = "Kaputten Knöpfen",
-            Gender = Gender.Plural,
-            Questions = new()
-            {
-                [SBrokenButtons.Question] = new()
-                {
-                    // English: What was the {1} correct button you pressed in {0}?
-                    // Example: What was the first correct button you pressed in Broken Buttons?
-                    Question = "Was war bei {0} der als {1}e korrekt gedrückte Knopf?",
-                },
-            },
-        },
-
         // Broken Guitar Chords
         [typeof(SBrokenGuitarChords)] = new()
         {
@@ -2182,40 +2150,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["top"] = "ober",
                         ["middle"] = "mittler",
                         ["bottom"] = "unter",
-                    },
-                },
-            },
-        },
-
-        // Brush Strokes
-        [typeof(SBrushStrokes)] = new()
-        {
-            ModuleName = "Pinselstriche",
-            ModuleNameDative = "Pinselstrichen",
-            Gender = Gender.Plural,
-            Questions = new()
-            {
-                [SBrushStrokes.MiddleColor] = new()
-                {
-                    // English: What was the color of the middle contact point in {0}?
-                    Question = "Was war bei {0} die Farbe des mittleren Kontaktes?",
-                    Answers = new()
-                    {
-                        ["Red"] = "Rot",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Gelb",
-                        ["Lime"] = "Limette",
-                        ["Green"] = "Grün",
-                        ["Cyan"] = "Türkis",
-                        ["Sky"] = "Himmelblau",
-                        ["Blue"] = "Blau",
-                        ["Purple"] = "Lila",
-                        ["Magenta"] = "Magenta",
-                        ["Brown"] = "Braun",
-                        ["White"] = "Weiß",
-                        ["Gray"] = "Grau",
-                        ["Black"] = "Schwarz",
-                        ["Pink"] = "Pink",
                     },
                 },
             },
@@ -5479,21 +5413,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["purple"] = "lila",
                         ["orange"] = "orange",
                     },
-                },
-            },
-        },
-
-        // Flavor Text
-        [typeof(SFlavorText)] = new()
-        {
-            ModuleName = "Flairtext",
-            Gender = Gender.Masculine,
-            Questions = new()
-            {
-                [SFlavorText.Module] = new()
-                {
-                    // English: Which module’s flavor text was shown in {0}?
-                    Question = "Der Flairtext welches Moduls kam bei {0} vor?",
                 },
             },
         },
@@ -8958,45 +8877,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Mega Man 2
-        [typeof(SMegaMan2)] = new()
-        {
-            Questions = new()
-            {
-                [SMegaMan2.Master] = new()
-                {
-                    // English: Which master was shown in {0}?
-                    Question = "Welcher Meister war bei {0} zu sehen?",
-                },
-                [SMegaMan2.Weapon] = new()
-                {
-                    // English: Which weapon was shown in {0}?
-                    Question = "Welche Waffe war bei {0} zu sehen?",
-                },
-            },
-        },
-
-        // Melody Sequencer
-        [typeof(SMelodySequencer)] = new()
-        {
-            NeedsTranslation = true,
-            Questions = new()
-            {
-                [SMelodySequencer.Parts] = new()
-                {
-                    // English: Which slot contained part #{1} at the start of {0}?
-                    // Example: Which slot contained part #1 at the start of Melody Sequencer?
-                    Question = "Which slot contained part #{1} at the start of {0}?",
-                },
-                [SMelodySequencer.Slots] = new()
-                {
-                    // English: Which part was in slot #{1} at the start of {0}?
-                    // Example: Which part was in slot #1 at the start of Melody Sequencer?
-                    Question = "Which part was in slot #{1} at the start of {0}?",
-                },
-            },
-        },
-
         // Memorable Buttons
         [typeof(SMemorableButtons)] = new()
         {
@@ -9157,21 +9037,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the position of the submit button in {0}?
                     Question = "What was the position of the submit button in {0}?",
-                },
-            },
-        },
-
-        // Modern Cipher
-        [typeof(SModernCipher)] = new()
-        {
-            NeedsTranslation = true,
-            Questions = new()
-            {
-                [SModernCipher.Word] = new()
-                {
-                    // English: What was the decrypted word of the {1} stage in {0}?
-                    // Example: What was the decrypted word of the first stage in Modern Cipher?
-                    Question = "What was the decrypted word of the {1} stage in {0}?",
                 },
             },
         },
@@ -11908,22 +11773,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Poetry
-        [typeof(SPoetry)] = new()
-        {
-            ModuleName = "Poesie",
-            Gender = Gender.Feminine,
-            Questions = new()
-            {
-                [SPoetry.Answers] = new()
-                {
-                    // English: What was the {1} correct answer you pressed in {0}?
-                    // Example: What was the first correct answer you pressed in Poetry?
-                    Question = "Was war bei {0} die als {1}e korrekt gedrückte Antwort?",
-                },
-            },
-        },
-
         // Pointless Machines
         [typeof(SPointlessMachines)] = new()
         {
@@ -13240,19 +13089,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} encrypted word in {0}?
                     // Example: What was the first encrypted word in Scramboozled Eggain?
                     Question = "Was war bei {0} das {1}e verschlüsselte Wort?",
-                },
-            },
-        },
-
-        // Scripting
-        [typeof(SScripting)] = new()
-        {
-            Questions = new()
-            {
-                [SScripting.VariableDataType] = new()
-                {
-                    // English: What was the submitted data type of the variable in {0}?
-                    Question = "Was war bei {0} der korrekte Datentyp der Variable?",
                 },
             },
         },
@@ -16034,21 +15870,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which of these was one of the passwords in {0}?
                     Question = "Welches Passwort kam bei {0} vor?",
-                },
-            },
-        },
-
-        // Turtle Robot
-        [typeof(STurtleRobot)] = new()
-        {
-            ModuleName = "Turtle-Roboter",
-            Questions = new()
-            {
-                [STurtleRobot.CodeLines] = new()
-                {
-                    // English: What was the {1} line you commented out in {0}?
-                    // Example: What was the first line you commented out in Turtle Robot?
-                    Question = "Welche Zeile wurde bei {0} als {1}e auskommentiert?",
                 },
             },
         },

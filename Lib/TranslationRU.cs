@@ -1515,21 +1515,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Binary LEDs
-        [typeof(SBinaryLEDs)] = new()
-        {
-            ModuleName = "Двоичных светодиодах",
-            Questions = new()
-            {
-                [SBinaryLEDs.Value] = new()
-                {
-                    // English: At which numeric value did you cut the correct wire in {0}?
-                    Question = "На каком числе вы перерезали верный провод {0}?",
-                    Conjugation = Conjugation.в_PrepositivePlural,
-                },
-            },
-        },
-
         // Binary Shift
         [typeof(SBinaryShift)] = new()
         {
@@ -2178,22 +2163,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Broken Buttons
-        [typeof(SBrokenButtons)] = new()
-        {
-            ModuleName = "Сломанных кнопках",
-            Questions = new()
-            {
-                [SBrokenButtons.Question] = new()
-                {
-                    // English: What was the {1} correct button you pressed in {0}?
-                    // Example: What was the first correct button you pressed in Broken Buttons?
-                    Question = "Какая была {1}-я правильная нажатая кнопка {0}?",
-                    Conjugation = Conjugation.в_PrepositivePlural,
-                },
-            },
-        },
-
         // Broken Guitar Chords
         [typeof(SBrokenGuitarChords)] = new()
         {
@@ -2229,39 +2198,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
-                    },
-                },
-            },
-        },
-
-        // Brush Strokes
-        [typeof(SBrushStrokes)] = new()
-        {
-            NeedsTranslation = true,
-            Questions = new()
-            {
-                [SBrushStrokes.MiddleColor] = new()
-                {
-                    // English: What was the color of the middle contact point in {0}?
-                    Question = "Какого цвета была центральная точка {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                    Answers = new()
-                    {
-                        ["Red"] = "Red",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Lime"] = "Lime",
-                        ["Green"] = "Green",
-                        ["Cyan"] = "Cyan",
-                        ["Sky"] = "Sky",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
-                        ["Magenta"] = "Magenta",
-                        ["Brown"] = "Brown",
-                        ["White"] = "White",
-                        ["Gray"] = "Gray",
-                        ["Black"] = "Black",
-                        ["Pink"] = "Pink",
                     },
                 },
             },
@@ -5392,20 +5328,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["purple"] = "фиолетовым",
                         ["orange"] = "оранжевым",
                     },
-                },
-            },
-        },
-
-        // Flavor Text
-        [typeof(SFlavorText)] = new()
-        {
-            Questions = new()
-            {
-                [SFlavorText.Module] = new()
-                {
-                    // English: Which module’s flavor text was shown in {0}?
-                    Question = "К какому модулю был показан флейвор текст на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -8775,46 +8697,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Mega Man 2
-        [typeof(SMegaMan2)] = new()
-        {
-            Questions = new()
-            {
-                [SMegaMan2.Master] = new()
-                {
-                    // English: Which master was shown in {0}?
-                    Question = "Какой мастер был показан {0}?",
-                },
-                [SMegaMan2.Weapon] = new()
-                {
-                    // English: Which weapon was shown in {0}?
-                    Question = "Какое оружие было показано {0}?",
-                },
-            },
-        },
-
-        // Melody Sequencer
-        [typeof(SMelodySequencer)] = new()
-        {
-            Questions = new()
-            {
-                [SMelodySequencer.Parts] = new()
-                {
-                    // English: Which slot contained part #{1} at the start of {0}?
-                    // Example: Which slot contained part #1 at the start of Melody Sequencer?
-                    Question = "Какой слот содержал часть №{1} в начале {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                },
-                [SMelodySequencer.Slots] = new()
-                {
-                    // English: Which part was in slot #{1} at the start of {0}?
-                    // Example: Which part was in slot #1 at the start of Melody Sequencer?
-                    Question = "Какая часть была в слоту №{1} в начале {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                },
-            },
-        },
-
         // Memorable Buttons
         [typeof(SMemorableButtons)] = new()
         {
@@ -8970,21 +8852,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the position of the submit button in {0}?
                     Question = "В какой позиции была кнопка отправки {0}?",
-                },
-            },
-        },
-
-        // Modern Cipher
-        [typeof(SModernCipher)] = new()
-        {
-            Questions = new()
-            {
-                [SModernCipher.Word] = new()
-                {
-                    // English: What was the decrypted word of the {1} stage in {0}?
-                    // Example: What was the decrypted word of the first stage in Modern Cipher?
-                    Question = "Какое слово было расшифровано на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
@@ -11649,22 +11516,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Poetry
-        [typeof(SPoetry)] = new()
-        {
-            ModuleName = "Поэзии",
-            Questions = new()
-            {
-                [SPoetry.Answers] = new()
-                {
-                    // English: What was the {1} correct answer you pressed in {0}?
-                    // Example: What was the first correct answer you pressed in Poetry?
-                    Question = "Какое было {1}-е правильное слово, которое вы нажали {0}?",
-                    Conjugation = Conjugation.в_PrepositiveFeminine,
-                },
-            },
-        },
-
         // Pointless Machines
         [typeof(SPointlessMachines)] = new()
         {
@@ -12931,19 +12782,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the {1} encrypted word in {0}?
                     // Example: What was the first encrypted word in Scramboozled Eggain?
                     Question = "Какое было {1}-е зашифрованное слово {0}?",
-                },
-            },
-        },
-
-        // Scripting
-        [typeof(SScripting)] = new()
-        {
-            Questions = new()
-            {
-                [SScripting.VariableDataType] = new()
-                {
-                    // English: What was the submitted data type of the variable in {0}?
-                    Question = "Какой был верный тип данных у переменной {0}?",
                 },
             },
         },
@@ -15671,20 +15509,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: Which of these was one of the passwords in {0}?
                     Question = "Что из этого было одним из паролей {0}?",
-                },
-            },
-        },
-
-        // Turtle Robot
-        [typeof(STurtleRobot)] = new()
-        {
-            Questions = new()
-            {
-                [STurtleRobot.CodeLines] = new()
-                {
-                    // English: What was the {1} line you commented out in {0}?
-                    // Example: What was the first line you commented out in Turtle Robot?
-                    Question = "Какую строку вы закомментировали {1}-й {0}?",
                 },
             },
         },

@@ -1425,20 +1425,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Binary LEDs
-        [typeof(SBinaryLEDs)] = new()
-        {
-            ModuleName = "二進法LED",
-            Questions = new()
-            {
-                [SBinaryLEDs.Value] = new()
-                {
-                    // English: At which numeric value did you cut the correct wire in {0}?
-                    Question = "{0}でどの数字の時に正しいワイヤを切った？",
-                },
-            },
-        },
-
         // Binary Shift
         [typeof(SBinaryShift)] = new()
         {
@@ -2081,21 +2067,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Broken Buttons
-        [typeof(SBrokenButtons)] = new()
-        {
-            ModuleName = "壊れたボタン",
-            Questions = new()
-            {
-                [SBrokenButtons.Question] = new()
-                {
-                    // English: What was the {1} correct button you pressed in {0}?
-                    // Example: What was the first correct button you pressed in Broken Buttons?
-                    Question = "{0}で{1}番目に押したボタンはどれ？",
-                },
-            },
-        },
-
         // Broken Guitar Chords
         [typeof(SBrokenGuitarChords)] = new()
         {
@@ -2131,38 +2102,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["top"] = "上部",
                         ["middle"] = "中央",
                         ["bottom"] = "下部",
-                    },
-                },
-            },
-        },
-
-        // Brush Strokes
-        [typeof(SBrushStrokes)] = new()
-        {
-            ModuleName = "ブラシストローク",
-            Questions = new()
-            {
-                [SBrushStrokes.MiddleColor] = new()
-                {
-                    // English: What was the color of the middle contact point in {0}?
-                    Question = "{0}の中央の接点の色は？",
-                    Answers = new()
-                    {
-                        ["Red"] = "赤",
-                        ["Orange"] = "オレンジ",
-                        ["Yellow"] = "黄",
-                        ["Lime"] = "黄緑",
-                        ["Green"] = "緑",
-                        ["Cyan"] = "シアン",
-                        ["Sky"] = "空",
-                        ["Blue"] = "青",
-                        ["Purple"] = "紫",
-                        ["Magenta"] = "マゼンタ",
-                        ["Brown"] = "茶",
-                        ["White"] = "白",
-                        ["Gray"] = "灰",
-                        ["Black"] = "黒",
-                        ["Pink"] = "ピンク",
                     },
                 },
             },
@@ -5308,20 +5247,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["purple"] = "紫",
                         ["orange"] = "オレンジ",
                     },
-                },
-            },
-        },
-
-        // Flavor Text
-        [typeof(SFlavorText)] = new()
-        {
-            ModuleName = "フレーバーテキスト",
-            Questions = new()
-            {
-                [SFlavorText.Module] = new()
-                {
-                    // English: Which module’s flavor text was shown in {0}?
-                    Question = "{0}で表示されたフレーバーテキストは、どのモジュールのもの(英名)？",
                 },
             },
         },
@@ -8728,46 +8653,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Mega Man 2
-        [typeof(SMegaMan2)] = new()
-        {
-            ModuleName = "ロックマン2",
-            Questions = new()
-            {
-                [SMegaMan2.Master] = new()
-                {
-                    // English: Which master was shown in {0}?
-                    Question = "{0}で表示されたマスターは？",
-                },
-                [SMegaMan2.Weapon] = new()
-                {
-                    // English: Which weapon was shown in {0}?
-                    Question = "{0}で表示された武器は？",
-                },
-            },
-        },
-
-        // Melody Sequencer
-        [typeof(SMelodySequencer)] = new()
-        {
-            ModuleName = "メロディーシークエンス",
-            Questions = new()
-            {
-                [SMelodySequencer.Parts] = new()
-                {
-                    // English: Which slot contained part #{1} at the start of {0}?
-                    // Example: Which slot contained part #1 at the start of Melody Sequencer?
-                    Question = "{0}の開始時にパート{1}が入っていたスロットは？",
-                },
-                [SMelodySequencer.Slots] = new()
-                {
-                    // English: Which part was in slot #{1} at the start of {0}?
-                    // Example: Which part was in slot #1 at the start of Melody Sequencer?
-                    Question = "{0}の開始時にスロット{1}に入っていたのは？",
-                },
-            },
-        },
-
         // Memorable Buttons
         [typeof(SMemorableButtons)] = new()
         {
@@ -8926,21 +8811,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the position of the submit button in {0}?
                     Question = "{0}で送信ボタンがあった位置は？",
-                },
-            },
-        },
-
-        // Modern Cipher
-        [typeof(SModernCipher)] = new()
-        {
-            ModuleName = "現代暗号",
-            Questions = new()
-            {
-                [SModernCipher.Word] = new()
-                {
-                    // English: What was the decrypted word of the {1} stage in {0}?
-                    // Example: What was the decrypted word of the first stage in Modern Cipher?
-                    Question = "{0}のステージ{1}で復号された単語は？",
                 },
             },
         },
@@ -11615,21 +11485,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Poetry
-        [typeof(SPoetry)] = new()
-        {
-            ModuleName = "詩",
-            Questions = new()
-            {
-                [SPoetry.Answers] = new()
-                {
-                    // English: What was the {1} correct answer you pressed in {0}?
-                    // Example: What was the first correct answer you pressed in Poetry?
-                    Question = "{0}において、{1}番目に押して正解だったフレーズは？",
-                },
-            },
-        },
-
         // Pointless Machines
         [typeof(SPointlessMachines)] = new()
         {
@@ -12911,20 +12766,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the {1} encrypted word in {0}?
                     // Example: What was the first encrypted word in Scramboozled Eggain?
                     Question = "{0}で解読した{1}番目の単語は？",
-                },
-            },
-        },
-
-        // Scripting
-        [typeof(SScripting)] = new()
-        {
-            ModuleName = "スクリプト修正",
-            Questions = new()
-            {
-                [SScripting.VariableDataType] = new()
-                {
-                    // English: What was the submitted data type of the variable in {0}?
-                    Question = "{0}で送信した変数の型は？",
                 },
             },
         },
@@ -15687,21 +15528,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which of these was one of the passwords in {0}?
                     Question = "{0}のパスワードの一つであるのは？",
-                },
-            },
-        },
-
-        // Turtle Robot
-        [typeof(STurtleRobot)] = new()
-        {
-            ModuleName = "亀型ロボット",
-            Questions = new()
-            {
-                [STurtleRobot.CodeLines] = new()
-                {
-                    // English: What was the {1} line you commented out in {0}?
-                    // Example: What was the first line you commented out in Turtle Robot?
-                    Question = "{0}で{1}番目にコメントアウトした行は？",
                 },
             },
         },
