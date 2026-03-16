@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SRhythms
 public partial class SouvenirModule
 {
     [SouvenirHandler("MusicRhythms", "Rhythms", typeof(SRhythms), "Timwi")]
+    [SouvenirManualQuestion("What was the color?")]
     private IEnumerator<SouvenirInstruction> ProcessRhythms(ModuleData module)
     {
         var comp = GetComponent(module, "Rhythms");

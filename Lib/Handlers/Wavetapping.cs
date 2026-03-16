@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -14,6 +13,7 @@ public enum SWavetapping
 public partial class SouvenirModule
 {
     [SouvenirHandler("Wavetapping", "Wavetapping", typeof(SWavetapping), "KingSlendy")]
+    [SouvenirManualQuestion("What was the color in the first two stages?")]
     private IEnumerator<SouvenirInstruction> ProcessWavetapping(ModuleData module)
     {
         var comp = GetComponent(module, "scr_wavetapping");

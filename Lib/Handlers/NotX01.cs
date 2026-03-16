@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SNotX01
 public partial class SouvenirModule
 {
     [SouvenirHandler("notX01", "Not X01", typeof(SNotX01), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the sector values?")]
     private IEnumerator<SouvenirInstruction> ProcessNotX01(ModuleData module)
     {
         var comp = GetComponent(module, "NX01Script");

@@ -13,6 +13,7 @@ public enum SSimonSaid
 public partial class SouvenirModule
 {
     [SouvenirHandler("simonSaidModule", "Simon Said", typeof(SSimonSaid), "Quinn Wuest")]
+    [SouvenirManualQuestion("What colors flashed in the final sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSaid(ModuleData module)
     {
         var comp = GetComponent(module, "SimonSaidScript");

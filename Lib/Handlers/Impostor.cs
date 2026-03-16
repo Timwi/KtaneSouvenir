@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SImpostor
 public partial class SouvenirModule
 {
     [SouvenirHandler("impostor", "Impostor", typeof(SImpostor), "Kuro", AddThe = true)]
+    [SouvenirManualQuestion("Which module was being imitated?")]
     private IEnumerator<SouvenirInstruction> ProcessImpostor(ModuleData module)
     {
         var comp = GetComponent(module, "impostorScript");

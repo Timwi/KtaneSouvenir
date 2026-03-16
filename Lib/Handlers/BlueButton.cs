@@ -42,6 +42,7 @@ public enum SBlueButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("BlueButtonModule", "Blue Button", typeof(SBlueButton), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What were D, E, F, G, H, M, N, P, Q, and X?")]
     private IEnumerator<SouvenirInstruction> ProcessBlueButton(ModuleData module)
     {
         var comp = GetComponent(module, "BlueButtonScript");

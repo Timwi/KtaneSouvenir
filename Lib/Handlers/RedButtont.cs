@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SRedButtont
 public partial class SouvenirModule
 {
     [SouvenirHandler("redbuttont", "Red Button’t", typeof(SRedButtont), "Anonymous")]
+    [SouvenirManualQuestion("What was the displayed word?")]
     private IEnumerator<SouvenirInstruction> ProcessRedButtont(ModuleData module)
     {
         var comp = GetComponent(module, "BaseButtonScript");

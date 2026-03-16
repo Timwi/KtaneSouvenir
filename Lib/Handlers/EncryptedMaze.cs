@@ -13,6 +13,7 @@ public enum SEncryptedMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("encryptedMaze", "Encrypted Maze", typeof(SEncryptedMaze), "Timwi")]
+    [SouvenirManualQuestion("Which symbol was spinning which way?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptedMaze(ModuleData module)
     {
         var comp = GetComponent(module, "encryptedMazeScript");

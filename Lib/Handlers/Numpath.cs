@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -17,6 +17,7 @@ public enum SNumpath
 public partial class SouvenirModule
 {
     [SouvenirHandler("numpath", "Numpath", typeof(SNumpath), "tandyCake")]
+    [SouvenirManualQuestion("What was the number and its color?")]
     private IEnumerator<SouvenirInstruction> ProcessNumpath(ModuleData module)
     {
         var comp = GetComponent(module, "NumpathScript");

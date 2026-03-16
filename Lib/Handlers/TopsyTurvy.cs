@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum STopsyTurvy
 public partial class SouvenirModule
 {
     [SouvenirHandler("topsyTurvy", "Topsy Turvy", typeof(STopsyTurvy), "BigCrunch22")]
+    [SouvenirManualQuestion("What was the word initially shown?")]
     private IEnumerator<SouvenirInstruction> ProcessTopsyTurvy(ModuleData module)
     {
         var comp = GetComponent(module, "topsyTurvy");

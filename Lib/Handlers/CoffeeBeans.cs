@@ -12,6 +12,7 @@ public enum SCoffeeBeans
 public partial class SouvenirModule
 {
     [SouvenirHandler("coffeeBeans", "Coffee Beans", typeof(SCoffeeBeans), "Anonymous")]
+    [SouvenirManualQuestion("What were the movements?")]
     private IEnumerator<SouvenirInstruction> ProcessCoffeeBeans(ModuleData module)
     {
         yield return WaitForSolve;

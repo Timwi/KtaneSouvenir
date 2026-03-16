@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SWhosOnGas
 public partial class SouvenirModule
 {
     [SouvenirHandler("whosOnGas", "Who’s on Gas", typeof(SWhosOnGas), "Quinn Wuest")]
+    [SouvenirManualQuestion("What was displayed in the first phase of each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessWhosOnGas(ModuleData module)
     {
         var comp = GetComponent(module, "WhosOnGasScript");

@@ -14,6 +14,7 @@ public enum SButtonSequence
 public partial class SouvenirModule
 {
     [SouvenirHandler("buttonSequencesModule", "Button Sequence", typeof(SButtonSequence), "Timwi")]
+    [SouvenirManualQuestion("How many times did each color occur?")]
     private IEnumerator<SouvenirInstruction> ProcessButtonSequence(ModuleData module)
     {
         var comp = GetComponent(module, "ButtonSequencesModule");

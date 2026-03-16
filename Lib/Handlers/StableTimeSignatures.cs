@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SStableTimeSignatures
 public partial class SouvenirModule
 {
     [SouvenirHandler("StableTimeSignatures", "Stable Time Signatures", typeof(SStableTimeSignatures), "Anonymous")]
+    [SouvenirManualQuestion("What time signatures played?")]
     private IEnumerator<SouvenirInstruction> ProcessStableTimeSignatures(ModuleData module)
     {
         var comp = GetComponent(module, "StableTimeSignatures");

@@ -13,6 +13,7 @@ public enum SLimeArrows
 public partial class SouvenirModule
 {
     [SouvenirHandler("limeArrowsModule", "Lime Arrows", typeof(SLimeArrows), "thunder725")]
+    [SouvenirManualQuestion("What was the starting coordinate?")]
     private IEnumerator<SouvenirInstruction> ProcessLimeArrows(ModuleData module)
     {
         var struck = false;

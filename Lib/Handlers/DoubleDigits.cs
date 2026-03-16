@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SDoubleDigits
 public partial class SouvenirModule
 {
     [SouvenirHandler("doubleDigitsModule", "Double Digits", typeof(SDoubleDigits), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the numbers on the displays?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleDigits(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleDigitsScript");

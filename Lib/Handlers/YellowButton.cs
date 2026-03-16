@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SYellowButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("YellowButtonModule", "Yellow Button", typeof(SYellowButton), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What were the colors?")]
     private IEnumerator<SouvenirInstruction> ProcessYellowButton(ModuleData module)
     {
         var comp = GetComponent(module, "YellowButtonScript");

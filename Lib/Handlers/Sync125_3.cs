@@ -13,6 +13,7 @@ public enum SSync125_3
 public partial class SouvenirModule
 {
     [SouvenirHandler("sync125_3", "SYNC-125 [3]", typeof(SSync125_3), "Timwi")]
+    [SouvenirManualQuestion("What was displayed on the screen in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSync125_3(ModuleData module)
     {
         var comp = GetComponent(module, "sync125_3");

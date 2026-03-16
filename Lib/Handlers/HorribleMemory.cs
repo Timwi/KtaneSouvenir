@@ -44,6 +44,8 @@ public enum SHorribleMemory
 public partial class SouvenirModule
 {
     [SouvenirHandler("horribleMemory", "Horrible Memory", typeof(SHorribleMemory), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the colors and labels of each button in each stage?")]
+    [SouvenirManualQuestion("What digit was displayed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessHorribleMemory(ModuleData module)
     {
         var comp = GetComponent(module, "cruelMemoryScript");

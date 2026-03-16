@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SCode
 public partial class SouvenirModule
 {
     [SouvenirHandler("theCodeModule", "Code", typeof(SCode), "luisdiogo98", AddThe = true)]
+    [SouvenirManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessCode(ModuleData module)
     {
         var comp = GetComponent(module, "TheCodeModule");

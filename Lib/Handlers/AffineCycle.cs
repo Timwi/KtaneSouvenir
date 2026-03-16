@@ -20,6 +20,8 @@ public enum SAffineCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("affineCycle", "Affine Cycle", typeof(SAffineCycle), "Timwi")]
+    [SouvenirManualQuestion("Which direction were the dials pointing?")]
+    [SouvenirManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessAffineCycle(ModuleData module) => processSpeakingEvilCycle(
         module, "AffineCycleScript", SAffineCycle.DialDirections, SAffineCycle.DialLabels, SAffineCycle.LabelDiscriminator,
         all: Enumerable.Range(0, 8).Except([6]).Select(x => CycleModuleEightSprites[x]).ToArray());

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SV
 public partial class SouvenirModule
 {
     [SouvenirHandler("V", "V", typeof(SV), "BigCrunch22")]
+    [SouvenirManualQuestion("Which words were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessV(ModuleData module)
     {
         var comp = GetComponent(module, "qkV");

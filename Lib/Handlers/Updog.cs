@@ -17,6 +17,8 @@ public enum SUpdog
 public partial class SouvenirModule
 {
     [SouvenirHandler("Updog", "Updog", typeof(SUpdog), "Anonymous")]
+    [SouvenirManualQuestion("What was the displayed word?")]
+    [SouvenirManualQuestion("What were the flashing colors?")]
     private IEnumerator<SouvenirInstruction> ProcessUpdog(ModuleData module)
     {
         var comp = GetComponent(module, "UpdogScript");

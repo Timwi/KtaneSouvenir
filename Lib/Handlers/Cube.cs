@@ -13,6 +13,7 @@ public enum SCube
 public partial class SouvenirModule
 {
     [SouvenirHandler("cube", "Cube", typeof(SCube), "luisdiogo98", AddThe = true)]
+    [SouvenirManualQuestion("What were the cube rotations?")]
     private IEnumerator<SouvenirInstruction> ProcessCube(ModuleData module)
     {
         var comp = GetComponent(module, "theCubeScript");

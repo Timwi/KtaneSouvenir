@@ -19,6 +19,7 @@ public enum SSmashMarryKill
 public partial class SouvenirModule
 {
     [SouvenirHandler("smashmarrykill", "Smash, Marry, Kill", typeof(SSmashMarryKill), "Anonymous", IsBossModule = true)]
+    [SouvenirManualQuestion("What category was each module in?")]
     private IEnumerator<SouvenirInstruction> ProcessSmashMarryKill(ModuleData module)
     {
         var comp = GetComponent(module, "SmashMarryKill");

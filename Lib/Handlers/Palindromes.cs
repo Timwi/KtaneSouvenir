@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SPalindromes
 public partial class SouvenirModule
 {
     [SouvenirHandler("palindromes", "Palindromes", typeof(SPalindromes), "Emik")]
+    [SouvenirManualQuestion("What number was X, Y, Z, and the screen display?")]
     private IEnumerator<SouvenirInstruction> ProcessPalindromes(ModuleData module)
     {
         var comp = GetComponent(module, "Palindromes");

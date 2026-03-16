@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SWhoOF
 public partial class SouvenirModule
 {
     [SouvenirHandler("whoOF", "WhoOF", typeof(SWhoOF), "VFlyer")]
+    [SouvenirManualQuestion("What was on the display in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessWhoOF(ModuleData module)
     {
         var comp = GetComponent(module, "whoOFScript");

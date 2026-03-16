@@ -44,6 +44,8 @@ public enum SForgetTheColors
 public partial class SouvenirModule
 {
     [SouvenirHandler("ForgetTheColors", "Forget The Colors", typeof(SForgetTheColors), "Kuro", IsBossModule = true)]
+    [SouvenirManualQuestion("What were the large display, gear and the sine number’s last digit in each stage?")]
+    [SouvenirManualQuestion("Which edgework-based rule was applied in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetTheColors(ModuleData module)
     {
         var comp = GetComponent(module, "FTCScript");

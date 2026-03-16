@@ -20,6 +20,7 @@ public enum SUnorderedKeys
 public partial class SouvenirModule
 {
     [SouvenirHandler("unorderedKeys", "Unordered Keys", typeof(SUnorderedKeys), "Anonymous")]
+    [SouvenirManualQuestion("What were the labels, their colors, and the colors of the keys in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessUnorderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "UnorderedKeysScript");

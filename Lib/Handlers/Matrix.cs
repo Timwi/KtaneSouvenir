@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,8 @@ public enum SMatrix
 public partial class SouvenirModule
 {
     [SouvenirHandler("matrix", "Matrix", typeof(SMatrix), "BigCrunch22", AddThe = true)]
+    [SouvenirManualQuestion("Which word was part of the latest access code?")]
+    [SouvenirManualQuestion("What was the glitched word?")]
     private IEnumerator<SouvenirInstruction> ProcessMatrix(ModuleData module)
     {
         var comp = GetComponent(module, "MatrixScript");

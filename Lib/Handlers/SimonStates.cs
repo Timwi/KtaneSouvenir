@@ -13,6 +13,7 @@ public enum SSimonStates
 public partial class SouvenirModule
 {
     [SouvenirHandler("SimonV2", "Simon States", typeof(SSimonStates), "Timwi")]
+    [SouvenirManualQuestion("Which color(s) flashed in the first three stages?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonStates(ModuleData module)
     {
         var comp = GetComponent(module, "AdvancedSimon");

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -27,6 +27,7 @@ public enum SBorderedKeys
 public partial class SouvenirModule
 {
     [SouvenirHandler("borderedKeys", "Bordered Keys", typeof(SBorderedKeys), "Hawker")]
+    [SouvenirManualQuestion("What were the border color, displayed digit, key color, label and label color when you pressed each key?")]
     private IEnumerator<SouvenirInstruction> ProcessBorderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "BorderedKeysScript");

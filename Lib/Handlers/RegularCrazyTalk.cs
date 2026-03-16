@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -16,6 +16,8 @@ public enum SRegularCrazyTalk
 public partial class SouvenirModule
 {
     [SouvenirHandler("RegularCrazyTalkModule", "Regular Crazy Talk", typeof(SRegularCrazyTalk), "Espik")]
+    [SouvenirManualQuestion("What was the displayed digit that corresponded to the solution phrase?")]
+    [SouvenirManualQuestion("What was the embellishment of the solution phrase?")]
     private IEnumerator<SouvenirInstruction> ProcessRegularCrazyTalk(ModuleData module)
     {
         var comp = GetComponent(module, "RegularCrazyTalkModule");

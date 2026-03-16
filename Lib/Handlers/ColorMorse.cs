@@ -17,6 +17,8 @@ public enum SColorMorse
 public partial class SouvenirModule
 {
     [SouvenirHandler("ColorMorseModule", "Color Morse", typeof(SColorMorse), "Timwi")]
+    [SouvenirManualQuestion("What were the colors of the LEDs?")]
+    [SouvenirManualQuestion("What characters were flashed by the LEDs?")]
     private IEnumerator<SouvenirInstruction> ProcessColorMorse(ModuleData module)
     {
         var comp = GetComponent(module, "ColorMorseModule");

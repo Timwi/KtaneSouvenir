@@ -18,6 +18,8 @@ public enum SNotTextField
 public partial class SouvenirModule
 {
     [SouvenirHandler("notTextField", "Not Text Field", typeof(SNotTextField), "tandyCake")]
+    [SouvenirManualQuestion("Which letter appeared 9 times at the start?")]
+    [SouvenirManualQuestion("Which letters were pressed in the first stage?")]
     private IEnumerator<SouvenirInstruction> ProcessNotTextField(ModuleData module)
     {
         var comp = GetComponent(module, "NotTextFieldScript");

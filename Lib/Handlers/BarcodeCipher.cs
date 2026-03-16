@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -20,6 +20,9 @@ public enum SBarcodeCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("BarcodeCipherModule", "Barcode Cipher", typeof(SBarcodeCipher), "Brawlboxgaming")]
+    [SouvenirManualQuestion("What was the screen number?")]
+    [SouvenirManualQuestion("What was the edgework represented by each barcode?")]
+    [SouvenirManualQuestion("What was the answer for each barcode?")]
     private IEnumerator<SouvenirInstruction> ProcessBarcodeCipher(ModuleData module)
     {
         var comp = GetComponent(module, "BarcodeCipherScript");

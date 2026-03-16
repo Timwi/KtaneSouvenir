@@ -13,6 +13,7 @@ public enum SASCIIMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("asciiMaze", "ASCII Maze", typeof(SASCIIMaze), "Timwi")]
+    [SouvenirManualQuestion("What characters were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessASCIIMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ASCIIMazeScript");

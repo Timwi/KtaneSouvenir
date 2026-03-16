@@ -15,6 +15,9 @@ public enum SSynapseSays
 public partial class SouvenirModule
 {
     [SouvenirHandler("synapseSays", "Synapse Says", typeof(SSynapseSays), "Quinn Wuest")]
+    [SouvenirManualQuestion("What number was displayed at each stage?")]
+    [SouvenirManualQuestion("What positions were the colors in at each stage?")]
+    [SouvenirManualQuestion("What colors flashed at each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSynapseSays(ModuleData module)
     {
         var comp = GetComponent(module, "SynapseSaysScript");

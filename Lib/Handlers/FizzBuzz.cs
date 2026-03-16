@@ -15,6 +15,7 @@ public enum SFizzBuzz
 public partial class SouvenirModule
 {
     [SouvenirHandler("fizzBuzzModule", "FizzBuzz", typeof(SFizzBuzz), "Kuro")]
+    [SouvenirManualQuestion("What were the displayed numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessFizzBuzz(ModuleData module)
     {
         var comp = GetComponent(module, "FizzBuzzModule");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,7 @@ public enum SSemamorse
 public partial class SouvenirModule
 {
     [SouvenirHandler("semamorse", "Semamorse", typeof(SSemamorse), "Timwi")]
+    [SouvenirManualQuestion("What were Morse and semaphore letters and color used for the starting value?")]
     private IEnumerator<SouvenirInstruction> ProcessSemamorse(ModuleData module)
     {
         var comp = GetComponent(module, "semamorse");

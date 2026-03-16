@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SJenga
 public partial class SouvenirModule
 {
     [SouvenirHandler("jenga", "Jenga", typeof(SJenga), "tandyCake")]
+    [SouvenirManualQuestion("What symbols were on the first correctly pulled block?")]
     private IEnumerator<SouvenirInstruction> ProcessJenga(ModuleData module)
     {
         var comp = GetComponent(module, "JengaModule");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SQuantumPasswords
 public partial class SouvenirModule
 {
     [SouvenirHandler("quantumPasswords", "Quantum Passwords", typeof(SQuantumPasswords), "Anonymous")]
+    [SouvenirManualQuestion("Which words were used?")]
     private IEnumerator<SouvenirInstruction> ProcessQuantumPasswords(ModuleData module)
     {
         yield return WaitForSolve;

@@ -14,6 +14,7 @@ public enum SFreeParking
 public partial class SouvenirModule
 {
     [SouvenirHandler("freeParking", "Free Parking", typeof(SFreeParking), "luisdiogo98")]
+    [SouvenirManualQuestion("What was the player token?")]
     private IEnumerator<SouvenirInstruction> ProcessFreeParking(ModuleData module)
     {
         var comp = GetComponent(module, "FreeParkingScript");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -16,6 +16,7 @@ public enum SGreatVoid
 public partial class SouvenirModule
 {
     [SouvenirHandler("greatVoid", "Great Void", typeof(SGreatVoid), "Marksam", AddThe = true)]
+    [SouvenirManualQuestion("What were the digits and colors?")]
     private IEnumerator<SouvenirInstruction> ProcessGreatVoid(ModuleData module)
     {
         var comp = GetComponent(module, "TheGreatVoid");

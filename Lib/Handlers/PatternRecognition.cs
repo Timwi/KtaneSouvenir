@@ -11,6 +11,7 @@ public enum SPatternRecognition
 public partial class SouvenirModule
 {
     [SouvenirHandler("patternRecognition", "Pattern Recognition", typeof(SPatternRecognition), "KiloBites")]
+    [SouvenirManualQuestion("What was the repeating pattern?")]
     private IEnumerator<SouvenirInstruction> ProcessPatternRecognition(ModuleData module)
     {
         var comp = GetComponent(module, "PatternRecognitionScript");

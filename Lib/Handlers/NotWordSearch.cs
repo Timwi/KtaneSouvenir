@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,6 +15,8 @@ public enum SNotWordSearch
 public partial class SouvenirModule
 {
     [SouvenirHandler("notWordSearch", "Not Word Search", typeof(SNotWordSearch), "tandyCake")]
+    [SouvenirManualQuestion("Which consonants were missing?")]
+    [SouvenirManualQuestion("What was the first correctly pressed letter?")]
     private IEnumerator<SouvenirInstruction> ProcessNotWordSearch(ModuleData module)
     {
         var comp = GetComponent(module, "NWSScript");

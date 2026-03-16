@@ -16,6 +16,7 @@ public partial class SouvenirModule
     public static AudioClip Temp => Sounds.GetForeignClip("simonSamples", "Kick");
 
     [SouvenirHandler("simonSamples", "Simon Samples", typeof(SSimonSamples), "Timwi")]
+    [SouvenirManualQuestion("What were the call samples in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSamples(ModuleData module)
     {
         var comp = GetComponent(module, "SimonSamples");

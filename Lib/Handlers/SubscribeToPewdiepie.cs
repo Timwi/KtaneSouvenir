@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SSubscribeToPewdiepie
 public partial class SouvenirModule
 {
     [SouvenirHandler("subscribeToPewdiepie", "Subscribe to Pewdiepie", typeof(SSubscribeToPewdiepie), "BigCrunch22")]
+    [SouvenirManualQuestion("How many subscribers do Pewdiepie and T-Series have?")]
     private IEnumerator<SouvenirInstruction> ProcessSubscribeToPewdiepie(ModuleData module)
     {
         var comp = GetComponent(module, "subscribeToPewdiepieScript");

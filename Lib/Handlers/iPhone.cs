@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SiPhone
 public partial class SouvenirModule
 {
     [SouvenirHandler("iPhone", "iPhone", typeof(SiPhone), "luisdiogo98", AddThe = true)]
+    [SouvenirManualQuestion("What was the PIN?")]
     private IEnumerator<SouvenirInstruction> ProcessiPhone(ModuleData module)
     {
         var comp = GetComponent(module, "iPhoneScript");

@@ -13,6 +13,7 @@ public enum SNotMorseCode
 public partial class SouvenirModule
 {
     [SouvenirHandler("NotMorseCode", "Not Morse Code", typeof(SNotMorseCode), "Andrio Celos")]
+    [SouvenirManualQuestion("What was the sequence of words you submitted?")]
     private IEnumerator<SouvenirInstruction> ProcessNotMorseCode(ModuleData module)
     {
         var component = GetComponent(module, "NotMorseCode");

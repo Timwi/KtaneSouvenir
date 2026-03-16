@@ -14,6 +14,7 @@ public enum SSequencyclopedia
 public partial class SouvenirModule
 {
     [SouvenirHandler("TheSequencyclopedia", "Sequencyclopedia", typeof(SSequencyclopedia), "BigCrunch22", AddThe = true)]
+    [SouvenirManualQuestion("What sequence was used?")]
     private IEnumerator<SouvenirInstruction> ProcessSequencyclopedia(ModuleData module)
     {
         var comp = GetComponent(module, "TheSequencyclopediaScript");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SSignLanguage
 public partial class SouvenirModule
 {
     [SouvenirHandler("signLanguage", "Sign Language", typeof(SSignLanguage), "Hawker")]
+    [SouvenirManualQuestion("What was the deciphered word?")]
     private IEnumerator<SouvenirInstruction> ProcessSignLanguage(ModuleData module)
     {
         var comp = GetComponent(module, "SignLanguageAlphabetScript");

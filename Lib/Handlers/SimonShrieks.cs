@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SSimonShrieks
 public partial class SouvenirModule
 {
     [SouvenirHandler("SimonShrieksModule", "Simon Shrieks", typeof(SSimonShrieks), "Timwi")]
+    [SouvenirManualQuestion("How many spaces clockwise from the arrow was each flash in the final sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonShrieks(ModuleData module)
     {
         var comp = GetComponent(module, "SimonShrieksModule");

@@ -11,6 +11,7 @@ public enum SFrenchRepublicanCalendar
 public partial class SouvenirModule
 {
     [SouvenirHandler("FrenchRepublicanCalendar", "French Republican Calendar", typeof(SFrenchRepublicanCalendar), "KiloBites", AddThe = true)]
+    [SouvenirManualQuestion("What was the color of the LED?")]
     private IEnumerator<SouvenirInstruction> ProcessFrenchRepublicanCalendar(ModuleData module)
     {
         var comp = GetComponent(module, "FrenchRepublicanCalendarScript");

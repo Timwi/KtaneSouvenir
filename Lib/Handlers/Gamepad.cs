@@ -15,6 +15,7 @@ public enum SGamepad
 public partial class SouvenirModule
 {
     [SouvenirHandler("TheGamepadModule", "Gamepad", typeof(SGamepad), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What were the numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessGamepad(ModuleData module)
     {
         var comp = GetComponent(module, "GamepadModule");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -16,6 +16,8 @@ public enum SNavinums
 public partial class SouvenirModule
 {
     [SouvenirHandler("navinums", "Navinums", typeof(SNavinums), "Timwi")]
+    [SouvenirManualQuestion("Which directional buttons were pressed?")]
+    [SouvenirManualQuestion("What was the initial middle digit?")]
     private IEnumerator<SouvenirInstruction> ProcessNavinums(ModuleData module)
     {
         var comp = GetComponent(module, "navinumsScript");

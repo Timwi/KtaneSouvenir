@@ -22,6 +22,7 @@ public enum SAlgebra
 public partial class SouvenirModule
 {
     [SouvenirHandler("algebra", "Algebra", typeof(SAlgebra), "Timwi")]
+    [SouvenirManualQuestion("What were the first two equations?")]
     private IEnumerator<SouvenirInstruction> ProcessAlgebra(ModuleData module)
     {
         var comp = GetComponent(module, "algebraScript");

@@ -19,6 +19,8 @@ public enum SSymbolicTasha
 public partial class SouvenirModule
 {
     [SouvenirHandler("symbolicTasha", "Symbolic Tasha", typeof(SSymbolicTasha), "Timwi")]
+    [SouvenirManualQuestion("What symbols were on the buttons?")]
+    [SouvenirManualQuestion("Which buttons flashed?")]
     private IEnumerator<SouvenirInstruction> ProcessSymbolicTasha(ModuleData module)
     {
         var comp = GetComponent(module, "symbolicTasha");

@@ -14,6 +14,7 @@ public enum SEncryptedDice
 public partial class SouvenirModule
 {
     [SouvenirHandler("EncryptedDice", "Encrypted Dice", typeof(SEncryptedDice), "Kuro")]
+    [SouvenirManualQuestion("Which numbers were rolled in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptedDice(ModuleData module)
     {
         var comp = GetComponent(module, "EncrypedDice");

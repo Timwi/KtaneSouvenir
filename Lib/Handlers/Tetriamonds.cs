@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,5 +12,6 @@ public enum STetriamonds
 public partial class SouvenirModule
 {
     [SouvenirHandler("tetriamonds", "Tetriamonds", typeof(STetriamonds), "Kuro")]
+    [SouvenirManualQuestion("What was the pulsing colour sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessTetriamonds(ModuleData module) => processPolyiamonds(module, "tetriamondsScript", STetriamonds.PulsingColours, new[] { "orange", "lime", "jade", "azure", "violet", "rose", "grey" });
 }

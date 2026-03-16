@@ -13,6 +13,7 @@ public enum SNandMs
 public partial class SouvenirModule
 {
     [SouvenirHandler("NandMs", "N&Ms", typeof(SNandMs), "TasThiluna")]
+    [SouvenirManualQuestion("What was the label of the correct button?")]
     private IEnumerator<SouvenirInstruction> ProcessNandMs(ModuleData module)
     {
         var comp = GetComponent(module, "NandMs");

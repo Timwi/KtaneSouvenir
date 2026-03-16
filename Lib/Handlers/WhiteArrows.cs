@@ -13,6 +13,7 @@ public enum SWhiteArrows
 public partial class SouvenirModule
 {
     [SouvenirHandler("WhiteArrows", "White Arrows", typeof(SWhiteArrows), "Anonymous")]
+    [SouvenirManualQuestion("What were the non-white arrows?")]
     private IEnumerator<SouvenirInstruction> ProcessWhiteArrows(ModuleData module)
     {
         var comp = GetComponent(module, "WhiteArrowsScript");

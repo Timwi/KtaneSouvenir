@@ -17,6 +17,8 @@ public enum SFuseBox
 public partial class SouvenirModule
 {
     [SouvenirHandler("FuseBox", "Fuse Box", typeof(SFuseBox), "Anonymous", AddThe = true)]
+    [SouvenirManualQuestion("What colors flashed?")]
+    [SouvenirManualQuestion("What arrows were correct?")]
     private IEnumerator<SouvenirInstruction> ProcessFuseBox(ModuleData module)
     {
         var comp = GetComponent(module, "FuseBoxScript");

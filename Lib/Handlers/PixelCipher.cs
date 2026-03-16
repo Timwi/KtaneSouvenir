@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SPixelCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("pixelcipher", "Pixel Cipher", typeof(SPixelCipher), "Eltrick")]
+    [SouvenirManualQuestion("What was the keyword?")]
     private IEnumerator<SouvenirInstruction> ProcessPixelCipher(ModuleData module)
     {
         var comp = GetComponent(module, "pixelcipherScript");

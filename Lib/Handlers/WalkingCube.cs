@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SWalkingCube
 public partial class SouvenirModule
 {
     [SouvenirHandler("WalkingCubeModule", "Walking Cube", typeof(SWalkingCube), "Anonymous")]
+    [SouvenirManualQuestion("Which cells did the cube walk to?")]
     private IEnumerator<SouvenirInstruction> ProcessWalkingCube(ModuleData module)
     {
         yield return WaitForSolve;

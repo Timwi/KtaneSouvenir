@@ -12,6 +12,7 @@ public enum SListening
 public partial class SouvenirModule
 {
     [SouvenirHandler("Listening", "Listening", typeof(SListening), "Timwi")]
+    [SouvenirManualQuestion("What sound played?")]
     private IEnumerator<SouvenirInstruction> ProcessListening(ModuleData module)
     {
         var comp = GetComponent(module, "Listening");

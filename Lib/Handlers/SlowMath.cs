@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SSlowMath
 public partial class SouvenirModule
 {
     [SouvenirHandler("SlowMathModule", "Slow Math", typeof(SSlowMath), "Quinn Wuest")]
+    [SouvenirManualQuestion("What was the last triplet of letters?")]
     private IEnumerator<SouvenirInstruction> ProcessSlowMath(ModuleData module)
     {
         var comp = GetComponent(module, "SlowMathScript");

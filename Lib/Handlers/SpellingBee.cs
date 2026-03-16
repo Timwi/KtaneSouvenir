@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SSpellingBee
 public partial class SouvenirModule
 {
     [SouvenirHandler("spellingBee", "Spelling Bee", typeof(SSpellingBee), "BigCrunch22")]
+    [SouvenirManualQuestion("What word was asked to be spelled?")]
     private IEnumerator<SouvenirInstruction> ProcessSpellingBee(ModuleData module)
     {
         var comp = GetComponent(module, "spellingBeeScript");

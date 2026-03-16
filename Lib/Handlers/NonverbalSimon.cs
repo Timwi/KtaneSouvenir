@@ -14,6 +14,7 @@ public enum SNonverbalSimon
 public partial class SouvenirModule
 {
     [SouvenirHandler("nonverbalSimon", "❖", typeof(SNonverbalSimon), "Anonymous")]
+    [SouvenirManualQuestion("What were the flashes?")]
     private IEnumerator<SouvenirInstruction> ProcessNonverbalSimon(ModuleData module)
     {
         var comp = GetComponent(module, "NonverbalSimonHandler");

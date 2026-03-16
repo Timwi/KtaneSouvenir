@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -14,6 +14,7 @@ public enum SCosmic
 public partial class SouvenirModule
 {
     [SouvenirHandler("CosmicModule", "Cosmic", typeof(SCosmic), "BigCrunch22")]
+    [SouvenirManualQuestion("What was the number initially shown?")]
     private IEnumerator<SouvenirInstruction> ProcessCosmic(ModuleData module)
     {
         var comp = GetComponent(module, "CosmicModule");

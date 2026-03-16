@@ -17,6 +17,8 @@ public enum STAC
 public partial class SouvenirModule
 {
     [SouvenirHandler("TACModule", "TAC", typeof(STAC), "Anonymous")]
+    [SouvenirManualQuestion("Which cards were swapped?")]
+    [SouvenirManualQuestion("Which cards were in your hand?")]
     private IEnumerator<SouvenirInstruction> ProcessTAC(ModuleData module)
     {
         var comp = GetComponent(module, "TACScript");

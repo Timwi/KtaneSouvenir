@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum STwoBits
 public partial class SouvenirModule
 {
     [SouvenirHandler("TwoBits", "Two Bits", typeof(STwoBits), "Timwi")]
+    [SouvenirManualQuestion("What were the correct three query responses?")]
     private IEnumerator<SouvenirInstruction> ProcessTwoBits(ModuleData module)
     {
         var comp = GetComponent(module, "TwoBitsModule");

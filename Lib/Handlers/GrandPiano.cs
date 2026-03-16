@@ -23,6 +23,7 @@ public enum SGrandPiano
 public partial class SouvenirModule
 {
     [SouvenirHandler("grandPiano", "Grand Piano", typeof(SGrandPiano), "Anonymous")]
+    [SouvenirManualQuestion("What were the given notes?")]
     private IEnumerator<SouvenirInstruction> ProcessGrandPiano(ModuleData module)
     {
         yield return WaitForSolve;

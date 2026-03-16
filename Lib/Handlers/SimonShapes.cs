@@ -13,6 +13,7 @@ public enum SSimonShapes
 public partial class SouvenirModule
 {
     [SouvenirHandler("SimonShapesModule", "Simon Shapes", typeof(SSimonShapes), "tandyCake")]
+    [SouvenirManualQuestion("What was the shape submitted at the end?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonShapes(ModuleData module)
     {
         var comp = GetComponent(module, "SimonShapesScript");

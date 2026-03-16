@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -16,6 +16,7 @@ public enum SVaricolourFlash
 public partial class SouvenirModule
 {
     [SouvenirHandler("varicolourFlash", "Varicolour Flash", typeof(SVaricolourFlash), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the words and colours of each goal?")]
     private IEnumerator<SouvenirInstruction> ProcessVaricolourFlash(ModuleData module)
     {
         var comp = GetComponent(module, "VCFScript");

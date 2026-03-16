@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -17,6 +17,8 @@ public enum SMSeq
 public partial class SouvenirModule
 {
     [SouvenirHandler("mSeq", "M-Seq", typeof(SMSeq), "tandyCake")]
+    [SouvenirManualQuestion("What were the obtained digits?")]
+    [SouvenirManualQuestion("What was the final number from the iteration process?")]
     private IEnumerator<SouvenirInstruction> ProcessMSeq(ModuleData module)
     {
         var comp = GetComponent(module, "MSeqScript");

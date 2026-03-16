@@ -17,6 +17,7 @@ public enum SMorsematics
 public partial class SouvenirModule
 {
     [SouvenirHandler("MorseV2", "Morsematics", typeof(SMorsematics), "Timwi")]
+    [SouvenirManualQuestion("What were the received letters?")]
     private IEnumerator<SouvenirInstruction> ProcessMorsematics(ModuleData module)
     {
         var comp = GetComponent(module, "AdvancedMorse");

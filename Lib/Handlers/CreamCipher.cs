@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,5 +12,6 @@ public enum SCreamCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("creamCipher", "Cream Cipher", typeof(SCreamCipher), "Timwi")]
+    [SouvenirManualQuestion("What was on each screen?")]
     private IEnumerator<SouvenirInstruction> ProcessCreamCipher(ModuleData module) => processColoredCiphers(module, "creamCipher", SCreamCipher.Screen);
 }

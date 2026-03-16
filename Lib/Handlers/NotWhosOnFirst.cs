@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -25,6 +25,8 @@ public enum SNotWhosOnFirst
 public partial class SouvenirModule
 {
     [SouvenirHandler("NotWhosOnFirst", "Not Who’s on First", typeof(SNotWhosOnFirst), "Andrio Celos")]
+    [SouvenirManualQuestion("What were the positions and labels of the correct buttons you pressed and the reference buttons?")]
+    [SouvenirManualQuestion("What was the calculated number in the second stage?")]
     private IEnumerator<SouvenirInstruction> ProcessNotWhosOnFirst(ModuleData module)
     {
         var comp = GetComponent(module, "NotWhosOnFirst");

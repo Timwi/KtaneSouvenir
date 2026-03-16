@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,6 +15,7 @@ public enum SNavigationDetermination
 public partial class SouvenirModule
 {
     [SouvenirHandler("NavigationDeterminationModule", "Navigation Determination", typeof(SNavigationDetermination), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the color and label of the maze?")]
     private IEnumerator<SouvenirInstruction> ProcessNavigationDetermination(ModuleData module)
     {
         var comp = GetComponent(module, "NavigationDeterminationScript");

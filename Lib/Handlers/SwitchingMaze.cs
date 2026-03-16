@@ -18,6 +18,8 @@ public enum SSwitchingMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("MazeSwitching", "Switching Maze", typeof(SSwitchingMaze), "BigCrunch22")]
+    [SouvenirManualQuestion("What was the seed?")]
+    [SouvenirManualQuestion("What was the starting maze color?")]
     private IEnumerator<SouvenirInstruction> ProcessSwitchingMaze(ModuleData module)
     {
         var comp = GetComponent(module, "SwitchingMazeScript");

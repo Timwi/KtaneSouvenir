@@ -14,6 +14,7 @@ public enum SCoordinates
 public partial class SouvenirModule
 {
     [SouvenirHandler("CoordinatesModule", "Coordinates", typeof(SCoordinates), "Timwi")]
+    [SouvenirManualQuestion("What was the grid size?")]
     private IEnumerator<SouvenirInstruction> ProcessCoordinates(ModuleData module)
     {
         var comp = GetComponent(module, "CoordinatesModule");

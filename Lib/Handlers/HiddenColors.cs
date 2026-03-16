@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SHiddenColors
 public partial class SouvenirModule
 {
     [SouvenirHandler("lgndHiddenColors", "Hidden Colors", typeof(SHiddenColors), "TasThiluna")]
+    [SouvenirManualQuestion("What was the main LED’s color?")]
     private IEnumerator<SouvenirInstruction> ProcessHiddenColors(ModuleData module)
     {
         var comp = GetComponent(module, "HiddenColorsScript");

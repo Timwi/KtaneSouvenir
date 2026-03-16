@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SBlinkingNotes
 public partial class SouvenirModule
 {
     [SouvenirHandler("blinkingNotes", "Blinking Notes", typeof(SBlinkingNotes), "Anonymous")]
+    [SouvenirManualQuestion("What song played?")]
     private IEnumerator<SouvenirInstruction> ProcessBlinkingNotes(ModuleData module)
     {
         yield return WaitForSolve;

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SBitmaps
 public partial class SouvenirModule
 {
     [SouvenirHandler("BitmapsModule", "Bitmaps", typeof(SBitmaps), "Timwi")]
+    [SouvenirManualQuestion("How many pixels were black/white in each quadrant?")]
     private IEnumerator<SouvenirInstruction> ProcessBitmaps(ModuleData module)
     {
         var comp = GetComponent(module, "BitmapsModule");

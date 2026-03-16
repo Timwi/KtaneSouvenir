@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -17,6 +17,8 @@ public enum SWire
 public partial class SouvenirModule
 {
     [SouvenirHandler("wire", "Wire", typeof(SWire), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What were the colors of the dials?")]
+    [SouvenirManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessWire(ModuleData module)
     {
         var comp = GetComponent(module, "wireScript");

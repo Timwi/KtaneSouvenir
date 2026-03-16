@@ -12,6 +12,7 @@ public enum SEncryptedEquations
 public partial class SouvenirModule
 {
     [SouvenirHandler("EncryptedEquationsModule", "Encrypted Equations", typeof(SEncryptedEquations), "Timwi")]
+    [SouvenirManualQuestion("What were the main shapes of the three operands?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptedEquations(ModuleData module)
     {
         var comp = GetComponent(module, "EncryptedEquations");

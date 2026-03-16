@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -19,6 +19,8 @@ public enum SPuzzleIdentification
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSPuzzleIdentification", "Puzzle Identification", typeof(SPuzzleIdentification), "GhostSalt")]
+    [SouvenirManualQuestion("What game did each puzzle come from?")]
+    [SouvenirManualQuestion("What was the name and number of each puzzle?")]
     private IEnumerator<SouvenirInstruction> ProcessPuzzleIdentification(ModuleData module)
     {
         var comp = GetComponent(module, "PuzzleIdentificationScript");

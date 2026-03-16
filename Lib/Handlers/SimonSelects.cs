@@ -14,6 +14,7 @@ public enum SSimonSelects
 public partial class SouvenirModule
 {
     [SouvenirHandler("simonSelectsModule", "Simon Selects", typeof(SSimonSelects), "tachatat18")]
+    [SouvenirManualQuestion("Which colors flashed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSelects(ModuleData module)
     {
         var comp = GetComponent(module, "SimonSelectsScript");

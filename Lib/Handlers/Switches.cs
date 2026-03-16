@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -15,6 +15,7 @@ public enum SSwitches
 public partial class SouvenirModule
 {
     [SouvenirHandler("switchModule", "Switches", typeof(SSwitches), "Timwi")]
+    [SouvenirManualQuestion("What was the initial position of the switches?")]
     private IEnumerator<SouvenirInstruction> ProcessSwitches(ModuleData module)
     {
         var comp = GetComponent(module, "SwitchModule");

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SModuleMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("ModuleMaze", "Module Maze", typeof(SModuleMaze), "River")]
+    [SouvenirManualQuestion("What was the starting icon?")]
     private IEnumerator<SouvenirInstruction> ProcessModuleMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ModuleMazeModule");

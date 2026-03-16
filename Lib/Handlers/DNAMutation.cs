@@ -17,6 +17,8 @@ public enum SDNAMutation
 public partial class SouvenirModule
 {
     [SouvenirHandler("DNAMutation", "DNA Mutation", typeof(SDNAMutation), "thunder725")]
+    [SouvenirManualQuestion("What were the DNA strands’ colors?")]
+    [SouvenirManualQuestion("What were the given nucleotides’ letters and colors?")]
     private IEnumerator<SouvenirInstruction> ProcessDNAMutation(ModuleData module)
     {
         var comp = GetComponent(module, "DNAMutationScript");

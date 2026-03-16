@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SCursedDoubleOh
 public partial class SouvenirModule
 {
     [SouvenirHandler("CursedDoubleOhModule", "Cursed Double-Oh", typeof(SCursedDoubleOh), "Kuro")]
+    [SouvenirManualQuestion("What was the first digit of the initial number?")]
     private IEnumerator<SouvenirInstruction> ProcessCursedDoubleOh(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleOhModule");

@@ -15,6 +15,7 @@ public partial class SouvenirModule
     private static readonly Dictionary<string, AudioClip> _dialtonesAnswers = [];
 
     [SouvenirHandler("xelDialtones", "Dialtones", typeof(SDialtones), "Anonymous")]
+    [SouvenirManualQuestion("Which tones played?")]
     private IEnumerator<SouvenirInstruction> ProcessDialtones(ModuleData module)
     {
         var comp = GetComponent(module, "Dialtones");

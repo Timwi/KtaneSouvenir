@@ -12,6 +12,7 @@ public enum SDividedSquares
 public partial class SouvenirModule
 {
     [SouvenirHandler("DividedSquaresModule", "Divided Squares", typeof(SDividedSquares), "Anonymous")]
+    [SouvenirManualQuestion("What color was shown when the correct square was pressed?")]
     private IEnumerator<SouvenirInstruction> ProcessDividedSquares(ModuleData module)
     {
         yield return WaitForSolve;

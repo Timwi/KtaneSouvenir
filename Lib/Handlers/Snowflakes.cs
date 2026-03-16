@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -14,6 +14,7 @@ public enum SSnowflakes
 public partial class SouvenirModule
 {
     [SouvenirHandler("snowflakes", "Snowflakes", typeof(SSnowflakes), "Kuro")]
+    [SouvenirManualQuestion("What were the displayed snowflakes?")]
     private IEnumerator<SouvenirInstruction> ProcessSnowflakes(ModuleData module)
     {
         var comp = GetComponent(module, "snowflakes");

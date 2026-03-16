@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SSaturn
 public partial class SouvenirModule
 {
     [SouvenirHandler("saturn", "Saturn", typeof(SSaturn), "Anonymous")]
+    [SouvenirManualQuestion("Where was the goal?")]
     private IEnumerator<SouvenirInstruction> ProcessSaturn(ModuleData module)
     {
         yield return WaitForSolve;

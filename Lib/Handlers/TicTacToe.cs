@@ -16,6 +16,7 @@ public enum STicTacToe
 public partial class SouvenirModule
 {
     [SouvenirHandler("TicTacToeModule", "Tic Tac Toe", typeof(STicTacToe), "Timwi")]
+    [SouvenirManualQuestion("What was the initial state of the field?")]
     private IEnumerator<SouvenirInstruction> ProcessTicTacToe(ModuleData module)
     {
         var comp = GetComponent(module, "TicTacToeModule");

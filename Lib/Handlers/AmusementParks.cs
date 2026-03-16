@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SAmusementParks
 public partial class SouvenirModule
 {
     [SouvenirHandler("amusementParks", "Amusement Parks", typeof(SAmusementParks), "Anonymous")]
+    [SouvenirManualQuestion("Which rides were available?")]
     private IEnumerator<SouvenirInstruction> ProcessAmusementParks(ModuleData module)
     {
         yield return WaitForSolve;

@@ -12,6 +12,7 @@ public enum SGiantsCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("GiantsCipher", "Giants Cipher", typeof(SGiantsCipher), "thunder725")]
+    [SouvenirManualQuestion("What was the displayed keyword?")]
     private IEnumerator<SouvenirInstruction> ProcessGiantsCipher(ModuleData module)
     {
         var comp = GetComponent(module, "GiantsCipher");

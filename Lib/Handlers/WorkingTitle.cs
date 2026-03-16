@@ -13,6 +13,7 @@ public enum SWorkingTitle
 public partial class SouvenirModule
 {
     [SouvenirHandler("workingTitle", "Working Title", typeof(SWorkingTitle), "BigCrunch22")]
+    [SouvenirManualQuestion("What was the label shown?")]
     private IEnumerator<SouvenirInstruction> ProcessWorkingTitle(ModuleData module)
     {
         var comp = GetComponent(module, "workingTitleCode");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SColoredSquares
 public partial class SouvenirModule
 {
     [SouvenirHandler("ColoredSquaresModule", "Colored Squares", typeof(SColoredSquares), "Timwi")]
+    [SouvenirManualQuestion("What was the first color group?")]
     private IEnumerator<SouvenirInstruction> ProcessColoredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "ColoredSquaresModule");

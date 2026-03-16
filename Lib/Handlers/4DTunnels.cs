@@ -14,6 +14,7 @@ public enum S4DTunnels
 public partial class SouvenirModule
 {
     [SouvenirHandler("4dTunnels", "4D Tunnels", typeof(S4DTunnels), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the goal symbols?")]
     private IEnumerator<SouvenirInstruction> Process4DTunnels(ModuleData module)
     {
         var comp = GetComponent(module, "FourDTunnels");

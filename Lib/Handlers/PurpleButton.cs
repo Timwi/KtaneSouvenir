@@ -13,6 +13,7 @@ public enum SPurpleButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("PurpleButtonModule", "Purple Button", typeof(SPurpleButton), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What were the numbers in the cyclic sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessPurpleButton(ModuleData module)
     {
         var comp = GetComponent(module, "PurpleButtonScript");

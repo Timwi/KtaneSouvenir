@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -23,6 +23,8 @@ public enum SCRule
 public partial class SouvenirModule
 {
     [SouvenirHandler("the_cRule", "cRule", typeof(SCRule), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("Which cells were prefilled at the start?")]
+    [SouvenirManualQuestion("Which symbol pair appeared where?")]
     private IEnumerator<SouvenirInstruction> ProcessCRule(ModuleData module)
     {
         var comp = GetComponent(module, "TheCRuleScript");

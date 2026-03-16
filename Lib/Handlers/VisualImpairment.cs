@@ -12,6 +12,7 @@ public enum SVisualImpairment
 public partial class SouvenirModule
 {
     [SouvenirHandler("visual_impairment", "Visual Impairment", typeof(SVisualImpairment), "Timwi")]
+    [SouvenirManualQuestion("What were the desired colors?")]
     private IEnumerator<SouvenirInstruction> ProcessVisualImpairment(ModuleData module)
     {
         var comp = GetComponent(module, "VisualImpairment");

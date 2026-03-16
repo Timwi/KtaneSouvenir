@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -17,6 +17,8 @@ public enum SDoofenshmirtzEvilInc
 public partial class SouvenirModule
 {
     [SouvenirHandler("doofenshmirtzEvilIncModule", "Doofenshmirtz Evil Inc.", typeof(SDoofenshmirtzEvilInc), "Anonymous")]
+    [SouvenirManualQuestion("What jingles played?")]
+    [SouvenirManualQuestion("What images were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessDoofenshmirtzEvilInc(ModuleData module)
     {
         yield return WaitForSolve;

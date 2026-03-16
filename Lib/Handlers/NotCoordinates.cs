@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SNotCoordinates
 public partial class SouvenirModule
 {
     [SouvenirHandler("notCoordinates", "Not Coordinates", typeof(SNotCoordinates), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the vertices of the square?")]
     private IEnumerator<SouvenirInstruction> ProcessNotCoordinates(ModuleData module)
     {
         var comp = GetComponent(module, "NCooScript");

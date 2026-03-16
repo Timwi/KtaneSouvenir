@@ -26,6 +26,8 @@ public enum SFunctions
 public partial class SouvenirModule
 {
     [SouvenirHandler("qFunctions", "Functions", typeof(SFunctions), "JerryEris")]
+    [SouvenirManualQuestion("What was the last digit of the first query result?")]
+    [SouvenirManualQuestion("What were the numbers and letter shown at the bottom?")]
     private IEnumerator<SouvenirInstruction> ProcessFunctions(ModuleData module)
     {
         var comp = GetComponent(module, "qFunctions");

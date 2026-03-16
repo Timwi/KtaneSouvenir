@@ -20,6 +20,7 @@ public enum SOrderPicking
 public partial class SouvenirModule
 {
     [SouvenirHandler("OrderPickingModule", "Order Picking", typeof(SOrderPicking), "Brawlboxgaming")]
+    [SouvenirManualQuestion("What were the order ID, product ID and pallet for each order?")]
     private IEnumerator<SouvenirInstruction> ProcessOrderPicking(ModuleData module)
     {
         var comp = GetComponent(module, "OrderPickingScript");

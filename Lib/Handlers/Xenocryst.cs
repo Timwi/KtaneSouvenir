@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SXenocryst
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSXenocryst", "Xenocryst", typeof(SXenocryst), "GhostSalt", AddThe = true)]
+    [SouvenirManualQuestion("What was the color of each flash?")]
     private IEnumerator<SouvenirInstruction> ProcessXenocryst(ModuleData module)
     {
         var comp = GetComponent(module, "XenocrystScript");

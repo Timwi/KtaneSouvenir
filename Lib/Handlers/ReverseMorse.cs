@@ -15,6 +15,7 @@ public enum SReverseMorse
 public partial class SouvenirModule
 {
     [SouvenirHandler("reverseMorse", "Reverse Morse", typeof(SReverseMorse), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the displayed symbols and their colors?")]
     private IEnumerator<SouvenirInstruction> ProcessReverseMorse(ModuleData module)
     {
         var comp = GetComponent(module, "reverseMorseScript");

@@ -14,6 +14,7 @@ public enum SShiftedMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("shiftedMaze", "Shifted Maze", typeof(SShiftedMaze), "Timwi")]
+    [SouvenirManualQuestion("What were the colors of the markers?")]
     private IEnumerator<SouvenirInstruction> ProcessShiftedMaze(ModuleData module)
     {
         var comp = GetComponent(module, "shiftedMazeScript");

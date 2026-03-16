@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SChineseCounting
 public partial class SouvenirModule
 {
     [SouvenirHandler("chineseCounting", "Chinese Counting", typeof(SChineseCounting), "TasThiluna")]
+    [SouvenirManualQuestion("What colors were the LEDs?")]
     private IEnumerator<SouvenirInstruction> ProcessChineseCounting(ModuleData module)
     {
         var comp = GetComponent(module, "chineseCounting");

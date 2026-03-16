@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -15,6 +15,7 @@ public enum SColorsMaximization
 public partial class SouvenirModule
 {
     [SouvenirHandler("colors_maximization", "Colors Maximization", typeof(SColorsMaximization), "NickLatkovich")]
+    [SouvenirManualQuestion("How many buttons were there of each color?")]
     private IEnumerator<SouvenirInstruction> ProcessColorsMaximization(ModuleData module)
     {
         var comp = GetComponent(module, "ColorsMaximizationModule");

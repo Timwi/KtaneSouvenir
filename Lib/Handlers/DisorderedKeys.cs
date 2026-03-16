@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -33,6 +33,7 @@ public enum SDisorderedKeys
 public partial class SouvenirModule
 {
     [SouvenirHandler("disorderedKeys", "Disordered Keys", typeof(SDisorderedKeys), "Hawker")]
+    [SouvenirManualQuestion("What were the missing information and the revealed/unrevealed key color, label, and label color of each key?")]
     private IEnumerator<SouvenirInstruction> ProcessDisorderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "DisorderedKeysScript");

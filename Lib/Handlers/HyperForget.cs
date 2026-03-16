@@ -14,6 +14,7 @@ public enum SHyperForget
 public partial class SouvenirModule
 {
     [SouvenirHandler("HyperForget", "HyperForget", typeof(SHyperForget), "Anonymous", IsBossModule = true)]
+    [SouvenirManualQuestion("What were the rotations?")]
     private IEnumerator<SouvenirInstruction> ProcessHyperForget(ModuleData module)
     {
         var comp = GetComponent(module, "HyperForget");

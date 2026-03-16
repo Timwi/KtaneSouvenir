@@ -17,6 +17,8 @@ public enum SGarfieldKart
 public partial class SouvenirModule
 {
     [SouvenirHandler("garfieldKart", "Garfield Kart", typeof(SGarfieldKart), "Hawker")]
+    [SouvenirManualQuestion("What was the name of the track?")]
+    [SouvenirManualQuestion("How many puzzle pieces were there?")]
     private IEnumerator<SouvenirInstruction> ProcessGarfieldKart(ModuleData module)
     {
         var comp = GetComponent(module, "garfieldKartScript");

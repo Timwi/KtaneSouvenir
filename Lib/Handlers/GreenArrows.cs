@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -14,6 +14,7 @@ public enum SGreenArrows
 public partial class SouvenirModule
 {
     [SouvenirHandler("greenArrowsModule", "Green Arrows", typeof(SGreenArrows), "kavinkul")]
+    [SouvenirManualQuestion("What was the last number on the display?")]
     private IEnumerator<SouvenirInstruction> ProcessGreenArrows(ModuleData module)
     {
         var comp = GetComponent(module, "GreenArrowsScript");

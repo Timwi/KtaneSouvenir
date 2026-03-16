@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SBooleanWires
 public partial class SouvenirModule
 {
     [SouvenirHandler("booleanWires", "Boolean Wires", typeof(SBooleanWires), "Kuro")]
+    [SouvenirManualQuestion("Which operators were submitted in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessBooleanWires(ModuleData module)
     {
         var comp = GetComponent(module, "BooleanWiresScript");

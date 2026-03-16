@@ -20,6 +20,7 @@ public enum SFaerieFires
 public partial class SouvenirModule
 {
     [SouvenirHandler("FaerieFiresModule", "Faerie Fires", typeof(SFaerieFires), "Anonymous")]
+    [SouvenirManualQuestion("What were the faeries' colors and pitches?")]
     private IEnumerator<SouvenirInstruction> ProcessFaerieFires(ModuleData module)
     {
         yield return WaitForSolve;

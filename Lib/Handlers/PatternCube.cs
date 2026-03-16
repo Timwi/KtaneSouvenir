@@ -14,6 +14,7 @@ public enum SPatternCube
 public partial class SouvenirModule
 {
     [SouvenirHandler("PatternCubeModule", "Pattern Cube", typeof(SPatternCube), "Timwi")]
+    [SouvenirManualQuestion("Which symbol was highlighted?")]
     private IEnumerator<SouvenirInstruction> ProcessPatternCube(ModuleData module)
     {
         var comp = GetComponent(module, "PatternCubeModule");

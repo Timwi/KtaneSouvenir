@@ -17,6 +17,7 @@ public enum SSimplySimon
 public partial class SouvenirModule
 {
     [SouvenirHandler("simplysimon", "Simply Simon", typeof(SSimplySimon), "Timwi")]
+    [SouvenirManualQuestion("Which colors flashed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimplySimon(ModuleData module)
     {
         var comp = GetComponent(module, "simplysimon");

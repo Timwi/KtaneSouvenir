@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,6 +15,8 @@ public enum SRoleReversal
 public partial class SouvenirModule
 {
     [SouvenirHandler("roleReversal", "Role Reversal", typeof(SRoleReversal), "Emik")]
+    [SouvenirManualQuestion("What was the condition digit that solved the module?")]
+    [SouvenirManualQuestion("What colors were the internal wires?")]
     private IEnumerator<SouvenirInstruction> ProcessRoleReversal(ModuleData module)
     {
         var comp = GetComponent(module, "roleReversal");

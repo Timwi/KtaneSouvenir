@@ -12,6 +12,7 @@ public enum SBulb
 public partial class SouvenirModule
 {
     [SouvenirHandler("TheBulbModule", "Bulb", typeof(SBulb), "Quinn Wuest", AddThe = true)]
+    [SouvenirManualQuestion("Was the bulb initially lit?")]
     private IEnumerator<SouvenirInstruction> ProcessBulb(ModuleData module)
     {
         var comp = GetComponent(module, "TheBulbModule");

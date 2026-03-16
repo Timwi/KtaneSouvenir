@@ -14,6 +14,7 @@ public enum SSimonSubdivides
 public partial class SouvenirModule
 {
     [SouvenirHandler("simonSubdivides", "Simon Subdivides", typeof(SSimonSubdivides), "Anonymous")]
+    [SouvenirManualQuestion("What colors were the cells that subdivided?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSubdivides(ModuleData module)
     {
         var comp = GetComponent(module, "SSubScript");

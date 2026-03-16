@@ -15,6 +15,7 @@ public enum SHexamaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("HexamazeModule", "Hexamaze", typeof(SHexamaze), "Timwi")]
+    [SouvenirManualQuestion("What was the color of the pawn?")]
     private IEnumerator<SouvenirInstruction> ProcessHexamaze(ModuleData module)
     {
         var comp = GetComponent(module, "HexamazeModule");

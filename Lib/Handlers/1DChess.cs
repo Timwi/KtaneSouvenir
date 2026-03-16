@@ -16,6 +16,7 @@ public enum S1DChess
 public partial class SouvenirModule
 {
     [SouvenirHandler("1DChess", "1D Chess", typeof(S1DChess), "Emik")]
+    [SouvenirManualQuestion("What were your and Rustmate’s moves?")]
     private IEnumerator<SouvenirInstruction> Process1DChess(ModuleData module)
     {
         var comp = GetComponent(module, "OneDimensionalChessScript");

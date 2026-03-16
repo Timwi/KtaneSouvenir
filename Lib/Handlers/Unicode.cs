@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SUnicode
 public partial class SouvenirModule
 {
     [SouvenirHandler("UnicodeModule", "Unicode", typeof(SUnicode), "Marksam")]
+    [SouvenirManualQuestion("What were the submitted codes?")]
     private IEnumerator<SouvenirInstruction> ProcessUnicode(ModuleData module)
     {
         var comp = GetComponent(module, "UnicodeScript");

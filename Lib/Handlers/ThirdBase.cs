@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SThirdBase
 public partial class SouvenirModule
 {
     [SouvenirHandler("ThirdBase", "Third Base", typeof(SThirdBase), "CaitSith2")]
+    [SouvenirManualQuestion("What were the display words?")]
     private IEnumerator<SouvenirInstruction> ProcessThirdBase(ModuleData module)
     {
         var comp = GetComponent(module, "ThirdBaseModule");

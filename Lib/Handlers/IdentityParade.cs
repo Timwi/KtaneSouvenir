@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -20,6 +20,7 @@ public enum SIdentityParade
 public partial class SouvenirModule
 {
     [SouvenirHandler("identityParade", "Identity Parade", typeof(SIdentityParade), "Timwi")]
+    [SouvenirManualQuestion("What were the hair colors, builds and attires listed on the module?")]
     private IEnumerator<SouvenirInstruction> ProcessIdentityParade(ModuleData module)
     {
         var comp = GetComponent(module, "identityParadeScript");

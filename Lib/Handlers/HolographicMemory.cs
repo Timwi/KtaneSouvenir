@@ -13,6 +13,7 @@ public enum SHolographicMemory
 public partial class SouvenirModule
 {
     [SouvenirHandler("holographicMemory", "Holographic Memory", typeof(SHolographicMemory), "KiloBites")]
+    [SouvenirManualQuestion("Which side did each symbol appear?")]
     private IEnumerator<SouvenirInstruction> ProcessHolographicMemory(ModuleData module)
     {
         var comp = GetComponent(module, "HoloScript");

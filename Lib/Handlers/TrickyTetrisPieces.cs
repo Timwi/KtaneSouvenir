@@ -16,6 +16,8 @@ public enum STrickyTetrisPieces
 public partial class SouvenirModule
 {
     [SouvenirHandler("TrickyTetrisPieces", "Tricky Tetris Pieces", typeof(STrickyTetrisPieces), "Espik")]
+    [SouvenirManualQuestion("What was the the shape of the first piece you pressed?")]
+    [SouvenirManualQuestion("What was the second color palette that the pieces converted to?")]
     private IEnumerator<SouvenirInstruction> ProcessTrickyTetrisPieces(ModuleData module)
     {
         var comp = GetComponent(module, "TrickyTetrisPieces");

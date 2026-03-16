@@ -27,6 +27,8 @@ public enum SEnigmaCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("enigmaCycle", "Enigma Cycle", typeof(SEnigmaCycle), "Timwi")]
+    [SouvenirManualQuestion("Which direction were the dials pointing?")]
+    [SouvenirManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessEnigmaCycle(ModuleData module)
     {
         var comp = GetComponent(module, "EnigmaCycleScript");

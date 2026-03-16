@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,6 +22,9 @@ public enum SBamboozlingButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("bamboozlingButton", "Bamboozling Button", typeof(SBamboozlingButton), "TasThiluna")]
+    [SouvenirManualQuestion("What color was the button in each stage?")]
+    [SouvenirManualQuestion("What were the labels on the button in each stage?")]
+    [SouvenirManualQuestion("What were the displays and their colors in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessBamboozlingButton(ModuleData module)
     {
         var comp = GetComponent(module, "BamboozlingButtonScript");

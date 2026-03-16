@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SShogiIdentification
 public partial class SouvenirModule
 {
     [SouvenirHandler("shogiIdentification", "Shogi Identification", typeof(SShogiIdentification), "tandyCake")]
+    [SouvenirManualQuestion("What was the displayed piece?")]
     private IEnumerator<SouvenirInstruction> ProcessShogiIdentification(ModuleData module)
     {
         var comp = GetComponent(module, "ShogiIdentificationScript");

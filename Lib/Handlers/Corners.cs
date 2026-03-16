@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,7 @@ public enum SCorners
 public partial class SouvenirModule
 {
     [SouvenirHandler("CornersModule", "Corners", typeof(SCorners), "Timwi")]
+    [SouvenirManualQuestion("What were the colors of the corners?")]
     private IEnumerator<SouvenirInstruction> ProcessCorners(ModuleData module)
     {
         var comp = GetComponent(module, "CornersModule");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -17,6 +17,7 @@ public enum SMorseButtons
 public partial class SouvenirModule
 {
     [SouvenirHandler("morseButtons", "Morse Buttons", typeof(SMorseButtons), "luisdiogo98")]
+    [SouvenirManualQuestion("What were the characters and colors flashed by each button?")]
     private IEnumerator<SouvenirInstruction> ProcessMorseButtons(ModuleData module)
     {
         var comp = GetComponent(module, "morseButtonsScript");

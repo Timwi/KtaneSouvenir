@@ -13,6 +13,7 @@ public enum SHiddenValue
 public partial class SouvenirModule
 {
     [SouvenirHandler("theHiddenValue", "Hidden Value", typeof(SHiddenValue), "Anonymous", AddThe = true)]
+    [SouvenirManualQuestion("What numbers and colors were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessHiddenValue(ModuleData module)
     {
         var comp = GetComponent(module, "hiddenValue");

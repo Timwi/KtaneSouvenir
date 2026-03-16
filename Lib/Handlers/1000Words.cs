@@ -15,6 +15,7 @@ public enum S1000Words
 public partial class SouvenirModule
 {
     [SouvenirHandler("OneThousandWords", "1000 Words", typeof(S1000Words), "BigCrunch22")]
+    [SouvenirManualQuestion("What were the words shown?")]
     private IEnumerator<SouvenirInstruction> Process1000Words(ModuleData module)
     {
         var comp = GetComponent(module, "ThousandWordsScript");

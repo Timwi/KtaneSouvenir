@@ -19,6 +19,7 @@ public enum SSeaShells
 public partial class SouvenirModule
 {
     [SouvenirHandler("SeaShells", "Sea Shells", typeof(SSeaShells), "Timwi")]
+    [SouvenirManualQuestion("What were the phrases?")]
     private IEnumerator<SouvenirInstruction> ProcessSeaShells(ModuleData module)
     {
         var comp = GetComponent(module, "SeaShellsModule");

@@ -14,6 +14,7 @@ public enum SHoldUps
 public partial class SouvenirModule
 {
     [SouvenirHandler("KritHoldUps", "Hold Ups", typeof(SHoldUps), "BigCrunch22")]
+    [SouvenirManualQuestion("What was the name of each shadow shown?")]
     private IEnumerator<SouvenirInstruction> ProcessHoldUps(ModuleData module)
     {
         var comp = GetComponent(module, "HoldUpsScript");

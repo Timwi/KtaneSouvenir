@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SMasterTapes
 public partial class SouvenirModule
 {
     [SouvenirHandler("masterTape", "Master Tapes", typeof(SMasterTapes), "Kuro")]
+    [SouvenirManualQuestion("Which song was played?")]
     private IEnumerator<SouvenirInstruction> ProcessMasterTapes(ModuleData module)
     {
         var comp = GetComponent(module, "MasterTape");

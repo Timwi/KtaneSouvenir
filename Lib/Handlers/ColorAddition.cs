@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SColorAddition
 public partial class SouvenirModule
 {
     [SouvenirHandler("colorAddition", "Color Addition", typeof(SColorAddition), "VFlyer")]
+    [SouvenirManualQuestion("What were the three numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessColorAddition(ModuleData module)
     {
         var script = GetComponent(module, "ColorAddition");

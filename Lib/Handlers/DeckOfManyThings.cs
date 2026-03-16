@@ -12,6 +12,7 @@ public enum SDeckOfManyThings
 public partial class SouvenirModule
 {
     [SouvenirHandler("deckOfManyThings", "Deck of Many Things", typeof(SDeckOfManyThings), "luisdiogo98", AddThe = true)]
+    [SouvenirManualQuestion("What deck did the first card belong to?")]
     private IEnumerator<SouvenirInstruction> ProcessDeckOfManyThings(ModuleData module)
     {
         var comp = GetComponent(module, "deckOfManyThingsScript");

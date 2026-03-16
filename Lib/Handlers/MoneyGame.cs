@@ -20,6 +20,7 @@ public enum SMoneyGame
 public partial class SouvenirModule
 {
     [SouvenirHandler("MoneyGame", "Money Game", typeof(SMoneyGame), "Anonymous")]
+    [SouvenirManualQuestion("What were the phrases?")]
     private IEnumerator<SouvenirInstruction> ProcessMoneyGame(ModuleData module)
     {
         var comp = GetComponent(module, "MoneyGame");

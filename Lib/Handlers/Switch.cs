@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SSwitch
 public partial class SouvenirModule
 {
     [SouvenirHandler("BigSwitch", "Switch", typeof(SSwitch), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What color were the LEDs?")]
     private IEnumerator<SouvenirInstruction> ProcessSwitch(ModuleData module)
     {
         var comp = GetComponent(module, "Switch");

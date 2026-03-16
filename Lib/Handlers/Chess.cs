@@ -13,6 +13,7 @@ public enum SChess
 public partial class SouvenirModule
 {
     [SouvenirHandler("ChessModule", "Chess", typeof(SChess), "Timwi")]
+    [SouvenirManualQuestion("What were the coordinates?")]
     private IEnumerator<SouvenirInstruction> ProcessChess(ModuleData module)
     {
         var comp = GetComponent(module, "ChessBehaviour");

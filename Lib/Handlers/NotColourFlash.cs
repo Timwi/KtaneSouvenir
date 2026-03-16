@@ -16,6 +16,7 @@ public enum SNotColourFlash
 public partial class SouvenirModule
 {
     [SouvenirHandler("notColourFlash", "Not Colour Flash", typeof(SNotColourFlash), "Anonymous")]
+    [SouvenirManualQuestion("What were the displayed word and colour sequences?")]
     private IEnumerator<SouvenirInstruction> ProcessNotColourFlash(ModuleData module)
     {
         yield return WaitForSolve;

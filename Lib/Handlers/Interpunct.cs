@@ -12,6 +12,7 @@ public enum SInterpunct
 public partial class SouvenirModule
 {
     [SouvenirHandler("interpunct", "Interpunct", typeof(SInterpunct), "Eltrick")]
+    [SouvenirManualQuestion("What was the symbol displayed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessInterpunct(ModuleData module)
     {
         var comp = GetComponent(module, "InterpunctScript");

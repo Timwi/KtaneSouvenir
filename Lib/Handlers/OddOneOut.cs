@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SOddOneOut
 public partial class SouvenirModule
 {
     [SouvenirHandler("OddOneOutModule", "Odd One Out", typeof(SOddOneOut), "luisdiogo98")]
+    [SouvenirManualQuestion("What were the correct button presses?")]
     private IEnumerator<SouvenirInstruction> ProcessOddOneOut(ModuleData module)
     {
         var comp = GetComponent(module, "OddOneOutModule");

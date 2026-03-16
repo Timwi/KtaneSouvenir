@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,8 @@ public enum SNotConnectionCheck
 public partial class SouvenirModule
 {
     [SouvenirHandler("notConnectionCheck", "Not Connection Check", typeof(SNotConnectionCheck), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the flashing symbols?")]
+    [SouvenirManualQuestion("What were the button values?")]
     private IEnumerator<SouvenirInstruction> ProcessNotConnectionCheck(ModuleData module)
     {
         var comp = GetComponent(module, "NCCScript");

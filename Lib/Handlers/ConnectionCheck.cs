@@ -29,6 +29,7 @@ public enum SConnectionCheck
 public partial class SouvenirModule
 {
     [SouvenirHandler("graphModule", "Connection Check", typeof(SConnectionCheck), "Anonymous")]
+    [SouvenirManualQuestion("What number pairs were present?")]
     private IEnumerator<SouvenirInstruction> ProcessConnectionCheck(ModuleData module)
     {
         var comp = GetComponent(module, "GraphModule");

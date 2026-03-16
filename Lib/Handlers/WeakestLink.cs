@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -23,6 +23,9 @@ public enum SWeakestLink
 public partial class SouvenirModule
 {
     [SouvenirHandler("TheWeakestLink", "Weakest Link", typeof(SWeakestLink), "Hawker", AddThe = true)]
+    [SouvenirManualQuestion("Who was eliminated?")]
+    [SouvenirManualQuestion("Who joined you in the Money Phase?")]
+    [SouvenirManualQuestion("What were the other contestants’ skills and correct answer ratios?")]
     private IEnumerator<SouvenirInstruction> ProcessWeakestLink(ModuleData module)
     {
         var comp = GetComponent(module, "WeakestLink");

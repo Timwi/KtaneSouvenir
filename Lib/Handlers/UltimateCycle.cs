@@ -19,6 +19,8 @@ public enum SUltimateCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("ultimateCycle", "Ultimate Cycle", typeof(SUltimateCycle), "Timwi")]
+    [SouvenirManualQuestion("Which direction were the dials pointing?")]
+    [SouvenirManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessUltimateCycle(ModuleData module) => processSpeakingEvilCycle(
         module, "UltimateCycleScript", SUltimateCycle.DialDirections, SUltimateCycle.DialLabels, SUltimateCycle.LabelDiscriminator,
         getDialLabels: comp => GetArrayField<string[]>(comp, "ciphertext").Get()[0][8]);

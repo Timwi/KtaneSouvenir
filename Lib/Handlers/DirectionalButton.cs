@@ -12,6 +12,7 @@ public enum SDirectionalButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("directionalButton", "Directional Button", typeof(SDirectionalButton), "Hawker")]
+    [SouvenirManualQuestion("How many times did you press the button in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDirectionalButton(ModuleData module)
     {
         var comp = GetComponent(module, "DirectrionalButtonScripty");

@@ -14,6 +14,7 @@ public enum SFiveLetterWords
 public partial class SouvenirModule
 {
     [SouvenirHandler("FiveLetterWords", "Five Letter Words", typeof(SFiveLetterWords), "Kuro")]
+    [SouvenirManualQuestion("What were the displayed words?")]
     private IEnumerator<SouvenirInstruction> ProcessFiveLetterWords(ModuleData module)
     {
         var comp = GetComponent(module, "FiveLetterWords");

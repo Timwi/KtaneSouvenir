@@ -18,6 +18,7 @@ public enum SColorDecoding
 public partial class SouvenirModule
 {
     [SouvenirHandler("Color Decoding", "Color Decoding", typeof(SColorDecoding), "Timwi")]
+    [SouvenirManualQuestion("What were the indicator patterns and colors in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessColorDecoding(ModuleData module)
     {
         var comp = GetComponent(module, "ColorDecoding");

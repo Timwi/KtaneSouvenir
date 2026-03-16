@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SBoomtarTheGreat
 public partial class SouvenirModule
 {
     [SouvenirHandler("boomtarTheGreat", "Boomtar the Great", typeof(SBoomtarTheGreat), "Anonymous")]
+    [SouvenirManualQuestion("What were the first and second rules?")]
     private IEnumerator<SouvenirInstruction> ProcessBoomtarTheGreat(ModuleData module)
     {
         var comp = GetComponent(module, "boomtarTheGreat");

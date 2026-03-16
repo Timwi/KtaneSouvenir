@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SKudosudoku
 public partial class SouvenirModule
 {
     [SouvenirHandler("KudosudokuModule", "Kudosudoku", typeof(SKudosudoku), "Timwi")]
+    [SouvenirManualQuestion("Which squares were initially pre-filled?")]
     private IEnumerator<SouvenirInstruction> ProcessKudosudoku(ModuleData module)
     {
         var comp = GetComponent(module, "KudosudokuModule");

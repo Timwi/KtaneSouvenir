@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SLEDMath
 public partial class SouvenirModule
 {
     [SouvenirHandler("lgndLEDMath", "LED Math", typeof(SLEDMath), "TasThiluna")]
+    [SouvenirManualQuestion("What were the LED colors?")]
     private IEnumerator<SouvenirInstruction> ProcessLEDMath(ModuleData module)
     {
         var comp = GetComponent(module, "LEDMathScript");

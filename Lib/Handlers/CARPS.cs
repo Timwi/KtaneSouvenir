@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SCARPS
 public partial class SouvenirModule
 {
     [SouvenirHandler("caRPS", "CA-RPS", typeof(SCARPS), "Anonymous")]
+    [SouvenirManualQuestion("What were the starting colors?")]
     private IEnumerator<SouvenirInstruction> ProcessCARPS(ModuleData module)
     {
         yield return WaitForSolve;

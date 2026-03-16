@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SFlashingLights
 public partial class SouvenirModule
 {
     [SouvenirHandler("flashingLights", "Flashing Lights", typeof(SFlashingLights), "luisdiogo98")]
+    [SouvenirManualQuestion("How many times did each LED flash each color?")]
     private IEnumerator<SouvenirInstruction> ProcessFlashingLights(ModuleData module)
     {
         var comp = GetComponent(module, "doubleNegativesScript");

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SEmoji
 public partial class SouvenirModule
 {
     [SouvenirHandler("emoji", "Emoji", typeof(SEmoji), "Anonymous")]
+    [SouvenirManualQuestion("What were the emoji?")]
     private IEnumerator<SouvenirInstruction> ProcessEmoji(ModuleData module)
     {
         yield return WaitForSolve;

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SVexillology
 public partial class SouvenirModule
 {
     [SouvenirHandler("vexillology", "Vexillology", typeof(SVexillology), "luisdiogo98")]
+    [SouvenirManualQuestion("What were the flagpole colors?")]
     private IEnumerator<SouvenirInstruction> ProcessVexillology(ModuleData module)
     {
         var comp = GetComponent(module, "vexillologyScript");

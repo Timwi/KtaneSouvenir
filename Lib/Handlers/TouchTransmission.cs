@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,6 +15,8 @@ public enum STouchTransmission
 public partial class SouvenirModule
 {
     [SouvenirHandler("touchTransmission", "Touch Transmission", typeof(STouchTransmission), "tandyCake")]
+    [SouvenirManualQuestion("What was the transmitted word?")]
+    [SouvenirManualQuestion("In what order was the Braille read?")]
     private IEnumerator<SouvenirInstruction> ProcessTouchTransmission(ModuleData module)
     {
         var comp = GetComponent(module, "TouchTransmissionScript");

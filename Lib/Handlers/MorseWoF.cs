@@ -14,6 +14,7 @@ public enum SMorseWoF
 public partial class SouvenirModule
 {
     [SouvenirHandler("morseWoF", ".--/---/..-.", typeof(SMorseWoF), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the display words?")]
     private IEnumerator<SouvenirInstruction> ProcessMorseWoF(ModuleData module)
     {
         var comp = GetComponent(module, "MWoFScript");

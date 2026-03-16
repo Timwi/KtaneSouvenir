@@ -14,6 +14,7 @@ public enum SQuaver
 public partial class SouvenirModule
 {
     [SouvenirHandler("Quaver", "Quaver", typeof(SQuaver), "Emik")]
+    [SouvenirManualQuestion("What was each sequence’s answer?")]
     private IEnumerator<SouvenirInstruction> ProcessQuaver(ModuleData module)
     {
         var comp = GetComponent(module, "QuaverScript");

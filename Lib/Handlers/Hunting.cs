@@ -12,6 +12,7 @@ public enum SHunting
 public partial class SouvenirModule
 {
     [SouvenirHandler("hunting", "Hunting", typeof(SHunting), "Quinn Wuest")]
+    [SouvenirManualQuestion("Which pictograms were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessHunting(ModuleData module)
     {
         var comp = GetComponent(module, "hunting");

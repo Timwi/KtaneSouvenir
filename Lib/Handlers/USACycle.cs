@@ -67,6 +67,7 @@ public partial class SouvenirModule
     };
 
     [SouvenirHandler("USACycle", "USA Cycle", typeof(SUSACycle), "tandyCake")]
+    [SouvenirManualQuestion("Which states were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessUSACycle(ModuleData module)
     {
         var comp = GetComponent(module, "USACycle");

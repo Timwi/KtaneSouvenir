@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SMoreCode
 public partial class SouvenirModule
 {
     [SouvenirHandler("MoreCode", "More Code", typeof(SMoreCode), "TasThiluna")]
+    [SouvenirManualQuestion("What was the flashing word?")]
     private IEnumerator<SouvenirInstruction> ProcessMoreCode(ModuleData module)
     {
         var comp = GetComponent(module, "MoreCode");

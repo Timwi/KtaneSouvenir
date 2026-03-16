@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SNotMorsematics
 public partial class SouvenirModule
 {
     [SouvenirHandler("notMorsematics", "Not Morsematics", typeof(SNotMorsematics), "Quinn Wuest")]
+    [SouvenirManualQuestion("What was the transmitted word?")]
     private IEnumerator<SouvenirInstruction> ProcessNotMorsematics(ModuleData module)
     {
         var comp = GetComponent(module, "NMorScript");

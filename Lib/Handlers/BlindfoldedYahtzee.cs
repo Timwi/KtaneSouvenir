@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SBlindfoldedYahtzee
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSBlindfoldedYahtzee", "Blindfolded Yahtzee", typeof(SBlindfoldedYahtzee), "Anonymous")]
+    [SouvenirManualQuestion("Which rolls did the module claim?")]
     private IEnumerator<SouvenirInstruction> ProcessBlindfoldedYahtzee(ModuleData module)
     {
         var comp = GetComponent(module, "BlindfoldedYahtzeeScript");

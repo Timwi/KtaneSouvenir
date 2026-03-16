@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SClockCounter
 public partial class SouvenirModule
 {
     [SouvenirHandler("clockCounter", "↻↺", typeof(SClockCounter), "Anonymous")]
+    [SouvenirManualQuestion("Which arrows were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessClockCounter(ModuleData module)
     {
         yield return WaitForSolve;

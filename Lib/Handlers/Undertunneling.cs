@@ -13,6 +13,7 @@ public enum SUndertunneling
 public partial class SouvenirModule
 {
     [SouvenirHandler("undertunneling", "Undertunneling", typeof(SUndertunneling), "KiloBites")]
+    [SouvenirManualQuestion("What was the position in the maze after completing the first phase?")]
     private IEnumerator<SouvenirInstruction> ProcessUndertunneling(ModuleData module)
     {
         var comp = GetComponent(module, "UndertunnelingScript");

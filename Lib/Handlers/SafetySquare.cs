@@ -18,6 +18,8 @@ public enum SSafetySquare
 public partial class SouvenirModule
 {
     [SouvenirHandler("safetySquare", "Safety Square", typeof(SSafetySquare), "Kuro")]
+    [SouvenirManualQuestion("What were the displayed digits?")]
+    [SouvenirManualQuestion("What was the special rule?")]
     private IEnumerator<SouvenirInstruction> ProcessSafetySquare(ModuleData module)
     {
         var comp = GetComponent(module, "SafetySquareScript");

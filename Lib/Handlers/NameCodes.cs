@@ -12,6 +12,7 @@ public enum SNameCodes
 public partial class SouvenirModule
 {
     [SouvenirHandler("nameCodes", "Name Codes", typeof(SNameCodes), "tandyCake")]
+    [SouvenirManualQuestion("What were the left and right indices?")]
     private IEnumerator<SouvenirInstruction> ProcessNameCodes(ModuleData module)
     {
         var comp = GetComponent(module, "NameCodesScript");

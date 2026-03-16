@@ -22,6 +22,8 @@ public enum S3DMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("spwiz3DMaze", "3D Maze", typeof(S3DMaze), "Timwi")]
+    [SouvenirManualQuestion("What were the markings?")]
+    [SouvenirManualQuestion("What was the cardinal direction?")]
     private IEnumerator<SouvenirInstruction> Process3DMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeDMazeModule");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SLongWords
 public partial class SouvenirModule
 {
     [SouvenirHandler("LongWords", "Long Words", typeof(SLongWords), "GoodHood")]
+    [SouvenirManualQuestion("What was the word on the top display?")]
     private IEnumerator<SouvenirInstruction> ProcessLongWords(ModuleData module)
     {
         var comp = GetComponent(module, "LongWords");

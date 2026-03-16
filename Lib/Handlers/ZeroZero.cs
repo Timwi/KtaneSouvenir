@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
@@ -20,6 +20,8 @@ public enum SZeroZero
 public partial class SouvenirModule
 {
     [SouvenirHandler("zeroZero", "Zero, Zero", typeof(SZeroZero), "Timwi")]
+    [SouvenirManualQuestion("What were the colors and number of points on each star?")]
+    [SouvenirManualQuestion("Where were the colored squares?")]
     private IEnumerator<SouvenirInstruction> ProcessZeroZero(ModuleData module)
     {
         var comp = GetComponent(module, "ZeroZeroScript");

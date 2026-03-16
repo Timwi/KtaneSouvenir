@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SMirror
 public partial class SouvenirModule
 {
     [SouvenirHandler("mirror", "Mirror", typeof(SMirror), "Timwi")]
+    [SouvenirManualQuestion("What was the second word written by the original ghost?")]
     private IEnumerator<SouvenirInstruction> ProcessMirror(ModuleData module)
     {
         var comp = GetComponent(module, "mirror");

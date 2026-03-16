@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SNumbers
 public partial class SouvenirModule
 {
     [SouvenirHandler("Numbers", "Numbers", typeof(SNumbers), "BigCrunch22")]
+    [SouvenirManualQuestion("What two-digit number was given?")]
     private IEnumerator<SouvenirInstruction> ProcessNumbers(ModuleData module)
     {
         var comp = GetComponent(module, "WAnumbersScript");

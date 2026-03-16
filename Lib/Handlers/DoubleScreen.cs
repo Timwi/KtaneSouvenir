@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SDoubleScreen
 public partial class SouvenirModule
 {
     [SouvenirHandler("doubleScreenModule", "Double Screen", typeof(SDoubleScreen), "Anonymous")]
+    [SouvenirManualQuestion("What colors were the screens on each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleScreen(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleScreenScript");

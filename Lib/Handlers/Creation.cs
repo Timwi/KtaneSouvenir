@@ -14,6 +14,7 @@ public enum SCreation
 public partial class SouvenirModule
 {
     [SouvenirHandler("CreationModule", "Creation", typeof(SCreation), "CaitSith2")]
+    [SouvenirManualQuestion("What was the weather condition on the first day?")]
     private IEnumerator<SouvenirInstruction> ProcessCreation(ModuleData module)
     {
         // Note from Quinn Wuest:

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -17,6 +17,7 @@ public enum SCoordination
 public partial class SouvenirModule
 {
     [SouvenirHandler("Coordination", "Coordination", typeof(SCoordination), "Quinn Wuest")]
+    [SouvenirManualQuestion("What was the label and position of the starting coordinate?")]
     private IEnumerator<SouvenirInstruction> ProcessCoordination(ModuleData module)
     {
         var comp = GetComponent(module, "Coordination");

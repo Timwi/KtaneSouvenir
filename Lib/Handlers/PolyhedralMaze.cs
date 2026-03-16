@@ -15,6 +15,7 @@ public enum SPolyhedralMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("PolyhedralMazeModule", "Polyhedral Maze", typeof(SPolyhedralMaze), "Timwi")]
+    [SouvenirManualQuestion("What was the starting position?")]
     private IEnumerator<SouvenirInstruction> ProcessPolyhedralMaze(ModuleData module)
     {
         Dictionary<string, string> nameMapping = new()

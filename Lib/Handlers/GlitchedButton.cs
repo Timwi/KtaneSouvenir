@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SGlitchedButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("GlitchedButtonModule", "Glitched Button", typeof(SGlitchedButton), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What was the cycling bit sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessGlitchedButton(ModuleData module)
     {
         var comp = GetComponent(module, "GlitchedButtonScript");

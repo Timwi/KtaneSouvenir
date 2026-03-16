@@ -12,6 +12,7 @@ public enum SNamingConventions
 public partial class SouvenirModule
 {
     [SouvenirHandler("NamingConventions", "Naming Conventions", typeof(SNamingConventions), "Anonymous")]
+    [SouvenirManualQuestion("What was the label of the first button?")]
     private IEnumerator<SouvenirInstruction> ProcessNamingConventions(ModuleData module)
     {
         var comp = GetComponent(module, "NamingConventionsScript");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -17,6 +17,8 @@ public enum SEarthbound
 public partial class SouvenirModule
 {
     [SouvenirHandler("EarthboundModule", "Earthbound", typeof(SEarthbound), "Hawker")]
+    [SouvenirManualQuestion("What was the background?")]
+    [SouvenirManualQuestion("Which monster was shown?")]
     private IEnumerator<SouvenirInstruction> ProcessEarthbound(ModuleData module)
     {
         var comp = GetComponent(module, "EarthboundScript");

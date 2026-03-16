@@ -13,6 +13,7 @@ public enum SKlaxon
 public partial class SouvenirModule
 {
     [SouvenirHandler("klaxon", "Klaxon", typeof(SKlaxon), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What was the first module to set off the klaxon?")]
     private IEnumerator<SouvenirInstruction> ProcessKlaxon(ModuleData module)
     {
         yield return WaitForActivate;

@@ -13,6 +13,7 @@ public enum SMemorableButtons
 public partial class SouvenirModule
 {
     [SouvenirHandler("memorableButtons", "Memorable Buttons", typeof(SMemorableButtons), "Timwi")]
+    [SouvenirManualQuestion("What were the symbols on the correct buttons?")]
     private IEnumerator<SouvenirInstruction> ProcessMemorableButtons(ModuleData module)
     {
         var comp = GetComponent(module, "MemorableButtons");

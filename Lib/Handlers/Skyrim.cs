@@ -26,6 +26,7 @@ public enum SSkyrim
 public partial class SouvenirModule
 {
     [SouvenirHandler("skyrim", "Skyrim", typeof(SSkyrim), "Timwi")]
+    [SouvenirManualQuestion("Which races, weapons, enemies, cities, and dragon shouts were selectable, but not the solution?")]
     private IEnumerator<SouvenirInstruction> ProcessSkyrim(ModuleData module)
     {
         var comp = GetComponent(module, "skyrimScript");

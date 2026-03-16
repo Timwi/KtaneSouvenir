@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SWasd
 public partial class SouvenirModule
 {
     [SouvenirHandler("wasdModule", "WASD", typeof(SWasd), "Kuro")]
+    [SouvenirManualQuestion("What was the displayed location?")]
     private IEnumerator<SouvenirInstruction> ProcessWasd(ModuleData module)
     {
         var comp = GetComponent(module, "WasdModule");

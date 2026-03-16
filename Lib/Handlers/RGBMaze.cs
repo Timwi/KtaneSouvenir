@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -22,6 +22,8 @@ public enum SRGBMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("rgbMaze", "RGB Maze", typeof(SRGBMaze), "kavinkul")]
+    [SouvenirManualQuestion("Where were the exit and keys of the maze?")]
+    [SouvenirManualQuestion("What was the maze number for each maze?")]
     private IEnumerator<SouvenirInstruction> ProcessRGBMaze(ModuleData module)
     {
         var comp = GetComponent(module, "RGBMazeScript");

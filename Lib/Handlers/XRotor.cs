@@ -12,6 +12,7 @@ public enum SXRotor
 public partial class SouvenirModule
 {
     [SouvenirHandler("xrotor", "X-Rotor", typeof(SXRotor), "KiloBites")]
+    [SouvenirManualQuestion("Which symbols were scanned?")]
     private IEnumerator<SouvenirInstruction> ProcessXRotor(ModuleData module)
     {
         var comp = GetComponent(module, "XRotorScript");

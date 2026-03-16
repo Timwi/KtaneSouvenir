@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SGyromaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("gyromaze", "Gyromaze", typeof(SGyromaze), "Anonymous")]
+    [SouvenirManualQuestion("What were the LED colors?")]
     private IEnumerator<SouvenirInstruction> ProcessGyromaze(ModuleData module)
     {
         yield return WaitForSolve;

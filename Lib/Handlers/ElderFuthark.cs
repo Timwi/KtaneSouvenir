@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SElderFuthark
 public partial class SouvenirModule
 {
     [SouvenirHandler("elderFuthark", "Elder Futhark", typeof(SElderFuthark), "Goofy")]
+    [SouvenirManualQuestion("What were the runes shown?")]
     private IEnumerator<SouvenirInstruction> ProcessElderFuthark(ModuleData module)
     {
         var comp = GetComponent(module, "ElderFutharkScript");

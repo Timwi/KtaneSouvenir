@@ -12,6 +12,7 @@ public enum SEncryptionBingo
 public partial class SouvenirModule
 {
     [SouvenirHandler("encryptionBingo", "Encryption Bingo", typeof(SEncryptionBingo), "TasThiluna")]
+    [SouvenirManualQuestion("What was the first encoding used?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptionBingo(ModuleData module)
     {
         var comp = GetComponent(module, "encryptionBingoScript");

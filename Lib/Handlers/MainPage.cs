@@ -24,6 +24,8 @@ public enum SMainPage
 public partial class SouvenirModule
 {
     [SouvenirHandler("mainpage", "Main Page", typeof(SMainPage), "ObjectsCountries")]
+    [SouvenirManualQuestion("Which color and message did the bubble (not) display?")]
+    [SouvenirManualQuestion("Which main page did Homestar, the background, or any of the buttons’ effects come from?")]
     private IEnumerator<SouvenirInstruction> ProcessMainPage(ModuleData module)
     {
         var comp = GetComponent(module, "_mainpagescript");

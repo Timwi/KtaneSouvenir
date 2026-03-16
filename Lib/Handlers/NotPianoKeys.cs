@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -18,6 +18,7 @@ public enum SNotPianoKeys
 public partial class SouvenirModule
 {
     [SouvenirHandler("notPianoKeys", "Not Piano Keys", typeof(SNotPianoKeys), "tandyCake")]
+    [SouvenirManualQuestion("What were the displayed symbols?")]
     private IEnumerator<SouvenirInstruction> ProcessNotPianoKeys(ModuleData module)
     {
         var comp = GetComponent(module, "NotPianoKeysScript");

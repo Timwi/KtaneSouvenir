@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SSysadmin
 public partial class SouvenirModule
 {
     [SouvenirHandler("sysadmin", "Sysadmin", typeof(SSysadmin), "NickLatkovich")]
+    [SouvenirManualQuestion("What error code did you fix?")]
     private IEnumerator<SouvenirInstruction> ProcessSysadmin(ModuleData module)
     {
         var comp = GetComponent(module, "SysadminModule");

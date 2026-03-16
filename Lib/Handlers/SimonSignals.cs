@@ -28,6 +28,7 @@ public enum SSimonSignals
 public partial class SouvenirModule
 {
     [SouvenirHandler("SimonSignalsModule", "Simon Signals", typeof(SSimonSignals), "Timwi")]
+    [SouvenirManualQuestion("What were the colors, shapes and number of directions of each arrow?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSignals(ModuleData module)
     {
         var comp = GetComponent(module, "SimonSignalsModule");

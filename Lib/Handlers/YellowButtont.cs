@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SYellowButtont
 public partial class SouvenirModule
 {
     [SouvenirHandler("yellowbuttont", "Yellow Button’t", typeof(SYellowButtont), "Anonymous")]
+    [SouvenirManualQuestion("What was the filename?")]
     private IEnumerator<SouvenirInstruction> ProcessYellowButtont(ModuleData module)
     {
         yield return WaitForSolve;

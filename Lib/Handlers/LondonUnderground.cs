@@ -13,6 +13,7 @@ public enum SLondonUnderground
 public partial class SouvenirModule
 {
     [SouvenirHandler("londonUnderground", "London Underground", typeof(SLondonUnderground), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What were the departure and destination stations?")]
     private IEnumerator<SouvenirInstruction> ProcessLondonUnderground(ModuleData module)
     {
         var comp = GetComponent(module, "londonUndergroundScript");

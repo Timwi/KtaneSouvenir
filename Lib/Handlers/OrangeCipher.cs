@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,5 +12,6 @@ public enum SOrangeCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("orangeCipher", "Orange Cipher", typeof(SOrangeCipher), "BigCrunch22")]
+    [SouvenirManualQuestion("What was on each screen?")]
     private IEnumerator<SouvenirInstruction> ProcessOrangeCipher(ModuleData module) => processColoredCiphers(module, "orangeCipher", SOrangeCipher.Screen);
 }

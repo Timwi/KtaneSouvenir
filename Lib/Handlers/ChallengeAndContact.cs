@@ -13,6 +13,7 @@ public enum SChallengeAndContact
 public partial class SouvenirModule
 {
     [SouvenirHandler("challengeAndContact", "Challenge & Contact", typeof(SChallengeAndContact), "Espik")]
+    [SouvenirManualQuestion("What were the displayed letters?")]
     private IEnumerator<SouvenirInstruction> ProcessChallengeAndContact(ModuleData module)
     {
         var comp = GetComponent(module, "moduleScript");

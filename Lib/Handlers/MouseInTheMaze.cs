@@ -12,6 +12,7 @@ public enum SMouseInTheMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("MouseInTheMaze", "Mouse In The Maze", typeof(SMouseInTheMaze), "Timwi")]
+    [SouvenirManualQuestion("What color was the torus?")]
     private IEnumerator<SouvenirInstruction> ProcessMouseInTheMaze(ModuleData module)
     {
         var comp = GetComponent(module, "MouseInTheMazeModule");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,8 @@ public enum SASquare
 public partial class SouvenirModule
 {
     [SouvenirHandler("ASquareModule", "A Square", typeof(SASquare), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the index colors?")]
+    [SouvenirManualQuestion("What were the submitted colors?")]
     private IEnumerator<SouvenirInstruction> ProcessASquare(ModuleData module)
     {
         var comp = GetComponent(module, "ASquareScript");

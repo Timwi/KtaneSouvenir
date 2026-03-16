@@ -19,6 +19,8 @@ public enum SPigpenCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("pigpenCycle", "Pigpen Cycle", typeof(SPigpenCycle), "Timwi")]
+    [SouvenirManualQuestion("Which direction were the dials pointing?")]
+    [SouvenirManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessPigpenCycle(ModuleData module) => processSpeakingEvilCycle(
         module, "PigpenCycleScript", SPigpenCycle.DialDirections, SPigpenCycle.DialLabels, SPigpenCycle.LabelDiscriminator);
 }

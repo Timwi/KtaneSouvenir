@@ -17,6 +17,7 @@ public enum SSonicKnuckles
 public partial class SouvenirModule
 {
     [SouvenirHandler("sonicKnuckles", "Sonic & Knuckles", typeof(SSonicKnuckles), "Hawker")]
+    [SouvenirManualQuestion("Which monitor and badnik were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessSonicKnuckles(ModuleData module)
     {
         var comp = GetComponent(module, "sonicKnucklesScript");

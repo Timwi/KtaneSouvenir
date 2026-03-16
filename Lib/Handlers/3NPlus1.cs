@@ -14,6 +14,7 @@ public enum S3NPlus1
 public partial class SouvenirModule
 {
     [SouvenirHandler("threeNPlusOne", "3N+1", typeof(S3NPlus1), "Hawker")]
+    [SouvenirManualQuestion("What number was initially displayed?")]
     private IEnumerator<SouvenirInstruction> Process3NPlus1(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeNPlusOneScript");

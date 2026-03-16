@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SWordCount
 public partial class SouvenirModule
 {
     [SouvenirHandler("wordCount", "Word Count", typeof(SWordCount), "Quinn Wuest")]
+    [SouvenirManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessWordCount(ModuleData module)
     {
         var comp = GetComponent(module, "WordCountScript");

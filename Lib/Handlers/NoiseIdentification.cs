@@ -12,6 +12,7 @@ public enum SNoiseIdentification
 public partial class SouvenirModule
 {
     [SouvenirHandler("noiseIdentification", "Noise Identification", typeof(SNoiseIdentification), "thunder725")]
+    [SouvenirManualQuestion("What was the first displayed noise type?")]
     private IEnumerator<SouvenirInstruction> ProcessNoiseIdentification(ModuleData module)
     {
         var comp = GetComponent(module, "noiseIdentificationScript");

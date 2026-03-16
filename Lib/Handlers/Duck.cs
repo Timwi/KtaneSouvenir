@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,8 @@ public enum SDuck
 public partial class SouvenirModule
 {
     [SouvenirHandler("theDuck", "Duck", typeof(SDuck), "Kuro", AddThe = true)]
+    [SouvenirManualQuestion("What was the color of the curtain?")]
+    [SouvenirManualQuestion("How was the duck approached?")]
     private IEnumerator<SouvenirInstruction> ProcessDuck(ModuleData module)
     {
         var comp = GetComponent(module, "theDuckScript");

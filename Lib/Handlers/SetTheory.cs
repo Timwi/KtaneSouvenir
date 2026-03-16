@@ -13,6 +13,7 @@ public enum SSetTheory
 public partial class SouvenirModule
 {
     [SouvenirHandler("SetTheory", "S.E.T. Theory", typeof(SSetTheory), "Timwi")]
+    [SouvenirManualQuestion("What equations were displayed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSetTheory(ModuleData module)
     {
         var comp = GetComponent(module, "SetTheoryScript");

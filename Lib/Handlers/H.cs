@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SH
 public partial class SouvenirModule
 {
     [SouvenirHandler("Averageh", "h", typeof(SH), "Hawker")]
+    [SouvenirManualQuestion("What was the transmitted letter?")]
     private IEnumerator<SouvenirInstruction> ProcessH(ModuleData module)
     {
         var comp = GetComponent(module, "HexOS");

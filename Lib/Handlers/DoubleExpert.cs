@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -16,6 +16,8 @@ public enum SDoubleExpert
 public partial class SouvenirModule
 {
     [SouvenirHandler("doubleExpert", "Double Expert", typeof(SDoubleExpert), "Kuro")]
+    [SouvenirManualQuestion("What was the starting key number?")]
+    [SouvenirManualQuestion("What was the submitted word?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleExpert(ModuleData module)
     {
         var comp = GetComponent(module, "doubleExpertScript");

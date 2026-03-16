@@ -29,6 +29,9 @@ public enum SAlgorithmia
 public partial class SouvenirModule
 {
     [SouvenirHandler("algorithmia", "Algorithmia", typeof(SAlgorithmia), "tandyCake")]
+    [SouvenirManualQuestion("What were the starting and goal positions?")]
+    [SouvenirManualQuestion("What color was the bulb?")]
+    [SouvenirManualQuestion("Which numbers were present in the seed?")]
     private IEnumerator<SouvenirInstruction> ProcessAlgorithmia(ModuleData module)
     {
         var comp = GetComponent(module, "AlgorithmiaScript");

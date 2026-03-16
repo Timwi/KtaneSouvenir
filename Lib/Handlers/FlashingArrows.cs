@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -16,6 +16,8 @@ public enum SFlashingArrows
 public partial class SouvenirModule
 {
     [SouvenirHandler("flashingArrowsModule", "Flashing Arrows", typeof(SFlashingArrows), "VFlyer")]
+    [SouvenirManualQuestion("What was the number shown on the display?")]
+    [SouvenirManualQuestion("What were the relevant arrow’s colors?")]
     private IEnumerator<SouvenirInstruction> ProcessFlashingArrows(ModuleData module)
     {
         var comp = GetComponent(module, "FlashingArrowsScript");

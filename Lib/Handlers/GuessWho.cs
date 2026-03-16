@@ -12,6 +12,7 @@ public enum SGuessWho
 public partial class SouvenirModule
 {
     [SouvenirHandler("GuessWho", "Guess Who?", typeof(SGuessWho), "Quinn Wuest")]
+    [SouvenirManualQuestion("Which colors flashed “YES”?")]
     private IEnumerator<SouvenirInstruction> ProcessGuessWho(ModuleData module)
     {
         var comp = GetComponent(module, "GuessWhoScript");

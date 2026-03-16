@@ -18,6 +18,7 @@ public enum SPrisonBreak
 public partial class SouvenirModule
 {
     [SouvenirHandler("prisonBreak", "Prison Break", typeof(SPrisonBreak), "Anonymous")]
+    [SouvenirManualQuestion("Where did the prisoner and defuser start?")]
     private IEnumerator<SouvenirInstruction> ProcessPrisonBreak(ModuleData module)
     {
         var comp = GetComponent(module, "prisonBreakScript");

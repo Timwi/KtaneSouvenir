@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -20,6 +20,7 @@ public enum SEnaCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("enaCipher", "ƎNA Cipher", typeof(SEnaCipher), "KiloBites")]
+    [SouvenirManualQuestion("What were the keyword, the transposition key and the encrypted word?")]
     private IEnumerator<SouvenirInstruction> ProcessEnaCipher(ModuleData module)
     {
         var comp = GetComponent(module, "enaCipherScript");

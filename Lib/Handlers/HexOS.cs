@@ -24,6 +24,9 @@ public enum SHexOS
 public partial class SouvenirModule
 {
     [SouvenirHandler("hexOS", "hexOS", typeof(SHexOS), "Emik")]
+    [SouvenirManualQuestion("What were the deciphered letters or phrase?")]
+    [SouvenirManualQuestion("What were the 3-digit numbers cycled by the screen?")]
+    [SouvenirManualQuestion("What were the rhythm values?")]
     private IEnumerator<SouvenirInstruction> ProcessHexOS(ModuleData module)
     {
         var comp = GetComponent(module, "HexOS");

@@ -14,6 +14,7 @@ public enum SCharacterSlots
 public partial class SouvenirModule
 {
     [SouvenirHandler("characterSlots", "Character Slots", typeof(SCharacterSlots), "Hawker")]
+    [SouvenirManualQuestion("Who was displayed in each slot for each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessCharacterSlots(ModuleData module)
     {
         var comp = GetComponent(module, "CharacterSlotsScript");

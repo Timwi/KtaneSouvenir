@@ -13,6 +13,7 @@ public enum SRGBSequences
 public partial class SouvenirModule
 {
     [SouvenirHandler("RGBSequences", "RGB Sequences", typeof(SRGBSequences), "Hawker")]
+    [SouvenirManualQuestion("What were the colors of each button?")]
     private IEnumerator<SouvenirInstruction> ProcessRGBSequences(ModuleData module)
     {
         var comp = GetComponent(module, "RGBSequences");

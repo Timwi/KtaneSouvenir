@@ -12,6 +12,7 @@ public enum SBottomGear
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSBottomGear", "Bottom Gear", typeof(SBottomGear), "Anonymous")]
+    [SouvenirManualQuestion("What was the initially shown tweet?")]
     private IEnumerator<SouvenirInstruction> ProcessBottomGear(ModuleData module)
     {
         var comp = GetComponent(module, "BottomGearScript");

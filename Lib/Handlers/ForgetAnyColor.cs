@@ -22,6 +22,8 @@ public enum SForgetAnyColor
 public partial class SouvenirModule
 {
     [SouvenirHandler("ForgetAnyColor", "Forget Any Color", typeof(SForgetAnyColor), "Kuro", IsBossModule = true)]
+    [SouvenirManualQuestion("What colors were the cylinders in each stage?")]
+    [SouvenirManualQuestion("Which figure was used in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetAnyColor(ModuleData module)
     {
         var comp = GetComponent(module, "FACScript");

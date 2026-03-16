@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum STipToe
 public partial class SouvenirModule
 {
     [SouvenirHandler("TipToe", "Tip Toe", typeof(STipToe), "Kuro")]
+    [SouvenirManualQuestion("Which squares were safe in rows 9 and 10?")]
     private IEnumerator<SouvenirInstruction> ProcessTipToe(ModuleData module)
     {
         var comp = GetComponent(module, "Main");

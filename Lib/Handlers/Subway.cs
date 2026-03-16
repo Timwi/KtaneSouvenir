@@ -16,6 +16,8 @@ public enum SSubway
 public partial class SouvenirModule
 {
     [SouvenirHandler("subway", "Subway", typeof(SSubway), "Hawker")]
+    [SouvenirManualQuestion("Which bread did the customer ask for?")]
+    [SouvenirManualQuestion("Which item was not asked for?")]
     private IEnumerator<SouvenirInstruction> ProcessSubway(ModuleData module)
     {
         var comp = GetComponent(module, "subwayScript");

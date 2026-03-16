@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -17,6 +17,7 @@ public enum SHinges
 public partial class SouvenirModule
 {
     [SouvenirHandler("hinges", "Hinges", typeof(SHinges), "Kuro")]
+    [SouvenirManualQuestion("What were the initially present hinges?")]
     private IEnumerator<SouvenirInstruction> ProcessHinges(ModuleData module)
     {
         var comp = GetComponent(module, "Hinges");

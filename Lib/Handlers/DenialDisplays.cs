@@ -13,6 +13,7 @@ public enum SDenialDisplays
 public partial class SouvenirModule
 {
     [SouvenirHandler("DenialDisplaysModule", "Denial Displays", typeof(SDenialDisplays), "Quinn Wuest")]
+    [SouvenirManualQuestion("What was initially on the displays?")]
     private IEnumerator<SouvenirInstruction> ProcessDenialDisplays(ModuleData module)
     {
         var comp = GetComponent(module, "DenialDisplaysScript");

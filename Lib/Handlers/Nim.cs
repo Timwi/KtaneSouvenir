@@ -17,6 +17,7 @@ public enum SNim
 public partial class SouvenirModule
 {
     [SouvenirHandler("nim", "Nim", typeof(SNim), "Quinn Wuest")]
+    [SouvenirManualQuestion("How many matches were in each row?")]
     private IEnumerator<SouvenirInstruction> ProcessNim(ModuleData module)
     {
         var comp = GetComponent(module, "NimModule");

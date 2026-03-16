@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -16,6 +16,7 @@ public enum SQuickArithmetic
 public partial class SouvenirModule
 {
     [SouvenirHandler("QuickArithmetic", "Quick Arithmetic", typeof(SQuickArithmetic), "VFlyer")]
+    [SouvenirManualQuestion("What were the digits and colors in both sequences?")]
     private IEnumerator<SouvenirInstruction> ProcessQuickArithmetic(ModuleData module)
     {
         var comp = GetComponent(module, "QuickArithmetic");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SModuleMovements
 public partial class SouvenirModule
 {
     [SouvenirHandler("moduleMovements", "Module Movements", typeof(SModuleMovements), "Hawker")]
+    [SouvenirManualQuestion("What module was shown for each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessModuleMovements(ModuleData module)
     {
         var comp = GetComponent(module, "moduleMovements");

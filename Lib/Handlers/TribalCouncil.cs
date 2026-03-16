@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum STribalCouncil
 public partial class SouvenirModule
 {
     [SouvenirHandler("TribalCouncil", "Tribal Council", typeof(STribalCouncil), "Anonymous")]
+    [SouvenirManualQuestion("What were the northeast and southwest names?")]
     private IEnumerator<SouvenirInstruction> ProcessTribalCouncil(ModuleData module)
     {
         var comp = GetComponent(module, "tribalCouncilScript");

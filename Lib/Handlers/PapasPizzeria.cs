@@ -17,6 +17,7 @@ public enum SPapasPizzeria
 public partial class SouvenirModule
 {
     [SouvenirHandler("papasPizzeria", "Papa’s Pizzeria", typeof(SPapasPizzeria), "Quinn Wuest")]
+    [SouvenirManualQuestion("What was the order code?")]
     private IEnumerator<SouvenirInstruction> ProcessPapasPizzeria(ModuleData module)
     {
         var comp = GetComponent(module, "papasPizzeriaScript");

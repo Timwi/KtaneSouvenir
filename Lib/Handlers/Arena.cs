@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -22,6 +22,9 @@ public enum SArena
 public partial class SouvenirModule
 {
     [SouvenirHandler("TheArena", "Arena", typeof(SArena), "Hawker", AddThe = true)]
+    [SouvenirManualQuestion("What was the maximum weapon damage of the attack phase?")]
+    [SouvenirManualQuestion("What enemies were present in the defend phase?")]
+    [SouvenirManualQuestion("What numbers were present in the grab phase?")]
     private IEnumerator<SouvenirInstruction> ProcessArena(ModuleData module)
     {
         var comp = GetComponent(module, "TheArena");

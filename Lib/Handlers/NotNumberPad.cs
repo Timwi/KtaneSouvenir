@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SNotNumberPad
 public partial class SouvenirModule
 {
     [SouvenirHandler("notNumberPad", "Not Number Pad", typeof(SNotNumberPad), "Quinn Wuest")]
+    [SouvenirManualQuestion("Which numbers flashed at each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessNotNumberPad(ModuleData module)
     {
         var comp = GetComponent(module, "NotNumberPadScript");

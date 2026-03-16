@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum STextField
 public partial class SouvenirModule
 {
     [SouvenirHandler("TextField", "Text Field", typeof(STextField), "CaitSith2")]
+    [SouvenirManualQuestion("What was the displayed letter?")]
     private IEnumerator<SouvenirInstruction> ProcessTextField(ModuleData module)
     {
         var comp = GetComponent(module, "TextField");

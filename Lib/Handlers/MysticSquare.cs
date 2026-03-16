@@ -12,6 +12,7 @@ public enum SMysticSquare
 public partial class SouvenirModule
 {
     [SouvenirHandler("MysticSquareModule", "Mystic Square", typeof(SMysticSquare), "Quinn Wuest")]
+    [SouvenirManualQuestion("What digit was initially in the center?")]
     private IEnumerator<SouvenirInstruction> ProcessMysticSquare(ModuleData module)
     {
         var comp = GetComponent(module, "MysticSquareModule");

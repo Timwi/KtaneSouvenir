@@ -14,6 +14,7 @@ public enum SDreamcipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("ksmDreamcipher", "Dreamcipher", typeof(SDreamcipher), "BigCrunch22")]
+    [SouvenirManualQuestion("What was the decrypted word?")]
     private IEnumerator<SouvenirInstruction> ProcessDreamcipher(ModuleData module)
     {
         var comp = GetComponent(module, "Dreamcipher");

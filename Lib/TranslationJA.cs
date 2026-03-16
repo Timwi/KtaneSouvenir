@@ -12,6 +12,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
     public override string Ordinal(int number) => number.ToString();
     public override int DefaultFontIndex => 8;
     public override float LineSpacing => 0.7f;
+    public override bool TranslateManualQuestions => true;
+    public override object ManualQuestionSortBy(TranslationInfo<QuestionTranslationInfo> info, string originalModuleName) => originalModuleName;
 
     protected override Dictionary<Type, TranslationInfo<QuestionTranslationInfo>> _translations => new()
     {
@@ -19,6 +21,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // 0
         [typeof(S0)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the starting number?"] = "スタートの数字は？",
+            },
             Questions = new()
             {
                 [S0.Number] = new()
@@ -33,6 +39,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(S1000Words)] = new()
         {
             ModuleName = "1000単語",
+            ManualQuestions = new()
+            {
+                ["What were the words shown?"] = "表示された単語は？",
+            },
             Questions = new()
             {
                 [S1000Words.Words] = new()
@@ -57,6 +67,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(S100LevelsOfDefusal)] = new()
         {
             ModuleName = "解除レベル100",
+            ManualQuestions = new()
+            {
+                ["What were the displayed letters?"] = "ディスプレーの文字は？",
+            },
             Questions = new()
             {
                 [S100LevelsOfDefusal.Letters] = new()
@@ -80,7 +94,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The 1, 2, 3 Game
         [typeof(S123Game)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "123ゲーム",
+            ManualQuestions = new()
+            {
+                ["What was the opponent’s avatar and name?"] = "What was the opponent’s avatar and name?",
+            },
             Questions = new()
             {
                 [S123Game.Profile] = new()
@@ -100,6 +119,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(S1DChess)] = new()
         {
             ModuleName = "1Dチェス",
+            ManualQuestions = new()
+            {
+                ["What were your and Rustmate’s moves?"] = "あなたとRustmateの動きはどうだった？",
+            },
             Questions = new()
             {
                 [S1DChess.Moves] = new()
@@ -161,6 +184,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // 21
         [typeof(S21)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [S21.DisplayedNumber] = new()
@@ -175,6 +202,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(S3DMaze)] = new()
         {
             ModuleName = "3D迷路",
+            ManualQuestions = new()
+            {
+                ["What were the markings?"] = "迷路の文字は？",
+                ["What was the cardinal direction?"] = "ゴールの方向はどこ？",
+            },
             Questions = new()
             {
                 [S3DMaze.QMarkings] = new()
@@ -223,6 +255,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(S3DTapCode)] = new()
         {
             ModuleName = "3Dタップ・コード",
+            ManualQuestions = new()
+            {
+                ["What was the received word?"] = "受信した単語は？",
+            },
             Questions = new()
             {
                 [S3DTapCode.Word] = new()
@@ -237,6 +273,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(S3DTunnels)] = new()
         {
             ModuleName = "3Dトンネル",
+            ManualQuestions = new()
+            {
+                ["What were the goal symbols?"] = "ゴールの目印は？",
+            },
             Questions = new()
             {
                 [S3DTunnels.TargetNode] = new()
@@ -252,6 +292,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(S3LEDs)] = new()
         {
             ModuleName = "3つのLED",
+            ManualQuestions = new()
+            {
+                ["What was the initial state of the LEDs?"] = "LEDの初期配置は？",
+            },
             Questions = new()
             {
                 [S3LEDs.InitialState] = new()
@@ -276,6 +320,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // 3N+1
         [typeof(S3NPlus1)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What number was initially displayed?"] = "最初に表示されていた数字は？",
+            },
             Questions = new()
             {
                 [S3NPlus1.Question] = new()
@@ -290,6 +338,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(S4DTunnels)] = new()
         {
             ModuleName = "4Dトンネル",
+            ManualQuestions = new()
+            {
+                ["What were the goal symbols?"] = "ゴールの目印は？",
+            },
             Questions = new()
             {
                 [S4DTunnels.TargetNode] = new()
@@ -304,6 +356,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // 64
         [typeof(S64)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [S64.DisplayedNumber] = new()
@@ -317,6 +373,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // 7
         [typeof(S7)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the LED colors for each stage?"] = "初期のLEDの状態は？",
+                ["What was each channel’s initial value?"] = "初期値の各チャネルは？",
+            },
             Questions = new()
             {
                 [S7.QInitialValues] = new()
@@ -379,6 +440,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(S9Ball)] = new()
         {
             ModuleName = "9ボール",
+            ManualQuestions = new()
+            {
+                ["What were the numbers on each ball?"] = "各ボールの数字は？",
+            },
             Questions = new()
             {
                 [S9Ball.Letters] = new()
@@ -400,6 +465,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAbyss)] = new()
         {
             ModuleName = "アビス",
+            ManualQuestions = new()
+            {
+                ["What were the characters displayed?"] = "表示されていた文字は？",
+            },
             Questions = new()
             {
                 [SAbyss.Seed] = new()
@@ -414,7 +483,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Accumulation
         [typeof(SAccumulation)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "蓄積",
+            ManualQuestions = new()
+            {
+                ["What were the background colors at each stage?"] = "What were the background colors at each stage?",
+                ["What was the border color?"] = "What was the border color?",
+            },
             Questions = new()
             {
                 [SAccumulation.QBorderColor] = new()
@@ -502,6 +577,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAdventureGame)] = new()
         {
             ModuleName = "アドベンチャーゲーム",
+            ManualQuestions = new()
+            {
+                ["Which correct items did you use?"] = "使用したアイテムのうち正しいのはどれ？",
+                ["Which enemy were you fighting?"] = "どの敵と戦ったか？",
+            },
             Questions = new()
             {
                 [SAdventureGame.QCorrectItem] = new()
@@ -537,6 +617,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAffineCycle)] = new()
         {
             ModuleName = "アフィンサイクル",
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "ダイヤルが指していた方向は？",
+                ["What was written on each dial?"] = "ダイヤルに書かれていた英字は？",
+            },
             Questions = new()
             {
                 [SAffineCycle.DialDirections] = new()
@@ -567,6 +652,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAlcoholicRampage)] = new()
         {
             ModuleName = "アルコール中毒",
+            ManualQuestions = new()
+            {
+                ["Which mercenaries were displayed?"] = "表示された傭兵は？",
+            },
             Questions = new()
             {
                 [SAlcoholicRampage.Mercenaries] = new()
@@ -582,6 +671,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SALetter)] = new()
         {
             ModuleName = "英字",
+            ManualQuestions = new()
+            {
+                ["What was the initially displayed letter?"] = "最初に表示されていた英字は？",
+            },
             Questions = new()
             {
                 [SALetter.InitialLetter] = new()
@@ -596,6 +689,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAlfaBravo)] = new()
         {
             ModuleName = "アルファブラボー",
+            ManualQuestions = new()
+            {
+                ["What final letter was pressed?"] = "最後にどの文字を押した？",
+                ["What letters were to the left and right of the final one?"] = "押した文字の左右にあった文字は？",
+                ["What was the last digit on the small display?"] = "小さなディスプレーの最後の数字は？",
+            },
             Questions = new()
             {
                 [SAlfaBravo.PressedLetter] = new()
@@ -626,6 +725,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             NeedsTranslation = true,
             ModuleName = "方程式",
+            ManualQuestions = new()
+            {
+                ["What were the first two equations?"] = "1~2番目の方程式は？",
+            },
             Questions = new()
             {
                 [SAlgebra.Equation1] = new()
@@ -661,6 +764,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             NeedsTranslation = true,
             ModuleName = "アルゴリズム",
+            ManualQuestions = new()
+            {
+                ["What were the starting and goal positions?"] = "スタートとゴールの位置は？",
+                ["What color was the bulb?"] = "色付き電球の色は？",
+                ["Which numbers were present in the seed?"] = "シード内にあった数字は？",
+            },
             Questions = new()
             {
                 [SAlgorithmia.QPositions] = new()
@@ -726,6 +835,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAlphabeticalRuling)] = new()
         {
             ModuleName = "アルファベットルール",
+            ManualQuestions = new()
+            {
+                ["What were the letters and numbers displayed in each stage?"] = "各ステージで表示された文字と数字は？",
+            },
             Questions = new()
             {
                 [SAlphabeticalRuling.Letter] = new()
@@ -747,6 +860,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAlphabetNumbers)] = new()
         {
             ModuleName = "アルファベット番号",
+            ManualQuestions = new()
+            {
+                ["What were the numbers on the buttons in each stage?"] = "各ステージでボタンに記されていた番号は？",
+            },
             Questions = new()
             {
                 [SAlphabetNumbers.DisplayedNumbers] = new()
@@ -762,6 +879,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAlphabetTiles)] = new()
         {
             ModuleName = "アルファベットタイル",
+            ManualQuestions = new()
+            {
+                ["What were the letters shown during each cycle?"] = "各サイクルで何の文字が表示されていた？",
+                ["What was the missing letter?"] = "欠けていた英字は？",
+            },
             Questions = new()
             {
                 [SAlphabetTiles.QCycle] = new()
@@ -797,6 +919,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAlphaBits)] = new()
         {
             ModuleName = "アルファビッツ",
+            ManualQuestions = new()
+            {
+                ["What characters were displayed on each screen?"] = "各画面に表示されている文字は？",
+            },
             Questions = new()
             {
                 [SAlphaBits.DisplayedCharacters] = new()
@@ -817,6 +943,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAMessage)] = new()
         {
             ModuleName = "Aメッセージ",
+            ManualQuestions = new()
+            {
+                ["What was the received message?"] = "受信したメッセージは？",
+            },
             Questions = new()
             {
                 [SAMessage.AMessage] = new()
@@ -831,6 +961,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAmusementParks)] = new()
         {
             ModuleName = "遊園地",
+            ManualQuestions = new()
+            {
+                ["Which rides were available?"] = "利用可能なアトラクションは？",
+            },
             Questions = new()
             {
                 [SAmusementParks.Rides] = new()
@@ -845,6 +979,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAngelHernandez)] = new()
         {
             ModuleName = "アンヘル・エルナンデス",
+            ManualQuestions = new()
+            {
+                ["What letter was shown by the raised buttons in each stage?"] = "各ステージで点字で表示されていた英字は？",
+            },
             Questions = new()
             {
                 [SAngelHernandez.MainLetter] = new()
@@ -860,6 +998,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SArena)] = new()
         {
             ModuleName = "アリーナ",
+            ManualQuestions = new()
+            {
+                ["What was the maximum weapon damage of the attack phase?"] = "攻撃フェーズで最大のダメージを与えられる武器は？",
+                ["What enemies were present in the defend phase?"] = "防御フェーズで存在していた敵は？",
+                ["What numbers were present in the grab phase?"] = "奪取フェーズで存在していた数字は？",
+            },
             Questions = new()
             {
                 [SArena.Damage] = new()
@@ -884,6 +1028,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SArithmelogic)] = new()
         {
             ModuleName = "計算論理",
+            ManualQuestions = new()
+            {
+                ["What was the symbol on the submit button?"] = "送信ボタンに記された記号は？",
+                ["What were the numbers selectable on the screens?"] = "画面上で選択できる数字はいくつ？",
+            },
             Questions = new()
             {
                 [SArithmelogic.Submit] = new()
@@ -910,6 +1059,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SASCIIMaze)] = new()
         {
             ModuleName = "アスキー迷路",
+            ManualQuestions = new()
+            {
+                ["What characters were displayed?"] = "表示された文字は？",
+            },
             Questions = new()
             {
                 [SASCIIMaze.Characters] = new()
@@ -925,6 +1078,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SASquare)] = new()
         {
             ModuleName = "正方型",
+            ManualQuestions = new()
+            {
+                ["What were the index colors?"] = "一致した色は？",
+                ["What were the submitted colors?"] = "送信した色は？",
+            },
             Questions = new()
             {
                 [SASquare.IndexColors] = new()
@@ -945,6 +1103,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAudioMorse)] = new()
         {
             ModuleName = "音声モールス",
+            ManualQuestions = new()
+            {
+                ["What was the Morse code?"] = "モールス信号は？",
+            },
             Questions = new()
             {
                 [SAudioMorse.Sound] = new()
@@ -959,6 +1121,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SAzureButton)] = new()
         {
             ModuleName = "空色ボタン",
+            ManualQuestions = new()
+            {
+                ["What were T and the other displayed cards?"] = "Tとその他の表示されたカードは？",
+                ["What was M?"] = "Mは？",
+                ["What were the arrows?"] = "矢印のシーケンスは？",
+            },
             Questions = new()
             {
                 [SAzureButton.QDecoyArrowDirection] = new()
@@ -1043,6 +1211,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBakery)] = new()
         {
             ModuleName = "クッキー屋",
+            ManualQuestions = new()
+            {
+                ["Which menu items were present?"] = "存在したメニュー商品はどれ？",
+            },
             Questions = new()
             {
                 [SBakery.Items] = new()
@@ -1057,6 +1229,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBamboozledAgain)] = new()
         {
             ModuleName = "再錯綜",
+            ManualQuestions = new()
+            {
+                ["What were the initial labels and colors of each button?"] = "それぞれの正しいボタンの色とテキストは？",
+                ["What were the decrypted text and color of each displayed message?"] = "表示された各メッセージを解読した時のテキストと色は？",
+            },
             Questions = new()
             {
                 [SBamboozledAgain.ButtonText] = new()
@@ -1131,6 +1308,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBamboozlingButton)] = new()
         {
             ModuleName = "錯綜ボタン",
+            ManualQuestions = new()
+            {
+                ["What color was the button in each stage?"] = "各ステージのボタンの色は？",
+                ["What were the labels on the button in each stage?"] = "各ステージのボタンのラベルは？",
+                ["What were the displays and their colors in each stage?"] = "各ステージのディスプレーとその色は？",
+            },
             Questions = new()
             {
                 [SBamboozlingButton.Color] = new()
@@ -1204,6 +1387,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBarCharts)] = new()
         {
             ModuleName = "棒グラフ",
+            ManualQuestions = new()
+            {
+                ["What were the bars’ heights, colors, and labels?"] = "バーの長さ、色、ラベルは？",
+                ["What was the category?"] = "カテゴリは？",
+                ["What was the unit?"] = "単位は？",
+            },
             Questions = new()
             {
                 [SBarCharts.Category] = new()
@@ -1255,6 +1444,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBarcodeCipher)] = new()
         {
             ModuleName = "バーコード暗号",
+            ManualQuestions = new()
+            {
+                ["What was the screen number?"] = "画面上の数字は？",
+                ["What was the edgework represented by each barcode?"] = "各バーコードが示すエッジワークは？",
+                ["What was the answer for each barcode?"] = "各バーコードの回答は？",
+            },
             Questions = new()
             {
                 [SBarcodeCipher.ScreenNumber] = new()
@@ -1292,6 +1487,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBartending)] = new()
         {
             ModuleName = "バーテンディング",
+            ManualQuestions = new()
+            {
+                ["Which ingredient was in which position?"] = "どの材料がどの位置にあった？",
+            },
             Questions = new()
             {
                 [SBartending.Ingredients] = new()
@@ -1314,7 +1513,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Beans
         [typeof(SBeans)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "豆",
+            ManualQuestions = new()
+            {
+                ["What color were the eaten beans?"] = "What color were the eaten beans?",
+                ["Which beans were wobbling?"] = "Which beans were wobbling?",
+            },
             Questions = new()
             {
                 [SBeans.Colors] = new()
@@ -1338,6 +1543,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBeanSprouts)] = new()
         {
             ModuleName = "もやし",
+            ManualQuestions = new()
+            {
+                ["What colors were the eaten sprouts?"] = "食べたもやしの色は？",
+                ["Where were the eaten beans?"] = "食べた豆の位置は？",
+            },
             Questions = new()
             {
                 [SBeanSprouts.Colors] = new()
@@ -1373,6 +1583,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBigBean)] = new()
         {
             ModuleName = "大きい豆",
+            ManualQuestions = new()
+            {
+                ["What color and wobbliness was the bean?"] = "豆の色と揺れの状態は？",
+            },
             Questions = new()
             {
                 [SBigBean.Color] = new()
@@ -1396,6 +1610,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBigCircle)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which direction was the circle spinning?"] = "Which direction was the circle spinning?",
+            },
             Questions = new()
             {
                 [SBigCircle.SpinDirection] = new()
@@ -1415,6 +1633,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBinary)] = new()
         {
             ModuleName = "二進法LED",
+            ManualQuestions = new()
+            {
+                ["What word was displayed?"] = "表示された単語は？",
+            },
             Questions = new()
             {
                 [SBinary.Word] = new()
@@ -1429,6 +1651,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBinaryShift)] = new()
         {
             ModuleName = "二進数シフト",
+            ManualQuestions = new()
+            {
+                ["What were the initial numbers?"] = "初期値は？",
+                ["What number was selected at each stage?"] = "各ステージで選択した数字は？",
+            },
             Questions = new()
             {
                 [SBinaryShift.InitialNumber] = new()
@@ -1492,6 +1719,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBitmaps)] = new()
         {
             ModuleName = "ビットマップ",
+            ManualQuestions = new()
+            {
+                ["How many pixels were black/white in each quadrant?"] = "各区域の黒/白ピクセルはいくつ？",
+            },
             Questions = new()
             {
                 [SBitmaps.Question] = new()
@@ -1516,6 +1747,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBlackCipher)] = new()
         {
             ModuleName = "黒色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SBlackCipher.Screen] = new()
@@ -1537,6 +1772,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBlindfoldedYahtzee)] = new()
         {
             ModuleName = "目隠しヤッツィー",
+            ManualQuestions = new()
+            {
+                ["Which rolls did the module claim?"] = "モジュールが主張したロールは？",
+            },
             Questions = new()
             {
                 [SBlindfoldedYahtzee.Claim] = new()
@@ -1568,6 +1807,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBlindMaze)] = new()
         {
             ModuleName = "ブラインド迷路",
+            ManualQuestions = new()
+            {
+                ["What colors were the buttons?"] = "ボタンの色は？",
+            },
             Questions = new()
             {
                 [SBlindMaze.Colors] = new()
@@ -1598,6 +1841,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBlinkingNotes)] = new()
         {
             ModuleName = "点滅音符",
+            ManualQuestions = new()
+            {
+                ["What song played?"] = "再生された楽曲は？",
+            },
             Questions = new()
             {
                 [SBlinkingNotes.Song] = new()
@@ -1612,6 +1859,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBlinkstop)] = new()
         {
             ModuleName = "瞬きの停止",
+            ManualQuestions = new()
+            {
+                ["How many times did the LED flash?"] = "LEDは何回点滅した？",
+                ["Which color did the LED flash the least?"] = "最も少なく点滅した色は？",
+            },
             Questions = new()
             {
                 [SBlinkstop.NumberOfFlashes] = new()
@@ -1638,6 +1890,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBlockbusters)] = new()
         {
             ModuleName = "ブロックバスター",
+            ManualQuestions = new()
+            {
+                ["What was the last letter pressed?"] = "最後に押した文字は？",
+            },
             Questions = new()
             {
                 [SBlockbusters.LastLetter] = new()
@@ -1652,6 +1908,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBlueArrows)] = new()
         {
             ModuleName = "青色矢印",
+            ManualQuestions = new()
+            {
+                ["What were the characters on the screen?"] = "スクリーンに表示された文字は？",
+            },
             Questions = new()
             {
                 [SBlueArrows.InitialCharacters] = new()
@@ -1666,6 +1926,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBlueButton)] = new()
         {
             ModuleName = "青色ボタン",
+            ManualQuestions = new()
+            {
+                ["What were D, E, F, G, H, M, N, P, Q, and X?"] = "D、E、F、G、H、M、N、P、Q、Xの中身は？",
+            },
             Questions = new()
             {
                 [SBlueButton.D] = new()
@@ -1743,6 +2007,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBlueCipher)] = new()
         {
             ModuleName = "青色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SBlueCipher.Screen] = new()
@@ -1764,6 +2032,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBobBarks)] = new()
         {
             ModuleName = "ボブの咆哮",
+            ManualQuestions = new()
+            {
+                ["What were the indicator labels?"] = "インジケーターのラベルは？",
+                ["Which buttons flashed in sequence?"] = "配置の中で点滅しているボタンはどれ？",
+            },
             Questions = new()
             {
                 [SBobBarks.Indicators] = new()
@@ -1799,6 +2072,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBoggle)] = new()
         {
             ModuleName = "ボグル",
+            ManualQuestions = new()
+            {
+                ["Which letters were initially visible?"] = "初めに表示された文字は？",
+            },
             Questions = new()
             {
                 [SBoggle.Letters] = new()
@@ -1813,6 +2090,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBombDiffusal)] = new()
         {
             ModuleName = "爆弾拡散",
+            ManualQuestions = new()
+            {
+                ["What was the license number?"] = "ライセンス番号は？",
+            },
             Questions = new()
             {
                 [SBombDiffusal.LicenseNumber] = new()
@@ -1827,6 +2108,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBoneAppleTea)] = new()
         {
             ModuleName = "ボーンアップルティー",
+            ManualQuestions = new()
+            {
+                ["What were the phrases?"] = "フレーズは？",
+            },
             Questions = new()
             {
                 [SBoneAppleTea.Phrase] = new()
@@ -1841,6 +2126,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBoobTube)] = new()
         {
             ModuleName = "ブーブチューブ",
+            ManualQuestions = new()
+            {
+                ["What were the words?"] = "単語は？",
+            },
             Questions = new()
             {
                 [SBoobTube.Word] = new()
@@ -1855,6 +2144,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBookOfMario)] = new()
         {
             ModuleName = "ブック・オブ・マリオ",
+            ManualQuestions = new()
+            {
+                ["Who said something in each stage?"] = "各ステージで発言していたのは？",
+                ["What was each character’s quote?"] = "各キャラクターの引用文は？",
+            },
             Questions = new()
             {
                 [SBookOfMario.Pictures] = new()
@@ -1876,6 +2170,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBooleanWires)] = new()
         {
             ModuleName = "論理ワイヤ",
+            ManualQuestions = new()
+            {
+                ["Which operators were submitted in each stage?"] = "各ステージでどの演算子を送信した？",
+            },
             Questions = new()
             {
                 [SBooleanWires.EnteredOperators] = new()
@@ -1891,6 +2189,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBoomtarTheGreat)] = new()
         {
             ModuleName = "偉大なるブームター",
+            ManualQuestions = new()
+            {
+                ["What were the first and second rules?"] = "一番目のルールと二番目のルールは？",
+            },
             Questions = new()
             {
                 [SBoomtarTheGreat.Rules] = new()
@@ -1911,6 +2213,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBorderedKeys)] = new()
         {
             ModuleName = "境界音板",
+            ManualQuestions = new()
+            {
+                ["What were the border color, displayed digit, key color, label and label color when you pressed each key?"] = "各音板を押した時点における縁の色、ディスプレーの数字、音板の色、ラベル、ラベルの色は？",
+            },
             Questions = new()
             {
                 [SBorderedKeys.BorderColor] = new()
@@ -1977,6 +2283,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBottomGear)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the initially shown tweet?"] = "最初に表示されたツイートは？",
+            },
             Questions = new()
             {
                 [SBottomGear.Tweet] = new()
@@ -1991,6 +2301,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBoxing)] = new()
         {
             ModuleName = "ボクシング",
+            ManualQuestions = new()
+            {
+                ["Which contestants and substitutes (first and last names) were shown?"] = "どの出場者と補欠者(姓名)が表示された？",
+                ["Who had which punch strength rating?"] = "誰がどのくらいのパンチ力を持っている？",
+            },
             Questions = new()
             {
                 [SBoxing.StrengthByContestant] = new()
@@ -2032,6 +2347,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBraille)] = new()
         {
             ModuleName = "点字",
+            ManualQuestions = new()
+            {
+                ["Which Braille patterns were present?"] = "存在した点字のパターンは？",
+            },
             Questions = new()
             {
                 [SBraille.Pattern] = new()
@@ -2047,6 +2366,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBreakfastEgg)] = new()
         {
             ModuleName = "目玉焼き",
+            ManualQuestions = new()
+            {
+                ["Which colors appeared on the egg?"] = "卵に現れた色はどれ？",
+            },
             Questions = new()
             {
                 [SBreakfastEgg.Color] = new()
@@ -2071,6 +2394,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBrokenGuitarChords)] = new()
         {
             ModuleName = "壊れたギター・コード",
+            ManualQuestions = new()
+            {
+                ["What was the displayed chord?"] = "表示されたコードは？",
+                ["Which string was broken?"] = "どの弦が壊れていた？",
+            },
             Questions = new()
             {
                 [SBrokenGuitarChords.DisplayedChord] = new()
@@ -2090,6 +2418,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBrownCipher)] = new()
         {
             ModuleName = "茶色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SBrownCipher.Screen] = new()
@@ -2111,6 +2443,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBulb)] = new()
         {
             ModuleName = "ザ・電球",
+            ManualQuestions = new()
+            {
+                ["Was the bulb initially lit?"] = "初期状態の電球は点灯していた？",
+            },
             Questions = new()
             {
                 [SBulb.InitialState] = new()
@@ -2130,6 +2466,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBurgerAlarm)] = new()
         {
             ModuleName = "ハンバーガー警報",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits?"] = "表示された数字は？",
+                ["What were the order numbers?"] = "注文番号は？",
+            },
             Questions = new()
             {
                 [SBurgerAlarm.Digits] = new()
@@ -2151,6 +2492,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SBurglarAlarm)] = new()
         {
             ModuleName = "盗難警報",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SBurglarAlarm.Digits] = new()
@@ -2166,6 +2511,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SButton)] = new()
         {
             ModuleName = "ボタン",
+            ManualQuestions = new()
+            {
+                ["What color did the light glow?"] = "ライトは何色に光った？",
+            },
             Questions = new()
             {
                 [SButton.LightColor] = new()
@@ -2187,6 +2536,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SButtonage)] = new()
         {
             ModuleName = "大量ボタン",
+            ManualQuestions = new()
+            {
+                ["How many of each color and border color were there?"] = "各色と枠の色はいくつ？",
+                ["How many special buttons were there?"] = "特殊ボタンはいくつ？",
+                ["How many buttons had a P?"] = "Pが記されたボタンはいくつ？",
+            },
             Questions = new()
             {
                 [SButtonage.Buttons] = new()
@@ -2218,6 +2573,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SButtonSequence)] = new()
         {
             ModuleName = "順番ボタン",
+            ManualQuestions = new()
+            {
+                ["How many times did each color occur?"] = "それぞれの色が何回登場した？",
+            },
             Questions = new()
             {
                 [SButtonSequence.sColorOccurrences] = new()
@@ -2240,6 +2599,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCactisConundrum)] = new()
         {
             ModuleName = "サボテン難問",
+            ManualQuestions = new()
+            {
+                ["What colors was the LED?"] = "LEDの色は？",
+            },
             Questions = new()
             {
                 [SCactisConundrum.Color] = new()
@@ -2262,6 +2625,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCaesarCycle)] = new()
         {
             ModuleName = "カエサルサイクル",
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "ダイヤルが指していた方向は？",
+                ["What was written on each dial?"] = "ダイヤルに書かれていた英字は？",
+            },
             Questions = new()
             {
                 [SCaesarCycle.DialDirections] = new()
@@ -2292,6 +2660,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCaesarPsycho)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What text and color were on the top display in each stage?"] = "各ステージにおける上のディスプレーのテキストと色は？",
+            },
             Questions = new()
             {
                 [SCaesarPsycho.ScreenTexts] = new()
@@ -2312,6 +2684,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCaesarsMaths)] = new()
         {
             ModuleName = "カエサル数学",
+            ManualQuestions = new()
+            {
+                ["What were the colors of each LED?"] = "各LEDの色は？",
+            },
             Questions = new()
             {
                 [SCaesarsMaths.LED] = new()
@@ -2334,6 +2710,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCalendar)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the holiday?"] = "What was the holiday?",
+            },
             Questions = new()
             {
                 [SCalendar.Holiday] = new()
@@ -2348,6 +2728,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCARPS)] = new()
         {
             ModuleName = "じゃんけんグリッド",
+            ManualQuestions = new()
+            {
+                ["What were the starting colors?"] = "初期状態の色は？",
+            },
             Questions = new()
             {
                 [SCARPS.Cell] = new()
@@ -2369,6 +2753,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCartinese)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What lyrics were played by each button?"] = "各ボタンで再生された歌詞は？",
+                ["What color was each button?"] = "各ボタンの色は？",
+            },
             Questions = new()
             {
                 [SCartinese.ButtonColors] = new()
@@ -2411,6 +2800,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCatchphrase)] = new()
         {
             ModuleName = "キャッチフレーズ",
+            ManualQuestions = new()
+            {
+                ["What were the colours of the panels?"] = "パネルの色は？",
+            },
             Questions = new()
             {
                 [SCatchphrase.Colour] = new()
@@ -2443,6 +2836,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             NeedsTranslation = true,
             ModuleName = "チャレンジ＆コンタクト",
+            ManualQuestions = new()
+            {
+                ["What were the displayed letters?"] = "ディスプレーの文字は？",
+            },
             Questions = new()
             {
                 [SChallengeAndContact.Letters] = new()
@@ -2458,6 +2855,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCharacterCodes)] = new()
         {
             ModuleName = "文字コード",
+            ManualQuestions = new()
+            {
+                ["What were the characters?"] = "表示された文字は？",
+            },
             Questions = new()
             {
                 [SCharacterCodes.Character] = new()
@@ -2473,6 +2874,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCharacterShift)] = new()
         {
             ModuleName = "文字シフト",
+            ManualQuestions = new()
+            {
+                ["What were the characters on the sliders?"] = "スライダーの文字は？",
+            },
             Questions = new()
             {
                 [SCharacterShift.Letters] = new()
@@ -2492,6 +2897,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCharacterSlots)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Who was displayed in each slot for each stage?"] = "各ステージでそれぞれのスロットに誰が表示されていた？",
+            },
             Questions = new()
             {
                 [SCharacterSlots.DisplayedCharacters] = new()
@@ -2507,6 +2916,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCheapCheckout)] = new()
         {
             ModuleName = "安勘定",
+            ManualQuestions = new()
+            {
+                ["What were the paid amounts?"] = "支払金額は？",
+            },
             Questions = new()
             {
                 [SCheapCheckout.Paid] = new()
@@ -2528,6 +2941,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCheatCheckout)] = new()
         {
             ModuleName = "狡勘定",
+            ManualQuestions = new()
+            {
+                ["What was the cryptocurrency?"] = "仮想通貨は？",
+                ["What was the site and hack method for each hack?"] = "各ハッキングにおけるサイトとハッキングの手法は？",
+            },
             Questions = new()
             {
                 [SCheatCheckout.Currency] = new()
@@ -2554,6 +2972,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCheepCheckout)] = new()
         {
             ModuleName = "鳥勘定",
+            ManualQuestions = new()
+            {
+                ["Which birds were present?"] = "どの鳥がいた？",
+            },
             Questions = new()
             {
                 [SCheepCheckout.Birds] = new()
@@ -2603,6 +3025,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SChess)] = new()
         {
             ModuleName = "チェス",
+            ManualQuestions = new()
+            {
+                ["What were the coordinates?"] = "座標は？",
+            },
             Questions = new()
             {
                 [SChess.Coordinate] = new()
@@ -2618,6 +3044,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SChineseCounting)] = new()
         {
             ModuleName = "中国の数え方",
+            ManualQuestions = new()
+            {
+                ["What colors were the LEDs?"] = "LEDの色は？",
+            },
             Questions = new()
             {
                 [SChineseCounting.LED] = new()
@@ -2645,6 +3075,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SChineseRemainderTheorem)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the equations?"] = "方程式は？",
+            },
             Questions = new()
             {
                 [SChineseRemainderTheorem.Equations] = new()
@@ -2659,6 +3093,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SChordQualities)] = new()
         {
             ModuleName = "コードクオリティー",
+            ManualQuestions = new()
+            {
+                ["What notes were in the given chord?"] = "与えられたコードの音は？",
+            },
             Questions = new()
             {
                 [SChordQualities.Notes] = new()
@@ -2673,6 +3111,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SClockCounter)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which arrows were shown?"] = "表示された矢印は？",
+            },
             Questions = new()
             {
                 [SClockCounter.Arrows] = new()
@@ -2687,6 +3129,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCode)] = new()
         {
             ModuleName = "コード",
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SCode.DisplayNumber] = new()
@@ -2701,6 +3147,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCodenames)] = new()
         {
             ModuleName = "コードネーム",
+            ManualQuestions = new()
+            {
+                ["Which words were submitted?"] = "どの言葉を送信した？",
+            },
             Questions = new()
             {
                 [SCodenames.Answers] = new()
@@ -2715,6 +3165,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCoffeeBeans)] = new()
         {
             ModuleName = "コーヒー豆",
+            ManualQuestions = new()
+            {
+                ["What were the movements?"] = "動き方は？",
+            },
             Questions = new()
             {
                 [SCoffeeBeans.Movements] = new()
@@ -2737,6 +3191,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCoffeebucks)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the last customer’s preferred sugar content, time of day, stress level, and size?"] = "What was the last customer’s preferred sugar content, time of day, stress level, and size?",
+            },
             Questions = new()
             {
                 [SCoffeebucks.Sugar] = new()
@@ -2766,6 +3224,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCoinage)] = new()
         {
             ModuleName = "大量コイン",
+            ManualQuestions = new()
+            {
+                ["Which coin was flipped?"] = "どのコインが裏返された？",
+            },
             Questions = new()
             {
                 [SCoinage.Flip] = new()
@@ -2780,6 +3242,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColorAddition)] = new()
         {
             ModuleName = "色の加算",
+            ManualQuestions = new()
+            {
+                ["What were the three numbers?"] = "三つの数字は？",
+            },
             Questions = new()
             {
                 [SColorAddition.Numbers] = new()
@@ -2801,6 +3267,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColorBraille)] = new()
         {
             ModuleName = "色付き点字",
+            ManualQuestions = new()
+            {
+                ["What color was each dot?"] = "各ドットの色は？",
+            },
             Questions = new()
             {
                 [SColorBraille.Color] = new()
@@ -2826,6 +3296,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColorDecoding)] = new()
         {
             ModuleName = "色の解読",
+            ManualQuestions = new()
+            {
+                ["What were the indicator patterns and colors in each stage?"] = "各ステージのインジケーターのパターンと色は？",
+            },
             Questions = new()
             {
                 [SColorDecoding.IndicatorColors] = new()
@@ -2867,6 +3341,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColoredKeys)] = new()
         {
             ModuleName = "色付きキーパッド",
+            ManualQuestions = new()
+            {
+                ["What was the displayed word and its color?"] = "表示された単語とその色は？",
+                ["What were the colors and letters on each key?"] = "各キーの色と文字は？",
+            },
             Questions = new()
             {
                 [SColoredKeys.DisplayWord] = new()
@@ -2939,6 +3418,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColoredSquares)] = new()
         {
             ModuleName = "色付き格子",
+            ManualQuestions = new()
+            {
+                ["What was the first color group?"] = "最初の色のグループは？",
+            },
             Questions = new()
             {
                 [SColoredSquares.FirstGroup] = new()
@@ -2962,6 +3445,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColoredSwitches)] = new()
         {
             ModuleName = "色付きスイッチ",
+            ManualQuestions = new()
+            {
+                ["What was the initial position of the switches?"] = "最初のスイッチの位置は？",
+            },
             Questions = new()
             {
                 [SColoredSwitches.InitialPosition] = new()
@@ -2976,6 +3463,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColorMorse)] = new()
         {
             ModuleName = "カラーモールス",
+            ManualQuestions = new()
+            {
+                ["What were the colors of the LEDs?"] = "LEDの色は？",
+                ["What characters were flashed by the LEDs?"] = "LEDにより点滅している文字は？",
+            },
             Questions = new()
             {
                 [SColorMorse.Color] = new()
@@ -3007,6 +3499,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColorOneTwo)] = new()
         {
             ModuleName = "色の1と2",
+            ManualQuestions = new()
+            {
+                ["What colors were the LEDs?"] = "LEDの色は？",
+            },
             Questions = new()
             {
                 [SColorOneTwo.Color] = new()
@@ -3034,6 +3530,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColorsMaximization)] = new()
         {
             ModuleName = "最大色",
+            ManualQuestions = new()
+            {
+                ["How many buttons were there of each color?"] = "各色のボタンは何個あった？",
+            },
             Questions = new()
             {
                 [SColorsMaximization.ColorCount] = new()
@@ -3055,6 +3555,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColouredCubes)] = new()
         {
             ModuleName = "色付きキューブ",
+            ManualQuestions = new()
+            {
+                ["What were the colours of the cubes and stage lights in each stage?"] = "各ステージにおけるキューブとステージライトの色は？",
+            },
             Questions = new()
             {
                 [SColouredCubes.Colours] = new()
@@ -3105,6 +3609,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColouredCylinder)] = new()
         {
             ModuleName = "色付きシリンダー",
+            ManualQuestions = new()
+            {
+                ["What colours did the cylinder flash?"] = "シリンダーの点滅色は？",
+            },
             Questions = new()
             {
                 [SColouredCylinder.Colours] = new()
@@ -3130,6 +3638,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SColourFlash)] = new()
         {
             ModuleName = "カラーフラッシュ",
+            ManualQuestions = new()
+            {
+                ["What was the color of the last word in the sequence?"] = "シーケンスの最後の単語の色は？",
+            },
             Questions = new()
             {
                 [SColourFlash.LastColor] = new()
@@ -3153,6 +3665,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SConcentration)] = new()
         {
             ModuleName = "集中",
+            ManualQuestions = new()
+            {
+                ["What was the initial layout?"] = "初期配置は？",
+            },
             Questions = new()
             {
                 [SConcentration.StartingDigit] = new()
@@ -3176,6 +3692,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SConditionalButtons)] = new()
         {
             ModuleName = "条件ボタン",
+            ManualQuestions = new()
+            {
+                ["What was the color of each button?"] = "各ボタンの色は？",
+            },
             Questions = new()
             {
                 [SConditionalButtons.Colors] = new()
@@ -3203,6 +3723,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SConnectedMonitors)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What numbers were initially displayed?"] = "最初に表示されていた数字は？",
+                ["What colors were the indicators?"] = "インジケーターの色は？",
+            },
             Questions = new()
             {
                 [SConnectedMonitors.Number] = new()
@@ -3246,6 +3771,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SConnectionCheck)] = new()
         {
             ModuleName = "接続確認",
+            ManualQuestions = new()
+            {
+                ["What number pairs were present?"] = "どの数字のペアが表示された？",
+            },
             Questions = new()
             {
                 [SConnectionCheck.Numbers] = new()
@@ -3293,6 +3822,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCoordinates)] = new()
         {
             ModuleName = "座標",
+            ManualQuestions = new()
+            {
+                ["What was the grid size?"] = "グリッドのサイズは？",
+            },
             Questions = new()
             {
                 [SCoordinates.Size] = new()
@@ -3307,6 +3840,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCoordination)] = new()
         {
             ModuleName = "座標グリッド",
+            ManualQuestions = new()
+            {
+                ["What was the label and position of the starting coordinate?"] = "開始座標のラベルと位置は？",
+            },
             Questions = new()
             {
                 [SCoordination.Label] = new()
@@ -3326,6 +3863,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCoralCipher)] = new()
         {
             ModuleName = "珊瑚色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SCoralCipher.Screen] = new()
@@ -3347,6 +3888,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCorners)] = new()
         {
             ModuleName = "コーナー",
+            ManualQuestions = new()
+            {
+                ["What were the colors of the corners?"] = "角の色は？",
+            },
             Questions = new()
             {
                 [SCorners.Colors] = new()
@@ -3389,6 +3934,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCornflowerCipher)] = new()
         {
             ModuleName = "矢車菊色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SCornflowerCipher.Screen] = new()
@@ -3410,6 +3959,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCosmic)] = new()
         {
             ModuleName = "宇宙",
+            ManualQuestions = new()
+            {
+                ["What was the number initially shown?"] = "最初に表示された番号は？",
+            },
             Questions = new()
             {
                 [SCosmic.Number] = new()
@@ -3424,6 +3977,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCrazyHamburger)] = new()
         {
             ModuleName = "クレイジーハンバーガー",
+            ManualQuestions = new()
+            {
+                ["What were the displayed ingredients?"] = "表示された材料は？",
+            },
             Questions = new()
             {
                 [SCrazyHamburger.Ingredient] = new()
@@ -3439,6 +3996,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCrazyMaze)] = new()
         {
             ModuleName = "クレイジー迷路",
+            ManualQuestions = new()
+            {
+                ["What were the starting and goal positions?"] = "スタートとゴールの位置は？",
+            },
             Questions = new()
             {
                 [SCrazyMaze.StartOrGoal] = new()
@@ -3459,6 +4020,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCreamCipher)] = new()
         {
             ModuleName = "鳥子色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SCreamCipher.Screen] = new()
@@ -3479,7 +4044,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Creation
         [typeof(SCreation)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "クリエーション",
+            ManualQuestions = new()
+            {
+                ["What was the weather condition on the first day?"] = "What was the weather condition on the first day?",
+            },
             Questions = new()
             {
                 [SCreation.Weather] = new()
@@ -3503,6 +4073,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCrimsonCipher)] = new()
         {
             ModuleName = "紅色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SCrimsonCipher.Screen] = new()
@@ -3524,6 +4098,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCritters)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the alteration color?"] = "変化した色は？",
+            },
             Questions = new()
             {
                 [SCritters.Color] = new()
@@ -3545,6 +4123,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCruelBinary)] = new()
         {
             ModuleName = "残忍二進数",
+            ManualQuestions = new()
+            {
+                ["What was the displayed word?"] = "表示された単語は？",
+            },
             Questions = new()
             {
                 [SCruelBinary.DisplayedWord] = new()
@@ -3559,6 +4141,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCruelKeypads)] = new()
         {
             ModuleName = "残忍キーパッド",
+            ManualQuestions = new()
+            {
+                ["What were the displayed symbols and what was the color of the bar in each stage?"] = "各ステージで表示されたシンボルとバーの色は？",
+            },
             Questions = new()
             {
                 [SCruelKeypads.Colors] = new()
@@ -3589,6 +4175,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCRule)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which cells were prefilled at the start?"] = "最初に埋められていたセルは？",
+                ["Which symbol pair appeared where?"] = "どのシンボルがどこに表示されていた？",
+            },
             Questions = new()
             {
                 [SCRule.SymbolPair] = new()
@@ -3619,6 +4210,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCrypticCycle)] = new()
         {
             ModuleName = "暗号サイクル",
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "ダイヤルが指していた方向は？",
+                ["What was written on each dial?"] = "ダイヤルに書かれていた英字は？",
+            },
             Questions = new()
             {
                 [SCrypticCycle.DialDirections] = new()
@@ -3649,6 +4245,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCrypticKeypad)] = new()
         {
             ModuleName = "暗号化キーパッド",
+            ManualQuestions = new()
+            {
+                ["What were the labels and cardinal directions of each key?"] = "各キーのラベルと方角は？",
+            },
             Questions = new()
             {
                 [SCrypticKeypad.Labels] = new()
@@ -3691,6 +4291,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCube)] = new()
         {
             ModuleName = "キューブ",
+            ManualQuestions = new()
+            {
+                ["What were the cube rotations?"] = "キューブの回転は？",
+            },
             Questions = new()
             {
                 [SCube.Rotations] = new()
@@ -3715,6 +4319,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCursedDoubleOh)] = new()
         {
             ModuleName = "呪いのダブル・オー",
+            ManualQuestions = new()
+            {
+                ["What was the first digit of the initial number?"] = "最初に表示された数字の十の位は？",
+            },
             Questions = new()
             {
                 [SCursedDoubleOh.InitialPosition] = new()
@@ -3729,6 +4337,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SCustomerIdentification)] = new()
         {
             ModuleName = "顧客識別",
+            ManualQuestions = new()
+            {
+                ["Which customers were displayed?"] = "表示された客は？",
+            },
             Questions = new()
             {
                 [SCustomerIdentification.Customer] = new()
@@ -3743,7 +4355,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Cyan Button
         [typeof(SCyanButton)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "シアンボタン",
+            ManualQuestions = new()
+            {
+                ["Where was the button at each stage?"] = "Where was the button at each stage?",
+            },
             Questions = new()
             {
                 [SCyanButton.Positions] = new()
@@ -3768,6 +4385,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDACHMaze)] = new()
         {
             ModuleName = "DACH迷路",
+            ManualQuestions = new()
+            {
+                ["Which region did you depart from?"] = "出発点はどこ？",
+            },
             Questions = new()
             {
                 [SDACHMaze.Origin] = new()
@@ -3838,6 +4459,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDeafAlley)] = new()
         {
             ModuleName = "デフ・アレイ",
+            ManualQuestions = new()
+            {
+                ["What was the shape generated?"] = "生成された形は？",
+            },
             Questions = new()
             {
                 [SDeafAlley.Shape] = new()
@@ -3852,6 +4477,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDeckOfManyThings)] = new()
         {
             ModuleName = "多種デッキ",
+            ManualQuestions = new()
+            {
+                ["What deck did the first card belong to?"] = "最初のカードが所属するデッキは？",
+            },
             Questions = new()
             {
                 [SDeckOfManyThings.FirstCard] = new()
@@ -3876,6 +4505,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDecoloredSquares)] = new()
         {
             ModuleName = "色抜き格子",
+            ManualQuestions = new()
+            {
+                ["What were the colors defining the starting row and column?"] = "開始した段と列に該当する色は？",
+            },
             Questions = new()
             {
                 [SDecoloredSquares.StartingPos] = new()
@@ -3905,6 +4538,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDecolourFlash)] = new()
         {
             ModuleName = "デカラーフラッシュ",
+            ManualQuestions = new()
+            {
+                ["What were the words and colours of each goal?"] = "各ゴールの色と単語は？",
+            },
             Questions = new()
             {
                 [SDecolourFlash.Goal] = new()
@@ -3934,6 +4571,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDenialDisplays)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was initially on the displays?"] = "ディスプレーの初期状態は？",
+            },
             Questions = new()
             {
                 [SDenialDisplays.Displays] = new()
@@ -3949,6 +4590,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDetoNATO)] = new()
         {
             ModuleName = "デトナト",
+            ManualQuestions = new()
+            {
+                ["What was the displayed word for each stage?"] = "各ステージで表示された単語は？",
+            },
             Questions = new()
             {
                 [SDetoNATO.Display] = new()
@@ -3964,6 +4609,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDevilishEggs)] = new()
         {
             ModuleName = "悪魔の卵",
+            ManualQuestions = new()
+            {
+                ["What were the rotations?"] = "回転方向は？",
+                ["What were the numbers and letters shown on the prism?"] = "プリズムが示した数字と文字は？",
+            },
             Questions = new()
             {
                 [SDevilishEggs.Rotations] = new()
@@ -3996,6 +4646,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDialtones)] = new()
         {
             ModuleName = "ダイヤル音声",
+            ManualQuestions = new()
+            {
+                ["Which tones played?"] = "再生されたトーンは？",
+            },
             Questions = new()
             {
                 [SDialtones.Dialtones] = new()
@@ -4010,6 +4664,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDigisibility)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the numbers on the buttons?"] = "ボタン上の数字は？",
+            },
             Questions = new()
             {
                 [SDigisibility.DisplayedNumber] = new()
@@ -4025,6 +4683,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDigitString)] = new()
         {
             ModuleName = "数字列",
+            ManualQuestions = new()
+            {
+                ["What was the displayed digit string?"] = "表示された数字文字列は？",
+            },
             Questions = new()
             {
                 [SDigitString.InitialNumber] = new()
@@ -4039,6 +4701,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDimensionDisruption)] = new()
         {
             ModuleName = "次元破壊",
+            ManualQuestions = new()
+            {
+                ["What were the visible characters?"] = "見えている文字は？",
+            },
             Questions = new()
             {
                 [SDimensionDisruption.VisibleLetters] = new()
@@ -4053,6 +4719,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDirectionalButton)] = new()
         {
             ModuleName = "方向ボタン",
+            ManualQuestions = new()
+            {
+                ["How many times did you press the button in each stage?"] = "各ステージで何回ボタンを押した？",
+            },
             Questions = new()
             {
                 [SDirectionalButton.ButtonCount] = new()
@@ -4068,6 +4738,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDiscoloredSquares)] = new()
         {
             ModuleName = "色変え格子",
+            ManualQuestions = new()
+            {
+                ["What was the remembered position for each color?"] = "各色の覚えた位置は？",
+            },
             Questions = new()
             {
                 [SDiscoloredSquares.RememberedPositions] = new()
@@ -4091,6 +4765,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDisorderedKeys)] = new()
         {
             ModuleName = "欠陥順番音板",
+            ManualQuestions = new()
+            {
+                ["What were the missing information and the revealed/unrevealed key color, label, and label color of each key?"] = "各音板の欠けていた情報と完全/不完全な音板の色、ラベル、ラベルの色は？",
+            },
             Questions = new()
             {
                 [SDisorderedKeys.MissingInfo] = new()
@@ -4183,7 +4861,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Divided Squares
         [typeof(SDividedSquares)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "分割スクエア",
+            ManualQuestions = new()
+            {
+                ["What color was shown when the correct square was pressed?"] = "What color was shown when the correct square was pressed?",
+            },
             Questions = new()
             {
                 [SDividedSquares.Color] = new()
@@ -4213,6 +4896,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDivisibleNumbers)] = new()
         {
             ModuleName = "割り切れる数字",
+            ManualQuestions = new()
+            {
+                ["What were the numbers in each stage?"] = "各ステージの数字は？",
+            },
             Questions = new()
             {
                 [SDivisibleNumbers.Numbers] = new()
@@ -4228,6 +4915,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDNAMutation)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the DNA strands’ colors?"] = "What were the DNA strands’ colors?",
+                ["What were the given nucleotides’ letters and colors?"] = "What were the given nucleotides’ letters and colors?",
+            },
             Questions = new()
             {
                 [SDNAMutation.Letter] = new()
@@ -4269,6 +4961,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDoofenshmirtzEvilInc)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What jingles played?"] = "再生されたジングルは？",
+                ["What images were shown?"] = "表示された画像は？",
+            },
             Questions = new()
             {
                 [SDoofenshmirtzEvilInc.Jingles] = new()
@@ -4288,6 +4985,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDoubleArrows)] = new()
         {
             ModuleName = "ダブル矢印",
+            ManualQuestions = new()
+            {
+                ["What was the starting position?"] = "開始位置は？",
+                ["Which buttons moved in which directions in the grid?"] = "どのボタンを押すとグリッド内でどの方向に移動する？",
+            },
             Questions = new()
             {
                 [SDoubleArrows.Start] = new()
@@ -4348,6 +5050,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDoubleColor)] = new()
         {
             ModuleName = "二色",
+            ManualQuestions = new()
+            {
+                ["What was the screen color in each stage?"] = "各ステージの画面の色は？",
+            },
             Questions = new()
             {
                 [SDoubleColor.Colors] = new()
@@ -4371,6 +5077,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDoubleDigits)] = new()
         {
             ModuleName = "二桁",
+            ManualQuestions = new()
+            {
+                ["What were the numbers on the displays?"] = "ディスプレー上の数字は？",
+            },
             Questions = new()
             {
                 [SDoubleDigits.Displays] = new()
@@ -4391,6 +5101,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDoubleExpert)] = new()
         {
             ModuleName = "ダブル・エキスパート",
+            ManualQuestions = new()
+            {
+                ["What was the starting key number?"] = "初期のキー番号は？",
+                ["What was the submitted word?"] = "送信した単語は？",
+            },
             Questions = new()
             {
                 [SDoubleExpert.StartingKeyNumber] = new()
@@ -4410,6 +5125,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDoubleListening)] = new()
         {
             ModuleName = "ダブルリスニング",
+            ManualQuestions = new()
+            {
+                ["What sounds played?"] = "再生された音は？",
+            },
             Questions = new()
             {
                 [SDoubleListening.Sounds] = new()
@@ -4424,6 +5143,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDoubleScreen)] = new()
         {
             ModuleName = "二画面",
+            ManualQuestions = new()
+            {
+                ["What colors were the screens on each stage?"] = "各ステージにおける画面の色は？",
+            },
             Questions = new()
             {
                 [SDoubleScreen.Colors] = new()
@@ -4451,6 +5174,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDrDoctor)] = new()
         {
             ModuleName = "医学博士",
+            ManualQuestions = new()
+            {
+                ["Which diseases and symptoms were listed?"] = "どのような症状や病気が挙げられた？",
+            },
             Questions = new()
             {
                 [SDrDoctor.Diseases] = new()
@@ -4470,6 +5197,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDreamcipher)] = new()
         {
             ModuleName = "夢想暗号",
+            ManualQuestions = new()
+            {
+                ["What was the decrypted word?"] = "解読した単語は？",
+            },
             Questions = new()
             {
                 [SDreamcipher.Word] = new()
@@ -4484,6 +5215,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDuck)] = new()
         {
             ModuleName = "アヒル",
+            ManualQuestions = new()
+            {
+                ["What was the color of the curtain?"] = "カーテンの色は？",
+                ["How was the duck approached?"] = "アヒルへの接触方法は？",
+            },
             Questions = new()
             {
                 [SDuck.CurtainColor] = new()
@@ -4506,6 +5242,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SDumbWaiters)] = new()
         {
             ModuleName = "小荷物専用昇降機",
+            ManualQuestions = new()
+            {
+                ["Which players were present?"] = "どのプレイヤーが存在した？",
+            },
             Questions = new()
             {
                 [SDumbWaiters.PlayerAvailable] = new()
@@ -4526,6 +5266,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEarthbound)] = new()
         {
             ModuleName = "MOTHER",
+            ManualQuestions = new()
+            {
+                ["What was the background?"] = "背景は？",
+                ["Which monster was shown?"] = "表示されたモンスターは？",
+            },
             Questions = new()
             {
                 [SEarthbound.Background] = new()
@@ -4545,6 +5290,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEeBgnillepS)] = new()
         {
             ModuleName = "ービ・グンリペス",
+            ManualQuestions = new()
+            {
+                ["What word was asked to be spelled?"] = "綴るべき単語は？",
+            },
             Questions = new()
             {
                 [SEeBgnillepS.Word] = new()
@@ -4559,6 +5308,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEight)] = new()
         {
             ModuleName = "八",
+            ManualQuestions = new()
+            {
+                ["What was the last digit on the small display?"] = "小さなディスプレーの最後の数字は？",
+                ["What was the position of the last broken digit?"] = "最後に破壊された数字の位置は？",
+                ["What were the last resulting digits?"] = "最後の結果の値は？",
+                ["What was the last displayed number?"] = "最後に表示された数字は？",
+            },
             Questions = new()
             {
                 [SEight.LastSmallDisplayDigit] = new()
@@ -4588,6 +5344,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SElderFuthark)] = new()
         {
             ModuleName = "エルダー・フサルク",
+            ManualQuestions = new()
+            {
+                ["What were the runes shown?"] = "表示されたルーンは？",
+            },
             Questions = new()
             {
                 [SElderFuthark.Runes] = new()
@@ -4603,6 +5363,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEmoji)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the emoji?"] = "絵文字は？",
+            },
             Questions = new()
             {
                 [SEmoji.Emoji] = new()
@@ -4623,6 +5387,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEnaCipher)] = new()
         {
             ModuleName = "エナ暗号",
+            ManualQuestions = new()
+            {
+                ["What were the keyword, the transposition key and the encrypted word?"] = "キーワードと転置キー、暗号化された単語は？",
+            },
             Questions = new()
             {
                 [SEnaCipher.KeywordAnswer] = new()
@@ -4648,6 +5416,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEncryptedDice)] = new()
         {
             ModuleName = "暗号化ダイス",
+            ManualQuestions = new()
+            {
+                ["Which numbers were rolled in each stage?"] = "各ステージでどの目が出た？",
+            },
             Questions = new()
             {
                 [SEncryptedDice.Question] = new()
@@ -4663,6 +5435,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEncryptedEquations)] = new()
         {
             ModuleName = "暗号化方程式",
+            ManualQuestions = new()
+            {
+                ["What were the main shapes of the three operands?"] = "3つのオペランドの主な図形は？",
+            },
             Questions = new()
             {
                 [SEncryptedEquations.Shapes] = new()
@@ -4678,6 +5454,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEncryptedHangman)] = new()
         {
             ModuleName = "暗号化ハングマン",
+            ManualQuestions = new()
+            {
+                ["What was the encrypted module name and encryption method?"] = "暗号化モジュールの名前と暗号化規則は？",
+            },
             Questions = new()
             {
                 [SEncryptedHangman.Module] = new()
@@ -4707,6 +5487,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEncryptedMaze)] = new()
         {
             ModuleName = "暗号化迷路",
+            ManualQuestions = new()
+            {
+                ["Which symbol was spinning which way?"] = "どのシンボルがどの方向に回っている？",
+            },
             Questions = new()
             {
                 [SEncryptedMaze.Symbols] = new()
@@ -4727,6 +5511,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEncryptedMorse)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the received key?"] = "What was the received key?",
+            },
             Questions = new()
             {
                 [SEncryptedMorse.Key] = new()
@@ -4741,6 +5529,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEncryptionBingo)] = new()
         {
             ModuleName = "暗号化ビンゴ",
+            ManualQuestions = new()
+            {
+                ["What was the first encoding used?"] = "最初に使用された暗号化方式は？",
+            },
             Questions = new()
             {
                 [SEncryptionBingo.Encoding] = new()
@@ -4777,6 +5569,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEnglishEntries)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the displayed quote?"] = "表示されている引用文は？",
+            },
             Questions = new()
             {
                 [SEnglishEntries.Display] = new()
@@ -4791,6 +5587,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEnigmaCycle)] = new()
         {
             ModuleName = "エニグマサイクル",
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "ダイヤルが指していた方向は？",
+                ["What was written on each dial?"] = "ダイヤルに書かれていた英字は？",
+            },
             Questions = new()
             {
                 [SEnigmaCycle.DialDirectionsThree] = new()
@@ -4833,6 +5634,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEntryNumberFour)] = new()
         {
             ModuleName = "エントリーナンバー4",
+            ManualQuestions = new()
+            {
+                ["What were the numbers shown?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SEntryNumberFour.Digits] = new()
@@ -4848,6 +5653,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEntryNumberOne)] = new()
         {
             ModuleName = "エントリーナンバー1",
+            ManualQuestions = new()
+            {
+                ["What were the numbers shown?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SEntryNumberOne.Digits] = new()
@@ -4863,6 +5672,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEquationsX)] = new()
         {
             ModuleName = "方程式X",
+            ManualQuestions = new()
+            {
+                ["What was the displayed symbol?"] = "表示されたシンボルは？",
+            },
             Questions = new()
             {
                 [SEquationsX.Symbols] = new()
@@ -4877,6 +5690,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SErrorCodes)] = new()
         {
             ModuleName = "エラーコード",
+            ManualQuestions = new()
+            {
+                ["What was the active error code?"] = "有効だったエラーコードは？",
+            },
             Questions = new()
             {
                 [SErrorCodes.ActiveError] = new()
@@ -4891,6 +5708,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SEtterna)] = new()
         {
             ModuleName = "エテルナ",
+            ManualQuestions = new()
+            {
+                ["What beat was the input for each arrow?"] = "各矢印による入力はどのような拍子だった？",
+            },
             Questions = new()
             {
                 [SEtterna.Number] = new()
@@ -4906,6 +5727,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SExoplanets)] = new()
         {
             ModuleName = "太陽系外惑星",
+            ManualQuestions = new()
+            {
+                ["What were the starting and final target planet and digit?"] = "開始時と解除時のターゲット惑星と数字は？",
+            },
             Questions = new()
             {
                 [SExoplanets.StartingTargetPlanet] = new()
@@ -4949,6 +5774,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFactoringMaze)] = new()
         {
             ModuleName = "因数迷路",
+            ManualQuestions = new()
+            {
+                ["What were the prime numbers used?"] = "どの素数を使用した？",
+            },
             Questions = new()
             {
                 [SFactoringMaze.ChosenPrimes] = new()
@@ -4963,6 +5792,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFactoryMaze)] = new()
         {
             ModuleName = "工場迷路",
+            ManualQuestions = new()
+            {
+                ["What room did you start in?"] = "最初にいた部屋はどこ？",
+            },
             Questions = new()
             {
                 [SFactoryMaze.StartRoom] = new()
@@ -4977,6 +5810,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFaerieFires)] = new()
         {
             ModuleName = "妖精の火",
+            ManualQuestions = new()
+            {
+                ["What were the faeries' colors and pitches?"] = "妖精の色と音程は？",
+            },
             Questions = new()
             {
                 [SFaerieFires.Color] = new()
@@ -5022,6 +5859,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFastMath)] = new()
         {
             ModuleName = "速算",
+            ManualQuestions = new()
+            {
+                ["What was the last pair of letters?"] = "最後の英字のペアは？",
+            },
             Questions = new()
             {
                 [SFastMath.LastLetters] = new()
@@ -5036,6 +5877,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFastPlayfairCipher)] = new()
         {
             ModuleName = "速プレイフェア暗号",
+            ManualQuestions = new()
+            {
+                ["What was the last displayed message?"] = "最後に表示されたメッセージは？",
+            },
             Questions = new()
             {
                 [SFastPlayfairCipher.LastMessage] = new()
@@ -5050,6 +5895,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFaultyButtons)] = new()
         {
             ModuleName = "欠陥ボタン",
+            ManualQuestions = new()
+            {
+                ["Which button did each button refer to?"] = "どのボタンがどのボタンを参照していた？",
+            },
             Questions = new()
             {
                 [SFaultyButtons.ReferredToThisButton] = new()
@@ -5071,6 +5920,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFaultyRGBMaze)] = new()
         {
             ModuleName = "欠陥RGB迷路",
+            ManualQuestions = new()
+            {
+                ["Where were the exit and keys of the maze?"] = "迷路の出口と鍵は？",
+                ["What was the maze number for each maze?"] = "各迷路の数字は？",
+            },
             Questions = new()
             {
                 [SFaultyRGBMaze.Keys] = new()
@@ -5109,6 +5963,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFindTheDate)] = new()
         {
             ModuleName = "曜日の特定",
+            ManualQuestions = new()
+            {
+                ["What were the day, month, and year for each stage?"] = "各ステージの年月日は？",
+            },
             Questions = new()
             {
                 [SFindTheDate.Month] = new()
@@ -5136,6 +5994,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFiveLetterWords)] = new()
         {
             ModuleName = "5文字の単語",
+            ManualQuestions = new()
+            {
+                ["What were the displayed words?"] = "表示された単語は？",
+            },
             Questions = new()
             {
                 [SFiveLetterWords.DisplayedWords] = new()
@@ -5150,6 +6012,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFizzBuzz)] = new()
         {
             ModuleName = "フィズバズ",
+            ManualQuestions = new()
+            {
+                ["What were the displayed numbers?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SFizzBuzz.DisplayedNumbers] = new()
@@ -5171,6 +6037,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFlags)] = new()
         {
             ModuleName = "国旗",
+            ManualQuestions = new()
+            {
+                ["What were the country flags, the main flag, and the displayed number?"] = "国旗、メインの旗、表示された番号は？",
+            },
             Questions = new()
             {
                 [SFlags.DisplayedNumber] = new()
@@ -5195,6 +6065,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFlashingArrows)] = new()
         {
             ModuleName = "点滅矢印",
+            ManualQuestions = new()
+            {
+                ["What was the number shown on the display?"] = "ディスプレーに表示された数は？",
+                ["What were the relevant arrow’s colors?"] = "関連する矢印の色は？",
+            },
             Questions = new()
             {
                 [SFlashingArrows.DisplayedValue] = new()
@@ -5230,6 +6105,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFlashingLights)] = new()
         {
             ModuleName = "点滅ライト",
+            ManualQuestions = new()
+            {
+                ["How many times did each LED flash each color?"] = "各色のLEDは何回点滅した？",
+            },
             Questions = new()
             {
                 [SFlashingLights.LEDFrequency] = new()
@@ -5255,6 +6134,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFlavorTextEX)] = new()
         {
             ModuleName = "フレーバーテキストEX",
+            ManualQuestions = new()
+            {
+                ["Which module’s flavor text was presented in each stage?"] = "各ステージにおいてどのモジュールのフレーバーテキストが表示されていた？",
+            },
             Questions = new()
             {
                 [SFlavorTextEX.Module] = new()
@@ -5270,6 +6153,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFlyswatting)] = new()
         {
             ModuleName = "ハエ叩き",
+            ManualQuestions = new()
+            {
+                ["Which flies were present, but not in the solution?"] = "存在していたが、回答ではないハエは？",
+            },
             Questions = new()
             {
                 [SFlyswatting.Unpressed] = new()
@@ -5284,6 +6171,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFollowMe)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the flashing directions?"] = "点滅した方向は？",
+            },
             Questions = new()
             {
                 [SFollowMe.DisplayedPath] = new()
@@ -5306,6 +6197,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForestCipher)] = new()
         {
             ModuleName = "柚葉色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SForestCipher.Screen] = new()
@@ -5327,6 +6222,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForgetAnyColor)] = new()
         {
             ModuleName = "全色忘る",
+            ManualQuestions = new()
+            {
+                ["What colors were the cylinders in each stage?"] = "各ステージのシリンダーの色は？",
+                ["Which figure was used in each stage?"] = "各ステージで使われた図は？",
+            },
             Questions = new()
             {
                 [SForgetAnyColor.QCylinder] = new()
@@ -5379,6 +6279,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForgetEverything)] = new()
         {
             ModuleName = "須く忘る",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits in stage one?"] = "ステージ1で表示された数字は？",
+            },
             Questions = new()
             {
                 [SForgetEverything.QStageOneDisplay] = new()
@@ -5403,6 +6307,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForgetMe)] = new()
         {
             ModuleName = "我忘る",
+            ManualQuestions = new()
+            {
+                ["What numbers were in which positions in the initial puzzle?"] = "初めのパズルはどの数字がどの位置にあった？",
+            },
             Questions = new()
             {
                 [SForgetMe.InitialState] = new()
@@ -5430,6 +6338,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForgetMeNot)] = new()
         {
             ModuleName = "我忘る勿かれ",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits in each stage?"] = "各ステージで表示された数字は？",
+            },
             Questions = new()
             {
                 [SForgetMeNot.Question] = new()
@@ -5454,6 +6366,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForgetMeNow)] = new()
         {
             ModuleName = "我忘るる",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SForgetMeNow.DisplayedDigits] = new()
@@ -5469,6 +6385,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForgetOurVoices)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was said by whom each stage?"] = "各ステージで発言したのは誰？",
+            },
             Questions = new()
             {
                 [SForgetOurVoices.Voice] = new()
@@ -5493,6 +6413,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForgetsUltimateShowdown)] = new()
         {
             ModuleName = "忘る者の究極の対決",
+            ManualQuestions = new()
+            {
+                ["What was the initial number?"] = "最初の数字は？",
+                ["What was the bottom number?"] = "下部の数字は？",
+                ["What was the answer?"] = "答えは？",
+                ["What were the encryption methods used?"] = "使用されている暗号方式は？",
+            },
             Questions = new()
             {
                 [SForgetsUltimateShowdown.Answer] = new()
@@ -5537,6 +6464,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForgetTheColors)] = new()
         {
             ModuleName = "色忘る",
+            ManualQuestions = new()
+            {
+                ["What were the large display, gear and the sine number’s last digit in each stage?"] = "各ステージの大きなディスプレー、歯車、sin値の下一桁は？",
+                ["Which edgework-based rule was applied in each stage?"] = "各ステージにおいて、どのエッジワークに基づくルールが当てはまった？",
+            },
             Questions = new()
             {
                 [SForgetTheColors.QGearNumber] = new()
@@ -5646,6 +6578,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForgetThis)] = new()
         {
             ModuleName = "之忘る",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digit and color in each stage?"] = "各ステージの表示された数字と色は？",
+            },
             Questions = new()
             {
                 [SForgetThis.QColors] = new()
@@ -5700,6 +6636,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SForgetUsNot)] = new()
         {
             ModuleName = "我等忘る勿かれ",
+            ManualQuestions = new()
+            {
+                ["Which module was solved for each stage?"] = "各ステージで解除されたモジュールは？",
+            },
             Questions = new()
             {
                 [SForgetUsNot.Stage] = new()
@@ -5724,6 +6664,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFreeParking)] = new()
         {
             ModuleName = "無料駐車場",
+            ManualQuestions = new()
+            {
+                ["What was the player token?"] = "プレイヤーのコマは？",
+            },
             Questions = new()
             {
                 [SFreeParking.Token] = new()
@@ -5748,6 +6692,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFrenchRepublicanCalendar)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the color of the LED?"] = "LEDの色は？",
+            },
             Questions = new()
             {
                 [SFrenchRepublicanCalendar.LEDColor] = new()
@@ -5769,6 +6717,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFunctions)] = new()
         {
             ModuleName = "関数",
+            ManualQuestions = new()
+            {
+                ["What was the last digit of the first query result?"] = "最初のクエリの結果の下一桁は？",
+                ["What were the numbers and letter shown at the bottom?"] = "下部に表示された数字と英字は？",
+            },
             Questions = new()
             {
                 [SFunctions.LastDigit] = new()
@@ -5798,6 +6751,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SFuseBox)] = new()
         {
             ModuleName = "ヒューズボックス",
+            ManualQuestions = new()
+            {
+                ["What colors flashed?"] = "点滅した色は？",
+                ["What arrows were correct?"] = "どの矢印が正しかった？",
+            },
             Questions = new()
             {
                 [SFuseBox.Flashes] = new()
@@ -5817,6 +6775,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGadgetronVendor)] = new()
         {
             ModuleName = "ガラクトロン・ベンダー",
+            ManualQuestions = new()
+            {
+                ["What were the displayed weapons?"] = "表示された武器は？",
+            },
             Questions = new()
             {
                 [SGadgetronVendor.CurrentWeapon] = new()
@@ -5836,6 +6798,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGameOfLifeCruel)] = new()
         {
             ModuleName = "残忍ライフゲーム",
+            ManualQuestions = new()
+            {
+                ["Which color combinations occurred?"] = "どの色の組み合わせが登場した？",
+            },
             Questions = new()
             {
                 [SGameOfLifeCruel.Colors] = new()
@@ -5850,6 +6816,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGamepad)] = new()
         {
             ModuleName = "ゲームパッド",
+            ManualQuestions = new()
+            {
+                ["What were the numbers?"] = "数字は？",
+            },
             Questions = new()
             {
                 [SGamepad.Numbers] = new()
@@ -5864,6 +6834,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGarfieldKart)] = new()
         {
             ModuleName = "ガーフィールドカート",
+            ManualQuestions = new()
+            {
+                ["What was the name of the track?"] = "コース名は？",
+                ["How many puzzle pieces were there?"] = "パズルのピースの数は？",
+            },
             Questions = new()
             {
                 [SGarfieldKart.Track] = new()
@@ -5883,6 +6858,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGarnetThief)] = new()
         {
             ModuleName = "宝石泥棒",
+            ManualQuestions = new()
+            {
+                ["Which faction did each competitor claim to have chosen?"] = "各参加者が選んだと主張している派閥はどれだった？",
+            },
             Questions = new()
             {
                 [SGarnetThief.Claim] = new()
@@ -5898,6 +6877,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGhostMovement)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Where were Pac-Man and the ghosts?"] = "パックマンとゴーストの位置は？",
+            },
             Questions = new()
             {
                 [SGhostMovement.Position] = new()
@@ -5913,6 +6896,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGiantsCipher)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the displayed keyword?"] = "What was the displayed keyword?",
+            },
             Questions = new()
             {
                 [SGiantsCipher.Keywords] = new()
@@ -5927,6 +6914,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGirlfriend)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the chosen language?"] = "選択された言語は？",
+            },
             Questions = new()
             {
                 [SGirlfriend.Language] = new()
@@ -5941,6 +6932,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGlitchedButton)] = new()
         {
             ModuleName = "グリッチボタン",
+            ManualQuestions = new()
+            {
+                ["What was the cycling bit sequence?"] = "循環しているビットのシーケンスは？",
+            },
             Questions = new()
             {
                 [SGlitchedButton.Sequence] = new()
@@ -5955,6 +6950,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGoofysGame)] = new()
         {
             ModuleName = "グーフィーのゲーム",
+            ManualQuestions = new()
+            {
+                ["What numbers were shown in Morse code?"] = "モールス信号で表示された数字は？",
+            },
             Questions = new()
             {
                 [SGoofysGame.Number] = new()
@@ -5976,6 +6975,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGrandPiano)] = new()
         {
             ModuleName = "グランドピアノ",
+            ManualQuestions = new()
+            {
+                ["What were the given notes?"] = "与えられた音は？",
+            },
             Questions = new()
             {
                 [SGrandPiano.Key] = new()
@@ -5996,6 +6999,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGrayButton)] = new()
         {
             ModuleName = "灰色ボタン",
+            ManualQuestions = new()
+            {
+                ["What were the coordinates on the display?"] = "ディスプレー上の座標は？",
+            },
             Questions = new()
             {
                 [SGrayButton.Coordinates] = new()
@@ -6016,6 +7023,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGrayCipher)] = new()
         {
             ModuleName = "灰色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SGrayCipher.Screen] = new()
@@ -6037,6 +7048,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGreatVoid)] = new()
         {
             ModuleName = "超空洞",
+            ManualQuestions = new()
+            {
+                ["What were the digits and colors?"] = "数字と色は？",
+            },
             Questions = new()
             {
                 [SGreatVoid.Digit] = new()
@@ -6068,6 +7083,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGreenArrows)] = new()
         {
             ModuleName = "緑色矢印",
+            ManualQuestions = new()
+            {
+                ["What was the last number on the display?"] = "ディスプレー上の最後の数字は？",
+            },
             Questions = new()
             {
                 [SGreenArrows.LastScreen] = new()
@@ -6082,6 +7101,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGreenButton)] = new()
         {
             ModuleName = "緑色ボタン",
+            ManualQuestions = new()
+            {
+                ["What was the submitted word?"] = "送信した単語は？",
+            },
             Questions = new()
             {
                 [SGreenButton.Word] = new()
@@ -6096,6 +7119,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGreenCipher)] = new()
         {
             ModuleName = "緑色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SGreenCipher.Screen] = new()
@@ -6117,6 +7144,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGridlock)] = new()
         {
             ModuleName = "グリッドロック",
+            ManualQuestions = new()
+            {
+                ["What was the starting color?"] = "最初の色は？",
+                ["What was the starting position?"] = "開始位置は？",
+            },
             Questions = new()
             {
                 [SGridlock.StartingColor] = new()
@@ -6143,6 +7175,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGroceryStore)] = new()
         {
             ModuleName = "食料品店",
+            ManualQuestions = new()
+            {
+                ["What was the first item shown?"] = "最初に表示されたアイテムは？",
+            },
             Questions = new()
             {
                 [SGroceryStore.FirstItem] = new()
@@ -6157,6 +7193,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGryphons)] = new()
         {
             ModuleName = "グリフォン",
+            ManualQuestions = new()
+            {
+                ["What were the gryphon’s name and age?"] = "グリフォンの名前と年齢は？",
+            },
             Questions = new()
             {
                 [SGryphons.Name] = new()
@@ -6176,6 +7216,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGuessWho)] = new()
         {
             ModuleName = "だーれだ？",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed “YES”?"] = "「YES」が表示された色は？",
+            },
             Questions = new()
             {
                 [SGuessWho.Colors] = new()
@@ -6207,6 +7251,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SGyromaze)] = new()
         {
             ModuleName = "ジャイロ迷路",
+            ManualQuestions = new()
+            {
+                ["What were the LED colors?"] = "LEDの色は？",
+            },
             Questions = new()
             {
                 [SGyromaze.LEDColor] = new()
@@ -6234,6 +7282,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SH)] = new()
         {
             ModuleName = "H",
+            ManualQuestions = new()
+            {
+                ["What was the transmitted letter?"] = "送信した英字は？",
+            },
             Questions = new()
             {
                 [SH.Letter] = new()
@@ -6248,6 +7300,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHalliGalli)] = new()
         {
             ModuleName = "ハリガリ",
+            ManualQuestions = new()
+            {
+                ["Which fruit was there five of and in what counts?"] = "どの果物がどのような分け方で5個あった？",
+            },
             Questions = new()
             {
                 [SHalliGalli.Fruit] = new()
@@ -6275,6 +7331,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHereditaryBaseNotation)] = new()
         {
             ModuleName = "遺伝的基数表記",
+            ManualQuestions = new()
+            {
+                ["What was the number on the bottom display?"] = "下部のディスプレーに表示された数字は？",
+            },
             Questions = new()
             {
                 [SHereditaryBaseNotation.InitialNumber] = new()
@@ -6289,6 +7349,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHexabutton)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What color was the button when held?"] = "What color was the button when held?",
+                ["What Morse Code letter was transmitted?"] = "What Morse Code letter was transmitted?",
+            },
             Questions = new()
             {
                 [SHexabutton.Color] = new()
@@ -6314,6 +7379,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHexamaze)] = new()
         {
             ModuleName = "六角迷路",
+            ManualQuestions = new()
+            {
+                ["What was the color of the pawn?"] = "ポーンの色は？",
+            },
             Questions = new()
             {
                 [SHexamaze.PawnColor] = new()
@@ -6354,6 +7423,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHexOrbits)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What shapes were displayed?"] = "表示された図形は？",
+            },
             Questions = new()
             {
                 [SHexOrbits.Shape] = new()
@@ -6374,6 +7447,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHexOS)] = new()
         {
             ModuleName = "HexOS",
+            ManualQuestions = new()
+            {
+                ["What were the deciphered letters or phrase?"] = "解読された文字とフレーズは？",
+                ["What were the 3-digit numbers cycled by the screen?"] = "スクリーンで周期的に表示される3桁の数字は？",
+                ["What were the rhythm values?"] = "リズムの値は？",
+            },
             Questions = new()
             {
                 [SHexOS.OctCipher] = new()
@@ -6404,6 +7483,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHickoryDickoryDock)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What times were shown when the clock struck?"] = "時計が鳴った時、示していた時刻は？",
+            },
             Questions = new()
             {
                 [SHickoryDickoryDock.Time] = new()
@@ -6428,6 +7511,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHiddenColors)] = new()
         {
             ModuleName = "隠し色",
+            ManualQuestions = new()
+            {
+                ["What was the main LED’s color?"] = "メインのLEDの色は？",
+            },
             Questions = new()
             {
                 [SHiddenColors.LED] = new()
@@ -6453,6 +7540,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHiddenValue)] = new()
         {
             ModuleName = "隠し値",
+            ManualQuestions = new()
+            {
+                ["What numbers and colors were displayed?"] = "表示された数字と色は？",
+            },
             Questions = new()
             {
                 [SHiddenValue.Display] = new()
@@ -6479,6 +7570,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHighScore)] = new()
         {
             ModuleName = "ハイスコア",
+            ManualQuestions = new()
+            {
+                ["What was the player’s position and score?"] = "プレイヤーの位置とスコアは？",
+            },
             Questions = new()
             {
                 [SHighScore.Position] = new()
@@ -6498,6 +7593,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHillCycle)] = new()
         {
             ModuleName = "ヒルサイクル",
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "ダイヤルが指していた方向は？",
+                ["What was written on each dial?"] = "ダイヤルに書かれていた英字は？",
+            },
             Questions = new()
             {
                 [SHillCycle.DialDirections] = new()
@@ -6528,6 +7628,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHinges)] = new()
         {
             ModuleName = "蝶番",
+            ManualQuestions = new()
+            {
+                ["What were the initially present hinges?"] = "初期状態で存在していた蝶番は？",
+            },
             Questions = new()
             {
                 [SHinges.Initial] = new()
@@ -6562,6 +7666,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHogwarts)] = new()
         {
             ModuleName = "ホグワーツ",
+            ManualQuestions = new()
+            {
+                ["Which House was each module solved for?"] = "各モジュールを解除するための寮はどれ？",
+            },
             Questions = new()
             {
                 [SHogwarts.House] = new()
@@ -6597,6 +7705,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHoldUps)] = new()
         {
             ModuleName = "ホールドアップ",
+            ManualQuestions = new()
+            {
+                ["What was the name of each shadow shown?"] = "各シャドウの名前は？",
+            },
             Questions = new()
             {
                 [SHoldUps.Shadows] = new()
@@ -6612,6 +7724,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHolographicMemory)] = new()
         {
             ModuleName = "ホログラム記憶",
+            ManualQuestions = new()
+            {
+                ["Which side did each symbol appear?"] = "各シンボルが表示されたのはどちら側？",
+            },
             Questions = new()
             {
                 [SHolographicMemory.InitialGrid] = new()
@@ -6631,6 +7747,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHomophones)] = new()
         {
             ModuleName = "同音異義語",
+            ManualQuestions = new()
+            {
+                ["What were the displayed phrases?"] = "表示されたフレーズは？",
+            },
             Questions = new()
             {
                 [SHomophones.DisplayedPhrases] = new()
@@ -6646,6 +7766,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHorribleMemory)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the colors and labels of each button in each stage?"] = "各ステージごとのそれぞれのボタンの色とラベルは？",
+                ["What digit was displayed in each stage?"] = "What digit was displayed in each stage?",
+            },
             Questions = new()
             {
                 [SHorribleMemory.QColorsByPosition] = new()
@@ -6797,6 +7922,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             NeedsTranslation = true,
             ModuleName = "人事部",
+            ManualQuestions = new()
+            {
+                ["Which employees and applicants were present?"] = "Which employees and applicants were present?",
+                ["Which descriptors were shown in red and green?"] = "赤と緑で表示されたのはどの識別語？",
+            },
             Questions = new()
             {
                 [SHumanResources.Descriptors] = new()
@@ -6828,6 +7958,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHunting)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which pictograms were displayed?"] = "Which pictograms were displayed?",
+            },
             Questions = new()
             {
                 [SHunting.DisplayedSymbols] = new()
@@ -6843,6 +7977,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHypercube)] = new()
         {
             ModuleName = "超立方体",
+            ManualQuestions = new()
+            {
+                ["What were the rotations?"] = "回転方向は？",
+            },
             Questions = new()
             {
                 [SHypercube.Rotations] = new()
@@ -6858,6 +7996,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHyperForget)] = new()
         {
             ModuleName = "超忘る",
+            ManualQuestions = new()
+            {
+                ["What were the rotations?"] = "回転方向は？",
+            },
             Questions = new()
             {
                 [SHyperForget.Rotations] = new()
@@ -6882,6 +8024,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SHyperlink)] = new()
         {
             ModuleName = "ハイパーリンク",
+            ManualQuestions = new()
+            {
+                ["What was the hyperlink?"] = "ハイパーリンクは？",
+                ["Which module was referenced?"] = "どのモジュールが参照されている？",
+            },
             Questions = new()
             {
                 [SHyperlink.Characters] = new()
@@ -6902,6 +8049,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SIceCream)] = new()
         {
             ModuleName = "アイスクリーム",
+            ManualQuestions = new()
+            {
+                ["Who were the customers?"] = "客は誰？",
+                ["Which flavors were on offer to each customer?"] = "各客が注文したのはどのフレーバー？",
+            },
             Questions = new()
             {
                 [SIceCream.Flavour] = new()
@@ -6928,6 +8080,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SIdentificationCrisis)] = new()
         {
             ModuleName = "識別危機",
+            ManualQuestions = new()
+            {
+                ["What were the shapes and identification modules used?"] = "使用された図形や識別モジュールは？",
+            },
             Questions = new()
             {
                 [SIdentificationCrisis.Shape] = new()
@@ -6962,6 +8118,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SIdentityParade)] = new()
         {
             ModuleName = "容疑者特定",
+            ManualQuestions = new()
+            {
+                ["What were the hair colors, builds and attires listed on the module?"] = "モジュールに並べられた髪の色、体格、服装は？",
+            },
             Questions = new()
             {
                 [SIdentityParade.HairColors] = new()
@@ -7004,6 +8164,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SImpostor)] = new()
         {
             ModuleName = "ニセモノ",
+            ManualQuestions = new()
+            {
+                ["Which module was being imitated?"] = "真似していたモジュールは？",
+            },
             Questions = new()
             {
                 [SImpostor.Disguise] = new()
@@ -7018,6 +8182,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SIndigoCipher)] = new()
         {
             ModuleName = "藍色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SIndigoCipher.Screen] = new()
@@ -7039,6 +8207,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SInfiniteLoop)] = new()
         {
             ModuleName = "無限ループ",
+            ManualQuestions = new()
+            {
+                ["What was the selected word?"] = "選ばれた言葉は？",
+            },
             Questions = new()
             {
                 [SInfiniteLoop.SelectedWord] = new()
@@ -7053,6 +8225,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SIngredients)] = new()
         {
             ModuleName = "食材",
+            ManualQuestions = new()
+            {
+                ["Which ingredients were listed and which were used?"] = "どの食材が記載され、どれを利用した？",
+            },
             Questions = new()
             {
                 [SIngredients.Ingredients] = new()
@@ -7072,6 +8248,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SInnerConnections)] = new()
         {
             ModuleName = "内部接続",
+            ManualQuestions = new()
+            {
+                ["What color was the LED?"] = "LEDの色は？",
+                ["What was the digit flashed in Morse?"] = "モールス信号で示された数は？",
+            },
             Questions = new()
             {
                 [SInnerConnections.LED] = new()
@@ -7100,6 +8281,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SInterpunct)] = new()
         {
             ModuleName = "句読点",
+            ManualQuestions = new()
+            {
+                ["What was the symbol displayed in each stage?"] = "各ステージで表示されたシンボルは？",
+            },
             Questions = new()
             {
                 [SInterpunct.Display] = new()
@@ -7114,6 +8299,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // IPA
         [typeof(SIPA)] = new()
         {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the correct symbol?"] = "What was the correct symbol?",
+            },
             Questions = new()
             {
                 [SIPA.Sound] = new()
@@ -7128,6 +8318,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SiPhone)] = new()
         {
             ModuleName = "アイフォン",
+            ManualQuestions = new()
+            {
+                ["What was the PIN?"] = "PINの値は？",
+            },
             Questions = new()
             {
                 [SiPhone.Digits] = new()
@@ -7143,6 +8337,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SJenga)] = new()
         {
             ModuleName = "ジェンガ",
+            ManualQuestions = new()
+            {
+                ["What symbols were on the first correctly pulled block?"] = "最初に引き抜いたブロックにあったシンボルは？",
+            },
             Questions = new()
             {
                 [SJenga.FirstBlock] = new()
@@ -7157,6 +8355,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SJewelVault)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which wheel spun another wheel, and which one did it spin?"] = "Which wheel spun another wheel, and which one did it spin?",
+            },
             Questions = new()
             {
                 [SJewelVault.WheelTurns] = new()
@@ -7180,6 +8382,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SJumbleCycle)] = new()
         {
             ModuleName = "寄せ集めサイクル",
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "ダイヤルが指していた方向は？",
+                ["What was written on each dial?"] = "ダイヤルに書かれていた英字は？",
+            },
             Questions = new()
             {
                 [SJumbleCycle.DialDirections] = new()
@@ -7210,6 +8417,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SJuxtacoloredSquares)] = new()
         {
             ModuleName = "色比べ格子",
+            ManualQuestions = new()
+            {
+                ["What was each square’s color?"] = "各マスの色は？",
+            },
             Questions = new()
             {
                 [SJuxtacoloredSquares.ColorsByPosition] = new()
@@ -7268,6 +8479,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKanji)] = new()
         {
             ModuleName = "漢字",
+            ManualQuestions = new()
+            {
+                ["What was the displayed word in each stage?"] = "各ステージで表示された単語は？",
+            },
             Questions = new()
             {
                 [SKanji.DisplayedWords] = new()
@@ -7283,6 +8498,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKanyeEncounter)] = new()
         {
             ModuleName = "カニエ・ウエストとの遭遇",
+            ManualQuestions = new()
+            {
+                ["What food items were shown?"] = "どの食べ物アイテムが表示された？",
+            },
             Questions = new()
             {
                 [SKanyeEncounter.Foods] = new()
@@ -7297,6 +8516,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKayMazeyTalk)] = new()
         {
             ModuleName = "K迷路トーク",
+            ManualQuestions = new()
+            {
+                ["What were the starting and goal words?"] = "開始位置とゴール位置は？",
+            },
             Questions = new()
             {
                 [SKayMazeyTalk.QWord] = new()
@@ -7331,6 +8554,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKeypadCombination)] = new()
         {
             ModuleName = "キーパッドコンビネーション",
+            ManualQuestions = new()
+            {
+                ["What were the numbers, but not part of the answer?"] = "答えに含まれない、存在した数字は？",
+            },
             Questions = new()
             {
                 [SKeypadCombination.WrongNumbers] = new()
@@ -7346,6 +8573,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKeypadMagnified)] = new()
         {
             ModuleName = "拡大キーパッド",
+            ManualQuestions = new()
+            {
+                ["What was the position of the LED?"] = "LEDの位置は？",
+            },
             Questions = new()
             {
                 [SKeypadMagnified.LED] = new()
@@ -7367,6 +8598,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKeypadMaze)] = new()
         {
             ModuleName = "キーパッド迷路",
+            ManualQuestions = new()
+            {
+                ["Where were the yellow cells?"] = "黄色いセルの位置は？",
+            },
             Questions = new()
             {
                 [SKeypadMaze.Yellow] = new()
@@ -7381,6 +8616,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKeypadSequence)] = new()
         {
             ModuleName = "順番キーパッド",
+            ManualQuestions = new()
+            {
+                ["What symbols were on the keys?"] = "キーに書かれていたシンボルは？",
+            },
             Questions = new()
             {
                 [SKeypadSequence.Labels] = new()
@@ -7396,6 +8635,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKeywords)] = new()
         {
             ModuleName = "キーワード",
+            ManualQuestions = new()
+            {
+                ["What were the letters on the display?"] = "ディスプレー上の文字は？",
+            },
             Questions = new()
             {
                 [SKeywords.DisplayedKey] = new()
@@ -7410,6 +8653,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKlaxon)] = new()
         {
             ModuleName = "クラクション",
+            ManualQuestions = new()
+            {
+                ["What was the first module to set off the klaxon?"] = "最初にクラクションが鳴ったモジュールは？",
+            },
             Questions = new()
             {
                 [SKlaxon.FirstModule] = new()
@@ -7424,6 +8671,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKnowYourWay)] = new()
         {
             ModuleName = "方向感覚",
+            ManualQuestions = new()
+            {
+                ["Which way was the arrow pointing?"] = "矢印が指していたのはどの方向？",
+                ["Which LED was green?"] = "どのLEDが緑色だった？",
+            },
             Questions = new()
             {
                 [SKnowYourWay.Arrow] = new()
@@ -7457,6 +8709,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKookyKeypad)] = new()
         {
             ModuleName = "狂ったキーパッド",
+            ManualQuestions = new()
+            {
+                ["What colors were the LEDs?"] = "LEDの色は？",
+            },
             Questions = new()
             {
                 [SKookyKeypad.Color] = new()
@@ -7493,6 +8749,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKudosudoku)] = new()
         {
             ModuleName = "クド数独",
+            ManualQuestions = new()
+            {
+                ["Which squares were initially pre-filled?"] = "どの四角が最初に埋まっていた？",
+            },
             Questions = new()
             {
                 [SKudosudoku.Prefilled] = new()
@@ -7513,6 +8773,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKugelblitz)] = new()
         {
             ModuleName = "クーゲルブリッツ",
+            ManualQuestions = new()
+            {
+                ["Which particles were present during each stage?"] = "各ステージで存在していた粒子は？",
+                ["What were the particles’ values during each stage?"] = "各ステージの粒子の値は？",
+            },
             Questions = new()
             {
                 [SKugelblitz.BlackOrangeYellowIndigoViolet] = new()
@@ -7601,6 +8866,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SKuro)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was Kuro’s mood?"] = "Kuroの気分は？",
+            },
             Questions = new()
             {
                 [SKuro.Mood] = new()
@@ -7615,6 +8884,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLabyrinth)] = new()
         {
             ModuleName = "迷宮",
+            ManualQuestions = new()
+            {
+                ["Where were the portals, and which layers were they on?"] = "どの層で、ポータルがどの位置に表示された？",
+            },
             Questions = new()
             {
                 [SLabyrinth.PortalLocations] = new()
@@ -7651,6 +8924,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLadderLottery)] = new()
         {
             ModuleName = "あみだくじ",
+            ManualQuestions = new()
+            {
+                ["Which light was on?"] = "どのライトが点灯していた？",
+            },
             Questions = new()
             {
                 [SLadderLottery.LightOn] = new()
@@ -7665,6 +8942,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLadders)] = new()
         {
             ModuleName = "梯子",
+            ManualQuestions = new()
+            {
+                ["Which colors were present on the second ladder?"] = "2つ目の梯子には何色が現れていた？",
+                ["What color was missing on the third ladder?"] = "3つ目の梯子は何色が無かった？",
+            },
             Questions = new()
             {
                 [SLadders.Stage2Colors] = new()
@@ -7706,6 +8988,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLangtonsAnteater)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the initial state of the grid?"] = "グリッドの初期状態は？",
+            },
             Questions = new()
             {
                 [SLangtonsAnteater.InitialState] = new()
@@ -7726,6 +9012,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLEDEncryption)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which letters were present at each stage"] = "Which letters were present at each stage",
+            },
             Questions = new()
             {
                 [SLEDEncryption.PresentLetters] = new()
@@ -7741,6 +9031,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLEDGrid)] = new()
         {
             ModuleName = "LEDグリッド",
+            ManualQuestions = new()
+            {
+                ["How many LEDs were unlit?"] = "点灯していないLEDはいくつ？",
+            },
             Questions = new()
             {
                 [SLEDGrid.NumBlack] = new()
@@ -7755,6 +9049,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLEDMath)] = new()
         {
             ModuleName = "LED算",
+            ManualQuestions = new()
+            {
+                ["What were the LED colors?"] = "LEDの色は？",
+            },
             Questions = new()
             {
                 [SLEDMath.Lights] = new()
@@ -7783,6 +9081,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLEDs)] = new()
         {
             ModuleName = "LEDセット",
+            ManualQuestions = new()
+            {
+                ["What was the initial color of the changed LED?"] = "変化したLEDの初めの色は？",
+            },
             Questions = new()
             {
                 [SLEDs.OriginalColor] = new()
@@ -7808,6 +9110,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLEGOs)] = new()
         {
             ModuleName = "LEGO",
+            ManualQuestions = new()
+            {
+                ["What were the dimensions of each color piece?"] = "各色のピースの大きさは？",
+            },
             Questions = new()
             {
                 [SLEGOs.PieceDimensions] = new()
@@ -7832,6 +9138,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLetterMath)] = new()
         {
             ModuleName = "英字数学",
+            ManualQuestions = new()
+            {
+                ["What were the letters on the display?"] = "ディスプレー上の文字は？",
+            },
             Questions = new()
             {
                 [SLetterMath.Display] = new()
@@ -7852,6 +9162,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLightBulbs)] = new()
         {
             ModuleName = "電球セット",
+            ManualQuestions = new()
+            {
+                ["What were the colors of the bulbs?"] = "電球の色は？",
+            },
             Questions = new()
             {
                 [SLightBulbs.Colors] = new()
@@ -7883,6 +9197,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLimeArrows)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the starting coordinate?"] = "What was the starting coordinate?",
+            },
             Questions = new()
             {
                 [SLimeArrows.Coordinates] = new()
@@ -7898,6 +9216,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             NeedsTranslation = true,
             ModuleName = "リンク",
+            ManualQuestions = new()
+            {
+                ["What were the functions?"] = "機能は？",
+            },
             Questions = new()
             {
                 [SLinq.Function] = new()
@@ -7922,6 +9244,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLionsShare)] = new()
         {
             ModuleName = "ライオンの分け前",
+            ManualQuestions = new()
+            {
+                ["Which year was displayed?"] = "表示された年は？",
+                ["Which lions were present but removed?"] = "どのライオンが存在したが居なくなった？",
+            },
             Questions = new()
             {
                 [SLionsShare.Year] = new()
@@ -7941,6 +9268,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SListening)] = new()
         {
             ModuleName = "リスニング",
+            ManualQuestions = new()
+            {
+                ["What sound played?"] = "再生された音は？",
+            },
             Questions = new()
             {
                 [SListening.Sound] = new()
@@ -7955,6 +9286,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLiteralMaze)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which letter was in each position?"] = "各位置にある英字は？",
+            },
             Questions = new()
             {
                 [SLiteralMaze.Letter] = new()
@@ -7969,6 +9304,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLogicalButtons)] = new()
         {
             ModuleName = "論理ボタン",
+            ManualQuestions = new()
+            {
+                ["What were the colors and labels of each button in each stage?"] = "各ステージごとのそれぞれのボタンの色とラベルは？",
+                ["What were the final operators in each stage?"] = "各ステージにおける最後のオペレーターは？",
+            },
             Questions = new()
             {
                 [SLogicalButtons.Color] = new()
@@ -8019,7 +9359,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Logic Gates
         [typeof(SLogicGates)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "論理ゲート",
+            ManualQuestions = new()
+            {
+                ["What were logic gates A-D?"] = "What were logic gates A-D?",
+            },
             Questions = new()
             {
                 [SLogicGates.Gates] = new()
@@ -8042,6 +9387,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLombaxCubes)] = new()
         {
             ModuleName = "ロンバックスキューブ",
+            ManualQuestions = new()
+            {
+                ["What were the letters on the button?"] = "ボタンの文字は？",
+            },
             Questions = new()
             {
                 [SLombaxCubes.Letters] = new()
@@ -8057,6 +9406,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLondonUnderground)] = new()
         {
             ModuleName = "ロンドン地下鉄",
+            ManualQuestions = new()
+            {
+                ["What were the departure and destination stations?"] = "出発地と目的地は？",
+            },
             Questions = new()
             {
                 [SLondonUnderground.Stations] = new()
@@ -8077,6 +9430,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SLongWords)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the word on the top display?"] = "上のディスプレーに表示されていた単語は？",
+            },
             Questions = new()
             {
                 [SLongWords.Word] = new()
@@ -8091,6 +9448,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMadMemory)] = new()
         {
             ModuleName = "狂気記憶",
+            ManualQuestions = new()
+            {
+                ["What was on the display in each stage?"] = "各ステージにおけるディスプレーは？",
+            },
             Questions = new()
             {
                 [SMadMemory.Displays] = new()
@@ -8113,6 +9474,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMafia)] = new()
         {
             ModuleName = "マフィア",
+            ManualQuestions = new()
+            {
+                ["Who was a player, but not the Godfather?"] = "プレイヤーであるがゴッドファーザーではないのは誰？",
+            },
             Questions = new()
             {
                 [SMafia.Players] = new()
@@ -8127,6 +9492,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMagentaCipher)] = new()
         {
             ModuleName = "マゼンタ暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SMagentaCipher.Screen] = new()
@@ -8148,6 +9517,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMahjong)] = new()
         {
             ModuleName = "麻雀パズル",
+            ManualQuestions = new()
+            {
+                ["What was the bottom-left tile?"] = "左下のタイルは？",
+            },
             Questions = new()
             {
                 [SMahjong.CountingTile] = new()
@@ -8162,6 +9535,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMainPage)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which color and message did the bubble (not) display?"] = "表示された/されなかった吹き出しの色とメッセージは？",
+                ["Which main page did Homestar, the background, or any of the buttons’ effects come from?"] = "ホームスター、背景、ボタンの効果はどれ？",
+            },
             Questions = new()
             {
                 [SMainPage.ButtonEffectOrigin] = new()
@@ -8220,6 +9598,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMandMs)] = new()
         {
             ModuleName = "MとM",
+            ManualQuestions = new()
+            {
+                ["What were the labels on the buttons and their colors?"] = "ボタンのラベルと色は？",
+            },
             Questions = new()
             {
                 [SMandMs.Colors] = new()
@@ -8250,6 +9632,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMandNs)] = new()
         {
             ModuleName = "MとN",
+            ManualQuestions = new()
+            {
+                ["What were the colors of the labels on the buttons?"] = "ボタンのラベルの色は？",
+                ["What was the label of the correct button?"] = "正しいボタンのラベルは？",
+            },
             Questions = new()
             {
                 [SMandNs.Colors] = new()
@@ -8279,6 +9666,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMaritimeFlags)] = new()
         {
             ModuleName = "海上旗",
+            ManualQuestions = new()
+            {
+                ["What bearing was signaled?"] = "どの方角を示していた？",
+                ["What callsign was signaled?"] = "どのコールサインを送信していた？",
+            },
             Questions = new()
             {
                 [SMaritimeFlags.Bearing] = new()
@@ -8298,6 +9690,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMaritimeSemaphore)] = new()
         {
             ModuleName = "海上セマフォア信号",
+            ManualQuestions = new()
+            {
+                ["Where was the dummy?"] = "ダミーの位置は？",
+                ["Which letters were signaled?"] = "受信した英字は？",
+            },
             Questions = new()
             {
                 [SMaritimeSemaphore.Dummy] = new()
@@ -8324,6 +9721,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMaroonButton)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was A?"] = "Aは？",
+            },
             Questions = new()
             {
                 [SMaroonButton.A] = new()
@@ -8338,6 +9739,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMaroonCipher)] = new()
         {
             ModuleName = "栗色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SMaroonCipher.Screen] = new()
@@ -8359,6 +9764,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMashematics)] = new()
         {
             ModuleName = "連打算数",
+            ManualQuestions = new()
+            {
+                ["What were the numbers in the equation?"] = "方程式内の数字は？",
+            },
             Questions = new()
             {
                 [SMashematics.Calculation] = new()
@@ -8374,6 +9783,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMasterTapes)] = new()
         {
             ModuleName = "マスターテープ",
+            ManualQuestions = new()
+            {
+                ["Which song was played?"] = "再生された曲は？",
+            },
             Questions = new()
             {
                 [SMasterTapes.PlayedSong] = new()
@@ -8388,6 +9801,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMatchRefereeing)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which planets were present in each stage?"] = "各ステージにあった惑星は？",
+            },
             Questions = new()
             {
                 [SMatchRefereeing.Planet] = new()
@@ -8403,6 +9820,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMathEm)] = new()
         {
             ModuleName = "計算神経衰弱",
+            ManualQuestions = new()
+            {
+                ["What were the color and design of each tile before the shuffle?"] = "シャッフル前の各タイルのデザインと色は？",
+            },
             Questions = new()
             {
                 [SMathEm.Color] = new()
@@ -8429,6 +9850,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMatrix)] = new()
         {
             ModuleName = "マトリックス",
+            ManualQuestions = new()
+            {
+                ["Which word was part of the latest access code?"] = "最新のアクセスコードの一部になっている単語はどれ？",
+                ["What was the glitched word?"] = "問題のある単語は？",
+            },
             Questions = new()
             {
                 [SMatrix.AccessCode] = new()
@@ -8448,6 +9874,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMaze)] = new()
         {
             ModuleName = "迷路",
+            ManualQuestions = new()
+            {
+                ["What was the starting position?"] = "開始位置は？",
+            },
             Questions = new()
             {
                 [SMaze.StartingPosition] = new()
@@ -8470,6 +9900,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMaze3)] = new()
         {
             ModuleName = "迷路³",
+            ManualQuestions = new()
+            {
+                ["What was the color of the starting face?"] = "最初に正面にある色は？",
+            },
             Questions = new()
             {
                 [SMaze3.StartingFace] = new()
@@ -8493,6 +9927,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMazeIdentification)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the seed?"] = "Seed値は？",
+                ["What function did each button have?"] = "各ボタンの機能は？",
+            },
             Questions = new()
             {
                 [SMazeIdentification.Seed] = new()
@@ -8533,6 +9972,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMazematics)] = new()
         {
             ModuleName = "計算迷路",
+            ManualQuestions = new()
+            {
+                ["What were the initial and goal values?"] = "最初とゴールの値は？",
+            },
             Questions = new()
             {
                 [SMazematics.Value] = new()
@@ -8553,6 +9996,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMazeScrambler)] = new()
         {
             ModuleName = "迷路スクランブラー",
+            ManualQuestions = new()
+            {
+                ["What was the starting position?"] = "開始位置は？",
+                ["What was the goal position?"] = "ゴールの位置は？",
+                ["Which positions were the maze markings?"] = "迷路のマークはどの位置にあった？",
+            },
             Questions = new()
             {
                 [SMazeScrambler.Start] = new()
@@ -8613,6 +10062,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMazeseeker)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["How many walls surrounded each cell?"] = "各セルを囲む壁はいくつ？",
+                ["What were the starting and goal positions?"] = "スタートとゴールの位置は？",
+            },
             Questions = new()
             {
                 [SMazeseeker.Cell] = new()
@@ -8637,6 +10091,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMazeSwap)] = new()
         {
             ModuleName = "入れ替え迷路",
+            ManualQuestions = new()
+            {
+                ["What were the starting and goal positions?"] = "スタートとゴールの位置は？",
+            },
             Questions = new()
             {
                 [SMazeSwap.Position] = new()
@@ -8657,6 +10115,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMemorableButtons)] = new()
         {
             ModuleName = "記憶ボタン",
+            ManualQuestions = new()
+            {
+                ["What were the symbols on the correct buttons?"] = "正しいボタンのシンボルは？",
+            },
             Questions = new()
             {
                 [SMemorableButtons.Symbols] = new()
@@ -8672,6 +10134,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMemory)] = new()
         {
             ModuleName = "記憶",
+            ManualQuestions = new()
+            {
+                ["What was the display in each stage?"] = "各ステージで表示された数は？",
+            },
             Questions = new()
             {
                 [SMemory.Display] = new()
@@ -8687,6 +10153,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMemoryWires)] = new()
         {
             ModuleName = "記憶ワイヤ",
+            ManualQuestions = new()
+            {
+                ["What were the wire colours?"] = "ワイヤの色は？",
+                ["What were the displayed digits?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SMemoryWires.WireColours] = new()
@@ -8716,6 +10187,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMetamorse)] = new()
         {
             ModuleName = "メタモールス",
+            ManualQuestions = new()
+            {
+                ["What was the extracted letter?"] = "抽出された文字は？",
+            },
             Questions = new()
             {
                 [SMetamorse.ExtractedLetter] = new()
@@ -8730,6 +10205,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMetapuzzle)] = new()
         {
             ModuleName = "メタパズル",
+            ManualQuestions = new()
+            {
+                ["What was the final answer?"] = "最終的な回答は？",
+            },
             Questions = new()
             {
                 [SMetapuzzle.Answer] = new()
@@ -8744,6 +10223,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMinskMetro)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the starting station?"] = "開始地点の駅は？",
+            },
             Questions = new()
             {
                 [SMinskMetro.Station] = new()
@@ -8758,6 +10241,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMirror)] = new()
         {
             ModuleName = "鏡",
+            ManualQuestions = new()
+            {
+                ["What was the second word written by the original ghost?"] = "オリジナルのお化けが記した2番目の言葉は？",
+            },
             Questions = new()
             {
                 [SMirror.Word] = new()
@@ -8772,6 +10259,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMissingLetter)] = new()
         {
             ModuleName = "欠落英字",
+            ManualQuestions = new()
+            {
+                ["What letter was missing?"] = "欠落している英字は？",
+            },
             Questions = new()
             {
                 [SMissingLetter.MissingLetter] = new()
@@ -8786,6 +10277,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMisterSoftee)] = new()
         {
             ModuleName = "ミスター・ソフティー",
+            ManualQuestions = new()
+            {
+                ["Where was the SpongeBob Bar?"] = "スポンジ・ボブ・バーはどこ？",
+                ["Which treats were present?"] = "どのおやつがあった？",
+            },
             Questions = new()
             {
                 [SMisterSoftee.SpongebobPosition] = new()
@@ -8805,6 +10301,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMixometer)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the position of the submit button?"] = "送信ボタンの位置は？",
+            },
             Questions = new()
             {
                 [SMixometer.SubmitButton] = new()
@@ -8819,6 +10319,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SModuleListening)] = new()
         {
             ModuleName = "モジュールリスニング",
+            ManualQuestions = new()
+            {
+                ["What sounds played?"] = "再生された音は？",
+                ["What sounds did each button play?"] = "各ボタンが再生した音は？",
+            },
             Questions = new()
             {
                 [SModuleListening.ButtonAudio] = new()
@@ -8846,6 +10351,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SModuleManeuvers)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the goal location?"] = "ゴールの位置は？",
+            },
             Questions = new()
             {
                 [SModuleManeuvers.Goal] = new()
@@ -8865,6 +10374,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SModuleMaze)] = new()
         {
             ModuleName = "モジュール迷路",
+            ManualQuestions = new()
+            {
+                ["What was the starting icon?"] = "スタートのアイコンは？",
+            },
             Questions = new()
             {
                 [SModuleMaze.StartingIcon] = new()
@@ -8879,6 +10392,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SModuleMovements)] = new()
         {
             ModuleName = "モジュール追跡",
+            ManualQuestions = new()
+            {
+                ["What module was shown for each stage?"] = "各ステージで表示されたモジュールは？",
+            },
             Questions = new()
             {
                 [SModuleMovements.Display] = new()
@@ -8894,6 +10411,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMoneyGame)] = new()
         {
             ModuleName = "マネーゲーム",
+            ManualQuestions = new()
+            {
+                ["What were the phrases?"] = "フレーズは？",
+            },
             Questions = new()
             {
                 [SMoneyGame.Question1] = new()
@@ -8921,6 +10442,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMonsplodeFight)] = new()
         {
             ModuleName = "モンスプロード・ファイト！",
+            ManualQuestions = new()
+            {
+                ["Which creature was displayed?"] = "どのクリーチャーが表示された？",
+                ["Which moves were selectable?"] = "選択可能な技は？",
+            },
             Questions = new()
             {
                 [SMonsplodeFight.Creature] = new()
@@ -8947,6 +10473,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             NeedsTranslation = true,
             ModuleName = "モンスプロード・カードゲーム",
+            ManualQuestions = new()
+            {
+                ["What were the names and print versions of the three cards in your hand before the final trade/keep?"] = "What were the names and print versions of the three cards in your hand before the final trade/keep?",
+            },
             Questions = new()
             {
                 [SMonsplodeTradingCards.CardsAny] = new()
@@ -8966,6 +10496,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMoon)] = new()
         {
             ModuleName = "月",
+            ManualQuestions = new()
+            {
+                ["Which sets were initially lit/unlit?"] = "最初に点灯/消灯していたのは？",
+            },
             Questions = new()
             {
                 [SMoon.LitUnlit] = new()
@@ -9003,6 +10537,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMoreCode)] = new()
         {
             ModuleName = "新モールス信号",
+            ManualQuestions = new()
+            {
+                ["What was the flashing word?"] = "点滅している単語は？",
+            },
             Questions = new()
             {
                 [SMoreCode.Word] = new()
@@ -9017,6 +10555,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMorseAMaze)] = new()
         {
             ModuleName = "モールス迷路",
+            ManualQuestions = new()
+            {
+                ["What were the starting and ending locations?"] = "最初と最後の位置は？",
+                ["What was the Morse code word played?"] = "再生されているモールス信号は？",
+            },
             Questions = new()
             {
                 [SMorseAMaze.StartingCoordinate] = new()
@@ -9041,6 +10584,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMorseButtons)] = new()
         {
             ModuleName = "モールスボタン",
+            ManualQuestions = new()
+            {
+                ["What were the characters and colors flashed by each button?"] = "各ボタンで点滅している文字と色は？",
+            },
             Questions = new()
             {
                 [SMorseButtons.ButtonLabel] = new()
@@ -9071,6 +10618,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMorsematics)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the received letters?"] = "受信した文字は？",
+            },
             Questions = new()
             {
                 [SMorsematics.QReceivedLetters] = new()
@@ -9100,6 +10651,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMorseWar)] = new()
         {
             ModuleName = "モールス戦争",
+            ManualQuestions = new()
+            {
+                ["What were the LEDs?"] = "LEDの状態は？",
+                ["What code was transmitted?"] = "送信した文字は？",
+            },
             Questions = new()
             {
                 [SMorseWar.Code] = new()
@@ -9126,6 +10682,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMorseWoF)] = new()
         {
             ModuleName = "--..-_--_..-_--..-_.-.._...-",
+            ManualQuestions = new()
+            {
+                ["What were the display words?"] = "ディスプレーの単語は？",
+            },
             Questions = new()
             {
                 [SMorseWoF.Displays] = new()
@@ -9141,6 +10701,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMouseInTheMaze)] = new()
         {
             ModuleName = "迷路のネズミ",
+            ManualQuestions = new()
+            {
+                ["What color was the torus?"] = "輪の色は？",
+            },
             Questions = new()
             {
                 [SMouseInTheMaze.Torus] = new()
@@ -9162,6 +10726,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMSeq)] = new()
         {
             ModuleName = "リズム正方型",
+            ManualQuestions = new()
+            {
+                ["What were the obtained digits?"] = "得られた数字は？",
+                ["What was the final number from the iteration process?"] = "繰り返し作業による、最終的な数字は？",
+            },
             Questions = new()
             {
                 [SMSeq.Obtained] = new()
@@ -9182,6 +10751,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMssngvWls)] = new()
         {
             ModuleName = "欠落母音",
+            ManualQuestions = new()
+            {
+                ["What was the missing vowel?"] = "欠落していた母音は？",
+            },
             Questions = new()
             {
                 [SMssngvWls.MssNgvwL] = new()
@@ -9202,6 +10775,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMulticoloredSwitches)] = new()
         {
             ModuleName = "色どりスイッチ",
+            ManualQuestions = new()
+            {
+                ["What were the colors of the LEDs in both cycles?"] = "両サイクルのLEDの色は？",
+            },
             Questions = new()
             {
                 [SMulticoloredSwitches.LedColor] = new()
@@ -9235,6 +10812,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMultiverseHotline)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the universe origin and its initial number?"] = "What was the universe origin and its initial number?",
+            },
             Questions = new()
             {
                 [SMultiverseHotline.OriginUniverse] = new()
@@ -9254,6 +10835,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMurder)] = new()
         {
             ModuleName = "殺人",
+            ManualQuestions = new()
+            {
+                ["Which were the suspects and weapons?"] = "容疑者と武器は？",
+                ["Where was the body found?"] = "遺体は何処で見つかった？",
+            },
             Questions = new()
             {
                 [SMurder.Suspect] = new()
@@ -9320,6 +10906,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMysteryModule)] = new()
         {
             ModuleName = "ミステリーモジュール",
+            ManualQuestions = new()
+            {
+                ["Which module was hidden?"] = "どのモジュールが隠されていた？",
+                ["Which module was the first requested to be solved?"] = "最初に解除するように指示されたモジュールは？",
+            },
             Questions = new()
             {
                 [SMysteryModule.FirstKey] = new()
@@ -9339,6 +10930,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SMysticSquare)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What digit was initially in the center?"] = "What digit was initially in the center?",
+            },
             Questions = new()
             {
                 [SMysticSquare.CenterTile] = new()
@@ -9353,6 +10948,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNameCodes)] = new()
         {
             ModuleName = "名前コード",
+            ManualQuestions = new()
+            {
+                ["What were the left and right indices?"] = "左右の指標は？",
+            },
             Questions = new()
             {
                 [SNameCodes.Indices] = new()
@@ -9373,6 +10972,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNamingConventions)] = new()
         {
             ModuleName = "命名規則",
+            ManualQuestions = new()
+            {
+                ["What was the label of the first button?"] = "最初のボタンのラベルは？",
+            },
             Questions = new()
             {
                 [SNamingConventions.Object] = new()
@@ -9387,6 +10990,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNandMs)] = new()
         {
             ModuleName = "NとM",
+            ManualQuestions = new()
+            {
+                ["What was the label of the correct button?"] = "正しいボタンのラベルは？",
+            },
             Questions = new()
             {
                 [SNandMs.Answer] = new()
@@ -9400,7 +11007,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // N&Ns
         [typeof(SNandNs)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "NとN",
+            ManualQuestions = new()
+            {
+                ["What were the labels in stage 2 and 3?"] = "ステージ2と3のラベルは？",
+                ["What was the missing color in stage 3?"] = "What was the missing color in stage 3?",
+            },
             Questions = new()
             {
                 [SNandNs.Label] = new()
@@ -9430,6 +11043,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNavigationDetermination)] = new()
         {
             ModuleName = "ナビ決定",
+            ManualQuestions = new()
+            {
+                ["What were the color and label of the maze?"] = "迷路の色とラベルは？",
+            },
             Questions = new()
             {
                 [SNavigationDetermination.Color] = new()
@@ -9456,6 +11073,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNavinums)] = new()
         {
             ModuleName = "ナビ数字",
+            ManualQuestions = new()
+            {
+                ["Which directional buttons were pressed?"] = "どの方向ボタンが押された？",
+                ["What was the initial middle digit?"] = "最初の中央の数字は？",
+            },
             Questions = new()
             {
                 [SNavinums.DirectionalButtons] = new()
@@ -9483,6 +11105,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNavyButton)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which Greek letters appeared?"] = "どのギリシャ文字が現れた？",
+                ["What were the coordinates and value of the given?"] = "座標とそれから得られる値は？",
+            },
             Questions = new()
             {
                 [SNavyButton.QGreekLetters] = new()
@@ -9536,6 +11163,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNecronomicon)] = new()
         {
             ModuleName = "ネクロノミコン",
+            ManualQuestions = new()
+            {
+                ["What was the chapter number of each page?"] = "各ページの章番号は？",
+            },
             Questions = new()
             {
                 [SNecronomicon.Chapters] = new()
@@ -9551,6 +11182,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNegativity)] = new()
         {
             ModuleName = "負極性",
+            ManualQuestions = new()
+            {
+                ["What was the submitted value (in base 10 and in balanced ternary)?"] = "送信した値は(十進数と平衡三進数で)？",
+            },
             Questions = new()
             {
                 [SNegativity.SubmittedValue] = new()
@@ -9570,6 +11205,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNeptune)] = new()
         {
             ModuleName = "海王星",
+            ManualQuestions = new()
+            {
+                ["Which star was displayed?"] = "表示されたスターは？",
+            },
             Questions = new()
             {
                 [SNeptune.Star] = new()
@@ -9584,6 +11223,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNeutralization)] = new()
         {
             ModuleName = "中和滴定",
+            ManualQuestions = new()
+            {
+                ["What was the acid’s color/volume?"] = "酸の色と量は？",
+            },
             Questions = new()
             {
                 [SNeutralization.Color] = new()
@@ -9610,6 +11253,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNextInLine)] = new()
         {
             ModuleName = "ネクストライン",
+            ManualQuestions = new()
+            {
+                ["What color was the first wire?"] = "1番目のワイヤの色は？",
+            },
             Questions = new()
             {
                 [SNextInLine.FirstWire] = new()
@@ -9635,6 +11282,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNim)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["How many matches were in each row?"] = "How many matches were in each row?",
+            },
             Questions = new()
             {
                 [SNim.MatchCountFirstRow] = new()
@@ -9656,6 +11307,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNoiseIdentification)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the first displayed noise type?"] = "What was the first displayed noise type?",
+            },
             Questions = new()
             {
                 [SNoiseIdentification.Noises] = new()
@@ -9669,6 +11324,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // ❖
         [typeof(SNonverbalSimon)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the flashes?"] = "点滅は何だった？",
+            },
             Questions = new()
             {
                 [SNonverbalSimon.Flashes] = new()
@@ -9683,6 +11342,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotColoredSquares)] = new()
         {
             ModuleName = "偽色付き格子",
+            ManualQuestions = new()
+            {
+                ["What position did you initially press?"] = "初めに押したのはどの位置？",
+            },
             Questions = new()
             {
                 [SNotColoredSquares.InitialPosition] = new()
@@ -9697,6 +11360,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotColoredSwitches)] = new()
         {
             ModuleName = "偽色付きスイッチ",
+            ManualQuestions = new()
+            {
+                ["What was the encrypted word?"] = "暗号化された単語は？",
+            },
             Questions = new()
             {
                 [SNotColoredSwitches.Word] = new()
@@ -9711,6 +11378,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotColourFlash)] = new()
         {
             ModuleName = "偽カラーフラッシュ",
+            ManualQuestions = new()
+            {
+                ["What were the displayed word and colour sequences?"] = "表示された単語シーケンスと色シーケンスは？",
+            },
             Questions = new()
             {
                 [SNotColourFlash.InitialWord] = new()
@@ -9741,6 +11412,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotConnectionCheck)] = new()
         {
             ModuleName = "偽接続確認",
+            ManualQuestions = new()
+            {
+                ["What were the flashing symbols?"] = "点滅していたシンボルは？",
+                ["What were the button values?"] = "ボタンの値は？",
+            },
             Questions = new()
             {
                 [SNotConnectionCheck.Flashes] = new()
@@ -9776,6 +11452,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotCoordinates)] = new()
         {
             ModuleName = "偽座標",
+            ManualQuestions = new()
+            {
+                ["What were the vertices of the square?"] = "正方形の頂点は？",
+            },
             Questions = new()
             {
                 [SNotCoordinates.SquareCoords] = new()
@@ -9790,6 +11470,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotDoubleOh)] = new()
         {
             ModuleName = "偽ダブル・オー",
+            ManualQuestions = new()
+            {
+                ["What were the displayed positions in the second stage?"] = "第2ステージで表示された位置は？",
+            },
             Questions = new()
             {
                 [SNotDoubleOh.Position] = new()
@@ -9805,6 +11489,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotKeypad)] = new()
         {
             ModuleName = "偽キーパッド",
+            ManualQuestions = new()
+            {
+                ["Which colours flashed in the final sequence?"] = "最後のシーケンスで点滅した色は？",
+                ["Which symbols were on the buttons that flashed in the final sequence?"] = "最後のシーケンスで点滅したボタンのシンボルは？",
+            },
             Questions = new()
             {
                 [SNotKeypad.Color] = new()
@@ -9841,6 +11530,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotMaze)] = new()
         {
             ModuleName = "偽迷路",
+            ManualQuestions = new()
+            {
+                ["What was the starting distance?"] = "開始時の距離は?",
+            },
             Questions = new()
             {
                 [SNotMaze.StartingDistance] = new()
@@ -9855,6 +11548,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotMorseCode)] = new()
         {
             ModuleName = "偽モールス信号",
+            ManualQuestions = new()
+            {
+                ["What was the sequence of words you submitted?"] = "送信した単語の並びは？",
+            },
             Questions = new()
             {
                 [SNotMorseCode.Word] = new()
@@ -9870,6 +11567,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotMorsematics)] = new()
         {
             ModuleName = "偽モールスマティック",
+            ManualQuestions = new()
+            {
+                ["What was the transmitted word?"] = "送信された単語は？",
+            },
             Questions = new()
             {
                 [SNotMorsematics.Word] = new()
@@ -9884,6 +11585,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotMurder)] = new()
         {
             ModuleName = "偽殺人",
+            ManualQuestions = new()
+            {
+                ["What room were the suspects in initially?"] = "最初に容疑者はどの部屋にいた？",
+                ["What weapons did the suspects possess initially?"] = "最初に容疑者はどの武器を使用した？",
+            },
             Questions = new()
             {
                 [SNotMurder.Room] = new()
@@ -9988,6 +11694,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotNumberPad)] = new()
         {
             ModuleName = "偽ナンバーパッド",
+            ManualQuestions = new()
+            {
+                ["Which numbers flashed at each stage?"] = "各ステージでどの数字が点滅した？",
+            },
             Questions = new()
             {
                 [SNotNumberPad.Flashes] = new()
@@ -10008,6 +11718,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotPassword)] = new()
         {
             ModuleName = "偽パスワード",
+            ManualQuestions = new()
+            {
+                ["What was the missing letter?"] = "欠けていた英字は？",
+            },
             Questions = new()
             {
                 [SNotPassword.Letter] = new()
@@ -10022,6 +11736,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotPerspectivePegs)] = new()
         {
             ModuleName = "偽奥行きペグ",
+            ManualQuestions = new()
+            {
+                ["What were the positions, perspectives, and colors of each flash?"] = "各点滅の位置、視点、色は？",
+            },
             Questions = new()
             {
                 [SNotPerspectivePegs.Position] = new()
@@ -10073,6 +11791,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotPianoKeys)] = new()
         {
             ModuleName = "偽鍵盤",
+            ManualQuestions = new()
+            {
+                ["What were the displayed symbols?"] = "表示されたシンボルは？",
+            },
             Questions = new()
             {
                 [SNotPianoKeys.FirstSymbol] = new()
@@ -10097,6 +11819,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotRedArrows)] = new()
         {
             ModuleName = "偽赤色矢印",
+            ManualQuestions = new()
+            {
+                ["What was the starting number?"] = "スタートの数字は？",
+            },
             Questions = new()
             {
                 [SNotRedArrows.Start] = new()
@@ -10111,6 +11837,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotSimaze)] = new()
         {
             ModuleName = "偽サイモンゲーム",
+            ManualQuestions = new()
+            {
+                ["Which maze was used?"] = "どの迷路を使用した？",
+                ["What were the starting and goal positions?"] = "スタートとゴールの位置は？",
+            },
             Questions = new()
             {
                 [SNotSimaze.Maze] = new()
@@ -10222,6 +11953,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotTextField)] = new()
         {
             ModuleName = "偽テキストフィールド",
+            ManualQuestions = new()
+            {
+                ["Which letter appeared 9 times at the start?"] = "初めに9回現れた文字は？",
+                ["Which letters were pressed in the first stage?"] = "最初のステージで押した文字は？",
+            },
             Questions = new()
             {
                 [SNotTextField.BackgroundLetter] = new()
@@ -10241,6 +11977,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotTheBulb)] = new()
         {
             ModuleName = "偽電球",
+            ManualQuestions = new()
+            {
+                ["What was the transmitted word?"] = "送信された単語は？",
+            },
             Questions = new()
             {
                 [SNotTheBulb.Word] = new()
@@ -10283,6 +12023,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotTheButton)] = new()
         {
             ModuleName = "偽ボタン",
+            ManualQuestions = new()
+            {
+                ["What color did the light glow?"] = "ライトは何色に光った？",
+            },
             Questions = new()
             {
                 [SNotTheButton.LightColor] = new()
@@ -10315,6 +12059,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotThePlungerButton)] = new()
         {
             ModuleName = "偽プランジャーボタン",
+            ManualQuestions = new()
+            {
+                ["What colors did the background flash?"] = "背景の点滅色は？",
+            },
             Questions = new()
             {
                 [SNotThePlungerButton.Background] = new()
@@ -10340,6 +12088,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotTheScrew)] = new()
         {
             ModuleName = "偽ザ・ネジ",
+            ManualQuestions = new()
+            {
+                ["What was the initial position?"] = "始めの位置は何処？",
+            },
             Questions = new()
             {
                 [SNotTheScrew.InitialPosition] = new()
@@ -10354,6 +12106,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotWhosOnFirst)] = new()
         {
             ModuleName = "偽表比較",
+            ManualQuestions = new()
+            {
+                ["What were the positions and labels of the correct buttons you pressed and the reference buttons?"] = "押した正しいボタンおよび参照したボタンの位置とラベルは？",
+                ["What was the calculated number in the second stage?"] = "ステージ2で計算した数は？",
+            },
             Questions = new()
             {
                 [SNotWhosOnFirst.PressedPosition] = new()
@@ -10410,6 +12167,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotWordSearch)] = new()
         {
             ModuleName = "偽ワードサーチ",
+            ManualQuestions = new()
+            {
+                ["Which consonants were missing?"] = "どの子音が抜けていた？",
+                ["What was the first correctly pressed letter?"] = "初めに正しく押された文字は？",
+            },
             Questions = new()
             {
                 [SNotWordSearch.Missing] = new()
@@ -10429,6 +12191,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotX01)] = new()
         {
             ModuleName = "偽ダーツ",
+            ManualQuestions = new()
+            {
+                ["What were the sector values?"] = "セクターの値は？",
+            },
             Questions = new()
             {
                 [SNotX01.SectorValues] = new()
@@ -10449,6 +12215,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNotXRay)] = new()
         {
             ModuleName = "偽レントゲン",
+            ManualQuestions = new()
+            {
+                ["What table were we in?"] = "どの表にいる？",
+                ["Which button went which direction?"] = "どのボタンがどの方向に向かっている？",
+                ["What was the scanner color?"] = "スキャナーの色は？",
+            },
             Questions = new()
             {
                 [SNotXRay.ScannerColor] = new()
@@ -10501,6 +12273,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNumberedButtons)] = new()
         {
             ModuleName = "番号ボタン",
+            ManualQuestions = new()
+            {
+                ["Which numbers were correctly pressed?"] = "正しく押したのはどの数字？",
+            },
             Questions = new()
             {
                 [SNumberedButtons.Buttons] = new()
@@ -10515,6 +12291,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNumberGame)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the maximum number?"] = "最大の数字は？",
+            },
             Questions = new()
             {
                 [SNumberGame.Maximum] = new()
@@ -10529,6 +12309,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNumbers)] = new()
         {
             ModuleName = "ナンバー",
+            ManualQuestions = new()
+            {
+                ["What two-digit number was given?"] = "与えられた2つの数字は？",
+            },
             Questions = new()
             {
                 [SNumbers.TwoDigit] = new()
@@ -10543,6 +12327,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SNumpath)] = new()
         {
             ModuleName = "ナンパス",
+            ManualQuestions = new()
+            {
+                ["What was the number and its color?"] = "数字とその色は？",
+            },
             Questions = new()
             {
                 [SNumpath.Color] = new()
@@ -10571,6 +12359,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SObjectShows)] = new()
         {
             ModuleName = "オブジェクトショー",
+            ManualQuestions = new()
+            {
+                ["What contestants were shown?"] = "表示されていたが優勝できなかった出場者は？",
+            },
             Questions = new()
             {
                 [SObjectShows.Contestants] = new()
@@ -10585,6 +12377,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOctadecayotton)] = new()
         {
             ModuleName = "9次元超立方体",
+            ManualQuestions = new()
+            {
+                ["What was the starting sphere?"] = "スタートボールは？",
+                ["What were the subtransformations in each transformation?"] = "各変形の二次変形は？",
+            },
             Questions = new()
             {
                 [SOctadecayotton.Sphere] = new()
@@ -10605,6 +12402,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOddOneOut)] = new()
         {
             ModuleName = "仲間外れ",
+            ManualQuestions = new()
+            {
+                ["What were the correct button presses?"] = "押した正しいボタンはどれ？",
+            },
             Questions = new()
             {
                 [SOddOneOut.Button] = new()
@@ -10620,6 +12421,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOffKeys)] = new()
         {
             ModuleName = "音痴鍵盤",
+            ManualQuestions = new()
+            {
+                ["What were the displayed runes?"] = "表示された記号は？",
+                ["Which keys played at an incorrect pitch?"] = "間違った音程で鳴っていた鍵盤は？",
+            },
             Questions = new()
             {
                 [SOffKeys.IncorrectPitch] = new()
@@ -10639,6 +12445,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOffWhiteCipher)] = new()
         {
             ModuleName = "乳白色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each display?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SOffWhiteCipher.TopDisplay] = new()
@@ -10663,6 +12473,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOldAI)] = new()
         {
             ModuleName = "オールドAI",
+            ManualQuestions = new()
+            {
+                ["Which condition did the displayed numbers follow?"] = "表示されていた数字が従っていた条件は？",
+            },
             Questions = new()
             {
                 [SOldAI.Group] = new()
@@ -10683,6 +12497,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOldFogey)] = new()
         {
             ModuleName = "耄碌爺",
+            ManualQuestions = new()
+            {
+                ["What was the initial color of the status light?"] = "ステータスライトの初期色は？",
+            },
             Questions = new()
             {
                 [SOldFogey.StartingColor] = new()
@@ -10707,6 +12525,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOneLinksToAll)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the initially displayed articles?"] = "初期状態で表示された文章は？",
+            },
             Questions = new()
             {
                 [SOneLinksToAll.Start] = new()
@@ -10726,6 +12548,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOnlyConnect)] = new()
         {
             ModuleName = "オンリーコネクト",
+            ManualQuestions = new()
+            {
+                ["What were the positions of the Egyptian hieroglyphs?"] = "ヒエログリフの位置は何処？",
+            },
             Questions = new()
             {
                 [SOnlyConnect.Hieroglyphs] = new()
@@ -10759,6 +12585,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOrangeArrows)] = new()
         {
             ModuleName = "橙色矢印",
+            ManualQuestions = new()
+            {
+                ["What were the first three arrows on the display in each stage?"] = "各ステージにおけるディスプレー上の最初の3本の矢印は？",
+            },
             Questions = new()
             {
                 [SOrangeArrows.Sequences] = new()
@@ -10781,6 +12611,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOrangeCipher)] = new()
         {
             ModuleName = "橙色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SOrangeCipher.Screen] = new()
@@ -10802,6 +12636,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOrderedKeys)] = new()
         {
             ModuleName = "順番音板",
+            ManualQuestions = new()
+            {
+                ["What were the labels, their colors, and the colors of the keys in each stage?"] = "各ステージにおける音板の色、ラベル、ラベルの色は？",
+            },
             Questions = new()
             {
                 [SOrderedKeys.Colors] = new()
@@ -10847,6 +12685,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOrderPicking)] = new()
         {
             ModuleName = "注文ピッキング",
+            ManualQuestions = new()
+            {
+                ["What were the order ID, product ID and pallet for each order?"] = "各注文の注文ID、製品IDとパレットは？",
+            },
             Questions = new()
             {
                 [SOrderPicking.Order] = new()
@@ -10874,6 +12716,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOrientationCube)] = new()
         {
             ModuleName = "方向キューブ",
+            ManualQuestions = new()
+            {
+                ["What was the observer’s initial position?"] = "最初の観測者の位置は？",
+            },
             Questions = new()
             {
                 [SOrientationCube.InitialObserverPosition] = new()
@@ -10895,6 +12741,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SOrientationHypercube)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the observer’s initial position?"] = "最初の観測者の位置は？",
+                ["What was the initial colour of each face?"] = "各面の初期状態の色は？",
+            },
             Questions = new()
             {
                 [SOrientationHypercube.InitialFaceColour] = new()
@@ -10944,6 +12795,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPaintingCube)] = new()
         {
             ModuleName = "色塗りキューブ",
+            ManualQuestions = new()
+            {
+                ["What color was missing?"] = "存在しない色は？",
+            },
             Questions = new()
             {
                 [SPaintingCube.MissingColor] = new()
@@ -10968,6 +12823,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPalindromes)] = new()
         {
             ModuleName = "回文",
+            ManualQuestions = new()
+            {
+                ["What number was X, Y, Z, and the screen display?"] = "X、Y、Z、画面に表示された数は？",
+            },
             Questions = new()
             {
                 [SPalindromes.Numbers] = new()
@@ -10990,6 +12849,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPapasPizzeria)] = new()
         {
             ModuleName = "パパのピザ屋さん",
+            ManualQuestions = new()
+            {
+                ["What was the order code?"] = "注文番号は？",
+            },
             Questions = new()
             {
                 [SPapasPizzeria.Letter] = new()
@@ -11010,6 +12873,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SParity)] = new()
         {
             ModuleName = "偶奇性",
+            ManualQuestions = new()
+            {
+                ["What was shown on the display?"] = "ディスプレー上の数は？",
+            },
             Questions = new()
             {
                 [SParity.Display] = new()
@@ -11024,6 +12891,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPartialDerivatives)] = new()
         {
             ModuleName = "偏微分",
+            ManualQuestions = new()
+            {
+                ["What were the terms of the function?"] = "機能の条件は？",
+                ["What were the LED colors in each stage?"] = "各ステージにおけるLEDの色は？",
+            },
             Questions = new()
             {
                 [SPartialDerivatives.LedColors] = new()
@@ -11054,6 +12926,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPassportControl)] = new()
         {
             ModuleName = "パスポートコントロール",
+            ManualQuestions = new()
+            {
+                ["What were the passport expiration years of each passenger?"] = "各乗客の有効期限年は？",
+            },
             Questions = new()
             {
                 [SPassportControl.Passenger] = new()
@@ -11068,7 +12944,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Password Destroyer
         [typeof(SPasswordDestroyer)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "パスワード破壊",
+            ManualQuestions = new()
+            {
+                ["What was the 2FAST™ value?"] = "What was the 2FAST™ value?",
+            },
             Questions = new()
             {
                 [SPasswordDestroyer.TwoFactorV2] = new()
@@ -11083,6 +12964,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPatternCube)] = new()
         {
             ModuleName = "パターンキューブ",
+            ManualQuestions = new()
+            {
+                ["Which symbol was highlighted?"] = "どのシンボルがハイライトされている？",
+            },
             Questions = new()
             {
                 [SPatternCube.HighlightedSymbol] = new()
@@ -11097,6 +12982,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPatternRecognition)] = new()
         {
             ModuleName = "パターン識別",
+            ManualQuestions = new()
+            {
+                ["What was the repeating pattern?"] = "繰り返されているパターンは？",
+            },
             Questions = new()
             {
                 [SPatternRecognition.Pattern] = new()
@@ -11111,6 +13000,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPentabutton)] = new()
         {
             ModuleName = "五角形ボタン",
+            ManualQuestions = new()
+            {
+                ["What was the base colour?"] = "ベースの色は？",
+            },
             Questions = new()
             {
                 [SPentabutton.BaseColor] = new()
@@ -11144,6 +13037,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPeriodicWords)] = new()
         {
             ModuleName = "周期単語",
+            ManualQuestions = new()
+            {
+                ["What was the displayed word in each stage?"] = "各ステージで表示された単語は？",
+            },
             Questions = new()
             {
                 [SPeriodicWords.DisplayedWords] = new()
@@ -11159,6 +13056,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPerspectivePegs)] = new()
         {
             ModuleName = "奥行きペグ",
+            ManualQuestions = new()
+            {
+                ["What was the initial color sequence?"] = "最初の色シーケンスは？",
+            },
             Questions = new()
             {
                 [SPerspectivePegs.ColorSequence] = new()
@@ -11182,6 +13083,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPhosphorescence)] = new()
         {
             ModuleName = "燐光",
+            ManualQuestions = new()
+            {
+                ["What were the button presses and the offset?"] = "押したボタンとオフセットは？",
+            },
             Questions = new()
             {
                 [SPhosphorescence.ButtonPresses] = new()
@@ -11231,6 +13136,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPickupIdentification)] = new()
         {
             ModuleName = "アイテム識別",
+            ManualQuestions = new()
+            {
+                ["What pickups were shown?"] = "表示されたアイテムは？",
+            },
             Questions = new()
             {
                 [SPickupIdentification.Item] = new()
@@ -11246,6 +13155,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPictionary)] = new()
         {
             ModuleName = "画像ロジック",
+            ManualQuestions = new()
+            {
+                ["What was the code?"] = "コードは？",
+            },
             Questions = new()
             {
                 [SPictionary.Code] = new()
@@ -11260,6 +13173,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPie)] = new()
         {
             ModuleName = "パイ",
+            ManualQuestions = new()
+            {
+                ["What were the digits shown?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SPie.Digits] = new()
@@ -11275,6 +13192,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPieFlash)] = new()
         {
             ModuleName = "点滅パイ",
+            ManualQuestions = new()
+            {
+                ["What numbers were displayed?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SPieFlash.Digits] = new()
@@ -11289,6 +13210,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPigpenCycle)] = new()
         {
             ModuleName = "ピッグペンサイクル",
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "ダイヤルが指していた方向は？",
+                ["What was written on each dial?"] = "ダイヤルに書かれていた英字は？",
+            },
             Questions = new()
             {
                 [SPigpenCycle.DialDirections] = new()
@@ -11319,6 +13245,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPinkButton)] = new()
         {
             ModuleName = "桃色ボタン",
+            ManualQuestions = new()
+            {
+                ["What were the displayed words and their colors?"] = "表示された単語とその色は？",
+            },
             Questions = new()
             {
                 [SPinkButton.Words] = new()
@@ -11351,6 +13281,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPinpoint)] = new()
         {
             ModuleName = "ピンポイント",
+            ManualQuestions = new()
+            {
+                ["What were the given point coordinates and distances?"] = "与えられた座標とその距離は？",
+            },
             Questions = new()
             {
                 [SPinpoint.Points] = new()
@@ -11370,6 +13304,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPixelCipher)] = new()
         {
             ModuleName = "ピクセル暗号",
+            ManualQuestions = new()
+            {
+                ["What was the keyword?"] = "キーワードは？",
+            },
             Questions = new()
             {
                 [SPixelCipher.Keyword] = new()
@@ -11384,6 +13322,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPlaceholderTalk)] = new()
         {
             ModuleName = "プレースホルダートーク",
+            ManualQuestions = new()
+            {
+                ["What was the entire first phrase?"] = "最初のフレーズは？",
+                ["What was the calculated value for second phrase?"] = "2番目のフレーズで計算された値は？",
+            },
             Questions = new()
             {
                 [SPlaceholderTalk.FirstPhrase] = new()
@@ -11403,6 +13346,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPlacementRoulette)] = new()
         {
             ModuleName = "マリオカート",
+            ManualQuestions = new()
+            {
+                ["What were the character, track, and vehicle listed?"] = "表示されたキャラクター、階級、乗り物は？",
+            },
             Questions = new()
             {
                 [SPlacementRoulette.Char] = new()
@@ -11427,6 +13374,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPlanets)] = new()
         {
             ModuleName = "惑星",
+            ManualQuestions = new()
+            {
+                ["What was the planet shown?"] = "表示された惑星は？",
+                ["What was the correct color for each strip?"] = "各ストリップの正しい色は？",
+            },
             Questions = new()
             {
                 [SPlanets.Strips] = new()
@@ -11459,6 +13411,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPlayfairCycle)] = new()
         {
             ModuleName = "プレイフェアサイクル",
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "ダイヤルが指していた方向は？",
+                ["What was written on each dial?"] = "ダイヤルに書かれていた英字は？",
+            },
             Questions = new()
             {
                 [SPlayfairCycle.DialDirections] = new()
@@ -11489,6 +13446,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPointlessMachines)] = new()
         {
             ModuleName = "無意味なマシーン",
+            ManualQuestions = new()
+            {
+                ["What colors flashed?"] = "点滅した色は？",
+            },
             Questions = new()
             {
                 [SPointlessMachines.Flashes] = new()
@@ -11512,6 +13473,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPolygons)] = new()
         {
             ModuleName = "多角形",
+            ManualQuestions = new()
+            {
+                ["Which polygons were present?"] = "存在した図形は？",
+            },
             Questions = new()
             {
                 [SPolygons.Polygon] = new()
@@ -11526,6 +13491,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPolyhedralMaze)] = new()
         {
             ModuleName = "多面体迷路",
+            ManualQuestions = new()
+            {
+                ["What was the starting position?"] = "開始位置は？",
+            },
             Questions = new()
             {
                 [SPolyhedralMaze.StartPosition] = new()
@@ -11566,6 +13535,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPrimeEncryption)] = new()
         {
             ModuleName = "素数暗号",
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SPrimeEncryption.DisplayedValue] = new()
@@ -11580,6 +13553,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPrisonBreak)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Where did the prisoner and defuser start?"] = "囚人と処理担当者が最初にいた場所は？",
+            },
             Questions = new()
             {
                 [SPrisonBreak.Prisoner] = new()
@@ -11599,6 +13576,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SProbing)] = new()
         {
             ModuleName = "回路接続",
+            ManualQuestions = new()
+            {
+                ["What were the missing frequencies in each wire?"] = "各ワイヤで失われている周波数は？",
+            },
             Questions = new()
             {
                 [SProbing.Frequencies] = new()
@@ -11623,6 +13604,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SProceduralMaze)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the initial seed?"] = "初期シードは？",
+            },
             Questions = new()
             {
                 [SProceduralMaze.InitialSeed] = new()
@@ -11637,6 +13622,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPunctuationMarks)] = new()
         {
             ModuleName = "...？",
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SPunctuationMarks.DisplayedNumber] = new()
@@ -11651,6 +13640,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPurpleArrows)] = new()
         {
             ModuleName = "紫色矢印",
+            ManualQuestions = new()
+            {
+                ["What was the target word?"] = "ターゲットの単語は？",
+            },
             Questions = new()
             {
                 [SPurpleArrows.Finish] = new()
@@ -11665,6 +13658,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPurpleButton)] = new()
         {
             ModuleName = "紫色ボタン",
+            ManualQuestions = new()
+            {
+                ["What were the numbers in the cyclic sequence?"] = "循環シーケンス中の数字は？",
+            },
             Questions = new()
             {
                 [SPurpleButton.Numbers] = new()
@@ -11680,6 +13677,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPuzzleIdentification)] = new()
         {
             ModuleName = "パズル識別",
+            ManualQuestions = new()
+            {
+                ["What game did each puzzle come from?"] = "各パズルの元になったゲームは？",
+                ["What was the name and number of each puzzle?"] = "各パズルの名前と数字は？",
+            },
             Questions = new()
             {
                 [SPuzzleIdentification.Num] = new()
@@ -11718,6 +13720,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SPuzzlingHexabuttons)] = new()
         {
             ModuleName = "困惑六角形ボタン",
+            ManualQuestions = new()
+            {
+                ["What letters were shown during submission?"] = "送信モードで表示された英字は？",
+            },
             Questions = new()
             {
                 [SPuzzlingHexabuttons.Letter] = new()
@@ -11743,6 +13749,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SQnA)] = new()
         {
             ModuleName = "Q&A",
+            ManualQuestions = new()
+            {
+                ["What questions were asked?"] = "尋ねられた質問は？",
+            },
             Questions = new()
             {
                 [SQnA.Questions] = new()
@@ -11758,6 +13768,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SQuadrants)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were on the buttons at each stage?"] = "各ステージでボタンに表示されていたのは？",
+            },
             Questions = new()
             {
                 [SQuadrants.Buttons] = new()
@@ -11773,6 +13787,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SQuantumPasswords)] = new()
         {
             ModuleName = "量子パスワード",
+            ManualQuestions = new()
+            {
+                ["Which words were used?"] = "使用された単語は？",
+            },
             Questions = new()
             {
                 [SQuantumPasswords.Word] = new()
@@ -11787,6 +13805,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SQuantumTernaryConverter)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the numbers?"] = "数字は？",
+            },
             Questions = new()
             {
                 [SQuantumTernaryConverter.Number] = new()
@@ -11800,6 +13822,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Quaver
         [typeof(SQuaver)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was each sequence’s answer?"] = "シーケンスの回答は？",
+            },
             Questions = new()
             {
                 [SQuaver.Arrows] = new()
@@ -11815,6 +13841,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SQuestionMark)] = new()
         {
             ModuleName = "疑問符",
+            ManualQuestions = new()
+            {
+                ["What were the flashing symbols?"] = "点滅していたシンボルは？",
+            },
             Questions = new()
             {
                 [SQuestionMark.FlashedSymbols] = new()
@@ -11829,6 +13859,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SQuickArithmetic)] = new()
         {
             ModuleName = "瞬速計算",
+            ManualQuestions = new()
+            {
+                ["What were the digits and colors in both sequences?"] = "両方のシーケンス内の数字と色は？",
+            },
             Questions = new()
             {
                 [SQuickArithmetic.Colors] = new()
@@ -11869,6 +13903,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SQuintuples)] = new()
         {
             ModuleName = "五重",
+            ManualQuestions = new()
+            {
+                ["What were the numbers and colors in every slot?"] = "全てのスロットの数と色は？",
+                ["How many numbers were there of each color?"] = "各色の数字はいくつあった？",
+            },
             Questions = new()
             {
                 [SQuintuples.Numbers] = new()
@@ -11912,6 +13951,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SQuiplash)] = new()
         {
             ModuleName = "クイプラッシュ",
+            ManualQuestions = new()
+            {
+                ["What number was shown?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SQuiplash.Number] = new()
@@ -11926,6 +13969,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SQuizBuzz)] = new()
         {
             ModuleName = "クィズバズ",
+            ManualQuestions = new()
+            {
+                ["What was the number initially on the display?"] = "ディスプレーの初期状態は？",
+            },
             Questions = new()
             {
                 [SQuizBuzz.StartingNumber] = new()
@@ -11940,6 +13987,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SQwirkle)] = new()
         {
             ModuleName = "クワークル",
+            ManualQuestions = new()
+            {
+                ["Which tiles did you place?"] = "置いたタイルは？",
+            },
             Questions = new()
             {
                 [SQwirkle.TilesPlaced] = new()
@@ -11955,6 +14006,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRaidingTemples)] = new()
         {
             ModuleName = "神殿探検",
+            ManualQuestions = new()
+            {
+                ["How many jewels were initially in the common pool?"] = "共通プールに初めにあった宝石はいくつ？",
+            },
             Questions = new()
             {
                 [SRaidingTemples.StartingCommonPool] = new()
@@ -11969,6 +14024,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRailwayCargoLoading)] = new()
         {
             ModuleName = "鉄道貨物積載センター",
+            ManualQuestions = new()
+            {
+                ["What were the coupled cars?"] = "連結した車両は？",
+                ["Which freight table rules applied?"] = "貨車検索表で当てはまった条件は？ ",
+            },
             Questions = new()
             {
                 [SRailwayCargoLoading.Cars] = new()
@@ -11995,6 +14055,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRainbowArrows)] = new()
         {
             ModuleName = "虹色矢印",
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SRainbowArrows.Number] = new()
@@ -12009,6 +14073,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRecoloredSwitches)] = new()
         {
             ModuleName = "色変えスイッチ",
+            ManualQuestions = new()
+            {
+                ["What were the LED colors?"] = "LEDの色は？",
+            },
             Questions = new()
             {
                 [SRecoloredSwitches.LedColors] = new()
@@ -12034,6 +14102,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRecursivePassword)] = new()
         {
             ModuleName = "桃色ボタン",
+            ManualQuestions = new()
+            {
+                ["What were the incomplete words?"] = "不完全なパスワードは？",
+                ["What was the password?"] = "パスワードは？",
+            },
             Questions = new()
             {
                 [SRecursivePassword.NonPasswordWords] = new()
@@ -12053,6 +14126,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRedArrows)] = new()
         {
             ModuleName = "赤色矢印",
+            ManualQuestions = new()
+            {
+                ["What was the starting number?"] = "スタートの数字は？",
+            },
             Questions = new()
             {
                 [SRedArrows.StartNumber] = new()
@@ -12067,6 +14144,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRedButtont)] = new()
         {
             ModuleName = "偽赤色ボタン",
+            ManualQuestions = new()
+            {
+                ["What was the displayed word?"] = "表示された単語は？",
+            },
             Questions = new()
             {
                 [SRedButtont.Word] = new()
@@ -12081,6 +14162,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRedCipher)] = new()
         {
             ModuleName = "赤色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SRedCipher.Screen] = new()
@@ -12102,6 +14187,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRedHerring)] = new()
         {
             ModuleName = "レッドヘリング",
+            ManualQuestions = new()
+            {
+                ["What was the first color flashed?"] = "最初に点滅した色は？",
+            },
             Questions = new()
             {
                 [SRedHerring.FirstFlash] = new()
@@ -12116,6 +14205,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SReformedRoleReversal)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What did the solving condition state?"] = "解除条件は？",
+                ["What were the final wires?"] = "最後のワイヤは？",
+            },
             Questions = new()
             {
                 [SReformedRoleReversal.Condition] = new()
@@ -12159,6 +14253,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SReGretBFiltering)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which calculations were used?"] = "使用した計算方法は？",
+            },
             Questions = new()
             {
                 [SReGretBFiltering.Operator] = new()
@@ -12174,6 +14272,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRegularCrazyTalk)] = new()
         {
             ModuleName = "レギュラークレイジートーク",
+            ManualQuestions = new()
+            {
+                ["What was the displayed digit that corresponded to the solution phrase?"] = "解除フレーズに対応して表示された数字は？",
+                ["What was the embellishment of the solution phrase?"] = "解除フレーズの装飾子は？",
+            },
             Questions = new()
             {
                 [SRegularCrazyTalk.Digit] = new()
@@ -12202,6 +14305,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SReorderedKeys)] = new()
         {
             ModuleName = "順番替え音板",
+            ManualQuestions = new()
+            {
+                ["What were the labels, their colors, and the colors of the keys initially in each stage?"] = "各ステージにおける初期状態の音板の色、ラベル、ラベルの色は？",
+                ["Where was the pivot in each stage?"] = "各ステージにおける軸の位置は？",
+            },
             Questions = new()
             {
                 [SReorderedKeys.KeyColor] = new()
@@ -12252,6 +14360,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRetirement)] = new()
         {
             ModuleName = "退職",
+            ManualQuestions = new()
+            {
+                ["Which houses were on offer, but not chosen by Bob?"] = "Bobが選ばなかったがオファーされた家は？",
+            },
             Questions = new()
             {
                 [SRetirement.Houses] = new()
@@ -12266,6 +14378,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SReverseMorse)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the displayed symbols and their colors?"] = "What were the displayed symbols and their colors?",
+            },
             Questions = new()
             {
                 [SReverseMorse.Symbols] = new()
@@ -12287,6 +14403,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SReversePolishNotation)] = new()
         {
             ModuleName = "逆ポーランド記法",
+            ManualQuestions = new()
+            {
+                ["What characters were used in each round?"] = "各ラウンドで使われた文字は？",
+            },
             Questions = new()
             {
                 [SReversePolishNotation.Character] = new()
@@ -12302,6 +14422,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRGBEncryption)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the Morse code and color sequences?"] = "モールス信号と色のシーケンスは？",
+            },
             Questions = new()
             {
                 [SRGBEncryption.MorseSequence] = new()
@@ -12323,6 +14447,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRGBMaze)] = new()
         {
             ModuleName = "RGB迷路",
+            ManualQuestions = new()
+            {
+                ["Where were the exit and keys of the maze?"] = "迷路の出口と鍵は？",
+                ["What was the maze number for each maze?"] = "各迷路の数字は？",
+            },
             Questions = new()
             {
                 [SRGBMaze.Keys] = new()
@@ -12361,6 +14490,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRGBSequences)] = new()
         {
             ModuleName = "RGBシークエンス",
+            ManualQuestions = new()
+            {
+                ["What were the colors of each button?"] = "各ボタンの色は？",
+            },
             Questions = new()
             {
                 [SRGBSequences.Display] = new()
@@ -12386,6 +14519,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRhythms)] = new()
         {
             ModuleName = "リズム",
+            ManualQuestions = new()
+            {
+                ["What was the color?"] = "色は何だった？",
+            },
             Questions = new()
             {
                 [SRhythms.Color] = new()
@@ -12407,6 +14544,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRNGCrystal)] = new()
         {
             ModuleName = "乱数クリスタル",
+            ManualQuestions = new()
+            {
+                ["Where were the taps?"] = "タップの位置は？",
+            },
             Questions = new()
             {
                 [SRNGCrystal.Taps] = new()
@@ -12421,6 +14562,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRoboScanner)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Where was the empty cell?"] = "空のセルはどこだった？",
+            },
             Questions = new()
             {
                 [SRoboScanner.EmptyCell] = new()
@@ -12435,6 +14580,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRobotProgramming)] = new()
         {
             ModuleName = "ロボットプログラミング",
+            ManualQuestions = new()
+            {
+                ["What were the shapes and colors of the robots?"] = "各ロボットの形と色は？",
+            },
             Questions = new()
             {
                 [SRobotProgramming.Color] = new()
@@ -12456,6 +14605,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRoger)] = new()
         {
             ModuleName = "ロジャー",
+            ManualQuestions = new()
+            {
+                ["What four-digit number was given?"] = "与えられた4桁の数は？",
+            },
             Questions = new()
             {
                 [SRoger.Seed] = new()
@@ -12470,6 +14623,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRoleReversal)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the condition digit that solved the module?"] = "モジュールを解除するために必要だった数字は？",
+                ["What colors were the internal wires?"] = "内部のワイヤの色は？",
+            },
             Questions = new()
             {
                 [SRoleReversal.Wires] = new()
@@ -12497,6 +14655,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRPSJudging)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which stages did each team win/lose/tie?"] = "各チームが勝ち/負け/引き分けになったのはどのステージ？",
+            },
             Questions = new()
             {
                 [SRPSJudging.QWinner] = new()
@@ -12546,6 +14708,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRule)] = new()
         {
             ModuleName = "ザ・ルール",
+            ManualQuestions = new()
+            {
+                ["What was the rule number?"] = "ルール値は？",
+            },
             Questions = new()
             {
                 [SRule.Number] = new()
@@ -12560,6 +14726,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SRuleOfThree)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the positions of each sphere on each axis in each cycle?"] = "各サイクルにおいて、各球体の各軸上の位置は？",
+                ["What were the coordinates of the vertices?"] = "頂点の座標は？",
+            },
             Questions = new()
             {
                 [SRuleOfThree.QCoordinates] = new()
@@ -12623,6 +14794,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSafetySquare)] = new()
         {
             ModuleName = "セイフティスクエア",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits?"] = "表示された数字は？",
+                ["What was the special rule?"] = "特殊ルールは？",
+            },
             Questions = new()
             {
                 [SSafetySquare.Digits] = new()
@@ -12656,6 +14832,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSamsung)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Where was each app?"] = "各アプリはどこ？",
+            },
             Questions = new()
             {
                 [SSamsung.AppPositions] = new()
@@ -12671,6 +14851,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSaturn)] = new()
         {
             ModuleName = "土星",
+            ManualQuestions = new()
+            {
+                ["Where was the goal?"] = "ゴールの位置は？",
+            },
             Questions = new()
             {
                 [SSaturn.Goal] = new()
@@ -12685,6 +14869,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSbemailSongs)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the displayed songs in each stage?"] = "各ステージで表示された歌は？",
+            },
             Questions = new()
             {
                 [SSbemailSongs.Songs] = new()
@@ -12709,6 +14897,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SScavengerHunt)] = new()
         {
             ModuleName = "宝探し",
+            ManualQuestions = new()
+            {
+                ["Which tile was correctly submitted in the first stage?"] = "最初のステージで正しく送信したタイルは？",
+                ["Where were the red, green, and blue tiles in the first stage?"] = "最初のステージで赤、緑、青のタイルは何処にあった？",
+            },
             Questions = new()
             {
                 [SScavengerHunt.KeySquare] = new()
@@ -12735,6 +14928,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSchlagDenBomb)] = new()
         {
             ModuleName = "シュラグ・デン・ボム",
+            ManualQuestions = new()
+            {
+                ["What were the contestant’s name and both scores?"] = "出演者の名前と二人のスコアは？",
+            },
             Questions = new()
             {
                 [SSchlagDenBomb.ContestantName] = new()
@@ -12759,6 +14956,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SScramboozledEggain)] = new()
         {
             ModuleName = "再卵炒",
+            ManualQuestions = new()
+            {
+                ["What were the encrypted words?"] = "暗号化された単語は？",
+            },
             Questions = new()
             {
                 [SScramboozledEggain.Word] = new()
@@ -12774,6 +14975,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SScrutinySquares)] = new()
         {
             ModuleName = "正方形精査",
+            ManualQuestions = new()
+            {
+                ["What was the modified property of the first displayed square?"] = "最初に表示された正方形で変更されていた設定は？",
+            },
             Questions = new()
             {
                 [SScrutinySquares.FirstDifference] = new()
@@ -12795,6 +15000,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSeaShells)] = new()
         {
             ModuleName = "シーシェル",
+            ManualQuestions = new()
+            {
+                ["What were the phrases?"] = "フレーズは？",
+            },
             Questions = new()
             {
                 [SSeaShells.Question1] = new()
@@ -12822,6 +15031,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSemamorse)] = new()
         {
             ModuleName = "セマモールス",
+            ManualQuestions = new()
+            {
+                ["What were Morse and semaphore letters and color used for the starting value?"] = "初期値の計算で使われたモールス信号、セマフォア信号は？",
+            },
             Questions = new()
             {
                 [SSemamorse.Color] = new()
@@ -12855,6 +15068,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSequencyclopedia)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What sequence was used?"] = "どのシーケンスが使われた？",
+            },
             Questions = new()
             {
                 [SSequencyclopedia.Sequence] = new()
@@ -12869,6 +15086,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSetTheory)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What equations were displayed in each stage?"] = "各ステージで表示された方程式は？",
+            },
             Questions = new()
             {
                 [SSetTheory.Equations] = new()
@@ -12884,6 +15105,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SShapesAndBombs)] = new()
         {
             ModuleName = "形と爆弾",
+            ManualQuestions = new()
+            {
+                ["What was the initial letter?"] = "最初の文字は？",
+            },
             Questions = new()
             {
                 [SShapesAndBombs.InitialLetter] = new()
@@ -12898,6 +15123,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SShapeShift)] = new()
         {
             ModuleName = "形状変化",
+            ManualQuestions = new()
+            {
+                ["What was the initial shape?"] = "最初の図形は？",
+            },
             Questions = new()
             {
                 [SShapeShift.InitialShape] = new()
@@ -12912,6 +15141,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SShiftedMaze)] = new()
         {
             ModuleName = "シフト迷路",
+            ManualQuestions = new()
+            {
+                ["What were the colors of the markers?"] = "マーカーの色は？",
+            },
             Questions = new()
             {
                 [SShiftedMaze.Colors] = new()
@@ -12942,6 +15175,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SShiftingMaze)] = new()
         {
             ModuleName = "シフト中迷路",
+            ManualQuestions = new()
+            {
+                ["What was the seed?"] = "Seed値は？",
+            },
             Questions = new()
             {
                 [SShiftingMaze.Seed] = new()
@@ -12956,6 +15193,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SShogiIdentification)] = new()
         {
             ModuleName = "将棋識別",
+            ManualQuestions = new()
+            {
+                ["What was the displayed piece?"] = "表示された駒は？",
+            },
             Questions = new()
             {
                 [SShogiIdentification.Piece] = new()
@@ -13002,6 +15243,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSignLanguage)] = new()
         {
             ModuleName = "手話",
+            ManualQuestions = new()
+            {
+                ["What was the deciphered word?"] = "復号した単語は？",
+            },
             Questions = new()
             {
                 [SSignLanguage.Word] = new()
@@ -13016,6 +15261,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSillySlots)] = new()
         {
             ModuleName = "ヘンテコスロット",
+            ManualQuestions = new()
+            {
+                ["What were the slots in each stage?"] = "各ステージにおけるスロットは？",
+            },
             Questions = new()
             {
                 [SSillySlots.Question] = new()
@@ -13046,6 +15295,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSiloAuthorization)] = new()
         {
             ModuleName = "シロ認証",
+            ManualQuestions = new()
+            {
+                ["What were the message type, encrypted message, and received authorization code?"] = "暗号化の種類、暗号化されたメッセージ、受信した認証コードは？",
+            },
             Questions = new()
             {
                 [SSiloAuthorization.MessageType] = new()
@@ -13071,6 +15324,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSaid)] = new()
         {
             ModuleName = "サイモンの残響",
+            ManualQuestions = new()
+            {
+                ["What colors flashed in the final sequence?"] = "最終的に点滅したシーケンスの色は？",
+            },
             Questions = new()
             {
                 [SSimonSaid.Flashes] = new()
@@ -13093,6 +15350,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSamples)] = new()
         {
             ModuleName = "サイモンの音源",
+            ManualQuestions = new()
+            {
+                ["What were the call samples in each stage?"] = "各ステージで鳴った音は？",
+            },
             Questions = new()
             {
                 [SSimonSamples.Samples] = new()
@@ -13114,6 +15375,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSays)] = new()
         {
             ModuleName = "サイモンゲーム",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in the final sequence?"] = "最後のシーケンスで点滅した色は？",
+            },
             Questions = new()
             {
                 [SSimonSays.Flash] = new()
@@ -13136,6 +15401,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonScrambles)] = new()
         {
             ModuleName = "サイモンの撹拌",
+            ManualQuestions = new()
+            {
+                ["What was the flashing color sequence?"] = "点滅した色のシーケンスは？",
+            },
             Questions = new()
             {
                 [SSimonScrambles.Colors] = new()
@@ -13158,6 +15427,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonScreams)] = new()
         {
             ModuleName = "サイモンの絶叫",
+            ManualQuestions = new()
+            {
+                ["What flashing color was used in each stage?"] = "各ステージで使われた点滅する色は？",
+                ["Which rules applied in which stage(s)?"] = "どのステージでどのルールが適用された？",
+            },
             Questions = new()
             {
                 [SSimonScreams.Flashing] = new()
@@ -13269,6 +15543,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSelects)] = new()
         {
             ModuleName = "サイモンの選択",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in each stage?"] = "各ステージで点滅した色は？",
+            },
             Questions = new()
             {
                 [SSimonSelects.Order] = new()
@@ -13295,6 +15573,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSends)] = new()
         {
             ModuleName = "サイモンの送信",
+            ManualQuestions = new()
+            {
+                ["What were the red, green, and blue received letters?"] = "赤、緑、青の受信した文字は？",
+            },
             Questions = new()
             {
                 [SSimonSends.ReceivedLetters] = new()
@@ -13316,6 +15598,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonServes)] = new()
         {
             ModuleName = "サイモンの給仕",
+            ManualQuestions = new()
+            {
+                ["Who flashed in each course?"] = "各コースで点滅した人物は？",
+                ["Which items were not served in each course?"] = "各コースで提供されなかった品物は？",
+            },
             Questions = new()
             {
                 [SSimonServes.Flash] = new()
@@ -13372,6 +15659,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonShapes)] = new()
         {
             ModuleName = "サイモンの形状",
+            ManualQuestions = new()
+            {
+                ["What was the shape submitted at the end?"] = "最終的に送信した図形は？",
+            },
             Questions = new()
             {
                 [SSimonShapes.SubmittedShape] = new()
@@ -13386,6 +15677,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonShouts)] = new()
         {
             ModuleName = "サイモンの叫び",
+            ManualQuestions = new()
+            {
+                ["What letters flashed on each button?"] = "各ボタンで点滅した文字は？",
+            },
             Questions = new()
             {
                 [SSimonShouts.FlashingLetter] = new()
@@ -13408,6 +15703,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonShrieks)] = new()
         {
             ModuleName = "サイモンの悲鳴",
+            ManualQuestions = new()
+            {
+                ["How many spaces clockwise from the arrow was each flash in the final sequence?"] = "最終的なシーケンスで、点滅は矢印から時計回りで何番目のスペースにあったか？",
+            },
             Questions = new()
             {
                 [SSimonShrieks.FlashingButton] = new()
@@ -13423,6 +15722,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonShuffles)] = new()
         {
             ModuleName = "サイモンの交雑",
+            ManualQuestions = new()
+            {
+                ["Which buttons flashed at each stage?"] = "各ステージで点滅したボタンは？",
+            },
             Questions = new()
             {
                 [SSimonShuffles.Flashes] = new()
@@ -13438,6 +15741,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSignals)] = new()
         {
             ModuleName = "サイモンの信号",
+            ManualQuestions = new()
+            {
+                ["What were the colors, shapes and number of directions of each arrow?"] = "各矢印の色、形、方向の回数は？",
+            },
             Questions = new()
             {
                 [SSimonSignals.ColorToShape] = new()
@@ -13509,6 +15816,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSimons)] = new()
         {
             ModuleName = "サイモンのサイモン",
+            ManualQuestions = new()
+            {
+                ["Which buttons flashed in each stage?"] = "各ステージでどのボタンが点滅した？",
+            },
             Questions = new()
             {
                 [SSimonSimons.FlashingColors] = new()
@@ -13524,6 +15835,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSings)] = new()
         {
             ModuleName = "サイモンの歌唱",
+            ManualQuestions = new()
+            {
+                ["Which keys’ colors flashed in each stage?"] = "各ステージでどの色の鍵盤が点滅した？",
+            },
             Questions = new()
             {
                 [SSimonSings.Flashing] = new()
@@ -13539,6 +15854,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSmiles)] = new()
         {
             ModuleName = "サイモンの笑顔",
+            ManualQuestions = new()
+            {
+                ["What sounds did each button press play?"] = "各ボタンを押した時に再生された音は？",
+            },
             Questions = new()
             {
                 [SSimonSmiles.Sounds] = new()
@@ -13554,6 +15873,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSmothers)] = new()
         {
             ModuleName = "サイモンの隠匿",
+            ManualQuestions = new()
+            {
+                ["Which colors and directions flashed in each stage?"] = "各ステージでどの色と方向が点滅した？",
+            },
             Questions = new()
             {
                 [SSimonSmothers.Colors] = new()
@@ -13591,6 +15914,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSounds)] = new()
         {
             ModuleName = "サイモンの響き",
+            ManualQuestions = new()
+            {
+                ["Which sample buttons sounded in each stage?"] = "各ステージでどのサンプルボタンが再生された？",
+            },
             Questions = new()
             {
                 [SSimonSounds.FlashingColors] = new()
@@ -13613,6 +15940,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSpeaks)] = new()
         {
             ModuleName = "サイモンの発話",
+            ManualQuestions = new()
+            {
+                ["What were the relevant attributes of the flashing bubbles?"] = "点滅している吹き出しの属性は？",
+            },
             Questions = new()
             {
                 [SSimonSpeaks.Positions] = new()
@@ -13671,6 +16002,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonsStar)] = new()
         {
             ModuleName = "サイモンの星",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in each stage?"] = "各ステージで点滅した色は？",
+            },
             Questions = new()
             {
                 [SSimonsStar.Colors] = new()
@@ -13694,6 +16029,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonStacks)] = new()
         {
             ModuleName = "六角形サイモン",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in each stage?"] = "各ステージで点滅した色は？",
+            },
             Questions = new()
             {
                 [SSimonStacks.Colors] = new()
@@ -13716,6 +16055,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonStages)] = new()
         {
             ModuleName = "サイモンステージ",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in each stage?"] = "各ステージで点滅した色は？",
+                ["What color was the indicator in each stage?"] = "各ステージにおけるインジケーターの色は？",
+            },
             Questions = new()
             {
                 [SSimonStages.Indicator] = new()
@@ -13763,6 +16107,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonStates)] = new()
         {
             ModuleName = "サイモンの陳述",
+            ManualQuestions = new()
+            {
+                ["Which color(s) flashed in the first three stages?"] = "最初の3ステージで点滅した色は？",
+            },
             Questions = new()
             {
                 [SSimonStates.Display] = new()
@@ -13798,6 +16146,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonStops)] = new()
         {
             ModuleName = "サイモンの停止",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in the output sequence?"] = "出力シーケンスの点滅した色は？",
+            },
             Questions = new()
             {
                 [SSimonStops.Colors] = new()
@@ -13822,6 +16174,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonStores)] = new()
         {
             ModuleName = "サイモンの貯留",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in the final sequence?"] = "最後のシーケンスで点滅した色は？",
+            },
             Questions = new()
             {
                 [SSimonStores.Colors] = new()
@@ -13851,6 +16207,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSubdivides)] = new()
         {
             ModuleName = "サイモンの分割",
+            ManualQuestions = new()
+            {
+                ["What colors were the cells that subdivided?"] = "分割したのは何色のセル？",
+            },
             Questions = new()
             {
                 [SSimonSubdivides.Button] = new()
@@ -13872,6 +16232,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSupports)] = new()
         {
             ModuleName = "サイモンの支持",
+            ManualQuestions = new()
+            {
+                ["What were the 3 topics?"] = "3つのトピックは？",
+            },
             Questions = new()
             {
                 [SSimonSupports.Topics] = new()
@@ -13898,6 +16262,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimonSwizzles)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Where were ON and OFF?"] = "オンとオフの位置は？",
+                ["What was the hidden binary number?"] = "隠された二進数は？",
+            },
             Questions = new()
             {
                 [SSimonSwizzles.Button] = new()
@@ -13923,6 +16292,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimplySimon)] = new()
         {
             ModuleName = "シンプルサイモン",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in each stage?"] = "各ステージで点滅した色は？",
+            },
             Questions = new()
             {
                 [SSimplySimon.Flash] = new()
@@ -13938,6 +16311,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSimultaneousSimons)] = new()
         {
             ModuleName = "同時サイモン",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed on each of the Simons?"] = "各サイモンでどの色が点滅した？",
+            },
             Questions = new()
             {
                 [SSimultaneousSimons.Flash] = new()
@@ -13960,6 +16337,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSkewedSlots)] = new()
         {
             ModuleName = "歪曲スロット",
+            ManualQuestions = new()
+            {
+                ["What were the original numbers?"] = "初期状態の数字は？",
+            },
             Questions = new()
             {
                 [SSkewedSlots.OriginalNumbers] = new()
@@ -13974,6 +16355,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSkewers)] = new()
         {
             ModuleName = "剣刺し",
+            ManualQuestions = new()
+            {
+                ["What colors were the gems?"] = "宝石の色は？",
+            },
             Questions = new()
             {
                 [SSkewers.Color] = new()
@@ -13999,6 +16384,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSkyrim)] = new()
         {
             ModuleName = "スカイリム",
+            ManualQuestions = new()
+            {
+                ["Which races, weapons, enemies, cities, and dragon shouts were selectable, but not the solution?"] = "選択可能だが回答ではない種族、武器、敵、故郷、ドラゴンシャウトはどれ？",
+            },
             Questions = new()
             {
                 [SSkyrim.Race] = new()
@@ -14081,6 +16470,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSlowMath)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the last triplet of letters?"] = "最後の三文字の英字は？",
+            },
             Questions = new()
             {
                 [SSlowMath.LastLetters] = new()
@@ -14095,6 +16488,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSmallCircle)] = new()
         {
             ModuleName = "スモールサークル",
+            ManualQuestions = new()
+            {
+                ["How much did the sequence shift by?"] = "シーケンスはどのくらいずれた？",
+                ["Which wedge made the different noise in the beginning?"] = "最初に違う音がしたのは、どの部分？",
+                ["Which colors were in the solution?"] = "回答はどの色？",
+            },
             Questions = new()
             {
                 [SSmallCircle.Shift] = new()
@@ -14142,6 +16541,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSmallTalk)] = new()
         {
             ModuleName = "スモールトーク",
+            ManualQuestions = new()
+            {
+                ["What were the display words?"] = "ディスプレーの単語は？",
+            },
             Questions = new()
             {
                 [SSmallTalk.Displays] = new()
@@ -14157,6 +16560,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSmashMarryKill)] = new()
         {
             ModuleName = "SMASH・MARRY・KILL",
+            ManualQuestions = new()
+            {
+                ["What category was each module in?"] = "各モジュールが入れられたカテゴリは？",
+            },
             Questions = new()
             {
                 [SSmashMarryKill.Category] = new()
@@ -14186,6 +16593,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSnooker)] = new()
         {
             ModuleName = "スヌーカー",
+            ManualQuestions = new()
+            {
+                ["How many reds were there initially?"] = "最初に赤いボールはいくつあった？",
+            },
             Questions = new()
             {
                 [SSnooker.Reds] = new()
@@ -14200,6 +16611,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSnowflakes)] = new()
         {
             ModuleName = "雪の結晶",
+            ManualQuestions = new()
+            {
+                ["What were the displayed snowflakes?"] = "表示された雪の結晶は？",
+            },
             Questions = new()
             {
                 [SSnowflakes.DisplayedSnowflakes] = new()
@@ -14222,6 +16637,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSonicKnuckles)] = new()
         {
             ModuleName = "ソニック＆ナックルズ",
+            ManualQuestions = new()
+            {
+                ["Which monitor and badnik were shown?"] = "どのモニターとバドニクが表示された？",
+            },
             Questions = new()
             {
                 [SSonicKnuckles.Badnik] = new()
@@ -14241,6 +16660,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSonicTheHedgehog)] = new()
         {
             ModuleName = "ソニック・ザ・ヘッジホッグ",
+            ManualQuestions = new()
+            {
+                ["Which sound was played by each screen?"] = "各スクリーンでどの音が再生された？",
+                ["What were the pictures?"] = "画像は何だった？",
+            },
             Questions = new()
             {
                 [SSonicTheHedgehog.Pictures] = new()
@@ -14269,6 +16693,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSorting)] = new()
         {
             ModuleName = "並び替え",
+            ManualQuestions = new()
+            {
+                ["Which positions were involved in the final swap?"] = "最後の入れ替えに関係していたのはどの位置？",
+            },
             Questions = new()
             {
                 [SSorting.LastSwap] = new()
@@ -14283,6 +16711,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSouvenir)] = new()
         {
             ModuleName = "思い出",
+            ManualQuestions = new()
+            {
+                ["What was the first module the other Souvenir asked a question about?"] = "他の「思い出」モジュールが最初に質問したのは、何のモジュールについて？",
+            },
             Questions = new()
             {
                 [SSouvenir.FirstQuestion] = new()
@@ -14305,6 +16737,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSpaceTraders)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the maximum tax amount per vessel?"] = "1隻あたりの税の上限はいくら？",
+            },
             Questions = new()
             {
                 [SSpaceTraders.MaxTax] = new()
@@ -14319,6 +16755,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSpellingBee)] = new()
         {
             ModuleName = "スペリング・ビー",
+            ManualQuestions = new()
+            {
+                ["What word was asked to be spelled?"] = "綴るべき単語は？",
+            },
             Questions = new()
             {
                 [SSpellingBee.Word] = new()
@@ -14333,6 +16773,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSphere)] = new()
         {
             ModuleName = "球",
+            ManualQuestions = new()
+            {
+                ["What were the flashed colors?"] = "点滅した色は？",
+            },
             Questions = new()
             {
                 [SSphere.Colors] = new()
@@ -14359,6 +16803,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSplittingTheLoot)] = new()
         {
             ModuleName = "戦利品分割",
+            ManualQuestions = new()
+            {
+                ["Which bag was initially colored?"] = "最初に色がついたのはどのバッグ？",
+            },
             Questions = new()
             {
                 [SSplittingTheLoot.ColoredBag] = new()
@@ -14373,6 +16821,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSpongebobBirthdayIdentification)] = new()
         {
             ModuleName = "スポンジ・ボブ誕生日カード識別",
+            ManualQuestions = new()
+            {
+                ["What were the submitted names?"] = "送信した名前は？",
+            },
             Questions = new()
             {
                 [SSpongebobBirthdayIdentification.Children] = new()
@@ -14388,6 +16840,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SStability)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the lit LEDs’ colors?"] = "点灯したLEDの色は？",
+                ["What was the identification number?"] = "特定用の数字は？",
+            },
             Questions = new()
             {
                 [SStability.LedColors] = new()
@@ -14414,6 +16871,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SStableTimeSignatures)] = new()
         {
             ModuleName = "安定拍子記号",
+            ManualQuestions = new()
+            {
+                ["What time signatures played?"] = "再生された拍子記号は？",
+            },
             Questions = new()
             {
                 [SStableTimeSignatures.Signatures] = new()
@@ -14429,6 +16890,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SStackedSequences)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the lengths of the sequences?"] = "シーケンスの長さは？",
+            },
             Questions = new()
             {
                 [SStackedSequences.Question] = new()
@@ -14443,6 +16908,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SStars)] = new()
         {
             ModuleName = "星",
+            ManualQuestions = new()
+            {
+                ["What was the digit in the center?"] = "中央にある数字は？",
+            },
             Questions = new()
             {
                 [SStars.Center] = new()
@@ -14457,6 +16926,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SStarstruck)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which stars were shown?"] = "表示された星は？",
+            },
             Questions = new()
             {
                 [SStarstruck.Star] = new()
@@ -14471,6 +16944,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SStateOfAggregation)] = new()
         {
             ModuleName = "元素状態",
+            ManualQuestions = new()
+            {
+                ["What element was shown?"] = "どの元素が表示された？",
+            },
             Questions = new()
             {
                 [SStateOfAggregation.Element] = new()
@@ -14485,6 +16962,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SStellar)] = new()
         {
             ModuleName = "星型十二面体",
+            ManualQuestions = new()
+            {
+                ["What were the letters?"] = "文字は？",
+            },
             Questions = new()
             {
                 [SStellar.Letters] = new()
@@ -14506,6 +16987,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SStroopsTest)] = new()
         {
             ModuleName = "ストループ検査",
+            ManualQuestions = new()
+            {
+                ["What was each submitted word/color?"] = "送信したスライドは？",
+            },
             Questions = new()
             {
                 [SStroopsTest.QWord] = new()
@@ -14560,6 +17045,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SStupidSlots)] = new()
         {
             ModuleName = "馬鹿スロット",
+            ManualQuestions = new()
+            {
+                ["What were the values of each arrow?"] = "各矢印の値は？",
+            },
             Questions = new()
             {
                 [SStupidSlots.Values] = new()
@@ -14584,6 +17073,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSubblyJubbly)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the replacement phrases?"] = "置き換えるフレーズは？",
+            },
             Questions = new()
             {
                 [SSubblyJubbly.Substitutions] = new()
@@ -14598,6 +17091,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSubscribeToPewdiepie)] = new()
         {
             ModuleName = "ピューディパイの登録",
+            ManualQuestions = new()
+            {
+                ["How many subscribers do Pewdiepie and T-Series have?"] = "ピューディパイとTシリーズのチャンネル登録者数は？",
+            },
             Questions = new()
             {
                 [SSubscribeToPewdiepie.SubCount] = new()
@@ -14618,6 +17115,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSubway)] = new()
         {
             ModuleName = "SUBWAY",
+            ManualQuestions = new()
+            {
+                ["Which bread did the customer ask for?"] = "客が注文したパンは？",
+                ["Which item was not asked for?"] = "客が注文しなかった商品は？",
+            },
             Questions = new()
             {
                 [SSubway.Bread] = new()
@@ -14637,6 +17139,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSugarSkulls)] = new()
         {
             ModuleName = "シュガースカル",
+            ManualQuestions = new()
+            {
+                ["What skulls were shown?"] = "表示されたどくろは？",
+            },
             Questions = new()
             {
                 [SSugarSkulls.Skull] = new()
@@ -14670,6 +17176,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             NeedsTranslation = true,
             ModuleName = "スートと色",
+            ManualQuestions = new()
+            {
+                ["What were the colours and suits of each cell?"] = "各セルの色とスートは？",
+            },
             Questions = new()
             {
                 [SSuitsAndColours.Colour] = new()
@@ -14705,6 +17215,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSuperparsing)] = new()
         {
             ModuleName = "超解析",
+            ManualQuestions = new()
+            {
+                ["What was the displayed word?"] = "表示された単語は？",
+            },
             Questions = new()
             {
                 [SSuperparsing.Displayed] = new()
@@ -14719,6 +17233,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSUSadmin)] = new()
         {
             ModuleName = "システム侵入者",
+            ManualQuestions = new()
+            {
+                ["Which security protocols were installed?"] = "インストールしたセキュリティプロコトルは？",
+                ["What was the version number?"] = "バージョン番号は？",
+            },
             Questions = new()
             {
                 [SSUSadmin.Security] = new()
@@ -14738,6 +17257,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSwitch)] = new()
         {
             ModuleName = "ザ・スイッチ",
+            ManualQuestions = new()
+            {
+                ["What color were the LEDs?"] = "LEDの色は？",
+            },
             Questions = new()
             {
                 [SSwitch.InitialColor] = new()
@@ -14767,6 +17290,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSwitches)] = new()
         {
             ModuleName = "スイッチ",
+            ManualQuestions = new()
+            {
+                ["What was the initial position of the switches?"] = "最初のスイッチの位置は？",
+            },
             Questions = new()
             {
                 [SSwitches.InitialPosition] = new()
@@ -14781,6 +17308,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSwitchingMaze)] = new()
         {
             ModuleName = "切り替え迷路",
+            ManualQuestions = new()
+            {
+                ["What was the seed?"] = "Seed値は？",
+                ["What was the starting maze color?"] = "初期の迷路の色は？",
+            },
             Questions = new()
             {
                 [SSwitchingMaze.Seed] = new()
@@ -14815,6 +17347,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSymbolCycle)] = new()
         {
             ModuleName = "シンボルサイクル",
+            ManualQuestions = new()
+            {
+                ["How many symbols were cycling on each screen?"] = "各画面で循環しているシンボル数は？",
+            },
             Questions = new()
             {
                 [SSymbolCycle.SymbolCounts] = new()
@@ -14835,6 +17371,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSymbolicCoordinates)] = new()
         {
             ModuleName = "シンボル座標",
+            ManualQuestions = new()
+            {
+                ["Which symbols were present on each stage?"] = "各ステージで表示されたシンボルは？",
+            },
             Questions = new()
             {
                 [SSymbolicCoordinates.ymbols] = new()
@@ -14856,6 +17396,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSymbolicTasha)] = new()
         {
             ModuleName = "シンボルターシャ",
+            ManualQuestions = new()
+            {
+                ["What symbols were on the buttons?"] = "ボタンのシンボルは？",
+                ["Which buttons flashed?"] = "点滅したボタンは？",
+            },
             Questions = new()
             {
                 [SSymbolicTasha.DirectionFlashes] = new()
@@ -14909,6 +17454,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             NeedsTranslation = true,
             ModuleName = "記憶ゲーム",
+            ManualQuestions = new()
+            {
+                ["What number was displayed at each stage?"] = "各ステージで表示された数字は？",
+                ["What positions were the colors in at each stage?"] = "各ステージごとの色の位置は？",
+                ["What colors flashed at each stage?"] = "各ステージで点滅した色は？",
+            },
             Questions = new()
             {
                 [SSynapseSays.Flashes] = new()
@@ -14929,6 +17480,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // SYNC-125 [3]
         [typeof(SSync125_3)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was displayed on the screen in each stage?"] = " 各ステージでスクリーンに表示されたものは？",
+            },
             Questions = new()
             {
                 [SSync125_3.Word] = new()
@@ -14944,6 +17499,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSynonyms)] = new()
         {
             ModuleName = "同義語",
+            ManualQuestions = new()
+            {
+                ["Which number was displayed?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SSynonyms.Number] = new()
@@ -14958,6 +17517,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SSysadmin)] = new()
         {
             ModuleName = "システム管理者",
+            ManualQuestions = new()
+            {
+                ["What error code did you fix?"] = "何のエラーコードを修正した？",
+            },
             Questions = new()
             {
                 [SSysadmin.FixedErrorCodes] = new()
@@ -14972,6 +17535,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STAC)] = new()
         {
             ModuleName = "タック",
+            ManualQuestions = new()
+            {
+                ["Which cards were swapped?"] = "交換されたカードは？",
+                ["Which cards were in your hand?"] = "手持ちのカードは？",
+            },
             Questions = new()
             {
                 [STAC.SwappedCard] = new()
@@ -15049,6 +17617,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STapCode)] = new()
         {
             ModuleName = "タップ・コード",
+            ManualQuestions = new()
+            {
+                ["What was the received word?"] = "受信した単語は？",
+            },
             Questions = new()
             {
                 [STapCode.ReceivedWord] = new()
@@ -15063,6 +17635,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STashaSqueals)] = new()
         {
             ModuleName = "ターシャの悲鳴",
+            ManualQuestions = new()
+            {
+                ["What were the flashed colors?"] = "点滅した色は？",
+            },
             Questions = new()
             {
                 [STashaSqueals.Colors] = new()
@@ -15085,6 +17661,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STasqueManaging)] = new()
         {
             ModuleName = "タスク管理",
+            ManualQuestions = new()
+            {
+                ["What was the starting position?"] = "開始位置は？",
+            },
             Questions = new()
             {
                 [STasqueManaging.StartingPos] = new()
@@ -15099,6 +17679,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STeaSet)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["In what order were the ingredients displayed?"] = "何の材料がどの順番で表示された？",
+            },
             Questions = new()
             {
                 [STeaSet.DisplayedIngredients] = new()
@@ -15114,6 +17698,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STechnicalKeypad)] = new()
         {
             ModuleName = "テクニックキーパッド",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [STechnicalKeypad.DisplayedDigits] = new()
@@ -15128,6 +17716,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STenButtonColorCode)] = new()
         {
             ModuleName = "10ボタン色コード",
+            ManualQuestions = new()
+            {
+                ["What were the buttons’ initial colors in each stage?"] = "各ステージにおけるボタンの初期状態における色は？",
+            },
             Questions = new()
             {
                 [STenButtonColorCode.InitialColors] = new()
@@ -15149,6 +17741,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STenpins)] = new()
         {
             ModuleName = "テンピン",
+            ManualQuestions = new()
+            {
+                ["What were the splits?"] = "スプリットの状態は？",
+            },
             Questions = new()
             {
                 [STenpins.Splits] = new()
@@ -15185,6 +17781,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STetriamonds)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the pulsing colour sequence?"] = "動いた色の順番は？",
+            },
             Questions = new()
             {
                 [STetriamonds.PulsingColours] = new()
@@ -15210,6 +17810,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STextField)] = new()
         {
             ModuleName = "テキストフィールド",
+            ManualQuestions = new()
+            {
+                ["What was the displayed letter?"] = "表示された文字は？",
+            },
             Questions = new()
             {
                 [STextField.Display] = new()
@@ -15224,6 +17828,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SThinkingWires)] = new()
         {
             ModuleName = "思考ワイヤ",
+            ManualQuestions = new()
+            {
+                ["Which was the first wire needing to be cut?"] = "最初に切るべきワイヤは？",
+                ["What color was the second valid wire to cut?"] = "2つ目の切断可能なワイヤの色は？",
+                ["What was the display number?"] = "ディスプレーの数字は？",
+            },
             Questions = new()
             {
                 [SThinkingWires.FirstWire] = new()
@@ -15260,6 +17870,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SThirdBase)] = new()
         {
             ModuleName = "サードベース",
+            ManualQuestions = new()
+            {
+                ["What were the display words?"] = "ディスプレーの単語は？",
+            },
             Questions = new()
             {
                 [SThirdBase.Display] = new()
@@ -15275,6 +17889,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SThirtyDollarModule)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What sounds were played?"] = "再生された音は？",
+            },
             Questions = new()
             {
                 [SThirtyDollarModule.Sounds] = new()
@@ -15290,6 +17908,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             NeedsTranslation = true,
             ModuleName = "○×ゲーム",
+            ManualQuestions = new()
+            {
+                ["What was the initial state of the field?"] = "フィールドの初期状態は？",
+            },
             Questions = new()
             {
                 [STicTacToe.InitialState] = new()
@@ -15338,6 +17960,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STimeSignatures)] = new()
         {
             ModuleName = "拍子記号",
+            ManualQuestions = new()
+            {
+                ["What time signatures played?"] = "再生された拍子記号は？",
+            },
             Questions = new()
             {
                 [STimeSignatures.Signatures] = new()
@@ -15353,6 +17979,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STimezone)] = new()
         {
             ModuleName = "タイムゾーン",
+            ManualQuestions = new()
+            {
+                ["What were the departure and destination city?"] = "出発地と目的地は？",
+            },
             Questions = new()
             {
                 [STimezone.Cities] = new()
@@ -15373,6 +18003,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STipToe)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which squares were safe in rows 9 and 10?"] = "9段目と10段目で安全な正方形はどれ？",
+            },
             Questions = new()
             {
                 [STipToe.SafeSquares] = new()
@@ -15388,6 +18022,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STopsyTurvy)] = new()
         {
             ModuleName = "トプシー・タービー",
+            ManualQuestions = new()
+            {
+                ["What was the word initially shown?"] = "最初に表示された単語は？",
+            },
             Questions = new()
             {
                 [STopsyTurvy.Word] = new()
@@ -15402,6 +18040,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STouchTransmission)] = new()
         {
             ModuleName = "接触送信",
+            ManualQuestions = new()
+            {
+                ["What was the transmitted word?"] = "送信された単語は？",
+                ["In what order was the Braille read?"] = "点字はどの順で読まれた？",
+            },
             Questions = new()
             {
                 [STouchTransmission.Word] = new()
@@ -15428,6 +18071,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SToxicCrystals)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What letter was written on the casing when solving?"] = "What letter was written on the casing when solving?",
+            },
             Questions = new()
             {
                 [SToxicCrystals.Letter] = new()
@@ -15442,6 +18089,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STransmittedMorse)] = new()
         {
             ModuleName = "送信モールス",
+            ManualQuestions = new()
+            {
+                ["What were the received messages?"] = "受信したメッセージは？",
+            },
             Questions = new()
             {
                 [STransmittedMorse.Message] = new()
@@ -15457,6 +18108,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STriamonds)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the pulsing colour sequence?"] = "動いた色の順番は？",
+            },
             Questions = new()
             {
                 [STriamonds.PulsingColours] = new()
@@ -15483,6 +18138,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STribalCouncil)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the northeast and southwest names?"] = "北東と南西の名前は？",
+            },
             Questions = new()
             {
                 [STribalCouncil.Name] = new()
@@ -15503,6 +18162,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STrickyTetrisPieces)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the the shape of the first piece you pressed?"] = "What was the the shape of the first piece you pressed?",
+                ["What was the second color palette that the pieces converted to?"] = "What was the second color palette that the pieces converted to?",
+            },
             Questions = new()
             {
                 [STrickyTetrisPieces.FirstShape] = new()
@@ -15522,6 +18186,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STripleTerm)] = new()
         {
             ModuleName = "三単語",
+            ManualQuestions = new()
+            {
+                ["What were the passwords?"] = "パスワードは？",
+            },
             Questions = new()
             {
                 [STripleTerm.Passwords] = new()
@@ -15536,6 +18204,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STwoBits)] = new()
         {
             ModuleName = "ツービッツ",
+            ManualQuestions = new()
+            {
+                ["What were the correct three query responses?"] = "正しい3つのクエリの返答は？",
+            },
             Questions = new()
             {
                 [STwoBits.Response] = new()
@@ -15551,6 +18223,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(STwodoku)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Where were the digits, symbols, and highlights?"] = "数字、シンボル、ハイライト表示されているマスは？",
+            },
             Questions = new()
             {
                 [STwodoku.Givens] = new()
@@ -15577,6 +18253,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUfoSatellites)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which numbers were present?"] = "Which numbers were present?",
+            },
             Questions = new()
             {
                 [SUfoSatellites.Numbers] = new()
@@ -15591,6 +18271,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUltimateCipher)] = new()
         {
             ModuleName = "究極暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SUltimateCipher.Screen] = new()
@@ -15612,6 +18296,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUltimateCycle)] = new()
         {
             ModuleName = "究極サイクル",
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "ダイヤルが指していた方向は？",
+                ["What was written on each dial?"] = "ダイヤルに書かれていた英字は？",
+            },
             Questions = new()
             {
                 [SUltimateCycle.DialDirections] = new()
@@ -15642,6 +18331,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUltracube)] = new()
         {
             ModuleName = "極立方体",
+            ManualQuestions = new()
+            {
+                ["What were the rotations?"] = "回転方向は？",
+            },
             Questions = new()
             {
                 [SUltracube.Rotations] = new()
@@ -15657,6 +18350,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUltraStores)] = new()
         {
             ModuleName = "極貯留",
+            ManualQuestions = new()
+            {
+                ["What were the rotations?"] = "回転方向は？",
+            },
             Questions = new()
             {
                 [SUltraStores.SingleRotation] = new()
@@ -15678,6 +18375,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUncoloredSquares)] = new()
         {
             ModuleName = "色無し格子",
+            ManualQuestions = new()
+            {
+                ["What were the colors used in the first stage?"] = "最初のステージでは何色を利用した？",
+            },
             Questions = new()
             {
                 [SUncoloredSquares.FirstStage] = new()
@@ -15702,6 +18403,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUncoloredSwitches)] = new()
         {
             ModuleName = "色無しスイッチ",
+            ManualQuestions = new()
+            {
+                ["What was the initial switch state?"] = "最初のスイッチの状態は？",
+                ["What were the LED colors?"] = "LEDの色は？",
+            },
             Questions = new()
             {
                 [SUncoloredSwitches.InitialState] = new()
@@ -15733,6 +18439,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUncolourFlash)] = new()
         {
             ModuleName = "アンカラーフラッシュ",
+            ManualQuestions = new()
+            {
+                ["What were the initial “YES” and “NO” sequences?"] = "最初の「YES」シーケンスと「NO」シーケンスは？",
+            },
             Questions = new()
             {
                 [SUncolourFlash.Displays] = new()
@@ -15767,6 +18477,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUndertunneling)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the position in the maze after completing the first phase?"] = "第1フェーズ完了後における迷路内の位置は？",
+            },
             Questions = new()
             {
                 [SUndertunneling.PositionInMazeAfterPhaseOne] = new()
@@ -15781,6 +18495,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUnfairCipher)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the encrypted message?"] = "What was the encrypted message?",
+            },
             Questions = new()
             {
                 [SUnfairCipher.Letters] = new()
@@ -15796,6 +18514,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUnfairsCruelRevenge)] = new()
         {
             ModuleName = "アンフェアの残忍逆襲",
+            ManualQuestions = new()
+            {
+                ["What were the decrypted instructions?"] = "解読した指示は？",
+            },
             Questions = new()
             {
                 [SUnfairsCruelRevenge.Instructions] = new()
@@ -15817,6 +18539,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUnfairsRevenge)] = new()
         {
             ModuleName = "アンフェアの逆襲",
+            ManualQuestions = new()
+            {
+                ["What were the decrypted instructions?"] = "解読した指示は？",
+            },
             Questions = new()
             {
                 [SUnfairsRevenge.Instructions] = new()
@@ -15832,6 +18558,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUnicode)] = new()
         {
             ModuleName = "ユニコード",
+            ManualQuestions = new()
+            {
+                ["What were the submitted codes?"] = "送信したコードは？",
+            },
             Questions = new()
             {
                 [SUnicode.SortedAnswer] = new()
@@ -15847,6 +18577,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUNO)] = new()
         {
             ModuleName = "UNO",
+            ManualQuestions = new()
+            {
+                ["What was the starting card?"] = "初期カードは？",
+            },
             Questions = new()
             {
                 [SUNO.InitialCard] = new()
@@ -15918,6 +18652,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUnorderedKeys)] = new()
         {
             ModuleName = "順番無し音板",
+            ManualQuestions = new()
+            {
+                ["What were the labels, their colors, and the colors of the keys in each stage?"] = "各ステージにおける音板の色、ラベル、ラベルの色は？",
+            },
             Questions = new()
             {
                 [SUnorderedKeys.KeyColor] = new()
@@ -15945,6 +18683,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUnownCipher)] = new()
         {
             ModuleName = "アンノーン暗号",
+            ManualQuestions = new()
+            {
+                ["What were the submitted letters?"] = "送信した文字は？",
+            },
             Questions = new()
             {
                 [SUnownCipher.Answers] = new()
@@ -15960,6 +18702,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUnpleasantSquares)] = new()
         {
             ModuleName = "不愉快な正方形",
+            ManualQuestions = new()
+            {
+                ["What color was each square?"] = "各正方形の色は？",
+            },
             Questions = new()
             {
                 [SUnpleasantSquares.Color] = new()
@@ -15982,6 +18728,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUpdog)] = new()
         {
             ModuleName = "うざいイヌ",
+            ManualQuestions = new()
+            {
+                ["What was the displayed word?"] = "表示された単語は？",
+                ["What were the flashing colors?"] = "点滅している色は？",
+            },
             Questions = new()
             {
                 [SUpdog.Word] = new()
@@ -16016,6 +18767,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUSACycle)] = new()
         {
             ModuleName = "USAサイクル",
+            ManualQuestions = new()
+            {
+                ["Which states were displayed?"] = "どの州が表示された？",
+            },
             Questions = new()
             {
                 [SUSACycle.Displayed] = new()
@@ -16030,6 +18785,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SUSAMaze)] = new()
         {
             ModuleName = "USA迷路",
+            ManualQuestions = new()
+            {
+                ["Which state did you depart from?"] = "出発地はどの州？",
+            },
             Questions = new()
             {
                 [SUSAMaze.Origin] = new()
@@ -16043,6 +18802,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // V
         [typeof(SV)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which words were shown?"] = "どの単語が表示された？",
+            },
             Questions = new()
             {
                 [SV.Words] = new()
@@ -16063,6 +18826,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SValves)] = new()
         {
             ModuleName = "バルブ",
+            ManualQuestions = new()
+            {
+                ["What was the initial state?"] = "初期状態は？",
+            },
             Questions = new()
             {
                 [SValves.InitialState] = new()
@@ -16077,6 +18844,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SVaricoloredSquares)] = new()
         {
             ModuleName = "色どり格子",
+            ManualQuestions = new()
+            {
+                ["What was the initially pressed color?"] = "最初に押した色は？",
+            },
             Questions = new()
             {
                 [SVaricoloredSquares.InitialColor] = new()
@@ -16100,6 +18871,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SVaricolourFlash)] = new()
         {
             ModuleName = "バリカラーフラッシュ",
+            ManualQuestions = new()
+            {
+                ["What were the words and colours of each goal?"] = "各ゴールの色と単語は？",
+            },
             Questions = new()
             {
                 [SVaricolourFlash.Words] = new()
@@ -16139,6 +18914,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SVariety)] = new()
         {
             ModuleName = "寄せ集め",
+            ManualQuestions = new()
+            {
+                ["What were the LED colors?"] = "LEDの色は？",
+                ["What was n for the colored knobs and bulbs?"] = "色付きダイヤルや電球のNは？",
+                ["What digits were displayed on the digit display?"] = "数字ディスプレーに表示された数字は？",
+                ["What words were formable on the letter display?"] = "英字ディスプレーが形成する単語は？",
+                ["What were the maximum values of the timers?"] = "タイマーの最大値は？",
+            },
             Questions = new()
             {
                 [SVariety.LED] = new()
@@ -16286,6 +19069,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SVcrcs)] = new()
         {
             ModuleName = "単語識別",
+            ManualQuestions = new()
+            {
+                ["What was the displayed word?"] = "表示された単語は？",
+            },
             Questions = new()
             {
                 [SVcrcs.Word] = new()
@@ -16300,6 +19087,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SVectors)] = new()
         {
             ModuleName = "ベクトル",
+            ManualQuestions = new()
+            {
+                ["What were the colors of the vectors?"] = "ベクトルの色は？",
+            },
             Questions = new()
             {
                 [SVectors.Colors] = new()
@@ -16331,6 +19122,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SVexillology)] = new()
         {
             ModuleName = "旗章学",
+            ManualQuestions = new()
+            {
+                ["What were the flagpole colors?"] = "旗のポールの色は？",
+            },
             Questions = new()
             {
                 [SVexillology.Colors] = new()
@@ -16357,6 +19152,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SVioletCipher)] = new()
         {
             ModuleName = "紫色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SVioletCipher.Screen] = new()
@@ -16378,6 +19177,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SVisualImpairment)] = new()
         {
             ModuleName = "視覚障害",
+            ManualQuestions = new()
+            {
+                ["What were the desired colors?"] = "押すべき色は？",
+            },
             Questions = new()
             {
                 [SVisualImpairment.Colors] = new()
@@ -16400,6 +19203,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWalkingCube)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which cells did the cube walk to?"] = "キューブが通ったセルは？",
+            },
             Questions = new()
             {
                 [SWalkingCube.Path] = new()
@@ -16414,6 +19221,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWarningSigns)] = new()
         {
             ModuleName = "警戒標識",
+            ManualQuestions = new()
+            {
+                ["What was the displayed sign?"] = "表示された標識は？",
+            },
             Questions = new()
             {
                 [SWarningSigns.DisplayedSign] = new()
@@ -16427,6 +19238,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // WASD
         [typeof(SWasd)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed location?"] = "表示された位置は？",
+            },
             Questions = new()
             {
                 [SWasd.DisplayedLocation] = new()
@@ -16441,6 +19256,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWatchingPaintDry)] = new()
         {
             ModuleName = "ペンキの乾燥観察",
+            ManualQuestions = new()
+            {
+                ["How many brush strokes were there?"] = "ブラシのストローク回数は？",
+            },
             Questions = new()
             {
                 [SWatchingPaintDry.StrokeCount] = new()
@@ -16456,6 +19275,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             NeedsTranslation = true,
             ModuleName = "ウェーブタッピング",
+            ManualQuestions = new()
+            {
+                ["What was the color in the first two stages?"] = "最初の2ステージの色は？",
+            },
             Questions = new()
             {
                 [SWavetapping.Colors] = new()
@@ -16490,6 +19313,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWeakestLink)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Who was eliminated?"] = "退場させられたのは誰？",
+                ["Who joined you in the Money Phase?"] = "あなたと一緒にマネーフェイズに進出したのは誰？",
+                ["What were the other contestants’ skills and correct answer ratios?"] = "他の対戦相手のスキルと正しい回答の割合は？",
+            },
             Questions = new()
             {
                 [SWeakestLink.Elimination] = new()
@@ -16521,6 +19350,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWhatsOnSecond)] = new()
         {
             ModuleName = "色付き表比較",
+            ManualQuestions = new()
+            {
+                ["What were the display text and color in each stage?"] = "各ステージにおけるディスプレーの単語と色は？",
+            },
             Questions = new()
             {
                 [SWhatsOnSecond.DisplayText] = new()
@@ -16551,6 +19384,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWhiteArrows)] = new()
         {
             ModuleName = "白色矢印",
+            ManualQuestions = new()
+            {
+                ["What were the non-white arrows?"] = "白以外の矢印は？",
+            },
             Questions = new()
             {
                 [SWhiteArrows.Arrows] = new()
@@ -16583,6 +19420,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWhiteCipher)] = new()
         {
             ModuleName = "白色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SWhiteCipher.Screen] = new()
@@ -16604,6 +19445,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWhoOF)] = new()
         {
             ModuleName = "表比",
+            ManualQuestions = new()
+            {
+                ["What was on the display in each stage?"] = "各ステージにおけるディスプレーは？",
+            },
             Questions = new()
             {
                 [SWhoOF.Display] = new()
@@ -16619,6 +19464,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWhosOnFirst)] = new()
         {
             ModuleName = "表比較",
+            ManualQuestions = new()
+            {
+                ["What were the display words?"] = "ディスプレーの単語は？",
+            },
             Questions = new()
             {
                 [SWhosOnFirst.Display] = new()
@@ -16634,6 +19483,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWhosOnGas)] = new()
         {
             ModuleName = "ガス比較",
+            ManualQuestions = new()
+            {
+                ["What was displayed in the first phase of each stage?"] = "各ステージの第1フェーズで表示されたのは？",
+            },
             Questions = new()
             {
                 [SWhosOnGas.Display] = new()
@@ -16649,6 +19502,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWhosOnMorse)] = new()
         {
             ModuleName = "モールス比較",
+            ManualQuestions = new()
+            {
+                ["What word was transmitted in each stage?"] = "各ステージで送信された単語は？",
+            },
             Questions = new()
             {
                 [SWhosOnMorse.TransmitDisplay] = new()
@@ -16664,6 +19521,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWire)] = new()
         {
             ModuleName = "ザ・ワイヤ",
+            ManualQuestions = new()
+            {
+                ["What were the colors of the dials?"] = "ダイヤルの色は？",
+                ["What was the displayed number?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SWire.DialColors] = new()
@@ -16699,6 +19561,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWireOrdering)] = new()
         {
             ModuleName = "順序ワイヤ",
+            ManualQuestions = new()
+            {
+                ["What were the colors and numbers on the displays?"] = "ディスプレーの数字と色は？",
+                ["What were the colors of the wires?"] = "ワイヤの色は？",
+            },
             Questions = new()
             {
                 [SWireOrdering.DisplayColor] = new()
@@ -16748,6 +19615,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWireSequence)] = new()
         {
             ModuleName = "順番ワイヤ",
+            ManualQuestions = new()
+            {
+                ["How many wires of each color were there?"] = "各色のワイヤは何本あった？",
+            },
             Questions = new()
             {
                 [SWireSequence.ColorCount] = new()
@@ -16769,6 +19640,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWolfGoatAndCabbage)] = new()
         {
             ModuleName = "川渡り問題",
+            ManualQuestions = new()
+            {
+                ["Which creatures were present?"] = "どの生物がいた？",
+                ["What size was the boat?"] = "ボートのサイズは？",
+            },
             Questions = new()
             {
                 [SWolfGoatAndCabbage.Animals] = new()
@@ -16794,6 +19670,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWordCount)] = new()
         {
             ModuleName = "単語カウント",
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "表示された数字は？",
+            },
             Questions = new()
             {
                 [SWordCount.Number] = new()
@@ -16808,6 +19688,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWorkingTitle)] = new()
         {
             ModuleName = "ワーキングタイトル",
+            ManualQuestions = new()
+            {
+                ["What was the label shown?"] = "表示されたラベルは？",
+            },
             Questions = new()
             {
                 [SWorkingTitle.Display] = new()
@@ -16822,6 +19706,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SWumbo)] = new()
         {
             ModuleName = "ウンボ",
+            ManualQuestions = new()
+            {
+                ["What was the number?"] = "数字は？",
+            },
             Questions = new()
             {
                 [SWumbo.Number] = new()
@@ -16836,6 +19724,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SXenocryst)] = new()
         {
             ModuleName = "ゼノクリスト",
+            ManualQuestions = new()
+            {
+                ["What was the color of each flash?"] = "各点滅の色は？",
+            },
             Questions = new()
             {
                 [SXenocryst.Question] = new()
@@ -16851,6 +19743,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SXmORseCode)] = new()
         {
             ModuleName = "Xモールス信号",
+            ManualQuestions = new()
+            {
+                ["What were the displayed letters?"] = "ディスプレーの文字は？",
+                ["What word did you decrypt?"] = "解読した単語は？",
+            },
             Questions = new()
             {
                 [SXmORseCode.Word] = new()
@@ -16871,6 +19768,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SXobekuJehT)] = new()
         {
             ModuleName = "スクッボクーュジ",
+            ManualQuestions = new()
+            {
+                ["What song was played?"] = "再生された曲は？",
+            },
             Questions = new()
             {
                 [SXobekuJehT.Song] = new()
@@ -16885,6 +19786,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SXRing)] = new()
         {
             ModuleName = "円形レントゲン",
+            ManualQuestions = new()
+            {
+                ["What symbols were scanned?"] = "スキャンされたシンボルは？",
+            },
             Questions = new()
             {
                 [SXRing.Symbol] = new()
@@ -16899,6 +19804,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SXRotor)] = new()
         {
             ModuleName = "回転レントゲン",
+            ManualQuestions = new()
+            {
+                ["Which symbols were scanned?"] = "スキャンされたシンボルは？",
+            },
             Questions = new()
             {
                 [SXRotor.Symbol] = new()
@@ -16913,6 +19822,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SXYRay)] = new()
         {
             ModuleName = "XYレントゲン",
+            ManualQuestions = new()
+            {
+                ["What were the scanned shapes?"] = "スキャンされた図形は？",
+            },
             Questions = new()
             {
                 [SXYRay.Shapes] = new()
@@ -16927,6 +19840,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SYahtzee)] = new()
         {
             ModuleName = "ヤッツィー",
+            ManualQuestions = new()
+            {
+                ["What was the first roll?"] = "最初のロールは？",
+            },
             Questions = new()
             {
                 [SYahtzee.InitialRoll] = new()
@@ -16952,6 +19869,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SYellowArrows)] = new()
         {
             ModuleName = "黄色矢印",
+            ManualQuestions = new()
+            {
+                ["What was the starting row letter?"] = "開始段は？",
+            },
             Questions = new()
             {
                 [SYellowArrows.StartingRow] = new()
@@ -16966,6 +19887,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SYellowButton)] = new()
         {
             ModuleName = "黄色ボタン",
+            ManualQuestions = new()
+            {
+                ["What were the colors?"] = "色は？",
+            },
             Questions = new()
             {
                 [SYellowButton.Colors] = new()
@@ -16990,6 +19915,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SYellowButtont)] = new()
         {
             ModuleName = "偽黄色ボタン",
+            ManualQuestions = new()
+            {
+                ["What was the filename?"] = "ファイル名は？",
+            },
             Questions = new()
             {
                 [SYellowButtont.Filename] = new()
@@ -17004,6 +19933,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SYellowCipher)] = new()
         {
             ModuleName = "黄色暗号",
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "各スクリーンの文字は？",
+            },
             Questions = new()
             {
                 [SYellowCipher.Screen] = new()
@@ -17025,6 +19958,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SZeroZero)] = new()
         {
             ModuleName = "ゼロ・ゼロ",
+            ManualQuestions = new()
+            {
+                ["What were the colors and number of points on each star?"] = "各星の点の色と数字は？",
+                ["Where were the colored squares?"] = "色付きの四角はどこ？",
+            },
             Questions = new()
             {
                 [SZeroZero.Squares] = new()
@@ -17083,6 +20021,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SZoni)] = new()
         {
             ModuleName = "ゾニ文字",
+            ManualQuestions = new()
+            {
+                ["What were the words?"] = "単語は？",
+            },
             Questions = new()
             {
                 [SZoni.Words] = new()
@@ -17098,6 +20040,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         [typeof(SÉpelleMoiÇa)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What word was asked to be spelled?"] = "綴るべき単語は？",
+            },
             Questions = new()
             {
                 [SÉpelleMoiÇa.Word] = new()

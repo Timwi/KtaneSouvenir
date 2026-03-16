@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum S0
 public partial class SouvenirModule
 {
     [SouvenirHandler("0", "0", typeof(S0), "Anonymous")]
+    [SouvenirManualQuestion("What was the starting number?")]
     private IEnumerator<SouvenirInstruction> Process0(ModuleData module)
     {
         var comp = GetComponent(module, "pruzZero");

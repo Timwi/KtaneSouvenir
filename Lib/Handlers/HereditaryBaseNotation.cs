@@ -13,6 +13,7 @@ public enum SHereditaryBaseNotation
 public partial class SouvenirModule
 {
     [SouvenirHandler("hereditaryBaseNotationModule", "Hereditary Base Notation", typeof(SHereditaryBaseNotation), "kavinkul")]
+    [SouvenirManualQuestion("What was the number on the bottom display?")]
     private IEnumerator<SouvenirInstruction> ProcessHereditaryBaseNotation(ModuleData module)
     {
         var comp = GetComponent(module, "hereditaryBaseNotationScript");

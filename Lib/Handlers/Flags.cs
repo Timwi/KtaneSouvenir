@@ -21,6 +21,7 @@ public enum SFlags
 public partial class SouvenirModule
 {
     [SouvenirHandler("FlagsModule", "Flags", typeof(SFlags), "Timwi")]
+    [SouvenirManualQuestion("What were the country flags, the main flag, and the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessFlags(ModuleData module)
     {
         var comp = GetComponent(module, "FlagsModule");

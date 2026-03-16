@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SWumbo
 public partial class SouvenirModule
 {
     [SouvenirHandler("wumbo", "Wumbo", typeof(SWumbo), "Anonymous")]
+    [SouvenirManualQuestion("What was the number?")]
     private IEnumerator<SouvenirInstruction> ProcessWumbo(ModuleData module)
     {
         yield return WaitForSolve;

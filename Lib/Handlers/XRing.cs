@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SXRing
 public partial class SouvenirModule
 {
     [SouvenirHandler("xring", "X-Ring", typeof(SXRing), "Anonymous")]
+    [SouvenirManualQuestion("What symbols were scanned?")]
     private IEnumerator<SouvenirInstruction> ProcessXRing(ModuleData module)
     {
         var comp = GetComponent(module, "XRingScript");

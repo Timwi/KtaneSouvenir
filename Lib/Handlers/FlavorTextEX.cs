@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,7 @@ public enum SFlavorTextEX
 public partial class SouvenirModule
 {
     [SouvenirHandler("FlavorTextCruel", "Flavor Text EX", typeof(SFlavorTextEX), "Hawker")]
+    [SouvenirManualQuestion("Which module’s flavor text was presented in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessFlavorTextEX(ModuleData module)
     {
         var comp = GetComponent(module, "FlavorTextCruel");

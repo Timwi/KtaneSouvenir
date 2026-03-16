@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -18,6 +18,8 @@ public enum SWireOrdering
 public partial class SouvenirModule
 {
     [SouvenirHandler("kataWireOrdering", "Wire Ordering", typeof(SWireOrdering), "Andrio Celos")]
+    [SouvenirManualQuestion("What were the colors and numbers on the displays?")]
+    [SouvenirManualQuestion("What were the colors of the wires?")]
     private IEnumerator<SouvenirInstruction> ProcessWireOrdering(ModuleData module)
     {
         var comp = GetComponent(module, "WireOrderingScript");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SPictionary
 public partial class SouvenirModule
 {
     [SouvenirHandler("pictionaryModule", "Pictionary", typeof(SPictionary), "Kuro")]
+    [SouvenirManualQuestion("What was the code?")]
     private IEnumerator<SouvenirInstruction> ProcessPictionary(ModuleData module)
     {
         var comp = GetComponent(module, "pictionaryModuleScript");

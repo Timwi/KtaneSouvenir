@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SNumberedButtons
 public partial class SouvenirModule
 {
     [SouvenirHandler("numberedButtonsModule", "Numbered Buttons", typeof(SNumberedButtons), "Eltrick")]
+    [SouvenirManualQuestion("Which numbers were correctly pressed?")]
     private IEnumerator<SouvenirInstruction> ProcessNumberedButtons(ModuleData module)
     {
         var comp = GetComponent(module, "NumberedButtonsScript");

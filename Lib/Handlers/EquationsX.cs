@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SEquationsX
 public partial class SouvenirModule
 {
     [SouvenirHandler("equationsXModule", "Equations X", typeof(SEquationsX), "kavinkul")]
+    [SouvenirManualQuestion("What was the displayed symbol?")]
     private IEnumerator<SouvenirInstruction> ProcessEquationsX(ModuleData module)
     {
         var comp = GetComponent(module, "EquationsScript");

@@ -12,6 +12,7 @@ public enum SSnooker
 public partial class SouvenirModule
 {
     [SouvenirHandler("snooker", "Snooker", typeof(SSnooker), "TasThiluna")]
+    [SouvenirManualQuestion("How many reds were there initially?")]
     private IEnumerator<SouvenirInstruction> ProcessSnooker(ModuleData module)
     {
         var comp = GetComponent(module, "snookerScript");

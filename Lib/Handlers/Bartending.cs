@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SBartending
 public partial class SouvenirModule
 {
     [SouvenirHandler("BartendingModule", "Bartending", typeof(SBartending), "Timwi")]
+    [SouvenirManualQuestion("Which ingredient was in which position?")]
     private IEnumerator<SouvenirInstruction> ProcessBartending(ModuleData module)
     {
         var comp = GetComponent(module, "Maker");

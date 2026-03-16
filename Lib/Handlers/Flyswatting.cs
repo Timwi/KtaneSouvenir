@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SFlyswatting
 public partial class SouvenirModule
 {
     [SouvenirHandler("flyswatting", "Flyswatting", typeof(SFlyswatting), "tandyCake")]
+    [SouvenirManualQuestion("Which flies were present, but not in the solution?")]
     private IEnumerator<SouvenirInstruction> ProcessFlyswatting(ModuleData module)
     {
         var comp = GetComponent(module, "flyswattingScript");

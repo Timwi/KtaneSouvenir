@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -16,6 +16,7 @@ public enum SPentabutton
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSPentabutton", "Pentabutton", typeof(SPentabutton), "Anonymous", AddThe = true)]
+    [SouvenirManualQuestion("What was the base colour?")]
     private IEnumerator<SouvenirInstruction> ProcessPentabutton(ModuleData module)
     {
         var comp = GetComponent(module, "PentabuttonScript");

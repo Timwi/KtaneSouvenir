@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SNotThePlungerButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("notPlungerButtonModule", "Not The Plunger Button", typeof(SNotThePlungerButton), "Anonymous")]
+    [SouvenirManualQuestion("What colors did the background flash?")]
     private IEnumerator<SouvenirInstruction> ProcessNotThePlungerButton(ModuleData module)
     {
         yield return WaitForSolve;

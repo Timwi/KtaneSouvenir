@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -17,6 +17,7 @@ public enum S9Ball
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSNineBall", "9-Ball", typeof(S9Ball), "GhostSalt")]
+    [SouvenirManualQuestion("What were the numbers on each ball?")]
     private IEnumerator<SouvenirInstruction> Process9Ball(ModuleData module)
     {
         var comp = GetComponent(module, "NineBallScript");

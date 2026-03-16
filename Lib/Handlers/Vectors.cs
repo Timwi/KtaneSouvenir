@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SVectors
 public partial class SouvenirModule
 {
     [SouvenirHandler("vectorsModule", "Vectors", typeof(SVectors), "kavinkul")]
+    [SouvenirManualQuestion("What were the colors of the vectors?")]
     private IEnumerator<SouvenirInstruction> ProcessVectors(ModuleData module)
     {
         var comp = GetComponent(module, "VectorsScript");

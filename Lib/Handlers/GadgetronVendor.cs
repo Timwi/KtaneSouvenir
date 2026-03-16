@@ -17,6 +17,7 @@ public enum SGadgetronVendor
 public partial class SouvenirModule
 {
     [SouvenirHandler("lgndGadgetronVendor", "Gadgetron Vendor", typeof(SGadgetronVendor), "Kuro")]
+    [SouvenirManualQuestion("What were the displayed weapons?")]
     private IEnumerator<SouvenirInstruction> ProcessGadgetronVendor(ModuleData module)
     {
         var comp = GetComponent(module, "GadgetronVendorScript");

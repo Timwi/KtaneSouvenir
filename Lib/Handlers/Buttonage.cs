@@ -15,6 +15,9 @@ public enum SButtonage
 public partial class SouvenirModule
 {
     [SouvenirHandler("buttonageModule", "Buttonage", typeof(SButtonage), "Anonymous")]
+    [SouvenirManualQuestion("How many of each color and border color were there?")]
+    [SouvenirManualQuestion("How many special buttons were there?")]
+    [SouvenirManualQuestion("How many buttons had a P?")]
     private IEnumerator<SouvenirInstruction> ProcessButtonage(ModuleData module)
     {
         yield return WaitForSolve;

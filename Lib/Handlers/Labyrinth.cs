@@ -17,6 +17,7 @@ public enum SLabyrinth
 public partial class SouvenirModule
 {
     [SouvenirHandler("labyrinth", "Labyrinth", typeof(SLabyrinth), "Anonymous", AddThe = true)]
+    [SouvenirManualQuestion("Where were the portals, and which layers were they on?")]
     private IEnumerator<SouvenirInstruction> ProcessLabyrinth(ModuleData module)
     {
         var comp = GetComponent(module, "labyrinthScript");

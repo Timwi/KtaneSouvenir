@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SSmallTalk
 public partial class SouvenirModule
 {
     [SouvenirHandler("SmallTalk", "Small Talk", typeof(SSmallTalk), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the display words?")]
     private IEnumerator<SouvenirInstruction> ProcessSmallTalk(ModuleData module)
     {
         var comp = GetComponent(module, "SmallTalk");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,8 @@ public enum SMorseWar
 public partial class SouvenirModule
 {
     [SouvenirHandler("MorseWar", "Morse War", typeof(SMorseWar), "Timwi")]
+    [SouvenirManualQuestion("What were the LEDs?")]
+    [SouvenirManualQuestion("What code was transmitted?")]
     private IEnumerator<SouvenirInstruction> ProcessMorseWar(ModuleData module)
     {
         var comp = GetComponent(module, "MorseWar");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -14,6 +14,7 @@ public enum SLombaxCubes
 public partial class SouvenirModule
 {
     [SouvenirHandler("lgndLombaxCubes", "Lombax Cubes", typeof(SLombaxCubes), "Marksam")]
+    [SouvenirManualQuestion("What were the letters on the button?")]
     private IEnumerator<SouvenirInstruction> ProcessLombaxCubes(ModuleData module)
     {
         var comp = GetComponent(module, "LombaxCubesScript");

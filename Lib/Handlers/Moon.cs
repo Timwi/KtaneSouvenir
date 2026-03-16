@@ -12,6 +12,7 @@ public enum SMoon
 public partial class SouvenirModule
 {
     [SouvenirHandler("moon", "Moon", typeof(SMoon), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("Which sets were initially lit/unlit?")]
     private IEnumerator<SouvenirInstruction> ProcessMoon(ModuleData module)
     {
         var comp = GetComponent(module, "theMoonScript");

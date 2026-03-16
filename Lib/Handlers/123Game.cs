@@ -17,6 +17,7 @@ public enum S123Game
 public partial class SouvenirModule
 {
     [SouvenirHandler("TheOneTwoThreeGame", "1, 2, 3 Game", typeof(S123Game), "Anonymous", AddThe = true)]
+    [SouvenirManualQuestion("What was the opponent’s avatar and name?")]
     private IEnumerator<SouvenirInstruction> Process123Game(ModuleData module)
     {
         var comp = GetComponent(module, "TheOneTwoThreeGame");

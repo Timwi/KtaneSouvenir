@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -19,6 +19,8 @@ public enum SBinaryShift
 public partial class SouvenirModule
 {
     [SouvenirHandler("binary_shift", "Binary Shift", typeof(SBinaryShift), "NickLatkovich")]
+    [SouvenirManualQuestion("What were the initial numbers?")]
+    [SouvenirManualQuestion("What number was selected at each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessBinaryShift(ModuleData module)
     {
         var comp = GetComponent(module, "BinaryShiftModule");

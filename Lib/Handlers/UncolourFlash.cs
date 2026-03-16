@@ -16,6 +16,7 @@ public enum SUncolourFlash
 public partial class SouvenirModule
 {
     [SouvenirHandler("uncolourFlash", "Uncolour Flash", typeof(SUncolourFlash), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the initial “YES” and “NO” sequences?")]
     private IEnumerator<SouvenirInstruction> ProcessUncolourFlash(ModuleData module)
     {
         var comp = GetComponent(module, "UCFScript");

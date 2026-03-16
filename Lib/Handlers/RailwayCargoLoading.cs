@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -17,6 +17,8 @@ public enum SRailwayCargoLoading
 public partial class SouvenirModule
 {
     [SouvenirHandler("RailwayCargoLoading", "Railway Cargo Loading", typeof(SRailwayCargoLoading), "LotsOfS")]
+    [SouvenirManualQuestion("What were the coupled cars?")]
+    [SouvenirManualQuestion("Which freight table rules applied?")]
     private IEnumerator<SouvenirInstruction> ProcessRailwayCargoLoading(ModuleData module)
     {
         var comp = GetComponent(module, "TrainLoading");

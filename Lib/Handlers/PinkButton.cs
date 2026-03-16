@@ -15,6 +15,7 @@ public enum SPinkButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("PinkButtonModule", "Pink Button", typeof(SPinkButton), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What were the displayed words and their colors?")]
     private IEnumerator<SouvenirInstruction> ProcessPinkButton(ModuleData module)
     {
         var comp = GetComponent(module, "PinkButtonScript");

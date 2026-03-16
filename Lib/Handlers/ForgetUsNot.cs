@@ -17,6 +17,7 @@ public enum SForgetUsNot
 public partial class SouvenirModule
 {
     [SouvenirHandler("forgetUsNot", "Forget Us Not", typeof(SForgetUsNot), "Anonymous", IsBossModule = true)]
+    [SouvenirManualQuestion("Which module was solved for each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetUsNot(ModuleData module)
     {
         var comp = GetComponent(module, "AdvancedMemory");

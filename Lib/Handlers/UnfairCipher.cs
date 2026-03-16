@@ -13,6 +13,7 @@ public enum SUnfairCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("unfairCipher", "Unfair Cipher", typeof(SUnfairCipher), "Espik")]
+    [SouvenirManualQuestion("What was the encrypted message?")]
     private IEnumerator<SouvenirInstruction> ProcessUnfairCipher(ModuleData module)
     {
         var comp = GetComponent(module, "unfairCipherScript");

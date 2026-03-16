@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -18,6 +18,8 @@ public enum SBrokenGuitarChords
 public partial class SouvenirModule
 {
     [SouvenirHandler("BrokenGuitarChordsModule", "Broken Guitar Chords", typeof(SBrokenGuitarChords), "Kuro")]
+    [SouvenirManualQuestion("What was the displayed chord?")]
+    [SouvenirManualQuestion("Which string was broken?")]
     private IEnumerator<SouvenirInstruction> ProcessBrokenGuitarChords(ModuleData module)
     {
         var comp = GetComponent(module, "BrokenGuitarChordsModule");

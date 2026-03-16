@@ -13,6 +13,7 @@ public enum SSimonSends
 public partial class SouvenirModule
 {
     [SouvenirHandler("SimonSendsModule", "Simon Sends", typeof(SSimonSends), "EternityShack")]
+    [SouvenirManualQuestion("What were the red, green, and blue received letters?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSends(ModuleData module)
     {
         string[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };

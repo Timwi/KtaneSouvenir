@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,6 +21,7 @@ public enum SExoplanets
 public partial class SouvenirModule
 {
     [SouvenirHandler("exoplanets", "Exoplanets", typeof(SExoplanets), "Brawlboxgaming")]
+    [SouvenirManualQuestion("What were the starting and final target planet and digit?")]
     private IEnumerator<SouvenirInstruction> ProcessExoplanets(ModuleData module)
     {
         var comp = GetComponent(module, "exoplanets");

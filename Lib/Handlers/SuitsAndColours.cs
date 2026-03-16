@@ -15,6 +15,7 @@ public enum SSuitsAndColours
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSSuitsAndColours", "Suits and Colours", typeof(SSuitsAndColours), "Hawker")]
+    [SouvenirManualQuestion("What were the colours and suits of each cell?")]
     private IEnumerator<SouvenirInstruction> ProcessSuitsAndColours(ModuleData module)
     {
         var comp = GetComponent(module, "SuitsAndColoursScript");

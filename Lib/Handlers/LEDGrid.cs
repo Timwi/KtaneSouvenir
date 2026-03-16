@@ -15,6 +15,7 @@ public enum SLEDGrid
 public partial class SouvenirModule
 {
     [SouvenirHandler("ledGrid", "LED Grid", typeof(SLEDGrid), "Hawker")]
+    [SouvenirManualQuestion("How many LEDs were unlit?")]
     private IEnumerator<SouvenirInstruction> ProcessLEDGrid(ModuleData module)
     {
         var comp = GetComponent(module, "ledGridScript");

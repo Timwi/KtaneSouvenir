@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,8 @@ public enum SBlinkstop
 public partial class SouvenirModule
 {
     [SouvenirHandler("blinkstopModule", "Blinkstop", typeof(SBlinkstop), "Kuro")]
+    [SouvenirManualQuestion("How many times did the LED flash?")]
+    [SouvenirManualQuestion("Which color did the LED flash the least?")]
     private IEnumerator<SouvenirInstruction> ProcessBlinkstop(ModuleData module)
     {
         var comp = GetComponent(module, "BlinkstopScript");

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -16,6 +16,7 @@ public enum SHighScore
 public partial class SouvenirModule
 {
     [SouvenirHandler("ksmHighScore", "High Score", typeof(SHighScore), "Hawker", AddThe = true)]
+    [SouvenirManualQuestion("What was the player’s position and score?")]
     private IEnumerator<SouvenirInstruction> ProcessHighScore(ModuleData module)
     {
         var comp = GetComponent(module, "HighScore");

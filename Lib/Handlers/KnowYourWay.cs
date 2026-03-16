@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -16,6 +16,8 @@ public enum SKnowYourWay
 public partial class SouvenirModule
 {
     [SouvenirHandler("KnowYourWay", "Know Your Way", typeof(SKnowYourWay), "Kuro")]
+    [SouvenirManualQuestion("Which way was the arrow pointing?")]
+    [SouvenirManualQuestion("Which LED was green?")]
     private IEnumerator<SouvenirInstruction> ProcessKnowYourWay(ModuleData module)
     {
         var comp = GetComponent(module, "KnowYourWayScript");

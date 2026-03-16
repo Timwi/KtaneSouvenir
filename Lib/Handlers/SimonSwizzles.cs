@@ -18,6 +18,8 @@ public enum SSimonSwizzles
 public partial class SouvenirModule
 {
     [SouvenirHandler("simonSwizzles", "Simon Swizzles", typeof(SSimonSwizzles), "Anonymous")]
+    [SouvenirManualQuestion("Where were ON and OFF?")]
+    [SouvenirManualQuestion("What was the hidden binary number?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSwizzles(ModuleData module)
     {
         yield return WaitForSolve;

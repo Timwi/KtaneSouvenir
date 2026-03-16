@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,8 @@ public enum SOffKeys
 public partial class SouvenirModule
 {
     [SouvenirHandler("offKeys", "Off Keys", typeof(SOffKeys), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the displayed runes?")]
+    [SouvenirManualQuestion("Which keys played at an incorrect pitch?")]
     private IEnumerator<SouvenirInstruction> ProcessOffKeys(ModuleData module)
     {
         var comp = GetComponent(module, "OffKeysScript");

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SNotPassword
 public partial class SouvenirModule
 {
     [SouvenirHandler("NotPassword", "Not Password", typeof(SNotPassword), "Anonymous")]
+    [SouvenirManualQuestion("What was the missing letter?")]
     private IEnumerator<SouvenirInstruction> ProcessNotPassword(ModuleData module)
     {
         var comp = GetComponent(module, "NotPassword");

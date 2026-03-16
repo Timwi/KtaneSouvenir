@@ -13,6 +13,7 @@ public enum SMissingLetter
 public partial class SouvenirModule
 {
     [SouvenirHandler("theMissingLetter", "Missing Letter", typeof(SMissingLetter), "KiloBites", AddThe = true)]
+    [SouvenirManualQuestion("What letter was missing?")]
     private IEnumerator<SouvenirInstruction> ProcessMissingLetter(ModuleData module)
     {
         var comp = GetComponent(module, "TheMissingLetterScript");

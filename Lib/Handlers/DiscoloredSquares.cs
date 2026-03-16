@@ -14,6 +14,7 @@ public enum SDiscoloredSquares
 public partial class SouvenirModule
 {
     [SouvenirHandler("DiscoloredSquaresModule", "Discolored Squares", typeof(SDiscoloredSquares), "luisdiogo98")]
+    [SouvenirManualQuestion("What was the remembered position for each color?")]
     private IEnumerator<SouvenirInstruction> ProcessDiscoloredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "DiscoloredSquaresModule");

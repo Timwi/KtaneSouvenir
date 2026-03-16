@@ -13,6 +13,7 @@ public enum SConditionalButtons
 public partial class SouvenirModule
 {
     [SouvenirHandler("conditionalButtons", "Conditional Buttons", typeof(SConditionalButtons), "Hawker")]
+    [SouvenirManualQuestion("What was the color of each button?")]
     private IEnumerator<SouvenirInstruction> ProcessConditionalButtons(ModuleData module)
     {
         var comp = GetComponent(module, "conditionalButtons");

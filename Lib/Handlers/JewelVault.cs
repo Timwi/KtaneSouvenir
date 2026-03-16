@@ -13,6 +13,7 @@ public enum SJewelVault
 public partial class SouvenirModule
 {
     [SouvenirHandler("jewelVault", "Jewel Vault", typeof(SJewelVault), "Quinn Wuest", AddThe = true)]
+    [SouvenirManualQuestion("Which wheel spun another wheel, and which one did it spin?")]
     private IEnumerator<SouvenirInstruction> ProcessJewelVault(ModuleData module)
     {
         var comp = GetComponent(module, "jewelWheelsScript");

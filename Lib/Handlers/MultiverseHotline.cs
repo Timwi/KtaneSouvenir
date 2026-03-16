@@ -17,6 +17,7 @@ public enum SMultiverseHotline
 public partial class SouvenirModule
 {
     [SouvenirHandler("MultiverseHotline", "Multiverse Hotline", typeof(SMultiverseHotline), "KiloBites", AddThe = true)]
+    [SouvenirManualQuestion("What was the universe origin and its initial number?")]
     private IEnumerator<SouvenirInstruction> ProcessMultiverseHotline(ModuleData module)
     {
         var comp = GetComponent(module, "MultiverseHotlineScript");

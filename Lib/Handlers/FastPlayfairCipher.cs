@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -16,6 +16,7 @@ public enum SFastPlayfairCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("FastPlayfairCipher", "Fast Playfair Cipher", typeof(SFastPlayfairCipher), "Dani was here")]
+    [SouvenirManualQuestion("What was the last displayed message?")]
     private IEnumerator<SouvenirInstruction> ProcessFastPlayfairCipher(ModuleData module)
     {
         var comp = GetComponent(module, "FastPlayfairCipher");

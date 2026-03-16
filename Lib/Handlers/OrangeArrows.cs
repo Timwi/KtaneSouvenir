@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SOrangeArrows
 public partial class SouvenirModule
 {
     [SouvenirHandler("orangeArrowsModule", "Orange Arrows", typeof(SOrangeArrows), "kavinkul")]
+    [SouvenirManualQuestion("What were the first three arrows on the display in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessOrangeArrows(ModuleData module)
     {
         var comp = GetComponent(module, "OrangeArrowsScript");

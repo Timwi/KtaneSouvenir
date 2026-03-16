@@ -13,4 +13,7 @@ public interface ITranslation
     TranslationInfo TranslateModule(Type enumType);
     QuestionTranslationInfo TranslateQuestion(Enum enumValue);
     DiscriminatorTranslationInfo TranslateDiscriminator(Enum enumValue);
+
+    bool TranslateManualQuestions { get; }
+    object ManualQuestionSortBy(TranslationInfo info, string originalModuleName);
 }

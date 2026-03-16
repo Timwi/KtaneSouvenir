@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -18,6 +18,9 @@ public enum SMazeScrambler
 public partial class SouvenirModule
 {
     [SouvenirHandler("MazeScrambler", "Maze Scrambler", typeof(SMazeScrambler), "luisdiogo98")]
+    [SouvenirManualQuestion("What was the starting position?")]
+    [SouvenirManualQuestion("What was the goal position?")]
+    [SouvenirManualQuestion("Which positions were the maze markings?")]
     private IEnumerator<SouvenirInstruction> ProcessMazeScrambler(ModuleData module)
     {
         var comp = GetComponent(module, "MazeScrambler");

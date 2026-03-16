@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SNecronomicon
 public partial class SouvenirModule
 {
     [SouvenirHandler("necronomicon", "Necronomicon", typeof(SNecronomicon), "luisdiogo98", AddThe = true)]
+    [SouvenirManualQuestion("What was the chapter number of each page?")]
     private IEnumerator<SouvenirInstruction> ProcessNecronomicon(ModuleData module)
     {
         var comp = GetComponent(module, "necronomiconScript");

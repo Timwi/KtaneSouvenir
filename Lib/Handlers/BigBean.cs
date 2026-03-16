@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SBigBean
 public partial class SouvenirModule
 {
     [SouvenirHandler("bigBean", "Big Bean", typeof(SBigBean), "Anonymous")]
+    [SouvenirManualQuestion("What color and wobbliness was the bean?")]
     private IEnumerator<SouvenirInstruction> ProcessBigBean(ModuleData module)
     {
         var comp = GetComponent(module, "bigBeanScript");

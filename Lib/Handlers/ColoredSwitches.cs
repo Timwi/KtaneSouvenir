@@ -14,6 +14,7 @@ public enum SColoredSwitches
 public partial class SouvenirModule
 {
     [SouvenirHandler("ColoredSwitchesModule", "Colored Switches", typeof(SColoredSwitches), "Timwi")]
+    [SouvenirManualQuestion("What was the initial position of the switches?")]
     private IEnumerator<SouvenirInstruction> ProcessColoredSwitches(ModuleData module)
     {
         var comp = GetComponent(module, "ColoredSwitchesModule");

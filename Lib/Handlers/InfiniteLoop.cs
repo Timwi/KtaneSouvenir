@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SInfiniteLoop
 public partial class SouvenirModule
 {
     [SouvenirHandler("InfiniteLoop", "Infinite Loop", typeof(SInfiniteLoop), "Eltrick")]
+    [SouvenirManualQuestion("What was the selected word?")]
     private IEnumerator<SouvenirInstruction> ProcessInfiniteLoop(ModuleData module)
     {
         var comp = GetComponent(module, "InfiniteLoop");

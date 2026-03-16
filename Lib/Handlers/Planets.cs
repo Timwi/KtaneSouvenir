@@ -16,6 +16,8 @@ public enum SPlanets
 public partial class SouvenirModule
 {
     [SouvenirHandler("planets", "Planets", typeof(SPlanets), "KingSlendy")]
+    [SouvenirManualQuestion("What was the planet shown?")]
+    [SouvenirManualQuestion("What was the correct color for each strip?")]
     private IEnumerator<SouvenirInstruction> ProcessPlanets(ModuleData module)
     {
         var comp = GetComponent(module, "planetsModScript");

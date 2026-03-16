@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,6 +20,7 @@ public enum SSiloAuthorization
 public partial class SouvenirModule
 {
     [SouvenirHandler("siloAuthorization", "Silo Authorization", typeof(SSiloAuthorization), "Timwi")]
+    [SouvenirManualQuestion("What were the message type, encrypted message, and received authorization code?")]
     private IEnumerator<SouvenirInstruction> ProcessSiloAuthorization(ModuleData module)
     {
         var comp = GetComponent(module, "WarGamesModuleScript");

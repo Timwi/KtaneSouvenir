@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,8 @@ public enum SSimonServes
 public partial class SouvenirModule
 {
     [SouvenirHandler("simonServes", "Simon Serves", typeof(SSimonServes), "Hawker")]
+    [SouvenirManualQuestion("Who flashed in each course?")]
+    [SouvenirManualQuestion("Which items were not served in each course?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonServes(ModuleData module)
     {
         // Constants

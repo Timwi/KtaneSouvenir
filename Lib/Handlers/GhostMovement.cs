@@ -14,6 +14,7 @@ public enum SGhostMovement
 public partial class SouvenirModule
 {
     [SouvenirHandler("ghostMovement", "Ghost Movement", typeof(SGhostMovement), "Anonymous")]
+    [SouvenirManualQuestion("Where were Pac-Man and the ghosts?")]
     private IEnumerator<SouvenirInstruction> ProcessGhostMovement(ModuleData module)
     {
         var comp = GetComponent(module, "ghostMovementScript");

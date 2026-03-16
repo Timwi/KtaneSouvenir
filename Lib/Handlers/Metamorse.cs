@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SMetamorse
 public partial class SouvenirModule
 {
     [SouvenirHandler("metamorse", "Metamorse", typeof(SMetamorse), "tandyCake")]
+    [SouvenirManualQuestion("What was the extracted letter?")]
     private IEnumerator<SouvenirInstruction> ProcessMetamorse(ModuleData module)
     {
         var comp = GetComponent(module, "MetamorseScript");

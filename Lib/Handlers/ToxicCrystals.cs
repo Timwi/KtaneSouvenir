@@ -13,6 +13,7 @@ public enum SToxicCrystals
 public partial class SouvenirModule
 {
     [SouvenirHandler("ToxicCrystals", "Toxic Crystals", typeof(SToxicCrystals), "thunder725")]
+    [SouvenirManualQuestion("What letter was written on the casing when solving?")]
     private IEnumerator<SouvenirInstruction> ProcessToxicCrystals(ModuleData module)
     {
         var comp = GetComponent(module, "ToxicCrystals");

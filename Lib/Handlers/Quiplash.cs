@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SQuiplash
 public partial class SouvenirModule
 {
     [SouvenirHandler("QLModule", "Quiplash", typeof(SQuiplash), "Anonymous")]
+    [SouvenirManualQuestion("What number was shown?")]
     private IEnumerator<SouvenirInstruction> ProcessQuiplash(ModuleData module)
     {
         yield return WaitForSolve;

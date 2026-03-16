@@ -15,6 +15,7 @@ public enum SWireSequence
 public partial class SouvenirModule
 {
     [SouvenirHandler("WireSequence", "Wire Sequence", typeof(SWireSequence), "Andrio Celos")]
+    [SouvenirManualQuestion("How many wires of each color were there?")]
     private IEnumerator<SouvenirInstruction> ProcessWireSequence(ModuleData module)
     {
         var comp = GetComponent(module, "WireSequenceComponent");

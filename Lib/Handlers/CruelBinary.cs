@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SCruelBinary
 public partial class SouvenirModule
 {
     [SouvenirHandler("CruelBinary", "Cruel Binary", typeof(SCruelBinary), "Kuro")]
+    [SouvenirManualQuestion("What was the displayed word?")]
     private IEnumerator<SouvenirInstruction> ProcessCruelBinary(ModuleData module)
     {
         var comp = GetComponent(module, "CruelBinary");

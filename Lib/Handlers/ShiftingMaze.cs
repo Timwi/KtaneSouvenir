@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SShiftingMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("MazeShifting", "Shifting Maze", typeof(SShiftingMaze), "BigCrunch22")]
+    [SouvenirManualQuestion("What was the seed?")]
     private IEnumerator<SouvenirInstruction> ProcessShiftingMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ShiftingMazeScript");

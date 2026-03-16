@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SLiteralMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("literalMaze", "Literal Maze", typeof(SLiteralMaze), "Timwi")]
+    [SouvenirManualQuestion("Which letter was in each position?")]
     private IEnumerator<SouvenirInstruction> ProcessLiteralMaze(ModuleData module)
     {
         var comp = GetComponent(module, "literalMazeScript");

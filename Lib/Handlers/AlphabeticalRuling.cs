@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -19,6 +19,7 @@ public enum SAlphabeticalRuling
 public partial class SouvenirModule
 {
     [SouvenirHandler("alphabeticalRuling", "Alphabetical Ruling", typeof(SAlphabeticalRuling), "Timwi")]
+    [SouvenirManualQuestion("What were the letters and numbers displayed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessAlphabeticalRuling(ModuleData module)
     {
         var comp = GetComponent(module, "AlphabeticalRuling");

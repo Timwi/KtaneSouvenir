@@ -14,6 +14,7 @@ public enum SMaroonButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("MaroonButtonModule", "Maroon Button", typeof(SMaroonButton), "Anonymous", AddThe = true)]
+    [SouvenirManualQuestion("What was A?")]
     private IEnumerator<SouvenirInstruction> ProcessMaroonButton(ModuleData module)
     {
         var comp = GetComponent(module, "MaroonButtonScript");

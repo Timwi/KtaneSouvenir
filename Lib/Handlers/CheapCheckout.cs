@@ -13,6 +13,7 @@ public enum SCheapCheckout
 public partial class SouvenirModule
 {
     [SouvenirHandler("CheapCheckoutModule", "Cheap Checkout", typeof(SCheapCheckout), "Timwi")]
+    [SouvenirManualQuestion("What were the paid amounts?")]
     private IEnumerator<SouvenirInstruction> ProcessCheapCheckout(ModuleData module)
     {
         var comp = GetComponent(module, "CheapCheckoutModule");

@@ -19,6 +19,8 @@ public enum SMurder
 public partial class SouvenirModule
 {
     [SouvenirHandler("murder", "Murder", typeof(SMurder), "Timwi")]
+    [SouvenirManualQuestion("Which were the suspects and weapons?")]
+    [SouvenirManualQuestion("Where was the body found?")]
     private IEnumerator<SouvenirInstruction> ProcessMurder(ModuleData module)
     {
         var comp = GetComponent(module, "MurderModule");

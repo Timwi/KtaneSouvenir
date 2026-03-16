@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SProbing
 public partial class SouvenirModule
 {
     [SouvenirHandler("Probing", "Probing", typeof(SProbing), "Timwi")]
+    [SouvenirManualQuestion("What were the missing frequencies in each wire?")]
     private IEnumerator<SouvenirInstruction> ProcessProbing(ModuleData module)
     {
         var comp = GetComponent(module, "ProbingModule");

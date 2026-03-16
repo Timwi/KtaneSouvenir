@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -17,6 +17,8 @@ public enum SXmORseCode
 public partial class SouvenirModule
 {
     [SouvenirHandler("xmorse", "XmORse Code", typeof(SXmORseCode), "shortc1rcuit")]
+    [SouvenirManualQuestion("What were the displayed letters?")]
+    [SouvenirManualQuestion("What word did you decrypt?")]
     private IEnumerator<SouvenirInstruction> ProcessXmORseCode(ModuleData module)
     {
         var comp = GetComponent(module, "XmORseCode");

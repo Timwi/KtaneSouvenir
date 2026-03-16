@@ -13,6 +13,7 @@ public enum SDetoNATO
 public partial class SouvenirModule
 {
     [SouvenirHandler("Detonato", "DetoNATO", typeof(SDetoNATO), "Hawker")]
+    [SouvenirManualQuestion("What was the displayed word for each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDetoNATO(ModuleData module)
     {
         var comp = GetComponent(module, "Detonato");

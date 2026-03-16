@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SEtterna
 public partial class SouvenirModule
 {
     [SouvenirHandler("etterna", "Etterna", typeof(SEtterna), "Emik")]
+    [SouvenirManualQuestion("What beat was the input for each arrow?")]
     private IEnumerator<SouvenirInstruction> ProcessEtterna(ModuleData module)
     {
         var comp = GetComponent(module, "Etterna");

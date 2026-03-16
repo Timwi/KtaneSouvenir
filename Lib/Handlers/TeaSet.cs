@@ -12,6 +12,7 @@ public enum STeaSet
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSTeaSet", "Tea Set", typeof(STeaSet), "Kuro", AddThe = true)]
+    [SouvenirManualQuestion("In what order were the ingredients displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessTeaSet(ModuleData module)
     {
         var comp = GetComponent(module, "TeaSetScript");

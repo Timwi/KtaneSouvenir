@@ -38,6 +38,9 @@ public enum SAzureButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("AzureButtonModule", "Azure Button", typeof(SAzureButton), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What were T and the other displayed cards?")]
+    [SouvenirManualQuestion("What was M?")]
+    [SouvenirManualQuestion("What were the arrows?")]
     private IEnumerator<SouvenirInstruction> ProcessAzureButton(ModuleData module)
     {
         var comp = GetComponent(module, "AzureButtonScript");

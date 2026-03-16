@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -14,6 +14,7 @@ public enum SMazeSwap
 public partial class SouvenirModule
 {
     [SouvenirHandler("mazeSwap", "Maze Swap", typeof(SMazeSwap), "Anonymous")]
+    [SouvenirManualQuestion("What were the starting and goal positions?")]
     private IEnumerator<SouvenirInstruction> ProcessMazeSwap(ModuleData module)
     {
         yield return WaitForSolve;

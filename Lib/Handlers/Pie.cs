@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SPie
 public partial class SouvenirModule
 {
     [SouvenirHandler("pieModule", "Pie", typeof(SPie), "luisdiogo98")]
+    [SouvenirManualQuestion("What were the digits shown?")]
     private IEnumerator<SouvenirInstruction> ProcessPie(ModuleData module)
     {
         var comp = GetComponent(module, "PieScript");

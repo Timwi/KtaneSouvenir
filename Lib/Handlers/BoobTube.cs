@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SBoobTube
 public partial class SouvenirModule
 {
     [SouvenirHandler("boobTubeModule", "Boob Tube", typeof(SBoobTube), "Anonymous")]
+    [SouvenirManualQuestion("What were the words?")]
     private IEnumerator<SouvenirInstruction> ProcessBoobTube(ModuleData module)
     {
         var comp = GetComponent(module, "BoobTubeScript");

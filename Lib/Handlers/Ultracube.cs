@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,5 +12,6 @@ public enum SUltracube
 public partial class SouvenirModule
 {
     [SouvenirHandler("TheUltracubeModule", "Ultracube", typeof(SUltracube), "luisdiogo98", AddThe = true)]
+    [SouvenirManualQuestion("What were the rotations?")]
     private IEnumerator<SouvenirInstruction> ProcessUltracube(ModuleData module) => processHypercubeUltracube(module, "TheUltracubeModule", SUltracube.Rotations);
 }

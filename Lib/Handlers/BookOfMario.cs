@@ -16,6 +16,8 @@ public enum SBookOfMario
 public partial class SouvenirModule
 {
     [SouvenirHandler("BookOfMarioModule", "Book of Mario", typeof(SBookOfMario), "Hawker")]
+    [SouvenirManualQuestion("Who said something in each stage?")]
+    [SouvenirManualQuestion("What was each character’s quote?")]
     private IEnumerator<SouvenirInstruction> ProcessBookOfMario(ModuleData module)
     {
         static string elideText(string s)

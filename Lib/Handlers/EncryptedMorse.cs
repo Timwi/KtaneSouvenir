@@ -13,6 +13,7 @@ public enum SEncryptedMorse
 public partial class SouvenirModule
 {
     [SouvenirHandler("EncryptedMorse", "Encrypted Morse", typeof(SEncryptedMorse), "Espik")]
+    [SouvenirManualQuestion("What was the received key?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptedMorse(ModuleData module)
     {
         var comp = GetComponent(module, "EncryptedMorseModule");

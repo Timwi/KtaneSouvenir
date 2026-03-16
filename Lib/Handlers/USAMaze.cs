@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,5 +12,6 @@ public enum SUSAMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("USA", "USA Maze", typeof(SUSAMaze), "luisdiogo98")]
+    [SouvenirManualQuestion("Which state did you depart from?")]
     private IEnumerator<SouvenirInstruction> ProcessUSAMaze(ModuleData module) => processWorldMaze(module, "USAMaze", SUSAMaze.Origin);
 }

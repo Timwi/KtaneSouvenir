@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SMetapuzzle
 public partial class SouvenirModule
 {
     [SouvenirHandler("metapuzzle", "Metapuzzle", typeof(SMetapuzzle), "GoodHood")]
+    [SouvenirManualQuestion("What was the final answer?")]
     private IEnumerator<SouvenirInstruction> ProcessMetapuzzle(ModuleData module)
     {
         var comp = GetComponent(module, "metapuzzleScript");

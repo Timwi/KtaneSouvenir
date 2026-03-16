@@ -14,6 +14,7 @@ public enum SSynonyms
 public partial class SouvenirModule
 {
     [SouvenirHandler("synonyms", "Synonyms", typeof(SSynonyms), "Timwi")]
+    [SouvenirManualQuestion("Which number was displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessSynonyms(ModuleData module)
     {
         var comp = GetComponent(module, "Synonyms");

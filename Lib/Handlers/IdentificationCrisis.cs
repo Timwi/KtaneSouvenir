@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,6 +15,7 @@ public enum SIdentificationCrisis
 public partial class SouvenirModule
 {
     [SouvenirHandler("identificationCrisis", "Identification Crisis", typeof(SIdentificationCrisis), "TasThiluna")]
+    [SouvenirManualQuestion("What were the shapes and identification modules used?")]
     private IEnumerator<SouvenirInstruction> ProcessIdentificationCrisis(ModuleData module)
     {
         var comp = GetComponent(module, "identificationCrisis");

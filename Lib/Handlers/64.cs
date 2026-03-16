@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum S64
 public partial class SouvenirModule
 {
     [SouvenirHandler("64", "64", typeof(S64), "Kuro")]
+    [SouvenirManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> Process64(ModuleData module) =>
         process6421(module, "SixtyFourScript", "numberIn64", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", 64, 0, 16777216, S64.DisplayedNumber);
 }

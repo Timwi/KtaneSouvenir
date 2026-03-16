@@ -22,6 +22,8 @@ public enum SLogicalButtons
 public partial class SouvenirModule
 {
     [SouvenirHandler("logicalButtonsModule", "Logical Buttons", typeof(SLogicalButtons), "Timwi")]
+    [SouvenirManualQuestion("What were the colors and labels of each button in each stage?")]
+    [SouvenirManualQuestion("What were the final operators in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessLogicalButtons(ModuleData module)
     {
         var comp = GetComponent(module, "LogicalButtonsScript");

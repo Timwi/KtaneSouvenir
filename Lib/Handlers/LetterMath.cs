@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SLetterMath
 public partial class SouvenirModule
 {
     [SouvenirHandler("letterMath", "Letter Math", typeof(SLetterMath), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the letters on the display?")]
     private IEnumerator<SouvenirInstruction> ProcessLetterMath(ModuleData module)
     {
         var comp = GetComponent(module, "LetterMathModule");

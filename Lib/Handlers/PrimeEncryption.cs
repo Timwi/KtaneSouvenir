@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SPrimeEncryption
 public partial class SouvenirModule
 {
     [SouvenirHandler("primeEncryption", "Prime Encryption", typeof(SPrimeEncryption), "VFlyer")]
+    [SouvenirManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessPrimeEncryption(ModuleData module)
     {
         var comp = GetComponent(module, "PrimeEncryptionScript");

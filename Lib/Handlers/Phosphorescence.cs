@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -17,6 +17,7 @@ public enum SPhosphorescence
 public partial class SouvenirModule
 {
     [SouvenirHandler("Phosphorescence", "Phosphorescence", typeof(SPhosphorescence), "Emik")]
+    [SouvenirManualQuestion("What were the button presses and the offset?")]
     private IEnumerator<SouvenirInstruction> ProcessPhosphorescence(ModuleData module)
     {
         var comp = GetComponent(module, "PhosphorescenceScript");

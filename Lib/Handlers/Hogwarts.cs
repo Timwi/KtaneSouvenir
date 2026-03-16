@@ -15,6 +15,7 @@ public enum SHogwarts
 public partial class SouvenirModule
 {
     [SouvenirHandler("HogwartsModule", "Hogwarts", typeof(SHogwarts), "Timwi")]
+    [SouvenirManualQuestion("Which House was each module solved for?")]
     private IEnumerator<SouvenirInstruction> ProcessHogwarts(ModuleData module)
     {
         var comp = GetComponent(module, "HogwartsModule");

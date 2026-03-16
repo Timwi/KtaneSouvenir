@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,8 @@ public enum SPlaceholderTalk
 public partial class SouvenirModule
 {
     [SouvenirHandler("placeholderTalk", "Placeholder Talk", typeof(SPlaceholderTalk), "Emik")]
+    [SouvenirManualQuestion("What was the entire first phrase?")]
+    [SouvenirManualQuestion("What was the calculated value for second phrase?")]
     private IEnumerator<SouvenirInstruction> ProcessPlaceholderTalk(ModuleData module)
     {
         var comp = GetComponent(module, "placeholderTalk");

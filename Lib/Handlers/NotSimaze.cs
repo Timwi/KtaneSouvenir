@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -18,6 +18,8 @@ public enum SNotSimaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("NotSimaze", "Not Simaze", typeof(SNotSimaze), "Andrio Celos")]
+    [SouvenirManualQuestion("Which maze was used?")]
+    [SouvenirManualQuestion("What were the starting and goal positions?")]
     private IEnumerator<SouvenirInstruction> ProcessNotSimaze(ModuleData module)
     {
         var comp = GetComponent(module, "NotSimaze");

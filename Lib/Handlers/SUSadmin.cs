@@ -17,6 +17,8 @@ public enum SSUSadmin
 public partial class SouvenirModule
 {
     [SouvenirHandler("susadmin", "SUSadmin", typeof(SSUSadmin), "Anonymous")]
+    [SouvenirManualQuestion("Which security protocols were installed?")]
+    [SouvenirManualQuestion("What was the version number?")]
     private IEnumerator<SouvenirInstruction> ProcessSUSadmin(ModuleData module)
     {
         yield return WaitForSolve;

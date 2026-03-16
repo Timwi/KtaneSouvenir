@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,6 +20,8 @@ public enum SMazeseeker
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSMazeseeker", "Mazeseeker", typeof(SMazeseeker), "GhostSalt")]
+    [SouvenirManualQuestion("How many walls surrounded each cell?")]
+    [SouvenirManualQuestion("What were the starting and goal positions?")]
     private IEnumerator<SouvenirInstruction> ProcessMazeseeker(ModuleData module)
     {
         var comp = GetComponent(module, "MazeseekerScript");

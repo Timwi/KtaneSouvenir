@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum S21
 public partial class SouvenirModule
 {
     [SouvenirHandler("TwennyWan", "21", typeof(S21), "Anonymous")]
+    [SouvenirManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> Process21(ModuleData module) =>
         process6421(module, "TwennyWan", "numberin21", "0123456789ABCDEFGHIJK", 21, 9261, 194480, S21.DisplayedNumber);
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SMatchRefereeing
 public partial class SouvenirModule
 {
     [SouvenirHandler("matchRefereeing", "Match Refereeing", typeof(SMatchRefereeing), "Quinn Wuest")]
+    [SouvenirManualQuestion("Which planets were present in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessMatchRefereeing(ModuleData module)
     {
         var comp = GetComponent(module, "MeteoRefereeingScript");

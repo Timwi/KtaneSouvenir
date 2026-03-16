@@ -12,6 +12,7 @@ public enum SColorBraille
 public partial class SouvenirModule
 {
     [SouvenirHandler("ColorBrailleModule", "Color Braille", typeof(SColorBraille), "Timwi")]
+    [SouvenirManualQuestion("What color was each dot?")]
     private IEnumerator<SouvenirInstruction> ProcessColorBraille(ModuleData module)
     {
         var comp = GetComponent(module, "ColorBrailleModule");

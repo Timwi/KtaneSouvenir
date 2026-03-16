@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -19,6 +19,9 @@ public enum SThinkingWires
 public partial class SouvenirModule
 {
     [SouvenirHandler("thinkingWiresModule", "Thinking Wires", typeof(SThinkingWires), "kavinkul")]
+    [SouvenirManualQuestion("Which was the first wire needing to be cut?")]
+    [SouvenirManualQuestion("What color was the second valid wire to cut?")]
+    [SouvenirManualQuestion("What was the display number?")]
     private IEnumerator<SouvenirInstruction> ProcessThinkingWires(ModuleData module)
     {
         var comp = GetComponent(module, "thinkingWiresScript");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SUNO
 public partial class SouvenirModule
 {
     [SouvenirHandler("UNO", "UNO!", typeof(SUNO), "Hawker")]
+    [SouvenirManualQuestion("What was the starting card?")]
     private IEnumerator<SouvenirInstruction> ProcessUNO(ModuleData module)
     {
         var comp = GetComponent(module, "UNO");

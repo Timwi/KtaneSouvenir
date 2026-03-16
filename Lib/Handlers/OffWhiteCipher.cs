@@ -20,6 +20,7 @@ public enum SOffWhiteCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("offWhiteCipher", "Off-White Cipher", typeof(SOffWhiteCipher), "KiloBites")]
+    [SouvenirManualQuestion("What was on each display?")]
     private IEnumerator<SouvenirInstruction> ProcessOffWhiteCipher(ModuleData module)
     {
         var comp = GetComponent(module, "OffWhiteCipherScript");

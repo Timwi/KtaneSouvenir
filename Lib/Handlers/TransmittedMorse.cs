@@ -12,6 +12,7 @@ public enum STransmittedMorse
 public partial class SouvenirModule
 {
     [SouvenirHandler("transmittedMorseModule", "Transmitted Morse", typeof(STransmittedMorse), "kavinkul")]
+    [SouvenirManualQuestion("What were the received messages?")]
     private IEnumerator<SouvenirInstruction> ProcessTransmittedMorse(ModuleData module)
     {
         var comp = GetComponent(module, "TransmittedMorseScript");

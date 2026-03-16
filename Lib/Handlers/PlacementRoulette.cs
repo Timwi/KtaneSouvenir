@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -18,6 +18,7 @@ public enum SPlacementRoulette
 public partial class SouvenirModule
 {
     [SouvenirHandler("PlacementRouletteModule", "Placement Roulette", typeof(SPlacementRoulette), "Brawlboxgaming")]
+    [SouvenirManualQuestion("What were the character, track, and vehicle listed?")]
     private IEnumerator<SouvenirInstruction> ProcessPlacementRoulette(ModuleData module)
     {
         var comp = GetComponent(module, "PlacementRouletteModule");

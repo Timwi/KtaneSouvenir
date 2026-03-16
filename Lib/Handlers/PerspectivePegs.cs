@@ -14,6 +14,7 @@ public enum SPerspectivePegs
 public partial class SouvenirModule
 {
     [SouvenirHandler("spwizPerspectivePegs", "Perspective Pegs", typeof(SPerspectivePegs), "Andrio Celos")]
+    [SouvenirManualQuestion("What was the initial color sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessPerspectivePegs(ModuleData module)
     {
         var comp = GetComponent(module, "PerspectivePegsModule");

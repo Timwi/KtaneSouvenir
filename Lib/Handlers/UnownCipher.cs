@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SUnownCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("UnownCipher", "Unown Cipher", typeof(SUnownCipher), "kavinkul")]
+    [SouvenirManualQuestion("What were the submitted letters?")]
     private IEnumerator<SouvenirInstruction> ProcessUnownCipher(ModuleData module)
     {
         var comp = GetComponent(module, "UnownCipher");

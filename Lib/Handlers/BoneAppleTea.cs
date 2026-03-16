@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SBoneAppleTea
 public partial class SouvenirModule
 {
     [SouvenirHandler("boneAppleTea", "Bone Apple Tea", typeof(SBoneAppleTea), "Anonymous")]
+    [SouvenirManualQuestion("What were the phrases?")]
     private IEnumerator<SouvenirInstruction> ProcessBoneAppleTea(ModuleData module)
     {
         yield return WaitForSolve;

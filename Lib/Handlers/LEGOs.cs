@@ -13,6 +13,7 @@ public enum SLEGOs
 public partial class SouvenirModule
 {
     [SouvenirHandler("LEGOModule", "LEGOs", typeof(SLEGOs), "luisdiogo98")]
+    [SouvenirManualQuestion("What were the dimensions of each color piece?")]
     private IEnumerator<SouvenirInstruction> ProcessLEGOs(ModuleData module)
     {
         var comp = GetComponent(module, "LEGOModule");

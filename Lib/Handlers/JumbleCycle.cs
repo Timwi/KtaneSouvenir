@@ -19,6 +19,8 @@ public enum SJumbleCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("jumbleCycle", "Jumble Cycle", typeof(SJumbleCycle), "Timwi")]
+    [SouvenirManualQuestion("Which direction were the dials pointing?")]
+    [SouvenirManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessJumbleCycle(ModuleData module) => processSpeakingEvilCycle(
         module, "JumbleCycleScript", SJumbleCycle.DialDirections, SJumbleCycle.DialLabels, SJumbleCycle.LabelDiscriminator,
         getDialLabels: comp => GetArrayField<string[]>(comp, "ciphertext").Get()[0][4]);

@@ -15,6 +15,7 @@ public enum STechnicalKeypad
 public partial class SouvenirModule
 {
     [SouvenirHandler("TechnicalKeypad", "Technical Keypad", typeof(STechnicalKeypad), "Kuro")]
+    [SouvenirManualQuestion("What were the displayed digits?")]
     private IEnumerator<SouvenirInstruction> ProcessTechnicalKeypad(ModuleData module)
     {
         var comp = GetComponent(module, "TechnicalKeypadModule");

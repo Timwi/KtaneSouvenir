@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SSuperparsing
 public partial class SouvenirModule
 {
     [SouvenirHandler("superparsing", "Superparsing", typeof(SSuperparsing), "tandyCake")]
+    [SouvenirManualQuestion("What was the displayed word?")]
     private IEnumerator<SouvenirInstruction> ProcessSuperparsing(ModuleData module)
     {
         var comp = GetComponent(module, "SuperparsingScript");

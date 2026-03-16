@@ -15,6 +15,7 @@ public enum SAlphabetNumbers
 public partial class SouvenirModule
 {
     [SouvenirHandler("alphabetNumbers", "Alphabet Numbers", typeof(SAlphabetNumbers), "Kuro")]
+    [SouvenirManualQuestion("What were the numbers on the buttons in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessAlphabetNumbers(ModuleData module)
     {
         var comp = GetComponent(module, "alphabeticalOrderScript");

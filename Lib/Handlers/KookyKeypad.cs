@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SKookyKeypad
 public partial class SouvenirModule
 {
     [SouvenirHandler("kookyKeypadModule", "Kooky Keypad", typeof(SKookyKeypad), "Anonymous")]
+    [SouvenirManualQuestion("What colors were the LEDs?")]
     private IEnumerator<SouvenirInstruction> ProcessKookyKeypad(ModuleData module)
     {
         yield return WaitForSolve;

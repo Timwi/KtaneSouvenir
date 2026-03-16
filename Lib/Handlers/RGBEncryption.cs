@@ -17,6 +17,7 @@ public enum SRGBEncryption
 public partial class SouvenirModule
 {
     [SouvenirHandler("RGBEncryption", "RGB Encryption", typeof(SRGBEncryption), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the Morse code and color sequences?")]
     private IEnumerator<SouvenirInstruction> ProcessRGBEncryption(ModuleData module)
     {
         var comp = GetComponent(module, "RGBEncryption");

@@ -16,6 +16,7 @@ public partial class SouvenirModule
     private static Sprite[] _keypadSequenceSprites;
 
     [SouvenirHandler("keypadSeq", "Keypad Sequence", typeof(SKeypadSequence), "Anonymous")]
+    [SouvenirManualQuestion("What symbols were on the keys?")]
     private IEnumerator<SouvenirInstruction> ProcessKeypadSequence(ModuleData module)
     {
         var comp = GetComponent(module, "KeypadSeqScript");

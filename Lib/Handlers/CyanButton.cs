@@ -12,6 +12,7 @@ public enum SCyanButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("CyanButtonModule", "Cyan Button", typeof(SCyanButton), "Quinn Wuest", AddThe = true)]
+    [SouvenirManualQuestion("Where was the button at each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessCyanButton(ModuleData module)
     {
         var comp = GetComponent(module, "CyanButtonScript");

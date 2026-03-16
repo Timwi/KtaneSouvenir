@@ -27,6 +27,8 @@ public enum SBamboozledAgain
 public partial class SouvenirModule
 {
     [SouvenirHandler("bamboozledAgain", "Bamboozled Again", typeof(SBamboozledAgain), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the initial labels and colors of each button?")]
+    [SouvenirManualQuestion("What were the decrypted text and color of each displayed message?")]
     private IEnumerator<SouvenirInstruction> ProcessBamboozledAgain(ModuleData module)
     {
         var comp = GetComponent(module, "BamboozledAgainScript");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SNumberGame
 public partial class SouvenirModule
 {
     [SouvenirHandler("TheNumberGame", "Number Game", typeof(SNumberGame), "Anonymous", AddThe = true)]
+    [SouvenirManualQuestion("What was the maximum number?")]
     private IEnumerator<SouvenirInstruction> ProcessNumberGame(ModuleData module)
     {
         yield return WaitForSolve;

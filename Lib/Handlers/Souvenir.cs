@@ -17,6 +17,7 @@ public enum SSouvenir
 public partial class SouvenirModule
 {
     [SouvenirHandler("SouvenirModule", "Souvenir", typeof(SSouvenir), "CaitSith2", IsBossModule = true)]
+    [SouvenirManualQuestion("What was the first module the other Souvenir asked a question about?")]
     private IEnumerator<SouvenirInstruction> ProcessSouvenir(ModuleData module)
     {
         var comp = module.Module.GetComponent<SouvenirModule>();

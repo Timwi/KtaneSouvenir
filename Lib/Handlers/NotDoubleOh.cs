@@ -15,6 +15,7 @@ public enum SNotDoubleOh
 public partial class SouvenirModule
 {
     [SouvenirHandler("NotDoubleOhModule", "Not Double-Oh", typeof(SNotDoubleOh), "Anonymous")]
+    [SouvenirManualQuestion("What were the displayed positions in the second stage?")]
     private IEnumerator<SouvenirInstruction> ProcessNotDoubleOh(ModuleData module)
     {
         yield return WaitForSolve;

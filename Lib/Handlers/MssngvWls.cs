@@ -13,6 +13,7 @@ public enum SMssngvWls
 public partial class SouvenirModule
 {
     [SouvenirHandler("MssngvWls", "Mssngv Wls", typeof(SMssngvWls), "Anonymous")]
+    [SouvenirManualQuestion("What was the missing vowel?")]
     private IEnumerator<SouvenirInstruction> ProcessMssngvWls(ModuleData module)
     {
         yield return WaitForSolve;

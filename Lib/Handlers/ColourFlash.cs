@@ -12,6 +12,7 @@ public enum SColourFlash
 public partial class SouvenirModule
 {
     [SouvenirHandler("ColourFlash", "Colour Flash", typeof(SColourFlash), "LotsOfS")]
+    [SouvenirManualQuestion("What was the color of the last word in the sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessColourFlash(ModuleData module)
     {
         var comp = GetComponent(module, "ColourFlashModule");

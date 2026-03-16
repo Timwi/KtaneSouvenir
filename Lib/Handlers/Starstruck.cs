@@ -15,6 +15,7 @@ public enum SStarstruck
 public partial class SouvenirModule
 {
     [SouvenirHandler("starstruck", "Starstruck", typeof(SStarstruck), "Anonymous")]
+    [SouvenirManualQuestion("Which stars were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessStarstruck(ModuleData module)
     {
         // This handler *should* ask about the color of a given star, but currently I can't turn a font character into a sprite.

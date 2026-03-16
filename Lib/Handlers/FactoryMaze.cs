@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SFactoryMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("factoryMaze", "Factory Maze", typeof(SFactoryMaze), "luisdiogo98")]
+    [SouvenirManualQuestion("What room did you start in?")]
     private IEnumerator<SouvenirInstruction> ProcessFactoryMaze(ModuleData module)
     {
         var comp = GetComponent(module, "FactoryMazeScript");

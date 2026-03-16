@@ -13,6 +13,7 @@ public enum SPeriodicWords
 public partial class SouvenirModule
 {
     [SouvenirHandler("periodicWordsRB", "Periodic Words", typeof(SPeriodicWords), "Kuro")]
+    [SouvenirManualQuestion("What was the displayed word in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessPeriodicWords(ModuleData module)
     {
         var comp = GetComponent(module, "PeriodicWordsScript");

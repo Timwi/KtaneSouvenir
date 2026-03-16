@@ -16,6 +16,7 @@ public enum SSbemailSongs
 public partial class SouvenirModule
 {
     [SouvenirHandler("sbemailsongs", "Sbemail Songs", typeof(SSbemailSongs), "ObjectsCountries", IsBossModule = true)]
+    [SouvenirManualQuestion("What were the displayed songs in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSbemailSongs(ModuleData module)
     {
         var comp = GetComponent(module, "_sbemailsongs");

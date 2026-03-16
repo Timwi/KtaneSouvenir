@@ -21,6 +21,8 @@ public enum SAlphabetTiles
 public partial class SouvenirModule
 {
     [SouvenirHandler("AlphabetTiles", "Alphabet Tiles", typeof(SAlphabetTiles), "BigCrunch22")]
+    [SouvenirManualQuestion("What were the letters shown during each cycle?")]
+    [SouvenirManualQuestion("What was the missing letter?")]
     private IEnumerator<SouvenirInstruction> ProcessAlphabetTiles(ModuleData module)
     {
         var comp = GetComponent(module, "AlphabetTilesScript");

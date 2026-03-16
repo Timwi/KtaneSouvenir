@@ -21,6 +21,7 @@ public enum SSchlagDenBomb
 public partial class SouvenirModule
 {
     [SouvenirHandler("qSchlagDenBomb", "Schlag den Bomb", typeof(SSchlagDenBomb), "JerryEris")]
+    [SouvenirManualQuestion("What were the contestant’s name and both scores?")]
     private IEnumerator<SouvenirInstruction> ProcessSchlagDenBomb(ModuleData module)
     {
         var comp = GetComponent(module, "qSchlagDenBomb");

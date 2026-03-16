@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SStateOfAggregation
 public partial class SouvenirModule
 {
     [SouvenirHandler("stateOfAggregation", "State of Aggregation", typeof(SStateOfAggregation), "BigCrunch22")]
+    [SouvenirManualQuestion("What element was shown?")]
     private IEnumerator<SouvenirInstruction> ProcessStateOfAggregation(ModuleData module)
     {
         var comp = GetComponent(module, "StateOfAggregation");

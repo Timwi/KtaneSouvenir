@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SKeypadMagnified
 public partial class SouvenirModule
 {
     [SouvenirHandler("keypadMagnified", "Keypad Magnified", typeof(SKeypadMagnified), "tandyCake")]
+    [SouvenirManualQuestion("What was the position of the LED?")]
     private IEnumerator<SouvenirInstruction> ProcessKeypadMagnified(ModuleData module)
     {
         var comp = GetComponent(module, "KeypadMagnifiedScript");

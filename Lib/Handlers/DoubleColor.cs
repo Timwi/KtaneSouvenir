@@ -12,6 +12,7 @@ public enum SDoubleColor
 public partial class SouvenirModule
 {
     [SouvenirHandler("doubleColor", "Double Color", typeof(SDoubleColor), "luisdiogo98")]
+    [SouvenirManualQuestion("What was the screen color in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleColor(ModuleData module)
     {
         var comp = GetComponent(module, "doubleColor");

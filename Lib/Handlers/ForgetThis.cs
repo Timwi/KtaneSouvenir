@@ -21,6 +21,7 @@ public enum SForgetThis
 public partial class SouvenirModule
 {
     [SouvenirHandler("forgetThis", "Forget This", typeof(SForgetThis), "Kuro", IsBossModule = true)]
+    [SouvenirManualQuestion("What were the displayed digit and color in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetThis(ModuleData module)
     {
         var comp = GetComponent(module, "ForgetThis");

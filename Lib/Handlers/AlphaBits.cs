@@ -15,6 +15,7 @@ public enum SAlphaBits
 public partial class SouvenirModule
 {
     [SouvenirHandler("alphaBits", "Alpha-Bits", typeof(SAlphaBits), "Timwi")]
+    [SouvenirManualQuestion("What characters were displayed on each screen?")]
     private IEnumerator<SouvenirInstruction> ProcessAlphaBits(ModuleData module)
     {
         var comp = GetComponent(module, "AlphaBitsScript");

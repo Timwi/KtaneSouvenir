@@ -21,6 +21,8 @@ public enum SConnectedMonitors
 public partial class SouvenirModule
 {
     [SouvenirHandler("ConnectedMonitorsModule", "Connected Monitors", typeof(SConnectedMonitors), "Anonymous")]
+    [SouvenirManualQuestion("What numbers were initially displayed?")]
+    [SouvenirManualQuestion("What colors were the indicators?")]
     private IEnumerator<SouvenirInstruction> ProcessConnectedMonitors(ModuleData module)
     {
         var comp = GetComponent(module, "ConnectedMonitorsScript");

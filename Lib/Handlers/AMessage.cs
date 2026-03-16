@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SAMessage
 public partial class SouvenirModule
 {
     [SouvenirHandler("AMessage", "A Message", typeof(SAMessage), "Anonymous")]
+    [SouvenirManualQuestion("What was the received message?")]
     private IEnumerator<SouvenirInstruction> ProcessAMessage(ModuleData module)
     {
         yield return WaitForSolve;

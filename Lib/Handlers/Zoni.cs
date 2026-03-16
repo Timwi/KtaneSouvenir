@@ -13,6 +13,7 @@ public enum SZoni
 public partial class SouvenirModule
 {
     [SouvenirHandler("lgndZoni", "Zoni", typeof(SZoni), "luisdiogo98")]
+    [SouvenirManualQuestion("What were the words?")]
     private IEnumerator<SouvenirInstruction> ProcessZoni(ModuleData module)
     {
         var comp = GetComponent(module, "ZoniModuleScript");

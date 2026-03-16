@@ -17,6 +17,7 @@ public enum SGryphons
 public partial class SouvenirModule
 {
     [SouvenirHandler("gryphons", "Gryphons", typeof(SGryphons), "JerryEris")]
+    [SouvenirManualQuestion("What were the gryphon’s name and age?")]
     private IEnumerator<SouvenirInstruction> ProcessGryphons(ModuleData module)
     {
         var comp = GetComponent(module, "Gryphons");

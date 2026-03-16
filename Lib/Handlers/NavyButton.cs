@@ -24,6 +24,8 @@ public enum SNavyButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("NavyButtonModule", "Navy Button", typeof(SNavyButton), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("Which Greek letters appeared?")]
+    [SouvenirManualQuestion("What were the coordinates and value of the given?")]
     private IEnumerator<SouvenirInstruction> ProcessNavyButton(ModuleData module)
     {
         var comp = GetComponent(module, "NavyButtonScript");

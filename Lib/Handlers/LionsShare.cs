@@ -17,6 +17,8 @@ public enum SLionsShare
 public partial class SouvenirModule
 {
     [SouvenirHandler("LionsShareModule", "Lion’s Share", typeof(SLionsShare), "Timwi")]
+    [SouvenirManualQuestion("Which year was displayed?")]
+    [SouvenirManualQuestion("Which lions were present but removed?")]
     private IEnumerator<SouvenirInstruction> ProcessLionsShare(ModuleData module)
     {
         var comp = GetComponent(module, "LionsShareModule");

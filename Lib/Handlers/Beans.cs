@@ -14,6 +14,8 @@ public enum SBeans
 public partial class SouvenirModule
 {
     [SouvenirHandler("beans", "Beans", typeof(SBeans), "Anonymous")]
+    [SouvenirManualQuestion("What color were the eaten beans?")]
+    [SouvenirManualQuestion("Which beans were wobbling?")]
     private IEnumerator<SouvenirInstruction> ProcessBeans(ModuleData module)
     {
         var comp = GetComponent(module, "beansScript");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,5 +12,6 @@ public enum SDACHMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("DACH", "DACH Maze", typeof(SDACHMaze), "Timwi")]
+    [SouvenirManualQuestion("Which region did you depart from?")]
     private IEnumerator<SouvenirInstruction> ProcessDACHMaze(ModuleData module) => processWorldMaze(module, "DACHMaze", SDACHMaze.Origin);
 }

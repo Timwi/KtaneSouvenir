@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SWatchingPaintDry
 public partial class SouvenirModule
 {
     [SouvenirHandler("watchingPaintDry", "Watching Paint Dry", typeof(SWatchingPaintDry), "Anonymous")]
+    [SouvenirManualQuestion("How many brush strokes were there?")]
     private IEnumerator<SouvenirInstruction> ProcessWatchingPaintDry(ModuleData module)
     {
         yield return WaitForSolve;

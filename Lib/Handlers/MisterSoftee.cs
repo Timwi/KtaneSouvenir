@@ -17,6 +17,8 @@ public enum SMisterSoftee
 public partial class SouvenirModule
 {
     [SouvenirHandler("misterSoftee", "Mister Softee", typeof(SMisterSoftee), "TasThiluna")]
+    [SouvenirManualQuestion("Where was the SpongeBob Bar?")]
+    [SouvenirManualQuestion("Which treats were present?")]
     private IEnumerator<SouvenirInstruction> ProcessMisterSoftee(ModuleData module)
     {
         var comp = GetComponent(module, "misterSoftee");

@@ -18,6 +18,7 @@ public enum SPinpoint
 public partial class SouvenirModule
 {
     [SouvenirHandler("pinpoint", "Pinpoint", typeof(SPinpoint), "Timwi")]
+    [SouvenirManualQuestion("What were the given point coordinates and distances?")]
     private IEnumerator<SouvenirInstruction> ProcessPinpoint(ModuleData module)
     {
         var comp = GetComponent(module, "pinpointScript");

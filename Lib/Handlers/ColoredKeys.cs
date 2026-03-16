@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -24,6 +24,8 @@ public enum SColoredKeys
 public partial class SouvenirModule
 {
     [SouvenirHandler("lgndColoredKeys", "Colored Keys", typeof(SColoredKeys), "luisdiogo98")]
+    [SouvenirManualQuestion("What was the displayed word and its color?")]
+    [SouvenirManualQuestion("What were the colors and letters on each key?")]
     private IEnumerator<SouvenirInstruction> ProcessColoredKeys(ModuleData module)
     {
         var comp = GetComponent(module, "ColoredKeysScript");

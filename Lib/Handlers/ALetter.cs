@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SALetter
 public partial class SouvenirModule
 {
     [SouvenirHandler("LetterModule", "A Letter", typeof(SALetter), "Sierra")]
+    [SouvenirManualQuestion("What was the initially displayed letter?")]
     private IEnumerator<SouvenirInstruction> ProcessALetter(ModuleData module)
     {
         var comp = GetComponent(module, "Letter");

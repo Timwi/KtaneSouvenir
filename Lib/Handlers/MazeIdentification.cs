@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -20,6 +20,8 @@ public enum SMazeIdentification
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSMazeIdentification", "Maze Identification", typeof(SMazeIdentification), "GhostSalt")]
+    [SouvenirManualQuestion("What was the seed?")]
+    [SouvenirManualQuestion("What function did each button have?")]
     private IEnumerator<SouvenirInstruction> ProcessMazeIdentification(ModuleData module)
     {
         var comp = GetComponent(module, "MazeIdentificationScript");

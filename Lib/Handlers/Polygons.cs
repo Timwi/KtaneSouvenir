@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SPolygons
 public partial class SouvenirModule
 {
     [SouvenirHandler("polygons", "Polygons", typeof(SPolygons), "Anonymous")]
+    [SouvenirManualQuestion("Which polygons were present?")]
     private IEnumerator<SouvenirInstruction> ProcessPolygons(ModuleData module)
     {
         yield return WaitForSolve;

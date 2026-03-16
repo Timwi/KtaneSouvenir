@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum STripleTerm
 public partial class SouvenirModule
 {
     [SouvenirHandler("tripleTermModule", "Triple Term", typeof(STripleTerm), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the passwords?")]
     private IEnumerator<SouvenirInstruction> ProcessTripleTerm(ModuleData module)
     {
         var comp = GetComponent(module, "TripleTermScript");

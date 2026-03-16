@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SFactoringMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("factoringMaze", "Factoring Maze", typeof(SFactoringMaze), "Eltrick")]
+    [SouvenirManualQuestion("What were the prime numbers used?")]
     private IEnumerator<SouvenirInstruction> ProcessFactoringMaze(ModuleData module)
     {
         var comp = GetComponent(module, "FactoringMazeScript");

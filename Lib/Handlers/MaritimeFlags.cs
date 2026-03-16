@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -16,6 +16,8 @@ public enum SMaritimeFlags
 public partial class SouvenirModule
 {
     [SouvenirHandler("MaritimeFlagsModule", "Maritime Flags", typeof(SMaritimeFlags), "Timwi")]
+    [SouvenirManualQuestion("What bearing was signaled?")]
+    [SouvenirManualQuestion("What callsign was signaled?")]
     private IEnumerator<SouvenirInstruction> ProcessMaritimeFlags(ModuleData module)
     {
         var comp = GetComponent(module, "MaritimeFlagsModule");

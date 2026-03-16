@@ -13,6 +13,7 @@ public enum SSymbolCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("SymbolCycleModule", "Symbol Cycle", typeof(SSymbolCycle), "CaitSith2")]
+    [SouvenirManualQuestion("How many symbols were cycling on each screen?")]
     private IEnumerator<SouvenirInstruction> ProcessSymbolCycle(ModuleData module)
     {
         var comp = GetComponent(module, "SymbolCycleModule");

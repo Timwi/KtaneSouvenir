@@ -13,6 +13,7 @@ public enum SMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("Maze", "Maze", typeof(SMaze), "Andrio Celos")]
+    [SouvenirManualQuestion("What was the starting position?")]
     private IEnumerator<SouvenirInstruction> ProcessMaze(ModuleData module)
     {
         var comp = GetComponent(module, "InvisibleWallsComponent");

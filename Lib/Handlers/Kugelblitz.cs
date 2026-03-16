@@ -28,6 +28,8 @@ public partial class SouvenirModule
     private readonly Dictionary<object, HashSet<int>> _kugelblitzUsedQuirks = [];
 
     [SouvenirHandler("kugelblitz", "Kugelblitz", typeof(SKugelblitz), "Anonymous", IsBossModule = true)]
+    [SouvenirManualQuestion("Which particles were present during each stage?")]
+    [SouvenirManualQuestion("What were the particles’ values during each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessKugelblitz(ModuleData module)
     {
         yield return WaitForActivate;

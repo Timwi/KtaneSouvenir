@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SNextInLine
 public partial class SouvenirModule
 {
     [SouvenirHandler("NextInLine", "Next In Line", typeof(SNextInLine), "Anonymous")]
+    [SouvenirManualQuestion("What color was the first wire?")]
     private IEnumerator<SouvenirInstruction> ProcessNextInLine(ModuleData module)
     {
         var comp = GetComponent(module, "NextInLine");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SNotTheScrew
 public partial class SouvenirModule
 {
     [SouvenirHandler("notTheScrew", "Not The Screw", typeof(SNotTheScrew), "GhostSalt")]
+    [SouvenirManualQuestion("What was the initial position?")]
     private IEnumerator<SouvenirInstruction> ProcessNotTheScrew(ModuleData module)
     {
         var comp = GetComponent(module, "NotTheScrewModule");

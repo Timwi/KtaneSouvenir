@@ -14,6 +14,7 @@ public enum SSkewedSlots
 public partial class SouvenirModule
 {
     [SouvenirHandler("SkewedSlotsModule", "Skewed Slots", typeof(SSkewedSlots), "Timwi")]
+    [SouvenirManualQuestion("What were the original numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessSkewedSlots(ModuleData module)
     {
         var comp = GetComponent(module, "SkewedModule");

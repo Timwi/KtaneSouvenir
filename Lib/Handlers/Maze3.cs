@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SMaze3
 public partial class SouvenirModule
 {
     [SouvenirHandler("maze3", "Maze³", typeof(SMaze3), "luisdiogo98")]
+    [SouvenirManualQuestion("What was the color of the starting face?")]
     private IEnumerator<SouvenirInstruction> ProcessMaze3(ModuleData module)
     {
         var comp = GetComponent(module, "maze3Script");

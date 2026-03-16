@@ -16,6 +16,7 @@ public enum SUltraStores
 public partial class SouvenirModule
 {
     [SouvenirHandler("UltraStores", "UltraStores", typeof(SUltraStores), "Marksam")]
+    [SouvenirManualQuestion("What were the rotations?")]
     private IEnumerator<SouvenirInstruction> ProcessUltraStores(ModuleData module)
     {
         var comp = GetComponent(module, "UltraStoresScript");

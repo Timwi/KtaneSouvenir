@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SRNGCrystal
 public partial class SouvenirModule
 {
     [SouvenirHandler("rngCrystal", "RNG Crystal", typeof(SRNGCrystal), "Anonymous")]
+    [SouvenirManualQuestion("Where were the taps?")]
     private IEnumerator<SouvenirInstruction> ProcessRNGCrystal(ModuleData module)
     {
         var comp = GetComponent(module, "RngCrystalScript");

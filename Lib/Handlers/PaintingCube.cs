@@ -11,6 +11,7 @@ public enum SPaintingCube
 public partial class SouvenirModule
 {
     [SouvenirHandler("paintingCube", "Painting Cube", typeof(SPaintingCube), "KiloBites")]
+    [SouvenirManualQuestion("What color was missing?")]
     private IEnumerator<SouvenirInstruction> ProcessPaintingCube(ModuleData module)
     {
         var comp = GetComponent(module, "PaintingCubeScript");

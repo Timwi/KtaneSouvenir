@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -21,6 +21,9 @@ public enum SAlfaBravo
 public partial class SouvenirModule
 {
     [SouvenirHandler("alfa_bravo", "Alfa-Bravo", typeof(SAlfaBravo), "NickLatkovich")]
+    [SouvenirManualQuestion("What final letter was pressed?")]
+    [SouvenirManualQuestion("What letters were to the left and right of the final one?")]
+    [SouvenirManualQuestion("What was the last digit on the small display?")]
     private IEnumerator<SouvenirInstruction> ProcessAlfaBravo(ModuleData module)
     {
         var comp = GetComponent(module, "AlfaBravoModule");

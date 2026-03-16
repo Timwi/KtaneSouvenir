@@ -13,6 +13,7 @@ public enum STimezone
 public partial class SouvenirModule
 {
     [SouvenirHandler("timezone", "Timezone", typeof(STimezone), "Timwi")]
+    [SouvenirManualQuestion("What were the departure and destination city?")]
     private IEnumerator<SouvenirInstruction> ProcessTimezone(ModuleData module)
     {
         var comp = GetComponent(module, "TimezoneScript");

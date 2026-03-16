@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -20,6 +20,8 @@ public enum SCheatCheckout
 public partial class SouvenirModule
 {
     [SouvenirHandler("kataCheatCheckout", "Cheat Checkout", typeof(SCheatCheckout), "Hawker")]
+    [SouvenirManualQuestion("What was the cryptocurrency?")]
+    [SouvenirManualQuestion("What was the site and hack method for each hack?")]
     private IEnumerator<SouvenirInstruction> ProcessCheatCheckout(ModuleData module)
     {
         var comp = GetComponent(module, "CheatCheckoutRemake");

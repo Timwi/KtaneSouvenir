@@ -22,6 +22,9 @@ public enum SNotXRay
 public partial class SouvenirModule
 {
     [SouvenirHandler("NotXRayModule", "Not X-Ray", typeof(SNotXRay), "Timwi")]
+    [SouvenirManualQuestion("What table were we in?")]
+    [SouvenirManualQuestion("Which button went which direction?")]
+    [SouvenirManualQuestion("What was the scanner color?")]
     private IEnumerator<SouvenirInstruction> ProcessNotXRay(ModuleData module)
     {
         var comp = GetComponent(module, "NotXRayModule");

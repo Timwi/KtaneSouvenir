@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -17,6 +17,8 @@ public enum SMonsplodeFight
 public partial class SouvenirModule
 {
     [SouvenirHandler("monsplodeFight", "Monsplode, Fight!", typeof(SMonsplodeFight), "Timwi")]
+    [SouvenirManualQuestion("Which creature was displayed?")]
+    [SouvenirManualQuestion("Which moves were selectable?")]
     private IEnumerator<SouvenirInstruction> ProcessMonsplodeFight(ModuleData module)
     {
         var comp = GetComponent(module, "MonsplodeFightModule");

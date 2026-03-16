@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SCrazyMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("CrazyMazeModule", "Crazy Maze", typeof(SCrazyMaze), "Timwi")]
+    [SouvenirManualQuestion("What were the starting and goal positions?")]
     private IEnumerator<SouvenirInstruction> ProcessCrazyMaze(ModuleData module)
     {
         var comp = GetComponent(module, "CrazyMazeScript");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -19,6 +19,7 @@ public enum SCharacterShift
 public partial class SouvenirModule
 {
     [SouvenirHandler("characterShift", "Character Shift", typeof(SCharacterShift), "Kuro")]
+    [SouvenirManualQuestion("What were the characters on the sliders?")]
     private IEnumerator<SouvenirInstruction> ProcessCharacterShift(ModuleData module)
     {
         var comp = GetComponent(module, "characterShift");

@@ -14,6 +14,7 @@ public enum SMahjong
 public partial class SouvenirModule
 {
     [SouvenirHandler("MahjongModule", "Mahjong", typeof(SMahjong), "River")]
+    [SouvenirManualQuestion("What was the bottom-left tile?")]
     private IEnumerator<SouvenirInstruction> ProcessMahjong(ModuleData module)
     {
         var comp = GetComponent(module, "MahjongModule");

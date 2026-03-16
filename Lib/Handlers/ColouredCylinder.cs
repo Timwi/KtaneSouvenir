@@ -12,6 +12,7 @@ public enum SColouredCylinder
 public partial class SouvenirModule
 {
     [SouvenirHandler("colouredCylinder", "Coloured Cylinder", typeof(SColouredCylinder), "Anonymous")]
+    [SouvenirManualQuestion("What colours did the cylinder flash?")]
     private IEnumerator<SouvenirInstruction> ProcessColouredCylinder(ModuleData module)
     {
         yield return WaitForSolve;

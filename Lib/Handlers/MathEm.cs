@@ -17,6 +17,7 @@ public enum SMathEm
 public partial class SouvenirModule
 {
     [SouvenirHandler("mathem", "Math ’em", typeof(SMathEm), "tandyCake")]
+    [SouvenirManualQuestion("What were the color and design of each tile before the shuffle?")]
     private IEnumerator<SouvenirInstruction> ProcessMathEm(ModuleData module)
     {
         var comp = GetComponent(module, "MathemScript");

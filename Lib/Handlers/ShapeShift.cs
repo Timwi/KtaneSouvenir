@@ -14,6 +14,7 @@ public enum SShapeShift
 public partial class SouvenirModule
 {
     [SouvenirHandler("shapeshift", "Shape Shift", typeof(SShapeShift), "Timwi")]
+    [SouvenirManualQuestion("What was the initial shape?")]
     private IEnumerator<SouvenirInstruction> ProcessShapeShift(ModuleData module)
     {
         var comp = GetComponent(module, "ShapeShiftModule");

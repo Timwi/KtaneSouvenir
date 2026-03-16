@@ -19,6 +19,7 @@ public enum SHickoryDickoryDock
 public partial class SouvenirModule
 {
     [SouvenirHandler("hickoryDickoryDockModule", "Hickory Dickory Dock", typeof(SHickoryDickoryDock), "Anonymous", IsBossModule = true)]
+    [SouvenirManualQuestion("What times were shown when the clock struck?")]
     private IEnumerator<SouvenirInstruction> ProcessHickoryDickoryDock(ModuleData module)
     {
         // Wait until _either_ the module solves itself, _or_ no unignored modules are left

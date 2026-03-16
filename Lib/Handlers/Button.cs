@@ -13,6 +13,7 @@ public enum SButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("BigButton", "Button", typeof(SButton), "Andrio Celos", AddThe = true)]
+    [SouvenirManualQuestion("What color did the light glow?")]
     private IEnumerator<SouvenirInstruction> ProcessButton(ModuleData module)
     {
         var comp = GetComponent(module, "ButtonComponent");

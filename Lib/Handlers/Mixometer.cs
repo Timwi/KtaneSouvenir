@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SMixometer
 public partial class SouvenirModule
 {
     [SouvenirHandler("mixometer", "Mixometer", typeof(SMixometer), "Hawker")]
+    [SouvenirManualQuestion("What was the position of the submit button?")]
     private IEnumerator<SouvenirInstruction> ProcessMixometer(ModuleData module)
     {
         var comp = GetComponent(module, "Mixometer");

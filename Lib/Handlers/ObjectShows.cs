@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -13,6 +13,7 @@ public enum SObjectShows
 public partial class SouvenirModule
 {
     [SouvenirHandler("objectShows", "Object Shows", typeof(SObjectShows), "Timwi")]
+    [SouvenirManualQuestion("What contestants were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessObjectShows(ModuleData module)
     {
         var comp = GetComponent(module, "objectShows");

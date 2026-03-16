@@ -14,6 +14,7 @@ public enum SUnfairsCruelRevenge
 public partial class SouvenirModule
 {
     [SouvenirHandler("unfairsRevengeCruel", "Unfair's Cruel Revenge", typeof(SUnfairsCruelRevenge), "KiloBites")]
+    [SouvenirManualQuestion("What were the decrypted instructions?")]
     private IEnumerator<SouvenirInstruction> ProcessUnfairsCruelRevenge(ModuleData module)
     {
         var comp = GetComponent(module, "UnfairsCruelRevengeHandler");

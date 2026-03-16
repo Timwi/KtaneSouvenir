@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SWarningSigns
 public partial class SouvenirModule
 {
     [SouvenirHandler("warningSigns", "Warning Signs", typeof(SWarningSigns), "Kuro")]
+    [SouvenirManualQuestion("What was the displayed sign?")]
     private IEnumerator<SouvenirInstruction> ProcessWarningSigns(ModuleData module)
     {
         var comp = GetComponent(module, "warningSignSrc");

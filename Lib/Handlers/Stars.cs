@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -14,6 +14,7 @@ public enum SStars
 public partial class SouvenirModule
 {
     [SouvenirHandler("stars", "Stars", typeof(SStars), "BigCrunch22")]
+    [SouvenirManualQuestion("What was the digit in the center?")]
     private IEnumerator<SouvenirInstruction> ProcessStars(ModuleData module)
     {
         var comp = GetComponent(module, "Stars2Script");

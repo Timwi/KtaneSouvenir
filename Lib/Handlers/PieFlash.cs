@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SPieFlash
 public partial class SouvenirModule
 {
     [SouvenirHandler("pieFlash", "Pie Flash", typeof(SPieFlash), "VFlyer")]
+    [SouvenirManualQuestion("What numbers were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessPieFlash(ModuleData module)
     {
         var comp = GetComponent(module, "pieFlashScript");

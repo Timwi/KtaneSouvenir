@@ -18,4 +18,7 @@ internal class CommandLineOptions
 
     [Option("-d", "--data"), Documentation("Specifies the path and filename to the data.json file to be updated.")]
     public string DataFile = null;
+
+    [Option("-j", "--js"), Documentation("If specified, generates the Souvenir.js file used by the Souvenir manual.")]
+    public string JsFile = null;
 }

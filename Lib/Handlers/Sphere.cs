@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SSphere
 public partial class SouvenirModule
 {
     [SouvenirHandler("sphere", "Sphere", typeof(SSphere), "luisdiogo98", AddThe = true)]
+    [SouvenirManualQuestion("What were the flashed colors?")]
     private IEnumerator<SouvenirInstruction> ProcessSphere(ModuleData module)
     {
         var comp = GetComponent(module, "theSphereScript");

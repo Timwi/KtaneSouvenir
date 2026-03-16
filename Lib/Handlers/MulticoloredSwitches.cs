@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -13,6 +13,7 @@ public enum SMulticoloredSwitches
 public partial class SouvenirModule
 {
     [SouvenirHandler("R4YMultiColoredSwitches", "Multicolored Switches", typeof(SMulticoloredSwitches), "Timwi")]
+    [SouvenirManualQuestion("What were the colors of the LEDs in both cycles?")]
     private IEnumerator<SouvenirInstruction> ProcessMulticoloredSwitches(ModuleData module)
     {
         var comp = GetComponent(module, "MultiColoredSwitches");

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -15,6 +15,7 @@ public enum SErrorCodes
 public partial class SouvenirModule
 {
     [SouvenirHandler("errorCodes", "Error Codes", typeof(SErrorCodes), "Hawker")]
+    [SouvenirManualQuestion("What was the active error code?")]
     private IEnumerator<SouvenirInstruction> ProcessErrorCodes(ModuleData module)
     {
         yield return WaitForActivate;

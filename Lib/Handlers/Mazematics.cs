@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SMazematics
 public partial class SouvenirModule
 {
     [SouvenirHandler("mazematics", "Mazematics", typeof(SMazematics), "luisdiogo98")]
+    [SouvenirManualQuestion("What were the initial and goal values?")]
     private IEnumerator<SouvenirInstruction> ProcessMazematics(ModuleData module)
     {
         yield return WaitForSolve;

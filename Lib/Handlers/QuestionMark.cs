@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SQuestionMark
 public partial class SouvenirModule
 {
     [SouvenirHandler("Questionmark", "Question Mark", typeof(SQuestionMark), "Kuro")]
+    [SouvenirManualQuestion("What were the flashing symbols?")]
     private IEnumerator<SouvenirInstruction> ProcessQuestionMark(ModuleData module)
     {
         var comp = GetComponent(module, "Questionmark");

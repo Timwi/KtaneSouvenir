@@ -13,6 +13,7 @@ public enum STenButtonColorCode
 public partial class SouvenirModule
 {
     [SouvenirHandler("TenButtonColorCode", "Ten-Button Color Code", typeof(STenButtonColorCode), "Timwi")]
+    [SouvenirManualQuestion("What were the buttons’ initial colors in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessTenButtonColorCode(ModuleData module)
     {
         var comp = GetComponent(module, "scr_colorCode");

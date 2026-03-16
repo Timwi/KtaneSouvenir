@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,6 +15,7 @@ public enum SOneLinksToAll
 public partial class SouvenirModule
 {
     [SouvenirHandler("oneLinksToAllModule", "One Links To All", typeof(SOneLinksToAll), "Anonymous")]
+    [SouvenirManualQuestion("What were the initially displayed articles?")]
     private IEnumerator<SouvenirInstruction> ProcessOneLinksToAll(ModuleData module)
     {
         var comp = GetComponent(module, "OneLinksToAllScript");

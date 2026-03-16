@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SOldFogey
 public partial class SouvenirModule
 {
     [SouvenirHandler("oldFogey", "Old Fogey", typeof(SOldFogey), "Kuro")]
+    [SouvenirManualQuestion("What was the initial color of the status light?")]
     private IEnumerator<SouvenirInstruction> ProcessOldFogey(ModuleData module)
     {
         var comp = GetComponent(module, "OldFogey");

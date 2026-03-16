@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SSpongebobBirthdayIdentification
 public partial class SouvenirModule
 {
     [SouvenirHandler("spongebobBirthdayIdentification", "Spongebob Birthday Identification", typeof(SSpongebobBirthdayIdentification), "Hawker")]
+    [SouvenirManualQuestion("What were the submitted names?")]
     private IEnumerator<SouvenirInstruction> ProcessSpongebobBirthdayIdentification(ModuleData module)
     {
         var comp = GetComponent(module, "SpongebobBirthdayIdentificationScript");

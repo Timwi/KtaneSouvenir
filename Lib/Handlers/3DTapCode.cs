@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum S3DTapCode
 public partial class SouvenirModule
 {
     [SouvenirHandler("3DTapCodeModule", "3D Tap Code", typeof(S3DTapCode), "TasThiluna")]
+    [SouvenirManualQuestion("What was the received word?")]
     private IEnumerator<SouvenirInstruction> Process3DTapCode(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeDTapCodeScript");

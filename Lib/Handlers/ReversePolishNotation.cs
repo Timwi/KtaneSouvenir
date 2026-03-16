@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SReversePolishNotation
 public partial class SouvenirModule
 {
     [SouvenirHandler("revPolNot", "Reverse Polish Notation", typeof(SReversePolishNotation), "shortc1rcuit")]
+    [SouvenirManualQuestion("What characters were used in each round?")]
     private IEnumerator<SouvenirInstruction> ProcessReversePolishNotation(ModuleData module)
     {
         var comp = GetComponent(module, "ReversePolishNotation");

@@ -21,6 +21,7 @@ public enum SCoffeebucks
 public partial class SouvenirModule
 {
     [SouvenirHandler("coffeebucks", "Coffeebucks", typeof(SCoffeebucks), "Espik")]
+    [SouvenirManualQuestion("What was the last customer’s preferred sugar content, time of day, stress level, and size?")]
     private IEnumerator<SouvenirInstruction> ProcessCoffeebucks(ModuleData module)
     {
         var comp = GetComponent(module, "coffeebucksScript");

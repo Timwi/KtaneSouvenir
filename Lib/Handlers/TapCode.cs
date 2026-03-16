@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum STapCode
 public partial class SouvenirModule
 {
     [SouvenirHandler("tapCode", "Tap Code", typeof(STapCode), "Timwi")]
+    [SouvenirManualQuestion("What was the received word?")]
     private IEnumerator<SouvenirInstruction> ProcessTapCode(ModuleData module)
     {
         var comp = GetComponent(module, "TapCodeScript");

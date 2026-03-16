@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SSpaceTraders
 public partial class SouvenirModule
 {
     [SouvenirHandler("space_traders", "Space Traders", typeof(SSpaceTraders), "NickLatkovich")]
+    [SouvenirManualQuestion("What was the maximum tax amount per vessel?")]
     private IEnumerator<SouvenirInstruction> ProcessSpaceTraders(ModuleData module)
     {
         var comp = GetComponent(module, "SpaceTradersModule");

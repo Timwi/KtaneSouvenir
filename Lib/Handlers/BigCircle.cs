@@ -11,6 +11,7 @@ public enum SBigCircle
 public partial class SouvenirModule
 {
     [SouvenirHandler("BigCircle", "Big Circle", typeof(SBigCircle), "Quinn Wuest")]
+    [SouvenirManualQuestion("Which direction was the circle spinning?")]
     private IEnumerator<SouvenirInstruction> ProcessBigCircle(ModuleData module)
     {
         var comp = GetComponent(module, "TheBigCircle");

@@ -13,6 +13,7 @@ public enum SLogicGates
 public partial class SouvenirModule
 {
     [SouvenirHandler("logicGates", "Logic Gates", typeof(SLogicGates), "Timwi")]
+    [SouvenirManualQuestion("What were logic gates A-D?")]
     private IEnumerator<SouvenirInstruction> ProcessLogicGates(ModuleData module)
     {
         var comp = GetComponent(module, "LogicGates");

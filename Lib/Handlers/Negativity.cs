@@ -17,6 +17,7 @@ public enum SNegativity
 public partial class SouvenirModule
 {
     [SouvenirHandler("Negativity", "Negativity", typeof(SNegativity), "VFlyer")]
+    [SouvenirManualQuestion("What was the submitted value (in base 10 and in balanced ternary)?")]
     private IEnumerator<SouvenirInstruction> ProcessNegativity(ModuleData module)
     {
         var comp = GetComponent(module, "NegativityScript");

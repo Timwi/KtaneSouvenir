@@ -12,6 +12,7 @@ public enum SHexOrbits
 public partial class SouvenirModule
 {
     [SouvenirHandler("hexOrbits", "hexOrbits", typeof(SHexOrbits), "Anonymous")]
+    [SouvenirManualQuestion("What shapes were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessHexOrbits(ModuleData module)
     {
         var comp = GetComponent(module, "HexOrbitsScript");

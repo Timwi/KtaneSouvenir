@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -16,6 +16,8 @@ public enum SNotKeypad
 public partial class SouvenirModule
 {
     [SouvenirHandler("NotKeypad", "Not Keypad", typeof(SNotKeypad), "Andrio Celos")]
+    [SouvenirManualQuestion("Which colours flashed in the final sequence?")]
+    [SouvenirManualQuestion("Which symbols were on the buttons that flashed in the final sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessNotKeypad(ModuleData module)
     {
         var comp = GetComponent(module, "NotKeypad");

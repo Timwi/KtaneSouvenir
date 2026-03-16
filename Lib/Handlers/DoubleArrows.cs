@@ -20,6 +20,8 @@ public enum SDoubleArrows
 public partial class SouvenirModule
 {
     [SouvenirHandler("doubleArrows", "Double Arrows", typeof(SDoubleArrows), "Anonymous")]
+    [SouvenirManualQuestion("What was the starting position?")]
+    [SouvenirManualQuestion("Which buttons moved in which directions in the grid?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleArrows(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleArrowsScript");

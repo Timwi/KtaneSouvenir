@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -17,6 +17,8 @@ public enum SBurgerAlarm
 public partial class SouvenirModule
 {
     [SouvenirHandler("burgerAlarm", "Burger Alarm", typeof(SBurgerAlarm), "Kuro")]
+    [SouvenirManualQuestion("What were the displayed digits?")]
+    [SouvenirManualQuestion("What were the order numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessBurgerAlarm(ModuleData module)
     {
         var comp = GetComponent(module, "burgerAlarmScript");

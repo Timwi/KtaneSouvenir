@@ -17,6 +17,7 @@ public enum SMonsplodeTradingCards
 public partial class SouvenirModule
 {
     [SouvenirHandler("monsplodeCards", "Monsplode Trading Cards", typeof(SMonsplodeTradingCards), "Timwi")]
+    [SouvenirManualQuestion("What were the names and print versions of the three cards in your hand before the final trade/keep?")]
     private IEnumerator<SouvenirInstruction> ProcessMonsplodeTradingCards(ModuleData module)
     {
         var comp = GetComponent(module, "MonsplodeCardModule");

@@ -15,6 +15,7 @@ public enum SPuzzlingHexabuttons
 public partial class SouvenirModule
 {
     [SouvenirHandler("puzzlingHexabuttons", "Puzzling Hexabuttons", typeof(SPuzzlingHexabuttons), "Anonymous")]
+    [SouvenirManualQuestion("What letters were shown during submission?")]
     private IEnumerator<SouvenirInstruction> ProcessPuzzlingHexabuttons(ModuleData module)
     {
         yield return WaitForSolve;

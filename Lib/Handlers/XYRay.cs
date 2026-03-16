@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SXYRay
 public partial class SouvenirModule
 {
     [SouvenirHandler("xyRay", "XY-Ray", typeof(SXYRay), "Anonymous")]
+    [SouvenirManualQuestion("What were the scanned shapes?")]
     private IEnumerator<SouvenirInstruction> ProcessXYRay(ModuleData module)
     {
         yield return WaitForSolve;

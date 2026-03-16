@@ -13,6 +13,7 @@ public enum SEntryNumberOne
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSEntryNumberOne", "Entry Number One", typeof(SEntryNumberOne), "GhostSalt")]
+    [SouvenirManualQuestion("What were the numbers shown?")]
     private IEnumerator<SouvenirInstruction> ProcessEntryNumberOne(ModuleData module)
     {
         var comp = GetComponent(module, "EntryNumberOneScript");

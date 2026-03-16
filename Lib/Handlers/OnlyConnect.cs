@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SOnlyConnect
 public partial class SouvenirModule
 {
     [SouvenirHandler("OnlyConnectModule", "Only Connect", typeof(SOnlyConnect), "Timwi")]
+    [SouvenirManualQuestion("What were the positions of the Egyptian hieroglyphs?")]
     private IEnumerator<SouvenirInstruction> ProcessOnlyConnect(ModuleData module)
     {
         var comp = GetComponent(module, "OnlyConnectModule");

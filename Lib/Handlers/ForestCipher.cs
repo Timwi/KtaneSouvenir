@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,5 +12,6 @@ public enum SForestCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("forestCipher", "Forest Cipher", typeof(SForestCipher), "Timwi")]
+    [SouvenirManualQuestion("What was on each screen?")]
     private IEnumerator<SouvenirInstruction> ProcessForestCipher(ModuleData module) => processColoredCiphers(module, "forestCipher", SForestCipher.Screen);
 }

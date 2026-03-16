@@ -12,6 +12,7 @@ public enum SQwirkle
 public partial class SouvenirModule
 {
     [SouvenirHandler("qwirkle", "Qwirkle", typeof(SQwirkle), "GoodHood")]
+    [SouvenirManualQuestion("Which tiles did you place?")]
     private IEnumerator<SouvenirInstruction> ProcessQwirkle(ModuleData module)
     {
         var comp = GetComponent(module, "qwirkleScript");

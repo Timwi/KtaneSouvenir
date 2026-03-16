@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,6 +15,8 @@ public enum SInnerConnections
 public partial class SouvenirModule
 {
     [SouvenirHandler("InnerConnectionsModule", "Inner Connections", typeof(SInnerConnections), "Brawlboxgaming")]
+    [SouvenirManualQuestion("What color was the LED?")]
+    [SouvenirManualQuestion("What was the digit flashed in Morse?")]
     private IEnumerator<SouvenirInstruction> ProcessInnerConnections(ModuleData module)
     {
         var comp = GetComponent(module, "InnerConnectionsScript");

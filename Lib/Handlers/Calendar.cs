@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using System.Drawing;
 using Souvenir;
 using UnityEngine;
@@ -14,29 +15,33 @@ public enum SCalendar
 public partial class SouvenirModule
 {
     [SouvenirHandler("calendar", "Calendar", typeof(SCalendar), "Espik")]
+    [SouvenirManualQuestion("What was the holiday?")]
     private IEnumerator<SouvenirInstruction> ProcessCalendar(ModuleData module)
     {
         var comp = GetComponent(module, "calendar");
 
         var allHolidays = SCalendar.Holiday.GetAnswers(); // We do not get the names directly from the module due to typos, wrong apostrophes, and various inconsistencies from the manual
-        var holidayMonths = new Dictionary<int, int>(); // Used to note the months the holidays are in
 
-        holidayMonths.Add(0, 3); // April Fools’ - April
-        holidayMonths.Add(1, 0); // Australia Day - January
-        holidayMonths.Add(2, 6); // Bastille Day - July
-        holidayMonths.Add(3, 11); // Christmas Eve - December
-        holidayMonths.Add(4, 4); // Cinco de Mayo - May
-        holidayMonths.Add(5, 9); // Day of German Unity - October
-        holidayMonths.Add(6, 9); // Day of the Dead - October
-        holidayMonths.Add(7, 3); // Earth Day - April
-        holidayMonths.Add(8, 0); // Epiphany - January
-        holidayMonths.Add(10, 1); // Groundhog Day - Feburary
-        holidayMonths.Add(11, 10); // Guy Fawkes Night - November
-        holidayMonths.Add(13, 5); // Republic Day - June
-        holidayMonths.Add(14, 2); // Saint Patrick’s Day - March
-        holidayMonths.Add(15, 1); // Valentine’s Day - Feburary
-        holidayMonths.Add(16, 10); // Veterans Day - November
-        holidayMonths.Add(17, 0); // World Braille Day - January
+        // Used to note the months the holidays are in
+        var holidayMonths = new Dictionary<int, int>
+        {
+            [0] = 3, // April Fools’ - April
+            [1] = 0, // Australia Day - January
+            [2] = 6, // Bastille Day - July
+            [3] = 11, // Christmas Eve - December
+            [4] = 4, // Cinco de Mayo - May
+            [5] = 9, // Day of German Unity - October
+            [6] = 9, // Day of the Dead - October
+            [7] = 3, // Earth Day - April
+            [8] = 0, // Epiphany - January
+            [10] = 1, // Groundhog Day - Feburary
+            [11] = 10, // Guy Fawkes Night - November
+            [13] = 5, // Republic Day - June
+            [14] = 2, // Saint Patrick’s Day - March
+            [15] = 1, // Valentine’s Day - Feburary
+            [16] = 10, // Veterans Day - November
+            [17] = 0  // World Braille Day - January
+        };
 
         yield return WaitForSolve;
 

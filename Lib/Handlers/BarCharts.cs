@@ -29,6 +29,9 @@ public enum SBarCharts
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSBarCharts", "Bar Charts", typeof(SBarCharts), "Hawker")]
+    [SouvenirManualQuestion("What were the bars’ heights, colors, and labels?")]
+    [SouvenirManualQuestion("What was the category?")]
+    [SouvenirManualQuestion("What was the unit?")]
     private IEnumerator<SouvenirInstruction> ProcessBarCharts(ModuleData module)
     {
         var comp = GetComponent(module, "BarChartsScript");

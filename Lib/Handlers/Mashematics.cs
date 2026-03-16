@@ -13,6 +13,7 @@ public enum SMashematics
 public partial class SouvenirModule
 {
     [SouvenirHandler("mashematics", "Mashematics", typeof(SMashematics), "Marksam")]
+    [SouvenirManualQuestion("What were the numbers in the equation?")]
     private IEnumerator<SouvenirInstruction> ProcessMashematics(ModuleData module)
     {
         var comp = GetComponent(module, "mashematicsScript");

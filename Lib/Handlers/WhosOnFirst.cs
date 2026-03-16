@@ -13,6 +13,7 @@ public enum SWhosOnFirst
 public partial class SouvenirModule
 {
     [SouvenirHandler("WhosOnFirst", "Who’s on First", typeof(SWhosOnFirst), "Andrio Celos")]
+    [SouvenirManualQuestion("What were the display words?")]
     private IEnumerator<SouvenirInstruction> ProcessWhosOnFirst(ModuleData module)
     {
         var comp = GetComponent(module, "WhosOnFirstComponent");

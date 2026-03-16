@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SProceduralMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("ProceduralMaze", "Procedural Maze", typeof(SProceduralMaze), "Kuro")]
+    [SouvenirManualQuestion("What was the initial seed?")]
     private IEnumerator<SouvenirInstruction> ProcessProceduralMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ProceduralMazeModule");

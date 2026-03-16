@@ -18,6 +18,7 @@ public enum SConcentration
 public partial class SouvenirModule
 {
     [SouvenirHandler("ConcentrationModule", "Concentration", typeof(SConcentration), "Anonymous", IsBossModule = true)]
+    [SouvenirManualQuestion("What was the initial layout?")]
     private IEnumerator<SouvenirInstruction> ProcessConcentration(ModuleData module)
     {
         var comp = GetComponent(module, "ConcentrationModule");

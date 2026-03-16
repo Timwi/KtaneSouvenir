@@ -20,6 +20,7 @@ public enum SFindTheDate
 public partial class SouvenirModule
 {
     [SouvenirHandler("DateFinder", "Find The Date", typeof(SFindTheDate), "Hawker")]
+    [SouvenirManualQuestion("What were the day, month, and year for each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessFindTheDate(ModuleData module)
     {
         var comp = GetComponent(module, "DateFinder");

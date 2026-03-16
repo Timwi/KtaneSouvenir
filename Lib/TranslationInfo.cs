@@ -7,6 +7,7 @@ public abstract class TranslationInfo
 {
     public bool NeedsTranslation = false;
     public string ModuleName;
+    public string ManualModuleName;
 
     public abstract QuestionTranslationInfo GetQuestion(Enum enumValue);
     public abstract DiscriminatorTranslationInfo GetDiscriminator(Enum enumValue);
@@ -17,6 +18,8 @@ public abstract class TranslationInfo
         ["ja"] = new Translation_ja(),
         ["ru"] = new Translation_ru()
     };
+
+    public Dictionary<string, string> ManualQuestions = null;
 }
 
 public class TranslationInfo<TQ> : TranslationInfo where TQ : QuestionTranslationInfo

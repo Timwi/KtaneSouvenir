@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SLangtonsAnteater
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSLangtonsAnteater", "Langton’s Anteater", typeof(SLangtonsAnteater), "Kuro")]
+    [SouvenirManualQuestion("What was the initial state of the grid?")]
     private IEnumerator<SouvenirInstruction> ProcessLangtonsAnteater(ModuleData module)
     {
         var comp = GetComponent(module, "LangtonsAnteaterScript");

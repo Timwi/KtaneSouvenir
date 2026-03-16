@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Souvenir;
@@ -13,6 +13,7 @@ public enum SScrutinySquares
 public partial class SouvenirModule
 {
     [SouvenirHandler("scrutinySquares", "Scrutiny Squares", typeof(SScrutinySquares), "Hawker")]
+    [SouvenirManualQuestion("What was the modified property of the first displayed square?")]
     private IEnumerator<SouvenirInstruction> ProcessScrutinySquares(ModuleData module)
     {
         var comp = GetComponent(module, "ScrutinySquaresScript");

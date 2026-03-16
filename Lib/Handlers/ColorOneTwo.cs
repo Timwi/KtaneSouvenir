@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SColorOneTwo
 public partial class SouvenirModule
 {
     [SouvenirHandler("colorOneTwo", "Color One Two", typeof(SColorOneTwo), "Anonymous")]
+    [SouvenirManualQuestion("What colors were the LEDs?")]
     private IEnumerator<SouvenirInstruction> ProcessColorOneTwo(ModuleData module)
     {
         yield return WaitForSolve;

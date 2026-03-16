@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public enum SVcrcs
 public partial class SouvenirModule
 {
     [SouvenirHandler("VCRCS", "Vcrcs", typeof(SVcrcs), "Timwi")]
+    [SouvenirManualQuestion("What was the displayed word?")]
     private IEnumerator<SouvenirInstruction> ProcessVcrcs(ModuleData module)
     {
         var comp = GetComponent(module, "VcrcsScript");

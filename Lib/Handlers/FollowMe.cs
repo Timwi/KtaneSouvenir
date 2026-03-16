@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SFollowMe
 public partial class SouvenirModule
 {
     [SouvenirHandler("FollowMe", "Follow Me", typeof(SFollowMe), "Kuro")]
+    [SouvenirManualQuestion("What were the flashing directions?")]
     private IEnumerator<SouvenirInstruction> ProcessFollowMe(ModuleData module)
     {
         var comp = GetComponent(module, "FollowMe");

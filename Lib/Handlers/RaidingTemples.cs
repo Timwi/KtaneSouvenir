@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -14,6 +14,7 @@ public enum SRaidingTemples
 public partial class SouvenirModule
 {
     [SouvenirHandler("raidingTemples", "Raiding Temples", typeof(SRaidingTemples), "GoodHood")]
+    [SouvenirManualQuestion("How many jewels were initially in the common pool?")]
     private IEnumerator<SouvenirInstruction> ProcessRaidingTemples(ModuleData module)
     {
         var comp = GetComponent(module, "raidingTemplesScript");

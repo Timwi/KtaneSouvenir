@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,6 +15,8 @@ public enum SHyperlink
 public partial class SouvenirModule
 {
     [SouvenirHandler("hyperlink", "Hyperlink", typeof(SHyperlink), "Espik", AddThe = true)]
+    [SouvenirManualQuestion("What was the hyperlink?")]
+    [SouvenirManualQuestion("Which module was referenced?")]
     private IEnumerator<SouvenirInstruction> ProcessHyperlink(ModuleData module)
     {
         var comp = GetComponent(module, "hyperlinkScript");

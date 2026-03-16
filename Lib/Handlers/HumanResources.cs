@@ -16,6 +16,8 @@ public enum SHumanResources
 public partial class SouvenirModule
 {
     [SouvenirHandler("HumanResourcesModule", "Human Resources", typeof(SHumanResources), "Timwi")]
+    [SouvenirManualQuestion("Which employees and applicants were present?")]
+    [SouvenirManualQuestion("Which descriptors were shown in red and green?")]
     private IEnumerator<SouvenirInstruction> ProcessHumanResources(ModuleData module)
     {
         var comp = GetComponent(module, "HumanResourcesModule");

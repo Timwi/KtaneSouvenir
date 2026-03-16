@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -15,6 +15,7 @@ public enum SBurglarAlarm
 public partial class SouvenirModule
 {
     [SouvenirHandler("burglarAlarm", "Burglar Alarm", typeof(SBurglarAlarm), "Timwi")]
+    [SouvenirManualQuestion("What were the displayed digits?")]
     private IEnumerator<SouvenirInstruction> ProcessBurglarAlarm(ModuleData module)
     {
         var comp = GetComponent(module, "BurglarAlarmScript");

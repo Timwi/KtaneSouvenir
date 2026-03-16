@@ -17,6 +17,8 @@ public enum SNandNs
 public partial class SouvenirModule
 {
     [SouvenirHandler("NandNs", "N&Ns", typeof(SNandNs), "Anonymous")]
+    [SouvenirManualQuestion("What were the labels in stage 2 and 3?")]
+    [SouvenirManualQuestion("What was the missing color in stage 3?")]
     private IEnumerator<SouvenirInstruction> ProcessNandNs(ModuleData module)
     {
         // No chance of missing the second stage, since the animation takes some time

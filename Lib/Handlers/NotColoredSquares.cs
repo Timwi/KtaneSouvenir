@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SNotColoredSquares
 public partial class SouvenirModule
 {
     [SouvenirHandler("NotColoredSquaresModule", "Not Colored Squares", typeof(SNotColoredSquares), "Kuro")]
+    [SouvenirManualQuestion("What position did you initially press?")]
     private IEnumerator<SouvenirInstruction> ProcessNotColoredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "NotColoredSquaresScript");

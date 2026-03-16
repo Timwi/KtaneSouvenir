@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SKanji
 public partial class SouvenirModule
 {
     [SouvenirHandler("KanjiModule", "Kanji", typeof(SKanji), "Kuro")]
+    [SouvenirManualQuestion("What was the displayed word in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessKanji(ModuleData module)
     {
         var comp = GetComponent(module, "KanjiModule");

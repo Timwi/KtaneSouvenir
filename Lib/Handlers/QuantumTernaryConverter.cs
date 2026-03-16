@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -16,6 +16,7 @@ public enum SQuantumTernaryConverter
 public partial class SouvenirModule
 {
     [SouvenirHandler("quTern", "Quantum Ternary Converter", typeof(SQuantumTernaryConverter), "Anonymous")]
+    [SouvenirManualQuestion("What were the numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessQuantumTernaryConverter(ModuleData module)
     {
         yield return WaitForSolve;

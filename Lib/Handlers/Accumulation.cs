@@ -23,6 +23,8 @@ public enum SAccumulation
 public partial class SouvenirModule
 {
     [SouvenirHandler("accumulation", "Accumulation", typeof(SAccumulation), "luisdiogo98")]
+    [SouvenirManualQuestion("What were the background colors at each stage?")]
+    [SouvenirManualQuestion("What was the border color?")]
     private IEnumerator<SouvenirInstruction> ProcessAccumulation(ModuleData module)
     {
         var comp = GetComponent(module, "accumulationScript");

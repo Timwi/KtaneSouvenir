@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SDigitString
 public partial class SouvenirModule
 {
     [SouvenirHandler("digitString", "Digit String", typeof(SDigitString), "GoodHood")]
+    [SouvenirManualQuestion("What was the displayed digit string?")]
     private IEnumerator<SouvenirInstruction> ProcessDigitString(ModuleData module)
     {
         var comp = GetComponent(module, "digitString");

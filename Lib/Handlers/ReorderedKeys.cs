@@ -23,6 +23,8 @@ public enum SReorderedKeys
 public partial class SouvenirModule
 {
     [SouvenirHandler("reorderedKeys", "Reordered Keys", typeof(SReorderedKeys), "Anonymous")]
+    [SouvenirManualQuestion("What were the labels, their colors, and the colors of the keys initially in each stage?")]
+    [SouvenirManualQuestion("Where was the pivot in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessReorderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "ReorderedKeysScript");

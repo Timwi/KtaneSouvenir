@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,8 @@ public enum SLadders
 public partial class SouvenirModule
 {
     [SouvenirHandler("ladders", "Ladders", typeof(SLadders), "tandyCake")]
+    [SouvenirManualQuestion("Which colors were present on the second ladder?")]
+    [SouvenirManualQuestion("What color was missing on the third ladder?")]
     private IEnumerator<SouvenirInstruction> ProcessLadders(ModuleData module)
     {
         var comp = GetComponent(module, "LaddersScript");

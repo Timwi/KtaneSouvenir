@@ -15,6 +15,7 @@ public enum SLEDEncryption
 public partial class SouvenirModule
 {
     [SouvenirHandler("LEDEnc", "LED Encryption", typeof(SLEDEncryption), "CaitSith2")]
+    [SouvenirManualQuestion("Which letters were present at each stage")]
     private IEnumerator<SouvenirInstruction> ProcessLEDEncryption(ModuleData module)
     {
         var comp = GetComponent(module, "LEDEncryption");

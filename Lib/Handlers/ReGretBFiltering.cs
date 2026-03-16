@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SReGretBFiltering
 public partial class SouvenirModule
 {
     [SouvenirHandler("regretbFiltering", "ReGret-B Filtering", typeof(SReGretBFiltering), "Anonymous")]
+    [SouvenirManualQuestion("Which calculations were used?")]
     private IEnumerator<SouvenirInstruction> ProcessReGretBFiltering(ModuleData module)
     {
         yield return WaitForSolve;

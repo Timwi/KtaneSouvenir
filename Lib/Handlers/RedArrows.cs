@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SRedArrows
 public partial class SouvenirModule
 {
     [SouvenirHandler("redArrowsModule", "Red Arrows", typeof(SRedArrows), "kavinkul")]
+    [SouvenirManualQuestion("What was the starting number?")]
     private IEnumerator<SouvenirInstruction> ProcessRedArrows(ModuleData module)
     {
         var comp = GetComponent(module, "RedArrowsScript");

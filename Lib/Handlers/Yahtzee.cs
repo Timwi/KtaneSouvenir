@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SYahtzee
 public partial class SouvenirModule
 {
     [SouvenirHandler("YahtzeeModule", "Yahtzee", typeof(SYahtzee), "Timwi")]
+    [SouvenirManualQuestion("What was the first roll?")]
     private IEnumerator<SouvenirInstruction> ProcessYahtzee(ModuleData module)
     {
         var comp = GetComponent(module, "YahtzeeModule");

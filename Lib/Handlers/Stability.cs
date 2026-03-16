@@ -17,6 +17,8 @@ public enum SStability
 public partial class SouvenirModule
 {
     [SouvenirHandler("stabilityModule", "Stability", typeof(SStability), "NickLatkovich")]
+    [SouvenirManualQuestion("What were the lit LEDs’ colors?")]
+    [SouvenirManualQuestion("What was the identification number?")]
     private IEnumerator<SouvenirInstruction> ProcessStability(ModuleData module)
     {
         var colorNames = new[] { "Red", "Yellow", "Blue" };

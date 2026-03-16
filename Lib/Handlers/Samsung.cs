@@ -12,6 +12,7 @@ public enum SSamsung
 public partial class SouvenirModule
 {
     [SouvenirHandler("theSamsung", "Samsung", typeof(SSamsung), "TasThiluna", AddThe = true)]
+    [SouvenirManualQuestion("Where was each app?")]
     private IEnumerator<SouvenirInstruction> ProcessSamsung(ModuleData module)
     {
         var comp = GetComponent(module, "theSamsung");

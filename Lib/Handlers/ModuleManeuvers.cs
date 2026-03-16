@@ -13,6 +13,7 @@ public enum SModuleManeuvers
 public partial class SouvenirModule
 {
     [SouvenirHandler("moduleManeuvers", "Module Maneuvers", typeof(SModuleManeuvers), "Anonymous")]
+    [SouvenirManualQuestion("What was the goal location?")]
     private IEnumerator<SouvenirInstruction> ProcessModuleManeuvers(ModuleData module)
     {
         yield return WaitForSolve;

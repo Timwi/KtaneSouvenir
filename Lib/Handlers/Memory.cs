@@ -13,6 +13,7 @@ public enum SMemory
 public partial class SouvenirModule
 {
     [SouvenirHandler("Memory", "Memory", typeof(SMemory), "Andrio Celos")]
+    [SouvenirManualQuestion("What was the display in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessMemory(ModuleData module)
     {
         var comp = GetComponent(module, "MemoryComponent");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SOldAI
 public partial class SouvenirModule
 {
     [SouvenirHandler("SCP079", "Old AI", typeof(SOldAI), "noting3548")]
+    [SouvenirManualQuestion("Which condition did the displayed numbers follow?")]
     private IEnumerator<SouvenirInstruction> ProcessOldAI(ModuleData module)
     {
         var comp = GetComponent(module, "SCP079");

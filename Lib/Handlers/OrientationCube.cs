@@ -12,6 +12,7 @@ public enum SOrientationCube
 public partial class SouvenirModule
 {
     [SouvenirHandler("OrientationCube", "Orientation Cube", typeof(SOrientationCube), "Timwi")]
+    [SouvenirManualQuestion("What was the observer’s initial position?")]
     private IEnumerator<SouvenirInstruction> ProcessOrientationCube(ModuleData module)
     {
         var comp = GetComponent(module, "OrientationModule");

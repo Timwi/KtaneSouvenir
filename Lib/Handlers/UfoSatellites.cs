@@ -14,6 +14,7 @@ public enum SUfoSatellites
 public partial class SouvenirModule
 {
     [SouvenirHandler("UfoSatellites", "UFO Satellites", typeof(SUfoSatellites), "thunder725")]
+    [SouvenirManualQuestion("Which numbers were present?")]
     private IEnumerator<SouvenirInstruction> ProcessUfoSatellites(ModuleData module)
     {
         var comp = GetComponent(module, "UfoSatellitesScript");

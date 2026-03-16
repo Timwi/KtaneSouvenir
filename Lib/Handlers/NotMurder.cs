@@ -24,6 +24,8 @@ public enum SNotMurder
 public partial class SouvenirModule
 {
     [SouvenirHandler("notMurder", "Not Murder", typeof(SNotMurder), "Quinn Wuest")]
+    [SouvenirManualQuestion("What room were the suspects in initially?")]
+    [SouvenirManualQuestion("What weapons did the suspects possess initially?")]
     private IEnumerator<SouvenirInstruction> ProcessNotMurder(ModuleData module)
     {
         while (!_isActivated)

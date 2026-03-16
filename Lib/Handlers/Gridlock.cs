@@ -17,6 +17,8 @@ public enum SGridlock
 public partial class SouvenirModule
 {
     [SouvenirHandler("GridlockModule", "Gridlock", typeof(SGridlock), "CaitSith2")]
+    [SouvenirManualQuestion("What was the starting color?")]
+    [SouvenirManualQuestion("What was the starting position?")]
     private IEnumerator<SouvenirInstruction> ProcessGridlock(ModuleData module)
     {
         var comp = GetComponent(module, "GridlockModule");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -16,6 +16,7 @@ public enum SNeutralization
 public partial class SouvenirModule
 {
     [SouvenirHandler("neutralization", "Neutralization", typeof(SNeutralization), "Timwi")]
+    [SouvenirManualQuestion("What was the acid’s color/volume?")]
     private IEnumerator<SouvenirInstruction> ProcessNeutralization(ModuleData module)
     {
         var comp = GetComponent(module, "neutralization");

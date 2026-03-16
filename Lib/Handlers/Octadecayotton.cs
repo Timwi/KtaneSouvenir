@@ -17,6 +17,8 @@ public enum SOctadecayotton
 public partial class SouvenirModule
 {
     [SouvenirHandler("TheOctadecayotton", "Octadecayotton", typeof(SOctadecayotton), "Emik", AddThe = true)]
+    [SouvenirManualQuestion("What was the starting sphere?")]
+    [SouvenirManualQuestion("What were the subtransformations in each transformation?")]
     private IEnumerator<SouvenirInstruction> ProcessOctadecayotton(ModuleData module)
     {
         var comp = GetComponent(module, "TheOctadecayottonScript");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SSimonSupports
 public partial class SouvenirModule
 {
     [SouvenirHandler("simonSupports", "Simon Supports", typeof(SSimonSupports), "tandyCake")]
+    [SouvenirManualQuestion("What were the 3 topics?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSupports(ModuleData module)
     {
         var comp = GetComponent(module, "SimonSupportsScript");

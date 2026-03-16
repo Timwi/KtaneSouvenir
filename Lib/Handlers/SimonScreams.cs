@@ -60,6 +60,8 @@ public enum SSimonScreams
 public partial class SouvenirModule
 {
     [SouvenirHandler("SimonScreamsModule", "Simon Screams", typeof(SSimonScreams), "Timwi")]
+    [SouvenirManualQuestion("What flashing color was used in each stage?")]
+    [SouvenirManualQuestion("Which rules applied in which stage(s)?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonScreams(ModuleData module)
     {
         var comp = GetComponent(module, "SimonScreamsModule");

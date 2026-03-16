@@ -16,6 +16,7 @@ public enum S100LevelsOfDefusal
 public partial class SouvenirModule
 {
     [SouvenirHandler("100LevelsOfDefusal", "100 Levels of Defusal", typeof(S100LevelsOfDefusal), "Espik")]
+    [SouvenirManualQuestion("What were the displayed letters?")]
     private IEnumerator<SouvenirInstruction> Process100LevelsOfDefusal(ModuleData module)
     {
         var comp = GetComponent(module, "OneHundredLevelsOfDefusal");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -18,6 +18,8 @@ public enum SScavengerHunt
 public partial class SouvenirModule
 {
     [SouvenirHandler("scavengerHunt", "Scavenger Hunt", typeof(SScavengerHunt), "Timwi")]
+    [SouvenirManualQuestion("Which tile was correctly submitted in the first stage?")]
+    [SouvenirManualQuestion("Where were the red, green, and blue tiles in the first stage?")]
     private IEnumerator<SouvenirInstruction> ProcessScavengerHunt(ModuleData module)
     {
         var comp = GetComponent(module, "scavengerHunt");

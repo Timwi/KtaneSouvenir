@@ -13,6 +13,7 @@ public enum SAudioMorse
 public partial class SouvenirModule
 {
     [SouvenirHandler("lgndAudioMorse", "Audio Morse", typeof(SAudioMorse), "Anonymous")]
+    [SouvenirManualQuestion("What was the Morse code?")]
     private IEnumerator<SouvenirInstruction> ProcessAudioMorse(ModuleData module)
     {
         var morse = "   ;A.-;B-...;C-.-.;D-..;E.;F..-.;G--.;H....;I..;J.---;K-.-;L.-..;M--;N-.;O---;P.--.;Q--.-;R.-.;S...;T-;U..-;V...-;W.--;X-..-;Y-.--;Z--..;1.----;2..---;3...--;4....-;5.....;6-....;7--...;8---..;9----.;0-----"

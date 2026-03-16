@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,6 +15,7 @@ public enum SWhatsOnSecond
 public partial class SouvenirModule
 {
     [SouvenirHandler("WhatsOnSecond", "What’s on Second", typeof(SWhatsOnSecond), "BigCrunch22")]
+    [SouvenirManualQuestion("What were the display text and color in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessWhatsOnSecond(ModuleData module)
     {
         var comp = GetComponent(module, "WhatsonSecondScript");

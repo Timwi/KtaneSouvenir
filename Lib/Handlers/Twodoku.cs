@@ -17,6 +17,7 @@ public enum STwodoku
 public partial class SouvenirModule
 {
     [SouvenirHandler("TwodokuModule", "Twodoku", typeof(STwodoku), "Timwi")]
+    [SouvenirManualQuestion("Where were the digits, symbols, and highlights?")]
     private IEnumerator<SouvenirInstruction> ProcessTwodoku(ModuleData module)
     {
         var comp = GetComponent(module, "TwodokuModule");

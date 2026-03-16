@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SPunctuationMarks
 public partial class SouvenirModule
 {
     [SouvenirHandler("punctuationMarks", "...?", typeof(SPunctuationMarks), "Kuro")]
+    [SouvenirManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessPunctuationMarks(ModuleData module)
     {
         var comp = GetComponent(module, "script");

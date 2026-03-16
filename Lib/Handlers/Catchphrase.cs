@@ -13,6 +13,7 @@ public enum SCatchphrase
 public partial class SouvenirModule
 {
     [SouvenirHandler("catchphrase", "Catchphrase", typeof(SCatchphrase), "GoodHood")]
+    [SouvenirManualQuestion("What were the colours of the panels?")]
     private IEnumerator<SouvenirInstruction> ProcessCatchphrase(ModuleData module)
     {
         var comp = GetComponent(module, "catchphraseScript");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -19,6 +19,9 @@ public enum SSmallCircle
 public partial class SouvenirModule
 {
     [SouvenirHandler("smallCircle", "Small Circle", typeof(SSmallCircle), "TasThiluna")]
+    [SouvenirManualQuestion("How much did the sequence shift by?")]
+    [SouvenirManualQuestion("Which wedge made the different noise in the beginning?")]
+    [SouvenirManualQuestion("Which colors were in the solution?")]
     private IEnumerator<SouvenirInstruction> ProcessSmallCircle(ModuleData module)
     {
         var comp = GetComponent(module, "smallCircle");

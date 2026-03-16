@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -16,6 +16,8 @@ public enum SRecursivePassword
 public partial class SouvenirModule
 {
     [SouvenirHandler("RecursivePassword", "Recursive Password", typeof(SRecursivePassword), "Kuro")]
+    [SouvenirManualQuestion("What were the incomplete words?")]
+    [SouvenirManualQuestion("What was the password?")]
     private IEnumerator<SouvenirInstruction> ProcessRecursivePassword(ModuleData module)
     {
         var comp = GetComponent(module, "RecursivePassword");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SDimensionDisruption
 public partial class SouvenirModule
 {
     [SouvenirHandler("dimensionDisruption", "Dimension Disruption", typeof(SDimensionDisruption), "Hawker")]
+    [SouvenirManualQuestion("What were the visible characters?")]
     private IEnumerator<SouvenirInstruction> ProcessDimensionDisruption(ModuleData module)
     {
         var comp = GetComponent(module, "dimensionDisruptionScript");

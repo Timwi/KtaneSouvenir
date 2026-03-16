@@ -14,6 +14,7 @@ public enum SCustomerIdentification
 public partial class SouvenirModule
 {
     [SouvenirHandler("xelCustomerIdentification", "Customer Identification", typeof(SCustomerIdentification), "Hawker")]
+    [SouvenirManualQuestion("Which customers were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessCustomerIdentification(ModuleData module)
     {
         var comp = GetComponent(module, "CustomerIdentificationScript");

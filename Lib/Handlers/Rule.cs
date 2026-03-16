@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SRule
 public partial class SouvenirModule
 {
     [SouvenirHandler("theRule", "Rule", typeof(SRule), "TasThiluna", AddThe = true)]
+    [SouvenirManualQuestion("What was the rule number?")]
     private IEnumerator<SouvenirInstruction> ProcessRule(ModuleData module)
     {
         var comp = GetComponent(module, "TheRuleScript");

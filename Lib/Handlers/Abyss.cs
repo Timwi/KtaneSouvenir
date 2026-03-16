@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SAbyss
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSAbyss", "Abyss", typeof(SAbyss), "VFlyer")]
+    [SouvenirManualQuestion("What were the characters displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessAbyss(ModuleData module)
     {
         var comp = GetComponent(module, "AbyssScript");

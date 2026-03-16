@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -25,6 +25,10 @@ public enum SForgetsUltimateShowdown
 public partial class SouvenirModule
 {
     [SouvenirHandler("ForgetsUltimateShowdownModule", "Forget’s Ultimate Showdown", typeof(SForgetsUltimateShowdown), "Marksam")]
+    [SouvenirManualQuestion("What was the initial number?")]
+    [SouvenirManualQuestion("What was the bottom number?")]
+    [SouvenirManualQuestion("What was the answer?")]
+    [SouvenirManualQuestion("What were the encryption methods used?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetsUltimateShowdown(ModuleData module)
     {
         var comp = GetComponent(module, "ForgetsUltimateShowdownScript");

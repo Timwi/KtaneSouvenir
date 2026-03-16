@@ -13,6 +13,7 @@ public enum SAlcoholicRampage
 public partial class SouvenirModule
 {
     [SouvenirHandler("alcoholicRampageModule", "Alcoholic Rampage", typeof(SAlcoholicRampage), "Quinn Wuest")]
+    [SouvenirManualQuestion("Which mercenaries were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessAlcoholicRampage(ModuleData module)
     {
         var comp = GetComponent(module, "AlcoholicRampageScript");

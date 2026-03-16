@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SRoger
 public partial class SouvenirModule
 {
     [SouvenirHandler("roger", "Roger", typeof(SRoger), "BigCrunch22")]
+    [SouvenirManualQuestion("What four-digit number was given?")]
     private IEnumerator<SouvenirInstruction> ProcessRoger(ModuleData module)
     {
         var comp = GetComponent(module, "rogerScript");

@@ -16,6 +16,8 @@ public enum SHexabutton
 public partial class SouvenirModule
 {
     [SouvenirHandler("hexabutton", "Hexabutton", typeof(SHexabutton), "Espik", AddThe = true)]
+    [SouvenirManualQuestion("What color was the button when held?")]
+    [SouvenirManualQuestion("What Morse Code letter was transmitted?")]
     private IEnumerator<SouvenirInstruction> ProcessHexabutton(ModuleData module)
     {
         var comp = GetComponent(module, "hexabuttonScript");

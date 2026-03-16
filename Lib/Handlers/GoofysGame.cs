@@ -13,6 +13,7 @@ public enum SGoofysGame
 public partial class SouvenirModule
 {
     [SouvenirHandler("goofysgame", "Goofy’s Game", typeof(SGoofysGame), "Anonymous")]
+    [SouvenirManualQuestion("What numbers were shown in Morse code?")]
     private IEnumerator<SouvenirInstruction> ProcessGoofysGame(ModuleData module)
     {
         yield return WaitForSolve;

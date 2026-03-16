@@ -13,6 +13,7 @@ public enum SForgetMe
 public partial class SouvenirModule
 {
     [SouvenirHandler("forgetMe", "Forget Me", typeof(SForgetMe), "tandyCake")]
+    [SouvenirManualQuestion("What numbers were in which positions in the initial puzzle?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetMe(ModuleData module)
     {
         var comp = GetComponent(module, "NotForgetMeNotScript");

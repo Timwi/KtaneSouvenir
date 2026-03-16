@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -19,6 +19,8 @@ public enum SBoxing
 public partial class SouvenirModule
 {
     [SouvenirHandler("boxing", "Boxing", typeof(SBoxing), "Timwi")]
+    [SouvenirManualQuestion("Which contestants and substitutes (first and last names) were shown?")]
+    [SouvenirManualQuestion("Who had which punch strength rating?")]
     private IEnumerator<SouvenirInstruction> ProcessBoxing(ModuleData module)
     {
         var comp = GetComponent(module, "boxing");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SKeypadMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("KeypadMaze", "Keypad Maze", typeof(SKeypadMaze), "Anonymous")]
+    [SouvenirManualQuestion("Where were the yellow cells?")]
     private IEnumerator<SouvenirInstruction> ProcessKeypadMaze(ModuleData module)
     {
         yield return WaitForSolve;

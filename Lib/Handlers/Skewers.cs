@@ -12,6 +12,7 @@ public enum SSkewers
 public partial class SouvenirModule
 {
     [SouvenirHandler("Skewers", "Skewers", typeof(SSkewers), "Anonymous")]
+    [SouvenirManualQuestion("What colors were the gems?")]
     private IEnumerator<SouvenirInstruction> ProcessSkewers(ModuleData module)
     {
         yield return WaitForSolve;

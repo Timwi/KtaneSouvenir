@@ -16,6 +16,8 @@ public enum SArithmelogic
 public partial class SouvenirModule
 {
     [SouvenirHandler("arithmelogic", "Arithmelogic", typeof(SArithmelogic), "JerryEris")]
+    [SouvenirManualQuestion("What was the symbol on the submit button?")]
+    [SouvenirManualQuestion("What were the numbers selectable on the screens?")]
     private IEnumerator<SouvenirInstruction> ProcessArithmelogic(ModuleData module)
     {
         var comp = GetComponent(module, "Arithmelogic");

@@ -14,6 +14,7 @@ public enum SGrayButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("GrayButtonModule", "Gray Button", typeof(SGrayButton), "Timwi", AddThe = true)]
+    [SouvenirManualQuestion("What were the coordinates on the display?")]
     private IEnumerator<SouvenirInstruction> ProcessGrayButton(ModuleData module)
     {
         var comp = GetComponent(module, "GrayButtonScript");

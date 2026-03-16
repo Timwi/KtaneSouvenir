@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SDivisibleNumbers
 public partial class SouvenirModule
 {
     [SouvenirHandler("divisibleNumbers", "Divisible Numbers", typeof(SDivisibleNumbers), "shortc1rcuit")]
+    [SouvenirManualQuestion("What were the numbers in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDivisibleNumbers(ModuleData module)
     {
         var comp = GetComponent(module, "DivisableNumbers");

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -13,6 +13,7 @@ public enum SChordQualities
 public partial class SouvenirModule
 {
     [SouvenirHandler("ChordQualities", "Chord Qualities", typeof(SChordQualities), "Timwi")]
+    [SouvenirManualQuestion("What notes were in the given chord?")]
     private IEnumerator<SouvenirInstruction> ProcessChordQualities(ModuleData module)
     {
         var comp = GetComponent(module, "ChordQualities");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SCactisConundrum
 public partial class SouvenirModule
 {
     [SouvenirHandler("CactusPConundrum", "Cacti’s Conundrum", typeof(SCactisConundrum), "Anonymous")]
+    [SouvenirManualQuestion("What colors was the LED?")]
     private IEnumerator<SouvenirInstruction> ProcessCactisConundrum(ModuleData module)
     {
         var colors = new int[3];

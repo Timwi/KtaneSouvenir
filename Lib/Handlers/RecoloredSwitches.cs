@@ -14,6 +14,7 @@ public enum SRecoloredSwitches
 public partial class SouvenirModule
 {
     [SouvenirHandler("R4YRecoloredSwitches", "Recolored Switches", typeof(SRecoloredSwitches), "Timwi")]
+    [SouvenirManualQuestion("What were the LED colors?")]
     private IEnumerator<SouvenirInstruction> ProcessRecoloredSwitches(ModuleData module)
     {
         var comp = GetComponent(module, "Recolored_Switches");

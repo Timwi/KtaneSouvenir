@@ -13,6 +13,7 @@ public enum SSplittingTheLoot
 public partial class SouvenirModule
 {
     [SouvenirHandler("SplittingTheLootModule", "Splitting The Loot", typeof(SSplittingTheLoot), "luisdiogo98")]
+    [SouvenirManualQuestion("Which bag was initially colored?")]
     private IEnumerator<SouvenirInstruction> ProcessSplittingTheLoot(ModuleData module)
     {
         yield return WaitForActivate;

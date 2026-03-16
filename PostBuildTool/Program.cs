@@ -34,6 +34,9 @@ public static class Program
         if (opt.ContributorsFile != null)
             DoContributorStuff(opt.ContributorsFile, assembly);
 
+        if (!string.IsNullOrWhiteSpace(opt.JsFile))
+            DoManualQuestionsStuff(opt.JsFile, assembly);
+
         Dictionary<string, string> translationStats = null;
         if (opt.TranslationsFolder != null)
             translationStats = DoTranslationStuff(opt.TranslationsFolder, assembly);
@@ -42,6 +45,70 @@ public static class Program
             DoDataFileStuff(opt.DataFile, assembly, translationStats);
 
         return 0;
+    }
+
+    private static void DoManualQuestionsStuff(string folderpath, Assembly assembly)
+    {
+        var handlerAttrType = assembly.GetType("Souvenir.SouvenirHandlerAttribute");
+        var questionAttrType = assembly.GetType("Souvenir.SouvenirManualQuestionAttribute");
+        var questions = new Dictionary<string, List<(object translationObject, bool the, string name, string translated, string id, List<string> questions)>>() { ["en"] = [] };
+        var languages = assembly.GetType("Souvenir.TranslationInfo").GetField("AllTranslations", BindingFlags.Static | BindingFlags.Public).GetValue(null) as IDictionary;
+
+        var translationType = assembly.GetType("Souvenir.ITranslation");
+        var translationInfoType = assembly.GetType("Souvenir.TranslationInfo");
+        var fldTranslateManualQuestions = translationType.GetProperty("TranslateManualQuestions", BindingFlags.Public | BindingFlags.Instance);
+        var mthTranslateModule = translationType.GetMethod("TranslateModule", BindingFlags.Public | BindingFlags.Instance, [typeof(Type)]);
+        var fldManualQuestions = translationInfoType.GetField("ManualQuestions", BindingFlags.Public | BindingFlags.Instance);
+        var fldModuleName = translationInfoType.GetField("ModuleName", BindingFlags.Public | BindingFlags.Instance);
+        var fldManualModuleName = translationInfoType.GetField("ManualModuleName", BindingFlags.Public | BindingFlags.Instance);
+        var mthManualQuestionSortBy = translationType.GetMethod("ManualQuestionSortBy", BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (DictionaryEntry language in languages)
+            if ((bool) fldTranslateManualQuestions.GetValue(language.Value))
+                questions[(string) language.Key] = [];
+
+        foreach (MethodInfo handlerMethod in assembly.GetType("SouvenirModule").GetMethods(BindingFlags.NonPublic | BindingFlags.Instance))
+        {
+            dynamic handlerAttr = handlerMethod.GetCustomAttribute(handlerAttrType);
+            if (handlerAttr == null)
+                continue;
+            var manualQuestions = new List<string>();
+            foreach (dynamic questionAttr in handlerMethod.GetCustomAttributes(questionAttrType))
+                manualQuestions.Add((string) questionAttr.QuestionText);
+            questions["en"].Add((null, (bool) handlerAttr.AddThe, (string) handlerAttr.ModuleName, null, (string) handlerAttr.ModuleId, manualQuestions));
+            foreach (DictionaryEntry language in languages)
+                if ((bool) fldTranslateManualQuestions.GetValue(language.Value))
+                {
+                    var enumType = (Type) handlerAttr.EnumType;
+                    var translatedHandler = mthTranslateModule.Invoke(language.Value, [enumType]);
+                    var translatedManualQuestions = (Dictionary<string, string>) fldManualQuestions.GetValue(translatedHandler);
+                    var translatedModuleName = (string) fldManualModuleName.GetValue(translatedHandler) ?? (string) fldModuleName.GetValue(translatedHandler);
+                    questions[(string) language.Key].Add((translatedHandler, (bool) handlerAttr.AddThe, (string) handlerAttr.ModuleName, translatedModuleName, (string) handlerAttr.ModuleId,
+                        manualQuestions.Select(mq => translatedManualQuestions?.Get(mq, null) ?? mq).ToList()));
+                }
+        }
+
+        // English
+        File.WriteAllText(Path.Combine(folderpath, "SouvenirData.js"), $"""
+            let SouvenirModuleData = [
+            {questions["en"].OrderBy(tup => tup.name).Select(tup => $"\t{{ name: {((tup.the ? "The " : "") + tup.name.Replace("'", "’")).JsEscape()},\tid: {tup.id.JsEscape()},\tquestions: [{tup.questions.Select(q => q.JsEscape()).JoinString(", ")}] }},").JoinString("\n")}
+            ];
+            """);
+
+        // Translations
+        foreach (DictionaryEntry language in languages)
+            if ((bool) fldTranslateManualQuestions.GetValue(language.Value))
+            {
+                File.WriteAllText(Path.Combine(folderpath, $"SouvenirData.{language.Key}.js"), $"""
+                    let SouvenirModuleData = [
+                    {questions[(string) language.Key].OrderBy(tup => mthManualQuestionSortBy.Invoke(language.Value, [tup.translationObject, tup.name])).Select(tup =>
+                    {
+                        var englishName = ((tup.the ? "The " : "") + tup.name.Replace("'", "’"));
+                        return $"\t{{ original: {englishName.JsEscape()},\tname: {(tup.translated ?? englishName).JsEscape()},\tid: {tup.id.JsEscape()},\tquestions: [{tup.questions.Select(q => q.JsEscape()).JoinString(", ")}] }},";
+                    }).JoinString("\n")}
+                    ];
+                    """);
+            }
     }
 
     private static void DoContributorStuff(string filepath, Assembly assembly)
@@ -94,6 +161,7 @@ public static class Program
 
     private static Dictionary<string, string> DoTranslationStuff(string translationFilePath, Assembly assembly)
     {
+        var manualQuestionAttrType = assembly.GetType("Souvenir.SouvenirManualQuestionAttribute");
         var handlerAttrType = assembly.GetType("Souvenir.SouvenirHandlerAttribute");
         var questionAttrType = assembly.GetType("Souvenir.SouvenirQuestionAttribute");
         var discrAttrType = assembly.GetType("Souvenir.SouvenirDiscriminatorAttribute");
@@ -159,7 +227,7 @@ public static class Program
                     sb.AppendLine($@"{indent()}ModuleName = ""{prospectiveModuleName.CLiteralEscape()}"",");
 
                 var needsTranslation = already == null || alreadyHandler == null || alreadyHandler.NeedsTranslation;
-                var skip = "NeedsTranslation,ModuleName,Questions,Discriminators".Split(',');
+                var skip = "NeedsTranslation,ModuleName,Questions,Discriminators,ManualQuestions".Split(',');
                 if (alreadyHandler != null)
                     foreach (var f in tiFields)
                         if (!skip.Contains(f.Name) && f.GetValue(alreadyHandler) is object v && !v.Equals(f.GetValue(translationInfoPrototype)))
@@ -168,6 +236,29 @@ public static class Program
                                 f.FieldType.IsEnum ? $@"{f.FieldType.Name}.{v}" :
                                 throw new NotImplementedException()
                             )},");
+
+                if (already.TranslateManualQuestions)
+                {
+                    var manualQuestions = new List<string>();
+                    foreach (dynamic questionAttr in handlerMethod.GetCustomAttributes(manualQuestionAttrType))
+                        manualQuestions.Add((string) questionAttr.QuestionText);
+                    var alreadyManualQuestions = (Dictionary<string, string>) alreadyHandler?.ManualQuestions;
+                    if (manualQuestions.Count > 0)
+                    {
+                        sb.AppendLine($"{indent()}ManualQuestions = new()");
+                        sb.AppendLine($"{indent()}{{");
+                        indentation += 4;
+                        foreach (var q in manualQuestions)
+                        {
+                            var alreadyQ = alreadyManualQuestions?.Get(q, null);
+                            sb.AppendLine($"{indent()}[\"{q.CLiteralEscape()}\"] = \"{(alreadyQ ?? q).CLiteralEscape()}\",");
+                            if (alreadyQ == null)
+                                needsTranslation = true;
+                        }
+                        indentation -= 4;
+                        sb.AppendLine($"{indent()}}},");
+                    }
+                }
 
                 var questionsAndDiscriminators = enumType.GetFields(BindingFlags.Static | BindingFlags.Public)
                     .Select(f => (enumValue: f.GetValue(null), qAttr: (dynamic) f.GetCustomAttribute(questionAttrType), dAttr: (dynamic) f.GetCustomAttribute(discrAttrType)))

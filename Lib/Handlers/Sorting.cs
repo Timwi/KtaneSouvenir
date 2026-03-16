@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SSorting
 public partial class SouvenirModule
 {
     [SouvenirHandler("sorting", "Sorting", typeof(SSorting), "Emik")]
+    [SouvenirManualQuestion("Which positions were involved in the final swap?")]
     private IEnumerator<SouvenirInstruction> ProcessSorting(ModuleData module)
     {
         var comp = GetComponent(module, "Sorting");

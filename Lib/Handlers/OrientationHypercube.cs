@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -15,6 +15,8 @@ public enum SOrientationHypercube
 public partial class SouvenirModule
 {
     [SouvenirHandler("OrientationHypercube", "Orientation Hypercube", typeof(SOrientationHypercube), "Kuro")]
+    [SouvenirManualQuestion("What was the observer’s initial position?")]
+    [SouvenirManualQuestion("What was the initial colour of each face?")]
     private IEnumerator<SouvenirInstruction> ProcessOrientationHypercube(ModuleData module)
     {
         var comp = GetComponent(module, "OrientationHypercubeModule");

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SWhosOnMorse
 public partial class SouvenirModule
 {
     [SouvenirHandler("whosOnMorseModule", "Who’s on Morse", typeof(SWhosOnMorse), "VFlyer")]
+    [SouvenirManualQuestion("What word was transmitted in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessWhosOnMorse(ModuleData module)
     {
         var comp = GetComponent(module, "WhosOnMorseScript");

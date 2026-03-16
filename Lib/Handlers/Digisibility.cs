@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SDigisibility
 public partial class SouvenirModule
 {
     [SouvenirHandler("digisibility", "Digisibility", typeof(SDigisibility), "tandyCake")]
+    [SouvenirManualQuestion("What were the numbers on the buttons?")]
     private IEnumerator<SouvenirInstruction> ProcessDigisibility(ModuleData module)
     {
         var comp = GetComponent(module, "digisibilityScript");

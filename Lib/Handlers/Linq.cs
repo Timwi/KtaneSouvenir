@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -17,6 +17,7 @@ public enum SLinq
 public partial class SouvenirModule
 {
     [SouvenirHandler("Linq", "Linq", typeof(SLinq), "Emik")]
+    [SouvenirManualQuestion("What were the functions?")]
     private IEnumerator<SouvenirInstruction> ProcessLinq(ModuleData module)
     {
         var comp = GetComponent(module, "LinqScript");

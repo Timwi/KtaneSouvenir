@@ -20,6 +20,8 @@ public enum SQuintuples
 public partial class SouvenirModule
 {
     [SouvenirHandler("quintuples", "Quintuples", typeof(SQuintuples), "Timwi")]
+    [SouvenirManualQuestion("What were the numbers and colors in every slot?")]
+    [SouvenirManualQuestion("How many numbers were there of each color?")]
     private IEnumerator<SouvenirInstruction> ProcessQuintuples(ModuleData module)
     {
         var comp = GetComponent(module, "quintuplesScript");

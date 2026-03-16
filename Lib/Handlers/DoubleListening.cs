@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SDoubleListening
 public partial class SouvenirModule
 {
     [SouvenirHandler("doubleListening", "Double Listening", typeof(SDoubleListening), "Anonymous")]
+    [SouvenirManualQuestion("What sounds played?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleListening(ModuleData module)
     {
         var comp = GetComponent(module, "doubleListeningScript");

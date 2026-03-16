@@ -15,6 +15,7 @@ public enum SKayMazeyTalk
 public partial class SouvenirModule
 {
     [SouvenirHandler("KMazeyTalk", "KayMazey Talk", typeof(SKayMazeyTalk), "Anonymous")]
+    [SouvenirManualQuestion("What were the starting and goal words?")]
     private IEnumerator<SouvenirInstruction> ProcessKayMazeyTalk(ModuleData module)
     {
         var comp = GetComponent(module, "kayMazeyTalkScript");

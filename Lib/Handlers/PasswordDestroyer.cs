@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SPasswordDestroyer
 public partial class SouvenirModule
 {
     [SouvenirHandler("pwDestroyer", "Password Destroyer", typeof(SPasswordDestroyer), "Eltrick")]
+    [SouvenirManualQuestion("What was the 2FAST™ value?")]
     private IEnumerator<SouvenirInstruction> ProcessPasswordDestroyer(ModuleData module)
     {
         var comp = GetComponent(module, "passwordDestroyer");

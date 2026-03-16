@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SValves
 public partial class SouvenirModule
 {
     [SouvenirHandler("valves", "Valves", typeof(SValves), "Hawker")]
+    [SouvenirManualQuestion("What was the initial state?")]
     private IEnumerator<SouvenirInstruction> ProcessValves(ModuleData module)
     {
         var comp = GetComponent(module, "Valves");

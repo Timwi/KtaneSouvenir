@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -20,6 +20,8 @@ public enum SMorseAMaze
 public partial class SouvenirModule
 {
     [SouvenirHandler("MorseAMaze", "Morse-A-Maze", typeof(SMorseAMaze), "CaitSith2")]
+    [SouvenirManualQuestion("What were the starting and ending locations?")]
+    [SouvenirManualQuestion("What was the Morse code word played?")]
     private IEnumerator<SouvenirInstruction> ProcessMorseAMaze(ModuleData module)
     {
         var comp = GetComponent(module, "MorseAMaze");

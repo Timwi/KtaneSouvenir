@@ -15,6 +15,8 @@ public enum SMysteryModule
 public partial class SouvenirModule
 {
     [SouvenirHandler("mysterymodule", "Mystery Module", typeof(SMysteryModule), "Timwi")]
+    [SouvenirManualQuestion("Which module was hidden?")]
+    [SouvenirManualQuestion("Which module was the first requested to be solved?")]
     private IEnumerator<SouvenirInstruction> ProcessMysteryModule(ModuleData module)
     {
         var comp = GetComponent(module, "MysteryModuleScript");

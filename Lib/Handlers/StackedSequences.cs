@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SStackedSequences
 public partial class SouvenirModule
 {
     [SouvenirHandler("stackedSequences", "Stacked Sequences", typeof(SStackedSequences), "GhostSalt")]
+    [SouvenirManualQuestion("What were the lengths of the sequences?")]
     private IEnumerator<SouvenirInstruction> ProcessStackedSequences(ModuleData module)
     {
         var comp = GetComponent(module, "stackedSequencesScript");

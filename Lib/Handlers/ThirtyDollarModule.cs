@@ -14,6 +14,7 @@ public enum SThirtyDollarModule
 public partial class SouvenirModule
 {
     [SouvenirHandler("ThirtyDollarModule", "Thirty Dollar Module", typeof(SThirtyDollarModule), "Anonymous")]
+    [SouvenirManualQuestion("What sounds were played?")]
     private IEnumerator<SouvenirInstruction> ProcessThirtyDollarModule(ModuleData module)
     {
         yield return WaitForSolve;

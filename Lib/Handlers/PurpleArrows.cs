@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -14,6 +14,7 @@ public enum SPurpleArrows
 public partial class SouvenirModule
 {
     [SouvenirHandler("purpleArrowsModule", "Purple Arrows", typeof(SPurpleArrows), "kavinkul")]
+    [SouvenirManualQuestion("What was the target word?")]
     private IEnumerator<SouvenirInstruction> ProcessPurpleArrows(ModuleData module)
     {
         var comp = GetComponent(module, "PurpleArrowsScript");

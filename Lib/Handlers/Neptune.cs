@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SNeptune
 public partial class SouvenirModule
 {
     [SouvenirHandler("neptune", "Neptune", typeof(SNeptune), "Quinn Wuest")]
+    [SouvenirManualQuestion("Which star was displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessNeptune(ModuleData module)
     {
         var comp = GetComponent(module, "NeptuneScript");

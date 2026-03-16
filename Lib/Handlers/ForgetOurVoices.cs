@@ -17,6 +17,7 @@ public enum SForgetOurVoices
 public partial class SouvenirModule
 {
     [SouvenirHandler("forgetOurVoices", "Forget Our Voices", typeof(SForgetOurVoices), "Anonymous", IsBossModule = true)]
+    [SouvenirManualQuestion("What was said by whom each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetOurVoices(ModuleData module)
     {
         while (!_noUnignoredModulesLeft)

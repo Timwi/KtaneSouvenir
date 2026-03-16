@@ -14,6 +14,7 @@ public enum SPassportControl
 public partial class SouvenirModule
 {
     [SouvenirHandler("passportControl", "Passport Control", typeof(SPassportControl), "luisdiogo98")]
+    [SouvenirManualQuestion("What were the passport expiration years of each passenger?")]
     private IEnumerator<SouvenirInstruction> ProcessPassportControl(ModuleData module)
     {
         var comp = GetComponent(module, "passportControlScript");

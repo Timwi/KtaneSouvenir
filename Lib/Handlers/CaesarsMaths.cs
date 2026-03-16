@@ -11,6 +11,7 @@ public enum SCaesarsMaths
 public partial class SouvenirModule
 {
     [SouvenirHandler("caesarsMaths", "Caesar's Maths", typeof(SCaesarsMaths), "KiloBites")]
+    [SouvenirManualQuestion("What were the colors of each LED?")]
     private IEnumerator<SouvenirInstruction> ProcessCaesarsMaths(ModuleData module)
     {
         var comp = GetComponent(module, "caesarsMathsScript");

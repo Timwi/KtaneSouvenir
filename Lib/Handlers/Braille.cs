@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -13,6 +13,7 @@ public enum SBraille
 public partial class SouvenirModule
 {
     [SouvenirHandler("BrailleModule", "Braille", typeof(SBraille), "Timwi")]
+    [SouvenirManualQuestion("Which Braille patterns were present?")]
     private IEnumerator<SouvenirInstruction> ProcessBraille(ModuleData module)
     {
         var comp = GetComponent(module, "BrailleModule");

@@ -14,6 +14,7 @@ public enum SKeypadCombination
 public partial class SouvenirModule
 {
     [SouvenirHandler("keypadCombinations", "Keypad Combinations", typeof(SKeypadCombination), "Hawker")]
+    [SouvenirManualQuestion("What were the numbers, but not part of the answer?")]
     private IEnumerator<SouvenirInstruction> ProcessKeypadCombination(ModuleData module)
     {
         var comp = GetComponent(module, "KeypadCombinations");

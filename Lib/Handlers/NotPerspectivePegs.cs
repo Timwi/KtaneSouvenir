@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -18,6 +18,7 @@ public enum SNotPerspectivePegs
 public partial class SouvenirModule
 {
     [SouvenirHandler("NotPerspectivePegsModule", "Not Perspective Pegs", typeof(SNotPerspectivePegs), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the positions, perspectives, and colors of each flash?")]
     private IEnumerator<SouvenirInstruction> ProcessNotPerspectivePegs(ModuleData module)
     {
         var comp = GetComponent(module, "NotPerspectivePegsScript");

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,7 @@ public enum SIngredients
 public partial class SouvenirModule
 {
     [SouvenirHandler("ingredients", "Ingredients", typeof(SIngredients), "Timwi")]
+    [SouvenirManualQuestion("Which ingredients were listed and which were used?")]
     private IEnumerator<SouvenirInstruction> ProcessIngredients(ModuleData module)
     {
         var comp = GetComponent(module, "IngredientsScript");

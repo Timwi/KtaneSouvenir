@@ -19,6 +19,8 @@ public enum SCaesarCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("caesarCycle", "Caesar Cycle", typeof(SCaesarCycle), "Timwi")]
+    [SouvenirManualQuestion("Which direction were the dials pointing?")]
+    [SouvenirManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessCaesarCycle(ModuleData module) => processSpeakingEvilCycle(
         module, "CaesarCycleScript", SCaesarCycle.DialDirections, SCaesarCycle.DialLabels, SCaesarCycle.LabelDiscriminator);
 }

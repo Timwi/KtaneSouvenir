@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -13,6 +13,7 @@ public enum SBoggle
 public partial class SouvenirModule
 {
     [SouvenirHandler("boggle", "Boggle", typeof(SBoggle), "luisdiogo98")]
+    [SouvenirManualQuestion("Which letters were initially visible?")]
     private IEnumerator<SouvenirInstruction> ProcessBoggle(ModuleData module)
     {
         var comp = GetComponent(module, "boggle");

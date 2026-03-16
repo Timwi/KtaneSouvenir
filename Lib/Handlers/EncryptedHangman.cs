@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -17,6 +17,7 @@ public enum SEncryptedHangman
 public partial class SouvenirModule
 {
     [SouvenirHandler("encryptedHangman", "Encrypted Hangman", typeof(SEncryptedHangman), "Timwi")]
+    [SouvenirManualQuestion("What was the encrypted module name and encryption method?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptedHangman(ModuleData module)
     {
         var comp = GetComponent(module, "HangmanScript");

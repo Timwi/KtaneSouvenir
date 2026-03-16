@@ -16,6 +16,7 @@ public enum SFaultyButtons
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSFaultyButtons", "Faulty Buttons", typeof(SFaultyButtons), "Kuro")]
+    [SouvenirManualQuestion("Which button did each button refer to?")]
     private IEnumerator<SouvenirInstruction> ProcessFaultyButtons(ModuleData module)
     {
         var comp = GetComponent(module, "FaultyButtonsScript");

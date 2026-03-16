@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -14,6 +14,7 @@ public enum SFastMath
 public partial class SouvenirModule
 {
     [SouvenirHandler("fastMath", "Fast Math", typeof(SFastMath), "Timwi")]
+    [SouvenirManualQuestion("What was the last pair of letters?")]
     private IEnumerator<SouvenirInstruction> ProcessFastMath(ModuleData module)
     {
         var comp = GetComponent(module, "FastMathModule");

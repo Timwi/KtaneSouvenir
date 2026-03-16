@@ -23,6 +23,8 @@ public enum SRuleOfThree
 public partial class SouvenirModule
 {
     [SouvenirHandler("RuleOfThreeModule", "Rule of Three", typeof(SRuleOfThree), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the positions of each sphere on each axis in each cycle?")]
+    [SouvenirManualQuestion("What were the coordinates of the vertices?")]
     private IEnumerator<SouvenirInstruction> ProcessRuleOfThree(ModuleData module)
     {
         var comp = GetComponent(module, "RuleOfThreeScript");

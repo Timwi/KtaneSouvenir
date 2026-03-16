@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,6 +14,7 @@ public enum SChineseRemainderTheorem
 public partial class SouvenirModule
 {
     [SouvenirHandler("ChineseRemainderTheoremModule", "Chinese Remainder Theorem", typeof(SChineseRemainderTheorem), "Anonymous")]
+    [SouvenirManualQuestion("What were the equations?")]
     private IEnumerator<SouvenirInstruction> ProcessChineseRemainderTheorem(ModuleData module)
     {
         yield return WaitForSolve;

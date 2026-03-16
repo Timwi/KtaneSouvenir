@@ -19,6 +19,8 @@ public enum SHillCycle
 public partial class SouvenirModule
 {
     [SouvenirHandler("hillCycle", "Hill Cycle", typeof(SHillCycle), "Timwi")]
+    [SouvenirManualQuestion("Which direction were the dials pointing?")]
+    [SouvenirManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessHillCycle(ModuleData module) => processSpeakingEvilCycle(
         module, "HillCycleScript", SHillCycle.DialDirections, SHillCycle.DialLabels, SHillCycle.LabelDiscriminator,
         answerSprites: CycleModuleFiveSprites, all: CycleModuleFiveSprites);

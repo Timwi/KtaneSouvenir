@@ -22,6 +22,7 @@ public enum SStroopsTest
 public partial class SouvenirModule
 {
     [SouvenirHandler("stroopsTest", "Stroop’s Test", typeof(SStroopsTest), "Anonymous")]
+    [SouvenirManualQuestion("What was each submitted word/color?")]
     private IEnumerator<SouvenirInstruction> ProcessStroopsTest(ModuleData module)
     {
         var comp = GetComponent(module, "StroopsTestScript");

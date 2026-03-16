@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -16,6 +16,7 @@ public enum SCrypticKeypad
 public partial class SouvenirModule
 {
     [SouvenirHandler("GSCrypticKeypad", "Cryptic Keypad", typeof(SCrypticKeypad), "Timwi")]
+    [SouvenirManualQuestion("What were the labels and cardinal directions of each key?")]
     private IEnumerator<SouvenirInstruction> ProcessCrypticKeypad(ModuleData module)
     {
         var comp = GetComponent(module, "CrypticKeypadScript");

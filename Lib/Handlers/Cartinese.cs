@@ -15,6 +15,8 @@ public enum SCartinese
 public partial class SouvenirModule
 {
     [SouvenirHandler("cartinese", "Cartinese", typeof(SCartinese), "Timwi")]
+    [SouvenirManualQuestion("What lyrics were played by each button?")]
+    [SouvenirManualQuestion("What color was each button?")]
     private IEnumerator<SouvenirInstruction> ProcessCartinese(ModuleData module)
     {
         var comp = GetComponent(module, "cartinese");

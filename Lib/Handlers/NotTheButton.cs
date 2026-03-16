@@ -12,6 +12,7 @@ public enum SNotTheButton
 public partial class SouvenirModule
 {
     [SouvenirHandler("NotButton", "Not the Button", typeof(SNotTheButton), "Andrio Celos")]
+    [SouvenirManualQuestion("What color did the light glow?")]
     private IEnumerator<SouvenirInstruction> ProcessNotTheButton(ModuleData module)
     {
         var comp = GetComponent(module, "NotButton");

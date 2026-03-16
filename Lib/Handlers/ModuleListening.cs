@@ -17,6 +17,8 @@ public enum SModuleListening
 public partial class SouvenirModule
 {
     [SouvenirHandler("moduleListening", "Module Listening", typeof(SModuleListening), "TasThiluna")]
+    [SouvenirManualQuestion("What sounds played?")]
+    [SouvenirManualQuestion("What sounds did each button play?")]
     private IEnumerator<SouvenirInstruction> ProcessModuleListening(ModuleData module)
     {
         var comp = GetComponent(module, "ModuleListening");

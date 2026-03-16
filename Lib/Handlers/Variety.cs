@@ -34,6 +34,11 @@ public enum SVariety
 public partial class SouvenirModule
 {
     [SouvenirHandler("VarietyModule", "Variety", typeof(SVariety), "Anonymous")]
+    [SouvenirManualQuestion("What were the LED colors?")]
+    [SouvenirManualQuestion("What was n for the colored knobs and bulbs?")]
+    [SouvenirManualQuestion("What digits were displayed on the digit display?")]
+    [SouvenirManualQuestion("What words were formable on the letter display?")]
+    [SouvenirManualQuestion("What were the maximum values of the timers?")]
     private IEnumerator<SouvenirInstruction> ProcessVariety(ModuleData module)
     {
         var comp = GetComponent(module, "VarietyModule");

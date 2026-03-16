@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SRoboScanner
 public partial class SouvenirModule
 {
     [SouvenirHandler("roboScannerModule", "Robo-Scanner", typeof(SRoboScanner), "Quinn Wuest")]
+    [SouvenirManualQuestion("Where was the empty cell?")]
     private IEnumerator<SouvenirInstruction> ProcessRoboScanner(ModuleData module)
     {
         var comp = GetComponent(module, "RoboScannerScript");

@@ -19,6 +19,7 @@ public enum SOrderedKeys
 public partial class SouvenirModule
 {
     [SouvenirHandler("orderedKeys", "Ordered Keys", typeof(SOrderedKeys), "TasThiluna")]
+    [SouvenirManualQuestion("What were the labels, their colors, and the colors of the keys in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessOrderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "OrderedKeysScript");

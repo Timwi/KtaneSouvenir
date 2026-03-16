@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum SDeafAlley
 public partial class SouvenirModule
 {
     [SouvenirHandler("deafAlleyModule", "Deaf Alley", typeof(SDeafAlley), "BigCrunch22")]
+    [SouvenirManualQuestion("What was the shape generated?")]
     private IEnumerator<SouvenirInstruction> ProcessDeafAlley(ModuleData module)
     {
         var comp = GetComponent(module, "DeafAlleyScript");

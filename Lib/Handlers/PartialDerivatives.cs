@@ -18,6 +18,8 @@ public enum SPartialDerivatives
 public partial class SouvenirModule
 {
     [SouvenirHandler("partialDerivatives", "Partial Derivatives", typeof(SPartialDerivatives), "Timwi")]
+    [SouvenirManualQuestion("What were the terms of the function?")]
+    [SouvenirManualQuestion("What were the LED colors in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessPartialDerivatives(ModuleData module)
     {
         var comp = GetComponent(module, "PartialDerivativesScript");

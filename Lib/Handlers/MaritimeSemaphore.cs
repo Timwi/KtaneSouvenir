@@ -18,6 +18,8 @@ public enum SMaritimeSemaphore
 public partial class SouvenirModule
 {
     [SouvenirHandler("MaritimeSemaphoreModule", "Maritime Semaphore", typeof(SMaritimeSemaphore), "Anonymous")]
+    [SouvenirManualQuestion("Where was the dummy?")]
+    [SouvenirManualQuestion("Which letters were signaled?")]
     private IEnumerator<SouvenirInstruction> ProcessMaritimeSemaphore(ModuleData module)
     {
         yield return WaitForSolve;

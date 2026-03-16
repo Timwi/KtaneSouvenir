@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -12,6 +12,7 @@ public enum STasqueManaging
 public partial class SouvenirModule
 {
     [SouvenirHandler("tasqueManaging", "Tasque Managing", typeof(STasqueManaging), "tandyCake")]
+    [SouvenirManualQuestion("What was the starting position?")]
     private IEnumerator<SouvenirInstruction> ProcessTasqueManaging(ModuleData module)
     {
         var comp = GetComponent(module, "tasqueManaging");

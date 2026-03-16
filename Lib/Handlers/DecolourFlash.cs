@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -13,6 +13,7 @@ public enum SDecolourFlash
 public partial class SouvenirModule
 {
     [SouvenirHandler("DecolourFlashModule", "Decolour Flash", typeof(SDecolourFlash), "Timwi")]
+    [SouvenirManualQuestion("What were the words and colours of each goal?")]
     private IEnumerator<SouvenirInstruction> ProcessDecolourFlash(ModuleData module)
     {
         var comp = GetComponent(module, "DecolourFlashScript");
