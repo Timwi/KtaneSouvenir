@@ -13,7 +13,7 @@ public enum SDoubleScreen
 public partial class SouvenirModule
 {
     [SouvenirHandler("doubleScreenModule", "Double Screen", typeof(SDoubleScreen), "Anonymous")]
-    [SouvenirManualQuestion("What colors were the screens on each stage?")]
+    [SouvenirManualQuestion("What colors were the screens in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleScreen(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleScreenScript");

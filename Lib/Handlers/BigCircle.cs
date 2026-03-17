@@ -4,7 +4,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SBigCircle
 {
-    [SouvenirQuestion("Which direction was the circle spinning in {0}?", TwoColumns2Answers, "clockwise", "counterclockwise", TranslateAnswers = true)]
+    [SouvenirQuestion("Which direction was the circle spinning in {0}?", OneColumn2Answers, "clockwise", "counterclockwise", TranslateAnswers = true)]
     SpinDirection
 }
 

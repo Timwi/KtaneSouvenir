@@ -2,6 +2,7 @@
 
 public enum AnswerLayout
 {
+    OneColumn2Answers,
     OneColumn3Answers,
     OneColumn4Answers,
     TwoColumns2Answers,

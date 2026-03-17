@@ -34,6 +34,7 @@ public sealed class TextAnswerSet(string[] answers, int correctIndex, SouvenirQu
             var bounds = mesh.GetComponent<Renderer>().bounds.size;
             var fac = _layout switch
             {
+                AnswerLayout.OneColumn2Answers => 1.5 * souvenir.SurfaceSizeFactor,
                 AnswerLayout.OneColumn3Answers => 1.5 * souvenir.SurfaceSizeFactor,
                 AnswerLayout.OneColumn4Answers => 1.5 * souvenir.SurfaceSizeFactor,
                 AnswerLayout.ThreeColumns3Answers => .45 * souvenir.SurfaceSizeFactor,

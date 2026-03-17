@@ -30,6 +30,7 @@ public class AudioAnswerSet(SouvenirQuestionAttribute qAttr, AudioClip[] answers
         {
             souvenir.Answers[i].transform.Find("SpriteHolder").localScale = _layout switch
             {
+                AnswerLayout.OneColumn2Answers => new Vector3(30, 10, 1),
                 AnswerLayout.OneColumn3Answers => new Vector3(30, 10, 1),
                 AnswerLayout.OneColumn4Answers => new Vector3(30, 10, 1),
                 AnswerLayout.TwoColumns2Answers => new Vector3(parent.TwitchPlaysActive ? 14 : 15, 10, 1),
@@ -86,6 +87,7 @@ public class AudioAnswerSet(SouvenirQuestionAttribute qAttr, AudioClip[] answers
             : Sounds.PlayForeignClip(_foreignAudioID, _clips[index].name, parent.transform);
         _coroutine = parent.StartCoroutine(AnimatePlayHead(head, _layout switch
         {
+            AnswerLayout.OneColumn2Answers => 30,
             AnswerLayout.OneColumn3Answers => 30,
             AnswerLayout.OneColumn4Answers => 30,
             AnswerLayout.TwoColumns2Answers => parent.TwitchPlaysActive ? 14 : 15,

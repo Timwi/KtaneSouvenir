@@ -14,7 +14,7 @@ public enum SSymbolicCoordinates
 public partial class SouvenirModule
 {
     [SouvenirHandler("symbolicCoordinates", "Symbolic Coordinates", typeof(SSymbolicCoordinates), "CaitSith2")]
-    [SouvenirManualQuestion("Which symbols were present on each stage?")]
+    [SouvenirManualQuestion("Which symbols were present in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSymbolicCoordinates(ModuleData module)
     {
         var comp = GetComponent(module, "symbolicCoordinatesScript");

@@ -5145,7 +5145,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "二画面",
             ManualQuestions = new()
             {
-                ["What colors were the screens on each stage?"] = "各ステージにおける画面の色は？",
+                ["What colors were the screens in each stage?"] = "各ステージにおける画面の色は？",
             },
             Questions = new()
             {
@@ -9470,13 +9470,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was on the display in the {1} stage of {0}?
                     // Example: What was on the display in the first stage of Mad Memory?
                     Question = "{0}のステージ{1}における表示は？",
-                    Arguments = new()
-                    {
-                        ["first"] = "1",
-                        ["second"] = "2",
-                        ["third"] = "3",
-                        ["4th"] = "4",
-                    },
                 },
             },
         },
@@ -15337,7 +15330,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "サイモンの残響",
             ManualQuestions = new()
             {
-                ["What colors flashed in the final sequence?"] = "最終的に点滅したシーケンスの色は？",
+                ["Which colors flashed in the final sequence?"] = "最終的に点滅したシーケンスの色は？",
             },
             Questions = new()
             {
@@ -17384,7 +17377,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "シンボル座標",
             ManualQuestions = new()
             {
-                ["Which symbols were present on each stage?"] = "各ステージで表示されたシンボルは？",
+                ["Which symbols were present in each stage?"] = "各ステージで表示されたシンボルは？",
             },
             Questions = new()
             {

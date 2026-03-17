@@ -24,6 +24,7 @@ public abstract class AnswerSet(int numAnswers, int correctIndex, AnswerLayout l
     {
         switch (_layout)
         {
+            case AnswerLayout.OneColumn2Answers: SetUpOneColumn2Answers(souvenir); break;
             case AnswerLayout.OneColumn3Answers: SetUpOneColumn3Answers(souvenir); break;
             case AnswerLayout.OneColumn4Answers: SetUpOneColumn4Answers(souvenir); break;
             case AnswerLayout.TwoColumns2Answers: SetUpTwoColumn2Answers(souvenir); break;
@@ -33,6 +34,17 @@ public abstract class AnswerSet(int numAnswers, int correctIndex, AnswerLayout l
             default: throw new InvalidOperationException("Unexpected AnswerLayout value.");
         }
         RenderAnswers(souvenir);
+    }
+
+    protected virtual void SetUpOneColumn2Answers(SouvenirModule souvenir)
+    {
+        SetupAnswers(souvenir, souvenir.HighlightVeryLong,
+            getX: i => -18.125f,
+            getZ: i => -17f + 5 * (1 - i),
+            boxCenter: new Vector3(17, 0, 0),
+            boxSize: new Vector3(38, 5, 3));
+
+        SetSelectableChildren(souvenir, rowLength: 1, 0, 1, 2, 3, 4, 5);
     }
 
     protected virtual void SetUpOneColumn3Answers(SouvenirModule souvenir)

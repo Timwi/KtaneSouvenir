@@ -7,6 +7,7 @@ public sealed class TextQuestion(string question, AnswerLayout layout, Sprite qu
 {
     private double desiredHeightFactor => layout switch
     {
+        AnswerLayout.OneColumn2Answers => 1.1,
         AnswerLayout.OneColumn3Answers => 1,
         AnswerLayout.OneColumn4Answers => .825,
         AnswerLayout.TwoColumns2Answers => 1.375,

@@ -5241,7 +5241,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             ManualQuestions = new()
             {
-                ["What colors were the screens on each stage?"] = "Каких цветов были экраны на каждом этапе?",
+                ["What colors were the screens in each stage?"] = "Каких цветов были экраны на каждом этапе?",
             },
             Questions = new()
             {
@@ -9542,13 +9542,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // Example: What was on the display in the first stage of Mad Memory?
                     Question = "Что было на экране на {1} этапе {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
-                    Arguments = new()
-                    {
-                        ["first"] = "первом",
-                        ["second"] = "втором",
-                        ["third"] = "третьем",
-                        ["4th"] = "четвёртом",
-                    },
                 },
             },
         },
@@ -15380,7 +15373,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What colors flashed in the final sequence?"] = "Какая была финальная последовательность нажатий?",
+                ["Which colors flashed in the final sequence?"] = "Какая была финальная последовательность нажатий?",
             },
             Questions = new()
             {
@@ -17410,7 +17403,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which symbols were present on each stage?"] = "Какие символы присутствовали на каждом этапе?",
+                ["Which symbols were present in each stage?"] = "Какие символы присутствовали на каждом этапе?",
             },
             Questions = new()
             {

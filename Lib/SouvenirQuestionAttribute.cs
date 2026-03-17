@@ -44,6 +44,7 @@ public sealed class SouvenirQuestionAttribute(string questionText, AnswerLayout 
 
     public int NumAnswers => Layout switch
     {
+        AnswerLayout.OneColumn2Answers => 2,
         AnswerLayout.OneColumn3Answers => 3,
         AnswerLayout.OneColumn4Answers => 4,
         AnswerLayout.TwoColumns2Answers => 2,
