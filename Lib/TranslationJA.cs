@@ -6815,6 +6815,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Gamepad
         [typeof(SGamepad)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ゲームパッド",
             ManualQuestions = new()
             {
@@ -6822,10 +6823,20 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SGamepad.Numbers] = new()
+                [SGamepad.QNumbers] = new()
                 {
-                    // English: What were the numbers on {0}?
-                    Question = "{0}の数字は？",
+                    // English: What was the {1} digit on the display on {0}?
+                    // Example: What was the first digit on the display on The Gamepad?
+                    Question = "What was the {1} digit on the display on {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SGamepad.DNumbers] = new()
+                {
+                    // English: the Gamepad whose {1} digit on the display was {0}
+                    // Example: the Gamepad whose first digit on the display was 0
+                    Discriminator = "on The Gamepad whose {1} digit on the display was {0}",
                 },
             },
         },

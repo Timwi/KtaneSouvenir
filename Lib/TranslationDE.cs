@@ -6022,12 +6022,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Gamepad
         [typeof(SGamepad)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SGamepad.Numbers] = new()
+                [SGamepad.QNumbers] = new()
                 {
-                    // English: What were the numbers on {0}?
-                    Question = "Welche Zahlen waren bei {0} zu sehen?",
+                    // English: What was the {1} digit on the display on {0}?
+                    // Example: What was the first digit on the display on The Gamepad?
+                    Question = "What was the {1} digit on the display on {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SGamepad.DNumbers] = new()
+                {
+                    // English: the Gamepad whose {1} digit on the display was {0}
+                    // Example: the Gamepad whose first digit on the display was 0
+                    Discriminator = "on The Gamepad whose {1} digit on the display was {0}",
                 },
             },
         },
