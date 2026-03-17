@@ -7,7 +7,10 @@ using static Souvenir.AnswerLayout;
 public enum SSimonSays
 {
     [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", TwoColumns4Answers, "red", "yellow", "green", "blue", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    Flash
+    QFlash,
+
+    [SouvenirDiscriminator("the Simon Says where the {0} flash in the final sequence was {1}", Arguments = [QandA.Ordinal, "red", QandA.Ordinal, "yellow", QandA.Ordinal, "green", QandA.Ordinal, "blue"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    DFlash
 }
 
 public partial class SouvenirModule
@@ -26,6 +29,11 @@ public partial class SouvenirModule
         var colorNames = new[] { "red", "blue", "green", "yellow" };
         var sequence = GetArrayField<int>(comp, "currentSequence").Get(validator: arr => arr.Any(i => i < 0 || i >= colorNames.Length) ? "expected values 0–3" : null);
         for (var i = 0; i < sequence.Length; i++)
-            yield return question(SSimonSays.Flash, args: [Ordinal(i + 1)]).Answers(colorNames[sequence[i]]);
+        {
+            yield return new Discriminator(SSimonSays.DFlash, $"flash-{i}", colorNames[i], args: [Ordinal(i + 1), colorNames[i]]);
+            yield return question(SSimonSays.QFlash, args: [Ordinal(i + 1)])
+                .AvoidDiscriminators($"flash-{i}")
+                .Answers(colorNames[sequence[i]]);
+        }
     }
 }

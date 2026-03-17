@@ -13461,12 +13461,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             Questions = new()
             {
-                [SSimonSays.Flash] = new()
+                [SSimonSays.QFlash] = new()
                 {
                     // English: What color flashed {1} in the final sequence in {0}?
                     // Example: What color flashed first in the final sequence in Simon Says?
                     Question = "What color flashed {1} in the final sequence in {0}?",
                     Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SSimonSays.DFlash] = new()
+                {
+                    // English: the Simon Says where the {0} flash in the final sequence was {1}
+                    // Example: the Simon Says where the first flash in the final sequence was red
+                    Discriminator = "the Simon Says where the {0} flash in the final sequence was {1}",
+                    Arguments = new()
                     {
                         ["red"] = "red",
                         ["yellow"] = "yellow",
@@ -17011,13 +17027,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Who’s on First
         [typeof(SWhosOnFirst)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SWhosOnFirst.Display] = new()
+                [SWhosOnFirst.QDisplay] = new()
                 {
                     // English: What was the display in the {1} stage on {0}?
                     // Example: What was the display in the first stage on Who’s on First?
                     Question = "Was war bei {0} in der {1}en Stufe auf dem Display?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SWhosOnFirst.DDisplay] = new()
+                {
+                    // English: the Who’s on First that had {0} in the display in the {1} stage
+                    // Example: the Who’s on First that had BLANK in the display in the first stage
+                    Discriminator = "the Who’s on First that had {0} in the display in the {1} stage",
                 },
             },
         },
@@ -17140,11 +17166,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Wire Sequence
         [typeof(SWireSequence)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Drahtfolge",
             Gender = Gender.Feminine,
             Questions = new()
             {
-                [SWireSequence.ColorCount] = new()
+                [SWireSequence.QColorCount] = new()
                 {
                     // English: How many {1} wires were there in {0}?
                     // Example: How many red wires were there in Wire Sequence?
@@ -17154,6 +17181,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["red"] = "roten",
                         ["blue"] = "blauen",
                         ["black"] = "schwarzen",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SWireSequence.DColorCount] = new()
+                {
+                    // English: the Wire Sequence that had {0} {1}
+                    // Example: the Wire Sequence that had 1 red wire
+                    Discriminator = "the Wire Sequence in which there were {0} {1} wires?",
+                    Arguments = new()
+                    {
+                        ["red wire"] = "red wire",
+                        ["blue wire"] = "blue wire",
+                        ["black wire"] = "black wire",
+                        ["red wires"] = "red wires",
+                        ["blue wires"] = "blue wires",
+                        ["black wires"] = "black wires",
                     },
                 },
             },

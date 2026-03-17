@@ -15420,6 +15420,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Simon Says
         [typeof(SSimonSays)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "\"Саймон говорит\"",
             ManualModuleName = "Саймон говорит",
             ManualQuestions = new()
@@ -15428,7 +15429,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SSimonSays.Flash] = new()
+                [SSimonSays.QFlash] = new()
                 {
                     // English: What color flashed {1} in the final sequence in {0}?
                     // Example: What color flashed first in the final sequence in Simon Says?
@@ -15439,6 +15440,22 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["yellow"] = "Жёлтый",
                         ["green"] = "Зелёный",
                         ["blue"] = "Синий",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SSimonSays.DFlash] = new()
+                {
+                    // English: the Simon Says where the {0} flash in the final sequence was {1}
+                    // Example: the Simon Says where the first flash in the final sequence was red
+                    Discriminator = "the Simon Says where the {0} flash in the final sequence was {1}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
                     },
                 },
             },
@@ -19486,6 +19503,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Who’s on First
         [typeof(SWhosOnFirst)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "\"Меня зовут Авас, а Вас\"",
             ManualModuleName = "Меня зовут Авас, а Вас",
             ManualQuestions = new()
@@ -19494,12 +19512,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SWhosOnFirst.Display] = new()
+                [SWhosOnFirst.QDisplay] = new()
                 {
                     // English: What was the display in the {1} stage on {0}?
                     // Example: What was the display in the first stage on Who’s on First?
                     Question = "Какое слово было на экране на {1}-м этапе {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
+                },
+            },
+            Discriminators = new()
+            {
+                [SWhosOnFirst.DDisplay] = new()
+                {
+                    // English: the Who’s on First that had {0} in the display in the {1} stage
+                    // Example: the Who’s on First that had BLANK in the display in the first stage
+                    Discriminator = "the Who’s on First that had {0} in the display in the {1} stage",
                 },
             },
         },
@@ -19642,6 +19669,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Wire Sequence
         [typeof(SWireSequence)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Последовательности проводов",
             ManualQuestions = new()
             {
@@ -19649,7 +19677,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SWireSequence.ColorCount] = new()
+                [SWireSequence.QColorCount] = new()
                 {
                     // English: How many {1} wires were there in {0}?
                     // Example: How many red wires were there in Wire Sequence?
@@ -19660,6 +19688,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["red"] = "красных",
                         ["blue"] = "синих",
                         ["black"] = "чёрных",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SWireSequence.DColorCount] = new()
+                {
+                    // English: the Wire Sequence that had {0} {1}
+                    // Example: the Wire Sequence that had 1 red wire
+                    Discriminator = "the Wire Sequence in which there were {0} {1} wires?",
+                    Arguments = new()
+                    {
+                        ["red wire"] = "red wire",
+                        ["blue wire"] = "blue wire",
+                        ["black wire"] = "black wire",
+                        ["red wires"] = "red wires",
+                        ["blue wires"] = "blue wires",
+                        ["black wires"] = "black wires",
                     },
                 },
             },

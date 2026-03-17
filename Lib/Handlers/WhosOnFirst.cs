@@ -6,8 +6,11 @@ using static Souvenir.AnswerLayout;
 
 public enum SWhosOnFirst
 {
-    [SouvenirQuestion("What was the display in the {1} stage on {0}?", ThreeColumns6Answers, "", "BLANK", "C", "CEE", "DISPLAY", "FIRST", "HOLD ON", "LEAD", "LED", "LEED", "NO", "NOTHING", "OK", "OKAY", "READ", "RED", "REED", "SAY", "SAYS", "SEE", "THEIR", "THERE", "THEY ARE", "THEY’RE", "U", "UR", "YES", "YOU", "YOU ARE", "YOU’RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    Display
+    [SouvenirQuestion("What was the display in the {1} stage on {0}?", TwoColumns4Answers, "", "BLANK", "C", "CEE", "DISPLAY", "FIRST", "HOLD ON", "LEAD", "LED", "LEED", "NO", "NOTHING", "OK", "OKAY", "READ", "RED", "REED", "SAY", "SAYS", "SEE", "THEIR", "THERE", "THEY ARE", "THEY’RE", "U", "UR", "YES", "YOU", "YOU ARE", "YOU’RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    QDisplay,
+
+    [SouvenirDiscriminator("the Who’s on First that had {0} in the display in the {1} stage", Arguments = ["BLANK", QandA.Ordinal], ArgumentGroupSize = 2)]
+    DDisplay
 }
 
 public partial class SouvenirModule
@@ -44,6 +47,12 @@ public partial class SouvenirModule
         module.SolveIndex = module.Info.NumSolved++;
 
         for (var stage = 0; stage < displayWords.Length; stage++)
-            yield return question(SWhosOnFirst.Display, args: [Ordinal(stage + 1)]).Answers(displayWords[stage], preferredWrong: displayWords);
+        {
+            if (displayWords[stage].Length > 0)
+                yield return new Discriminator(SWhosOnFirst.DDisplay, $"display-{stage}", displayWords[stage], args: [displayWords[stage], Ordinal(stage + 1)]);
+            yield return question(SWhosOnFirst.QDisplay, args: [Ordinal(stage + 1)])
+                .AvoidDiscriminators($"display-{stage}")
+                .Answers(displayWords[stage], preferredWrong: displayWords);
+        }
     }
 }
