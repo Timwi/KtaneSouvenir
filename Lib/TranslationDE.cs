@@ -2507,7 +2507,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} displayed letter in {0}?
                     // Example: What was the first displayed letter in Challenge & Contact?
-                    Question = "Welcher Buchstabe war bei {0} am Anfang zu sehen?",
+                    Question = "Was war bei {0} der {1}e Buchstabe auf dem Display?",
                 },
             },
         },
@@ -7971,7 +7971,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which of these letters was present in the {1} stage of {0}?
                     // Example: Which of these letters was present in the first stage of LED Encryption?
-                    Question = "Welcher Buchstabe kam bei {0} in der ersten Stufe vor?",
+                    Question = "Welcher Buchstabe kam bei {0} in der {1}en Stufe vor?",
                 },
             },
         },
@@ -8175,7 +8175,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SLionsShare.RemovedLions] = new()
                 {
                     // English: Which lion was present but removed in {0}?
-                    Question = "Welcher Löwe war anwesend aber wurde entfernt?",
+                    Question = "Welcher Löwe war bei {0} anwesend aber wurde entfernt?",
                 },
             },
         },
