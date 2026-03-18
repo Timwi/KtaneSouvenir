@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -1537,13 +1537,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Bitmaps
         [typeof(SBitmaps)] = new()
         {
+            ModuleName = "Bitmap",
             Questions = new()
             {
                 [SBitmaps.Question] = new()
                 {
                     // English: How many pixels were {1} in the {2} quadrant in {0}?
                     // Example: How many pixels were white in the top left quadrant in Bitmaps?
-                    Question = "Wie viele Pixels waren bei {0} im {2} Quadranten {1}?",
+                    Question = "Wie viele Pixel waren bei {0} im {2} Quadranten {1}?",
                     Arguments = new()
                     {
                         ["white"] = "weiß",
@@ -1552,6 +1553,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["top right"] = "oberen rechten",
                         ["bottom left"] = "unteren linken",
                         ["bottom right"] = "unteren rechten",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBitmaps.Discriminator] = new()
+                {
+                    // English: the Bitmap where the {2} pixel count in the {1} quadrant was {0}
+                    // Example: the Bitmap where the white pixel count in the top left quadrant was 1
+                    Discriminator = "dem Bitmap, bei dem die Anzahl {2} Pixel im {1} Quadranten {0} war,",
+                    Arguments = new()
+                    {
+                        ["top left"] = "oberen linken",
+                        ["top right"] = "oberen rechten",
+                        ["bottom left"] = "unteren linken",
+                        ["bottom right"] = "unteren rechten",
+                        ["white"] = "weißer",
+                        ["black"] = "schwarzer",
                     },
                 },
             },
@@ -1686,13 +1705,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Blockbusters
         [typeof(SBlockbusters)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SBlockbusters.FirstLetters] = new()
                 {
-                    // English: Which letter was in the left-most column in the first stage of {0}?
-                    Question = "Which letter was in the left-most column in the first stage of {0}?",
+                    // English: Which letter was in the leftmost column at the start of {0}?
+                    Question = "Welcher Buchstabe war bei {0} am Anfang in der Spalte am linken Rand?",
                 },
             },
         },
@@ -6024,14 +6042,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Gamepad
         [typeof(SGamepad)] = new()
         {
-            NeedsTranslation = true,
             Questions = new()
             {
                 [SGamepad.QNumbers] = new()
                 {
                     // English: What was the {1} digit on the display on {0}?
                     // Example: What was the first digit on the display on The Gamepad?
-                    Question = "What was the {1} digit on the display on {0}?",
+                    Question = "Was war bei {0} die {1}e Ziffer auf dem Display?",
                 },
             },
             Discriminators = new()
@@ -6040,7 +6057,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Gamepad whose {1} digit on the display was {0}
                     // Example: the Gamepad whose first digit on the display was 0
-                    Discriminator = "on The Gamepad whose {1} digit on the display was {0}",
+                    Discriminator = "dem Gamepad, dessen {1}e Ziffer auf dem Display {0} war,",
                 },
             },
         },
@@ -12939,7 +12956,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Rule of Three where the {1} coordinate of the {2} vertex was {0}
                     // Example: the Rule of Three where the X coordinate of the red vertex was 0
-                    Discriminator = "die Dreierregel, bei der die {1}-Koordinate des {2}en Eckpunkts {0} war,",
+                    Discriminator = "der Dreierregel, bei der die {1}-Koordinate des {2}en Eckpunkts {0} war,",
                     Arguments = new()
                     {
                         ["red"] = "rot",
@@ -12951,7 +12968,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Rule of Three where the {1} sphere was {0} on the {2} axis in the {3} cycle
                     // Example: the Rule of Three where the red sphere was positive on the X axis in the first cycle
-                    Discriminator = "die Dreierregel, bei der die {1}e Kugel auf der {2}-Achse {3} war,",
+                    Discriminator = "der Dreierregel, bei der die {1}e Kugel auf der {2}-Achse {3} war,",
                     Arguments = new()
                     {
                         ["positive"] = "positiv",
@@ -12968,31 +12985,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Safety Square
         [typeof(SSafetySquare)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Gefahrendiamant",
+            ModuleNameDative = "Gefahrendiamanten",
+            Gender = Gender.Masculine,
             Questions = new()
             {
                 [SSafetySquare.Digits] = new()
                 {
                     // English: What was the digit displayed on the {1} diamond in {0}?
                     // Example: What was the digit displayed on the red diamond in Safety Square?
-                    Question = "What was the digit displayed on the {1} diamond in {0}?",
+                    Question = "Welche Ziffer war bei {0} auf dem {1} Diamant?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["blue"] = "blue",
+                        ["red"] = "roten",
+                        ["yellow"] = "gelben",
+                        ["blue"] = "blauen",
                     },
                 },
                 [SSafetySquare.SpecialRule] = new()
                 {
                     // English: What was the special rule displayed on the white diamond in {0}?
-                    Question = "What was the special rule displayed on the white diamond in {0}?",
+                    Question = "Welche Spezialregel stand bei {0} auf dem weißen Diamant?",
                     Answers = new()
                     {
-                        ["No special rule"] = "No special rule",
-                        ["Reacts with water"] = "Reacts with water",
-                        ["Simple asphyxiant"] = "Simple asphyxiant",
-                        ["Oxidizer"] = "Oxidizer",
+                        ["No special rule"] = "Keine Spezialregel",
+                        ["Reacts with water"] = "Reagiert mit Wasser",
+                        ["Simple asphyxiant"] = "Stickgas",
+                        ["Oxidizer"] = "Oxidationsmittel",
                     },
                 },
             },
@@ -13054,24 +13073,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Scavenger Hunt
         [typeof(SScavengerHunt)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Schnitzeljagd",
+            Gender = Gender.Feminine,
             Questions = new()
             {
                 [SScavengerHunt.KeySquare] = new()
                 {
                     // English: Which tile was correctly submitted in the first stage of {0}?
-                    Question = "Which tile was correctly submitted in the first stage of {0}?",
+                    Question = "Welches Feld wurde bei {0} in der ersten Stufe korrekt eingegeben?",
                 },
                 [SScavengerHunt.ColoredTiles] = new()
                 {
                     // English: Which of these tiles was {1} in the first stage of {0}?
                     // Example: Which of these tiles was red in the first stage of Scavenger Hunt?
-                    Question = "Which of these tiles was {1} in the first stage of {0}?",
+                    Question = "Welches dieser Felder war bei {0} in der ersten Stufe {1}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
                     },
                 },
             },

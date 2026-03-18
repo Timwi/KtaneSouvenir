@@ -1808,6 +1808,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Bitmaps
         [typeof(SBitmaps)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Битовых изображениях",
             ManualQuestions = new()
             {
@@ -1829,6 +1830,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top right"] = "правом верхнем",
                         ["bottom left"] = "нижнем левом",
                         ["bottom right"] = "нижнем правом",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBitmaps.Discriminator] = new()
+                {
+                    // English: the Bitmap where the {2} pixel count in the {1} quadrant was {0}
+                    // Example: the Bitmap where the white pixel count in the top left quadrant was 1
+                    Discriminator = "the Bitmap where {0} of the pixels in the {1} quadrant were {2}",
+                    Arguments = new()
+                    {
+                        ["top left"] = "top left",
+                        ["top right"] = "top right",
+                        ["bottom left"] = "bottom left",
+                        ["bottom right"] = "bottom right",
+                        ["white"] = "white",
+                        ["black"] = "black",
                     },
                 },
             },
@@ -1980,14 +1999,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What letters were in the left-most column in the first stage?"] = "What letters were in the left-most column in the first stage?",
+                ["What letters were in the leftmost column at the start?"] = "What letters were in the leftmost column at the start?",
             },
             Questions = new()
             {
                 [SBlockbusters.FirstLetters] = new()
                 {
-                    // English: Which letter was in the left-most column in the first stage of {0}?
-                    Question = "Which letter was in the left-most column in the first stage of {0}?",
+                    // English: Which letter was in the leftmost column at the start of {0}?
+                    Question = "Which letter was in the leftmost column at the start of {0}?",
                 },
             },
         },
@@ -6930,7 +6949,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: the Gamepad whose {1} digit on the display was {0}
                     // Example: the Gamepad whose first digit on the display was 0
-                    Discriminator = "on The Gamepad whose {1} digit on the display was {0}",
+                    Discriminator = "the Gamepad whose {1} digit on the display was {0}",
                 },
             },
         },
