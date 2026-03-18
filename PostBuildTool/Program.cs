@@ -165,6 +165,7 @@ public static class Program
         var handlerAttrType = assembly.GetType("Souvenir.SouvenirHandlerAttribute");
         var questionAttrType = assembly.GetType("Souvenir.SouvenirQuestionAttribute");
         var discrAttrType = assembly.GetType("Souvenir.SouvenirDiscriminatorAttribute");
+        var removeAttrType = assembly.GetType("Souvenir.RemoveAttribute");
         var languages = (assembly.GetType("Souvenir.TranslationInfo").GetField("AllTranslations", BindingFlags.Static | BindingFlags.Public).GetValue(null) as IDictionary).Keys.Cast<string>().ToArray();
 
         var allInfos = new Dictionary<string, List<(FieldInfo fld, dynamic attr)>>();
@@ -261,6 +262,7 @@ public static class Program
                 }
 
                 var questionsAndDiscriminators = enumType.GetFields(BindingFlags.Static | BindingFlags.Public)
+                    .Where(f => f.GetCustomAttribute(removeAttrType) == null)
                     .Select(f => (enumValue: f.GetValue(null), qAttr: (dynamic) f.GetCustomAttribute(questionAttrType), dAttr: (dynamic) f.GetCustomAttribute(discrAttrType)))
                     .ToArray();
 
