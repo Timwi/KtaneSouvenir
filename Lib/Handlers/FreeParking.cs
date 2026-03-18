@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 
@@ -25,12 +24,15 @@ public partial class SouvenirModule
         yield return WaitForSolve;
         var baseMoney = GetIntField(comp, "baseMoneyInt").Get();
         var originalBaseMoneyStr = GetField<string>(comp, "baseMoneyEdit").Get();
-        var originalBaseMoney = Int32.Parse(originalBaseMoneyStr) % 5000;
+        if (originalBaseMoneyStr == "")
+            yield return legitimatelyNoQuestion(module, "Unicorn rule applied.");
 
-        if (baseMoney == 0)
-            yield return legitimatelyNoQuestion(module, "Base money was $0. Assuming unicorn rule.");
+        if (!int.TryParse(originalBaseMoneyStr, out var originalBaseMoney))
+            throw new AbandonModuleException($"not a valid integer: {originalBaseMoneyStr}");
 
-        else if (baseMoney == originalBaseMoney)
+        originalBaseMoney %= 5000;
+
+        if (baseMoney == originalBaseMoney)
             yield return legitimatelyNoQuestion(module, "Base money never changed. Assuming no solved modules and no relevant modules were present.");
 
         yield return question(SFreeParking.Token).Answers(tokens[selected].name);
