@@ -934,6 +934,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Arithmetic Cipher
+        [typeof(SArithmeticCipher)] = new()
+        {
+            ModuleName = "Arithmetik-Geheimschrift",
+            Gender = Gender.Feminine,
+            Questions = new()
+            {
+                [SArithmeticCipher.Screen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Arithmetic Cipher?
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+        },
+
         // ASCII Maze
         [typeof(SASCIIMaze)] = new()
         {
@@ -1809,6 +1831,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Cipher?
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+        },
+
+        // Blue Huffman Cipher
+        [typeof(SBlueHuffmanCipher)] = new()
+        {
+            ModuleName = "Blaue Huffman-Geheimschrift",
+            Gender = Gender.Feminine,
+            Questions = new()
+            {
+                [SBlueHuffmanCipher.Screen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Blue Huffman Cipher?
                     Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
@@ -8150,6 +8194,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Lempel-Ziv Cipher
+        [typeof(SLempelZivCipher)] = new()
+        {
+            ModuleName = "Lempel-Ziv-Geheimschrift",
+            Gender = Gender.Feminine,
+            Questions = new()
+            {
+                [SLempelZivCipher.Screen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Lempel-Ziv Cipher?
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+        },
+
         // Letter Math
         [typeof(SLetterMath)] = new()
         {
@@ -11961,6 +12027,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Red"] = "Rot",
                         ["Blue"] = "Blau",
                         ["Yellow"] = "Gelb",
+                    },
+                },
+            },
+        },
+
+        // Pokémon Sprite Cipher
+        [typeof(SPokémonSpriteCipher)] = new()
+        {
+            ModuleName = "Pokémon-Sprite-Geheimschrift",
+            Gender = Gender.Feminine,
+            Questions = new()
+            {
+                [SPokémonSpriteCipher.Screen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Pokémon Sprite Cipher?
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -17678,6 +17766,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["top"] = "ober",
                         ["middle"] = "mittler",
                         ["bottom"] = "unter",
+                    },
+                },
+            },
+        },
+
+        // Yellow Huffman Cipher
+        [typeof(SYellowHuffmanCipher)] = new()
+        {
+            ModuleName = "Gelbe Huffman-Geheimschrift",
+            Gender = Gender.Feminine,
+            Questions = new()
+            {
+                [SYellowHuffmanCipher.Screen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Yellow Huffman Cipher?
+                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },

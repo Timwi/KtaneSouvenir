@@ -68,6 +68,43 @@ public partial class SouvenirModule
         var allWordsObj = Activator.CreateInstance(allWordsType);
         var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 5);
 
+        var pagesList = new List<(int page, int screen, string text)>();
+        for (var pageIx = 0; pageIx < pages.Count; pageIx++)
+        {
+            var screenObjs = fldScreens.GetFrom(pages[pageIx], v => v.Count == 0 ? "expected at least one screen per page" : null);
+            for (var scrIx = 0; scrIx < screenObjs.Count; scrIx++)
+                if (!fldAvoid.GetFrom(screenObjs[scrIx]) && fldText.GetFrom(screenObjs[scrIx], nullAllowed: true) is { } text && !string.IsNullOrEmpty(text))
+                    pagesList.Add((pageIx, scrIx, text));
+        }
+
+        foreach (var obj in processColoredOrCompressionCiphers(q, pagesList, allWords))
+            yield return obj;
+    }
+
+    // Used by Arithmetic Cipher, Blue Huffman Cipher, Lempel-Ziv Cipher, Pokémon Sprite Cipher and Yellow Huffman Cipher
+    private IEnumerator<SouvenirInstruction> processCompressionCiphers(ModuleData module, string componentName, Enum q)
+    {
+        var comp = GetComponent(module, componentName);
+        yield return WaitForSolve;
+
+        var pages = GetArrayField<string[]>(comp, "_pages").Get(v => v.Length != 2 ? "expected exactly 2 pages" : null);
+        var allWordsType = comp.GetType().Assembly.GetType("CompressionCiphersLib.Data") ?? throw new AbandonModuleException("I cannot find the CompressionCiphersLib.Data type.");
+        var allWordsObj = Activator.CreateInstance(allWordsType);
+        var allWords = GetField<List<string>[]>(allWordsObj, "allWords").Get();
+
+        var pagesList = new List<(int page, int screen, string text)>();
+        for (var pageIx = 0; pageIx < pages.Length; pageIx++)
+            for (var scrIx = 0; scrIx < pages[pageIx].Length; scrIx++)
+                if (!string.IsNullOrEmpty(pages[pageIx][scrIx]))
+                    pagesList.Add((pageIx, scrIx, pages[pageIx][scrIx]));
+
+        foreach (var obj in processColoredOrCompressionCiphers(q, pagesList, allWords))
+            yield return obj;
+    }
+
+    // Used by all colored ciphers, Ultimate Cipher, and the compression ciphers
+    private IEnumerable<SouvenirInstruction> processColoredOrCompressionCiphers(Enum q, IEnumerable<(int page, int screen, string text)> screenTexts, List<string>[] wordLists)
+    {
         string[] generateWrongAnswers(string correctAnswer, AnswerGeneratorAttribute<string> gen)
         {
             var set = new HashSet<string> { correctAnswer };
@@ -95,82 +132,83 @@ public partial class SouvenirModule
 
         var screenNames = new[] { "top", "middle", "bottom" };
         var romanNumerals = new[] { "I", "II", "III", "IV", "V", "VI", "VII", "VIII" };
-        for (var pageIx = 0; pageIx < pages.Count; pageIx++)
+
+        foreach (var (page, screen, text) in screenTexts)
         {
-            var screenObjs = fldScreens.GetFrom(pages[pageIx], v => v.Count == 0 ? "expected at least one screen per page" : null);
-            var screenTexts = Enumerable.Range(0, screenObjs.Count).Select(scrIx => (page: pageIx, screen: scrIx, text: fldText.GetFrom(screenObjs[scrIx], nullAllowed: true), avoid: fldAvoid.GetFrom(screenObjs[scrIx])));
-            foreach (var (page, screen, text, avoid) in screenTexts.Where(tup => !tup.avoid && !string.IsNullOrEmpty(tup.text)))
+            // Black Cipher special case: A-VII-IV-V
+            var rom = romanNumerals.JoinString("|");
+            if (Regex.IsMatch(text, $@"^[ABC]-({rom})-({rom})-({rom})$"))
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{"ABC"[Rnd.Range(0, 3)]}-{romanNumerals.ToArray().Shuffle().Take(3).JoinString("-")}"));
+
+            // Black Cipher special case: NJ-SG-CV
+            else if (Regex.IsMatch(text, @"^[A-Z]{2}(-[A-Z]{2})+$"))
             {
-                // Black Cipher special case: A-VII-IV-V
-                var rom = romanNumerals.JoinString("|");
-                if (Regex.IsMatch(text, $@"^[ABC]-({rom})-({rom})-({rom})$"))
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{"ABC"[Rnd.Range(0, 3)]}-{romanNumerals.ToArray().Shuffle().Take(3).JoinString("-")}"));
-
-                // Black Cipher special case: NJ-SG-CV
-                else if (Regex.IsMatch(text, @"^[A-Z]{2}(-[A-Z]{2})+$"))
+                var n = (text.Length + 1) / 3;
+                string gen()
                 {
-                    var n = (text.Length + 1) / 3;
-                    string gen()
-                    {
-                        var shuffle = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray().Shuffle().Take(2 * n).JoinString();
-                        for (var i = n - 1; i >= 1; i--)
-                            shuffle = shuffle.Insert(2 * i, "-");
-                        return shuffle;
-                    }
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()]).Answers(text, preferredWrong: generateWrongAnswersFnc(text, gen));
+                    var shuffle = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray().Shuffle().Take(2 * n).JoinString();
+                    for (var i = n - 1; i >= 1; i--)
+                        shuffle = shuffle.Insert(2 * i, "-");
+                    return shuffle;
                 }
-
-                // Brown Cipher page 2 screen 3 will only have letters A to F
-                else if (Regex.IsMatch(text, @"^[A-F]+$"))
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'F')));
-
-                // Cornflower Cipher special case: only letters A–P
-                else if (Regex.IsMatch(text, @"^[A-P]{6}$"))
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'P')));
-
-                // Cornflower Cipher special case: three letters A–P and a digit
-                else if (Regex.IsMatch(text, @"^[A-P]{3} \d$"))
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]}{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]}{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]} {Rnd.Range(0, 10)}"));
-
-                // Indigo Cipher special case: 24 ? 52 = 12
-                else if (Regex.IsMatch(text, @"^\d+ \? \d+ = \d+$"))
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{Rnd.Range(0, 64)} ? {Rnd.Range(0, 64)} = {Rnd.Range(0, 64)}"));
-
-                // Yellow Cipher special case: 8-5-7-20
-                else if (Regex.IsMatch(text, @"^\d+-\d+-\d+-\d+$"))
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}"));
-
-                // Screens that have a word on them: pick other words of the same length as wrong answers
-                else if (text.Length is >= 4 and <= 8 && allWords[text.Length - 4].Contains(text))
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: allWords[text.Length - 4].ToArray());
-
-                // Screens that have only 0s and 1s on them
-                else if (text.Length >= 3 && text.All(ch => ch is '0' or '1'))
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, '0', '1')));
-
-                // Screens that have only digits on them
-                else if (text.All(ch => ch is >= '0' and <= '9'))
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, '0', '9')));
-
-                // Screens that have only capital letters on them
-                else if (text.All(ch => ch is >= 'A' and <= 'Z'))
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'Z')));
-
-                // All other cases: jumble of letters and digits
-                else
-                    yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
-                        .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")));
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()]).Answers(text, preferredWrong: generateWrongAnswersFnc(text, gen));
             }
+
+            // Brown Cipher page 2 screen 3 will only have letters A to F
+            else if (Regex.IsMatch(text, @"^[A-F]+$"))
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'F')));
+
+            // Cornflower Cipher special case: only letters A–P
+            else if (Regex.IsMatch(text, @"^[A-P]{6}$"))
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'P')));
+
+            // Cornflower Cipher special case: three letters A–P and a digit
+            else if (Regex.IsMatch(text, @"^[A-P]{3} \d$"))
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]}{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]}{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]} {Rnd.Range(0, 10)}"));
+
+            // Arithmetic Cipher special case: three letters and a 2- or 3-digit number
+            else if (Regex.IsMatch(text, @"^[A-Z]{3} \d{2,3}$"))
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]}{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]}{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]} {Rnd.Range(27, 26 * 27 + 1)}"));
+
+            // Indigo Cipher special case: 24 ? 52 = 12
+            else if (Regex.IsMatch(text, @"^\d+ \? \d+ = \d+$"))
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{Rnd.Range(0, 64)} ? {Rnd.Range(0, 64)} = {Rnd.Range(0, 64)}"));
+
+            // Yellow Cipher special case: 8-5-7-20
+            else if (Regex.IsMatch(text, @"^\d+-\d+-\d+-\d+$"))
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}"));
+
+            // Screens that have a word on them: pick other words from the same wordlist as wrong answers
+            else if (text.Length is >= 4 and <= 8 && wordLists.IndexOf(wl => wl.Contains(text)) is { } wlp and not -1)
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: wordLists[wlp].ToArray());
+
+            // Screens that have only 0s and 1s on them
+            else if (text.Length >= 3 && text.All(ch => ch is '0' or '1'))
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, '0', '1')));
+
+            // Screens that have only digits on them
+            else if (text.All(ch => ch is >= '0' and <= '9'))
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, '0', '9')));
+
+            // Screens that have only capital letters on them
+            else if (text.All(ch => ch is >= 'A' and <= 'Z'))
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'Z')));
+
+            // All other cases: jumble of letters and digits
+            else
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")));
         }
     }
 
