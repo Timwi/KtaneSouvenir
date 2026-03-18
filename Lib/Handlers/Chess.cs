@@ -7,7 +7,10 @@ public enum SChess
 {
     [SouvenirQuestion("What was the {1} coordinate in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("a-f", "1-6")]
-    Coordinate
+    QCoordinate,
+
+    [SouvenirDiscriminator("the Chess where the {1} coordinate was {0}", Arguments = ["a1", QandA.Ordinal], ArgumentGroupSize = 2)]
+    DCoordinate
 }
 
 public partial class SouvenirModule
@@ -26,6 +29,12 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         for (var i = 0; i < 6; i++)
-            yield return question(SChess.Coordinate, args: [Ordinal(i + 1)]).Answers("" + ((char) (indexSelected[i] / 10 + 'a')) + (indexSelected[i] % 10 + 1));
+        {
+            var coordStr = "" + ((char)(indexSelected[i] / 10 + 'a')) + (indexSelected[i] % 10 + 1);
+            yield return new Discriminator(SChess.DCoordinate, $"coord-{i}", args: [coordStr, Ordinal(i + 1)]);
+            yield return question(SChess.QCoordinate, args: [Ordinal(i + 1)])
+                .AvoidDiscriminators($"coord-{i}")
+                .Answers(coordStr);
+        }
     }
 }

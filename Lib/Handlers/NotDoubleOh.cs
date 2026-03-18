@@ -9,7 +9,10 @@ public enum SNotDoubleOh
 {
     [SouvenirQuestion("What was the {1} displayed position in the second stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings(2, 'A', 'H')]
-    Position
+    QPosition,
+
+    [SouvenirDiscriminator("the Not Double-Oh where the {0} displayed position was {1}", Arguments = [QandA.Ordinal, "AA"], ArgumentGroupSize = 2)]
+    DPosition
 }
 
 public partial class SouvenirModule
@@ -31,6 +34,11 @@ public partial class SouvenirModule
             seg.SetActive(false);
 
         for (var i = 0; i < 8; i++)
-            yield return question(SNotDoubleOh.Position, args: [Ordinal(i + 1)]).Answers(displays[i]);
+        {
+            yield return new Discriminator(SNotDoubleOh.DPosition, $"pos-{i}", args: [Ordinal(i + 1), displays[i]]);
+            yield return question(SNotDoubleOh.QPosition, args: [Ordinal(i + 1)])
+                .AvoidDiscriminators($"pos-{i}")
+                .Answers(displays[i]);
+        }
     }
 }

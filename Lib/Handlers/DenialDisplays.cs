@@ -6,8 +6,11 @@ using Rnd = UnityEngine.Random;
 
 public enum SDenialDisplays
 {
-    [SouvenirQuestion("What number was initially shown on display {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["1", "22", "333", "4", "55", "666", "7", "88", "999"], Arguments = ["A", "B", "C", "D", "E"], ArgumentGroupSize = 1)]
-    Displays
+    [SouvenirQuestion("What number was initially shown on Display {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["1", "22", "333", "4", "55", "666", "7", "88", "999"], Arguments = ["A", "B", "C", "D", "E"], ArgumentGroupSize = 1)]
+    QDisplays,
+
+    [SouvenirDiscriminator("the Denial Displays where {0} was initially shown on Display {1}", Arguments = ["0", "A"], ArgumentGroupSize = 2)]
+    DDisplays
 }
 
 public partial class SouvenirModule
@@ -33,6 +36,11 @@ public partial class SouvenirModule
                 rands.Add(Rnd.Range(100, 1000));
         }
         for (var disp = 0; disp < 5; disp++)
-            yield return question(SDenialDisplays.Displays, args: ["ABCDE"[disp].ToString()]).Answers(initial[disp].ToString(), preferredWrong: rands.Select(i => i.ToString()).ToArray());
+        {
+            yield return new Discriminator(SDenialDisplays.DDisplays, $"disp-{disp}", args: [initial[disp].ToString(), "ABCDE"[disp].ToString()]);
+            yield return question(SDenialDisplays.QDisplays, args: ["ABCDE"[disp].ToString()])
+                .AvoidDiscriminators($"disp-{disp}")
+                .Answers(initial[disp].ToString(), preferredWrong: rands.Select(i => i.ToString()).ToArray());
+        }
     }
 }

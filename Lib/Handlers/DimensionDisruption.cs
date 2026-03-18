@@ -8,7 +8,10 @@ public enum SDimensionDisruption
 {
     [SouvenirQuestion("Which of these was a visible character in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-Z0-9")]
-    VisibleLetters
+    QVisibleLetters,
+
+    [SouvenirDiscriminator("the Dimension Disruption where {0} was a visible character", Arguments = ["A"], ArgumentGroupSize = 1)]
+    DVisibleLetters
 }
 
 public partial class SouvenirModule
@@ -30,6 +33,10 @@ public partial class SouvenirModule
 
         var alphabet = GetField<string>(comp, "alphabet").Get();
         var answers = letterIndex.Select(li => alphabet[li].ToString()).ToArray();
-        yield return question(SDimensionDisruption.VisibleLetters).Answers(answers);
+
+        foreach (var ltr in answers)
+            yield return new Discriminator(SDimensionDisruption.DVisibleLetters, $"letter-{ltr}", args: [ltr], avoidAnswers: [ltr]);
+
+        yield return question(SDimensionDisruption.QVisibleLetters).Answers(answers);
     }
 }

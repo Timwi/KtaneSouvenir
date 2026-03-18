@@ -6,9 +6,12 @@ using static Souvenir.AnswerLayout;
 
 public enum SButtonSequence
 {
-    [SouvenirQuestion("How many of the buttons in {0} were {1}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "blue", "yellow", "white"], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("How many {1} buttons were there in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "blue", "yellow", "white"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 12)]
-    sColorOccurrences
+    QColorOccurrences,
+
+    [SouvenirDiscriminator("the Button Sequence that had {0} {1}", Arguments = ["1", "red button", "1", "blue button", "1", "yellow button", "1", "white button", "2", "red buttons", "3", "blue buttons", "4", "yellow buttons", "5", "white buttons"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    DColorOccurrences
 }
 
 public partial class SouvenirModule
@@ -34,7 +37,10 @@ public partial class SouvenirModule
                 colorOccurrences.IncSafe(fldColor.GetFrom(panelInfo.GetValue(i, j), v => v < 0 || v >= colorNames.Length ? $"out of range; colorNames.Length={colorNames.Length} ([{colorNames.JoinString(", ")}])" : null));
 
         foreach (var kvp in colorOccurrences)
-            yield return question(SButtonSequence.sColorOccurrences, args: [colorNames[kvp.Key].ToLowerInvariant()])
+        {
+            yield return new Discriminator(SButtonSequence.DColorOccurrences, $"color-{kvp.Key}", args: [kvp.Value.ToString(), $"{colorNames[kvp.Key].ToLowerInvariant()} button{(kvp.Value == 1 ? "" : "s")}"]);
+            yield return question(SButtonSequence.QColorOccurrences, args: [colorNames[kvp.Key].ToLowerInvariant()])
                 .Answers(kvp.Value.ToString(), preferredWrong: colorOccurrences.Values.Select(v => v.ToString()).ToArray());
+        }
     }
 }

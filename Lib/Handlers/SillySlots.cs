@@ -8,7 +8,10 @@ using static Souvenir.AnswerLayout;
 public enum SSillySlots
 {
     [SouvenirQuestion("What was the {1} slot in the {2} stage in {0}?", TwoColumns4Answers, "red bomb", "red cherry", "red coin", "red grape", "green bomb", "green cherry", "green coin", "green grape", "blue bomb", "blue cherry", "blue coin", "blue grape", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
-    Question
+    QSlot,
+
+    [SouvenirDiscriminator("the Silly Slots where the {0} slot in the {1} stage was a {2}", Arguments = [QandA.Ordinal, QandA.Ordinal, "red bomb", QandA.Ordinal, QandA.Ordinal, "red cherry", QandA.Ordinal, QandA.Ordinal, "red coin", QandA.Ordinal, QandA.Ordinal, "red grape", QandA.Ordinal, QandA.Ordinal, "green bomb", QandA.Ordinal, QandA.Ordinal, "green cherry", QandA.Ordinal, QandA.Ordinal, "green coin", QandA.Ordinal, QandA.Ordinal, "green grape", QandA.Ordinal, QandA.Ordinal, "blue bomb", QandA.Ordinal, QandA.Ordinal, "blue cherry", QandA.Ordinal, QandA.Ordinal, "blue coin", QandA.Ordinal, QandA.Ordinal, "blue grape"], ArgumentGroupSize = 3, TranslateArguments = [false, false, true])]
+    DSlot
 }
 
 public partial class SouvenirModule
@@ -33,7 +36,12 @@ public partial class SouvenirModule
         {
             var slotStrings = ((Array) prevSlots[stage]).Cast<object>().Select(obj => (fldColor.GetFrom(obj).ToString() + " " + fldShape.GetFrom(obj).ToString()).ToLowerInvariant()).ToArray();
             for (var slot = 0; slot < slotStrings.Length; slot++)
-                yield return question(SSillySlots.Question, args: [Ordinal(slot + 1), Ordinal(stage + 1)]).Answers(slotStrings[slot], preferredWrong: slotStrings);
+            {
+                yield return new Discriminator(SSillySlots.DSlot, $"silly-{stage}-{slot}", args: [Ordinal(slot + 1), Ordinal(stage + 1), slotStrings[slot]]);
+                yield return question(SSillySlots.QSlot, args: [Ordinal(slot + 1), Ordinal(stage + 1)])
+                    .AvoidDiscriminators($"silly-{stage}-{slot}")
+                    .Answers(slotStrings[slot], preferredWrong: slotStrings);
+            }
         }
     }
 }

@@ -668,8 +668,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ModuleName = "Приключении",
             ManualQuestions = new()
             {
-                ["Which correct items did you use?"] = "Какие правильные предметы были использованы?",
-                ["Which enemy were you fighting?"] = "С каким противником вы сражались?",
+                ["Which items were present?"] = "Which items were present?",
             },
             Questions = new()
             {
@@ -2678,6 +2677,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Button Sequence
         [typeof(SButtonSequence)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Последовательности кнопок",
             ManualQuestions = new()
             {
@@ -2685,10 +2685,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SButtonSequence.sColorOccurrences] = new()
+                [SButtonSequence.QColorOccurrences] = new()
                 {
-                    // English: How many of the buttons in {0} were {1}?
-                    // Example: How many of the buttons in Button Sequence were red?
+                    // English: How many {1} buttons were there in {0}?
+                    // Example: How many red buttons were there in Button Sequence?
                     Question = "Сколько было {1} кнопок {0}?",
                     Conjugation = Conjugation.в_PrepositiveFeminine,
                     Arguments = new()
@@ -2697,6 +2697,26 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["blue"] = "синих",
                         ["yellow"] = "жёлтых",
                         ["white"] = "белых",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SButtonSequence.DColorOccurrences] = new()
+                {
+                    // English: the Button Sequence that had {0} {1}
+                    // Example: the Button Sequence that had 1 red button
+                    Discriminator = "the Button Sequence that had {0} {1}",
+                    Arguments = new()
+                    {
+                        ["red button"] = "red button",
+                        ["blue button"] = "blue button",
+                        ["yellow button"] = "yellow button",
+                        ["white button"] = "white button",
+                        ["red buttons"] = "red buttons",
+                        ["blue buttons"] = "blue buttons",
+                        ["yellow buttons"] = "yellow buttons",
+                        ["white buttons"] = "white buttons",
                     },
                 },
             },
@@ -3127,6 +3147,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Chess
         [typeof(SChess)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Шахматах",
             ManualQuestions = new()
             {
@@ -3134,12 +3155,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SChess.Coordinate] = new()
+                [SChess.QCoordinate] = new()
                 {
                     // English: What was the {1} coordinate in {0}?
                     // Example: What was the first coordinate in Chess?
                     Question = "Какие были {1}-е координаты {0}?",
                     Conjugation = Conjugation.в_PrepositivePlural,
+                },
+            },
+            Discriminators = new()
+            {
+                [SChess.DCoordinate] = new()
+                {
+                    // English: the Chess where the {1} coordinate was {0}
+                    // Example: the Chess where the first coordinate was a1
+                    Discriminator = "the Chess where the {1} coordinate was {0}",
                 },
             },
         },
@@ -4471,10 +4501,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SCyanButton.Positions] = new()
+                [SCyanButton.QPositions] = new()
                 {
-                    // English: Where was the button at the {1} stage in {0}?
-                    // Example: Where was the button at the first stage in The Cyan Button?
+                    // English: Where was the button at in the {1} stage of {0}?
+                    // Example: Where was the button at in the first stage of The Cyan Button?
                     Question = "Где был {0} на своём {1}-м этапе?",
                     Conjugation = Conjugation.NominativeMasculine,
                     Answers = new()
@@ -4485,6 +4515,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["bottom left"] = "Снизу слева",
                         ["bottom middle"] = "Снизу посередине",
                         ["bottom right"] = "Снизу справа",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCyanButton.DPositions] = new()
+                {
+                    // English: the Cyan Button where the button in the {0} stage was at the {1}
+                    // Example: the Cyan Button where the button in the first stage was at the top left
+                    Discriminator = "the Cyan Button where the button at the {0} stage was in the {1}",
+                    Arguments = new()
+                    {
+                        ["top left"] = "top left",
+                        ["top middle"] = "top middle",
+                        ["top right"] = "top right",
+                        ["bottom left"] = "bottom left",
+                        ["bottom middle"] = "bottom middle",
+                        ["bottom right"] = "bottom right",
                     },
                 },
             },
@@ -4653,7 +4701,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SDecolourFlash.Goal] = new()
+                [SDecolourFlash.QGoal] = new()
                 {
                     // English: What was the {1} of the {2} goal in {0}?
                     // Example: What was the colour of the first goal in Decolour Flash?
@@ -4674,22 +4722,52 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     },
                 },
             },
+            Discriminators = new()
+            {
+                [SDecolourFlash.DGoal] = new()
+                {
+                    // English: the Decolour Flash where the {0} of the {1} goal was {2}
+                    // Example: the Decolour Flash where the word of the first goal was blue
+                    Discriminator = "the Decolour Flash where the {0} of the {1} goal was {2}",
+                    Arguments = new()
+                    {
+                        ["word"] = "word",
+                        ["colour"] = "colour",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["red"] = "red",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["white"] = "white",
+                    },
+                },
+            },
         },
 
         // Denial Displays
         [typeof(SDenialDisplays)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was initially on the displays?"] = "Что изначально было на экранах?",
             },
             Questions = new()
             {
-                [SDenialDisplays.Displays] = new()
+                [SDenialDisplays.QDisplays] = new()
                 {
-                    // English: What number was initially shown on display {1} in {0}?
-                    // Example: What number was initially shown on display A in Denial Displays?
+                    // English: What number was initially shown on Display {1} in {0}?
+                    // Example: What number was initially shown on Display A in Denial Displays?
                     Question = "Какое число было показано на экране {1} {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SDenialDisplays.DDisplays] = new()
+                {
+                    // English: the Denial Displays where {0} was initially shown on Display {1}
+                    // Example: the Denial Displays where 0 was initially shown on Display A
+                    Discriminator = "the Denial Displays where {0} was initially shown on Display {1}",
                 },
             },
         },
@@ -4804,16 +4882,26 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Dimension Disruption
         [typeof(SDimensionDisruption)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the visible characters?"] = "Какие символы можно было рассмотреть на модуле?",
             },
             Questions = new()
             {
-                [SDimensionDisruption.VisibleLetters] = new()
+                [SDimensionDisruption.QVisibleLetters] = new()
                 {
                     // English: Which of these was a visible character in {0}?
                     Question = "Что из этого было видимым символом {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SDimensionDisruption.DVisibleLetters] = new()
+                {
+                    // English: the Dimension Disruption where {0} was a visible character
+                    // Example: the Dimension Disruption where A was a visible character
+                    Discriminator = "the Dimension Disruption where {0} was a visible character",
                 },
             },
         },
@@ -11550,18 +11638,28 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Not Double-Oh
         [typeof(SNotDoubleOh)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the displayed positions in the second stage?"] = "Какие позиции были показаны на втором этапе?",
             },
             Questions = new()
             {
-                [SNotDoubleOh.Position] = new()
+                [SNotDoubleOh.QPosition] = new()
                 {
                     // English: What was the {1} displayed position in the second stage of {0}?
                     // Example: What was the first displayed position in the second stage of Not Double-Oh?
                     Question = "Какая позиция была показана {1}-й на втором этапе {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
+                },
+            },
+            Discriminators = new()
+            {
+                [SNotDoubleOh.DPosition] = new()
+                {
+                    // English: the Not Double-Oh where the {0} displayed position was {1}
+                    // Example: the Not Double-Oh where the first displayed position was AA
+                    Discriminator = "the Not Double-Oh where the {0} displayed position was {1}",
                 },
             },
         },
@@ -12624,6 +12722,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Only Connect
         [typeof(SOnlyConnect)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "\"Лишь Соедините!\"",
             ManualModuleName = "Лишь Соедините!",
             ManualQuestions = new()
@@ -12632,7 +12731,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SOnlyConnect.Hieroglyphs] = new()
+                [SOnlyConnect.QHieroglyphs] = new()
                 {
                     // English: Which Egyptian hieroglyph was in the {1} in {0}?
                     // Example: Which Egyptian hieroglyph was in the top left in Only Connect?
@@ -12654,6 +12753,30 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Horned Viper"] = "Рогатая гадюка",
                         ["Water"] = "Вода",
                         ["Eye of Horus"] = "Глаз Гора",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SOnlyConnect.DHierohlyphs] = new()
+                {
+                    // English: the Only Connect where the Egyptian hieroglyph in the {1} was {0}
+                    // Example: the Only Connect where the Egyptian hieroglyph in the top left was Two Reeds
+                    Discriminator = "the Only Connect where the Egyptian hieroglyph in the {0} was {1}",
+                    Arguments = new()
+                    {
+                        ["Two Reeds"] = "Two Reeds",
+                        ["Lion"] = "Lion",
+                        ["Twisted Flax"] = "Twisted Flax",
+                        ["Horned Viper"] = "Horned Viper",
+                        ["Water"] = "Water",
+                        ["Eye of Horus"] = "Eye of Horus",
+                        ["top left"] = "top left",
+                        ["top middle"] = "top middle",
+                        ["top right"] = "top right",
+                        ["bottom left"] = "bottom left",
+                        ["bottom middle"] = "bottom middle",
+                        ["bottom right"] = "bottom right",
                     },
                 },
             },
@@ -15325,6 +15448,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Silly Slots
         [typeof(SSillySlots)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Однорукого бандита",
             ManualQuestions = new()
             {
@@ -15332,7 +15456,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SSillySlots.Question] = new()
+                [SSillySlots.QSlot] = new()
                 {
                     // English: What was the {1} slot in the {2} stage in {0}?
                     // Example: What was the first slot in the first stage in Silly Slots?
@@ -15352,6 +15476,30 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["blue cherry"] = "Синяя вишня",
                         ["blue coin"] = "Синяя монета",
                         ["blue grape"] = "Синяя гроздь",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SSillySlots.DSlot] = new()
+                {
+                    // English: the Silly Slots where the {0} slot in the {1} stage was a {2}
+                    // Example: the Silly Slots where the first slot in the first stage was a red bomb
+                    Discriminator = "the Silly Slots where the {1} slot in the {2} stage was {0}",
+                    Arguments = new()
+                    {
+                        ["red bomb"] = "red bomb",
+                        ["red cherry"] = "red cherry",
+                        ["red coin"] = "red coin",
+                        ["red grape"] = "red grape",
+                        ["green bomb"] = "green bomb",
+                        ["green cherry"] = "green cherry",
+                        ["green coin"] = "green coin",
+                        ["green grape"] = "green grape",
+                        ["blue bomb"] = "blue bomb",
+                        ["blue cherry"] = "blue cherry",
+                        ["blue coin"] = "blue coin",
+                        ["blue grape"] = "blue grape",
                     },
                 },
             },
@@ -17979,7 +18127,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [STicTacToe.InitialState] = new()
+                [STicTacToe.QButton] = new()
                 {
                     // English: What was on the {1} button at the start of {0}?
                     // Example: What was on the top-left button at the start of Tic Tac Toe?
@@ -18001,7 +18149,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Discriminators = new()
             {
-                [STicTacToe.Discriminator] = new()
+                [STicTacToe.DButton] = new()
                 {
                     // English: the Tic Tac Toe where the {0} button was {1}
                     // Example: the Tic Tac Toe where the top-left button was 1

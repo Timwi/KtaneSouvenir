@@ -18,8 +18,7 @@ public enum SAdventureGame
 public partial class SouvenirModule
 {
     [SouvenirHandler("spwizAdventureGame", "Adventure Game", typeof(SAdventureGame), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which correct items did you use?")]
-    [SouvenirManualQuestion("Which enemy were you fighting?")]
+    [SouvenirManualQuestion("Which items were present?")]
     private IEnumerator<SouvenirInstruction> ProcessAdventureGame(ModuleData module)
     {
         var comp = GetComponent(module, "AdventureGameModule");

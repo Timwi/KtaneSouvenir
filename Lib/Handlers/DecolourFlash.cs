@@ -7,7 +7,10 @@ using static Souvenir.AnswerLayout;
 public enum SDecolourFlash
 {
     [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", Arguments = ["colour", QandA.Ordinal, "word", QandA.Ordinal], ArgumentGroupSize = 2, TranslateAnswers = true, TranslateArguments = [true, false])]
-    Goal
+    QGoal,
+
+    [SouvenirDiscriminator("the Decolour Flash where the {0} of the {1} goal was {2}", Arguments = ["word", QandA.Ordinal, "blue", "word", QandA.Ordinal, "green", "word", QandA.Ordinal, "red", "colour", QandA.Ordinal, "magenta", "colour", QandA.Ordinal, "yellow", "colour", QandA.Ordinal, "white"], ArgumentGroupSize = 3, TranslateArguments = [true, false, true])]
+    DGoal
 }
 
 public partial class SouvenirModule
@@ -31,8 +34,14 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"colours/words are: [{colours.JoinString(", ")}], [{words.JoinString(", ")}]; expected values 0–5");
         for (var i = 0; i < 3; i++)
         {
-            yield return question(SDecolourFlash.Goal, args: ["colour", Ordinal(i + 1)]).Answers(names[colours[i]]);
-            yield return question(SDecolourFlash.Goal, args: ["word", Ordinal(i + 1)]).Answers(names[words[i]]);
+            yield return new Discriminator(SDecolourFlash.DGoal, $"goal-colour-{i}", args: ["colour", Ordinal(i + 1), names[colours[i]]]);
+            yield return new Discriminator(SDecolourFlash.DGoal, $"goal-word-{i}", args: ["word", Ordinal(i + 1), names[words[i]]]);
+            yield return question(SDecolourFlash.QGoal, args: ["colour", Ordinal(i + 1)])
+                .AvoidDiscriminators($"goal-colour-{i}")
+                .Answers(names[colours[i]]);
+            yield return question(SDecolourFlash.QGoal, args: ["word", Ordinal(i + 1)])
+                .AvoidDiscriminators($"goal-word-{i}")
+                .Answers(names[words[i]]);
         }
     }
 }
