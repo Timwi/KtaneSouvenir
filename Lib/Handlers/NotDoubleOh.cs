@@ -35,7 +35,7 @@ public partial class SouvenirModule
 
         for (var i = 0; i < 8; i++)
         {
-            yield return new Discriminator(SNotDoubleOh.DPosition, $"pos-{i}", args: [Ordinal(i + 1), displays[i]]);
+            yield return new Discriminator(SNotDoubleOh.DPosition, $"pos-{i}", displays[i], args: [Ordinal(i + 1), displays[i]]);
             yield return question(SNotDoubleOh.QPosition, args: [Ordinal(i + 1)])
                 .AvoidDiscriminators($"pos-{i}")
                 .Answers(displays[i]);

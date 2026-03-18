@@ -29,7 +29,7 @@ public partial class SouvenirModule
         var displaySequence = GetProperty<string>(comp, "DisplaySequence", true).Get();
         for (var stage = 0; stage < 4; stage++)
         {
-            yield return new Discriminator(SMemory.DDisplay, $"display-{stage}", args: [displaySequence[stage].ToString(), Ordinal(stage + 1)]);
+            yield return new Discriminator(SMemory.DDisplay, $"display-{stage}", displaySequence[stage].ToString(), args: [displaySequence[stage].ToString(), Ordinal(stage + 1)]);
             yield return question(SMemory.QDisplay, args: [Ordinal(stage + 1)])
                 .AvoidDiscriminators($"display-{stage}")
                 .Answers(displaySequence[stage].ToString());

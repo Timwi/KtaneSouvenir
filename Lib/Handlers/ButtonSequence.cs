@@ -38,8 +38,9 @@ public partial class SouvenirModule
 
         foreach (var kvp in colorOccurrences)
         {
-            yield return new Discriminator(SButtonSequence.DColorOccurrences, $"color-{kvp.Key}", args: [kvp.Value.ToString(), $"{colorNames[kvp.Key].ToLowerInvariant()} button{(kvp.Value == 1 ? "" : "s")}"]);
+            yield return new Discriminator(SButtonSequence.DColorOccurrences, $"color-{kvp.Key}", kvp.Value.ToString(), args: [kvp.Value.ToString(), $"{colorNames[kvp.Key].ToLowerInvariant()} button{(kvp.Value == 1 ? "" : "s")}"]);
             yield return question(SButtonSequence.QColorOccurrences, args: [colorNames[kvp.Key].ToLowerInvariant()])
+                .AvoidDiscriminators($"color-{kvp.Key}")
                 .Answers(kvp.Value.ToString(), preferredWrong: colorOccurrences.Values.Select(v => v.ToString()).ToArray());
         }
     }

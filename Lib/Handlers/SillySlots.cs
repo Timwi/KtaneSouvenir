@@ -37,7 +37,7 @@ public partial class SouvenirModule
             var slotStrings = ((Array) prevSlots[stage]).Cast<object>().Select(obj => (fldColor.GetFrom(obj).ToString() + " " + fldShape.GetFrom(obj).ToString()).ToLowerInvariant()).ToArray();
             for (var slot = 0; slot < slotStrings.Length; slot++)
             {
-                yield return new Discriminator(SSillySlots.DSlot, $"silly-{stage}-{slot}", args: [Ordinal(slot + 1), Ordinal(stage + 1), slotStrings[slot]]);
+                yield return new Discriminator(SSillySlots.DSlot, $"silly-{stage}-{slot}", slotStrings[slot], args: [Ordinal(slot + 1), Ordinal(stage + 1), slotStrings[slot]]);
                 yield return question(SSillySlots.QSlot, args: [Ordinal(slot + 1), Ordinal(stage + 1)])
                     .AvoidDiscriminators($"silly-{stage}-{slot}")
                     .Answers(slotStrings[slot], preferredWrong: slotStrings);

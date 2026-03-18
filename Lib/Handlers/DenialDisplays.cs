@@ -37,7 +37,7 @@ public partial class SouvenirModule
         }
         for (var disp = 0; disp < 5; disp++)
         {
-            yield return new Discriminator(SDenialDisplays.DDisplays, $"disp-{disp}", args: [initial[disp].ToString(), "ABCDE"[disp].ToString()]);
+            yield return new Discriminator(SDenialDisplays.DDisplays, $"disp-{disp}", initial[disp].ToString(), args: [initial[disp].ToString(), "ABCDE"[disp].ToString()]);
             yield return question(SDenialDisplays.QDisplays, args: ["ABCDE"[disp].ToString()])
                 .AvoidDiscriminators($"disp-{disp}")
                 .Answers(initial[disp].ToString(), preferredWrong: rands.Select(i => i.ToString()).ToArray());

@@ -37,7 +37,7 @@ public partial class SouvenirModule
 
         for (int qIx = 0; qIx < 3; qIx++)
         {
-            yield return new Discriminator(STwoBits.DResponse, $"query-{qIx}", args: [Ordinal(qIx + 1), responses[qIx]]);
+            yield return new Discriminator(STwoBits.DResponse, $"query-{qIx}", responses[qIx], args: [Ordinal(qIx + 1), responses[qIx]]);
             yield return question(STwoBits.QResponse, args: [Ordinal(qIx + 1)])
                 .AvoidDiscriminators($"query-{qIx}")
                 .Answers(responses[qIx], preferredWrong: responses);

@@ -10245,6 +10245,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Memory Wires
         [typeof(SMemoryWires)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "記憶ワイヤ",
             ManualQuestions = new()
             {
@@ -10253,7 +10254,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SMemoryWires.WireColours] = new()
+                [SMemoryWires.QWireColours] = new()
                 {
                     // English: What was the colour of wire {1} in {0}?
                     // Example: What was the colour of wire 1 in Memory Wires?
@@ -10267,11 +10268,34 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Black"] = "黒",
                     },
                 },
-                [SMemoryWires.DisplayedDigits] = new()
+                [SMemoryWires.QDisplayedDigits] = new()
                 {
                     // English: What was the digit displayed in the {1} stage of {0}?
                     // Example: What was the digit displayed in the first stage of Memory Wires?
                     Question = "{0}のステージ{1}で表示された数字は？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SMemoryWires.DWireColours] = new()
+                {
+                    // English: the Memory Wires where the colour of wire {0} was {1}
+                    // Example: the Memory Wires where the colour of wire 1 was red
+                    Discriminator = "the Memory Wires where the colour of wire {0} was {1}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["yellow"] = "yellow",
+                        ["blue"] = "blue",
+                        ["white"] = "white",
+                        ["black"] = "black",
+                    },
+                },
+                [SMemoryWires.DDisplayedDigits] = new()
+                {
+                    // English: the Memory Wires where the digit displayed in the {0} stage was {1}
+                    // Example: the Memory Wires where the digit displayed in the first stage was 1
+                    Discriminator = "the Memory Wires where the digit displayed in the {0} stage was {1}",
                 },
             },
         },

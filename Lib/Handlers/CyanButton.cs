@@ -24,7 +24,7 @@ public partial class SouvenirModule
 
         for (var stage = 0; stage < 6; stage++)
         {
-            yield return new Discriminator(SCyanButton.DPositions, $"stage-{stage}", args: [Ordinal(stage + 1), SCyanButton.QPositions.GetAnswers()[positions[stage]]]);
+            yield return new Discriminator(SCyanButton.DPositions, $"stage-{stage}", SCyanButton.QPositions.GetAnswers()[positions[stage]], args: [Ordinal(stage + 1), SCyanButton.QPositions.GetAnswers()[positions[stage]]]);
             yield return question(SCyanButton.QPositions, args: [Ordinal(stage + 1)])
                 .AvoidDiscriminators($"stage-{stage}")
                 .Answers(SCyanButton.QPositions.GetAnswers()[positions[stage]]);

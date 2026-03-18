@@ -30,7 +30,7 @@ public partial class SouvenirModule
         var sequence = GetArrayField<int>(comp, "currentSequence").Get(validator: arr => arr.Any(i => i < 0 || i >= colorNames.Length) ? "expected values 0–3" : null);
         for (var i = 0; i < sequence.Length; i++)
         {
-            yield return new Discriminator(SSimonSays.DFlash, $"flash-{i}", args: [Ordinal(i + 1), colorNames[sequence[i]]]);
+            yield return new Discriminator(SSimonSays.DFlash, $"flash-{i}", colorNames[sequence[i]], args: [Ordinal(i + 1), colorNames[sequence[i]]]);
             yield return question(SSimonSays.QFlash, args: [Ordinal(i + 1)])
                 .AvoidDiscriminators($"flash-{i}")
                 .Answers(colorNames[sequence[i]]);

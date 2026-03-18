@@ -34,8 +34,8 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"colours/words are: [{colours.JoinString(", ")}], [{words.JoinString(", ")}]; expected values 0–5");
         for (var i = 0; i < 3; i++)
         {
-            yield return new Discriminator(SDecolourFlash.DGoal, $"goal-colour-{i}", args: ["colour", Ordinal(i + 1), names[colours[i]]]);
-            yield return new Discriminator(SDecolourFlash.DGoal, $"goal-word-{i}", args: ["word", Ordinal(i + 1), names[words[i]]]);
+            yield return new Discriminator(SDecolourFlash.DGoal, $"goal-colour-{i}", names[colours[i]], args: ["colour", Ordinal(i + 1), names[colours[i]]]);
+            yield return new Discriminator(SDecolourFlash.DGoal, $"goal-word-{i}", names[words[i]], args: ["word", Ordinal(i + 1), names[words[i]]]);
             yield return question(SDecolourFlash.QGoal, args: ["colour", Ordinal(i + 1)])
                 .AvoidDiscriminators($"goal-colour-{i}")
                 .Answers(names[colours[i]]);

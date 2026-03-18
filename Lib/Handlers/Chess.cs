@@ -31,7 +31,7 @@ public partial class SouvenirModule
         for (var i = 0; i < 6; i++)
         {
             var coordStr = "" + ((char)(indexSelected[i] / 10 + 'a')) + (indexSelected[i] % 10 + 1);
-            yield return new Discriminator(SChess.DCoordinate, $"coord-{i}", args: [coordStr, Ordinal(i + 1)]);
+            yield return new Discriminator(SChess.DCoordinate, $"coord-{i}", coordStr, args: [coordStr, Ordinal(i + 1)]);
             yield return question(SChess.QCoordinate, args: [Ordinal(i + 1)])
                 .AvoidDiscriminators($"coord-{i}")
                 .Answers(coordStr);
