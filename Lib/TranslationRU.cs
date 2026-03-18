@@ -86,7 +86,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
     public override string Ordinal(int number) => number.ToString();
     public override bool TranslateManualQuestions => true;
     public override object ManualQuestionSortBy(TranslationInfo<QuestionTranslationInfo_ru> info, string originalModuleName) =>
-        (info.ManualModuleName == null && info.ModuleName == null, info.ManualModuleName ?? info.ModuleName);
+        (info?.ManualModuleName == null && info?.ModuleName == null, info?.ManualModuleName ?? info?.ModuleName);
 
     protected override Dictionary<Type, TranslationInfo<QuestionTranslationInfo_ru>> _translations => new()
     {

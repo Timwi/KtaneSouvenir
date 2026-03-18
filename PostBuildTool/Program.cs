@@ -81,8 +81,8 @@ public static class Program
                 {
                     var enumType = (Type) handlerAttr.EnumType;
                     var translatedHandler = mthTranslateModule.Invoke(language.Value, [enumType]);
-                    var translatedManualQuestions = (Dictionary<string, string>) fldManualQuestions.GetValue(translatedHandler);
-                    var translatedModuleName = (string) fldManualModuleName.GetValue(translatedHandler) ?? (string) fldModuleName.GetValue(translatedHandler);
+                    var translatedManualQuestions = translatedHandler.NullOr(th => (Dictionary<string, string>) fldManualQuestions.GetValue(th));
+                    var translatedModuleName = translatedHandler.NullOr(th => (string) fldManualModuleName.GetValue(th) ?? (string) fldModuleName.GetValue(th));
                     questions[(string) language.Key].Add((translatedHandler, (bool) handlerAttr.AddThe, (string) handlerAttr.ModuleName, translatedModuleName, (string) handlerAttr.ModuleId,
                         manualQuestions.Select(mq => translatedManualQuestions?.Get(mq, null) ?? mq).ToList()));
                 }

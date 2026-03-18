@@ -11,7 +11,7 @@ public abstract class TranslationBase<T> : ITranslation where T : TranslationInf
     public virtual float LineSpacing => 0.525f;
     public virtual bool TranslateManualQuestions => false;
     public object ManualQuestionSortBy(TranslationInfo info, string originalModuleName) => ManualQuestionSortBy((T) info, originalModuleName);
-    public virtual object ManualQuestionSortBy(T info, string originalModuleName) => info.ManualModuleName ?? info.ModuleName;
+    public virtual object ManualQuestionSortBy(T info, string originalModuleName) => info?.ManualModuleName ?? info?.ModuleName;
 
     public virtual string FormatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved) =>
         addSolveCount ? $"the {qAttr.Handler.ModuleName} you solved {Ordinal(numSolved)}" : qAttr.Handler.ModuleNameWithThe;
