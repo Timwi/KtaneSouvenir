@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -17084,7 +17084,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Masculine,
             Questions = new()
             {
-                [SWire.DialColors] = new()
+                [SWire.QDialColors] = new()
                 {
                     // English: What was the color of the {1} dial in {0}?
                     // Example: What was the color of the top dial in The Wire?
@@ -17105,10 +17105,37 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["red"] = "rot",
                     },
                 },
-                [SWire.DisplayedNumber] = new()
+                [SWire.QDisplayedNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
                     Question = "Welche Zahl wurde bei {0} angezeigt?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SWire.DDialColors] = new()
+                {
+                    // English: the Wire whose {0} dial was {1}
+                    // Example: the Wire whose top dial was blue
+                    Discriminator = "der Draht, dessen {0} Drehregler {1} war,",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberer",
+                        ["bottom-left"] = "oberer linker",
+                        ["bottom-right"] = "oberer rechter",
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["grey"] = "grau",
+                        ["orange"] = "orange",
+                        ["purple"] = "lila",
+                        ["red"] = "rot",
+                    },
+                },
+                [SWire.DDisplayedNumber] = new()
+                {
+                    // English: the Wire whose displayed number was {0}
+                    // Example: the Wire whose displayed number was 0
+                    Discriminator = "der Draht, bei dem die Zahl {0} angezeigt wurde,",
                 },
             },
         },

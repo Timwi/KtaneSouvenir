@@ -19551,6 +19551,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Wire
         [typeof(SWire)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ザ・ワイヤ",
             ManualQuestions = new()
             {
@@ -19559,7 +19560,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SWire.DialColors] = new()
+                [SWire.QDialColors] = new()
                 {
                     // English: What was the color of the {1} dial in {0}?
                     // Example: What was the color of the top dial in The Wire?
@@ -19580,10 +19581,37 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["red"] = "赤",
                     },
                 },
-                [SWire.DisplayedNumber] = new()
+                [SWire.QDisplayedNumber] = new()
                 {
                     // English: What was the displayed number in {0}?
                     Question = "{0}で表示された数字は？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SWire.DDialColors] = new()
+                {
+                    // English: the Wire whose {0} dial was {1}
+                    // Example: the Wire whose top dial was blue
+                    Discriminator = "the Wire whose {0} dial was {1}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-right"] = "bottom-right",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["grey"] = "grey",
+                        ["orange"] = "orange",
+                        ["purple"] = "purple",
+                        ["red"] = "red",
+                    },
+                },
+                [SWire.DDisplayedNumber] = new()
+                {
+                    // English: the Wire whose displayed number was {0}
+                    // Example: the Wire whose displayed number was 0
+                    Discriminator = "the Wire whose displayed number was {0}",
                 },
             },
         },
