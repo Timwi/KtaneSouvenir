@@ -7314,21 +7314,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // The Impostor
-        [typeof(SImpostor)] = new()
-        {
-            ModuleName = "Gaukler",
-            Gender = Gender.Masculine,
-            Questions = new()
-            {
-                [SImpostor.Disguise] = new()
-                {
-                    // English: Which module was {0} pretending to be?
-                    Question = "Welches Modul wurde bei {0} vorgetäuscht?",
-                },
-            },
-        },
-
         // Indigo Cipher
         [typeof(SIndigoCipher)] = new()
         {

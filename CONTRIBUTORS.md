@@ -60,20 +60,20 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Remainder Theorem  │  Halli Galli              │  Not Password          │  Simon Subdivides           │  Yellow Button’t
     Coffee Beans               │  hexOrbits                │  Not Red Arrows        │  Simon Swizzles             │
 
-## Implemented by Kuro (58)
+## Implemented by Kuro (57)
 
-    ...?                  │  Cursed Double-Oh   │  Forget The Colors     │  Master Tapes           │  Simon Smothers
-    64                    │  Double Expert      │  Forget This           │  Memory Wires           │  Simon Stacks
-    Alphabet Numbers      │  Duck, The          │  Gadgetron Vendor      │  Not Colored Squares    │  Snowflakes
-    Blinkstop             │  Encrypted Dice     │  Hinges                │  Old Fogey              │  Tea Set, The
-    Bomb Diffusal         │  Faulty Buttons     │  Impostor, The         │  Orientation Hypercube  │  Technical Keypad
-    Boolean Wires         │  Five Letter Words  │  Juxtacolored Squares  │  Periodic Words         │  Tetriamonds
-    Broken Guitar Chords  │  FizzBuzz           │  Kanji                 │  Pictionary             │  Tip Toe
-    Burger Alarm          │  Follow Me          │  Keywords              │  Procedural Maze        │  Triamonds
-    Character Shift       │  Forget Any Color   │  Know Your Way         │  Question Mark          │  Warning Signs
-    Coloured Cubes        │  Forget Everything  │  Langton’s Anteater    │  Quiz Buzz              │  WASD
-    Cruel Binary          │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │
-    Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
+    ...?                  │  Cursed Double-Oh   │  Forget The Colors     │  Memory Wires           │  Simon Stacks
+    64                    │  Double Expert      │  Forget This           │  Not Colored Squares    │  Snowflakes
+    Alphabet Numbers      │  Duck, The          │  Gadgetron Vendor      │  Old Fogey              │  Tea Set, The
+    Blinkstop             │  Encrypted Dice     │  Hinges                │  Orientation Hypercube  │  Technical Keypad
+    Bomb Diffusal         │  Faulty Buttons     │  Juxtacolored Squares  │  Periodic Words         │  Tetriamonds
+    Boolean Wires         │  Five Letter Words  │  Kanji                 │  Pictionary             │  Tip Toe
+    Broken Guitar Chords  │  FizzBuzz           │  Keywords              │  Procedural Maze        │  Triamonds
+    Burger Alarm          │  Follow Me          │  Know Your Way         │  Question Mark          │  Warning Signs
+    Character Shift       │  Forget Any Color   │  Langton’s Anteater    │  Quiz Buzz              │  WASD
+    Coloured Cubes        │  Forget Everything  │  Light Bulbs           │  Recursive Password     │
+    Cruel Binary          │  Forget Me Not      │  Mad Memory            │  Safety Square          │
+    Cruel Keypads         │  Forget Me Now      │  Master Tapes          │  Simon Smothers         │
 
 ## Implemented by Quinn Wuest (57)
 

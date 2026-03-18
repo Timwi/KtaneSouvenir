@@ -8354,25 +8354,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // The Impostor
-        [typeof(SImpostor)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["Which module was being imitated?"] = "Which module was being imitated?",
-            },
-            Questions = new()
-            {
-                [SImpostor.Disguise] = new()
-                {
-                    // English: Which module was {0} pretending to be?
-                    Question = "Каким модулем притворялся {0}?",
-                    Conjugation = Conjugation.NominativeMasculine,
-                },
-            },
-        },
-
         // Indigo Cipher
         [typeof(SIndigoCipher)] = new()
         {

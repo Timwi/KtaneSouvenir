@@ -8268,24 +8268,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // The Impostor
-        [typeof(SImpostor)] = new()
-        {
-            ModuleName = "ニセモノ",
-            ManualQuestions = new()
-            {
-                ["Which module was being imitated?"] = "真似していたモジュールは？",
-            },
-            Questions = new()
-            {
-                [SImpostor.Disguise] = new()
-                {
-                    // English: Which module was {0} pretending to be?
-                    Question = "{0}が化けていたのはどのモジュール(英名)？",
-                },
-            },
-        },
-
         // Indigo Cipher
         [typeof(SIndigoCipher)] = new()
         {
