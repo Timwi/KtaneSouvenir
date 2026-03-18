@@ -9840,6 +9840,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Maritime Semaphore
         [typeof(SMaritimeSemaphore)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["Where was the dummy?"] = "Где была фиктивная конфигурация?",
@@ -9854,14 +9855,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SMaritimeSemaphore.Letter] = new()
                 {
-                    // English: Which letter was shown by the {2} in the {1} position in {0}?
-                    // Example: Which letter was shown by the left flag in the first position in Maritime Semaphore?
-                    Question = "Какая буква была показана {2} в {1}-й позиции {0}?",
+                    // English: Which letter was shown {2} in the {1} position in {0}?
+                    // Example: Which letter was shown as a maritime flag in the first position in Maritime Semaphore?
+                    Question = "Which letter was shown {2} in the {1} position in {0}?",
                     Arguments = new()
                     {
-                        ["left flag"] = "левым флагом",
-                        ["right flag"] = "правым флагом",
-                        ["semaphore"] = "семафором",
+                        ["as a maritime flag"] = "as a maritime flag",
+                        ["in semaphore"] = "in semaphore",
                     },
                 },
             },

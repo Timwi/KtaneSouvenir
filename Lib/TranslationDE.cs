@@ -8633,14 +8633,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SMaritimeSemaphore.Letter] = new()
                 {
-                    // English: Which letter was shown by the {2} in the {1} position in {0}?
-                    // Example: Which letter was shown by the left flag in the first position in Maritime Semaphore?
-                    Question = "Welcher Buchstabe wurde bei {0} an der {1}en Stelle durch die {2} signalisiert?",
+                    // English: Which letter was shown {2} in the {1} position in {0}?
+                    // Example: Which letter was shown as a maritime flag in the first position in Maritime Semaphore?
+                    Question = "Welcher Buchstabe wurde bei {0} an der {1}en Stelle {2} signalisiert?",
                     Arguments = new()
                     {
-                        ["left flag"] = "linke Flagge",
-                        ["right flag"] = "rechte Flagge",
-                        ["semaphore"] = "Winkerflaggen",
+                        ["as a maritime flag"] = "als Schiffsignalflagge",
+                        ["in semaphore"] = "im Winkeralphabet",
                     },
                 },
             },

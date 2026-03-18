@@ -44,6 +44,6 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f); // Roll animation is much longer than .1 seconds anyway.
         }
         for (var ix = 0; ix < rolledValues.Length; ix++)
-            yield return question(SEncryptedDice.Question, args: [Ordinal(ix + 1)]).Answers(rolledValues[ix].Select(val => (val).ToString()).ToArray());
+            yield return question(SEncryptedDice.Question, args: [Ordinal(ix + 1)]).Answers(rolledValues[ix].Select(val => val.ToString()).ToArray());
     }
 }

@@ -9772,6 +9772,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Maritime Semaphore
         [typeof(SMaritimeSemaphore)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "海上セマフォア信号",
             ManualQuestions = new()
             {
@@ -9787,14 +9788,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SMaritimeSemaphore.Letter] = new()
                 {
-                    // English: Which letter was shown by the {2} in the {1} position in {0}?
-                    // Example: Which letter was shown by the left flag in the first position in Maritime Semaphore?
-                    Question = "{0}の{1}番目の{2}が表示した英字は？",
+                    // English: Which letter was shown {2} in the {1} position in {0}?
+                    // Example: Which letter was shown as a maritime flag in the first position in Maritime Semaphore?
+                    Question = "Which letter was shown {2} in the {1} position in {0}?",
                     Arguments = new()
                     {
-                        ["left flag"] = "左の旗",
-                        ["right flag"] = "右の旗",
-                        ["semaphore"] = "セマフォア信号",
+                        ["as a maritime flag"] = "as a maritime flag",
+                        ["in semaphore"] = "in semaphore",
                     },
                 },
             },
