@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SQuestionMark
@@ -21,6 +22,13 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var flashedSpritePool = GetArrayField<int>(comp, "spritePool").Get(expectedLength: 4);
-        yield return question(SQuestionMark.FlashedSymbols).Answers(flashedSpritePool.Select(ix => QuestionMarkSprites[ix]).ToArray(), preferredWrong: QuestionMarkSprites);
+
+        var allSprites = GetArrayField<Sprite>(comp, "itemSprites", isPublic: true).Get(expectedLength: 15);
+        var currentSprite = GetField<SpriteRenderer>(comp, "moduleSprite", isPublic: true).Get().sprite;
+        var currentSpriteIndex = Array.IndexOf(allSprites, currentSprite);
+
+        var preferredWrongAns = Enumerable.Range(0, QuestionMarkSprites.Length).Except([currentSpriteIndex]).Select(ix => QuestionMarkSprites[ix]).ToArray();
+
+        yield return question(SQuestionMark.FlashedSymbols).Answers(flashedSpritePool.Except([currentSpriteIndex]).Select(ix => QuestionMarkSprites[ix]).ToArray(), preferredWrong: preferredWrongAns);
     }
 }

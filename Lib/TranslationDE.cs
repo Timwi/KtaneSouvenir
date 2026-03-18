@@ -1686,12 +1686,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Blockbusters
         [typeof(SBlockbusters)] = new()
         {
+            NeedsTranslation = true,
             Questions = new()
             {
-                [SBlockbusters.LastLetter] = new()
+                [SBlockbusters.FirstLetters] = new()
                 {
-                    // English: What was the last letter pressed on {0}?
-                    Question = "Welcher Buchstabe wurde bei {0} als letztes eingegeben?",
+                    // English: Which letter was in the left-most column in the first stage of {0}?
+                    Question = "Which letter was in the left-most column in the first stage of {0}?",
                 },
             },
         },

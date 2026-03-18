@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -7,44 +8,42 @@ using static Souvenir.AnswerLayout;
 
 public enum SBlockbusters
 {
-    [SouvenirQuestion("What was the last letter pressed on {0}?", ThreeColumns6Answers)]
-    [AnswerGenerator.Strings('A', 'Z')]
-    LastLetter
+    [SouvenirQuestion("Which letter was in the left-most column in the first stage of {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "Y")]
+    FirstLetters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("blockbusters", "Blockbusters", typeof(SBlockbusters), "luisdiogo98")]
-    [SouvenirManualQuestion("What was the last letter pressed?")]
+    [SouvenirHandler("blockbusters", "Blockbusters", typeof(SBlockbusters), "Espik")]
+    [SouvenirManualQuestion("What letters were in the left-most column in the first stage?")]
     private IEnumerator<SouvenirInstruction> ProcessBlockbusters(ModuleData module)
     {
         var comp = GetComponent(module, "blockbustersScript");
-        var legalLetters = GetListField<string>(comp, "legalLetters", isPublic: true).Get();
         var tiles = GetField<Array>(comp, "tiles", isPublic: true).Get(arr => arr.Cast<object>().Any(v => v == null) ? "contains null" : null);
-        var selectables = new KMSelectable[tiles.Length];
-        var prevInteracts = new KMSelectable.OnInteractHandler[tiles.Length];
-        string lastPress = null;
+        var selectedLetters = new List<string>();
 
-        for (var i = 0; i < tiles.Length; i++)
+        IEnumerator retrieveLetters()
         {
-            var selectable = selectables[i] = GetField<KMSelectable>(tiles.GetValue(i), "selectable", isPublic: true).Get();
-            var prevInteract = prevInteracts[i] = selectable.OnInteract;
-            var letter = GetField<TextMesh>(tiles.GetValue(i), "containedLetter", isPublic: true).Get();
-            selectable.OnInteract = delegate
+            yield return null;
+            selectedLetters.Clear();
+
+            for (var i = 0; i < 4; i++)
             {
-                lastPress = letter.text;
-                return prevInteract();
-            };
+                var letter = GetField<TextMesh>(tiles.GetValue(i), "containedLetter", isPublic: true).Get();
+                selectedLetters.Add(letter.text);
+            }
         }
+
+        StartCoroutine(retrieveLetters());
+
+        module.Module.OnStrike += delegate
+        {
+            StartCoroutine(retrieveLetters());
+            return false;
+        };
 
         yield return WaitForSolve;
 
-        for (var i = 0; i < tiles.Length; i++)
-            selectables[i].OnInteract = prevInteracts[i];
-
-        if (lastPress == null)
-            throw new AbandonModuleException("No pressed letter was retrieved.");
-
-        yield return question(SBlockbusters.LastLetter).Answers(lastPress, preferredWrong: legalLetters.ToArray());
+        yield return question(SBlockbusters.FirstLetters).Answers(selectedLetters.ToArray());
     }
 }

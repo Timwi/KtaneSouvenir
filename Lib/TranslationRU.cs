@@ -1977,16 +1977,17 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Blockbusters
         [typeof(SBlockbusters)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the last letter pressed?"] = "Какая буква была нажата последней?",
+                ["What letters were in the left-most column in the first stage?"] = "What letters were in the left-most column in the first stage?",
             },
             Questions = new()
             {
-                [SBlockbusters.LastLetter] = new()
+                [SBlockbusters.FirstLetters] = new()
                 {
-                    // English: What was the last letter pressed on {0}?
-                    Question = "Какая буква была нажата последней {0}?",
+                    // English: Which letter was in the left-most column in the first stage of {0}?
+                    Question = "Which letter was in the left-most column in the first stage of {0}?",
                 },
             },
         },
@@ -13435,7 +13436,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the planet shown?"] = "Какая планета была показана?",
-                ["What was the correct color for each strip?"] = "Какой был верный цвет для каждой полоски?",
+                ["What was the color for each strip?"] = "What was the color for each strip?",
             },
             Questions = new()
             {

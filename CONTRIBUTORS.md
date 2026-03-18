@@ -113,15 +113,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
     Deaf Alley      │  Indigo Cipher  │  Spelling Bee           │  V                       │
 
-## Implemented by luisdiogo98 (34)
+## Implemented by luisdiogo98 (33)
 
-    Accumulation              │  Decolored Squares   │  iPhone, The        │  Odd One Out         │  Tasha Squeals
-    Blockbusters              │  Discolored Squares  │  LEGOs              │  Passport Control    │  Ultracube, The
+    Accumulation              │  Discolored Squares  │  LEGOs              │  Passport Control    │  Ultracube, The
     Boggle                    │  Double Color        │  Maze Scrambler     │  Pie                 │  USA Maze
     Code, The                 │  Factory Maze        │  Maze³              │  Retirement          │  Varicolored Squares
     Colored Keys              │  Flashing Lights     │  Mazematics         │  Simon Scrambles     │  Vexillology
     Cube, The                 │  Free Parking        │  Morse Buttons      │  Sphere, The         │  Zoni
     Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Splitting The Loot  │
+    Decolored Squares         │  iPhone, The         │  Odd One Out        │  Tasha Squeals       │
 
 ## Implemented by tandyCake (27)
 
@@ -159,17 +159,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coinage   │  Linq                 │  Phosphorescence   │  Reformed Role Reversal  │
     Etterna   │  Octadecayotton, The  │  Placeholder Talk  │  Role Reversal           │
 
+## Implemented by Espik (12)
+
+    100 Levels of Defusal  │  Challenge & Contact  │  Hexabutton, The     │  Simon Stages
+    Blockbusters           │  Coffeebucks          │  Hyperlink, The      │  Tricky Tetris Pieces
+    Calendar               │  Encrypted Morse      │  Regular Crazy Talk  │  Unfair Cipher
+
 ## Implemented by KiloBites (12)
 
     Caesar's Maths                   │  Holographic Memory       │  Off-White Cipher     │  Undertunneling
     ƎNA Cipher                       │  Missing Letter, The      │  Painting Cube        │  Unfair's Cruel Revenge
     French Republican Calendar, The  │  Multiverse Hotline, The  │  Pattern Recognition  │  X-Rotor
-
-## Implemented by Espik (11)
-
-    100 Levels of Defusal  │  Coffeebucks      │  Hyperlink, The      │  Tricky Tetris Pieces
-    Calendar               │  Encrypted Morse  │  Regular Crazy Talk  │  Unfair Cipher
-    Challenge & Contact    │  Hexabutton, The  │  Simon Stages        │
 
 ## Implemented by VFlyer (11)
 

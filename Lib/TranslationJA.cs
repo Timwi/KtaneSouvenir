@@ -1889,17 +1889,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Blockbusters
         [typeof(SBlockbusters)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ブロックバスター",
             ManualQuestions = new()
             {
-                ["What was the last letter pressed?"] = "最後に押した文字は？",
+                ["What letters were in the left-most column in the first stage?"] = "What letters were in the left-most column in the first stage?",
             },
             Questions = new()
             {
-                [SBlockbusters.LastLetter] = new()
+                [SBlockbusters.FirstLetters] = new()
                 {
-                    // English: What was the last letter pressed on {0}?
-                    Question = "{0}で最後に押した文字は？",
+                    // English: Which letter was in the left-most column in the first stage of {0}?
+                    Question = "Which letter was in the left-most column in the first stage of {0}?",
                 },
             },
         },
@@ -13377,11 +13378,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Planets
         [typeof(SPlanets)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "惑星",
             ManualQuestions = new()
             {
                 ["What was the planet shown?"] = "表示された惑星は？",
-                ["What was the correct color for each strip?"] = "各ストリップの正しい色は？",
+                ["What was the color for each strip?"] = "What was the color for each strip?",
             },
             Questions = new()
             {
