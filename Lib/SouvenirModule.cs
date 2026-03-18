@@ -626,7 +626,8 @@ public partial class SouvenirModule : MonoBehaviour
             if (_questions.Count == 0 && (_noUnignoredModulesLeft || _coroutinesActive == 0))
             {
                 // Very rare case: another coroutine could still be waiting to detect that a module is solved and then add another question to the queue
-                yield return new WaitForSeconds(.1f);
+                if (_coroutinesActive > 0)
+                    yield return new WaitForSeconds(1f);
 
                 // If still no new questions, all supported modules are solved and we’re done. (Or maybe a coroutine is stuck in a loop, but then it’s bugged and we need to cancel it anyway.)
                 if (_questions.Count == 0)
@@ -809,8 +810,6 @@ public partial class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        _coroutinesActive++;
-
         if (!_moduleTypeInfo.TryGetValue(moduleType, out var info))
             info = _moduleTypeInfo[moduleType] = new();
         info.NumModules++;
@@ -827,6 +826,8 @@ public partial class SouvenirModule : MonoBehaviour
             return false;
         };
 
+        _coroutinesActive++;
+        _activeProcessors.Add(module.ModuleDisplayName);
         var questions = new List<QandAStump>();
 
         try
@@ -834,7 +835,6 @@ public partial class SouvenirModule : MonoBehaviour
             // Unfortunately C# doesn’t allow ‘yield return’ inside of a ‘try’ block with a ‘catch’ clause,
             // so we have to instantiate the enumerator and put the ‘try’/‘catch’ around just the e.MoveNext() call
             using var e = (IEnumerator<SouvenirInstruction>) hAttr.Method.Invoke(this, [data]);
-            _activeProcessors.Add(module.ModuleDisplayName);
             while (true)
             {
                 bool canMoveNext;
@@ -883,6 +883,7 @@ public partial class SouvenirModule : MonoBehaviour
                             yield break;
                         }
                         info.Discriminators.AddSafe(module, d.Discriminator.Id, d.Discriminator);
+                        yield return new WaitForSeconds(.1f);
                         break;
                     case QandAInstruction q:
                         if (q.Stump == null || q.Stump.QuestionStump == null || q.Stump.AnswerStump == null)
@@ -899,6 +900,7 @@ public partial class SouvenirModule : MonoBehaviour
                             yield break;
                         }
                         questions.Add(q.Stump);
+                        yield return new WaitForSeconds(.1f);
                         break;
                 }
 

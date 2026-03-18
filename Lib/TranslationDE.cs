@@ -2085,7 +2085,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Braille
         [typeof(SBraille)] = new()
         {
-            ModuleName = "Blindenschrift",
             Questions = new()
             {
                 [SBraille.Pattern] = new()
