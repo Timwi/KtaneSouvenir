@@ -7,7 +7,10 @@ public enum SMemory
 {
     [SouvenirQuestion("What was the displayed number in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 4)]
-    Display
+    QDisplay,
+
+    [SouvenirDiscriminator("the Memory that displayed a {0} in the {1} stage", Arguments = ["1", QandA.Ordinal], ArgumentGroupSize = 2)]
+    DDisplay
 }
 
 public partial class SouvenirModule
@@ -25,6 +28,11 @@ public partial class SouvenirModule
 
         var displaySequence = GetProperty<string>(comp, "DisplaySequence", true).Get();
         for (var stage = 0; stage < 4; stage++)
-            yield return question(SMemory.Display, args: [Ordinal(stage + 1)]).Answers(displaySequence[stage].ToString());
+        {
+            yield return new Discriminator(SMemory.DDisplay, $"display-{stage}", displaySequence[stage].ToString(), args: [displaySequence[stage].ToString(), Ordinal(stage + 1)]);
+            yield return question(SMemory.QDisplay, args: [Ordinal(stage + 1)])
+                .AvoidDiscriminators($"display-{stage}")
+                .Answers(displaySequence[stage].ToString());
+        }
     }
 }

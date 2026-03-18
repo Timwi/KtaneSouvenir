@@ -673,31 +673,19 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SAdventureGame.QCorrectItem] = new()
+                [SAdventureGame.QPresentItem] = new()
                 {
-                    // English: Which item was the {1} correct item you used in {0}?
-                    // Example: Which item was the first correct item you used in Adventure Game?
-                    Question = "Какой был {1}-й правильный предмет, который вы использовали {0}?",
-                },
-                [SAdventureGame.QEnemy] = new()
-                {
-                    // English: What enemy were you fighting in {0}?
-                    Question = "С каким врагом вы сражались {0}?",
+                    // English: Which item was present in {0}?
+                    Question = "Which item was present in {0}?",
                 },
             },
             Discriminators = new()
             {
-                [SAdventureGame.DCorrectItem] = new()
+                [SAdventureGame.DPresentItem] = new()
                 {
-                    // English: the Adventure Game where the {0} was used
-                    // Example: the Adventure Game where the Broadsword was used
-                    Discriminator = "the Adventure Game where the {0} was used",
-                },
-                [SAdventureGame.DEnemy] = new()
-                {
-                    // English: the Adventure Game where the enemy was {0}
-                    // Example: the Adventure Game where the enemy was Dragon
-                    Discriminator = "the Adventure Game where the enemy was {0}",
+                    // English: the Adventure Game where the {0} was present
+                    // Example: the Adventure Game where the Balloon was present
+                    Discriminator = "the Adventure Game where the {0} was present",
                 },
             },
         },
@@ -10218,6 +10206,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Memory
         [typeof(SMemory)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Памяти",
             ManualQuestions = new()
             {
@@ -10225,12 +10214,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SMemory.Display] = new()
+                [SMemory.QDisplay] = new()
                 {
                     // English: What was the displayed number in the {1} stage of {0}?
                     // Example: What was the displayed number in the first stage of Memory?
                     Question = "Какая цифра была на экране на {1}-м этапе {0}?",
                     Conjugation = Conjugation.GenitiveFeminine,
+                },
+            },
+            Discriminators = new()
+            {
+                [SMemory.DDisplay] = new()
+                {
+                    // English: the Memory that displayed a {0} in the {1} stage
+                    // Example: the Memory that displayed a 1 in the first stage
+                    Discriminator = "the Memory that displayed a {0} in the {1} stage",
                 },
             },
         },
@@ -18265,6 +18263,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Two Bits
         [typeof(STwoBits)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Двух битах",
             ManualQuestions = new()
             {
@@ -18272,12 +18271,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [STwoBits.Response] = new()
+                [STwoBits.QResponse] = new()
                 {
                     // English: What was the {1} correct query response from {0}?
                     // Example: What was the first correct query response from Two Bits?
                     Question = "Какой был ответ на {1}-й запрос {0}?",
                     Conjugation = Conjugation.в_PrepositivePlural,
+                },
+            },
+            Discriminators = new()
+            {
+                [STwoBits.DResponse] = new()
+                {
+                    // English: the Two Bits where the {0} correct query was {1}
+                    // Example: the Two Bits where the first correct query was 00
+                    Discriminator = "the Two Bits where the {0} correct query was {1}",
                 },
             },
         },

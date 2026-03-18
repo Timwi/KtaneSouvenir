@@ -7,7 +7,10 @@ public enum STwoBits
 {
     [SouvenirQuestion("What was the {1} correct query response from {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 99, "00")]
-    Response
+    QResponse,
+
+    [SouvenirDiscriminator("the Two Bits where the {0} correct query was {1}", Arguments = [QandA.Ordinal, "00"], ArgumentGroupSize = 2)]
+    DResponse
 }
 
 public partial class SouvenirModule
@@ -30,10 +33,14 @@ public partial class SouvenirModule
         var secondResponse = queryResponses[firstLookup];
         var secondLookup = queryLookups[secondResponse];
         var thirdResponse = queryResponses[secondLookup];
-        var preferredWrongAnswers = new[] { zerothNumCode.ToString("00"), firstResponse.ToString("00"), secondResponse.ToString("00"), thirdResponse.ToString("00") };
+        var responses = new[] { firstResponse.ToString("00"), secondResponse.ToString("00"), thirdResponse.ToString("00"), zerothNumCode.ToString("00") };
 
-        yield return question(STwoBits.Response, args: [Ordinal(1)]).Answers(firstResponse.ToString("00"), preferredWrong: preferredWrongAnswers);
-        yield return question(STwoBits.Response, args: [Ordinal(2)]).Answers(secondResponse.ToString("00"), preferredWrong: preferredWrongAnswers);
-        yield return question(STwoBits.Response, args: [Ordinal(3)]).Answers(thirdResponse.ToString("00"), preferredWrong: preferredWrongAnswers);
+        for (int qIx = 0; qIx < 3; qIx++)
+        {
+            yield return new Discriminator(STwoBits.DResponse, $"query-{qIx}", responses[qIx], args: [Ordinal(qIx + 1), responses[qIx]]);
+            yield return question(STwoBits.QResponse, args: [Ordinal(qIx + 1)])
+                .AvoidDiscriminators($"query-{qIx}")
+                .Answers(responses[qIx], preferredWrong: responses);
+        }
     }
 }
