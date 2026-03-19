@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonShuffles
 {
-    [SouvenirQuestion("What was the {1} flash of the {2} stage of {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Magenta", "White", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("What was the {1} flash of the {2} stage of {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Magenta", "White", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2, TranslateAnswers = true)]
     Flashes
 }
 

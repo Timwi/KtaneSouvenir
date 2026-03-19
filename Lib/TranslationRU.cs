@@ -14117,7 +14117,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were on the buttons at each stage?"] = "What were on the buttons at each stage?",
+                ["What was on each button in each stage?"] = "What was on each button in each stage?",
             },
             Questions = new()
             {
@@ -14548,7 +14548,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What did the solving condition state?"] = "Что было указано в финальном условии?",
-                ["What were the final wires?"] = "Какие были финальные провода?",
+                ["What were the wire colors?"] = "What were the wire colors?",
             },
             Questions = new()
             {
@@ -14895,7 +14895,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SRNGCrystal.Taps] = new()
                 {
-                    // English: Which bit had a tap in {0} (the output after shifting is at bit 0)?
+                    // English: Which bit had a tap in {0}? (The output after shifting is at bit 0.)
                     Question = "Which bit had a tap in {0} (the output after shifting is at bit 0)?",
                 },
             },
@@ -14996,7 +14996,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which stages did each team win/lose/tie?"] = "Which stages did each team win/lose/tie?",
+                ["Which rounds did each team win/lose/tie?"] = "Which rounds did each team win/lose/tie?",
             },
             Questions = new()
             {
@@ -15759,9 +15759,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SSimonSays.DFlash] = new()
                 {
-                    // English: the Simon Says where the {0} flash in the final sequence was {1}
-                    // Example: the Simon Says where the first flash in the final sequence was red
-                    Discriminator = "the Simon Says where the {0} flash in the final sequence was {1}",
+                    // English: the Simon Says whose {0} flash was {1}
+                    // Example: the Simon Says whose first flash was red
+                    Discriminator = "the Simon Says whose {0} flash was {1}",
                     Arguments = new()
                     {
                         ["red"] = "red",
@@ -16105,6 +16105,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the {1} flash of the {2} stage of {0}?
                     // Example: What was the first flash of the first stage of Simon Shuffles?
                     Question = "What was the {1} flash of the {2} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Cyan"] = "Cyan",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                    },
                 },
             },
         },
@@ -16186,9 +16198,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Simon Simons
         [typeof(SSimonSimons)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which buttons flashed in each stage?"] = "Какие кнопки горели на каждом этапе?",
+                ["Which buttons flashed?"] = "Which buttons flashed?",
             },
             Questions = new()
             {

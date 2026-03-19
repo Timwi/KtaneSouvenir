@@ -29,6 +29,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         }
         : _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleNameWithThe;
 
+    public override bool TranslateManualQuestions => true;
     public override string Ordinal(int number) => ordinal(number);
     private string ordinal(int num) => num < 0 ? $"({num})t" : num switch
     {
@@ -53,6 +54,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // 0
         [typeof(S0)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the starting number?"] = "Wie lautete die Startzahl?",
+            },
             Questions = new()
             {
                 [S0.Number] = new()
@@ -69,6 +74,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "1000 Wörter",
             ModuleNameDative = "1000 Wörtern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the words shown?"] = "Welche Wörter kamen vor?",
+            },
             Questions = new()
             {
                 [S1000Words.Words] = new()
@@ -94,6 +103,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "100 Ebenen der Entschärfung",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the displayed letters?"] = "Welche Buchstaben kamen vor?",
+            },
             Questions = new()
             {
                 [S100LevelsOfDefusal.Letters] = new()
@@ -117,6 +130,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The 1, 2, 3 Game
         [typeof(S123Game)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the opponent’s avatar and name?"] = "Was war der Name und Avatar des Gegners?",
+            },
             Questions = new()
             {
                 [S123Game.Profile] = new()
@@ -136,6 +153,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(S1DChess)] = new()
         {
             ModuleName = "1D-Schach",
+            ManualQuestions = new()
+            {
+                ["What were your and Rustmate’s moves?"] = "Welche Züge haben der Spieler und Rustmate gemacht?",
+            },
             Questions = new()
             {
                 [S1DChess.Moves] = new()
@@ -197,6 +218,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // 21
         [typeof(S21)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [S21.DisplayedNumber] = new()
@@ -211,6 +236,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(S3DMaze)] = new()
         {
             ModuleName = "3D-Labyrinth",
+            ManualQuestions = new()
+            {
+                ["What were the markings?"] = "Was waren die Markierungen?",
+                ["What was the cardinal direction?"] = "Was war die Himmelsrichtung?",
+            },
             Questions = new()
             {
                 [S3DMaze.QMarkings] = new()
@@ -260,6 +290,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "3D-Klopfzeichen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the received word?"] = "Welches Wort wurde übermittelt?",
+            },
             Questions = new()
             {
                 [S3DTapCode.Word] = new()
@@ -276,6 +310,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "3D-Tunnel",
             ModuleNameDative = "3D-Tunneln",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the goal symbols?"] = "Welche Symbole waren die Ziele?",
+            },
             Questions = new()
             {
                 [S3DTunnels.TargetNode] = new()
@@ -290,6 +328,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // 3 LEDs
         [typeof(S3LEDs)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the initial state of the LEDs?"] = "Wie sahen die LEDs am Anfang aus?",
+            },
             Questions = new()
             {
                 [S3LEDs.InitialState] = new()
@@ -314,6 +356,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // 3N+1
         [typeof(S3NPlus1)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What number was initially displayed?"] = "Welche Zahl war am Anfang auf dem Display?",
+            },
             Questions = new()
             {
                 [S3NPlus1.Question] = new()
@@ -330,6 +376,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "4D-Tunnel",
             ModuleNameDative = "4D-Tunneln",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the goal symbols?"] = "Welche Symbole waren die Ziele?",
+            },
             Questions = new()
             {
                 [S4DTunnels.TargetNode] = new()
@@ -344,6 +394,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // 64
         [typeof(S64)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [S64.DisplayedNumber] = new()
@@ -358,6 +412,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(S7)] = new()
         {
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the LED colors for each stage?"] = "Welche Farbe hatten die LEDs in welcher Stufe?",
+                ["What was each channel’s initial value?"] = "Was waren die Anfangswerte Farbkanäle?",
+            },
             Questions = new()
             {
                 [S7.QInitialValues] = new()
@@ -419,6 +478,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // 9-Ball
         [typeof(S9Ball)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the numbers on each ball?"] = "Welche Zahlen waren auf den Bällen?",
+            },
             Questions = new()
             {
                 [S9Ball.Letters] = new()
@@ -439,6 +502,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Abyss
         [typeof(SAbyss)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the characters displayed?"] = "Welche Zeichen waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SAbyss.Seed] = new()
@@ -455,6 +522,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Akkumulator",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the background colors at each stage?"] = "Welche Stufe hatte welche Hintergrundfarbe?",
+                ["What was the border color?"] = "Was war die Rahmenfarbe?",
+            },
             Questions = new()
             {
                 [SAccumulation.QBorderColor] = new()
@@ -542,6 +614,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SAdventureGame)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which items were present?"] = "Which items were present?",
+            },
             Questions = new()
             {
                 [SAdventureGame.QPresentItem] = new()
@@ -567,6 +643,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Affine Schiffer",
             ModuleNameDative = "Affinen Schiffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "In welche Richtung zeigten die Drehknöpfe?",
+                ["What was written on each dial?"] = "Was stand auf den Drehknöpfen?",
+            },
             Questions = new()
             {
                 [SAffineCycle.DialDirections] = new()
@@ -598,6 +679,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Amoksauf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which mercenaries were displayed?"] = "Welche Söldner wurden angezeigt?",
+            },
             Questions = new()
             {
                 [SAlcoholicRampage.Mercenaries] = new()
@@ -613,6 +698,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SALetter)] = new()
         {
             ModuleName = "A Buachstob",
+            ManualQuestions = new()
+            {
+                ["What was the initially displayed letter?"] = "Welcher Buchstabe war am Anfang auf dem Display?",
+            },
             Questions = new()
             {
                 [SALetter.InitialLetter] = new()
@@ -626,6 +715,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Alfa-Bravo
         [typeof(SAlfaBravo)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What final letter was pressed?"] = "Welcher Buchstabe wurde am Ende eingegeben?",
+                ["What letters were to the left and right of the final one?"] = "Welche Buchstaben waren links und rechts vom letzten?",
+                ["What was the last digit on the small display?"] = "Welche Ziffer war zuletzt auf dem kleinen Display?",
+            },
             Questions = new()
             {
                 [SAlfaBravo.PressedLetter] = new()
@@ -655,6 +750,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SAlgebra)] = new()
         {
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the first two equations?"] = "Was waren die ersten zwei Gleichungen?",
+            },
             Questions = new()
             {
                 [SAlgebra.Equation1] = new()
@@ -688,6 +787,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Algorithmia
         [typeof(SAlgorithmia)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the starting and goal positions?"] = "Wo war die Start- und Zielposition?",
+                ["What color was the bulb?"] = "Welche Farbe hatte die Glühlampe?",
+                ["Which numbers were present in the seed?"] = "Welche Zahlen kamen im Seedcode vor?",
+            },
             Questions = new()
             {
                 [SAlgorithmia.QPositions] = new()
@@ -752,6 +857,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Alphabetical Ruling
         [typeof(SAlphabeticalRuling)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the letters and numbers displayed in each stage?"] = "Welche Buchstaben und Ziffern kamen in welcher Stufe vor?",
+            },
             Questions = new()
             {
                 [SAlphabeticalRuling.Letter] = new()
@@ -772,6 +881,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Alphabet Numbers
         [typeof(SAlphabetNumbers)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the numbers on the buttons in each stage?"] = "Welche Zahlen waren in welcher Stufe auf den Tasten?",
+            },
             Questions = new()
             {
                 [SAlphabetNumbers.DisplayedNumbers] = new()
@@ -788,6 +901,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Alphabet-Kacheln",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the letters shown during each cycle?"] = "Welche Buchstaben kamen in welchem Zyklus vor?",
+                ["What was the missing letter?"] = "Welcher Buchstabe hat gefehlt?",
+            },
             Questions = new()
             {
                 [SAlphabetTiles.QCycle] = new()
@@ -822,6 +940,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Alpha-Bits
         [typeof(SAlphaBits)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What characters were displayed on each screen?"] = "Welche Zeichen waren auf den Displays?",
+            },
             Questions = new()
             {
                 [SAlphaBits.DisplayedCharacters] = new()
@@ -841,8 +963,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // A Message
         [typeof(SAMessage)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "A Nachricht",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the received message?"] = "What was the received message?",
+            },
             Questions = new()
             {
                 [SAMessage.AMessage] = new()
@@ -858,6 +985,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Freizeitparks",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which rides were available?"] = "Welche Attraktionen standen zur Auswahl?",
+            },
             Questions = new()
             {
                 [SAmusementParks.Rides] = new()
@@ -871,6 +1002,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ángel Hernández
         [typeof(SAngelHernandez)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What letter was shown by the raised buttons in each stage?"] = "Welche Buchstaben wurden in welcher Stufe durch die erhöhten Tasten angedeutet?",
+            },
             Questions = new()
             {
                 [SAngelHernandez.MainLetter] = new()
@@ -888,6 +1023,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Arena",
             ModuleNameDative = "Arena",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the maximum weapon damage of the attack phase?"] = "Was war die höchste Waffenstärke in der Angriffsphase?",
+                ["What enemies were present in the defend phase?"] = "Welche Gegner kamen in der Verteidigungsphase vor?",
+                ["What numbers were present in the grab phase?"] = "Welche Zahlen kamen in der Greifphase vor?",
+            },
             Questions = new()
             {
                 [SArena.Damage] = new()
@@ -912,6 +1053,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SArithmelogic)] = new()
         {
             ModuleName = "Arithmologik",
+            ManualQuestions = new()
+            {
+                ["What was the symbol on the submit button?"] = "Welches Symbol war auf der Eingabetaste?",
+                ["What were the numbers selectable on the screens?"] = "Welche Zahlen standen auf den Displays zur Auswahl?",
+            },
             Questions = new()
             {
                 [SArithmelogic.Submit] = new()
@@ -939,6 +1085,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Arithmetik-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SArithmeticCipher.Screen] = new()
@@ -960,6 +1110,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SASCIIMaze)] = new()
         {
             ModuleName = "ASCII-Labyrinth",
+            ManualQuestions = new()
+            {
+                ["What characters were displayed?"] = "Welche Zeichen kamen vor?",
+            },
             Questions = new()
             {
                 [SASCIIMaze.Characters] = new()
@@ -975,6 +1129,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SASquare)] = new()
         {
             ModuleName = "A Quadrat",
+            ManualQuestions = new()
+            {
+                ["What were the index colors?"] = "Was waren die Indexfarben?",
+                ["What were the submitted colors?"] = "Welche Farben wurden eingegeben?",
+            },
             Questions = new()
             {
                 [SASquare.IndexColors] = new()
@@ -995,6 +1154,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SAudioMorse)] = new()
         {
             ModuleName = "Audio-Morse",
+            ManualQuestions = new()
+            {
+                ["What was the Morse code?"] = "Was war der Morsecode?",
+            },
             Questions = new()
             {
                 [SAudioMorse.Sound] = new()
@@ -1011,6 +1174,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Azurfarbene Knopf",
             ModuleNameDative = "Azurfarbenen Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were T and the other displayed cards?"] = "Was waren T und die restlichen angezeigten Karten?",
+                ["What was M?"] = "Was war M?",
+                ["What were the arrows?"] = "Welche Pfeile kamen vor?",
+            },
             Questions = new()
             {
                 [SAzureButton.QDecoyArrowDirection] = new()
@@ -1095,6 +1264,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBakery)] = new()
         {
             ModuleName = "Bäckerei",
+            ManualQuestions = new()
+            {
+                ["Which menu items were present?"] = "Was stand auf dem Menü?",
+            },
             Questions = new()
             {
                 [SBakery.Items] = new()
@@ -1109,6 +1282,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBamboozledAgain)] = new()
         {
             ModuleName = "Wieder Übers Ohr Gehauen",
+            ManualQuestions = new()
+            {
+                ["What were the initial labels and colors of each button?"] = "Welche Farben und Aufschriften hatten die Tasten am Anfang?",
+                ["What were the decrypted text and color of each displayed message?"] = "Welche Farben und Dekodierergebnisse hatten die Anzeigen auf dem Display?",
+            },
             Questions = new()
             {
                 [SBamboozledAgain.ButtonText] = new()
@@ -1184,6 +1362,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Wieder Übern Knopf Gehauen",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What color was the button in each stage?"] = "Welche Farbe hatte die Taste in welcher Stufe?",
+                ["What were the labels on the button in each stage?"] = "Welche Aufschrift hatte die Taste in welcher Stufe?",
+                ["What were the displays and their colors in each stage?"] = "Was wurde in welcher Stufe auf dem Display angezeigt und in welcher Farbe?",
+            },
             Questions = new()
             {
                 [SBamboozlingButton.Color] = new()
@@ -1259,6 +1443,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Balkendiagramme",
             ModuleNameDative = "Balkendiagrammen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the bars’ heights, colors, and labels?"] = "Welche Höhe, Farbe und Beschriftung hatten die Balken?",
+                ["What was the category?"] = "Was war die Kategorie?",
+                ["What was the unit?"] = "Was war die Einheit?",
+            },
             Questions = new()
             {
                 [SBarCharts.Category] = new()
@@ -1309,6 +1499,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Barcode Cipher
         [typeof(SBarcodeCipher)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the screen number?"] = "Welche Zahl war auf dem Display?",
+                ["What was the edgework represented by each barcode?"] = "Welche Peripherie-Info wurde durch welchen Barcode erfragt?",
+                ["What was the answer for each barcode?"] = "Welcher Barcode ergab welche Lösung?",
+            },
             Questions = new()
             {
                 [SBarcodeCipher.ScreenNumber] = new()
@@ -1347,6 +1543,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Bartender",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which ingredient was in which position?"] = "Welche Zutat war an welcher Stelle?",
+            },
             Questions = new()
             {
                 [SBartending.Ingredients] = new()
@@ -1370,6 +1570,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBeans)] = new()
         {
             ModuleName = "Bohnen",
+            ManualQuestions = new()
+            {
+                ["What color were the eaten beans?"] = "Welche Farbe hatten die gegessenen Bohnen?",
+                ["Which beans were wobbling?"] = "Welche Bohnen haben gewackelt?",
+            },
             Questions = new()
             {
                 [SBeans.Colors] = new()
@@ -1393,6 +1598,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBeanSprouts)] = new()
         {
             ModuleName = "Bohnensprossen",
+            ManualQuestions = new()
+            {
+                ["What colors were the eaten sprouts?"] = "Welche Farbe hatten die gegessenen Sprosse?",
+                ["Where were the eaten beans?"] = "Wo befanden sich die gegessenen Bohnen?",
+            },
             Questions = new()
             {
                 [SBeanSprouts.Colors] = new()
@@ -1428,6 +1638,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBigBean)] = new()
         {
             ModuleName = "Großbohne",
+            ManualQuestions = new()
+            {
+                ["What color and wobbliness was the bean?"] = "Welche Farbe und Wackeligkeit hatte die Bohne?",
+            },
             Questions = new()
             {
                 [SBigBean.Color] = new()
@@ -1453,6 +1667,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Großer Kreis",
             ModuleNameDative = "Großen Kreis",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which direction was the circle spinning?"] = "Wierum hat sich der Kreis gedreht?",
+            },
             Questions = new()
             {
                 [SBigCircle.SpinDirection] = new()
@@ -1473,6 +1691,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Binär-LEDs",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What word was displayed?"] = "Welches Wort war auf dem Display?",
+            },
             Questions = new()
             {
                 [SBinary.Word] = new()
@@ -1486,6 +1708,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Binary Shift
         [typeof(SBinaryShift)] = new()
         {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the initial numbers?"] = "Was waren die Zahlen am Anfang?",
+                ["What number was selected at each stage?"] = "What number was selected at each stage?",
+            },
             Questions = new()
             {
                 [SBinaryShift.InitialNumber] = new()
@@ -1549,6 +1777,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBitmaps)] = new()
         {
             ModuleName = "Bitmap",
+            ManualQuestions = new()
+            {
+                ["How many pixels were black/white in each quadrant?"] = "Wie viele Pixel waren in welchem Quadranten schwarz bzw. weiß?",
+            },
             Questions = new()
             {
                 [SBitmaps.Question] = new()
@@ -1593,6 +1825,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Schwarze Geheimschrift",
             ModuleNameDative = "Schwarzen Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SBlackCipher.Screen] = new()
@@ -1615,6 +1851,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Blindes Kniffel",
             ModuleNameDative = "Blinden Kniffel",
+            ManualQuestions = new()
+            {
+                ["Which rolls did the module claim?"] = "Welche Würfelergebnisse hat das Modul behauptet?",
+            },
             Questions = new()
             {
                 [SBlindfoldedYahtzee.Claim] = new()
@@ -1646,6 +1886,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBlindMaze)] = new()
         {
             ModuleName = "Blinder Irrgarten",
+            ManualQuestions = new()
+            {
+                ["What colors were the buttons?"] = "Welche Farbe hatten die Tasten?",
+            },
             Questions = new()
             {
                 [SBlindMaze.Colors] = new()
@@ -1678,6 +1922,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Blinkende Noten",
             ModuleNameDative = "Blinkenden Noten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What song played?"] = "Welches Lied war zu hören?",
+            },
             Questions = new()
             {
                 [SBlinkingNotes.Song] = new()
@@ -1691,6 +1939,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Blinkstop
         [typeof(SBlinkstop)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["How many times did the LED flash?"] = "Wie oft hat die LED geblinkt?",
+                ["Which color did the LED flash the least?"] = "Welche Farbe hat die LED am wenigsten geblinkt?",
+            },
             Questions = new()
             {
                 [SBlinkstop.NumberOfFlashes] = new()
@@ -1716,6 +1969,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Blockbusters
         [typeof(SBlockbusters)] = new()
         {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What letters were in the leftmost column at the start?"] = "What letters were in the leftmost column at the start?",
+            },
             Questions = new()
             {
                 [SBlockbusters.FirstLetters] = new()
@@ -1730,6 +1988,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBlueArrows)] = new()
         {
             ModuleName = "Blaue Pfeile",
+            ManualQuestions = new()
+            {
+                ["What were the characters on the screen?"] = "Welche Zeichen waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SBlueArrows.InitialCharacters] = new()
@@ -1746,6 +2008,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Blaue Knopf",
             ModuleNameDative = "Blauen Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were D, E, F, G, H, M, N, P, Q, and X?"] = "Was waren D, E, F, G, H, M, N, P, Q und X?",
+            },
             Questions = new()
             {
                 [SBlueButton.D] = new()
@@ -1825,6 +2091,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Blaue Geheimschrift",
             ModuleNameDative = "Blauen Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SBlueCipher.Screen] = new()
@@ -1847,6 +2117,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Blaue Huffman-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SBlueHuffmanCipher.Screen] = new()
@@ -1867,6 +2141,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Bob Barks
         [typeof(SBobBarks)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the indicator labels?"] = "Welcome Aufschrift hatten die Indikatoren?",
+                ["Which buttons flashed in sequence?"] = "Welche Tasten haben nacheinander geleuchtet?",
+            },
             Questions = new()
             {
                 [SBobBarks.Indicators] = new()
@@ -1901,6 +2180,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Boggle
         [typeof(SBoggle)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which letters were initially visible?"] = "Welche Buchstaben waren am Anfang sichtbar?",
+            },
             Questions = new()
             {
                 [SBoggle.Letters] = new()
@@ -1914,6 +2197,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Bomb Diffusal
         [typeof(SBombDiffusal)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the license number?"] = "Was war die Lizenznummer?",
+            },
             Questions = new()
             {
                 [SBombDiffusal.LicenseNumber] = new()
@@ -1929,6 +2216,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Bonner Partie",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the phrases?"] = "Welche Phrasen kamen vor?",
+            },
             Questions = new()
             {
                 [SBoneAppleTea.Phrase] = new()
@@ -1942,6 +2233,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Boob Tube
         [typeof(SBoobTube)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the words?"] = "Welche Wörter kamen vor?",
+            },
             Questions = new()
             {
                 [SBoobTube.Word] = new()
@@ -1955,6 +2250,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Book of Mario
         [typeof(SBookOfMario)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Who said something in each stage?"] = "Wer hat in welcher Stufe was gesagt?",
+                ["What was each character’s quote?"] = "Was war das Zitat welcher Figur?",
+            },
             Questions = new()
             {
                 [SBookOfMario.Pictures] = new()
@@ -1976,6 +2276,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBooleanWires)] = new()
         {
             ModuleName = "Boolesche Drähte",
+            ManualQuestions = new()
+            {
+                ["Which operators were submitted in each stage?"] = "Welche Operatoren wurden in welcher Stufe eingegeben?",
+            },
             Questions = new()
             {
                 [SBooleanWires.EnteredOperators] = new()
@@ -1992,6 +2296,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Boomtar der Große",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the first and second rules?"] = "Was waren die erste und zweite Regel?",
+            },
             Questions = new()
             {
                 [SBoomtarTheGreat.Rules] = new()
@@ -2011,6 +2319,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Bordered Keys
         [typeof(SBorderedKeys)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the border color, displayed digit, key color, label and label color when you pressed each key?"] = "Was war beim Druck auf die Tasten deren Rahmenfarbe, Displayziffer, Tastenfarbe, Aufschrift und Aufschriftfarbe?",
+            },
             Questions = new()
             {
                 [SBorderedKeys.BorderColor] = new()
@@ -2076,6 +2388,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Bottom Gear
         [typeof(SBottomGear)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the initially shown tweet?"] = "Welcher Tweet war am Anfang zu sehen?",
+            },
             Questions = new()
             {
                 [SBottomGear.Tweet] = new()
@@ -2089,6 +2405,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Boxing
         [typeof(SBoxing)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which contestants and substitutes (first and last names) were shown?"] = "Welche Kandidaten und Ersatzpersonen kamen vor (Vor- und Nachnamen)?",
+                ["Who had which punch strength rating?"] = "Wer hatte welche Schlagstärke?",
+            },
             Questions = new()
             {
                 [SBoxing.StrengthByContestant] = new()
@@ -2129,6 +2450,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Braille
         [typeof(SBraille)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which Braille patterns were present?"] = "Welche Braille-Muster kamen vor?",
+            },
             Questions = new()
             {
                 [SBraille.Pattern] = new()
@@ -2144,6 +2469,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SBreakfastEgg)] = new()
         {
             ModuleName = "Frühstücksei",
+            ManualQuestions = new()
+            {
+                ["Which colors appeared on the egg?"] = "Welche Farben waren auf dem Ei?",
+            },
             Questions = new()
             {
                 [SBreakfastEgg.Color] = new()
@@ -2170,6 +2499,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Kaputte Gitarrenakkorde",
             ModuleNameDative = "Kaputten Gitarrenakkorden",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the displayed chord?"] = "Welcher Akkord war auf dem Display?",
+                ["Which string was broken?"] = "Welche Saite war kaputt?",
+            },
             Questions = new()
             {
                 [SBrokenGuitarChords.DisplayedChord] = new()
@@ -2191,6 +2525,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Braune Geheimschrift",
             ModuleNameDative = "Braunen Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SBrownCipher.Screen] = new()
@@ -2214,6 +2552,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Glühlampe",
             ModuleNameDative = "Glühlampe",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Was the bulb initially lit?"] = "War die Glühlampe am Anfang an?",
+            },
             Questions = new()
             {
                 [SBulb.InitialState] = new()
@@ -2234,6 +2576,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Alarmbeilage",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits?"] = "Welche Ziffern waren auf dem Display?",
+                ["What were the order numbers?"] = "Was waren die Bestellnummern?",
+            },
             Questions = new()
             {
                 [SBurgerAlarm.Digits] = new()
@@ -2256,6 +2603,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Alarmanlage",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits?"] = "Welche Ziffern waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SBurglarAlarm.Digits] = new()
@@ -2273,6 +2624,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Knopf",
             ModuleNameDative = "Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What color did the light glow?"] = "In welcher Farbe leuchtete der Streifen?",
+            },
             Questions = new()
             {
                 [SButton.LightColor] = new()
@@ -2295,6 +2650,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Knopferei",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["How many of each color and border color were there?"] = "Welche Farbe und Rahmenfarbe kam wie oft vor?",
+                ["How many special buttons were there?"] = "Wie viele Spezialtasten gab es?",
+                ["How many buttons had a P?"] = "Wie viele Tasten hatten ein P?",
+            },
             Questions = new()
             {
                 [SButtonage.Buttons] = new()
@@ -2328,6 +2689,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             ModuleName = "Knopffolgen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["How many times did each color occur?"] = "Welche Farbe kam wie oft vor?",
+            },
             Questions = new()
             {
                 [SButtonSequence.QColorOccurrences] = new()
@@ -2371,6 +2736,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Kakteen-Zwickmühle",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What colors was the LED?"] = "Welche Farben hatte die LED?",
+            },
             Questions = new()
             {
                 [SCactisConundrum.Color] = new()
@@ -2394,6 +2763,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Cäsar-Schiffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "In welche Richtung zeigten die Drehknöpfe?",
+                ["What was written on each dial?"] = "Was stand auf den Drehknöpfen?",
+            },
             Questions = new()
             {
                 [SCaesarCycle.DialDirections] = new()
@@ -2425,6 +2799,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Cäsar-Psycho",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What text and color were on the top display in each stage?"] = "Was stand in welcher Stufe auf dem oberen Display, und in welcher Farbe?",
+            },
             Questions = new()
             {
                 [SCaesarPsycho.ScreenTexts] = new()
@@ -2444,7 +2822,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Caesar's Maths
         [typeof(SCaesarsMaths)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Cäsars Mathe",
+            ManualQuestions = new()
+            {
+                ["What were the colors of each LED?"] = "What were the colors of each LED?",
+            },
             Questions = new()
             {
                 [SCaesarsMaths.LED] = new()
@@ -2468,6 +2851,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Kalender",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the holiday?"] = "Um welchen Feiertag ging es?",
+            },
             Questions = new()
             {
                 [SCalendar.Holiday] = new()
@@ -2481,6 +2868,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // CA-RPS
         [typeof(SCARPS)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the starting colors?"] = "Was waren die Farben am Anfang?",
+            },
             Questions = new()
             {
                 [SCARPS.Cell] = new()
@@ -2502,6 +2893,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCartinese)] = new()
         {
             ModuleName = "Cartinesisch",
+            ManualQuestions = new()
+            {
+                ["What lyrics were played by each button?"] = "Welcher Songtext wurde durch welche Taste abgespielt?",
+                ["What color was each button?"] = "Welche Taste hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SCartinese.ButtonColors] = new()
@@ -2543,6 +2939,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Catchphrase
         [typeof(SCatchphrase)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the colours of the panels?"] = "Welche Blende hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SCatchphrase.Colour] = new()
@@ -2573,6 +2973,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Challenge & Contact
         [typeof(SChallengeAndContact)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the displayed letters?"] = "Welche Buchstaben kamen vor?",
+            },
             Questions = new()
             {
                 [SChallengeAndContact.Letters] = new()
@@ -2589,6 +2993,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Zeichencodes",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the characters?"] = "Welche Zeichen kamen vor?",
+            },
             Questions = new()
             {
                 [SCharacterCodes.Character] = new()
@@ -2605,6 +3013,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Zeichenschieber",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the characters on the sliders?"] = "Welche Zeichen gab es bei welchem Schieberegler zur Auswahl?",
+            },
             Questions = new()
             {
                 [SCharacterShift.Letters] = new()
@@ -2624,6 +3036,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCharacterSlots)] = new()
         {
             ModuleName = "Figurenkabinett",
+            ManualQuestions = new()
+            {
+                ["Who was displayed in each slot for each stage?"] = "Wer war in welcher Stufe in welchem Fensterchen zu sehen?",
+            },
             Questions = new()
             {
                 [SCharacterSlots.DisplayedCharacters] = new()
@@ -2640,6 +3056,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Klingelkasse",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the paid amounts?"] = "Welche Beträge wurden angeboten?",
+            },
             Questions = new()
             {
                 [SCheapCheckout.Paid] = new()
@@ -2662,6 +3082,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Schlingelkasse",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the cryptocurrency?"] = "Um welche Kryptowährung ging es?",
+                ["What was the site and hack method for each hack?"] = "Welche Site wurde mit welcher Methode gehackt?",
+            },
             Questions = new()
             {
                 [SCheatCheckout.Currency] = new()
@@ -2689,6 +3114,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Zwitscherkasse",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which birds were present?"] = "Welche Vögel kamen vor?",
+            },
             Questions = new()
             {
                 [SCheepCheckout.Birds] = new()
@@ -2739,6 +3168,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Schach",
+            ManualQuestions = new()
+            {
+                ["What were the coordinates?"] = "Welche Koordinaten kamen vor?",
+            },
             Questions = new()
             {
                 [SChess.QCoordinate] = new()
@@ -2763,6 +3196,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SChineseCounting)] = new()
         {
             ModuleName = "Chinesisch Zählen",
+            ManualQuestions = new()
+            {
+                ["What colors were the LEDs?"] = "Welche Farbe hatten die LEDs?",
+            },
             Questions = new()
             {
                 [SChineseCounting.LED] = new()
@@ -2792,6 +3229,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Chinesischer Restsatz",
             ModuleNameDative = "Chinesischen Restsatz",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the equations?"] = "Wie lauteten die Gleichungen?",
+            },
             Questions = new()
             {
                 [SChineseRemainderTheorem.Equations] = new()
@@ -2807,6 +3248,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Akkordqualität",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What notes were in the given chord?"] = "Welche Noten kamen im vorgegebenen Akkord vor?",
+            },
             Questions = new()
             {
                 [SChordQualities.Notes] = new()
@@ -2820,6 +3265,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // ↻↺
         [typeof(SClockCounter)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which arrows were shown?"] = "Welche Pfeile kamen vor?",
+            },
             Questions = new()
             {
                 [SClockCounter.Arrows] = new()
@@ -2836,6 +3285,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Code",
             ModuleNameDative = "Code",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [SCode.DisplayNumber] = new()
@@ -2849,6 +3302,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Codenames
         [typeof(SCodenames)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which words were submitted?"] = "Welche Wörter wurden eingegeben?",
+            },
             Questions = new()
             {
                 [SCodenames.Answers] = new()
@@ -2864,6 +3321,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Kaffeebohnen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the movements?"] = "Welche Bewegungen kamen vor?",
+            },
             Questions = new()
             {
                 [SCoffeeBeans.Movements] = new()
@@ -2885,6 +3346,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Coffeebucks
         [typeof(SCoffeebucks)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the last customer’s preferred sugar content, time of day, stress level, and size?"] = "Was war beim letzten Kunden der bevorzugte Zuckergehalt, die Tageszeit, das Stressniveau und die Größe?",
+            },
             Questions = new()
             {
                 [SCoffeebucks.Sugar] = new()
@@ -2915,6 +3380,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Münzerei",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which coin was flipped?"] = "Welche Münze war umgekehrt?",
+            },
             Questions = new()
             {
                 [SCoinage.Flip] = new()
@@ -2928,6 +3397,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Color Addition
         [typeof(SColorAddition)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the three numbers?"] = "Was waren die drei Zahlen?",
+            },
             Questions = new()
             {
                 [SColorAddition.Numbers] = new()
@@ -2949,6 +3422,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SColorBraille)] = new()
         {
             ModuleName = "Farbbraille",
+            ManualQuestions = new()
+            {
+                ["What color was each dot?"] = "Welche Farbe hatten die Punkte?",
+            },
             Questions = new()
             {
                 [SColorBraille.Color] = new()
@@ -2975,6 +3452,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Farbdekodierung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the indicator patterns and colors in each stage?"] = "Welche Muster und Farben hatten die Indikatoren in welcher Stufe?",
+            },
             Questions = new()
             {
                 [SColorDecoding.IndicatorColors] = new()
@@ -3018,6 +3499,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefärbte Tasten",
             ModuleNameDative = "Gefärbten Tasten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the displayed word and its color?"] = "Welches Wort war auf dem Display und in welcher Farbe?",
+                ["What were the colors and letters on each key?"] = "Welche Farben und Buchstaben waren auf den Tasten?",
+            },
             Questions = new()
             {
                 [SColoredKeys.DisplayWord] = new()
@@ -3092,6 +3578,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefärbte Felder",
             ModuleNameDative = "Gefärbten Feldern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the first color group?"] = "Welche Farbe hatte die erste Eingabe?",
+            },
             Questions = new()
             {
                 [SColoredSquares.FirstGroup] = new()
@@ -3117,6 +3607,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefärbte Schalter",
             ModuleNameDative = "Gefärbten Schaltern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the initial position of the switches?"] = "Wie standen die Schalter am Anfang?",
+            },
             Questions = new()
             {
                 [SColoredSwitches.InitialPosition] = new()
@@ -3133,6 +3627,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefärbte Morsezeichen",
             ModuleNameDative = "Gefärbten Morsezeichen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colors of the LEDs?"] = "Welche Farbe hatten die LEDs?",
+                ["What characters were flashed by the LEDs?"] = "Welche Zeichen wurden über die LEDs geblinkt?",
+            },
             Questions = new()
             {
                 [SColorMorse.Color] = new()
@@ -3163,6 +3662,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Color One Two
         [typeof(SColorOneTwo)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What colors were the LEDs?"] = "Welche Farbe hatten die LEDs?",
+            },
             Questions = new()
             {
                 [SColorOneTwo.Color] = new()
@@ -3191,6 +3694,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Farbmaximierung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["How many buttons were there of each color?"] = "Wie viele Tasten gab es in welcher Farbe?",
+            },
             Questions = new()
             {
                 [SColorsMaximization.ColorCount] = new()
@@ -3214,6 +3721,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefärbte Würfel",
             ModuleNameDative = "Gefärbten Würfeln",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colours of the cubes and stage lights in each stage?"] = "In welcher Stufe hatte der Würfel und der Stufenanzeiger welche Farbe?",
+            },
             Questions = new()
             {
                 [SColouredCubes.Colours] = new()
@@ -3266,6 +3777,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefärbter Zylinder",
             ModuleNameDative = "Gefärbten Zylinder",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What colours did the cylinder flash?"] = "In welcher Farbe blinkten die Zylinder?",
+            },
             Questions = new()
             {
                 [SColouredCylinder.Colours] = new()
@@ -3293,6 +3808,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefärbte Folge",
             ModuleNameDative = "Gefärbten Folge",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the color of the last word in the sequence?"] = "Welche Farbe hatte das letzte Wort in der Sequenz?",
+            },
             Questions = new()
             {
                 [SColourFlash.LastColor] = new()
@@ -3317,6 +3836,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Konzentrationsspiel",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the initial layout?"] = "Wie war das Arrangement am Anfang?",
+            },
             Questions = new()
             {
                 [SConcentration.StartingDigit] = new()
@@ -3339,9 +3862,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Conditional Buttons
         [typeof(SConditionalButtons)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Bedingte Knöpfe",
             ModuleNameDative = "Bedingten Knöpfen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the color of each button?"] = "What was the color of each button?",
+            },
             Questions = new()
             {
                 [SConditionalButtons.Colors] = new()
@@ -3371,6 +3899,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Verbundene Monitore",
             ModuleNameDative = "Verbundenen Monitoren",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What numbers were initially displayed?"] = "Welche Zahlen waren am Anfang auf dem Display?",
+                ["What colors were the indicators?"] = "Welche Farbe hatten die Indikatoren?",
+            },
             Questions = new()
             {
                 [SConnectedMonitors.Number] = new()
@@ -3415,6 +3948,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Verbindungsprüfung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What number pairs were present?"] = "Welche Zahlenpaare kamen vor?",
+            },
             Questions = new()
             {
                 [SConnectionCheck.Numbers] = new()
@@ -3463,6 +4000,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Koordinaten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the grid size?"] = "Was war die Rastergröße?",
+            },
             Questions = new()
             {
                 [SCoordinates.Size] = new()
@@ -3476,8 +4017,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Coordination
         [typeof(SCoordination)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Koordinierung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the label and position of the starting coordinate?"] = "What was the label and position of the starting coordinate?",
+            },
             Questions = new()
             {
                 [SCoordination.Label] = new()
@@ -3498,6 +4044,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Korall-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SCoralCipher.Screen] = new()
@@ -3520,6 +4070,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Ecken",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colors of the corners?"] = "Welche Farbe hatten die Ecken?",
+            },
             Questions = new()
             {
                 [SCorners.Colors] = new()
@@ -3563,6 +4117,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Kornblumen-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SCornflowerCipher.Screen] = new()
@@ -3584,6 +4142,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCosmic)] = new()
         {
             ModuleName = "Kosmik",
+            ManualQuestions = new()
+            {
+                ["What was the number initially shown?"] = "Welche Zahl war am Anfang auf dem Display?",
+            },
             Questions = new()
             {
                 [SCosmic.Number] = new()
@@ -3600,6 +4162,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Verrückter Hamburger",
             ModuleNameDative = "Verrückten Hamburger",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the displayed ingredients?"] = "Welche Zutaten wurden angezeigt?",
+            },
             Questions = new()
             {
                 [SCrazyHamburger.Ingredient] = new()
@@ -3617,6 +4183,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Verrückter Irrgarten",
             ModuleNameDative = "Verrückten Irrgarten",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the starting and goal positions?"] = "Wo war die Start- und Zielposition?",
+            },
             Questions = new()
             {
                 [SCrazyMaze.StartOrGoal] = new()
@@ -3638,6 +4208,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Creme-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SCreamCipher.Screen] = new()
@@ -3659,6 +4233,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SCreation)] = new()
         {
             ModuleName = "Schöpfung",
+            ManualQuestions = new()
+            {
+                ["What was the weather condition on the first day?"] = "Wie war das Wetter am ersten Tag?",
+            },
             Questions = new()
             {
                 [SCreation.Weather] = new()
@@ -3683,6 +4261,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Karmin-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SCrimsonCipher.Screen] = new()
@@ -3703,9 +4285,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Critters
         [typeof(SCritters)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Kriechtiere",
             ModuleNameDative = "Kriechtieren",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the alteration color?"] = "What was the alteration color?",
+            },
             Questions = new()
             {
                 [SCritters.Color] = new()
@@ -3728,6 +4315,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Höllisches Binärsystem",
             ModuleNameDative = "Höllischen Binärsystem",
+            ManualQuestions = new()
+            {
+                ["What was the displayed word?"] = "Welches Wort war auf dem Display?",
+            },
             Questions = new()
             {
                 [SCruelBinary.DisplayedWord] = new()
@@ -3744,6 +4335,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Höllische Tastenfelder",
             ModuleNameDative = "Höllischen Tastenfelder",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the displayed symbols and what was the color of the bar in each stage?"] = "Welche Symbole waren in welcher Stufe auf dem Display und welche Farbe hatte der Balken?",
+            },
             Questions = new()
             {
                 [SCruelKeypads.Colors] = new()
@@ -3776,6 +4371,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die CRegel",
             ModuleNameDative = "CRegel",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which cells were prefilled at the start?"] = "Welche Zellen waren am Anfang vorgegeben?",
+                ["Which symbol pair appeared where?"] = "Welches Symbolpaar erschien wo?",
+            },
             Questions = new()
             {
                 [SCRule.SymbolPair] = new()
@@ -3808,6 +4408,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Kryptische Schiffer",
             ModuleNameDative = "Kryptischen Schiffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "In welche Richtung zeigten die Drehknöpfe?",
+                ["What was written on each dial?"] = "Was stand auf den Drehknöpfen?",
+            },
             Questions = new()
             {
                 [SCrypticCycle.DialDirections] = new()
@@ -3839,6 +4444,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Kryptisches Tastenfeld",
             ModuleNameDative = "Kryptischen Tastenfeld",
+            ManualQuestions = new()
+            {
+                ["What were the labels and cardinal directions of each key?"] = "Welche Aufschrift und Himmelsrichtung war auf den Tasten?",
+            },
             Questions = new()
             {
                 [SCrypticKeypad.Labels] = new()
@@ -3883,6 +4492,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Würfel",
             ModuleNameDative = "Würfel",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the cube rotations?"] = "Was waren die Würfelrotationen?",
+            },
             Questions = new()
             {
                 [SCube.Rotations] = new()
@@ -3909,6 +4522,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Verfluchte Doppel-Null",
             ModuleNameDative = "Verflüchten Doppel-Null",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the first digit of the initial number?"] = "Was war bei der Anfangszahl die erste Ziffer?",
+            },
             Questions = new()
             {
                 [SCursedDoubleOh.InitialPosition] = new()
@@ -3924,6 +4541,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Kundenidentifikation",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which customers were displayed?"] = "Welche Kunden kamen vor?",
+            },
             Questions = new()
             {
                 [SCustomerIdentification.Customer] = new()
@@ -3942,6 +4563,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Türkise Knopf",
             ModuleNameDative = "Türkisen Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Where was the button at each stage?"] = "Where was the button at each stage?",
+            },
             Questions = new()
             {
                 [SCyanButton.QPositions] = new()
@@ -3985,6 +4610,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "DACH-Irrgarten",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which region did you depart from?"] = "In welcher Region ging es los?",
+            },
             Questions = new()
             {
                 [SDACHMaze.Origin] = new()
@@ -4057,6 +4686,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Taube Gasse",
             ModuleNameDative = "Tauben Gasse",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the shape generated?"] = "Welche Form wurde generiert?",
+            },
             Questions = new()
             {
                 [SDeafAlley.Shape] = new()
@@ -4073,6 +4706,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Stapel Vieler Dinge",
             ModuleNameDative = "Stapel Vieler Dinge",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What deck did the first card belong to?"] = "Zu welchem Deck gehörte die erste Karte?",
+            },
             Questions = new()
             {
                 [SDeckOfManyThings.FirstCard] = new()
@@ -4099,6 +4736,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Entfärbte Felder",
             ModuleNameDative = "Entfärbten Feldern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colors defining the starting row and column?"] = "Welche Farben bestimmten die Startzeile und -spalte?",
+            },
             Questions = new()
             {
                 [SDecoloredSquares.StartingPos] = new()
@@ -4131,6 +4772,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Entfärbte Folge",
             ModuleNameDative = "Entfärbten Folge",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the words and colours of each goal?"] = "Welches Ziel hatte welches Wort und welche Farbe?",
+            },
             Questions = new()
             {
                 [SDecolourFlash.QGoal] = new()
@@ -4182,6 +4827,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             ModuleName = "Dementi-Displays",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was initially on the displays?"] = "Was war am Anfang auf den Displays?",
+            },
             Questions = new()
             {
                 [SDenialDisplays.QDisplays] = new()
@@ -4205,6 +4854,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // DetoNATO
         [typeof(SDetoNATO)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed word for each stage?"] = "Was war in welcher Stufe auf dem Display?",
+            },
             Questions = new()
             {
                 [SDetoNATO.Display] = new()
@@ -4222,6 +4875,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Teufelseier",
             ModuleNameDative = "Teufelseiern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the rotations?"] = "Welche Rotationen kamen vor?",
+                ["What were the numbers and letters shown on the prism?"] = "Welche Zahlen und Buchstaben kamen auf dem Prisma vor?",
+            },
             Questions = new()
             {
                 [SDevilishEggs.Rotations] = new()
@@ -4255,6 +4913,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Freizeichen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which tones played?"] = "Welche Töne waren zu hören?",
+            },
             Questions = new()
             {
                 [SDialtones.Dialtones] = new()
@@ -4268,6 +4930,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Digisibility
         [typeof(SDigisibility)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the numbers on the buttons?"] = "Welche Zahlen waren auf den Tasten?",
+            },
             Questions = new()
             {
                 [SDigisibility.DisplayedNumber] = new()
@@ -4282,6 +4948,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Digit String
         [typeof(SDigitString)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed digit string?"] = "Wie lautete die Ziffernfolge auf dem Display?",
+            },
             Questions = new()
             {
                 [SDigitString.InitialNumber] = new()
@@ -4297,6 +4967,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Dimensionsspaltung",
+            ManualQuestions = new()
+            {
+                ["What were the visible characters?"] = "Welche Zeichen waren sichtbar?",
+            },
             Questions = new()
             {
                 [SDimensionDisruption.QVisibleLetters] = new()
@@ -4320,6 +4994,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDirectionalButton)] = new()
         {
             ModuleName = "Richtungsknopf",
+            ManualQuestions = new()
+            {
+                ["How many times did you press the button in each stage?"] = "In welche Stufe wurde die Taste wie oft betätigt?",
+            },
             Questions = new()
             {
                 [SDirectionalButton.ButtonCount] = new()
@@ -4337,6 +5015,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Verfärbte Felder",
             ModuleNameDative = "Verfärbten Feldern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the remembered position for each color?"] = "Welche Position wurde für welche Farbe vermerkt?",
+            },
             Questions = new()
             {
                 [SDiscoloredSquares.RememberedPositions] = new()
@@ -4359,6 +5041,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Disordered Keys
         [typeof(SDisorderedKeys)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the missing information and the revealed/unrevealed key color, label, and label color of each key?"] = "Was war bei welcher Taste die enthüllte/verborgene Tastenfarbe, Aufschrift, Aufschriftfarbe und fehlende Information?",
+            },
             Questions = new()
             {
                 [SDisorderedKeys.MissingInfo] = new()
@@ -4454,6 +5140,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Geteilte Kacheln",
             ModuleNameDative = "Geteilten Kacheln",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What color was shown when the correct square was pressed?"] = "Welche Farbe erschien, als das korrekte Quadrat betätigt wurde?",
+            },
             Questions = new()
             {
                 [SDividedSquares.Color] = new()
@@ -4485,6 +5175,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Teilbare Zahlen",
             ModuleNameDative = "Teilbaren Zahlen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the numbers in each stage?"] = "In welcher Stufe lauteten die Zahlen wie?",
+            },
             Questions = new()
             {
                 [SDivisibleNumbers.Numbers] = new()
@@ -4501,6 +5195,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "DNA-Mutation",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the DNA strands’ colors?"] = "Welche Farbe hatten die DNA-Stränge?",
+                ["What were the given nucleotides’ letters and colors?"] = "Welche Buchstaben und Farben hatten die vorgegebenen Nukleotide?",
+            },
             Questions = new()
             {
                 [SDNAMutation.Letter] = new()
@@ -4543,6 +5242,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Doofenshmirtz Gesellschaft mit böswilliger Haftung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What jingles played?"] = "Welcher Jingle war zu hören?",
+                ["What images were shown?"] = "Welche Bilder waren zu sehen?",
+            },
             Questions = new()
             {
                 [SDoofenshmirtzEvilInc.Jingles] = new()
@@ -4564,6 +5268,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Doppelpfeile",
             ModuleNameDative = "Doppelpfeilen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the starting position?"] = "Wo war die Startposition?",
+                ["Which buttons moved in which directions in the grid?"] = "Welche Tasten entsprachen welchen Bewegungsrichtungen?",
+            },
             Questions = new()
             {
                 [SDoubleArrows.Start] = new()
@@ -4625,6 +5334,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Doppelfarben",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the screen color in each stage?"] = "Welche Farbe hatte das Display in welcher Stufe?",
+            },
             Questions = new()
             {
                 [SDoubleColor.Colors] = new()
@@ -4649,6 +5362,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Doppelziffern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the numbers on the displays?"] = "Welche Zahlen waren auf den Displays?",
+            },
             Questions = new()
             {
                 [SDoubleDigits.Displays] = new()
@@ -4668,9 +5385,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Double Expert
         [typeof(SDoubleExpert)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Doppelexperte",
             ModuleNameDative = "Doppelexperten",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the starting key number?"] = "What was the starting key number?",
+                ["What was the submitted word?"] = "Welches Wort wurde eingegeben?",
+            },
             Questions = new()
             {
                 [SDoubleExpert.StartingKeyNumber] = new()
@@ -4690,6 +5413,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SDoubleListening)] = new()
         {
             ModuleName = "Doppelt Zuhören",
+            ManualQuestions = new()
+            {
+                ["What sounds played?"] = "Welche Sounds waren zu hören?",
+            },
             Questions = new()
             {
                 [SDoubleListening.Sounds] = new()
@@ -4703,7 +5430,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Double Screen
         [typeof(SDoubleScreen)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Doppel-Display",
+            ManualQuestions = new()
+            {
+                ["What colors were the screens in each stage?"] = "What colors were the screens in each stage?",
+            },
             Questions = new()
             {
                 [SDoubleScreen.Colors] = new()
@@ -4732,6 +5464,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Arztpraxis",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which diseases and symptoms were listed?"] = "Welche Krankheiten und Symptome kamen vor?",
+            },
             Questions = new()
             {
                 [SDrDoctor.Diseases] = new()
@@ -4752,6 +5488,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Traumschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the decrypted word?"] = "Was war das entschlüsselte Wort?",
+            },
             Questions = new()
             {
                 [SDreamcipher.Word] = new()
@@ -4768,6 +5508,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Ente",
             ModuleNameDative = "Ente",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the color of the curtain?"] = "Welche Farbe hatte der Vorhang?",
+                ["How was the duck approached?"] = "Wie wurde auf die Ente zugegangen?",
+            },
             Questions = new()
             {
                 [SDuck.CurtainColor] = new()
@@ -4791,6 +5536,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Speisenaufzug",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which players were present?"] = "Welche Spieler waren vorhanden?",
+            },
             Questions = new()
             {
                 [SDumbWaiters.PlayerAvailable] = new()
@@ -4810,6 +5559,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Earthbound
         [typeof(SEarthbound)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the background?"] = "Was war der Hintergrund?",
+                ["Which monster was shown?"] = "Welches Monster war zu sehen?",
+            },
             Questions = new()
             {
                 [SEarthbound.Background] = new()
@@ -4828,6 +5582,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // eeB gnillepS
         [typeof(SEeBgnillepS)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What word was asked to be spelled?"] = "Die Schreibweise welches Wortes wurde verlangt?",
+            },
             Questions = new()
             {
                 [SEeBgnillepS.Word] = new()
@@ -4843,6 +5601,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Acht",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the last digit on the small display?"] = "Welche Ziffer war zuletzt auf dem kleinen Display?",
+                ["What was the position of the last broken digit?"] = "An welcher Stelle war die letzte kaputte Ziffer?",
+                ["What were the last resulting digits?"] = "Was waren die letzten Ergebnisziffern?",
+                ["What was the last displayed number?"] = "Welche Zahl war zuletzt auf dem Display?",
+            },
             Questions = new()
             {
                 [SEight.LastSmallDisplayDigit] = new()
@@ -4873,6 +5638,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Älteres Futhark",
             ModuleNameDative = "Älteren Futhark",
+            ManualQuestions = new()
+            {
+                ["What were the runes shown?"] = "Welche Runen waren zu sehen?",
+            },
             Questions = new()
             {
                 [SElderFuthark.Runes] = new()
@@ -4887,6 +5656,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Emoji
         [typeof(SEmoji)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the emoji?"] = "Welche Emojis kamen vor?",
+            },
             Questions = new()
             {
                 [SEmoji.Emoji] = new()
@@ -4908,6 +5681,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "ƎNA-Chiffre",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the keyword, the transposition key and the encrypted word?"] = "Was war das Schlüsselwort, der Umstellungsschlüssel und das verschlüsselte Wort?",
+            },
             Questions = new()
             {
                 [SEnaCipher.KeywordAnswer] = new()
@@ -4935,6 +5712,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Verschlüsselte Würfel",
             ModuleNameDative = "Verschlüsselten Würfel",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which numbers were rolled in each stage?"] = "Was wurde in welcher Stufe gewürfelt?",
+            },
             Questions = new()
             {
                 [SEncryptedDice.Question] = new()
@@ -4952,6 +5733,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Verschlüsselte Gleichungen",
             ModuleNameDative = "Verschlüsselten Gleichungen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the main shapes of the three operands?"] = "Welche Formen entsprachen den drei Operanden?",
+            },
             Questions = new()
             {
                 [SEncryptedEquations.Shapes] = new()
@@ -4968,6 +5753,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Hangman Verschlüsselt",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the encrypted module name and encryption method?"] = "Welcher Modulname wurde wie verschlüsselt?",
+            },
             Questions = new()
             {
                 [SEncryptedHangman.Module] = new()
@@ -4998,6 +5787,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Verschlüsseltes Labyrinth",
             ModuleNameDative = "Verschlüsselten Labyrinth",
+            ManualQuestions = new()
+            {
+                ["Which symbol was spinning which way?"] = "Welches Symbol hat sich wierum gedreht?",
+            },
             Questions = new()
             {
                 [SEncryptedMaze.Symbols] = new()
@@ -5017,9 +5810,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Encrypted Morse
         [typeof(SEncryptedMorse)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Verschlüsselte Morsezeichen",
             ModuleNameDative = "Verschlüsselten Morsezeichen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the received key?"] = "What was the received key?",
+            },
             Questions = new()
             {
                 [SEncryptedMorse.Key] = new()
@@ -5034,6 +5832,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SEncryptionBingo)] = new()
         {
             ModuleName = "Verschlüsselungsbingo",
+            ManualQuestions = new()
+            {
+                ["What was the first encoding used?"] = "Welche Kodierung kam als erste zum Einsatz?",
+            },
             Questions = new()
             {
                 [SEncryptionBingo.Encoding] = new()
@@ -5069,6 +5871,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // English Entries
         [typeof(SEnglishEntries)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed quote?"] = "Welches Zitat war auf dem Display?",
+            },
             Questions = new()
             {
                 [SEnglishEntries.Display] = new()
@@ -5084,6 +5890,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Enigma-Schiffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "In welche Richtung zeigten die Drehknöpfe?",
+                ["What was written on each dial?"] = "Was stand auf den Drehknöpfen?",
+            },
             Questions = new()
             {
                 [SEnigmaCycle.DialDirectionsThree] = new()
@@ -5125,8 +5936,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Entry Number Four
         [typeof(SEntryNumberFour)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Eintrag Nummer Vier",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the numbers shown?"] = "What were the numbers shown?",
+            },
             Questions = new()
             {
                 [SEntryNumberFour.Digits] = new()
@@ -5141,8 +5957,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Entry Number One
         [typeof(SEntryNumberOne)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Eintrag Nummer Eins",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the numbers shown?"] = "What were the numbers shown?",
+            },
             Questions = new()
             {
                 [SEntryNumberOne.Digits] = new()
@@ -5159,6 +5980,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "X-Gleichungen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the displayed symbol?"] = "Welches Symbol war auf dem Display?",
+            },
             Questions = new()
             {
                 [SEquationsX.Symbols] = new()
@@ -5174,6 +5999,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Fehlercodes",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the active error code?"] = "Welcher Fehlercode war aktiv?",
+            },
             Questions = new()
             {
                 [SErrorCodes.ActiveError] = new()
@@ -5187,6 +6016,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Etterna
         [typeof(SEtterna)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What beat was the input for each arrow?"] = "Welcher Beat wurde für welchen Pfeil eingegeben?",
+            },
             Questions = new()
             {
                 [SEtterna.Number] = new()
@@ -5201,8 +6034,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Exoplanets
         [typeof(SExoplanets)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Exoplaneten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the starting and final target planet and digit?"] = "What were the starting and final target planet and digit?",
+            },
             Questions = new()
             {
                 [SExoplanets.StartingTargetPlanet] = new()
@@ -5246,6 +6084,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SFactoringMaze)] = new()
         {
             ModuleName = "Faktorlabyrinth",
+            ManualQuestions = new()
+            {
+                ["What were the prime numbers used?"] = "Welche Primzahlen kamen zum Einsatz?",
+            },
             Questions = new()
             {
                 [SFactoringMaze.ChosenPrimes] = new()
@@ -5260,6 +6102,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SFactoryMaze)] = new()
         {
             ModuleName = "Fabriklabyrinth",
+            ManualQuestions = new()
+            {
+                ["What room did you start in?"] = "In welchem Raum ging es los?",
+            },
             Questions = new()
             {
                 [SFactoryMaze.StartRoom] = new()
@@ -5274,6 +6120,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SFaerieFires)] = new()
         {
             ModuleName = "Feenfeuer",
+            ManualQuestions = new()
+            {
+                ["What were the faeries' colors and pitches?"] = "Welche Farbe und Tonhöhe hatten die Feen?",
+            },
             Questions = new()
             {
                 [SFaerieFires.Color] = new()
@@ -5320,6 +6170,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Mathe in Zeitraffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the last pair of letters?"] = "Was war das letzte Buchstabenpaar?",
+            },
             Questions = new()
             {
                 [SFastMath.LastLetters] = new()
@@ -5333,8 +6187,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Fast Playfair Cipher
         [typeof(SFastPlayfairCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Playfair-Chiffre im Zeitraffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the last displayed message?"] = "What was the last displayed message?",
+            },
             Questions = new()
             {
                 [SFastPlayfairCipher.LastMessage] = new()
@@ -5351,6 +6210,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Defekte Knöpfe",
             ModuleNameDative = "Defekten Knöpfen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which button did each button refer to?"] = "Welche Taste bezog sich auf welche?",
+            },
             Questions = new()
             {
                 [SFaultyButtons.ReferredToThisButton] = new()
@@ -5373,6 +6236,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Defektes RGB-Labyrinth",
             ModuleNameDative = "Defekten RGB-Labyrinth",
+            ManualQuestions = new()
+            {
+                ["Where were the exit and keys of the maze?"] = "Wo im Labyrinth waren der Ausgang und die Schlüssel?",
+                ["What was the maze number for each maze?"] = "Welches Labyrinth hatte welche Nummer?",
+            },
             Questions = new()
             {
                 [SFaultyRGBMaze.Keys] = new()
@@ -5412,6 +6280,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Datumsfindung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the day, month, and year for each stage?"] = "Welcher Tag, Monat und Jahr kam in welcher Stufe vor?",
+            },
             Questions = new()
             {
                 [SFindTheDate.Month] = new()
@@ -5441,6 +6313,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Wörter aus fünf Buchstaben",
             ModuleNameDative = "Wörtern aus fünf Buchstaben",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the displayed words?"] = "Welche Wörter waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SFiveLetterWords.DisplayedWords] = new()
@@ -5454,6 +6330,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // FizzBuzz
         [typeof(SFizzBuzz)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the displayed numbers?"] = "Welche Zahlen waren auf den Displays?",
+            },
             Questions = new()
             {
                 [SFizzBuzz.DisplayedNumbers] = new()
@@ -5476,6 +6356,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Flaggen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the country flags, the main flag, and the displayed number?"] = "Welche Flaggen waren vorhanden, was war die Hauptflagge und die Ziffer auf dem Display?",
+            },
             Questions = new()
             {
                 [SFlags.DisplayedNumber] = new()
@@ -5499,9 +6383,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Flashing Arrows
         [typeof(SFlashingArrows)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Blinkende Pfeile",
             ModuleNameDative = "Blinkenden Pfeilen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the number shown on the display?"] = "What was the number shown on the display?",
+                ["What were the relevant arrow’s colors?"] = "Welche Farbe hatten die maßgeblichen Pfeile?",
+            },
             Questions = new()
             {
                 [SFlashingArrows.DisplayedValue] = new()
@@ -5539,6 +6429,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Blinkende Lichter",
             ModuleNameDative = "Blinkenden Lichtern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["How many times did each LED flash each color?"] = "Welche LED hat wie oft in welcher Farbe geblinkt?",
+            },
             Questions = new()
             {
                 [SFlashingLights.LEDFrequency] = new()
@@ -5565,6 +6459,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Flairtext EX",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which module’s flavor text was presented in each stage?"] = "Der Würztext welches Moduls kamen in welcher Stufe vor?",
+            },
             Questions = new()
             {
                 [SFlavorTextEX.Module] = new()
@@ -5580,6 +6478,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SFlyswatting)] = new()
         {
             ModuleName = "Fliegenschlagen",
+            ManualQuestions = new()
+            {
+                ["Which flies were present, but not in the solution?"] = "Welche Fliegen waren vorhanden aber nicht Teil der Lösung?",
+            },
             Questions = new()
             {
                 [SFlyswatting.Unpressed] = new()
@@ -5594,6 +6496,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SFollowMe)] = new()
         {
             ModuleName = "Folge Mir",
+            ManualQuestions = new()
+            {
+                ["What were the flashing directions?"] = "Welche Richtungen haben aufgeleuchtet?",
+            },
             Questions = new()
             {
                 [SFollowMe.DisplayedPath] = new()
@@ -5617,6 +6523,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Wald-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SForestCipher.Screen] = new()
@@ -5637,7 +6547,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Forget Any Color
         [typeof(SForgetAnyColor)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Vergiss Jede Farbe",
+            ManualQuestions = new()
+            {
+                ["What colors were the cylinders in each stage?"] = "What colors were the cylinders in each stage?",
+                ["Which figure was used in each stage?"] = "Which figure was used in each stage?",
+            },
             Questions = new()
             {
                 [SForgetAnyColor.QCylinder] = new()
@@ -5690,6 +6606,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetEverything)] = new()
         {
             ModuleName = "Vergiss Alles",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits in stage one?"] = "Welche Ziffern waren in Stufe 1 auf dem Zylinder?",
+            },
             Questions = new()
             {
                 [SForgetEverything.QStageOneDisplay] = new()
@@ -5714,6 +6634,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetMe)] = new()
         {
             ModuleName = "Vergiss Mein",
+            ManualQuestions = new()
+            {
+                ["What numbers were in which positions in the initial puzzle?"] = "Welche Zahlen waren am Anfang an welcher Position?",
+            },
             Questions = new()
             {
                 [SForgetMe.InitialState] = new()
@@ -5741,6 +6665,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetMeNot)] = new()
         {
             ModuleName = "Vergiss Mein Nicht",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits in each stage?"] = "Welche Ziffer war in welcher Stufe auf dem Display?",
+            },
             Questions = new()
             {
                 [SForgetMeNot.Question] = new()
@@ -5765,6 +6693,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetMeNow)] = new()
         {
             ModuleName = "Vergiss Mein Jetzt",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits?"] = "Welche Ziffern waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SForgetMeNow.DisplayedDigits] = new()
@@ -5780,6 +6712,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetOurVoices)] = new()
         {
             ModuleName = "Vergiss Unsere Stimmen",
+            ManualQuestions = new()
+            {
+                ["What was said by whom each stage?"] = "Wer hat in welcher Stufe was gesagt?",
+            },
             Questions = new()
             {
                 [SForgetOurVoices.Voice] = new()
@@ -5803,6 +6739,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Forget’s Ultimate Showdown
         [typeof(SForgetsUltimateShowdown)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the initial number?"] = "Was war die Zahl am Anfang?",
+                ["What was the bottom number?"] = "Was war die Zahl unten?",
+                ["What was the answer?"] = "Was war die Lösung?",
+                ["What were the encryption methods used?"] = "Welche Verschlüsselungsmethoden kamen zum Einsatz?",
+            },
             Questions = new()
             {
                 [SForgetsUltimateShowdown.Answer] = new()
@@ -5847,6 +6790,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetTheColors)] = new()
         {
             ModuleName = "Vergiss Die Farben",
+            ManualQuestions = new()
+            {
+                ["What were the large display, gear and the sine number’s last digit in each stage?"] = "Welches Zahnrad, welche letzte Ziffer der Sinuszahl und welche Anzeige auf dem großen Display kam in welcher Stufe vor?",
+                ["Which edgework-based rule was applied in each stage?"] = "Welche Peripherie-Regel kam in welcher Stufe zum Einsatz?",
+            },
             Questions = new()
             {
                 [SForgetTheColors.QGearNumber] = new()
@@ -5955,7 +6903,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Forget This
         [typeof(SForgetThis)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Vergiss Dies",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digit and color in each stage?"] = "What were the displayed digit and color in each stage?",
+            },
             Questions = new()
             {
                 [SForgetThis.QColors] = new()
@@ -6010,6 +6963,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SForgetUsNot)] = new()
         {
             ModuleName = "Vergiss Uns Nicht",
+            ManualQuestions = new()
+            {
+                ["Which module was solved for each stage?"] = "Für welche Stufe wurde welches Modul entschärft?",
+            },
             Questions = new()
             {
                 [SForgetUsNot.Stage] = new()
@@ -6034,6 +6991,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SFreeParking)] = new()
         {
             ModuleName = "Frei Parken",
+            ManualQuestions = new()
+            {
+                ["What was the player token?"] = "Welcher Spielstein kam vor?",
+            },
             Questions = new()
             {
                 [SFreeParking.Token] = new()
@@ -6060,6 +7021,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Französische Revolutionskalender",
             ModuleNameDative = "Französischen Revolutionskalender",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the color of the LED?"] = "Welche Farbe hatte die LED?",
+            },
             Questions = new()
             {
                 [SFrenchRepublicanCalendar.LEDColor] = new()
@@ -6082,6 +7047,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Funktionen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the last digit of the first query result?"] = "Was war die letzte Ziffer des ersten Anfrageergebnisses?",
+                ["What were the numbers and letter shown at the bottom?"] = "Welche Zahlen und welcher Buchstabe standen unten?",
+            },
             Questions = new()
             {
                 [SFunctions.LastDigit] = new()
@@ -6112,6 +7082,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Sicherungskasten",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What colors flashed?"] = "Welche Farben haben aufgeleuchtet?",
+                ["What arrows were correct?"] = "Welche Pfeile waren richtig?",
+            },
             Questions = new()
             {
                 [SFuseBox.Flashes] = new()
@@ -6132,6 +7107,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Gadgetron-Verkäufer",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the displayed weapons?"] = "Welche Waffen wurden angezeigt?",
+            },
             Questions = new()
             {
                 [SGadgetronVendor.CurrentWeapon] = new()
@@ -6152,6 +7131,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Höllisches Spiel des Lebens",
             ModuleNameDative = "Höllischen Spiel des Lebens",
+            ManualQuestions = new()
+            {
+                ["Which color combinations occurred?"] = "Welche Farbkombinationen kamen vor?",
+            },
             Questions = new()
             {
                 [SGameOfLifeCruel.Colors] = new()
@@ -6165,6 +7148,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Gamepad
         [typeof(SGamepad)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the numbers?"] = "Welche Zahlen kamen vor?",
+            },
             Questions = new()
             {
                 [SGamepad.QNumbers] = new()
@@ -6188,6 +7175,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Garfield Kart
         [typeof(SGarfieldKart)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the name of the track?"] = "Welchen Namen hatte die Rennstrecke?",
+                ["How many puzzle pieces were there?"] = "Wie viele Puzzleteile waren zu sehen?",
+            },
             Questions = new()
             {
                 [SGarfieldKart.Track] = new()
@@ -6209,6 +7201,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Granatdieb",
             ModuleNameDative = "Granatdieb",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which faction did each competitor claim to have chosen?"] = "Welche Fraktion hat welcher Kandidat behauptet, gewählt zu haben?",
+            },
             Questions = new()
             {
                 [SGarnetThief.Claim] = new()
@@ -6225,6 +7221,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Geisterbewegung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Where were Pac-Man and the ghosts?"] = "Wo waren Pac-Man und die Geister?",
+            },
             Questions = new()
             {
                 [SGhostMovement.Position] = new()
@@ -6241,6 +7241,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Riesen-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the displayed keyword?"] = "Was war das Schlüsselwort auf dem Display?",
+            },
             Questions = new()
             {
                 [SGiantsCipher.Keywords] = new()
@@ -6256,6 +7260,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Freundin",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the chosen language?"] = "Welche Sprache war ausgewählt?",
+            },
             Questions = new()
             {
                 [SGirlfriend.Language] = new()
@@ -6272,6 +7280,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Gestörte Knopf",
             ModuleNameDative = "Gestörten Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the cycling bit sequence?"] = "Wie lautete die zyklische Bitfolge?",
+            },
             Questions = new()
             {
                 [SGlitchedButton.Sequence] = new()
@@ -6286,6 +7298,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SGoofysGame)] = new()
         {
             ModuleName = "Goofys Spiel",
+            ManualQuestions = new()
+            {
+                ["What numbers were shown in Morse code?"] = "Welche Zahlen wurden als Morsezeichen übermittelt?",
+            },
             Questions = new()
             {
                 [SGoofysGame.Number] = new()
@@ -6308,6 +7324,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Konzertflügel",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the given notes?"] = "Welche Noten waren vorgegeben?",
+            },
             Questions = new()
             {
                 [SGrandPiano.Key] = new()
@@ -6330,6 +7350,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Graue Knopf",
             ModuleNameDative = "Grauen Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the coordinates on the display?"] = "Welche Koordinaten waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SGrayButton.Coordinates] = new()
@@ -6352,6 +7376,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Graue Geheimschrift",
             ModuleNameDative = "Grauen Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SGrayCipher.Screen] = new()
@@ -6375,6 +7403,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Große Leere",
             ModuleNameDative = "Großen Leere",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the digits and colors?"] = "Welche Ziffern und Farben kamen vor?",
+            },
             Questions = new()
             {
                 [SGreatVoid.Digit] = new()
@@ -6407,6 +7439,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Grüne Pfeile",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the last number on the display?"] = "Was war die letzte Zahl auf dem Display?",
+            },
             Questions = new()
             {
                 [SGreenArrows.LastScreen] = new()
@@ -6423,6 +7459,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Grüne Knopf",
             ModuleNameDative = "Grünen Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the submitted word?"] = "Welches Wort wurde eingegeben?",
+            },
             Questions = new()
             {
                 [SGreenButton.Word] = new()
@@ -6439,6 +7479,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Grüne Geheimschrift",
             ModuleNameDative = "Grünen Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SGreenCipher.Screen] = new()
@@ -6461,6 +7505,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Verkehrsstau",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the starting color?"] = "Was war die Startfarbe?",
+                ["What was the starting position?"] = "Wo war die Startposition?",
+            },
             Questions = new()
             {
                 [SGridlock.StartingColor] = new()
@@ -6488,6 +7537,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Supermarkt",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the first item shown?"] = "Welcher Artikel wurde zuerst angezeigt?",
+            },
             Questions = new()
             {
                 [SGroceryStore.FirstItem] = new()
@@ -6503,6 +7556,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Greifen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the gryphon’s name and age?"] = "Welchen Namen und welches Alter hatte der Greif?",
+            },
             Questions = new()
             {
                 [SGryphons.Name] = new()
@@ -6522,6 +7579,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SGuessWho)] = new()
         {
             ModuleName = "Wer ist es?",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed “YES”?"] = "In welchen Farben erschien „YES“?",
+            },
             Questions = new()
             {
                 [SGuessWho.Colors] = new()
@@ -6553,6 +7614,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SGyromaze)] = new()
         {
             ModuleName = "Gyrolabyrinth",
+            ManualQuestions = new()
+            {
+                ["What were the LED colors?"] = "Welche LED hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SGyromaze.LEDColor] = new()
@@ -6579,6 +7644,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // h
         [typeof(SH)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the transmitted letter?"] = "Welcher Buchstabe wurde übermittelt?",
+            },
             Questions = new()
             {
                 [SH.Letter] = new()
@@ -6592,6 +7661,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Halli Galli
         [typeof(SHalliGalli)] = new()
         {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which fruit was there five of and in what counts?"] = "Which fruit was there five of and in what counts?",
+            },
             Questions = new()
             {
                 [SHalliGalli.Fruit] = new()
@@ -6618,6 +7692,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Hereditary Base Notation
         [typeof(SHereditaryBaseNotation)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the number on the bottom display?"] = "Welche Zahl war auf dem unteren Display?",
+            },
             Questions = new()
             {
                 [SHereditaryBaseNotation.InitialNumber] = new()
@@ -6634,6 +7712,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Hexaknopf",
             ModuleNameDative = "Hexaknopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What color was the button when held?"] = "Welche Farbe hatte die Taste beim Gedrückthalten?",
+                ["What Morse Code letter was transmitted?"] = "Welcher Buchstabe wurde als Morsezeichen übermittelt?",
+            },
             Questions = new()
             {
                 [SHexabutton.Color] = new()
@@ -6659,6 +7742,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SHexamaze)] = new()
         {
             ModuleName = "Hexalabyrinth",
+            ManualQuestions = new()
+            {
+                ["What was the color of the pawn?"] = "Welche Farbe hatte die Spielfigur?",
+            },
             Questions = new()
             {
                 [SHexamaze.PawnColor] = new()
@@ -6681,6 +7768,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // hexOrbits
         [typeof(SHexOrbits)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What shapes were displayed?"] = "Welche Formen waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SHexOrbits.Shape] = new()
@@ -6700,6 +7791,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // hexOS
         [typeof(SHexOS)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the deciphered letters or phrase?"] = "Wie lautete die entschlüsselte Botschaft (Buchstaben oder Phrase)?",
+                ["What were the 3-digit numbers cycled by the screen?"] = "Welche 3-stelligen Zahlen kamen auf dem Display vor?",
+                ["What were the rhythm values?"] = "Welche Rhythmuswerte kamen vor?",
+            },
             Questions = new()
             {
                 [SHexOS.OctCipher] = new()
@@ -6730,6 +7827,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SHickoryDickoryDock)] = new()
         {
             ModuleName = "Tickitie-Tackitie-Tock",
+            ManualQuestions = new()
+            {
+                ["What times were shown when the clock struck?"] = "Welche Uhrzeit wurde bei welchem Geläute angezeigt?",
+            },
             Questions = new()
             {
                 [SHickoryDickoryDock.Time] = new()
@@ -6756,6 +7857,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Versteckte Farben",
             ModuleNameDative = "Versteckten Farben",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the main LED’s color?"] = "Welche Farbe hatte die Haupt-LED?",
+            },
             Questions = new()
             {
                 [SHiddenColors.LED] = new()
@@ -6783,6 +7888,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Versteckte Wert",
             ModuleNameDative = "Versteckten Wert",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What numbers and colors were displayed?"] = "Welche Zahlen und Farben waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SHiddenValue.Display] = new()
@@ -6811,6 +7920,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Highscore",
             ModuleNameDative = "Highscore",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the player’s position and score?"] = "An welcher Stelle war der Spieler mit welcher Punktzahl?",
+            },
             Questions = new()
             {
                 [SHighScore.Position] = new()
@@ -6831,6 +7944,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Hill-Schiffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "In welche Richtung zeigten die Drehknöpfe?",
+                ["What was written on each dial?"] = "Was stand auf den Drehknöpfen?",
+            },
             Questions = new()
             {
                 [SHillCycle.DialDirections] = new()
@@ -6863,6 +7981,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Scharniere",
             ModuleNameDative = "Scharnieren",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the initially present hinges?"] = "Welche Scharniere waren anfangs vorhanden?",
+            },
             Questions = new()
             {
                 [SHinges.Initial] = new()
@@ -6896,6 +8018,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Hogwarts
         [typeof(SHogwarts)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which House was each module solved for?"] = "Welches Modul wurde für welches Haus entschärft?",
+            },
             Questions = new()
             {
                 [SHogwarts.House] = new()
@@ -6930,6 +8056,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Hold Ups
         [typeof(SHoldUps)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the name of each shadow shown?"] = "Welchen Namen hatte welcher Schatten?",
+            },
             Questions = new()
             {
                 [SHoldUps.Shadows] = new()
@@ -6946,6 +8076,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Holographisches Gedächtnis",
             ModuleNameDative = "Holographischen Gedächtnis",
+            ManualQuestions = new()
+            {
+                ["Which side did each symbol appear?"] = "Auf welcher Seite erschien welches Symbol?",
+            },
             Questions = new()
             {
                 [SHolographicMemory.InitialGrid] = new()
@@ -6966,6 +8100,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Teekesselchen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the displayed phrases?"] = "Welcome Phrasen waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SHomophones.DisplayedPhrases] = new()
@@ -6982,6 +8120,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Grausiges Memory",
             ModuleNameDative = "Grausigen Memory",
+            ManualQuestions = new()
+            {
+                ["What were the colors and labels of each button in each stage?"] = "Welche Taste hatte in welcher Stufe welche Farbe und welche Aufschrift?",
+                ["What digit was displayed in each stage?"] = "Welche Ziffer war in welcher Stufe auf dem Display?",
+            },
             Questions = new()
             {
                 [SHorribleMemory.QColorsByPosition] = new()
@@ -7133,6 +8276,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Personalabteilung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which employees and applicants were present?"] = "Welche Angestellten und Bewerber waren vorhanden?",
+                ["Which descriptors were shown in red and green?"] = "Welche Beschreibungen kamen in rot bzw. grün vor?",
+            },
             Questions = new()
             {
                 [SHumanResources.Descriptors] = new()
@@ -7165,6 +8313,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Jagd",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which pictograms were displayed?"] = "Welche Piktogramme kamen vor?",
+            },
             Questions = new()
             {
                 [SHunting.DisplayedSymbols] = new()
@@ -7179,6 +8331,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Hypercube
         [typeof(SHypercube)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the rotations?"] = "Welche Rotationen kamen vor?",
+            },
             Questions = new()
             {
                 [SHypercube.Rotations] = new()
@@ -7193,6 +8349,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // HyperForget
         [typeof(SHyperForget)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the rotations?"] = "Welche Rotationen kamen vor?",
+            },
             Questions = new()
             {
                 [SHyperForget.Rotations] = new()
@@ -7219,6 +8379,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Hyperlink",
             ModuleNameDative = "Hyperlink",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the hyperlink?"] = "Wie lautete der Hyperlink?",
+                ["Which module was referenced?"] = "Auf welches Modul wurde Bezug genommen?",
+            },
             Questions = new()
             {
                 [SHyperlink.Characters] = new()
@@ -7240,6 +8405,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Eiscreme",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Who were the customers?"] = "Welche Kunden kamen vor?",
+                ["Which flavors were on offer to each customer?"] = "Welche Geschmacksrichtungen wurden welchen Kunden angeboten?",
+            },
             Questions = new()
             {
                 [SIceCream.Flavour] = new()
@@ -7267,6 +8437,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Identifikationskrise",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the shapes and identification modules used?"] = "Welche Formen und Identifikationsmodule kamen vor?",
+            },
             Questions = new()
             {
                 [SIdentificationCrisis.Shape] = new()
@@ -7302,6 +8476,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Identitätsparade",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the hair colors, builds and attires listed on the module?"] = "Welche Haarfarben, Körperbaus und Garderoben standen zur Auswahl?",
+            },
             Questions = new()
             {
                 [SIdentityParade.HairColors] = new()
@@ -7345,6 +8523,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Indigo-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SIndigoCipher.Screen] = new()
@@ -7365,8 +8547,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Infinite Loop
         [typeof(SInfiniteLoop)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Endlosschleife",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the selected word?"] = "What was the selected word?",
+            },
             Questions = new()
             {
                 [SInfiniteLoop.SelectedWord] = new()
@@ -7382,6 +8569,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Zutaten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which ingredients were listed and which were used?"] = "Welche Zutaten kamen vor und welche wurden verwendet?",
+            },
             Questions = new()
             {
                 [SIngredients.Ingredients] = new()
@@ -7403,6 +8594,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Innere Verbindungen",
             ModuleNameDative = "Inneren Verbindungen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What color was the LED?"] = "Welche Farbe hatte die LED?",
+                ["What was the digit flashed in Morse?"] = "Welche Ziffer wurde in Morsezeichen übermittelt?",
+            },
             Questions = new()
             {
                 [SInnerConnections.LED] = new()
@@ -7432,6 +8628,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Interpunkt",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the symbol displayed in each stage?"] = "Welches Symbol war in welcher Stufe auf dem Display?",
+            },
             Questions = new()
             {
                 [SInterpunct.Display] = new()
@@ -7446,6 +8646,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // IPA
         [typeof(SIPA)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the correct symbol?"] = "Was war das richtige Zeichen?",
+            },
             Questions = new()
             {
                 [SIPA.Sound] = new()
@@ -7461,6 +8665,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Das iPhone",
             ModuleNameDative = "iPhone",
+            ManualQuestions = new()
+            {
+                ["What was the PIN?"] = "Wie lautete die PIN?",
+            },
             Questions = new()
             {
                 [SiPhone.Digits] = new()
@@ -7475,6 +8683,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Jenga
         [typeof(SJenga)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What symbols were on the first correctly pulled block?"] = "Welche Symbole waren auf dem ersten korrekt gezogenen Stein?",
+            },
             Questions = new()
             {
                 [SJenga.FirstBlock] = new()
@@ -7490,6 +8702,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Juwelentresor",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which wheel spun another wheel, and which one did it spin?"] = "Welches Rad setzte sich durch welches andere Rad in Bewegung?",
+            },
             Questions = new()
             {
                 [SJewelVault.WheelTurns] = new()
@@ -7514,6 +8730,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Wirrwarr-Schiffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "In welche Richtung zeigten die Drehknöpfe?",
+                ["What was written on each dial?"] = "Was stand auf den Drehknöpfen?",
+            },
             Questions = new()
             {
                 [SJumbleCycle.DialDirections] = new()
@@ -7546,6 +8767,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefärbte Nachbarfelder",
             ModuleNameDative = "Gefärbten Nachbarfeldern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was each square’s color?"] = "Welches Feld hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SJuxtacoloredSquares.ColorsByPosition] = new()
@@ -7603,6 +8828,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Kanji
         [typeof(SKanji)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed word in each stage?"] = "Welches Wort wurde in welcher Stufe abgefragt?",
+            },
             Questions = new()
             {
                 [SKanji.DisplayedWords] = new()
@@ -7620,6 +8849,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Kanye-Begegnung",
             ModuleNameDative = "Kanye-Begegnung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What food items were shown?"] = "Welche Nahrungsmittel kamen vor?",
+            },
             Questions = new()
             {
                 [SKanyeEncounter.Foods] = new()
@@ -7633,6 +8866,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // KayMazey Talk
         [typeof(SKayMazeyTalk)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the starting and goal words?"] = "Was war das Start- und Zielwort?",
+            },
             Questions = new()
             {
                 [SKayMazeyTalk.QWord] = new()
@@ -7668,6 +8905,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Tastenfeld-Kombinationen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the numbers, but not part of the answer?"] = "Welche Zahlen waren vorhanden aber nicht Teil der Lösung?",
+            },
             Questions = new()
             {
                 [SKeypadCombination.WrongNumbers] = new()
@@ -7684,6 +8925,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Vergrößertes Tastenfeld",
             ModuleNameDative = "Vergrößerten Tastenfeld",
+            ManualQuestions = new()
+            {
+                ["What was the position of the LED?"] = "Wo war die LED?",
+            },
             Questions = new()
             {
                 [SKeypadMagnified.LED] = new()
@@ -7705,6 +8950,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SKeypadMaze)] = new()
         {
             ModuleName = "Tastenfeld-Labyrinth",
+            ManualQuestions = new()
+            {
+                ["Where were the yellow cells?"] = "Welche Zellen waren gelb?",
+            },
             Questions = new()
             {
                 [SKeypadMaze.Yellow] = new()
@@ -7720,6 +8969,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Tastenfeld-Sequenz",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What symbols were on the keys?"] = "Welche Symbole waren auf den Tasten?",
+            },
             Questions = new()
             {
                 [SKeypadSequence.Labels] = new()
@@ -7737,6 +8990,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Schlüsselwörter",
             ModuleNameDative = "Schlüsselwörtern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the letters on the display?"] = "Welche Buchstaben waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SKeywords.DisplayedKey] = new()
@@ -7752,6 +9009,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Das Klaxon",
             ModuleNameDative = "Klaxon",
+            ManualQuestions = new()
+            {
+                ["What was the first module to set off the klaxon?"] = "Welches Modul hat als erstes den Klaxon losgetreten?",
+            },
             Questions = new()
             {
                 [SKlaxon.FirstModule] = new()
@@ -7766,6 +9027,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SKnowYourWay)] = new()
         {
             ModuleName = "Kenne Den Weg",
+            ManualQuestions = new()
+            {
+                ["Which way was the arrow pointing?"] = "In welche Richtung zeigte der Pfeil?",
+                ["Which LED was green?"] = "Welche LED war grün?",
+            },
             Questions = new()
             {
                 [SKnowYourWay.Arrow] = new()
@@ -7800,6 +9066,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Kirres Tastenfeld",
             ModuleNameDative = "Kirren Tastenfeld",
+            ManualQuestions = new()
+            {
+                ["What colors were the LEDs?"] = "Welche Farbe hatten die LEDs?",
+            },
             Questions = new()
             {
                 [SKookyKeypad.Color] = new()
@@ -7835,6 +9105,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Kudosudoku
         [typeof(SKudosudoku)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which squares were initially pre-filled?"] = "Welche Felder waren am Anfang schon ausgefüllt?",
+            },
             Questions = new()
             {
                 [SKudosudoku.Prefilled] = new()
@@ -7855,6 +9129,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SKugelblitz)] = new()
         {
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which particles were present during each stage?"] = "Welche Partikel waren in welcher Stufe vorhanden?",
+                ["What were the particles’ values during each stage?"] = "Welche Werte hatten die Partikel in welcher Stufe?",
+            },
             Questions = new()
             {
                 [SKugelblitz.BlackOrangeYellowIndigoViolet] = new()
@@ -7943,6 +9222,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SKuro)] = new()
         {
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was Kuro’s mood?"] = "Welche Stimmung hatte Kuro?",
+            },
             Questions = new()
             {
                 [SKuro.Mood] = new()
@@ -7959,6 +9242,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Irrgarten",
             ModuleNameDative = "Irrgarten",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Where were the portals, and which layers were they on?"] = "Wo waren auf welcher Ebene die Portale?",
+            },
             Questions = new()
             {
                 [SLabyrinth.PortalLocations] = new()
@@ -7996,6 +9283,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Leiterlotterie",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which light was on?"] = "Welches Licht war an?",
+            },
             Questions = new()
             {
                 [SLadderLottery.LightOn] = new()
@@ -8011,6 +9302,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Leitern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which colors were present on the second ladder?"] = "Welche Farben kamen auf der zweiten Leiter vor?",
+                ["What color was missing on the third ladder?"] = "Welche Farbe hat auf der dritten Leiter gefehlt?",
+            },
             Questions = new()
             {
                 [SLadders.Stage2Colors] = new()
@@ -8053,6 +9349,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Langton-Ameisenbär",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the initial state of the grid?"] = "Wie sah das Spielfeld am Anfang aus?",
+            },
             Questions = new()
             {
                 [SLangtonsAnteater.InitialState] = new()
@@ -8074,6 +9374,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "LED-Verschlüsselung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which letters were present at each stage"] = "Welche Buchstaben kamen in welcher Stufe vor?",
+            },
             Questions = new()
             {
                 [SLEDEncryption.PresentLetters] = new()
@@ -8089,6 +9393,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SLEDGrid)] = new()
         {
             ModuleName = "LED-Gitter",
+            ManualQuestions = new()
+            {
+                ["How many LEDs were unlit?"] = "Wie viele LEDs waren an?",
+            },
             Questions = new()
             {
                 [SLEDGrid.NumBlack] = new()
@@ -8104,6 +9412,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "LED-Mathe",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the LED colors?"] = "Welche LED hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SLEDMath.Lights] = new()
@@ -8132,6 +9444,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SLEDs)] = new()
         {
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the initial color of the changed LED?"] = "Welche Farbe hatte die LED, die sich verändert hat?",
+            },
             Questions = new()
             {
                 [SLEDs.OriginalColor] = new()
@@ -8157,6 +9473,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SLEGOs)] = new()
         {
             ModuleName = "LEGO",
+            ManualQuestions = new()
+            {
+                ["What were the dimensions of each color piece?"] = "Welches Teil hatte welche Größe?",
+            },
             Questions = new()
             {
                 [SLEGOs.PieceDimensions] = new()
@@ -8182,6 +9502,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Lempel-Ziv-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SLempelZivCipher.Screen] = new()
@@ -8204,6 +9528,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Buchstaben-Mathe",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the letters on the display?"] = "Welche Buchstaben waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SLetterMath.Display] = new()
@@ -8225,6 +9553,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Glühlampen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colors of the bulbs?"] = "Welche Glühlampe hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SLightBulbs.Colors] = new()
@@ -8258,6 +9590,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Limette-Pfeile",
             ModuleNameDative = "Limette-Pfeilen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the starting coordinate?"] = "Was waren die Startkoordinaten?",
+            },
             Questions = new()
             {
                 [SLimeArrows.Coordinates] = new()
@@ -8271,6 +9607,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Linq
         [typeof(SLinq)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the functions?"] = "Welche Funktionen kamen vor?",
+            },
             Questions = new()
             {
                 [SLinq.Function] = new()
@@ -8296,6 +9636,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Löwenanteil",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which year was displayed?"] = "Um welches Jahr ging es?",
+                ["Which lions were present but removed?"] = "Welche Löwen wurden entfernt?",
+            },
             Questions = new()
             {
                 [SLionsShare.Year] = new()
@@ -8315,6 +9660,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SListening)] = new()
         {
             ModuleName = "Zuhören",
+            ManualQuestions = new()
+            {
+                ["What sound played?"] = "Welcher Klang war zu hören?",
+            },
             Questions = new()
             {
                 [SListening.Sound] = new()
@@ -8330,6 +9679,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Buchstäbliches Labyrinth",
             ModuleNameDative = "Buchstäblichen Labyrinth",
+            ManualQuestions = new()
+            {
+                ["Which letter was in each position?"] = "Welcher Buchstabe stand an welcher Stelle?",
+            },
             Questions = new()
             {
                 [SLiteralMaze.Letter] = new()
@@ -8345,6 +9698,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Logiktasten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colors and labels of each button in each stage?"] = "Welche Taste hatte in welcher Stufe welche Farbe und welche Aufschrift?",
+                ["What were the final operators in each stage?"] = "Was war in welcher Stufe der letzte Operator?",
+            },
             Questions = new()
             {
                 [SLogicalButtons.Color] = new()
@@ -8397,6 +9755,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Logikgatter",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were logic gates A-D?"] = "Welches Gatter war A, B, C, D?",
+            },
             Questions = new()
             {
                 [SLogicGates.Gates] = new()
@@ -8421,6 +9783,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Lombax-Würfel",
             ModuleNameDative = "Lombax-Würfeln",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the letters on the button?"] = "Welche Buchstaben waren auf den Tasten?",
+            },
             Questions = new()
             {
                 [SLombaxCubes.Letters] = new()
@@ -8435,6 +9801,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The London Underground
         [typeof(SLondonUnderground)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the departure and destination stations?"] = "Welche Haltestelle war Start und Ziel?",
+            },
             Questions = new()
             {
                 [SLondonUnderground.Stations] = new()
@@ -8457,6 +9827,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Lange Wörter",
             ModuleNameDative = "Langen Wörtern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the word on the top display?"] = "Welches Wort war auf dem oberen Display?",
+            },
             Questions = new()
             {
                 [SLongWords.Word] = new()
@@ -8470,6 +9844,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Mad Memory
         [typeof(SMadMemory)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was on the display in each stage?"] = "Was war in welcher Stufe auf dem Display?",
+            },
             Questions = new()
             {
                 [SMadMemory.Displays] = new()
@@ -8485,6 +9863,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMafia)] = new()
         {
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Who was a player, but not the Godfather?"] = "Wer war Mitspieler, aber nicht der Pate?",
+            },
             Questions = new()
             {
                 [SMafia.Players] = new()
@@ -8500,6 +9882,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Magenta-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SMagentaCipher.Screen] = new()
@@ -8520,6 +9906,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Mahjong
         [typeof(SMahjong)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the bottom-left tile?"] = "Welcher Spielstein war unten links zu sehen?",
+            },
             Questions = new()
             {
                 [SMahjong.CountingTile] = new()
@@ -8534,6 +9924,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMainPage)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which color and message did the bubble (not) display?"] = "Welche Farbe und Botschaft war (nicht) auf der Blase sichtbar?",
+                ["Which main page did Homestar, the background, or any of the buttons’ effects come from?"] = "Von welcher Hauptseite war Homestar, der Hintergrund und die Effekte der Tasten?",
+            },
             Questions = new()
             {
                 [SMainPage.ButtonEffectOrigin] = new()
@@ -8592,6 +9987,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMandMs)] = new()
         {
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the labels on the buttons and their colors?"] = "Welche Taste hatte welche Aufschrift und in welcher Farbe?",
+            },
             Questions = new()
             {
                 [SMandMs.Colors] = new()
@@ -8622,6 +10021,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMandNs)] = new()
         {
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colors of the labels on the buttons?"] = "Welche Taste hatte eine Aufschrift in welcher Farbe?",
+                ["What was the label of the correct button?"] = "Welche Aufschrift hatte die korrekte Taste?",
+            },
             Questions = new()
             {
                 [SMandNs.Colors] = new()
@@ -8652,6 +10056,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Schiffsignalflaggen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What bearing was signaled?"] = "Welche Peilung wurde signalisiert?",
+                ["What callsign was signaled?"] = "Welches Rufzeichen wurde signalisiert?",
+            },
             Questions = new()
             {
                 [SMaritimeFlags.Bearing] = new()
@@ -8672,6 +10081,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Schiffsignalwinker",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Where was the dummy?"] = "Wo war die Finte?",
+                ["Which letters were signaled?"] = "Welche Buchstaben wurden signalisiert?",
+            },
             Questions = new()
             {
                 [SMaritimeSemaphore.Dummy] = new()
@@ -8699,6 +10113,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Kastanienknopf",
             ModuleNameDative = "Kastanienknopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was A?"] = "Was war A?",
+            },
             Questions = new()
             {
                 [SMaroonButton.A] = new()
@@ -8714,6 +10132,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Kastanien-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SMaroonCipher.Screen] = new()
@@ -8735,6 +10157,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMashematics)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the numbers in the equation?"] = "Welche Zahlen kamen in der Rechenaufgabe vor?",
+            },
             Questions = new()
             {
                 [SMashematics.Calculation] = new()
@@ -8750,6 +10176,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMasterTapes)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which song was played?"] = "Welcher Song war zu hören?",
+            },
             Questions = new()
             {
                 [SMasterTapes.PlayedSong] = new()
@@ -8764,6 +10194,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMatchRefereeing)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which planets were present in each stage?"] = "Welche Planeten kamen in welcher Stufe vor?",
+            },
             Questions = new()
             {
                 [SMatchRefereeing.Planet] = new()
@@ -8779,6 +10213,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMathEm)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the color and design of each tile before the shuffle?"] = "Welche Farbe und welches Design hatten die Steine vorm Mischen?",
+            },
             Questions = new()
             {
                 [SMathEm.Color] = new()
@@ -8805,6 +10243,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMatrix)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which word was part of the latest access code?"] = "Welches Wort kam im letzten Zugangscode vor?",
+                ["What was the glitched word?"] = "Wie lautete das gestörte Wort?",
+            },
             Questions = new()
             {
                 [SMatrix.AccessCode] = new()
@@ -8824,6 +10267,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMaze)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the starting position?"] = "Wo war die Startposition?",
+            },
             Questions = new()
             {
                 [SMaze.StartingPosition] = new()
@@ -8846,6 +10293,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMaze3)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the color of the starting face?"] = "Welche Farbe war auf der Startfläche?",
+            },
             Questions = new()
             {
                 [SMaze3.StartingFace] = new()
@@ -8869,6 +10320,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMazeIdentification)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the seed?"] = "Was war der Seedcode?",
+                ["What function did each button have?"] = "Welche Taste hatte welche Funktion?",
+            },
             Questions = new()
             {
                 [SMazeIdentification.Seed] = new()
@@ -8909,6 +10365,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMazematics)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the initial and goal values?"] = "Was war der Start- und Zielwert?",
+            },
             Questions = new()
             {
                 [SMazematics.Value] = new()
@@ -8929,6 +10389,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMazeScrambler)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the starting position?"] = "Wo war die Startposition?",
+                ["What was the goal position?"] = "Wo war die Zielposition?",
+                ["Which positions were the maze markings?"] = "Wo waren die Markierungen?",
+            },
             Questions = new()
             {
                 [SMazeScrambler.QStart] = new()
@@ -9046,6 +10512,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMazeseeker)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["How many walls surrounded each cell?"] = "Welche Position war von wie vielen Wänden umgeben?",
+                ["What were the starting and goal positions?"] = "Wo war die Start- und Zielposition?",
+            },
             Questions = new()
             {
                 [SMazeseeker.Cell] = new()
@@ -9070,6 +10541,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMazeSwap)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the starting and goal positions?"] = "Wo war die Start- und Zielposition?",
+            },
             Questions = new()
             {
                 [SMazeSwap.Position] = new()
@@ -9090,6 +10565,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMemorableButtons)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the symbols on the correct buttons?"] = "Welche Symbole waren auf den korrekten Tasten?",
+            },
             Questions = new()
             {
                 [SMemorableButtons.Symbols] = new()
@@ -9105,6 +10584,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMemory)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the display in each stage?"] = "Welche Ziffer war in welcher Stufe auf dem Display?",
+            },
             Questions = new()
             {
                 [SMemory.QDisplay] = new()
@@ -9129,6 +10612,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMemoryWires)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the wire colours?"] = "Welche Farbe hatten die Drähte?",
+                ["What were the displayed digits?"] = "Welche Ziffern waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SMemoryWires.QWireColours] = new()
@@ -9181,6 +10669,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMetamorse)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the extracted letter?"] = "Welcher Buchstabe wurde entnommen?",
+            },
             Questions = new()
             {
                 [SMetamorse.ExtractedLetter] = new()
@@ -9194,6 +10686,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Metapuzzle
         [typeof(SMetapuzzle)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the final answer?"] = "Was war das Lösungswort am Ende?",
+            },
             Questions = new()
             {
                 [SMetapuzzle.Answer] = new()
@@ -9208,6 +10704,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMinskMetro)] = new()
         {
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the starting station?"] = "An welcher Haltestelle ging es los?",
+            },
             Questions = new()
             {
                 [SMinskMetro.Station] = new()
@@ -9223,6 +10723,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Spiegel",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the second word written by the original ghost?"] = "Was war das zweite vom ursprünglichen Geist geschriebene Wort?",
+            },
             Questions = new()
             {
                 [SMirror.Word] = new()
@@ -9239,6 +10743,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Fehlende Buchstabe",
             ModuleNameDative = "Fehlenden Buchstaben",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What letter was missing?"] = "Welcher Buchstabe hat gefehlt?",
+            },
             Questions = new()
             {
                 [SMissingLetter.MissingLetter] = new()
@@ -9253,6 +10761,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMisterSoftee)] = new()
         {
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Where was the SpongeBob Bar?"] = "Wo war das Spongebob-Eis?",
+                ["Which treats were present?"] = "Welche Eissorten waren im Angebot?",
+            },
             Questions = new()
             {
                 [SMisterSoftee.SpongebobPosition] = new()
@@ -9272,6 +10785,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMixometer)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the position of the submit button?"] = "Wo war die Eingabetaste?",
+            },
             Questions = new()
             {
                 [SMixometer.SubmitButton] = new()
@@ -9286,6 +10803,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SModuleListening)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What sounds played?"] = "Welche Sounds waren zu hören?",
+                ["What sounds did each button play?"] = "Welche Sounds wurden durch welche Taste ausgelöst?",
+            },
             Questions = new()
             {
                 [SModuleListening.ButtonAudio] = new()
@@ -9316,6 +10838,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Modulmanöver",
             ModuleNameDative = "Modulmanövern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the goal location?"] = "Wo war das Ziel?",
+            },
             Questions = new()
             {
                 [SModuleManeuvers.Goal] = new()
@@ -9335,6 +10861,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SModuleMaze)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the starting icon?"] = "Was war das Startsymbol?",
+            },
             Questions = new()
             {
                 [SModuleMaze.StartingIcon] = new()
@@ -9349,6 +10879,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SModuleMovements)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What module was shown for each stage?"] = "Welches Modul kam in welcher Stufe vor?",
+            },
             Questions = new()
             {
                 [SModuleMovements.Display] = new()
@@ -9364,6 +10898,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMoneyGame)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the phrases?"] = "Welche Phrasen kamen vor?",
+            },
             Questions = new()
             {
                 [SMoneyGame.Question1] = new()
@@ -9391,6 +10929,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMonsplodeFight)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which creature was displayed?"] = "Welche Kreatur war auf dem Display?",
+                ["Which moves were selectable?"] = "Welche Züge waren auswählbar?",
+            },
             Questions = new()
             {
                 [SMonsplodeFight.Creature] = new()
@@ -9416,6 +10959,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMonsplodeTradingCards)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the names and print versions of the three cards in your hand before the final trade/keep?"] = "Welche Namen und Druckversionen hatten die drei Karten auf der Hand vor der letzten Aktion?",
+            },
             Questions = new()
             {
                 [SMonsplodeTradingCards.CardsAny] = new()
@@ -9435,6 +10982,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMoon)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which sets were initially lit/unlit?"] = "Welche Richtungen haben am Anfang geleuchtet und welche nicht?",
+            },
             Questions = new()
             {
                 [SMoon.LitUnlit] = new()
@@ -9472,6 +11023,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMoreCode)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the flashing word?"] = "Welches Wort wurde übermittelt?",
+            },
             Questions = new()
             {
                 [SMoreCode.Word] = new()
@@ -9486,6 +11041,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMorseAMaze)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the starting and ending locations?"] = "Wo waren die Start- und Zielposition?",
+                ["What was the Morse code word played?"] = "Welches Wort wurde in Morsezeichen übermittelt?",
+            },
             Questions = new()
             {
                 [SMorseAMaze.StartingCoordinate] = new()
@@ -9510,6 +11070,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMorseButtons)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the characters and colors flashed by each button?"] = "Welche Zeichen wurden von welchen Tasten in welchen Farben übermittelt?",
+            },
             Questions = new()
             {
                 [SMorseButtons.ButtonLabel] = new()
@@ -9541,6 +11105,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Morsematik",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the received letters?"] = "Welche Buchstaben wurden übermittelt?",
+            },
             Questions = new()
             {
                 [SMorsematics.QReceivedLetters] = new()
@@ -9570,6 +11138,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMorseWar)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the LEDs?"] = "Welche LEDs waren an/aus?",
+                ["What code was transmitted?"] = "Welcher Code wurde übermittelt?",
+            },
             Questions = new()
             {
                 [SMorseWar.Code] = new()
@@ -9596,6 +11169,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMorseWoF)] = new()
         {
             ModuleName = ".--/.../.-/-../-.-",
+            ManualQuestions = new()
+            {
+                ["What were the display words?"] = "Welche Wörter standen auf dem Display?",
+            },
             Questions = new()
             {
                 [SMorseWoF.Displays] = new()
@@ -9612,6 +11189,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Maus im Labyrinth",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What color was the torus?"] = "Welche Farbe hatte der Torus?",
+            },
             Questions = new()
             {
                 [SMouseInTheMaze.Torus] = new()
@@ -9632,6 +11213,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // M-Seq
         [typeof(SMSeq)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the obtained digits?"] = "Wie lauteten die ermittelten Ziffern?",
+                ["What was the final number from the iteration process?"] = "Was war die letzte Ziffer aus dem Iterationsprozess?",
+            },
             Questions = new()
             {
                 [SMSeq.Obtained] = new()
@@ -9655,6 +11241,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Fehlender Vokal",
             ModuleNameDative = "Fehlenden Vokal",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the missing vowel?"] = "Welcher Vokal hat gefehlt?",
+            },
             Questions = new()
             {
                 [SMssngvWls.MssNgvwL] = new()
@@ -9677,6 +11267,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Vielfarbige Schalter",
             ModuleNameDative = "Vielfarbige Schaltern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colors of the LEDs in both cycles?"] = "Welche Farbe hatte welche LED in welchem der zwei Zyklen?",
+            },
             Questions = new()
             {
                 [SMulticoloredSwitches.LedColor] = new()
@@ -9711,6 +11305,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Multiversum-Hotline",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the universe origin and its initial number?"] = "Was war der Ursprung des Universums und dessen Zahl am Anfang?",
+            },
             Questions = new()
             {
                 [SMultiverseHotline.OriginUniverse] = new()
@@ -9730,6 +11328,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMurder)] = new()
         {
             ModuleName = "Mord",
+            ManualQuestions = new()
+            {
+                ["Which were the suspects and weapons?"] = "Welche Verdächtigten und Waffen kamen vor?",
+                ["Where was the body found?"] = "Wo wurde die Leiche gefunden?",
+            },
             Questions = new()
             {
                 [SMurder.Suspect] = new()
@@ -9796,6 +11399,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMysteryModule)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which module was hidden?"] = "Welches Modul war versteckt?",
+                ["Which module was the first requested to be solved?"] = "Die Entschärfung welches Moduls wurde als erstes verlangt?",
+            },
             Questions = new()
             {
                 [SMysteryModule.FirstKey] = new()
@@ -9815,6 +11423,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SMysticSquare)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What digit was initially in the center?"] = "Welche Ziffer war am Anfang in der Mitte?",
+            },
             Questions = new()
             {
                 [SMysticSquare.CenterTile] = new()
@@ -9829,6 +11441,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNameCodes)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the left and right indices?"] = "Wie weit war der Links- und Rechtsschritt?",
+            },
             Questions = new()
             {
                 [SNameCodes.Indices] = new()
@@ -9849,6 +11465,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNamingConventions)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the label of the first button?"] = "Was stand auf der ersten Taste?",
+            },
             Questions = new()
             {
                 [SNamingConventions.Object] = new()
@@ -9863,6 +11483,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNandMs)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the label of the correct button?"] = "Welche Aufschrift hatte die korrekte Taste?",
+            },
             Questions = new()
             {
                 [SNandMs.Answer] = new()
@@ -9877,6 +11501,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNandNs)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the labels in stage 2 and 3?"] = "Welche Beschriftungen kamen in Stufe 2 und 3 vor?",
+                ["What was the missing color in stage 3?"] = "Welche Farbe hat in Stufe 3 gefehlt?",
+            },
             Questions = new()
             {
                 [SNandNs.Label] = new()
@@ -9905,6 +11534,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Navigation Determination
         [typeof(SNavigationDetermination)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the color and label of the maze?"] = "Welche Farbe und Beschriftung hatte das Labyrinth?",
+            },
             Questions = new()
             {
                 [SNavigationDetermination.Color] = new()
@@ -9932,6 +11565,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Navinummern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which directional buttons were pressed?"] = "Welche Richtungstasten wurden gedrückt?",
+                ["What was the initial middle digit?"] = "Welche Ziffer war am Anfang in der Mitte?",
+            },
             Questions = new()
             {
                 [SNavinums.DirectionalButtons] = new()
@@ -9962,6 +11600,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Königsblaue Knopf",
             ModuleNameDative = "Königsblauen Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which Greek letters appeared?"] = "Welche griechischen Buchstaben kamen vor?",
+                ["What were the coordinates and value of the given?"] = "Welche Koordinaten und welchen Wert hatte die vorgegebene Stelle?",
+            },
             Questions = new()
             {
                 [SNavyButton.QGreekLetters] = new()
@@ -10017,6 +11660,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Königsblaue Knopf",
             ModuleNameDative = "Königsblauen Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the chapter number of each page?"] = "Welche Kapitelnummer stand auf welcher Seite?",
+            },
             Questions = new()
             {
                 [SNecronomicon.Chapters] = new()
@@ -10032,6 +11679,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNegativity)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the submitted value (in base 10 and in balanced ternary)?"] = "Welcher Wert wurde eingegeben (im Dezimal- und im balancierten Ternärsystem)?",
+            },
             Questions = new()
             {
                 [SNegativity.SubmittedValue] = new()
@@ -10051,6 +11702,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNeptune)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which star was displayed?"] = "Welcher Stern war auf dem Display?",
+            },
             Questions = new()
             {
                 [SNeptune.Star] = new()
@@ -10065,6 +11720,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNeutralization)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the acid’s color/volume?"] = "Welche Farbe und welches Volumen hatte die Säure?",
+            },
             Questions = new()
             {
                 [SNeutralization.Color] = new()
@@ -10091,6 +11750,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNextInLine)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What color was the first wire?"] = "Welche Farbe hatte der erste Draht?",
+            },
             Questions = new()
             {
                 [SNextInLine.FirstWire] = new()
@@ -10115,6 +11778,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Nim
         [typeof(SNim)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["How many matches were in each row?"] = "Welche Reihe hatte wie viele Streichhölzer?",
+            },
             Questions = new()
             {
                 [SNim.MatchCountFirstRow] = new()
@@ -10137,6 +11804,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Rauschen-Identifikation",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the first displayed noise type?"] = "Welcher Klangtyp war zuerst zu sehen?",
+            },
             Questions = new()
             {
                 [SNoiseIdentification.Noises] = new()
@@ -10150,6 +11821,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // ❖
         [typeof(SNonverbalSimon)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the flashes?"] = "Was hat geblinkt?",
+            },
             Questions = new()
             {
                 [SNonverbalSimon.Flashes] = new()
@@ -10166,6 +11841,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefärbte Felder Mal Anders",
             ModuleNameDative = "Gefärbten Feldern Mal Anders",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What position did you initially press?"] = "Welche Position wurde als erste eingegeben?",
+            },
             Questions = new()
             {
                 [SNotColoredSquares.InitialPosition] = new()
@@ -10181,6 +11860,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Gefärbte Schalter Mal Anders",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the encrypted word?"] = "Wie lautete das verschlüsselte Wort?",
+            },
             Questions = new()
             {
                 [SNotColoredSwitches.Word] = new()
@@ -10197,6 +11880,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefärbte Folge Mal Anders",
             ModuleNameDative = "Gefärbten Folge Mal Anders",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the displayed word and colour sequences?"] = "Welche Wort- und Farbfolgen kamen vor?",
+            },
             Questions = new()
             {
                 [SNotColourFlash.InitialWord] = new()
@@ -10227,6 +11914,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotConnectionCheck)] = new()
         {
             ModuleName = "Verbindungsprüfung Mal Anders",
+            ManualQuestions = new()
+            {
+                ["What were the flashing symbols?"] = "Welche Symbole wurden übermittelt?",
+                ["What were the button values?"] = "Welche Werte hatten die Tasten?",
+            },
             Questions = new()
             {
                 [SNotConnectionCheck.Flashes] = new()
@@ -10263,6 +11955,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Koordinaten Mal Anders",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the vertices of the square?"] = "Wie lauteten die Eckpunkte des Quadrats?",
+            },
             Questions = new()
             {
                 [SNotCoordinates.SquareCoords] = new()
@@ -10279,6 +11975,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             ModuleName = "Doppel-Null Mal Anders",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the displayed positions in the second stage?"] = "Welche Positionen waren in der zweiten Stufe auf dem Display?",
+            },
             Questions = new()
             {
                 [SNotDoubleOh.QPosition] = new()
@@ -10303,6 +12003,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotKeypad)] = new()
         {
             ModuleName = "Tastenfeld Mal Anders",
+            ManualQuestions = new()
+            {
+                ["Which colours flashed in the final sequence?"] = "Aus welchen Farben bestand die endgültige Folge?",
+                ["Which symbols were on the buttons that flashed in the final sequence?"] = "Welche Symbole waren auf den in der endgültigen Folge vertretenen Tasten?",
+            },
             Questions = new()
             {
                 [SNotKeypad.Color] = new()
@@ -10339,6 +12044,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotMaze)] = new()
         {
             ModuleName = "Labyrinth Mal Anders",
+            ManualQuestions = new()
+            {
+                ["What was the starting distance?"] = "Was war die Startdistanz?",
+            },
             Questions = new()
             {
                 [SNotMaze.StartingDistance] = new()
@@ -10354,6 +12063,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Morsezeichen Mal Anders",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the sequence of words you submitted?"] = "Welche Wortfolge wurde eingegeben?",
+            },
             Questions = new()
             {
                 [SNotMorseCode.Word] = new()
@@ -10370,6 +12083,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Morsematik Mal Anders",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the transmitted word?"] = "Welches Wort wurde übermittelt?",
+            },
             Questions = new()
             {
                 [SNotMorsematics.Word] = new()
@@ -10385,6 +12102,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Mord Mal Anders",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What room were the suspects in initially?"] = "Welche Verdachtsperson war am Anfang in welchem Raum?",
+                ["What weapons did the suspects possess initially?"] = "Welche Verdachtsperson hatte am Anfang welche Waffe?",
+            },
             Questions = new()
             {
                 [SNotMurder.Room] = new()
@@ -10489,6 +12211,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotNumberPad)] = new()
         {
             ModuleName = "Zahlenfeld Mal Anders",
+            ManualQuestions = new()
+            {
+                ["Which numbers flashed at each stage?"] = "Welche Zahlen haben in welchen Stufen geleuchtet?",
+            },
             Questions = new()
             {
                 [SNotNumberPad.Flashes] = new()
@@ -10509,6 +12235,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotPassword)] = new()
         {
             ModuleName = "Passwort Mal Anders",
+            ManualQuestions = new()
+            {
+                ["What was the missing letter?"] = "Welcher Buchstabe hat gefehlt?",
+            },
             Questions = new()
             {
                 [SNotPassword.Letter] = new()
@@ -10524,6 +12254,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Perspektivstöpsel Mal Anders",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the positions, perspectives, and colors of each flash?"] = "Welche Farbe leuchtete an welcher Position und in welcher Perspektive?",
+            },
             Questions = new()
             {
                 [SNotPerspectivePegs.Position] = new()
@@ -10575,6 +12309,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotPianoKeys)] = new()
         {
             ModuleName = "Klavier Mal Anders",
+            ManualQuestions = new()
+            {
+                ["What were the displayed symbols?"] = "Welche Symbole waren zu sehen?",
+            },
             Questions = new()
             {
                 [SNotPianoKeys.FirstSymbol] = new()
@@ -10600,6 +12338,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Rote Pfeile Mal Anders",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the starting number?"] = "Wie lautete die Startzahl?",
+            },
             Questions = new()
             {
                 [SNotRedArrows.Start] = new()
@@ -10614,6 +12356,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotSimaze)] = new()
         {
             ModuleName = "Simobyrinth Mal Anders",
+            ManualQuestions = new()
+            {
+                ["Which maze was used?"] = "Welches Labyrinth kam zum Einsatz?",
+                ["What were the starting and goal positions?"] = "Wo war die Start- und Zielposition?",
+            },
             Questions = new()
             {
                 [SNotSimaze.Maze] = new()
@@ -10725,6 +12472,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotTextField)] = new()
         {
             ModuleName = "Textfeld Mal Anders",
+            ManualQuestions = new()
+            {
+                ["Which letter appeared 9 times at the start?"] = "Welcher Buchstabe kam am Anfang 9-mal vor?",
+                ["Which letters were pressed in the first stage?"] = "Welche Buchstaben wurden in der ersten Stufe eingegeben?",
+            },
             Questions = new()
             {
                 [SNotTextField.BackgroundLetter] = new()
@@ -10746,6 +12498,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Glühlampe Mal Anders",
             ModuleNameDative = "Glühlampe Mal Anders",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the transmitted word?"] = "Welches Wort wurde übermittelt?",
+            },
             Questions = new()
             {
                 [SNotTheBulb.Word] = new()
@@ -10790,6 +12546,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Knopf Mal Anders",
             ModuleNameDative = "Knopf Mal Anders",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What color did the light glow?"] = "In welcher Farbe leuchtete der Streifen?",
+            },
             Questions = new()
             {
                 [SNotTheButton.LightColor] = new()
@@ -10824,6 +12584,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Kolbenknopf Mal Anders",
             ModuleNameDative = "Kolbenknopf Mal Anders",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What colors did the background flash?"] = "In welchen Farben leuchtete der Hintergrund?",
+            },
             Questions = new()
             {
                 [SNotThePlungerButton.Background] = new()
@@ -10851,6 +12615,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Schraube Mal Anders",
             ModuleNameDative = "Schraube Mal Anders",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the initial position?"] = "Wo war die Startposition?",
+            },
             Questions = new()
             {
                 [SNotTheScrew.InitialPosition] = new()
@@ -10865,6 +12633,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotWhosOnFirst)] = new()
         {
             ModuleName = "Who’s On First Mal Anders",
+            ManualQuestions = new()
+            {
+                ["What were the positions and labels of the correct buttons you pressed and the reference buttons?"] = "Welche der betätigten Tasten und welche Referenztasten hatten welche Position und welche Aufschrift?",
+                ["What was the calculated number in the second stage?"] = "Welche Zahl wurde in der zweiten Stufe berechnet?",
+            },
             Questions = new()
             {
                 [SNotWhosOnFirst.PressedPosition] = new()
@@ -10922,6 +12695,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Wortsuche Mal Anders",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which consonants were missing?"] = "Welche Konsonanten haben gefehlt?",
+                ["What was the first correctly pressed letter?"] = "Welcher Buchstabe wurde als erstes korrekt eingegeben?",
+            },
             Questions = new()
             {
                 [SNotWordSearch.Missing] = new()
@@ -10941,6 +12719,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotX01)] = new()
         {
             ModuleName = "X01 Mal Anders",
+            ManualQuestions = new()
+            {
+                ["What were the sector values?"] = "Welche Sektorwerte kamen vor?",
+            },
             Questions = new()
             {
                 [SNotX01.SectorValues] = new()
@@ -10961,6 +12743,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNotXRay)] = new()
         {
             ModuleName = "Röntgen Mal Anders",
+            ManualQuestions = new()
+            {
+                ["What table were we in?"] = "Welches Labyrinth kam zum Einsatz?",
+                ["Which button went which direction?"] = "Welche Taste ging in welche Richtung?",
+                ["What was the scanner color?"] = "Welche Farbe hatte der Scanner?",
+            },
             Questions = new()
             {
                 [SNotXRay.ScannerColor] = new()
@@ -11015,6 +12803,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Nummerierte Knöpfe",
             ModuleNameDative = "Nummerierten Knöpfen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which numbers were correctly pressed?"] = "Welche Zahlen wurden korrekt eingegeben?",
+            },
             Questions = new()
             {
                 [SNumberedButtons.Buttons] = new()
@@ -11029,6 +12821,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNumberGame)] = new()
         {
             ModuleName = "Zahlenspiel",
+            ManualQuestions = new()
+            {
+                ["What was the maximum number?"] = "Was war die höchste Zahl?",
+            },
             Questions = new()
             {
                 [SNumberGame.Maximum] = new()
@@ -11044,6 +12840,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Zahlen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What two-digit number was given?"] = "Welche 2-stellige Zahl war vorgegeben?",
+            },
             Questions = new()
             {
                 [SNumbers.TwoDigit] = new()
@@ -11059,6 +12859,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Zahlenpfad",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the number and its color?"] = "Welche Zahl kam in welcher Farbe vor?",
+            },
             Questions = new()
             {
                 [SNumpath.Color] = new()
@@ -11086,6 +12890,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Object Shows
         [typeof(SObjectShows)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What contestants were shown?"] = "Welche Kandidaten kamen vor?",
+            },
             Questions = new()
             {
                 [SObjectShows.Contestants] = new()
@@ -11099,6 +12907,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Octadecayotton
         [typeof(SOctadecayotton)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the starting sphere?"] = "Bei welcher Kugel ging es los?",
+                ["What were the subtransformations in each transformation?"] = "Welche Transformation bestand aus welchen Teiltransformationen?",
+            },
             Questions = new()
             {
                 [SOctadecayotton.Sphere] = new()
@@ -11119,6 +12932,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SOddOneOut)] = new()
         {
             ModuleName = "Was Nicht Passt",
+            ManualQuestions = new()
+            {
+                ["What were the correct button presses?"] = "Welche Tasten wurden korrekt betätigt?",
+            },
             Questions = new()
             {
                 [SOddOneOut.Button] = new()
@@ -11136,6 +12953,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Verstimmte Tasten",
             ModuleNameDative = "Verstimmten Tasten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the displayed runes?"] = "Welche Runen waren auf dem Display?",
+                ["Which keys played at an incorrect pitch?"] = "Welche Tasten waren in der Tonlage falsch?",
+            },
             Questions = new()
             {
                 [SOffKeys.IncorrectPitch] = new()
@@ -11156,6 +12978,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Eierschalengeheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each display?"] = "Was war auf welchem Display?",
+            },
             Questions = new()
             {
                 [SOffWhiteCipher.TopDisplay] = new()
@@ -11182,6 +13008,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Alte KI",
             ModuleNameDative = "Alten KI",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which condition did the displayed numbers follow?"] = "Welche Bedingung haben die Zahlen auf dem Display befolgt?",
+            },
             Questions = new()
             {
                 [SOldAI.Group] = new()
@@ -11204,6 +13034,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Alter Kauz",
             ModuleNameDative = "Alten Kauz",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the initial color of the status light?"] = "Welche Farbe hatte am Anfang das Modullämpchen?",
+            },
             Questions = new()
             {
                 [SOldFogey.StartingColor] = new()
@@ -11229,6 +13063,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Ein Link Für Alle",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the initially displayed articles?"] = "Welche Artikel waren am Anfang zu sehen?",
+            },
             Questions = new()
             {
                 [SOneLinksToAll.Start] = new()
@@ -11248,6 +13086,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SOnlyConnect)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the positions of the Egyptian hieroglyphs?"] = "Welche ägyptische Hieroglyphe war an welcher Stelle?",
+            },
             Questions = new()
             {
                 [SOnlyConnect.QHieroglyphs] = new()
@@ -11304,6 +13146,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Orange Arrows
         [typeof(SOrangeArrows)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the first three arrows on the display in each stage?"] = "Welche Pfeile waren in welcher Stufe unter den ersten drei?",
+            },
             Questions = new()
             {
                 [SOrangeArrows.Sequences] = new()
@@ -11328,6 +13174,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Orangene Geheimschrift",
             ModuleNameDative = "Orangenen Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SOrangeCipher.Screen] = new()
@@ -11348,6 +13198,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ordered Keys
         [typeof(SOrderedKeys)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the labels, their colors, and the colors of the keys in each stage?"] = "In welcher Stufe hatte welche Taste welche Farbe, Aufschrift und Aufschriftfarbe?",
+            },
             Questions = new()
             {
                 [SOrderedKeys.Colors] = new()
@@ -11394,6 +13248,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Kommissionierung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the order ID, product ID and pallet for each order?"] = "Welche Bestellung hatte welche Bestellnummer, Produktnummer und Palette?",
+            },
             Questions = new()
             {
                 [SOrderPicking.Order] = new()
@@ -11422,6 +13280,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Orientierungswürfel",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the observer’s initial position?"] = "Wo war der Beobachter am Anfang?",
+            },
             Questions = new()
             {
                 [SOrientationCube.InitialObserverPosition] = new()
@@ -11444,6 +13306,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Orientierungshyperwürfel",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the observer’s initial position?"] = "Wo war der Beobachter am Anfang?",
+                ["What was the initial colour of each face?"] = "Welche Fläche hatte am Anfang welche Farbe?",
+            },
             Questions = new()
             {
                 [SOrientationHypercube.InitialFaceColour] = new()
@@ -11494,6 +13361,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Malfarbenwürfel",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What color was missing?"] = "Welche Farbe hat gefehlt?",
+            },
             Questions = new()
             {
                 [SPaintingCube.MissingColor] = new()
@@ -11519,6 +13390,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Palindrome",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What number was X, Y, Z, and the screen display?"] = "Was war X, Y, Z und die Anzeige auf dem Display?",
+            },
             Questions = new()
             {
                 [SPalindromes.Numbers] = new()
@@ -11542,6 +13417,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Papas Pizzeria",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the order code?"] = "Was war die Bestellnummer?",
+            },
             Questions = new()
             {
                 [SPapasPizzeria.Letter] = new()
@@ -11563,6 +13442,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Parität",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was shown on the display?"] = "Was stand auf dem Display?",
+            },
             Questions = new()
             {
                 [SParity.Display] = new()
@@ -11579,6 +13462,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Partielle Ableitungen",
             ModuleNameDative = "Partiellen Ableitungen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the terms of the function?"] = "Was waren die Terme der Funktion?",
+                ["What were the LED colors in each stage?"] = "Welche LED hatte in welcher Stufe welche Farbe?",
+            },
             Questions = new()
             {
                 [SPartialDerivatives.LedColors] = new()
@@ -11610,6 +13498,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Passkontrolle",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the passport expiration years of each passenger?"] = "Welches Ablaufjahr hatte der Reisepass von welchem Reisenden?",
+            },
             Questions = new()
             {
                 [SPassportControl.Passenger] = new()
@@ -11626,6 +13518,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Passwortzerstörer",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the 2FAST™ value?"] = "Was war der 2FAST™-Wert?",
+            },
             Questions = new()
             {
                 [SPasswordDestroyer.TwoFactorV2] = new()
@@ -11641,6 +13537,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Musterwürfel",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which symbol was highlighted?"] = "Welches Symbol war hervorgehoben?",
+            },
             Questions = new()
             {
                 [SPatternCube.HighlightedSymbol] = new()
@@ -11656,6 +13556,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Mustererkennung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the repeating pattern?"] = "Was war das sich wiederholende Muster?",
+            },
             Questions = new()
             {
                 [SPatternRecognition.Pattern] = new()
@@ -11671,6 +13575,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Pentaknopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the base colour?"] = "Was war die Basisfarbe?",
+            },
             Questions = new()
             {
                 [SPentabutton.BaseColor] = new()
@@ -11706,6 +13614,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Periodische Wörter",
             ModuleNameDative = "Periodischen Wörtern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the displayed word in each stage?"] = "Welches Wort wurde in welcher Stufe abgefragt?",
+            },
             Questions = new()
             {
                 [SPeriodicWords.DisplayedWords] = new()
@@ -11722,6 +13634,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Perspektivstöpsel",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the initial color sequence?"] = "Was war die anfängliche Farbfolge?",
+            },
             Questions = new()
             {
                 [SPerspectivePegs.ColorSequence] = new()
@@ -11746,6 +13662,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Phosphoreszenz",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the button presses and the offset?"] = "Was waren die Tasteneingaben und das Offset?",
+            },
             Questions = new()
             {
                 [SPhosphorescence.ButtonPresses] = new()
@@ -11794,6 +13714,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pickup Identification
         [typeof(SPickupIdentification)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What pickups were shown?"] = "Welche Pickups waren zu sehen?",
+            },
             Questions = new()
             {
                 [SPickupIdentification.Item] = new()
@@ -11808,6 +13732,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pictionary
         [typeof(SPictionary)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the code?"] = "Wie lautete der Code?",
+            },
             Questions = new()
             {
                 [SPictionary.Code] = new()
@@ -11821,6 +13749,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pie
         [typeof(SPie)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the digits shown?"] = "Welche Ziffern waren zu sehen?",
+            },
             Questions = new()
             {
                 [SPie.Digits] = new()
@@ -11835,6 +13767,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pie Flash
         [typeof(SPieFlash)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What numbers were displayed?"] = "Welche Zahlen waren auf dem Display?",
+            },
             Questions = new()
             {
                 [SPieFlash.Digits] = new()
@@ -11850,6 +13786,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Freimaurer-Schiffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "In welche Richtung zeigten die Drehknöpfe?",
+                ["What was written on each dial?"] = "Was stand auf den Drehknöpfen?",
+            },
             Questions = new()
             {
                 [SPigpenCycle.DialDirections] = new()
@@ -11882,6 +13823,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Pinkfarbene Knopf",
             ModuleNameDative = "Pinkfarbenen Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the displayed words and their colors?"] = "Welche Wörter waren auf dem Display und in welcher Farbe?",
+            },
             Questions = new()
             {
                 [SPinkButton.Words] = new()
@@ -11913,6 +13858,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pinpoint
         [typeof(SPinpoint)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the given point coordinates and distances?"] = "Wie lauteten die Punktkoordinaten und Abstände?",
+            },
             Questions = new()
             {
                 [SPinpoint.Points] = new()
@@ -11933,6 +13882,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Pixelgeheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the keyword?"] = "Wie lautete das Schlüsselwort?",
+            },
             Questions = new()
             {
                 [SPixelCipher.Keyword] = new()
@@ -11946,6 +13899,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Placeholder Talk
         [typeof(SPlaceholderTalk)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the entire first phrase?"] = "Wie lautete die gesamte erste Phrase?",
+                ["What was the calculated value for second phrase?"] = "Welcher Wert wurde für die zweite Phrase berechnet?",
+            },
             Questions = new()
             {
                 [SPlaceholderTalk.FirstPhrase] = new()
@@ -11965,6 +13923,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SPlacementRoulette)] = new()
         {
             ModuleName = "Platzierungsroulette",
+            ManualQuestions = new()
+            {
+                ["What were the character, track, and vehicle listed?"] = "Welche Figur, Rennstrecke und Rennwagen waren aufgelistet?",
+            },
             Questions = new()
             {
                 [SPlacementRoulette.Char] = new()
@@ -11988,8 +13950,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Planets
         [typeof(SPlanets)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Planeten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the planet shown?"] = "Welcher Planet war zu sehen?",
+                ["What was the color for each strip?"] = "What was the color for each strip?",
+            },
             Questions = new()
             {
                 [SPlanets.Strips] = new()
@@ -12023,6 +13991,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Playfair-Schiffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "In welche Richtung zeigten die Drehknöpfe?",
+                ["What was written on each dial?"] = "Was stand auf den Drehknöpfen?",
+            },
             Questions = new()
             {
                 [SPlayfairCycle.DialDirections] = new()
@@ -12053,6 +14026,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SPointlessMachines)] = new()
         {
             ModuleName = "Sinnlose Maschinen",
+            ManualQuestions = new()
+            {
+                ["What colors flashed?"] = "Welche Farben haben aufgeleuchtet?",
+            },
             Questions = new()
             {
                 [SPointlessMachines.Flashes] = new()
@@ -12077,6 +14054,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Pokémon-Sprite-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SPokémonSpriteCipher.Screen] = new()
@@ -12099,6 +14080,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Polygone",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which polygons were present?"] = "Welche Polygone waren vorhanden?",
+            },
             Questions = new()
             {
                 [SPolygons.Polygon] = new()
@@ -12113,6 +14098,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SPolyhedralMaze)] = new()
         {
             ModuleName = "Polyederlabyrinth",
+            ManualQuestions = new()
+            {
+                ["What was the starting position?"] = "Wo war die Startposition?",
+            },
             Questions = new()
             {
                 [SPolyhedralMaze.StartPosition] = new()
@@ -12154,6 +14143,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Primverschlüsselung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [SPrimeEncryption.DisplayedValue] = new()
@@ -12169,6 +14162,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Gefängnisausbruch",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Where did the prisoner and defuser start?"] = "Wo ging es für den Gefangenen und den Entschärfer los?",
+            },
             Questions = new()
             {
                 [SPrisonBreak.Prisoner] = new()
@@ -12189,6 +14186,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Sondierung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the missing frequencies in each wire?"] = "Welche Frequenzen haben in welchem Draht gefehlt?",
+            },
             Questions = new()
             {
                 [SProbing.Frequencies] = new()
@@ -12212,14 +14213,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Procedural Maze
         [typeof(SProceduralMaze)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Prozedurales Labyrinth",
             ModuleNameDative = "Prozeduralen Labyrinth",
+            ManualQuestions = new()
+            {
+                ["What was the initial seed?"] = "What was the initial seed?",
+            },
             Questions = new()
             {
                 [SProceduralMaze.InitialSeed] = new()
                 {
                     // English: What was the initial seed in {0}?
-                    Question = "Was war bei {0} der Anfangswert?",
+                    Question = "Was war bei {0} der Seedcode?",
                 },
             },
         },
@@ -12229,6 +14235,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Interpunktionszeichen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [SPunctuationMarks.DisplayedNumber] = new()
@@ -12244,6 +14254,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Lilane Pfeile",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the target word?"] = "Was war das Zielwort?",
+            },
             Questions = new()
             {
                 [SPurpleArrows.Finish] = new()
@@ -12260,6 +14274,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Lilane Knopf",
             ModuleNameDative = "Lilanen Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the numbers in the cyclic sequence?"] = "Welche Zahlen kamen in der zyklischen Folge vor?",
+            },
             Questions = new()
             {
                 [SPurpleButton.Numbers] = new()
@@ -12274,6 +14292,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Puzzle Identification
         [typeof(SPuzzleIdentification)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What game did each puzzle come from?"] = "Welches Rätsel war aus welchem Spiel?",
+                ["What was the name and number of each puzzle?"] = "Welches Rätsel hatte welchen Namen und welche Nummer?",
+            },
             Questions = new()
             {
                 [SPuzzleIdentification.Num] = new()
@@ -12314,6 +14337,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Rätselhafte Hexaknöpfe",
             ModuleNameDative = "Rätselhaften Hexaknöpfen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What letters were shown during submission?"] = "Welche Buchstaben waren während der Eingabe zu sehen?",
+            },
             Questions = new()
             {
                 [SPuzzlingHexabuttons.Letter] = new()
@@ -12338,6 +14365,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Q & A
         [typeof(SQnA)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What questions were asked?"] = "Welche Fragen wurden gestellt?",
+            },
             Questions = new()
             {
                 [SQnA.Questions] = new()
@@ -12352,8 +14383,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Quadrants
         [typeof(SQuadrants)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Quadranten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was on each button in each stage?"] = "What was on each button in each stage?",
+            },
             Questions = new()
             {
                 [SQuadrants.Buttons] = new()
@@ -12368,8 +14404,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Quantum Passwords
         [typeof(SQuantumPasswords)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Quantenpasswörter",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which words were used?"] = "Which words were used?",
+            },
             Questions = new()
             {
                 [SQuantumPasswords.Word] = new()
@@ -12385,6 +14426,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Quanten-Ternär-Konverter",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the numbers?"] = "Welche Zahlen kamen vor?",
+            },
             Questions = new()
             {
                 [SQuantumTernaryConverter.Number] = new()
@@ -12398,6 +14443,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Quaver
         [typeof(SQuaver)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was each sequence’s answer?"] = "Welche Folge hatte welche Lösung?",
+            },
             Questions = new()
             {
                 [SQuaver.Arrows] = new()
@@ -12413,6 +14462,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SQuestionMark)] = new()
         {
             ModuleName = "Fragezeichen",
+            ManualQuestions = new()
+            {
+                ["What were the flashing symbols?"] = "Welche Symbole wurden übermittelt?",
+            },
             Questions = new()
             {
                 [SQuestionMark.FlashedSymbols] = new()
@@ -12428,6 +14481,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Schnellarithmetik",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the digits and colors in both sequences?"] = "Welche der zwei Folgen enthielt welche Ziffern und Farben?",
+            },
             Questions = new()
             {
                 [SQuickArithmetic.Colors] = new()
@@ -12470,6 +14527,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Quintupel",
             ModuleNameDative = "Quintupeln",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the numbers and colors in every slot?"] = "Welche Stelle enthielt welche Zahlen und Farben?",
+                ["How many numbers were there of each color?"] = "Wie viele Zahlen gab es von welcher Farbe?",
+            },
             Questions = new()
             {
                 [SQuintuples.Numbers] = new()
@@ -12512,6 +14574,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Quiplash
         [typeof(SQuiplash)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What number was shown?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [SQuiplash.Number] = new()
@@ -12525,6 +14591,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Quiz Buzz
         [typeof(SQuizBuzz)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the number initially on the display?"] = "Welche Zahl war am Anfang auf dem Display?",
+            },
             Questions = new()
             {
                 [SQuizBuzz.StartingNumber] = new()
@@ -12538,6 +14608,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Qwirkle
         [typeof(SQwirkle)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which tiles did you place?"] = "Welche Steine wurden platziert?",
+            },
             Questions = new()
             {
                 [SQwirkle.TilesPlaced] = new()
@@ -12554,6 +14628,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Tempelraubzug",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["How many jewels were initially in the common pool?"] = "Wie viele Juwelen waren am Anfang im gemeinsamen Pool?",
+            },
             Questions = new()
             {
                 [SRaidingTemples.StartingCommonPool] = new()
@@ -12569,6 +14647,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Bahnfrachtverladung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the coupled cars?"] = "Welche Waggons wurden gekoppelt?",
+                ["Which freight table rules applied?"] = "Welche Frachtregeln in der Tabelle trafen zu?",
+            },
             Questions = new()
             {
                 [SRailwayCargoLoading.Cars] = new()
@@ -12597,6 +14680,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Regenbogenpfeile",
             ModuleNameDative = "Regenbogenpfeilen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [SRainbowArrows.Number] = new()
@@ -12613,6 +14700,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Umgefärbte Schalter",
             ModuleNameDative = "Umgefärbten Schaltern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the LED colors?"] = "Welche LED hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SRecoloredSwitches.LedColors] = new()
@@ -12639,6 +14730,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Rekursives Passwort",
             ModuleNameDative = "Rekursiven Passwort",
+            ManualQuestions = new()
+            {
+                ["What were the incomplete words?"] = "Wie lauteten die unvollständigen Wörter?",
+                ["What was the password?"] = "Wie lautete das Passwort?",
+            },
             Questions = new()
             {
                 [SRecursivePassword.NonPasswordWords] = new()
@@ -12660,6 +14756,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Rote Pfeile",
             ModuleNameDative = "Roten Pfeilen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the starting number?"] = "Wie lautete die Startzahl?",
+            },
             Questions = new()
             {
                 [SRedArrows.StartNumber] = new()
@@ -12676,6 +14776,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Roter Knopf Mal Anders",
             ModuleNameDative = "Roten Knopf Mal Anders",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the displayed word?"] = "Welches Wort war auf dem Display?",
+            },
             Questions = new()
             {
                 [SRedButtont.Word] = new()
@@ -12692,6 +14796,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Rote Geheimschrift",
             ModuleNameDative = "Roten Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SRedCipher.Screen] = new()
@@ -12715,6 +14823,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Roter Hering",
             ModuleNameDative = "Roten Hering",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the first color flashed?"] = "Welche Farbe ist als erste aufgeleuchtet?",
+            },
             Questions = new()
             {
                 [SRedHerring.FirstFlash] = new()
@@ -12728,41 +14840,48 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Reformed Role Reversal
         [typeof(SReformedRoleReversal)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Reformierte Rollenumkehr",
+            ModuleNameDative = "Reformierten Rollenumkehr",
+            Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What did the solving condition state?"] = "Was besagte die Lösungsbedingung?",
+                ["What were the wire colors?"] = "Welcher Draht hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SReformedRoleReversal.Condition] = new()
                 {
                     // English: Which condition was the solving condition in {0}?
-                    Question = "Which condition was the solving condition in {0}?",
+                    Question = "Welche Lösungsbedingung war bei {0} relevant?",
                     Answers = new()
                     {
-                        ["second"] = "second",
-                        ["third"] = "third",
-                        ["4th"] = "4th",
-                        ["5th"] = "5th",
-                        ["6th"] = "6th",
-                        ["7th"] = "7th",
-                        ["8th"] = "8th",
+                        ["second"] = "die zweite",
+                        ["third"] = "die dritte",
+                        ["4th"] = "die vierte",
+                        ["5th"] = "die fünfte",
+                        ["6th"] = "die sechste",
+                        ["7th"] = "die siebte",
+                        ["8th"] = "die achte",
                     },
                 },
                 [SReformedRoleReversal.Wire] = new()
                 {
                     // English: What color was the {1} wire in {0}?
                     // Example: What color was the first wire in Reformed Role Reversal?
-                    Question = "What color was the {1} wire in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der {1}e Draht?",
                     Answers = new()
                     {
-                        ["Navy"] = "Navy",
+                        ["Navy"] = "Marineblau",
                         ["Lapis"] = "Lapis",
-                        ["Blue"] = "Blue",
-                        ["Sky"] = "Sky",
-                        ["Teal"] = "Teal",
-                        ["Plum"] = "Plum",
-                        ["Violet"] = "Violet",
-                        ["Purple"] = "Purple",
-                        ["Magenta"] = "Magenta",
-                        ["Lavender"] = "Lavender",
+                        ["Blue"] = "Blau",
+                        ["Sky"] = "Himmel",
+                        ["Teal"] = "Blaugrün",
+                        ["Plum"] = "Pflaume",
+                        ["Violet"] = "Violett",
+                        ["Purple"] = "Lila",
+                        ["Magenta"] = "Rosa",
+                        ["Lavender"] = "Lavendel",
                     },
                 },
             },
@@ -12771,6 +14890,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // ReGret-B Filtering
         [typeof(SReGretBFiltering)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which calculations were used?"] = "Welche Berechnungen kamen vor?",
+            },
             Questions = new()
             {
                 [SReGretBFiltering.Operator] = new()
@@ -12787,6 +14910,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Normales Verrücktes Gerede",
             ModuleNameDative = "Normalen Verrückten Gerede",
+            ManualQuestions = new()
+            {
+                ["What was the displayed digit that corresponded to the solution phrase?"] = "Welche Ziffer auf dem Display gehörte zur Lösungsphrase?",
+                ["What was the embellishment of the solution phrase?"] = "Welche Verzierung hatte die Lösungsphrase?",
+            },
             Questions = new()
             {
                 [SRegularCrazyTalk.Digit] = new()
@@ -12817,6 +14945,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Umgeordnete Tasten",
             ModuleNameDative = "Umgeordneten Tasten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the labels, their colors, and the colors of the keys initially in each stage?"] = "In welcher Stufe hatte welche Taste am Anfang welche Farbe, Aufschrift und Aufschriftfarbe?",
+                ["Where was the pivot in each stage?"] = "Welche Taste war in welcher Stufe das Pivot?",
+            },
             Questions = new()
             {
                 [SReorderedKeys.KeyColor] = new()
@@ -12868,6 +15001,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Pension",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which houses were on offer, but not chosen by Bob?"] = "Welche Altersheime waren im Angebot, aber nicht Bobs Wahl?",
+            },
             Questions = new()
             {
                 [SRetirement.Houses] = new()
@@ -12881,20 +15018,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Reverse Morse
         [typeof(SReverseMorse)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Morse Andersrum",
+            ManualQuestions = new()
+            {
+                ["What were the displayed symbols and their colors?"] = "Welche Symbole waren auf dem Display und in welcher Farbe?",
+            },
             Questions = new()
             {
                 [SReverseMorse.Symbols] = new()
                 {
                     // English: What was the {1} symbol in the {2} message of {0}?
                     // Example: What was the first symbol in the first message of Reverse Morse?
-                    Question = "What was the {1} symbol in the {2} message of {0}?",
+                    Question = "Was war bei {0} das {1}e Symbol in der {2}en Nachricht?",
                 },
                 [SReverseMorse.Colors] = new()
                 {
                     // English: What was the color of the {1} symbol in the {2} message of {0}?
                     // Example: What was the color of the first symbol in the first message of Reverse Morse?
-                    Question = "What was the color of the {1} symbol in the {2} message of {0}?",
+                    Question = "Welche Farbe hatte bei {0} das {1}e Symbol in der {2}en Nachricht?",
                 },
             },
         },
@@ -12903,13 +15044,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SReversePolishNotation)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Umgekehrte Polnische Notation",
+            ModuleNameDative = "Umgekehrten Polnischen Notation",
+            Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What characters were used in each round?"] = "Welche Zeichen kamen in welcher Stufe vor?",
+            },
             Questions = new()
             {
                 [SReversePolishNotation.Character] = new()
                 {
                     // English: What character was used in the {1} round of {0}?
                     // Example: What character was used in the first round of Reverse Polish Notation?
-                    Question = "What character was used in the {1} round of {0}?",
+                    Question = "Welches Zeichen kam bei {0} in der {1}en Runde vor?",
                 },
             },
         },
@@ -12919,6 +15067,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "RGB-Verschlüsselung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the Morse code and color sequences?"] = "Wie lautete die Morse- und die Farbsequenz?",
+            },
             Questions = new()
             {
                 [SRGBEncryption.MorseSequence] = new()
@@ -12939,37 +15091,42 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // RGB Maze
         [typeof(SRGBMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "RGB-Labyrinth",
+            ManualQuestions = new()
+            {
+                ["Where were the exit and keys of the maze?"] = "Wo im Labyrinth waren die Schlüssel und das Ziel?",
+                ["What was the maze number for each maze?"] = "Welches Labyrinth hatte welche Nummer?",
+            },
             Questions = new()
             {
                 [SRGBMaze.Keys] = new()
                 {
                     // English: Where was the {1} key in {0}?
                     // Example: Where was the red key in RGB Maze?
-                    Question = "Where was the {1} key in {0}?",
+                    Question = "Wo war bei {0} der {1} Schlüssel?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "rote",
+                        ["green"] = "grüne",
+                        ["blue"] = "blaue",
                     },
                 },
                 [SRGBMaze.Number] = new()
                 {
                     // English: Which maze number was the {1} maze in {0}?
                     // Example: Which maze number was the red maze in RGB Maze?
-                    Question = "Which maze number was the {1} maze in {0}?",
+                    Question = "Welche Nummer hatte bei {0} das {1} Labyrinth?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "rote",
+                        ["green"] = "grüne",
+                        ["blue"] = "blaue",
                     },
                 },
                 [SRGBMaze.Exit] = new()
                 {
                     // English: What was the exit coordinate in {0}?
-                    Question = "What was the exit coordinate in {0}?",
+                    Question = "Wo war bei {0} die Zielkoordinate?",
                 },
             },
         },
@@ -12977,23 +15134,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // RGB Sequences
         [typeof(SRGBSequences)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "RGB-Folgen",
+            Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colors of each button?"] = "Welche Taste hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SRGBSequences.Display] = new()
                 {
                     // English: What was the color of the {1} LED in {0}?
                     // Example: What was the color of the first LED in RGB Sequences?
-                    Question = "What was the color of the {1} LED in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1}e LED?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Magenta"] = "Magenta",
-                        ["Cyan"] = "Cyan",
-                        ["Yellow"] = "Yellow",
-                        ["White"] = "White",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Magenta"] = "Rosa",
+                        ["Cyan"] = "Türkis",
+                        ["Yellow"] = "Gelb",
+                        ["White"] = "Weiß",
                     },
                 },
             },
@@ -13002,19 +15164,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Rhythms
         [typeof(SRhythms)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Rhythmen",
+            Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the color?"] = "Welche Farbe hatte die LED?",
+            },
             Questions = new()
             {
                 [SRhythms.Color] = new()
                 {
                     // English: What was the color in {0}?
-                    Question = "What was the color in {0}?",
+                    Question = "Welche Farbe hatte die LED bei {0}?",
                     Answers = new()
                     {
-                        ["Blue"] = "Blue",
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
+                        ["Blue"] = "Blau",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
                     },
                 },
             },
@@ -13023,15 +15190,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // RNG Crystal
         [typeof(SRNGCrystal)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "RNG-Kristall",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Where were the taps?"] = "Wo waren die Taps?",
+            },
             Questions = new()
             {
                 [SRNGCrystal.Taps] = new()
                 {
-                    // English: Which bit had a tap in {0} (the output after shifting is at bit 0)?
-                    Question = "Which bit had a tap in {0} (the output after shifting is at bit 0)?",
+                    // English: Which bit had a tap in {0}? (The output after shifting is at bit 0.)
+                    Question = "Welches Bit hatte bei {0} einen Tap? (Das Ergebnis nach Verschiebung ist in Bit 0.)",
                 },
             },
         },
@@ -13039,13 +15209,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Robo-Scanner
         [typeof(SRoboScanner)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "RoboScanner",
+            Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Where was the empty cell?"] = "Wo war die leere Zelle?",
+            },
             Questions = new()
             {
                 [SRoboScanner.EmptyCell] = new()
                 {
                     // English: Where was the empty cell in {0}?
-                    Question = "Where was the empty cell in {0}?",
+                    Question = "Wo war bei {0} die leere Zelle?",
                 },
             },
         },
@@ -13053,6 +15228,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Robot Programming
         [typeof(SRobotProgramming)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the shapes and colors of the robots?"] = "Welcher Roboter hatte welche Form und welche Farbe?",
+            },
             Questions = new()
             {
                 [SRobotProgramming.Color] = new()
@@ -13073,6 +15252,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Roger
         [typeof(SRoger)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What four-digit number was given?"] = "Wie lautete die vorgegebene 4-stellige Zahl?",
+            },
             Questions = new()
             {
                 [SRoger.Seed] = new()
@@ -13088,6 +15271,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Rollenumkehr",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the condition digit that solved the module?"] = "Mit der Bedingung mit welcher Ziffer wurde das Modul entschärft?",
+                ["What colors were the internal wires?"] = "Welche Farben hatten die internen Drähte?",
+            },
             Questions = new()
             {
                 [SRoleReversal.Wires] = new()
@@ -13114,7 +15302,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // RPS Judging
         [typeof(SRPSJudging)] = new()
         {
-            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which rounds did each team win/lose/tie?"] = "In welcher Runde war unentschieden bzw. wer gewann/verlor?",
+            },
             Questions = new()
             {
                 [SRPSJudging.QWinner] = new()
@@ -13166,6 +15357,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Regel",
             ModuleNameDative = "Regel",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the rule number?"] = "Welche Nummer hatte die Regel?",
+            },
             Questions = new()
             {
                 [SRule.Number] = new()
@@ -13181,6 +15376,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Dreierregel",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the positions of each sphere on each axis in each cycle?"] = "In welchem Zyklus hatte welche Kugel welche Position auf welcher Achse?",
+                ["What were the coordinates of the vertices?"] = "Welche Koordinaten hatten die Eckpunkte?",
+            },
             Questions = new()
             {
                 [SRuleOfThree.QCoordinates] = new()
@@ -13246,6 +15446,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gefahrendiamant",
             ModuleNameDative = "Gefahrendiamanten",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits?"] = "Welche Ziffern waren auf dem Display?",
+                ["What was the special rule?"] = "Was war die Spezialregel?",
+            },
             Questions = new()
             {
                 [SSafetySquare.Digits] = new()
@@ -13280,6 +15485,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Das Samsung",
             ModuleNameDative = "Samsung",
+            ManualQuestions = new()
+            {
+                ["Where was each app?"] = "Welche App war an welcher Stelle?",
+            },
             Questions = new()
             {
                 [SSamsung.AppPositions] = new()
@@ -13294,6 +15503,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Saturn
         [typeof(SSaturn)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Where was the goal?"] = "Wo war das Ziel?",
+            },
             Questions = new()
             {
                 [SSaturn.Goal] = new()
@@ -13308,6 +15521,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSbemailSongs)] = new()
         {
             ModuleName = "Sbemail-Lieder",
+            ManualQuestions = new()
+            {
+                ["What were the displayed songs in each stage?"] = "Welche Songs waren in welcher Stufe auf dem Display?",
+            },
             Questions = new()
             {
                 [SSbemailSongs.Songs] = new()
@@ -13333,6 +15550,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Schnitzeljagd",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which tile was correctly submitted in the first stage?"] = "Welches Feld wurde in der ersten Stufe korrekt eingegeben?",
+                ["Where were the red, green, and blue tiles in the first stage?"] = "Wo waren in der ersten Stufe die roten/grünen/blauen Felder?",
+            },
             Questions = new()
             {
                 [SScavengerHunt.KeySquare] = new()
@@ -13358,23 +15580,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Schlag den Bomb
         [typeof(SSchlagDenBomb)] = new()
         {
-            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the contestant’s name and both scores?"] = "Wie lauteten beide Punktzahlen sowie der Name des Kandidaten?",
+            },
             Questions = new()
             {
                 [SSchlagDenBomb.ContestantName] = new()
                 {
                     // English: What was the contestant’s name in {0}?
-                    Question = "What was the contestant’s name in {0}?",
+                    Question = "Wie lautete bei {0} der Name des Kandidaten?",
                 },
                 [SSchlagDenBomb.ContestantScore] = new()
                 {
                     // English: What was the contestant’s score in {0}?
-                    Question = "What was the contestant’s score in {0}?",
+                    Question = "Welche Punktzahl hatte bei {0} der Kandidat?",
                 },
                 [SSchlagDenBomb.BombScore] = new()
                 {
                     // English: What was the bomb’s score in {0}?
-                    Question = "What was the bomb’s score in {0}?",
+                    Question = "Welche Punktzahl hatte bei {0} die Bombe?",
                 },
             },
         },
@@ -13383,6 +15608,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SScramboozledEggain)] = new()
         {
             ModuleName = "Wieder Mal Das Ei Gerührt",
+            ManualQuestions = new()
+            {
+                ["What were the encrypted words?"] = "Wie lauteten die verschlüsselten Wörter?",
+            },
             Questions = new()
             {
                 [SScramboozledEggain.Word] = new()
@@ -13397,19 +15626,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Scrutiny Squares
         [typeof(SScrutinySquares)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Prüfquadrate",
+            ModuleNameDative = "Prüfquadraten",
+            Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the modified property of the first displayed square?"] = "Welches Merkmal war beim ersten Quadrat falsch?",
+            },
             Questions = new()
             {
                 [SScrutinySquares.FirstDifference] = new()
                 {
                     // English: What was the modified property of the first display in {0}?
-                    Question = "What was the modified property of the first display in {0}?",
+                    Question = "Welches Merkmal war bei {0} beim ersten Quadrat falsch?",
                     Answers = new()
                     {
-                        ["Word"] = "Word",
-                        ["Color around word"] = "Color around word",
-                        ["Color of background"] = "Color of background",
-                        ["Color of word"] = "Color of word",
+                        ["Word"] = "Wort",
+                        ["Color around word"] = "Rahmenfarbe",
+                        ["Color of background"] = "Hintergrundfarbe",
+                        ["Color of word"] = "Wortfarbe",
                     },
                 },
             },
@@ -13418,26 +15653,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Sea Shells
         [typeof(SSeaShells)] = new()
         {
-            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the phrases?"] = "Welche Phrasen kamen vor?",
+            },
             Questions = new()
             {
                 [SSeaShells.Question1] = new()
                 {
                     // English: What were the first and second words in the {1} phrase in {0}?
                     // Example: What were the first and second words in the first phrase in Sea Shells?
-                    Question = "What were the first and second words in the {1} phrase in {0}?",
+                    Question = "Wie lautete bei {0} das erste und zweite Wort in der {1}en Phrase?",
                 },
                 [SSeaShells.Question2] = new()
                 {
                     // English: What were the third and fourth words in the {1} phrase in {0}?
                     // Example: What were the third and fourth words in the first phrase in Sea Shells?
-                    Question = "What were the third and fourth words in the {1} phrase in {0}?",
+                    Question = "Wie lautete bei {0} das dritte und vierte Wort in der {1}en Phrase?",
                 },
                 [SSeaShells.Question3] = new()
                 {
                     // English: What was the end of the {1} phrase in {0}?
                     // Example: What was the end of the first phrase in Sea Shells?
-                    Question = "What was the end of the {1} phrase in {0}?",
+                    Question = "Wie lautete bei {0} das Ende der {1}en Phrase?",
                 },
             },
         },
@@ -13445,13 +15683,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Semamorse
         [typeof(SSemamorse)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Winkermorse",
+            ManualQuestions = new()
+            {
+                ["What were Morse and semaphore letters and color used for the starting value?"] = "Für den Startwert kam welcher Morsebuchstabe, welcher Winkerbuchstabe und welche Farbe zum Einsatz?",
+            },
             Questions = new()
             {
                 [SSemamorse.Color] = new()
                 {
                     // English: What was the color of the display involved in the starting value in {0}?
-                    Question = "What was the color of the display involved in the starting value in {0}?",
+                    Question = "Welche Farbe hatte bei {0} das Display, das für den Startwert zum Einsatz kam?",
                     Answers = new()
                     {
                         ["red"] = "red",
@@ -13465,11 +15707,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} letter involved in the starting value in {0}?
                     // Example: What was the Morse letter involved in the starting value in Semamorse?
-                    Question = "What was the {1} letter involved in the starting value in {0}?",
+                    Question = "Welcher {1} kam bei {0} für den Startwert zum Einsatz?",
                     Arguments = new()
                     {
-                        ["Morse"] = "Morse",
-                        ["semaphore"] = "semaphore",
+                        ["Morse"] = "Morse-Buchstabe",
+                        ["semaphore"] = "Winker-Buchstabe",
                     },
                 },
             },
@@ -13478,13 +15720,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Sequencyclopedia
         [typeof(SSequencyclopedia)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Folgenzyklopädie",
+            Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What sequence was used?"] = "Welche Folge kam vor?",
+            },
             Questions = new()
             {
                 [SSequencyclopedia.Sequence] = new()
                 {
                     // English: What sequence was used in {0}?
-                    Question = "What sequence was used in {0}?",
+                    Question = "Welche Folge kam bei {0} vor?",
                 },
             },
         },
@@ -13492,6 +15739,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // S.E.T. Theory
         [typeof(SSetTheory)] = new()
         {
+            ModuleName = "S.E.T.-Theorie",
+            Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What equations were displayed in each stage?"] = "In welcher Stufe war welche Gleichung auf dem Display?",
+            },
             Questions = new()
             {
                 [SSetTheory.Equations] = new()
@@ -13506,13 +15759,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Shapes And Bombs
         [typeof(SShapesAndBombs)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Formen und Bomben",
+            Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the initial letter?"] = "Was war der Startbuchstabe?",
+            },
             Questions = new()
             {
                 [SShapesAndBombs.InitialLetter] = new()
                 {
                     // English: What was the initial letter in {0}?
-                    Question = "What was the initial letter in {0}?",
+                    Question = "Was war bei {0} der Startbuchstabe?",
                 },
             },
         },
@@ -13520,13 +15778,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Shape Shift
         [typeof(SShapeShift)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Formfluss",
+            Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the initial shape?"] = "Welche Form war am Anfang da?",
+            },
             Questions = new()
             {
                 [SShapeShift.InitialShape] = new()
                 {
                     // English: What was the initial shape in {0}?
-                    Question = "What was the initial shape in {0}?",
+                    Question = "Welche Form war bei {0} am Anfang da?",
                 },
             },
         },
@@ -13534,28 +15797,33 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Shifted Maze
         [typeof(SShiftedMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Verschobenes Labyrinth",
+            ModuleNameDative = "Verschobenen Labyrinth",
+            ManualQuestions = new()
+            {
+                ["What were the colors of the markers?"] = "Welche Farbe hatten die Markierungen?",
+            },
             Questions = new()
             {
                 [SShiftedMaze.Colors] = new()
                 {
                     // English: What color was the {1} marker in {0}?
                     // Example: What color was the top-left marker in Shifted Maze?
-                    Question = "What color was the {1} marker in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die {1} Markierung?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "obere linke",
+                        ["top-right"] = "obere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
                     },
                     Answers = new()
                     {
-                        ["White"] = "White",
-                        ["Blue"] = "Blue",
-                        ["Yellow"] = "Yellow",
-                        ["Magenta"] = "Magenta",
-                        ["Green"] = "Green",
+                        ["White"] = "Weiß",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Rosa",
+                        ["Green"] = "Grün",
                     },
                 },
             },
@@ -13564,13 +15832,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Shifting Maze
         [typeof(SShiftingMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Schiebelabyrinth",
+            ManualQuestions = new()
+            {
+                ["What was the seed?"] = "Was war der Seedcode?",
+            },
             Questions = new()
             {
                 [SShiftingMaze.Seed] = new()
                 {
                     // English: What was the seed in {0}?
-                    Question = "What was the seed in {0}?",
+                    Question = "Was war bei {0} der Seedcode?",
                 },
             },
         },
@@ -13578,44 +15850,48 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Shogi Identification
         [typeof(SShogiIdentification)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Shogi-Identifikation",
+            ManualQuestions = new()
+            {
+                ["What was the displayed piece?"] = "Welcher Spielstein war zu sehen?",
+            },
             Questions = new()
             {
                 [SShogiIdentification.Piece] = new()
                 {
                     // English: What was the displayed piece in {0}?
-                    Question = "What was the displayed piece in {0}?",
+                    Question = "Welcher Spielstein war bei {0} zu sehen?",
                     Answers = new()
                     {
-                        ["Go-Between"] = "Go-Between",
-                        ["Pawn"] = "Pawn",
-                        ["Side Mover"] = "Side Mover",
-                        ["Vertical Mover"] = "Vertical Mover",
-                        ["Bishop"] = "Bishop",
-                        ["Rook"] = "Rook",
-                        ["Dragon Horse"] = "Dragon Horse",
-                        ["Dragon King"] = "Dragon King",
-                        ["Lance"] = "Lance",
-                        ["Reverse Chariot"] = "Reverse Chariot",
-                        ["Blind Tiger"] = "Blind Tiger",
-                        ["Ferocious Leopard"] = "Ferocious Leopard",
-                        ["Copper General"] = "Copper General",
-                        ["Silver General"] = "Silver General",
-                        ["Gold General"] = "Gold General",
-                        ["Drunk Elephant"] = "Drunk Elephant",
+                        ["Go-Between"] = "Vermittler",
+                        ["Pawn"] = "Bauer",
+                        ["Side Mover"] = "Waagerechter Treiber",
+                        ["Vertical Mover"] = "Senkrechter Treiber",
+                        ["Bishop"] = "Läufer",
+                        ["Rook"] = "Turm",
+                        ["Dragon Horse"] = "Drachenpferd",
+                        ["Dragon King"] = "Drachenkönig",
+                        ["Lance"] = "Lanze",
+                        ["Reverse Chariot"] = "Inverser Streitwagen",
+                        ["Blind Tiger"] = "Blinder Tiger",
+                        ["Ferocious Leopard"] = "Wilder Leopard",
+                        ["Copper General"] = "Kupferner General",
+                        ["Silver General"] = "Silberner General",
+                        ["Gold General"] = "Goldener General",
+                        ["Drunk Elephant"] = "Betrunkener Elefant",
                         ["Kirin"] = "Kirin",
-                        ["Phoenix"] = "Phoenix",
-                        ["Queen"] = "Queen",
-                        ["Flying Stag"] = "Flying Stag",
-                        ["Flying Ox"] = "Flying Ox",
-                        ["Free Boar"] = "Free Boar",
-                        ["Whale"] = "Whale",
-                        ["White Horse"] = "White Horse",
-                        ["King"] = "King",
-                        ["Prince"] = "Prince",
-                        ["Horned Falcon"] = "Horned Falcon",
-                        ["Soaring Eagle"] = "Soaring Eagle",
-                        ["Lion"] = "Lion",
+                        ["Phoenix"] = "Phönix",
+                        ["Queen"] = "Dame",
+                        ["Flying Stag"] = "Fliegender Hirsch",
+                        ["Flying Ox"] = "Fliegender Ochse",
+                        ["Free Boar"] = "Freies Wildschwein",
+                        ["Whale"] = "Wal",
+                        ["White Horse"] = "Weißes Pferd",
+                        ["King"] = "König",
+                        ["Prince"] = "Prinz",
+                        ["Horned Falcon"] = "Gehörnter Falke",
+                        ["Soaring Eagle"] = "Fliegender Adler",
+                        ["Lion"] = "Löwe",
                     },
                 },
             },
@@ -13624,13 +15900,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Sign Language
         [typeof(SSignLanguage)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Zeichensprache",
+            Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the deciphered word?"] = "Welches Wort wurde entziffert?",
+            },
             Questions = new()
             {
                 [SSignLanguage.Word] = new()
                 {
                     // English: What was the deciphered word in {0}?
-                    Question = "What was the deciphered word in {0}?",
+                    Question = "Welches Wort wurde bei {0} entziffert?",
                 },
             },
         },
@@ -13638,28 +15919,34 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Silly Slots
         [typeof(SSillySlots)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Einarmiger Bandit",
+            ModuleNameDative = "Einarmigen Bandit",
+            Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the slots in each stage?"] = "Welche Symbole erschienen in welcher Stufe?",
+            },
             Questions = new()
             {
                 [SSillySlots.QSlot] = new()
                 {
                     // English: What was the {1} slot in the {2} stage in {0}?
                     // Example: What was the first slot in the first stage in Silly Slots?
-                    Question = "What was the {1} slot in the {2} stage in {0}?",
+                    Question = "Was war bei {0} das {1}e Symbol in der {2}en Stufe?",
                     Answers = new()
                     {
-                        ["red bomb"] = "red bomb",
-                        ["red cherry"] = "red cherry",
-                        ["red coin"] = "red coin",
-                        ["red grape"] = "red grape",
-                        ["green bomb"] = "green bomb",
-                        ["green cherry"] = "green cherry",
-                        ["green coin"] = "green coin",
-                        ["green grape"] = "green grape",
-                        ["blue bomb"] = "blue bomb",
-                        ["blue cherry"] = "blue cherry",
-                        ["blue coin"] = "blue coin",
-                        ["blue grape"] = "blue grape",
+                        ["red bomb"] = "rote Bombe",
+                        ["red cherry"] = "rote Kirsche",
+                        ["red coin"] = "rote Münze",
+                        ["red grape"] = "rote Traube",
+                        ["green bomb"] = "grüne Bombe",
+                        ["green cherry"] = "grüne Kirsche",
+                        ["green coin"] = "grüne Münze",
+                        ["green grape"] = "grüne Traube",
+                        ["blue bomb"] = "blaue Bombe",
+                        ["blue cherry"] = "blaue Kirsche",
+                        ["blue coin"] = "blaue Münze",
+                        ["blue grape"] = "blaue Traube",
                     },
                 },
             },
@@ -13669,21 +15956,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Silly Slots where the {0} slot in the {1} stage was a {2}
                     // Example: the Silly Slots where the first slot in the first stage was a red bomb
-                    Discriminator = "the Silly Slots where the {1} slot in the {2} stage was {0}",
+                    Discriminator = "dem einarmigen Bandit, bei dem das {0}e Symbol in der {1}en Stufe eine {2} war,",
                     Arguments = new()
                     {
-                        ["red bomb"] = "red bomb",
-                        ["red cherry"] = "red cherry",
-                        ["red coin"] = "red coin",
-                        ["red grape"] = "red grape",
-                        ["green bomb"] = "green bomb",
-                        ["green cherry"] = "green cherry",
-                        ["green coin"] = "green coin",
-                        ["green grape"] = "green grape",
-                        ["blue bomb"] = "blue bomb",
-                        ["blue cherry"] = "blue cherry",
-                        ["blue coin"] = "blue coin",
-                        ["blue grape"] = "blue grape",
+                        ["red bomb"] = "rote Bombe",
+                        ["red cherry"] = "rote Kirsche",
+                        ["red coin"] = "rote Münze",
+                        ["red grape"] = "rote Traube",
+                        ["green bomb"] = "grüne Bombe",
+                        ["green cherry"] = "grüne Kirsche",
+                        ["green coin"] = "grüne Münze",
+                        ["green grape"] = "grüne Traube",
+                        ["blue bomb"] = "blaue Bombe",
+                        ["blue cherry"] = "blaue Kirsche",
+                        ["blue coin"] = "blaue Münze",
+                        ["blue grape"] = "blaue Traube",
                     },
                 },
             },
@@ -13692,24 +15979,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Silo Authorization
         [typeof(SSiloAuthorization)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Silo-Authorisierung",
+            Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the message type, encrypted message, and received authorization code?"] = "Was war der Nachrichtentyp, die verschlüsselte Nachricht und der empfangene Zugangscode?",
+            },
             Questions = new()
             {
                 [SSiloAuthorization.MessageType] = new()
                 {
                     // English: What was the message type in {0}?
-                    Question = "What was the message type in {0}?",
+                    Question = "Was war bei {0} der Nachrichtentyp?",
                 },
                 [SSiloAuthorization.EncryptedMessage] = new()
                 {
                     // English: What was the {1} part of the encrypted message in {0}?
                     // Example: What was the first part of the encrypted message in Silo Authorization?
-                    Question = "What was the {1} part of the encrypted message in {0}?",
+                    Question = "Was war bei {0} der {1}e Teil der verschlüsselten Nachricht?",
                 },
                 [SSiloAuthorization.AuthCode] = new()
                 {
                     // English: What was the received authentication code in {0}?
-                    Question = "What was the received authentication code in {0}?",
+                    Question = "Was war bei {0} der empfangene Zugangscode?",
                 },
             },
         },
@@ -13718,6 +16010,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonSaid)] = new()
         {
             ModuleName = "Simon Sagte",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in the final sequence?"] = "Was war am Ende die Farbfolge?",
+            },
             Questions = new()
             {
                 [SSimonSaid.Flashes] = new()
@@ -13741,6 +16037,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Simons Samples",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the call samples in each stage?"] = "Welche Rufsamples kamen in welcher Stufe vor?",
+            },
             Questions = new()
             {
                 [SSimonSamples.Samples] = new()
@@ -13762,19 +16062,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonSays)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Simon Sagt",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in the final sequence?"] = "Was war am Ende die Farbfolge?",
+            },
             Questions = new()
             {
                 [SSimonSays.QFlash] = new()
                 {
                     // English: What color flashed {1} in the final sequence in {0}?
                     // Example: What color flashed first in the final sequence in Simon Says?
-                    Question = "What color flashed {1} in the final sequence in {0}?",
+                    Question = "Welche Farbe kam bei {0} als {1}e in der endgültigen Farbfolge?",
                     Answers = new()
                     {
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "rot",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
                     },
                 },
             },
@@ -13782,15 +16087,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SSimonSays.DFlash] = new()
                 {
-                    // English: the Simon Says where the {0} flash in the final sequence was {1}
-                    // Example: the Simon Says where the first flash in the final sequence was red
-                    Discriminator = "the Simon Says where the {0} flash in the final sequence was {1}",
+                    // English: the Simon Says whose {0} flash was {1}
+                    // Example: the Simon Says whose first flash was red
+                    Discriminator = "dem Simon Sagt, dessen {0}e Farbe {1} war,",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "rot",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
                     },
                 },
             },
@@ -13799,20 +16104,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Scrambles
         [typeof(SSimonScrambles)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Schüttelt",
+            ManualQuestions = new()
+            {
+                ["What was the flashing color sequence?"] = "Wie lautete die Farbfolge?",
+            },
             Questions = new()
             {
                 [SSimonScrambles.Colors] = new()
                 {
                     // English: What color flashed {1} in {0}?
                     // Example: What color flashed first in Simon Scrambles?
-                    Question = "What color flashed {1} in {0}?",
+                    Question = "Welche Farbe leuchtete bei {0} als {1}e auf?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
                     },
                 },
             },
@@ -13823,6 +16132,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Simon Schreit",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What flashing color was used in each stage?"] = "Welche Farbe aus der Folge war in welcher Stufe ausschlaggebend?",
+                ["Which rules applied in which stage(s)?"] = "Welche Regeln trafen in welchen Stufen zu?",
+            },
             Questions = new()
             {
                 [SSimonScreams.Flashing] = new()
@@ -13933,24 +16247,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Selects
         [typeof(SSimonSelects)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Selektiert",
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in each stage?"] = "Welche Farben kam in welcher Stufe vor?",
+            },
             Questions = new()
             {
                 [SSimonSelects.Order] = new()
                 {
                     // English: Which color flashed {1} in the {2} stage of {0}?
                     // Example: Which color flashed first in the first stage of Simon Selects?
-                    Question = "Which color flashed {1} in the {2} stage of {0}?",
+                    Question = "Welche Farbe leuchtete bei {0} als {1}e in der {2}en Stufe auf?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
-                        ["Magenta"] = "Magenta",
-                        ["Cyan"] = "Cyan",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["Magenta"] = "Rosa",
+                        ["Cyan"] = "Türkis",
                     },
                 },
             },
@@ -13959,19 +16277,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Sends
         [typeof(SSimonSends)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Sendet",
+            ManualQuestions = new()
+            {
+                ["What were the red, green, and blue received letters?"] = "Welche Buchstaben wurden in rot/grün/blau übermittelt?",
+            },
             Questions = new()
             {
                 [SSimonSends.ReceivedLetters] = new()
                 {
                     // English: What was the {1} received letter in {0}?
                     // Example: What was the red received letter in Simon Sends?
-                    Question = "What was the {1} received letter in {0}?",
+                    Question = "Welcher Buchstabe wurde bei {0} in {1} übermittelt?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
                     },
                 },
             },
@@ -13981,19 +16303,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonServes)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Simon Serviert",
+            ManualQuestions = new()
+            {
+                ["Who flashed in each course?"] = "Wer ist bei welchem Gang aufgeleuchtet?",
+                ["Which items were not served in each course?"] = "Welche Gerichte wurden in welchem Gang nicht serviert?",
+            },
             Questions = new()
             {
                 [SSimonServes.Flash] = new()
                 {
                     // English: Who flashed {1} in course {2} of {0}?
                     // Example: Who flashed first in course 1 of Simon Serves?
-                    Question = "Who flashed {1} in course {2} of {0}?",
+                    Question = "Wer hat bei {0} als {1}er bei Gang {2} aufgeleuchtet?",
                 },
                 [SSimonServes.Food] = new()
                 {
                     // English: Which item was not served in course {1} of {0}?
                     // Example: Which item was not served in course 1 of Simon Serves?
-                    Question = "Which item was not served in course {1} of {0}?",
+                    Question = "Welches Gericht wurde bei {0} bei Gang {1} nicht serviert?",
                     Answers = new()
                     {
                         ["Baked Batterys"] = "Baked Batterys",
@@ -14036,13 +16364,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Shapes
         [typeof(SSimonShapes)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Formt",
+            ManualQuestions = new()
+            {
+                ["What was the shape submitted at the end?"] = "Welche Form wurde am Ende eingegeben?",
+            },
             Questions = new()
             {
                 [SSimonShapes.SubmittedShape] = new()
                 {
                     // English: What was the shape submitted at the end of {0}?
-                    Question = "What was the shape submitted at the end of {0}?",
+                    Question = "Welche Form wurde bei {0} am Ende eingegeben?",
                 },
             },
         },
@@ -14052,6 +16384,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Simon Ruft",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What letters flashed on each button?"] = "Welche Buchstaben wurden auf welchen Tasten übermittelt?",
+            },
             Questions = new()
             {
                 [SSimonShouts.FlashingLetter] = new()
@@ -14075,6 +16411,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Simon Kreischt",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["How many spaces clockwise from the arrow was each flash in the final sequence?"] = "Wie weit im Uhrzeigersinn vom Pfeil war welche Farbe in der endgültigen Folge?",
+            },
             Questions = new()
             {
                 [SSimonShrieks.FlashingButton] = new()
@@ -14090,13 +16430,30 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonShuffles)] = new()
         {
             NeedsTranslation = true,
+            ModuleName = "Simon Mischt",
+            ManualQuestions = new()
+            {
+                ["Which buttons flashed at each stage?"] = "Welche Tasten haben in welcher Stufe aufgeleuchtet?",
+            },
             Questions = new()
             {
                 [SSimonShuffles.Flashes] = new()
                 {
                     // English: What was the {1} flash of the {2} stage of {0}?
                     // Example: What was the first flash of the first stage of Simon Shuffles?
-                    Question = "What was the {1} flash of the {2} stage of {0}?",
+                    Question = "Welche Taste leuchtete bei {0} als {1}e in der {2}en Stufe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Cyan"] = "Türkis",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["Magenta"] = "Rosa",
+                        ["White"] = "Weiß",
+                    },
                 },
             },
         },
@@ -14104,70 +16461,74 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Signals
         [typeof(SSimonSignals)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Signalisiert",
+            ManualQuestions = new()
+            {
+                ["What were the colors, shapes and number of directions of each arrow?"] = "Welcher Pfeil hatte welche Farbe, Form und Anzahl Richtungen?",
+            },
             Questions = new()
             {
                 [SSimonSignals.ColorToShape] = new()
                 {
                     // English: What shape was the {1} arrow in {0}?
                     // Example: What shape was the red arrow in Simon Signals?
-                    Question = "What shape was the {1} arrow in {0}?",
+                    Question = "Welche Form hatte bei {0} der {1} Pfeil?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["gray"] = "gray",
+                        ["red"] = "rote",
+                        ["green"] = "grüne",
+                        ["blue"] = "blaue",
+                        ["gray"] = "graue",
                     },
                 },
                 [SSimonSignals.ColorToRotations] = new()
                 {
                     // English: How many directions did the {1} arrow in {0} have?
                     // Example: How many directions did the red arrow in Simon Signals have?
-                    Question = "How many directions did the {1} arrow in {0} have?",
+                    Question = "Wie viele Richtungen hatte bei {0} der {1} Pfeil?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["gray"] = "gray",
+                        ["red"] = "rote",
+                        ["green"] = "grüne",
+                        ["blue"] = "blaue",
+                        ["gray"] = "graue",
                     },
                 },
                 [SSimonSignals.ShapeToColor] = new()
                 {
                     // English: What color was the arrow with this shape in {0}? (+ sprite)
-                    Question = "What color was the arrow with this shape in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der Pfeil mit dieser Form?",
                     Answers = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["gray"] = "gray",
+                        ["red"] = "rote",
+                        ["green"] = "grüne",
+                        ["blue"] = "blaue",
+                        ["gray"] = "graue",
                     },
                 },
                 [SSimonSignals.ShapeToRotations] = new()
                 {
                     // English: How many directions did the arrow with this shape have in {0}? (+ sprite)
-                    Question = "How many directions did the arrow with this shape have in {0}?",
+                    Question = "Wie viele Richtungen hatte bei {0} der Pfeil mit dieser Form?",
                 },
                 [SSimonSignals.RotationsToColor] = new()
                 {
                     // English: What color was the arrow with {1} possible directions in {0}?
                     // Example: What color was the arrow with 3 possible directions in Simon Signals?
-                    Question = "What color was the arrow with {1} possible directions in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der Pfeil mit {1} Richtungen?",
                     Answers = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["gray"] = "gray",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["gray"] = "grau",
                     },
                 },
                 [SSimonSignals.RotationsToShape] = new()
                 {
                     // English: What shape was the arrow with {1} possible directions in {0}?
                     // Example: What shape was the arrow with 3 possible directions in Simon Signals?
-                    Question = "What shape was the arrow with {1} possible directions in {0}?",
+                    Question = "Welche Form hatte bei {0} der Pfeil mit {1} Richtungen?",
                 },
             },
         },
@@ -14175,14 +16536,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Simons
         [typeof(SSimonSimons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Simont",
+            ManualQuestions = new()
+            {
+                ["Which buttons flashed?"] = "Welche Tasten haben aufgeleuchtet?",
+            },
             Questions = new()
             {
                 [SSimonSimons.FlashingColors] = new()
                 {
                     // English: What was the {1} flash in the final sequence in {0}?
                     // Example: What was the first flash in the final sequence in Simon Simons?
-                    Question = "What was the {1} flash in the final sequence in {0}?",
+                    Question = "Welche Taste hat bei {0} als {1}e aufgeleuchtet?",
                 },
             },
         },
@@ -14190,14 +16555,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Sings
         [typeof(SSimonSings)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Singt",
+            ManualQuestions = new()
+            {
+                ["Which keys’ colors flashed in each stage?"] = "Welche Noten wurden in welcher Stufe durch Farben angezeigt?",
+            },
             Questions = new()
             {
                 [SSimonSings.Flashing] = new()
                 {
                     // English: Which key’s color flashed {1} in the {2} stage of {0}?
                     // Example: Which key’s color flashed first in the first stage of Simon Sings?
-                    Question = "Which key’s color flashed {1} in the {2} stage of {0}?",
+                    Question = "Die Farbe welcher Note war bei {0} die {1}e in Stufe {2}?",
                 },
             },
         },
@@ -14205,14 +16574,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Smiles
         [typeof(SSimonSmiles)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Lächelt",
+            ManualQuestions = new()
+            {
+                ["What sounds did each button press play?"] = "Welche Taste löste welchen Sound aus?",
+            },
             Questions = new()
             {
                 [SSimonSmiles.Sounds] = new()
                 {
                     // English: What sound did the {1} button press make in {0}?
                     // Example: What sound did the first button press make in Simon Smiles?
-                    Question = "What sound did the {1} button press make in {0}?",
+                    Question = "Welchen Sound löste bei {0} die {1}e Taste aus?",
                 },
             },
         },
@@ -14221,6 +16594,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonSmothers)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which colors and directions flashed in each stage?"] = "Welche Farben und Richtungen haben in welcher Stufe aufgeleuchtet?",
+            },
             Questions = new()
             {
                 [SSimonSmothers.Colors] = new()
@@ -14258,6 +16635,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonSounds)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which sample buttons sounded in each stage?"] = "Welche Probetaste entsprach dem Geräusch in welcher Stufe?",
+            },
             Questions = new()
             {
                 [SSimonSounds.FlashingColors] = new()
@@ -14280,6 +16661,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonSpeaks)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the relevant attributes of the flashing bubbles?"] = "Was waren die relevanten Merkmale der aufleuchtenden Sprechblasen?",
+            },
             Questions = new()
             {
                 [SSimonSpeaks.Positions] = new()
@@ -14337,8 +16722,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon’s Star
         [typeof(SSimonsStar)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Simons Stern",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in each stage?"] = "Which colors flashed in each stage?",
+            },
             Questions = new()
             {
                 [SSimonsStar.Colors] = new()
@@ -14362,6 +16752,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonStacks)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in each stage?"] = "Which colors flashed in each stage?",
+            },
             Questions = new()
             {
                 [SSimonStacks.Colors] = new()
@@ -14386,6 +16780,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             ModuleName = "Simon-Stufen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in each stage?"] = "Which colors flashed in each stage?",
+                ["What color was the indicator in each stage?"] = "Welche Farbe hatte der Indikator in welcher Stufe?",
+            },
             Questions = new()
             {
                 [SSimonStages.Indicator] = new()
@@ -14433,6 +16832,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonStates)] = new()
         {
             ModuleName = "Simon Statuiert",
+            ManualQuestions = new()
+            {
+                ["Which color(s) flashed in the first three stages?"] = "Welche Farbe(n) leuchtete(n) in den ersten drei Stufen auf?",
+            },
             Questions = new()
             {
                 [SSimonStates.Display] = new()
@@ -14468,6 +16871,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonStops)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in the output sequence?"] = "Welche Farben kamen in der vorgegebenen Farbfolge vor?",
+            },
             Questions = new()
             {
                 [SSimonStops.Colors] = new()
@@ -14492,6 +16899,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonStores)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in the final sequence?"] = "Was war am Ende die Farbfolge?",
+            },
             Questions = new()
             {
                 [SSimonStores.QFlashes] = new()
@@ -14541,6 +16952,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonSubdivides)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What colors were the cells that subdivided?"] = "Welche zerteilte Zelle hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SSimonSubdivides.Button] = new()
@@ -14562,6 +16977,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonSupports)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the 3 topics?"] = "Wie lauteten die drei Themen?",
+            },
             Questions = new()
             {
                 [SSimonSupports.Topics] = new()
@@ -14588,6 +17007,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonSwizzles)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Where were ON and OFF?"] = "Wo waren AN und AUS?",
+                ["What was the hidden binary number?"] = "Wie lautete die versteckte Binärzahl?",
+            },
             Questions = new()
             {
                 [SSimonSwizzles.Button] = new()
@@ -14613,6 +17037,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimplySimon)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which colors flashed in each stage?"] = "Which colors flashed in each stage?",
+            },
             Questions = new()
             {
                 [SSimplySimon.Flash] = new()
@@ -14628,6 +17056,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimultaneousSimons)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which colors flashed on each of the Simons?"] = "Welche Farben haben auf welchem Simon aufgeleuchtet?",
+            },
             Questions = new()
             {
                 [SSimultaneousSimons.Flash] = new()
@@ -14650,6 +17082,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSkewedSlots)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the original numbers?"] = "Wie lauteten die Ziffern am Anfang?",
+            },
             Questions = new()
             {
                 [SSkewedSlots.OriginalNumbers] = new()
@@ -14664,6 +17100,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSkewers)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What colors were the gems?"] = "Welche Farbe hatte welcher Edelstein?",
+            },
             Questions = new()
             {
                 [SSkewers.Color] = new()
@@ -14689,6 +17129,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSkyrim)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which races, weapons, enemies, cities, and dragon shouts were selectable, but not the solution?"] = "Welche Rassen, Waffen, Gegner, Städte und Drachenrufe waren auswählbar, aber nicht Teil der Lösung?",
+            },
             Questions = new()
             {
                 [SSkyrim.Race] = new()
@@ -14772,6 +17216,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Mathe in Zeitlupe",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the last triplet of letters?"] = "Was war das letzte Buchstabentripel?",
+            },
             Questions = new()
             {
                 [SSlowMath.LastLetters] = new()
@@ -14786,6 +17234,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSmallCircle)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["How much did the sequence shift by?"] = "Um wie viele Stellen verschob sich die Folge?",
+                ["Which wedge made the different noise in the beginning?"] = "Welcher Sektor löste am Anfang das abweichende Geräusch aus?",
+                ["Which colors were in the solution?"] = "Welche Farben kamen in der Lösung vor?",
+            },
             Questions = new()
             {
                 [SSmallCircle.Shift] = new()
@@ -14833,6 +17287,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSmallTalk)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the display words?"] = "Welche Wörter standen auf dem Display?",
+            },
             Questions = new()
             {
                 [SSmallTalk.Displays] = new()
@@ -14848,6 +17306,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSmashMarryKill)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What category was each module in?"] = "Welches Modul war in welcher Kategorie?",
+            },
             Questions = new()
             {
                 [SSmashMarryKill.Category] = new()
@@ -14877,6 +17339,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSnooker)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["How many reds were there initially?"] = "Wie viele Roten gab es am Anfang?",
+            },
             Questions = new()
             {
                 [SSnooker.Reds] = new()
@@ -14891,6 +17357,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSnowflakes)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the displayed snowflakes?"] = "Welche Schneeflocken waren zu sehen?",
+            },
             Questions = new()
             {
                 [SSnowflakes.DisplayedSnowflakes] = new()
@@ -14912,6 +17382,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Sonic & Knuckles
         [typeof(SSonicKnuckles)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which monitor and badnik were shown?"] = "Welcher Monitor und welcher Bösewicht war zu sehen?",
+            },
             Questions = new()
             {
                 [SSonicKnuckles.Badnik] = new()
@@ -14930,6 +17404,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Sonic the Hedgehog
         [typeof(SSonicTheHedgehog)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which sound was played by each screen?"] = "Welcher Bildschirm löste welchen Sound aus?",
+                ["What were the pictures?"] = "Welche Bilder kamen vor?",
+            },
             Questions = new()
             {
                 [SSonicTheHedgehog.Pictures] = new()
@@ -14958,6 +17437,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSorting)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which positions were involved in the final swap?"] = "Welche Positionen waren am letzten Tausch beteiligt?",
+            },
             Questions = new()
             {
                 [SSorting.LastSwap] = new()
@@ -14972,6 +17455,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSouvenir)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the first module the other Souvenir asked a question about?"] = "Von welchem Modul handelte die erste Frage auf dem anderen Souvenir?",
+            },
             Questions = new()
             {
                 [SSouvenir.FirstQuestion] = new()
@@ -14994,6 +17481,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSpaceTraders)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the maximum tax amount per vessel?"] = "Was war der Steuerhöchstbetrag pro Raumschiff?",
+            },
             Questions = new()
             {
                 [SSpaceTraders.MaxTax] = new()
@@ -15007,6 +17498,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Spelling Bee
         [typeof(SSpellingBee)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What word was asked to be spelled?"] = "Die Schreibweise welches Wortes wurde verlangt?",
+            },
             Questions = new()
             {
                 [SSpellingBee.Word] = new()
@@ -15023,6 +17518,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Kugel",
             ModuleNameDative = "Kugel",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the flashed colors?"] = "Welche Farben leuchteten auf?",
+            },
             Questions = new()
             {
                 [SSphere.Colors] = new()
@@ -15049,6 +17548,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSplittingTheLoot)] = new()
         {
             ModuleName = "Beute Aufteilen",
+            ManualQuestions = new()
+            {
+                ["Which bag was initially colored?"] = "Welcher Sack war am Anfang bereits gefärbt?",
+            },
             Questions = new()
             {
                 [SSplittingTheLoot.ColoredBag] = new()
@@ -15062,6 +17565,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Spongebob Birthday Identification
         [typeof(SSpongebobBirthdayIdentification)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the submitted names?"] = "Welche Namen wurden eingegeben?",
+            },
             Questions = new()
             {
                 [SSpongebobBirthdayIdentification.Children] = new()
@@ -15078,6 +17585,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Stabilität",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the lit LEDs’ colors?"] = "Welche Farbe hatte welche LED, die an war?",
+                ["What was the identification number?"] = "Wie lautete die Identifikationsnummer?",
+            },
             Questions = new()
             {
                 [SStability.LedColors] = new()
@@ -15106,6 +17618,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Stabile Taktarten",
             ModuleNameDative = "Stabilen Taktarten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What time signatures played?"] = "In welchen Takten wurde gespielt?",
+            },
             Questions = new()
             {
                 [SStableTimeSignatures.Signatures] = new()
@@ -15123,6 +17639,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gestapelte Folgen",
             ModuleNameDative = "Gestapelten Folgen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the lengths of the sequences?"] = "Wie lang waren die Folgen?",
+            },
             Questions = new()
             {
                 [SStackedSequences.Question] = new()
@@ -15139,6 +17659,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Sterne",
             ModuleNameDative = "Sternen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the digit in the center?"] = "Welche Ziffer war in der Mitte?",
+            },
             Questions = new()
             {
                 [SStars.Center] = new()
@@ -15154,6 +17678,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Sternenbegeisterung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which stars were shown?"] = "Welche Sterne waren zu sehen?",
+            },
             Questions = new()
             {
                 [SStarstruck.Star] = new()
@@ -15169,6 +17697,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Aggregatzustand",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What element was shown?"] = "Welches Element war zu sehen?",
+            },
             Questions = new()
             {
                 [SStateOfAggregation.Element] = new()
@@ -15183,6 +17715,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SStellar)] = new()
         {
             ModuleName = "Sternchen",
+            ManualQuestions = new()
+            {
+                ["What were the letters?"] = "Welche Buchstaben kamen vor?",
+            },
             Questions = new()
             {
                 [SStellar.Letters] = new()
@@ -15205,6 +17741,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Stroop-Test",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was each submitted word/color?"] = "Welche Wörter/Farben wurden eingegeben?",
+            },
             Questions = new()
             {
                 [SStroopsTest.QWord] = new()
@@ -15261,6 +17801,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Dummer Automat",
             ModuleNameDative = "Dummen Automat",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the values of each arrow?"] = "Welcher Pfeil hatte welchen Wert?",
+            },
             Questions = new()
             {
                 [SStupidSlots.Values] = new()
@@ -15284,6 +17828,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Subbly Jubbly
         [typeof(SSubblyJubbly)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the replacement phrases?"] = "Wie lauteten die Ersatzphrasen?",
+            },
             Questions = new()
             {
                 [SSubblyJubbly.Substitutions] = new()
@@ -15297,6 +17845,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Subscribe to Pewdiepie
         [typeof(SSubscribeToPewdiepie)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["How many subscribers do Pewdiepie and T-Series have?"] = "Wie viele Abonnenten hatten Pewdiepie und T-Series?",
+            },
             Questions = new()
             {
                 [SSubscribeToPewdiepie.SubCount] = new()
@@ -15316,6 +17868,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Subway
         [typeof(SSubway)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which bread did the customer ask for?"] = "Welches Brot wurde vom Kunden verlangt?",
+                ["Which item was not asked for?"] = "Welche Zutat wurde nicht verlangt?",
+            },
             Questions = new()
             {
                 [SSubway.Bread] = new()
@@ -15336,6 +17893,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Zuckerschädel",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What skulls were shown?"] = "Welche Schädel waren zu sehen?",
+            },
             Questions = new()
             {
                 [SSugarSkulls.Skull] = new()
@@ -15367,6 +17928,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Suits and Colours
         [typeof(SSuitsAndColours)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the colours and suits of each cell?"] = "Welche Zelle hatte welche Farbe/Kartenfarbe?",
+            },
             Questions = new()
             {
                 [SSuitsAndColours.Colour] = new()
@@ -15401,6 +17966,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Superparsing
         [typeof(SSuperparsing)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed word?"] = "Welches Wort war auf dem Display?",
+            },
             Questions = new()
             {
                 [SSuperparsing.Displayed] = new()
@@ -15414,6 +17983,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // SUSadmin
         [typeof(SSUSadmin)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which security protocols were installed?"] = "Welche Sicherheitsprotokolle waren installiert?",
+                ["What was the version number?"] = "Wie lautete die Versionsnummer?",
+            },
             Questions = new()
             {
                 [SSUSadmin.Security] = new()
@@ -15435,6 +18009,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Schalter",
             ModuleNameDative = "Schalter",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What color were the LEDs?"] = "Welche Farbe hatten die LEDs?",
+            },
             Questions = new()
             {
                 [SSwitch.InitialColor] = new()
@@ -15465,6 +18043,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Schalter",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the initial position of the switches?"] = "Wie standen die Schalter am Anfang?",
+            },
             Questions = new()
             {
                 [SSwitches.InitialPosition] = new()
@@ -15479,6 +18061,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSwitchingMaze)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the seed?"] = "Was war der Seedcode?",
+                ["What was the starting maze color?"] = "Welche Farbe hatte das Startlabyrinth?",
+            },
             Questions = new()
             {
                 [SSwitchingMaze.Seed] = new()
@@ -15513,6 +18100,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSymbolCycle)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["How many symbols were cycling on each screen?"] = "Auf welchem Display wurden wie viele Symbole angezeigt?",
+            },
             Questions = new()
             {
                 [SSymbolCycle.SymbolCounts] = new()
@@ -15533,6 +18124,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSymbolicCoordinates)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which symbols were present in each stage?"] = "Which symbols were present in each stage?",
+            },
             Questions = new()
             {
                 [SSymbolicCoordinates.ymbols] = new()
@@ -15555,6 +18150,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Symbole-Tasha",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What symbols were on the buttons?"] = "Welches Symbol war auf welcher Taste?",
+                ["Which buttons flashed?"] = "Welche Tasten leuchteten auf?",
+            },
             Questions = new()
             {
                 [SSymbolicTasha.DirectionFlashes] = new()
@@ -15607,6 +18207,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSynapseSays)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What number was displayed at each stage?"] = "Welche Zahl war in welcher Stufe zu sehen?",
+                ["What positions were the colors in at each stage?"] = "Welche Farbe war in welcher Stufe an welcher Stelle?",
+                ["What colors flashed at each stage?"] = "Welche Farben haben in welcher Stufe aufgeleuchtet?",
+            },
             Questions = new()
             {
                 [SSynapseSays.Flashes] = new()
@@ -15627,6 +18233,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // SYNC-125 [3]
         [typeof(SSync125_3)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was displayed on the screen in each stage?"] = "Was war in welcher Stufe auf dem Display?",
+            },
             Questions = new()
             {
                 [SSync125_3.Word] = new()
@@ -15642,6 +18252,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSynonyms)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which number was displayed?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [SSynonyms.Number] = new()
@@ -15656,6 +18270,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSysadmin)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What error code did you fix?"] = "Welcher Fehlercode wurde korrigiert?",
+            },
             Questions = new()
             {
                 [SSysadmin.FixedErrorCodes] = new()
@@ -15670,6 +18288,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STAC)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which cards were swapped?"] = "Welche Karten wurden ausgetauscht?",
+                ["Which cards were in your hand?"] = "Welche Karten waren in der Hand?",
+            },
             Questions = new()
             {
                 [STAC.SwappedCard] = new()
@@ -15748,6 +18371,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Klopfzeichen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the received word?"] = "Welches Wort wurde übermittelt?",
+            },
             Questions = new()
             {
                 [STapCode.ReceivedWord] = new()
@@ -15762,6 +18389,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STashaSqueals)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the flashed colors?"] = "Welche Farben leuchteten auf?",
+            },
             Questions = new()
             {
                 [STashaSqueals.Colors] = new()
@@ -15783,6 +18414,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Tasque Managing
         [typeof(STasqueManaging)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the starting position?"] = "Wo war die Startposition?",
+            },
             Questions = new()
             {
                 [STasqueManaging.StartingPos] = new()
@@ -15798,6 +18433,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Das Teeservice",
             ModuleNameDative = "Teeservice",
+            ManualQuestions = new()
+            {
+                ["In what order were the ingredients displayed?"] = "In welcher Reihenfolge wurden die Zutaten angezeigt?",
+            },
             Questions = new()
             {
                 [STeaSet.DisplayedIngredients] = new()
@@ -15814,6 +18453,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Technisches Tastenfeld",
             ModuleNameDative = "Technischen Tastenfeld",
+            ManualQuestions = new()
+            {
+                ["What were the displayed digits?"] = "Welche Ziffern waren auf dem Display?",
+            },
             Questions = new()
             {
                 [STechnicalKeypad.DisplayedDigits] = new()
@@ -15828,6 +18471,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STenButtonColorCode)] = new()
         {
             ModuleName = "Zehn-Tasten-Farbcode",
+            ManualQuestions = new()
+            {
+                ["What were the buttons’ initial colors in each stage?"] = "Welche Farben hatten die Tasten am Anfang welcher Stufe?",
+            },
             Questions = new()
             {
                 [STenButtonColorCode.InitialColors] = new()
@@ -15850,6 +18497,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             ModuleName = "Tenpin-Bowling",
+            ManualQuestions = new()
+            {
+                ["What were the splits?"] = "Welche Splits kamen vor?",
+            },
             Questions = new()
             {
                 [STenpins.Splits] = new()
@@ -15886,6 +18537,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STetriamonds)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the pulsing colour sequence?"] = "Wie lautete die pulsierende Farbfolge?",
+            },
             Questions = new()
             {
                 [STetriamonds.PulsingColours] = new()
@@ -15911,6 +18566,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STextField)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the displayed letter?"] = "Welcher Buchstabe kam vor?",
+            },
             Questions = new()
             {
                 [STextField.Display] = new()
@@ -15925,6 +18584,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SThinkingWires)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which was the first wire needing to be cut?"] = "Welcher Draht musste als erster durchtrennt werden?",
+                ["What color was the second valid wire to cut?"] = "Welche Farbe hatte der zweite korrekt durchtrennte Draht?",
+                ["What was the display number?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [SThinkingWires.FirstWire] = new()
@@ -15961,6 +18626,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SThirdBase)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the display words?"] = "Welche Wörter standen auf dem Display?",
+            },
             Questions = new()
             {
                 [SThirdBase.Display] = new()
@@ -15976,6 +18645,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SThirtyDollarModule)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What sounds were played?"] = "Welche Sounds kamen vor?",
+            },
             Questions = new()
             {
                 [SThirtyDollarModule.Sounds] = new()
@@ -15990,6 +18663,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STicTacToe)] = new()
         {
             ModuleName = "Tic-Tac-Toe",
+            ManualQuestions = new()
+            {
+                ["What was the initial state of the field?"] = "Wie sah das Spielfeld am Anfang aus?",
+            },
             Questions = new()
             {
                 [STicTacToe.QButton] = new()
@@ -16038,6 +18715,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STimeSignatures)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What time signatures played?"] = "In welchen Takten wurde gespielt?",
+            },
             Questions = new()
             {
                 [STimeSignatures.Signatures] = new()
@@ -16053,6 +18734,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STimezone)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the departure and destination city?"] = "Wie lauteten die Abfahrts- und Ankunftsstadt?",
+            },
             Questions = new()
             {
                 [STimezone.Cities] = new()
@@ -16073,6 +18758,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STipToe)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which squares were safe in rows 9 and 10?"] = "Welche Felder in Reihe 9 und 10 waren sicher?",
+            },
             Questions = new()
             {
                 [STipToe.SafeSquares] = new()
@@ -16088,6 +18777,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STopsyTurvy)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the word initially shown?"] = "Welches Wort war am Anfang auf dem Display?",
+            },
             Questions = new()
             {
                 [STopsyTurvy.Word] = new()
@@ -16102,6 +18795,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STouchTransmission)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the transmitted word?"] = "Welches Wort wurde übermittelt?",
+                ["In what order was the Braille read?"] = "In welcher Reihenfolge wurde das Braille gelesen?",
+            },
             Questions = new()
             {
                 [STouchTransmission.Word] = new()
@@ -16128,6 +18826,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SToxicCrystals)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What letter was written on the casing when solving?"] = "Welcher Buchstabe stand beim Entschärfen auf dem Gehäuse?",
+            },
             Questions = new()
             {
                 [SToxicCrystals.Letter] = new()
@@ -16142,6 +18844,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STransmittedMorse)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the received messages?"] = "Welche Nachrichten wurden übertragen?",
+            },
             Questions = new()
             {
                 [STransmittedMorse.Message] = new()
@@ -16157,6 +18863,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STriamonds)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the pulsing colour sequence?"] = "Wie lautete die pulsierende Farbfolge?",
+            },
             Questions = new()
             {
                 [STriamonds.PulsingColours] = new()
@@ -16183,6 +18893,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STribalCouncil)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the northeast and southwest names?"] = "Welche Namen waren im Nordosten und Südwesten?",
+            },
             Questions = new()
             {
                 [STribalCouncil.Name] = new()
@@ -16205,6 +18919,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Trickreiche Tetris-Teile",
             ModuleNameDative = "Trickreichen Tetris-Teile",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the the shape of the first piece you pressed?"] = "Welche Form hatte das als erstes eingegebene Teil?",
+                ["What was the second color palette that the pieces converted to?"] = "In welche zweite Farbpalette haben sich die Teile verwandelt?",
+            },
             Questions = new()
             {
                 [STrickyTetrisPieces.FirstShape] = new()
@@ -16225,6 +18944,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Dreifachbegriff",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the passwords?"] = "Wie lauteten die Passwörter?",
+            },
             Questions = new()
             {
                 [STripleTerm.Passwords] = new()
@@ -16241,6 +18964,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             ModuleName = "Zwei Bits",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the correct three query responses?"] = "Welche Antwort kam auf die drei korrekten Anfragen?",
+            },
             Questions = new()
             {
                 [STwoBits.QResponse] = new()
@@ -16265,6 +18992,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(STwodoku)] = new()
         {
             ModuleName = "Zwodoku",
+            ManualQuestions = new()
+            {
+                ["Where were the digits, symbols, and highlights?"] = "Welche Ziffern, Symbole und Hervorhebungen waren wo?",
+            },
             Questions = new()
             {
                 [STwodoku.Givens] = new()
@@ -16292,6 +19023,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "UFO-Satelliten",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["Which numbers were present?"] = "Welche Zahlen kamen vor?",
+            },
             Questions = new()
             {
                 [SUfoSatellites.Numbers] = new()
@@ -16308,6 +19043,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Ultimative Geheimschrift",
             ModuleNameDative = "Ultimativen Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SUltimateCipher.Screen] = new()
@@ -16331,6 +19070,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Ultimative Schiffer",
             ModuleNameDative = "Ultimativen Schiffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which direction were the dials pointing?"] = "In welche Richtung zeigten die Drehknöpfe?",
+                ["What was written on each dial?"] = "Was stand auf den Drehknöpfen?",
+            },
             Questions = new()
             {
                 [SUltimateCycle.DialDirections] = new()
@@ -16360,6 +19104,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Ultracube
         [typeof(SUltracube)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the rotations?"] = "Welche Rotationen kamen vor?",
+            },
             Questions = new()
             {
                 [SUltracube.Rotations] = new()
@@ -16375,6 +19123,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SUltraStores)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the rotations?"] = "Welche Rotationen kamen vor?",
+            },
             Questions = new()
             {
                 [SUltraStores.SingleRotation] = new()
@@ -16398,6 +19150,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Ungefärbte Felder",
             ModuleNameDative = "Ungefärbten Felder",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colors used in the first stage?"] = "Welche Farben kamen in der ersten Stufe zum Einsatz?",
+            },
             Questions = new()
             {
                 [SUncoloredSquares.FirstStage] = new()
@@ -16424,6 +19180,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Ungefärbte Schalter",
             ModuleNameDative = "Ungefärbten Schaltern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the initial switch state?"] = "Wie sahen die Schalter am Anfang aus?",
+                ["What were the LED colors?"] = "Welche LED hatte welche Farbe?",
+            },
             Questions = new()
             {
                 [SUncoloredSwitches.InitialState] = new()
@@ -16457,6 +19218,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Ungefärbte Folge",
             ModuleNameDative = "Ungefärbten Folge",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the initial “YES” and “NO” sequences?"] = "Wie lauteten die „YES“- und „NO“-Folgen am Anfang?",
+            },
             Questions = new()
             {
                 [SUncolourFlash.Displays] = new()
@@ -16492,6 +19257,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Untertunnelung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was the position in the maze after completing the first phase?"] = "Wo im Labyrinth war der Spieler am Ende der ersten Phase?",
+            },
             Questions = new()
             {
                 [SUndertunneling.PositionInMazeAfterPhaseOne] = new()
@@ -16506,6 +19275,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SUnfairCipher)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the encrypted message?"] = "Wie lautete die verschlüsselte Nachricht?",
+            },
             Questions = new()
             {
                 [SUnfairCipher.Letters] = new()
@@ -16522,6 +19295,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Unfairs Höllische Rache",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the decrypted instructions?"] = "Wie lauteten die entschlüsselten Instruktionen?",
+            },
             Questions = new()
             {
                 [SUnfairsCruelRevenge.Instructions] = new()
@@ -16544,6 +19321,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Unfairs Rache",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the decrypted instructions?"] = "Wie lauteten die entschlüsselten Instruktionen?",
+            },
             Questions = new()
             {
                 [SUnfairsRevenge.Instructions] = new()
@@ -16558,6 +19339,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unicode
         [typeof(SUnicode)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the submitted codes?"] = "Welche Codes wurden eingegeben?",
+            },
             Questions = new()
             {
                 [SUnicode.SortedAnswer] = new()
@@ -16572,6 +19357,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // UNO!
         [typeof(SUNO)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the starting card?"] = "Was war die Startkarte?",
+            },
             Questions = new()
             {
                 [SUNO.InitialCard] = new()
@@ -16642,6 +19431,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unordered Keys
         [typeof(SUnorderedKeys)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the labels, their colors, and the colors of the keys in each stage?"] = "In welcher Stufe hatte welche Taste welche Farbe, Aufschrift und Aufschriftfarbe?",
+            },
             Questions = new()
             {
                 [SUnorderedKeys.KeyColor] = new()
@@ -16670,6 +19463,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Unown-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the submitted letters?"] = "Welche Buchstaben wurden eingegeben?",
+            },
             Questions = new()
             {
                 [SUnownCipher.Answers] = new()
@@ -16686,6 +19483,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Unangenehme Quadrate",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What color was each square?"] = "Welche Farbe hatte welches Feld?",
+            },
             Questions = new()
             {
                 [SUnpleasantSquares.Color] = new()
@@ -16707,6 +19508,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Updog
         [typeof(SUpdog)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed word?"] = "Welches Wort war auf dem Display?",
+                ["What were the flashing colors?"] = "Welche Farben haben aufgeleuchtet?",
+            },
             Questions = new()
             {
                 [SUpdog.Word] = new()
@@ -16742,6 +19548,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "USA-Schiffer",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["Which states were displayed?"] = "Welche Staaten kamen vor?",
+            },
             Questions = new()
             {
                 [SUSACycle.Displayed] = new()
@@ -16756,6 +19566,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SUSAMaze)] = new()
         {
             ModuleName = "USA-Labyrinth",
+            ManualQuestions = new()
+            {
+                ["Which state did you depart from?"] = "Welcher Staat war Ausgangspunkt der Reise?",
+            },
             Questions = new()
             {
                 [SUSAMaze.Origin] = new()
@@ -16769,6 +19583,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // V
         [typeof(SV)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["Which words were shown?"] = "Welche Wörter kamen vor?",
+            },
             Questions = new()
             {
                 [SV.Words] = new()
@@ -16788,8 +19606,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Valves
         [typeof(SValves)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Ventile",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the initial state?"] = "What was the initial state?",
+            },
             Questions = new()
             {
                 [SValves.InitialState] = new()
@@ -16806,6 +19629,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Mischgefärbte Felder",
             ModuleNameDative = "Mischgefärbten Feldern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the initially pressed color?"] = "Welche Farbe wurde als erste eingegeben?",
+            },
             Questions = new()
             {
                 [SVaricoloredSquares.InitialColor] = new()
@@ -16831,6 +19658,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Farbenfrohe Folge",
             ModuleNameDative = "Farbenfrohen Folge",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the words and colours of each goal?"] = "Welches Ziel hatte welches Wort und welche Farbe?",
+            },
             Questions = new()
             {
                 [SVaricolourFlash.Words] = new()
@@ -16871,6 +19702,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Vielfalt",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the LED colors?"] = "Welche LED hatte welche Farbe?",
+                ["What was n for the colored knobs and bulbs?"] = "Was war n für die farbigen Drehregler und Glühlampen?",
+                ["What digits were displayed on the digit display?"] = "Welche Ziffern waren auf dem Zifferndisplay?",
+                ["What words were formable on the letter display?"] = "Welche Wörter konnten mit dem Buchstabendisplay gebildet werden?",
+                ["What were the maximum values of the timers?"] = "Welchen Höchstwert hatten die Timer?",
+            },
             Questions = new()
             {
                 [SVariety.LED] = new()
@@ -17017,6 +19856,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Vcrcs
         [typeof(SVcrcs)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the displayed word?"] = "Welches Wort war auf dem Display?",
+            },
             Questions = new()
             {
                 [SVcrcs.Word] = new()
@@ -17032,6 +19875,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Vektoren",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the colors of the vectors?"] = "Welche Farben hatten die Vektoren?",
+            },
             Questions = new()
             {
                 [SVectors.Colors] = new()
@@ -17064,6 +19911,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Flaggenkunde",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the flagpole colors?"] = "Welche Farben hatte die Fahnenstange?",
+            },
             Questions = new()
             {
                 [SVexillology.Colors] = new()
@@ -17092,6 +19943,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Violette Geheimschrift",
             ModuleNameDative = "Violetten Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SVioletCipher.Screen] = new()
@@ -17114,6 +19969,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Sehbehinderung",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the desired colors?"] = "Welche Farben wurden verlangt?",
+            },
             Questions = new()
             {
                 [SVisualImpairment.Colors] = new()
@@ -17138,6 +19997,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Wandernder Würfel",
             ModuleNameDative = "Wandernden Würfel",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which cells did the cube walk to?"] = "Welche Felder wurden vom Würfel abgelaufen?",
+            },
             Questions = new()
             {
                 [SWalkingCube.Path] = new()
@@ -17154,6 +20017,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Warnschilder",
             ModuleNameDative = "Warnschildern",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the displayed sign?"] = "Welches Schild kam vor?",
+            },
             Questions = new()
             {
                 [SWarningSigns.DisplayedSign] = new()
@@ -17167,6 +20034,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // WASD
         [typeof(SWasd)] = new()
         {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the displayed location?"] = "What was the displayed location?",
+            },
             Questions = new()
             {
                 [SWasd.DisplayedLocation] = new()
@@ -17181,6 +20053,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SWatchingPaintDry)] = new()
         {
             ModuleName = "Farbe Beim Trocknen Zusehen",
+            ManualQuestions = new()
+            {
+                ["How many brush strokes were there?"] = "Wie viele Pinselstriche gab es?",
+            },
             Questions = new()
             {
                 [SWatchingPaintDry.StrokeCount] = new()
@@ -17195,6 +20071,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SWavetapping)] = new()
         {
             ModuleName = "Wellenschlagen",
+            ManualQuestions = new()
+            {
+                ["What was the color in the first two stages?"] = "Welche Farbe hatten die ersten zwei Stufen?",
+            },
             Questions = new()
             {
                 [SWavetapping.Colors] = new()
@@ -17230,6 +20110,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Schwächstes Glied",
             ModuleNameDative = "Schwächsten Glied",
+            ManualQuestions = new()
+            {
+                ["Who was eliminated?"] = "Wer wurde eliminiert?",
+                ["Who joined you in the Money Phase?"] = "Wer kam in der Geldphase dazu?",
+                ["What were the other contestants’ skills and correct answer ratios?"] = "Welche Skills und welche Antwortquote hatten die anderen Kandidaten?",
+            },
             Questions = new()
             {
                 [SWeakestLink.Elimination] = new()
@@ -17260,6 +20146,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What’s on Second
         [typeof(SWhatsOnSecond)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the display text and color in each stage?"] = "Was stand in welcher Stufe auf dem Display und in welcher Farbe?",
+            },
             Questions = new()
             {
                 [SWhatsOnSecond.DisplayText] = new()
@@ -17289,9 +20179,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // White Arrows
         [typeof(SWhiteArrows)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Weiße Pfeile",
             ModuleNameDative = "Weißen Pfeilen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the non-white arrows?"] = "What were the non-white arrows?",
+            },
             Questions = new()
             {
                 [SWhiteArrows.Arrows] = new()
@@ -17326,6 +20221,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Weiße Geheimschrift",
             ModuleNameDative = "Weißen Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SWhiteCipher.Screen] = new()
@@ -17346,6 +20245,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // WhoOF
         [typeof(SWhoOF)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was on the display in each stage?"] = "Was war in welcher Stufe auf dem Display?",
+            },
             Questions = new()
             {
                 [SWhoOF.Display] = new()
@@ -17361,6 +20264,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SWhosOnFirst)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the display words?"] = "Welche Wörter standen auf dem Display?",
+            },
             Questions = new()
             {
                 [SWhosOnFirst.QDisplay] = new()
@@ -17384,6 +20291,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Who’s on Gas
         [typeof(SWhosOnGas)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was displayed in the first phase of each stage?"] = "Was war in welcher Stufe während der ersten Phase auf dem Display?",
+            },
             Questions = new()
             {
                 [SWhosOnGas.Display] = new()
@@ -17398,6 +20309,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Who’s on Morse
         [typeof(SWhosOnMorse)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What word was transmitted in each stage?"] = "Welches Wort wurde in welcher Stufe übermittelt?",
+            },
             Questions = new()
             {
                 [SWhosOnMorse.TransmitDisplay] = new()
@@ -17415,6 +20330,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Draht",
             ModuleNameDative = "Draht",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the colors of the dials?"] = "Welche Farbe hatten die Drehregler?",
+                ["What was the displayed number?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [SWire.QDialColors] = new()
@@ -17478,6 +20398,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Draht-Reihenfolge",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the colors and numbers on the displays?"] = "Welche Farben und Zahlen waren auf dem Display?",
+                ["What were the colors of the wires?"] = "Welche Farbe hatten die Drähte?",
+            },
             Questions = new()
             {
                 [SWireOrdering.DisplayColor] = new()
@@ -17529,6 +20454,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             ModuleName = "Drahtfolge",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["How many wires of each color were there?"] = "Wie viele Drähte gab es von jeder Farbe?",
+            },
             Questions = new()
             {
                 [SWireSequence.QColorCount] = new()
@@ -17568,6 +20497,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SWolfGoatAndCabbage)] = new()
         {
             ModuleName = "Wolf, Ziege und Kohl",
+            ManualQuestions = new()
+            {
+                ["Which creatures were present?"] = "Welche Kreaturen kamen vor?",
+                ["What size was the boat?"] = "Wie groß war das Boot?",
+            },
             Questions = new()
             {
                 [SWolfGoatAndCabbage.Animals] = new()
@@ -17594,6 +20528,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Wortzähler",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the displayed number?"] = "Welche Zahl war auf dem Display?",
+            },
             Questions = new()
             {
                 [SWordCount.Number] = new()
@@ -17607,8 +20545,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Working Title
         [typeof(SWorkingTitle)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Arbeitstitel",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the label shown?"] = "What was the label shown?",
+            },
             Questions = new()
             {
                 [SWorkingTitle.Display] = new()
@@ -17622,6 +20565,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Wumbo
         [typeof(SWumbo)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What was the number?"] = "Welche Zahl kam vor?",
+            },
             Questions = new()
             {
                 [SWumbo.Number] = new()
@@ -17638,6 +20585,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Xenokrist",
             ModuleNameDative = "Xenokrist",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the color of each flash?"] = "Welche Farbe leuchtete wann auf?",
+            },
             Questions = new()
             {
                 [SXenocryst.Question] = new()
@@ -17654,6 +20605,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "XmORsezeichen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the displayed letters?"] = "Welche Buchstaben kamen vor?",
+                ["What word did you decrypt?"] = "Welches Wort wurde entziffert?",
+            },
             Questions = new()
             {
                 [SXmORseCode.Word] = new()
@@ -17674,6 +20630,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SXobekuJehT)] = new()
         {
             ModuleName = "xobkisuM eiD",
+            ManualQuestions = new()
+            {
+                ["What song was played?"] = "Welcher Song wurde abgespielt?",
+            },
             Questions = new()
             {
                 [SXobekuJehT.Song] = new()
@@ -17688,6 +20648,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SXRing)] = new()
         {
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What symbols were scanned?"] = "Welche Symbole wurden gescannt?",
+            },
             Questions = new()
             {
                 [SXRing.Symbol] = new()
@@ -17702,6 +20666,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SXRotor)] = new()
         {
             NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which symbols were scanned?"] = "Welche Symbole wurden gescannt?",
+            },
             Questions = new()
             {
                 [SXRotor.Symbol] = new()
@@ -17716,6 +20684,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SXYRay)] = new()
         {
             ModuleName = "XY-Scanner",
+            ManualQuestions = new()
+            {
+                ["What were the scanned shapes?"] = "Welche Formen wurden gescannt?",
+            },
             Questions = new()
             {
                 [SXYRay.Shapes] = new()
@@ -17730,6 +20702,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SYahtzee)] = new()
         {
             ModuleName = "Kniffel",
+            ManualQuestions = new()
+            {
+                ["What was the first roll?"] = "Was wurde als erstes gewürfelt?",
+            },
             Questions = new()
             {
                 [SYahtzee.InitialRoll] = new()
@@ -17757,6 +20733,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gelbe Pfeile",
             ModuleNameDative = "Gelben Pfeilen",
             Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What was the starting row letter?"] = "Welcher Buchstabe entsprach der Startreihe?",
+            },
             Questions = new()
             {
                 [SYellowArrows.StartingRow] = new()
@@ -17773,6 +20753,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Gelbe Knopf",
             ModuleNameDative = "Gelben Knopf",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What were the colors?"] = "Welche Farben kamen vor?",
+            },
             Questions = new()
             {
                 [SYellowButton.Colors] = new()
@@ -17798,6 +20782,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Gelber Knopf Mal Anders",
             Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the filename?"] = "Wie lautete der Dateiname?",
+            },
             Questions = new()
             {
                 [SYellowButtont.Filename] = new()
@@ -17814,6 +20802,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Gelbe Geheimschrift",
             ModuleNameDative = "Gelben Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SYellowCipher.Screen] = new()
@@ -17836,6 +20828,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Gelbe Huffman-Geheimschrift",
             Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
+            },
             Questions = new()
             {
                 [SYellowHuffmanCipher.Screen] = new()
@@ -17857,6 +20853,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SZeroZero)] = new()
         {
             ModuleName = "Null, Null",
+            ManualQuestions = new()
+            {
+                ["What were the colors and number of points on each star?"] = "Welcher Stern hatte welche Farbe und wie viele Zacken?",
+                ["Where were the colored squares?"] = "Welche Felder waren gefärbt?",
+            },
             Questions = new()
             {
                 [SZeroZero.Squares] = new()
@@ -17914,6 +20915,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Zoni
         [typeof(SZoni)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What were the words?"] = "Welche Wörter kamen vor?",
+            },
             Questions = new()
             {
                 [SZoni.Words] = new()
@@ -17928,6 +20933,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Épelle-moi Ça
         [typeof(SÉpelleMoiÇa)] = new()
         {
+            ManualQuestions = new()
+            {
+                ["What word was asked to be spelled?"] = "Die Schreibweise welches Wortes wurde verlangt?",
+            },
             Questions = new()
             {
                 [SÉpelleMoiÇa.Word] = new()

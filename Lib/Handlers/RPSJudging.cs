@@ -22,7 +22,7 @@ public enum SRPSJudging
 public partial class SouvenirModule
 {
     [SouvenirHandler("RPSJudging", "RPS Judging", typeof(SRPSJudging), "Anonymous", IsBossModule = true)]
-    [SouvenirManualQuestion("Which stages did each team win/lose/tie?")]
+    [SouvenirManualQuestion("Which rounds did each team win/lose/tie?")]
     private IEnumerator<SouvenirInstruction> ProcessRPSJudging(ModuleData module)
     {
         var comp = GetComponent(module, "RPSJudgingScript");

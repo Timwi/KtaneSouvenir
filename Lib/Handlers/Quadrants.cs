@@ -13,7 +13,7 @@ public enum SQuadrants
 public partial class SouvenirModule
 {
     [SouvenirHandler("Quadrants", "Quadrants", typeof(SQuadrants), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were on the buttons at each stage?")]
+    [SouvenirManualQuestion("What was on each button in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessQuadrants(ModuleData module)
     {
         var comp = GetComponent(module, "Quadrants");

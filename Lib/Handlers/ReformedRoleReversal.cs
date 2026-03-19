@@ -16,7 +16,7 @@ public partial class SouvenirModule
 {
     [SouvenirHandler("ReformedRoleReversal", "Reformed Role Reversal", typeof(SReformedRoleReversal), "Emik")]
     [SouvenirManualQuestion("What did the solving condition state?")]
-    [SouvenirManualQuestion("What were the final wires?")]
+    [SouvenirManualQuestion("What were the wire colors?")]
     private IEnumerator<SouvenirInstruction> ProcessReformedRoleReversal(ModuleData module)
     {
         var comp = GetComponent(module, "ReformedRoleReversal");

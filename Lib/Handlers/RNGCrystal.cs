@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SRNGCrystal
 {
-    [SouvenirQuestion("Which bit had a tap in {0} (the output after shifting is at bit 0)?", ThreeColumns6Answers)]
+    [SouvenirQuestion("Which bit had a tap in {0}? (The output after shifting is at bit 0.)", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 23)]
     Taps
 }
