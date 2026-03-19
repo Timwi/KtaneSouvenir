@@ -20,6 +20,27 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        // Disables the numbered buttons. This prevents the defuser from entering a number into the display to see their answer
+        var numberButtons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true).Get();
+        var deleteButon = GetField<KMSelectable>(comp, "deleteButton", isPublic: true).Get();
+
+        foreach (KMSelectable button in numberButtons)
+        {
+            button.OnInteract = delegate
+            {
+                Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.Module.transform);
+                button.AddInteractionPunch(0.2f);
+                return false;
+            };
+        }
+
+        deleteButon.OnInteract = delegate
+        {
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.Module.transform);
+            deleteButon.AddInteractionPunch(0.2f);
+            return false;
+        };
+
         var startingNumber = GetIntField(comp, "startNumber").Get(min: 6, max: 74);
         yield return question(SQuizBuzz.StartingNumber).Answers(startingNumber.ToString());
     }
