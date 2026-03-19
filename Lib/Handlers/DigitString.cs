@@ -21,6 +21,19 @@ public partial class SouvenirModule
 
         var storedInitialString = GetField<string>(comp, "shownString").Get(x => x.Length != 8 ? "Expected length 8" : null);
 
+        // Disables the numbered buttons. This prevents the defuser from entering a number into the display to see their answer
+        var numberButtons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true).Get();
+
+        foreach (KMSelectable button in numberButtons)
+        {
+            button.OnInteract = delegate
+            {
+                Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.Module.transform);
+                button.AddInteractionPunch(0.2f);
+                return false;
+            };
+        }
+
         yield return question(SDigitString.InitialNumber).Answers(storedInitialString);
     }
 }
