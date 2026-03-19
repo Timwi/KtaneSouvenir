@@ -20827,6 +20827,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SYellowHuffmanCipher)] = new()
         {
             ModuleName = "Gelbe Huffman-Geheimschrift",
+            ModuleNameDative = "Gelben Huffman-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
