@@ -883,7 +883,7 @@ public partial class SouvenirModule : MonoBehaviour
                             yield break;
                         }
                         info.Discriminators.AddSafe(module, d.Discriminator.Id, d.Discriminator);
-                        yield return new WaitForSeconds(.1f);
+                        yield return null;
                         break;
                     case QandAInstruction q:
                         if (q.Stump == null || q.Stump.QuestionStump == null || q.Stump.AnswerStump == null)
@@ -900,7 +900,7 @@ public partial class SouvenirModule : MonoBehaviour
                             yield break;
                         }
                         questions.Add(q.Stump);
-                        yield return new WaitForSeconds(.1f);
+                        yield return null;
                         break;
                 }
 
