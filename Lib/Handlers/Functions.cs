@@ -33,6 +33,27 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "qFunctions");
         yield return WaitForSolve;
 
+        // Disables the numbered buttons. This prevents the defuser from entering a number into the display to see their answer
+        var numberButtons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true).Get();
+        var commaButton = GetField<KMSelectable>(comp, "buttonComma", isPublic: true).Get();
+
+        foreach (KMSelectable button in numberButtons)
+        {
+            button.OnInteract = delegate
+            {
+                Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.Module.transform);
+                button.AddInteractionPunch(0.2f);
+                return false;
+            };
+        }
+
+        commaButton.OnInteract = delegate
+        {
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.Module.transform);
+            commaButton.AddInteractionPunch(0.2f);
+            return false;
+        };
+
         var lNum = GetIntField(comp, "numberA").Get(1, 999);
         var rNum = GetIntField(comp, "numberB").Get(1, 999);
         var theLetter = GetField<string>(comp, "ruleLetter").Get(s => s.Length != 1 ? "expected length 1" : null);
