@@ -5,14 +5,23 @@ using static Souvenir.AnswerLayout;
 
 public enum SMazeScrambler
 {
-    [SouvenirQuestion("What was the starting position on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "middle-middle", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
-    Start,
+    [SouvenirQuestion("What was the starting position on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
+    QStart,
 
-    [SouvenirQuestion("What was the goal on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "middle-middle", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
-    Goal,
+    [SouvenirQuestion("What was the goal on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
+    QGoal,
 
     [SouvenirQuestion("Which of these positions was a maze marking on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
-    Indicators
+    QIndicators,
+
+    [SouvenirDiscriminator("the Maze Scramber where the starting position was at the {0}", Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    DStart,
+
+    [SouvenirDiscriminator("the Maze Scramber where the goal was at the {0}", Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    DGoal,
+
+    [SouvenirDiscriminator("the Maze Scramber with a maze marking at the {0}", Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    DIndicators,
 }
 
 public partial class SouvenirModule
@@ -37,9 +46,23 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var positionNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
+        string start = positionNames[startY * 3 + startX];
+        string goal = positionNames[goalY * 3 + goalX];
+        string[] indicators = [positionNames[ind1Y * 3 + ind1X], positionNames[ind2Y * 3 + ind2X]];
 
-        yield return question(SMazeScrambler.Start).Answers(positionNames[startY * 3 + startX], preferredWrong: [positionNames[goalY * 3 + goalX]]);
-        yield return question(SMazeScrambler.Goal).Answers(positionNames[goalY * 3 + goalX], preferredWrong: [positionNames[startY * 3 + startX]]);
-        yield return question(SMazeScrambler.Indicators).Answers([positionNames[ind1Y * 3 + ind1X], positionNames[ind2Y * 3 + ind2X]], preferredWrong: positionNames);
+        yield return new Discriminator(SMazeScrambler.DStart, $"mzsc-start", start, args: [start]);
+        yield return question(SMazeScrambler.QStart)
+            .AvoidDiscriminators($"mzsc-start")
+            .Answers(start, preferredWrong: [goal]);
+
+        yield return new Discriminator(SMazeScrambler.DGoal, $"mzsc-goal", goal, args: [goal]);
+        yield return question(SMazeScrambler.QGoal)
+            .AvoidDiscriminators($"mzsc-goal")
+            .Answers(goal, preferredWrong: [start]);
+
+        foreach (var ind in indicators)
+            yield return new Discriminator(SMazeScrambler.DIndicators, $"mzsc-ind-{ind}", ind, args: [ind], avoidAnswers: [ind]);
+        yield return question(SMazeScrambler.QIndicators)
+            .Answers([indicators[0], indicators[1]], preferredWrong: positionNames);
     }
 }

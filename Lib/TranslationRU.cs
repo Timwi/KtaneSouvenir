@@ -1129,6 +1129,31 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Arithmetic Cipher
+        [typeof(SArithmeticCipher)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "What was on each screen?",
+            },
+            Questions = new()
+            {
+                [SArithmeticCipher.Screen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Arithmetic Cipher?
+                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
+                    },
+                },
+            },
+        },
+
         // ASCII Maze
         [typeof(SASCIIMaze)] = new()
         {
@@ -2122,6 +2147,31 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+        },
+
+        // Blue Huffman Cipher
+        [typeof(SBlueHuffmanCipher)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "What was on each screen?",
+            },
+            Questions = new()
+            {
+                [SBlueHuffmanCipher.Screen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Blue Huffman Cipher?
+                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -9297,6 +9347,31 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Lempel-Ziv Cipher
+        [typeof(SLempelZivCipher)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "What was on each screen?",
+            },
+            Questions = new()
+            {
+                [SLempelZivCipher.Screen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Lempel-Ziv Cipher?
+                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
+                    },
+                },
+            },
+        },
+
         // Letter Math
         [typeof(SLetterMath)] = new()
         {
@@ -10141,6 +10216,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Maze Scrambler
         [typeof(SMazeScrambler)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was the starting position?"] = "Где была начальная позиция?",
@@ -10149,7 +10225,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SMazeScrambler.Start] = new()
+                [SMazeScrambler.QStart] = new()
                 {
                     // English: What was the starting position on {0}?
                     Question = "Какая была начальная позиция {0}?",
@@ -10159,14 +10235,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top-middle"] = "Сверху посередине",
                         ["top-right"] = "Сверху справа",
                         ["middle-left"] = "Посередине слева",
-                        ["middle-middle"] = "В центре",
+                        ["center"] = "center",
                         ["middle-right"] = "Посередине справа",
                         ["bottom-left"] = "Снизу слева",
                         ["bottom-middle"] = "Снизу посередине",
                         ["bottom-right"] = "Снизу справа",
                     },
                 },
-                [SMazeScrambler.Goal] = new()
+                [SMazeScrambler.QGoal] = new()
                 {
                     // English: What was the goal on {0}?
                     Question = "Где была цель {0}?",
@@ -10176,14 +10252,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top-middle"] = "Сверху посередине",
                         ["top-right"] = "Сверху справа",
                         ["middle-left"] = "Посередине слева",
-                        ["middle-middle"] = "В центре",
+                        ["center"] = "center",
                         ["middle-right"] = "Посередине справа",
                         ["bottom-left"] = "Снизу слева",
                         ["bottom-middle"] = "Снизу посередине",
                         ["bottom-right"] = "Снизу справа",
                     },
                 },
-                [SMazeScrambler.Indicators] = new()
+                [SMazeScrambler.QIndicators] = new()
                 {
                     // English: Which of these positions was a maze marking on {0}?
                     Question = "На какой позиции было обозначение лабиринта {0}?",
@@ -10198,6 +10274,63 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["bottom-left"] = "Снизу слева",
                         ["bottom-middle"] = "Снизу посередине",
                         ["bottom-right"] = "Снизу справа",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SMazeScrambler.DStart] = new()
+                {
+                    // English: the Maze Scramber where the starting position was at the {0}
+                    // Example: the Maze Scramber where the starting position was at the top-left
+                    Discriminator = "the Maze Scramber where the starting position was at the {0}",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["center"] = "center",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
+                    },
+                },
+                [SMazeScrambler.DGoal] = new()
+                {
+                    // English: the Maze Scramber where the goal was at the {0}
+                    // Example: the Maze Scramber where the goal was at the top-left
+                    Discriminator = "the Maze Scramber where the goal was at the {0}",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["center"] = "center",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
+                    },
+                },
+                [SMazeScrambler.DIndicators] = new()
+                {
+                    // English: the Maze Scramber with a maze marking at the {0}
+                    // Example: the Maze Scramber with a maze marking at the top-left
+                    Discriminator = "the Maze Scramber where a maze marking was at the {0}",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["center"] = "center",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
                     },
                 },
             },
@@ -13674,6 +13807,31 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Pokémon Sprite Cipher
+        [typeof(SPokémonSpriteCipher)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "What was on each screen?",
+            },
+            Questions = new()
+            {
+                [SPokémonSpriteCipher.Screen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Pokémon Sprite Cipher?
+                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
+                    },
+                },
+            },
+        },
+
         // Polygons
         [typeof(SPolygons)] = new()
         {
@@ -16406,7 +16564,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SSimonStores.Colors] = new()
+                [SSimonStores.QFlashes] = new()
                 {
                     // English: Which color {1} {2} in the final sequence of {0}?
                     // Example: Which color flashed first in the final sequence of Simon Stores?
@@ -16414,7 +16572,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     Arguments = new()
                     {
                         ["flashed"] = "горел",
-                        ["was among the colors flashed"] = "был среди цветов на этапе",
+                        ["was among the colors that flashed"] = "был среди цветов на этапе",
                     },
                     Answers = new()
                     {
@@ -16424,6 +16582,26 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Cyan"] = "Cyan",
                         ["Magenta"] = "Magenta",
                         ["Yellow"] = "Yellow",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SSimonStores.DFlashes] = new()
+                {
+                    // English: the Simon Stores where {0} {1} {2} in the final sequence
+                    // Example: the Simon Stores where red flashed first in the final sequence
+                    Discriminator = "the Simon Stores where {0} {1} {2} in the final sequence",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["flashed"] = "flashed",
+                        ["was among the colors that flashed"] = "was among the colors that flashed",
                     },
                 },
             },
@@ -20228,6 +20406,31 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+        },
+
+        // Yellow Huffman Cipher
+        [typeof(SYellowHuffmanCipher)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "What was on each screen?",
+            },
+            Questions = new()
+            {
+                [SYellowHuffmanCipher.Screen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Yellow Huffman Cipher?
+                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },

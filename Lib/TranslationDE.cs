@@ -8948,7 +8948,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             Questions = new()
             {
-                [SMazeScrambler.Start] = new()
+                [SMazeScrambler.QStart] = new()
                 {
                     // English: What was the starting position on {0}?
                     Question = "What was the starting position on {0}?",
@@ -8958,14 +8958,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["top-middle"] = "top-middle",
                         ["top-right"] = "top-right",
                         ["middle-left"] = "middle-left",
-                        ["middle-middle"] = "middle-middle",
+                        ["center"] = "center",
                         ["middle-right"] = "middle-right",
                         ["bottom-left"] = "bottom-left",
                         ["bottom-middle"] = "bottom-middle",
                         ["bottom-right"] = "bottom-right",
                     },
                 },
-                [SMazeScrambler.Goal] = new()
+                [SMazeScrambler.QGoal] = new()
                 {
                     // English: What was the goal on {0}?
                     Question = "What was the goal on {0}?",
@@ -8975,18 +8975,75 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["top-middle"] = "top-middle",
                         ["top-right"] = "top-right",
                         ["middle-left"] = "middle-left",
-                        ["middle-middle"] = "middle-middle",
+                        ["center"] = "center",
                         ["middle-right"] = "middle-right",
                         ["bottom-left"] = "bottom-left",
                         ["bottom-middle"] = "bottom-middle",
                         ["bottom-right"] = "bottom-right",
                     },
                 },
-                [SMazeScrambler.Indicators] = new()
+                [SMazeScrambler.QIndicators] = new()
                 {
                     // English: Which of these positions was a maze marking on {0}?
                     Question = "Which of these positions was a maze marking on {0}?",
                     Answers = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["center"] = "center",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SMazeScrambler.DStart] = new()
+                {
+                    // English: the Maze Scramber where the starting position was at the {0}
+                    // Example: the Maze Scramber where the starting position was at the top-left
+                    Discriminator = "the Maze Scramber where the starting position was at the {0}",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["center"] = "center",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
+                    },
+                },
+                [SMazeScrambler.DGoal] = new()
+                {
+                    // English: the Maze Scramber where the goal was at the {0}
+                    // Example: the Maze Scramber where the goal was at the top-left
+                    Discriminator = "the Maze Scramber where the goal was at the {0}",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-middle"] = "top-middle",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["center"] = "center",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-middle"] = "bottom-middle",
+                        ["bottom-right"] = "bottom-right",
+                    },
+                },
+                [SMazeScrambler.DIndicators] = new()
+                {
+                    // English: the Maze Scramber with a maze marking at the {0}
+                    // Example: the Maze Scramber with a maze marking at the top-left
+                    Discriminator = "the Maze Scramber where a maze marking was at the {0}",
+                    Arguments = new()
                     {
                         ["top-left"] = "top-left",
                         ["top-middle"] = "top-middle",
@@ -14454,7 +14511,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             Questions = new()
             {
-                [SSimonStores.Colors] = new()
+                [SSimonStores.QFlashes] = new()
                 {
                     // English: Which color {1} {2} in the final sequence of {0}?
                     // Example: Which color flashed first in the final sequence of Simon Stores?
@@ -14462,7 +14519,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Arguments = new()
                     {
                         ["flashed"] = "flashed",
-                        ["was among the colors flashed"] = "was among the colors flashed",
+                        ["was among the colors that flashed"] = "was among the colors that flashed",
                     },
                     Answers = new()
                     {
@@ -14472,6 +14529,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Cyan"] = "Cyan",
                         ["Magenta"] = "Magenta",
                         ["Yellow"] = "Yellow",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SSimonStores.DFlashes] = new()
+                {
+                    // English: the Simon Stores where {0} {1} {2} in the final sequence
+                    // Example: the Simon Stores where red flashed first in the final sequence
+                    Discriminator = "the Simon Stores where {0} {1} {2} in the final sequence",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["flashed"] = "flashed",
+                        ["was among the colors that flashed"] = "was among the colors that flashed",
                     },
                 },
             },

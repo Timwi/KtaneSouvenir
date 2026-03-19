@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
+using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
 public enum SSimonStores
 {
-    [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["flashed", QandA.Ordinal, "was among the colors flashed", QandA.Ordinal], ArgumentGroupSize = 2)]
-    Colors
+    [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["flashed", QandA.Ordinal, "was among the colors that flashed", QandA.Ordinal], ArgumentGroupSize = 2)]
+    QFlashes,
+
+    [SouvenirDiscriminator("the Simon Stores where {0} {1} {2} in the final sequence", Arguments = ["red", "flashed", QandA.Ordinal, "green", "flashed", QandA.Ordinal, "blue", "flashed", QandA.Ordinal, "cyan", "was among the colors that flashed", QandA.Ordinal, "magenta", "was among the colors that flashed", QandA.Ordinal, "yellow", "was among the colors that flashed", QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, true, false])]
+    DFlashes
 }
 
 public partial class SouvenirModule
@@ -37,7 +41,12 @@ public partial class SouvenirModule
             { 'M', "Magenta" },
             { 'Y', "Yellow" }
         };
-        for (var i = 0; i < 5; i++)
-            yield return question(SSimonStores.Colors, args: [flashSequences[i].Length == 1 ? "flashed" : "was among the colors flashed", Ordinal(i + 1)]).Answers(flashSequences[i].Select(ch => colorNames[ch]).ToArray());
+        for (var stage = 0; stage < 5; stage++)
+        {
+            var flashStr = flashSequences[stage].Length == 1 ? "flashed" : "was among the colors that flashed";
+            foreach (var flash in flashSequences[stage])
+                yield return new Discriminator(SSimonStores.DFlashes, $"flash-{stage}-{flash}", colorNames[flash], args: [colorNames[flash], flashStr, Ordinal(stage+1)], avoidAnswers: [colorNames[flash]]);
+            yield return question(SSimonStores.QFlashes, args: [flashStr, Ordinal(stage + 1)]).Answers(flashSequences[stage].Select(ch => colorNames[ch]).ToArray());
+        }
     }
 }
