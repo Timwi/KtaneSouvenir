@@ -7558,23 +7558,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     },
                 },
             },
-            Discriminators = new()
-            {
-                [SHexamaze.Discriminator] = new()
-                {
-                    // English: the Hexamaze that {0} a {1} marking on it
-                    // Example: the Hexamaze that has a triangle marking on it
-                    Discriminator = "{1}のマークが{0}六角迷路",
-                    Arguments = new()
-                    {
-                        ["has"] = "ある",
-                        ["doesn’t have"] = "ない",
-                        ["triangle"] = "三角",
-                        ["circle"] = "丸",
-                        ["hexagon"] = "六角形",
-                    },
-                },
-            },
         },
 
         // hexOrbits

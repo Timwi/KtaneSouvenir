@@ -7643,23 +7643,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     },
                 },
             },
-            Discriminators = new()
-            {
-                [SHexamaze.Discriminator] = new()
-                {
-                    // English: the Hexamaze that {0} a {1} marking on it
-                    // Example: the Hexamaze that has a triangle marking on it
-                    Discriminator = "the Hexamaze that {0} a {1} marking on it",
-                    Arguments = new()
-                    {
-                        ["has"] = "has",
-                        ["doesn’t have"] = "doesn’t have",
-                        ["triangle"] = "triangle",
-                        ["circle"] = "circle",
-                        ["hexagon"] = "hexagon",
-                    },
-                },
-            },
         },
 
         // hexOrbits

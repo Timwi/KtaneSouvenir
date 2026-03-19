@@ -6676,23 +6676,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     },
                 },
             },
-            Discriminators = new()
-            {
-                [SHexamaze.Discriminator] = new()
-                {
-                    // English: the Hexamaze that {0} a {1} marking on it
-                    // Example: the Hexamaze that has a triangle marking on it
-                    Discriminator = "dem Hexalabyrinth, das {0} {1}-Markierung hat",
-                    Arguments = new()
-                    {
-                        ["has"] = "eine",
-                        ["doesn’t have"] = "keine",
-                        ["triangle"] = "Dreieck",
-                        ["circle"] = "Kreis",
-                        ["hexagon"] = "Sechseck",
-                    },
-                },
-            },
         },
 
         // hexOrbits
