@@ -19,7 +19,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colors = GetArrayField<string>(comp, "outputSequence").Get(expectedLength: 5);
-        for (var ix = 0; ix < colors.Length; ix++)
+        for (var ix = 0; ix < 4; ix++) // We don't ask about the fifth flash since the fifth input stays on the module
             yield return question(SSimonStops.Colors, args: [Ordinal(ix + 1)]).Answers(colors[ix], preferredWrong: colors);
     }
 }
