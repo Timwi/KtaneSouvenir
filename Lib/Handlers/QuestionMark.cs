@@ -29,6 +29,6 @@ public partial class SouvenirModule
 
         var preferredWrongAns = Enumerable.Range(0, QuestionMarkSprites.Length).Except([currentSpriteIndex]).Select(ix => QuestionMarkSprites[ix]).ToArray();
 
-        yield return question(SQuestionMark.FlashedSymbols).Answers(flashedSpritePool.Except([currentSpriteIndex]).Select(ix => QuestionMarkSprites[ix]).ToArray(), preferredWrong: preferredWrongAns);
+        yield return question(SQuestionMark.FlashedSymbols).Answers(flashedSpritePool.Except([currentSpriteIndex]).Select(ix => QuestionMarkSprites[ix]).ToArray(), all: preferredWrongAns);
     }
 }
