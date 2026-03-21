@@ -24,8 +24,16 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        var flagType = GetIntField(comp, "ActiveFlag").Get(min: 0, max: 4);
+        var answer1 = GetIntField(comp, "AnswerColour1").Get(min: 0, max: colors.Length - 1);
+
+        if (flagType == 1 && answer1 == 1)
+            yield return legitimatelyNoQuestion(module, "This specific answer can be reverse engineered.");
+
         yield return question(SVexillology.Colors, args: [Ordinal(1)]).Answers(colors[color1], preferredWrong: [colors[color2], colors[color3]]);
         yield return question(SVexillology.Colors, args: [Ordinal(2)]).Answers(colors[color2], preferredWrong: [colors[color1], colors[color3]]);
-        yield return question(SVexillology.Colors, args: [Ordinal(3)]).Answers(colors[color3], preferredWrong: [colors[color2], colors[color1]]);
+
+        if (!(flagType >= 2 && answer1 == 2)) // This specific answer can be reverse engineered
+            yield return question(SVexillology.Colors, args: [Ordinal(3)]).Answers(colors[color3], preferredWrong: [colors[color2], colors[color1]]);
     }
 }
