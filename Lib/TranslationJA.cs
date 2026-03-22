@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -5251,7 +5251,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What was the starting key number?"] = "初期のキー番号は？",
-                ["What was the submitted word?"] = "送信した単語は？",
             },
             Questions = new()
             {
@@ -5259,11 +5258,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the starting key number in {0}?
                     Question = "{0}の初期キー番号は？",
-                },
-                [SDoubleExpert.SubmittedWord] = new()
-                {
-                    // English: What was the word you submitted in {0}?
-                    Question = "{0}で送信した単語は？",
                 },
             },
         },

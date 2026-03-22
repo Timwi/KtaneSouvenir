@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using static Souvenir.Translation_ru.Conjugation;
 
@@ -5348,7 +5348,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the starting key number?"] = "Какое было начальное ключевое число?",
-                ["What was the submitted word?"] = "Какое слово было отправлено?",
             },
             Questions = new()
             {
@@ -5356,11 +5355,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the starting key number in {0}?
                     Question = "Какое было начальное ключевое число {0}?",
-                },
-                [SDoubleExpert.SubmittedWord] = new()
-                {
-                    // English: What was the word you submitted in {0}?
-                    Question = "Какое было отправленное слово {0}?",
                 },
             },
         },

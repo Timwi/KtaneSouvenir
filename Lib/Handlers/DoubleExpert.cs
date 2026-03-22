@@ -7,10 +7,7 @@ public enum SDoubleExpert
 {
     [SouvenirQuestion("What was the starting key number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(30, 69)]
-    StartingKeyNumber,
-
-    [SouvenirQuestion("What was the word you submitted in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Echo", "November", "Rodeo", "Words", "Victor", "Zulu"])]
-    SubmittedWord
+    StartingKeyNumber
 }
 
 public partial class SouvenirModule
@@ -25,10 +22,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var startingKeyNumber = GetIntField(comp, "startKeyNumber").Get(min: 30, max: 69);
-        var keywords = GetListField<string>(comp, "keywords").Get().ToArray();
-        var correctKeywordIndex = GetIntField(comp, "correctKeyword").Get(min: 0, max: keywords.Length - 1);
 
         yield return question(SDoubleExpert.StartingKeyNumber).Answers(startingKeyNumber.ToString());
-        yield return question(SDoubleExpert.SubmittedWord).Answers(keywords[correctKeywordIndex], preferredWrong: keywords);
     }
 }
