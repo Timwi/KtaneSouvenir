@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -2314,8 +2314,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SBorderedKeys.BorderColor] = new()
                 {
-                    // English: What was the {1} key’s border color when it was pressed in {0}?
-                    // Example: What was the first key’s border color when it was pressed in Bordered Keys?
+                    // English: What was this key’s border color when it was pressed in {0}? (+ sprite)
                     Question = "Was war beim Druck auf den {1}en Knopf bei {0} die Randfarbe?",
                     Answers = new()
                     {
@@ -2329,14 +2328,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SBorderedKeys.Digit] = new()
                 {
-                    // English: What was the digit displayed when the {1} key was pressed in {0}?
-                    // Example: What was the digit displayed when the first key was pressed in Bordered Keys?
+                    // English: What was the digit displayed when this key was pressed in {0}? (+ sprite)
                     Question = "Was war beim Druck auf den {1}en Knopf bei {0} die angezeigte Ziffer?",
                 },
                 [SBorderedKeys.KeyColor] = new()
                 {
-                    // English: What was the {1} key’s key color when it was pressed in {0}?
-                    // Example: What was the first key’s key color when it was pressed in Bordered Keys?
+                    // English: What was this key’s key color when it was pressed in {0}? (+ sprite)
                     Question = "Was war beim Druck auf den {1}en Knopf bei {0} die Knopffarbe?",
                     Answers = new()
                     {
@@ -2350,14 +2347,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SBorderedKeys.Label] = new()
                 {
-                    // English: What was the {1} key’s label when it was pressed in {0}?
-                    // Example: What was the first key’s label when it was pressed in Bordered Keys?
+                    // English: What was this key’s label when it was pressed in {0}? (+ sprite)
                     Question = "Was war beim Druck auf den {1}en Knopf bei {0} die Aufschrift?",
                 },
                 [SBorderedKeys.LabelColor] = new()
                 {
-                    // English: What was the {1} key’s label color when it was pressed in {0}?
-                    // Example: What was the first key’s label color when it was pressed in Bordered Keys?
+                    // English: What was this key’s label color when it was pressed in {0}? (+ sprite)
                     Question = "Was war beim Druck auf den {1}en Knopf bei {0} die Aufschriftfarbe?",
                     Answers = new()
                     {
