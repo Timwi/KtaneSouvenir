@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using static Souvenir.Translation_ru.Conjugation;
 
@@ -2354,8 +2354,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SBorderedKeys.BorderColor] = new()
                 {
-                    // English: What was the {1} key’s border color when it was pressed in {0}?
-                    // Example: What was the first key’s border color when it was pressed in Bordered Keys?
+                    // English: What was this key’s border color when it was pressed in {0}? (+ sprite)
                     Question = "Какого цвета была рамка, когда вы нажали {1}-ю клавишу {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
@@ -2370,15 +2369,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SBorderedKeys.Digit] = new()
                 {
-                    // English: What was the digit displayed when the {1} key was pressed in {0}?
-                    // Example: What was the digit displayed when the first key was pressed in Bordered Keys?
+                    // English: What was the digit displayed when this key was pressed in {0}? (+ sprite)
                     Question = "Какая цифра отображалась на дисплее, когда вы нажали {1}-ю клавишу {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SBorderedKeys.KeyColor] = new()
                 {
-                    // English: What was the {1} key’s key color when it was pressed in {0}?
-                    // Example: What was the first key’s key color when it was pressed in Bordered Keys?
+                    // English: What was this key’s key color when it was pressed in {0}? (+ sprite)
                     Question = "Какого цвета была клавиша, когда вы нажали {1}-ю клавишу {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
@@ -2393,15 +2390,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SBorderedKeys.Label] = new()
                 {
-                    // English: What was the {1} key’s label when it was pressed in {0}?
-                    // Example: What was the first key’s label when it was pressed in Bordered Keys?
+                    // English: What was this key’s label when it was pressed in {0}? (+ sprite)
                     Question = "Какая была надпись, когда вы нажали {1}-ю клавишу {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SBorderedKeys.LabelColor] = new()
                 {
-                    // English: What was the {1} key’s label color when it was pressed in {0}?
-                    // Example: What was the first key’s label color when it was pressed in Bordered Keys?
+                    // English: What was this key’s label color when it was pressed in {0}? (+ sprite)
                     Question = "Какого цвета была надпись, когда вы нажали {1}-ю клавишу {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
