@@ -1019,7 +1019,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What was the symbol on the submit button?"] = "送信ボタンに記された記号は？",
-                ["What were the numbers selectable on the screens?"] = "画面上で選択できる数字はいくつ？",
             },
             Questions = new()
             {
@@ -1027,18 +1026,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the symbol on the submit button in {0}?
                     Question = "{0}の送信ボタンの記号は？",
-                },
-                [SArithmelogic.Numbers] = new()
-                {
-                    // English: Which number was selectable, but not the solution, in the {1} screen on {0}?
-                    // Example: Which number was selectable, but not the solution, in the left screen on Arithmelogic?
-                    Question = "{0}の{1}の画面で選択できる、答え以外の数字はどれ？",
-                    Arguments = new()
-                    {
-                        ["left"] = "左",
-                        ["middle"] = "中央",
-                        ["right"] = "右",
-                    },
                 },
             },
         },
@@ -2270,6 +2257,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Bordered Keys
         [typeof(SBorderedKeys)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "境界音板",
             ManualQuestions = new()
             {
@@ -2279,9 +2267,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SBorderedKeys.BorderColor] = new()
                 {
-                    // English: What was the {1} key’s border color when it was pressed in {0}?
-                    // Example: What was the first key’s border color when it was pressed in Bordered Keys?
-                    Question = "{0}で{1}番目の音板を押した時、縁は何色だった？",
+                    // English: What was this key’s border color when it was pressed in {0}? (+ sprite)
+                    Question = "What was this key’s border color when it was pressed in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -2294,15 +2281,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SBorderedKeys.Digit] = new()
                 {
-                    // English: What was the digit displayed when the {1} key was pressed in {0}?
-                    // Example: What was the digit displayed when the first key was pressed in Bordered Keys?
+                    // English: What was the digit displayed when this key was pressed in {0}? (+ sprite)
                     Question = "{0}で{1}番目の音板を押した時、ディスプレーの数字は何だった？",
                 },
                 [SBorderedKeys.KeyColor] = new()
                 {
-                    // English: What was the {1} key’s key color when it was pressed in {0}?
-                    // Example: What was the first key’s key color when it was pressed in Bordered Keys?
-                    Question = "{0}で{1}番目の音板を押した時、音板は何色だった？",
+                    // English: What was this key’s key color when it was pressed in {0}? (+ sprite)
+                    Question = "What was this key’s key color when it was pressed in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -2315,15 +2300,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SBorderedKeys.Label] = new()
                 {
-                    // English: What was the {1} key’s label when it was pressed in {0}?
-                    // Example: What was the first key’s label when it was pressed in Bordered Keys?
-                    Question = "{0}で{1}番目の音板を押した時、ラベルは何だった？",
+                    // English: What was this key’s label when it was pressed in {0}? (+ sprite)
+                    Question = "What was this key’s label when it was pressed in {0}?",
                 },
                 [SBorderedKeys.LabelColor] = new()
                 {
-                    // English: What was the {1} key’s label color when it was pressed in {0}?
-                    // Example: What was the first key’s label color when it was pressed in Bordered Keys?
-                    Question = "{0}で{1}番目の音板を押した時、ラベルの色は何色だった？",
+                    // English: What was this key’s label color when it was pressed in {0}? (+ sprite)
+                    Question = "What was this key’s label color when it was pressed in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4911,6 +4894,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Disordered Keys
         [typeof(SDisorderedKeys)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "欠陥順番音板",
             ManualQuestions = new()
             {
@@ -4920,9 +4904,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SDisorderedKeys.MissingInfo] = new()
                 {
-                    // English: What was the missing information for the {1} key in {0}?
-                    // Example: What was the missing information for the first key in Disordered Keys?
-                    Question = "{0}の{1}番目の音板に欠けていた情報は？",
+                    // English: What was the missing information for this key in {0}? (+ sprite)
+                    Question = "What was the missing information for this key in {0}?",
                     Answers = new()
                     {
                         ["Key color"] = "音板の色",
@@ -4932,9 +4915,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SDisorderedKeys.UnrevealedKeyColor] = new()
                 {
-                    // English: What was the unrevealed key color for the {1} key in {0}?
-                    // Example: What was the unrevealed key color for the first key in Disordered Keys?
-                    Question = "{0}の{1}番目の不完全な音板のラベルの色は？",
+                    // English: What was the unrevealed key color for this key in {0}? (+ sprite)
+                    Question = "What was the unrevealed key color for this key in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4947,9 +4929,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SDisorderedKeys.UnrevealedLabelColor] = new()
                 {
-                    // English: What was the unrevealed label color for the {1} key in {0}?
-                    // Example: What was the unrevealed label color for the first key in Disordered Keys?
-                    Question = "{0}の{1}番目の不完全な音板のラベルの色は？",
+                    // English: What was the unrevealed label color for this key in {0}? (+ sprite)
+                    Question = "What was the unrevealed label color for this key in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4962,15 +4943,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SDisorderedKeys.UnrevealedKeyLabel] = new()
                 {
-                    // English: What was the unrevealed label for the {1} key in {0}?
-                    // Example: What was the unrevealed label for the first key in Disordered Keys?
-                    Question = "{0}の{1}番目の不完全な音板のラベルは？",
+                    // English: What was the unrevealed label for this key in {0}? (+ sprite)
+                    Question = "What was the unrevealed label for this key in {0}?",
                 },
                 [SDisorderedKeys.RevealedKeyColor] = new()
                 {
-                    // English: What was the revealed key color for the {1} key in {0}?
-                    // Example: What was the revealed key color for the first key in Disordered Keys?
-                    Question = "{0}の{1}番目の完全な音板の色は？",
+                    // English: What was the revealed key color for this key in {0}? (+ sprite)
+                    Question = "What was the revealed key color for this key in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4983,9 +4962,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SDisorderedKeys.RevealedLabelColor] = new()
                 {
-                    // English: What was the revealed label color for the {1} key in {0}?
-                    // Example: What was the revealed label color for the first key in Disordered Keys?
-                    Question = "{0}の{1}番目の完全な音板のラベルの色は？",
+                    // English: What was the revealed label color for this key in {0}? (+ sprite)
+                    Question = "What was the revealed label color for this key in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4998,9 +4976,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SDisorderedKeys.RevealedLabel] = new()
                 {
-                    // English: What was the revealed label for the {1} key in {0}?
-                    // Example: What was the revealed label for the first key in Disordered Keys?
-                    Question = "{0}の{1}番目の完全な音板のラベルは？",
+                    // English: What was the revealed label for this key in {0}? (+ sprite)
+                    Question = "What was the revealed label for this key in {0}?",
                 },
             },
         },
@@ -5251,7 +5228,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What was the starting key number?"] = "初期のキー番号は？",
-                ["What was the submitted word?"] = "送信した単語は？",
             },
             Questions = new()
             {
@@ -5259,11 +5235,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the starting key number in {0}?
                     Question = "{0}の初期キー番号は？",
-                },
-                [SDoubleExpert.SubmittedWord] = new()
-                {
-                    // English: What was the word you submitted in {0}?
-                    Question = "{0}で送信した単語は？",
                 },
             },
         },
@@ -14601,7 +14572,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What were the labels, their colors, and the colors of the keys initially in each stage?"] = "各ステージにおける初期状態の音板の色、ラベル、ラベルの色は？",
-                ["Where was the pivot in each stage?"] = "各ステージにおける軸の位置は？",
             },
             Questions = new()
             {
@@ -14640,11 +14610,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What was the label of this key in the first stage of Reordered Keys? (+ sprite)
                     Question = "{0}のステージ{1}におけるこの音板のラベルの色は？",
-                },
-                [SReorderedKeys.Pivot] = new()
-                {
-                    // English: Which key was the pivot in the {1} stage of {0}?
-                    Question = "{0}のステージ{1}の軸は？",
                 },
             },
         },

@@ -1105,7 +1105,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the symbol on the submit button?"] = "Какой символ был на кнопке отправки?",
-                ["What were the numbers selectable on the screens?"] = "Какие числа можно было выбрать на экранах?",
             },
             Questions = new()
             {
@@ -1113,18 +1112,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the symbol on the submit button in {0}?
                     Question = "Какой символ был на кнопке отправки ответа {0}?",
-                },
-                [SArithmelogic.Numbers] = new()
-                {
-                    // English: Which number was selectable, but not the solution, in the {1} screen on {0}?
-                    // Example: Which number was selectable, but not the solution, in the left screen on Arithmelogic?
-                    Question = "Какое число присутствовало (но не являлось решением) на {1} экране {0}?",
-                    Arguments = new()
-                    {
-                        ["left"] = "левом",
-                        ["middle"] = "центральном",
-                        ["right"] = "правом",
-                    },
                 },
             },
         },
@@ -2367,10 +2354,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SBorderedKeys.BorderColor] = new()
                 {
-                    // English: What was the {1} key’s border color when it was pressed in {0}?
-                    // Example: What was the first key’s border color when it was pressed in Bordered Keys?
-                    Question = "Какого цвета была рамка, когда вы нажали {1}-ю клавишу {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    // English: What was this key’s border color when it was pressed in {0}? (+ sprite)
+                    Question = "What was this key’s border color when it was pressed in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -2383,17 +2368,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SBorderedKeys.Digit] = new()
                 {
-                    // English: What was the digit displayed when the {1} key was pressed in {0}?
-                    // Example: What was the digit displayed when the first key was pressed in Bordered Keys?
+                    // English: What was the digit displayed when this key was pressed in {0}? (+ sprite)
                     Question = "Какая цифра отображалась на дисплее, когда вы нажали {1}-ю клавишу {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SBorderedKeys.KeyColor] = new()
                 {
-                    // English: What was the {1} key’s key color when it was pressed in {0}?
-                    // Example: What was the first key’s key color when it was pressed in Bordered Keys?
-                    Question = "Какого цвета была клавиша, когда вы нажали {1}-ю клавишу {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    // English: What was this key’s key color when it was pressed in {0}? (+ sprite)
+                    Question = "What was this key’s key color when it was pressed in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -2406,17 +2388,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SBorderedKeys.Label] = new()
                 {
-                    // English: What was the {1} key’s label when it was pressed in {0}?
-                    // Example: What was the first key’s label when it was pressed in Bordered Keys?
-                    Question = "Какая была надпись, когда вы нажали {1}-ю клавишу {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    // English: What was this key’s label when it was pressed in {0}? (+ sprite)
+                    Question = "What was this key’s label when it was pressed in {0}?",
                 },
                 [SBorderedKeys.LabelColor] = new()
                 {
-                    // English: What was the {1} key’s label color when it was pressed in {0}?
-                    // Example: What was the first key’s label color when it was pressed in Bordered Keys?
-                    Question = "Какого цвета была надпись, когда вы нажали {1}-ю клавишу {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    // English: What was this key’s label color when it was pressed in {0}? (+ sprite)
+                    Question = "What was this key’s label color when it was pressed in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -5016,9 +4994,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SDisorderedKeys.MissingInfo] = new()
                 {
-                    // English: What was the missing information for the {1} key in {0}?
-                    // Example: What was the missing information for the first key in Disordered Keys?
-                    Question = "Какой информации недоставало {1}-й клавише {0}?",
+                    // English: What was the missing information for this key in {0}? (+ sprite)
+                    Question = "What was the missing information for this key in {0}?",
                     Answers = new()
                     {
                         ["Key color"] = "Цвета клавиши",
@@ -5028,9 +5005,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SDisorderedKeys.UnrevealedKeyColor] = new()
                 {
-                    // English: What was the unrevealed key color for the {1} key in {0}?
-                    // Example: What was the unrevealed key color for the first key in Disordered Keys?
-                    Question = "Каким был нераскрытый цвет {1}-й клавиши {0}?",
+                    // English: What was the unrevealed key color for this key in {0}? (+ sprite)
+                    Question = "What was the unrevealed key color for this key in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -5043,9 +5019,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SDisorderedKeys.UnrevealedLabelColor] = new()
                 {
-                    // English: What was the unrevealed label color for the {1} key in {0}?
-                    // Example: What was the unrevealed label color for the first key in Disordered Keys?
-                    Question = "Каким был нераскрытый цвет надписи {1}-й клавиши {0}?",
+                    // English: What was the unrevealed label color for this key in {0}? (+ sprite)
+                    Question = "What was the unrevealed label color for this key in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -5058,15 +5033,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SDisorderedKeys.UnrevealedKeyLabel] = new()
                 {
-                    // English: What was the unrevealed label for the {1} key in {0}?
-                    // Example: What was the unrevealed label for the first key in Disordered Keys?
-                    Question = "Какая была нераскрытая надпись {1}-й клавиши {0}?",
+                    // English: What was the unrevealed label for this key in {0}? (+ sprite)
+                    Question = "What was the unrevealed label for this key in {0}?",
                 },
                 [SDisorderedKeys.RevealedKeyColor] = new()
                 {
-                    // English: What was the revealed key color for the {1} key in {0}?
-                    // Example: What was the revealed key color for the first key in Disordered Keys?
-                    Question = "Каким был раскрытый цвет {1}-й клавиши {0}?",
+                    // English: What was the revealed key color for this key in {0}? (+ sprite)
+                    Question = "What was the revealed key color for this key in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -5079,9 +5052,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SDisorderedKeys.RevealedLabelColor] = new()
                 {
-                    // English: What was the revealed label color for the {1} key in {0}?
-                    // Example: What was the revealed label color for the first key in Disordered Keys?
-                    Question = "Каким был раскрытый цвет надписи {1}-й клавиши {0}?",
+                    // English: What was the revealed label color for this key in {0}? (+ sprite)
+                    Question = "What was the revealed label color for this key in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -5094,9 +5066,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SDisorderedKeys.RevealedLabel] = new()
                 {
-                    // English: What was the revealed label for the {1} key in {0}?
-                    // Example: What was the revealed label for the first key in Disordered Keys?
-                    Question = "Какая была раскрытая надпись {1}-й клавиши {0}?",
+                    // English: What was the revealed label for this key in {0}? (+ sprite)
+                    Question = "What was the revealed label for this key in {0}?",
                 },
             },
         },
@@ -5348,7 +5319,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the starting key number?"] = "Какое было начальное ключевое число?",
-                ["What was the submitted word?"] = "Какое слово было отправлено?",
             },
             Questions = new()
             {
@@ -5356,11 +5326,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the starting key number in {0}?
                     Question = "Какое было начальное ключевое число {0}?",
-                },
-                [SDoubleExpert.SubmittedWord] = new()
-                {
-                    // English: What was the word you submitted in {0}?
-                    Question = "Какое было отправленное слово {0}?",
                 },
             },
         },
@@ -14649,7 +14614,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What were the labels, their colors, and the colors of the keys initially in each stage?"] = "What were the labels, their colors, and the colors of the keys initially in each stage?",
-                ["Where was the pivot in each stage?"] = "Where was the pivot in each stage?",
             },
             Questions = new()
             {
@@ -14688,11 +14652,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What was the label of this key in the first stage of Reordered Keys? (+ sprite)
                     Question = "What color was the label of this key in the {1} stage of {0}?",
-                },
-                [SReorderedKeys.Pivot] = new()
-                {
-                    // English: Which key was the pivot in the {1} stage of {0}?
-                    Question = "Which key was the pivot in the {1} stage of {0}?",
                 },
             },
         },

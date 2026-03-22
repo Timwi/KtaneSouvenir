@@ -6,21 +6,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SBorderedKeys
 {
-    [SouvenirQuestion("What was the {1} key’s border color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [SouvenirQuestion("What was this key’s border color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     BorderColor,
 
-    [SouvenirQuestion("What was the digit displayed when the {1} key was pressed in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the digit displayed when this key was pressed in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
     [AnswerGenerator.Integers(1, 6)]
     Digit,
 
-    [SouvenirQuestion("What was the {1} key’s key color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [SouvenirQuestion("What was this key’s key color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     KeyColor,
 
-    [SouvenirQuestion("What was the {1} key’s label when it was pressed in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was this key’s label when it was pressed in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
     [AnswerGenerator.Integers(1, 6)]
     Label,
 
-    [SouvenirQuestion("What was the {1} key’s label color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [SouvenirQuestion("What was this key’s label color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     LabelColor
 }
 
@@ -75,12 +75,11 @@ public partial class SouvenirModule
         {
             if (borderColors[keyIndex] != null)
             {
-                var formatArgs = new[] { Ordinal(keyIndex + 1) };
-                yield return question(SBorderedKeys.BorderColor, args: formatArgs).Answers(borderColors[keyIndex]);
-                yield return question(SBorderedKeys.Digit, args: formatArgs).Answers(digits[keyIndex]);
-                yield return question(SBorderedKeys.KeyColor, args: formatArgs).Answers(keysColors[keyIndex]);
-                yield return question(SBorderedKeys.Label, args: formatArgs).Answers(labels[keyIndex]);
-                yield return question(SBorderedKeys.LabelColor, args: formatArgs).Answers(labelColors[keyIndex]);
+                yield return question(SBorderedKeys.BorderColor, questionSprite: OrderedKeysSprites[keyIndex]).Answers(borderColors[keyIndex]);
+                yield return question(SBorderedKeys.Digit, questionSprite: OrderedKeysSprites[keyIndex]).Answers(digits[keyIndex]);
+                yield return question(SBorderedKeys.KeyColor, questionSprite: OrderedKeysSprites[keyIndex]).Answers(keysColors[keyIndex]);
+                yield return question(SBorderedKeys.Label, questionSprite: OrderedKeysSprites[keyIndex]).Answers(labels[keyIndex]);
+                yield return question(SBorderedKeys.LabelColor, questionSprite: OrderedKeysSprites[keyIndex]).Answers(labelColors[keyIndex]);
             }
         }
     }
