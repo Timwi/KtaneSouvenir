@@ -1019,7 +1019,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What was the symbol on the submit button?"] = "送信ボタンに記された記号は？",
-                ["What were the numbers selectable on the screens?"] = "画面上で選択できる数字はいくつ？",
             },
             Questions = new()
             {
@@ -1027,18 +1026,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the symbol on the submit button in {0}?
                     Question = "{0}の送信ボタンの記号は？",
-                },
-                [SArithmelogic.Numbers] = new()
-                {
-                    // English: Which number was selectable, but not the solution, in the {1} screen on {0}?
-                    // Example: Which number was selectable, but not the solution, in the left screen on Arithmelogic?
-                    Question = "{0}の{1}の画面で選択できる、答え以外の数字はどれ？",
-                    Arguments = new()
-                    {
-                        ["left"] = "左",
-                        ["middle"] = "中央",
-                        ["right"] = "右",
-                    },
                 },
             },
         },

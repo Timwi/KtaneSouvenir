@@ -1105,7 +1105,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the symbol on the submit button?"] = "Какой символ был на кнопке отправки?",
-                ["What were the numbers selectable on the screens?"] = "Какие числа можно было выбрать на экранах?",
             },
             Questions = new()
             {
@@ -1113,18 +1112,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the symbol on the submit button in {0}?
                     Question = "Какой символ был на кнопке отправки ответа {0}?",
-                },
-                [SArithmelogic.Numbers] = new()
-                {
-                    // English: Which number was selectable, but not the solution, in the {1} screen on {0}?
-                    // Example: Which number was selectable, but not the solution, in the left screen on Arithmelogic?
-                    Question = "Какое число присутствовало (но не являлось решением) на {1} экране {0}?",
-                    Arguments = new()
-                    {
-                        ["left"] = "левом",
-                        ["middle"] = "центральном",
-                        ["right"] = "правом",
-                    },
                 },
             },
         },

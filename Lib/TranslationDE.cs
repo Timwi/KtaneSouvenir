@@ -1056,7 +1056,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What was the symbol on the submit button?"] = "Welches Symbol war auf der Eingabetaste?",
-                ["What were the numbers selectable on the screens?"] = "Welche Zahlen standen auf den Displays zur Auswahl?",
             },
             Questions = new()
             {
@@ -1064,18 +1063,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the symbol on the submit button in {0}?
                     Question = "Welches Symbol war bei {0} auf dem Eingabeknopf?",
-                },
-                [SArithmelogic.Numbers] = new()
-                {
-                    // English: Which number was selectable, but not the solution, in the {1} screen on {0}?
-                    // Example: Which number was selectable, but not the solution, in the left screen on Arithmelogic?
-                    Question = "Welche Zahl war bei {0} im {1} Bildschirm auswählbar, aber nicht die Lösung?",
-                    Arguments = new()
-                    {
-                        ["left"] = "linken",
-                        ["middle"] = "mittleren",
-                        ["right"] = "rechten",
-                    },
                 },
             },
         },
