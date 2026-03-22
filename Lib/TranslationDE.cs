@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Souvenir;
@@ -5392,7 +5392,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What was the starting key number?"] = "What was the starting key number?",
-                ["What was the submitted word?"] = "Welches Wort wurde eingegeben?",
             },
             Questions = new()
             {
@@ -5400,11 +5399,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the starting key number in {0}?
                     Question = "Was war bei {0} die anfängliche Schlüsselzahl?",
-                },
-                [SDoubleExpert.SubmittedWord] = new()
-                {
-                    // English: What was the word you submitted in {0}?
-                    Question = "Was war bei {0} das eingegebene Wort?",
                 },
             },
         },
