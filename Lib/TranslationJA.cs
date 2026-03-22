@@ -14595,7 +14595,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What were the labels, their colors, and the colors of the keys initially in each stage?"] = "各ステージにおける初期状態の音板の色、ラベル、ラベルの色は？",
-                ["Where was the pivot in each stage?"] = "各ステージにおける軸の位置は？",
             },
             Questions = new()
             {
@@ -14634,11 +14633,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What was the label of this key in the first stage of Reordered Keys? (+ sprite)
                     Question = "{0}のステージ{1}におけるこの音板のラベルの色は？",
-                },
-                [SReorderedKeys.Pivot] = new()
-                {
-                    // English: Which key was the pivot in the {1} stage of {0}?
-                    Question = "{0}のステージ{1}の軸は？",
                 },
             },
         },

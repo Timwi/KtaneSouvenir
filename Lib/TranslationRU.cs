@@ -14643,7 +14643,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What were the labels, their colors, and the colors of the keys initially in each stage?"] = "What were the labels, their colors, and the colors of the keys initially in each stage?",
-                ["Where was the pivot in each stage?"] = "Where was the pivot in each stage?",
             },
             Questions = new()
             {
@@ -14682,11 +14681,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
                     // Example: What was the label of this key in the first stage of Reordered Keys? (+ sprite)
                     Question = "What color was the label of this key in the {1} stage of {0}?",
-                },
-                [SReorderedKeys.Pivot] = new()
-                {
-                    // English: Which key was the pivot in the {1} stage of {0}?
-                    Question = "Which key was the pivot in the {1} stage of {0}?",
                 },
             },
         },
