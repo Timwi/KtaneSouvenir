@@ -4998,8 +4998,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SDisorderedKeys.MissingInfo] = new()
                 {
-                    // English: What was the missing information for the {1} key in {0}?
-                    // Example: What was the missing information for the first key in Disordered Keys?
+                    // English: What was the missing information for this key in {0}? (+ sprite)
                     Question = "Какой информации недоставало {1}-й клавише {0}?",
                     Answers = new()
                     {
@@ -5010,8 +5009,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SDisorderedKeys.UnrevealedKeyColor] = new()
                 {
-                    // English: What was the unrevealed key color for the {1} key in {0}?
-                    // Example: What was the unrevealed key color for the first key in Disordered Keys?
+                    // English: What was the unrevealed key color for this key in {0}? (+ sprite)
                     Question = "Каким был нераскрытый цвет {1}-й клавиши {0}?",
                     Answers = new()
                     {
@@ -5025,8 +5023,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SDisorderedKeys.UnrevealedLabelColor] = new()
                 {
-                    // English: What was the unrevealed label color for the {1} key in {0}?
-                    // Example: What was the unrevealed label color for the first key in Disordered Keys?
+                    // English: What was the unrevealed label color for this key in {0}? (+ sprite)
                     Question = "Каким был нераскрытый цвет надписи {1}-й клавиши {0}?",
                     Answers = new()
                     {
@@ -5040,14 +5037,12 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SDisorderedKeys.UnrevealedKeyLabel] = new()
                 {
-                    // English: What was the unrevealed label for the {1} key in {0}?
-                    // Example: What was the unrevealed label for the first key in Disordered Keys?
+                    // English: What was the unrevealed label for this key in {0}? (+ sprite)
                     Question = "Какая была нераскрытая надпись {1}-й клавиши {0}?",
                 },
                 [SDisorderedKeys.RevealedKeyColor] = new()
                 {
-                    // English: What was the revealed key color for the {1} key in {0}?
-                    // Example: What was the revealed key color for the first key in Disordered Keys?
+                    // English: What was the revealed key color for this key in {0}? (+ sprite)
                     Question = "Каким был раскрытый цвет {1}-й клавиши {0}?",
                     Answers = new()
                     {
@@ -5061,8 +5056,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SDisorderedKeys.RevealedLabelColor] = new()
                 {
-                    // English: What was the revealed label color for the {1} key in {0}?
-                    // Example: What was the revealed label color for the first key in Disordered Keys?
+                    // English: What was the revealed label color for this key in {0}? (+ sprite)
                     Question = "Каким был раскрытый цвет надписи {1}-й клавиши {0}?",
                     Answers = new()
                     {
@@ -5076,8 +5070,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SDisorderedKeys.RevealedLabel] = new()
                 {
-                    // English: What was the revealed label for the {1} key in {0}?
-                    // Example: What was the revealed label for the first key in Disordered Keys?
+                    // English: What was the revealed label for this key in {0}? (+ sprite)
                     Question = "Какая была раскрытая надпись {1}-й клавиши {0}?",
                 },
             },

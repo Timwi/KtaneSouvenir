@@ -5031,8 +5031,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SDisorderedKeys.MissingInfo] = new()
                 {
-                    // English: What was the missing information for the {1} key in {0}?
-                    // Example: What was the missing information for the first key in Disordered Keys?
+                    // English: What was the missing information for this key in {0}? (+ sprite)
                     Question = "Welche Information fehlte bei {0} auf dem {1}en Knopf?",
                     Answers = new()
                     {
@@ -5043,8 +5042,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SDisorderedKeys.UnrevealedKeyColor] = new()
                 {
-                    // English: What was the unrevealed key color for the {1} key in {0}?
-                    // Example: What was the unrevealed key color for the first key in Disordered Keys?
+                    // English: What was the unrevealed key color for this key in {0}? (+ sprite)
                     Question = "Was war bei {0} die unaufgedeckte Knopffarbe des {1}en Knopfes?",
                     Answers = new()
                     {
@@ -5058,8 +5056,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SDisorderedKeys.UnrevealedLabelColor] = new()
                 {
-                    // English: What was the unrevealed label color for the {1} key in {0}?
-                    // Example: What was the unrevealed label color for the first key in Disordered Keys?
+                    // English: What was the unrevealed label color for this key in {0}? (+ sprite)
                     Question = "Was war bei {0} die unaufgedeckte Aufschriftfarbe des {1}en Knopfes?",
                     Answers = new()
                     {
@@ -5073,14 +5070,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SDisorderedKeys.UnrevealedKeyLabel] = new()
                 {
-                    // English: What was the unrevealed label for the {1} key in {0}?
-                    // Example: What was the unrevealed label for the first key in Disordered Keys?
+                    // English: What was the unrevealed label for this key in {0}? (+ sprite)
                     Question = "Was war bei {0} die unaufgedeckte Aufschrift des {1}en Knopfes?",
                 },
                 [SDisorderedKeys.RevealedKeyColor] = new()
                 {
-                    // English: What was the revealed key color for the {1} key in {0}?
-                    // Example: What was the revealed key color for the first key in Disordered Keys?
+                    // English: What was the revealed key color for this key in {0}? (+ sprite)
                     Question = "Was war bei {0} die aufgedeckte Knopffarbe des {1}en Knopfes?",
                     Answers = new()
                     {
@@ -5094,8 +5089,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SDisorderedKeys.RevealedLabelColor] = new()
                 {
-                    // English: What was the revealed label color for the {1} key in {0}?
-                    // Example: What was the revealed label color for the first key in Disordered Keys?
+                    // English: What was the revealed label color for this key in {0}? (+ sprite)
                     Question = "Was war bei {0} die aufgedeckte Aufschriftfarbe des {1}en Knopfes?",
                     Answers = new()
                     {
@@ -5109,8 +5103,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SDisorderedKeys.RevealedLabel] = new()
                 {
-                    // English: What was the revealed label for the {1} key in {0}?
-                    // Example: What was the revealed label for the first key in Disordered Keys?
+                    // English: What was the revealed label for this key in {0}? (+ sprite)
                     Question = "Was war bei {0} die aufgedeckte Aufschrift des {1}en Knopfes?",
                 },
             },
