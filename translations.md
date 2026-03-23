@@ -175,6 +175,10 @@ For this purpose, a translatable string is provided in which you can specify the
 
 If this is not applicable in your language, feel free to translate `["AEIOU"]` as `""` (i.e. empty string). However, if you have a cool idea on doing something kinda similar, but don’t know how to implement it, please talk to Timwi and we’ll work something out!
 
+## Simon Stores
+
+Note that the English strings use {1} and {2}. However, I made it so that you can have a {3} and a {4} in the translation as well in case the phrase “was among the colors that flashed” needs to be broken up in the translation. If you don’t need this, just translate these as `""` (empty string).
+
 ## Variety
 
 The discriminator “the Variety that has one” might need to agree grammatically with the component in question (e.g. gender), so there are separate strings provided for each component that “one” might refer to. The part after the “\uE003” shows the component for your information and is not actually part of the string. Do not include “\uE003” or the component name in your translation.

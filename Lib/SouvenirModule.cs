@@ -474,7 +474,7 @@ public partial class SouvenirModule : MonoBehaviour
             var dAttr = _exampleDiscriminators[_curExampleDiscriminator];
             var dGs = dAttr.ArgumentGroupSize;
             var dFmt = dGs == 0 ? [] : _exampleDiscriminatorArguments[_curExampleDiscriminatorArgument]
-                .Select<string, object>((arg, ix) => Snip(dAttr.TranslateArguments != null && dAttr.TranslateArguments[ix] ? TranslateDiscriminatorArgument(dAttr.EnumValue, arg) : arg))
+                .Select<string, object>((arg, ix) => arg == QandA.Ordinal ? Ordinal(Rnd.Range(1, 11)) : Snip(dAttr.TranslateArguments != null && dAttr.TranslateArguments[ix] ? TranslateDiscriminatorArgument(dAttr.EnumValue, arg) : arg))
                 .ToArray();
             fmt[0] = string.Format(TranslateDiscriminator(dAttr.EnumValue, dAttr.DiscriminatorText), dFmt);
         }

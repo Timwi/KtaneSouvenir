@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
 public enum SSimonStores
 {
-    [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["flashed", QandA.Ordinal, "was among the colors that flashed", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("Which color {2} {1} in the final sequence of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal, "flashed", "flashed ({3})", "flashed ({4})", QandA.Ordinal, "was among the colors that flashed", "was among the colors that flashed ({3})", "was among the colors that flashed ({4})"], ArgumentGroupSize = 4, TranslateAnswers = true, TranslateArguments = [false, true, true, true], ReferenceDocumentation = true)]
     QFlashes,
 
-    [SouvenirDiscriminator("the Simon Stores where {0} {1} {2} in the final sequence", Arguments = ["red", "flashed", QandA.Ordinal, "green", "flashed", QandA.Ordinal, "blue", "flashed", QandA.Ordinal, "cyan", "was among the colors that flashed", QandA.Ordinal, "magenta", "was among the colors that flashed", QandA.Ordinal, "yellow", "was among the colors that flashed", QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, true, false])]
+    [SouvenirDiscriminator("the Simon Stores where {0} {2} {1} in the final sequence", Arguments = ["red", QandA.Ordinal, "flashed", "flashed ({3})", "flashed ({4})", "green", QandA.Ordinal, "flashed", "flashed ({3})", "flashed ({4})", "blue", QandA.Ordinal, "flashed", "flashed ({3})", "flashed ({4})", "cyan", QandA.Ordinal, "was among the colors that flashed", "was among the colors that flashed ({3})", "was among the colors that flashed ({4})", "magenta", QandA.Ordinal, "was among the colors that flashed", "was among the colors that flashed ({3})", "was among the colors that flashed ({4})", "yellow", QandA.Ordinal, "was among the colors that flashed", "was among the colors that flashed ({3})", "was among the colors that flashed ({4})"], ArgumentGroupSize = 5, TranslateArguments = [true, false, true, true, true], ReferenceDocumentation = true)]
     DFlashes
 }
 
@@ -45,8 +44,8 @@ public partial class SouvenirModule
         {
             var flashStr = flashSequences[stage].Length == 1 ? "flashed" : "was among the colors that flashed";
             foreach (var flash in flashSequences[stage])
-                yield return new Discriminator(SSimonStores.DFlashes, $"flash-{stage}-{flash}", colorNames[flash], args: [colorNames[flash], flashStr, Ordinal(stage+1)], avoidAnswers: [colorNames[flash]]);
-            yield return question(SSimonStores.QFlashes, args: [flashStr, Ordinal(stage + 1)]).Answers(flashSequences[stage].Select(ch => colorNames[ch]).ToArray());
+                yield return new Discriminator(SSimonStores.DFlashes, $"flash-{stage}-{flash}", colorNames[flash], args: [colorNames[flash], Ordinal(stage + 1), flashStr, $"{flashStr} ({{3}})", $"{flashStr} ({{4}})"], avoidAnswers: [colorNames[flash]]);
+            yield return question(SSimonStores.QFlashes, args: [Ordinal(stage + 1), flashStr, $"{flashStr} ({{3}})", $"{flashStr} ({{4}})"]).Answers(flashSequences[stage].Select(ch => colorNames[ch]).ToArray());
         }
     }
 }

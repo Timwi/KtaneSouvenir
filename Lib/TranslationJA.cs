@@ -12825,11 +12825,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Discriminators = new()
             {
-                [SOnlyConnect.DHierohlyphs] = new()
+                [SOnlyConnect.DHieroglyphs] = new()
                 {
-                    // English: the Only Connect where the Egyptian hieroglyph in the {1} was {0}
-                    // Example: the Only Connect where the Egyptian hieroglyph in the top left was Two Reeds
-                    Discriminator = "the Only Connect where the Egyptian hieroglyph in the {0} was {1}",
+                    // English: the Only Connect where {0} was in the {1}
+                    // Example: the Only Connect where Two Reeds was in the top left
+                    Discriminator = "the Only Connect where {0} was in the {1}",
                     Arguments = new()
                     {
                         ["Two Reeds"] = "Two Reeds",
@@ -16532,13 +16532,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SSimonStores.QFlashes] = new()
                 {
-                    // English: Which color {1} {2} in the final sequence of {0}?
+                    // English: Which color {2} {1} in the final sequence of {0}?
                     // Example: Which color flashed first in the final sequence of Simon Stores?
-                    Question = "{0}の最終シークエンスにおいて、{2}番目に{1}色は？",
+                    Question = "{0}の最終シークエンスにおいて、{1}番目に{2}色は？",
+                    // Refer to translations.md to understand the weird strings
                     Arguments = new()
                     {
                         ["flashed"] = "点滅した",
                         ["was among the colors that flashed"] = "点滅した色に含まれる",
+                        ["flashed ({3})"] = "",
+                        ["was among the colors that flashed ({3})"] = "",
+                        ["flashed ({4})"] = "",
+                        ["was among the colors that flashed ({4})"] = "",
                     },
                     Answers = new()
                     {
@@ -16555,9 +16560,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SSimonStores.DFlashes] = new()
                 {
-                    // English: the Simon Stores where {0} {1} {2} in the final sequence
+                    // English: the Simon Stores where {0} {2} {1} in the final sequence
                     // Example: the Simon Stores where red flashed first in the final sequence
-                    Discriminator = "the Simon Stores where {0} {1} {2} in the final sequence",
+                    Discriminator = "the Simon Stores where {0} {2} {1} in the final sequence",
+                    // Refer to translations.md to understand the weird strings
                     Arguments = new()
                     {
                         ["red"] = "red",
@@ -16568,6 +16574,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["yellow"] = "yellow",
                         ["flashed"] = "flashed",
                         ["was among the colors that flashed"] = "was among the colors that flashed",
+                        ["flashed ({3})"] = "flashed ({3})",
+                        ["was among the colors that flashed ({3})"] = "was among the colors that flashed ({3})",
+                        ["flashed ({4})"] = "flashed ({4})",
+                        ["was among the colors that flashed ({4})"] = "was among the colors that flashed ({4})",
                     },
                 },
             },

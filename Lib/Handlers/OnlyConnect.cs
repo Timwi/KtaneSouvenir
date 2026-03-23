@@ -8,8 +8,8 @@ public enum SOnlyConnect
     [SouvenirQuestion("Which Egyptian hieroglyph was in the {1} in {0}?", TwoColumns4Answers, "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right"], ArgumentGroupSize = 1)]
     QHieroglyphs,
 
-    [SouvenirDiscriminator("the Only Connect where the Egyptian hieroglyph in the {1} was {0}", Arguments = ["Two Reeds", "top left", "Lion", "top middle", "Twisted Flax", "top right", "Horned Viper", "bottom left", "Water", "bottom middle", "Eye of Horus", "bottom right"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
-    DHierohlyphs
+    [SouvenirDiscriminator("the Only Connect where {0} was in the {1}", Arguments = ["Two Reeds", "top left", "Lion", "top middle", "Twisted Flax", "top right", "Horned Viper", "bottom left", "Water", "bottom middle", "Eye of Horus", "bottom right"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    DHieroglyphs
 }
 
 public partial class SouvenirModule
@@ -29,7 +29,7 @@ public partial class SouvenirModule
         var positions = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" };
         for (var i = 0; i < positions.Length; i++)
         {
-            yield return new Discriminator(SOnlyConnect.DHierohlyphs, $"hieroglyph-{i}", hieroglyphs[hieroglyphsDisplayed[i]], args: [hieroglyphs[hieroglyphsDisplayed[i]], positions[i]]);
+            yield return new Discriminator(SOnlyConnect.DHieroglyphs, $"hieroglyph-{i}", hieroglyphs[hieroglyphsDisplayed[i]], args: [hieroglyphs[hieroglyphsDisplayed[i]], positions[i]]);
             yield return question(SOnlyConnect.QHieroglyphs, args: [positions[i]])
                 .AvoidDiscriminators($"hieroglyph-{i}")
                 .Answers(hieroglyphs[hieroglyphsDisplayed[i]]);

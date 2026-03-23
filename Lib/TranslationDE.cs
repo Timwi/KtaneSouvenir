@@ -6498,7 +6498,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Folge Mir",
             ManualQuestions = new()
             {
-                ["What were the flashing directions?"] = "Welche Richtungen haben aufgeleuchtet?",
+                ["What were the flashing directions?"] = "Welche Richtungen sind aufgeleuchtet?",
             },
             Questions = new()
             {
@@ -7084,7 +7084,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["What colors flashed?"] = "Welche Farben haben aufgeleuchtet?",
+                ["What colors flashed?"] = "Welche Farben sind aufgeleuchtet?",
                 ["What arrows were correct?"] = "Welche Pfeile waren richtig?",
             },
             Questions = new()
@@ -13119,11 +13119,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Discriminators = new()
             {
-                [SOnlyConnect.DHierohlyphs] = new()
+                [SOnlyConnect.DHieroglyphs] = new()
                 {
-                    // English: the Only Connect where the Egyptian hieroglyph in the {1} was {0}
-                    // Example: the Only Connect where the Egyptian hieroglyph in the top left was Two Reeds
-                    Discriminator = "the Only Connect where the Egyptian hieroglyph in the {0} was {1}",
+                    // English: the Only Connect where {0} was in the {1}
+                    // Example: the Only Connect where Two Reeds was in the top left
+                    Discriminator = "the Only Connect where {0} was in the {1}",
                     Arguments = new()
                     {
                         ["Two Reeds"] = "Two Reeds",
@@ -14028,7 +14028,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Sinnlose Maschinen",
             ManualQuestions = new()
             {
-                ["What colors flashed?"] = "Welche Farben haben aufgeleuchtet?",
+                ["What colors flashed?"] = "Welche Farben sind aufgeleuchtet?",
             },
             Questions = new()
             {
@@ -16315,7 +16315,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Who flashed {1} in course {2} of {0}?
                     // Example: Who flashed first in course 1 of Simon Serves?
-                    Question = "Wer hat bei {0} als {1}er bei Gang {2} aufgeleuchtet?",
+                    Question = "Wer ist bei {0} als {1}er bei Gang {2} aufgeleuchtet?",
                 },
                 [SSimonServes.Food] = new()
                 {
@@ -16433,7 +16433,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Simon Mischt",
             ManualQuestions = new()
             {
-                ["Which buttons flashed at each stage?"] = "Welche Tasten haben in welcher Stufe aufgeleuchtet?",
+                ["Which buttons flashed at each stage?"] = "Welche Tasten sind in welcher Stufe aufgeleuchtet?",
             },
             Questions = new()
             {
@@ -16539,7 +16539,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Simon Simont",
             ManualQuestions = new()
             {
-                ["Which buttons flashed?"] = "Welche Tasten haben aufgeleuchtet?",
+                ["Which buttons flashed?"] = "Welche Tasten sind aufgeleuchtet?",
             },
             Questions = new()
             {
@@ -16547,7 +16547,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} flash in the final sequence in {0}?
                     // Example: What was the first flash in the final sequence in Simon Simons?
-                    Question = "Welche Taste hat bei {0} als {1}e aufgeleuchtet?",
+                    Question = "Welche Taste ist bei {0} als {1}e aufgeleuchtet?",
                 },
             },
         },
@@ -16596,7 +16596,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which colors and directions flashed in each stage?"] = "Welche Farben und Richtungen haben in welcher Stufe aufgeleuchtet?",
+                ["Which colors and directions flashed in each stage?"] = "Welche Farben und Richtungen sind in welcher Stufe aufgeleuchtet?",
             },
             Questions = new()
             {
@@ -16898,7 +16898,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Stores
         [typeof(SSimonStores)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Simon Speichert",
             ManualQuestions = new()
             {
                 ["Which colors flashed in the final sequence?"] = "Was war am Ende die Farbfolge?",
@@ -16907,22 +16907,27 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SSimonStores.QFlashes] = new()
                 {
-                    // English: Which color {1} {2} in the final sequence of {0}?
+                    // English: Which color {2} {1} in the final sequence of {0}?
                     // Example: Which color flashed first in the final sequence of Simon Stores?
-                    Question = "Which color {1} {2} in the final sequence of {0}?",
+                    Question = "Welche Farbe {2} bei {0} {3} {1}e {4}?",
+                    // Refer to translations.md to understand the weird strings
                     Arguments = new()
                     {
-                        ["flashed"] = "flashed",
-                        ["was among the colors that flashed"] = "was among the colors that flashed",
+                        ["flashed"] = "leuchtete",
+                        ["was among the colors that flashed"] = "war",
+                        ["flashed ({3})"] = "als",
+                        ["was among the colors that flashed ({3})"] = "eine derer, die als",
+                        ["flashed ({4})"] = "auf",
+                        ["was among the colors that flashed ({4})"] = "aufleuchteten",
                     },
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Cyan"] = "Cyan",
-                        ["Magenta"] = "Magenta",
-                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Rosa",
+                        ["Yellow"] = "Gelb",
                     },
                 },
             },
@@ -16930,19 +16935,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SSimonStores.DFlashes] = new()
                 {
-                    // English: the Simon Stores where {0} {1} {2} in the final sequence
+                    // English: the Simon Stores where {0} {2} {1} in the final sequence
                     // Example: the Simon Stores where red flashed first in the final sequence
-                    Discriminator = "the Simon Stores where {0} {1} {2} in the final sequence",
+                    Discriminator = "dem Simon Speichert, bei dem {0} {2} {1} {3},",
+                    // Refer to translations.md to understand the weird strings
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["cyan"] = "cyan",
-                        ["magenta"] = "magenta",
-                        ["yellow"] = "yellow",
-                        ["flashed"] = "flashed",
-                        ["was among the colors that flashed"] = "was among the colors that flashed",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["cyan"] = "türkis",
+                        ["magenta"] = "rosa",
+                        ["yellow"] = "gelb",
+                        ["flashed"] = "als",
+                        ["was among the colors that flashed"] = "unter den als",
+                        ["flashed ({3})"] = "aufleuchtete",
+                        ["was among the colors that flashed ({3})"] = "aufleuchteten Farben war",
+                        ["flashed ({4})"] = "",
+                        ["was among the colors that flashed ({4})"] = "",
                     },
                 },
             },
@@ -17058,7 +17068,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which colors flashed on each of the Simons?"] = "Welche Farben haben auf welchem Simon aufgeleuchtet?",
+                ["Which colors flashed on each of the Simons?"] = "Welche Farben sind auf welchem Simon aufgeleuchtet?",
             },
             Questions = new()
             {
@@ -18211,7 +18221,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 ["What number was displayed at each stage?"] = "Welche Zahl war in welcher Stufe zu sehen?",
                 ["What positions were the colors in at each stage?"] = "Welche Farbe war in welcher Stufe an welcher Stelle?",
-                ["What colors flashed at each stage?"] = "Welche Farben haben in welcher Stufe aufgeleuchtet?",
+                ["What colors flashed at each stage?"] = "Welche Farben sind in welcher Stufe aufgeleuchtet?",
             },
             Questions = new()
             {
@@ -19511,7 +19521,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What was the displayed word?"] = "Welches Wort war auf dem Display?",
-                ["What were the flashing colors?"] = "Welche Farben haben aufgeleuchtet?",
+                ["What were the flashing colors?"] = "Welche Farben sind aufgeleuchtet?",
             },
             Questions = new()
             {
