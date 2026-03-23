@@ -4902,8 +4902,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SDisorderedKeys.MissingInfo] = new()
                 {
-                    // English: What was the missing information for the {1} key in {0}?
-                    // Example: What was the missing information for the first key in Disordered Keys?
+                    // English: What was the missing information for this key in {0}? (+ sprite)
                     Question = "{0}の{1}番目の音板に欠けていた情報は？",
                     Answers = new()
                     {
@@ -4914,8 +4913,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SDisorderedKeys.UnrevealedKeyColor] = new()
                 {
-                    // English: What was the unrevealed key color for the {1} key in {0}?
-                    // Example: What was the unrevealed key color for the first key in Disordered Keys?
+                    // English: What was the unrevealed key color for this key in {0}? (+ sprite)
                     Question = "{0}の{1}番目の不完全な音板のラベルの色は？",
                     Answers = new()
                     {
@@ -4929,8 +4927,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SDisorderedKeys.UnrevealedLabelColor] = new()
                 {
-                    // English: What was the unrevealed label color for the {1} key in {0}?
-                    // Example: What was the unrevealed label color for the first key in Disordered Keys?
+                    // English: What was the unrevealed label color for this key in {0}? (+ sprite)
                     Question = "{0}の{1}番目の不完全な音板のラベルの色は？",
                     Answers = new()
                     {
@@ -4944,14 +4941,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SDisorderedKeys.UnrevealedKeyLabel] = new()
                 {
-                    // English: What was the unrevealed label for the {1} key in {0}?
-                    // Example: What was the unrevealed label for the first key in Disordered Keys?
+                    // English: What was the unrevealed label for this key in {0}? (+ sprite)
                     Question = "{0}の{1}番目の不完全な音板のラベルは？",
                 },
                 [SDisorderedKeys.RevealedKeyColor] = new()
                 {
-                    // English: What was the revealed key color for the {1} key in {0}?
-                    // Example: What was the revealed key color for the first key in Disordered Keys?
+                    // English: What was the revealed key color for this key in {0}? (+ sprite)
                     Question = "{0}の{1}番目の完全な音板の色は？",
                     Answers = new()
                     {
@@ -4965,8 +4960,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SDisorderedKeys.RevealedLabelColor] = new()
                 {
-                    // English: What was the revealed label color for the {1} key in {0}?
-                    // Example: What was the revealed label color for the first key in Disordered Keys?
+                    // English: What was the revealed label color for this key in {0}? (+ sprite)
                     Question = "{0}の{1}番目の完全な音板のラベルの色は？",
                     Answers = new()
                     {
@@ -4980,8 +4974,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SDisorderedKeys.RevealedLabel] = new()
                 {
-                    // English: What was the revealed label for the {1} key in {0}?
-                    // Example: What was the revealed label for the first key in Disordered Keys?
+                    // English: What was the revealed label for this key in {0}? (+ sprite)
                     Question = "{0}の{1}番目の完全な音板のラベルは？",
                 },
             },
