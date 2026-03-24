@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -26,13 +27,15 @@ public partial class SouvenirModule
         if (!int.TryParse(yearText, out var year) || year < 1 || year > 16)
             throw new AbandonModuleException($"Expected year number between 1 and 16; got: {yearText}");
 
+        var preferredWrongYears = Enumerable.Range(1, 16).Where(ix => ix >= Math.Max(1, year - 3) && ix <= Math.Min(16, year + 3)).Select(ix => ix.ToString()).ToArray();
+
         yield return WaitForSolve;
         var lionNames = GetArrayField<string>(comp, "_lionNames").Get(minLength: 2);
         var correctPortions = GetArrayField<int>(comp, "_correctPortions").Get(expectedLength: lionNames.Length);
         var removedLions = Enumerable.Range(0, lionNames.Length).Where(ix => correctPortions[ix] == 0).Select(ix => lionNames[ix]).ToArray();
         var allLionNames = GetListField<string>(comp, "_allLionNames").Get(expectedLength: 35);
 
-        yield return question(SLionsShare.Year).Answers(yearText);
+        yield return question(SLionsShare.Year).Answers(yearText, preferredWrong: preferredWrongYears);
         if (removedLions.Length > 0)
             yield return question(SLionsShare.RemovedLions).Answers(removedLions, preferredWrong: allLionNames.ToArray());
     }

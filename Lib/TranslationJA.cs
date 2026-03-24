@@ -9967,23 +9967,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Matrix
         [typeof(SMatrix)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "マトリックス",
             ManualQuestions = new()
             {
-                ["Which word was part of the latest access code?"] = "最新のアクセスコードの一部になっている単語はどれ？",
-                ["What was the glitched word?"] = "問題のある単語は？",
+                ["Which word was part of the latest access code used?"] = "Which word was part of the latest access code used?",
             },
             Questions = new()
             {
                 [SMatrix.AccessCode] = new()
                 {
-                    // English: Which word was part of the latest access code in {0}?
-                    Question = "{0}における最後のアクセスコードの一部であった単語は？",
-                },
-                [SMatrix.GlitchWord] = new()
-                {
-                    // English: What was the glitched word in {0}?
-                    Question = "{0}でグリッチされていた単語は？",
+                    // English: Which word was part of the latest access code used in {0}?
+                    Question = "Which word was part of the latest access code used in {0}?",
                 },
             },
         },

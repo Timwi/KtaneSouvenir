@@ -10026,20 +10026,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which word was part of the latest access code?"] = "Which word was part of the latest access code?",
-                ["What was the glitched word?"] = "What was the glitched word?",
+                ["Which word was part of the latest access code used?"] = "Which word was part of the latest access code used?",
             },
             Questions = new()
             {
                 [SMatrix.AccessCode] = new()
                 {
-                    // English: Which word was part of the latest access code in {0}?
-                    Question = "Какое слово было частью последнего кода доступа {0}?",
-                },
-                [SMatrix.GlitchWord] = new()
-                {
-                    // English: What was the glitched word in {0}?
-                    Question = "Какое слово было глючным {0}?",
+                    // English: Which word was part of the latest access code used in {0}?
+                    Question = "Which word was part of the latest access code used in {0}?",
                 },
             },
         },
