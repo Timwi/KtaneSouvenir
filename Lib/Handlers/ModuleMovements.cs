@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SModuleMovements
 {
-    [SouvenirQuestion("What was the {1} module shown in {0}?", TwoColumns4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequence", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes And Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("What was the {1} module shown in {0}?", OneColumn4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequence", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes And Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Display
 }
 
@@ -34,7 +34,7 @@ public partial class SouvenirModule
             yield return null;
         }
 
-        for (var i = 0; i < answers.Length; i++)
+        for (var i = 0; i < 2; i++) // We don't ask about the third stage since it stays on the module
             yield return question(SModuleMovements.Display, args: [Ordinal(i + 1)]).Answers(answers[i], preferredWrong: answers);
     }
 }
