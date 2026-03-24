@@ -2306,7 +2306,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Bordered Keys
         [typeof(SBorderedKeys)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the border color, displayed digit, key color, label and label color when you pressed each key?"] = "Was war beim Druck auf die Tasten deren Rahmenfarbe, Displayziffer, Tastenfarbe, Aufschrift und Aufschriftfarbe?",
@@ -2316,7 +2315,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SBorderedKeys.BorderColor] = new()
                 {
                     // English: What was this key’s border color when it was pressed in {0}? (+ sprite)
-                    Question = "What was this key’s border color when it was pressed in {0}?",
+                    Question = "Was war beim Druck auf diesen Knopf bei {0} die Randfarbe?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -2330,12 +2329,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SBorderedKeys.Digit] = new()
                 {
                     // English: What was the digit displayed when this key was pressed in {0}? (+ sprite)
-                    Question = "Was war beim Druck auf den {1}en Knopf bei {0} die angezeigte Ziffer?",
+                    Question = "Was war beim Druck auf diesen Knopf bei {0} die angezeigte Ziffer?",
                 },
                 [SBorderedKeys.KeyColor] = new()
                 {
                     // English: What was this key’s key color when it was pressed in {0}? (+ sprite)
-                    Question = "What was this key’s key color when it was pressed in {0}?",
+                    Question = "Was war beim Druck auf diesen Knopf bei {0} die Knopffarbe?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -2349,12 +2348,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SBorderedKeys.Label] = new()
                 {
                     // English: What was this key’s label when it was pressed in {0}? (+ sprite)
-                    Question = "What was this key’s label when it was pressed in {0}?",
+                    Question = "Was war beim Druck auf diesen Knopf bei {0} die Aufschrift?",
                 },
                 [SBorderedKeys.LabelColor] = new()
                 {
                     // English: What was this key’s label color when it was pressed in {0}? (+ sprite)
-                    Question = "What was this key’s label color when it was pressed in {0}?",
+                    Question = "Was war beim Druck auf diesen Knopf bei {0} die Aufschriftfarbe?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -5024,7 +5023,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Disordered Keys
         [typeof(SDisorderedKeys)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the missing information and the revealed/unrevealed key color, label, and label color of each key?"] = "Was war bei welcher Taste die enthüllte/verborgene Tastenfarbe, Aufschrift, Aufschriftfarbe und fehlende Information?",
@@ -5034,7 +5032,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SDisorderedKeys.MissingInfo] = new()
                 {
                     // English: What was the missing information for this key in {0}? (+ sprite)
-                    Question = "What was the missing information for this key in {0}?",
+                    Question = "Welche Information fehlte bei {0} auf diesem Knopf?",
                     Answers = new()
                     {
                         ["Key color"] = "Knopffarbe",
@@ -5045,7 +5043,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SDisorderedKeys.UnrevealedKeyColor] = new()
                 {
                     // English: What was the unrevealed key color for this key in {0}? (+ sprite)
-                    Question = "What was the unrevealed key color for this key in {0}?",
+                    Question = "Was war bei {0} die unaufgedeckte Knopffarbe dieses Knopfes?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -5059,7 +5057,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SDisorderedKeys.UnrevealedLabelColor] = new()
                 {
                     // English: What was the unrevealed label color for this key in {0}? (+ sprite)
-                    Question = "What was the unrevealed label color for this key in {0}?",
+                    Question = "Was war bei {0} die unaufgedeckte Aufschriftfarbe dieses Knopfes?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -5073,12 +5071,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SDisorderedKeys.UnrevealedKeyLabel] = new()
                 {
                     // English: What was the unrevealed label for this key in {0}? (+ sprite)
-                    Question = "What was the unrevealed label for this key in {0}?",
+                    Question = "Was war bei {0} die unaufgedeckte Aufschrift dieses Knopfes?",
                 },
                 [SDisorderedKeys.RevealedKeyColor] = new()
                 {
                     // English: What was the revealed key color for this key in {0}? (+ sprite)
-                    Question = "What was the revealed key color for this key in {0}?",
+                    Question = "Was war bei {0} die aufgedeckte Knopffarbe dieses Knopfes?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -5092,7 +5090,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SDisorderedKeys.RevealedLabelColor] = new()
                 {
                     // English: What was the revealed label color for this key in {0}? (+ sprite)
-                    Question = "What was the revealed label color for this key in {0}?",
+                    Question = "Was war bei {0} die aufgedeckte Aufschriftfarbe dieses Knopfes?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -5106,7 +5104,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SDisorderedKeys.RevealedLabel] = new()
                 {
                     // English: What was the revealed label for this key in {0}? (+ sprite)
-                    Question = "What was the revealed label for this key in {0}?",
+                    Question = "Was war bei {0} die aufgedeckte Aufschrift dieses Knopfes?",
                 },
             },
         },
@@ -17074,7 +17072,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Skewers
         [typeof(SSkewers)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Aufgespießt",
             ManualQuestions = new()
             {
                 ["What colors were the gems?"] = "Welche Farbe hatte welcher Edelstein?",
@@ -17084,17 +17082,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SSkewers.Color] = new()
                 {
                     // English: What color was this gem in {0}? (+ sprite)
-                    Question = "What color was this gem in {0}?",
+                    Question = "Welche Farbe hatte bei {0} dieser Edelstein?",
                     Answers = new()
                     {
-                        ["Black"] = "Black",
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
-                        ["Blue"] = "Blue",
-                        ["Magenta"] = "Magenta",
-                        ["Cyan"] = "Cyan",
-                        ["White"] = "White",
+                        ["Black"] = "Schwarz",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Blue"] = "Blau",
+                        ["Magenta"] = "Rosa",
+                        ["Cyan"] = "Türkis",
+                        ["White"] = "Weiß",
                     },
                 },
             },
@@ -18039,7 +18037,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What was the seed?"] = "Was war der Seedcode?",
-                ["What was the starting maze color?"] = "Welche Farbe hatte das Startlabyrinth?",
+                ["What was the starting maze color?"] = "Mit welcher Farbe ging es los?",
             },
             Questions = new()
             {
