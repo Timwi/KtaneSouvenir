@@ -29,7 +29,7 @@ public partial class SouvenirModule
         var positions = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" };
         for (var i = 0; i < positions.Length; i++)
         {
-            yield return new Discriminator(SOnlyConnect.DHieroglyphs, $"hieroglyph-{i}", hieroglyphs[hieroglyphsDisplayed[i]], args: [hieroglyphs[hieroglyphsDisplayed[i]], positions[i]]);
+            yield return new Discriminator(SOnlyConnect.DHieroglyphs, $"hieroglyph-{i}", hieroglyphs[hieroglyphsDisplayed[i]], args: [hieroglyphs[hieroglyphsDisplayed[i]], positions[i]], avoidAnswers: [hieroglyphs[hieroglyphsDisplayed[i]]]);
             yield return question(SOnlyConnect.QHieroglyphs, args: [positions[i]])
                 .AvoidDiscriminators($"hieroglyph-{i}")
                 .Answers(hieroglyphs[hieroglyphsDisplayed[i]]);
