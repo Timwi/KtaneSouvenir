@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using static Souvenir.Translation_ru.Conjugation;
 
@@ -10021,14 +10021,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which word was part of the latest access code you used?"] = "Which word was part of the latest access code you used?",
+                ["Which word was part of the latest access code used?"] = "Which word was part of the latest access code used?",
             },
             Questions = new()
             {
                 [SMatrix.AccessCode] = new()
                 {
-                    // English: Which word was part of the latest access code you used in {0}?
-                    Question = "Which word was part of the latest access code you used in {0}?",
+                    // English: Which word was part of the latest access code used in {0}?
+                    Question = "Which word was part of the latest access code used in {0}?",
                 },
             },
         },
