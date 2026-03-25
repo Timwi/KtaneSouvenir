@@ -327,7 +327,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} goal node in {0}?
                     // Example: What was the first goal node in 3D Tunnels?
-                    Question = "Was war bei {0} der Zielpunkt?",
+                    Question = "Was war bei {0} das {1}e Zielsymbol?",
                 },
             },
         },
