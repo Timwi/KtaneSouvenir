@@ -114,6 +114,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "1000 слов",
+            ManualModuleName = "1000 слов",
             ManualQuestions = new()
             {
                 ["What were the words shown?"] = "Какие слова были показаны?",
@@ -144,6 +145,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "100 уровнях обезвреживания",
+            ManualModuleName = "100 уровней обезвреживания",
             ManualQuestions = new()
             {
                 ["What were the displayed letters?"] = "Какие буквы были показаны?",
@@ -281,6 +283,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "3D лабиринт",
+            ManualModuleName = "3D лабиринт",
             ManualQuestions = new()
             {
                 ["What were the markings?"] = "Какими буквами был обозначен лабиринт?",
@@ -353,6 +356,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(S3DTunnels)] = new()
         {
             ModuleName = "3D тоннелях",
+            ManualModuleName = "3D тоннели",
             ManualQuestions = new()
             {
                 ["What were the goal symbols?"] = "Какие символы были вашими целями?",
@@ -421,6 +425,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "4D тоннелях",
+            ManualModuleName = "4D тоннели",
             ManualQuestions = new()
             {
                 ["What were the goal symbols?"] = "What were the goal symbols?",
@@ -571,6 +576,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Накопления",
+            ManualModuleName = "Накопление",
             ManualQuestions = new()
             {
                 ["What were the background colors at each stage?"] = "Какого цвета были подложка и обрамление на каждом этапе?",
@@ -666,6 +672,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Приключении",
+            ManualModuleName = "Приключение",
             ManualQuestions = new()
             {
                 ["Which items were present?"] = "Which items were present?",
@@ -800,6 +807,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Алгебре",
+            ManualModuleName = "Алгебра",
             ManualQuestions = new()
             {
                 ["What were the first two equations?"] = "Какими были первые два уравнения?",
@@ -1312,6 +1320,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Повторном надувательстве",
+            ManualModuleName = "Повторное надувательство",
             ManualQuestions = new()
             {
                 ["What were the initial labels and colors of each button?"] = "Какой текст и цвет были на каждой верной кнопке?",
@@ -1701,7 +1710,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which direction was the circle spinning?"] = "Какие цвета присутствовали в решении?",
+                ["Which direction was the circle spinning?"] = "Which direction was the circle spinning?",
             },
             Questions = new()
             {
@@ -1722,6 +1731,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SBinary)] = new()
         {
             ModuleName = "Двоичных светодиодах",
+            ManualModuleName = "Двоичные светодиоды",
             ManualQuestions = new()
             {
                 ["What word was displayed?"] = "Какое слово было показано?",
@@ -1809,6 +1819,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Битовых изображениях",
+            ManualModuleName = "Битовые изображения",
             ManualQuestions = new()
             {
                 ["How many pixels were black/white in each quadrant?"] = "Сколько чёрных/белых пикселей было в каждом квадранте?",
@@ -2242,6 +2253,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SBoneAppleTea)] = new()
         {
             ModuleName = "Еле-еле ели ели",
+            ManualModuleName = "Еле-еле ели ели",
             ManualQuestions = new()
             {
                 ["What were the phrases?"] = "Какие фразы были показаны?",
@@ -2477,6 +2489,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SBraille)] = new()
         {
             ModuleName = "Шрифта Брайля",
+            ManualModuleName = "Шрифт Брайля",
             ManualQuestions = new()
             {
                 ["Which Braille patterns were present?"] = "Какие были буквы (паттерны)?",
@@ -2577,7 +2590,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Was the bulb initially lit?"] = "Какие правильные кнопки были нажаты?",
+                ["Was the bulb initially lit?"] = "Was the bulb initially lit?",
             },
             Questions = new()
             {
@@ -2623,6 +2636,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SBurglarAlarm)] = new()
         {
             ModuleName = "Сигнализации",
+            ManualModuleName = "Сигнализация",
             ManualQuestions = new()
             {
                 ["What were the displayed digits?"] = "Какие цифры были показаны?",
@@ -2643,6 +2657,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SButton)] = new()
         {
             ModuleName = "Кнопки",
+            ManualModuleName = "Кнопка",
             ManualQuestions = new()
             {
                 ["What color did the light glow?"] = "Какого цвета был цветной индикатор?",
@@ -2707,6 +2722,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Последовательности кнопок",
+            ManualModuleName = "Последовательность кнопок",
             ManualQuestions = new()
             {
                 ["How many times did each color occur?"] = "Сколько раз встречался каждый цвет?",
@@ -2866,7 +2882,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the holiday?"] = "Какого цвета был индикатор?",
+                ["What was the holiday?"] = "What was the holiday?",
             },
             Questions = new()
             {
@@ -3066,6 +3082,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SCheapCheckout)] = new()
         {
             ModuleName = "Свободной кассе",
+            ManualModuleName = "Свободная касса!",
             ManualQuestions = new()
             {
                 ["What were the paid amounts?"] = "Сколько конкретно денег было заплачено?",
@@ -3177,6 +3194,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Шахматах",
+            ManualModuleName = "Шахматы",
             ManualQuestions = new()
             {
                 ["What were the coordinates?"] = "Какие координаты присутствовали на модуле?",
@@ -3253,6 +3271,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SChordQualities)] = new()
         {
             ModuleName = "Аккордных ладах",
+            ManualModuleName = "Аккордные лады",
             ManualQuestions = new()
             {
                 ["What notes were in the given chord?"] = "Какие ноты присутствовали в начальном аккорде?",
@@ -3289,6 +3308,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SCode)] = new()
         {
             ModuleName = "Коде",
+            ManualModuleName = "Код",
             ManualQuestions = new()
             {
                 ["What was the displayed number?"] = "Какое число было показано на экране?",
@@ -3452,6 +3472,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SColorDecoding)] = new()
         {
             ModuleName = "Расшифровки цветов",
+            ManualModuleName = "Расшифровка цветов",
             ManualQuestions = new()
             {
                 ["What were the indicator patterns and colors in each stage?"] = "Какой узор и каких цветов был на каждом этапе?",
@@ -3499,6 +3520,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SColoredKeys)] = new()
         {
             ModuleName = "Цветных кнопках",
+            ManualModuleName = "Цветные кнопки",
             ManualQuestions = new()
             {
                 ["What was the displayed word and its color?"] = "Какое слово и какого цвета было показано?",
@@ -3580,6 +3602,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SColoredSquares)] = new()
         {
             ModuleName = "Цветных квадратах",
+            ManualModuleName = "Цветные квадраты",
             ManualQuestions = new()
             {
                 ["What was the first color group?"] = "Какого цвета была первая группа?",
@@ -3608,6 +3631,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SColoredSwitches)] = new()
         {
             ModuleName = "Цветных переключателей",
+            ManualModuleName = "Цветные переключатели",
             ManualQuestions = new()
             {
                 ["What was the initial position of the switches?"] = "Какое было начальное положение переключателей?",
@@ -3627,6 +3651,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SColorMorse)] = new()
         {
             ModuleName = "Цветной азбуке Морзе",
+            ManualModuleName = "Цветная азбука Морзе",
             ManualQuestions = new()
             {
                 ["What were the colors of the LEDs?"] = "Какие цвета были у светодиодов?",
@@ -3806,6 +3831,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SColourFlash)] = new()
         {
             ModuleName = "Цветной вспышки",
+            ManualModuleName = "Цветная вспышка",
             ManualQuestions = new()
             {
                 ["What was the color of the last word in the sequence?"] = "Какого цвета было последнее слово в последовательности?",
@@ -3939,6 +3965,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Проверке соединения",
+            ManualModuleName = "Проверка соединения",
             ManualQuestions = new()
             {
                 ["What number pairs were present?"] = "Какие пары чисел присутствовали?",
@@ -3991,6 +4018,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SCoordinates)] = new()
         {
             ModuleName = "Координатах",
+            ManualModuleName = "Координаты",
             ManualQuestions = new()
             {
                 ["What was the grid size?"] = "Какой был размер сетки?",
@@ -4057,6 +4085,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SCorners)] = new()
         {
             ModuleName = "Углах",
+            ManualModuleName = "Углы",
             ManualQuestions = new()
             {
                 ["What were the colors of the corners?"] = "Каких цветов были углы?",
@@ -4211,6 +4240,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SCreation)] = new()
         {
             ModuleName = "Творения",
+            ManualModuleName = "Творение",
             ManualQuestions = new()
             {
                 ["What was the weather condition on the first day?"] = "Какая была погода в каждый день?",
@@ -4460,6 +4490,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SCube)] = new()
         {
             ModuleName = "Куба",
+            ManualModuleName = "Куб",
             ManualQuestions = new()
             {
                 ["What were the cube rotations?"] = "Какие повороты были у куба?",
@@ -4690,6 +4721,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SDecoloredSquares)] = new()
         {
             ModuleName = "Обесцвеченных квадратах",
+            ManualModuleName = "Обесцвеченные квадраты",
             ManualQuestions = new()
             {
                 ["What were the colors defining the starting row and column?"] = "Какие цвета отвечали за начальную строку и столбец?",
@@ -4939,6 +4971,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SDirectionalButton)] = new()
         {
             ModuleName = "Направляющей кнопки",
+            ManualModuleName = "Направляющая кнопка",
             ManualQuestions = new()
             {
                 ["How many times did you press the button in each stage?"] = "Сколько раз вы нажали кнопку на каждом этапе?",
@@ -4959,6 +4992,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SDiscoloredSquares)] = new()
         {
             ModuleName = "Бесцветных квадратах",
+            ManualModuleName = "Бесцветные квадраты",
             ManualQuestions = new()
             {
                 ["What was the remembered position for each color?"] = "В какой позиции находился каждый начальный цвет?",
@@ -5198,7 +5232,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Double Arrows
         [typeof(SDoubleArrows)] = new()
         {
-            ModuleName = "Двойных стрелках",
             ManualQuestions = new()
             {
                 ["What was the starting position?"] = "Где была начальная позиция?",
@@ -6060,6 +6093,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SFastMath)] = new()
         {
             ModuleName = "Быстрой математике",
+            ManualModuleName = "Быстрая математика",
             ManualQuestions = new()
             {
                 ["What was the last pair of letters?"] = "Какая пара букв была последней?",
@@ -6473,6 +6507,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SForgetEverything)] = new()
         {
             ModuleName = "Полного забвения",
+            ManualModuleName = "Полное забвение",
             ManualQuestions = new()
             {
                 ["What were the displayed digits in stage one?"] = "Какие цифры были на первом этапе?",
@@ -6532,6 +6567,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SForgetMeNot)] = new()
         {
             ModuleName = "Незабудки",
+            ManualModuleName = "Незабудка",
             ManualQuestions = new()
             {
                 ["What were the displayed digits in each stage?"] = "Какие цифры были показаны на каждом этапе?",
@@ -6561,6 +6597,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SForgetMeNow)] = new()
         {
             ModuleName = "Забудке",
+            ManualModuleName = "Забудка",
             ManualQuestions = new()
             {
                 ["What were the displayed digits?"] = "Какие цифры были показаны?",
@@ -6609,6 +6646,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SForgetsUltimateShowdown)] = new()
         {
             ModuleName = "Финальной битве забвения",
+            ManualModuleName = "Финальная битва забвения",
             ManualQuestions = new()
             {
                 ["What was the initial number?"] = "Какое было исходное число?",
@@ -7023,6 +7061,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Геймпада",
+            ManualModuleName = "Геймпад",
             ManualQuestions = new()
             {
                 ["What were the numbers?"] = "Какие числа были на экране?",
@@ -7298,6 +7337,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SGreenArrows)] = new()
         {
             ModuleName = "Зелёных стрелках",
+            ManualModuleName = "Зелёные стрелки",
             ManualQuestions = new()
             {
                 ["What was the last number on the display?"] = "Какое последнее число было показано на экране?",
@@ -7591,6 +7631,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Гексабиринте",
+            ManualModuleName = "Гексабиринт",
             ManualQuestions = new()
             {
                 ["What was the color of the pawn?"] = "Какого цвета была пешка?",
@@ -7824,6 +7865,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Петлях",
+            ManualModuleName = "Петли",
             ManualQuestions = new()
             {
                 ["What were the initially present hinges?"] = "Какие петли изначально присутствовали?",
@@ -8171,6 +8213,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SHypercube)] = new()
         {
             ModuleName = "Гиперкуба",
+            ManualModuleName = "Гиперкуб",
             ManualQuestions = new()
             {
                 ["What were the rotations?"] = "Какие были повороты у куба?",
@@ -8244,6 +8287,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SIceCream)] = new()
         {
             ModuleName = "Мороженого",
+            ManualModuleName = "Мороженое",
             ManualQuestions = new()
             {
                 ["Who were the customers?"] = "Кем были ваши посетители?",
@@ -8588,6 +8632,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SJuxtacoloredSquares)] = new()
         {
             ModuleName = "Смежных цветных квадратах",
+            ManualModuleName = "Смежные цветные квадраты",
             ManualQuestions = new()
             {
                 ["What was each square’s color?"] = "Какой был цвет каждого квадрата?",
@@ -8652,6 +8697,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SKanji)] = new()
         {
             ModuleName = "Кандзи",
+            ManualModuleName = "Кандзи",
             ManualQuestions = new()
             {
                 ["What was the displayed word in each stage?"] = "Какое слово было показано на каждом этапе?",
@@ -8919,6 +8965,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Кудосудоку",
+            ManualModuleName = "Кудосудоку",
             ManualQuestions = new()
             {
                 ["Which squares were initially pre-filled?"] = "Which squares were initially pre-filled?",
@@ -9180,7 +9227,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which letters were present at each stage"] = "Какие правильные кнопки были нажаты?",
+                ["Which letters were present at each stage"] = "Which letters were present at each stage",
             },
             Questions = new()
             {
@@ -9197,6 +9244,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SLEDGrid)] = new()
         {
             ModuleName = "Сетке светодиодов",
+            ManualModuleName = "Сетка светодиодов",
             ManualQuestions = new()
             {
                 ["How many LEDs were unlit?"] = "Сколько светодиодов не горели?",
@@ -9456,6 +9504,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SListening)] = new()
         {
             ModuleName = "Прослушке",
+            ManualModuleName = "Прослушка",
             ManualQuestions = new()
             {
                 ["What sound played?"] = "Какая запись была проиграна?",
@@ -9550,6 +9599,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SLogicGates)] = new()
         {
             ModuleName = "Логических элементах",
+            ManualModuleName = "Логические элементы",
             ManualQuestions = new()
             {
                 ["What were logic gates A-D?"] = "Какие логические элементы присутствовали?",
@@ -9655,6 +9705,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SMafia)] = new()
         {
             ModuleName = "Мафии",
+            ManualModuleName = "Мафия",
             ManualQuestions = new()
             {
                 ["Who was a player, but not the Godfather?"] = "Кто был игроком, но не был крёстным отцом?",
@@ -10042,6 +10093,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SMaze)] = new()
         {
             ModuleName = "Лабиринте",
+            ManualModuleName = "Лабиринт",
             ManualQuestions = new()
             {
                 ["What was the starting position?"] = "Где была начальная позиция?",
@@ -10140,6 +10192,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SMazematics)] = new()
         {
             ModuleName = "Матебиринте",
+            ManualModuleName = "Матебиринт",
             ManualQuestions = new()
             {
                 ["What were the initial and goal values?"] = "Какими были начальная и целевая величины?",
@@ -10357,6 +10410,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Памяти",
+            ManualModuleName = "Память",
             ManualQuestions = new()
             {
                 ["What was the display in each stage?"] = "Что было на экране на каждом этапе?",
@@ -10627,6 +10681,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SModuleMaze)] = new()
         {
             ModuleName = "Модульном лабиринте",
+            ManualModuleName = "Модульный лабиринт",
             ManualQuestions = new()
             {
                 ["What was the starting icon?"] = "Какая была начальная иконка?",
@@ -10725,6 +10780,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Коллекционных карточках по Монсплодам",
+            ManualModuleName = "Коллекционные карточки по Монсплодам",
             ManualQuestions = new()
             {
                 ["What were the names and print versions of the three cards in your hand before the final trade/keep?"] = "Какие были имена и издания трёх начальных и последней предложенной карты?",
@@ -10951,6 +11007,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Мыши в лабиринте",
+            ManualModuleName = "Мышь в лабиринте",
             ManualQuestions = new()
             {
                 ["What color was the torus?"] = "What color was the torus?",
@@ -11025,6 +11082,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SMulticoloredSwitches)] = new()
         {
             ModuleName = "Многоцветных переключателях",
+            ManualModuleName = "Многоцветные переключатели",
             ManualQuestions = new()
             {
                 ["What were the colors of the LEDs in both cycles?"] = "Какого цвета были светодиоды во всех последовательностях?",
@@ -11087,6 +11145,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Убийстве",
+            ManualModuleName = "Убийство",
             ManualQuestions = new()
             {
                 ["Which were the suspects and weapons?"] = "Кем были подозреваемые и какие оружия были найдены?",
@@ -11478,6 +11537,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SNeutralization)] = new()
         {
             ModuleName = "Нейтрализации",
+            ManualModuleName = "Нейтрализация",
             ManualQuestions = new()
             {
                 ["What was the acid’s color/volume?"] = "Какой объём/цвет был у кислоты?",
@@ -11753,6 +11813,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SNotKeypad)] = new()
         {
             ModuleName = "Не клавиатуре",
+            ManualModuleName = "Не клавиатура",
             ManualQuestions = new()
             {
                 ["Which colours flashed in the final sequence?"] = "Какие цвета горели на последнем этапе?",
@@ -12284,6 +12345,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SNotTheButton)] = new()
         {
             ModuleName = "Не кнопки",
+            ManualModuleName = "Не кнопка",
             ManualQuestions = new()
             {
                 ["What color did the light glow?"] = "Какого цвета была цветная полоска?",
@@ -12619,6 +12681,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SObjectShows)] = new()
         {
             ModuleName = "Обджект-шоу",
+            ManualModuleName = "Обджект-шоу",
             ManualQuestions = new()
             {
                 ["What contestants were shown?"] = "Какие участники были показаны, но проиграли?",
@@ -12872,6 +12935,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SOrangeArrows)] = new()
         {
             ModuleName = "Оранжевых стрелок",
+            ManualModuleName = "Оранжевые стрелки",
             ManualQuestions = new()
             {
                 ["What were the first three arrows on the display in each stage?"] = "Какие первые три стрелки были показаны на каждом этапе?",
@@ -13005,6 +13069,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SOrientationCube)] = new()
         {
             ModuleName = "Ориентации куба",
+            ManualModuleName = "Ориентация куба",
             ManualQuestions = new()
             {
                 ["What was the observer’s initial position?"] = "Какая была начальная позиция у наблюдателя?",
@@ -13252,6 +13317,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SPatternCube)] = new()
         {
             ModuleName = "Развёртке куба",
+            ManualModuleName = "Развёртка куба",
             ManualQuestions = new()
             {
                 ["Which symbol was highlighted?"] = "Какой символ был выделен?",
@@ -13345,6 +13411,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SPerspectivePegs)] = new()
         {
             ModuleName = "Взгляде на колышках",
+            ManualModuleName = "Взгляд на колышки",
             ManualQuestions = new()
             {
                 ["What was the initial color sequence?"] = "Какая была начальная последовательность цветов?",
@@ -13887,6 +13954,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SProbing)] = new()
         {
             ModuleName = "Прозвонке",
+            ManualModuleName = "Прозвонка",
             ManualQuestions = new()
             {
                 ["What were the missing frequencies in each wire?"] = "Какие частоты отсутствовали в каждом проводе?",
@@ -13950,6 +14018,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SPurpleArrows)] = new()
         {
             ModuleName = "Фиолетовых стрелках",
+            ManualModuleName = "Фиолетовые стрелки",
             ManualQuestions = new()
             {
                 ["What was the target word?"] = "Какое слово было зашифровано?",
@@ -14330,6 +14399,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SRailwayCargoLoading)] = new()
         {
             ModuleName = "Загрузке ЖД состава",
+            ManualModuleName = "Загрузка ЖД состава",
             ManualQuestions = new()
             {
                 ["What were the coupled cars?"] = "Какие вагоны были присоединены?",
@@ -14380,6 +14450,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SRecoloredSwitches)] = new()
         {
             ModuleName = "Перекрашенных переключателей",
+            ManualModuleName = "Перекрашенные переключатели",
             ManualQuestions = new()
             {
                 ["What were the LED colors?"] = "Какого цвета были светодиоды?",
@@ -14433,6 +14504,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SRedArrows)] = new()
         {
             ModuleName = "Красных стрелках",
+            ManualModuleName = "Красные стрелки",
             ManualQuestions = new()
             {
                 ["What was the starting number?"] = "Какое было начальное число?",
@@ -14820,6 +14892,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SRhythms)] = new()
         {
             ModuleName = "Ритмах",
+            ManualModuleName = "Ритмы",
             ManualQuestions = new()
             {
                 ["What was the color?"] = "Какой был цвет?",
@@ -15294,6 +15367,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SSeaShells)] = new()
         {
             ModuleName = "Морских ракушках",
+            ManualModuleName = "Морские ракушки",
             ManualQuestions = new()
             {
                 ["What were the phrases?"] = "Какие были фразы?",
@@ -15418,6 +15492,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SShapeShift)] = new()
         {
             ModuleName = "Изменении формы",
+            ManualModuleName = "Изменение формы",
             ManualQuestions = new()
             {
                 ["What was the initial shape?"] = "Какая была начальная фигура?",
@@ -15555,6 +15630,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Однорукого бандита",
+            ManualModuleName = "Однорукий бандит",
             ManualQuestions = new()
             {
                 ["What were the slots in each stage?"] = "Какие слоты были на каждом этапе?",
@@ -16705,6 +16781,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SSkewedSlots)] = new()
         {
             ModuleName = "Искажённых слотах",
+            ManualModuleName = "Искажённые слоты",
             ManualQuestions = new()
             {
                 ["What were the original numbers?"] = "Какие три цифры были указаны в начале?",
@@ -17062,6 +17139,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SSorting)] = new()
         {
             ModuleName = "Сортировке",
+            ManualModuleName = "Сортировка",
             ManualQuestions = new()
             {
                 ["Which positions were involved in the final swap?"] = "Какие позиции участвовали в последней замене чисел?",
@@ -17081,6 +17159,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SSouvenir)] = new()
         {
             ModuleName = "Сувенире",
+            ManualModuleName = "Сувенир",
             ManualQuestions = new()
             {
                 ["What was the first module the other Souvenir asked a question about?"] = "О каком модуле был первый вопрос на другом Сувенире?",
@@ -17125,6 +17204,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SSpellingBee)] = new()
         {
             ModuleName = "Правописании",
+            ManualModuleName = "Правописание",
             ManualQuestions = new()
             {
                 ["What word was asked to be spelled?"] = "Какое слово нужно было прописать?",
@@ -17173,6 +17253,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SSplittingTheLoot)] = new()
         {
             ModuleName = "Разделении добычи",
+            ManualModuleName = "Разделение добычи",
             ManualQuestions = new()
             {
                 ["Which bag was initially colored?"] = "Какой мешок изначально был окрашен?",
@@ -17650,6 +17731,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Switches
         [typeof(SSwitches)] = new()
         {
+            ModuleName = "Переключателя",
+            ManualModuleName = "Переключатели",
             ManualQuestions = new()
             {
                 ["What was the initial position of the switches?"] = "Какая была начальная позиция переключателей?",
@@ -18168,6 +18251,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(STextField)] = new()
         {
             ModuleName = "Поле из букв",
+            ManualModuleName = "Поле из букв",
             ManualQuestions = new()
             {
                 ["What was the displayed letter?"] = "Какая буква была показана?",
@@ -18271,6 +18355,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Крестиках-ноликах",
+            ManualModuleName = "Крестики-нолики",
             ManualQuestions = new()
             {
                 ["What was the initial state of the field?"] = "Какое было начальное состояние поля?",
@@ -18563,6 +18648,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Двух битах",
+            ManualModuleName = "Два бита",
             ManualQuestions = new()
             {
                 ["What were the correct three query responses?"] = "Какие были три правильных ответа на запросы?",
@@ -18743,6 +18829,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SUncoloredSquares)] = new()
         {
             ModuleName = "Неокрашенных квадратов",
+            ManualModuleName = "Неокрашенные квадраты",
             ManualQuestions = new()
             {
                 ["What were the colors used in the first stage?"] = "Какие цвета были использованы на первом этапе?",
@@ -18772,6 +18859,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SUncoloredSwitches)] = new()
         {
             ModuleName = "Бесцветных переключателей",
+            ManualModuleName = "Бесцветные переключатели",
             ManualQuestions = new()
             {
                 ["What was the initial switch state?"] = "Какое было начальное положение переключателей?",
@@ -19156,6 +19244,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SUSAMaze)] = new()
         {
             ModuleName = "Американском лабиринте",
+            ManualModuleName = "Американский лабиринт",
             ManualQuestions = new()
             {
                 ["Which state did you depart from?"] = "С какого штата вы начали свой путь?",
@@ -19215,6 +19304,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SVaricoloredSquares)] = new()
         {
             ModuleName = "Разноцветных квадратах",
+            ManualModuleName = "Разноцветные квадраты",
             ManualQuestions = new()
             {
                 ["What was the initially pressed color?"] = "Какой был первый нажатый цвет?",
@@ -19546,6 +19636,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SVisualImpairment)] = new()
         {
             ModuleName = "Повреждённого зрения",
+            ManualModuleName = "Повреждённое зрение",
             ManualQuestions = new()
             {
                 ["What were the desired colors?"] = "Какие были целевые цвета?",
@@ -19831,7 +19922,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "\"Меня зовут Авас, а Вас\"",
-            ManualModuleName = "Меня зовут Авас, а Вас",
+            ManualModuleName = "Меня зовут Авас, а вас?",
             ManualQuestions = new()
             {
                 ["What were the display words?"] = "Какие слова были показаны на экране?",
@@ -20024,6 +20115,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             NeedsTranslation = true,
             ModuleName = "Последовательности проводов",
+            ManualModuleName = "Последовательность проводов",
             ManualQuestions = new()
             {
                 ["How many wires of each color were there?"] = "Сколько проводов было каждого цвета?",
@@ -20115,6 +20207,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SWorkingTitle)] = new()
         {
             ModuleName = "Рабочем названии",
+            ManualModuleName = "Рабочее название",
             ManualQuestions = new()
             {
                 ["What was on the display?"] = "Какие надписи были показаны?",
@@ -20263,6 +20356,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SYahtzee)] = new()
         {
             ModuleName = "Покере на костях",
+            ManualModuleName = "Покер на костях",
             ManualQuestions = new()
             {
                 ["What was the first roll?"] = "Какой был первый бросок?",
@@ -20292,6 +20386,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         [typeof(SYellowArrows)] = new()
         {
             ModuleName = "Жёлтых стрелках",
+            ManualModuleName = "Жёлтые стрелки",
             ManualQuestions = new()
             {
                 ["What was the starting row letter?"] = "Какая была буква у начальной строки?",
