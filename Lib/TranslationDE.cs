@@ -130,6 +130,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The 1, 2, 3 Game
         [typeof(S123Game)] = new()
         {
+            ModuleName = "Das 1-2-3-Spiel",
+            ModuleNameDative = "1-2-3-Spiel",
+            ManualModuleName = "Das\uE0011-2-3-Spiel",
             ManualQuestions = new()
             {
                 ["What was the opponent’s avatar and name?"] = "Was war der Name und Avatar des Gegners?",
@@ -1022,6 +1025,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Arena",
             ModuleNameDative = "Arena",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Arena",
             ManualQuestions = new()
             {
                 ["What was the maximum weapon damage of the attack phase?"] = "Was war die höchste Waffenstärke in der Angriffsphase?",
@@ -1160,6 +1164,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Azurfarbene Knopf",
             ModuleNameDative = "Azurfarbenen Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Azurfarbene Knopf",
             ManualQuestions = new()
             {
                 ["What were T and the other displayed cards?"] = "Was waren T und die restlichen angezeigten Karten?",
@@ -1993,6 +1998,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Blaue Knopf",
             ModuleNameDative = "Blauen Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Blaue Knopf",
             ManualQuestions = new()
             {
                 ["What were D, E, F, G, H, M, N, P, Q, and X?"] = "Was waren D, E, F, G, H, M, N, P, Q und X?",
@@ -2532,6 +2538,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Glühlampe",
             ModuleNameDative = "Glühlampe",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Glühlampe",
             ManualQuestions = new()
             {
                 ["Was the bulb initially lit?"] = "War die Glühlampe am Anfang an?",
@@ -2604,6 +2611,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Knopf",
             ModuleNameDative = "Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Knopf",
             ManualQuestions = new()
             {
                 ["What color did the light glow?"] = "In welcher Farbe leuchtete der Streifen?",
@@ -3262,6 +3270,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Code",
             ModuleNameDative = "Code",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Code",
             ManualQuestions = new()
             {
                 ["What was the displayed number?"] = "Welche Zahl war auf dem Display?",
@@ -4345,6 +4354,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die CRegel",
             ModuleNameDative = "CRegel",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001CRegel",
             ManualQuestions = new()
             {
                 ["Which cells were prefilled at the start?"] = "Welche Zellen waren am Anfang vorgegeben?",
@@ -4466,6 +4476,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Würfel",
             ModuleNameDative = "Würfel",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Würfel",
             ManualQuestions = new()
             {
                 ["What were the cube rotations?"] = "Was waren die Würfelrotationen?",
@@ -4536,6 +4547,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Türkise Knopf",
             ModuleNameDative = "Türkisen Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Türkise Knopf",
             ManualQuestions = new()
             {
                 ["Where was the button at each stage?"] = "Wo war der Knopf in welcher Stufe?",
@@ -4679,6 +4691,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Stapel Vieler Dinge",
             ModuleNameDative = "Stapel Vieler Dinge",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Stapel Vieler Dinge",
             ManualQuestions = new()
             {
                 ["What deck did the first card belong to?"] = "Zu welchem Deck gehörte die erste Karte?",
@@ -5463,6 +5476,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Ente",
             ModuleNameDative = "Ente",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Ente",
             ManualQuestions = new()
             {
                 ["What was the color of the curtain?"] = "Welche Farbe hatte der Vorhang?",
@@ -6969,6 +6983,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Französische Revolutionskalender",
             ModuleNameDative = "Französischen Revolutionskalender",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Französische Revolutionskalender",
             ManualQuestions = new()
             {
                 ["What was the color of the LED?"] = "Welche Farbe hatte die LED?",
@@ -7030,6 +7045,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Sicherungskasten",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Sicherungskasten",
             ManualQuestions = new()
             {
                 ["What colors flashed?"] = "Welche Farben sind aufgeleuchtet?",
@@ -7096,6 +7112,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Gamepad
         [typeof(SGamepad)] = new()
         {
+            ManualModuleName = "Das\uE001Gamepad",
             ManualQuestions = new()
             {
                 ["What were the numbers?"] = "Welche Zahlen kamen vor?",
@@ -7149,6 +7166,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Granatdieb",
             ModuleNameDative = "Granatdieb",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Granatdieb",
             ManualQuestions = new()
             {
                 ["Which faction did each competitor claim to have chosen?"] = "Welche Fraktion hat welcher Kandidat behauptet, gewählt zu haben?",
@@ -7228,6 +7246,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Gestörte Knopf",
             ModuleNameDative = "Gestörten Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Gestörte Knopf",
             ManualQuestions = new()
             {
                 ["What was the cycling bit sequence?"] = "Wie lautete die zyklische Bitfolge?",
@@ -7298,6 +7317,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Graue Knopf",
             ModuleNameDative = "Grauen Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Graue Knopf",
             ManualQuestions = new()
             {
                 ["What were the coordinates on the display?"] = "Welche Koordinaten waren auf dem Display?",
@@ -7351,6 +7371,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Große Leere",
             ModuleNameDative = "Großen Leere",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Große Leere",
             ManualQuestions = new()
             {
                 ["What were the digits and colors?"] = "Welche Ziffern und Farben kamen vor?",
@@ -7407,6 +7428,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Grüne Knopf",
             ModuleNameDative = "Grünen Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Grüne Knopf",
             ManualQuestions = new()
             {
                 ["What was the submitted word?"] = "Welches Wort wurde eingegeben?",
@@ -7660,6 +7682,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Hexaknopf",
             ModuleNameDative = "Hexaknopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Hexaknopf",
             ManualQuestions = new()
             {
                 ["What color was the button when held?"] = "Welche Farbe hatte die Taste beim Gedrückthalten?",
@@ -7836,6 +7859,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Versteckte Wert",
             ModuleNameDative = "Versteckten Wert",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Versteckte Wert",
             ManualQuestions = new()
             {
                 ["What numbers and colors were displayed?"] = "Welche Zahlen und Farben waren auf dem Display?",
@@ -7868,6 +7892,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Highscore",
             ModuleNameDative = "Highscore",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Highscore",
             ManualQuestions = new()
             {
                 ["What was the player’s position and score?"] = "An welcher Stelle war der Spieler mit welcher Punktzahl?",
@@ -8279,6 +8304,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Hypercube
         [typeof(SHypercube)] = new()
         {
+            ModuleName = "Der Hyperwürfel",
+            ModuleNameDative = "Hyperwürfel",
+            Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Hyperwürfel",
             ManualQuestions = new()
             {
                 ["What were the rotations?"] = "Welche Rotationen kamen vor?",
@@ -8327,6 +8356,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Hyperlink",
             ModuleNameDative = "Hyperlink",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Hyperlink",
             ManualQuestions = new()
             {
                 ["What was the hyperlink?"] = "Wie lautete der Hyperlink?",
@@ -8612,6 +8642,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Das iPhone",
             ModuleNameDative = "iPhone",
+            ManualModuleName = "Das\uE001iPhone",
             ManualQuestions = new()
             {
                 ["What was the PIN?"] = "Wie lautete die PIN?",
@@ -8649,6 +8680,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Juwelentresor",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Juwelentresor",
             ManualQuestions = new()
             {
                 ["Which wheel spun another wheel, and which one did it spin?"] = "Welches Rad setzte sich durch welches andere Rad in Bewegung?",
@@ -8796,6 +8828,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Kanye-Begegnung",
             ModuleNameDative = "Kanye-Begegnung",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Kanye-Begegnung",
             ManualQuestions = new()
             {
                 ["What food items were shown?"] = "Welche Nahrungsmittel kamen vor?",
@@ -8956,6 +8989,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Das Klaxon",
             ModuleNameDative = "Klaxon",
+            ManualModuleName = "Das\uE001Klaxon",
             ManualQuestions = new()
             {
                 ["What was the first module to set off the klaxon?"] = "Welches Modul hat als erstes den Klaxon losgetreten?",
@@ -9189,6 +9223,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Irrgarten",
             ModuleNameDative = "Irrgarten",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Irrgarten",
             ManualQuestions = new()
             {
                 ["Where were the portals, and which layers were they on?"] = "Wo waren auf welcher Ebene die Portale?",
@@ -9748,6 +9783,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The London Underground
         [typeof(SLondonUnderground)] = new()
         {
+            ModuleName = "Die Londoner U-Bahn",
+            ModuleNameDative = "Londoner U-Bahn",
+            Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Londoner U-Bahn",
             ManualQuestions = new()
             {
                 ["What were the departure and destination stations?"] = "Welche Haltestelle war Start und Ziel?",
@@ -10061,6 +10100,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Kastanienknopf",
             ModuleNameDative = "Kastanienknopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Kastanienknopf",
             ManualQuestions = new()
             {
                 ["What was A?"] = "Was war A?",
@@ -10196,6 +10236,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Matrix",
             ModuleNameDative = "Matrix",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Matrix",
             ManualQuestions = new()
             {
                 ["Which word was part of the latest access code?"] = "Welches Wort kam im letzten Zugangscode vor?",
@@ -10702,6 +10743,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Fehlende Buchstabe",
             ModuleNameDative = "Fehlenden Buchstaben",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Fehlende Buchstabe",
             ManualQuestions = new()
             {
                 ["What letter was missing?"] = "Welcher Buchstabe hat gefehlt?",
@@ -10943,6 +10985,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Mond",
             ModuleNameDative = "Mond",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Mond",
             ManualQuestions = new()
             {
                 ["Which sets were initially lit/unlit?"] = "Welche Richtungen haben am Anfang geleuchtet und welche nicht?",
@@ -11267,6 +11310,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Multiversum-Hotline",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Multiversum-Hotline",
             ManualQuestions = new()
             {
                 ["What was the universe origin and its initial number?"] = "Was war der Ursprung des Universums und dessen Zahl am Anfang?",
@@ -11562,6 +11606,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Königsblaue Knopf",
             ModuleNameDative = "Königsblauen Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Königsblaue Knopf",
             ManualQuestions = new()
             {
                 ["Which Greek letters appeared?"] = "Welche griechischen Buchstaben kamen vor?",
@@ -11619,9 +11664,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Necronomicon
         [typeof(SNecronomicon)] = new()
         {
-            ModuleName = "Der Königsblaue Knopf",
-            ModuleNameDative = "Königsblauen Knopf",
-            Gender = Gender.Masculine,
+            ModuleName = "Das Necronomicon",
+            ModuleNameDative = "Necronomicon",
+            ManualModuleName = "Das\uE001Necronomicon",
             ManualQuestions = new()
             {
                 ["What was the chapter number of each page?"] = "Welche Kapitelnummer stand auf welcher Seite?",
@@ -11632,7 +11677,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the chapter number of the {1} page in {0}?
                     // Example: What was the chapter number of the first page in The Necronomicon?
-                    Question = "What was the chapter number of the {1} page in {0}?",
+                    Question = "Welche Kapitelnummer stand bei {0} auf der {1}en Seite?",
                 },
             },
         },
@@ -12784,6 +12829,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SNumberGame)] = new()
         {
             ModuleName = "Zahlenspiel",
+            ManualModuleName = "Das\uE001Zahlenspiel",
             ManualQuestions = new()
             {
                 ["What was the maximum number?"] = "Was war die höchste Zahl?",
@@ -12870,6 +12916,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Octadecayotton
         [typeof(SOctadecayotton)] = new()
         {
+            ModuleName = "Der Oktadekayotton",
+            ModuleNameDative = "Oktadekayotton",
+            Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Oktadekayotton",
             ManualQuestions = new()
             {
                 ["What was the starting sphere?"] = "Bei welcher Kugel ging es los?",
@@ -13537,6 +13587,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Pentaknopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Pentaknopf",
             ManualQuestions = new()
             {
                 ["What was the base colour?"] = "Was war die Basisfarbe?",
@@ -13785,6 +13836,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Pinkfarbene Knopf",
             ModuleNameDative = "Pinkfarbenen Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Pinkfarbene Knopf",
             ManualQuestions = new()
             {
                 ["What were the displayed words and their colors?"] = "Welche Wörter waren auf dem Display und in welcher Farbe?",
@@ -14234,6 +14286,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Lilane Knopf",
             ModuleNameDative = "Lilanen Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Lilane Knopf",
             ManualQuestions = new()
             {
                 ["What were the numbers in the cyclic sequence?"] = "Welche Zahlen kamen in der zyklischen Folge vor?",
@@ -15309,6 +15362,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Regel",
             ModuleNameDative = "Regel",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Regel",
             ManualQuestions = new()
             {
                 ["What was the rule number?"] = "Welche Nummer hatte die Regel?",
@@ -15437,6 +15491,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Das Samsung",
             ModuleNameDative = "Samsung",
+            ManualModuleName = "Das\uE001Samsung",
             ManualQuestions = new()
             {
                 ["Where was each app?"] = "Welche App war an welcher Stelle?",
@@ -15674,6 +15729,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Folgenzyklopädie",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Folgenzyklopädie",
             ManualQuestions = new()
             {
                 ["What sequence was used?"] = "Welche Folge kam vor?",
@@ -17481,6 +17537,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Kugel",
             ModuleNameDative = "Kugel",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Kugel",
             ManualQuestions = new()
             {
                 ["What were the flashed colors?"] = "Welche Farben leuchteten auf?",
@@ -17972,6 +18029,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Schalter",
             ModuleNameDative = "Schalter",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Schalter",
             ManualQuestions = new()
             {
                 ["What color were the LEDs?"] = "Welche Farbe hatten die LEDs?",
@@ -18398,6 +18456,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ModuleName = "Das Teeservice",
             ModuleNameDative = "Teeservice",
+            ManualModuleName = "Das\uE001Teeservice",
             ManualQuestions = new()
             {
                 ["In what order were the ingredients displayed?"] = "In welcher Reihenfolge wurden die Zutaten angezeigt?",
@@ -19077,6 +19136,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Ultracube
         [typeof(SUltracube)] = new()
         {
+            ModuleName = "Der Ultrawürfel",
+            ModuleNameDative = "Ultrawürfel",
+            Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Ultrawürfel",
             ManualQuestions = new()
             {
                 ["What were the rotations?"] = "Welche Rotationen kamen vor?",
@@ -20082,8 +20145,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Weakest Link
         [typeof(SWeakestLink)] = new()
         {
-            ModuleName = "Schwächstes Glied",
-            ModuleNameDative = "Schwächsten Glied",
+            ModuleName = "Der Schwächste Fliegt!",
+            ManualModuleName = "Das\uE001Der Schwächste Fliegt!",
             ManualQuestions = new()
             {
                 ["Who was eliminated?"] = "Wer wurde eliminiert?",
@@ -20303,6 +20366,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Draht",
             ModuleNameDative = "Draht",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Draht",
             ManualQuestions = new()
             {
                 ["What were the colors of the dials?"] = "Welche Farbe hatten die Drehregler?",
@@ -20556,6 +20620,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Xenokrist",
             ModuleNameDative = "Xenokrist",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Xenokrist",
             ManualQuestions = new()
             {
                 ["What was the color of each flash?"] = "Welche Farbe leuchtete wann auf?",
@@ -20724,6 +20789,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Gelbe Knopf",
             ModuleNameDative = "Gelben Knopf",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Gelbe Knopf",
             ManualQuestions = new()
             {
                 ["What were the colors?"] = "Welche Farben kamen vor?",

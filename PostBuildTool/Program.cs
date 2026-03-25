@@ -117,7 +117,7 @@ public static class Program
         var contributorToModules = new Dictionary<string, List<string>>();
         foreach (dynamic attr in assembly.GetType("SouvenirModule").GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Select(m => m.GetCustomAttribute(handlerAttrType)).ToArray())
             if (attr != null)
-                contributorToModules.AddSafe((string) attr.Contributor, ((string) attr.ModuleName).Replace("\uE001", "").Replace("\uE002", "").Apply(m => attr.AddThe ? $"{m}, The" : m));
+                contributorToModules.AddSafe((string) attr.Contributor, ((string) attr.ModuleName).Apply(m => attr.AddThe ? $"{m}, The" : m));
 
         const int numColumns = 5;
 
