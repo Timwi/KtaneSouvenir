@@ -4262,10 +4262,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Critters
         [typeof(SCritters)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the color?"] = "What was the color?",
+                ["What was the color?"] = "Какой был цвет?",
             },
             Questions = new()
             {
@@ -4307,7 +4306,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the displayed symbols and what was the color of the bar in each stage?"] = "Какие символы были показаны и каких цветов была шкала на каждом этапе?",
+                ["What symbols were on the keys in each stage?"] = "What symbols were on the keys in each stage?",
+                ["What was the color of the bar in each stage?"] = "What was the color of the bar in each stage?",
             },
             Questions = new()
             {
@@ -7513,7 +7513,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which fruit were there five of?"] = "Which fruit were there five of?",
+                ["Which fruit were there five of?"] = "Каких фруктов было пять?",
                 ["What were the relevant counts?"] = "What were the relevant counts?",
             },
             Questions = new()
@@ -12738,9 +12738,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Old AI
         [typeof(SOldAI)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which condition did the displayed numbers follow?"] = "Какому условию следовало число на экране?",
+                ["What was the group/sub-group of the displayed numbers?"] = "What was the group/sub-group of the displayed numbers?",
             },
             Questions = new()
             {
@@ -16349,7 +16350,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which colors flashed?"] = "Which colors flashed?",
+                ["Which colors flashed?"] = "Какие цвета горели?",
             },
             Questions = new()
             {
@@ -20119,11 +20120,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Working Title
         [typeof(SWorkingTitle)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Рабочем названии",
             ManualQuestions = new()
             {
-                ["What was on the display?"] = "What was on the display?",
+                ["What was on the display?"] = "Какие надписи были показаны?",
             },
             Questions = new()
             {

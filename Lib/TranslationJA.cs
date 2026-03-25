@@ -4212,10 +4212,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Cruel Keypads
         [typeof(SCruelKeypads)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "残忍キーパッド",
             ManualQuestions = new()
             {
-                ["What were the displayed symbols and what was the color of the bar in each stage?"] = "各ステージで表示されたシンボルとバーの色は？",
+                ["What symbols were on the keys in each stage?"] = "What symbols were on the keys in each stage?",
+                ["What was the color of the bar in each stage?"] = "What was the color of the bar in each stage?",
             },
             Questions = new()
             {
@@ -12690,10 +12692,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Old AI
         [typeof(SOldAI)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "オールドAI",
             ManualQuestions = new()
             {
-                ["Which condition did the displayed numbers follow?"] = "表示されていた数字が従っていた条件は？",
+                ["What was the group/sub-group of the displayed numbers?"] = "What was the group/sub-group of the displayed numbers?",
             },
             Questions = new()
             {

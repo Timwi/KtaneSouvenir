@@ -30,6 +30,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         : _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleNameWithThe;
 
     public override bool TranslateManualQuestions => true;
+    public override object ManualQuestionSortBy(TranslationInfo_de info, string originalModuleName) =>
+        info.ManualModuleName == null ? (info.ModuleName ?? originalModuleName).Replace("“", "") :
+        info.ManualModuleName.IndexOf('\uE001') is { } p and not -1 ? info.ManualModuleName.Substring(p + 1) :
+        info.ManualModuleName;
     public override string Ordinal(int number) => ordinal(number);
     private string ordinal(int num) => num < 0 ? $"({num})t" : num switch
     {
@@ -507,7 +511,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ManualQuestions = new()
             {
-                ["What were the characters displayed?"] = "Welche Zeichen waren auf dem Display?",
+                ["What were the characters displayed?"] = "Welche Zeichen kamen vor?",
             },
             Questions = new()
             {
@@ -515,7 +519,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on Abyss?
-                    Question = "Welcher Buchstabe wurde bei {0} als {1}es angezeigt?",
+                    Question = "Welcher Buchstabe kam bei {0} als {1}es vor?",
                 },
             },
         },
@@ -3886,7 +3890,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What numbers were initially displayed?"] = "Welche Zahlen waren am Anfang auf dem Display?",
+                ["What numbers were initially displayed?"] = "Welche Zahlen waren am Anfang auf den Monitoren?",
                 ["What colors were the indicators?"] = "Welche Farbe hatten die Indikatoren?",
             },
             Questions = new()
@@ -3894,12 +3898,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SConnectedMonitors.Number] = new()
                 {
                     // English: What number was initially displayed on this screen in {0}? (+ sprite)
-                    Question = "Welche Zahl war bei {0} anfänglich auf diesem Display zu sehen?",
+                    Question = "Welche Zahl war bei {0} anfänglich auf diesem Monitor zu sehen?",
                 },
                 [SConnectedMonitors.SingleIndicator] = new()
                 {
                     // English: What colour was the indicator on this screen in {0}? (+ sprite)
-                    Question = "Welche Farbe hatte bei {0} der Indikator auf diesem Display?",
+                    Question = "Welche Farbe hatte bei {0} der Indikator auf diesem Monitor?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -3914,7 +3918,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What colour was the {1} indicator on this screen in {0}? (+ sprite)
                     // Example: What colour was the first indicator on this screen in Connected Monitors? (+ sprite)
-                    Question = "Welche Farbe hatte bei {0} der {1}e Indikator auf diesem Display?",
+                    Question = "Welche Farbe hatte bei {0} der {1}e Indikator auf diesem Monitor?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -4320,7 +4324,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the displayed symbols and what was the color of the bar in each stage?"] = "Welche Symbole waren in welcher Stufe auf dem Display und welche Farbe hatte der Balken?",
+                ["What symbols were on the keys in each stage?"] = "Welche Symbole waren in welcher Stufe auf welcher Taste?",
+                ["What was the color of the bar in each stage?"] = "In welcher Stufe hatte der Balken welche Farbe?",
             },
             Questions = new()
             {
@@ -5841,7 +5846,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ManualQuestions = new()
             {
-                ["What was the displayed quote?"] = "Welches Zitat war auf dem Display?",
+                ["What was the displayed quote?"] = "Welches Zitat war auf dem Fernseher?",
             },
             Questions = new()
             {
@@ -7025,7 +7030,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SFunctions.LeftNumber] = new()
                 {
                     // English: What number was to the left of the displayed letter in {0}?
-                    Question = "Welche Zahl war bei {0} auf dem Display links vom Buchstaben?",
+                    Question = "Welche Zahl war bei {0} links vom Buchstaben?",
                 },
                 [SFunctions.Letter] = new()
                 {
@@ -7035,7 +7040,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SFunctions.RightNumber] = new()
                 {
                     // English: What number was to the right of the displayed letter in {0}?
-                    Question = "Welche Zahl war bei {0} auf dem Display rechts vom Buchstaben?",
+                    Question = "Welche Zahl war bei {0} rechts vom Buchstaben?",
                 },
             },
         },
@@ -7209,7 +7214,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the displayed keyword?"] = "Was war das Schlüsselwort auf dem Display?",
+                ["What was the displayed keyword?"] = "Welches Schlüsselwort war auf dem Display?",
             },
             Questions = new()
             {
@@ -9922,7 +9927,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which main page did the {1} button’s effect come from in {0}?
                     // Example: Which main page did the toons button’s effect come from in Main Page?
-                    Question = "Von welcher Hauptseite kam bei {0} der Effekt der {1}-Taste? ",
+                    Question = "Von welcher Hauptseite kam bei {0} der Effekt der {1}-Taste?",
                     Arguments = new()
                     {
                         ["toons"] = "Toons",
@@ -9947,7 +9952,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SMainPage.BubbleColors] = new()
                 {
                     // English: Which color did the bubble not display in {0}?
-                    Question = "Welche Farbe hat die Sprechblase bei {0} nicht angezeigt? ",
+                    Question = "Welche Farbe hat die Sprechblase bei {0} nicht angezeigt?",
                     Answers = new()
                     {
                         ["Blue"] = "Blau",
@@ -10156,7 +10161,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} number in the equation on {0}?
                     // Example: What was the first number in the equation on Mashematics?
-                    Question = "Was war bei {0} die {1}e Zahl in der Gleichung? ",
+                    Question = "Was war bei {0} die {1}e Zahl in der Gleichung?",
                 },
             },
         },
@@ -10196,7 +10201,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which planet was present in the {1} stage of {0}?
                     // Example: Which planet was present in the first stage of Match Refereeing?
-                    Question = "Welcher Planet kam bei {0} in der {1}en Stufe vor? ",
+                    Question = "Welcher Planet kam bei {0} in der {1}en Stufe vor?",
                 },
             },
         },
@@ -10794,7 +10799,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SMixometer.SubmitButton] = new()
                 {
                     // English: What was the position of the submit button in {0}?
-                    Question = "Wo war bei {0} die Eingabetaste? ",
+                    Question = "Wo war bei {0} die Eingabetaste?",
                 },
             },
         },
@@ -10869,7 +10874,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SModuleMaze.StartingIcon] = new()
                 {
                     // English: Which of the following was the starting icon for {0}?
-                    Question = "Welches dieser Symbole war bei {0} der Startpunkt? ",
+                    Question = "Welches dieser Symbole war bei {0} der Startpunkt?",
                 },
             },
         },
@@ -10889,7 +10894,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} module shown in {0}?
                     // Example: What was the first module shown in Module Movements?
-                    Question = "Welches Modul war bei {0} als {1}es auf dem Display? ",
+                    Question = "Welches Modul war bei {0} als {1}es auf dem Display?",
                 },
             },
         },
@@ -10939,7 +10944,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SMonsplodeFight.Creature] = new()
                 {
                     // English: Which creature was displayed in {0}?
-                    Question = "Welche Kreatur war bei {0} auf dem Display? ",
+                    Question = "Welche Kreatur war bei {0} auf dem Display?",
                 },
                 [SMonsplodeFight.Move] = new()
                 {
@@ -10969,7 +10974,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SMonsplodeTradingCards.CardsAny] = new()
                 {
                     // English: Which of these cards was in your hand before the last action in {0}?
-                    Question = "Welche Karte war bei {0} vor der letzten Aktion auf der Hand? ",
+                    Question = "Welche Karte war bei {0} vor der letzten Aktion auf der Hand?",
                 },
                 [SMonsplodeTradingCards.PrintVersionsAny] = new()
                 {
@@ -11036,7 +11041,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SMoreCode.Word] = new()
                 {
                     // English: What was the flashing word in {0}?
-                    Question = "Welches Wort wurde bei {0} übermittelt? ",
+                    Question = "Welches Wort wurde bei {0} übermittelt?",
                 },
             },
         },
@@ -11055,7 +11060,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SMorseAMaze.StartingCoordinate] = new()
                 {
                     // English: What was the starting location in {0}?
-                    Question = "Wo war bei {0} die Startposition? ",
+                    Question = "Wo war bei {0} die Startposition?",
                 },
                 [SMorseAMaze.EndingCoordinate] = new()
                 {
@@ -11065,7 +11070,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SMorseAMaze.MorseCodeWord] = new()
                 {
                     // English: What was the word shown as Morse code in {0}?
-                    Question = "Welches Wort wurde bei {0} in Morsezeichen übermittelt? ",
+                    Question = "Welches Wort wurde bei {0} in Morsezeichen übermittelt?",
                 },
             },
         },
@@ -11085,7 +11090,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the character flashed by the {1} button in {0}?
                     // Example: What was the character flashed by the first button in Morse Buttons?
-                    Question = "Welches Zeichen wurde bei {0} von der {1}en Taste übermittelt? ",
+                    Question = "Welches Zeichen wurde bei {0} von der {1}en Taste übermittelt?",
                 },
                 [SMorseButtons.ButtonColor] = new()
                 {
@@ -11153,7 +11158,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SMorseWar.Code] = new()
                 {
                     // English: What code was transmitted in {0}?
-                    Question = "Welcher Code wurde bei {0} übermittelt? ",
+                    Question = "Welcher Code wurde bei {0} übermittelt?",
                 },
                 [SMorseWar.Leds] = new()
                 {
@@ -11420,7 +11425,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SMysteryModule.HiddenModule] = new()
                 {
                     // English: Which module was hidden by {0}?
-                    Question = "Welches Modul wurde bei Mystery-Modul versteckt? ",
+                    Question = "Welches Modul wurde bei {0} versteckt?",
                 },
             },
         },
@@ -11500,7 +11505,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SNandMs.Answer] = new()
                 {
                     // English: What was the label of the correct button in {0}?
-                    Question = "Welche Aufschrift hatte bei {0} die richtige Taste? ",
+                    Question = "Welche Aufschrift hatte bei {0} die richtige Taste?",
                 },
             },
         },
@@ -11519,7 +11524,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which label was present in the {1} stage of {0}?
                     // Example: Which label was present in the first stage of N&Ns?
-                    Question = "Welche Aufschrift kam bei {0} in der {1}en Stufe vor? ",
+                    Question = "Welche Aufschrift kam bei {0} in der {1}en Stufe vor?",
                 },
                 [SNandNs.Color] = new()
                 {
@@ -11713,14 +11718,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["Which star was displayed?"] = "Welcher Stern war auf dem Display?",
+                ["Which star was displayed?"] = "Welcher Stern kam vor?",
             },
             Questions = new()
             {
                 [SNeptune.Star] = new()
                 {
                     // English: Which star was displayed in {0}?
-                    Question = "Welcher Stern war bei {0} auf dem Display? ",
+                    Question = "Welcher Stern kam bei {0} vor?",
                 },
             },
         },
@@ -11751,7 +11756,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SNeutralization.Volume] = new()
                 {
                     // English: What was the acid’s volume in {0}?
-                    Question = "Welches Volumen hatte bei {0} die Säure? ",
+                    Question = "Welches Volumen hatte bei {0} die Säure?",
                 },
             },
         },
@@ -11768,7 +11773,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SNextInLine.FirstWire] = new()
                 {
                     // English: What color was the first wire in {0}?
-                    Question = "Welche Farbe hatte bei {0} der erste Draht? ",
+                    Question = "Welche Farbe hatte bei {0} der erste Draht?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -12506,6 +12511,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Glühlampe Mal Anders",
             ModuleNameDative = "Glühlampe Mal Anders",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Glühlampe Mal Anders",
             ManualQuestions = new()
             {
                 ["What was the transmitted word?"] = "Welches Wort wurde übermittelt?",
@@ -12554,6 +12560,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Knopf Mal Anders",
             ModuleNameDative = "Knopf Mal Anders",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Knopf Mal Anders",
             ManualQuestions = new()
             {
                 ["What color did the light glow?"] = "In welcher Farbe leuchtete der Streifen?",
@@ -12592,6 +12599,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Der Kolbenknopf Mal Anders",
             ModuleNameDative = "Kolbenknopf Mal Anders",
             Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Kolbenknopf Mal Anders",
             ManualQuestions = new()
             {
                 ["What colors did the background flash?"] = "In welchen Farben leuchtete der Hintergrund?",
@@ -12623,6 +12631,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Die Schraube Mal Anders",
             ModuleNameDative = "Schraube Mal Anders",
             Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Schraube Mal Anders",
             ManualQuestions = new()
             {
                 ["What was the initial position?"] = "Wo war die Startposition?",
@@ -13023,7 +13032,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["Which condition did the displayed numbers follow?"] = "Welche Bedingung haben die Zahlen auf dem Display befolgt?",
+                ["What was the group/sub-group of the displayed numbers?"] = "Zu welcher Gruppe/Untergruppe gehörten die angezeigten Zahlen?",
             },
             Questions = new()
             {
@@ -14245,11 +14254,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // ...?
         [typeof(SPunctuationMarks)] = new()
         {
-            ModuleName = "Interpunktionszeichen",
-            Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What was the displayed number?"] = "Welche Zahl war auf dem Display?",
+                ["What was the displayed number?"] = "Welche Zahl wurde angezeigt?",
             },
             Questions = new()
             {
@@ -14588,7 +14595,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ManualQuestions = new()
             {
-                ["What number was shown?"] = "Welche Zahl war auf dem Display?",
+                ["What number was shown?"] = "Welche Zahl stand auf dem Modul?",
             },
             Questions = new()
             {
@@ -15454,7 +15461,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["What were the displayed digits?"] = "Welche Ziffern waren auf dem Display?",
+                ["What were the displayed digits?"] = "Welche Ziffern waren auf dem Diamanten?",
                 ["What was the special rule?"] = "Was war die Spezialregel?",
             },
             Questions = new()
@@ -15463,7 +15470,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the digit displayed on the {1} diamond in {0}?
                     // Example: What was the digit displayed on the red diamond in Safety Square?
-                    Question = "Welche Ziffer war bei {0} auf dem {1} Diamant?",
+                    Question = "Welche Ziffer war bei {0} auf dem {1} Diamanten?",
                     Arguments = new()
                     {
                         ["red"] = "roten",
@@ -15538,7 +15545,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the displayed song for stage {1} (hexadecimal) of {0}?
                     // Example: What was the displayed song for stage 01 (hexadecimal) of Sbemail Songs?
-                    Question = "Was war bei {0} das in Stufe {1} (hexadezimal) angezeigte Lied?",
+                    Question = "Welcher Song war bei {0} in Stufe {1} (hexadezimal) auf dem Display?",
                 },
             },
             Discriminators = new()
@@ -16609,7 +16616,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the {1} flash in {0}?
                     // Example: What was the color of the first flash in Simon Smothers?
-                    Question = "Welche Farbe ist bei {0} als {1}e aufgeleuchtet? ",
+                    Question = "Welche Farbe ist bei {0} als {1}e aufgeleuchtet?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -16624,7 +16631,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the direction of the {1} flash in {0}?
                     // Example: What was the direction of the first flash in Simon Smothers?
-                    Question = "Welche Richtung ist bei {0} als {1}e aufgeleuchtet? ",
+                    Question = "Welche Richtung ist bei {0} als {1}e aufgeleuchtet?",
                     Answers = new()
                     {
                         ["Up"] = "Hoch",
@@ -17000,7 +17007,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} topic in {0}?
                     // Example: What was the first topic in Simon Supports?
-                    Question = "Welches Thema kam bei {0} als {1}es vor? ",
+                    Question = "Welches Thema kam bei {0} als {1}es vor?",
                     Answers = new()
                     {
                         ["Boss"] = "Boss",
@@ -17040,7 +17047,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SSimonSwizzles.Number] = new()
                 {
                     // English: What was the hidden number in {0}?
-                    Question = "Was war bei {0} die versteckte Zahl? ",
+                    Question = "Was war bei {0} die versteckte Zahl?",
                 },
             },
         },
@@ -17060,7 +17067,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What were the flashes in the {1} stage of {0}?
                     // Example: What were the flashes in the first stage of Simply Simon?
-                    Question = "Was ist bei {0} in der {1}en Stufe aufgeleuchtet? ",
+                    Question = "Was ist bei {0} in der {1}en Stufe aufgeleuchtet?",
                 },
             },
         },
@@ -18242,7 +18249,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color flashed {1} in the {2} stage of {0}?
                     // Example: What color flashed first in the first stage of Synapse Says?
-                    Question = "Welche Farbe ist bei {0} in der {2}en Stufe als {1}e aufgeleuchtet? ",
+                    Question = "Welche Farbe ist bei {0} in der {2}en Stufe als {1}e aufgeleuchtet?",
                 },
                 [SSynapseSays.Positions] = new()
                 {
@@ -18571,7 +18578,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What colour triangle pulsed {1} in {0}?
                     // Example: What colour triangle pulsed first in Tetriamonds?
-                    Question = "Welche Farbe hatte bei {0} das als {1}es pulsierende Dreieck? ",
+                    Question = "Welche Farbe hatte bei {0} das als {1}es pulsierende Dreieck?",
                     Answers = new()
                     {
                         ["orange"] = "Orange",
@@ -18620,12 +18627,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SThinkingWires.FirstWire] = new()
                 {
                     // English: What was the position from top to bottom of the first wire needing to be cut in {0}?
-                    Question = "An welcher Stelle, von oben nach unten, war bei {0} der erste durchzutrennende Draht? ",
+                    Question = "An welcher Stelle, von oben nach unten, war bei {0} der erste durchzutrennende Draht?",
                 },
                 [SThinkingWires.SecondWire] = new()
                 {
                     // English: What color did the second valid wire to cut have to have in {0}?
-                    Question = "Welche Farbe musste bei {0} der zweite durchzutrennende Draht haben? ",
+                    Question = "Welche Farbe musste bei {0} der zweite durchzutrennende Draht haben?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -18796,7 +18803,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which of these squares was safe in row {1} in {0}?
                     // Example: Which of these squares was safe in row 9 in Tip Toe?
-                    Question = "Welches Feld in Reihe {1} war bei {0} ungefährlich? ",
+                    Question = "Welches Feld in Reihe {1} war bei {0} ungefährlich?",
                 },
             },
         },
@@ -18834,12 +18841,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [STouchTransmission.Word] = new()
                 {
                     // English: What was the transmitted word in {0}?
-                    Question = "Was war bei {0} das übermittelte Wort? ",
+                    Question = "Was war bei {0} das übermittelte Wort?",
                 },
                 [STouchTransmission.Order] = new()
                 {
                     // English: In what order was the Braille read in {0}?
-                    Question = "In welcher Reihenfolge wurde bei {0} das Braille gelesen? ",
+                    Question = "In welcher Reihenfolge wurde bei {0} das Braille gelesen?",
                     Answers = new()
                     {
                         ["Standard Braille Order"] = "Standard-Braille-Reihenfolge",
@@ -18886,7 +18893,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} received message in {0}?
                     // Example: What was the first received message in Transmitted Morse?
-                    Question = "Welche Nachricht wurde bei {0} als {1}e empfangen? ",
+                    Question = "Welche Nachricht wurde bei {0} als {1}e empfangen?",
                 },
             },
         },
@@ -18905,7 +18912,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What colour triangle pulsed {1} in {0}?
                     // Example: What colour triangle pulsed first in Triamonds?
-                    Question = "Welche Farbe hatte bei {0} das als {1}es pulsierende Dreieck? ",
+                    Question = "Welche Farbe hatte bei {0} das als {1}es pulsierende Dreieck?",
                     Answers = new()
                     {
                         ["black"] = "Schwarz",
@@ -20146,7 +20153,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SWeakestLink)] = new()
         {
             ModuleName = "Der Schwächste Fliegt!",
-            ManualModuleName = "Das\uE001Der Schwächste Fliegt!",
+            ManualModuleName = "Der Schwächste Fliegt!",
             ManualQuestions = new()
             {
                 ["Who was eliminated?"] = "Wer wurde eliminiert?",
@@ -20183,6 +20190,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What’s on Second
         [typeof(SWhatsOnSecond)] = new()
         {
+            ModuleName = "“Was” Kommt Danach",
             ManualQuestions = new()
             {
                 ["What were the display text and color in each stage?"] = "Was stand in welcher Stufe auf dem Display und in welcher Farbe?",
@@ -20281,6 +20289,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // WhoOF
         [typeof(SWhoOF)] = new()
         {
+            ModuleName = "“W”SADK",
             ManualQuestions = new()
             {
                 ["What was on the display in each stage?"] = "Was war in welcher Stufe auf dem Display?",
@@ -20299,7 +20308,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Who’s on First
         [typeof(SWhosOnFirst)] = new()
         {
-            ModuleName = "\"Was\" Steht Auf Dem Knopf",
+            ModuleName = "“Was” Steht Auf Dem Knopf",
             ManualQuestions = new()
             {
                 ["What were the display words?"] = "Welche Wörter standen auf dem Display?",
@@ -20319,7 +20328,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Who’s on First that had {0} in the display in the {1} stage
                     // Example: the Who’s on First that had BLANK in the display in the first stage
-                    Discriminator = "dem \"Was\" Steht Auf Dem Knopf, bei dem in der {1}en Stufe {0} auf dem Display stand,",
+                    Discriminator = "dem “Was” Steht Auf Dem Knopf, bei dem in der {1}en Stufe {0} auf dem Display stand,",
                 },
             },
         },
@@ -20437,7 +20446,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What were the colors and numbers on the displays?"] = "Welche Farben und Zahlen waren auf dem Display?",
+                ["What were the colors and numbers on the displays?"] = "Welche Farben und Zahlen waren auf den Displays?",
                 ["What were the colors of the wires?"] = "Welche Farbe hatten die Drähte?",
             },
             Questions = new()
@@ -20711,7 +20720,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SXRotor.Symbol] = new()
                 {
                     // English: Which symbol was scanned in {0}?
-                    Question = "Welches Symbol wurde bei {0} gescannt? ",
+                    Question = "Welches Symbol wurde bei {0} gescannt?",
                 },
             },
         },

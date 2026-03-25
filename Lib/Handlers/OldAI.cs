@@ -12,7 +12,7 @@ public enum SOldAI
 public partial class SouvenirModule
 {
     [SouvenirHandler("SCP079", "Old AI", typeof(SOldAI), "noting3548")]
-    [SouvenirManualQuestion("Which condition did the displayed numbers follow?")]
+    [SouvenirManualQuestion("What was the group/sub-group of the displayed numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessOldAI(ModuleData module)
     {
         var comp = GetComponent(module, "SCP079");

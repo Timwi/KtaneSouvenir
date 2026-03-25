@@ -16,7 +16,8 @@ public enum SCruelKeypads
 public partial class SouvenirModule
 {
     [SouvenirHandler("CruelKeypads", "Cruel Keypads", typeof(SCruelKeypads), "Kuro")]
-    [SouvenirManualQuestion("What were the displayed symbols and what was the color of the bar in each stage?")]
+    [SouvenirManualQuestion("What symbols were on the keys in each stage?")]
+    [SouvenirManualQuestion("What was the color of the bar in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessCruelKeypads(ModuleData module)
     {
         var comp = GetComponent(module, "CruelKeypadScript");
