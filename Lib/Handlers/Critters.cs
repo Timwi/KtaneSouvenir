@@ -12,7 +12,7 @@ public enum SCritters
 public partial class SouvenirModule
 {
     [SouvenirHandler("CrittersModule", "Critters", typeof(SCritters), "Eltrick")]
-    [SouvenirManualQuestion("What was the alteration color?")]
+    [SouvenirManualQuestion("What was the color?")]
     private IEnumerator<SouvenirInstruction> ProcessCritters(ModuleData module)
     {
         var comp = GetComponent(module, "CrittersScript");

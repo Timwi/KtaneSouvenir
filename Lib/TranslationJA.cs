@@ -4172,7 +4172,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the alteration color?"] = "変化した色は？",
+                ["What was the color?"] = "What was the color?",
             },
             Questions = new()
             {
@@ -6695,10 +6695,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Forget This
         [typeof(SForgetThis)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "之忘る",
             ManualQuestions = new()
             {
-                ["What were the displayed digit and color in each stage?"] = "各ステージの表示された数字と色は？",
+                ["What was the displayed character in each stage?"] = "What was the displayed character in each stage?",
+                ["What was the LED color in each stage?"] = "What was the LED color in each stage?",
             },
             Questions = new()
             {
@@ -7428,10 +7430,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Halli Galli
         [typeof(SHalliGalli)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ハリガリ",
             ManualQuestions = new()
             {
-                ["Which fruit was there five of and in what counts?"] = "どの果物がどのような分け方で5個あった？",
+                ["Which fruit were there five of?"] = "Which fruit were there five of?",
+                ["What were the relevant counts?"] = "What were the relevant counts?",
             },
             Questions = new()
             {
@@ -16315,10 +16319,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Simon’s Star
         [typeof(SSimonsStar)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "サイモンの星",
             ManualQuestions = new()
             {
-                ["Which colors flashed in each stage?"] = "各ステージで点滅した色は？",
+                ["Which colors flashed?"] = "Which colors flashed?",
             },
             Questions = new()
             {
@@ -20099,10 +20104,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Working Title
         [typeof(SWorkingTitle)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ワーキングタイトル",
             ManualQuestions = new()
             {
-                ["What was the label shown?"] = "表示されたラベルは？",
+                ["What was on the display?"] = "What was on the display?",
             },
             Questions = new()
             {

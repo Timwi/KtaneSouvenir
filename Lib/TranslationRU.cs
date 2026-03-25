@@ -4262,9 +4262,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Critters
         [typeof(SCritters)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the alteration color?"] = "Какой был цвет?",
+                ["What was the color?"] = "What was the color?",
             },
             Questions = new()
             {
@@ -6786,7 +6787,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the displayed digit and color in each stage?"] = "Какая цифра и цвет были показаны на каждом этапе?",
+                ["What was the displayed character in each stage?"] = "What was the displayed character in each stage?",
+                ["What was the LED color in each stage?"] = "What was the LED color in each stage?",
             },
             Questions = new()
             {
@@ -7508,9 +7510,11 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Halli Galli
         [typeof(SHalliGalli)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which fruit was there five of and in what counts?"] = "Каких фруктов было пять?",
+                ["Which fruit were there five of?"] = "Which fruit were there five of?",
+                ["What were the relevant counts?"] = "What were the relevant counts?",
             },
             Questions = new()
             {
@@ -8913,6 +8917,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Kudosudoku
         [typeof(SKudosudoku)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Кудосудоку",
             ManualQuestions = new()
             {
@@ -16341,9 +16346,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Simon’s Star
         [typeof(SSimonsStar)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which colors flashed in each stage?"] = "Какие цвета горели на каждом этапе?",
+                ["Which colors flashed?"] = "Which colors flashed?",
             },
             Questions = new()
             {
@@ -17237,6 +17243,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Stable Time Signatures
         [typeof(SStableTimeSignatures)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What time signatures played?"] = "What time signatures played?",
@@ -20116,7 +20123,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ModuleName = "Рабочем названии",
             ManualQuestions = new()
             {
-                ["What was the label shown?"] = "Какие надписи были показаны?",
+                ["What was on the display?"] = "What was on the display?",
             },
             Questions = new()
             {
