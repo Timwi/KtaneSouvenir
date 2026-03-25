@@ -1089,7 +1089,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Arithmetic Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -1830,7 +1830,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Black Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -2096,7 +2096,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -2122,7 +2122,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Huffman Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -2525,12 +2525,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Brown Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -4042,7 +4042,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Coral Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -4115,7 +4115,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Cornflower Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -4206,7 +4206,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Cream Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -4259,7 +4259,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Crimson Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -6501,12 +6501,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Forest Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -7359,12 +7359,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Gray Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -7464,12 +7464,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Green Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -8516,12 +8516,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Indigo Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -9499,7 +9499,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Lempel-Ziv Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -9883,12 +9883,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Magenta Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -10135,12 +10135,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Maroon Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -13199,12 +13199,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Orange Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -14080,7 +14080,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Pokémon Sprite Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -14819,12 +14819,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Red Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -19086,12 +19086,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Ultimate Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -20269,12 +20269,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in White Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -20852,12 +20852,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Yellow Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "ober",
-                        ["middle"] = "mittler",
-                        ["bottom"] = "unter",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -20879,7 +20879,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Yellow Huffman Cipher?
-                    Question = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
