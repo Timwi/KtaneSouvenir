@@ -10244,20 +10244,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualModuleName = "Die\uE001Matrix",
             ManualQuestions = new()
             {
-                ["Which word was part of the latest access code?"] = "Welches Wort kam im letzten Zugangscode vor?",
-                ["What was the glitched word?"] = "Wie lautete das gestörte Wort?",
+                ["Which word was part of the latest access code used?"] = "Welches Wort kam im zuletzt verwendeten Zugangscode vor?",
             },
             Questions = new()
             {
                 [SMatrix.AccessCode] = new()
                 {
-                    // English: Which word was part of the latest access code in {0}?
-                    Question = "Welches Wort kam bei {0} im letzten Zugangscode vor?",
-                },
-                [SMatrix.GlitchWord] = new()
-                {
-                    // English: What was the glitched word in {0}?
-                    Question = "Was war bei {0} das gestörte Wort?",
+                    // English: Which word was part of the latest access code used in {0}?
+                    Question = "Welches Wort kam bei {0} im zuletzt verwendeten Zugangscode vor?",
                 },
             },
         },
