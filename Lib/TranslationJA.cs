@@ -16498,21 +16498,26 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SSimonStores.QFlashes] = new()
+                [SSimonStores.QSingleColor] = new()
                 {
-                    // English: Which color {2} {1} in the final sequence of {0}?
+                    // English: Which color flashed {1} in the final sequence of {0}?
                     // Example: Which color flashed first in the final sequence of Simon Stores?
-                    Question = "{0}の最終シークエンスにおいて、{1}番目に{2}色は？",
-                    // Refer to translations.md to understand the weird strings
-                    Arguments = new()
+                    Question = "{0}の最終シークエンスにおいて、{1}番目に点滅した色は？",
+                    Answers = new()
                     {
-                        ["flashed"] = "点滅した",
-                        ["was among the colors that flashed"] = "点滅した色に含まれる",
-                        ["flashed ({3})"] = "",
-                        ["was among the colors that flashed ({3})"] = "",
-                        ["flashed ({4})"] = "",
-                        ["was among the colors that flashed ({4})"] = "",
+                        ["Red"] = "赤",
+                        ["Green"] = "緑",
+                        ["Blue"] = "青",
+                        ["Cyan"] = "シアン",
+                        ["Magenta"] = "マゼンタ",
+                        ["Yellow"] = "黄",
                     },
+                },
+                [SSimonStores.QMultipleColors] = new()
+                {
+                    // English: Which color was among the colors that flashed {1} in the final sequence of {0}?
+                    // Example: Which color was among the colors that flashed first in the final sequence of Simon Stores?
+                    Question = "{0}の最終シークエンスにおいて、{1}番目に点滅した色に含まれる色は？",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -16526,12 +16531,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Discriminators = new()
             {
-                [SSimonStores.DFlashes] = new()
+                [SSimonStores.DSingleColor] = new()
                 {
-                    // English: the Simon Stores where {0} {2} {1} in the final sequence
+                    // English: the Simon Stores where {0} flashed {1} in the final sequence
                     // Example: the Simon Stores where red flashed first in the final sequence
-                    Discriminator = "the Simon Stores where {0} {2} {1} in the final sequence",
-                    // Refer to translations.md to understand the weird strings
+                    Discriminator = "the Simon Stores where {0} flashed {1} in the final sequence",
                     Arguments = new()
                     {
                         ["red"] = "red",
@@ -16540,12 +16544,21 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["cyan"] = "cyan",
                         ["magenta"] = "magenta",
                         ["yellow"] = "yellow",
-                        ["flashed"] = "flashed",
-                        ["was among the colors that flashed"] = "was among the colors that flashed",
-                        ["flashed ({3})"] = "flashed ({3})",
-                        ["was among the colors that flashed ({3})"] = "was among the colors that flashed ({3})",
-                        ["flashed ({4})"] = "flashed ({4})",
-                        ["was among the colors that flashed ({4})"] = "was among the colors that flashed ({4})",
+                    },
+                },
+                [SSimonStores.DMultipleColors] = new()
+                {
+                    // English: the Simon Stores where {0} was among the colors that flashed {1} in the final sequence
+                    // Example: the Simon Stores where red was among the colors that flashed first in the final sequence
+                    Discriminator = "the Simon Stores where {0} was among the colors that flashed {1} in the final sequence",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
                     },
                 },
             },

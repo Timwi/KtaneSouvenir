@@ -16909,21 +16909,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SSimonStores.QFlashes] = new()
+                [SSimonStores.QSingleColor] = new()
                 {
-                    // English: Which color {2} {1} in the final sequence of {0}?
+                    // English: Which color flashed {1} in the final sequence of {0}?
                     // Example: Which color flashed first in the final sequence of Simon Stores?
-                    Question = "Welche Farbe {2} bei {0} {3} {1}e {4}?",
-                    // Refer to translations.md to understand the weird strings
-                    Arguments = new()
+                    Question = "Welche Farbe leuchtete bei {0} als {1}e auf?",
+                    Answers = new()
                     {
-                        ["flashed"] = "leuchtete",
-                        ["was among the colors that flashed"] = "war",
-                        ["flashed ({3})"] = "als",
-                        ["was among the colors that flashed ({3})"] = "eine derer, die als",
-                        ["flashed ({4})"] = "auf",
-                        ["was among the colors that flashed ({4})"] = "aufleuchteten",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Rosa",
+                        ["Yellow"] = "Gelb",
                     },
+                },
+                [SSimonStores.QMultipleColors] = new()
+                {
+                    // English: Which color was among the colors that flashed {1} in the final sequence of {0}?
+                    // Example: Which color was among the colors that flashed first in the final sequence of Simon Stores?
+                    Question = "Welche Farbe war bei {0} eine derer, die als {1}e aufleuchteten?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -16937,12 +16942,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Discriminators = new()
             {
-                [SSimonStores.DFlashes] = new()
+                [SSimonStores.DSingleColor] = new()
                 {
-                    // English: the Simon Stores where {0} {2} {1} in the final sequence
+                    // English: the Simon Stores where {0} flashed {1} in the final sequence
                     // Example: the Simon Stores where red flashed first in the final sequence
-                    Discriminator = "dem Simon Speichert, bei dem {0} {2} {1} {3},",
-                    // Refer to translations.md to understand the weird strings
+                    Discriminator = "dem Simon Speichert, bei dem {0} als {1}e aufleuchtete,",
                     Arguments = new()
                     {
                         ["red"] = "rot",
@@ -16951,12 +16955,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["cyan"] = "türkis",
                         ["magenta"] = "rosa",
                         ["yellow"] = "gelb",
-                        ["flashed"] = "als",
-                        ["was among the colors that flashed"] = "unter den als",
-                        ["flashed ({3})"] = "aufleuchtete",
-                        ["was among the colors that flashed ({3})"] = "aufleuchteten Farben war",
-                        ["flashed ({4})"] = "",
-                        ["was among the colors that flashed ({4})"] = "",
+                    },
+                },
+                [SSimonStores.DMultipleColors] = new()
+                {
+                    // English: the Simon Stores where {0} was among the colors that flashed {1} in the final sequence
+                    // Example: the Simon Stores where red was among the colors that flashed first in the final sequence
+                    Discriminator = "dem Simon Speichert, bei dem {0} unter den als {1}e aufleuchtenden Farben war,",
+                    Arguments = new()
+                    {
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["cyan"] = "türkis",
+                        ["magenta"] = "rosa",
+                        ["yellow"] = "gelb",
                     },
                 },
             },
