@@ -94,11 +94,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The 1, 2, 3 Game
         [typeof(S123Game)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "123ゲーム",
             ManualQuestions = new()
             {
-                ["What was the opponent’s avatar and name?"] = "What was the opponent’s avatar and name?",
+                ["What was the opponent’s avatar and name?"] = "対戦相手のアバターと名前は？",
             },
             Questions = new()
             {
@@ -483,12 +482,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Accumulation
         [typeof(SAccumulation)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "蓄積",
             ManualQuestions = new()
             {
-                ["What were the background colors at each stage?"] = "What were the background colors at each stage?",
-                ["What was the border color?"] = "What was the border color?",
+                ["What were the background colors at each stage?"] = "各ステージの背景の色は？",
+                ["What was the border color?"] = "境界線の色は？",
             },
             Questions = new()
             {
@@ -576,18 +574,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Adventure Game
         [typeof(SAdventureGame)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "アドベンチャーゲーム",
             ManualQuestions = new()
             {
-                ["Which items were present?"] = "Which items were present?",
+                ["Which items were present?"] = "存在したアイテムは？",
             },
             Questions = new()
             {
                 [SAdventureGame.QPresentItem] = new()
                 {
                     // English: Which item was present in {0}?
-                    Question = "Which item was present in {0}?",
+                    Question = "{0}に存在したアイテムは？",
                 },
             },
             Discriminators = new()
@@ -596,7 +593,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Adventure Game where the {0} was present
                     // Example: the Adventure Game where the Balloon was present
-                    Discriminator = "the Adventure Game where the {0} was present",
+                    Discriminator = "{0}が存在したアドベンチャーゲーム",
                 },
             },
         },
@@ -711,7 +708,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Algebra
         [typeof(SAlgebra)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "方程式",
             ManualQuestions = new()
             {
@@ -736,13 +732,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Algebra where the first equation was {0}
                     // Example: the Algebra where the first equation was a=3z
-                    Discriminator = "the Algebra where the first equation was {0}",
+                    Discriminator = "1問目が{0}だった方程式",
                 },
                 [SAlgebra.Discriminator2] = new()
                 {
                     // English: the Algebra where the second equation was {0}
                     // Example: the Algebra where the second equation was b=(2x/10)-y
-                    Discriminator = "the Algebra where the second equation was {0}",
+                    Discriminator = "2問目が{0}だった方程式",
                 },
             },
         },
@@ -750,7 +746,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Algorithmia
         [typeof(SAlgorithmia)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "アルゴリズム",
             ManualQuestions = new()
             {
@@ -788,33 +783,33 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Algorithmia where this was the {0} position
                     // Example: the Algorithmia where this was the starting position
-                    Discriminator = "the Algorithmia where this was the {0} position",
+                    Discriminator = "これが{0}地点であったアルゴリズム",
                     Arguments = new()
                     {
-                        ["starting"] = "starting",
-                        ["goal"] = "goal",
+                        ["starting"] = "開始",
+                        ["goal"] = "ゴール",
                     },
                 },
                 [SAlgorithmia.DColor] = new()
                 {
                     // English: the Algorithmia whose colored bulb was {0}
                     // Example: the Algorithmia whose colored bulb was red
-                    Discriminator = "the Algorithmia whose bulb was {0}",
+                    Discriminator = "色付き電球が{0}だったアルゴリズム",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["cyan"] = "cyan",
-                        ["yellow"] = "yellow",
-                        ["magenta"] = "magenta",
+                        ["red"] = "赤",
+                        ["green"] = "緑",
+                        ["blue"] = "青",
+                        ["cyan"] = "シアン",
+                        ["yellow"] = "黄",
+                        ["magenta"] = "マゼンタ",
                     },
                 },
                 [SAlgorithmia.DSeed] = new()
                 {
                     // English: the Algorithmia that had a {0} in the seed
                     // Example: the Algorithmia that had a 01 in the seed
-                    Discriminator = "the Algorithmia that had a {0} in the seed",
+                    Discriminator = "シード内に{0}があったアルゴリズム",
                 },
             },
         },
@@ -1033,10 +1028,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Arithmetic Cipher
         [typeof(SArithmeticCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "算術暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "What was on each screen?",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -1044,12 +1039,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Arithmetic Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "上部",
+                        ["middle"] = "中央",
+                        ["bottom"] = "下部",
                     },
                 },
             },
@@ -1513,12 +1508,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Beans
         [typeof(SBeans)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "豆",
             ManualQuestions = new()
             {
-                ["What color were the eaten beans?"] = "What color were the eaten beans?",
-                ["Which beans were wobbling?"] = "Which beans were wobbling?",
+                ["What color were the eaten beans?"] = "食べた豆の色は？",
+                ["Which beans were wobbling?"] = "どの豆が揺れていた？",
             },
             Questions = new()
             {
@@ -1609,21 +1603,21 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Big Circle
         [typeof(SBigCircle)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "ビッグサークル",
             ManualQuestions = new()
             {
-                ["Which direction was the circle spinning?"] = "Which direction was the circle spinning?",
+                ["Which direction was the circle spinning?"] = "円の回転方向は？",
             },
             Questions = new()
             {
                 [SBigCircle.SpinDirection] = new()
                 {
                     // English: Which direction was the circle spinning in {0}?
-                    Question = "Which direction was the circle spinning in {0}?",
+                    Question = "{0}の円の回転方向は？",
                     Answers = new()
                     {
-                        ["clockwise"] = "clockwise",
-                        ["counterclockwise"] = "counterclockwise",
+                        ["clockwise"] = "時計回り",
+                        ["counterclockwise"] = "反時計回り",
                     },
                 },
             },
@@ -1718,7 +1712,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Bitmaps
         [typeof(SBitmaps)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "ビットマップ",
             ManualQuestions = new()
             {
@@ -1748,15 +1741,15 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Bitmap where the {2} pixel count in the {1} quadrant was {0}
                     // Example: the Bitmap where the white pixel count in the top left quadrant was 1
-                    Discriminator = "the Bitmap where {0} of the pixels in the {1} quadrant were {2}",
+                    Discriminator = "{1}の区域の{2}ピクセル数が{0}だったビットマップ",
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
-                        ["white"] = "white",
-                        ["black"] = "black",
+                        ["top left"] = "左上",
+                        ["top right"] = "右上",
+                        ["bottom left"] = "左下",
+                        ["bottom right"] = "右下",
+                        ["white"] = "白",
+                        ["black"] = "黒",
                     },
                 },
             },
@@ -1768,7 +1761,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "黒色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -1776,7 +1769,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Black Cipher?
-                    Question = "{0}の答えは？",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
                         ["top"] = "上部",
@@ -1908,18 +1901,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Blockbusters
         [typeof(SBlockbusters)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "ブロックバスター",
             ManualQuestions = new()
             {
-                ["What letters were in the leftmost column at the start?"] = "What letters were in the leftmost column at the start?",
+                ["What letters were in the leftmost column at the start?"] = "開始時、左端の列にあった英字は？",
             },
             Questions = new()
             {
                 [SBlockbusters.FirstLetters] = new()
                 {
                     // English: Which letter was in the leftmost column at the start of {0}?
-                    Question = "Which letter was in the leftmost column at the start of {0}?",
+                    Question = "{0}の開始時、左端の列にあった英字は？",
                 },
             },
         },
@@ -1930,14 +1922,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "青色矢印",
             ManualQuestions = new()
             {
-                ["What were the characters on the screen?"] = "スクリーンに表示された文字は？",
+                ["What were the characters on the screen?"] = "ディスプレーに表示された文字は？",
             },
             Questions = new()
             {
                 [SBlueArrows.InitialCharacters] = new()
                 {
                     // English: What were the characters on the screen in {0}?
-                    Question = "{0}でスクリーンに表示された文字は？",
+                    Question = "{0}でディスプレーに表示された文字は？",
                 },
             },
         },
@@ -2029,7 +2021,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "青色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -2037,7 +2029,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Cipher?
-                    Question = "{0}の答えは？",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
                         ["top"] = "上部",
@@ -2051,10 +2043,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Blue Huffman Cipher
         [typeof(SBlueHuffmanCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "青色ハフマン暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "What was on each screen?",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -2062,12 +2054,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Huffman Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "上部",
+                        ["middle"] = "中央",
+                        ["bottom"] = "下部",
                     },
                 },
             },
@@ -2257,7 +2249,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Bordered Keys
         [typeof(SBorderedKeys)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "境界音板",
             ManualQuestions = new()
             {
@@ -2287,7 +2278,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SBorderedKeys.KeyColor] = new()
                 {
                     // English: What was this key’s key color when it was pressed in {0}? (+ sprite)
-                    Question = "What was this key’s key color when it was pressed in {0}?",
+                    Question = "{0}で{1}番目の音板を押した時、この音板の色は何だった？",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -2301,12 +2292,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SBorderedKeys.Label] = new()
                 {
                     // English: What was this key’s label when it was pressed in {0}? (+ sprite)
-                    Question = "What was this key’s label when it was pressed in {0}?",
+                    Question = "{0}で{1}番目の音板を押した時、この音板のラベルは何だった？",
                 },
                 [SBorderedKeys.LabelColor] = new()
                 {
                     // English: What was this key’s label color when it was pressed in {0}? (+ sprite)
-                    Question = "What was this key’s label color when it was pressed in {0}?",
+                    Question = "{0}で{1}番目の音板を押した時、この音板のラベルの色は何だった？",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -2323,7 +2314,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Bottom Gear
         [typeof(SBottomGear)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "ボトムギア",
             ManualQuestions = new()
             {
                 ["What was the initially shown tweet?"] = "最初に表示されたツイートは？",
@@ -2461,7 +2452,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "茶色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -2469,7 +2460,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Brown Cipher?
-                    Question = "{0}の答えは？",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
                         ["top"] = "上部",
@@ -2613,7 +2604,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Button Sequence
         [typeof(SButtonSequence)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "順番ボタン",
             ManualQuestions = new()
             {
@@ -2641,17 +2631,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Button Sequence that had {0} {1}
                     // Example: the Button Sequence that had 1 red button
-                    Discriminator = "the Button Sequence that had {0} {1}",
+                    Discriminator = "{1}が{0}個あった順番ボタン",
                     Arguments = new()
                     {
-                        ["red button"] = "red button",
-                        ["blue button"] = "blue button",
-                        ["yellow button"] = "yellow button",
-                        ["white button"] = "white button",
-                        ["red buttons"] = "red buttons",
-                        ["blue buttons"] = "blue buttons",
-                        ["yellow buttons"] = "yellow buttons",
-                        ["white buttons"] = "white buttons",
+                        ["red button"] = "赤のボタン",
+                        ["blue button"] = "青のボタン",
+                        ["yellow button"] = "黄のボタン",
+                        ["white button"] = "白のボタン",
+                        ["red buttons"] = "赤のボタン",
+                        ["blue buttons"] = "青のボタン",
+                        ["yellow buttons"] = "黄のボタン",
+                        ["white buttons"] = "白のボタン",
                     },
                 },
             },
@@ -2721,7 +2711,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Caesar Psycho
         [typeof(SCaesarPsycho)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "カエサルサイコ",
             ManualQuestions = new()
             {
                 ["What text and color were on the top display in each stage?"] = "各ステージにおける上のディスプレーのテキストと色は？",
@@ -2771,17 +2761,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Calendar
         [typeof(SCalendar)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "カレンダー",
             ManualQuestions = new()
             {
-                ["What was the holiday?"] = "What was the holiday?",
+                ["What was the holiday?"] = "祝日は？",
             },
             Questions = new()
             {
                 [SCalendar.Holiday] = new()
                 {
                     // English: What was the holiday in {0}?
-                    Question = "What was the holiday in {0}?",
+                    Question = "{0}の祝日は？",
                 },
             },
         },
@@ -2814,7 +2804,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Cartinese
         [typeof(SCartinese)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "カーティ語",
             ManualQuestions = new()
             {
                 ["What lyrics were played by each button?"] = "各ボタンで再生された歌詞は？",
@@ -2896,7 +2886,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Challenge & Contact
         [typeof(SChallengeAndContact)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "チャレンジ＆コンタクト",
             ManualQuestions = new()
             {
@@ -2908,7 +2897,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the {1} displayed letter in {0}?
                     // Example: What was the first displayed letter in Challenge & Contact?
-                    Question = "What was the {1} displayed letter in {0}?",
+                    Question = "{0}の{1}番目に表示された文字は？",
                 },
             },
         },
@@ -2958,7 +2947,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Character Slots
         [typeof(SCharacterSlots)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "キャラクタースロット",
             ManualQuestions = new()
             {
                 ["Who was displayed in each slot for each stage?"] = "各ステージでそれぞれのスロットに誰が表示されていた？",
@@ -3086,7 +3075,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Chess
         [typeof(SChess)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "チェス",
             ManualQuestions = new()
             {
@@ -3107,7 +3095,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Chess where the {1} coordinate was {0}
                     // Example: the Chess where the first coordinate was a1
-                    Discriminator = "the Chess where the {1} coordinate was {0}",
+                    Discriminator = "{1}つ目の座標が{0}だったチェス",
                 },
             },
         },
@@ -3146,7 +3134,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Chinese Remainder Theorem
         [typeof(SChineseRemainderTheorem)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "中国剰余定理",
             ManualQuestions = new()
             {
                 ["What were the equations?"] = "方程式は？",
@@ -3182,7 +3170,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // ↻↺
         [typeof(SClockCounter)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["Which arrows were shown?"] = "表示された矢印は？",
@@ -3262,32 +3249,32 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Coffeebucks
         [typeof(SCoffeebucks)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "コーヒーバックス",
             ManualQuestions = new()
             {
-                ["What was the last customer’s preferred sugar content, time of day, stress level, and size?"] = "What was the last customer’s preferred sugar content, time of day, stress level, and size?",
+                ["What was the last customer’s preferred sugar content, time of day, stress level, and size?"] = "最後の客の好みの砂糖の量、時間帯、ストレスレベル、サイズは？",
             },
             Questions = new()
             {
                 [SCoffeebucks.Sugar] = new()
                 {
                     // English: What was the last customer’s preferred sugar content in {0}?
-                    Question = "What was the last customer's preferred sugar content in {0}?",
+                    Question = "{0}で最後に来た客の砂糖の量の好みは？",
                 },
                 [SCoffeebucks.Time] = new()
                 {
                     // English: What was the last customer’s preferred time of day in {0}?
-                    Question = "What was the last customer's preferred time of day in {0}?",
+                    Question = "{0}で最後に来た客の時間帯の好みは？",
                 },
                 [SCoffeebucks.Stress] = new()
                 {
                     // English: What was the last customer’s preferred stress-level in {0}?
-                    Question = "What was the last customer's preferred stress-level in {0}?",
+                    Question = "{0}で最後に来た客のストレスレベルの好みは？",
                 },
                 [SCoffeebucks.Size] = new()
                 {
                     // English: What was the last customer’s preferred size in {0}?
-                    Question = "What was the last customer's preferred size in {0}?",
+                    Question = "{0}で最後に来た客のサイズの好みは？",
                 },
             },
         },
@@ -3794,7 +3781,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Connected Monitors
         [typeof(SConnectedMonitors)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "接続済みモニター",
             ManualQuestions = new()
             {
                 ["What numbers were initially displayed?"] = "最初に表示されていた数字は？",
@@ -3937,7 +3924,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "珊瑚色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -4008,7 +3995,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "矢車菊色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -4094,7 +4081,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "鳥子色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -4116,11 +4103,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Creation
         [typeof(SCreation)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "クリエーション",
             ManualQuestions = new()
             {
-                ["What was the weather condition on the first day?"] = "What was the weather condition on the first day?",
+                ["What was the weather condition on the first day?"] = "最初の日付の天気状況は？",
             },
             Questions = new()
             {
@@ -4147,7 +4133,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "紅色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -4169,17 +4155,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Critters
         [typeof(SCritters)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "クリッターズ",
             ManualQuestions = new()
             {
-                ["What was the color?"] = "What was the color?",
+                ["What was the color?"] = "色は？",
             },
             Questions = new()
             {
                 [SCritters.Color] = new()
                 {
                     // English: What was the color in {0}?
-                    Question = "{0}で使用した変化した色は？",
+                    Question = "{0}で使用した色は？",
                     Answers = new()
                     {
                         ["Yellow"] = "黄",
@@ -4248,7 +4234,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The cRule
         [typeof(SCRule)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "残忍ルール",
             ManualQuestions = new()
             {
                 ["Which cells were prefilled at the start?"] = "最初に埋められていたセルは？",
@@ -4429,11 +4415,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Cyan Button
         [typeof(SCyanButton)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "シアンボタン",
             ManualQuestions = new()
             {
-                ["Where was the button at each stage?"] = "Where was the button at each stage?",
+                ["Where was the button at each stage?"] = "各ステージでボタンはどこにあった？",
             },
             Questions = new()
             {
@@ -4459,15 +4444,15 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Cyan Button where the button in the {0} stage was at the {1}
                     // Example: the Cyan Button where the button in the first stage was at the top left
-                    Discriminator = "the Cyan Button where the button at the {0} stage was in the {1}",
+                    Discriminator = "ステージ{0}のボタンの位置が{1}だったシアンボタン",
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top middle"] = "top middle",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom middle"] = "bottom middle",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "左上",
+                        ["top middle"] = "上",
+                        ["top right"] = "右",
+                        ["bottom left"] = "左下",
+                        ["bottom middle"] = "下",
+                        ["bottom right"] = "右下",
                     },
                 },
             },
@@ -4629,7 +4614,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Decolour Flash
         [typeof(SDecolourFlash)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "デカラーフラッシュ",
             ManualQuestions = new()
             {
@@ -4664,17 +4648,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Decolour Flash where the {0} of the {1} goal was {2}
                     // Example: the Decolour Flash where the word of the first goal was blue
-                    Discriminator = "the Decolour Flash where the {0} of the {1} goal was {2}",
+                    Discriminator = "{1}番目のゴールの{0}が{2}だったデカラーフラッシュ",
                     Arguments = new()
                     {
-                        ["word"] = "word",
-                        ["colour"] = "colour",
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["magenta"] = "magenta",
-                        ["yellow"] = "yellow",
-                        ["white"] = "white",
+                        ["word"] = "単語",
+                        ["colour"] = "色",
+                        ["blue"] = "青",
+                        ["green"] = "緑",
+                        ["red"] = "赤",
+                        ["magenta"] = "マゼンタ",
+                        ["yellow"] = "黄",
+                        ["white"] = "白",
                     },
                 },
             },
@@ -4683,7 +4667,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Denial Displays
         [typeof(SDenialDisplays)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "否定的ディスプレー",
             ManualQuestions = new()
             {
                 ["What was initially on the displays?"] = "ディスプレーの初期状態は？",
@@ -4703,7 +4687,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Denial Displays where {0} was initially shown on Display {1}
                     // Example: the Denial Displays where 0 was initially shown on Display A
-                    Discriminator = "the Denial Displays where {0} was initially shown on Display {1}",
+                    Discriminator = "初期状態でディスプレー{1}に{0}が表示されていた否定的ディスプレー",
                 },
             },
         },
@@ -4785,7 +4769,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Digisibility
         [typeof(SDigisibility)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "除算可能",
             ManualQuestions = new()
             {
                 ["What were the numbers on the buttons?"] = "ボタン上の数字は？",
@@ -4822,7 +4806,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Dimension Disruption
         [typeof(SDimensionDisruption)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "次元破壊",
             ManualQuestions = new()
             {
@@ -4842,7 +4825,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Dimension Disruption where {0} was a visible character
                     // Example: the Dimension Disruption where A was a visible character
-                    Discriminator = "the Dimension Disruption where {0} was a visible character",
+                    Discriminator = "{0}が見えた次元破壊",
                 },
             },
         },
@@ -4896,7 +4879,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Disordered Keys
         [typeof(SDisorderedKeys)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "欠陥順番音板",
             ManualQuestions = new()
             {
@@ -4907,7 +4889,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SDisorderedKeys.MissingInfo] = new()
                 {
                     // English: What was the missing information for this key in {0}? (+ sprite)
-                    Question = "What was the missing information for this key in {0}?",
+                    Question = "{0}の、この音板の欠けていた情報は？",
                     Answers = new()
                     {
                         ["Key color"] = "音板の色",
@@ -4918,7 +4900,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SDisorderedKeys.UnrevealedKeyColor] = new()
                 {
                     // English: What was the unrevealed key color for this key in {0}? (+ sprite)
-                    Question = "What was the unrevealed key color for this key in {0}?",
+                    Question = "{0}の、この不完全状態の音板の色は？",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4932,7 +4914,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SDisorderedKeys.UnrevealedLabelColor] = new()
                 {
                     // English: What was the unrevealed label color for this key in {0}? (+ sprite)
-                    Question = "What was the unrevealed label color for this key in {0}?",
+                    Question = "{0}の、この不完全状態のラベルの色は？",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4946,12 +4928,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SDisorderedKeys.UnrevealedKeyLabel] = new()
                 {
                     // English: What was the unrevealed label for this key in {0}? (+ sprite)
-                    Question = "What was the unrevealed label for this key in {0}?",
+                    Question = "{0}の、この不完全状態のラベルは？",
                 },
                 [SDisorderedKeys.RevealedKeyColor] = new()
                 {
                     // English: What was the revealed key color for this key in {0}? (+ sprite)
-                    Question = "What was the revealed key color for this key in {0}?",
+                    Question = "{0}の、この完全状態の音板の色は？",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4965,7 +4947,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SDisorderedKeys.RevealedLabelColor] = new()
                 {
                     // English: What was the revealed label color for this key in {0}? (+ sprite)
-                    Question = "What was the revealed label color for this key in {0}?",
+                    Question = "{0}の、この完全状態のラベルの色は？",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -4979,7 +4961,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SDisorderedKeys.RevealedLabel] = new()
                 {
                     // English: What was the revealed label for this key in {0}? (+ sprite)
-                    Question = "What was the revealed label for this key in {0}?",
+                    Question = "{0}の、この完全状態のラベルは？",
                 },
             },
         },
@@ -4987,11 +4969,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Divided Squares
         [typeof(SDividedSquares)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "分割スクエア",
             ManualQuestions = new()
             {
-                ["What color was shown when the correct square was pressed?"] = "What color was shown when the correct square was pressed?",
+                ["What color was shown when the correct square was pressed?"] = "正しい正方形を押している間の色は？",
             },
             Questions = new()
             {
@@ -5043,8 +5024,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the DNA strands’ colors?"] = "What were the DNA strands’ colors?",
-                ["What were the given nucleotides’ letters and colors?"] = "What were the given nucleotides’ letters and colors?",
+                ["What were the DNA strands’ colors?"] = "DNA鎖の色は？",
+                ["What were the given nucleotides’ letters and colors?"] = "与えられたヌクレオチドの文字と色は？",
             },
             Questions = new()
             {
@@ -5052,32 +5033,32 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the letter of the {1} given nucleotide in {0}?
                     // Example: What was the letter of the first given nucleotide in DNA Mutation?
-                    Question = "What was the letter of the {1} given nucleotide in {0}?",
+                    Question = "{0}で、{1}番目に与えられたヌクレオチドの文字は？",
                 },
                 [SDNAMutation.NucleotideColor] = new()
                 {
                     // English: What was the color of the {1} given nucleotide in {0}?
                     // Example: What was the color of the first given nucleotide in DNA Mutation?
-                    Question = "What was the color of the {1} given nucleotide in {0}?",
+                    Question = "{0}で、{1}番目に与えられたヌクレオチドの色は？",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
+                        ["Red"] = "赤",
+                        ["Yellow"] = "黄",
+                        ["Green"] = "緑",
+                        ["Blue"] = "青",
                     },
                 },
                 [SDNAMutation.StrandColor] = new()
                 {
                     // English: What was the color of the {1} given DNA strand in {0}?
                     // Example: What was the color of the first given DNA strand in DNA Mutation?
-                    Question = "What was the color of the {1} given DNA strand in {0}?",
+                    Question = "{0}で、{1}番目に与えられたDNA鎖の色は？",
                     Answers = new()
                     {
-                        ["Green"] = "Green",
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["Blue"] = "Blue",
+                        ["Green"] = "緑",
+                        ["Red"] = "赤",
+                        ["Yellow"] = "黄",
+                        ["Blue"] = "青",
                     },
                 },
             },
@@ -5086,7 +5067,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Doofenshmirtz Evil Inc.
         [typeof(SDoofenshmirtzEvilInc)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "悪のドゥーフェンシュマーツ社",
             ManualQuestions = new()
             {
                 ["What jingles played?"] = "再生されたジングルは？",
@@ -5482,7 +5463,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Emoji
         [typeof(SEmoji)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "絵文字",
             ManualQuestions = new()
             {
                 ["What were the emoji?"] = "絵文字は？",
@@ -5630,17 +5611,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Encrypted Morse
         [typeof(SEncryptedMorse)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "暗号化モールス信号",
             ManualQuestions = new()
             {
-                ["What was the received key?"] = "What was the received key?",
+                ["What was the received key?"] = "受信したキーは？",
             },
             Questions = new()
             {
                 [SEncryptedMorse.Key] = new()
                 {
                     // English: What was the received key in {0}?
-                    Question = "What was the received key in {0}?",
+                    Question = "{0}で受信したキーは？",
                 },
             },
         },
@@ -5688,7 +5669,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // English Entries
         [typeof(SEnglishEntries)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "英会話教材",
             ManualQuestions = new()
             {
                 ["What was the displayed quote?"] = "表示されている引用文は？",
@@ -6290,7 +6271,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Follow Me
         [typeof(SFollowMe)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "フォロー・ミー",
             ManualQuestions = new()
             {
                 ["What were the flashing directions?"] = "点滅した方向は？",
@@ -6319,7 +6300,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "柚葉色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -6697,12 +6678,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Forget This
         [typeof(SForgetThis)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "之忘る",
             ManualQuestions = new()
             {
-                ["What was the displayed character in each stage?"] = "What was the displayed character in each stage?",
-                ["What was the LED color in each stage?"] = "What was the LED color in each stage?",
+                ["What was the displayed character in each stage?"] = "各ステージで表示された文字は？",
+                ["What was the LED color in each stage?"] = "各ステージのLEDの色は？",
             },
             Questions = new()
             {
@@ -6823,13 +6803,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SFrenchRepublicanCalendar.LEDColor] = new()
                 {
                     // English: What was the color of the LED in {0}?
-                    Question = "What was the color of the LED in {0}?",
+                    Question = "{0}のLEDの色は？",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
+                        ["Red"] = "赤",
+                        ["Yellow"] = "黄",
+                        ["Green"] = "緑",
+                        ["Blue"] = "青",
                     },
                 },
             },
@@ -6937,7 +6917,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Gamepad
         [typeof(SGamepad)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "ゲームパッド",
             ManualQuestions = new()
             {
@@ -6949,7 +6928,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the {1} digit on the display on {0}?
                     // Example: What was the first digit on the display on The Gamepad?
-                    Question = "What was the {1} digit on the display on {0}?",
+                    Question = "{0}のディスプレーの{1}桁目は？",
                 },
             },
             Discriminators = new()
@@ -6958,7 +6937,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Gamepad whose {1} digit on the display was {0}
                     // Example: the Gamepad whose first digit on the display was 0
-                    Discriminator = "the Gamepad whose {1} digit on the display was {0}",
+                    Discriminator = "ディスプレーの{1}桁目が{0}だったゲームパッド",
                 },
             },
         },
@@ -7031,14 +7010,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the displayed keyword?"] = "What was the displayed keyword?",
+                ["What was the displayed keyword?"] = "表示されたキーワードは？",
             },
             Questions = new()
             {
                 [SGiantsCipher.Keywords] = new()
                 {
                     // English: What was the displayed keyword in {0}?
-                    Question = "What was the displayed keyword in {0}?",
+                    Question = "{0}で表示されたキーワードは？",
                 },
             },
         },
@@ -7158,7 +7137,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "灰色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -7166,7 +7145,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Gray Cipher?
-                    Question = "{0}の答えは？",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
                         ["top"] = "上部",
@@ -7254,7 +7233,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "緑色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -7262,7 +7241,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Green Cipher?
-                    Question = "{0}の答えは？",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
                         ["top"] = "上部",
@@ -7432,12 +7411,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Halli Galli
         [typeof(SHalliGalli)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "ハリガリ",
             ManualQuestions = new()
             {
-                ["Which fruit were there five of?"] = "Which fruit were there five of?",
-                ["What were the relevant counts?"] = "What were the relevant counts?",
+                ["Which fruit were there five of?"] = "5個あった果物は？",
+                ["What were the relevant counts?"] = "使用した分け方は？",
             },
             Questions = new()
             {
@@ -7483,11 +7461,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "六角形ボタン",
             ManualQuestions = new()
             {
-                ["What color was the button when held?"] = "What color was the button when held?",
-                ["What Morse Code letter was transmitted?"] = "What Morse Code letter was transmitted?",
+                ["What color was the button when held?"] = "長押し中のボタンの色は？",
+                ["What Morse Code letter was transmitted?"] = "送信されたモールス信号の文字は？",
             },
             Questions = new()
             {
@@ -7495,17 +7473,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was {1} of {0} when it was held?
                     // Example: What was the color of The Hexabutton when it was held?
-                    Question = "What was the color of {0} when it was held?",
+                    Question = "{0}を長押しした際の{1}は？",
                     Arguments = new()
                     {
-                        ["the color"] = "the color",
-                        ["the flickering color"] = "the flickering color",
+                        ["the color"] = "色",
+                        ["the flickering color"] = "点滅した色",
                     },
                 },
                 [SHexabutton.Letter] = new()
                 {
                     // English: What Morse Code letter was transmitted by {0}?
-                    Question = "What Morse Code letter was transmitted by {0}?",
+                    Question = "{0}で送信されたモールス信号の文字は？",
                 },
             },
         },
@@ -7568,7 +7546,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What were the deciphered letters or phrase?"] = "解読された文字とフレーズは？",
-                ["What were the 3-digit numbers cycled by the screen?"] = "スクリーンで周期的に表示される3桁の数字は？",
+                ["What were the 3-digit numbers cycled by the screen?"] = "ディスプレーで周期的に表示される3桁の数字は？",
                 ["What were the rhythm values?"] = "リズムの値は？",
             },
             Questions = new()
@@ -7611,7 +7589,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What time was shown when the clock struck {1} on {0}?
                     // Example: What time was shown when the clock struck 1:00 on Hickory Dickory Dock?
-                    Question = "{0}で時計が{1}の鐘を鳴らしたときにに表示された時間は？",
+                    Question = "{0}で時計が{1}の鐘を鳴らしたときに表示された時間は？",
                 },
             },
             Discriminators = new()
@@ -7883,11 +7861,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Horrible Memory
         [typeof(SHorribleMemory)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "恐怖記憶",
             ManualQuestions = new()
             {
                 ["What were the colors and labels of each button in each stage?"] = "各ステージごとのそれぞれのボタンの色とラベルは？",
-                ["What digit was displayed in each stage?"] = "What digit was displayed in each stage?",
+                ["What digit was displayed in each stage?"] = "各ステージで表示された数字は？",
             },
             Questions = new()
             {
@@ -7895,97 +7873,97 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the color of the button in the {1} position in the {2} stage of {0}?
                     // Example: What was the color of the button in the first position in the first stage of Horrible Memory?
-                    Question = "What color was the button in the {1} position of the {2} stage of {0}?",
+                    Question = "{0}のステージ{2}における{1}番目のボタンの色は？",
                     Answers = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["pink"] = "pink",
+                        ["blue"] = "青",
+                        ["green"] = "緑",
+                        ["red"] = "赤",
+                        ["orange"] = "オレンジ",
+                        ["purple"] = "紫",
+                        ["pink"] = "ピンク",
                     },
                 },
                 [SHorribleMemory.QColorsByLabel] = new()
                 {
                     // English: What was the color of the button labeled {1} in the {2} stage of {0}?
                     // Example: What was the color of the button labeled 1 in the first stage of Horrible Memory?
-                    Question = "What color was the button labeled {1} in the {2} stage of {0}?",
+                    Question = "{0}のステージ{2}におけるラベル{1}のボタンの色は？",
                     Answers = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["pink"] = "pink",
+                        ["blue"] = "青",
+                        ["green"] = "緑",
+                        ["red"] = "赤",
+                        ["orange"] = "オレンジ",
+                        ["purple"] = "紫",
+                        ["pink"] = "ピンク",
                     },
                 },
                 [SHorribleMemory.QLabelsByPosition] = new()
                 {
                     // English: What was the label of the button in the {1} position in the {2} stage of {0}?
                     // Example: What was the label of the button in the first position in the first stage of Horrible Memory?
-                    Question = "What was the label of the button in the {1} position of the {2} stage of {0}?",
+                    Question = "{0}のステージ{2}における{1}番目のボタンのラベルは？",
                 },
                 [SHorribleMemory.QLabelsByColor] = new()
                 {
                     // English: What was the label of the {1} button in the {2} stage of {0}?
                     // Example: What was the label of the blue button in the first stage of Horrible Memory?
-                    Question = "What was the label of the {1} button in the {2} stage of {0}?",
+                    Question = "{0}のステージ{2}における{1}のボタンのラベルは？",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["pink"] = "pink",
+                        ["blue"] = "青",
+                        ["green"] = "緑",
+                        ["red"] = "赤",
+                        ["orange"] = "オレンジ",
+                        ["purple"] = "紫",
+                        ["pink"] = "ピンク",
                     },
                 },
                 [SHorribleMemory.QPositionsByColor] = new()
                 {
                     // English: What was the position of the {1} button in the {2} stage of {0}?
                     // Example: What was the position of the blue button in the first stage of Horrible Memory?
-                    Question = "What was the position of the {1} button in the {2} stage of {0}?",
+                    Question = "{0}のステージ{2}における{1}のボタンの位置は？",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["pink"] = "pink",
+                        ["blue"] = "青",
+                        ["green"] = "緑",
+                        ["red"] = "赤",
+                        ["orange"] = "オレンジ",
+                        ["purple"] = "紫",
+                        ["pink"] = "ピンク",
                     },
                     Answers = new()
                     {
-                        ["first"] = "first",
-                        ["second"] = "second",
-                        ["third"] = "third",
-                        ["fourth"] = "fourth",
-                        ["fifth"] = "fifth",
-                        ["sixth"] = "sixth",
+                        ["first"] = "1番目",
+                        ["second"] = "2番目",
+                        ["third"] = "3番目",
+                        ["fourth"] = "4番目",
+                        ["fifth"] = "5番目",
+                        ["sixth"] = "6番目",
                     },
                 },
                 [SHorribleMemory.QPositionsByLabel] = new()
                 {
                     // English: What was the position of the button labeled {1} in the {2} stage of {0}?
                     // Example: What was the position of the button labeled 1 in the first stage of Horrible Memory?
-                    Question = "What was the position of the button labeled {1} in the {2} stage of {0}?",
+                    Question = "{0}のステージ{2}におけるラベル{1}のボタンの位置は？",
                     Answers = new()
                     {
-                        ["first"] = "first",
-                        ["second"] = "second",
-                        ["third"] = "third",
-                        ["fourth"] = "fourth",
-                        ["fifth"] = "fifth",
-                        ["sixth"] = "sixth",
+                        ["first"] = "1番目",
+                        ["second"] = "2番目",
+                        ["third"] = "3番目",
+                        ["fourth"] = "4番目",
+                        ["fifth"] = "5番目",
+                        ["sixth"] = "6番目",
                     },
                 },
                 [SHorribleMemory.QDisplays] = new()
                 {
                     // English: What number was displayed in the {1} stage of {0}?
                     // Example: What number was displayed in the first stage of Horrible Memory?
-                    Question = "What number was displayed in the {1} stage of {0}?",
+                    Question = "{0}のステージ{1}に表示された数字は？",
                 },
             },
             Discriminators = new()
@@ -7994,43 +7972,43 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Horrible Memory that had a {0} button in the {1} position in the {2} stage
                     // Example: the Horrible Memory that had a blue button in the first position in the first stage
-                    Discriminator = "the Horrible Memory that had a {0} button in the {1} position in the {2} stage",
+                    Discriminator = "ステージ{2}において{1}番目のボタンが{0}だった恐怖記憶",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["pink"] = "pink",
+                        ["blue"] = "青",
+                        ["green"] = "緑",
+                        ["red"] = "赤",
+                        ["orange"] = "オレンジ",
+                        ["purple"] = "紫",
+                        ["pink"] = "ピンク",
                     },
                 },
                 [SHorribleMemory.DLabelAndPosition] = new()
                 {
                     // English: the Horrible Memory that had a button labeled {0} in the {1} position in the {2} stage
                     // Example: the Horrible Memory that had a button labeled 1 in the first position in the first stage
-                    Discriminator = "the Horrible Memory that had a button labeled {0} in the {1} position in the {2} stage",
+                    Discriminator = "ステージ{2}におけるラベル{0}のボタンの位置が{1}だった恐怖記憶",
                 },
                 [SHorribleMemory.DColorAndLabel] = new()
                 {
                     // English: the Horrible Memory that had a {0} button labeled {1} in the {2} stage
                     // Example: the Horrible Memory that had a blue button labeled 1 in the first stage
-                    Discriminator = "the Horrible Memory that had a {0} button labeled {1} in the {2} stage",
+                    Discriminator = "ステージ{2}における{0}のボタンのラベルが{1}だった恐怖記憶",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["red"] = "red",
-                        ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["pink"] = "pink",
+                        ["blue"] = "青",
+                        ["green"] = "緑",
+                        ["red"] = "赤",
+                        ["orange"] = "オレンジ",
+                        ["purple"] = "紫",
+                        ["pink"] = "ピンク",
                     },
                 },
                 [SHorribleMemory.DDisplay] = new()
                 {
                     // English: the Horrible Memory that displayed a {0} in the {1} stage
                     // Example: the Horrible Memory that displayed a 1 in the first stage
-                    Discriminator = "the Horrible Memory that displayed a {0} in the {1} stage",
+                    Discriminator = "ステージ{1}でディスプレーに{0}が表示された恐怖記憶",
                 },
             },
         },
@@ -8038,11 +8016,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Human Resources
         [typeof(SHumanResources)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "人事部",
             ManualQuestions = new()
             {
-                ["Which employees and applicants were present?"] = "Which employees and applicants were present?",
+                ["Which employees and applicants were present?"] = "存在した従業員と応募者は？",
                 ["Which descriptors were shown in red and green?"] = "赤と緑で表示されたのはどの識別語？",
             },
             Questions = new()
@@ -8062,11 +8039,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Who was {1} at the start of {0}?
                     // Example: Who was an employee at the start of Human Resources?
-                    Question = "Who was {1} at the start of {0}?",
+                    Question = "{0}の開始時点で{1}だったのは誰？",
                     Arguments = new()
                     {
-                        ["an employee"] = "an employee",
-                        ["an applicant"] = "an applicant",
+                        ["an employee"] = "従業員",
+                        ["an applicant"] = "応募者",
                     },
                 },
             },
@@ -8075,10 +8052,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Hunting
         [typeof(SHunting)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "狩猟",
             ManualQuestions = new()
             {
-                ["Which pictograms were displayed?"] = "Which pictograms were displayed?",
+                ["Which pictograms were displayed?"] = "表示された絵文字は？",
             },
             Questions = new()
             {
@@ -8086,7 +8063,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which of these symbols was displayed in the {1} stage of {0}?
                     // Example: Which of these symbols was displayed in the first stage of Hunting?
-                    Question = "Which of these symbols was displayed in the {1} stage of {0}?",
+                    Question = "{0}の{1}番目のステージで表示された記号は？",
                 },
             },
         },
@@ -8284,7 +8261,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "藍色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -8292,7 +8269,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Indigo Cipher?
-                    Question = "{0}の答えは？",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
                         ["top"] = "上部",
@@ -8399,10 +8376,9 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // IPA
         [typeof(SIPA)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the correct symbol?"] = "What was the correct symbol?",
+                ["What was the correct symbol?"] = "正しい記号は？",
             },
             Questions = new()
             {
@@ -8454,10 +8430,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Jewel Vault
         [typeof(SJewelVault)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "宝石金庫",
             ManualQuestions = new()
             {
-                ["Which wheel spun another wheel, and which one did it spin?"] = "Which wheel spun another wheel, and which one did it spin?",
+                ["Which wheel spun another wheel, and which one did it spin?"] = "どのホイールがどのホイールを回転させ、どのホイールが自分で回転した？",
             },
             Questions = new()
             {
@@ -8465,14 +8441,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which wheel turned as a result of turning wheel {1} in {0}?
                     // Example: Which wheel turned as a result of turning wheel 1 in The Jewel Vault?
-                    Question = "Which wheel turned as a result of turning Wheel {1} in {0}?",
+                    Question = "{0}でホイール{1}を回転させた結果、どのホイールが回転した？",
                     Answers = new()
                     {
                         ["1"] = "1",
                         ["2"] = "2",
                         ["3"] = "3",
                         ["4"] = "4",
-                        ["none"] = "none",
+                        ["none"] = "なし",
                     },
                 },
             },
@@ -9111,10 +9087,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // LED Encryption
         [typeof(SLEDEncryption)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "暗号化LED",
             ManualQuestions = new()
             {
-                ["Which letters were present at each stage"] = "Which letters were present at each stage",
+                ["Which letters were present at each stage"] = "各ステージで存在した文字は？",
             },
             Questions = new()
             {
@@ -9122,7 +9098,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which of these letters was present in the {1} stage of {0}?
                     // Example: Which of these letters was present in the first stage of LED Encryption?
-                    Question = "What was the correct letter you pressed in the {1} stage of {0}?",
+                    Question = "{0}のステージ{1}で存在した文字はどれ？",
                 },
             },
         },
@@ -9237,10 +9213,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Lempel-Ziv Cipher
         [typeof(SLempelZivCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Lempel-Ziv暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "What was on each screen?",
+                ["What was on each screen?"] = "各スクリーンの文字は？",
             },
             Questions = new()
             {
@@ -9248,12 +9224,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Lempel-Ziv Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "上部",
+                        ["middle"] = "中央",
+                        ["bottom"] = "下部",
                     },
                 },
             },
@@ -9324,14 +9300,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the starting coordinate?"] = "What was the starting coordinate?",
+                ["What was the starting coordinate?"] = "初期座標は？",
             },
             Questions = new()
             {
                 [SLimeArrows.Coordinates] = new()
                 {
                     // English: What was the starting coordinate in {0}?
-                    Question = "What was the starting coordinate in {0}?",
+                    Question = "{0}の初期座標は？",
                 },
             },
         },
@@ -9339,7 +9315,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Linq
         [typeof(SLinq)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "リンク",
             ManualQuestions = new()
             {
@@ -9484,11 +9459,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Logic Gates
         [typeof(SLogicGates)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "論理ゲート",
             ManualQuestions = new()
             {
-                ["What were logic gates A-D?"] = "What were logic gates A-D?",
+                ["What were logic gates A-D?"] = "論理ゲートA-Dは？",
             },
             Questions = new()
             {
@@ -9496,7 +9470,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was {1} in {0}?
                     // Example: What was gate A in Logic Gates?
-                    Question = "{0}で{1}はどれだったか？",
+                    Question = "{0}で{1}はどれだった？",
                     Arguments = new()
                     {
                         ["gate A"] = "ゲートA",
@@ -9612,7 +9586,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "マゼンタ暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -9807,7 +9781,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Maritime Semaphore
         [typeof(SMaritimeSemaphore)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "海上セマフォア信号",
             ManualQuestions = new()
             {
@@ -9825,11 +9798,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which letter was shown {2} in the {1} position in {0}?
                     // Example: Which letter was shown as a maritime flag in the first position in Maritime Semaphore?
-                    Question = "Which letter was shown {2} in the {1} position in {0}?",
+                    Question = "{0}の{1}番目に{2}表示されていた英字は？",
                     Arguments = new()
                     {
-                        ["as a maritime flag"] = "as a maritime flag",
-                        ["in semaphore"] = "in semaphore",
+                        ["as a maritime flag"] = "海上旗として",
+                        ["in semaphore"] = "セマフォア信号として",
                     },
                 },
             },
@@ -9859,7 +9832,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "栗色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -10108,7 +10081,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Maze Scrambler
         [typeof(SMazeScrambler)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "迷路スクランブラー",
             ManualQuestions = new()
             {
@@ -10128,7 +10100,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["top-middle"] = "上",
                         ["top-right"] = "右上",
                         ["middle-left"] = "左",
-                        ["center"] = "center",
+                        ["center"] = "中央",
                         ["middle-right"] = "右",
                         ["bottom-left"] = "左下",
                         ["bottom-middle"] = "下",
@@ -10145,7 +10117,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["top-middle"] = "上",
                         ["top-right"] = "右上",
                         ["middle-left"] = "左",
-                        ["center"] = "center",
+                        ["center"] = "中央",
                         ["middle-right"] = "右",
                         ["bottom-left"] = "左下",
                         ["bottom-middle"] = "下",
@@ -10176,54 +10148,54 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Maze Scramber where the starting position was at the {0}
                     // Example: the Maze Scramber where the starting position was at the top-left
-                    Discriminator = "the Maze Scramber where the starting position was at the {0}",
+                    Discriminator = "開始地点が{0}だった迷路スクランブラー",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["center"] = "center",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "左上",
+                        ["top-middle"] = "上",
+                        ["top-right"] = "右上",
+                        ["middle-left"] = "左",
+                        ["center"] = "中央",
+                        ["middle-right"] = "右",
+                        ["bottom-left"] = "左下",
+                        ["bottom-middle"] = "下",
+                        ["bottom-right"] = "右下",
                     },
                 },
                 [SMazeScrambler.DGoal] = new()
                 {
                     // English: the Maze Scramber where the goal was at the {0}
                     // Example: the Maze Scramber where the goal was at the top-left
-                    Discriminator = "the Maze Scramber where the goal was at the {0}",
+                    Discriminator = "ゴールが{0}だった迷路スクランブラー",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["center"] = "center",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "左上",
+                        ["top-middle"] = "上",
+                        ["top-right"] = "右上",
+                        ["middle-left"] = "左",
+                        ["center"] = "中央",
+                        ["middle-right"] = "右",
+                        ["bottom-left"] = "左下",
+                        ["bottom-middle"] = "下",
+                        ["bottom-right"] = "右下",
                     },
                 },
                 [SMazeScrambler.DIndicators] = new()
                 {
                     // English: the Maze Scramber with a maze marking at the {0}
                     // Example: the Maze Scramber with a maze marking at the top-left
-                    Discriminator = "the Maze Scramber where a maze marking was at the {0}",
+                    Discriminator = "迷路特定用のマークが{0}にあった迷路スクランブラー",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-middle"] = "top-middle",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["center"] = "center",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-middle"] = "bottom-middle",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "左上",
+                        ["top-middle"] = "上",
+                        ["top-right"] = "右上",
+                        ["middle-left"] = "左",
+                        ["center"] = "中央",
+                        ["middle-right"] = "右",
+                        ["bottom-left"] = "左下",
+                        ["bottom-middle"] = "下",
+                        ["bottom-right"] = "右下",
                     },
                 },
             },
@@ -10304,7 +10276,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Memory
         [typeof(SMemory)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "記憶",
             ManualQuestions = new()
             {
@@ -10325,7 +10296,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Memory that displayed a {0} in the {1} stage
                     // Example: the Memory that displayed a 1 in the first stage
-                    Discriminator = "the Memory that displayed a {0} in the {1} stage",
+                    Discriminator = "ステージ{1}のディスプレーが{0}だった記憶",
                 },
             },
         },
@@ -10333,7 +10304,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Memory Wires
         [typeof(SMemoryWires)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "記憶ワイヤ",
             ManualQuestions = new()
             {
@@ -10369,21 +10339,21 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Memory Wires where the colour of wire {0} was {1}
                     // Example: the Memory Wires where the colour of wire 1 was red
-                    Discriminator = "the Memory Wires where the colour of wire {0} was {1}",
+                    Discriminator = "ワイヤ{0}の色が{1}だった記憶ワイヤ",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["blue"] = "blue",
-                        ["white"] = "white",
-                        ["black"] = "black",
+                        ["red"] = "赤",
+                        ["yellow"] = "黄",
+                        ["blue"] = "青",
+                        ["white"] = "白",
+                        ["black"] = "黒",
                     },
                 },
                 [SMemoryWires.DDisplayedDigits] = new()
                 {
                     // English: the Memory Wires where the digit displayed in the {0} stage was {1}
                     // Example: the Memory Wires where the digit displayed in the first stage was 1
-                    Discriminator = "the Memory Wires where the digit displayed in the {0} stage was {1}",
+                    Discriminator = "ステージ{0}のディスプレーが{1}だった記憶ワイヤ",
                 },
             },
         },
@@ -10676,23 +10646,22 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Monsplode Trading Cards
         [typeof(SMonsplodeTradingCards)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "モンスプロード・カードゲーム",
             ManualQuestions = new()
             {
-                ["What were the names and print versions of the three cards in your hand before the final trade/keep?"] = "What were the names and print versions of the three cards in your hand before the final trade/keep?",
+                ["What were the names and print versions of the three cards in your hand before the final trade/keep?"] = "最終交換/キープの直前の手札にあった3枚のカードの名前と印刷バージョンは？",
             },
             Questions = new()
             {
                 [SMonsplodeTradingCards.CardsAny] = new()
                 {
                     // English: Which of these cards was in your hand before the last action in {0}?
-                    Question = "Which of these cards was in your hand before the last action in {0}?",
+                    Question = "{0}の最後の行動の前に手札にあったカードはどれ？",
                 },
                 [SMonsplodeTradingCards.PrintVersionsAny] = new()
                 {
                     // English: Which of these print versions was present on a card in your hand before the last action in {0}?
-                    Question = "Which of these print versions was present on a card in your hand before the last action in {0}?",
+                    Question = "{0}の最後の行動の前に手札にあったカードの印刷バージョンはどれ？",
                 },
             },
         },
@@ -10822,7 +10791,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Morsematics
         [typeof(SMorsematics)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "モールスマティック",
             ManualQuestions = new()
             {
                 ["What were the received letters?"] = "受信した文字は？",
@@ -10833,11 +10802,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which of these letters was {1} in {0}?
                     // Example: Which of these letters was present in Morsematics?
-                    Question = "Which of these letters was {1} in {0}?",
+                    Question = "{0}に{1}文字は？",
                     Arguments = new()
                     {
-                        ["present"] = "present",
-                        ["not present"] = "not present",
+                        ["present"] = "存在した",
+                        ["not present"] = "存在しなかった",
                     },
                 },
             },
@@ -11019,7 +10988,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the universe origin and its initial number?"] = "What was the universe origin and its initial number?",
+                ["What was the universe origin and its initial number?"] = "発信元の宇宙とその初期値は？",
             },
             Questions = new()
             {
@@ -11134,17 +11103,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Mystic Square
         [typeof(SMysticSquare)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "神秘スクエア",
             ManualQuestions = new()
             {
-                ["What digit was initially in the center?"] = "What digit was initially in the center?",
+                ["What digit was initially in the center?"] = "初期状態の中央の数字は？",
             },
             Questions = new()
             {
                 [SMysticSquare.CenterTile] = new()
                 {
                     // English: What digit was initially in the center in {0}?
-                    Question = "What digit was initially in the center in {0}?",
+                    Question = "{0}の初期状態の中央の数字は？",
                 },
             },
         },
@@ -11212,12 +11181,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // N&Ns
         [typeof(SNandNs)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "NとN",
             ManualQuestions = new()
             {
                 ["What were the labels in stage 2 and 3?"] = "ステージ2と3のラベルは？",
-                ["What was the missing color in stage 3?"] = "What was the missing color in stage 3?",
+                ["What was the missing color in stage 3?"] = "ステージ3で欠けていた色は？",
             },
             Questions = new()
             {
@@ -11489,7 +11457,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["How many matches were in each row?"] = "How many matches were in each row?",
+                ["How many matches were in each row?"] = "各段にあったマッチの数は？",
             },
             Questions = new()
             {
@@ -11514,14 +11482,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the first displayed noise type?"] = "What was the first displayed noise type?",
+                ["What was the first displayed noise type?"] = "最初に表示されたノイズの種類は？",
             },
             Questions = new()
             {
                 [SNoiseIdentification.Noises] = new()
                 {
                     // English: What was the first displayed noise type in {0}?
-                    Question = "What was the first displayed noise type in {0}?",
+                    Question = "{0}で最初に表示されたノイズの種類は？",
                 },
             },
         },
@@ -11674,7 +11642,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Not Double-Oh
         [typeof(SNotDoubleOh)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "偽ダブル・オー",
             ManualQuestions = new()
             {
@@ -11695,7 +11662,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Not Double-Oh where the {0} displayed position was {1}
                     // Example: the Not Double-Oh where the first displayed position was AA
-                    Discriminator = "the Not Double-Oh where the {0} displayed position was {1}",
+                    Discriminator = "{0}番目に表示された位置が{1}であった偽ダブル・オー",
                 },
             },
         },
@@ -12662,7 +12629,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "乳白色暗号",
             ManualQuestions = new()
             {
-                ["What was on each display?"] = "各スクリーンの文字は？",
+                ["What was on each display?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -12763,7 +12730,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Only Connect
         [typeof(SOnlyConnect)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "オンリーコネクト",
             ManualQuestions = new()
             {
@@ -12802,21 +12768,21 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Only Connect where {0} was in the {1}
                     // Example: the Only Connect where Two Reeds was in the top left
-                    Discriminator = "the Only Connect where {0} was in the {1}",
+                    Discriminator = "{0}が{1}にあったオンリーコネクト",
                     Arguments = new()
                     {
-                        ["Two Reeds"] = "Two Reeds",
-                        ["Lion"] = "Lion",
-                        ["Twisted Flax"] = "Twisted Flax",
-                        ["Horned Viper"] = "Horned Viper",
-                        ["Water"] = "Water",
-                        ["Eye of Horus"] = "Eye of Horus",
-                        ["top left"] = "top left",
-                        ["top middle"] = "top middle",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom middle"] = "bottom middle",
-                        ["bottom right"] = "bottom right",
+                        ["Two Reeds"] = "二本の葦",
+                        ["Lion"] = "ライオン",
+                        ["Twisted Flax"] = "よりあわせた亜麻糸",
+                        ["Horned Viper"] = "ヘビ",
+                        ["Water"] = "水",
+                        ["Eye of Horus"] = "ホルスの目",
+                        ["top left"] = "左上",
+                        ["top middle"] = "上",
+                        ["top right"] = "右上",
+                        ["bottom left"] = "左下",
+                        ["bottom middle"] = "下",
+                        ["bottom right"] = "右下",
                     },
                 },
             },
@@ -12854,7 +12820,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "橙色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -12862,7 +12828,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Orange Cipher?
-                    Question = "{0}の答えは？",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
                         ["top"] = "上部",
@@ -13185,11 +13151,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Password Destroyer
         [typeof(SPasswordDestroyer)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "パスワード破壊",
             ManualQuestions = new()
             {
-                ["What was the 2FAST™ value?"] = "What was the 2FAST™ value?",
+                ["What was the 2FAST™ value?"] = "2FAST™の値は？",
             },
             Questions = new()
             {
@@ -13614,12 +13579,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Planets
         [typeof(SPlanets)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "惑星",
             ManualQuestions = new()
             {
                 ["What was the planet shown?"] = "表示された惑星は？",
-                ["What was the color for each strip?"] = "What was the color for each strip?",
+                ["What was the color for each strip?"] = "各ストリップの色は？",
             },
             Questions = new()
             {
@@ -13714,10 +13678,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Pokémon Sprite Cipher
         [typeof(SPokémonSpriteCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "ポケモンスプライト暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "What was on each screen?",
+                ["What was on each screen?"] = "各スクリーンの文字は？",
             },
             Questions = new()
             {
@@ -13725,12 +13689,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Pokémon Sprite Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "上部",
+                        ["middle"] = "中央",
+                        ["bottom"] = "下部",
                     },
                 },
             },
@@ -14430,7 +14394,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "赤色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -14474,7 +14438,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What did the solving condition state?"] = "解除条件は？",
-                ["What were the wire colors?"] = "What were the wire colors?",
+                ["What were the wire colors?"] = "ワイヤの色は？",
             },
             Questions = new()
             {
@@ -14637,10 +14601,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Reverse Morse
         [typeof(SReverseMorse)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "逆モールス信号",
             ManualQuestions = new()
             {
-                ["What were the displayed symbols and their colors?"] = "What were the displayed symbols and their colors?",
+                ["What were the displayed symbols and their colors?"] = "表示されたシンボルとその色は？",
             },
             Questions = new()
             {
@@ -14648,13 +14612,22 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the {1} symbol in the {2} message of {0}?
                     // Example: What was the first symbol in the first message of Reverse Morse?
-                    Question = "What was the {1} symbol in the {2} message of {0}?",
+                    Question = "{0}の{2}つ目のメッセージにおける{1}番目のシンボルは？",
                 },
                 [SReverseMorse.Colors] = new()
                 {
                     // English: What was the color of the {1} symbol in the {2} message of {0}?
                     // Example: What was the color of the first symbol in the first message of Reverse Morse?
-                    Question = "What was the color of the {1} symbol in the {2} message of {0}?",
+                    Question = "{0}の{2}つ目のメッセージにおける{1}番目のシンボルの色は？",
+                    Answers = new()
+                    {
+                        ["red"] = "赤",
+                        ["green"] = "緑",
+                        ["blue"] = "青",
+                        ["purple"] = "紫",
+                        ["yellow"] = "黄",
+                        ["orange"] = "オレンジ",
+                    },
                 },
             },
         },
@@ -14681,7 +14654,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // RGB Encryption
         [typeof(SRGBEncryption)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "暗号化RGB",
             ManualQuestions = new()
             {
                 ["What were the Morse code and color sequences?"] = "モールス信号と色のシーケンスは？",
@@ -14917,7 +14890,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which rounds did each team win/lose/tie?"] = "各チームが勝ち/負け/引き分けになったのはどのステージ？",
+                ["Which rounds did each team win/lose/tie?"] = "各チームが勝ち/負け/引き分けになったのはどのラウンド？",
             },
             Questions = new()
             {
@@ -15520,7 +15493,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Silly Slots
         [typeof(SSillySlots)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "ヘンテコスロット",
             ManualQuestions = new()
             {
@@ -15556,21 +15528,21 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Silly Slots where the {0} slot in the {1} stage was a {2}
                     // Example: the Silly Slots where the first slot in the first stage was a red bomb
-                    Discriminator = "the Silly Slots where the {1} slot in the {2} stage was {0}",
+                    Discriminator = "{1}ステージの{0}列目のスロットが{2}だったヘンテコスロット",
                     Arguments = new()
                     {
-                        ["red bomb"] = "red bomb",
-                        ["red cherry"] = "red cherry",
-                        ["red coin"] = "red coin",
-                        ["red grape"] = "red grape",
-                        ["green bomb"] = "green bomb",
-                        ["green cherry"] = "green cherry",
-                        ["green coin"] = "green coin",
-                        ["green grape"] = "green grape",
-                        ["blue bomb"] = "blue bomb",
-                        ["blue cherry"] = "blue cherry",
-                        ["blue coin"] = "blue coin",
-                        ["blue grape"] = "blue grape",
+                        ["red bomb"] = "赤色の爆弾",
+                        ["red cherry"] = "赤色のチェリー",
+                        ["red coin"] = "赤色のコイン",
+                        ["red grape"] = "赤色のブドウ",
+                        ["green bomb"] = "緑色の爆弾",
+                        ["green cherry"] = "緑色のチェリー",
+                        ["green coin"] = "緑色のコイン",
+                        ["green grape"] = "緑色のブドウ",
+                        ["blue bomb"] = "青色の爆弾",
+                        ["blue cherry"] = "青色のチェリー",
+                        ["blue coin"] = "青色のコイン",
+                        ["blue grape"] = "青色のブドウ",
                     },
                 },
             },
@@ -15659,7 +15631,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Simon Says
         [typeof(SSimonSays)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "サイモンゲーム",
             ManualQuestions = new()
             {
@@ -15687,13 +15658,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Simon Says whose {0} flash was {1}
                     // Example: the Simon Says whose first flash was red
-                    Discriminator = "the Simon Says whose {0} flash was {1}",
+                    Discriminator = "{0}番目の点滅が{1}だったサイモンゲーム",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
+                        ["red"] = "赤",
+                        ["yellow"] = "黄",
+                        ["green"] = "緑",
+                        ["blue"] = "青",
                     },
                 },
             },
@@ -16023,7 +15994,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Simon Shuffles
         [typeof(SSimonShuffles)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "サイモンの交雑",
             ManualQuestions = new()
             {
@@ -16038,15 +16008,15 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     Question = "{0}のステージ{2}において{1}番目に点滅した色は？",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Cyan"] = "Cyan",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
-                        ["Magenta"] = "Magenta",
-                        ["White"] = "White",
+                        ["Red"] = "赤",
+                        ["Orange"] = "オレンジ",
+                        ["Yellow"] = "黄",
+                        ["Green"] = "緑",
+                        ["Cyan"] = "シアン",
+                        ["Blue"] = "青",
+                        ["Purple"] = "紫",
+                        ["Magenta"] = "マゼンタ",
+                        ["White"] = "白",
                     },
                 },
             },
@@ -16130,11 +16100,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Simon Simons
         [typeof(SSimonSimons)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "サイモンのサイモン",
             ManualQuestions = new()
             {
-                ["Which buttons flashed?"] = "Which buttons flashed?",
+                ["Which buttons flashed?"] = "どのボタンが点滅した？",
             },
             Questions = new()
             {
@@ -16317,11 +16286,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Simon’s Star
         [typeof(SSimonsStar)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "サイモンの星",
             ManualQuestions = new()
             {
-                ["Which colors flashed?"] = "Which colors flashed?",
+                ["Which colors flashed?"] = "どの色が点滅した？",
             },
             Questions = new()
             {
@@ -16490,7 +16458,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Simon Stores
         [typeof(SSimonStores)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "サイモンの貯留",
             ManualQuestions = new()
             {
@@ -16580,10 +16547,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     Question = "{0}のこの位置にあったボタンの色は？",
                     Answers = new()
                     {
-                        ["Blue"] = "",
-                        ["Green"] = "",
-                        ["Red"] = "",
-                        ["Violet"] = "",
+                        ["Blue"] = "青",
+                        ["Green"] = "緑",
+                        ["Red"] = "赤",
+                        ["Violet"] = "紫",
                     },
                 },
             },
@@ -17023,7 +16990,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "ソニック・ザ・ヘッジホッグ",
             ManualQuestions = new()
             {
-                ["Which sound was played by each screen?"] = "各スクリーンでどの音が再生された？",
+                ["Which sound was played by each screen?"] = "各ディスプレーでどの音が再生された？",
                 ["What were the pictures?"] = "画像は何だった？",
             },
             Questions = new()
@@ -17535,7 +17502,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Suits and Colours
         [typeof(SSuitsAndColours)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "スートと色",
             ManualQuestions = new()
             {
@@ -17813,7 +17779,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Synapse Says
         [typeof(SSynapseSays)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "記憶ゲーム",
             ManualQuestions = new()
             {
@@ -17843,7 +17808,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         {
             ManualQuestions = new()
             {
-                ["What was displayed on the screen in each stage?"] = " 各ステージでスクリーンに表示されたものは？",
+                ["What was displayed on the screen in each stage?"] = " 各ステージでディスプレーに表示されたものは？",
             },
             Questions = new()
             {
@@ -17851,7 +17816,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was displayed on the screen in the {1} stage of {0}?
                     // Example: What was displayed on the screen in the first stage of SYNC-125 [3]?
-                    Question = "{0}にてステージ{1}でスクリーンに表示されたものは？",
+                    Question = "{0}にてステージ{1}でディスプレーに表示されたものは？",
                 },
             },
         },
@@ -18267,7 +18232,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Tic Tac Toe
         [typeof(STicTacToe)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "○×ゲーム",
             ManualQuestions = new()
             {
@@ -18434,14 +18398,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What letter was written on the casing when solving?"] = "What letter was written on the casing when solving?",
+                ["What letter was written on the casing when solving?"] = "{0}を解除したとき、ケースに書かれていた文字は？",
             },
             Questions = new()
             {
                 [SToxicCrystals.Letter] = new()
                 {
                     // English: What letter was written on the casing when solving {0}?
-                    Question = "What letter was written on the casing when solving {0}?",
+                    Question = "{0}を解除したとき、ケースに書かれていた文字は？",
                 },
             },
         },
@@ -18525,20 +18489,20 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the the shape of the first piece you pressed?"] = "What was the the shape of the first piece you pressed?",
-                ["What was the second color palette that the pieces converted to?"] = "What was the second color palette that the pieces converted to?",
+                ["What was the the shape of the first piece you pressed?"] = "最初に押したピースの形は？",
+                ["What was the second color palette that the pieces converted to?"] = "二番目に変換された色のパレットは？",
             },
             Questions = new()
             {
                 [STrickyTetrisPieces.FirstShape] = new()
                 {
                     // English: What was the first piece you pressed in {0}?
-                    Question = "What was the shape of the first piece you pressed in {0}?",
+                    Question = "{0}で最初に押したピースの形は？",
                 },
                 [STrickyTetrisPieces.SecondPalette] = new()
                 {
                     // English: What was the second color palette the pieces converted to in {0}?
-                    Question = "What was the second color palette the pieces converted to in {0}?",
+                    Question = "{0}で二番目に変換された色のパレットは？",
                 },
             },
         },
@@ -18564,7 +18528,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Two Bits
         [typeof(STwoBits)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "ツービッツ",
             ManualQuestions = new()
             {
@@ -18585,7 +18548,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Two Bits where the {0} correct query was {1}
                     // Example: the Two Bits where the first correct query was 00
-                    Discriminator = "the Two Bits where the {0} correct query was {1}",
+                    Discriminator = "{0}番目のクエリの返答が{1}だったツービッツ",
                 },
             },
         },
@@ -18626,14 +18589,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which numbers were present?"] = "Which numbers were present?",
+                ["Which numbers were present?"] = "存在した数字は？",
             },
             Questions = new()
             {
                 [SUfoSatellites.Numbers] = new()
                 {
                     // English: Which number was not present on {0}?
-                    Question = "Which number was not present on {0}?",
+                    Question = "{0}に存在しなかった数字は？",
                 },
             },
         },
@@ -18644,7 +18607,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "究極暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -18652,7 +18615,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Ultimate Cipher?
-                    Question = "{0}の回答は？",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていた文字は？",
                     Arguments = new()
                     {
                         ["top"] = "上部",
@@ -18865,10 +18828,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Unfair Cipher
         [typeof(SUnfairCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "アンフェア暗号",
             ManualQuestions = new()
             {
-                ["What was the encrypted message?"] = "What was the encrypted message?",
+                ["What was the encrypted message?"] = "暗号化されたメッセージは？",
             },
             Questions = new()
             {
@@ -18876,7 +18839,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the {1} letter of the encrypted message in {0}?
                     // Example: What was the first letter of the encrypted message in Unfair Cipher?
-                    Question = "What was the {1} letter of the encrypted message in {0}?",
+                    Question = "{0}で暗号化されたメッセージの{1}番目の文字は？",
                 },
             },
         },
@@ -19525,7 +19488,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "紫色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -19644,7 +19607,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Wavetapping
         [typeof(SWavetapping)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "ウェーブタッピング",
             ManualQuestions = new()
             {
@@ -19793,7 +19755,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "白色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -19834,7 +19796,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Who’s on First
         [typeof(SWhosOnFirst)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "表比較",
             ManualQuestions = new()
             {
@@ -19855,7 +19816,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Who’s on First that had {0} in the display in the {1} stage
                     // Example: the Who’s on First that had BLANK in the display in the first stage
-                    Discriminator = "the Who’s on First that had {0} in the display in the {1} stage",
+                    Discriminator = "ステージ{1}のディスプレーが{0}だった表比較",
                 },
             },
         },
@@ -19901,7 +19862,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Wire
         [typeof(SWire)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "ザ・ワイヤ",
             ManualQuestions = new()
             {
@@ -19943,25 +19903,25 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Wire whose {0} dial was {1}
                     // Example: the Wire whose top dial was blue
-                    Discriminator = "the Wire whose {0} dial was {1}",
+                    Discriminator = "{0}のダイヤルが{1}だったザ・ワイヤ",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["grey"] = "grey",
-                        ["orange"] = "orange",
-                        ["purple"] = "purple",
-                        ["red"] = "red",
+                        ["top"] = "上",
+                        ["bottom-left"] = "左下",
+                        ["bottom-right"] = "右下",
+                        ["blue"] = "青",
+                        ["green"] = "緑",
+                        ["grey"] = "灰",
+                        ["orange"] = "橙",
+                        ["purple"] = "紫",
+                        ["red"] = "赤",
                     },
                 },
                 [SWire.DDisplayedNumber] = new()
                 {
                     // English: the Wire whose displayed number was {0}
                     // Example: the Wire whose displayed number was 0
-                    Discriminator = "the Wire whose displayed number was {0}",
+                    Discriminator = "ディスプレーの数字が{0}だったザ・ワイヤ",
                 },
             },
         },
@@ -20023,7 +19983,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Wire Sequence
         [typeof(SWireSequence)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "順番ワイヤ",
             ManualQuestions = new()
             {
@@ -20050,15 +20009,15 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Wire Sequence that had {0} {1}
                     // Example: the Wire Sequence that had 1 red wire
-                    Discriminator = "the Wire Sequence in which there were {0} {1} wires?",
+                    Discriminator = "{1}のワイヤが{0}本あった順番ワイヤ",
                     Arguments = new()
                     {
-                        ["red wire"] = "red wire",
-                        ["blue wire"] = "blue wire",
-                        ["black wire"] = "black wire",
-                        ["red wires"] = "red wires",
-                        ["blue wires"] = "blue wires",
-                        ["black wires"] = "black wires",
+                        ["red wire"] = "赤のワイヤ",
+                        ["blue wire"] = "青のワイヤ",
+                        ["black wire"] = "黒のワイヤ",
+                        ["red wires"] = "赤のワイヤ",
+                        ["blue wires"] = "青のワイヤ",
+                        ["black wires"] = "黒のワイヤ",
                     },
                 },
             },
@@ -20115,11 +20074,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Working Title
         [typeof(SWorkingTitle)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "ワーキングタイトル",
             ManualQuestions = new()
             {
-                ["What was on the display?"] = "What was on the display?",
+                ["What was on the display?"] = "ディスプレーに何が表示されていた？",
             },
             Questions = new()
             {
@@ -20364,7 +20322,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "黄色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各スクリーンの文字は？",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -20386,10 +20344,9 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Yellow Huffman Cipher
         [typeof(SYellowHuffmanCipher)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "What was on each screen?",
+                ["What was on each screen?"] = "各スクリーンの文字は？",
             },
             Questions = new()
             {
@@ -20397,12 +20354,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Yellow Huffman Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "上部",
+                        ["middle"] = "中央",
+                        ["bottom"] = "下部",
                     },
                 },
             },

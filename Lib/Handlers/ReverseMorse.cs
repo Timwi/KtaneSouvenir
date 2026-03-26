@@ -8,7 +8,7 @@ public enum SReverseMorse
     [SouvenirQuestion("What was the {1} symbol in the {2} message of {0}?", ThreeColumns6Answers, "A", "L", "Q", "T", "X", "Z", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2, Type = AnswerType.CubeFont)]
     Symbols,
 
-    [SouvenirQuestion("What was the color of the {1} symbol in the {2} message of {0}?", ThreeColumns6Answers, "red", "green", "blue", "purple", "yellow", "orange", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [SouvenirQuestion("What was the color of the {1} symbol in the {2} message of {0}?", ThreeColumns6Answers, "red", "green", "blue", "purple", "yellow", "orange", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     Colors
 }
 
