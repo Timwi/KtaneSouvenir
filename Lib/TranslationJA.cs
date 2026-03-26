@@ -4198,12 +4198,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Cruel Keypads
         [typeof(SCruelKeypads)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "残忍キーパッド",
             ManualQuestions = new()
             {
-                ["What symbols were on the keys in each stage?"] = "What symbols were on the keys in each stage?",
-                ["What was the color of the bar in each stage?"] = "What was the color of the bar in each stage?",
+                ["What symbols were on the keys in each stage?"] = "各ステージのキーにあったシンボルは？",
+                ["What was the color of the bar in each stage?"] = "各ステージのバーの色は？",
             },
             Questions = new()
             {
@@ -9940,18 +9939,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Matrix
         [typeof(SMatrix)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "マトリックス",
             ManualQuestions = new()
             {
-                ["Which word was part of the latest access code used?"] = "Which word was part of the latest access code used?",
+                ["Which word was part of the latest access code used?"] = "最後に使用されたアクセスコードの一部だった単語は？",
             },
             Questions = new()
             {
                 [SMatrix.AccessCode] = new()
                 {
                     // English: Which word was part of the latest access code used in {0}?
-                    Question = "Which word was part of the latest access code used in {0}?",
+                    Question = "最後に使用されたアクセスコードの一部だった単語は？",
                 },
             },
         },
@@ -12654,11 +12652,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Old AI
         [typeof(SOldAI)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "オールドAI",
             ManualQuestions = new()
             {
-                ["What was the group/sub-group of the displayed numbers?"] = "What was the group/sub-group of the displayed numbers?",
+                ["What was the group/sub-group of the displayed numbers?"] = "表示された数字のグループ/サブグループは？",
             },
             Questions = new()
             {
