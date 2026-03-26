@@ -15025,6 +15025,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Reverse Morse
         [typeof(SReverseMorse)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Morse Andersrum",
             ManualQuestions = new()
             {
@@ -15043,6 +15044,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} symbol in the {2} message of {0}?
                     // Example: What was the color of the first symbol in the first message of Reverse Morse?
                     Question = "Welche Farbe hatte bei {0} das {1}e Symbol in der {2}en Nachricht?",
+                    Answers = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["purple"] = "purple",
+                        ["yellow"] = "yellow",
+                        ["orange"] = "orange",
+                    },
                 },
             },
         },
