@@ -23,7 +23,12 @@
     <Configurations>Release</Configurations>
   </PropertyGroup>
   <PropertyGroup>
-    <GameFolder Condition="'$(GameFolder)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\</GameFolder>
+    <GameFolder Condition="'$(GameFolder)' == '' AND '$(OS)' == 'Windows_NT'">C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\</GameFolder>
+    <GameFolder Condition="'$(GameFolder)' == '' AND '$(OS)' != 'Windows_NT' AND '$(KTANE_GAME_FOLDER)' != ''">$(KTANE_GAME_FOLDER)</GameFolder>
+    <ManagedFolder Condition="'$(OS)' == 'Windows_NT'">ktane_Data\Managed</ManagedFolder>
+    <ManagedFolder Condition="'$(OS)' != 'Windows_NT'">Keep Talking and Nobody Explodes.app/Contents/Resources/Data/Managed</ManagedFolder>
+    <ModsFolder Condition="'$(OS)' == 'Windows_NT'">mods\Souvenir</ModsFolder>
+    <ModsFolder Condition="'$(OS)' != 'Windows_NT'">mods/Souvenir</ModsFolder>
     <SouvenirPostBuildTool Condition="'$(OS)' == 'Windows_NT'">..\PostBuildTool\bin\Release\net8.0-windows7.0\SouvenirPostBuildTool.exe</SouvenirPostBuildTool>
     <SouvenirPostBuildTool Condition="'$(OS)' != 'Windows_NT'">..\PostBuildTool\bin\Release\net8.0-windows7.0\SouvenirPostBuildTool</SouvenirPostBuildTool>
     <JsTargetFolder></JsTargetFolder>
@@ -47,55 +52,55 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AudioModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.AudioModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.ParticleSystemModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.UnityWebRequestModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -106,7 +111,7 @@
     <ItemGroup>
       <SouvenirDlls Include="$(TargetDir)*.dll" />
     </ItemGroup>
-    <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(GameFolder)ktane_Data\Managed&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t &quot;$(ProjectDir).&quot; -j &quot;$(JsTargetFolder)&quot;" />
+    <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(GameFolder)$(ManagedFolder)&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t &quot;$(ProjectDir).&quot; -j &quot;$(JsTargetFolder)&quot;" />
     <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(ProjectDir)..\\Assets\\Plugins\\Managed" />
     <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(GameFolder)mods\\Souvenir" />
   </Target>
