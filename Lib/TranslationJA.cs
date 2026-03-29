@@ -16499,30 +16499,30 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: the Simon Stores where {0} flashed {1} in the final sequence
                     // Example: the Simon Stores where red flashed first in the final sequence
-                    Discriminator = "the Simon Stores where {0} flashed {1} in the final sequence",
+                    Discriminator = "最終シークエンスにおいて、{1}番目に点滅した色が{0}のサイモンの貯留",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["cyan"] = "cyan",
-                        ["magenta"] = "magenta",
-                        ["yellow"] = "yellow",
+                        ["red"] = "赤",
+                        ["green"] = "緑",
+                        ["blue"] = "青",
+                        ["cyan"] = "シアン",
+                        ["magenta"] = "マゼンタ",
+                        ["yellow"] = "黄",
                     },
                 },
                 [SSimonStores.DMultipleColors] = new()
                 {
                     // English: the Simon Stores where {0} was among the colors that flashed {1} in the final sequence
                     // Example: the Simon Stores where red was among the colors that flashed first in the final sequence
-                    Discriminator = "the Simon Stores where {0} was among the colors that flashed {1} in the final sequence",
+                    Discriminator = "最終シークエンスにおいて、{1}番目に点滅した色に含まれる色が{0}のサイモンの貯留",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["green"] = "green",
-                        ["blue"] = "blue",
-                        ["cyan"] = "cyan",
-                        ["magenta"] = "magenta",
-                        ["yellow"] = "yellow",
+                        ["red"] = "赤",
+                        ["green"] = "緑",
+                        ["blue"] = "青",
+                        ["cyan"] = "シアン",
+                        ["magenta"] = "マゼンタ",
+                        ["yellow"] = "黄",
                     },
                 },
             },
