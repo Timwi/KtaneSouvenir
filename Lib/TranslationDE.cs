@@ -509,6 +509,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Abyss
         [typeof(SAbyss)] = new()
         {
+            ModuleName = "Abgrund",
+            Gender = Gender.Masculine,
             ManualQuestions = new()
             {
                 ["What were the characters displayed?"] = "Welche Zeichen kamen vor?",
@@ -704,7 +706,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // A Letter
         [typeof(SALetter)] = new()
         {
-            ModuleName = "A Buachstob",
+            ModuleName = "Ein Buchstabe",
             ManualQuestions = new()
             {
                 ["What was the initially displayed letter?"] = "Welcher Buchstabe war am Anfang auf dem Display?",
@@ -714,7 +716,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SALetter.InitialLetter] = new()
                 {
                     // English: What was the initial letter in {0}?
-                    Question = "Woas woar bei {0} da Anfangsbuachstob?",
+                    Question = "Was war bei {0} der Anfangsbuchstabe?",
                 },
             },
         },
@@ -1122,7 +1124,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // A Square
         [typeof(SASquare)] = new()
         {
-            ModuleName = "A Quadrat",
+            ModuleName = "Ein Quadrat",
             ManualQuestions = new()
             {
                 ["What were the index colors?"] = "Was waren die Indexfarben?",
@@ -2314,6 +2316,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Bordered Keys
         [typeof(SBorderedKeys)] = new()
         {
+            ModuleName = "Eingeordnete Tasten",
+            ModuleNameDative = "Eingeordneten Tasten",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
                 ["What were the border color, displayed digit, key color, label and label color when you pressed each key?"] = "Was war beim Druck auf die Tasten deren Rahmenfarbe, Displayziffer, Tastenfarbe, Aufschrift und Aufschriftfarbe?",
@@ -5029,6 +5034,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Disordered Keys
         [typeof(SDisorderedKeys)] = new()
         {
+            ModuleName = "Abgeordnete Tasten",
+            ModuleNameDative = "Abgeordneten Tasten",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
                 ["What were the missing information and the revealed/unrevealed key color, label, and label color of each key?"] = "Was war bei welcher Taste die enthüllte/verborgene Tastenfarbe, Aufschrift, Aufschriftfarbe und fehlende Information?",
@@ -12643,7 +12651,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not Who’s on First
         [typeof(SNotWhosOnFirst)] = new()
         {
-            ModuleName = "Who’s On First Mal Anders",
+            ModuleName = "“Was” Steht Auf Dem Knopf Mal Anders",
             ManualQuestions = new()
             {
                 ["What were the positions and labels of the correct buttons you pressed and the reference buttons?"] = "Welche der betätigten Tasten und welche Referenztasten hatten welche Position und welche Aufschrift?",
@@ -13213,6 +13221,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ordered Keys
         [typeof(SOrderedKeys)] = new()
         {
+            ModuleName = "Geordnete Tasten",
+            ModuleNameDative = "GeordneteTasten",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
                 ["What were the labels, their colors, and the colors of the keys in each stage?"] = "In welcher Stufe hatte welche Taste welche Farbe, Aufschrift und Aufschriftfarbe?",
@@ -19483,6 +19494,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unordered Keys
         [typeof(SUnorderedKeys)] = new()
         {
+            ModuleName = "Ungeordnete Tasten",
+            ModuleNameDative = "Ungeordneten Tasten",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
                 ["What were the labels, their colors, and the colors of the keys in each stage?"] = "In welcher Stufe hatte welche Taste welche Farbe, Aufschrift und Aufschriftfarbe?",
@@ -20343,6 +20357,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Who’s on Gas
         [typeof(SWhosOnGas)] = new()
         {
+            ModuleName = "“Gas” Steht Auf Dem Knopf",
             ManualQuestions = new()
             {
                 ["What was displayed in the first phase of each stage?"] = "Was war in welcher Stufe während der ersten Phase auf dem Display?",
