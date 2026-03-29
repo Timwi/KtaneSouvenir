@@ -27,8 +27,6 @@
     <GameFolder Condition="'$(GameFolder)' == '' AND '$(OS)' != 'Windows_NT' AND '$(KTANE_GAME_FOLDER)' != ''">$(KTANE_GAME_FOLDER)</GameFolder>
     <ManagedFolder Condition="'$(OS)' == 'Windows_NT'">ktane_Data\Managed</ManagedFolder>
     <ManagedFolder Condition="'$(OS)' != 'Windows_NT'">Keep Talking and Nobody Explodes.app/Contents/Resources/Data/Managed</ManagedFolder>
-    <ModsFolder Condition="'$(OS)' == 'Windows_NT'">mods\Souvenir</ModsFolder>
-    <ModsFolder Condition="'$(OS)' != 'Windows_NT'">mods/Souvenir</ModsFolder>
     <SouvenirPostBuildTool Condition="'$(OS)' == 'Windows_NT'">..\PostBuildTool\bin\Release\net8.0-windows7.0\SouvenirPostBuildTool.exe</SouvenirPostBuildTool>
     <SouvenirPostBuildTool Condition="'$(OS)' != 'Windows_NT'">..\PostBuildTool\bin\Release\net8.0-windows7.0\SouvenirPostBuildTool</SouvenirPostBuildTool>
     <JsTargetFolder></JsTargetFolder>
