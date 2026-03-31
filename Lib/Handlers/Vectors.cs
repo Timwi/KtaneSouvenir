@@ -20,6 +20,9 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        if (GetField<bool>(comp, "unicorn").Get())
+            yield return legitimatelyNoQuestion(module, "The unicorn rule applied.");
+
         var colorsName = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple" };
         var vectorCount = GetIntField(comp, "vectorct").Get(min: 1, max: 3);
         var colors = GetArrayField<string>(comp, "colors").Get(expectedLength: 24, nullContentAllowed: true);

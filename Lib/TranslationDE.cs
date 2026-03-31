@@ -2272,18 +2272,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Boolean Wires
         [typeof(SBooleanWires)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Boolesche Drähte",
             ManualQuestions = new()
             {
-                ["Which operators were submitted in each stage?"] = "Welche Operatoren wurden in welcher Stufe eingegeben?",
+                ["Which letters were displayed in each stage?"] = "Which letters were displayed in each stage?",
             },
             Questions = new()
             {
-                [SBooleanWires.EnteredOperators] = new()
+                [SBooleanWires.DisplayedLetters] = new()
                 {
-                    // English: Which operator did you submit in the {1} stage of {0}?
-                    // Example: Which operator did you submit in the first stage of Boolean Wires?
-                    Question = "Welcher Operator wurde bei {0} im {1}en Schritt eingegeben?",
+                    // English: Which letter was present in the {1} stage of {0}?
+                    // Example: Which letter was present in the first stage of Boolean Wires?
+                    Question = "Which letter was present in the {1} stage of {0}?",
                 },
             },
         },
@@ -5260,7 +5261,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What was the starting position?"] = "Wo war die Startposition?",
-                ["Which buttons moved in which directions in the grid?"] = "Welche Tasten entsprachen welchen Bewegungsrichtungen?",
             },
             Questions = new()
             {
@@ -5268,52 +5268,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the starting position in {0}?
                     Question = "Was war bei {0} die Anfangsposition?",
-                },
-                [SDoubleArrows.Movement] = new()
-                {
-                    // English: Which direction in the grid did the {1} arrow move in {0}?
-                    // Example: Which direction in the grid did the inner up arrow move in Double Arrows?
-                    Question = "Welche Bewegungsrichtung im Raster bewirkte bei {0} der {1}?",
-                    Arguments = new()
-                    {
-                        ["inner up"] = "innere Pfeil nach oben",
-                        ["inner down"] = "innere Pfeil nach unten",
-                        ["inner left"] = "innere Pfeil nach links",
-                        ["inner right"] = "innere Pfeil nach rechts",
-                        ["outer up"] = "äußere Pfeil nach oben",
-                        ["outer down"] = "äußere Pfeil nach unten",
-                        ["outer left"] = "äußere Pfeil nach links",
-                        ["outer right"] = "äußere Pfeil nach rechts",
-                    },
-                    Answers = new()
-                    {
-                        ["Up"] = "Hoch",
-                        ["Right"] = "Rechts",
-                        ["Left"] = "Links",
-                        ["Down"] = "Runter",
-                    },
-                },
-                [SDoubleArrows.Arrow] = new()
-                {
-                    // English: Which {1} arrow moved {2} in the grid in {0}?
-                    // Example: Which inner arrow moved up in the grid in Double Arrows?
-                    Question = "Welcher {1} Pfeil ging bei {0} nach {2}?",
-                    Arguments = new()
-                    {
-                        ["inner"] = "innere",
-                        ["outer"] = "äußere",
-                        ["up"] = "oben",
-                        ["down"] = "unten",
-                        ["left"] = "links",
-                        ["right"] = "rechts",
-                    },
-                    Answers = new()
-                    {
-                        ["Up"] = "Hoch",
-                        ["Right"] = "Rechts",
-                        ["Left"] = "Links",
-                        ["Down"] = "Runter",
-                    },
                 },
             },
         },
@@ -11671,20 +11625,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Necronomicon
         [typeof(SNecronomicon)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Das Necronomicon",
             ModuleNameDative = "Necronomicon",
             ManualModuleName = "Das\uE001Necronomicon",
             ManualQuestions = new()
             {
-                ["What was the chapter number of each page?"] = "Welche Kapitelnummer stand auf welcher Seite?",
+                ["What were the chapter numbers?"] = "What were the chapter numbers?",
             },
             Questions = new()
             {
                 [SNecronomicon.Chapters] = new()
                 {
-                    // English: What was the chapter number of the {1} page in {0}?
-                    // Example: What was the chapter number of the first page in The Necronomicon?
-                    Question = "Welche Kapitelnummer stand bei {0} auf der {1}en Seite?",
+                    // English: Which chapter number was present in {0}?
+                    Question = "Which chapter number was present in {0}?",
                 },
             },
         },

@@ -6,14 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNecronomicon
 {
-    [SouvenirQuestion("What was the chapter number of the {1} page in {0}?", ThreeColumns6Answers, ExampleAnswers = ["1", "24", "36"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which chapter number was present in {0}?", ThreeColumns6Answers)]
+    [AnswerGenerator.Integers(1, 40)]
     Chapters
 }
 
 public partial class SouvenirModule
 {
     [SouvenirHandler("necronomicon", "Necronomicon", typeof(SNecronomicon), "luisdiogo98", AddThe = true)]
-    [SouvenirManualQuestion("What was the chapter number of each page?")]
+    [SouvenirManualQuestion("What were the chapter numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessNecronomicon(ModuleData module)
     {
         var comp = GetComponent(module, "necronomiconScript");
@@ -23,12 +24,6 @@ public partial class SouvenirModule
         var chapters = GetArrayField<int>(comp, "selectedChapters").Get(expectedLength: 7);
         var chaptersString = chapters.Select(x => x.ToString()).ToArray();
 
-        yield return question(SNecronomicon.Chapters, args: [Ordinal(1)]).Answers(chaptersString[0], preferredWrong: chaptersString);
-        yield return question(SNecronomicon.Chapters, args: [Ordinal(2)]).Answers(chaptersString[1], preferredWrong: chaptersString);
-        yield return question(SNecronomicon.Chapters, args: [Ordinal(3)]).Answers(chaptersString[2], preferredWrong: chaptersString);
-        yield return question(SNecronomicon.Chapters, args: [Ordinal(4)]).Answers(chaptersString[3], preferredWrong: chaptersString);
-        yield return question(SNecronomicon.Chapters, args: [Ordinal(5)]).Answers(chaptersString[4], preferredWrong: chaptersString);
-        yield return question(SNecronomicon.Chapters, args: [Ordinal(6)]).Answers(chaptersString[5], preferredWrong: chaptersString);
-        yield return question(SNecronomicon.Chapters, args: [Ordinal(7)]).Answers(chaptersString[6], preferredWrong: chaptersString);
+        yield return question(SNecronomicon.Chapters).Answers(chaptersString);
     }
 }

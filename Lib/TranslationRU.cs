@@ -2315,18 +2315,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Boolean Wires
         [typeof(SBooleanWires)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which operators were submitted in each stage?"] = "Какой оператор был ответом на каждом этапе?",
+                ["Which letters were displayed in each stage?"] = "Which letters were displayed in each stage?",
             },
             Questions = new()
             {
-                [SBooleanWires.EnteredOperators] = new()
+                [SBooleanWires.DisplayedLetters] = new()
                 {
-                    // English: Which operator did you submit in the {1} stage of {0}?
-                    // Example: Which operator did you submit in the first stage of Boolean Wires?
-                    Question = "Какой оператор был ответом на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    // English: Which letter was present in the {1} stage of {0}?
+                    // Example: Which letter was present in the first stage of Boolean Wires?
+                    Question = "Which letter was present in the {1} stage of {0}?",
                 },
             },
         },
@@ -5235,7 +5235,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the starting position?"] = "Где была начальная позиция?",
-                ["Which buttons moved in which directions in the grid?"] = "Какие кнопки двигали в каком направлении?",
             },
             Questions = new()
             {
@@ -5244,54 +5243,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the starting position in {0}?
                     Question = "Какая была начальная позиция {0}?",
                     Conjugation = Conjugation.в_PrepositivePlural,
-                },
-                [SDoubleArrows.Movement] = new()
-                {
-                    // English: Which direction in the grid did the {1} arrow move in {0}?
-                    // Example: Which direction in the grid did the inner up arrow move in Double Arrows?
-                    Question = "В какую сторону вас переместила стрелка {1} {0}?",
-                    Conjugation = Conjugation.в_PrepositivePlural,
-                    Arguments = new()
-                    {
-                        ["inner up"] = "внутри вверх",
-                        ["inner down"] = "внутри вниз",
-                        ["inner left"] = "внутри влево",
-                        ["inner right"] = "внутри вправо",
-                        ["outer up"] = "снаружи вверх",
-                        ["outer down"] = "снаружи вниз",
-                        ["outer left"] = "снаружи влево",
-                        ["outer right"] = "снаружи вправо",
-                    },
-                    Answers = new()
-                    {
-                        ["Up"] = "Вверх",
-                        ["Right"] = "Вправо",
-                        ["Left"] = "Влево",
-                        ["Down"] = "Вниз",
-                    },
-                },
-                [SDoubleArrows.Arrow] = new()
-                {
-                    // English: Which {1} arrow moved {2} in the grid in {0}?
-                    // Example: Which inner arrow moved up in the grid in Double Arrows?
-                    Question = "Которая стрелка {1} переместила вас {2} {0}?",
-                    Conjugation = Conjugation.в_PrepositivePlural,
-                    Arguments = new()
-                    {
-                        ["inner"] = "внутри",
-                        ["outer"] = "снаружи",
-                        ["up"] = "вверх",
-                        ["down"] = "вниз",
-                        ["left"] = "влево",
-                        ["right"] = "вправо",
-                    },
-                    Answers = new()
-                    {
-                        ["Up"] = "Вверх",
-                        ["Right"] = "Вправо",
-                        ["Left"] = "Влево",
-                        ["Down"] = "Вниз",
-                    },
                 },
             },
         },
@@ -11479,16 +11430,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the chapter number of each page?"] = "What was the chapter number of each page?",
+                ["What were the chapter numbers?"] = "What were the chapter numbers?",
             },
             Questions = new()
             {
                 [SNecronomicon.Chapters] = new()
                 {
-                    // English: What was the chapter number of the {1} page in {0}?
-                    // Example: What was the chapter number of the first page in The Necronomicon?
-                    Question = "Какой был номер главы {1}-й страницы {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    // English: Which chapter number was present in {0}?
+                    Question = "Which chapter number was present in {0}?",
                 },
             },
         },

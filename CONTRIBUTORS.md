@@ -62,21 +62,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Remainder Theorem  │  Halli Galli              │  Not Red Arrows          │  Simon Swizzles             │
     Coffee Beans               │  hexOrbits                │  Not The Plunger Button  │  Skewers                    │
 
-## Implemented by Kuro (57)
-
-    ...?                  │  Cursed Double-Oh   │  Forget The Colors     │  Memory Wires           │  Simon Stacks
-    64                    │  Double Expert      │  Forget This           │  Not Colored Squares    │  Snowflakes
-    Alphabet Numbers      │  Duck, The          │  Gadgetron Vendor      │  Old Fogey              │  Tea Set, The
-    Blinkstop             │  Encrypted Dice     │  Hinges                │  Orientation Hypercube  │  Technical Keypad
-    Bomb Diffusal         │  Faulty Buttons     │  Juxtacolored Squares  │  Periodic Words         │  Tetriamonds
-    Boolean Wires         │  Five Letter Words  │  Kanji                 │  Pictionary             │  Tip Toe
-    Broken Guitar Chords  │  FizzBuzz           │  Keywords              │  Procedural Maze        │  Triamonds
-    Burger Alarm          │  Follow Me          │  Know Your Way         │  Question Mark          │  Warning Signs
-    Character Shift       │  Forget Any Color   │  Langton’s Anteater    │  Quiz Buzz              │  WASD
-    Coloured Cubes        │  Forget Everything  │  Light Bulbs           │  Recursive Password     │
-    Cruel Binary          │  Forget Me Not      │  Mad Memory            │  Safety Square          │
-    Cruel Keypads         │  Forget Me Now      │  Master Tapes          │  Simon Smothers         │
-
 ## Implemented by Quinn Wuest (57)
 
     .--/---/..-.       │  Denial Displays           │  Neptune               │  Papa’s Pizzeria      │  Small Talk
@@ -91,6 +76,21 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Caesar Psycho      │  Match Refereeing          │  Not The Bulb          │  Simon Shuffles       │
     Coordination       │  Mystic Square             │  Not X01               │  Simultaneous Simons  │
     Cyan Button, The   │  Navigation Determination  │  Off Keys              │  Slow Math            │
+
+## Implemented by Kuro (56)
+
+    ...?                  │  Double Expert      │  Forget This           │  Not Colored Squares    │  Snowflakes
+    64                    │  Duck, The          │  Gadgetron Vendor      │  Old Fogey              │  Tea Set, The
+    Alphabet Numbers      │  Encrypted Dice     │  Hinges                │  Orientation Hypercube  │  Technical Keypad
+    Blinkstop             │  Faulty Buttons     │  Juxtacolored Squares  │  Periodic Words         │  Tetriamonds
+    Bomb Diffusal         │  Five Letter Words  │  Kanji                 │  Pictionary             │  Tip Toe
+    Broken Guitar Chords  │  FizzBuzz           │  Keywords              │  Procedural Maze        │  Triamonds
+    Burger Alarm          │  Follow Me          │  Know Your Way         │  Question Mark          │  Warning Signs
+    Character Shift       │  Forget Any Color   │  Langton’s Anteater    │  Quiz Buzz              │  WASD
+    Coloured Cubes        │  Forget Everything  │  Light Bulbs           │  Recursive Password     │
+    Cruel Binary          │  Forget Me Not      │  Mad Memory            │  Safety Square          │
+    Cruel Keypads         │  Forget Me Now      │  Master Tapes          │  Simon Smothers         │
+    Cursed Double-Oh      │  Forget The Colors  │  Memory Wires          │  Simon Stacks           │
 
 ## Implemented by Hawker (40)
 
@@ -160,11 +160,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coinage   │  Linq                 │  Phosphorescence   │  Reformed Role Reversal  │
     Etterna   │  Octadecayotton, The  │  Placeholder Talk  │  Role Reversal           │
 
-## Implemented by Espik (12)
+## Implemented by Espik (13)
 
-    100 Levels of Defusal  │  Challenge & Contact  │  Hexabutton, The     │  Simon Stages
-    Blockbusters           │  Coffeebucks          │  Hyperlink, The      │  Tricky Tetris Pieces
-    Calendar               │  Encrypted Morse      │  Regular Crazy Talk  │  Unfair Cipher
+    100 Levels of Defusal  │  Calendar             │  Encrypted Morse  │  Regular Crazy Talk    │  Unfair Cipher
+    Blockbusters           │  Challenge & Contact  │  Hexabutton, The  │  Simon Stages          │
+    Boolean Wires          │  Coffeebucks          │  Hyperlink, The   │  Tricky Tetris Pieces  │
 
 ## Implemented by KiloBites (12)
 

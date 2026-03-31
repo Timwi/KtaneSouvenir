@@ -21,9 +21,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var startingCommonPool = GetField<int>(comp, "startingCommonPool");
-        var commonPoolText = GetField<TextMesh>(comp, "commonPoolText", isPublic: true).Get();
-
-        commonPoolText.text = "";
+        
         yield return question(SRaidingTemples.StartingCommonPool).Answers(startingCommonPool.Get().ToString());
     }
 }

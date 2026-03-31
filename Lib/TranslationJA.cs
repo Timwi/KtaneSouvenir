@@ -2206,18 +2206,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Boolean Wires
         [typeof(SBooleanWires)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "論理ワイヤ",
             ManualQuestions = new()
             {
-                ["Which operators were submitted in each stage?"] = "各ステージでどの演算子を送信した？",
+                ["Which letters were displayed in each stage?"] = "Which letters were displayed in each stage?",
             },
             Questions = new()
             {
-                [SBooleanWires.EnteredOperators] = new()
+                [SBooleanWires.DisplayedLetters] = new()
                 {
-                    // English: Which operator did you submit in the {1} stage of {0}?
-                    // Example: Which operator did you submit in the first stage of Boolean Wires?
-                    Question = "{0}のステージ{1}で送信した演算子は？",
+                    // English: Which letter was present in the {1} stage of {0}?
+                    // Example: Which letter was present in the first stage of Boolean Wires?
+                    Question = "Which letter was present in the {1} stage of {0}?",
                 },
             },
         },
@@ -5094,7 +5095,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What was the starting position?"] = "開始位置は？",
-                ["Which buttons moved in which directions in the grid?"] = "どのボタンを押すとグリッド内でどの方向に移動する？",
             },
             Questions = new()
             {
@@ -5102,52 +5102,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the starting position in {0}?
                     Question = "{0}の開始位置は？",
-                },
-                [SDoubleArrows.Movement] = new()
-                {
-                    // English: Which direction in the grid did the {1} arrow move in {0}?
-                    // Example: Which direction in the grid did the inner up arrow move in Double Arrows?
-                    Question = "{0}で{1}矢印を押すとどの方向に進んだ？",
-                    Arguments = new()
-                    {
-                        ["inner up"] = "内側の上",
-                        ["inner down"] = "内側の下",
-                        ["inner left"] = "内側の左",
-                        ["inner right"] = "内側の右",
-                        ["outer up"] = "外側の上",
-                        ["outer down"] = "外側の下",
-                        ["outer left"] = "外側の左",
-                        ["outer right"] = "外側の右",
-                    },
-                    Answers = new()
-                    {
-                        ["Up"] = "上",
-                        ["Right"] = "右",
-                        ["Left"] = "左",
-                        ["Down"] = "下",
-                    },
-                },
-                [SDoubleArrows.Arrow] = new()
-                {
-                    // English: Which {1} arrow moved {2} in the grid in {0}?
-                    // Example: Which inner arrow moved up in the grid in Double Arrows?
-                    Question = "{0}で{2}に移動する{1}の矢印はどれ？",
-                    Arguments = new()
-                    {
-                        ["inner"] = "内側",
-                        ["outer"] = "外側",
-                        ["up"] = "上",
-                        ["down"] = "下",
-                        ["left"] = "左",
-                        ["right"] = "右",
-                    },
-                    Answers = new()
-                    {
-                        ["Up"] = "上",
-                        ["Right"] = "右",
-                        ["Left"] = "左",
-                        ["Down"] = "下",
-                    },
                 },
             },
         },
@@ -11333,18 +11287,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Necronomicon
         [typeof(SNecronomicon)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ネクロノミコン",
             ManualQuestions = new()
             {
-                ["What was the chapter number of each page?"] = "各ページの章番号は？",
+                ["What were the chapter numbers?"] = "What were the chapter numbers?",
             },
             Questions = new()
             {
                 [SNecronomicon.Chapters] = new()
                 {
-                    // English: What was the chapter number of the {1} page in {0}?
-                    // Example: What was the chapter number of the first page in The Necronomicon?
-                    Question = "{0}の{1}番目のページの章番号は？",
+                    // English: Which chapter number was present in {0}?
+                    Question = "Which chapter number was present in {0}?",
                 },
             },
         },
