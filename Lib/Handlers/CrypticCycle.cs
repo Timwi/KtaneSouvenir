@@ -10,10 +10,7 @@ public enum SCrypticCycle
 
     [SouvenirQuestion("What letter was written on the {1} dial in {0}?", ThreeColumns6Answers, Type = AnswerType.CrypticCycleBoozleglyphFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()[]{}<>")]
-    DialLabels,
-
-    [SouvenirDiscriminator("the Cryptic Cycle that had the letter {0} on a dial", Arguments = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"], ArgumentGroupSize = 1)]
-    LabelDiscriminator
+    DialLabels
 }
 
 public partial class SouvenirModule
@@ -22,6 +19,6 @@ public partial class SouvenirModule
     [SouvenirManualQuestion("Which direction were the dials pointing?")]
     [SouvenirManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessCrypticCycle(ModuleData module) => processSpeakingEvilCycle(
-        module, "CrypticCycleScript", SCrypticCycle.DialDirections, SCrypticCycle.DialLabels, SCrypticCycle.LabelDiscriminator,
+        module, "CrypticCycleScript", SCrypticCycle.DialDirections, SCrypticCycle.DialLabels, null,
         answerSprites: CycleModuleCrypticSprites, all: CycleModuleCrypticSprites);
 }

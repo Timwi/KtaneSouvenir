@@ -4421,15 +4421,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
                 },
             },
-            Discriminators = new()
-            {
-                [SCrypticCycle.LabelDiscriminator] = new()
-                {
-                    // English: the Cryptic Cycle that had the letter {0} on a dial
-                    // Example: the Cryptic Cycle that had the letter A on a dial
-                    Discriminator = "der Kryptischen Schiffer, bei der der Buchstabe {0} vorkam,",
-                },
-            },
         },
 
         // Cryptic Keypad

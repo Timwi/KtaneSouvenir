@@ -4288,15 +4288,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     Question = "{0}で{1}のダイヤルに書かれていた文字は？",
                 },
             },
-            Discriminators = new()
-            {
-                [SCrypticCycle.LabelDiscriminator] = new()
-                {
-                    // English: the Cryptic Cycle that had the letter {0} on a dial
-                    // Example: the Cryptic Cycle that had the letter A on a dial
-                    Discriminator = "ダイヤルに{0}が書かれていた暗号サイクル",
-                },
-            },
         },
 
         // Cryptic Keypad

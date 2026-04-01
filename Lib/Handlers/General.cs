@@ -27,8 +27,9 @@ public partial class SouvenirModule
             yield return question(rotQ, args: [Ordinal(dial + 1)]).Answers((answerSprites ?? CycleModuleEightSprites)[rotComp[0][dial]], all: all ?? CycleModuleEightSprites);
             yield return question(labelQ, args: [Ordinal(dial + 1)]).AvoidDiscriminators(labelDiscriminator).Answers(dialLabels[dial].ToString());
         }
-        foreach (var ltr in dialLabels.Distinct())
-            yield return new Discriminator(labelDiscriminator, $"ltr-{ltr}", args: [ltr.ToString()]);
+        if (labelDiscriminator != null)
+            foreach (var ltr in dialLabels.Distinct())
+                yield return new Discriminator(labelDiscriminator, $"ltr-{ltr}", args: [ltr.ToString()]);
     }
 
     // Used by the World Mazes modules (currently: USA Maze, DACH Maze)

@@ -4428,15 +4428,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     Question = "What letter was written on the {1} dial in {0}?",
                 },
             },
-            Discriminators = new()
-            {
-                [SCrypticCycle.LabelDiscriminator] = new()
-                {
-                    // English: the Cryptic Cycle that had the letter {0} on a dial
-                    // Example: the Cryptic Cycle that had the letter A on a dial
-                    Discriminator = "the Cryptic Cycle that had the letter {0} on a dial",
-                },
-            },
         },
 
         // Cryptic Keypad
