@@ -15587,6 +15587,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Scorching Alchemist
+        [typeof(SScorchingAlchemist)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which sword was present on the ground?"] = "Which sword was present on the ground?",
+            },
+            Questions = new()
+            {
+                [SScorchingAlchemist.SwordNames] = new()
+                {
+                    // English: Which sword was present on the ground on {0}?
+                    Question = "Which sword was present on the ground on {0}?",
+                },
+            },
+        },
+
         // Scramboozled Eggain
         [typeof(SScramboozledEggain)] = new()
         {

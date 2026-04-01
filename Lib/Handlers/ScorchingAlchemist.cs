@@ -12,6 +12,7 @@ public enum SScorchingAlchemist
 public partial class SouvenirModule
 {
     [SouvenirHandler("ScorchingAlchemist", "Scorching Alchemist", typeof(SScorchingAlchemist), "thunder725")]
+    [SouvenirManualQuestion("Which sword was present on the ground?")]
     private IEnumerator<SouvenirInstruction> ProcessScorchingAlchemist(ModuleData module)
     {
         var comp = GetComponent(module, "ScorchingAlchemist");

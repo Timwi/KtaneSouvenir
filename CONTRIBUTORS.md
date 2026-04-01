@@ -203,15 +203,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Critters        │  Infinite Loop  │  Numbered Buttons    │  Pixel Cipher
     Factoring Maze  │  Interpunct     │  Password Destroyer  │
 
+## Implemented by thunder725 (7)
+
+    DNA Mutation   │  Lime Arrows           │  Scorching Alchemist  │  UFO Satellites
+    Giants Cipher  │  Noise Identification  │  Toxic Crystals       │
+
 ## Implemented by GoodHood (6)
 
     Catchphrase   │  Long Words  │  Qwirkle
     Digit String  │  Metapuzzle  │  Raiding Temples
-
-## Implemented by thunder725 (6)
-
-    DNA Mutation   │  Lime Arrows           │  Toxic Crystals
-    Giants Cipher  │  Noise Identification  │  UFO Satellites
 
 ## Others
 
