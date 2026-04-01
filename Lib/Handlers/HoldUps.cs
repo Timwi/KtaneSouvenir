@@ -20,9 +20,10 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "HoldUpsScript");
 
         var stageNumber = GetField<int>(comp, "StageNr");
-        var isItFiveStages = GetField<bool>(comp, "FiveDowns");
+        var isItFiveStages = GetField<bool>(comp, "FiveDowns").Get();
+        var shadowName = GetField<TextMesh>(comp, "ShadowName", isPublic: true).Get();
 
-        var shadows = new List<string>();
+        var shadows = new string[isItFiveStages ? 5 : 3];
         var holdUps = Enumerable.Range(1, 4).Select(btn => GetField<KMSelectable>(comp, $"Move{btn}Button", isPublic: true).Get()).ToArray();
         var prevInteracts = holdUps.Select(btn => btn.OnInteract).ToArray();
 
@@ -30,15 +31,14 @@ public partial class SouvenirModule
         {
             holdUps[btn].OnInteract = delegate
             {
-                if (shadows.Count < stageNumber.Get())
-                    shadows.Add(GetField<TextMesh>(comp, "ShadowName", isPublic: true).Get().text);
+                shadows[stageNumber.Get() - 1] = shadowName.text;
                 return prevInteracts[btn]();
             };
         }
 
         yield return WaitForSolve;
 
-        for (var stage = isItFiveStages.Get() ? 5 : 3; stage >= 0; stage--)
+        for (var stage = isItFiveStages ? 4 : 2; stage >= 0; stage--)
             yield return question(SHoldUps.Shadows, args: [Ordinal(stage + 1)]).Answers(shadows[stage]);
     }
 }

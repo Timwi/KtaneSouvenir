@@ -2273,11 +2273,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Boolean Wires
         [typeof(SBooleanWires)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Boolesche Drähte",
             ManualQuestions = new()
             {
-                ["Which letters were displayed in each stage?"] = "Which letters were displayed in each stage?",
+                ["Which letters were displayed in each stage?"] = "Welche Buchstaben waren in welcher Stufe auf dem Display?",
             },
             Questions = new()
             {
@@ -2285,7 +2284,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which letter was present in the {1} stage of {0}?
                     // Example: Which letter was present in the first stage of Boolean Wires?
-                    Question = "Which letter was present in the {1} stage of {0}?",
+                    Question = "Welcher Buchstabe war bei {0} in der {1}en Stufe auf dem Display?",
                 },
             },
         },
@@ -8007,7 +8006,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the name of the {1} shadow shown in {0}?
                     // Example: What was the name of the first shadow shown in Hold Ups?
-                    Question = "Was war bei {0} der Name des ersten Schattens?",
+                    Question = "Was war bei {0} der Name des {1}en Schattens?",
                 },
             },
         },
@@ -11626,20 +11625,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Necronomicon
         [typeof(SNecronomicon)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Das Necronomicon",
             ModuleNameDative = "Necronomicon",
             ManualModuleName = "Das\uE001Necronomicon",
             ManualQuestions = new()
             {
-                ["What were the chapter numbers?"] = "What were the chapter numbers?",
+                ["What were the chapter numbers?"] = "Welche Kapitelnummern kamen vor?",
             },
             Questions = new()
             {
                 [SNecronomicon.Chapters] = new()
                 {
                     // English: Which chapter number was present in {0}?
-                    Question = "Which chapter number was present in {0}?",
+                    Question = "Welche Kapitelnummer kam bei {0} vor?",
                 },
             },
         },
@@ -15590,17 +15588,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Scorching Alchemist
         [typeof(SScorchingAlchemist)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Sengende Alchemist",
+            ModuleNameDative = "Sengenden Alchemist",
+            Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["Which sword was present on the ground?"] = "Which sword was present on the ground?",
+                ["Which sword was present on the ground?"] = "Welches Schwert lag auf dem Boden?",
             },
             Questions = new()
             {
                 [SScorchingAlchemist.SwordNames] = new()
                 {
                     // English: Which sword was present on the ground on {0}?
-                    Question = "Which sword was present on the ground on {0}?",
+                    Question = "Welches Schwert lag bei {0} auf dem Boden?",
                 },
             },
         },
