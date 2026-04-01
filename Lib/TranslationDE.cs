@@ -394,7 +394,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} goal node in {0}?
                     // Example: What was the first goal node in 4D Tunnels?
-                    Question = "Was war bei {0} der Zielpunkt?",
+                    Question = "Was war bei {0} der {1}e Zielpunkt?",
                 },
             },
         },
@@ -1290,13 +1290,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SBamboozledAgain.ButtonText] = new()
                 {
                     // English: What text was initially shown on this button in {0}? (+ sprite)
-                    // Example: What text was initially shown on this button in Bamboozled Again? (+ sprite)
                     Question = "Welcher Text war bei {0} am Anfang auf diesem Knopf?",
                 },
                 [SBamboozledAgain.ButtonColor] = new()
                 {
                     // English: What was the initial color of this button in {0}? (+ sprite)
-                    // Example: What was the initial color of this button in Bamboozled Again? (+ sprite)
                     Question = "Welche Farbe hatte bei {0} am Anfang dieser Knopf?",
                     Answers = new()
                     {
@@ -4354,7 +4352,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which of these characters appeared in the {1} stage of {0}?
                     // Example: Which of these characters appeared in the first stage of Cruel Keypads?
-                    Question = "Welches dieser Zeichen war bei {0} in der ersten Stufe zu sehen?",
+                    Question = "Welches dieser Zeichen war bei {0} in der {1}en Stufe zu sehen?",
                 },
             },
         },
@@ -6150,13 +6148,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SFaultyButtons.ReferredToThisButton] = new()
                 {
                     // English: Which button referred to this button in {0}? (+ sprite)
-                    // Example: Which button referred to this button in Faulty Buttons? (+ sprite)
                     Question = "Welcher Knopf nahm bei {0} Bezug auf diesen Knopf?",
                 },
                 [SFaultyButtons.ThisButtonReferredTo] = new()
                 {
                     // English: Which button did this button refer to in {0}? (+ sprite)
-                    // Example: Which button did this button refer to in Faulty Buttons? (+ sprite)
                     Question = "Auf welchen Knopf nahm bei {0} dieser Knopf Bezug?",
                 },
             },
@@ -8335,7 +8331,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} character of the hyperlink in {0}?
                     // Example: What was the first character of the hyperlink in The Hyperlink?
-                    Question = "Was war bei {0} das erste Zeichen im Hyperlink?",
+                    Question = "Was war bei {0} das {1}e Zeichen im Hyperlink?",
                 },
                 [SHyperlink.Answer] = new()
                 {
@@ -13814,7 +13810,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} word in {0}?
                     // Example: What was the first word in The Pink Button?
-                    Question = "Was war bei {0} das erste Wort?",
+                    Question = "Was war bei {0} das {1}e Wort?",
                 },
                 [SPinkButton.Colors] = new()
                 {
@@ -14016,7 +14012,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color flashed {1} in {0}?
                     // Example: What color flashed first in Pointless Machines?
-                    Question = "Welche Farbe hat bei {0} geblinkt?",
+                    Question = "Welche Farbe hat bei {0} als {1}e geblinkt?",
                     Answers = new()
                     {
                         ["White"] = "Weiß",
@@ -15406,15 +15402,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Rule of Three where the {1} sphere was {0} on the {2} axis in the {3} cycle
                     // Example: the Rule of Three where the red sphere was positive on the X axis in the first cycle
-                    Discriminator = "der Dreierregel, bei der die {1}e Kugel auf der {2}-Achse {3} war,",
+                    Discriminator = "der Dreierregel, bei der die {1} Kugel auf der {2}-Achse im {3}en Zyklus {0} war,",
                     Arguments = new()
                     {
                         ["positive"] = "positiv",
                         ["negative"] = "negativ",
                         ["zero"] = "null",
-                        ["red"] = "rot",
-                        ["yellow"] = "gelb",
-                        ["blue"] = "blau",
+                        ["red"] = "rote",
+                        ["yellow"] = "gelbe",
+                        ["blue"] = "blaue",
                     },
                 },
             },
@@ -17778,7 +17774,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} submitted word in {0}?
                     // Example: What was the first submitted word in Stroop’s Test?
-                    Question = "Welches Wort wurde bei {0} eingegeben?",
+                    Question = "Welches Wort wurde bei {0} als {1}es eingegeben?",
                 },
                 [SStroopsTest.QColor] = new()
                 {
@@ -17964,7 +17960,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SSuitsAndColours.Colour] = new()
                 {
                     // English: What was the colour of this cell in {0}? (+ sprite)
-                    // Example: What was the colour of this cell in Suits and Colours? (+ sprite)
                     Question = "Welche Farbe hatte diese Zelle bei {0}?",
                     Answers = new()
                     {
@@ -17977,7 +17972,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SSuitsAndColours.Suit] = new()
                 {
                     // English: What was the suit of this cell in {0}? (+ sprite)
-                    // Example: What was the suit of this cell in Suits and Colours? (+ sprite)
                     Question = "Welche Spielkartenfarbe hatte diese Zelle bei {0}?",
                     Answers = new()
                     {
@@ -18943,11 +18937,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} name in {0}?
                     // Example: What was the northeast name in Tribal Council?
-                    Question = "Wer war bei {0} der engste Verbündete?",
+                    Question = "Welcher Name war bei {0} im {1}?",
                     Arguments = new()
                     {
-                        ["northeast"] = "Nordost",
-                        ["southwest"] = "Südwest",
+                        ["northeast"] = "Nordosten",
+                        ["southwest"] = "Südwesten",
                     },
                 },
             },

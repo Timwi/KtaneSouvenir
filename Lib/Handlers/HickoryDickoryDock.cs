@@ -12,7 +12,7 @@ public enum SHickoryDickoryDock
     [AnswerGenerator.HickoryDickoryDock]
     Time,
 
-    [SouvenirDiscriminator("the Hickory Dickory Dock which showed {0} when it struck {1}", Arguments = ["1:30", "2:00"], ArgumentGroupSize = 3)]
+    [SouvenirDiscriminator("the Hickory Dickory Dock which showed {0} when it struck {1}", Arguments = ["1:30", "2:00"], ArgumentGroupSize = 2)]
     Discriminator
 }
 

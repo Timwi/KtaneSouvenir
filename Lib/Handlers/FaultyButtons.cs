@@ -4,11 +4,11 @@ using static Souvenir.AnswerLayout;
 
 public enum SFaultyButtons
 {
-    [SouvenirQuestion("Which button referred to this button in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which button referred to this button in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     ReferredToThisButton,
 
-    [SouvenirQuestion("Which button did this button refer to in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [SouvenirQuestion("Which button did this button refer to in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     ThisButtonReferredTo
 }

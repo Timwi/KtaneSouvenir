@@ -1234,13 +1234,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SBamboozledAgain.ButtonText] = new()
                 {
                     // English: What text was initially shown on this button in {0}? (+ sprite)
-                    // Example: What text was initially shown on this button in Bamboozled Again? (+ sprite)
                     Question = "{0}のこのボタンに最初に表示されたテキストは？",
                 },
                 [SBamboozledAgain.ButtonColor] = new()
                 {
                     // English: What was the initial color of this button in {0}? (+ sprite)
-                    // Example: What was the initial color of this button in Bamboozled Again? (+ sprite)
                     Question = "{0}のこのボタンの初期色は？",
                     Answers = new()
                     {
@@ -5958,13 +5956,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SFaultyButtons.ReferredToThisButton] = new()
                 {
                     // English: Which button referred to this button in {0}? (+ sprite)
-                    // Example: Which button referred to this button in Faulty Buttons? (+ sprite)
                     Question = "{0}でどのボタンがこのボタンを指していた？",
                 },
                 [SFaultyButtons.ThisButtonReferredTo] = new()
                 {
                     // English: Which button did this button refer to in {0}? (+ sprite)
-                    // Example: Which button did this button refer to in Faulty Buttons? (+ sprite)
                     Question = "{0}でこのボタンはどのボタンを指していた？",
                 },
             },
@@ -17481,7 +17477,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SSuitsAndColours.Colour] = new()
                 {
                     // English: What was the colour of this cell in {0}? (+ sprite)
-                    // Example: What was the colour of this cell in Suits and Colours? (+ sprite)
                     Question = "{0}のこのマスの色は？",
                     Answers = new()
                     {
@@ -17494,7 +17489,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SSuitsAndColours.Suit] = new()
                 {
                     // English: What was the suit of this cell in {0}? (+ sprite)
-                    // Example: What was the suit of this cell in Suits and Colours? (+ sprite)
                     Question = "{0}のこのマスのスートは？",
                     Answers = new()
                     {
