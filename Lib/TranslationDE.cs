@@ -15575,7 +15575,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Scorching Alchemist
         [typeof(SScorchingAlchemist)] = new()
         {
-            ModuleName = "Der Sengende Alchemist",
+            ModuleName = "Sengender Alchemist",
             ModuleNameDative = "Sengenden Alchemist",
             Gender = Gender.Masculine,
             ManualQuestions = new()

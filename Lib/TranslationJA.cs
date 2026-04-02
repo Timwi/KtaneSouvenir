@@ -1951,7 +1951,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was {1} in {0}?
                     // Example: What was E in The Blue Button?
-                    Question = "{0}のEはどれだったか？",
+                    Question = "{0}の{1}はどれだったか？",
                 },
                 [SBlueButton.M] = new()
                 {
@@ -2957,7 +2957,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Who was displayed in the {1} slot in the {2} stage of {0}?
                     // Example: Who was displayed in the first slot in the first stage of Character Slots?
-                    Question = "{0}でステージ{2}の{2}のスロットに表示されていたのは誰？",
+                    Question = "{0}でステージ{2}の{1}のスロットに表示されていたのは誰？",
                 },
             },
         },
