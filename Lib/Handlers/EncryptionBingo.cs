@@ -18,7 +18,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "encryptionBingoScript");
         var fldBall = GetField<bool>(comp, "ballOut");
         var stampedSquares = GetField<List<int>>(comp, "stampedSquares").Get();
-        var encodingNames = GetArrayField<string>(comp, "encryptions").Get();
 
         // When the first correct(!) square is pressed, Encryption Bingo adds an entry to stampedSquares but helpfully waits .25 sec before changing any variables, including encryptionIndex
         while (!fldBall.Get() || stampedSquares.Count == 0)
@@ -27,6 +26,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        yield return question(SEncryptionBingo.Encoding).Answers(encodingNames[encoding], preferredWrong: encodingNames);
+        yield return question(SEncryptionBingo.Encoding).Answers(SEncryptionBingo.Encoding.GetAnswers()[encoding]);
     }
 }
