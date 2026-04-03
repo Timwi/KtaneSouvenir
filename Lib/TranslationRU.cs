@@ -18893,7 +18893,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the stats of the Unown letters?"] = "What were the stats of the Unown letters?",
+                ["What were the stats on the displays?"] = "What were the stats on the displays?",
             },
             Questions = new()
             {
@@ -18901,7 +18901,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What stat appeared on the {1} display when pressing the {2} Unown letter in {0}?
                     // Example: What stat appeared on the first display when pressing the first Unown letter in Unown Cipher?
-                    Question = "What was the {1} stat for the {2} Unown letter in {0}?",
+                    Question = "What stat appeared on the {1} display when pressing the {2} Unown letter in {0}?",
                 },
             },
         },

@@ -16006,11 +16006,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Selects
         [typeof(SSimonSelects)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Simon Selektiert",
             ManualQuestions = new()
             {
-                ["Which colors flashed in each stage?"] = "Welche Farben kam in welcher Stufe vor?",
+                ["Which colors flashed in each stage?"] = "Welche Farbe kam in welcher Stufe vor?",
             },
             Questions = new()
             {
@@ -16018,7 +16017,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which color was among the colors that flashed in the {1} stage of {0}?
                     // Example: Which color was among the colors that flashed in the first stage of Simon Selects?
-                    Question = "Which color was among the colors that flashed in the {1} stage of {0}?",
+                    Question = "Welche Farbe war bei {0} eine derer, die in der {1}en Stufe aufleuchteten?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -19266,12 +19265,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unown Cipher
         [typeof(SUnownCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Icognito-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What were the stats of the Unown letters?"] = "What were the stats of the Unown letters?",
+                ["What were the stats on the displays?"] = "Welche Attribute waren auf den Displays?",
             },
             Questions = new()
             {
@@ -19279,7 +19277,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What stat appeared on the {1} display when pressing the {2} Unown letter in {0}?
                     // Example: What stat appeared on the first display when pressing the first Unown letter in Unown Cipher?
-                    Question = "What was the {1} stat for the {2} Unown letter in {0}?",
+                    Question = "Welches Attribut war bei {0} beim Betätigen des {2}en Icognito-Buchstabens auf dem {1}en Display?",
                 },
             },
         },

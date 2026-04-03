@@ -14,7 +14,7 @@ public enum SUnownCipher
 public partial class SouvenirModule
 {
     [SouvenirHandler("UnownCipher", "Unown Cipher", typeof(SUnownCipher), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the stats of the Unown letters?")]
+    [SouvenirManualQuestion("What were the stats on the displays?")]
     private IEnumerator<SouvenirInstruction> ProcessUnownCipher(ModuleData module)
     {
         var comp = GetComponent(module, "UnownCipher");
