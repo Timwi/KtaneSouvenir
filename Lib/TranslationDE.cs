@@ -650,8 +650,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Affine Cycle
         [typeof(SAffineCycle)] = new()
         {
-            ModuleName = "Affine Schiffer",
-            ModuleNameDative = "Affinen Schiffer",
+            ModuleName = "Affine Gemeinschrift",
+            ModuleNameDative = "Affinen Gemeinschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -679,7 +679,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Affine Cycle that had the letter {0} on a dial
                     // Example: the Affine Cycle that had the letter A on a dial
-                    Discriminator = "der Affinen Schiffer, bei der der Buchstabe {0} vorkam,",
+                    Discriminator = "der Affinen Gemeinschrift, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -2714,7 +2714,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Caesar Cycle
         [typeof(SCaesarCycle)] = new()
         {
-            ModuleName = "Cäsar-Schiffer",
+            ModuleName = "Cäsar-Gemeinschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -2742,7 +2742,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Caesar Cycle that had the letter {0} on a dial
                     // Example: the Caesar Cycle that had the letter A on a dial
-                    Discriminator = "der Cäsar-Schiffer, bei der der Buchstabe {0} vorkam,",
+                    Discriminator = "der Cäsar-Gemeinschrift, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -4304,8 +4304,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Cryptic Cycle
         [typeof(SCrypticCycle)] = new()
         {
-            ModuleName = "Kryptische Schiffer",
-            ModuleNameDative = "Kryptischen Schiffer",
+            ModuleName = "Kryptische Gemeinschrift",
+            ModuleNameDative = "Kryptischen Gemeinschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -5510,7 +5510,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // ƎNA Cipher
         [typeof(SEnaCipher)] = new()
         {
-            ModuleName = "ƎNA-Chiffre",
+            ModuleName = "ƎNA-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -5601,13 +5601,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Verschlüsselungsmethode kam bei {0} zum Einsatz?",
                     Answers = new()
                     {
-                        ["Caesar Cipher"] = "Cäsar-Chiffre",
-                        ["Atbash Cipher"] = "Atbash-Chiffre",
-                        ["Rot-13 Cipher"] = "Rot-13-Chiffre",
-                        ["Affine Cipher"] = "Affine Chiffre",
-                        ["Modern Cipher"] = "Moderne Chiffre",
-                        ["Vigenère Cipher"] = "Vigenère-Chiffre",
-                        ["Playfair Cipher"] = "Playfair-Chiffre",
+                        ["Caesar Cipher"] = "Cäsar-Geheimschrift",
+                        ["Atbash Cipher"] = "Atbash-Geheimschrift",
+                        ["Rot-13 Cipher"] = "Rot-13-Geheimschrift",
+                        ["Affine Cipher"] = "Affine Geheimschrift",
+                        ["Modern Cipher"] = "Moderne Geheimschrift",
+                        ["Vigenère Cipher"] = "Vigenère-Geheimschrift",
+                        ["Playfair Cipher"] = "Playfair-Geheimschrift",
                     },
                 },
             },
@@ -5718,7 +5718,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Enigma Cycle
         [typeof(SEnigmaCycle)] = new()
         {
-            ModuleName = "Enigma-Schiffer",
+            ModuleName = "Enigma-Gemeinschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -5758,7 +5758,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Enigma Cycle that had the letter {0} on a dial
                     // Example: the Enigma Cycle that had the letter A on a dial
-                    Discriminator = "der Enigma-Schiffer, bei der der Buchstabe {0} vorkam,",
+                    Discriminator = "der Enigma-Gemeinschrift, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -6014,7 +6014,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Fast Playfair Cipher
         [typeof(SFastPlayfairCipher)] = new()
         {
-            ModuleName = "Playfair-Chiffre im Zeitraffer",
+            ModuleName = "Playfair-Geheimschrift im Zeitraffer",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -7747,7 +7747,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Hill Cycle
         [typeof(SHillCycle)] = new()
         {
-            ModuleName = "Hill-Schiffer",
+            ModuleName = "Hill-Gemeinschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -7775,7 +7775,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Hill Cycle that had the letter {0} on a dial
                     // Example: the Hill Cycle that had the letter A on a dial
-                    Discriminator = "der Hill-Schiffer, bei der der Buchstabe {0} vorkam,",
+                    Discriminator = "der Hill-Gemeinschrift, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -8533,7 +8533,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Jumble Cycle
         [typeof(SJumbleCycle)] = new()
         {
-            ModuleName = "Wirrwarr-Schiffer",
+            ModuleName = "Wirrwarr-Gemeinschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -8561,7 +8561,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Jumble Cycle that had the letter {0} on a dial
                     // Example: the Jumble Cycle that had the letter A on a dial
-                    Discriminator = "der Wirrwarr-Schiffer, bei der der Buchstabe {0} vorkam,",
+                    Discriminator = "der Wirrwarr-Gemeinschrift, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -13540,7 +13540,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pigpen Cycle
         [typeof(SPigpenCycle)] = new()
         {
-            ModuleName = "Freimaurer-Schiffer",
+            ModuleName = "Freimaurer-Gemeinschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -13568,7 +13568,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Pigpen Cycle that had the letter {0} on a dial
                     // Example: the Pigpen Cycle that had the letter A on a dial
-                    Discriminator = "der Freimaurer-Schiffer, bei der der Buchstabe {0} vorkam,",
+                    Discriminator = "der Freimaurer-Gemeinschrift, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -13745,7 +13745,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Playfair Cycle
         [typeof(SPlayfairCycle)] = new()
         {
-            ModuleName = "Playfair-Schiffer",
+            ModuleName = "Playfair-Gemeinschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -13773,7 +13773,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Playfair Cycle that had the letter {0} on a dial
                     // Example: the Playfair Cycle that had the letter A on a dial
-                    Discriminator = "der Playfair-Schiffer, bei der der Buchstabe {0} vorkam,",
+                    Discriminator = "der Playfair-Gemeinschrift, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -18862,8 +18862,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ultimate Cycle
         [typeof(SUltimateCycle)] = new()
         {
-            ModuleName = "Ultimative Schiffer",
-            ModuleNameDative = "Ultimativen Schiffer",
+            ModuleName = "Ultimative Gemeinschrift",
+            ModuleNameDative = "Ultimativen Gemeinschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -18891,7 +18891,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Ultimate Cycle that had the letter {0} on a dial
                     // Example: the Ultimate Cycle that had the letter A on a dial
-                    Discriminator = "der Ultimativen Schiffer, bei der der Buchstabe {0} vorkam,",
+                    Discriminator = "der Ultimativen Gemeinschrift, bei der der Buchstabe {0} vorkam,",
                 },
             },
         },
@@ -19074,7 +19074,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unfair Cipher
         [typeof(SUnfairCipher)] = new()
         {
-            ModuleName = "Unfair-Chiffre",
+            ModuleName = "Unfair-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -19350,7 +19350,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // USA Cycle
         [typeof(SUSACycle)] = new()
         {
-            ModuleName = "USA-Schiffer",
+            ModuleName = "USA-Gemeinschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
