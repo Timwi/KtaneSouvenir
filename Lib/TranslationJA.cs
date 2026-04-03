@@ -1069,31 +1069,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // A Square
-        [typeof(SASquare)] = new()
-        {
-            ModuleName = "正方型",
-            ManualQuestions = new()
-            {
-                ["What were the index colors?"] = "一致した色は？",
-                ["What were the submitted colors?"] = "送信した色は？",
-            },
-            Questions = new()
-            {
-                [SASquare.IndexColors] = new()
-                {
-                    // English: Which of these was an index color in {0}?
-                    Question = "{0}で一致した色に含まれるのは？",
-                },
-                [SASquare.CorrectColors] = new()
-                {
-                    // English: Which color was submitted {1} in {0}?
-                    // Example: Which color was submitted first in A Square?
-                    Question = "{0}で{1}番目に送信した色は？",
-                },
-            },
-        },
-
         // Audio Morse
         [typeof(SAudioMorse)] = new()
         {
@@ -2117,24 +2092,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What letter was initially visible on {0}?
                     Question = "{0}で初めに表示された文字は？",
-                },
-            },
-        },
-
-        // Bomb Diffusal
-        [typeof(SBombDiffusal)] = new()
-        {
-            ModuleName = "爆弾拡散",
-            ManualQuestions = new()
-            {
-                ["What was the license number?"] = "ライセンス番号は？",
-            },
-            Questions = new()
-            {
-                [SBombDiffusal.LicenseNumber] = new()
-                {
-                    // English: What was the license number in {0}?
-                    Question = "{0}のライセンス番号は？",
                 },
             },
         },
@@ -3821,57 +3778,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Purple"] = "紫",
                         ["White"] = "白",
                     },
-                },
-            },
-        },
-
-        // Connection Check
-        [typeof(SConnectionCheck)] = new()
-        {
-            ModuleName = "接続確認",
-            ManualQuestions = new()
-            {
-                ["What number pairs were present?"] = "どの数字のペアが表示された？",
-            },
-            Questions = new()
-            {
-                [SConnectionCheck.Numbers] = new()
-                {
-                    // English: What pair of numbers was present in {0}?
-                    Question = "{0}内に存在していたペアは？",
-                },
-            },
-            Discriminators = new()
-            {
-                [SConnectionCheck.NoNs] = new()
-                {
-                    // English: the Connection Check with no {0}s
-                    // Example: the Connection Check with no 1s
-                    Discriminator = "{0}が無い接続確認",
-                },
-                [SConnectionCheck.OneN] = new()
-                {
-                    // English: the Connection Check with one {0}
-                    // Example: the Connection Check with one 1
-                    Discriminator = "{0}が一つだけある接続確認",
-                },
-                [SConnectionCheck.TwoNs] = new()
-                {
-                    // English: the Connection Check with two {0}s
-                    // Example: the Connection Check with two 1s
-                    Discriminator = "{0}が二つだけある接続確認",
-                },
-                [SConnectionCheck.ThreeNs] = new()
-                {
-                    // English: the Connection Check with three {0}s
-                    // Example: the Connection Check with three 1s
-                    Discriminator = "{0}が三つだけある接続確認",
-                },
-                [SConnectionCheck.FourNs] = new()
-                {
-                    // English: the Connection Check with four {0}s
-                    // Example: the Connection Check with four 1s
-                    Discriminator = "{0}が四つだけある接続確認",
                 },
             },
         },
@@ -6670,34 +6576,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: the Forget This which displayed {0} in the {1} stage
                     // Example: the Forget This which displayed A in the first stage
                     Discriminator = "ステージ{1}で表示された文字が{0}であった之忘る",
-                },
-            },
-        },
-
-        // Forget Us Not
-        [typeof(SForgetUsNot)] = new()
-        {
-            ModuleName = "我等忘る勿かれ",
-            ManualQuestions = new()
-            {
-                ["Which module was solved for each stage?"] = "各ステージで解除されたモジュールは？",
-            },
-            Questions = new()
-            {
-                [SForgetUsNot.Stage] = new()
-                {
-                    // English: Which module name was used for stage {1} in {0}?
-                    // Example: Which module name was used for stage 1 in Forget Us Not?
-                    Question = "{0}のステージ{1}で使用されたモジュール名は？",
-                },
-            },
-            Discriminators = new()
-            {
-                [SForgetUsNot.Discriminator] = new()
-                {
-                    // English: the Forget Us Not in which {0} was used for stage {1}
-                    // Example: the Forget Us Not in which Memory was used for stage 1
-                    Discriminator = "ステージ{1}で{0}が使用された我等忘る勿かれ",
                 },
             },
         },
@@ -10605,47 +10483,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // The Moon
-        [typeof(SMoon)] = new()
-        {
-            ModuleName = "月",
-            ManualQuestions = new()
-            {
-                ["Which sets were initially lit/unlit?"] = "最初に点灯/消灯していたのは？",
-            },
-            Questions = new()
-            {
-                [SMoon.LitUnlit] = new()
-                {
-                    // English: What was the {1} set in clockwise order in {0}?
-                    // Example: What was the first initially lit set in clockwise order in The Moon?
-                    Question = "{0}で時計回りに見て{1}セットは？",
-                    Arguments = new()
-                    {
-                        ["first initially lit"] = "1番目の点灯",
-                        ["second initially lit"] = "2番目の点灯",
-                        ["third initially lit"] = "3番目の点灯",
-                        ["fourth initially lit"] = "4番目の点灯",
-                        ["first initially unlit"] = "1番目の消灯",
-                        ["second initially unlit"] = "2番目の消灯",
-                        ["third initially unlit"] = "3番目の消灯",
-                        ["fourth initially unlit"] = "4番目の消灯",
-                    },
-                    Answers = new()
-                    {
-                        ["south"] = "南",
-                        ["south-west"] = "南西",
-                        ["west"] = "西",
-                        ["north-west"] = "北西",
-                        ["north"] = "北",
-                        ["north-east"] = "北東",
-                        ["east"] = "東",
-                        ["south-east"] = "南東",
-                    },
-                },
-            },
-        },
-
         // More Code
         [typeof(SMoreCode)] = new()
         {
@@ -12519,25 +12356,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Odd One Out
-        [typeof(SOddOneOut)] = new()
-        {
-            ModuleName = "仲間外れ",
-            ManualQuestions = new()
-            {
-                ["What were the correct button presses?"] = "押した正しいボタンはどれ？",
-            },
-            Questions = new()
-            {
-                [SOddOneOut.Button] = new()
-                {
-                    // English: What was the button you pressed in the {1} stage of {0}?
-                    // Example: What was the button you pressed in the first stage of Odd One Out?
-                    Question = "{0}のステージ{1}で押されたボタンは？",
-                },
-            },
-        },
-
         // Off Keys
         [typeof(SOffKeys)] = new()
         {
@@ -13063,25 +12881,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the {1} term in {0}?
                     // Example: What was the first term in Partial Derivatives?
                     Question = "{0}の{1}番目の項は？",
-                },
-            },
-        },
-
-        // Passport Control
-        [typeof(SPassportControl)] = new()
-        {
-            ModuleName = "パスポートコントロール",
-            ManualQuestions = new()
-            {
-                ["What were the passport expiration years of each passenger?"] = "各乗客の有効期限年は？",
-            },
-            Questions = new()
-            {
-                [SPassportControl.Passenger] = new()
-                {
-                    // English: What was the passport expiration year of the {1} inspected passenger in {0}?
-                    // Example: What was the passport expiration year of the first inspected passenger in Passport Control?
-                    Question = "{0}で{1}番目に搭乗した乗客のパスポート有効期限は？",
                 },
             },
         },
@@ -14147,25 +13946,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the number initially on the display in {0}?
                     Question = "{0}のディスプレーに最初に表示された数字は？",
-                },
-            },
-        },
-
-        // Qwirkle
-        [typeof(SQwirkle)] = new()
-        {
-            ModuleName = "クワークル",
-            ManualQuestions = new()
-            {
-                ["Which tiles did you place?"] = "置いたタイルは？",
-            },
-            Questions = new()
-            {
-                [SQwirkle.TilesPlaced] = new()
-                {
-                    // English: What tile did you place {1} in {0}?
-                    // Example: What tile did you place first in Qwirkle?
-                    Question = "{0}で{1}番目に置いたタイルは？",
                 },
             },
         },

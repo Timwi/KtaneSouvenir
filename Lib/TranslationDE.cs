@@ -1122,31 +1122,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // A Square
-        [typeof(SASquare)] = new()
-        {
-            ModuleName = "Ein Quadrat",
-            ManualQuestions = new()
-            {
-                ["What were the index colors?"] = "Was waren die Indexfarben?",
-                ["What were the submitted colors?"] = "Welche Farben wurden eingegeben?",
-            },
-            Questions = new()
-            {
-                [SASquare.IndexColors] = new()
-                {
-                    // English: Which of these was an index color in {0}?
-                    Question = "Wia war’s bei {0} mid da Indexfoab?",
-                },
-                [SASquare.CorrectColors] = new()
-                {
-                    // English: Which color was submitted {1} in {0}?
-                    // Example: Which color was submitted first in A Square?
-                    Question = "Wos fia a Foab hodn’s bei {0} z’{1} eigegebn?",
-                },
-            },
-        },
-
         // Audio Morse
         [typeof(SAudioMorse)] = new()
         {
@@ -2186,23 +2161,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What letter was initially visible on {0}?
                     Question = "Welcher dieser Buchstaben war bei {0} anfänglich sichtbar?",
-                },
-            },
-        },
-
-        // Bomb Diffusal
-        [typeof(SBombDiffusal)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was the license number?"] = "Was war die Lizenznummer?",
-            },
-            Questions = new()
-            {
-                [SBombDiffusal.LicenseNumber] = new()
-                {
-                    // English: What was the license number in {0}?
-                    Question = "Was war bei {0} die Lizenznummer?",
                 },
             },
         },
@@ -3932,58 +3890,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Purple"] = "Lila",
                         ["White"] = "Weiß",
                     },
-                },
-            },
-        },
-
-        // Connection Check
-        [typeof(SConnectionCheck)] = new()
-        {
-            ModuleName = "Verbindungsprüfung",
-            Gender = Gender.Feminine,
-            ManualQuestions = new()
-            {
-                ["What number pairs were present?"] = "Welche Zahlenpaare kamen vor?",
-            },
-            Questions = new()
-            {
-                [SConnectionCheck.Numbers] = new()
-                {
-                    // English: What pair of numbers was present in {0}?
-                    Question = "Welches Zahlenpaar war bei {0} vorhanden?",
-                },
-            },
-            Discriminators = new()
-            {
-                [SConnectionCheck.NoNs] = new()
-                {
-                    // English: the Connection Check with no {0}s
-                    // Example: the Connection Check with no 1s
-                    Discriminator = "der Verbindungsprüfung mit keiner {0}",
-                },
-                [SConnectionCheck.OneN] = new()
-                {
-                    // English: the Connection Check with one {0}
-                    // Example: the Connection Check with one 1
-                    Discriminator = "der Verbindungsprüfung mit einer {0}",
-                },
-                [SConnectionCheck.TwoNs] = new()
-                {
-                    // English: the Connection Check with two {0}s
-                    // Example: the Connection Check with two 1s
-                    Discriminator = "der Verbindungsprüfung mit zwei {0}en",
-                },
-                [SConnectionCheck.ThreeNs] = new()
-                {
-                    // English: the Connection Check with three {0}s
-                    // Example: the Connection Check with three 1s
-                    Discriminator = "der Verbindungsprüfung mit drei {0}en",
-                },
-                [SConnectionCheck.FourNs] = new()
-                {
-                    // English: the Connection Check with four {0}s
-                    // Example: the Connection Check with four 1s
-                    Discriminator = "der Verbindungsprüfung mit vier {0}en",
                 },
             },
         },
@@ -6871,34 +6777,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: the Forget This which displayed {0} in the {1} stage
                     // Example: the Forget This which displayed A in the first stage
                     Discriminator = "dem Vergiss Dies, das in der {1}en Stufe {0} anzeigte,",
-                },
-            },
-        },
-
-        // Forget Us Not
-        [typeof(SForgetUsNot)] = new()
-        {
-            ModuleName = "Vergiss Uns Nicht",
-            ManualQuestions = new()
-            {
-                ["Which module was solved for each stage?"] = "Für welche Stufe wurde welches Modul entschärft?",
-            },
-            Questions = new()
-            {
-                [SForgetUsNot.Stage] = new()
-                {
-                    // English: Which module name was used for stage {1} in {0}?
-                    // Example: Which module name was used for stage 1 in Forget Us Not?
-                    Question = "Welcher Modulname kam bei {0} in Stufe {1} zum Einsatz?",
-                },
-            },
-            Discriminators = new()
-            {
-                [SForgetUsNot.Discriminator] = new()
-                {
-                    // English: the Forget Us Not in which {0} was used for stage {1}
-                    // Example: the Forget Us Not in which Memory was used for stage 1
-                    Discriminator = "dem Vergiss Uns Nicht, bei dem {0} in Stufe {1} zum Einsatz kam,",
                 },
             },
         },
@@ -10927,50 +10805,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // The Moon
-        [typeof(SMoon)] = new()
-        {
-            ModuleName = "Der Mond",
-            ModuleNameDative = "Mond",
-            Gender = Gender.Masculine,
-            ManualModuleName = "Der\uE001Mond",
-            ManualQuestions = new()
-            {
-                ["Which sets were initially lit/unlit?"] = "Welche Richtungen haben am Anfang geleuchtet und welche nicht?",
-            },
-            Questions = new()
-            {
-                [SMoon.LitUnlit] = new()
-                {
-                    // English: What was the {1} set in clockwise order in {0}?
-                    // Example: What was the first initially lit set in clockwise order in The Moon?
-                    Question = "Welche Richtung war bei {0} {1} (im Uhrzeigersinn)?",
-                    Arguments = new()
-                    {
-                        ["first initially lit"] = "die erste leuchtende",
-                        ["second initially lit"] = "die zweite leuchtende",
-                        ["third initially lit"] = "die dritte leuchtende",
-                        ["fourth initially lit"] = "die vierte leuchtende",
-                        ["first initially unlit"] = "die erste nicht leuchtende",
-                        ["second initially unlit"] = "die zweite nicht leuchtende",
-                        ["third initially unlit"] = "die dritte nicht leuchtende",
-                        ["fourth initially unlit"] = "die vierte nicht leuchtende",
-                    },
-                    Answers = new()
-                    {
-                        ["south"] = "Süden",
-                        ["south-west"] = "Südwesten",
-                        ["west"] = "Westen",
-                        ["north-west"] = "Nordwesten",
-                        ["north"] = "Norden",
-                        ["north-east"] = "Nordosten",
-                        ["east"] = "Osten",
-                        ["south-east"] = "Südosten",
-                    },
-                },
-            },
-        },
-
         // More Code
         [typeof(SMoreCode)] = new()
         {
@@ -12892,25 +12726,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Odd One Out
-        [typeof(SOddOneOut)] = new()
-        {
-            ModuleName = "Was Nicht Passt",
-            ManualQuestions = new()
-            {
-                ["What were the correct button presses?"] = "Welche Tasten wurden korrekt betätigt?",
-            },
-            Questions = new()
-            {
-                [SOddOneOut.Button] = new()
-                {
-                    // English: What was the button you pressed in the {1} stage of {0}?
-                    // Example: What was the button you pressed in the first stage of Odd One Out?
-                    Question = "Was war bei {0} die in der {1}en Stufe gedrückte Taste?",
-                },
-            },
-        },
-
         // Off Keys
         [typeof(SOffKeys)] = new()
         {
@@ -13455,26 +13270,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} term in {0}?
                     // Example: What was the first term in Partial Derivatives?
                     Question = "Was war bei {0} der {1}e Term?",
-                },
-            },
-        },
-
-        // Passport Control
-        [typeof(SPassportControl)] = new()
-        {
-            ModuleName = "Passkontrolle",
-            Gender = Gender.Feminine,
-            ManualQuestions = new()
-            {
-                ["What were the passport expiration years of each passenger?"] = "Welches Ablaufjahr hatte der Reisepass von welchem Reisenden?",
-            },
-            Questions = new()
-            {
-                [SPassportControl.Passenger] = new()
-                {
-                    // English: What was the passport expiration year of the {1} inspected passenger in {0}?
-                    // Example: What was the passport expiration year of the first inspected passenger in Passport Control?
-                    Question = "Was war bei {0} das Auslaufjahr des {1}en inspizierten Passagiers?",
                 },
             },
         },
@@ -14565,24 +14360,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the number initially on the display in {0}?
                     Question = "Welche Zahl stand bei {0} am Anfang auf dem Display?",
-                },
-            },
-        },
-
-        // Qwirkle
-        [typeof(SQwirkle)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["Which tiles did you place?"] = "Welche Steine wurden platziert?",
-            },
-            Questions = new()
-            {
-                [SQwirkle.TilesPlaced] = new()
-                {
-                    // English: What tile did you place {1} in {0}?
-                    // Example: What tile did you place first in Qwirkle?
-                    Question = "Welchen Stein hast du bei {0} als {1}en gelegt?",
                 },
             },
         },

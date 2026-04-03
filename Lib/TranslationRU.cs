@@ -1167,30 +1167,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // A Square
-        [typeof(SASquare)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What were the index colors?"] = "Какие были цвета-индексы?",
-                ["What were the submitted colors?"] = "Какие цвета были введены?",
-            },
-            Questions = new()
-            {
-                [SASquare.IndexColors] = new()
-                {
-                    // English: Which of these was an index color in {0}?
-                    Question = "Какой из этих цветов был индексным {0}?",
-                },
-                [SASquare.CorrectColors] = new()
-                {
-                    // English: Which color was submitted {1} in {0}?
-                    // Example: Which color was submitted first in A Square?
-                    Question = "Какой цвет был отправлен {1}-м {0}?",
-                },
-            },
-        },
-
         // Audio Morse
         [typeof(SAudioMorse)] = new()
         {
@@ -2226,23 +2202,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What letter was initially visible on {0}?
                     Question = "Какая буква была изначально видна на {0}?",
                     Conjugation = Conjugation.PrepositiveMascNeuter,
-                },
-            },
-        },
-
-        // Bomb Diffusal
-        [typeof(SBombDiffusal)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was the license number?"] = "Какой был номер лицензии?",
-            },
-            Questions = new()
-            {
-                [SBombDiffusal.LicenseNumber] = new()
-                {
-                    // English: What was the license number in {0}?
-                    Question = "Какой был номер лицензии {0}?",
                 },
             },
         },
@@ -3954,60 +3913,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Purple"] = "Фиолетовый",
                         ["White"] = "Белый",
                     },
-                },
-            },
-        },
-
-        // Connection Check
-        [typeof(SConnectionCheck)] = new()
-        {
-            NeedsTranslation = true,
-            ModuleName = "Проверке соединения",
-            ManualModuleName = "Проверка соединения",
-            ManualQuestions = new()
-            {
-                ["What number pairs were present?"] = "Какие пары чисел присутствовали?",
-            },
-            Questions = new()
-            {
-                [SConnectionCheck.Numbers] = new()
-                {
-                    // English: What pair of numbers was present in {0}?
-                    Question = "Какая пара чисел присутствовала {0}?",
-                    Conjugation = Conjugation.в_PrepositiveFeminine,
-                },
-            },
-            Discriminators = new()
-            {
-                [SConnectionCheck.NoNs] = new()
-                {
-                    // English: the Connection Check with no {0}s
-                    // Example: the Connection Check with no 1s
-                    Discriminator = "the Connection Check with no {0}s",
-                },
-                [SConnectionCheck.OneN] = new()
-                {
-                    // English: the Connection Check with one {0}
-                    // Example: the Connection Check with one 1
-                    Discriminator = "the Connection Check with one {0}",
-                },
-                [SConnectionCheck.TwoNs] = new()
-                {
-                    // English: the Connection Check with two {0}s
-                    // Example: the Connection Check with two 1s
-                    Discriminator = "the Connection Check with two {0}s",
-                },
-                [SConnectionCheck.ThreeNs] = new()
-                {
-                    // English: the Connection Check with three {0}s
-                    // Example: the Connection Check with three 1s
-                    Discriminator = "the Connection Check with three {0}s",
-                },
-                [SConnectionCheck.FourNs] = new()
-                {
-                    // English: the Connection Check with four {0}s
-                    // Example: the Connection Check with four 1s
-                    Discriminator = "the Connection Check with four {0}s",
                 },
             },
         },
@@ -6812,34 +6717,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: the Forget This which displayed {0} in the {1} stage
                     // Example: the Forget This which displayed A in the first stage
                     Discriminator = "Forget This, который показывал {0} на {1}-м этапе",
-                },
-            },
-        },
-
-        // Forget Us Not
-        [typeof(SForgetUsNot)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["Which module was solved for each stage?"] = "Which module was solved for each stage?",
-            },
-            Questions = new()
-            {
-                [SForgetUsNot.Stage] = new()
-                {
-                    // English: Which module name was used for stage {1} in {0}?
-                    // Example: Which module name was used for stage 1 in Forget Us Not?
-                    Question = "Which module name was used for stage {1} in {0}?",
-                },
-            },
-            Discriminators = new()
-            {
-                [SForgetUsNot.Discriminator] = new()
-                {
-                    // English: the Forget Us Not in which {0} was used for stage {1}
-                    // Example: the Forget Us Not in which Memory was used for stage 1
-                    Discriminator = "the Forget Us Not in which {0} was used for stage {1}",
                 },
             },
         },
@@ -10738,47 +10615,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // The Moon
-        [typeof(SMoon)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["Which sets were initially lit/unlit?"] = "Which sets were initially lit/unlit?",
-            },
-            Questions = new()
-            {
-                [SMoon.LitUnlit] = new()
-                {
-                    // English: What was the {1} set in clockwise order in {0}?
-                    // Example: What was the first initially lit set in clockwise order in The Moon?
-                    Question = "Какой {1} по часовой стрелке {0}?",
-                    Arguments = new()
-                    {
-                        ["first initially lit"] = "1-й светодиод горел",
-                        ["second initially lit"] = "2-й светодиод горел",
-                        ["third initially lit"] = "3-й светодиод горел",
-                        ["fourth initially lit"] = "4-й светодиод горел",
-                        ["first initially unlit"] = "1-й светодиод не горел",
-                        ["second initially unlit"] = "2-й светодиод не горел",
-                        ["third initially unlit"] = "3-й светодиод не горел",
-                        ["fourth initially unlit"] = "4-й светодиод не горел",
-                    },
-                    Answers = new()
-                    {
-                        ["south"] = "Южный",
-                        ["south-west"] = "Юго-западный",
-                        ["west"] = "Западный",
-                        ["north-west"] = "Северо-западный",
-                        ["north"] = "Северный",
-                        ["north-east"] = "Северо-восточный",
-                        ["east"] = "Восточный",
-                        ["south-east"] = "Юго-восточный",
-                    },
-                },
-            },
-        },
-
         // More Code
         [typeof(SMoreCode)] = new()
         {
@@ -12658,24 +12494,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Odd One Out
-        [typeof(SOddOneOut)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What were the correct button presses?"] = "Какие правильные кнопки были нажаты?",
-            },
-            Questions = new()
-            {
-                [SOddOneOut.Button] = new()
-                {
-                    // English: What was the button you pressed in the {1} stage of {0}?
-                    // Example: What was the button you pressed in the first stage of Odd One Out?
-                    Question = "Какую кнопку вы нажали на {1}-м этапе {0}?",
-                },
-            },
-        },
-
         // Off Keys
         [typeof(SOffKeys)] = new()
         {
@@ -13208,25 +13026,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // Example: What was the first term in Partial Derivatives?
                     Question = "Какой был {1}-й член {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
-                },
-            },
-        },
-
-        // Passport Control
-        [typeof(SPassportControl)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What were the passport expiration years of each passenger?"] = "Какая была дата истечения паспорта у каждого пассажира?",
-            },
-            Questions = new()
-            {
-                [SPassportControl.Passenger] = new()
-                {
-                    // English: What was the passport expiration year of the {1} inspected passenger in {0}?
-                    // Example: What was the passport expiration year of the first inspected passenger in Passport Control?
-                    Question = "Какой был год истечения паспорта у {1}-го пассажира на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -14292,24 +14091,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the number initially on the display in {0}?
                     Question = "Какое было исходное число на экране {0}?",
-                },
-            },
-        },
-
-        // Qwirkle
-        [typeof(SQwirkle)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["Which tiles did you place?"] = "Какие плитки вы положили?",
-            },
-            Questions = new()
-            {
-                [SQwirkle.TilesPlaced] = new()
-                {
-                    // English: What tile did you place {1} in {0}?
-                    // Example: What tile did you place first in Qwirkle?
-                    Question = "Какую плитку вы положили {1}-й {0}?",
                 },
             },
         },
