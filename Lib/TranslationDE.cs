@@ -8192,7 +8192,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What was the hyperlink?"] = "Wie lautete der Hyperlink?",
-                ["Which module was referenced?"] = "Auf welches Modul wurde Bezug genommen?",
             },
             Questions = new()
             {
@@ -8201,11 +8200,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} character of the hyperlink in {0}?
                     // Example: What was the first character of the hyperlink in The Hyperlink?
                     Question = "Was war bei {0} das {1}e Zeichen im Hyperlink?",
-                },
-                [SHyperlink.Answer] = new()
-                {
-                    // English: Which module was referenced on {0}?
-                    Question = "Auf welches Modul wurde bei {0} verwiesen?",
                 },
             },
         },
@@ -16012,6 +16006,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Selects
         [typeof(SSimonSelects)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Simon Selektiert",
             ManualQuestions = new()
             {
@@ -16019,11 +16014,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SSimonSelects.Order] = new()
+                [SSimonSelects.Flashes] = new()
                 {
-                    // English: Which color flashed {1} in the {2} stage of {0}?
-                    // Example: Which color flashed first in the first stage of Simon Selects?
-                    Question = "Welche Farbe leuchtete bei {0} als {1}e in der {2}en Stufe auf?",
+                    // English: Which color was among the colors that flashed in the {1} stage of {0}?
+                    // Example: Which color was among the colors that flashed in the first stage of Simon Selects?
+                    Question = "Which color was among the colors that flashed in the {1} stage of {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -19271,19 +19266,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unown Cipher
         [typeof(SUnownCipher)] = new()
         {
-            ModuleName = "Unown-Geheimschrift",
+            NeedsTranslation = true,
+            ModuleName = "Icognito-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What were the submitted letters?"] = "Welche Buchstaben wurden eingegeben?",
+                ["What were the stats of the Unown letters?"] = "What were the stats of the Unown letters?",
             },
             Questions = new()
             {
-                [SUnownCipher.Answers] = new()
+                [SUnownCipher.Stats] = new()
                 {
-                    // English: What was the {1} submitted letter in {0}?
-                    // Example: What was the first submitted letter in Unown Cipher?
-                    Question = "Was war bei {0} der als {1}e übermittelte Buchstabe?",
+                    // English: What stat appeared on the {1} display when pressing the {2} Unown letter in {0}?
+                    // Example: What stat appeared on the first display when pressing the first Unown letter in Unown Cipher?
+                    Question = "What was the {1} stat for the {2} Unown letter in {0}?",
                 },
             },
         },

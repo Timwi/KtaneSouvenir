@@ -1,26 +1,30 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
 
 public enum SUnownCipher
 {
-    [SouvenirQuestion("What was the {1} submitted letter in {0}?", ThreeColumns6Answers, Type = AnswerType.UnownFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    [AnswerGenerator.Strings('A', 'Z')]
-    Answers
+    [SouvenirQuestion("What stat appeared on the {1} display when pressing the {2} Unown letter in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [AnswerGenerator.Integers(0, 16)]
+    Stats
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("UnownCipher", "Unown Cipher", typeof(SUnownCipher), "kavinkul")]
-    [SouvenirManualQuestion("What were the submitted letters?")]
+    [SouvenirHandler("UnownCipher", "Unown Cipher", typeof(SUnownCipher), "Quinn Wuest")]
+    [SouvenirManualQuestion("What were the stats of the Unown letters?")]
     private IEnumerator<SouvenirInstruction> ProcessUnownCipher(ModuleData module)
     {
         var comp = GetComponent(module, "UnownCipher");
         yield return WaitForSolve;
 
-        var unownAnswer = GetArrayField<int>(comp, "letterIndexes").Get(expectedLength: 5, validator: v => v is < 0 or > 25 ? "expected 0–25" : null);
-        for (var i = 0; i < unownAnswer.Length; i++)
-            yield return question(SUnownCipher.Answers, args: [Ordinal(i + 1)]).Answers(((char) ('A' + unownAnswer[i])).ToString());
+        var unowns = GetArrayField<object>(comp, "unown").Get(expectedLength: 5);
+        var stats = unowns.Select(u => GetArrayField<int>(u, "stats").Get(expectedLength: 4).ToArray()).ToArray();
+
+        for (int letter = 0; letter < 5; letter++)
+            for (int stat = 0; stat < 4; stat++)
+                yield return question(SUnownCipher.Stats, args: [Ordinal(stat + 1), Ordinal(letter + 1)]).Answers(stats[letter][stat].ToString());
     }
 }

@@ -61,20 +61,20 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Remainder Theorem  │  Hickory Dickory Dock     │  Number Game, The        │  Smash, Marry, Kill         │
     Coffee Beans               │  Hidden Value, The        │  One Links To All        │  Stable Time Signatures     │
 
-## Implemented by Quinn Wuest (56)
+## Implemented by Quinn Wuest (58)
 
-    .--/---/..-.       │  Double Digits             │  Nim                   │  Parity               │  Synapse Says
-    4D Tunnels         │  English Entries           │  Not Colored Switches  │  Quadrants            │  Triple Term
-    Adventure Game     │  Épelle-moi Ça             │  Not Connection Check  │  Reverse Morse        │  Uncolour Flash
-    Alcoholic Rampage  │  Guess Who?                │  Not Coordinates       │  RGB Encryption       │  Unpleasant Squares
-    Ángel Hernández    │  Horrible Memory           │  Not Morsematics       │  Robo-Scanner         │  Varicolour Flash
-    Bamboozled Again   │  Hunting                   │  Not Murder            │  Rule of Three        │  Who’s on Gas
-    Big Circle         │  Jewel Vault, The          │  Not Number Pad        │  Scramboozled Eggain  │  Word Count
-    Bulb, The          │  Letter Math               │  Not Perspective Pegs  │  Simon Said           │  xobekuJ ehT
-    Caesar Psycho      │  Match Refereeing          │  Not The Bulb          │  Simon Shuffles       │
-    Coordination       │  Mystic Square             │  Not X01               │  Simultaneous Simons  │
-    Cyan Button, The   │  Navigation Determination  │  Off Keys              │  Slow Math            │
-    Denial Displays    │  Neptune                   │  Papa’s Pizzeria       │  Small Talk           │
+    .--/---/..-.       │  Double Digits             │  Nim                   │  Parity               │  Small Talk
+    4D Tunnels         │  English Entries           │  Not Colored Switches  │  Quadrants            │  Synapse Says
+    Adventure Game     │  Épelle-moi Ça             │  Not Connection Check  │  Reverse Morse        │  Triple Term
+    Alcoholic Rampage  │  Guess Who?                │  Not Coordinates       │  RGB Encryption       │  Uncolour Flash
+    Ángel Hernández    │  Horrible Memory           │  Not Morsematics       │  Robo-Scanner         │  Unown Cipher
+    Bamboozled Again   │  Hunting                   │  Not Murder            │  Rule of Three        │  Unpleasant Squares
+    Big Circle         │  Jewel Vault, The          │  Not Number Pad        │  Scramboozled Eggain  │  Varicolour Flash
+    Bulb, The          │  Letter Math               │  Not Perspective Pegs  │  Simon Said           │  Who’s on Gas
+    Caesar Psycho      │  Match Refereeing          │  Not The Bulb          │  Simon Selects        │  Word Count
+    Coordination       │  Mystic Square             │  Not X01               │  Simon Shuffles       │  xobekuJ ehT
+    Cyan Button, The   │  Navigation Determination  │  Off Keys              │  Simultaneous Simons  │
+    Denial Displays    │  Neptune                   │  Papa’s Pizzeria       │  Slow Math            │
 
 ## Implemented by Kuro (55)
 
@@ -139,12 +139,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  LED Math               │  More Code         │  Samsung, The    │
     Codenames           │  M&Ms                   │  N&Ms              │  Simon’s Star    │
 
-## Implemented by kavinkul (16)
+## Implemented by kavinkul (15)
 
-    Blue Arrows      │  Hereditary Base Notation  │  RGB Maze        │  Transmitted Morse
-    Equations X      │  Orange Arrows             │  Simon Simons    │  Unown Cipher
-    Faulty RGB Maze  │  Purple Arrows             │  Simon Stores    │  Vectors
-    Green Arrows     │  Red Arrows                │  Thinking Wires  │  Yellow Arrows
+    Blue Arrows      │  Green Arrows              │  Purple Arrows  │  Simon Simons    │  Transmitted Morse
+    Equations X      │  Hereditary Base Notation  │  Red Arrows     │  Simon Stores    │  Vectors
+    Faulty RGB Maze  │  Orange Arrows             │  RGB Maze       │  Thinking Wires  │  Yellow Arrows
 
 ## Implemented by Andrio Celos (14)
 
@@ -241,7 +240,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Sbemail Songs            │  ObjectsCountries
     Schlag den Bomb          │  JerryEris
     Shapes And Bombs         │  KingSlendy
-    Simon Selects            │  tachatat18
     Simon Sends              │  EternityShack
     Simon Stops              │  JerryEris
     Wavetapping              │  KingSlendy

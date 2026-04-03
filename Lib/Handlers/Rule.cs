@@ -20,6 +20,13 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        var rowButtons = GetArrayField<KMSelectable>(comp, "rowButtons", isPublic: true).Get();
+        var submitButton = GetField<KMSelectable>(comp, "buttonS", isPublic: true).Get();
+
+        foreach (var b in rowButtons)
+            b.OnInteract = delegate () { return false; };
+        submitButton.OnInteract = delegate () { submitButton.AddInteractionPunch(); return false; };
+
         yield return question(SRule.Number).Answers(GetIntField(comp, "ruleNumber").Get(min: 0, max: 15).ToString());
     }
 }

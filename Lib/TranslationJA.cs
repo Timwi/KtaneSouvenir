@@ -7940,7 +7940,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What was the hyperlink?"] = "ハイパーリンクは？",
-                ["Which module was referenced?"] = "どのモジュールが参照されている？",
             },
             Questions = new()
             {
@@ -7949,11 +7948,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the {1} character of the hyperlink in {0}?
                     // Example: What was the first character of the hyperlink in The Hyperlink?
                     Question = "{0}のリンクの{1}文字目は？",
-                },
-                [SHyperlink.Answer] = new()
-                {
-                    // English: Which module was referenced on {0}?
-                    Question = "{0}が参照していたモジュールは(英名)？",
                 },
             },
         },
@@ -15551,6 +15545,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Simon Selects
         [typeof(SSimonSelects)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "サイモンの選択",
             ManualQuestions = new()
             {
@@ -15558,11 +15553,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SSimonSelects.Order] = new()
+                [SSimonSelects.Flashes] = new()
                 {
-                    // English: Which color flashed {1} in the {2} stage of {0}?
-                    // Example: Which color flashed first in the first stage of Simon Selects?
-                    Question = "{0}のステージ{2}において、{1}番目に点滅した色は？",
+                    // English: Which color was among the colors that flashed in the {1} stage of {0}?
+                    // Example: Which color was among the colors that flashed in the first stage of Simon Selects?
+                    Question = "Which color was among the colors that flashed in the {1} stage of {0}?",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -18750,18 +18745,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Unown Cipher
         [typeof(SUnownCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アンノーン暗号",
             ManualQuestions = new()
             {
-                ["What were the submitted letters?"] = "送信した文字は？",
+                ["What were the stats of the Unown letters?"] = "What were the stats of the Unown letters?",
             },
             Questions = new()
             {
-                [SUnownCipher.Answers] = new()
+                [SUnownCipher.Stats] = new()
                 {
-                    // English: What was the {1} submitted letter in {0}?
-                    // Example: What was the first submitted letter in Unown Cipher?
-                    Question = "{0}にて送信した単語の{1}番目の英字は？",
+                    // English: What stat appeared on the {1} display when pressing the {2} Unown letter in {0}?
+                    // Example: What stat appeared on the first display when pressing the first Unown letter in Unown Cipher?
+                    Question = "What was the {1} stat for the {2} Unown letter in {0}?",
                 },
             },
         },

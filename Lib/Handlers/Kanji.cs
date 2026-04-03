@@ -22,6 +22,7 @@ public partial class SouvenirModule
         var fldCalculating = GetField<bool>(comp, "Calculating");
         var fldStage = GetIntField(comp, "Stage");
         var screen = GetField<TextMesh>(comp, "ScreenText", isPublic: true).Get();
+        var keys = GetArrayField<TextMesh>(comp, "KeysText", isPublic: true).Get();
         var displayedWords = new string[3];
         var stage = 0;
 
@@ -30,6 +31,10 @@ public partial class SouvenirModule
         while (screen.text == "爆発")
             yield return null; // Don’t wait .1 seconds so that we are absolutely sure we get the right stage. (yes I stole this comment :D)
         displayedWords[0] = screen.text;
+
+        int stgStart = 0;
+        if (Bomb.GetModuleNames().Contains("Dragon Energy") && keys[3].text == "龍") // Unicorn applied; more explained below -Quinn Wuest
+            stgStart = 1;
 
         for (stage = 1; stage <= 2 || module.Unsolved; stage++)
         {
@@ -48,7 +53,9 @@ public partial class SouvenirModule
             GetArrayField<string>(comp, "Stage2Char").Get(arr => !arr.Contains(displayedWords[1]) ? $"expected array to contain \"{displayedWords[1]}\"" : null),
             GetArrayField<string>(comp, "Stage3Words").Get(arr => !arr.Contains(displayedWords[2]) ? $"expected array to contain \"{displayedWords[2]}\"" : null)
         };
-        for (var stg = 0; stg < 3; stg++)
+        
+        // Skip stg 0 if the unicorn applied. -Quinn Wuest
+        for (var stg = stgStart; stg < 3; stg++)
             yield return question(SKanji.DisplayedWords, args: [Ordinal(stg + 1)]).Answers(displayedWords[stg], preferredWrong: wordLists[stg]);
     }
 }

@@ -7,13 +7,13 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSelects
 {
-    [SouvenirQuestion("Which color flashed {1} in the {2} stage of {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
-    Order
+    [SouvenirQuestion("Which color was among the colors that flashed in the {1} stage of {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    Flashes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonSelectsModule", "Simon Selects", typeof(SSimonSelects), "tachatat18")]
+    [SouvenirHandler("simonSelectsModule", "Simon Selects", typeof(SSimonSelects), "Quinn Wuest")]
     [SouvenirManualQuestion("Which colors flashed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSelects(ModuleData module)
     {
@@ -23,10 +23,8 @@ public partial class SouvenirModule
         var order = Enumerable.Range(0, 3).Select(i => GetArrayField<int>(comp, $"stg{i + 1}order").Get(minLength: 3, maxLength: 5)).ToArray();
         var btnRenderers = GetArrayField<Renderer>(comp, "buttonrend", isPublic: true).Get(expectedLength: 8);
 
-        // Sequences of colors that flashes in each stage
         var seqs = new string[3][];
 
-        // Parsing the received string
         for (var stage = 0; stage < 3; stage++)
         {
             var parsedString = new string[order[stage].Length];
@@ -35,14 +33,7 @@ public partial class SouvenirModule
             seqs[stage] = parsedString;
         }
 
-        // Used to validate colors
-        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan" };
-
-        if (seqs.Any(seq => seq.Any(color => !colorNames.Contains(color))))
-            throw new AbandonModuleException($"‘colors’ contains an invalid color: [{seqs.Select(seq => seq.JoinString(", ")).JoinString("; ")}]");
-
-        for (var stage = 0; stage < seqs.Length; stage++)
-            for (var ix = 0; ix < seqs[stage].Length; ix++)
-                yield return question(SSimonSelects.Order, args: [Ordinal(ix + 1), Ordinal(stage + 1)]).Answers(seqs[stage][ix]);
+        for (int stage = 0; stage < seqs.Length; stage++)
+            yield return question(SSimonSelects.Flashes, args: [Ordinal(stage + 1)]).Answers(seqs[stage]);
     }
 }

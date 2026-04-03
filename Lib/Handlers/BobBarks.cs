@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -35,9 +36,25 @@ public partial class SouvenirModule
         // To provide preferred wrong answers, mostly.
         string[] labelsOnModule = { validLabels[indicators[0]], validLabels[indicators[1]], validLabels[indicators[2]], validLabels[indicators[3]] };
 
+        var labelAnswers = new List<string>();
+        var positionAnswers = new List<string>();
+
+        for (int ix = 0; ix < 4; ix++)
+            labelAnswers.Add(labelsOnModule[ix]);
+
+        for (int ix = 0; ix < 5; ix++)
+        {
+            if (Bomb.GetOnIndicators().Contains("BOB") && labelsOnModule[flashes[ix]] == "BOB" && labelsOnModule.Contains("CAR") && labelsOnModule.Contains("KEY"))
+                break;
+            positionAnswers.Add(validDirections[flashes[ix]]);
+        }
+
+        if (positionAnswers.Count == 0)
+            yield return legitimatelyNoQuestion(module, "The unicorn rule applied at the first flash.");
+
         for (var ix = 0; ix < 4; ix++)
-            yield return question(SBobBarks.Indicators, args: [validDirections[ix]]).Answers(labelsOnModule[ix], preferredWrong: labelsOnModule.Except([labelsOnModule[ix]]).ToArray());
-        for (var ix = 0; ix < 5; ix++)
-            yield return question(SBobBarks.Positions, args: [Ordinal(ix + 1)]).Answers(validDirections[flashes[ix]]);
+            yield return question(SBobBarks.Indicators, args: [validDirections[ix]]).Answers(labelAnswers[ix], preferredWrong: labelsOnModule);
+        for (var ix = 0; ix < positionAnswers.Count; ix++)
+            yield return question(SBobBarks.Positions, args: [Ordinal(ix + 1)]).Answers(positionAnswers[ix]);
     }
 }

@@ -34,6 +34,18 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        var rowButtons = GetArrayField<KMSelectable>(comp, "rowButtons", isPublic: true).Get();
+        var colorButtons = GetArrayField<KMSelectable>(comp, "colorButtons", isPublic: true).Get();
+        var submitButton = GetField<KMSelectable>(comp, "buttonS", isPublic: true).Get();
+        var resetButton = GetField<KMSelectable>(comp, "buttonR", isPublic: true).Get();
+
+        foreach (var b in rowButtons)
+            b.OnInteract = delegate () { return false; };
+        foreach (var b in colorButtons)
+            b.OnInteract = delegate () { return false; };
+        submitButton.OnInteract = delegate () { submitButton.AddInteractionPunch(); return false; };
+        resetButton.OnInteract = delegate () { submitButton.AddInteractionPunch(); return false; };
+
         // This contains the indexes of the pre-filled squares, but counting from 1
         var initOn = GetArrayField<int>(comp, "initOn").Get(expectedLength: 10);
 

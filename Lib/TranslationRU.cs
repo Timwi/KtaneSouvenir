@@ -8080,7 +8080,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the hyperlink?"] = "What was the hyperlink?",
-                ["Which module was referenced?"] = "Which module was referenced?",
             },
             Questions = new()
             {
@@ -8089,11 +8088,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the {1} character of the hyperlink in {0}?
                     // Example: What was the first character of the hyperlink in The Hyperlink?
                     Question = "Какой был {1}-й символ ссылки {0}?",
-                },
-                [SHyperlink.Answer] = new()
-                {
-                    // English: Which module was referenced on {0}?
-                    Question = "На какой модуль ссылался {0}?",
                 },
             },
         },
@@ -15704,11 +15698,11 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SSimonSelects.Order] = new()
+                [SSimonSelects.Flashes] = new()
                 {
-                    // English: Which color flashed {1} in the {2} stage of {0}?
-                    // Example: Which color flashed first in the first stage of Simon Selects?
-                    Question = "Какой цвет горел {1}-м на {2}-м этапе {0}?",
+                    // English: Which color was among the colors that flashed in the {1} stage of {0}?
+                    // Example: Which color was among the colors that flashed in the first stage of Simon Selects?
+                    Question = "Which color was among the colors that flashed in the {1} stage of {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -18896,17 +18890,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Unown Cipher
         [typeof(SUnownCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the submitted letters?"] = "Какие буквы были введены?",
+                ["What were the stats of the Unown letters?"] = "What were the stats of the Unown letters?",
             },
             Questions = new()
             {
-                [SUnownCipher.Answers] = new()
+                [SUnownCipher.Stats] = new()
                 {
-                    // English: What was the {1} submitted letter in {0}?
-                    // Example: What was the first submitted letter in Unown Cipher?
-                    Question = "Какая буква была отправлена {1}-й {0}?",
+                    // English: What stat appeared on the {1} display when pressing the {2} Unown letter in {0}?
+                    // Example: What stat appeared on the first display when pressing the first Unown letter in Unown Cipher?
+                    Question = "What was the {1} stat for the {2} Unown letter in {0}?",
                 },
             },
         },
