@@ -57,7 +57,7 @@ public static class Program
         var translationType = assembly.GetType("Souvenir.ITranslation");
         var translationInfoType = assembly.GetType("Souvenir.TranslationInfo");
         var fldTranslateManualQuestions = translationType.GetProperty("TranslateManualQuestions", BindingFlags.Public | BindingFlags.Instance);
-        var mthTranslateModule = translationType.GetMethod("TranslateModule", BindingFlags.Public | BindingFlags.Instance, [typeof(Type)]);
+        var mthTranslateModule = translationType.GetMethod("TranslateModule", BindingFlags.Public | BindingFlags.Instance, null, [typeof(Type)], null);
         var fldManualQuestions = translationInfoType.GetField("ManualQuestions", BindingFlags.Public | BindingFlags.Instance);
         var fldModuleName = translationInfoType.GetField("ModuleName", BindingFlags.Public | BindingFlags.Instance);
         var fldManualModuleName = translationInfoType.GetField("ManualModuleName", BindingFlags.Public | BindingFlags.Instance);
@@ -453,7 +453,8 @@ public static class Program
     ///     backslash escapes.</summary>
     private static string CLiteralEscape(this string value)
     {
-        ArgumentNullException.ThrowIfNull(value);
+        if (value == null)
+            throw new ArgumentNullException(nameof(value));
 
         var result = new StringBuilder(value.Length + value.Length / 2);
 
