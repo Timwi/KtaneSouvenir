@@ -13253,7 +13253,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the code?"] = "Какой был код?",
+                ["What were the colors of the pixels?"] = "What were the colors of the pixels?",
             },
             Questions = new()
             {

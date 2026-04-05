@@ -8384,19 +8384,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ingredients
         [typeof(SIngredients)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Zutaten",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["Which ingredients were listed?"] = "Which ingredients were listed?",
+                ["Which ingredients were listed?"] = "Welche Zutaten kamen vor?",
             },
             Questions = new()
             {
                 [SIngredients.ListedIngredients] = new()
                 {
                     // English: Which ingredient was listed in {0}?
-                    Question = "Which ingredient was listed in {0}?",
+                    Question = "Welche Zutat kam bei {0} vor?",
                 },
             },
         },
@@ -13500,10 +13499,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pictionary
         [typeof(SPictionary)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the code?"] = "Wie lautete der Code?",
+                ["What were the colors of the pixels?"] = "Welche Farben hatten die Pixel?",
             },
             Questions = new()
             {
@@ -13511,13 +13509,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What were the colors of the pixels in the {1} quadrant in {0}?
                     // Example: What were the colors of the pixels in the top left quadrant in Pictionary?
-                    Question = "What were the colors of the {1} quadrant in {0}?",
+                    Question = "Welche Farben hatten bei {0} die Pixel im {1} Quadranten?",
                     Arguments = new()
                     {
-                        ["top left"] = "top left",
-                        ["top right"] = "top right",
-                        ["bottom left"] = "bottom left",
-                        ["bottom right"] = "bottom right",
+                        ["top left"] = "oberen linken",
+                        ["top right"] = "oberen rechten",
+                        ["bottom left"] = "unteren linken",
+                        ["bottom right"] = "unteren rechten",
                     },
                 },
             },

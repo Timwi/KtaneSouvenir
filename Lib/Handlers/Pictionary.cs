@@ -15,7 +15,7 @@ public enum SPictionary
 public partial class SouvenirModule
 {
     [Handler("pictionaryModule", "Pictionary", typeof(SPictionary), "Quinn Wuest")]
-    [ManualQuestion("What was the code?")]
+    [ManualQuestion("What were the colors of the pixels?")]
     private IEnumerator<SouvenirInstruction> ProcessPictionary(ModuleData module)
     {
         var comp = GetComponent(module, "pictionaryModuleScript");

@@ -13108,7 +13108,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "画像ロジック",
             ManualQuestions = new()
             {
-                ["What was the code?"] = "コードは？",
+                ["What were the colors of the pixels?"] = "What were the colors of the pixels?",
             },
             Questions = new()
             {
