@@ -69,9 +69,15 @@ public class AssetBundler
     /// <summary>
     /// A variable for holding the current BuildTarget, for Mac compatibility.
     /// </summary>
-    static BuildTarget target => Application.platform == RuntimePlatform.OSXEditor
-        ? BuildTarget.StandaloneOSX
-        : BuildTarget.StandaloneWindows;
+    static BuildTarget target
+    {
+        get
+        {
+            return Application.platform == RuntimePlatform.OSXEditor
+                ? BuildTarget.StandaloneOSX
+                : BuildTarget.StandaloneWindows;
+        }
+    }
 
     #endregion
 
@@ -258,6 +264,8 @@ public class AssetBundler
 
         string allDefines = playerDefines +
                             "KMBUILD;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_5;UNITY_5_3;UNITY_5;UNITY_64;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS";
+        if (ModConfig.DebugBuild)
+            allDefines += ";KMDEBUG";
         string outputFilename = outputFolder + "/" + assemblyName + ".dll";
 
         var applicationContentsPath = EditorApplication.applicationContentsPath;
@@ -274,23 +282,23 @@ public class AssetBundler
         //Next we need to grab some type references and use reflection to build things the way Unity does.
         //Note that EditorUtility.CompileCSharp will do *almost* exactly the same thing, but it unfortunately
         //defaults to "unity" rather than "2.0" when selecting the .NET support for the classlib_profile.
-        
+
         string[] defineArray = allDefines.Split(';');
 
         var proxyScripts = scriptAssetPaths.Where(path => path.StartsWith("Assets/Scripts/GameProxies")).ToArray();
 
         var success = proxyScripts.Length == 0 || ModkitCompiler.CompileAssembly(proxyScripts,
             managedReferences.ToArray(),
-            defineArray, outputFolder + "/GameProxies.dll");
+            defineArray, outputFolder + "/GameProxies.dll", false);
 
         if (success)
         {
-            if(proxyScripts.Length > 0)
+            if (proxyScripts.Length > 0)
                 managedReferences.Add(outputFolder + "/GameProxies.dll");
             ModkitCompiler.CompileAssembly(
                 scriptAssetPaths.Where(path => !path.StartsWith("Assets/Scripts/GameProxies")).ToArray(),
                 managedReferences.ToArray(),
-                defineArray, outputFilename);
+                defineArray, outputFilename, ModConfig.DebugBuild);
         }
     }
 
@@ -320,6 +328,33 @@ public class AssetBundler
                     Debug.LogFormat("Copying {0} to {1}", assetPath, dest);
 
                     File.Copy(assetPath, dest);
+
+                    if (ModConfig.DebugBuild)
+                    {
+                        var symbolExtension = ".mdb";
+                        if (!File.Exists(assetPath + symbolExtension) && !File.Exists(Path.ChangeExtension(assetPath, symbolExtension)))
+                        {
+                            symbolExtension = ".pdb";
+                            if (!File.Exists(assetPath + symbolExtension) && !File.Exists(Path.ChangeExtension(assetPath, symbolExtension)))
+                                symbolExtension = null;
+                        }
+
+                        if (!string.IsNullOrEmpty(symbolExtension))
+                        {
+                            if (File.Exists(assetPath + symbolExtension))
+                            {
+                                File.Copy(assetPath + symbolExtension, dest + symbolExtension);
+                                ModkitCompiler.ApplyDebugPatch(dest, dest, false);
+                                File.Delete(dest + symbolExtension);
+                            }
+                            else
+                            {
+                                File.Copy(Path.ChangeExtension(assetPath, symbolExtension), Path.ChangeExtension(dest, symbolExtension));
+                                ModkitCompiler.ApplyDebugPatch(dest, dest, false);
+                                File.Delete(Path.ChangeExtension(dest, symbolExtension));
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -53,6 +53,7 @@ public class ModKitSettingsEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("description"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("version"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("outputFolder"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("debugBuild"));
 
         EditorGUILayout.EndVertical();
 

@@ -44,6 +44,12 @@ public sealed class ModConfig : ScriptableObject
         set { Instance.outputFolder = value; }
     }
 
+    public static bool DebugBuild
+    {
+        get { return Instance.debugBuild; }
+        set { Instance.debugBuild = value; }
+    }
+
     public static Texture2D PreviewImage
     {
         get { return Instance.previewImage; }
@@ -63,6 +69,8 @@ public sealed class ModConfig : ScriptableObject
     private string version = "";
     [SerializeField]
     private string outputFolder = "build";
+    [SerializeField]
+    private bool debugBuild = true;
     [SerializeField]
     private Texture2D previewImage = null;
 
