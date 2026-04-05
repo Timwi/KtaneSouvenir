@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCharacterSlots
 {
-    [SouvenirQuestion("Who was displayed in the {1} slot in the {2} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("Who was displayed in the {1} slot in the {2} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     DisplayedCharacters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("characterSlots", "Character Slots", typeof(SCharacterSlots), "Hawker")]
-    [SouvenirManualQuestion("Who was displayed in each slot for each stage?")]
+    [Handler("characterSlots", "Character Slots", typeof(SCharacterSlots), "Hawker")]
+    [ManualQuestion("Who was displayed in each slot for each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessCharacterSlots(ModuleData module)
     {
         var comp = GetComponent(module, "CharacterSlotsScript");

@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SUnfairsRevenge
 {
-    [SouvenirQuestion("What was the {1} decrypted instruction in {0}?", ThreeColumns6Answers, "PCR", "PCG", "PCB", "SCC", "SCM", "SCY", "SUB", "MIT", "CHK", "PRN", "BOB", "REP", "EAT", "STR", "IKE", "SIG", "PVP", "NXP", "PVS", "NXS", "OPP", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} decrypted instruction in {0}?", ThreeColumns6Answers, "PCR", "PCG", "PCB", "SCC", "SCM", "SCY", "SUB", "MIT", "CHK", "PRN", "BOB", "REP", "EAT", "STR", "IKE", "SIG", "PVP", "NXP", "PVS", "NXS", "OPP", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Instructions
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("unfairsRevenge", "Unfair’s Revenge", typeof(SUnfairsRevenge), "VFlyer")]
-    [SouvenirManualQuestion("What were the decrypted instructions?")]
+    [Handler("unfairsRevenge", "Unfair’s Revenge", typeof(SUnfairsRevenge), "VFlyer")]
+    [ManualQuestion("What were the decrypted instructions?")]
     private IEnumerator<SouvenirInstruction> ProcessUnfairsRevenge(ModuleData module)
     {
         var comp = GetComponent(module, "UnfairsRevengeHandler");

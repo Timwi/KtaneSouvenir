@@ -5,23 +5,23 @@ using static Souvenir.AnswerLayout;
 
 public enum SMazeseeker
 {
-    [SouvenirQuestion("How many walls surrounded this cell in {0}?", TwoColumns4Answers, "0", "1", "2", "3", UsesQuestionSprite = true)]
+    [Question("How many walls surrounded this cell in {0}?", TwoColumns4Answers, "0", "1", "2", "3", UsesQuestionSprite = true)]
     Cell,
 
-    [SouvenirQuestion("Where was the start in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Where was the start in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Start,
 
-    [SouvenirQuestion("Where was the goal in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Where was the goal in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Goal
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSMazeseeker", "Mazeseeker", typeof(SMazeseeker), "GhostSalt")]
-    [SouvenirManualQuestion("How many walls surrounded each cell?")]
-    [SouvenirManualQuestion("What were the starting and goal positions?")]
+    [Handler("GSMazeseeker", "Mazeseeker", typeof(SMazeseeker), "GhostSalt")]
+    [ManualQuestion("How many walls surrounded each cell?")]
+    [ManualQuestion("What were the starting and goal positions?")]
     private IEnumerator<SouvenirInstruction> ProcessMazeseeker(ModuleData module)
     {
         var comp = GetComponent(module, "MazeseekerScript");

@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SSequencyclopedia
 {
-    [SouvenirQuestion("What sequence was used in {0}?", TwoColumns4Answers, ExampleAnswers = ["A000001", "A069420", "A111111"])]
+    [Question("What sequence was used in {0}?", TwoColumns4Answers, ExampleAnswers = ["A000001", "A069420", "A111111"])]
     [AnswerGenerator.Integers(0, 1000000, "'A'000000")]
     Sequence
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TheSequencyclopedia", "Sequencyclopedia", typeof(SSequencyclopedia), "BigCrunch22", AddThe = true)]
-    [SouvenirManualQuestion("What sequence was used?")]
+    [Handler("TheSequencyclopedia", "Sequencyclopedia", typeof(SSequencyclopedia), "BigCrunch22", AddThe = true)]
+    [ManualQuestion("What sequence was used?")]
     private IEnumerator<SouvenirInstruction> ProcessSequencyclopedia(ModuleData module)
     {
         var comp = GetComponent(module, "TheSequencyclopediaScript");

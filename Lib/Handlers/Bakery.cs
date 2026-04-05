@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBakery
 {
-    [SouvenirQuestion("Which menu item was present in {0}?", OneColumn4Answers, ExampleAnswers = ["Butter slab", "Sugar cookie", "Applie pie", "Tea biscuit", "Tuile", "Sprinkles Cookie"])]
+    [Question("Which menu item was present in {0}?", OneColumn4Answers, ExampleAnswers = ["Butter slab", "Sugar cookie", "Applie pie", "Tea biscuit", "Tuile", "Sprinkles Cookie"])]
     Items
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("bakery", "Bakery", typeof(SBakery), "TasThiluna")]
-    [SouvenirManualQuestion("Which menu items were present?")]
+    [Handler("bakery", "Bakery", typeof(SBakery), "TasThiluna")]
+    [ManualQuestion("Which menu items were present?")]
     private IEnumerator<SouvenirInstruction> ProcessBakery(ModuleData module)
     {
         var comp = GetComponent(module, "bakery");

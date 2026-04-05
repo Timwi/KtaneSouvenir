@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDirectionalButton
 {
-    [SouvenirQuestion("How many times did you press the button in the {1} stage of {0}?", TwoColumns4Answers, "1", "2", "3", "4", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("How many times did you press the button in the {1} stage of {0}?", TwoColumns4Answers, "1", "2", "3", "4", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     ButtonCount
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("directionalButton", "Directional Button", typeof(SDirectionalButton), "Hawker")]
-    [SouvenirManualQuestion("How many times did you press the button in each stage?")]
+    [Handler("directionalButton", "Directional Button", typeof(SDirectionalButton), "Hawker")]
+    [ManualQuestion("How many times did you press the button in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDirectionalButton(ModuleData module)
     {
         var comp = GetComponent(module, "DirectrionalButtonScripty");

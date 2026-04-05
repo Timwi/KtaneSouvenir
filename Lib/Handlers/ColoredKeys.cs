@@ -7,25 +7,25 @@ using static Souvenir.AnswerLayout;
 
 public enum SColoredKeys
 {
-    [SouvenirQuestion("What was the displayed word in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "purple", "white", TranslateAnswers = true)]
+    [Question("What was the displayed word in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "purple", "white", TranslateAnswers = true)]
     DisplayWord,
 
-    [SouvenirQuestion("What was the displayed word’s color in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "purple", "white", TranslateAnswers = true)]
+    [Question("What was the displayed word’s color in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "purple", "white", TranslateAnswers = true)]
     DisplayWordColor,
 
-    [SouvenirQuestion("What letter was on the {1} key in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What letter was on the {1} key in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings('A', 'Z')]
     KeyLetter,
 
-    [SouvenirQuestion("What was the color of the {1} key in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "purple", "white", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
+    [Question("What was the color of the {1} key in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "purple", "white", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     KeyColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("lgndColoredKeys", "Colored Keys", typeof(SColoredKeys), "luisdiogo98")]
-    [SouvenirManualQuestion("What was the displayed word and its color?")]
-    [SouvenirManualQuestion("What were the colors and letters on each key?")]
+    [Handler("lgndColoredKeys", "Colored Keys", typeof(SColoredKeys), "luisdiogo98")]
+    [ManualQuestion("What was the displayed word and its color?")]
+    [ManualQuestion("What were the colors and letters on each key?")]
     private IEnumerator<SouvenirInstruction> ProcessColoredKeys(ModuleData module)
     {
         var comp = GetComponent(module, "ColoredKeysScript");

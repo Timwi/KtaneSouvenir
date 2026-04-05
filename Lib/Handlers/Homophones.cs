@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SHomophones
 {
-    [SouvenirQuestion("What was the {1} displayed phrase in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ExampleAnswers = ["i", "C", "L", "1", "sees", "leemer", "aye-aye", "One"])]
+    [Question("What was the {1} displayed phrase in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ExampleAnswers = ["i", "C", "L", "1", "sees", "leemer", "aye-aye", "One"])]
     DisplayedPhrases
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("homophones", "Homophones", typeof(SHomophones), "VFlyer")]
-    [SouvenirManualQuestion("What were the displayed phrases?")]
+    [Handler("homophones", "Homophones", typeof(SHomophones), "VFlyer")]
+    [ManualQuestion("What were the displayed phrases?")]
     private IEnumerator<SouvenirInstruction> ProcessHomophones(ModuleData module)
     {
         var comp = GetComponent(module, "HomophonesScript");

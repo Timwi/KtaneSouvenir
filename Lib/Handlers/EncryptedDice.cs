@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SEncryptedDice
 {
-    [SouvenirQuestion("Which of these numbers appeared on a die in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which of these numbers appeared on a die in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 6)]
     Question
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("EncryptedDice", "Encrypted Dice", typeof(SEncryptedDice), "Kuro")]
-    [SouvenirManualQuestion("Which numbers were rolled in each stage?")]
+    [Handler("EncryptedDice", "Encrypted Dice", typeof(SEncryptedDice), "Kuro")]
+    [ManualQuestion("Which numbers were rolled in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptedDice(ModuleData module)
     {
         var comp = GetComponent(module, "EncrypedDice");

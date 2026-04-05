@@ -7,40 +7,40 @@ using static Souvenir.AnswerLayout;
 
 public enum SAzureButton
 {
-    [SouvenirQuestion("What was the {1} direction in the decoy arrow in {0}?", TwoColumns4Answers, "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} direction in the decoy arrow in {0}?", TwoColumns4Answers, "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     QDecoyArrowDirection,
 
-    [SouvenirQuestion("What was the {1} direction in the {2} non-decoy arrow in {0}?", TwoColumns4Answers, "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the {1} direction in the {2} non-decoy arrow in {0}?", TwoColumns4Answers, "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     QNonDecoyArrowDirection,
 
-    [SouvenirQuestion("What was T in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
+    [Question("What was T in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
     QT,
 
-    [SouvenirQuestion("Which of these cards was shown in Stage 1, but not T, in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
+    [Question("Which of these cards was shown in Stage 1, but not T, in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
     QNotT,
 
-    [SouvenirQuestion("What was M in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+    [Question("What was M in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9")]
     QM,
 
-    [SouvenirDiscriminator("the Azure Button that had this card in Stage 1", UsesQuestionSprite = true)]
+    [Discriminator("the Azure Button that had this card in Stage 1", UsesQuestionSprite = true)]
     DCard,
 
-    [SouvenirDiscriminator("the Azure Button where M was {0}", Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
+    [Discriminator("the Azure Button where M was {0}", Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
     DM,
 
-    [SouvenirDiscriminator("the Azure Button where the decoy arrow went {0} at some point", Arguments = ["north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Azure Button where the decoy arrow went {0} at some point", Arguments = ["north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DDecoyArrowDirection,
 
-    [SouvenirDiscriminator("the Azure Button where the {1} non-decoy arrow went {0} at some point", Arguments = ["north", QandA.Ordinal, "north-east", QandA.Ordinal, "east", QandA.Ordinal, "south-east", QandA.Ordinal, "south", QandA.Ordinal, "south-west", QandA.Ordinal, "west", QandA.Ordinal, "north-west", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Azure Button where the {1} non-decoy arrow went {0} at some point", Arguments = ["north", QandA.Ordinal, "north-east", QandA.Ordinal, "east", QandA.Ordinal, "south-east", QandA.Ordinal, "south", QandA.Ordinal, "south-west", QandA.Ordinal, "west", QandA.Ordinal, "north-west", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DNonDecoyArrowDirection,
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("AzureButtonModule", "Azure Button", typeof(SAzureButton), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What were T and the other displayed cards?")]
-    [SouvenirManualQuestion("What was M?")]
-    [SouvenirManualQuestion("What were the arrows?")]
+    [Handler("AzureButtonModule", "Azure Button", typeof(SAzureButton), "Timwi", AddThe = true)]
+    [ManualQuestion("What were T and the other displayed cards?")]
+    [ManualQuestion("What was M?")]
+    [ManualQuestion("What were the arrows?")]
     private IEnumerator<SouvenirInstruction> ProcessAzureButton(ModuleData module)
     {
         var comp = GetComponent(module, "AzureButtonScript");

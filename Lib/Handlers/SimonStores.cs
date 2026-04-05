@@ -6,23 +6,23 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonStores
 {
-    [SouvenirQuestion("Which color flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("Which color flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     QSingleColor,
 
-    [SouvenirQuestion("Which color was among the colors that flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("Which color was among the colors that flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     QMultipleColors,
 
-    [SouvenirDiscriminator("the Simon Stores where {0} flashed {1} in the final sequence", Arguments = ["red", QandA.Ordinal, "green", QandA.Ordinal, "blue", QandA.Ordinal, "cyan", QandA.Ordinal, "magenta", QandA.Ordinal, "yellow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Simon Stores where {0} flashed {1} in the final sequence", Arguments = ["red", QandA.Ordinal, "green", QandA.Ordinal, "blue", QandA.Ordinal, "cyan", QandA.Ordinal, "magenta", QandA.Ordinal, "yellow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DSingleColor,
 
-    [SouvenirDiscriminator("the Simon Stores where {0} was among the colors that flashed {1} in the final sequence", Arguments = ["red", QandA.Ordinal, "green", QandA.Ordinal, "blue", QandA.Ordinal, "cyan", QandA.Ordinal, "magenta", QandA.Ordinal, "yellow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Simon Stores where {0} was among the colors that flashed {1} in the final sequence", Arguments = ["red", QandA.Ordinal, "green", QandA.Ordinal, "blue", QandA.Ordinal, "cyan", QandA.Ordinal, "magenta", QandA.Ordinal, "yellow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DMultipleColors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonStores", "Simon Stores", typeof(SSimonStores), "kavinkul")]
-    [SouvenirManualQuestion("Which colors flashed in the final sequence?")]
+    [Handler("simonStores", "Simon Stores", typeof(SSimonStores), "kavinkul")]
+    [ManualQuestion("Which colors flashed in the final sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonStores(ModuleData module)
     {
         var comp = GetComponent(module, "SimonStoresScript");

@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCorners
 {
-    [SouvenirQuestion("What was the color of the {1} corner in {0}?", TwoColumns4Answers, "red", "green", "blue", "yellow", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["top-left", "top-right", "bottom-right", "bottom-left"], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} corner in {0}?", TwoColumns4Answers, "red", "green", "blue", "yellow", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["top-left", "top-right", "bottom-right", "bottom-left"], ArgumentGroupSize = 1)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("CornersModule", "Corners", typeof(SCorners), "Timwi")]
-    [SouvenirManualQuestion("What were the colors of the corners?")]
+    [Handler("CornersModule", "Corners", typeof(SCorners), "Timwi")]
+    [ManualQuestion("What were the colors of the corners?")]
     private IEnumerator<SouvenirInstruction> ProcessCorners(ModuleData module)
     {
         var comp = GetComponent(module, "CornersModule");

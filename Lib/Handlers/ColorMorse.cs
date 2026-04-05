@@ -6,19 +6,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SColorMorse
 {
-    [SouvenirQuestion("What was the color of the {1} LED in {0}?", ThreeColumns6Answers, "Blue", "Green", "Orange", "Purple", "Red", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} LED in {0}?", ThreeColumns6Answers, "Blue", "Green", "Orange", "Purple", "Red", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Color,
 
-    [SouvenirQuestion("What character was flashed by the {1} LED in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What character was flashed by the {1} LED in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("0-9A-Z")]
     Character
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ColorMorseModule", "Color Morse", typeof(SColorMorse), "Timwi")]
-    [SouvenirManualQuestion("What were the colors of the LEDs?")]
-    [SouvenirManualQuestion("What characters were flashed by the LEDs?")]
+    [Handler("ColorMorseModule", "Color Morse", typeof(SColorMorse), "Timwi")]
+    [ManualQuestion("What were the colors of the LEDs?")]
+    [ManualQuestion("What characters were flashed by the LEDs?")]
     private IEnumerator<SouvenirInstruction> ProcessColorMorse(ModuleData module)
     {
         var comp = GetComponent(module, "ColorMorseModule");

@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Souvenir;
 
 [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
-public sealed class SouvenirQuestionAttribute(string questionText, AnswerLayout layout, params string[] allAnswers) : Attribute
+public sealed class QuestionAttribute(string questionText, AnswerLayout layout, params string[] allAnswers) : Attribute
 {
     public string QuestionText { get; private set; } = questionText;
     public string[] AllAnswers { get; private set; } = allAnswers == null || allAnswers.Length == 0 ? null : allAnswers;
     public AnswerGeneratorAttribute[] AnswerGenerators { get; internal set; }
-    public SouvenirGimmickAttribute[] Gimmicks { get; internal set; }
+    public GimmickAttribute[] Gimmicks { get; internal set; }
 
     public string[] Arguments { get; set; }
     public int ArgumentGroupSize { get; set; }
@@ -55,5 +55,5 @@ public sealed class SouvenirQuestionAttribute(string questionText, AnswerLayout 
     };
 
     public Enum EnumValue { get; set; }
-    public SouvenirHandlerAttribute Handler { get; set; }
+    public HandlerAttribute Handler { get; set; }
 }

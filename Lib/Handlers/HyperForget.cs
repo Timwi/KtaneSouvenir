@@ -4,17 +4,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SHyperForget
 {
-    [SouvenirQuestion("What was the rotation for the {1} stage in {0}?", ThreeColumns6Answers, "XY", "XZ", "XW", "YX", "YZ", "YW", "ZX", "ZY", "ZW", "WX", "WY", "WZ", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the rotation for the {1} stage in {0}?", ThreeColumns6Answers, "XY", "XZ", "XW", "YX", "YZ", "YW", "ZX", "ZY", "ZW", "WX", "WY", "WZ", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Rotations,
 
-    [SouvenirDiscriminator("the HyperForget whose rotation in the {1} stage was {0}", Arguments = ["XY", QandA.Ordinal, "XZ", QandA.Ordinal, "XW", QandA.Ordinal, "YX", QandA.Ordinal, "YZ", QandA.Ordinal, "YW", QandA.Ordinal, "ZX", QandA.Ordinal, "ZY", QandA.Ordinal, "ZW", QandA.Ordinal, "WX", QandA.Ordinal, "WY", QandA.Ordinal, "WZ", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the HyperForget whose rotation in the {1} stage was {0}", Arguments = ["XY", QandA.Ordinal, "XZ", QandA.Ordinal, "XW", QandA.Ordinal, "YX", QandA.Ordinal, "YZ", QandA.Ordinal, "YW", QandA.Ordinal, "ZX", QandA.Ordinal, "ZY", QandA.Ordinal, "ZW", QandA.Ordinal, "WX", QandA.Ordinal, "WY", QandA.Ordinal, "WZ", QandA.Ordinal], ArgumentGroupSize = 2)]
     Discriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("HyperForget", "HyperForget", typeof(SHyperForget), "Anonymous", IsBossModule = true)]
-    [SouvenirManualQuestion("What were the rotations?")]
+    [Handler("HyperForget", "HyperForget", typeof(SHyperForget), "Anonymous", IsBossModule = true)]
+    [ManualQuestion("What were the rotations?")]
     private IEnumerator<SouvenirInstruction> ProcessHyperForget(ModuleData module)
     {
         var comp = GetComponent(module, "HyperForget");

@@ -7,22 +7,22 @@ using Rnd = UnityEngine.Random;
 
 public enum SButtonage
 {
-    [SouvenirQuestion("How many {1} buttons were there on {0}?", ThreeColumns6Answers, ArgumentGroupSize = 1, TranslateArguments = [true], Arguments = ["red", "green", "orange", "blue", "pink", "white", "black", "white-bordered", "pink-bordered", "gray-bordered", "red-bordered", "“P”", "special"])]
+    [Question("How many {1} buttons were there on {0}?", ThreeColumns6Answers, ArgumentGroupSize = 1, TranslateArguments = [true], Arguments = ["red", "green", "orange", "blue", "pink", "white", "black", "white-bordered", "pink-bordered", "gray-bordered", "red-bordered", "“P”", "special"])]
     [AnswerGenerator.Integers(0, 64)]
     Buttons
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("buttonageModule", "Buttonage", typeof(SButtonage), "Anonymous")]
-    [SouvenirManualQuestion("How many of each color and border color were there?")]
-    [SouvenirManualQuestion("How many special buttons were there?")]
-    [SouvenirManualQuestion("How many buttons had a P?")]
+    [Handler("buttonageModule", "Buttonage", typeof(SButtonage), "Anonymous")]
+    [ManualQuestion("How many of each color and border color were there?")]
+    [ManualQuestion("How many special buttons were there?")]
+    [ManualQuestion("How many buttons had a P?")]
     private IEnumerator<SouvenirInstruction> ProcessButtonage(ModuleData module)
     {
         yield return WaitForSolve;
 
-        string[] colorLog = { "K", "W", "B", "G", "O", "I", "R", "Y", "A" };
+        var colorLog = new[] { "K", "W", "B", "G", "O", "I", "R", "Y", "A" };
         var comp = GetComponent(module, "ButtonageScript");
         var buttonColors = GetArrayField<int>(comp, "chosenBtns").Get(expectedLength: 64, validator: v => v is < 0 or > 8 ? "Expected range [0, 8]" : null);
         var borderColors = GetArrayField<int>(comp, "chosenBorders").Get(expectedLength: 64, validator: v => v is 1 or 5 or 6 or 8 ? null : "Expected 1, 5, 6, or 8");

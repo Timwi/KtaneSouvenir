@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum S3NPlus1
 {
-    [SouvenirQuestion("What number was initially displayed in {0}?", ThreeColumns6Answers)]
+    [Question("What number was initially displayed in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 100)]
     Question
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("threeNPlusOne", "3N+1", typeof(S3NPlus1), "Hawker")]
-    [SouvenirManualQuestion("What number was initially displayed?")]
+    [Handler("threeNPlusOne", "3N+1", typeof(S3NPlus1), "Hawker")]
+    [ManualQuestion("What number was initially displayed?")]
     private IEnumerator<SouvenirInstruction> Process3NPlus1(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeNPlusOneScript");

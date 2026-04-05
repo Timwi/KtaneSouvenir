@@ -6,20 +6,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SSmashMarryKill
 {
-    [SouvenirQuestion("In what category was {1} for {0}?", TwoColumns4Answers, "SMASH", "MARRY", "KILL", Arguments = ["The Button", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Who’s on First", "Wires", "Wire Sequence"], ArgumentGroupSize = 1)]
+    [Question("In what category was {1} for {0}?", TwoColumns4Answers, "SMASH", "MARRY", "KILL", Arguments = ["The Button", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Who’s on First", "Wires", "Wire Sequence"], ArgumentGroupSize = 1)]
     Category,
 
-    [SouvenirQuestion("Which module was in the {1} category for {0}?", OneColumn4Answers, ExampleAnswers = ["The Button", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Who’s on First", "Wires", "Wire Sequence"], Arguments = ["SMASH", "MARRY", "KILL"], ArgumentGroupSize = 1)]
+    [Question("Which module was in the {1} category for {0}?", OneColumn4Answers, ExampleAnswers = ["The Button", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Who’s on First", "Wires", "Wire Sequence"], Arguments = ["SMASH", "MARRY", "KILL"], ArgumentGroupSize = 1)]
     Module,
 
-    [SouvenirDiscriminator("Smash, Marry, Kill")]
+    [Discriminator("Smash, Marry, Kill")]
     NullDiscriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("smashmarrykill", "Smash, Marry, Kill", typeof(SSmashMarryKill), "Anonymous", IsBossModule = true)]
-    [SouvenirManualQuestion("What category was each module in?")]
+    [Handler("smashmarrykill", "Smash, Marry, Kill", typeof(SSmashMarryKill), "Anonymous", IsBossModule = true)]
+    [ManualQuestion("What category was each module in?")]
     private IEnumerator<SouvenirInstruction> ProcessSmashMarryKill(ModuleData module)
     {
         var comp = GetComponent(module, "SmashMarryKill");

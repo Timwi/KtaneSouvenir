@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNumberGame
 {
-    [SouvenirQuestion("What was the maximum number in {0}?", TwoColumns4Answers)]
+    [Question("What was the maximum number in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Integers(10000000, 99999999)]
     Maximum
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TheNumberGame", "Number Game", typeof(SNumberGame), "Anonymous", AddThe = true)]
-    [SouvenirManualQuestion("What was the maximum number?")]
+    [Handler("TheNumberGame", "Number Game", typeof(SNumberGame), "Anonymous", AddThe = true)]
+    [ManualQuestion("What was the maximum number?")]
     private IEnumerator<SouvenirInstruction> ProcessNumberGame(ModuleData module)
     {
         yield return WaitForSolve;

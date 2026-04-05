@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SElderFuthark
 {
-    [SouvenirQuestion("What was the {1} rune shown on {0}?", TwoColumns4Answers, "Algiz", "Ansuz", "Berkana", "Dagaz", "Ehwaz", "Eihwaz", "Fehu", "Gebo", "Hagalaz", "Isa", "Jera", "Kenaz", "Laguz", "Mannaz", "Nauthiz", "Othila", "Perthro", "Raido", "Sowulo", "Teiwaz", "Thurisaz", "Uruz", "Wunjo", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} rune shown on {0}?", TwoColumns4Answers, "Algiz", "Ansuz", "Berkana", "Dagaz", "Ehwaz", "Eihwaz", "Fehu", "Gebo", "Hagalaz", "Isa", "Jera", "Kenaz", "Laguz", "Mannaz", "Nauthiz", "Othila", "Perthro", "Raido", "Sowulo", "Teiwaz", "Thurisaz", "Uruz", "Wunjo", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Runes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("elderFuthark", "Elder Futhark", typeof(SElderFuthark), "Goofy")]
-    [SouvenirManualQuestion("What were the runes shown?")]
+    [Handler("elderFuthark", "Elder Futhark", typeof(SElderFuthark), "Goofy")]
+    [ManualQuestion("What were the runes shown?")]
     private IEnumerator<SouvenirInstruction> ProcessElderFuthark(ModuleData module)
     {
         var comp = GetComponent(module, "ElderFutharkScript");

@@ -6,21 +6,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SReorderedKeys
 {
-    [SouvenirQuestion("What color was this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What color was this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     KeyColor,
 
-    [SouvenirQuestion("What color was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What color was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     LabelColor,
 
-    [SouvenirQuestion("What was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 6)]
     Label
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("reorderedKeys", "Reordered Keys", typeof(SReorderedKeys), "Anonymous")]
-    [SouvenirManualQuestion("What were the labels, their colors, and the colors of the keys initially in each stage?")]
+    [Handler("reorderedKeys", "Reordered Keys", typeof(SReorderedKeys), "Anonymous")]
+    [ManualQuestion("What were the labels, their colors, and the colors of the keys initially in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessReorderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "ReorderedKeysScript");

@@ -7,17 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SGadgetronVendor
 {
-    [SouvenirQuestion("What was your current weapon in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was your current weapon in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     CurrentWeapon,
 
-    [SouvenirQuestion("What was the weapon up for sale in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the weapon up for sale in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     WeaponForSale
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("lgndGadgetronVendor", "Gadgetron Vendor", typeof(SGadgetronVendor), "Kuro")]
-    [SouvenirManualQuestion("What were the displayed weapons?")]
+    [Handler("lgndGadgetronVendor", "Gadgetron Vendor", typeof(SGadgetronVendor), "Kuro")]
+    [ManualQuestion("What were the displayed weapons?")]
     private IEnumerator<SouvenirInstruction> ProcessGadgetronVendor(ModuleData module)
     {
         var comp = GetComponent(module, "GadgetronVendorScript");

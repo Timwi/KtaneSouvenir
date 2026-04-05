@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoubleColor
 {
-    [SouvenirQuestion("What was the screen color on the {1} stage of {0}?", TwoColumns4Answers, "Green", "Blue", "Red", "Pink", "Yellow", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the screen color on the {1} stage of {0}?", TwoColumns4Answers, "Green", "Blue", "Red", "Pink", "Yellow", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("doubleColor", "Double Color", typeof(SDoubleColor), "luisdiogo98")]
-    [SouvenirManualQuestion("What was the screen color in each stage?")]
+    [Handler("doubleColor", "Double Color", typeof(SDoubleColor), "luisdiogo98")]
+    [ManualQuestion("What was the screen color in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleColor(ModuleData module)
     {
         var comp = GetComponent(module, "doubleColor");

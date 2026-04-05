@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNextInLine
 {
-    [SouvenirQuestion("What color was the first wire in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Black", "White", "Gray", TranslateAnswers = true)]
+    [Question("What color was the first wire in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Black", "White", "Gray", TranslateAnswers = true)]
     FirstWire
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NextInLine", "Next In Line", typeof(SNextInLine), "Anonymous")]
-    [SouvenirManualQuestion("What color was the first wire?")]
+    [Handler("NextInLine", "Next In Line", typeof(SNextInLine), "Anonymous")]
+    [ManualQuestion("What color was the first wire?")]
     private IEnumerator<SouvenirInstruction> ProcessNextInLine(ModuleData module)
     {
         var comp = GetComponent(module, "NextInLine");

@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNamingConventions
 {
-    [SouvenirQuestion("What was the label of the first button in {0}?", TwoColumns4Answers, "Class", "Constructor", "Method", "Argument", "Local", "Constant", "Field", "Property", "Delegate", "Enum")]
+    [Question("What was the label of the first button in {0}?", TwoColumns4Answers, "Class", "Constructor", "Method", "Argument", "Local", "Constant", "Field", "Property", "Delegate", "Enum")]
     Object
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NamingConventions", "Naming Conventions", typeof(SNamingConventions), "Anonymous")]
-    [SouvenirManualQuestion("What was the label of the first button?")]
+    [Handler("NamingConventions", "Naming Conventions", typeof(SNamingConventions), "Anonymous")]
+    [ManualQuestion("What was the label of the first button?")]
     private IEnumerator<SouvenirInstruction> ProcessNamingConventions(ModuleData module)
     {
         var comp = GetComponent(module, "NamingConventionsScript");

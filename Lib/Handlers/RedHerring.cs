@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SRedHerring
 {
-    [SouvenirQuestion("What was the first color flashed by {0}?", TwoColumns4Answers, "Green", "Blue", "Purple", "Orange")]
+    [Question("What was the first color flashed by {0}?", TwoColumns4Answers, "Green", "Blue", "Purple", "Orange")]
     FirstFlash
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("RedHerring", "Red Herring", typeof(SRedHerring), "tandyCake")]
-    [SouvenirManualQuestion("What was the first color flashed?")]
+    [Handler("RedHerring", "Red Herring", typeof(SRedHerring), "tandyCake")]
+    [ManualQuestion("What was the first color flashed?")]
     private IEnumerator<SouvenirInstruction> ProcessRedHerring(ModuleData module)
     {
         var comp = GetComponent(module, "RedHerring");

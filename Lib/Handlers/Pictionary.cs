@@ -8,14 +8,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPictionary
 {
-    [SouvenirQuestion("What were the colors of the pixels in the {1} quadrant in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "PictionarySprites", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What were the colors of the pixels in the {1} quadrant in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "PictionarySprites", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("pictionaryModule", "Pictionary", typeof(SPictionary), "Quinn Wuest")]
-    [SouvenirManualQuestion("What was the code?")]
+    [Handler("pictionaryModule", "Pictionary", typeof(SPictionary), "Quinn Wuest")]
+    [ManualQuestion("What was the code?")]
     private IEnumerator<SouvenirInstruction> ProcessPictionary(ModuleData module)
     {
         var comp = GetComponent(module, "pictionaryModuleScript");

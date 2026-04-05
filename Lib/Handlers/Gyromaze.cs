@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SGyromaze
 {
-    [SouvenirQuestion("What color was the {1} LED in {0}?", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", Arguments = ["top", "bottom"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
+    [Question("What color was the {1} LED in {0}?", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", Arguments = ["top", "bottom"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     LEDColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("gyromaze", "Gyromaze", typeof(SGyromaze), "Anonymous")]
-    [SouvenirManualQuestion("What were the LED colors?")]
+    [Handler("gyromaze", "Gyromaze", typeof(SGyromaze), "Anonymous")]
+    [ManualQuestion("What were the LED colors?")]
     private IEnumerator<SouvenirInstruction> ProcessGyromaze(ModuleData module)
     {
         yield return WaitForSolve;

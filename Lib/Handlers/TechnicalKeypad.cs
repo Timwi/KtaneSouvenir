@@ -7,15 +7,15 @@ using static Souvenir.AnswerLayout;
 
 public enum STechnicalKeypad
 {
-    [SouvenirQuestion("What was the {1} displayed digit in {0}?", ThreeColumns6Answers, IsEntireQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} displayed digit in {0}?", ThreeColumns6Answers, IsEntireQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     DisplayedDigits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TechnicalKeypad", "Technical Keypad", typeof(STechnicalKeypad), "Kuro")]
-    [SouvenirManualQuestion("What were the displayed digits?")]
+    [Handler("TechnicalKeypad", "Technical Keypad", typeof(STechnicalKeypad), "Kuro")]
+    [ManualQuestion("What were the displayed digits?")]
     private IEnumerator<SouvenirInstruction> ProcessTechnicalKeypad(ModuleData module)
     {
         var comp = GetComponent(module, "TechnicalKeypadModule");

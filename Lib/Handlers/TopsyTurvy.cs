@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum STopsyTurvy
 {
-    [SouvenirQuestion("What was the word initially shown in {0}?", ThreeColumns6Answers, "Topsy", "Robot", "Cloud", "Round", "Quilt", "Found", "Plaid", "Curve", "Water", "Ovals", "Verse", "Sandy", "Frown", "Windy", "Curse", "Ghost")]
+    [Question("What was the word initially shown in {0}?", ThreeColumns6Answers, "Topsy", "Robot", "Cloud", "Round", "Quilt", "Found", "Plaid", "Curve", "Water", "Ovals", "Verse", "Sandy", "Frown", "Windy", "Curse", "Ghost")]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("topsyTurvy", "Topsy Turvy", typeof(STopsyTurvy), "BigCrunch22")]
-    [SouvenirManualQuestion("What was the word initially shown?")]
+    [Handler("topsyTurvy", "Topsy Turvy", typeof(STopsyTurvy), "BigCrunch22")]
+    [ManualQuestion("What was the word initially shown?")]
     private IEnumerator<SouvenirInstruction> ProcessTopsyTurvy(ModuleData module)
     {
         var comp = GetComponent(module, "topsyTurvy");

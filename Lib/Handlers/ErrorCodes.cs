@@ -7,15 +7,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SErrorCodes
 {
-    [SouvenirQuestion("What was the active error code in {0}?", ThreeColumns6Answers)]
+    [Question("What was the active error code in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 101, 1, "X2")]
     ActiveError
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("errorCodes", "Error Codes", typeof(SErrorCodes), "Hawker")]
-    [SouvenirManualQuestion("What was the active error code?")]
+    [Handler("errorCodes", "Error Codes", typeof(SErrorCodes), "Hawker")]
+    [ManualQuestion("What was the active error code?")]
     private IEnumerator<SouvenirInstruction> ProcessErrorCodes(ModuleData module)
     {
         yield return WaitForActivate;

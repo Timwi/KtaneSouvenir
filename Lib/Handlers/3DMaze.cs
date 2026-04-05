@@ -6,24 +6,24 @@ using static Souvenir.AnswerLayout;
 
 public enum S3DMaze
 {
-    [SouvenirQuestion("What were the markings in {0}?", ThreeColumns6Answers, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
+    [Question("What were the markings in {0}?", ThreeColumns6Answers, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
     QMarkings,
 
-    [SouvenirQuestion("What was the cardinal direction in {0}?", TwoColumns4Answers, "North", "South", "West", "East", TranslateAnswers = true)]
+    [Question("What was the cardinal direction in {0}?", TwoColumns4Answers, "North", "South", "West", "East", TranslateAnswers = true)]
     QBearing,
 
-    [SouvenirDiscriminator("the 3D Maze whose markings were {0}", Arguments = ["ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH"], ArgumentGroupSize = 1)]
+    [Discriminator("the 3D Maze whose markings were {0}", Arguments = ["ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH"], ArgumentGroupSize = 1)]
     DMarkings,
 
-    [SouvenirDiscriminator("the 3D Maze whose cardinal direction was {0}", Arguments = ["North", "South", "West", "East"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the 3D Maze whose cardinal direction was {0}", Arguments = ["North", "South", "West", "East"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DBearing,
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("spwiz3DMaze", "3D Maze", typeof(S3DMaze), "Timwi")]
-    [SouvenirManualQuestion("What were the markings?")]
-    [SouvenirManualQuestion("What was the cardinal direction?")]
+    [Handler("spwiz3DMaze", "3D Maze", typeof(S3DMaze), "Timwi")]
+    [ManualQuestion("What were the markings?")]
+    [ManualQuestion("What was the cardinal direction?")]
     private IEnumerator<SouvenirInstruction> Process3DMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeDMazeModule");

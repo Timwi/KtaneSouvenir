@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SThirtyDollarModule
 {
-    [SouvenirQuestion("Which sound was used in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "ThirtyDollarModule", AudioSizeMultiplier = 5)]
+    [Question("Which sound was used in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "ThirtyDollarModule", AudioSizeMultiplier = 5)]
     Sounds
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ThirtyDollarModule", "Thirty Dollar Module", typeof(SThirtyDollarModule), "Anonymous")]
-    [SouvenirManualQuestion("What sounds were played?")]
+    [Handler("ThirtyDollarModule", "Thirty Dollar Module", typeof(SThirtyDollarModule), "Anonymous")]
+    [ManualQuestion("What sounds were played?")]
     private IEnumerator<SouvenirInstruction> ProcessThirtyDollarModule(ModuleData module)
     {
         yield return WaitForSolve;

@@ -9,21 +9,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SLogicalButtons
 {
-    [SouvenirQuestion("What was the color of the {1} button in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", "Purple", "White", "Orange", "Cyan", "Grey", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom-left", QandA.Ordinal, "bottom-right", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the color of the {1} button in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", "Purple", "White", "Orange", "Cyan", "Grey", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom-left", QandA.Ordinal, "bottom-right", QandA.Ordinal], ArgumentGroupSize = 2)]
     Color,
 
-    [SouvenirQuestion("What was the label on the {1} button in the {2} stage of {0}?", TwoColumns4Answers, "Logic", "Color", "Label", "Button", "Wrong", "Boom", "No", "Wait", "Hmmm", TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom-left", QandA.Ordinal, "bottom-right", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the label on the {1} button in the {2} stage of {0}?", TwoColumns4Answers, "Logic", "Color", "Label", "Button", "Wrong", "Boom", "No", "Wait", "Hmmm", TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom-left", QandA.Ordinal, "bottom-right", QandA.Ordinal], ArgumentGroupSize = 2)]
     Label,
 
-    [SouvenirQuestion("What was the final operator in the {1} stage of {0}?", ThreeColumns6Answers, "AND", "OR", "XOR", "NAND", "NOR", "XNOR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the final operator in the {1} stage of {0}?", ThreeColumns6Answers, "AND", "OR", "XOR", "NAND", "NOR", "XNOR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Operator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("logicalButtonsModule", "Logical Buttons", typeof(SLogicalButtons), "Timwi")]
-    [SouvenirManualQuestion("What were the colors and labels of each button in each stage?")]
-    [SouvenirManualQuestion("What were the final operators in each stage?")]
+    [Handler("logicalButtonsModule", "Logical Buttons", typeof(SLogicalButtons), "Timwi")]
+    [ManualQuestion("What were the colors and labels of each button in each stage?")]
+    [ManualQuestion("What were the final operators in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessLogicalButtons(ModuleData module)
     {
         var comp = GetComponent(module, "LogicalButtonsScript");

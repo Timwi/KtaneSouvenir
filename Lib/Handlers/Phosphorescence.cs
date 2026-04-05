@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SPhosphorescence
 {
-    [SouvenirQuestion("What was the {1} button press in {0}?", ThreeColumns6Answers, ["Azure", "Blue", "Crimson", "Diamond", "Emerald", "Fuchsia", "Green", "Hazel", "Ice", "Jade", "Kiwi", "Lime", "Magenta", "Navy", "Orange", "Purple", "Quartz", "Red", "Salmon", "Tan", "Ube", "Vibe", "White", "Xotic", "Yellow", "Zen"], TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} button press in {0}?", ThreeColumns6Answers, ["Azure", "Blue", "Crimson", "Diamond", "Emerald", "Fuchsia", "Green", "Hazel", "Ice", "Jade", "Kiwi", "Lime", "Magenta", "Navy", "Orange", "Purple", "Quartz", "Red", "Salmon", "Tan", "Ube", "Vibe", "White", "Xotic", "Yellow", "Zen"], TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     ButtonPresses,
 
-    [SouvenirQuestion("What was the offset in {0}?", ThreeColumns6Answers)]
+    [Question("What was the offset in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 419)]
     Offset
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Phosphorescence", "Phosphorescence", typeof(SPhosphorescence), "Emik")]
-    [SouvenirManualQuestion("What were the button presses and the offset?")]
+    [Handler("Phosphorescence", "Phosphorescence", typeof(SPhosphorescence), "Emik")]
+    [ManualQuestion("What were the button presses and the offset?")]
     private IEnumerator<SouvenirInstruction> ProcessPhosphorescence(ModuleData module)
     {
         var comp = GetComponent(module, "PhosphorescenceScript");

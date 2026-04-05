@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SChineseRemainderTheorem
 {
-    [SouvenirQuestion("Which equation was used in {0}?", ThreeColumns6Answers)]
+    [Question("Which equation was used in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.ChineseRemainderTheorem]
     Equations
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ChineseRemainderTheoremModule", "Chinese Remainder Theorem", typeof(SChineseRemainderTheorem), "Anonymous")]
-    [SouvenirManualQuestion("What were the equations?")]
+    [Handler("ChineseRemainderTheoremModule", "Chinese Remainder Theorem", typeof(SChineseRemainderTheorem), "Anonymous")]
+    [ManualQuestion("What were the equations?")]
     private IEnumerator<SouvenirInstruction> ProcessChineseRemainderTheorem(ModuleData module)
     {
         yield return WaitForSolve;

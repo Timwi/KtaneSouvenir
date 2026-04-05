@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SGroceryStore
 {
-    [SouvenirQuestion("What was the first item shown in {0}?", TwoColumns4Answers, ExampleAnswers = ["Cheese", "Coffee", "Flour", "Glass Cleaner", "Pepper", "Salt", "Soup", "Steak", "Toilet Paper", "Turkey"])]
+    [Question("What was the first item shown in {0}?", TwoColumns4Answers, ExampleAnswers = ["Cheese", "Coffee", "Flour", "Glass Cleaner", "Pepper", "Salt", "Soup", "Steak", "Toilet Paper", "Turkey"])]
     FirstItem
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("groceryStore", "Grocery Store", typeof(SGroceryStore), "BigCrunch22")]
-    [SouvenirManualQuestion("What was the first item shown?")]
+    [Handler("groceryStore", "Grocery Store", typeof(SGroceryStore), "BigCrunch22")]
+    [ManualQuestion("What was the first item shown?")]
     private IEnumerator<SouvenirInstruction> ProcessGroceryStore(ModuleData module)
     {
         var comp = GetComponent(module, "GroceryStoreBehav");

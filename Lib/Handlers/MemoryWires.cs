@@ -6,25 +6,25 @@ using static Souvenir.AnswerLayout;
 
 public enum SMemoryWires
 {
-    [SouvenirQuestion("What was the colour of wire {1} in {0}?", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", Arguments = ["1", "2", "3", "4", "29", "30"], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the colour of wire {1} in {0}?", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", Arguments = ["1", "2", "3", "4", "29", "30"], ArgumentGroupSize = 1, TranslateAnswers = true)]
     QWireColours,
 
-    [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 6)]
     QDisplayedDigits,
 
-    [SouvenirDiscriminator("the Memory Wires where the colour of wire {0} was {1}", Arguments = ["1", "red", "2", "yellow", "3", "blue", "4", "white", "5", "black"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Discriminator("the Memory Wires where the colour of wire {0} was {1}", Arguments = ["1", "red", "2", "yellow", "3", "blue", "4", "white", "5", "black"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     DWireColours,
 
-    [SouvenirDiscriminator("the Memory Wires where the digit displayed in the {0} stage was {1}", Arguments = [QandA.Ordinal, "1"], ArgumentGroupSize = 2)]
+    [Discriminator("the Memory Wires where the digit displayed in the {0} stage was {1}", Arguments = [QandA.Ordinal, "1"], ArgumentGroupSize = 2)]
     DDisplayedDigits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("memoryWires", "Memory Wires", typeof(SMemoryWires), "Kuro")]
-    [SouvenirManualQuestion("What were the wire colours?")]
-    [SouvenirManualQuestion("What were the displayed digits?")]
+    [Handler("memoryWires", "Memory Wires", typeof(SMemoryWires), "Kuro")]
+    [ManualQuestion("What were the wire colours?")]
+    [ManualQuestion("What were the displayed digits?")]
     private IEnumerator<SouvenirInstruction> ProcessMemoryWires(ModuleData module)
     {
         var comp = GetComponent(module, "MemoryWiresScript");

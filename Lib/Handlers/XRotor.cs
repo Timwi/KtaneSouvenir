@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SXRotor
 {
-    [SouvenirQuestion("Which symbol was scanned in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "XRotorSprites")]
+    [Question("Which symbol was scanned in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "XRotorSprites")]
     Symbol
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("xrotor", "X-Rotor", typeof(SXRotor), "KiloBites")]
-    [SouvenirManualQuestion("Which symbols were scanned?")]
+    [Handler("xrotor", "X-Rotor", typeof(SXRotor), "KiloBites")]
+    [ManualQuestion("Which symbols were scanned?")]
     private IEnumerator<SouvenirInstruction> ProcessXRotor(ModuleData module)
     {
         var comp = GetComponent(module, "XRotorScript");

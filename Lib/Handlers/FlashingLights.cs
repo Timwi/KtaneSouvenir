@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SFlashingLights
 {
-    [SouvenirQuestion("How many times did the {1} LED flash {2} on {0}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["top", "cyan", "top", "green", "top", "red", "top", "purple", "top", "orange", "bottom", "cyan", "bottom", "green", "bottom", "red", "bottom", "purple", "bottom", "orange"], ArgumentGroupSize = 2)]
+    [Question("How many times did the {1} LED flash {2} on {0}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["top", "cyan", "top", "green", "top", "red", "top", "purple", "top", "orange", "bottom", "cyan", "bottom", "green", "bottom", "red", "bottom", "purple", "bottom", "orange"], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(0, 12)]
     LEDFrequency
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("flashingLights", "Flashing Lights", typeof(SFlashingLights), "luisdiogo98")]
-    [SouvenirManualQuestion("How many times did each LED flash each color?")]
+    [Handler("flashingLights", "Flashing Lights", typeof(SFlashingLights), "luisdiogo98")]
+    [ManualQuestion("How many times did each LED flash each color?")]
     private IEnumerator<SouvenirInstruction> ProcessFlashingLights(ModuleData module)
     {
         var comp = GetComponent(module, "doubleNegativesScript");

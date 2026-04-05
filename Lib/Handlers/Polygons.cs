@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPolygons
 {
-    [SouvenirQuestion("Which polygon was present on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "PolygonsSprites")]
+    [Question("Which polygon was present on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "PolygonsSprites")]
     Polygon
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("polygons", "Polygons", typeof(SPolygons), "Anonymous")]
-    [SouvenirManualQuestion("Which polygons were present?")]
+    [Handler("polygons", "Polygons", typeof(SPolygons), "Anonymous")]
+    [ManualQuestion("Which polygons were present?")]
     private IEnumerator<SouvenirInstruction> ProcessPolygons(ModuleData module)
     {
         yield return WaitForSolve;

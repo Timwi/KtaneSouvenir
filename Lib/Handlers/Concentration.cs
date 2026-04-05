@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SConcentration
 {
-    [SouvenirQuestion("What number began here in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What number began here in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
     [AnswerGenerator.Integers(1, 15)]
     StartingDigit,
 
-    [SouvenirDiscriminator("the Concentration which began with {1} in the {0} position (in reading order)", Arguments = [QandA.Ordinal, "1", QandA.Ordinal, "2", QandA.Ordinal, "3"], ArgumentGroupSize = 2)]
+    [Discriminator("the Concentration which began with {1} in the {0} position (in reading order)", Arguments = [QandA.Ordinal, "1", QandA.Ordinal, "2", QandA.Ordinal, "3"], ArgumentGroupSize = 2)]
     Discriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ConcentrationModule", "Concentration", typeof(SConcentration), "Anonymous", IsBossModule = true)]
-    [SouvenirManualQuestion("What was the initial layout?")]
+    [Handler("ConcentrationModule", "Concentration", typeof(SConcentration), "Anonymous", IsBossModule = true)]
+    [ManualQuestion("What was the initial layout?")]
     private IEnumerator<SouvenirInstruction> ProcessConcentration(ModuleData module)
     {
         var comp = GetComponent(module, "ConcentrationModule");

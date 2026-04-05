@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SQuantumTernaryConverter
 {
-    [SouvenirQuestion("Which number was shown in {0}?", TwoColumns4Answers)]
+    [Question("Which number was shown in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Integers(-265720, -9842)]
     [AnswerGenerator.Integers(9842, 265720)]
     Number
@@ -15,8 +15,8 @@ public enum SQuantumTernaryConverter
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("quTern", "Quantum Ternary Converter", typeof(SQuantumTernaryConverter), "Anonymous")]
-    [SouvenirManualQuestion("What were the numbers?")]
+    [Handler("quTern", "Quantum Ternary Converter", typeof(SQuantumTernaryConverter), "Anonymous")]
+    [ManualQuestion("What were the numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessQuantumTernaryConverter(ModuleData module)
     {
         yield return WaitForSolve;

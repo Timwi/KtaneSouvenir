@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SWasd
 {
-    [SouvenirQuestion("What was the location displayed in {0}?", ThreeColumns6Answers, "Bank", "Grocery", "School", "Gym", "Home", "Mall", "Cafe", "Park", "Office")]
+    [Question("What was the location displayed in {0}?", ThreeColumns6Answers, "Bank", "Grocery", "School", "Gym", "Home", "Mall", "Cafe", "Park", "Office")]
     DisplayedLocation
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("wasdModule", "WASD", typeof(SWasd), "Kuro")]
-    [SouvenirManualQuestion("What was the displayed location?")]
+    [Handler("wasdModule", "WASD", typeof(SWasd), "Kuro")]
+    [ManualQuestion("What was the displayed location?")]
     private IEnumerator<SouvenirInstruction> ProcessWasd(ModuleData module)
     {
         var comp = GetComponent(module, "WasdModule");

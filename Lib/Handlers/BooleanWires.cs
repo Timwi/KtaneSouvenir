@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SBooleanWires
 {
-    [SouvenirQuestion("Which letter was present in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which letter was present in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings('A', 'Z')]
     DisplayedLetters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("booleanWires", "Boolean Wires", typeof(SBooleanWires), "Espik")]
-    [SouvenirManualQuestion("Which letters were displayed in each stage?")]
+    [Handler("booleanWires", "Boolean Wires", typeof(SBooleanWires), "Espik")]
+    [ManualQuestion("Which letters were displayed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessBooleanWires(ModuleData module)
     {
         var comp = GetComponent(module, "BooleanWiresScript");

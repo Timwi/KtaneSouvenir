@@ -7,15 +7,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SLEDGrid
 {
-    [SouvenirQuestion("How many LEDs were unlit in {0}?", ThreeColumns6Answers)]
+    [Question("How many LEDs were unlit in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 5)]
     NumBlack
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ledGrid", "LED Grid", typeof(SLEDGrid), "Hawker")]
-    [SouvenirManualQuestion("How many LEDs were unlit?")]
+    [Handler("ledGrid", "LED Grid", typeof(SLEDGrid), "Hawker")]
+    [ManualQuestion("How many LEDs were unlit?")]
     private IEnumerator<SouvenirInstruction> ProcessLEDGrid(ModuleData module)
     {
         var comp = GetComponent(module, "ledGridScript");

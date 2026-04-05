@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SSemamorse
 {
-    [SouvenirQuestion("What was the color of the display involved in the starting value in {0}?", TwoColumns4Answers, "red", "green", "cyan", "indigo", "pink", TranslateAnswers = true)]
+    [Question("What was the color of the display involved in the starting value in {0}?", TwoColumns4Answers, "red", "green", "cyan", "indigo", "pink", TranslateAnswers = true)]
     Color,
 
-    [SouvenirQuestion("What was the {1} letter involved in the starting value in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", Arguments = ["Morse", "semaphore"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the {1} letter involved in the starting value in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", Arguments = ["Morse", "semaphore"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Letters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("semamorse", "Semamorse", typeof(SSemamorse), "Timwi")]
-    [SouvenirManualQuestion("What were Morse and semaphore letters and color used for the starting value?")]
+    [Handler("semamorse", "Semamorse", typeof(SSemamorse), "Timwi")]
+    [ManualQuestion("What were Morse and semaphore letters and color used for the starting value?")]
     private IEnumerator<SouvenirInstruction> ProcessSemamorse(ModuleData module)
     {
         var comp = GetComponent(module, "semamorse");

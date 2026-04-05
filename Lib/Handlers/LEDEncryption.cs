@@ -7,15 +7,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SLEDEncryption
 {
-    [SouvenirQuestion("Which of these letters was present in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which of these letters was present in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings('A', 'Z')]
     PresentLetters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("LEDEnc", "LED Encryption", typeof(SLEDEncryption), "CaitSith2")]
-    [SouvenirManualQuestion("Which letters were present at each stage")]
+    [Handler("LEDEnc", "LED Encryption", typeof(SLEDEncryption), "CaitSith2")]
+    [ManualQuestion("Which letters were present at each stage")]
     private IEnumerator<SouvenirInstruction> ProcessLEDEncryption(ModuleData module)
     {
         var comp = GetComponent(module, "LEDEncryption");

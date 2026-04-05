@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCactisConundrum
 {
-    [SouvenirQuestion("What color was the LED in the {1} stage of {0}?", TwoColumns4Answers, "Blue", "Lime", "Orange", "Red", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What color was the LED in the {1} stage of {0}?", TwoColumns4Answers, "Blue", "Lime", "Orange", "Red", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("CactusPConundrum", "Cacti’s Conundrum", typeof(SCactisConundrum), "Anonymous")]
-    [SouvenirManualQuestion("What colors was the LED?")]
+    [Handler("CactusPConundrum", "Cacti’s Conundrum", typeof(SCactisConundrum), "Anonymous")]
+    [ManualQuestion("What colors was the LED?")]
     private IEnumerator<SouvenirInstruction> ProcessCactisConundrum(ModuleData module)
     {
         var colors = new int[3];

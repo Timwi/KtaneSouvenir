@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SRegularCrazyTalk
 {
-    [SouvenirQuestion("What was the displayed digit that corresponded to the solution phrase in {0}?", ThreeColumns6Answers)]
+    [Question("What was the displayed digit that corresponded to the solution phrase in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9)]
     Digit,
 
-    [SouvenirQuestion("What was the embellishment of the solution phrase in {0}?", OneColumn4Answers, "[PHRASE]", "It says: [PHRASE]", "Quote: [PHRASE] End quote", "“[PHRASE]”", "It says: “[PHRASE]”", "“It says: [PHRASE]”", TranslateAnswers = true)]
+    [Question("What was the embellishment of the solution phrase in {0}?", OneColumn4Answers, "[PHRASE]", "It says: [PHRASE]", "Quote: [PHRASE] End quote", "“[PHRASE]”", "It says: “[PHRASE]”", "“It says: [PHRASE]”", TranslateAnswers = true)]
     Modifier
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("RegularCrazyTalkModule", "Regular Crazy Talk", typeof(SRegularCrazyTalk), "Espik")]
-    [SouvenirManualQuestion("What was the displayed digit that corresponded to the solution phrase?")]
-    [SouvenirManualQuestion("What was the embellishment of the solution phrase?")]
+    [Handler("RegularCrazyTalkModule", "Regular Crazy Talk", typeof(SRegularCrazyTalk), "Espik")]
+    [ManualQuestion("What was the displayed digit that corresponded to the solution phrase?")]
+    [ManualQuestion("What was the embellishment of the solution phrase?")]
     private IEnumerator<SouvenirInstruction> ProcessRegularCrazyTalk(ModuleData module)
     {
         var comp = GetComponent(module, "RegularCrazyTalkModule");

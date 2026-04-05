@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBoobTube
 {
-    [SouvenirQuestion("Which word was shown on {0}?", OneColumn4Answers, "Shittah", "Dik-Dik", "Aktashite", "Tetheradick", "Sack-Butt", "Nobber", "Knobstick", "Jerkinhead", "Haboob", "Fanny-Blower", "Assapanick", "Fuksheet", "Clatterfart", "Humpenscrump", "Cock-Bell", "Slagger", "Pakapoo", "Wankapin", "Lobcocked", "Poonga", "Sexagesm", "Tit-Bore", "Pershitte", "Invagination", "Bumfiddler", "Nestle-Cock", "Gullgroper", "Boob Tube", "Boobyalla", "Dreamhole")]
+    [Question("Which word was shown on {0}?", OneColumn4Answers, "Shittah", "Dik-Dik", "Aktashite", "Tetheradick", "Sack-Butt", "Nobber", "Knobstick", "Jerkinhead", "Haboob", "Fanny-Blower", "Assapanick", "Fuksheet", "Clatterfart", "Humpenscrump", "Cock-Bell", "Slagger", "Pakapoo", "Wankapin", "Lobcocked", "Poonga", "Sexagesm", "Tit-Bore", "Pershitte", "Invagination", "Bumfiddler", "Nestle-Cock", "Gullgroper", "Boob Tube", "Boobyalla", "Dreamhole")]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("boobTubeModule", "Boob Tube", typeof(SBoobTube), "Anonymous")]
-    [SouvenirManualQuestion("What were the words?")]
+    [Handler("boobTubeModule", "Boob Tube", typeof(SBoobTube), "Anonymous")]
+    [ManualQuestion("What were the words?")]
     private IEnumerator<SouvenirInstruction> ProcessBoobTube(ModuleData module)
     {
         var comp = GetComponent(module, "BoobTubeScript");

@@ -8,18 +8,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SLionsShare
 {
-    [SouvenirQuestion("Which year was displayed on {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16")]
+    [Question("Which year was displayed on {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16")]
     Year,
 
-    [SouvenirQuestion("Which lion was present but removed in {0}?", TwoColumns4Answers, ExampleAnswers = ["Taka", "Mufasa", "Uru", "Ahadi", "Zama", "Mohatu", "Kion", "Kiara", "Kopa", "Kovu", "Vitani", "Nuka", "Mheetu", "Zira", "Nala", "Simba", "Sarabi", "Sarafina"])]
+    [Question("Which lion was present but removed in {0}?", TwoColumns4Answers, ExampleAnswers = ["Taka", "Mufasa", "Uru", "Ahadi", "Zama", "Mohatu", "Kion", "Kiara", "Kopa", "Kovu", "Vitani", "Nuka", "Mheetu", "Zira", "Nala", "Simba", "Sarabi", "Sarafina"])]
     RemovedLions
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("LionsShareModule", "Lion’s Share", typeof(SLionsShare), "Timwi")]
-    [SouvenirManualQuestion("Which year was displayed?")]
-    [SouvenirManualQuestion("Which lions were present but removed?")]
+    [Handler("LionsShareModule", "Lion’s Share", typeof(SLionsShare), "Timwi")]
+    [ManualQuestion("Which year was displayed?")]
+    [ManualQuestion("Which lions were present but removed?")]
     private IEnumerator<SouvenirInstruction> ProcessLionsShare(ModuleData module)
     {
         var comp = GetComponent(module, "LionsShareModule");

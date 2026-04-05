@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSupports
 {
-    [SouvenirQuestion("What was the {1} topic in {0}?", TwoColumns4Answers, "Boss", "Cruel", "Faulty", "Lookalike", "Puzzle", "Simon", "Time-Based", "Translated", Arguments = [QandA.Ordinal], TranslateAnswers = true, ArgumentGroupSize = 1)]
+    [Question("What was the {1} topic in {0}?", TwoColumns4Answers, "Boss", "Cruel", "Faulty", "Lookalike", "Puzzle", "Simon", "Time-Based", "Translated", Arguments = [QandA.Ordinal], TranslateAnswers = true, ArgumentGroupSize = 1)]
     Topics
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonSupports", "Simon Supports", typeof(SSimonSupports), "tandyCake")]
-    [SouvenirManualQuestion("What were the 3 topics?")]
+    [Handler("simonSupports", "Simon Supports", typeof(SSimonSupports), "tandyCake")]
+    [ManualQuestion("What were the 3 topics?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSupports(ModuleData module)
     {
         var comp = GetComponent(module, "SimonSupportsScript");

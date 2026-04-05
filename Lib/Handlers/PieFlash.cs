@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPieFlash
 {
-    [SouvenirQuestion("What number was not displayed in {0}?", TwoColumns4Answers, ExampleAnswers = ["31415", "62643", "28410", "93105"])]
+    [Question("What number was not displayed in {0}?", TwoColumns4Answers, ExampleAnswers = ["31415", "62643", "28410", "93105"])]
     Digits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("pieFlash", "Pie Flash", typeof(SPieFlash), "VFlyer")]
-    [SouvenirManualQuestion("What numbers were displayed?")]
+    [Handler("pieFlash", "Pie Flash", typeof(SPieFlash), "VFlyer")]
+    [ManualQuestion("What numbers were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessPieFlash(ModuleData module)
     {
         var comp = GetComponent(module, "pieFlashScript");

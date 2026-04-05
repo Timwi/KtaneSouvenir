@@ -4,15 +4,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SMysticSquare
 {
-    [SouvenirQuestion("What digit was initially in the center in {0}?", ThreeColumns6Answers)]
+    [Question("What digit was initially in the center in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 8)]
     CenterTile
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MysticSquareModule", "Mystic Square", typeof(SMysticSquare), "Quinn Wuest")]
-    [SouvenirManualQuestion("What digit was initially in the center?")]
+    [Handler("MysticSquareModule", "Mystic Square", typeof(SMysticSquare), "Quinn Wuest")]
+    [ManualQuestion("What digit was initially in the center?")]
     private IEnumerator<SouvenirInstruction> ProcessMysticSquare(ModuleData module)
     {
         var comp = GetComponent(module, "MysticSquareModule");

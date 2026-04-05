@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMorseWoF
 {
-    [SouvenirQuestion("What was the display in the {1} stage on {0}?", ThreeColumns6Answers, ExampleAnswers = ["COULD", "SMALL", "BELOW", "LARGE", "STUDY", "FIRST"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the display in the {1} stage on {0}?", ThreeColumns6Answers, ExampleAnswers = ["COULD", "SMALL", "BELOW", "LARGE", "STUDY", "FIRST"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Displays
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("morseWoF", ".--/---/..-.", typeof(SMorseWoF), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the display words?")]
+    [Handler("morseWoF", ".--/---/..-.", typeof(SMorseWoF), "Quinn Wuest")]
+    [ManualQuestion("What were the display words?")]
     private IEnumerator<SouvenirInstruction> ProcessMorseWoF(ModuleData module)
     {
         var comp = GetComponent(module, "MWoFScript");

@@ -7,20 +7,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SIdentityParade
 {
-    [SouvenirQuestion("Which hair color {1} listed in {0}?", TwoColumns4Answers, "Black", "Blonde", "Brown", "Grey", "Red", "White", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which hair color {1} listed in {0}?", TwoColumns4Answers, "Black", "Blonde", "Brown", "Grey", "Red", "White", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     HairColors,
 
-    [SouvenirQuestion("Which build {1} listed in {0}?", TwoColumns4Answers, "Fat", "Hunched", "Muscular", "Short", "Slim", "Tall", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which build {1} listed in {0}?", TwoColumns4Answers, "Fat", "Hunched", "Muscular", "Short", "Slim", "Tall", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Builds,
 
-    [SouvenirQuestion("Which attire {1} listed in {0}?", TwoColumns4Answers, "Blazer", "Hoodie", "Jumper", "Suit", "T-shirt", "Tank top", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which attire {1} listed in {0}?", TwoColumns4Answers, "Blazer", "Hoodie", "Jumper", "Suit", "T-shirt", "Tank top", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Attires
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("identityParade", "Identity Parade", typeof(SIdentityParade), "Timwi")]
-    [SouvenirManualQuestion("What were the hair colors, builds and attires listed on the module?")]
+    [Handler("identityParade", "Identity Parade", typeof(SIdentityParade), "Timwi")]
+    [ManualQuestion("What were the hair colors, builds and attires listed on the module?")]
     private IEnumerator<SouvenirInstruction> ProcessIdentityParade(ModuleData module)
     {
         var comp = GetComponent(module, "identityParadeScript");

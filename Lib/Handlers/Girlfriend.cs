@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SGirlfriend
 {
-    [SouvenirQuestion("What was the language sung in {0}?", TwoColumns4Answers, "English", "French", "German", "Italian", "Japanese", "Mandarin", "Portuguese", "Spanish")]
+    [Question("What was the language sung in {0}?", TwoColumns4Answers, "English", "French", "German", "Italian", "Japanese", "Mandarin", "Portuguese", "Spanish")]
     Language
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Girlfriend", "Girlfriend", typeof(SGirlfriend), "Hawker")]
-    [SouvenirManualQuestion("What was the chosen language?")]
+    [Handler("Girlfriend", "Girlfriend", typeof(SGirlfriend), "Hawker")]
+    [ManualQuestion("What was the chosen language?")]
     private IEnumerator<SouvenirInstruction> ProcessGirlfriend(ModuleData module)
     {
         var comp = GetComponent(module, "Girlfriend");

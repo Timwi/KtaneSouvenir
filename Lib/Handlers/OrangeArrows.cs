@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SOrangeArrows
 {
-    [SouvenirQuestion("What was the {1} arrow on the display of the {2} stage of {0}?", TwoColumns4Answers, "Up", "Right", "Down", "Left", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the {1} arrow on the display of the {2} stage of {0}?", TwoColumns4Answers, "Up", "Right", "Down", "Left", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     Sequences
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("orangeArrowsModule", "Orange Arrows", typeof(SOrangeArrows), "kavinkul")]
-    [SouvenirManualQuestion("What were the first three arrows on the display in each stage?")]
+    [Handler("orangeArrowsModule", "Orange Arrows", typeof(SOrangeArrows), "kavinkul")]
+    [ManualQuestion("What were the first three arrows on the display in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessOrangeArrows(ModuleData module)
     {
         var comp = GetComponent(module, "OrangeArrowsScript");

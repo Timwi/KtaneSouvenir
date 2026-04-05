@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDividedSquares
 {
-    [SouvenirQuestion("What color was {1} while pressing it in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Black", "White", Arguments = ["the square", "the correct square"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
+    [Question("What color was {1} while pressing it in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Black", "White", Arguments = ["the square", "the correct square"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("DividedSquaresModule", "Divided Squares", typeof(SDividedSquares), "Anonymous")]
-    [SouvenirManualQuestion("What color was shown when the correct square was pressed?")]
+    [Handler("DividedSquaresModule", "Divided Squares", typeof(SDividedSquares), "Anonymous")]
+    [ManualQuestion("What color was shown when the correct square was pressed?")]
     private IEnumerator<SouvenirInstruction> ProcessDividedSquares(ModuleData module)
     {
         yield return WaitForSolve;

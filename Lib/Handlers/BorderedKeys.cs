@@ -6,28 +6,28 @@ using static Souvenir.AnswerLayout;
 
 public enum SBorderedKeys
 {
-    [SouvenirQuestion("What was this key’s border color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was this key’s border color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     BorderColor,
 
-    [SouvenirQuestion("What was the digit displayed when this key was pressed in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What was the digit displayed when this key was pressed in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
     [AnswerGenerator.Integers(1, 6)]
     Digit,
 
-    [SouvenirQuestion("What was this key’s key color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was this key’s key color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     KeyColor,
 
-    [SouvenirQuestion("What was this key’s label when it was pressed in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What was this key’s label when it was pressed in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
     [AnswerGenerator.Integers(1, 6)]
     Label,
 
-    [SouvenirQuestion("What was this key’s label color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was this key’s label color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     LabelColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("borderedKeys", "Bordered Keys", typeof(SBorderedKeys), "Hawker")]
-    [SouvenirManualQuestion("What were the border color, displayed digit, key color, label and label color when you pressed each key?")]
+    [Handler("borderedKeys", "Bordered Keys", typeof(SBorderedKeys), "Hawker")]
+    [ManualQuestion("What were the border color, displayed digit, key color, label and label color when you pressed each key?")]
     private IEnumerator<SouvenirInstruction> ProcessBorderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "BorderedKeysScript");

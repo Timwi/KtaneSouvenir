@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SStars
 {
-    [SouvenirQuestion("What was the digit in the center of {0}?", ThreeColumns6Answers)]
+    [Question("What was the digit in the center of {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9)]
     Center
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("stars", "Stars", typeof(SStars), "BigCrunch22")]
-    [SouvenirManualQuestion("What was the digit in the center?")]
+    [Handler("stars", "Stars", typeof(SStars), "BigCrunch22")]
+    [ManualQuestion("What was the digit in the center?")]
     private IEnumerator<SouvenirInstruction> ProcessStars(ModuleData module)
     {
         var comp = GetComponent(module, "Stars2Script");

@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMaze3
 {
-    [SouvenirQuestion("What was the color of the starting face in {0}?", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange", TranslateAnswers = true)]
+    [Question("What was the color of the starting face in {0}?", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange", TranslateAnswers = true)]
     StartingFace
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("maze3", "Maze³", typeof(SMaze3), "luisdiogo98")]
-    [SouvenirManualQuestion("What was the color of the starting face?")]
+    [Handler("maze3", "Maze³", typeof(SMaze3), "luisdiogo98")]
+    [ManualQuestion("What was the color of the starting face?")]
     private IEnumerator<SouvenirInstruction> ProcessMaze3(ModuleData module)
     {
         var comp = GetComponent(module, "maze3Script");

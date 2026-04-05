@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCheepCheckout
 {
-    [SouvenirQuestion("Which bird {1} present in {0}?", OneColumn4Answers, "Auklet", "Bluebird", "Chickadee", "Dove", "Egret", "Finch", "Godwit", "Hummingbird", "Ibis", "Jay", "Kinglet", "Loon", "Magpie", "Nuthatch", "Oriole", "Pipit", "Quail", "Raven", "Shrike", "Thrush", "Umbrellabird", "Vireo", "Warbler", "Xantus’s Hummingbird", "Yellowlegs", "Zigzag Heron", TranslateAnswers = true, Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which bird {1} present in {0}?", OneColumn4Answers, "Auklet", "Bluebird", "Chickadee", "Dove", "Egret", "Finch", "Godwit", "Hummingbird", "Ibis", "Jay", "Kinglet", "Loon", "Magpie", "Nuthatch", "Oriole", "Pipit", "Quail", "Raven", "Shrike", "Thrush", "Umbrellabird", "Vireo", "Warbler", "Xantus’s Hummingbird", "Yellowlegs", "Zigzag Heron", TranslateAnswers = true, Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Birds
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("cheepCheckout", "Cheep Checkout", typeof(SCheepCheckout), "BigCrunch22")]
-    [SouvenirManualQuestion("Which birds were present?")]
+    [Handler("cheepCheckout", "Cheep Checkout", typeof(SCheepCheckout), "BigCrunch22")]
+    [ManualQuestion("Which birds were present?")]
     private IEnumerator<SouvenirInstruction> ProcessCheepCheckout(ModuleData module)
     {
         var comp = GetComponent(module, "cheepCheckoutScript");

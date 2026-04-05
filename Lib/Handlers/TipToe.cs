@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum STipToe
 {
-    [SouvenirQuestion("Which of these squares was safe in row {1} in {0}?", ThreeColumns6Answers, Arguments = ["9", "10"], ArgumentGroupSize = 1)]
+    [Question("Which of these squares was safe in row {1} in {0}?", ThreeColumns6Answers, Arguments = ["9", "10"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     SafeSquares
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TipToe", "Tip Toe", typeof(STipToe), "Kuro")]
-    [SouvenirManualQuestion("Which squares were safe in rows 9 and 10?")]
+    [Handler("TipToe", "Tip Toe", typeof(STipToe), "Kuro")]
+    [ManualQuestion("Which squares were safe in rows 9 and 10?")]
     private IEnumerator<SouvenirInstruction> ProcessTipToe(ModuleData module)
     {
         var comp = GetComponent(module, "Main");

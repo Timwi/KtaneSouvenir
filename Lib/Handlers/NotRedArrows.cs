@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotRedArrows
 {
-    [SouvenirQuestion("What was the starting number in {0}?", ThreeColumns6Answers)]
+    [Question("What was the starting number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(10, 99, 1, "00")]
     Start
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notRedArrowsModule", "Not Red Arrows", typeof(SNotRedArrows), "Anonymous")]
-    [SouvenirManualQuestion("What was the starting number?")]
+    [Handler("notRedArrowsModule", "Not Red Arrows", typeof(SNotRedArrows), "Anonymous")]
+    [ManualQuestion("What was the starting number?")]
     private IEnumerator<SouvenirInstruction> ProcessNotRedArrows(ModuleData module)
     {
         var comp = GetComponent(module, "NotRedArrowsScript");

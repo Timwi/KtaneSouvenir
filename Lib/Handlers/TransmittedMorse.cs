@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum STransmittedMorse
 {
-    [SouvenirQuestion("What was the {1} received message in {0}?", TwoColumns4Answers, "BOMBS", "SHORT", "UNDERSTOOD", "W1RES", "SOS", "MANUAL", "STRIKED", "WEREDEAD", "GOTASOUV", "EXPLOSION", "EXPERT", "RIP", "LISTEN", "DETONATE", "ROGER", "WELOSTBRO", "AMIDEAF", "KEYPAD", "DEFUSER", "NUCLEARWEAPONS", "KAPPA", "DELTA", "PI3", "SMOKE", "SENDHELP", "LOST", "SWAN", "NOMNOM", "BLUE", "BOOM", "CANCEL", "DEFUSED", "BROKEN", "MEMORY", "R6S8T", "TRANSMISSION", "UMWHAT", "GREEN", "EQUATIONSX", "RED", "ENERGY", "JESTER", "CONTACT", "LONG", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} received message in {0}?", TwoColumns4Answers, "BOMBS", "SHORT", "UNDERSTOOD", "W1RES", "SOS", "MANUAL", "STRIKED", "WEREDEAD", "GOTASOUV", "EXPLOSION", "EXPERT", "RIP", "LISTEN", "DETONATE", "ROGER", "WELOSTBRO", "AMIDEAF", "KEYPAD", "DEFUSER", "NUCLEARWEAPONS", "KAPPA", "DELTA", "PI3", "SMOKE", "SENDHELP", "LOST", "SWAN", "NOMNOM", "BLUE", "BOOM", "CANCEL", "DEFUSED", "BROKEN", "MEMORY", "R6S8T", "TRANSMISSION", "UMWHAT", "GREEN", "EQUATIONSX", "RED", "ENERGY", "JESTER", "CONTACT", "LONG", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Message
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("transmittedMorseModule", "Transmitted Morse", typeof(STransmittedMorse), "kavinkul")]
-    [SouvenirManualQuestion("What were the received messages?")]
+    [Handler("transmittedMorseModule", "Transmitted Morse", typeof(STransmittedMorse), "kavinkul")]
+    [ManualQuestion("What were the received messages?")]
     private IEnumerator<SouvenirInstruction> ProcessTransmittedMorse(ModuleData module)
     {
         var comp = GetComponent(module, "TransmittedMorseScript");

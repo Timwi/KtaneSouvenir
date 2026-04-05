@@ -4,21 +4,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SDNAMutation
 {
-    [SouvenirQuestion("What was the letter of the {1} given nucleotide in {0}?", TwoColumns4Answers, "G", "C", "A", "T", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the letter of the {1} given nucleotide in {0}?", TwoColumns4Answers, "G", "C", "A", "T", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Letter,
 
-    [SouvenirQuestion("What was the color of the {1} given nucleotide in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the color of the {1} given nucleotide in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     NucleotideColor,
 
-    [SouvenirQuestion("What was the color of the {1} given DNA strand in {0}?", TwoColumns4Answers, "Green", "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the color of the {1} given DNA strand in {0}?", TwoColumns4Answers, "Green", "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     StrandColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("DNAMutation", "DNA Mutation", typeof(SDNAMutation), "thunder725")]
-    [SouvenirManualQuestion("What were the DNA strands’ colors?")]
-    [SouvenirManualQuestion("What were the given nucleotides’ letters and colors?")]
+    [Handler("DNAMutation", "DNA Mutation", typeof(SDNAMutation), "thunder725")]
+    [ManualQuestion("What were the DNA strands’ colors?")]
+    [ManualQuestion("What were the given nucleotides’ letters and colors?")]
     private IEnumerator<SouvenirInstruction> ProcessDNAMutation(ModuleData module)
     {
         var comp = GetComponent(module, "DNAMutationScript");

@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCARPS
 {
-    [SouvenirQuestion("What color was this cell initially in {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Black", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What color was this cell initially in {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Black", UsesQuestionSprite = true, TranslateAnswers = true)]
     Cell
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("caRPS", "CA-RPS", typeof(SCARPS), "Anonymous")]
-    [SouvenirManualQuestion("What were the starting colors?")]
+    [Handler("caRPS", "CA-RPS", typeof(SCARPS), "Anonymous")]
+    [ManualQuestion("What were the starting colors?")]
     private IEnumerator<SouvenirInstruction> ProcessCARPS(ModuleData module)
     {
         yield return WaitForSolve;

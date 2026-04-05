@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SUncoloredSquares
 {
-    [SouvenirQuestion("What was the {1} color in reading order used in the first stage of {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} color in reading order used in the first stage of {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     FirstStage
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("UncoloredSquaresModule", "Uncolored Squares", typeof(SUncoloredSquares), "Timwi")]
-    [SouvenirManualQuestion("What were the colors used in the first stage?")]
+    [Handler("UncoloredSquaresModule", "Uncolored Squares", typeof(SUncoloredSquares), "Timwi")]
+    [ManualQuestion("What were the colors used in the first stage?")]
     private IEnumerator<SouvenirInstruction> ProcessUncoloredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "UncoloredSquaresModule");

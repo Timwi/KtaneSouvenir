@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SLadders
 {
-    [SouvenirQuestion("Which color was present on the second ladder in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
+    [Question("Which color was present on the second ladder in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
     Stage2Colors,
 
-    [SouvenirQuestion("What color was missing on the third ladder in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
+    [Question("What color was missing on the third ladder in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
     Stage3Missing
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ladders", "Ladders", typeof(SLadders), "tandyCake")]
-    [SouvenirManualQuestion("Which colors were present on the second ladder?")]
-    [SouvenirManualQuestion("What color was missing on the third ladder?")]
+    [Handler("ladders", "Ladders", typeof(SLadders), "tandyCake")]
+    [ManualQuestion("Which colors were present on the second ladder?")]
+    [ManualQuestion("What color was missing on the third ladder?")]
     private IEnumerator<SouvenirInstruction> ProcessLadders(ModuleData module)
     {
         var comp = GetComponent(module, "LaddersScript");

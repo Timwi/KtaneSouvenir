@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMetapuzzle
 {
-    [SouvenirQuestion("What was the final answer in {0}?", TwoColumns4Answers, ExampleAnswers = ["GIBBONS", "GIRAFFE", "MISUSED", "RUSHING", "DUSTMAN", "STATICS"])]
+    [Question("What was the final answer in {0}?", TwoColumns4Answers, ExampleAnswers = ["GIBBONS", "GIRAFFE", "MISUSED", "RUSHING", "DUSTMAN", "STATICS"])]
     Answer
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("metapuzzle", "Metapuzzle", typeof(SMetapuzzle), "GoodHood")]
-    [SouvenirManualQuestion("What was the final answer?")]
+    [Handler("metapuzzle", "Metapuzzle", typeof(SMetapuzzle), "GoodHood")]
+    [ManualQuestion("What was the final answer?")]
     private IEnumerator<SouvenirInstruction> ProcessMetapuzzle(ModuleData module)
     {
         var comp = GetComponent(module, "metapuzzleScript");

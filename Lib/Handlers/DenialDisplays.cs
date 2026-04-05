@@ -6,17 +6,17 @@ using Rnd = UnityEngine.Random;
 
 public enum SDenialDisplays
 {
-    [SouvenirQuestion("What number was initially shown on Display {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["1", "22", "333", "4", "55", "666", "7", "88", "999"], Arguments = ["A", "B", "C", "D", "E"], ArgumentGroupSize = 1)]
+    [Question("What number was initially shown on Display {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["1", "22", "333", "4", "55", "666", "7", "88", "999"], Arguments = ["A", "B", "C", "D", "E"], ArgumentGroupSize = 1)]
     QDisplays,
 
-    [SouvenirDiscriminator("the Denial Displays where {0} was initially shown on Display {1}", Arguments = ["0", "A"], ArgumentGroupSize = 2)]
+    [Discriminator("the Denial Displays where {0} was initially shown on Display {1}", Arguments = ["0", "A"], ArgumentGroupSize = 2)]
     DDisplays
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("DenialDisplaysModule", "Denial Displays", typeof(SDenialDisplays), "Quinn Wuest")]
-    [SouvenirManualQuestion("What was initially on the displays?")]
+    [Handler("DenialDisplaysModule", "Denial Displays", typeof(SDenialDisplays), "Quinn Wuest")]
+    [ManualQuestion("What was initially on the displays?")]
     private IEnumerator<SouvenirInstruction> ProcessDenialDisplays(ModuleData module)
     {
         var comp = GetComponent(module, "DenialDisplaysScript");

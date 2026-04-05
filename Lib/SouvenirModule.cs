@@ -17,7 +17,7 @@ using Rnd = UnityEngine.Random;
 /// </summary>
 public partial class SouvenirModule : MonoBehaviour
 {
-    private const string _version = "8.6";
+    private const string _version = "8.7";
 
     #region Fields
     public KMBombInfo Bomb;
@@ -129,13 +129,13 @@ public partial class SouvenirModule : MonoBehaviour
     internal int _moduleId;
 
     // Used in TestHarness only
-    private SouvenirHandlerAttribute[] _exampleModules;
+    private HandlerAttribute[] _exampleModules;
     private int _curExampleModule = 0;
-    private SouvenirQuestionAttribute[] _exampleQuestions;
+    private QuestionAttribute[] _exampleQuestions;
     private int _curExampleQuestion = 0;
     private string[][] _exampleQuestionArguments;
     private int _curExampleQuestionArgument = 0;
-    private SouvenirDiscriminatorAttribute[] _exampleDiscriminators;
+    private DiscriminatorAttribute[] _exampleDiscriminators;
     private int _curExampleDiscriminator = 0;   // 0 = no discriminator; 1 = solve count (if not boss); 2 onwards = custom
     private string[][] _exampleDiscriminatorArguments;
     private int _curExampleDiscriminatorArgument = 0;
@@ -406,7 +406,7 @@ public partial class SouvenirModule : MonoBehaviour
         _curExampleModule = (moduleIndex % _exampleModules.Length + _exampleModules.Length) % _exampleModules.Length;
 
         var enumType = _exampleModules[_curExampleModule].EnumType;
-        _exampleDiscriminators = (_exampleModules[_curExampleModule].IsBossModule ? new SouvenirDiscriminatorAttribute[] { null } : [null, null])
+        _exampleDiscriminators = (_exampleModules[_curExampleModule].IsBossModule ? new DiscriminatorAttribute[] { null } : [null, null])
             .Concat(Ut.Attributes.Where(kvp => kvp.Key.GetType() == enumType && kvp.Value.d != null).Select(kvp => kvp.Value.d)).ToArray();
         _curExampleDiscriminator = 0;
         _exampleQuestions = Ut.Attributes.Where(kvp => kvp.Key.GetType() == enumType && kvp.Value.q != null).Select(kvp => kvp.Value.q).ToArray();
@@ -1125,7 +1125,7 @@ public partial class SouvenirModule : MonoBehaviour
     private QuestionStump question(Enum question, Sprite entireQuestionSprite, string[] args = null) =>
         new SpriteQuestionStump(question, this, args, entireQuestionSprite);
 
-    private string formatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved) => _translation != null
+    private string formatModuleName(QuestionAttribute qAttr, bool addSolveCount, int numSolved) => _translation != null
         ? _translation.FormatModuleName(qAttr, addSolveCount, numSolved)
         : addSolveCount ? $"the {qAttr.Handler.ModuleName} you solved {Ordinal(numSolved)}" : qAttr.Handler.ModuleNameWithThe;
 

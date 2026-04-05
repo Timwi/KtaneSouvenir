@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPerspectivePegs
 {
-    [SouvenirQuestion("What was the {1} color in the initial sequence in {0}?", ThreeColumns6Answers, "red", "yellow", "green", "blue", "purple", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} color in the initial sequence in {0}?", ThreeColumns6Answers, "red", "yellow", "green", "blue", "purple", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     ColorSequence
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("spwizPerspectivePegs", "Perspective Pegs", typeof(SPerspectivePegs), "Andrio Celos")]
-    [SouvenirManualQuestion("What was the initial color sequence?")]
+    [Handler("spwizPerspectivePegs", "Perspective Pegs", typeof(SPerspectivePegs), "Andrio Celos")]
+    [ManualQuestion("What was the initial color sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessPerspectivePegs(ModuleData module)
     {
         var comp = GetComponent(module, "PerspectivePegsModule");

@@ -5,20 +5,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SMSeq
 {
-    [SouvenirQuestion("What was the {1} obtained digit in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} obtained digit in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 9)]
     Obtained,
 
-    [SouvenirQuestion("What was the final number from the iteration process in {0}?", ThreeColumns6Answers)]
+    [Question("What was the final number from the iteration process in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(25, 225)]
     Submitted
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("mSeq", "M-Seq", typeof(SMSeq), "tandyCake")]
-    [SouvenirManualQuestion("What were the obtained digits?")]
-    [SouvenirManualQuestion("What was the final number from the iteration process?")]
+    [Handler("mSeq", "M-Seq", typeof(SMSeq), "tandyCake")]
+    [ManualQuestion("What were the obtained digits?")]
+    [ManualQuestion("What was the final number from the iteration process?")]
     private IEnumerator<SouvenirInstruction> ProcessMSeq(ModuleData module)
     {
         var comp = GetComponent(module, "MSeqScript");

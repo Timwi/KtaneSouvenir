@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBigBean
 {
-    [SouvenirQuestion("What was the bean in {0}?", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", TranslateAnswers = true)]
+    [Question("What was the bean in {0}?", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", TranslateAnswers = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("bigBean", "Big Bean", typeof(SBigBean), "Anonymous")]
-    [SouvenirManualQuestion("What color and wobbliness was the bean?")]
+    [Handler("bigBean", "Big Bean", typeof(SBigBean), "Anonymous")]
+    [ManualQuestion("What color and wobbliness was the bean?")]
     private IEnumerator<SouvenirInstruction> ProcessBigBean(ModuleData module)
     {
         var comp = GetComponent(module, "bigBeanScript");

@@ -5,23 +5,23 @@ using static Souvenir.AnswerLayout;
 
 public enum SCoffeebucks
 {
-    [SouvenirQuestion("What was the last customer’s preferred sugar content in {0}?", OneColumn4Answers, "Sugar is murder", "Just a bit", "Loads", "Diabetic in-waiting")]
+    [Question("What was the last customer’s preferred sugar content in {0}?", OneColumn4Answers, "Sugar is murder", "Just a bit", "Loads", "Diabetic in-waiting")]
     Sugar,
 
-    [SouvenirQuestion("What was the last customer’s preferred time of day in {0}?", TwoColumns4Answers, "Morning", "Lunchtime", "Afternoon", "Evening")]
+    [Question("What was the last customer’s preferred time of day in {0}?", TwoColumns4Answers, "Morning", "Lunchtime", "Afternoon", "Evening")]
     Time,
 
-    [SouvenirQuestion("What was the last customer’s preferred stress-level in {0}?", TwoColumns4Answers, "Calm", "Agitated", "Stressed", "Murderous")]
+    [Question("What was the last customer’s preferred stress-level in {0}?", TwoColumns4Answers, "Calm", "Agitated", "Stressed", "Murderous")]
     Stress,
 
-    [SouvenirQuestion("What was the last customer’s preferred size in {0}?", TwoColumns4Answers, "Short", "Tall", "Grande", "Venti")]
+    [Question("What was the last customer’s preferred size in {0}?", TwoColumns4Answers, "Short", "Tall", "Grande", "Venti")]
     Size
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("coffeebucks", "Coffeebucks", typeof(SCoffeebucks), "Espik")]
-    [SouvenirManualQuestion("What was the last customer’s preferred sugar content, time of day, stress level, and size?")]
+    [Handler("coffeebucks", "Coffeebucks", typeof(SCoffeebucks), "Espik")]
+    [ManualQuestion("What was the last customer’s preferred sugar content, time of day, stress level, and size?")]
     private IEnumerator<SouvenirInstruction> ProcessCoffeebucks(ModuleData module)
     {
         var comp = GetComponent(module, "coffeebucksScript");

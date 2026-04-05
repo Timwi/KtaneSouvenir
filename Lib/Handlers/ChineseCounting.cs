@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SChineseCounting
 {
-    [SouvenirQuestion("What color was the {1} LED in {0}?", TwoColumns4Answers, "White", "Red", "Green", "Orange", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
+    [Question("What color was the {1} LED in {0}?", TwoColumns4Answers, "White", "Red", "Green", "Orange", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
     LED
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("chineseCounting", "Chinese Counting", typeof(SChineseCounting), "TasThiluna")]
-    [SouvenirManualQuestion("What colors were the LEDs?")]
+    [Handler("chineseCounting", "Chinese Counting", typeof(SChineseCounting), "TasThiluna")]
+    [ManualQuestion("What colors were the LEDs?")]
     private IEnumerator<SouvenirInstruction> ProcessChineseCounting(ModuleData module)
     {
         var comp = GetComponent(module, "chineseCounting");

@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SDivisibleNumbers
 {
-    [SouvenirQuestion("What was the {1} stage’s number in {0}?", ThreeColumns6Answers, null, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} stage’s number in {0}?", ThreeColumns6Answers, null, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9999)]
     Numbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("divisibleNumbers", "Divisible Numbers", typeof(SDivisibleNumbers), "shortc1rcuit")]
-    [SouvenirManualQuestion("What were the numbers in each stage?")]
+    [Handler("divisibleNumbers", "Divisible Numbers", typeof(SDivisibleNumbers), "shortc1rcuit")]
+    [ManualQuestion("What were the numbers in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDivisibleNumbers(ModuleData module)
     {
         var comp = GetComponent(module, "DivisableNumbers");

@@ -6,23 +6,23 @@ using static Souvenir.AnswerLayout;
 
 public enum SRPSJudging
 {
-    [SouvenirQuestion("Which round did the {1} team {2} in {0}?", ThreeColumns6Answers, ExampleAnswers = [QandA.Ordinal], Arguments = ["red", "win", "blue", "win", "red", "lose", "blue", "lose"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    [Question("Which round did the {1} team {2} in {0}?", ThreeColumns6Answers, ExampleAnswers = [QandA.Ordinal], Arguments = ["red", "win", "blue", "win", "red", "lose", "blue", "lose"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
     QWinner,
 
-    [SouvenirQuestion("Which round was a draw in {0}?", ThreeColumns6Answers, ExampleAnswers = [QandA.Ordinal])]
+    [Question("Which round was a draw in {0}?", ThreeColumns6Answers, ExampleAnswers = [QandA.Ordinal])]
     QDraw,
 
-    [SouvenirDiscriminator("the RPS Judging where the {0} team {1} the {2} round", Arguments = ["red", "won", QandA.Ordinal, "red", "lost", QandA.Ordinal, "blue", "won", QandA.Ordinal, "blue", "lost", QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, true, false])]
+    [Discriminator("the RPS Judging where the {0} team {1} the {2} round", Arguments = ["red", "won", QandA.Ordinal, "red", "lost", QandA.Ordinal, "blue", "won", QandA.Ordinal, "blue", "lost", QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, true, false])]
     DWinner,
 
-    [SouvenirDiscriminator("the RPS Judging with a draw in the {0} round", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Discriminator("the RPS Judging with a draw in the {0} round", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DDraw
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("RPSJudging", "RPS Judging", typeof(SRPSJudging), "Anonymous", IsBossModule = true)]
-    [SouvenirManualQuestion("Which rounds did each team win/lose/tie?")]
+    [Handler("RPSJudging", "RPS Judging", typeof(SRPSJudging), "Anonymous", IsBossModule = true)]
+    [ManualQuestion("Which rounds did each team win/lose/tie?")]
     private IEnumerator<SouvenirInstruction> ProcessRPSJudging(ModuleData module)
     {
         var comp = GetComponent(module, "RPSJudgingScript");

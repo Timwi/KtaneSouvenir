@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SClockCounter
 {
-    [SouvenirQuestion("Which arrow was shown in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "ClockCounterSprites")]
+    [Question("Which arrow was shown in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "ClockCounterSprites")]
     Arrows
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("clockCounter", "↻↺", typeof(SClockCounter), "Anonymous")]
-    [SouvenirManualQuestion("Which arrows were shown?")]
+    [Handler("clockCounter", "↻↺", typeof(SClockCounter), "Anonymous")]
+    [ManualQuestion("Which arrows were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessClockCounter(ModuleData module)
     {
         yield return WaitForSolve;

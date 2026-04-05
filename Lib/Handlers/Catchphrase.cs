@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCatchphrase
 {
-    [SouvenirQuestion("What was the colour of the {1} panel in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Orange", "Purple", "Yellow", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
+    [Question("What was the colour of the {1} panel in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Orange", "Purple", "Yellow", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     Colour
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("catchphrase", "Catchphrase", typeof(SCatchphrase), "GoodHood")]
-    [SouvenirManualQuestion("What were the colours of the panels?")]
+    [Handler("catchphrase", "Catchphrase", typeof(SCatchphrase), "GoodHood")]
+    [ManualQuestion("What were the colours of the panels?")]
     private IEnumerator<SouvenirInstruction> ProcessCatchphrase(ModuleData module)
     {
         var comp = GetComponent(module, "catchphraseScript");

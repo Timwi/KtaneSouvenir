@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SGarfieldKart
 {
-    [SouvenirQuestion("What was the track in {0}?", OneColumn4Answers, ExampleAnswers = ["Play Misty for Me", "Sneak-A-Peak", "Blazing Oasis", "Pastacosi Factory", "Mysterious Temple", "Prohibited Site"])]
+    [Question("What was the track in {0}?", OneColumn4Answers, ExampleAnswers = ["Play Misty for Me", "Sneak-A-Peak", "Blazing Oasis", "Pastacosi Factory", "Mysterious Temple", "Prohibited Site"])]
     Track,
 
-    [SouvenirQuestion("How many puzzle pieces did {0} have?", TwoColumns4Answers, "0", "1", "2", "3")]
+    [Question("How many puzzle pieces did {0} have?", TwoColumns4Answers, "0", "1", "2", "3")]
     PuzzleCount
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("garfieldKart", "Garfield Kart", typeof(SGarfieldKart), "Hawker")]
-    [SouvenirManualQuestion("What was the name of the track?")]
-    [SouvenirManualQuestion("How many puzzle pieces were there?")]
+    [Handler("garfieldKart", "Garfield Kart", typeof(SGarfieldKart), "Hawker")]
+    [ManualQuestion("What was the name of the track?")]
+    [ManualQuestion("How many puzzle pieces were there?")]
     private IEnumerator<SouvenirInstruction> ProcessGarfieldKart(ModuleData module)
     {
         var comp = GetComponent(module, "garfieldKartScript");

@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SReformedRoleReversal
 {
-    [SouvenirQuestion("Which condition was the solving condition in {0}?", ThreeColumns6Answers, "second", "third", "4th", "5th", "6th", "7th", "8th", TranslateAnswers = true)]
+    [Question("Which condition was the solving condition in {0}?", ThreeColumns6Answers, "second", "third", "4th", "5th", "6th", "7th", "8th", TranslateAnswers = true)]
     Condition,
 
-    [SouvenirQuestion("What color was the {1} wire in {0}?", ThreeColumns6Answers, "Navy", "Lapis", "Blue", "Sky", "Teal", "Plum", "Violet", "Purple", "Magenta", "Lavender", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the {1} wire in {0}?", ThreeColumns6Answers, "Navy", "Lapis", "Blue", "Sky", "Teal", "Plum", "Violet", "Purple", "Magenta", "Lavender", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Wire
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ReformedRoleReversal", "Reformed Role Reversal", typeof(SReformedRoleReversal), "Emik")]
-    [SouvenirManualQuestion("What did the solving condition state?")]
-    [SouvenirManualQuestion("What were the wire colors?")]
+    [Handler("ReformedRoleReversal", "Reformed Role Reversal", typeof(SReformedRoleReversal), "Emik")]
+    [ManualQuestion("What did the solving condition state?")]
+    [ManualQuestion("What were the wire colors?")]
     private IEnumerator<SouvenirInstruction> ProcessReformedRoleReversal(ModuleData module)
     {
         var comp = GetComponent(module, "ReformedRoleReversal");

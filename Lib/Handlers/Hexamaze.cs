@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SHexamaze
 {
-    [SouvenirQuestion("What was the color of the pawn in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink", TranslateAnswers = true)]
+    [Question("What was the color of the pawn in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink", TranslateAnswers = true)]
     PawnColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("HexamazeModule", "Hexamaze", typeof(SHexamaze), "Timwi")]
-    [SouvenirManualQuestion("What was the color of the pawn?")]
+    [Handler("HexamazeModule", "Hexamaze", typeof(SHexamaze), "Timwi")]
+    [ManualQuestion("What was the color of the pawn?")]
     private IEnumerator<SouvenirInstruction> ProcessHexamaze(ModuleData module)
     {
         var comp = GetComponent(module, "HexamazeModule");

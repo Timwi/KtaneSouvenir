@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SYellowArrows
 {
-    [SouvenirQuestion("What was the starting row letter in {0}?", ThreeColumns6Answers)]
+    [Question("What was the starting row letter in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings('A', 'Z')]
     StartingRow
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("yellowArrowsModule", "Yellow Arrows", typeof(SYellowArrows), "kavinkul")]
-    [SouvenirManualQuestion("What was the starting row letter?")]
+    [Handler("yellowArrowsModule", "Yellow Arrows", typeof(SYellowArrows), "kavinkul")]
+    [ManualQuestion("What was the starting row letter?")]
     private IEnumerator<SouvenirInstruction> ProcessYellowArrows(ModuleData module)
     {
         var comp = GetComponent(module, "YellowArrowsScript");

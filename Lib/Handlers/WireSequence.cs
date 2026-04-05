@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SWireSequence
 {
-    [SouvenirQuestion("How many {1} wires were there in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "blue", "black"], ArgumentGroupSize = 1)]
+    [Question("How many {1} wires were there in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "blue", "black"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     QColorCount,
 
-    [SouvenirDiscriminator("the Wire Sequence that had {0} {1}", Arguments = ["1", "red wire", "1", "blue wire", "1", "black wire", "3", "red wires", "4", "blue wires", "5", "black wires",], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Discriminator("the Wire Sequence that had {0} {1}", Arguments = ["1", "red wire", "1", "blue wire", "1", "black wire", "3", "red wires", "4", "blue wires", "5", "black wires",], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     DColorCount,
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("WireSequence", "Wire Sequence", typeof(SWireSequence), "Andrio Celos")]
-    [SouvenirManualQuestion("How many wires of each color were there?")]
+    [Handler("WireSequence", "Wire Sequence", typeof(SWireSequence), "Andrio Celos")]
+    [ManualQuestion("How many wires of each color were there?")]
     private IEnumerator<SouvenirInstruction> ProcessWireSequence(ModuleData module)
     {
         var comp = GetComponent(module, "WireSequenceComponent");

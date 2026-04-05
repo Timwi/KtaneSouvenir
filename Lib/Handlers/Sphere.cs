@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSphere
 {
-    [SouvenirQuestion("What was the {1} flashed color in {0}?", ThreeColumns6Answers, "red", "blue", "green", "orange", "pink", "purple", "grey", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} flashed color in {0}?", ThreeColumns6Answers, "red", "blue", "green", "orange", "pink", "purple", "grey", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("sphere", "Sphere", typeof(SSphere), "luisdiogo98", AddThe = true)]
-    [SouvenirManualQuestion("What were the flashed colors?")]
+    [Handler("sphere", "Sphere", typeof(SSphere), "luisdiogo98", AddThe = true)]
+    [ManualQuestion("What were the flashed colors?")]
     private IEnumerator<SouvenirInstruction> ProcessSphere(ModuleData module)
     {
         var comp = GetComponent(module, "theSphereScript");

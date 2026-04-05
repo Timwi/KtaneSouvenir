@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SLEDMath
 {
-    [SouvenirQuestion("What color was {1} in {0}?", TwoColumns4Answers, "Red", "Blue", "Yellow", "Green", TranslateAnswers = true, Arguments = ["LED A", "LED B", "the operator LED"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What color was {1} in {0}?", TwoColumns4Answers, "Red", "Blue", "Yellow", "Green", TranslateAnswers = true, Arguments = ["LED A", "LED B", "the operator LED"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Lights
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("lgndLEDMath", "LED Math", typeof(SLEDMath), "TasThiluna")]
-    [SouvenirManualQuestion("What were the LED colors?")]
+    [Handler("lgndLEDMath", "LED Math", typeof(SLEDMath), "TasThiluna")]
+    [ManualQuestion("What were the LED colors?")]
     private IEnumerator<SouvenirInstruction> ProcessLEDMath(ModuleData module)
     {
         var comp = GetComponent(module, "LEDMathScript");

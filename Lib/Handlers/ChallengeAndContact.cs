@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SChallengeAndContact
 {
-    [SouvenirQuestion("What was the {1} displayed letter in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} displayed letter in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings('a', 'z')]
     Letters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("challengeAndContact", "Challenge & Contact", typeof(SChallengeAndContact), "Espik")]
-    [SouvenirManualQuestion("What were the displayed letters?")]
+    [Handler("challengeAndContact", "Challenge & Contact", typeof(SChallengeAndContact), "Espik")]
+    [ManualQuestion("What were the displayed letters?")]
     private IEnumerator<SouvenirInstruction> ProcessChallengeAndContact(ModuleData module)
     {
         var comp = GetComponent(module, "moduleScript");

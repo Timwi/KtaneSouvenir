@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SHumanResources
 {
-    [SouvenirQuestion("Which was a descriptor shown in {1} in {0}?", TwoColumns4Answers, "Intellectual", "Deviser", "Confidant", "Helper", "Auditor", "Innovator", "Defender", "Chameleon", "Director", "Designer", "Educator", "Advocate", "Manager", "Showman", "Contributor", "Entertainer", Arguments = ["red", "green"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which was a descriptor shown in {1} in {0}?", TwoColumns4Answers, "Intellectual", "Deviser", "Confidant", "Helper", "Auditor", "Innovator", "Defender", "Chameleon", "Director", "Designer", "Educator", "Advocate", "Manager", "Showman", "Contributor", "Entertainer", Arguments = ["red", "green"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Descriptors,
 
-    [SouvenirQuestion("Who was {1} at the start of {0}?", ThreeColumns6Answers, "Rebecca", "Damian", "Jean", "Mike", "River", "Samuel", "Yoshi", "Caleb", "Ashley", "Tim", "Eliott", "Ursula", "Silas", "Noah", "Quinn", "Dylan", Arguments = ["an employee", "an applicant"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Who was {1} at the start of {0}?", ThreeColumns6Answers, "Rebecca", "Damian", "Jean", "Mike", "River", "Samuel", "Yoshi", "Caleb", "Ashley", "Tim", "Eliott", "Ursula", "Silas", "Noah", "Quinn", "Dylan", Arguments = ["an employee", "an applicant"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Employees
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("HumanResourcesModule", "Human Resources", typeof(SHumanResources), "Timwi")]
-    [SouvenirManualQuestion("Which employees and applicants were present?")]
-    [SouvenirManualQuestion("Which descriptors were shown in red and green?")]
+    [Handler("HumanResourcesModule", "Human Resources", typeof(SHumanResources), "Timwi")]
+    [ManualQuestion("Which employees and applicants were present?")]
+    [ManualQuestion("Which descriptors were shown in red and green?")]
     private IEnumerator<SouvenirInstruction> ProcessHumanResources(ModuleData module)
     {
         var comp = GetComponent(module, "HumanResourcesModule");

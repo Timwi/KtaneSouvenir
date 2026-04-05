@@ -7,17 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SLinq
 {
-    [SouvenirQuestion("What was the {1} function in {0}?", ThreeColumns6Answers, "First", "Last", "Min", "Max", "Distinct", "Skip", "SkipLast", "Take", "TakeLast", "ElementAt", "Except", "Intersect", "Concat", "Append", "Prepend", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} function in {0}?", ThreeColumns6Answers, "First", "Last", "Min", "Max", "Distinct", "Skip", "SkipLast", "Take", "TakeLast", "ElementAt", "Except", "Intersect", "Concat", "Append", "Prepend", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Function,
 
-    [SouvenirDiscriminator("the Linq whose {0} function was {1}", Arguments = [QandA.Ordinal, "First", QandA.Ordinal, "Last", QandA.Ordinal, "Min", QandA.Ordinal, "Max"], ArgumentGroupSize = 2)]
+    [Discriminator("the Linq whose {0} function was {1}", Arguments = [QandA.Ordinal, "First", QandA.Ordinal, "Last", QandA.Ordinal, "Min", QandA.Ordinal, "Max"], ArgumentGroupSize = 2)]
     Discriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Linq", "Linq", typeof(SLinq), "Emik")]
-    [SouvenirManualQuestion("What were the functions?")]
+    [Handler("Linq", "Linq", typeof(SLinq), "Emik")]
+    [ManualQuestion("What were the functions?")]
     private IEnumerator<SouvenirInstruction> ProcessLinq(ModuleData module)
     {
         var comp = GetComponent(module, "LinqScript");

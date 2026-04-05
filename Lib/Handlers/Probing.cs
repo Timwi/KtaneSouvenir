@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SProbing
 {
-    [SouvenirQuestion("What was the missing frequency in the {1} wire in {0}?", TwoColumns4Answers, "10Hz", "22Hz", "50Hz", "60Hz", TranslateArguments = [true], Arguments = ["red-white", "yellow-black", "green", "gray", "yellow-red", "red-blue"], ArgumentGroupSize = 1)]
+    [Question("What was the missing frequency in the {1} wire in {0}?", TwoColumns4Answers, "10Hz", "22Hz", "50Hz", "60Hz", TranslateArguments = [true], Arguments = ["red-white", "yellow-black", "green", "gray", "yellow-red", "red-blue"], ArgumentGroupSize = 1)]
     Frequencies
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Probing", "Probing", typeof(SProbing), "Timwi")]
-    [SouvenirManualQuestion("What were the missing frequencies in each wire?")]
+    [Handler("Probing", "Probing", typeof(SProbing), "Timwi")]
+    [ManualQuestion("What were the missing frequencies in each wire?")]
     private IEnumerator<SouvenirInstruction> ProcessProbing(ModuleData module)
     {
         var comp = GetComponent(module, "ProbingModule");

@@ -7,17 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SEncryptedHangman
 {
-    [SouvenirQuestion("What module name was encrypted by {0}?", OneColumn4Answers, ExampleAnswers = ["Anagrams", "Word Scramble", "Two Bits", "Switches", "Lights Out", "Emoji Math", "Math", "Semaphore", "Piano Keys", "Colour Flash"])]
+    [Question("What module name was encrypted by {0}?", OneColumn4Answers, ExampleAnswers = ["Anagrams", "Word Scramble", "Two Bits", "Switches", "Lights Out", "Emoji Math", "Math", "Semaphore", "Piano Keys", "Colour Flash"])]
     Module,
 
-    [SouvenirQuestion("What method of encryption was used by {0}?", OneColumn4Answers, "Caesar Cipher", "Atbash Cipher", "Rot-13 Cipher", "Affine Cipher", "Modern Cipher", "Vigenère Cipher", "Playfair Cipher", TranslateAnswers = true)]
+    [Question("What method of encryption was used by {0}?", OneColumn4Answers, "Caesar Cipher", "Atbash Cipher", "Rot-13 Cipher", "Affine Cipher", "Modern Cipher", "Vigenère Cipher", "Playfair Cipher", TranslateAnswers = true)]
     EncryptionMethod
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("encryptedHangman", "Encrypted Hangman", typeof(SEncryptedHangman), "Timwi")]
-    [SouvenirManualQuestion("What was the encrypted module name and encryption method?")]
+    [Handler("encryptedHangman", "Encrypted Hangman", typeof(SEncryptedHangman), "Timwi")]
+    [ManualQuestion("What was the encrypted module name and encryption method?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptedHangman(ModuleData module)
     {
         var comp = GetComponent(module, "HangmanScript");

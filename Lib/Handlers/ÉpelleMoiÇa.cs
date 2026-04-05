@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SÉpelleMoiÇa
 {
-    [SouvenirQuestion("What word was asked to be spelled in {0}?", TwoColumns4Answers, ExampleAnswers = ["abasourdi", "aberrant", "abrasive", "acatalectique", "accueil", "acrobatie", "aligot", "amphigourique", "analgésiante", "antipasti"])]
+    [Question("What word was asked to be spelled in {0}?", TwoColumns4Answers, ExampleAnswers = ["abasourdi", "aberrant", "abrasive", "acatalectique", "accueil", "acrobatie", "aligot", "amphigourique", "analgésiante", "antipasti"])]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("epelleMoiCa", "Épelle-moi Ça", typeof(SÉpelleMoiÇa), "Quinn Wuest")]
-    [SouvenirManualQuestion("What word was asked to be spelled?")]
+    [Handler("epelleMoiCa", "Épelle-moi Ça", typeof(SÉpelleMoiÇa), "Quinn Wuest")]
+    [ManualQuestion("What word was asked to be spelled?")]
     private IEnumerator<SouvenirInstruction> ProcessÉpelleMoiÇa(ModuleData module)
     {
         var comp = GetComponent(module, "EpelleMoiCaScript");

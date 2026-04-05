@@ -7,24 +7,24 @@ using static Souvenir.AnswerLayout;
 
 public enum SArena
 {
-    [SouvenirQuestion("What was the maximum weapon damage of the attack phase in {0}?", ThreeColumns6Answers)]
+    [Question("What was the maximum weapon damage of the attack phase in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 99)]
     Damage,
 
-    [SouvenirQuestion("Which enemy was present in the defend phase of {0}?", TwoColumns4Answers, "Bat", "Snake", "Spider", "Cobra", "Scorpion", "Mole", "Creeper", "Goblin", "Golem", "Robo-Mouse", "Skeleton", "Undead Guard", "The Reaper", "The Mole’s Dad")]
+    [Question("Which enemy was present in the defend phase of {0}?", TwoColumns4Answers, "Bat", "Snake", "Spider", "Cobra", "Scorpion", "Mole", "Creeper", "Goblin", "Golem", "Robo-Mouse", "Skeleton", "Undead Guard", "The Reaper", "The Mole’s Dad")]
     Enemies,
 
-    [SouvenirQuestion("Which was a number present in the grab phase of {0}?", ThreeColumns6Answers)]
+    [Question("Which was a number present in the grab phase of {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(10, 99)]
     Numbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TheArena", "Arena", typeof(SArena), "Hawker", AddThe = true)]
-    [SouvenirManualQuestion("What was the maximum weapon damage of the attack phase?")]
-    [SouvenirManualQuestion("What enemies were present in the defend phase?")]
-    [SouvenirManualQuestion("What numbers were present in the grab phase?")]
+    [Handler("TheArena", "Arena", typeof(SArena), "Hawker", AddThe = true)]
+    [ManualQuestion("What was the maximum weapon damage of the attack phase?")]
+    [ManualQuestion("What enemies were present in the defend phase?")]
+    [ManualQuestion("What numbers were present in the grab phase?")]
     private IEnumerator<SouvenirInstruction> ProcessArena(ModuleData module)
     {
         var comp = GetComponent(module, "TheArena");

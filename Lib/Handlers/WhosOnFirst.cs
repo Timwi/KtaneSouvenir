@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SWhosOnFirst
 {
-    [SouvenirQuestion("What was the display in the {1} stage on {0}?", TwoColumns4Answers, "", "BLANK", "C", "CEE", "DISPLAY", "FIRST", "HOLD ON", "LEAD", "LED", "LEED", "NO", "NOTHING", "OK", "OKAY", "READ", "RED", "REED", "SAY", "SAYS", "SEE", "THEIR", "THERE", "THEY ARE", "THEY’RE", "U", "UR", "YES", "YOU", "YOU ARE", "YOU’RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the display in the {1} stage on {0}?", TwoColumns4Answers, "", "BLANK", "C", "CEE", "DISPLAY", "FIRST", "HOLD ON", "LEAD", "LED", "LEED", "NO", "NOTHING", "OK", "OKAY", "READ", "RED", "REED", "SAY", "SAYS", "SEE", "THEIR", "THERE", "THEY ARE", "THEY’RE", "U", "UR", "YES", "YOU", "YOU ARE", "YOU’RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     QDisplay,
 
-    [SouvenirDiscriminator("the Who’s on First that had {0} in the display in the {1} stage", Arguments = ["BLANK", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the Who’s on First that had {0} in the display in the {1} stage", Arguments = ["BLANK", QandA.Ordinal], ArgumentGroupSize = 2)]
     DDisplay
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("WhosOnFirst", "Who’s on First", typeof(SWhosOnFirst), "Andrio Celos")]
-    [SouvenirManualQuestion("What were the display words?")]
+    [Handler("WhosOnFirst", "Who’s on First", typeof(SWhosOnFirst), "Andrio Celos")]
+    [ManualQuestion("What were the display words?")]
     private IEnumerator<SouvenirInstruction> ProcessWhosOnFirst(ModuleData module)
     {
         var comp = GetComponent(module, "WhosOnFirstComponent");

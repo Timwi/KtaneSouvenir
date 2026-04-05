@@ -7,15 +7,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlphabetNumbers
 {
-    [SouvenirQuestion("Which of these numbers was on one of the buttons in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which of these numbers was on one of the buttons in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 32)]
     DisplayedNumbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("alphabetNumbers", "Alphabet Numbers", typeof(SAlphabetNumbers), "Kuro")]
-    [SouvenirManualQuestion("What were the numbers on the buttons in each stage?")]
+    [Handler("alphabetNumbers", "Alphabet Numbers", typeof(SAlphabetNumbers), "Kuro")]
+    [ManualQuestion("What were the numbers on the buttons in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessAlphabetNumbers(ModuleData module)
     {
         var comp = GetComponent(module, "alphabeticalOrderScript");

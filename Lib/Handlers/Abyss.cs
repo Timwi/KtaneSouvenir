@@ -5,21 +5,27 @@ using static Souvenir.AnswerLayout;
 
 public enum SAbyss
 {
-    [SouvenirQuestion("What was the {1} character displayed on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} character displayed on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings(1, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")]
-    Seed
+    QSeed,
+
+    [Discriminator("the Abyss whose {0} character was {1}", Arguments = [QandA.Ordinal, "A", QandA.Ordinal, "B", QandA.Ordinal, "C"], ArgumentGroupSize = 2)]
+    DSeed
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSAbyss", "Abyss", typeof(SAbyss), "VFlyer")]
-    [SouvenirManualQuestion("What were the characters displayed?")]
+    [Handler("GSAbyss", "Abyss", typeof(SAbyss), "VFlyer")]
+    [ManualQuestion("What were the characters displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessAbyss(ModuleData module)
     {
         var comp = GetComponent(module, "AbyssScript");
         yield return WaitForSolve;
         var seedAbyss = GetField<string>(comp, "SeedVar").Get();
         for (var idx = 0; idx < seedAbyss.Length; idx++)
-            yield return question(SAbyss.Seed, args: [Ordinal(idx + 1)]).Answers(seedAbyss[idx].ToString());
+        {
+            yield return question(SAbyss.QSeed, args: [Ordinal(idx + 1)]).Answers(seedAbyss[idx].ToString());
+            yield return new Discriminator(SAbyss.DSeed, $"seed-{idx}", seedAbyss[idx].ToString(), args: [Ordinal(idx + 1), seedAbyss[idx].ToString()]);
+        }
     }
 }

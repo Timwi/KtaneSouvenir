@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SRoger
 {
-    [SouvenirQuestion("What four-digit number was given in {0}?", ThreeColumns6Answers)]
+    [Question("What four-digit number was given in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9999, "0000")]
     Seed
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("roger", "Roger", typeof(SRoger), "BigCrunch22")]
-    [SouvenirManualQuestion("What four-digit number was given?")]
+    [Handler("roger", "Roger", typeof(SRoger), "BigCrunch22")]
+    [ManualQuestion("What four-digit number was given?")]
     private IEnumerator<SouvenirInstruction> ProcessRoger(ModuleData module)
     {
         var comp = GetComponent(module, "rogerScript");

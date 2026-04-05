@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SStackedSequences
 {
-    [SouvenirQuestion("Which of these is the length of a sequence in {0}?", TwoColumns4Answers, ExampleAnswers = ["3", "4", "5", "6"])]
+    [Question("Which of these is the length of a sequence in {0}?", TwoColumns4Answers, ExampleAnswers = ["3", "4", "5", "6"])]
     [AnswerGenerator.Integers(3, 9)]
     Question
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("stackedSequences", "Stacked Sequences", typeof(SStackedSequences), "GhostSalt")]
-    [SouvenirManualQuestion("What were the lengths of the sequences?")]
+    [Handler("stackedSequences", "Stacked Sequences", typeof(SStackedSequences), "GhostSalt")]
+    [ManualQuestion("What were the lengths of the sequences?")]
     private IEnumerator<SouvenirInstruction> ProcessStackedSequences(ModuleData module)
     {
         var comp = GetComponent(module, "stackedSequencesScript");

@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotConnectionCheck
 {
-    [SouvenirQuestion("What symbol flashed on the {1} button in {0}?", ThreeColumns6Answers, "+", "-", ".", ":", "/", "_", "=", ",", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What symbol flashed on the {1} button in {0}?", ThreeColumns6Answers, "+", "-", ".", ":", "/", "_", "=", ",", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Flashes,
 
-    [SouvenirQuestion("What was the value of the {1} button in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the value of the {1} button in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Values
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notConnectionCheck", "Not Connection Check", typeof(SNotConnectionCheck), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the flashing symbols?")]
-    [SouvenirManualQuestion("What were the button values?")]
+    [Handler("notConnectionCheck", "Not Connection Check", typeof(SNotConnectionCheck), "Quinn Wuest")]
+    [ManualQuestion("What were the flashing symbols?")]
+    [ManualQuestion("What were the button values?")]
     private IEnumerator<SouvenirInstruction> ProcessNotConnectionCheck(ModuleData module)
     {
         var comp = GetComponent(module, "NCCScript");

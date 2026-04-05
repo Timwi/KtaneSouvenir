@@ -7,26 +7,26 @@ using static Souvenir.AnswerLayout;
 
 public enum SSkyrim
 {
-    [SouvenirQuestion("Which race was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Nord", "Khajiit", "Breton", "Argonian", "Dunmer", "Altmer", "Redguard", "Orc", "Imperial", TranslateAnswers = true)]
+    [Question("Which race was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Nord", "Khajiit", "Breton", "Argonian", "Dunmer", "Altmer", "Redguard", "Orc", "Imperial", TranslateAnswers = true)]
     Race,
 
-    [SouvenirQuestion("Which weapon was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Axe of Whiterun", "Dawnbreaker", "Windshear", "Blade of Woe", "Firiniel’s End", "Bow of the Hunt", "Volendrung", "Chillrend", "Mace of Molag Bal", TranslateAnswers = true)]
+    [Question("Which weapon was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Axe of Whiterun", "Dawnbreaker", "Windshear", "Blade of Woe", "Firiniel’s End", "Bow of the Hunt", "Volendrung", "Chillrend", "Mace of Molag Bal", TranslateAnswers = true)]
     Weapon,
 
-    [SouvenirQuestion("Which enemy was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Alduin", "Blood Dragon", "Cave Bear", "Dragon Priest", "Draugr", "Draugr Overlord", "Frost Troll", "Frostbite Spider", "Mudcrab", TranslateAnswers = true)]
+    [Question("Which enemy was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Alduin", "Blood Dragon", "Cave Bear", "Dragon Priest", "Draugr", "Draugr Overlord", "Frost Troll", "Frostbite Spider", "Mudcrab", TranslateAnswers = true)]
     Enemy,
 
-    [SouvenirQuestion("Which city was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Dawnstar", "Ivarstead", "Markarth", "Riverwood", "Rorikstead", "Solitude", "Whiterun", "Windhelm", "Winterhold", TranslateAnswers = true)]
+    [Question("Which city was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Dawnstar", "Ivarstead", "Markarth", "Riverwood", "Rorikstead", "Solitude", "Whiterun", "Windhelm", "Winterhold", TranslateAnswers = true)]
     City,
 
-    [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", OneColumn4Answers, "fus ro dah", "zun hal vik", "liz slen nus", "wuld nah kest", "jor zah frul", "fas ru mar", "yol tor shul", "kan drem ov", "tid klo ul", Type = AnswerType.DynamicFont)]
+    [Question("Which dragon shout was selectable, but not the solution, in {0}?", OneColumn4Answers, "fus ro dah", "zun hal vik", "liz slen nus", "wuld nah kest", "jor zah frul", "fas ru mar", "yol tor shul", "kan drem ov", "tid klo ul", Type = AnswerType.DynamicFont)]
     DragonShout
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("skyrim", "Skyrim", typeof(SSkyrim), "Timwi")]
-    [SouvenirManualQuestion("Which races, weapons, enemies, cities, and dragon shouts were selectable, but not the solution?")]
+    [Handler("skyrim", "Skyrim", typeof(SSkyrim), "Timwi")]
+    [ManualQuestion("Which races, weapons, enemies, cities, and dragon shouts were selectable, but not the solution?")]
     private IEnumerator<SouvenirInstruction> ProcessSkyrim(ModuleData module)
     {
         var comp = GetComponent(module, "skyrimScript");

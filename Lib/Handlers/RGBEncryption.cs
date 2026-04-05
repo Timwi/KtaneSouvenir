@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SRGBEncryption
 {
-    [SouvenirQuestion("What was the {1} Morse code sequence in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} Morse code sequence in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("5*.-")]
     MorseSequence,
 
-    [SouvenirQuestion("What was the {1} color sequence in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} color sequence in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("5*RGB")]
     ColorSequence
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("RGBEncryption", "RGB Encryption", typeof(SRGBEncryption), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the Morse code and color sequences?")]
+    [Handler("RGBEncryption", "RGB Encryption", typeof(SRGBEncryption), "Quinn Wuest")]
+    [ManualQuestion("What were the Morse code and color sequences?")]
     private IEnumerator<SouvenirInstruction> ProcessRGBEncryption(ModuleData module)
     {
         var comp = GetComponent(module, "RGBEncryption");

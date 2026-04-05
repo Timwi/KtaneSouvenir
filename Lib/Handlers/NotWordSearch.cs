@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotWordSearch
 {
-    [SouvenirQuestion("Which of these consonants was missing in {0}?", ThreeColumns6Answers, "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z")]
+    [Question("Which of these consonants was missing in {0}?", ThreeColumns6Answers, "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z")]
     Missing,
 
-    [SouvenirQuestion("What was the first correctly pressed letter in {0}?", ThreeColumns6Answers, "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z")]
+    [Question("What was the first correctly pressed letter in {0}?", ThreeColumns6Answers, "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z")]
     FirstPress
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notWordSearch", "Not Word Search", typeof(SNotWordSearch), "tandyCake")]
-    [SouvenirManualQuestion("Which consonants were missing?")]
-    [SouvenirManualQuestion("What was the first correctly pressed letter?")]
+    [Handler("notWordSearch", "Not Word Search", typeof(SNotWordSearch), "tandyCake")]
+    [ManualQuestion("Which consonants were missing?")]
+    [ManualQuestion("What was the first correctly pressed letter?")]
     private IEnumerator<SouvenirInstruction> ProcessNotWordSearch(ModuleData module)
     {
         var comp = GetComponent(module, "NWSScript");

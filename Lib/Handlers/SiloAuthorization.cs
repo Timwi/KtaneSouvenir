@@ -5,22 +5,22 @@ using static Souvenir.AnswerLayout;
 
 public enum SSiloAuthorization
 {
-    [SouvenirQuestion("What was the message type in {0}?", TwoColumns4Answers, "Red-Alpha", "Yellow-Alpha", "Green-Alpha")]
+    [Question("What was the message type in {0}?", TwoColumns4Answers, "Red-Alpha", "Yellow-Alpha", "Green-Alpha")]
     MessageType,
 
-    [SouvenirQuestion("What was the {1} part of the encrypted message in {0}?", ThreeColumns6Answers, ExampleAnswers = ["A1B2", "BC84", "QW47", "B420", "AFS2", "FUN9"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} part of the encrypted message in {0}?", ThreeColumns6Answers, ExampleAnswers = ["A1B2", "BC84", "QW47", "B420", "AFS2", "FUN9"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings(4, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")]
     EncryptedMessage,
 
-    [SouvenirQuestion("What was the received authentication code in {0}?", ThreeColumns6Answers, ExampleAnswers = ["1234", "5678", "1357", "2468", "0001", "9999"])]
+    [Question("What was the received authentication code in {0}?", ThreeColumns6Answers, ExampleAnswers = ["1234", "5678", "1357", "2468", "0001", "9999"])]
     [AnswerGenerator.Integers(0, 9999, "0000")]
     AuthCode
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("siloAuthorization", "Silo Authorization", typeof(SSiloAuthorization), "Timwi")]
-    [SouvenirManualQuestion("What were the message type, encrypted message, and received authorization code?")]
+    [Handler("siloAuthorization", "Silo Authorization", typeof(SSiloAuthorization), "Timwi")]
+    [ManualQuestion("What were the message type, encrypted message, and received authorization code?")]
     private IEnumerator<SouvenirInstruction> ProcessSiloAuthorization(ModuleData module)
     {
         var comp = GetComponent(module, "WarGamesModuleScript");

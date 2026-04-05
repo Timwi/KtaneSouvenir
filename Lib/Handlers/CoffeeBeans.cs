@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCoffeeBeans
 {
-    [SouvenirQuestion("What was the {1} movement in {0}?", TwoColumns4Answers, "Horizontal", "Vertical", "Diagonal", "Nothing", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the {1} movement in {0}?", TwoColumns4Answers, "Horizontal", "Vertical", "Diagonal", "Nothing", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Movements
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("coffeeBeans", "Coffee Beans", typeof(SCoffeeBeans), "Anonymous")]
-    [SouvenirManualQuestion("What were the movements?")]
+    [Handler("coffeeBeans", "Coffee Beans", typeof(SCoffeeBeans), "Anonymous")]
+    [ManualQuestion("What were the movements?")]
     private IEnumerator<SouvenirInstruction> ProcessCoffeeBeans(ModuleData module)
     {
         yield return WaitForSolve;

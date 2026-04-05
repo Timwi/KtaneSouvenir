@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoubleArrows
 {
-    [SouvenirQuestion("What was the starting position in {0}?", ThreeColumns6Answers)]
+    [Question("What was the starting position in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 81, "00")]
     Start
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("doubleArrows", "Double Arrows", typeof(SDoubleArrows), "Anonymous")]
-    [SouvenirManualQuestion("What was the starting position?")]
+    [Handler("doubleArrows", "Double Arrows", typeof(SDoubleArrows), "Anonymous")]
+    [ManualQuestion("What was the starting position?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleArrows(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleArrowsScript");

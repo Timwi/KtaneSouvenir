@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SUnpleasantSquares
 {
-    [SouvenirQuestion("What was the color of this square in {0}?", TwoColumns4Answers, "Red", "Yellow", "Jade", "Azure", "Violet", TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("What was the color of this square in {0}?", TwoColumns4Answers, "Red", "Yellow", "Jade", "Azure", "Violet", TranslateAnswers = true, UsesQuestionSprite = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("unpleasantSquares", "Unpleasant Squares", typeof(SUnpleasantSquares), "Quinn Wuest")]
-    [SouvenirManualQuestion("What color was each square?")]
+    [Handler("unpleasantSquares", "Unpleasant Squares", typeof(SUnpleasantSquares), "Quinn Wuest")]
+    [ManualQuestion("What color was each square?")]
     private IEnumerator<SouvenirInstruction> ProcessUnpleasantSquares(ModuleData module)
     {
         var comp = GetComponent(module, "UnSqScript");

@@ -6,22 +6,22 @@ using static Souvenir.AnswerLayout;
 
 public enum SSmallCircle
 {
-    [SouvenirQuestion("How much did the sequence shift by in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
+    [Question("How much did the sequence shift by in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
     Shift,
 
-    [SouvenirQuestion("Which wedge made the different noise in the beginning of {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true)]
+    [Question("Which wedge made the different noise in the beginning of {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true)]
     Wedge,
 
-    [SouvenirQuestion("Which color was {1} in the solution to {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which color was {1} in the solution to {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Solution
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("smallCircle", "Small Circle", typeof(SSmallCircle), "TasThiluna")]
-    [SouvenirManualQuestion("How much did the sequence shift by?")]
-    [SouvenirManualQuestion("Which wedge made the different noise in the beginning?")]
-    [SouvenirManualQuestion("Which colors were in the solution?")]
+    [Handler("smallCircle", "Small Circle", typeof(SSmallCircle), "TasThiluna")]
+    [ManualQuestion("How much did the sequence shift by?")]
+    [ManualQuestion("Which wedge made the different noise in the beginning?")]
+    [ManualQuestion("Which colors were in the solution?")]
     private IEnumerator<SouvenirInstruction> ProcessSmallCircle(ModuleData module)
     {
         var comp = GetComponent(module, "smallCircle");

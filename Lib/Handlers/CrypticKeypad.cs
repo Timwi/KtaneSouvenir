@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SCrypticKeypad
 {
-    [SouvenirQuestion("What was the label of the {1} key in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the label of the {1} key in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("A-Z")]
     Labels,
 
-    [SouvenirQuestion("Which cardinal direction was the {1} key rotated to in {0}?", TwoColumns4Answers, "North", "East", "South", "West", TranslateAnswers = true, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which cardinal direction was the {1} key rotated to in {0}?", TwoColumns4Answers, "North", "East", "South", "West", TranslateAnswers = true, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Rotations
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSCrypticKeypad", "Cryptic Keypad", typeof(SCrypticKeypad), "Timwi")]
-    [SouvenirManualQuestion("What were the labels and cardinal directions of each key?")]
+    [Handler("GSCrypticKeypad", "Cryptic Keypad", typeof(SCrypticKeypad), "Timwi")]
+    [ManualQuestion("What were the labels and cardinal directions of each key?")]
     private IEnumerator<SouvenirInstruction> ProcessCrypticKeypad(ModuleData module)
     {
         var comp = GetComponent(module, "CrypticKeypadScript");

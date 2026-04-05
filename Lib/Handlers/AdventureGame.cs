@@ -8,17 +8,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SAdventureGame
 {
-    [SouvenirQuestion("Which item was present in {0}?", TwoColumns4Answers, "Balloon", "Battery", "Bellows", "Crystal ball", "Feather", "Hard drive", "Lamp", "Moonstone", "Small dog", "Stepladder", "Sunstone", "Symbol", "Ticket", "Trophy")]
+    [Question("Which item was present in {0}?", TwoColumns4Answers, "Balloon", "Battery", "Bellows", "Crystal ball", "Feather", "Hard drive", "Lamp", "Moonstone", "Small dog", "Stepladder", "Sunstone", "Symbol", "Ticket", "Trophy")]
     QPresentItem,
 
-    [SouvenirDiscriminator("the Adventure Game where the {0} was present", Arguments = ["Balloon", "Battery", "Bellows", "Cheat code", "Crystal ball", "Feather", "Hard drive", "Lamp", "Moonstone", "Potion", "Small dog", "Stepladder", "Sunstone", "Symbol", "Ticket", "Trophy"], ArgumentGroupSize = 1)]
+    [Discriminator("the Adventure Game where the {0} was present", Arguments = ["Balloon", "Battery", "Bellows", "Cheat code", "Crystal ball", "Feather", "Hard drive", "Lamp", "Moonstone", "Potion", "Small dog", "Stepladder", "Sunstone", "Symbol", "Ticket", "Trophy"], ArgumentGroupSize = 1)]
     DPresentItem
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("spwizAdventureGame", "Adventure Game", typeof(SAdventureGame), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which items were present?")]
+    [Handler("spwizAdventureGame", "Adventure Game", typeof(SAdventureGame), "Quinn Wuest")]
+    [ManualQuestion("Which items were present?")]
     private IEnumerator<SouvenirInstruction> ProcessAdventureGame(ModuleData module)
     {
         var comp = GetComponent(module, "AdventureGameModule");

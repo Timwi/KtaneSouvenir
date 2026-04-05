@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SNim
 {
-    [SouvenirQuestion("How many matches were in the {1} row in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("How many matches were in the {1} row in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(5, 12)]
     MatchCountFirstRow,
 
-    [SouvenirQuestion("How many matches were in the {1} row in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("How many matches were in the {1} row in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(5, 15)]
     MatchCountOtherRows
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("nim", "Nim", typeof(SNim), "Quinn Wuest")]
-    [SouvenirManualQuestion("How many matches were in each row?")]
+    [Handler("nim", "Nim", typeof(SNim), "Quinn Wuest")]
+    [ManualQuestion("How many matches were in each row?")]
     private IEnumerator<SouvenirInstruction> ProcessNim(ModuleData module)
     {
         var comp = GetComponent(module, "NimModule");

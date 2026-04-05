@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMatchRefereeing
 {
-    [SouvenirQuestion("Which planet was present in the {1} stage of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which planet was present in the {1} stage of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Planet
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("matchRefereeing", "Match Refereeing", typeof(SMatchRefereeing), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which planets were present in each stage?")]
+    [Handler("matchRefereeing", "Match Refereeing", typeof(SMatchRefereeing), "Quinn Wuest")]
+    [ManualQuestion("Which planets were present in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessMatchRefereeing(ModuleData module)
     {
         var comp = GetComponent(module, "MeteoRefereeingScript");

@@ -6,20 +6,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SScavengerHunt
 {
-    [SouvenirQuestion("Which tile was correctly submitted in the first stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which tile was correctly submitted in the first stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     KeySquare,
 
-    [SouvenirQuestion("Which of these tiles was {1} in the first stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [Question("Which of these tiles was {1} in the first stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(4, 4)]
     ColoredTiles
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("scavengerHunt", "Scavenger Hunt", typeof(SScavengerHunt), "Timwi")]
-    [SouvenirManualQuestion("Which tile was correctly submitted in the first stage?")]
-    [SouvenirManualQuestion("Where were the red, green, and blue tiles in the first stage?")]
+    [Handler("scavengerHunt", "Scavenger Hunt", typeof(SScavengerHunt), "Timwi")]
+    [ManualQuestion("Which tile was correctly submitted in the first stage?")]
+    [ManualQuestion("Where were the red, green, and blue tiles in the first stage?")]
     private IEnumerator<SouvenirInstruction> ProcessScavengerHunt(ModuleData module)
     {
         var comp = GetComponent(module, "scavengerHunt");

@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SOrientationHypercube
 {
-    [SouvenirQuestion("What was the initial colour of the {1} face in {0}?", ThreeColumns6Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", Arguments = ["right", "left", "top", "bottom", "back", "front", "zag", "zig"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslateAnswers = true)]
+    [Question("What was the initial colour of the {1} face in {0}?", ThreeColumns6Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", Arguments = ["right", "left", "top", "bottom", "back", "front", "zag", "zig"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslateAnswers = true)]
     InitialFaceColour,
 
-    [SouvenirQuestion("What was the observer’s initial position in {0}?", TwoColumns4Answers, "front", "left", "back", "right", TranslateAnswers = true)]
+    [Question("What was the observer’s initial position in {0}?", TwoColumns4Answers, "front", "left", "back", "right", TranslateAnswers = true)]
     InitialObserverPosition
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("OrientationHypercube", "Orientation Hypercube", typeof(SOrientationHypercube), "Kuro")]
-    [SouvenirManualQuestion("What was the observer’s initial position?")]
-    [SouvenirManualQuestion("What was the initial colour of each face?")]
+    [Handler("OrientationHypercube", "Orientation Hypercube", typeof(SOrientationHypercube), "Kuro")]
+    [ManualQuestion("What was the observer’s initial position?")]
+    [ManualQuestion("What was the initial colour of each face?")]
     private IEnumerator<SouvenirInstruction> ProcessOrientationHypercube(ModuleData module)
     {
         var comp = GetComponent(module, "OrientationHypercubeModule");

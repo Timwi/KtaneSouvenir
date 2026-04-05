@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SChordQualities
 {
-    [SouvenirQuestion("Which note was part of the given chord in {0}?", ThreeColumns6Answers, "A", "A♯", "B", "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯")]
+    [Question("Which note was part of the given chord in {0}?", ThreeColumns6Answers, "A", "A♯", "B", "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯")]
     Notes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ChordQualities", "Chord Qualities", typeof(SChordQualities), "Timwi")]
-    [SouvenirManualQuestion("What notes were in the given chord?")]
+    [Handler("ChordQualities", "Chord Qualities", typeof(SChordQualities), "Timwi")]
+    [ManualQuestion("What notes were in the given chord?")]
     private IEnumerator<SouvenirInstruction> ProcessChordQualities(ModuleData module)
     {
         var comp = GetComponent(module, "ChordQualities");

@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SMandNs
 {
-    [SouvenirQuestion("What color was the text on the {1} button in {0}?", ThreeColumns6Answers, "red", "green", "orange", "blue", "yellow", "brown", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the text on the {1} button in {0}?", ThreeColumns6Answers, "red", "green", "orange", "blue", "yellow", "brown", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors,
 
-    [SouvenirQuestion("What was the text on the correct button in {0}?", TwoColumns4Answers)]
+    [Question("What was the text on the correct button in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings(5, 'M', 'N')]
     Label
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MandNs", "M&Ns", typeof(SMandNs), "TasThiluna")]
-    [SouvenirManualQuestion("What were the colors of the labels on the buttons?")]
-    [SouvenirManualQuestion("What was the label of the correct button?")]
+    [Handler("MandNs", "M&Ns", typeof(SMandNs), "TasThiluna")]
+    [ManualQuestion("What were the colors of the labels on the buttons?")]
+    [ManualQuestion("What was the label of the correct button?")]
     private IEnumerator<SouvenirInstruction> ProcessMandNs(ModuleData module)
     {
         var comp = GetComponent(module, "MandNs");

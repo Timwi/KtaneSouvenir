@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPatternCube
 {
-    [SouvenirQuestion("Which symbol was highlighted in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which symbol was highlighted in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     HighlightedSymbol
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("PatternCubeModule", "Pattern Cube", typeof(SPatternCube), "Timwi")]
-    [SouvenirManualQuestion("Which symbol was highlighted?")]
+    [Handler("PatternCubeModule", "Pattern Cube", typeof(SPatternCube), "Timwi")]
+    [ManualQuestion("Which symbol was highlighted?")]
     private IEnumerator<SouvenirInstruction> ProcessPatternCube(ModuleData module)
     {
         var comp = GetComponent(module, "PatternCubeModule");

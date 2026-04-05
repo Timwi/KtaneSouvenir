@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SWarningSigns
 {
-    [SouvenirQuestion("What was the displayed sign in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "WarningSignsSprites")]
+    [Question("What was the displayed sign in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "WarningSignsSprites")]
     DisplayedSign
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("warningSigns", "Warning Signs", typeof(SWarningSigns), "Kuro")]
-    [SouvenirManualQuestion("What was the displayed sign?")]
+    [Handler("warningSigns", "Warning Signs", typeof(SWarningSigns), "Kuro")]
+    [ManualQuestion("What was the displayed sign?")]
     private IEnumerator<SouvenirInstruction> ProcessWarningSigns(ModuleData module)
     {
         var comp = GetComponent(module, "warningSignSrc");

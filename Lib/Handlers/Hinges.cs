@@ -7,17 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SHinges
 {
-    [SouvenirQuestion("Which of these hinges was initially {1} {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "HingesSprites", Arguments = ["present on", "absent from"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which of these hinges was initially {1} {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "HingesSprites", Arguments = ["present on", "absent from"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Initial,
 
-    [SouvenirDiscriminator("the Hinges where this hinge was initally {0}", UsesQuestionSprite = true, Arguments = ["present", "absent"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Hinges where this hinge was initally {0}", UsesQuestionSprite = true, Arguments = ["present", "absent"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Discriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("hinges", "Hinges", typeof(SHinges), "Kuro")]
-    [SouvenirManualQuestion("What were the initially present hinges?")]
+    [Handler("hinges", "Hinges", typeof(SHinges), "Kuro")]
+    [ManualQuestion("What were the initially present hinges?")]
     private IEnumerator<SouvenirInstruction> ProcessHinges(ModuleData module)
     {
         var comp = GetComponent(module, "Hinges");

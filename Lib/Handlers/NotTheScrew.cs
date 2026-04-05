@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotTheScrew
 {
-    [SouvenirQuestion("What was the initial position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the initial position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(6, 4)]
     InitialPosition
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notTheScrew", "Not The Screw", typeof(SNotTheScrew), "GhostSalt")]
-    [SouvenirManualQuestion("What was the initial position?")]
+    [Handler("notTheScrew", "Not The Screw", typeof(SNotTheScrew), "GhostSalt")]
+    [ManualQuestion("What was the initial position?")]
     private IEnumerator<SouvenirInstruction> ProcessNotTheScrew(ModuleData module)
     {
         var comp = GetComponent(module, "NotTheScrewModule");

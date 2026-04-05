@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMaroonButton
 {
-    [SouvenirQuestion("What was A in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was A in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     A
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MaroonButtonModule", "Maroon Button", typeof(SMaroonButton), "Anonymous", AddThe = true)]
-    [SouvenirManualQuestion("What was A?")]
+    [Handler("MaroonButtonModule", "Maroon Button", typeof(SMaroonButton), "Anonymous", AddThe = true)]
+    [ManualQuestion("What was A?")]
     private IEnumerator<SouvenirInstruction> ProcessMaroonButton(ModuleData module)
     {
         var comp = GetComponent(module, "MaroonButtonScript");

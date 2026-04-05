@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SVectors
 {
-    [SouvenirQuestion("What was the color of the {1} vector in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["first", "second", "third", "only"], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} vector in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["first", "second", "third", "only"], ArgumentGroupSize = 1)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("vectorsModule", "Vectors", typeof(SVectors), "kavinkul")]
-    [SouvenirManualQuestion("What were the colors of the vectors?")]
+    [Handler("vectorsModule", "Vectors", typeof(SVectors), "kavinkul")]
+    [ManualQuestion("What were the colors of the vectors?")]
     private IEnumerator<SouvenirInstruction> ProcessVectors(ModuleData module)
     {
         var comp = GetComponent(module, "VectorsScript");

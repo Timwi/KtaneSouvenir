@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum S9Ball
 {
-    [SouvenirQuestion("What was the number of ball {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["2", "3", "4", "5", "6", "7"], Arguments = ["A", "B", "C", "D", "E", "F", "G"], ArgumentGroupSize = 1)]
+    [Question("What was the number of ball {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["2", "3", "4", "5", "6", "7"], Arguments = ["A", "B", "C", "D", "E", "F", "G"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(2, 8)]
     Letters,
 
-    [SouvenirQuestion("What was the letter of ball {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["A", "B", "C", "D", "E", "F"], Arguments = ["2", "3", "4", "5", "6", "7", "8"], ArgumentGroupSize = 1)]
+    [Question("What was the letter of ball {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["A", "B", "C", "D", "E", "F"], Arguments = ["2", "3", "4", "5", "6", "7", "8"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-G")]
     Numbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSNineBall", "9-Ball", typeof(S9Ball), "GhostSalt")]
-    [SouvenirManualQuestion("What were the numbers on each ball?")]
+    [Handler("GSNineBall", "9-Ball", typeof(S9Ball), "GhostSalt")]
+    [ManualQuestion("What were the numbers on each ball?")]
     private IEnumerator<SouvenirInstruction> Process9Ball(ModuleData module)
     {
         var comp = GetComponent(module, "NineBallScript");

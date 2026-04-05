@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SOffKeys
 {
-    [SouvenirQuestion("Which of these keys played at an incorrect pitch in {0}?", ThreeColumns6Answers, "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B")]
+    [Question("Which of these keys played at an incorrect pitch in {0}?", ThreeColumns6Answers, "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B")]
     IncorrectPitch,
 
-    [SouvenirQuestion("Which of these runes was displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "OffKeysSprites")]
+    [Question("Which of these runes was displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "OffKeysSprites")]
     Runes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("offKeys", "Off Keys", typeof(SOffKeys), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the displayed runes?")]
-    [SouvenirManualQuestion("Which keys played at an incorrect pitch?")]
+    [Handler("offKeys", "Off Keys", typeof(SOffKeys), "Quinn Wuest")]
+    [ManualQuestion("What were the displayed runes?")]
+    [ManualQuestion("Which keys played at an incorrect pitch?")]
     private IEnumerator<SouvenirInstruction> ProcessOffKeys(ModuleData module)
     {
         var comp = GetComponent(module, "OffKeysScript");

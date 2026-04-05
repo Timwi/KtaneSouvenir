@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SGreenArrows
 {
-    [SouvenirQuestion("What was the last number on the display on {0}?", ThreeColumns6Answers)]
+    [Question("What was the last number on the display on {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 99, "00")]
     LastScreen
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("greenArrowsModule", "Green Arrows", typeof(SGreenArrows), "kavinkul")]
-    [SouvenirManualQuestion("What was the last number on the display?")]
+    [Handler("greenArrowsModule", "Green Arrows", typeof(SGreenArrows), "kavinkul")]
+    [ManualQuestion("What was the last number on the display?")]
     private IEnumerator<SouvenirInstruction> ProcessGreenArrows(ModuleData module)
     {
         var comp = GetComponent(module, "GreenArrowsScript");

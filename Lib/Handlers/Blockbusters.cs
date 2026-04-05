@@ -8,14 +8,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBlockbusters
 {
-    [SouvenirQuestion("Which letter was in the leftmost column at the start of {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "Y")]
+    [Question("Which letter was in the leftmost column at the start of {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "Y")]
     FirstLetters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("blockbusters", "Blockbusters", typeof(SBlockbusters), "Espik")]
-    [SouvenirManualQuestion("What letters were in the leftmost column at the start?")]
+    [Handler("blockbusters", "Blockbusters", typeof(SBlockbusters), "Espik")]
+    [ManualQuestion("What letters were in the leftmost column at the start?")]
     private IEnumerator<SouvenirInstruction> ProcessBlockbusters(ModuleData module)
     {
         var comp = GetComponent(module, "blockbustersScript");

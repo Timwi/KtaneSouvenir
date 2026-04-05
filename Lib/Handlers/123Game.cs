@@ -7,17 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum S123Game
 {
-    [SouvenirQuestion("Who was the opponent in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Who was the opponent in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Profile,
 
-    [SouvenirQuestion("Who was the opponent in {0}?", ThreeColumns6Answers, "Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu", "Yuram")]
+    [Question("Who was the opponent in {0}?", ThreeColumns6Answers, "Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu", "Yuram")]
     Name
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TheOneTwoThreeGame", "1, 2, 3 Game", typeof(S123Game), "Anonymous", AddThe = true)]
-    [SouvenirManualQuestion("What was the opponent’s avatar and name?")]
+    [Handler("TheOneTwoThreeGame", "1, 2, 3 Game", typeof(S123Game), "Anonymous", AddThe = true)]
+    [ManualQuestion("What was the opponent’s avatar and name?")]
     private IEnumerator<SouvenirInstruction> Process123Game(ModuleData module)
     {
         var comp = GetComponent(module, "TheOneTwoThreeGame");

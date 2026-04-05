@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SUncolourFlash
 {
-    [SouvenirQuestion("What was the {1} in the {2} position of the “{3}” sequence of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "White", "Magenta", Arguments = ["word", QandA.Ordinal, "YES", "colour of the word", QandA.Ordinal, "NO"], ArgumentGroupSize = 3, TranslateArguments = [true, false, false])]
+    [Question("What was the {1} in the {2} position of the “{3}” sequence of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "White", "Magenta", Arguments = ["word", QandA.Ordinal, "YES", "colour of the word", QandA.Ordinal, "NO"], ArgumentGroupSize = 3, TranslateArguments = [true, false, false])]
     Displays,
 
-    [SouvenirDiscriminator("the Uncolour Flash where the {0} in the {1} position of the “{2}” sequence was {3}", Arguments = ["word", QandA.Ordinal, "YES", "Red", "word", QandA.Ordinal, "YES", "Green", "word", QandA.Ordinal, "YES", "Blue", "colour of the word", QandA.Ordinal, "NO", "Yellow", "colour of the word", QandA.Ordinal, "NO", "White", "colour of the word", QandA.Ordinal, "NO", "Magenta"], ArgumentGroupSize = 4, TranslateArguments = [true, false, false, false])]
+    [Discriminator("the Uncolour Flash where the {0} in the {1} position of the “{2}” sequence was {3}", Arguments = ["word", QandA.Ordinal, "YES", "Red", "word", QandA.Ordinal, "YES", "Green", "word", QandA.Ordinal, "YES", "Blue", "colour of the word", QandA.Ordinal, "NO", "Yellow", "colour of the word", QandA.Ordinal, "NO", "White", "colour of the word", QandA.Ordinal, "NO", "Magenta"], ArgumentGroupSize = 4, TranslateArguments = [true, false, false, false])]
     Discriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("uncolourFlash", "Uncolour Flash", typeof(SUncolourFlash), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the initial “YES” and “NO” sequences?")]
+    [Handler("uncolourFlash", "Uncolour Flash", typeof(SUncolourFlash), "Quinn Wuest")]
+    [ManualQuestion("What were the initial “YES” and “NO” sequences?")]
     private IEnumerator<SouvenirInstruction> ProcessUncolourFlash(ModuleData module)
     {
         var comp = GetComponent(module, "UCFScript");

@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum STripleTerm
 {
-    [SouvenirQuestion("Which of these was one of the passwords in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Three", "Every", "These", "Would", "Where", "First", "Still", "Plant", "Small"])]
+    [Question("Which of these was one of the passwords in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Three", "Every", "These", "Would", "Where", "First", "Still", "Plant", "Small"])]
     Passwords
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("tripleTermModule", "Triple Term", typeof(STripleTerm), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the passwords?")]
+    [Handler("tripleTermModule", "Triple Term", typeof(STripleTerm), "Quinn Wuest")]
+    [ManualQuestion("What were the passwords?")]
     private IEnumerator<SouvenirInstruction> ProcessTripleTerm(ModuleData module)
     {
         var comp = GetComponent(module, "TripleTermScript");

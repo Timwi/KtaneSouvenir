@@ -5,21 +5,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SWireOrdering
 {
-    [SouvenirQuestion("What color was the {1} display from the left in {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", "white", "black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the {1} display from the left in {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", "white", "black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayColor,
 
-    [SouvenirQuestion("What number was on the {1} display from the left in {0}?", TwoColumns4Answers, "1", "2", "3", "4", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What number was on the {1} display from the left in {0}?", TwoColumns4Answers, "1", "2", "3", "4", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayNumber,
 
-    [SouvenirQuestion("What color was the {1} wire from the left in {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", "white", "black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the {1} wire from the left in {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", "white", "black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     WireColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("kataWireOrdering", "Wire Ordering", typeof(SWireOrdering), "Andrio Celos")]
-    [SouvenirManualQuestion("What were the colors and numbers on the displays?")]
-    [SouvenirManualQuestion("What were the colors of the wires?")]
+    [Handler("kataWireOrdering", "Wire Ordering", typeof(SWireOrdering), "Andrio Celos")]
+    [ManualQuestion("What were the colors and numbers on the displays?")]
+    [ManualQuestion("What were the colors of the wires?")]
     private IEnumerator<SouvenirInstruction> ProcessWireOrdering(ModuleData module)
     {
         var comp = GetComponent(module, "WireOrderingScript");

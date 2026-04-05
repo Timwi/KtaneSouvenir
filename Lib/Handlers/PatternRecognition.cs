@@ -4,14 +4,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPatternRecognition
 {
-    [SouvenirQuestion("What was the repeating pattern in {0}?", ThreeColumns6Answers, ExampleAnswers = ["● ● ● ● ▬", "● ● ● ▬ ▬", "● ● ▬ ▬ ▬", "● ● ▬ ● ▬", "● ▬ ● ▬ ▬", "● ▬ ▬ ▬ ▬"])]
+    [Question("What was the repeating pattern in {0}?", ThreeColumns6Answers, ExampleAnswers = ["● ● ● ● ▬", "● ● ● ▬ ▬", "● ● ▬ ▬ ▬", "● ● ▬ ● ▬", "● ▬ ● ▬ ▬", "● ▬ ▬ ▬ ▬"])]
     Pattern
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("patternRecognition", "Pattern Recognition", typeof(SPatternRecognition), "KiloBites")]
-    [SouvenirManualQuestion("What was the repeating pattern?")]
+    [Handler("patternRecognition", "Pattern Recognition", typeof(SPatternRecognition), "KiloBites")]
+    [ManualQuestion("What was the repeating pattern?")]
     private IEnumerator<SouvenirInstruction> ProcessPatternRecognition(ModuleData module)
     {
         var comp = GetComponent(module, "PatternRecognitionScript");

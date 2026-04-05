@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBulb
 {
-    [SouvenirQuestion("Was the bulb initially lit in {0}?", TwoColumns2Answers, "Yes", "No", TranslateAnswers = true)]
+    [Question("Was the bulb initially lit in {0}?", TwoColumns2Answers, "Yes", "No", TranslateAnswers = true)]
     InitialState
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TheBulbModule", "Bulb", typeof(SBulb), "Quinn Wuest", AddThe = true)]
-    [SouvenirManualQuestion("Was the bulb initially lit?")]
+    [Handler("TheBulbModule", "Bulb", typeof(SBulb), "Quinn Wuest", AddThe = true)]
+    [ManualQuestion("Was the bulb initially lit?")]
     private IEnumerator<SouvenirInstruction> ProcessBulb(ModuleData module)
     {
         var comp = GetComponent(module, "TheBulbModule");

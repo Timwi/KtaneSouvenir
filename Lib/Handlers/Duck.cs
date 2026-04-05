@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SDuck
 {
-    [SouvenirQuestion("What was the color of the curtain in {0}?", TwoColumns4Answers, "blue", "yellow", "green", "orange", "red", TranslateAnswers = true)]
+    [Question("What was the color of the curtain in {0}?", TwoColumns4Answers, "blue", "yellow", "green", "orange", "red", TranslateAnswers = true)]
     CurtainColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("theDuck", "Duck", typeof(SDuck), "Kuro", AddThe = true)]
-    [SouvenirManualQuestion("What was the color of the curtain?")]
-    [SouvenirManualQuestion("How was the duck approached?")]
+    [Handler("theDuck", "Duck", typeof(SDuck), "Kuro", AddThe = true)]
+    [ManualQuestion("What was the color of the curtain?")]
+    [ManualQuestion("How was the duck approached?")]
     private IEnumerator<SouvenirInstruction> ProcessDuck(ModuleData module)
     {
         var comp = GetComponent(module, "theDuckScript");

@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SBitmaps
 {
-    [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right"], ArgumentGroupSize = 2)]
+    [Question("How many pixels were {1} in the {2} quadrant in {0}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right"], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(0, 16)]
     Question,
 
-    [SouvenirDiscriminator("the Bitmap where the {2} pixel count in the {1} quadrant was {0}", Arguments = ["1", "top left", "white", "2", "top right", "white", "3", "bottom left", "white", "4", "bottom right", "white", "5", "top left", "black", "6", "top right", "black", "7", "bottom left", "black", "8", "bottom right", "black"], ArgumentGroupSize = 3, TranslateArguments = [false, true, true])]
+    [Discriminator("the Bitmap where the {2} pixel count in the {1} quadrant was {0}", Arguments = ["1", "top left", "white", "2", "top right", "white", "3", "bottom left", "white", "4", "bottom right", "white", "5", "top left", "black", "6", "top right", "black", "7", "bottom left", "black", "8", "bottom right", "black"], ArgumentGroupSize = 3, TranslateArguments = [false, true, true])]
     Discriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("BitmapsModule", "Bitmaps", typeof(SBitmaps), "Timwi")]
-    [SouvenirManualQuestion("How many pixels were black/white in each quadrant?")]
+    [Handler("BitmapsModule", "Bitmaps", typeof(SBitmaps), "Timwi")]
+    [ManualQuestion("How many pixels were black/white in each quadrant?")]
     private IEnumerator<SouvenirInstruction> ProcessBitmaps(ModuleData module)
     {
         var comp = GetComponent(module, "BitmapsModule");

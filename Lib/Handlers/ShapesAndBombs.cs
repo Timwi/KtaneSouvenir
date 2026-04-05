@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SShapesAndBombs
 {
-    [SouvenirQuestion("What was the initial letter in {0}?", ThreeColumns6Answers, "A", "B", "D", "E", "G", "I", "K", "L", "N", "O", "P", "S", "T", "X", "Y")]
+    [Question("What was the initial letter in {0}?", ThreeColumns6Answers, "A", "B", "D", "E", "G", "I", "K", "L", "N", "O", "P", "S", "T", "X", "Y")]
     InitialLetter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ShapesBombs", "Shapes And Bombs", typeof(SShapesAndBombs), "KingSlendy")]
-    [SouvenirManualQuestion("What was the initial letter?")]
+    [Handler("ShapesBombs", "Shapes And Bombs", typeof(SShapesAndBombs), "KingSlendy")]
+    [ManualQuestion("What was the initial letter?")]
     private IEnumerator<SouvenirInstruction> ProcessShapesAndBombs(ModuleData module)
     {
         var comp = GetComponent(module, "ShapesBombs");

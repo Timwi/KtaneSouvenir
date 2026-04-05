@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotMaze
 {
-    [SouvenirQuestion("What was the starting distance in {0}?", ThreeColumns6Answers)]
+    [Question("What was the starting distance in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 9)]
     StartingDistance
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NotMaze", "Not Maze", typeof(SNotMaze), "Andrio Celos")]
-    [SouvenirManualQuestion("What was the starting distance?")]
+    [Handler("NotMaze", "Not Maze", typeof(SNotMaze), "Andrio Celos")]
+    [ManualQuestion("What was the starting distance?")]
     private IEnumerator<SouvenirInstruction> ProcessNotMaze(ModuleData module)
     {
         var component = GetComponent(module, "NotMaze");

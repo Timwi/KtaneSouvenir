@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SMorsematics
 {
-    [SouvenirQuestion("Which of these letters was {1} in {0}?", TwoColumns4Answers, Arguments = ["present", "not present"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which of these letters was {1} in {0}?", TwoColumns4Answers, Arguments = ["present", "not present"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("A-Z")]
     QReceivedLetters,
 
-    [SouvenirDiscriminator("the Morsematics that displayed the letter {0}", Arguments = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"], ArgumentGroupSize = 1)]
+    [Discriminator("the Morsematics that displayed the letter {0}", Arguments = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"], ArgumentGroupSize = 1)]
     DReceivedLetters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MorseV2", "Morsematics", typeof(SMorsematics), "Timwi")]
-    [SouvenirManualQuestion("What were the received letters?")]
+    [Handler("MorseV2", "Morsematics", typeof(SMorsematics), "Timwi")]
+    [ManualQuestion("What were the received letters?")]
     private IEnumerator<SouvenirInstruction> ProcessMorsematics(ModuleData module)
     {
         var comp = GetComponent(module, "AdvancedMorse");

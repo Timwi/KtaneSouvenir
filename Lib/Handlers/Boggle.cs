@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBoggle
 {
-    [SouvenirQuestion("What letter was initially visible on {0}?", ThreeColumns6Answers, ExampleAnswers = ["A", "E", "G", "M", "T", "W"])]
+    [Question("What letter was initially visible on {0}?", ThreeColumns6Answers, ExampleAnswers = ["A", "E", "G", "M", "T", "W"])]
     Letters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("boggle", "Boggle", typeof(SBoggle), "luisdiogo98")]
-    [SouvenirManualQuestion("Which letters were initially visible?")]
+    [Handler("boggle", "Boggle", typeof(SBoggle), "luisdiogo98")]
+    [ManualQuestion("Which letters were initially visible?")]
     private IEnumerator<SouvenirInstruction> ProcessBoggle(ModuleData module)
     {
         var comp = GetComponent(module, "boggle");

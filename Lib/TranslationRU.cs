@@ -46,7 +46,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         DativePlural,
     }
 
-    public override string FormatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved)
+    public override string FormatModuleName(QuestionAttribute qAttr, bool addSolveCount, int numSolved)
     {
         if (_translations.Get(qAttr.Handler.EnumType) is not { } tr || tr.Questions.Get(qAttr.EnumValue) is not { } qtr)
             return base.FormatModuleName(qAttr, addSolveCount, numSolved);
@@ -556,17 +556,27 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Abyss
         [typeof(SAbyss)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the characters displayed?"] = "Какие символы были показаны?",
             },
             Questions = new()
             {
-                [SAbyss.Seed] = new()
+                [SAbyss.QSeed] = new()
                 {
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on Abyss?
                     Question = "Какой был {1}-й показанный символ {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAbyss.DSeed] = new()
+                {
+                    // English: the Abyss whose {0} character was {1}
+                    // Example: the Abyss whose first character was A
+                    Discriminator = "the Abyss whose {0} character was {1}",
                 },
             },
         },
@@ -5730,6 +5740,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the {1} digit in the {2} number shown in {0}?
                     // Example: What was the first digit in the first number shown in Entry Number One?
                     Question = "What was the{1} digit in the {2} number shown in {0}?",
+                },
+            },
+        },
+
+        // Épelle-moi Ça
+        [typeof(SÉpelleMoiÇa)] = new()
+        {
+            ManualQuestions = new()
+            {
+                ["What word was asked to be spelled?"] = "Какое слово нужно было прописать?",
+            },
+            Questions = new()
+            {
+                [SÉpelleMoiÇa.Word] = new()
+                {
+                    // English: What word was asked to be spelled in {0}?
+                    Question = "Какое слово нужно было написать на {0}?",
+                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },
@@ -12429,6 +12457,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Object Shows
         [typeof(SObjectShows)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Обджект-шоу",
             ManualModuleName = "Обджект-шоу",
             ManualQuestions = new()
@@ -12439,9 +12468,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SObjectShows.Contestants] = new()
                 {
-                    // English: Which of these was a contestant on {0}?
-                    Question = "Кто среди этих участников присутствовал на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
+                    // English: Which of these was a contestant, but not the winner, on {0}?
+                    Question = "Which of these was a contestant, but not the winner, on {0}?",
                 },
             },
         },
@@ -20316,24 +20344,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the {1} word in {0}?
                     // Example: What was the first word in Zoni?
                     Question = "Какое было {1}-е расшифрованное слово {0}?",
-                },
-            },
-        },
-
-        // Épelle-moi Ça
-        [typeof(SÉpelleMoiÇa)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What word was asked to be spelled?"] = "Какое слово нужно было прописать?",
-            },
-            Questions = new()
-            {
-                [SÉpelleMoiÇa.Word] = new()
-                {
-                    // English: What word was asked to be spelled in {0}?
-                    Question = "Какое слово нужно было написать на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
         },

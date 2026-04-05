@@ -7,15 +7,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SColorsMaximization
 {
-    [SouvenirQuestion("How many buttons were {1} in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("How many buttons were {1} in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(0, 11)]
     ColorCount
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("colors_maximization", "Colors Maximization", typeof(SColorsMaximization), "NickLatkovich")]
-    [SouvenirManualQuestion("How many buttons were there of each color?")]
+    [Handler("colors_maximization", "Colors Maximization", typeof(SColorsMaximization), "NickLatkovich")]
+    [ManualQuestion("How many buttons were there of each color?")]
     private IEnumerator<SouvenirInstruction> ProcessColorsMaximization(ModuleData module)
     {
         var comp = GetComponent(module, "ColorsMaximizationModule");

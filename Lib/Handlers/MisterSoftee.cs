@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SMisterSoftee
 {
-    [SouvenirQuestion("Where was the SpongeBob Bar on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Where was the SpongeBob Bar on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     SpongebobPosition,
 
-    [SouvenirQuestion("Which treat was present on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which treat was present on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     TreatsPresent
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("misterSoftee", "Mister Softee", typeof(SMisterSoftee), "TasThiluna")]
-    [SouvenirManualQuestion("Where was the SpongeBob Bar?")]
-    [SouvenirManualQuestion("Which treats were present?")]
+    [Handler("misterSoftee", "Mister Softee", typeof(SMisterSoftee), "TasThiluna")]
+    [ManualQuestion("Where was the SpongeBob Bar?")]
+    [ManualQuestion("Which treats were present?")]
     private IEnumerator<SouvenirInstruction> ProcessMisterSoftee(ModuleData module)
     {
         var comp = GetComponent(module, "misterSoftee");

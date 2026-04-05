@@ -11,8 +11,8 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     7                    │  Cornflower Cipher     │  Kudosudoku               │  Partial Derivatives    │  Simply Simon
     Affine Cycle         │  Crazy Maze            │  Lempel-Ziv Cipher        │  Pattern Cube           │  Skewed Slots
     Algebra              │  Cream Cipher          │  Lion’s Share             │  Pigpen Cycle           │  Skyrim
-    Alpha-Bits           │  Crimson Cipher        │  Listening                │  Pink Button, The       │  Sonic the Hedgehog
-    Alphabetical Ruling  │  cRule, The            │  Literal Maze             │  Pinpoint               │  Stellar
+    Alphabetical Ruling  │  Crimson Cipher        │  Listening                │  Pink Button, The       │  Sonic the Hedgehog
+    Alpha-Bits           │  cRule, The            │  Literal Maze             │  Pinpoint               │  Stellar
     Arithmetic Cipher    │  Cryptic Cycle         │  Logic Gates              │  Playfair Cycle         │  Switch, The
     ASCII Maze           │  Cryptic Keypad        │  Logical Buttons          │  Pokémon Sprite Cipher  │  Switches
     Azure Button, The    │  DACH Maze             │  London Underground, The  │  Polyhedral Maze        │  Symbolic Tasha
@@ -56,8 +56,8 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Boomtar the Great          │  Goofy’s Game             │  Not Colour Flash        │  Saturn                     │  X-Ring
     Bottom Gear                │  Grand Piano              │  Not Double-Oh           │  Simon Smiles               │  XY-Ray
     Buttonage                  │  Gyromaze                 │  Not Password            │  Simon Subdivides           │  Yellow Button’t
-    CA-RPS                     │  Halli Galli              │  Not Red Arrows          │  Simon Swizzles             │
-    Cacti’s Conundrum          │  hexOrbits                │  Not The Plunger Button  │  Skewers                    │
+    Cacti’s Conundrum          │  Halli Galli              │  Not Red Arrows          │  Simon Swizzles             │
+    CA-RPS                     │  hexOrbits                │  Not The Plunger Button  │  Skewers                    │
     Chinese Remainder Theorem  │  Hickory Dickory Dock     │  Number Game, The        │  Smash, Marry, Kill         │
     Coffee Beans               │  Hidden Value, The        │  One Links To All        │  Stable Time Signatures     │
 
@@ -124,12 +124,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
 ## Implemented by tandyCake (27)
 
-    Algorithmia    │  Kanye Encounter, The  │  Metamorse        │  Red Herring           │  Tasque Managing
+    Algorithmia    │  Kanye Encounter, The  │  M-Seq            │  Red Herring           │  Tasque Managing
     Breakfast Egg  │  Keypad Magnified      │  Name Codes       │  Shogi Identification  │  Touch Transmission
     Digisibility   │  Ladders               │  Not Piano Keys   │  Simon Shapes          │  USA Cycle
     Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Supports        │
-    Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
-    Jenga          │  Math ’em              │  Numpath          │  Superparsing          │
+    Forget Me      │  Math ’em              │  Not Word Search  │  Stupid Slots          │
+    Jenga          │  Metamorse             │  Numpath          │  Superparsing          │
 
 ## Implemented by TasThiluna (23)
 

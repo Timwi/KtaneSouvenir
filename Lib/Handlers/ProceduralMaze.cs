@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SProceduralMaze
 {
-    [SouvenirQuestion("What was the initial seed in {0}?", TwoColumns4Answers)]
+    [Question("What was the initial seed in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings("6*0-1")]
     InitialSeed
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ProceduralMaze", "Procedural Maze", typeof(SProceduralMaze), "Kuro")]
-    [SouvenirManualQuestion("What was the initial seed?")]
+    [Handler("ProceduralMaze", "Procedural Maze", typeof(SProceduralMaze), "Kuro")]
+    [ManualQuestion("What was the initial seed?")]
     private IEnumerator<SouvenirInstruction> ProcessProceduralMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ProceduralMazeModule");

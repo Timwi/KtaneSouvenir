@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNumberedButtons
 {
-    [SouvenirQuestion("Which number was correctly pressed on {0}?", ThreeColumns6Answers)]
+    [Question("Which number was correctly pressed on {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 100)]
     Buttons
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("numberedButtonsModule", "Numbered Buttons", typeof(SNumberedButtons), "Eltrick")]
-    [SouvenirManualQuestion("Which numbers were correctly pressed?")]
+    [Handler("numberedButtonsModule", "Numbered Buttons", typeof(SNumberedButtons), "Eltrick")]
+    [ManualQuestion("Which numbers were correctly pressed?")]
     private IEnumerator<SouvenirInstruction> ProcessNumberedButtons(ModuleData module)
     {
         var comp = GetComponent(module, "NumberedButtonsScript");

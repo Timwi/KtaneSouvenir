@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SLightBulbs
 {
-    [SouvenirQuestion("What was the color of the {1} bulb in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Cyan", "Magenta", TranslateAnswers = true, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the color of the {1} bulb in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Cyan", "Magenta", TranslateAnswers = true, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("LightBulbs", "Light Bulbs", typeof(SLightBulbs), "Kuro")]
-    [SouvenirManualQuestion("What were the colors of the bulbs?")]
+    [Handler("LightBulbs", "Light Bulbs", typeof(SLightBulbs), "Kuro")]
+    [ManualQuestion("What were the colors of the bulbs?")]
     private IEnumerator<SouvenirInstruction> ProcessLightBulbs(ModuleData module)
     {
         var comp = GetComponent(module, "LightBulbsScript");

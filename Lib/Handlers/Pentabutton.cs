@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SPentabutton
 {
-    [SouvenirQuestion("What was the base colour in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", TranslateAnswers = true)]
+    [Question("What was the base colour in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", TranslateAnswers = true)]
     BaseColor,
 
-    [SouvenirDiscriminator("the Pentabutton labelled “{0}”", Arguments = ["press", "detonate", "hold", "abort", "release", "poke", "punch", "depress", "push", "select", "explode", "boom", "ignite", "escape", "colour", "penta", "button"], ArgumentGroupSize = 1)]
+    [Discriminator("the Pentabutton labelled “{0}”", Arguments = ["press", "detonate", "hold", "abort", "release", "poke", "punch", "depress", "push", "select", "explode", "boom", "ignite", "escape", "colour", "penta", "button"], ArgumentGroupSize = 1)]
     Label
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSPentabutton", "Pentabutton", typeof(SPentabutton), "Anonymous", AddThe = true)]
-    [SouvenirManualQuestion("What was the base colour?")]
+    [Handler("GSPentabutton", "Pentabutton", typeof(SPentabutton), "Anonymous", AddThe = true)]
+    [ManualQuestion("What was the base colour?")]
     private IEnumerator<SouvenirInstruction> ProcessPentabutton(ModuleData module)
     {
         var comp = GetComponent(module, "PentabuttonScript");

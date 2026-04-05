@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSays
 {
-    [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", TwoColumns4Answers, "red", "yellow", "green", "blue", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color flashed {1} in the final sequence in {0}?", TwoColumns4Answers, "red", "yellow", "green", "blue", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     QFlash,
 
-    [SouvenirDiscriminator("the Simon Says whose {0} flash was {1}", Arguments = [QandA.Ordinal, "red", QandA.Ordinal, "yellow", QandA.Ordinal, "green", QandA.Ordinal, "blue"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Discriminator("the Simon Says whose {0} flash was {1}", Arguments = [QandA.Ordinal, "red", QandA.Ordinal, "yellow", QandA.Ordinal, "green", QandA.Ordinal, "blue"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     DFlash
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Simon", "Simon Says", typeof(SSimonSays), "Andrio Celos")]
-    [SouvenirManualQuestion("Which colors flashed in the final sequence?")]
+    [Handler("Simon", "Simon Says", typeof(SSimonSays), "Andrio Celos")]
+    [ManualQuestion("Which colors flashed in the final sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSays(ModuleData module)
     {
         var comp = GetComponent(module, "SimonComponent");

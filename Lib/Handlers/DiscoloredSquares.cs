@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SDiscoloredSquares
 {
-    [SouvenirQuestion("What was {1}’s remembered position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["Blue", "Red", "Yellow", "Green", "Magenta"], ArgumentGroupSize = 1)]
+    [Question("What was {1}’s remembered position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["Blue", "Red", "Yellow", "Green", "Magenta"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(4, 4)]
     RememberedPositions
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("DiscoloredSquaresModule", "Discolored Squares", typeof(SDiscoloredSquares), "luisdiogo98")]
-    [SouvenirManualQuestion("What was the remembered position for each color?")]
+    [Handler("DiscoloredSquaresModule", "Discolored Squares", typeof(SDiscoloredSquares), "luisdiogo98")]
+    [ManualQuestion("What was the remembered position for each color?")]
     private IEnumerator<SouvenirInstruction> ProcessDiscoloredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "DiscoloredSquaresModule");

@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum S100LevelsOfDefusal
 {
-    [SouvenirQuestion("What was the {1} displayed letter in {0}?", ThreeColumns6Answers, "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} displayed letter in {0}?", ThreeColumns6Answers, "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Letters,
 
-    [SouvenirDiscriminator("the 100 Levels of Defusal where the {0} displayed letter was {1}", Arguments = [QandA.Ordinal, "B", QandA.Ordinal, "C", QandA.Ordinal, "D"], ArgumentGroupSize = 2)]
+    [Discriminator("the 100 Levels of Defusal where the {0} displayed letter was {1}", Arguments = [QandA.Ordinal, "B", QandA.Ordinal, "C", QandA.Ordinal, "D"], ArgumentGroupSize = 2)]
     Discriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("100LevelsOfDefusal", "100 Levels of Defusal", typeof(S100LevelsOfDefusal), "Espik")]
-    [SouvenirManualQuestion("What were the displayed letters?")]
+    [Handler("100LevelsOfDefusal", "100 Levels of Defusal", typeof(S100LevelsOfDefusal), "Espik")]
+    [ManualQuestion("What were the displayed letters?")]
     private IEnumerator<SouvenirInstruction> Process100LevelsOfDefusal(ModuleData module)
     {
         var comp = GetComponent(module, "OneHundredLevelsOfDefusal");

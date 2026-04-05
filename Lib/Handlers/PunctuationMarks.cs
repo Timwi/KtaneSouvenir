@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SPunctuationMarks
 {
-    [SouvenirQuestion("What was the displayed number in {0}?", ThreeColumns6Answers)]
+    [Question("What was the displayed number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 99, "00")]
     DisplayedNumber
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("punctuationMarks", "...?", typeof(SPunctuationMarks), "Kuro")]
-    [SouvenirManualQuestion("What was the displayed number?")]
+    [Handler("punctuationMarks", "...?", typeof(SPunctuationMarks), "Kuro")]
+    [ManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessPunctuationMarks(ModuleData module)
     {
         var comp = GetComponent(module, "script");

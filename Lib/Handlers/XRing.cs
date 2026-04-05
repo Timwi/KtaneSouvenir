@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SXRing
 {
-    [SouvenirQuestion("Which symbol was scanned in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "XRingSprites")]
+    [Question("Which symbol was scanned in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "XRingSprites")]
     Symbol
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("xring", "X-Ring", typeof(SXRing), "Anonymous")]
-    [SouvenirManualQuestion("What symbols were scanned?")]
+    [Handler("xring", "X-Ring", typeof(SXRing), "Anonymous")]
+    [ManualQuestion("What symbols were scanned?")]
     private IEnumerator<SouvenirInstruction> ProcessXRing(ModuleData module)
     {
         var comp = GetComponent(module, "XRingScript");

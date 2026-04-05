@@ -7,15 +7,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SBeans
 {
-    [SouvenirQuestion("What was this bean in {0}?", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was this bean in {0}?", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", UsesQuestionSprite = true, TranslateAnswers = true)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("beans", "Beans", typeof(SBeans), "Anonymous")]
-    [SouvenirManualQuestion("What color were the eaten beans?")]
-    [SouvenirManualQuestion("Which beans were wobbling?")]
+    [Handler("beans", "Beans", typeof(SBeans), "Anonymous")]
+    [ManualQuestion("What color were the eaten beans?")]
+    [ManualQuestion("Which beans were wobbling?")]
     private IEnumerator<SouvenirInstruction> ProcessBeans(ModuleData module)
     {
         var comp = GetComponent(module, "beansScript");

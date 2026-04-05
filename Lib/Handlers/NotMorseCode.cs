@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotMorseCode
 {
-    [SouvenirQuestion("What was the {1} correct word you submitted in {0}?", ThreeColumns6Answers, ExampleAnswers = ["shelf", "pounds", "sister", "beef", "yeast", "drive"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} correct word you submitted in {0}?", ThreeColumns6Answers, ExampleAnswers = ["shelf", "pounds", "sister", "beef", "yeast", "drive"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NotMorseCode", "Not Morse Code", typeof(SNotMorseCode), "Andrio Celos")]
-    [SouvenirManualQuestion("What was the sequence of words you submitted?")]
+    [Handler("NotMorseCode", "Not Morse Code", typeof(SNotMorseCode), "Andrio Celos")]
+    [ManualQuestion("What was the sequence of words you submitted?")]
     private IEnumerator<SouvenirInstruction> ProcessNotMorseCode(ModuleData module)
     {
         var component = GetComponent(module, "NotMorseCode");

@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SHexabutton
 {
-    [SouvenirQuestion("What was {1} of {0} when it was held?", ThreeColumns6Answers, "blue", "cyan", "gray", "green", "magenta", "purple", "white", TranslateArguments = [true], Arguments = ["the color", "the flickering color"], ArgumentGroupSize = 1)]
+    [Question("What was {1} of {0} when it was held?", ThreeColumns6Answers, "blue", "cyan", "gray", "green", "magenta", "purple", "white", TranslateArguments = [true], Arguments = ["the color", "the flickering color"], ArgumentGroupSize = 1)]
     Color,
 
-    [SouvenirQuestion("What Morse Code letter was transmitted by {0}?", ThreeColumns6Answers)]
+    [Question("What Morse Code letter was transmitted by {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings('A', 'Z')]
     Letter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("hexabutton", "Hexabutton", typeof(SHexabutton), "Espik", AddThe = true)]
-    [SouvenirManualQuestion("What color was the button when held?")]
-    [SouvenirManualQuestion("What Morse Code letter was transmitted?")]
+    [Handler("hexabutton", "Hexabutton", typeof(SHexabutton), "Espik", AddThe = true)]
+    [ManualQuestion("What color was the button when held?")]
+    [ManualQuestion("What Morse Code letter was transmitted?")]
     private IEnumerator<SouvenirInstruction> ProcessHexabutton(ModuleData module)
     {
         var comp = GetComponent(module, "hexabuttonScript");

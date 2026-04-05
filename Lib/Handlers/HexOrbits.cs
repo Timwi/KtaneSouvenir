@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SHexOrbits
 {
-    [SouvenirQuestion("What was the {1} shape for the {2} display in {0}?", TwoColumns4Answers, "Square", "Pentagon", "Hexagon", "Heptagon", Arguments = ["fast", QandA.Ordinal, "slow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Question("What was the {1} shape for the {2} display in {0}?", TwoColumns4Answers, "Square", "Pentagon", "Hexagon", "Heptagon", Arguments = ["fast", QandA.Ordinal, "slow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     Shape
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("hexOrbits", "hexOrbits", typeof(SHexOrbits), "Anonymous")]
-    [SouvenirManualQuestion("What shapes were displayed?")]
+    [Handler("hexOrbits", "hexOrbits", typeof(SHexOrbits), "Anonymous")]
+    [ManualQuestion("What shapes were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessHexOrbits(ModuleData module)
     {
         var comp = GetComponent(module, "HexOrbitsScript");

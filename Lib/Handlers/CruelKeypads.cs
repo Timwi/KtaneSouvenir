@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SCruelKeypads
 {
-    [SouvenirQuestion("What was the color of the bar in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "White", Arguments = [QandA.Ordinal], TranslateAnswers = true, ArgumentGroupSize = 1)]
+    [Question("What was the color of the bar in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "White", Arguments = [QandA.Ordinal], TranslateAnswers = true, ArgumentGroupSize = 1)]
     Colors,
 
-    [SouvenirQuestion("Which of these characters appeared in the {1} stage of {0}?", ThreeColumns6Answers, "ㄹ", "ㅁ", "ㅂ", "ㄱ", "ㄲ", "ㄷ", "ㅈ", "ㅉ", "ㅟ", "ㅋ", "ㅌ", "ㅍ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅢ", "ㄴ", "ㄸ", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which of these characters appeared in the {1} stage of {0}?", ThreeColumns6Answers, "ㄹ", "ㅁ", "ㅂ", "ㄱ", "ㄲ", "ㄷ", "ㅈ", "ㅉ", "ㅟ", "ㅋ", "ㅌ", "ㅍ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅢ", "ㄴ", "ㄸ", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayedSymbols
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("CruelKeypads", "Cruel Keypads", typeof(SCruelKeypads), "Kuro")]
-    [SouvenirManualQuestion("What symbols were on the keys in each stage?")]
-    [SouvenirManualQuestion("What was the color of the bar in each stage?")]
+    [Handler("CruelKeypads", "Cruel Keypads", typeof(SCruelKeypads), "Kuro")]
+    [ManualQuestion("What symbols were on the keys in each stage?")]
+    [ManualQuestion("What was the color of the bar in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessCruelKeypads(ModuleData module)
     {
         var comp = GetComponent(module, "CruelKeypadScript");

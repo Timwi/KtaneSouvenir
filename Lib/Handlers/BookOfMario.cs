@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SBookOfMario
 {
-    [SouvenirQuestion("Who said the {1} quote in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Who said the {1} quote in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Pictures,
 
-    [SouvenirQuestion("What did {1} say in the {2} stage of {0}?", OneColumn4Answers, ExampleAnswers = ["Dark Koopatrol. These people just blow hard...", "I came, Mario! You finna", "Absolutely, I came! Got it!", "Well, I’m so desperate, so you better save me…"], Arguments = ["Goombell", QandA.Ordinal, "Prince Peach", QandA.Ordinal, "God Browser", QandA.Ordinal, "Mr.Krump", QandA.Ordinal, "Mario", QandA.Ordinal, "Flavio", QandA.Ordinal, "Quiz Thwomb", QandA.Ordinal, "Carbon", QandA.Ordinal, "Belda", QandA.Ordinal, "Make", QandA.Ordinal, "Yoshi Kid", QandA.Ordinal, "Bob", QandA.Ordinal, "Prosecutor Grubba", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What did {1} say in the {2} stage of {0}?", OneColumn4Answers, ExampleAnswers = ["Dark Koopatrol. These people just blow hard...", "I came, Mario! You finna", "Absolutely, I came! Got it!", "Well, I’m so desperate, so you better save me…"], Arguments = ["Goombell", QandA.Ordinal, "Prince Peach", QandA.Ordinal, "God Browser", QandA.Ordinal, "Mr.Krump", QandA.Ordinal, "Mario", QandA.Ordinal, "Flavio", QandA.Ordinal, "Quiz Thwomb", QandA.Ordinal, "Carbon", QandA.Ordinal, "Belda", QandA.Ordinal, "Make", QandA.Ordinal, "Yoshi Kid", QandA.Ordinal, "Bob", QandA.Ordinal, "Prosecutor Grubba", QandA.Ordinal], ArgumentGroupSize = 2)]
     Quotes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("BookOfMarioModule", "Book of Mario", typeof(SBookOfMario), "Hawker")]
-    [SouvenirManualQuestion("Who said something in each stage?")]
-    [SouvenirManualQuestion("What was each character’s quote?")]
+    [Handler("BookOfMarioModule", "Book of Mario", typeof(SBookOfMario), "Hawker")]
+    [ManualQuestion("Who said something in each stage?")]
+    [ManualQuestion("What was each character’s quote?")]
     private IEnumerator<SouvenirInstruction> ProcessBookOfMario(ModuleData module)
     {
         static string elideText(string s)

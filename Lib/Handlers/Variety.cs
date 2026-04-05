@@ -7,38 +7,38 @@ using static Souvenir.AnswerLayout;
 
 public enum SVariety
 {
-    [SouvenirQuestion("What color was the LED flashing in {0}?", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", TranslateAnswers = true)]
+    [Question("What color was the LED flashing in {0}?", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", TranslateAnswers = true)]
     LED,
 
-    [SouvenirQuestion("What digit was displayed, but not the answer, for the digit display in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "0")]
+    [Question("What digit was displayed, but not the answer, for the digit display in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "0")]
     DigitDisplay,
 
-    [SouvenirQuestion("What word could be formed, but was not the answer, for the letter display in {0}?", ThreeColumns6Answers, "ACE", "ACT", "AID", "AIM", "AIR", "ALE", "ALL", "AND", "ANT", "APT", "ARM", "ART", "AWE", "AYE", "BAD", "BAG", "BAR", "BAT", "BAY", "BED", "BEE", "BEG", "BET", "BID", "BIG", "BIT", "BIZ", "BOB", "BOW", "BOY", "BUT", "BUY", "BYE", "CAN", "CAP", "CAR", "CAT", "COP", "COT", "COW", "CUE", "CUP", "CUT", "DAD", "DAM", "DAY", "DIE", "DIG", "DIM", "DIP", "DOG", "DOT", "DRY", "DUE", "DUG", "DUO", "DYE", "EAR", "EAT", "FAN", "FAQ", "FAR", "FAT", "FAX", "FED", "FEE", "FEN", "FEW", "FIN", "FIT", "FIX", "FLY", "FOG", "FOR", "FRK", "FRQ", "FRY", "FUN", "FUR", "GET", "GIG", "GIN", "GUM", "GUT", "GUY", "HAM", "HAT", "HAY", "HEN", "HER", "HEY", "HIM", "HIP", "HIT", "HOP", "HOT", "HOW", "HUT", "ILK", "ILL", "IND", "INK", "IRK", "JAM", "JAR", "JAW", "JOB", "JOY", "KID", "KIN", "KIT", "LAD", "LAP", "LAW", "LAY", "LEG", "LET", "LID", "LIE", "LIP", "LIT", "LOG", "LOO", "LOT", "LOW", "LUA", "LUG", "MAD", "MAN", "MAP", "MAT", "MAX", "MAY", "MIC", "MID", "MIX", "MOB", "MOD", "MUD", "MUG", "MUM", "NET", "NEW", "NIL", "NLL", "NOD", "NOR", "NOT", "NOW", "NUN", "NUT", "OIL", "OPT", "OUR", "OUT", "OWE", "OWL", "PAD", "PAN", "PAR", "PAT", "PAY", "PEG", "PEN", "PER", "PET", "PIE", "PIG", "PIN", "PIT", "POP", "POT", "POW", "PUB", "PUT", "QUA", "QUE", "QUO", "RAG", "RAM", "RAT", "RAW", "RED", "RGB", "RIB", "RID", "RIG", "RIM", "ROB", "ROD", "ROT", "ROW", "RUB", "RUG", "RUM", "RUN", "SAD", "SAW", "SAY", "SEA", "SEE", "SET", "SHE", "SHY", "SIC", "SIG", "SIN", "SIR", "SIT", "SIX", "SLY", "SND", "SUE", "SUM", "SUN", "TAG", "TAP", "TAX", "TEA", "TEE", "TEN", "TGB", "THY", "TIE", "TIN", "TIP", "TOE", "TOO", "TOP", "TOY", "TRN", "TRY", "TUB", "VAT", "VET", "WAR", "WAX", "WAY", "WEE", "WET", "WHY", "WIG", "WIN", "WIT", "WIZ", "WRY", "YEN", "YET", "ZAG", "ZIG")]
+    [Question("What word could be formed, but was not the answer, for the letter display in {0}?", ThreeColumns6Answers, "ACE", "ACT", "AID", "AIM", "AIR", "ALE", "ALL", "AND", "ANT", "APT", "ARM", "ART", "AWE", "AYE", "BAD", "BAG", "BAR", "BAT", "BAY", "BED", "BEE", "BEG", "BET", "BID", "BIG", "BIT", "BIZ", "BOB", "BOW", "BOY", "BUT", "BUY", "BYE", "CAN", "CAP", "CAR", "CAT", "COP", "COT", "COW", "CUE", "CUP", "CUT", "DAD", "DAM", "DAY", "DIE", "DIG", "DIM", "DIP", "DOG", "DOT", "DRY", "DUE", "DUG", "DUO", "DYE", "EAR", "EAT", "FAN", "FAQ", "FAR", "FAT", "FAX", "FED", "FEE", "FEN", "FEW", "FIN", "FIT", "FIX", "FLY", "FOG", "FOR", "FRK", "FRQ", "FRY", "FUN", "FUR", "GET", "GIG", "GIN", "GUM", "GUT", "GUY", "HAM", "HAT", "HAY", "HEN", "HER", "HEY", "HIM", "HIP", "HIT", "HOP", "HOT", "HOW", "HUT", "ILK", "ILL", "IND", "INK", "IRK", "JAM", "JAR", "JAW", "JOB", "JOY", "KID", "KIN", "KIT", "LAD", "LAP", "LAW", "LAY", "LEG", "LET", "LID", "LIE", "LIP", "LIT", "LOG", "LOO", "LOT", "LOW", "LUA", "LUG", "MAD", "MAN", "MAP", "MAT", "MAX", "MAY", "MIC", "MID", "MIX", "MOB", "MOD", "MUD", "MUG", "MUM", "NET", "NEW", "NIL", "NLL", "NOD", "NOR", "NOT", "NOW", "NUN", "NUT", "OIL", "OPT", "OUR", "OUT", "OWE", "OWL", "PAD", "PAN", "PAR", "PAT", "PAY", "PEG", "PEN", "PER", "PET", "PIE", "PIG", "PIN", "PIT", "POP", "POT", "POW", "PUB", "PUT", "QUA", "QUE", "QUO", "RAG", "RAM", "RAT", "RAW", "RED", "RGB", "RIB", "RID", "RIG", "RIM", "ROB", "ROD", "ROT", "ROW", "RUB", "RUG", "RUM", "RUN", "SAD", "SAW", "SAY", "SEA", "SEE", "SET", "SHE", "SHY", "SIC", "SIG", "SIN", "SIR", "SIT", "SIX", "SLY", "SND", "SUE", "SUM", "SUN", "TAG", "TAP", "TAX", "TEA", "TEE", "TEN", "TGB", "THY", "TIE", "TIN", "TIP", "TOE", "TOO", "TOP", "TOY", "TRN", "TRY", "TUB", "VAT", "VET", "WAR", "WAX", "WAY", "WEE", "WET", "WHY", "WIG", "WIN", "WIT", "WIZ", "WRY", "YEN", "YET", "ZAG", "ZIG")]
     LetterDisplay,
 
-    [SouvenirQuestion("What was the maximum display for the {1} in {0}?", ThreeColumns6Answers, "1 1", "2 1", "4 1", "6 1", "1 2", "2 2", "4 2", "1 4", "2 4", Arguments = ["timer", "ascending timer", "descending timer"], TranslateArguments = [true], ArgumentGroupSize = 1)]
+    [Question("What was the maximum display for the {1} in {0}?", ThreeColumns6Answers, "1 1", "2 1", "4 1", "6 1", "1 2", "2 2", "4 2", "1 4", "2 4", Arguments = ["timer", "ascending timer", "descending timer"], TranslateArguments = [true], ArgumentGroupSize = 1)]
     Timer,
 
-    [SouvenirQuestion("What was n for the {1} in {0}?", TwoColumns4Answers, Arguments = ["knob", "colored knob", "red knob", "black knob", "blue knob", "yellow knob"], TranslateArguments = [true], ArgumentGroupSize = 1)]
+    [Question("What was n for the {1} in {0}?", TwoColumns4Answers, Arguments = ["knob", "colored knob", "red knob", "black knob", "blue knob", "yellow knob"], TranslateArguments = [true], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(3, 6)]
     ColoredKnob,
 
-    [SouvenirQuestion("What was n for the {1} in {0}?", ThreeColumns6Answers, Arguments = ["bulb", "red bulb", "yellow bulb"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was n for the {1} in {0}?", ThreeColumns6Answers, Arguments = ["bulb", "red bulb", "yellow bulb"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(5, 13)]
     Bulb,
 
-    [SouvenirDiscriminator("the Variety that has {0}", Arguments = ["one\uE003 (LED)", "one\uE003 (digit display)", "one\uE003 (letter display)", "one\uE003 (timer)", "one\uE003 (knob)", "one\uE003 (colored knob)", "one\uE003 (redknob)", "one\uE003 (yellowknob)", "one\uE003 (blueknob)", "one\uE003 (blackknob)", "one\uE003 (bulb)", "one\uE003 (redbulb)", "one\uE003 (yellowbulb)", "a knob", "a colored knob", "a white knob", "a red knob", "a black knob", "a blue knob", "a yellow knob", "a keypad", "a white keypad", "a red keypad", "a yellow keypad", "a blue keypad", "a slider", "a horizontal slider", "a vertical slider", "an LED", "a digit display", "a wire", "a black wire", "a blue wire", "a red wire", "a yellow wire", "a white wire", "a button", "a red button", "a yellow button", "a blue button", "a white button", "a letter display", "a Braille display", "a key-in-lock", "a switch", "a red switch", "a yellow switch", "a blue switch", "a white switch", "a timer", "an ascending timer", "a descending timer", "a die", "a light-on-dark die", "a dark-on-light die", "a bulb", "a red bulb", "a yellow bulb", "a maze", "a 3×3 maze", "a 3×4 maze", "a 4×3 maze", "a 4×4 maze"], ArgumentGroupSize = 1, TranslateArguments = [true], ReferenceDocumentation = true)]
+    [Discriminator("the Variety that has {0}", Arguments = ["one\uE003 (LED)", "one\uE003 (digit display)", "one\uE003 (letter display)", "one\uE003 (timer)", "one\uE003 (knob)", "one\uE003 (colored knob)", "one\uE003 (redknob)", "one\uE003 (yellowknob)", "one\uE003 (blueknob)", "one\uE003 (blackknob)", "one\uE003 (bulb)", "one\uE003 (redbulb)", "one\uE003 (yellowbulb)", "a knob", "a colored knob", "a white knob", "a red knob", "a black knob", "a blue knob", "a yellow knob", "a keypad", "a white keypad", "a red keypad", "a yellow keypad", "a blue keypad", "a slider", "a horizontal slider", "a vertical slider", "an LED", "a digit display", "a wire", "a black wire", "a blue wire", "a red wire", "a yellow wire", "a white wire", "a button", "a red button", "a yellow button", "a blue button", "a white button", "a letter display", "a Braille display", "a key-in-lock", "a switch", "a red switch", "a yellow switch", "a blue switch", "a white switch", "a timer", "an ascending timer", "a descending timer", "a die", "a light-on-dark die", "a dark-on-light die", "a bulb", "a red bulb", "a yellow bulb", "a maze", "a 3×3 maze", "a 3×4 maze", "a 4×3 maze", "a 4×4 maze"], ArgumentGroupSize = 1, TranslateArguments = [true], ReferenceDocumentation = true)]
     Has
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("VarietyModule", "Variety", typeof(SVariety), "Anonymous")]
-    [SouvenirManualQuestion("What were the LED colors?")]
-    [SouvenirManualQuestion("What was n for the colored knobs and bulbs?")]
-    [SouvenirManualQuestion("What digits were displayed on the digit display?")]
-    [SouvenirManualQuestion("What words were formable on the letter display?")]
-    [SouvenirManualQuestion("What were the maximum values of the timers?")]
+    [Handler("VarietyModule", "Variety", typeof(SVariety), "Anonymous")]
+    [ManualQuestion("What were the LED colors?")]
+    [ManualQuestion("What was n for the colored knobs and bulbs?")]
+    [ManualQuestion("What digits were displayed on the digit display?")]
+    [ManualQuestion("What words were formable on the letter display?")]
+    [ManualQuestion("What were the maximum values of the timers?")]
     private IEnumerator<SouvenirInstruction> ProcessVariety(ModuleData module)
     {
         var comp = GetComponent(module, "VarietyModule");

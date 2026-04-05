@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SRaidingTemples
 {
-    [SouvenirQuestion("How many jewels were in the starting common pool in {0}?", ThreeColumns6Answers)]
+    [Question("How many jewels were in the starting common pool in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 10)]
     StartingCommonPool
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("raidingTemples", "Raiding Temples", typeof(SRaidingTemples), "GoodHood")]
-    [SouvenirManualQuestion("How many jewels were initially in the common pool?")]
+    [Handler("raidingTemples", "Raiding Temples", typeof(SRaidingTemples), "GoodHood")]
+    [ManualQuestion("How many jewels were initially in the common pool?")]
     private IEnumerator<SouvenirInstruction> ProcessRaidingTemples(ModuleData module)
     {
         var comp = GetComponent(module, "raidingTemplesScript");

@@ -5,17 +5,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SRobotProgramming
 {
-    [SouvenirQuestion("What was the color of the {1} robot in {0}?", TwoColumns4Answers, "Blue", "Green", "Red", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} robot in {0}?", TwoColumns4Answers, "Blue", "Green", "Red", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Color,
 
-    [SouvenirQuestion("What was the shape of the {1} robot in {0}?", TwoColumns4Answers, "Triangle", "Square", "Hexagon", "Circle", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the shape of the {1} robot in {0}?", TwoColumns4Answers, "Triangle", "Square", "Hexagon", "Circle", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Shape
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("robotProgramming", "Robot Programming", typeof(SRobotProgramming), "Hawker")]
-    [SouvenirManualQuestion("What were the shapes and colors of the robots?")]
+    [Handler("robotProgramming", "Robot Programming", typeof(SRobotProgramming), "Hawker")]
+    [ManualQuestion("What were the shapes and colors of the robots?")]
     private IEnumerator<SouvenirInstruction> ProcessRobotProgramming(ModuleData module)
     {
         var comp = GetComponent(module, "robotProgramming");

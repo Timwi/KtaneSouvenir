@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPurpleButton
 {
-    [SouvenirQuestion("What was the {1} number in the cyclic sequence on {0}?", ThreeColumns6Answers, ExampleAnswers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} number in the cyclic sequence on {0}?", ThreeColumns6Answers, ExampleAnswers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Numbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("PurpleButtonModule", "Purple Button", typeof(SPurpleButton), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What were the numbers in the cyclic sequence?")]
+    [Handler("PurpleButtonModule", "Purple Button", typeof(SPurpleButton), "Timwi", AddThe = true)]
+    [ManualQuestion("What were the numbers in the cyclic sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessPurpleButton(ModuleData module)
     {
         var comp = GetComponent(module, "PurpleButtonScript");

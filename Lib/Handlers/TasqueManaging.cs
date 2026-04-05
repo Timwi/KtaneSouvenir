@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum STasqueManaging
 {
-    [SouvenirQuestion("Where was the starting position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "TasqueManagingSprites")]
+    [Question("Where was the starting position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "TasqueManagingSprites")]
     StartingPos
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("tasqueManaging", "Tasque Managing", typeof(STasqueManaging), "tandyCake")]
-    [SouvenirManualQuestion("What was the starting position?")]
+    [Handler("tasqueManaging", "Tasque Managing", typeof(STasqueManaging), "tandyCake")]
+    [ManualQuestion("What was the starting position?")]
     private IEnumerator<SouvenirInstruction> ProcessTasqueManaging(ModuleData module)
     {
         var comp = GetComponent(module, "tasqueManaging");

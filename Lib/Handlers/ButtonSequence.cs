@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SButtonSequence
 {
-    [SouvenirQuestion("How many {1} buttons were there in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "blue", "yellow", "white"], ArgumentGroupSize = 1)]
+    [Question("How many {1} buttons were there in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "blue", "yellow", "white"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 12)]
     QColorOccurrences,
 
-    [SouvenirDiscriminator("the Button Sequence that had {0} {1}", Arguments = ["1", "red button", "1", "blue button", "1", "yellow button", "1", "white button", "2", "red buttons", "3", "blue buttons", "4", "yellow buttons", "5", "white buttons"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Discriminator("the Button Sequence that had {0} {1}", Arguments = ["1", "red button", "1", "blue button", "1", "yellow button", "1", "white button", "2", "red buttons", "3", "blue buttons", "4", "yellow buttons", "5", "white buttons"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     DColorOccurrences
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("buttonSequencesModule", "Button Sequence", typeof(SButtonSequence), "Timwi")]
-    [SouvenirManualQuestion("How many times did each color occur?")]
+    [Handler("buttonSequencesModule", "Button Sequence", typeof(SButtonSequence), "Timwi")]
+    [ManualQuestion("How many times did each color occur?")]
     private IEnumerator<SouvenirInstruction> ProcessButtonSequence(ModuleData module)
     {
         var comp = GetComponent(module, "ButtonSequencesModule");

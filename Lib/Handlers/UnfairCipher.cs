@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SUnfairCipher
 {
-    [SouvenirQuestion("What was the {1} letter of the encrypted message in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} letter of the encrypted message in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings('A', 'Z')]
     Letters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("unfairCipher", "Unfair Cipher", typeof(SUnfairCipher), "Espik")]
-    [SouvenirManualQuestion("What was the encrypted message?")]
+    [Handler("unfairCipher", "Unfair Cipher", typeof(SUnfairCipher), "Espik")]
+    [ManualQuestion("What was the encrypted message?")]
     private IEnumerator<SouvenirInstruction> ProcessUnfairCipher(ModuleData module)
     {
         var comp = GetComponent(module, "unfairCipherScript");

@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSignLanguage
 {
-    [SouvenirQuestion("What was the deciphered word in {0}?", TwoColumns4Answers, "PHALANX", "DIGITAL", "ACHIRAL", "DEAFENS", "LISTENS", "EXPLAIN", "SPEAKER", "TURTLES", "QUOTING", "MISTAKE", "REALIZE", "HELPERS", "HEARING", "STROKES", "OVERJOY", "ROYALTY", "EARDRUM", "COCHLEA", "AUDIBLE", "KABOOMS", "REFUGEE", "SWINGER", "BALANCE", "LIQUIDS", "VOYAGED")]
+    [Question("What was the deciphered word in {0}?", TwoColumns4Answers, "PHALANX", "DIGITAL", "ACHIRAL", "DEAFENS", "LISTENS", "EXPLAIN", "SPEAKER", "TURTLES", "QUOTING", "MISTAKE", "REALIZE", "HELPERS", "HEARING", "STROKES", "OVERJOY", "ROYALTY", "EARDRUM", "COCHLEA", "AUDIBLE", "KABOOMS", "REFUGEE", "SWINGER", "BALANCE", "LIQUIDS", "VOYAGED")]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("signLanguage", "Sign Language", typeof(SSignLanguage), "Hawker")]
-    [SouvenirManualQuestion("What was the deciphered word?")]
+    [Handler("signLanguage", "Sign Language", typeof(SSignLanguage), "Hawker")]
+    [ManualQuestion("What was the deciphered word?")]
     private IEnumerator<SouvenirInstruction> ProcessSignLanguage(ModuleData module)
     {
         var comp = GetComponent(module, "SignLanguageAlphabetScript");

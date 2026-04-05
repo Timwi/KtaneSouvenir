@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SGameOfLifeCruel
 {
-    [SouvenirQuestion("Which of these was a color combination that occurred in {0}?", TwoColumns4Answers, ExampleAnswers = ["Red/Orange", "Orange/Yellow", "Yellow/Green", "Green/Blue"])]
+    [Question("Which of these was a color combination that occurred in {0}?", TwoColumns4Answers, ExampleAnswers = ["Red/Orange", "Orange/Yellow", "Yellow/Green", "Green/Blue"])]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GameOfLifeCruel", "Game of Life Cruel", typeof(SGameOfLifeCruel), "GhostSalt")]
-    [SouvenirManualQuestion("Which color combinations occurred?")]
+    [Handler("GameOfLifeCruel", "Game of Life Cruel", typeof(SGameOfLifeCruel), "GhostSalt")]
+    [ManualQuestion("Which color combinations occurred?")]
     private IEnumerator<SouvenirInstruction> ProcessGameOfLifeCruel(ModuleData module)
     {
         var comp = GetComponent(module, "GameOfLifeCruel");

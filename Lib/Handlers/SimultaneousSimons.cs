@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimultaneousSimons
 {
-    [SouvenirQuestion("What color flashed {1} on the {2} Simon in {0}?", TwoColumns4Answers, "Blue", "Yellow", "Red", "Green", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What color flashed {1} on the {2} Simon in {0}?", TwoColumns4Answers, "Blue", "Yellow", "Red", "Green", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     Flash
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simultaneousSimons", "Simultaneous Simons", typeof(SSimultaneousSimons), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which colors flashed on each of the Simons?")]
+    [Handler("simultaneousSimons", "Simultaneous Simons", typeof(SSimultaneousSimons), "Quinn Wuest")]
+    [ManualQuestion("Which colors flashed on each of the Simons?")]
     private IEnumerator<SouvenirInstruction> ProcessSimultaneousSimons(ModuleData module)
     {
         var comp = GetComponent(module, "SimultaneousSimons");

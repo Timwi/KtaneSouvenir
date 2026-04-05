@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SPalindromes
 {
-    [SouvenirQuestion("What was {1}’s {2} digit from the right in {0}?", ThreeColumns6Answers, TranslateArguments = [true, false], Arguments = ["X", QandA.Ordinal, "Y", QandA.Ordinal, "Z", QandA.Ordinal, "the screen", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was {1}’s {2} digit from the right in {0}?", ThreeColumns6Answers, TranslateArguments = [true, false], Arguments = ["X", QandA.Ordinal, "Y", QandA.Ordinal, "Z", QandA.Ordinal, "the screen", QandA.Ordinal], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(0, 9)]
     Numbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("palindromes", "Palindromes", typeof(SPalindromes), "Emik")]
-    [SouvenirManualQuestion("What number was X, Y, Z, and the screen display?")]
+    [Handler("palindromes", "Palindromes", typeof(SPalindromes), "Emik")]
+    [ManualQuestion("What number was X, Y, Z, and the screen display?")]
     private IEnumerator<SouvenirInstruction> ProcessPalindromes(ModuleData module)
     {
         var comp = GetComponent(module, "Palindromes");

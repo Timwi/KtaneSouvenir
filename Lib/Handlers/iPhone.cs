@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SiPhone
 {
-    [SouvenirQuestion("What was the {1} PIN digit in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} PIN digit in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Digits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("iPhone", "iPhone", typeof(SiPhone), "luisdiogo98", AddThe = true)]
-    [SouvenirManualQuestion("What was the PIN?")]
+    [Handler("iPhone", "iPhone", typeof(SiPhone), "luisdiogo98", AddThe = true)]
+    [ManualQuestion("What was the PIN?")]
     private IEnumerator<SouvenirInstruction> ProcessiPhone(ModuleData module)
     {
         var comp = GetComponent(module, "iPhoneScript");

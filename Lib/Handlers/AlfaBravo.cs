@@ -5,25 +5,25 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlfaBravo
 {
-    [SouvenirQuestion("Which letter was pressed in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+    [Question("Which letter was pressed in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
     PressedLetter,
 
-    [SouvenirQuestion("Which letter was to the left of the pressed one in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+    [Question("Which letter was to the left of the pressed one in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
     LeftPressedLetter,
 
-    [SouvenirQuestion("Which letter was to the right of the pressed one in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+    [Question("Which letter was to the right of the pressed one in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
     RightPressedLetter,
 
-    [SouvenirQuestion("What was the last digit on the small display in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+    [Question("What was the last digit on the small display in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
     Digit
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("alfa_bravo", "Alfa-Bravo", typeof(SAlfaBravo), "NickLatkovich")]
-    [SouvenirManualQuestion("What final letter was pressed?")]
-    [SouvenirManualQuestion("What letters were to the left and right of the final one?")]
-    [SouvenirManualQuestion("What was the last digit on the small display?")]
+    [Handler("alfa_bravo", "Alfa-Bravo", typeof(SAlfaBravo), "NickLatkovich")]
+    [ManualQuestion("What final letter was pressed?")]
+    [ManualQuestion("What letters were to the left and right of the final one?")]
+    [ManualQuestion("What was the last digit on the small display?")]
     private IEnumerator<SouvenirInstruction> ProcessAlfaBravo(ModuleData module)
     {
         var comp = GetComponent(module, "AlfaBravoModule");

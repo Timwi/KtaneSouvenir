@@ -6,21 +6,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SSymbolicTasha
 {
-    [SouvenirQuestion("Which button flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Top", "Right", "Bottom", "Left", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("Which button flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Top", "Right", "Bottom", "Left", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     DirectionFlashes,
 
-    [SouvenirQuestion("Which button flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Pink", "Green", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("Which button flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Pink", "Green", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     ColorFlashes,
 
-    [SouvenirQuestion("Which symbol was on the {1} button in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "SymbolicTashaSprites", Arguments = ["top", "right", "bottom", "left", "blue", "green", "yellow", "pink"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which symbol was on the {1} button in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "SymbolicTashaSprites", Arguments = ["top", "right", "bottom", "left", "blue", "green", "yellow", "pink"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Symbols
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("symbolicTasha", "Symbolic Tasha", typeof(SSymbolicTasha), "Timwi")]
-    [SouvenirManualQuestion("What symbols were on the buttons?")]
-    [SouvenirManualQuestion("Which buttons flashed?")]
+    [Handler("symbolicTasha", "Symbolic Tasha", typeof(SSymbolicTasha), "Timwi")]
+    [ManualQuestion("What symbols were on the buttons?")]
+    [ManualQuestion("Which buttons flashed?")]
     private IEnumerator<SouvenirInstruction> ProcessSymbolicTasha(ModuleData module)
     {
         var comp = GetComponent(module, "symbolicTasha");

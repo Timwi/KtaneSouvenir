@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPeriodicWords
 {
-    [SouvenirQuestion("What word was on the display in the {1} stage of {0}?", OneColumn4Answers, ExampleAnswers = ["ATTACKERS", "BUY", "SUPERPOSITION", "WHO"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What word was on the display in the {1} stage of {0}?", OneColumn4Answers, ExampleAnswers = ["ATTACKERS", "BUY", "SUPERPOSITION", "WHO"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayedWords
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("periodicWordsRB", "Periodic Words", typeof(SPeriodicWords), "Kuro")]
-    [SouvenirManualQuestion("What was the displayed word in each stage?")]
+    [Handler("periodicWordsRB", "Periodic Words", typeof(SPeriodicWords), "Kuro")]
+    [ManualQuestion("What was the displayed word in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessPeriodicWords(ModuleData module)
     {
         var comp = GetComponent(module, "PeriodicWordsScript");

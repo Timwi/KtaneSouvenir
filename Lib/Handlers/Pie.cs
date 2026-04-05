@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SPie
 {
-    [SouvenirQuestion("What was the {1} digit of the displayed number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} digit of the displayed number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Digits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("pieModule", "Pie", typeof(SPie), "luisdiogo98")]
-    [SouvenirManualQuestion("What were the digits shown?")]
+    [Handler("pieModule", "Pie", typeof(SPie), "luisdiogo98")]
+    [ManualQuestion("What were the digits shown?")]
     private IEnumerator<SouvenirInstruction> ProcessPie(ModuleData module)
     {
         var comp = GetComponent(module, "PieScript");

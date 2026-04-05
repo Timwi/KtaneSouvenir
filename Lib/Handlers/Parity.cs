@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SParity
 {
-    [SouvenirQuestion("What was shown on the display on {0}?", ThreeColumns6Answers, ExampleAnswers = ["A1", "B2", "C3", "D4", "E5", "F6"])]
+    [Question("What was shown on the display on {0}?", ThreeColumns6Answers, ExampleAnswers = ["A1", "B2", "C3", "D4", "E5", "F6"])]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("parity", "Parity", typeof(SParity), "Quinn Wuest")]
-    [SouvenirManualQuestion("What was shown on the display?")]
+    [Handler("parity", "Parity", typeof(SParity), "Quinn Wuest")]
+    [ManualQuestion("What was shown on the display?")]
     private IEnumerator<SouvenirInstruction> ProcessParity(ModuleData module)
     {
         var comp = GetComponent(module, "ParityScript");

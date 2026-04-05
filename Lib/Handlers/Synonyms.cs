@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SSynonyms
 {
-    [SouvenirQuestion("Which number was displayed on {0}?", ThreeColumns6Answers)]
+    [Question("Which number was displayed on {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9)]
     Number
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("synonyms", "Synonyms", typeof(SSynonyms), "Timwi")]
-    [SouvenirManualQuestion("Which number was displayed?")]
+    [Handler("synonyms", "Synonyms", typeof(SSynonyms), "Timwi")]
+    [ManualQuestion("Which number was displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessSynonyms(ModuleData module)
     {
         var comp = GetComponent(module, "Synonyms");

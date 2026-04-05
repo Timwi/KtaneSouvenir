@@ -5,17 +5,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SKayMazeyTalk
 {
-    [SouvenirQuestion("What was the {1} word in {0}?", ThreeColumns6Answers, "Knit", "Knows", "Knock", "Knew", "Knoll", "Kneed", "Knuff", "Knork", "Knout", "Knits", "Knife", "Knights", "Knap", "Knee", "Knocks", "Knacks", "Knab", "Knocked", "Knight", "Knitch", "Knots", "Knish", "Knob", "Knox", "Knur", "Knook", "Know", "Knack", "Knurl", "Knot", Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the {1} word in {0}?", ThreeColumns6Answers, "Knit", "Knows", "Knock", "Knew", "Knoll", "Kneed", "Knuff", "Knork", "Knout", "Knits", "Knife", "Knights", "Knap", "Knee", "Knocks", "Knacks", "Knab", "Knocked", "Knight", "Knitch", "Knots", "Knish", "Knob", "Knox", "Knur", "Knook", "Know", "Knack", "Knurl", "Knot", Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     QWord,
 
-    [SouvenirDiscriminator("the KayMazey Talk whose {0} word was {1}", Arguments = ["starting", "Knit", "goal", "Knows"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the KayMazey Talk whose {0} word was {1}", Arguments = ["starting", "Knit", "goal", "Knows"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DWord
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("KMazeyTalk", "KayMazey Talk", typeof(SKayMazeyTalk), "Anonymous")]
-    [SouvenirManualQuestion("What were the starting and goal words?")]
+    [Handler("KMazeyTalk", "KayMazey Talk", typeof(SKayMazeyTalk), "Anonymous")]
+    [ManualQuestion("What were the starting and goal words?")]
     private IEnumerator<SouvenirInstruction> ProcessKayMazeyTalk(ModuleData module)
     {
         var comp = GetComponent(module, "kayMazeyTalkScript");

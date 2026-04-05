@@ -7,24 +7,24 @@ using static Souvenir.AnswerLayout;
 
 public enum SAccumulation
 {
-    [SouvenirQuestion("What was the border color in {0}?", ThreeColumns6Answers, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow", TranslateAnswers = true)]
+    [Question("What was the border color in {0}?", ThreeColumns6Answers, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow", TranslateAnswers = true)]
     QBorderColor,
 
-    [SouvenirQuestion("What was the background color in the {1} stage in {0}?", ThreeColumns6Answers, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the background color in the {1} stage in {0}?", ThreeColumns6Answers, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     QBackgroundColor,
 
-    [SouvenirDiscriminator("the Accumulation whose border was {0}", Arguments = ["blue", "brown", "green", "grey", "lime", "orange", "pink", "red", "white", "yellow"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Accumulation whose border was {0}", Arguments = ["blue", "brown", "green", "grey", "lime", "orange", "pink", "red", "white", "yellow"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DBorderColor,
 
-    [SouvenirDiscriminator("the Accumulation whose background in the {1} stage was {0}", Arguments = ["blue", QandA.Ordinal, "brown", QandA.Ordinal, "green", QandA.Ordinal, "grey", QandA.Ordinal, "lime", QandA.Ordinal, "orange", QandA.Ordinal, "pink", QandA.Ordinal, "red", QandA.Ordinal, "white", QandA.Ordinal, "yellow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Accumulation whose background in the {1} stage was {0}", Arguments = ["blue", QandA.Ordinal, "brown", QandA.Ordinal, "green", QandA.Ordinal, "grey", QandA.Ordinal, "lime", QandA.Ordinal, "orange", QandA.Ordinal, "pink", QandA.Ordinal, "red", QandA.Ordinal, "white", QandA.Ordinal, "yellow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DBackgroundColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("accumulation", "Accumulation", typeof(SAccumulation), "luisdiogo98")]
-    [SouvenirManualQuestion("What were the background colors at each stage?")]
-    [SouvenirManualQuestion("What was the border color?")]
+    [Handler("accumulation", "Accumulation", typeof(SAccumulation), "luisdiogo98")]
+    [ManualQuestion("What were the background colors at each stage?")]
+    [ManualQuestion("What was the border color?")]
     private IEnumerator<SouvenirInstruction> ProcessAccumulation(ModuleData module)
     {
         var comp = GetComponent(module, "accumulationScript");

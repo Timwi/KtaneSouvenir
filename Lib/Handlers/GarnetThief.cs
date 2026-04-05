@@ -8,14 +8,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SGarnetThief
 {
-    [SouvenirQuestion("Which faction did {1} claim to be in {0}?", TwoColumns4Answers, "Mafia", "Cartel", "Beggar", "Police", Arguments = ["Jungmoon", "Yeonseung", "Jinho", "Dongmin", "Kyunghoon", "Kyungran", "Yoohyun", "Junseok", "Sangmin", "Yohwan", "Yoonsun", "Hyunmin", "Junghyun"], ArgumentGroupSize = 1)]
+    [Question("Which faction did {1} claim to be in {0}?", TwoColumns4Answers, "Mafia", "Cartel", "Beggar", "Police", Arguments = ["Jungmoon", "Yeonseung", "Jinho", "Dongmin", "Kyunghoon", "Kyungran", "Yoohyun", "Junseok", "Sangmin", "Yohwan", "Yoonsun", "Hyunmin", "Junghyun"], ArgumentGroupSize = 1)]
     Claim
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("theGarnetThief", "Garnet Thief", typeof(SGarnetThief), "Hawker", AddThe = true)]
-    [SouvenirManualQuestion("Which faction did each competitor claim to have chosen?")]
+    [Handler("theGarnetThief", "Garnet Thief", typeof(SGarnetThief), "Hawker", AddThe = true)]
+    [ManualQuestion("Which faction did each competitor claim to have chosen?")]
     private IEnumerator<SouvenirInstruction> ProcessGarnetThief(ModuleData module)
     {
         var comp = GetComponent(module, "TheGarnetThiefScript");

@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonShrieks
 {
-    [SouvenirQuestion("How many spaces clockwise from the arrow was the {1} flash in the final sequence in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("How many spaces clockwise from the arrow was the {1} flash in the final sequence in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     FlashingButton
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SimonShrieksModule", "Simon Shrieks", typeof(SSimonShrieks), "Timwi")]
-    [SouvenirManualQuestion("How many spaces clockwise from the arrow was each flash in the final sequence?")]
+    [Handler("SimonShrieksModule", "Simon Shrieks", typeof(SSimonShrieks), "Timwi")]
+    [ManualQuestion("How many spaces clockwise from the arrow was each flash in the final sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonShrieks(ModuleData module)
     {
         var comp = GetComponent(module, "SimonShrieksModule");

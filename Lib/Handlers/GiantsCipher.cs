@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SGiantsCipher
 {
-    [SouvenirQuestion("What was the displayed keyword in {0}?", ThreeColumns6Answers, "ACACIA", "MADMAN", "ACHING", "FALCON", "BALSAM", "MAGNET", "MAGNUM", "HADRON", "GERBIL", "EASILY", "CARING", "ABSENT", "KETTLE", "BANNER", "BASQUE", "KAZOOS", "COFFEE", "HOBBIT", "ANALOG", "BRAINS", "ERASED", "DRIVEN", "FOGRUM", "COLORS", "ATOMIC", "LUNACY", "JOYFUL", "LONDON", "INSTIL", "AUTUMN", "CONSUL", "CONVOY", "ZAGGED", "TABLES", "NAMING", "SADIST", "OBEYED", "RAISES", "VACUUM", "REBOOT", "ULTIMA", "OBTAIN", "TAXING", "NINETY", "TAPPED", "ZIPPER", "THRONE", "NEURON", "QUEBEC", "QUACKS", "WRAITH", "QUEENS", "TRIPLE", "TRASHY", "QUINOA", "ROBOTS", "WORKED", "VOWELS", "OWNING", "NOTION", "TROUGH", "VORTEX", "SPOUSE", "SORROW")]
+    [Question("What was the displayed keyword in {0}?", ThreeColumns6Answers, "ACACIA", "MADMAN", "ACHING", "FALCON", "BALSAM", "MAGNET", "MAGNUM", "HADRON", "GERBIL", "EASILY", "CARING", "ABSENT", "KETTLE", "BANNER", "BASQUE", "KAZOOS", "COFFEE", "HOBBIT", "ANALOG", "BRAINS", "ERASED", "DRIVEN", "FOGRUM", "COLORS", "ATOMIC", "LUNACY", "JOYFUL", "LONDON", "INSTIL", "AUTUMN", "CONSUL", "CONVOY", "ZAGGED", "TABLES", "NAMING", "SADIST", "OBEYED", "RAISES", "VACUUM", "REBOOT", "ULTIMA", "OBTAIN", "TAXING", "NINETY", "TAPPED", "ZIPPER", "THRONE", "NEURON", "QUEBEC", "QUACKS", "WRAITH", "QUEENS", "TRIPLE", "TRASHY", "QUINOA", "ROBOTS", "WORKED", "VOWELS", "OWNING", "NOTION", "TROUGH", "VORTEX", "SPOUSE", "SORROW")]
     Keywords
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GiantsCipher", "Giants Cipher", typeof(SGiantsCipher), "thunder725")]
-    [SouvenirManualQuestion("What was the displayed keyword?")]
+    [Handler("GiantsCipher", "Giants Cipher", typeof(SGiantsCipher), "thunder725")]
+    [ManualQuestion("What was the displayed keyword?")]
     private IEnumerator<SouvenirInstruction> ProcessGiantsCipher(ModuleData module)
     {
         var comp = GetComponent(module, "GiantsCipher");

@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SMorseButtons
 {
-    [SouvenirQuestion("What was the character flashed by the {1} button in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the character flashed by the {1} button in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-Z0-9")]
     ButtonLabel,
 
-    [SouvenirQuestion("What was the color flashed by the {1} button in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "orange", "purple", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the color flashed by the {1} button in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "orange", "purple", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     ButtonColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("morseButtons", "Morse Buttons", typeof(SMorseButtons), "luisdiogo98")]
-    [SouvenirManualQuestion("What were the characters and colors flashed by each button?")]
+    [Handler("morseButtons", "Morse Buttons", typeof(SMorseButtons), "luisdiogo98")]
+    [ManualQuestion("What were the characters and colors flashed by each button?")]
     private IEnumerator<SouvenirInstruction> ProcessMorseButtons(ModuleData module)
     {
         var comp = GetComponent(module, "morseButtonsScript");

@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SInnerConnections
 {
-    [SouvenirQuestion("What color was the LED in {0}?", ThreeColumns6Answers, "Black", "Blue", "Red", "White", "Yellow", "Green", TranslateAnswers = true)]
+    [Question("What color was the LED in {0}?", ThreeColumns6Answers, "Black", "Blue", "Red", "White", "Yellow", "Green", TranslateAnswers = true)]
     LED,
 
-    [SouvenirQuestion("What was the digit flashed in Morse in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+    [Question("What was the digit flashed in Morse in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
     Morse
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("InnerConnectionsModule", "Inner Connections", typeof(SInnerConnections), "Brawlboxgaming")]
-    [SouvenirManualQuestion("What color was the LED?")]
-    [SouvenirManualQuestion("What was the digit flashed in Morse?")]
+    [Handler("InnerConnectionsModule", "Inner Connections", typeof(SInnerConnections), "Brawlboxgaming")]
+    [ManualQuestion("What color was the LED?")]
+    [ManualQuestion("What was the digit flashed in Morse?")]
     private IEnumerator<SouvenirInstruction> ProcessInnerConnections(ModuleData module)
     {
         var comp = GetComponent(module, "InnerConnectionsScript");

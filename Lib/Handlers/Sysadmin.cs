@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSysadmin
 {
-    [SouvenirQuestion("What error code did you fix in {0}?", ThreeColumns6Answers, ExampleAnswers = ["391M", "4HZZ", "56OW", "6RO0", "6WMJ", "8V94", "CYB6", "HR71", "PT68", "X8IZ"])]
+    [Question("What error code did you fix in {0}?", ThreeColumns6Answers, ExampleAnswers = ["391M", "4HZZ", "56OW", "6RO0", "6WMJ", "8V94", "CYB6", "HR71", "PT68", "X8IZ"])]
     FixedErrorCodes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("sysadmin", "Sysadmin", typeof(SSysadmin), "NickLatkovich")]
-    [SouvenirManualQuestion("What error code did you fix?")]
+    [Handler("sysadmin", "Sysadmin", typeof(SSysadmin), "NickLatkovich")]
+    [ManualQuestion("What error code did you fix?")]
     private IEnumerator<SouvenirInstruction> ProcessSysadmin(ModuleData module)
     {
         var comp = GetComponent(module, "SysadminModule");

@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SLimeArrows
 {
-    [SouvenirQuestion("What was the starting coordinate in {0}?", ThreeColumns6Answers)]
+    [Question("What was the starting coordinate in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-I", "1-9")]
     Coordinates
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("limeArrowsModule", "Lime Arrows", typeof(SLimeArrows), "thunder725")]
-    [SouvenirManualQuestion("What was the starting coordinate?")]
+    [Handler("limeArrowsModule", "Lime Arrows", typeof(SLimeArrows), "thunder725")]
+    [ManualQuestion("What was the starting coordinate?")]
     private IEnumerator<SouvenirInstruction> ProcessLimeArrows(ModuleData module)
     {
         var struck = false;

@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SGreenButton
 {
-    [SouvenirQuestion("What was the word submitted in {0}?", ThreeColumns6Answers, ExampleAnswers = ["model", "vigor", "pedal", "relic", "lemon", "spoke", "brick", "berry", "equal", "loopy", "trash", "learn", "amuse", "valve", "bench", "igloo", "maybe", "fluid", "truck", "torch"])]
+    [Question("What was the word submitted in {0}?", ThreeColumns6Answers, ExampleAnswers = ["model", "vigor", "pedal", "relic", "lemon", "spoke", "brick", "berry", "equal", "loopy", "trash", "learn", "amuse", "valve", "bench", "igloo", "maybe", "fluid", "truck", "torch"])]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GreenButtonModule", "Green Button", typeof(SGreenButton), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What was the submitted word?")]
+    [Handler("GreenButtonModule", "Green Button", typeof(SGreenButton), "Timwi", AddThe = true)]
+    [ManualQuestion("What was the submitted word?")]
     private IEnumerator<SouvenirInstruction> ProcessGreenButton(ModuleData module)
     {
         var comp = GetComponent(module, "GreenButtonScript");

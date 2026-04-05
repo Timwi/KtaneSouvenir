@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum S0
 {
-    [SouvenirQuestion("What was the initially displayed number in {0}?", TwoColumns4Answers)]
+    [Question("What was the initially displayed number in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Integers(100000000, 999999999)]
     Number
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("0", "0", typeof(S0), "Anonymous")]
-    [SouvenirManualQuestion("What was the starting number?")]
+    [Handler("0", "0", typeof(S0), "Anonymous")]
+    [ManualQuestion("What was the starting number?")]
     private IEnumerator<SouvenirInstruction> Process0(ModuleData module)
     {
         var comp = GetComponent(module, "pruzZero");

@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SRhythms
 {
-    [SouvenirQuestion("What was the color in {0}?", TwoColumns4Answers, "Blue", "Red", "Green", "Yellow", TranslateAnswers = true)]
+    [Question("What was the color in {0}?", TwoColumns4Answers, "Blue", "Red", "Green", "Yellow", TranslateAnswers = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MusicRhythms", "Rhythms", typeof(SRhythms), "Timwi")]
-    [SouvenirManualQuestion("What was the color?")]
+    [Handler("MusicRhythms", "Rhythms", typeof(SRhythms), "Timwi")]
+    [ManualQuestion("What was the color?")]
     private IEnumerator<SouvenirInstruction> ProcessRhythms(ModuleData module)
     {
         var comp = GetComponent(module, "Rhythms");

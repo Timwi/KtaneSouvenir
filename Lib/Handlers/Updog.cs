@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SUpdog
 {
-    [SouvenirQuestion("What was the text on {0}?", ThreeColumns6Answers, "dog", "DOG", "dawg", "DAWG", "doge", "DOGE", "dag", "DAG", "dogg", "DOGG", "dage", "DAGE")]
+    [Question("What was the text on {0}?", ThreeColumns6Answers, "dog", "DOG", "dawg", "DAWG", "doge", "DOGE", "dag", "DAG", "dogg", "DOGG", "dage", "DAGE")]
     Word,
 
-    [SouvenirQuestion("What was the {1} color in the sequence on {0}?", ThreeColumns6Answers, "Red", "Yellow", "Orange", "Green", "Blue", "Purple", TranslateArguments = [true], TranslateAnswers = true, Arguments = ["first", "last"], ArgumentGroupSize = 1)]
+    [Question("What was the {1} color in the sequence on {0}?", ThreeColumns6Answers, "Red", "Yellow", "Orange", "Green", "Blue", "Purple", TranslateArguments = [true], TranslateAnswers = true, Arguments = ["first", "last"], ArgumentGroupSize = 1)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Updog", "Updog", typeof(SUpdog), "Anonymous")]
-    [SouvenirManualQuestion("What was the displayed word?")]
-    [SouvenirManualQuestion("What were the flashing colors?")]
+    [Handler("Updog", "Updog", typeof(SUpdog), "Anonymous")]
+    [ManualQuestion("What was the displayed word?")]
+    [ManualQuestion("What were the flashing colors?")]
     private IEnumerator<SouvenirInstruction> ProcessUpdog(ModuleData module)
     {
         var comp = GetComponent(module, "UpdogScript");

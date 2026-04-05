@@ -5,17 +5,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SPinkButton
 {
-    [SouvenirQuestion("What was the {1} word in {0}?", TwoColumns4Answers, "BLK", "RED", "GRN", "YLW", "BLU", "MGT", "CYN", "WHT", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} word in {0}?", TwoColumns4Answers, "BLK", "RED", "GRN", "YLW", "BLU", "MGT", "CYN", "WHT", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Words,
 
-    [SouvenirQuestion("What was the {1} color in {0}?", TwoColumns4Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} color in {0}?", TwoColumns4Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("PinkButtonModule", "Pink Button", typeof(SPinkButton), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What were the displayed words and their colors?")]
+    [Handler("PinkButtonModule", "Pink Button", typeof(SPinkButton), "Timwi", AddThe = true)]
+    [ManualQuestion("What were the displayed words and their colors?")]
     private IEnumerator<SouvenirInstruction> ProcessPinkButton(ModuleData module)
     {
         var comp = GetComponent(module, "PinkButtonScript");

@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDreamcipher
 {
-    [SouvenirQuestion("What was the decrypted word in {0}?", OneColumn4Answers, ExampleAnswers = ["asparagus", "demonstration", "fossilizing", "foursquare", "grinning", "jumpiness", "pasteboard", "prosecution", "sarcastic", "transition"])]
+    [Question("What was the decrypted word in {0}?", OneColumn4Answers, ExampleAnswers = ["asparagus", "demonstration", "fossilizing", "foursquare", "grinning", "jumpiness", "pasteboard", "prosecution", "sarcastic", "transition"])]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ksmDreamcipher", "Dreamcipher", typeof(SDreamcipher), "BigCrunch22")]
-    [SouvenirManualQuestion("What was the decrypted word?")]
+    [Handler("ksmDreamcipher", "Dreamcipher", typeof(SDreamcipher), "BigCrunch22")]
+    [ManualQuestion("What was the decrypted word?")]
     private IEnumerator<SouvenirInstruction> ProcessDreamcipher(ModuleData module)
     {
         var comp = GetComponent(module, "Dreamcipher");

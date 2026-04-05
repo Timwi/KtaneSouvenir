@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SEarthbound
 {
-    [SouvenirQuestion("What was the background in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the background in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Background,
 
-    [SouvenirQuestion("Which monster was displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which monster was displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Monster
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("EarthboundModule", "Earthbound", typeof(SEarthbound), "Hawker")]
-    [SouvenirManualQuestion("What was the background?")]
-    [SouvenirManualQuestion("Which monster was shown?")]
+    [Handler("EarthboundModule", "Earthbound", typeof(SEarthbound), "Hawker")]
+    [ManualQuestion("What was the background?")]
+    [ManualQuestion("Which monster was shown?")]
     private IEnumerator<SouvenirInstruction> ProcessEarthbound(ModuleData module)
     {
         var comp = GetComponent(module, "EarthboundScript");

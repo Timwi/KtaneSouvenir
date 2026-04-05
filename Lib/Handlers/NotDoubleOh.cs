@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotDoubleOh
 {
-    [SouvenirQuestion("What was the {1} displayed position in the second stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} displayed position in the second stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings(2, 'A', 'H')]
     QPosition,
 
-    [SouvenirDiscriminator("the Not Double-Oh where the {0} displayed position was {1}", Arguments = [QandA.Ordinal, "AA"], ArgumentGroupSize = 2)]
+    [Discriminator("the Not Double-Oh where the {0} displayed position was {1}", Arguments = [QandA.Ordinal, "AA"], ArgumentGroupSize = 2)]
     DPosition
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NotDoubleOhModule", "Not Double-Oh", typeof(SNotDoubleOh), "Anonymous")]
-    [SouvenirManualQuestion("What were the displayed positions in the second stage?")]
+    [Handler("NotDoubleOhModule", "Not Double-Oh", typeof(SNotDoubleOh), "Anonymous")]
+    [ManualQuestion("What were the displayed positions in the second stage?")]
     private IEnumerator<SouvenirInstruction> ProcessNotDoubleOh(ModuleData module)
     {
         yield return WaitForSolve;

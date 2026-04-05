@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBreakfastEgg
 {
-    [SouvenirQuestion("Which color appeared on the egg in {0}?", TwoColumns4Answers, "Crimson", "Orange", "Pink", "Beige", "Cyan", "Lime", "Petrol", TranslateAnswers = true)]
+    [Question("Which color appeared on the egg in {0}?", TwoColumns4Answers, "Crimson", "Orange", "Pink", "Beige", "Cyan", "Lime", "Petrol", TranslateAnswers = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("breakfastEgg", "Breakfast Egg", typeof(SBreakfastEgg), "tandyCake")]
-    [SouvenirManualQuestion("Which colors appeared on the egg?")]
+    [Handler("breakfastEgg", "Breakfast Egg", typeof(SBreakfastEgg), "tandyCake")]
+    [ManualQuestion("Which colors appeared on the egg?")]
     private IEnumerator<SouvenirInstruction> ProcessBreakfastEgg(ModuleData module)
     {
         var comp = GetComponent(module, "breakfastEggScript");

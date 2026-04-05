@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCruelBinary
 {
-    [SouvenirQuestion("What was the displayed word in {0}?", TwoColumns4Answers, ExampleAnswers = ["LEAST", "YELLOW", "SIERRA", "WHITE"])]
+    [Question("What was the displayed word in {0}?", TwoColumns4Answers, ExampleAnswers = ["LEAST", "YELLOW", "SIERRA", "WHITE"])]
     DisplayedWord
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("CruelBinary", "Cruel Binary", typeof(SCruelBinary), "Kuro")]
-    [SouvenirManualQuestion("What was the displayed word?")]
+    [Handler("CruelBinary", "Cruel Binary", typeof(SCruelBinary), "Kuro")]
+    [ManualQuestion("What was the displayed word?")]
     private IEnumerator<SouvenirInstruction> ProcessCruelBinary(ModuleData module)
     {
         var comp = GetComponent(module, "CruelBinary");

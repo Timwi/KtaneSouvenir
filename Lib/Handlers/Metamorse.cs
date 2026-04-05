@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SMetamorse
 {
-    [SouvenirQuestion("What was the extracted letter in {0}?", ThreeColumns6Answers)]
+    [Question("What was the extracted letter in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-Z")]
     ExtractedLetter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("metamorse", "Metamorse", typeof(SMetamorse), "tandyCake")]
-    [SouvenirManualQuestion("What was the extracted letter?")]
+    [Handler("metamorse", "Metamorse", typeof(SMetamorse), "tandyCake")]
+    [ManualQuestion("What was the extracted letter?")]
     private IEnumerator<SouvenirInstruction> ProcessMetamorse(ModuleData module)
     {
         var comp = GetComponent(module, "MetamorseScript");

@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNecronomicon
 {
-    [SouvenirQuestion("Which chapter number was present in {0}?", ThreeColumns6Answers)]
+    [Question("Which chapter number was present in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 40)]
     Chapters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("necronomicon", "Necronomicon", typeof(SNecronomicon), "luisdiogo98", AddThe = true)]
-    [SouvenirManualQuestion("What were the chapter numbers?")]
+    [Handler("necronomicon", "Necronomicon", typeof(SNecronomicon), "luisdiogo98", AddThe = true)]
+    [ManualQuestion("What were the chapter numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessNecronomicon(ModuleData module)
     {
         var comp = GetComponent(module, "necronomiconScript");

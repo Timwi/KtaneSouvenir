@@ -6,19 +6,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SPrisonBreak
 {
-    [SouvenirQuestion("Which cell did the prisoner start in in {0}?", ThreeColumns6Answers)]
+    [Question("Which cell did the prisoner start in in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 15)]
     Prisoner,
 
-    [SouvenirQuestion("Where did you start in {0}?", ThreeColumns6Answers)]
+    [Question("Where did you start in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), ['A', 'L'], typeof(AnswerGenerator.Integers), [1, 12])]
     Defuser
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("prisonBreak", "Prison Break", typeof(SPrisonBreak), "Anonymous")]
-    [SouvenirManualQuestion("Where did the prisoner and defuser start?")]
+    [Handler("prisonBreak", "Prison Break", typeof(SPrisonBreak), "Anonymous")]
+    [ManualQuestion("Where did the prisoner and defuser start?")]
     private IEnumerator<SouvenirInstruction> ProcessPrisonBreak(ModuleData module)
     {
         var comp = GetComponent(module, "prisonBreakScript");

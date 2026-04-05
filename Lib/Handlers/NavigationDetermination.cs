@@ -5,17 +5,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SNavigationDetermination
 {
-    [SouvenirQuestion("What was the color of the maze in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateAnswers = true)]
+    [Question("What was the color of the maze in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateAnswers = true)]
     Color,
 
-    [SouvenirQuestion("What was the label of the maze in {0}?", TwoColumns4Answers, "A", "B", "C", "D")]
+    [Question("What was the label of the maze in {0}?", TwoColumns4Answers, "A", "B", "C", "D")]
     Label
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NavigationDeterminationModule", "Navigation Determination", typeof(SNavigationDetermination), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the color and label of the maze?")]
+    [Handler("NavigationDeterminationModule", "Navigation Determination", typeof(SNavigationDetermination), "Quinn Wuest")]
+    [ManualQuestion("What were the color and label of the maze?")]
     private IEnumerator<SouvenirInstruction> ProcessNavigationDetermination(ModuleData module)
     {
         var comp = GetComponent(module, "NavigationDeterminationScript");

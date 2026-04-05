@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SRNGCrystal
 {
-    [SouvenirQuestion("Which bit had a tap in {0}? (The output after shifting is at bit 0.)", ThreeColumns6Answers)]
+    [Question("Which bit had a tap in {0}? (The output after shifting is at bit 0.)", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 23)]
     Taps
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("rngCrystal", "RNG Crystal", typeof(SRNGCrystal), "Anonymous")]
-    [SouvenirManualQuestion("Where were the taps?")]
+    [Handler("rngCrystal", "RNG Crystal", typeof(SRNGCrystal), "Anonymous")]
+    [ManualQuestion("Where were the taps?")]
     private IEnumerator<SouvenirInstruction> ProcessRNGCrystal(ModuleData module)
     {
         var comp = GetComponent(module, "RngCrystalScript");

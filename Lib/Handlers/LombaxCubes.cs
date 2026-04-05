@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SLombaxCubes
 {
-    [SouvenirQuestion("What was the {1} letter on the button in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} letter on the button in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-Z")]
     Letters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("lgndLombaxCubes", "Lombax Cubes", typeof(SLombaxCubes), "Marksam")]
-    [SouvenirManualQuestion("What were the letters on the button?")]
+    [Handler("lgndLombaxCubes", "Lombax Cubes", typeof(SLombaxCubes), "Marksam")]
+    [ManualQuestion("What were the letters on the button?")]
     private IEnumerator<SouvenirInstruction> ProcessLombaxCubes(ModuleData module)
     {
         var comp = GetComponent(module, "LombaxCubesScript");

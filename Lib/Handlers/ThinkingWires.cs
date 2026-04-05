@@ -6,22 +6,22 @@ using static Souvenir.AnswerLayout;
 
 public enum SThinkingWires
 {
-    [SouvenirQuestion("What was the position from top to bottom of the first wire needing to be cut in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7")]
+    [Question("What was the position from top to bottom of the first wire needing to be cut in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7")]
     FirstWire,
 
-    [SouvenirQuestion("What color did the second valid wire to cut have to have in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any", TranslateAnswers = true)]
+    [Question("What color did the second valid wire to cut have to have in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any", TranslateAnswers = true)]
     SecondWire,
 
-    [SouvenirQuestion("What was the display number in {0}?", ThreeColumns6Answers, "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69")]
+    [Question("What was the display number in {0}?", ThreeColumns6Answers, "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69")]
     DisplayNumber
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("thinkingWiresModule", "Thinking Wires", typeof(SThinkingWires), "kavinkul")]
-    [SouvenirManualQuestion("Which was the first wire needing to be cut?")]
-    [SouvenirManualQuestion("What color was the second valid wire to cut?")]
-    [SouvenirManualQuestion("What was the display number?")]
+    [Handler("thinkingWiresModule", "Thinking Wires", typeof(SThinkingWires), "kavinkul")]
+    [ManualQuestion("Which was the first wire needing to be cut?")]
+    [ManualQuestion("What color was the second valid wire to cut?")]
+    [ManualQuestion("What was the display number?")]
     private IEnumerator<SouvenirInstruction> ProcessThinkingWires(ModuleData module)
     {
         var comp = GetComponent(module, "thinkingWiresScript");

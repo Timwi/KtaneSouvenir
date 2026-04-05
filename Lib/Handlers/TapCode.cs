@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum STapCode
 {
-    [SouvenirQuestion("What was the received word in {0}?", TwoColumns4Answers, ExampleAnswers = ["child", "style", "shake", "alive", "axion", "wreck", "cause", "pupil", "cheat", "watch"])]
+    [Question("What was the received word in {0}?", TwoColumns4Answers, ExampleAnswers = ["child", "style", "shake", "alive", "axion", "wreck", "cause", "pupil", "cheat", "watch"])]
     ReceivedWord
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("tapCode", "Tap Code", typeof(STapCode), "Timwi")]
-    [SouvenirManualQuestion("What was the received word?")]
+    [Handler("tapCode", "Tap Code", typeof(STapCode), "Timwi")]
+    [ManualQuestion("What was the received word?")]
     private IEnumerator<SouvenirInstruction> ProcessTapCode(ModuleData module)
     {
         var comp = GetComponent(module, "TapCodeScript");

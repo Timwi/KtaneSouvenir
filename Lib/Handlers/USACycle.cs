@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SUSACycle
 {
-    [SouvenirQuestion("Which state was displayed in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites)]
+    [Question("Which state was displayed in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites)]
     Displayed
 }
 
@@ -66,8 +66,8 @@ public partial class SouvenirModule
         ["Wyoming"] = 5000
     };
 
-    [SouvenirHandler("USACycle", "USA Cycle", typeof(SUSACycle), "tandyCake")]
-    [SouvenirManualQuestion("Which states were displayed?")]
+    [Handler("USACycle", "USA Cycle", typeof(SUSACycle), "tandyCake")]
+    [ManualQuestion("Which states were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessUSACycle(ModuleData module)
     {
         var comp = GetComponent(module, "USACycle");

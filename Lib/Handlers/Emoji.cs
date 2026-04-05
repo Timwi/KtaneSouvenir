@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SEmoji
 {
-    [SouvenirQuestion("What was the {1} emoji in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the {1} emoji in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Emoji
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("emoji", "Emoji", typeof(SEmoji), "Anonymous")]
-    [SouvenirManualQuestion("What were the emoji?")]
+    [Handler("emoji", "Emoji", typeof(SEmoji), "Anonymous")]
+    [ManualQuestion("What were the emoji?")]
     private IEnumerator<SouvenirInstruction> ProcessEmoji(ModuleData module)
     {
         yield return WaitForSolve;

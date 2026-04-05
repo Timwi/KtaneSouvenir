@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SSlowMath
 {
-    [SouvenirQuestion("What was the last triplet of letters in {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABC", "DEG", "KNP", "STX", "ZAB", "CDE", "GKN", "PST", "XZA", "BCD"])]
+    [Question("What was the last triplet of letters in {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABC", "DEG", "KNP", "STX", "ZAB", "CDE", "GKN", "PST", "XZA", "BCD"])]
     [AnswerGenerator.Strings(3, "ABCDEGKNPSTXZ")]
     LastLetters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SlowMathModule", "Slow Math", typeof(SSlowMath), "Quinn Wuest")]
-    [SouvenirManualQuestion("What was the last triplet of letters?")]
+    [Handler("SlowMathModule", "Slow Math", typeof(SSlowMath), "Quinn Wuest")]
+    [ManualQuestion("What was the last triplet of letters?")]
     private IEnumerator<SouvenirInstruction> ProcessSlowMath(ModuleData module)
     {
         var comp = GetComponent(module, "SlowMathScript");

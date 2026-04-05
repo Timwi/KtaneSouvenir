@@ -6,23 +6,23 @@ using static Souvenir.AnswerLayout;
 
 public enum SStroopsTest
 {
-    [SouvenirQuestion("What was the {1} submitted word in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} submitted word in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     QWord,
 
-    [SouvenirQuestion("What was the {1} submitted word’s color in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the {1} submitted word’s color in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     QColor,
 
-    [SouvenirDiscriminator("the Stroop’s Test whose {0} submitted word was “{1}”", Arguments = [QandA.Ordinal, "red", QandA.Ordinal, "yellow", QandA.Ordinal, "green", QandA.Ordinal, "blue", QandA.Ordinal, "magenta", QandA.Ordinal, "white"], ArgumentGroupSize = 2)]
+    [Discriminator("the Stroop’s Test whose {0} submitted word was “{1}”", Arguments = [QandA.Ordinal, "red", QandA.Ordinal, "yellow", QandA.Ordinal, "green", QandA.Ordinal, "blue", QandA.Ordinal, "magenta", QandA.Ordinal, "white"], ArgumentGroupSize = 2)]
     DWord,
 
-    [SouvenirDiscriminator("the Stroop’s Test whose {0} submitted word’s color was {1}", Arguments = [QandA.Ordinal, "red", QandA.Ordinal, "yellow", QandA.Ordinal, "green", QandA.Ordinal, "blue", QandA.Ordinal, "magenta", QandA.Ordinal, "white"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Discriminator("the Stroop’s Test whose {0} submitted word’s color was {1}", Arguments = [QandA.Ordinal, "red", QandA.Ordinal, "yellow", QandA.Ordinal, "green", QandA.Ordinal, "blue", QandA.Ordinal, "magenta", QandA.Ordinal, "white"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     DColor,
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("stroopsTest", "Stroop’s Test", typeof(SStroopsTest), "Anonymous")]
-    [SouvenirManualQuestion("What was each submitted word/color?")]
+    [Handler("stroopsTest", "Stroop’s Test", typeof(SStroopsTest), "Anonymous")]
+    [ManualQuestion("What was each submitted word/color?")]
     private IEnumerator<SouvenirInstruction> ProcessStroopsTest(ModuleData module)
     {
         var comp = GetComponent(module, "StroopsTestScript");

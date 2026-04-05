@@ -7,15 +7,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SPuzzlingHexabuttons
 {
-    [SouvenirQuestion("What letter was displayed on the {1} hexabutton when submitting in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What letter was displayed on the {1} hexabutton when submitting in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings('A', 'F')]
     Letter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("puzzlingHexabuttons", "Puzzling Hexabuttons", typeof(SPuzzlingHexabuttons), "Anonymous")]
-    [SouvenirManualQuestion("What letters were shown during submission?")]
+    [Handler("puzzlingHexabuttons", "Puzzling Hexabuttons", typeof(SPuzzlingHexabuttons), "Anonymous")]
+    [ManualQuestion("What letters were shown during submission?")]
     private IEnumerator<SouvenirInstruction> ProcessPuzzlingHexabuttons(ModuleData module)
     {
         yield return WaitForSolve;

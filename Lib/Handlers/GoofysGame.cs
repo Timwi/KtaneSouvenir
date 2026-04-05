@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SGoofysGame
 {
-    [SouvenirQuestion("What number was flashed by the {1} LED in {0}?", ThreeColumns6Answers, Arguments = ["left", "right", "center"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What number was flashed by the {1} LED in {0}?", ThreeColumns6Answers, Arguments = ["left", "right", "center"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(0, 9)]
     Number
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("goofysgame", "Goofy’s Game", typeof(SGoofysGame), "Anonymous")]
-    [SouvenirManualQuestion("What numbers were shown in Morse code?")]
+    [Handler("goofysgame", "Goofy’s Game", typeof(SGoofysGame), "Anonymous")]
+    [ManualQuestion("What numbers were shown in Morse code?")]
     private IEnumerator<SouvenirInstruction> ProcessGoofysGame(ModuleData module)
     {
         yield return WaitForSolve;

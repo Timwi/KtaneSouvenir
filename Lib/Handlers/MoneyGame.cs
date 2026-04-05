@@ -7,20 +7,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SMoneyGame
 {
-    [SouvenirQuestion("What were the first and second words in the {1} phrase in {0}?", TwoColumns4Answers, "she sells", "she shells", "sea shells", "sea sells", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What were the first and second words in the {1} phrase in {0}?", TwoColumns4Answers, "she sells", "she shells", "sea shells", "sea sells", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Question1,
 
-    [SouvenirQuestion("What were the third and fourth words in the {1} phrase in {0}?", TwoColumns4Answers, "sea shells", "she shells", "sea sells", "she sells", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What were the third and fourth words in the {1} phrase in {0}?", TwoColumns4Answers, "sea shells", "she shells", "sea sells", "she sells", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Question2,
 
-    [SouvenirQuestion("What was the end of the {1} phrase in {0}?", TwoColumns4Answers, "sea shore", "she sore", "she sure", "seesaw", "seizure", "shell sea", "steep store", "sheer sort", "speed spore", "sieve horn", "steel sword", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the end of the {1} phrase in {0}?", TwoColumns4Answers, "sea shore", "she sore", "she sure", "seesaw", "seizure", "shell sea", "steep store", "sheer sort", "speed spore", "sieve horn", "steel sword", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Question3
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MoneyGame", "Money Game", typeof(SMoneyGame), "Anonymous")]
-    [SouvenirManualQuestion("What were the phrases?")]
+    [Handler("MoneyGame", "Money Game", typeof(SMoneyGame), "Anonymous")]
+    [ManualQuestion("What were the phrases?")]
     private IEnumerator<SouvenirInstruction> ProcessMoneyGame(ModuleData module)
     {
         var comp = GetComponent(module, "MoneyGame");

@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMinskMetro
 {
-    [SouvenirQuestion("What was the name of starting station in {0}?", OneColumn4Answers, ExampleAnswers = ["Uručča", "Kamiennaja Horka", "Park Čaluskincaŭ", "Płošča Jakuba Kołasa"])]
+    [Question("What was the name of starting station in {0}?", OneColumn4Answers, ExampleAnswers = ["Uručča", "Kamiennaja Horka", "Park Čaluskincaŭ", "Płošča Jakuba Kołasa"])]
     Station
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("minskMetro", "Minsk Metro", typeof(SMinskMetro), "rand06")]
-    [SouvenirManualQuestion("What was the starting station?")]
+    [Handler("minskMetro", "Minsk Metro", typeof(SMinskMetro), "rand06")]
+    [ManualQuestion("What was the starting station?")]
     private IEnumerator<SouvenirInstruction> ProcessMinskMetro(ModuleData module)
     {
         var comp = GetComponent(module, "minskMetroScript");

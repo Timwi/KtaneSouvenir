@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SLogicGates
 {
-    [SouvenirQuestion("What was {1} in {0}?", ThreeColumns6Answers, "AND", "OR", "XOR", "NAND", "NOR", "XNOR", TranslateArguments = [true], Arguments = ["gate A", "gate B", "gate C", "gate D"], ArgumentGroupSize = 1)]
+    [Question("What was {1} in {0}?", ThreeColumns6Answers, "AND", "OR", "XOR", "NAND", "NOR", "XNOR", TranslateArguments = [true], Arguments = ["gate A", "gate B", "gate C", "gate D"], ArgumentGroupSize = 1)]
     Gates
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("logicGates", "Logic Gates", typeof(SLogicGates), "Timwi")]
-    [SouvenirManualQuestion("What were logic gates A-D?")]
+    [Handler("logicGates", "Logic Gates", typeof(SLogicGates), "Timwi")]
+    [ManualQuestion("What were logic gates A-D?")]
     private IEnumerator<SouvenirInstruction> ProcessLogicGates(ModuleData module)
     {
         var comp = GetComponent(module, "LogicGates");

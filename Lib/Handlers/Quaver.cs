@@ -7,14 +7,14 @@ using Rnd = UnityEngine.Random;
 
 public enum SQuaver
 {
-    [SouvenirQuestion("What was the {1} sequence’s answer in {0}?", OneColumn4Answers, ExampleAnswers = ["4", "10", "87", "320", "3, 3, 2, 3", "87, 85, 82, 84"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} sequence’s answer in {0}?", OneColumn4Answers, ExampleAnswers = ["4", "10", "87", "320", "3, 3, 2, 3", "87, 85, 82, 84"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Arrows
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Quaver", "Quaver", typeof(SQuaver), "Emik")]
-    [SouvenirManualQuestion("What was each sequence’s answer?")]
+    [Handler("Quaver", "Quaver", typeof(SQuaver), "Emik")]
+    [ManualQuestion("What was each sequence’s answer?")]
     private IEnumerator<SouvenirInstruction> ProcessQuaver(ModuleData module)
     {
         var comp = GetComponent(module, "QuaverScript");

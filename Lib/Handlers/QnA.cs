@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SQnA
 {
-    [SouvenirQuestion("What was the {1} question asked in {0}?", ThreeColumns6Answers, "WHAT", "WHEN", "WHERE", "WHO", "HOW", "WHY", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} question asked in {0}?", ThreeColumns6Answers, "WHAT", "WHEN", "WHERE", "WHO", "HOW", "WHY", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Questions
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("q&a", "Q & A", typeof(SQnA), "Anonymous")]
-    [SouvenirManualQuestion("What questions were asked?")]
+    [Handler("q&a", "Q & A", typeof(SQnA), "Anonymous")]
+    [ManualQuestion("What questions were asked?")]
     private IEnumerator<SouvenirInstruction> ProcessQnA(ModuleData module)
     {
         var comp = GetComponent(module, "QnA");

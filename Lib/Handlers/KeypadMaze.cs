@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SKeypadMaze
 {
-    [SouvenirQuestion("Which of these cells was yellow in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which of these cells was yellow in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Yellow
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("KeypadMaze", "Keypad Maze", typeof(SKeypadMaze), "Anonymous")]
-    [SouvenirManualQuestion("Where were the yellow cells?")]
+    [Handler("KeypadMaze", "Keypad Maze", typeof(SKeypadMaze), "Anonymous")]
+    [ManualQuestion("Where were the yellow cells?")]
     private IEnumerator<SouvenirInstruction> ProcessKeypadMaze(ModuleData module)
     {
         yield return WaitForSolve;

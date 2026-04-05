@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SSbemailSongs
 {
-    [SouvenirQuestion("What was the displayed song for stage {1} (hexadecimal) of {0}?", OneColumn4Answers, ExampleAnswers = ["Oh, who is the guy that…", "I'm gonna check my email all of the time…", "Checkin' my email, checkin' my email…", "I check the email once…", "Checkin' emails is like the best thing I do.", "I check, you check, we all check…", "I am going to check my email.", "I remember the time when I checked my email.", "I've carefully set aside this time…", "I'm totally checking my email…"], Arguments = ["01", "02"], ArgumentGroupSize = 1)]
+    [Question("What was the displayed song for stage {1} (hexadecimal) of {0}?", OneColumn4Answers, ExampleAnswers = ["Oh, who is the guy that…", "I'm gonna check my email all of the time…", "Checkin' my email, checkin' my email…", "I check the email once…", "Checkin' emails is like the best thing I do.", "I check, you check, we all check…", "I am going to check my email.", "I remember the time when I checked my email.", "I've carefully set aside this time…", "I'm totally checking my email…"], Arguments = ["01", "02"], ArgumentGroupSize = 1)]
     Songs,
 
-    [SouvenirDiscriminator("the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)", Arguments = ["Oh, who is the guy that…", "01", "I'm gonna check my email all of the time…", "02", "Checkin' my email, checkin' my email…", "0A"], ArgumentGroupSize = 2)]
+    [Discriminator("the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)", Arguments = ["Oh, who is the guy that…", "01", "I'm gonna check my email all of the time…", "02", "Checkin' my email, checkin' my email…", "0A"], ArgumentGroupSize = 2)]
     Digits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("sbemailsongs", "Sbemail Songs", typeof(SSbemailSongs), "ObjectsCountries", IsBossModule = true)]
-    [SouvenirManualQuestion("What were the displayed songs in each stage?")]
+    [Handler("sbemailsongs", "Sbemail Songs", typeof(SSbemailSongs), "ObjectsCountries", IsBossModule = true)]
+    [ManualQuestion("What were the displayed songs in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSbemailSongs(ModuleData module)
     {
         var comp = GetComponent(module, "_sbemailsongs");

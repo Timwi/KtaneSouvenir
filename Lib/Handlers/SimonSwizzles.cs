@@ -6,20 +6,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSwizzles
 {
-    [SouvenirQuestion("Where was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, ArgumentGroupSize = 1, TranslateArguments = [true], Arguments = ["OFF", "ON"])]
+    [Question("Where was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, ArgumentGroupSize = 1, TranslateArguments = [true], Arguments = ["OFF", "ON"])]
     [AnswerGenerator.Grid(4, 4)]
     Button,
 
-    [SouvenirQuestion("What was the hidden number in {0}?", ThreeColumns6Answers)]
+    [Question("What was the hidden number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("6*01")]
     Number
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonSwizzles", "Simon Swizzles", typeof(SSimonSwizzles), "Anonymous")]
-    [SouvenirManualQuestion("Where were ON and OFF?")]
-    [SouvenirManualQuestion("What was the hidden binary number?")]
+    [Handler("simonSwizzles", "Simon Swizzles", typeof(SSimonSwizzles), "Anonymous")]
+    [ManualQuestion("Where were ON and OFF?")]
+    [ManualQuestion("What was the hidden binary number?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSwizzles(ModuleData module)
     {
         yield return WaitForSolve;

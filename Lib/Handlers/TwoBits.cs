@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum STwoBits
 {
-    [SouvenirQuestion("What was the {1} correct query response from {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} correct query response from {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 99, "00")]
     QResponse,
 
-    [SouvenirDiscriminator("the Two Bits where the {0} correct query was {1}", Arguments = [QandA.Ordinal, "00"], ArgumentGroupSize = 2)]
+    [Discriminator("the Two Bits where the {0} correct query was {1}", Arguments = [QandA.Ordinal, "00"], ArgumentGroupSize = 2)]
     DResponse
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TwoBits", "Two Bits", typeof(STwoBits), "Timwi")]
-    [SouvenirManualQuestion("What were the correct three query responses?")]
+    [Handler("TwoBits", "Two Bits", typeof(STwoBits), "Timwi")]
+    [ManualQuestion("What were the correct three query responses?")]
     private IEnumerator<SouvenirInstruction> ProcessTwoBits(ModuleData module)
     {
         var comp = GetComponent(module, "TwoBitsModule");

@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSends
 {
-    [SouvenirQuestion("What was the {1} received letter in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [Question("What was the {1} received letter in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings('A', 'Z')]
     ReceivedLetters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SimonSendsModule", "Simon Sends", typeof(SSimonSends), "EternityShack")]
-    [SouvenirManualQuestion("What were the red, green, and blue received letters?")]
+    [Handler("SimonSendsModule", "Simon Sends", typeof(SSimonSends), "EternityShack")]
+    [ManualQuestion("What were the red, green, and blue received letters?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSends(ModuleData module)
     {
         string[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };

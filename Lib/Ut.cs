@@ -465,36 +465,36 @@ public static class Ut
         value = source.Value;
     }
 
-    public static Dictionary<string, SouvenirHandlerAttribute> ModuleHandlers = [];
-    public static Dictionary<Enum, (SouvenirHandlerAttribute h, SouvenirQuestionAttribute q, SouvenirDiscriminatorAttribute d)> Attributes = new(EnumEqualityComparer.Default);
-    public static (SouvenirHandlerAttribute h, SouvenirQuestionAttribute q, SouvenirDiscriminatorAttribute d) GetAttributes(this Enum value) => Attributes.Get(value, default);
-    public static SouvenirHandlerAttribute GetHandlerAttribute(this Enum questionOrDiscriminator) => GetAttributes(questionOrDiscriminator).h;
-    public static SouvenirQuestionAttribute GetQuestionAttribute(this Enum question) => GetAttributes(question).q;
-    public static SouvenirDiscriminatorAttribute GetDiscriminatorAttribute(this Enum discriminator) => GetAttributes(discriminator).d;
+    public static Dictionary<string, HandlerAttribute> ModuleHandlers = [];
+    public static Dictionary<Enum, (HandlerAttribute h, QuestionAttribute q, DiscriminatorAttribute d)> Attributes = new(EnumEqualityComparer.Default);
+    public static (HandlerAttribute h, QuestionAttribute q, DiscriminatorAttribute d) GetAttributes(this Enum value) => Attributes.Get(value, default);
+    public static HandlerAttribute GetHandlerAttribute(this Enum questionOrDiscriminator) => GetAttributes(questionOrDiscriminator).h;
+    public static QuestionAttribute GetQuestionAttribute(this Enum question) => GetAttributes(question).q;
+    public static DiscriminatorAttribute GetDiscriminatorAttribute(this Enum discriminator) => GetAttributes(discriminator).d;
 
-    private static Dictionary<Type, SouvenirHandlerAttribute> _handlerAttributes = [];
-    public static SouvenirHandlerAttribute GetHandlerAttribute(this Type moduleEnumType) => _handlerAttributes.Get(moduleEnumType);
+    private static Dictionary<Type, HandlerAttribute> _handlerAttributes = [];
+    public static HandlerAttribute GetHandlerAttribute(this Type moduleEnumType) => _handlerAttributes.Get(moduleEnumType);
 
     static Ut()
     {
         foreach (var method in typeof(SouvenirModule).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic))
-            if (method.GetCustomAttribute<SouvenirHandlerAttribute>() is { } hAttr)
+            if (method.GetCustomAttribute<HandlerAttribute>() is { } hAttr)
             {
                 hAttr.Method = method;
                 ModuleHandlers[hAttr.ModuleId] = hAttr;
                 _handlerAttributes[hAttr.EnumType] = hAttr;
                 foreach (var field in hAttr.EnumType.GetFields(BindingFlags.Public | BindingFlags.Static))
                 {
-                    if (field.GetCustomAttribute<SouvenirQuestionAttribute>() is { } qAttr)
+                    if (field.GetCustomAttribute<QuestionAttribute>() is { } qAttr)
                     {
                         if (field.GetCustomAttributes(typeof(AnswerGeneratorAttribute), false) is AnswerGeneratorAttribute[] agAttrs)
                             qAttr.AnswerGenerators = agAttrs.Length == 0 ? null : agAttrs;
-                        qAttr.Gimmicks = field.GetCustomAttributes(typeof(SouvenirGimmickAttribute), false).Cast<SouvenirGimmickAttribute>().ToArray();
+                        qAttr.Gimmicks = field.GetCustomAttributes(typeof(GimmickAttribute), false).Cast<GimmickAttribute>().ToArray();
                         qAttr.EnumValue = (Enum) field.GetValue(null);
                         qAttr.Handler = hAttr;
                         Attributes.Add((Enum) field.GetValue(null), (hAttr, qAttr, null));
                     }
-                    else if (field.GetCustomAttribute<SouvenirDiscriminatorAttribute>() is { } dAttr)
+                    else if (field.GetCustomAttribute<DiscriminatorAttribute>() is { } dAttr)
                     {
                         dAttr.EnumValue = (Enum) field.GetValue(null);
                         dAttr.Handler = hAttr;

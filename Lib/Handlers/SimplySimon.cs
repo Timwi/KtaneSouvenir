@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimplySimon
 {
-    [SouvenirQuestion("What were the flashes in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What were the flashes in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("RBYG")]
     [AnswerGenerator.Strings("2*RBYG")]
     [AnswerGenerator.Strings("3*RBYG")]
@@ -16,8 +16,8 @@ public enum SSimplySimon
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simplysimon", "Simply Simon", typeof(SSimplySimon), "Timwi")]
-    [SouvenirManualQuestion("Which colors flashed in each stage?")]
+    [Handler("simplysimon", "Simply Simon", typeof(SSimplySimon), "Timwi")]
+    [ManualQuestion("Which colors flashed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimplySimon(ModuleData module)
     {
         var comp = GetComponent(module, "simplysimon");

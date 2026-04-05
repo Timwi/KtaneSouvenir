@@ -7,21 +7,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SFlags
 {
-    [SouvenirQuestion("What was the displayed number in {0}?", ThreeColumns6Answers)]
+    [Question("What was the displayed number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 7)]
     DisplayedNumber,
 
-    [SouvenirQuestion("What was the main country flag in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "FlagsSprites")]
+    [Question("What was the main country flag in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "FlagsSprites")]
     MainCountry,
 
-    [SouvenirQuestion("Which of these country flags was shown, but not the main country flag, in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "FlagsSprites")]
+    [Question("Which of these country flags was shown, but not the main country flag, in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "FlagsSprites")]
     Countries
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("FlagsModule", "Flags", typeof(SFlags), "Timwi")]
-    [SouvenirManualQuestion("What were the country flags, the main flag, and the displayed number?")]
+    [Handler("FlagsModule", "Flags", typeof(SFlags), "Timwi")]
+    [ManualQuestion("What were the country flags, the main flag, and the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessFlags(ModuleData module)
     {
         var comp = GetComponent(module, "FlagsModule");

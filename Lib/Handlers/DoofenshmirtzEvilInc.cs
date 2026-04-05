@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoofenshmirtzEvilInc
 {
-    [SouvenirQuestion("What jingle played in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = "doofenshmirtzEvilIncModule", AudioSizeMultiplier = 8)]
+    [Question("What jingle played in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = "doofenshmirtzEvilIncModule", AudioSizeMultiplier = 8)]
     Jingles,
 
-    [SouvenirQuestion("Which image was shown in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which image was shown in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Inators
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("doofenshmirtzEvilIncModule", "Doofenshmirtz Evil Inc.", typeof(SDoofenshmirtzEvilInc), "Anonymous")]
-    [SouvenirManualQuestion("What jingles played?")]
-    [SouvenirManualQuestion("What images were shown?")]
+    [Handler("doofenshmirtzEvilIncModule", "Doofenshmirtz Evil Inc.", typeof(SDoofenshmirtzEvilInc), "Anonymous")]
+    [ManualQuestion("What jingles played?")]
+    [ManualQuestion("What images were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessDoofenshmirtzEvilInc(ModuleData module)
     {
         yield return WaitForSolve;

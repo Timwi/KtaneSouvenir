@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoubleExpert
 {
-    [SouvenirQuestion("What was the starting key number in {0}?", ThreeColumns6Answers)]
+    [Question("What was the starting key number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(30, 69)]
     StartingKeyNumber
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("doubleExpert", "Double Expert", typeof(SDoubleExpert), "Kuro")]
-    [SouvenirManualQuestion("What was the starting key number?")]
+    [Handler("doubleExpert", "Double Expert", typeof(SDoubleExpert), "Kuro")]
+    [ManualQuestion("What was the starting key number?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleExpert(ModuleData module)
     {
         var comp = GetComponent(module, "doubleExpertScript");

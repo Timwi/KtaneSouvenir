@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SFlashingArrows
 {
-    [SouvenirQuestion("What number was displayed on {0}?", ThreeColumns6Answers)]
+    [Question("What number was displayed on {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 99)]
     DisplayedValue,
 
-    [SouvenirQuestion("What color flashed {1} black on the relevant arrow in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", Arguments = ["before", "after"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
+    [Question("What color flashed {1} black on the relevant arrow in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", Arguments = ["before", "after"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     ReferredArrow
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("flashingArrowsModule", "Flashing Arrows", typeof(SFlashingArrows), "VFlyer")]
-    [SouvenirManualQuestion("What was the number shown on the display?")]
-    [SouvenirManualQuestion("What were the relevant arrow’s colors?")]
+    [Handler("flashingArrowsModule", "Flashing Arrows", typeof(SFlashingArrows), "VFlyer")]
+    [ManualQuestion("What was the number shown on the display?")]
+    [ManualQuestion("What were the relevant arrow’s colors?")]
     private IEnumerator<SouvenirInstruction> ProcessFlashingArrows(ModuleData module)
     {
         var comp = GetComponent(module, "FlashingArrowsScript");

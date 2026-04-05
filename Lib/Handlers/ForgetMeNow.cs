@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetMeNow
 {
-    [SouvenirQuestion("What was the {1} displayed digit in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} displayed digit in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     DisplayedDigits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ForgetMeNow", "Forget Me Now", typeof(SForgetMeNow), "Kuro")]
-    [SouvenirManualQuestion("What were the displayed digits?")]
+    [Handler("ForgetMeNow", "Forget Me Now", typeof(SForgetMeNow), "Kuro")]
+    [ManualQuestion("What were the displayed digits?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetMeNow(ModuleData module)
     {
         var comp = GetComponent(module, "ForgetMeNow");

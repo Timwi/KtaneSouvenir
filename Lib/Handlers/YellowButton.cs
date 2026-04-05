@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SYellowButton
 {
-    [SouvenirQuestion("What was the {1} color in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Cyan", "Blue", "Magenta", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the {1} color in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Cyan", "Blue", "Magenta", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("YellowButtonModule", "Yellow Button", typeof(SYellowButton), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What were the colors?")]
+    [Handler("YellowButtonModule", "Yellow Button", typeof(SYellowButton), "Timwi", AddThe = true)]
+    [ManualQuestion("What were the colors?")]
     private IEnumerator<SouvenirInstruction> ProcessYellowButton(ModuleData module)
     {
         var comp = GetComponent(module, "YellowButtonScript");

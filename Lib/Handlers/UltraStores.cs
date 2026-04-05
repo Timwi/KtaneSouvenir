@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SUltraStores
 {
-    [SouvenirQuestion("What was the {1} rotation in the {2} stage of {0}?", ThreeColumns6Answers, ExampleAnswers = ["UZ", "VU", "WV", "YU", "YW", "YX"], Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the {1} rotation in the {2} stage of {0}?", ThreeColumns6Answers, ExampleAnswers = ["UZ", "VU", "WV", "YU", "YW", "YX"], Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     SingleRotation,
 
-    [SouvenirQuestion("What was the {1} rotation in the {2} stage of {0}?", TwoColumns4Answers, ExampleAnswers = ["(XU, VY, WZ)", "(XY, VZ, UW)", "(XZ, YV, WU)", "(YX, UZ, VW)"], Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the {1} rotation in the {2} stage of {0}?", TwoColumns4Answers, ExampleAnswers = ["(XU, VY, WZ)", "(XY, VZ, UW)", "(XZ, YV, WU)", "(YX, UZ, VW)"], Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     MultiRotation
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("UltraStores", "UltraStores", typeof(SUltraStores), "Marksam")]
-    [SouvenirManualQuestion("What were the rotations?")]
+    [Handler("UltraStores", "UltraStores", typeof(SUltraStores), "Marksam")]
+    [ManualQuestion("What were the rotations?")]
     private IEnumerator<SouvenirInstruction> ProcessUltraStores(ModuleData module)
     {
         var comp = GetComponent(module, "UltraStoresScript");

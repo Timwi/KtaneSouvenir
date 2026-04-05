@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SFlavorTextEX
 {
-    [SouvenirQuestion("Which module’s flavor text was shown in the {1} stage of {0}?", OneColumn4Answers, ExampleAnswers = ["Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which module’s flavor text was shown in the {1} stage of {0}?", OneColumn4Answers, ExampleAnswers = ["Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Module
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("FlavorTextCruel", "Flavor Text EX", typeof(SFlavorTextEX), "Hawker")]
-    [SouvenirManualQuestion("Which module’s flavor text was presented in each stage?")]
+    [Handler("FlavorTextCruel", "Flavor Text EX", typeof(SFlavorTextEX), "Hawker")]
+    [ManualQuestion("Which module’s flavor text was presented in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessFlavorTextEX(ModuleData module)
     {
         var comp = GetComponent(module, "FlavorTextCruel");

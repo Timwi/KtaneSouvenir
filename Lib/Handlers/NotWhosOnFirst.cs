@@ -5,28 +5,28 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotWhosOnFirst
 {
-    [SouvenirQuestion("In which position was the button you pressed in the {1} stage on {0}?", TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("In which position was the button you pressed in the {1} stage on {0}?", TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     PressedPosition,
 
-    [SouvenirQuestion("What was the label on the button you pressed in the {1} stage on {0}?", ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the label on the button you pressed in the {1} stage on {0}?", ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     PressedLabel,
 
-    [SouvenirQuestion("In which position was the reference button in the {1} stage on {0}?", TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("In which position was the reference button in the {1} stage on {0}?", TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     ReferencePosition,
 
-    [SouvenirQuestion("What was the label on the reference button in the {1} stage on {0}?", ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the label on the reference button in the {1} stage on {0}?", ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     ReferenceLabel,
 
-    [SouvenirQuestion("What was the calculated number in the second stage on {0}?", ThreeColumns6Answers)]
+    [Question("What was the calculated number in the second stage on {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 60)]
     Sum
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NotWhosOnFirst", "Not Who’s on First", typeof(SNotWhosOnFirst), "Andrio Celos")]
-    [SouvenirManualQuestion("What were the positions and labels of the correct buttons you pressed and the reference buttons?")]
-    [SouvenirManualQuestion("What was the calculated number in the second stage?")]
+    [Handler("NotWhosOnFirst", "Not Who’s on First", typeof(SNotWhosOnFirst), "Andrio Celos")]
+    [ManualQuestion("What were the positions and labels of the correct buttons you pressed and the reference buttons?")]
+    [ManualQuestion("What was the calculated number in the second stage?")]
     private IEnumerator<SouvenirInstruction> ProcessNotWhosOnFirst(ModuleData module)
     {
         var comp = GetComponent(module, "NotWhosOnFirst");

@@ -7,19 +7,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlphabeticalRuling
 {
-    [SouvenirQuestion("What was the letter displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the letter displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings(1, 'A', 'Z')]
     Letter,
 
-    [SouvenirQuestion("What was the number displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the number displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 9)]
     Number
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("alphabeticalRuling", "Alphabetical Ruling", typeof(SAlphabeticalRuling), "Timwi")]
-    [SouvenirManualQuestion("What were the letters and numbers displayed in each stage?")]
+    [Handler("alphabeticalRuling", "Alphabetical Ruling", typeof(SAlphabeticalRuling), "Timwi")]
+    [ManualQuestion("What were the letters and numbers displayed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessAlphabeticalRuling(ModuleData module)
     {
         var comp = GetComponent(module, "AlphabeticalRuling");

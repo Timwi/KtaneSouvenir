@@ -7,17 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum STwodoku
 {
-    [SouvenirQuestion("Which of these squares in {0} was {1}?", ThreeColumns6Answers, Arguments = ["a given digit", "a given shape", "highlighted"], ArgumentGroupSize = 1, TranslateArguments = [true], Type = AnswerType.Sprites)]
+    [Question("Which of these squares in {0} was {1}?", ThreeColumns6Answers, Arguments = ["a given digit", "a given shape", "highlighted"], ArgumentGroupSize = 1, TranslateArguments = [true], Type = AnswerType.Sprites)]
     Givens,
 
-    [SouvenirQuestion("What was in this grid position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, UsesQuestionSprite = true)]
+    [Question("What was in this grid position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, UsesQuestionSprite = true)]
     GridPositions,
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TwodokuModule", "Twodoku", typeof(STwodoku), "Timwi")]
-    [SouvenirManualQuestion("Where were the digits, symbols, and highlights?")]
+    [Handler("TwodokuModule", "Twodoku", typeof(STwodoku), "Timwi")]
+    [ManualQuestion("Where were the digits, symbols, and highlights?")]
     private IEnumerator<SouvenirInstruction> ProcessTwodoku(ModuleData module)
     {
         var comp = GetComponent(module, "TwodokuModule");

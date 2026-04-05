@@ -6,34 +6,34 @@ using static Souvenir.AnswerLayout;
 
 public enum SDisorderedKeys
 {
-    [SouvenirQuestion("What was the missing information for this key in {0}?", OneColumn3Answers, "Key color", "Label color", "Label", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the missing information for this key in {0}?", OneColumn3Answers, "Key color", "Label color", "Label", UsesQuestionSprite = true, TranslateAnswers = true)]
     MissingInfo,
 
-    [SouvenirQuestion("What was the unrevealed key color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the unrevealed key color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     UnrevealedKeyColor,
 
-    [SouvenirQuestion("What was the unrevealed label color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the unrevealed label color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     UnrevealedLabelColor,
 
-    [SouvenirQuestion("What was the unrevealed label for this key in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What was the unrevealed label for this key in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
     [AnswerGenerator.Integers(1, 6)]
     UnrevealedKeyLabel,
 
-    [SouvenirQuestion("What was the revealed key color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the revealed key color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     RevealedKeyColor,
 
-    [SouvenirQuestion("What was the revealed label color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the revealed label color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     RevealedLabelColor,
 
-    [SouvenirQuestion("What was the revealed label for this key in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What was the revealed label for this key in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
     [AnswerGenerator.Integers(1, 6)]
     RevealedLabel
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("disorderedKeys", "Disordered Keys", typeof(SDisorderedKeys), "Hawker")]
-    [SouvenirManualQuestion("What were the missing information and the revealed/unrevealed key color, label, and label color of each key?")]
+    [Handler("disorderedKeys", "Disordered Keys", typeof(SDisorderedKeys), "Hawker")]
+    [ManualQuestion("What were the missing information and the revealed/unrevealed key color, label, and label color of each key?")]
     private IEnumerator<SouvenirInstruction> ProcessDisorderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "DisorderedKeysScript");

@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum STextField
 {
-    [SouvenirQuestion("What was the displayed letter in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F")]
+    [Question("What was the displayed letter in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F")]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TextField", "Text Field", typeof(STextField), "CaitSith2")]
-    [SouvenirManualQuestion("What was the displayed letter?")]
+    [Handler("TextField", "Text Field", typeof(STextField), "CaitSith2")]
+    [ManualQuestion("What was the displayed letter?")]
     private IEnumerator<SouvenirInstruction> ProcessTextField(ModuleData module)
     {
         var comp = GetComponent(module, "TextField");

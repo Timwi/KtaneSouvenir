@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SLEGOs
 {
-    [SouvenirQuestion("What were the dimensions of the {1} piece in {0}?", ThreeColumns6Answers, "2×2", "3×1", "3×2", "4×1", "4×2", TranslateArguments = [true], Arguments = ["red", "green", "blue", "cyan", "magenta", "yellow"], ArgumentGroupSize = 1)]
+    [Question("What were the dimensions of the {1} piece in {0}?", ThreeColumns6Answers, "2×2", "3×1", "3×2", "4×1", "4×2", TranslateArguments = [true], Arguments = ["red", "green", "blue", "cyan", "magenta", "yellow"], ArgumentGroupSize = 1)]
     PieceDimensions
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("LEGOModule", "LEGOs", typeof(SLEGOs), "luisdiogo98")]
-    [SouvenirManualQuestion("What were the dimensions of each color piece?")]
+    [Handler("LEGOModule", "LEGOs", typeof(SLEGOs), "luisdiogo98")]
+    [ManualQuestion("What were the dimensions of each color piece?")]
     private IEnumerator<SouvenirInstruction> ProcessLEGOs(ModuleData module)
     {
         var comp = GetComponent(module, "LEGOModule");

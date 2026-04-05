@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSmothers
 {
-    [SouvenirQuestion("What was the color of the {1} flash in {0}?", ThreeColumns6Answers, "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the color of the {1} flash in {0}?", ThreeColumns6Answers, "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Colors,
 
-    [SouvenirQuestion("What was the direction of the {1} flash in {0}?", TwoColumns4Answers, "Up", "Down", "Left", "Right", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the direction of the {1} flash in {0}?", TwoColumns4Answers, "Up", "Down", "Left", "Right", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Directions
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonSmothers", "Simon Smothers", typeof(SSimonSmothers), "Kuro")]
-    [SouvenirManualQuestion("Which colors and directions flashed in each stage?")]
+    [Handler("simonSmothers", "Simon Smothers", typeof(SSimonSmothers), "Kuro")]
+    [ManualQuestion("Which colors and directions flashed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSmothers(ModuleData module)
     {
         var comp = GetComponent(module, "SimonSmothersScript");

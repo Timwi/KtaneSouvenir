@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SEncryptionBingo
 {
-    [SouvenirQuestion("What was the first encoding used in {0}?", OneColumn4Answers, "Morse Code", "Tap Code", "Maritime Flags", "Semaphore", "Pigpen", "Lombax", "Braille", "Wingdings", "Zoni", "Galactic Alphabet", "Arrow", "Listening", "Regular Number", "Chinese Number", "Cube Symbols", "Runes", "New York Point", "Fontana", "ASCII Hex Code", TranslateAnswers = true)]
+    [Question("What was the first encoding used in {0}?", OneColumn4Answers, "Morse Code", "Tap Code", "Maritime Flags", "Semaphore", "Pigpen", "Lombax", "Braille", "Wingdings", "Zoni", "Galactic Alphabet", "Arrow", "Listening", "Regular Number", "Chinese Number", "Cube Symbols", "Runes", "New York Point", "Fontana", "ASCII Hex Code", TranslateAnswers = true)]
     Encoding
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("encryptionBingo", "Encryption Bingo", typeof(SEncryptionBingo), "TasThiluna")]
-    [SouvenirManualQuestion("What was the first encoding used?")]
+    [Handler("encryptionBingo", "Encryption Bingo", typeof(SEncryptionBingo), "TasThiluna")]
+    [ManualQuestion("What was the first encoding used?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptionBingo(ModuleData module)
     {
         var comp = GetComponent(module, "encryptionBingoScript");

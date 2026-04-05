@@ -7,19 +7,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SUncoloredSwitches
 {
-    [SouvenirQuestion("What was the initial state of the switches in {0}?", ThreeColumns6Answers, Type = AnswerType.SymbolsFont)]
+    [Question("What was the initial state of the switches in {0}?", ThreeColumns6Answers, Type = AnswerType.SymbolsFont)]
     [AnswerGenerator.Strings(5, 'Q', 'R')]
     InitialState,
 
-    [SouvenirQuestion("What color was the {1} LED in reading order in {0}?", TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white", "black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the {1} LED in reading order in {0}?", TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white", "black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     LedColors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("R4YUncoloredSwitches", "Uncolored Switches", typeof(SUncoloredSwitches), "Timwi")]
-    [SouvenirManualQuestion("What was the initial switch state?")]
-    [SouvenirManualQuestion("What were the LED colors?")]
+    [Handler("R4YUncoloredSwitches", "Uncolored Switches", typeof(SUncoloredSwitches), "Timwi")]
+    [ManualQuestion("What was the initial switch state?")]
+    [ManualQuestion("What were the LED colors?")]
     private IEnumerator<SouvenirInstruction> ProcessUncoloredSwitches(ModuleData module)
     {
         var comp = GetComponent(module, "UncoloredSwitches");

@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SColorOneTwo
 {
-    [SouvenirQuestion("What color was the {1} LED in {0}?", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", TranslateAnswers = true, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What color was the {1} LED in {0}?", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", TranslateAnswers = true, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("colorOneTwo", "Color One Two", typeof(SColorOneTwo), "Anonymous")]
-    [SouvenirManualQuestion("What colors were the LEDs?")]
+    [Handler("colorOneTwo", "Color One Two", typeof(SColorOneTwo), "Anonymous")]
+    [ManualQuestion("What colors were the LEDs?")]
     private IEnumerator<SouvenirInstruction> ProcessColorOneTwo(ModuleData module)
     {
         yield return WaitForSolve;

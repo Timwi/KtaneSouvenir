@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SKnowYourWay
 {
-    [SouvenirQuestion("Which way was the arrow pointing in {0}?", TwoColumns4Answers, "Up", "Down", "Left", "Right", TranslateAnswers = true)]
+    [Question("Which way was the arrow pointing in {0}?", TwoColumns4Answers, "Up", "Down", "Left", "Right", TranslateAnswers = true)]
     Arrow,
 
-    [SouvenirQuestion("Which LED was green in {0}?", TwoColumns4Answers, "Top", "Bottom", "Right", "Left", TranslateAnswers = true)]
+    [Question("Which LED was green in {0}?", TwoColumns4Answers, "Top", "Bottom", "Right", "Left", TranslateAnswers = true)]
     Led
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("KnowYourWay", "Know Your Way", typeof(SKnowYourWay), "Kuro")]
-    [SouvenirManualQuestion("Which way was the arrow pointing?")]
-    [SouvenirManualQuestion("Which LED was green?")]
+    [Handler("KnowYourWay", "Know Your Way", typeof(SKnowYourWay), "Kuro")]
+    [ManualQuestion("Which way was the arrow pointing?")]
+    [ManualQuestion("Which LED was green?")]
     private IEnumerator<SouvenirInstruction> ProcessKnowYourWay(ModuleData module)
     {
         var comp = GetComponent(module, "KnowYourWayScript");

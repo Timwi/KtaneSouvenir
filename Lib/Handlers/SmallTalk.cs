@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSmallTalk
 {
-    [SouvenirQuestion("What was on the display in the {1} stage of {0}?", TwoColumns4Answers, ExampleAnswers = ["TOP", "NAH", "INDIA", "UNIFORM"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was on the display in the {1} stage of {0}?", TwoColumns4Answers, ExampleAnswers = ["TOP", "NAH", "INDIA", "UNIFORM"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Displays
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SmallTalk", "Small Talk", typeof(SSmallTalk), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the display words?")]
+    [Handler("SmallTalk", "Small Talk", typeof(SSmallTalk), "Quinn Wuest")]
+    [ManualQuestion("What were the display words?")]
     private IEnumerator<SouvenirInstruction> ProcessSmallTalk(ModuleData module)
     {
         var comp = GetComponent(module, "SmallTalk");

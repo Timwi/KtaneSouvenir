@@ -5,17 +5,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SOneLinksToAll
 {
-    [SouvenirQuestion("What was the starting article in {0}?", OneColumn4Answers, ExampleAnswers = ["Waves (Jade Warrior album)", "Himali Siriwardena", "Campbell Pass", "1973 Northern Ireland Assembly election", "Bravo Airways", "Adolph Hoffmann", "Australian cyclists at the Tour de France", "Lebanese Canadians", "Albert Richard Pritchard", "Mary A. Lehman"])]
+    [Question("What was the starting article in {0}?", OneColumn4Answers, ExampleAnswers = ["Waves (Jade Warrior album)", "Himali Siriwardena", "Campbell Pass", "1973 Northern Ireland Assembly election", "Bravo Airways", "Adolph Hoffmann", "Australian cyclists at the Tour de France", "Lebanese Canadians", "Albert Richard Pritchard", "Mary A. Lehman"])]
     Start,
 
-    [SouvenirQuestion("What was the ending article in {0}?", OneColumn4Answers, ExampleAnswers = ["Bob Kitterman", "Johannes Nevala", "Alfred Patfield", "Dublin Bay South (Dáil constituency)", "The Monkees Present", "Finding Me", "Sibora", "Operator (linguistics)", "2022 Iowa Senate election", "Ab Dang Sar, Savadkuh"])]
+    [Question("What was the ending article in {0}?", OneColumn4Answers, ExampleAnswers = ["Bob Kitterman", "Johannes Nevala", "Alfred Patfield", "Dublin Bay South (Dáil constituency)", "The Monkees Present", "Finding Me", "Sibora", "Operator (linguistics)", "2022 Iowa Senate election", "Ab Dang Sar, Savadkuh"])]
     End
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("oneLinksToAllModule", "One Links To All", typeof(SOneLinksToAll), "Anonymous")]
-    [SouvenirManualQuestion("What were the initially displayed articles?")]
+    [Handler("oneLinksToAllModule", "One Links To All", typeof(SOneLinksToAll), "Anonymous")]
+    [ManualQuestion("What were the initially displayed articles?")]
     private IEnumerator<SouvenirInstruction> ProcessOneLinksToAll(ModuleData module)
     {
         var comp = GetComponent(module, "OneLinksToAllScript");

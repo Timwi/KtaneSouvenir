@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBartending
 {
-    [SouvenirQuestion("Which ingredient was in the {1} position on {0}?", TwoColumns4Answers, "Adelhyde", "Flanergide", "Bronson Extract", "Karmotrine", "Powdered Delta", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("Which ingredient was in the {1} position on {0}?", TwoColumns4Answers, "Adelhyde", "Flanergide", "Bronson Extract", "Karmotrine", "Powdered Delta", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Ingredients
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("BartendingModule", "Bartending", typeof(SBartending), "Timwi")]
-    [SouvenirManualQuestion("Which ingredient was in which position?")]
+    [Handler("BartendingModule", "Bartending", typeof(SBartending), "Timwi")]
+    [ManualQuestion("Which ingredient was in which position?")]
     private IEnumerator<SouvenirInstruction> ProcessBartending(ModuleData module)
     {
         var comp = GetComponent(module, "Maker");

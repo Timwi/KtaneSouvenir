@@ -7,17 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SSillySlots
 {
-    [SouvenirQuestion("What was the {1} slot in the {2} stage in {0}?", TwoColumns4Answers, "red bomb", "red cherry", "red coin", "red grape", "green bomb", "green cherry", "green coin", "green grape", "blue bomb", "blue cherry", "blue coin", "blue grape", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the {1} slot in the {2} stage in {0}?", TwoColumns4Answers, "red bomb", "red cherry", "red coin", "red grape", "green bomb", "green cherry", "green coin", "green grape", "blue bomb", "blue cherry", "blue coin", "blue grape", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     QSlot,
 
-    [SouvenirDiscriminator("the Silly Slots where the {0} slot in the {1} stage was a {2}", Arguments = [QandA.Ordinal, QandA.Ordinal, "red bomb", QandA.Ordinal, QandA.Ordinal, "red cherry", QandA.Ordinal, QandA.Ordinal, "red coin", QandA.Ordinal, QandA.Ordinal, "red grape", QandA.Ordinal, QandA.Ordinal, "green bomb", QandA.Ordinal, QandA.Ordinal, "green cherry", QandA.Ordinal, QandA.Ordinal, "green coin", QandA.Ordinal, QandA.Ordinal, "green grape", QandA.Ordinal, QandA.Ordinal, "blue bomb", QandA.Ordinal, QandA.Ordinal, "blue cherry", QandA.Ordinal, QandA.Ordinal, "blue coin", QandA.Ordinal, QandA.Ordinal, "blue grape"], ArgumentGroupSize = 3, TranslateArguments = [false, false, true])]
+    [Discriminator("the Silly Slots where the {0} slot in the {1} stage was a {2}", Arguments = [QandA.Ordinal, QandA.Ordinal, "red bomb", QandA.Ordinal, QandA.Ordinal, "red cherry", QandA.Ordinal, QandA.Ordinal, "red coin", QandA.Ordinal, QandA.Ordinal, "red grape", QandA.Ordinal, QandA.Ordinal, "green bomb", QandA.Ordinal, QandA.Ordinal, "green cherry", QandA.Ordinal, QandA.Ordinal, "green coin", QandA.Ordinal, QandA.Ordinal, "green grape", QandA.Ordinal, QandA.Ordinal, "blue bomb", QandA.Ordinal, QandA.Ordinal, "blue cherry", QandA.Ordinal, QandA.Ordinal, "blue coin", QandA.Ordinal, QandA.Ordinal, "blue grape"], ArgumentGroupSize = 3, TranslateArguments = [false, false, true])]
     DSlot
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SillySlots", "Silly Slots", typeof(SSillySlots), "Timwi")]
-    [SouvenirManualQuestion("What were the slots in each stage?")]
+    [Handler("SillySlots", "Silly Slots", typeof(SSillySlots), "Timwi")]
+    [ManualQuestion("What were the slots in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSillySlots(ModuleData module)
     {
         var comp = GetComponent(module, "SillySlots");

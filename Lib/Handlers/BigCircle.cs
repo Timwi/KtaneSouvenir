@@ -4,14 +4,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBigCircle
 {
-    [SouvenirQuestion("Which direction was the circle spinning in {0}?", OneColumn2Answers, "clockwise", "counterclockwise", TranslateAnswers = true)]
+    [Question("Which direction was the circle spinning in {0}?", OneColumn2Answers, "clockwise", "counterclockwise", TranslateAnswers = true)]
     SpinDirection
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("BigCircle", "Big Circle", typeof(SBigCircle), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which direction was the circle spinning?")]
+    [Handler("BigCircle", "Big Circle", typeof(SBigCircle), "Quinn Wuest")]
+    [ManualQuestion("Which direction was the circle spinning?")]
     private IEnumerator<SouvenirInstruction> ProcessBigCircle(ModuleData module)
     {
         var comp = GetComponent(module, "TheBigCircle");

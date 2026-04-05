@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SListening
 {
-    [SouvenirQuestion("What clip was played in {0}?", ThreeColumns6Answers, AudioFieldName = "ListeningAudio", Type = AnswerType.Audio)]
+    [Question("What clip was played in {0}?", ThreeColumns6Answers, AudioFieldName = "ListeningAudio", Type = AnswerType.Audio)]
     Sound
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Listening", "Listening", typeof(SListening), "Timwi")]
-    [SouvenirManualQuestion("What sound played?")]
+    [Handler("Listening", "Listening", typeof(SListening), "Timwi")]
+    [ManualQuestion("What sound played?")]
     private IEnumerator<SouvenirInstruction> ProcessListening(ModuleData module)
     {
         var comp = GetComponent(module, "Listening");

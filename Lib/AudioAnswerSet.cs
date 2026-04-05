@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Souvenir;
 
-public class AudioAnswerSet(SouvenirQuestionAttribute qAttr, AudioClip[] answers, int correctIndex, SouvenirModule parent)
+public class AudioAnswerSet(QuestionAttribute qAttr, AudioClip[] answers, int correctIndex, SouvenirModule parent)
     : SpriteAnswerSet(qAttr.Layout, answers.Select(c => Sprites.RenderWaveform(c, parent, qAttr.AudioSizeMultiplier)).ToArray(), correctIndex)
 {
     private readonly AudioClip[] _clips = answers.ToArray();

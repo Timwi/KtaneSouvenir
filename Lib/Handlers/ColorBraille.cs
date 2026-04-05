@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SColorBraille
 {
-    [SouvenirQuestion("What color was this dot in {0}?", ThreeColumns6Answers, "Black", "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow", "White", TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("What color was this dot in {0}?", ThreeColumns6Answers, "Black", "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow", "White", TranslateAnswers = true, UsesQuestionSprite = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ColorBrailleModule", "Color Braille", typeof(SColorBraille), "Timwi")]
-    [SouvenirManualQuestion("What color was each dot?")]
+    [Handler("ColorBrailleModule", "Color Braille", typeof(SColorBraille), "Timwi")]
+    [ManualQuestion("What color was each dot?")]
     private IEnumerator<SouvenirInstruction> ProcessColorBraille(ModuleData module)
     {
         var comp = GetComponent(module, "ColorBrailleModule");

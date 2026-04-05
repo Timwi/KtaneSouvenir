@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SGuessWho
 {
-    [SouvenirQuestion("Did {1} flash “YES” in {0}?", TwoColumns2Answers, "Yes", "No", TranslateAnswers = true, Arguments = ["Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Cyan", "Pink"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Did {1} flash “YES” in {0}?", TwoColumns2Answers, "Yes", "No", TranslateAnswers = true, Arguments = ["Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Cyan", "Pink"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GuessWho", "Guess Who?", typeof(SGuessWho), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which colors flashed “YES”?")]
+    [Handler("GuessWho", "Guess Who?", typeof(SGuessWho), "Quinn Wuest")]
+    [ManualQuestion("Which colors flashed “YES”?")]
     private IEnumerator<SouvenirInstruction> ProcessGuessWho(ModuleData module)
     {
         var comp = GetComponent(module, "GuessWhoScript");

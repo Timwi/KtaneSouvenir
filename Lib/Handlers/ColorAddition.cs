@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SColorAddition
 {
-    [SouvenirQuestion("What was {1}’s number in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was {1}’s number in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings(3, "0123456789")]
     Numbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("colorAddition", "Color Addition", typeof(SColorAddition), "VFlyer")]
-    [SouvenirManualQuestion("What were the three numbers?")]
+    [Handler("colorAddition", "Color Addition", typeof(SColorAddition), "VFlyer")]
+    [ManualQuestion("What were the three numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessColorAddition(ModuleData module)
     {
         var script = GetComponent(module, "ColorAddition");

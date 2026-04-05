@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SEntryNumberOne
 {
-    [SouvenirQuestion("What was the {1} digit in the {2} number shown in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the {1} digit in the {2} number shown in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(0, 9)]
     Digits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSEntryNumberOne", "Entry Number One", typeof(SEntryNumberOne), "GhostSalt")]
-    [SouvenirManualQuestion("What were the numbers shown?")]
+    [Handler("GSEntryNumberOne", "Entry Number One", typeof(SEntryNumberOne), "GhostSalt")]
+    [ManualQuestion("What were the numbers shown?")]
     private IEnumerator<SouvenirInstruction> ProcessEntryNumberOne(ModuleData module)
     {
         var comp = GetComponent(module, "EntryNumberOneScript");

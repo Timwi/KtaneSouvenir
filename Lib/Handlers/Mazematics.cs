@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMazematics
 {
-    [SouvenirQuestion("Which was the {1} value in {0}?", ThreeColumns6Answers, ExampleAnswers = ["30", "42", "51"], Arguments = ["initial", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which was the {1} value in {0}?", ThreeColumns6Answers, ExampleAnswers = ["30", "42", "51"], Arguments = ["initial", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Value
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("mazematics", "Mazematics", typeof(SMazematics), "luisdiogo98")]
-    [SouvenirManualQuestion("What were the initial and goal values?")]
+    [Handler("mazematics", "Mazematics", typeof(SMazematics), "luisdiogo98")]
+    [ManualQuestion("What were the initial and goal values?")]
     private IEnumerator<SouvenirInstruction> ProcessMazematics(ModuleData module)
     {
         yield return WaitForSolve;

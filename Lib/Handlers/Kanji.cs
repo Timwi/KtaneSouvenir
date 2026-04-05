@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SKanji
 {
-    [SouvenirQuestion("What was the displayed word in the {1} stage of {0}?", TwoColumns4Answers, Type = AnswerType.JapaneseFont, ExampleAnswers = ["ばくはつ", "でんき", "でんしゃ", "でんわ"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the displayed word in the {1} stage of {0}?", TwoColumns4Answers, Type = AnswerType.JapaneseFont, ExampleAnswers = ["ばくはつ", "でんき", "でんしゃ", "でんわ"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayedWords
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("KanjiModule", "Kanji", typeof(SKanji), "Kuro")]
-    [SouvenirManualQuestion("What was the displayed word in each stage?")]
+    [Handler("KanjiModule", "Kanji", typeof(SKanji), "Kuro")]
+    [ManualQuestion("What was the displayed word in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessKanji(ModuleData module)
     {
         var comp = GetComponent(module, "KanjiModule");

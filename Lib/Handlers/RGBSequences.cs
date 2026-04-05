@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SRGBSequences
 {
-    [SouvenirQuestion("What was the color of the {1} LED in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Cyan", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} LED in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Cyan", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("RGBSequences", "RGB Sequences", typeof(SRGBSequences), "Hawker")]
-    [SouvenirManualQuestion("What were the colors of each button?")]
+    [Handler("RGBSequences", "RGB Sequences", typeof(SRGBSequences), "Hawker")]
+    [ManualQuestion("What were the colors of each button?")]
     private IEnumerator<SouvenirInstruction> ProcessRGBSequences(ModuleData module)
     {
         var comp = GetComponent(module, "RGBSequences");

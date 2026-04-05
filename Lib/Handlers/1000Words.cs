@@ -5,17 +5,17 @@ using static Souvenir.AnswerLayout;
 
 public enum S1000Words
 {
-    [SouvenirQuestion("What was the {1} word shown in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Baken", "Ghost", "Tolts", "Oyers", "Sweel", "Rangy", "Noses", "Chapt", "Phuts", "Pingo", "Hylas", "Podia", "Vizor"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} word shown in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Baken", "Ghost", "Tolts", "Oyers", "Sweel", "Rangy", "Noses", "Chapt", "Phuts", "Pingo", "Hylas", "Podia", "Vizor"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Words,
 
-    [SouvenirDiscriminator("the 1000 Words where the {0} word was {1}", Arguments = [QandA.Ordinal, "Baken", QandA.Ordinal, "Ghost", QandA.Ordinal, "Tolts", QandA.Ordinal, "Oyers", QandA.Ordinal, "Sweel", QandA.Ordinal, "Rangy", QandA.Ordinal, "Noses", QandA.Ordinal, "Chapt", QandA.Ordinal, "Phuts", QandA.Ordinal, "Pingo", QandA.Ordinal, "Hylas", QandA.Ordinal, "Podia", QandA.Ordinal, "Vizor"], ArgumentGroupSize = 2)]
+    [Discriminator("the 1000 Words where the {0} word was {1}", Arguments = [QandA.Ordinal, "Baken", QandA.Ordinal, "Ghost", QandA.Ordinal, "Tolts", QandA.Ordinal, "Oyers", QandA.Ordinal, "Sweel", QandA.Ordinal, "Rangy", QandA.Ordinal, "Noses", QandA.Ordinal, "Chapt", QandA.Ordinal, "Phuts", QandA.Ordinal, "Pingo", QandA.Ordinal, "Hylas", QandA.Ordinal, "Podia", QandA.Ordinal, "Vizor"], ArgumentGroupSize = 2)]
     Discriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("OneThousandWords", "1000 Words", typeof(S1000Words), "BigCrunch22")]
-    [SouvenirManualQuestion("What were the words shown?")]
+    [Handler("OneThousandWords", "1000 Words", typeof(S1000Words), "BigCrunch22")]
+    [ManualQuestion("What were the words shown?")]
     private IEnumerator<SouvenirInstruction> Process1000Words(ModuleData module)
     {
         var comp = GetComponent(module, "ThousandWordsScript");

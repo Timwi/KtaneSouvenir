@@ -6,27 +6,27 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonServes
 {
-    [SouvenirQuestion("Who flashed {1} in course {2} of {0}?", ThreeColumns6Answers, "Riley", "Brandon", "Gabriel", "Veronica", "Wendy", "Kayle", Arguments = [QandA.Ordinal, "1", QandA.Ordinal, "2", QandA.Ordinal, "3"], ArgumentGroupSize = 2)]
+    [Question("Who flashed {1} in course {2} of {0}?", ThreeColumns6Answers, "Riley", "Brandon", "Gabriel", "Veronica", "Wendy", "Kayle", Arguments = [QandA.Ordinal, "1", QandA.Ordinal, "2", QandA.Ordinal, "3"], ArgumentGroupSize = 2)]
     Flash,
 
-    [SouvenirQuestion("Which item was not served in course {1} of {0}?", OneColumn4Answers, "Baked Batterys", "Bamboozling Waffles", "Big Boom Tortellini", "Blast Shrimps", "Blastwave Compote", "Bomb Brûlée", "Boolean Waffles", "Boom Lager Beer", "Caesar Salad", "Centurion Wings", "Colored Spare Ribs", "Cruelo Juice", "Defuse Juice", "Defuse au Chocolat", "Deto Bull", "Edgework Toast", "Forget Cocktail", "Forghetti Bombognese", "Indicator Tar Tar", "Morse Soup", "NATO Shrimps", "Not Ice Cream", "Omelette au Bombage", "Simon’s Special Mix", "Solve Cake", "Status Light Rolls", "Strike Pie", "Tasha’s Drink", "Ticking Timecakes", "Veggie Blast Plate", "Wire Shake", "Wire Spaghetti", Arguments = ["1", "2", "3"], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("Which item was not served in course {1} of {0}?", OneColumn4Answers, "Baked Batterys", "Bamboozling Waffles", "Big Boom Tortellini", "Blast Shrimps", "Blastwave Compote", "Bomb Brûlée", "Boolean Waffles", "Boom Lager Beer", "Caesar Salad", "Centurion Wings", "Colored Spare Ribs", "Cruelo Juice", "Defuse Juice", "Defuse au Chocolat", "Deto Bull", "Edgework Toast", "Forget Cocktail", "Forghetti Bombognese", "Indicator Tar Tar", "Morse Soup", "NATO Shrimps", "Not Ice Cream", "Omelette au Bombage", "Simon’s Special Mix", "Solve Cake", "Status Light Rolls", "Strike Pie", "Tasha’s Drink", "Ticking Timecakes", "Veggie Blast Plate", "Wire Shake", "Wire Spaghetti", Arguments = ["1", "2", "3"], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Food
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonServes", "Simon Serves", typeof(SSimonServes), "Hawker")]
-    [SouvenirManualQuestion("Who flashed in each course?")]
-    [SouvenirManualQuestion("Which items were not served in each course?")]
+    [Handler("simonServes", "Simon Serves", typeof(SSimonServes), "Hawker")]
+    [ManualQuestion("Who flashed in each course?")]
+    [ManualQuestion("Which items were not served in each course?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonServes(ModuleData module)
     {
         // Constants
         var names = new[] { "Riley", "Brandon", "Gabriel", "Veronica", "Wendy", "Kayle" };
-        var foodCourse = Ut.NewArray(
-            new[] { "Cruelo Juice", "Defuse Juice", "Simon’s Special Mix", "Boom Lager Beer", "Forget Cocktail", "Wire Shake", "Deto Bull", "Tasha’s Drink" },
-            new[] { "Caesar Salad", "Edgework Toast", "Ticking Timecakes", "Big Boom Tortellini", "Status Light Rolls", "Blast Shrimps", "Morse Soup", "Boolean Waffles" },
-            new[] { "Forghetti Bombognese", "NATO Shrimps", "Wire Spaghetti", "Indicator Tar Tar", "Centurion Wings", "Colored Spare Ribs", "Omelette au Bombage", "Veggie Blast Plate" },
-            new[] { "Strike Pie", "Blastwave Compote", "Not Ice Cream", "Defuse au Chocolat", "Solve Cake", "Baked Batterys", "Bamboozling Waffles", "Bomb Brûlée" });
+        var foodCourse = Ut.NewArray<string[]>(
+            ["Cruelo Juice", "Defuse Juice", "Simon’s Special Mix", "Boom Lager Beer", "Forget Cocktail", "Wire Shake", "Deto Bull", "Tasha’s Drink"],
+            ["Caesar Salad", "Edgework Toast", "Ticking Timecakes", "Big Boom Tortellini", "Status Light Rolls", "Blast Shrimps", "Morse Soup", "Boolean Waffles"],
+            ["Forghetti Bombognese", "NATO Shrimps", "Wire Spaghetti", "Indicator Tar Tar", "Centurion Wings", "Colored Spare Ribs", "Omelette au Bombage", "Veggie Blast Plate"],
+            ["Strike Pie", "Blastwave Compote", "Not Ice Cream", "Defuse au Chocolat", "Solve Cake", "Baked Batterys", "Bamboozling Waffles", "Bomb Brûlée"]);
 
         // Reflection
         var comp = GetComponent(module, "simonServesScript");

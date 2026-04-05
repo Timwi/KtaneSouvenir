@@ -5,24 +5,24 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlphabetTiles
 {
-    [SouvenirQuestion("What was the {1} letter shown during the cycle in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} letter shown during the cycle in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     QCycle,
 
-    [SouvenirQuestion("What was the missing letter in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+    [Question("What was the missing letter in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
     QMissingLetter,
 
-    [SouvenirDiscriminator("the Alphabet Tiles where the {1} letter in the cycle was {0}", Arguments = [QandA.Ordinal, "X"], ArgumentGroupSize = 2)]
+    [Discriminator("the Alphabet Tiles where the {1} letter in the cycle was {0}", Arguments = [QandA.Ordinal, "X"], ArgumentGroupSize = 2)]
     DCycle,
 
-    [SouvenirDiscriminator("the Alphabet Tiles whose missing letter was {0}", Arguments = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"], ArgumentGroupSize = 1)]
+    [Discriminator("the Alphabet Tiles whose missing letter was {0}", Arguments = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"], ArgumentGroupSize = 1)]
     DMissingLetter,
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("AlphabetTiles", "Alphabet Tiles", typeof(SAlphabetTiles), "BigCrunch22")]
-    [SouvenirManualQuestion("What were the letters shown during each cycle?")]
-    [SouvenirManualQuestion("What was the missing letter?")]
+    [Handler("AlphabetTiles", "Alphabet Tiles", typeof(SAlphabetTiles), "BigCrunch22")]
+    [ManualQuestion("What were the letters shown during each cycle?")]
+    [ManualQuestion("What was the missing letter?")]
     private IEnumerator<SouvenirInstruction> ProcessAlphabetTiles(ModuleData module)
     {
         var comp = GetComponent(module, "AlphabetTilesScript");

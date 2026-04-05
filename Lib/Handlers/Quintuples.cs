@@ -5,23 +5,23 @@ using static Souvenir.AnswerLayout;
 
 public enum SQuintuples
 {
-    [SouvenirQuestion("What was the {1} digit in the {2} slot in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the {1} digit in the {2} slot in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(0, 9)]
     Numbers,
 
-    [SouvenirQuestion("What color was the {1} digit in the {2} slot in {0}?", TwoColumns4Answers, "red", "blue", "orange", "green", "pink", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What color was the {1} digit in the {2} slot in {0}?", TwoColumns4Answers, "red", "blue", "orange", "green", "pink", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     Colors,
 
-    [SouvenirQuestion("How many numbers were {1} in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "blue", "orange", "green", "pink"], ArgumentGroupSize = 1)]
+    [Question("How many numbers were {1} in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "blue", "orange", "green", "pink"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 25)]
     ColorCounts
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("quintuples", "Quintuples", typeof(SQuintuples), "Timwi")]
-    [SouvenirManualQuestion("What were the numbers and colors in every slot?")]
-    [SouvenirManualQuestion("How many numbers were there of each color?")]
+    [Handler("quintuples", "Quintuples", typeof(SQuintuples), "Timwi")]
+    [ManualQuestion("What were the numbers and colors in every slot?")]
+    [ManualQuestion("How many numbers were there of each color?")]
     private IEnumerator<SouvenirInstruction> ProcessQuintuples(ModuleData module)
     {
         var comp = GetComponent(module, "quintuplesScript");

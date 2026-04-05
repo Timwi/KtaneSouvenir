@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SSnowflakes
 {
-    [SouvenirQuestion("Which snowflake was on the {1} button of {0}?", ThreeColumns6Answers, Type = AnswerType.SnowflakesFont, FontSize = 400, CharacterSize = 0.2f, Arguments = ["top", "right", "bottom", "left"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which snowflake was on the {1} button of {0}?", ThreeColumns6Answers, Type = AnswerType.SnowflakesFont, FontSize = 400, CharacterSize = 0.2f, Arguments = ["top", "right", "bottom", "left"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("A-Za-z")]
     DisplayedSnowflakes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("snowflakes", "Snowflakes", typeof(SSnowflakes), "Kuro")]
-    [SouvenirManualQuestion("What were the displayed snowflakes?")]
+    [Handler("snowflakes", "Snowflakes", typeof(SSnowflakes), "Kuro")]
+    [ManualQuestion("What were the displayed snowflakes?")]
     private IEnumerator<SouvenirInstruction> ProcessSnowflakes(ModuleData module)
     {
         var comp = GetComponent(module, "snowflakes");

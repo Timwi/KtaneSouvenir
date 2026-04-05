@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotThePlungerButton
 {
-    [SouvenirQuestion("What color did the background flash in {0}?", TwoColumns4Answers, "Black", "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", TranslateAnswers = true)]
+    [Question("What color did the background flash in {0}?", TwoColumns4Answers, "Black", "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", TranslateAnswers = true)]
     Background
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notPlungerButtonModule", "Not The Plunger Button", typeof(SNotThePlungerButton), "Anonymous")]
-    [SouvenirManualQuestion("What colors did the background flash?")]
+    [Handler("notPlungerButtonModule", "Not The Plunger Button", typeof(SNotThePlungerButton), "Anonymous")]
+    [ManualQuestion("What colors did the background flash?")]
     private IEnumerator<SouvenirInstruction> ProcessNotThePlungerButton(ModuleData module)
     {
         yield return WaitForSolve;

@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SBlinkstop
 {
-    [SouvenirQuestion("How many times did the LED flash in {0}?", ThreeColumns6Answers, "30", "33", "37", "39", "42", "44", "47", "51", "55", "59")]
+    [Question("How many times did the LED flash in {0}?", ThreeColumns6Answers, "30", "33", "37", "39", "42", "44", "47", "51", "55", "59")]
     NumberOfFlashes,
 
-    [SouvenirQuestion("Which color did the LED flash the fewest times in {0}?", TwoColumns4Answers, "Purple", "Cyan", "Yellow", "Multicolor", TranslateAnswers = true)]
+    [Question("Which color did the LED flash the fewest times in {0}?", TwoColumns4Answers, "Purple", "Cyan", "Yellow", "Multicolor", TranslateAnswers = true)]
     FewestFlashedColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("blinkstopModule", "Blinkstop", typeof(SBlinkstop), "Kuro")]
-    [SouvenirManualQuestion("How many times did the LED flash?")]
-    [SouvenirManualQuestion("Which color did the LED flash the least?")]
+    [Handler("blinkstopModule", "Blinkstop", typeof(SBlinkstop), "Kuro")]
+    [ManualQuestion("How many times did the LED flash?")]
+    [ManualQuestion("Which color did the LED flash the least?")]
     private IEnumerator<SouvenirInstruction> ProcessBlinkstop(ModuleData module)
     {
         var comp = GetComponent(module, "BlinkstopScript");

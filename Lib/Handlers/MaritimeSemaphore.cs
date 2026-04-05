@@ -6,20 +6,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SMaritimeSemaphore
 {
-    [SouvenirQuestion("In which position was the dummy in {0}?", ThreeColumns6Answers)]
+    [Question("In which position was the dummy in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Ordinal(6)]
     Dummy,
 
-    [SouvenirQuestion("Which letter was shown {2} in the {1} position in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "as a maritime flag", QandA.Ordinal, "in semaphore"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Question("Which letter was shown {2} in the {1} position in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "as a maritime flag", QandA.Ordinal, "in semaphore"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     [AnswerGenerator.Strings('A', 'Z')]
     Letter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MaritimeSemaphoreModule", "Maritime Semaphore", typeof(SMaritimeSemaphore), "Timwi")]
-    [SouvenirManualQuestion("Where was the dummy?")]
-    [SouvenirManualQuestion("Which letters were signaled?")]
+    [Handler("MaritimeSemaphoreModule", "Maritime Semaphore", typeof(SMaritimeSemaphore), "Timwi")]
+    [ManualQuestion("Where was the dummy?")]
+    [ManualQuestion("Which letters were signaled?")]
     private IEnumerator<SouvenirInstruction> ProcessMaritimeSemaphore(ModuleData module)
     {
         yield return WaitForSolve;

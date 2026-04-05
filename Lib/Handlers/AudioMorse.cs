@@ -6,14 +6,14 @@ using Rnd = UnityEngine.Random;
 
 public enum SAudioMorse
 {
-    [SouvenirQuestion("What was signaled in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
+    [Question("What was signaled in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
     Sound
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("lgndAudioMorse", "Audio Morse", typeof(SAudioMorse), "Anonymous")]
-    [SouvenirManualQuestion("What was the Morse code?")]
+    [Handler("lgndAudioMorse", "Audio Morse", typeof(SAudioMorse), "Anonymous")]
+    [ManualQuestion("What was the Morse code?")]
     private IEnumerator<SouvenirInstruction> ProcessAudioMorse(ModuleData module)
     {
         var morse = "   ;A.-;B-...;C-.-.;D-..;E.;F..-.;G--.;H....;I..;J.---;K-.-;L.-..;M--;N-.;O---;P.--.;Q--.-;R.-.;S...;T-;U..-;V...-;W.--;X-..-;Y-.--;Z--..;1.----;2..---;3...--;4....-;5.....;6-....;7--...;8---..;9----.;0-----"

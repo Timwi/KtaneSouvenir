@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SFiveLetterWords
 {
-    [SouvenirQuestion("Which of these words was on the display in {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABAFF", "MAYOR", "PANUS", "FRIZE", "NIRIS", "TEJON"])]
+    [Question("Which of these words was on the display in {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABAFF", "MAYOR", "PANUS", "FRIZE", "NIRIS", "TEJON"])]
     DisplayedWords
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("FiveLetterWords", "Five Letter Words", typeof(SFiveLetterWords), "Kuro")]
-    [SouvenirManualQuestion("What were the displayed words?")]
+    [Handler("FiveLetterWords", "Five Letter Words", typeof(SFiveLetterWords), "Kuro")]
+    [ManualQuestion("What were the displayed words?")]
     private IEnumerator<SouvenirInstruction> ProcessFiveLetterWords(ModuleData module)
     {
         var comp = GetComponent(module, "FiveLetterWords");

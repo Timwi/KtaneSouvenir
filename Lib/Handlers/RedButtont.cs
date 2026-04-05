@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SRedButtont
 {
-    [SouvenirQuestion("What was the word before “SUBMIT” in {0}?", TwoColumns4Answers, ExampleAnswers = ["ABACUS", "BABBLE", "CABLES", "DABBLE", "EAGLES", "FABLED", "HABITS", "IAMBIC"])]
+    [Question("What was the word before “SUBMIT” in {0}?", TwoColumns4Answers, ExampleAnswers = ["ABACUS", "BABBLE", "CABLES", "DABBLE", "EAGLES", "FABLED", "HABITS", "IAMBIC"])]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("redbuttont", "Red Button’t", typeof(SRedButtont), "Anonymous")]
-    [SouvenirManualQuestion("What was the displayed word?")]
+    [Handler("redbuttont", "Red Button’t", typeof(SRedButtont), "Anonymous")]
+    [ManualQuestion("What was the displayed word?")]
     private IEnumerator<SouvenirInstruction> ProcessRedButtont(ModuleData module)
     {
         var comp = GetComponent(module, "BaseButtonScript");

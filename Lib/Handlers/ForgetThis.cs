@@ -4,25 +4,25 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetThis
 {
-    [SouvenirQuestion("What color was the LED in the {1} stage of {0}?", ThreeColumns6Answers, "Cyan", "Magenta", "Yellow", "Black", "White", "Green", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the LED in the {1} stage of {0}?", ThreeColumns6Answers, "Cyan", "Magenta", "Yellow", "Black", "White", "Green", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     QColors,
 
-    [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.AsciiMazeFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.AsciiMazeFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("0-9A-Z")]
     QDigits,
 
-    [SouvenirDiscriminator("the Forget This whose LED was {0} in the {1} stage", Arguments = ["cyan", QandA.Ordinal, "magenta", QandA.Ordinal, "yellow", QandA.Ordinal, "black", QandA.Ordinal, "white", QandA.Ordinal, "green", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Forget This whose LED was {0} in the {1} stage", Arguments = ["cyan", QandA.Ordinal, "magenta", QandA.Ordinal, "yellow", QandA.Ordinal, "black", QandA.Ordinal, "white", QandA.Ordinal, "green", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DColors,
 
-    [SouvenirDiscriminator("the Forget This which displayed {0} in the {1} stage", Arguments = ["A", QandA.Ordinal, "B", QandA.Ordinal, "C", QandA.Ordinal, "D", QandA.Ordinal, "E", QandA.Ordinal, "F", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the Forget This which displayed {0} in the {1} stage", Arguments = ["A", QandA.Ordinal, "B", QandA.Ordinal, "C", QandA.Ordinal, "D", QandA.Ordinal, "E", QandA.Ordinal, "F", QandA.Ordinal], ArgumentGroupSize = 2)]
     DDigits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("forgetThis", "Forget This", typeof(SForgetThis), "Kuro", IsBossModule = true)]
-    [SouvenirManualQuestion("What was the displayed character in each stage?")]
-    [SouvenirManualQuestion("What was the LED color in each stage?")]
+    [Handler("forgetThis", "Forget This", typeof(SForgetThis), "Kuro", IsBossModule = true)]
+    [ManualQuestion("What was the displayed character in each stage?")]
+    [ManualQuestion("What was the LED color in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetThis(ModuleData module)
     {
         var comp = GetComponent(module, "ForgetThis");

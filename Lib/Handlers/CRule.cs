@@ -7,24 +7,24 @@ using static Souvenir.AnswerLayout;
 
 public enum SCRule
 {
-    [SouvenirQuestion("Which symbol pair was here in {0}?", ThreeColumns6Answers, "♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡", UsesQuestionSprite = true)]
+    [Question("Which symbol pair was here in {0}?", ThreeColumns6Answers, "♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡", UsesQuestionSprite = true)]
     SymbolPair,
 
-    [SouvenirQuestion("Where was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡"], ArgumentGroupSize = 1)]
+    [Question("Where was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡"], ArgumentGroupSize = 1)]
     SymbolPairCell,
 
-    [SouvenirQuestion("Which symbol pair was present on {0}?", ThreeColumns6Answers, "♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡")]
+    [Question("Which symbol pair was present on {0}?", ThreeColumns6Answers, "♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡")]
     SymbolPairPresent,
 
-    [SouvenirQuestion("Which cell was pre-filled at the start of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites)]
+    [Question("Which cell was pre-filled at the start of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites)]
     Prefilled
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("the_cRule", "cRule", typeof(SCRule), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("Which cells were prefilled at the start?")]
-    [SouvenirManualQuestion("Which symbol pair appeared where?")]
+    [Handler("the_cRule", "cRule", typeof(SCRule), "Timwi", AddThe = true)]
+    [ManualQuestion("Which cells were prefilled at the start?")]
+    [ManualQuestion("Which symbol pair appeared where?")]
     private IEnumerator<SouvenirInstruction> ProcessCRule(ModuleData module)
     {
         var comp = GetComponent(module, "TheCRuleScript");

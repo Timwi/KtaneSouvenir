@@ -6,26 +6,26 @@ using static Souvenir.AnswerLayout;
 
 public enum S7
 {
-    [SouvenirQuestion("What was the {1} channel’s initial value in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [Question("What was the {1} channel’s initial value in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(-9, 9)]
     QInitialValues,
 
-    [SouvenirQuestion("What LED color was shown in stage {1} of {0}?", TwoColumns4Answers, "red", "blue", "green", "white", Arguments = ["1", "2", "3"], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What LED color was shown in stage {1} of {0}?", TwoColumns4Answers, "red", "blue", "green", "white", Arguments = ["1", "2", "3"], ArgumentGroupSize = 1, TranslateAnswers = true)]
     QLedColors,
 
-    [SouvenirDiscriminator("the 7 whose {0} channel’s initial value was {1}", Arguments = ["red", "-9", "green", "0", "blue", "9"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the 7 whose {0} channel’s initial value was {1}", Arguments = ["red", "-9", "green", "0", "blue", "9"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     [AnswerGenerator.Integers(-9, 9)]
     DInitialValues,
 
-    [SouvenirDiscriminator("the 7 whose stage {0} LED color was {1}", Arguments = ["1", "red", "2", "blue", "3", "green", "4", "white"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Discriminator("the 7 whose stage {0} LED color was {1}", Arguments = ["1", "red", "2", "blue", "3", "green", "4", "white"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     DLedColors,
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("7", "7", typeof(S7), "Timwi")]
-    [SouvenirManualQuestion("What were the LED colors for each stage?")]
-    [SouvenirManualQuestion("What was each channel’s initial value?")]
+    [Handler("7", "7", typeof(S7), "Timwi")]
+    [ManualQuestion("What were the LED colors for each stage?")]
+    [ManualQuestion("What was each channel’s initial value?")]
     private IEnumerator<SouvenirInstruction> Process7(ModuleData module)
     {
         var comp = GetComponent(module, "SevenHandler");

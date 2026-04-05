@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SRailwayCargoLoading
 {
-    [SouvenirQuestion("What was the {1} car in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} car in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Cars,
 
-    [SouvenirQuestion("Which freight table rule {1} in {0}?", OneColumn4Answers, "Over 150 lumber/75 logs", "Over 100 sheet metal", "Over 250 crude oil", "Over 400 mail", "Over 30 livestock", "Over 600 milk/water/resin", "Over 100 liquid fuel", "Over 700 industrial gas", "Over 150 food", "Over 100 coal", "Over 500 loose bulk (excl. coal)", "Over 7 large objects", "Over 5 automobiles", "Over 700 industrial gas", Arguments = ["was met", "wasn’t met"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which freight table rule {1} in {0}?", OneColumn4Answers, "Over 150 lumber/75 logs", "Over 100 sheet metal", "Over 250 crude oil", "Over 400 mail", "Over 30 livestock", "Over 600 milk/water/resin", "Over 100 liquid fuel", "Over 700 industrial gas", "Over 150 food", "Over 100 coal", "Over 500 loose bulk (excl. coal)", "Over 7 large objects", "Over 5 automobiles", "Over 700 industrial gas", Arguments = ["was met", "wasn’t met"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     FreightTableRules
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("RailwayCargoLoading", "Railway Cargo Loading", typeof(SRailwayCargoLoading), "LotsOfS")]
-    [SouvenirManualQuestion("What were the coupled cars?")]
-    [SouvenirManualQuestion("Which freight table rules applied?")]
+    [Handler("RailwayCargoLoading", "Railway Cargo Loading", typeof(SRailwayCargoLoading), "LotsOfS")]
+    [ManualQuestion("What were the coupled cars?")]
+    [ManualQuestion("Which freight table rules applied?")]
     private IEnumerator<SouvenirInstruction> ProcessRailwayCargoLoading(ModuleData module)
     {
         var comp = GetComponent(module, "TrainLoading");

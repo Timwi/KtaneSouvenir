@@ -7,17 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SSonicKnuckles
 {
-    [SouvenirQuestion("Which badnik was shown in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "SonicKnucklesBadniksSprites")]
+    [Question("Which badnik was shown in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "SonicKnucklesBadniksSprites")]
     Badnik,
 
-    [SouvenirQuestion("Which monitor was shown in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "SonicKnucklesMonitorsSprites")]
+    [Question("Which monitor was shown in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "SonicKnucklesMonitorsSprites")]
     Monitor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("sonicKnuckles", "Sonic & Knuckles", typeof(SSonicKnuckles), "Hawker")]
-    [SouvenirManualQuestion("Which monitor and badnik were shown?")]
+    [Handler("sonicKnuckles", "Sonic & Knuckles", typeof(SSonicKnuckles), "Hawker")]
+    [ManualQuestion("Which monitor and badnik were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessSonicKnuckles(ModuleData module)
     {
         var comp = GetComponent(module, "sonicKnucklesScript");

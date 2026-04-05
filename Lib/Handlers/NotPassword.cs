@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotPassword
 {
-    [SouvenirQuestion("Which letter was missing from {0}?", ThreeColumns6Answers)]
+    [Question("Which letter was missing from {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings('A', 'Z')]
     Letter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NotPassword", "Not Password", typeof(SNotPassword), "Anonymous")]
-    [SouvenirManualQuestion("What was the missing letter?")]
+    [Handler("NotPassword", "Not Password", typeof(SNotPassword), "Anonymous")]
+    [ManualQuestion("What was the missing letter?")]
     private IEnumerator<SouvenirInstruction> ProcessNotPassword(ModuleData module)
     {
         var comp = GetComponent(module, "NotPassword");

@@ -19,7 +19,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         Plural
     }
 
-    public override string FormatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved) => addSolveCount
+    public override string FormatModuleName(QuestionAttribute qAttr, bool addSolveCount, int numSolved) => addSolveCount
         ? (_translations.Get(qAttr.Handler.EnumType)?.Gender ?? Gender.Neuter) switch
         {
             Gender.Feminine => $"der als {ordinal(numSolved)}e gelösten {_translations.Get(qAttr.Handler.EnumType)?.ModuleNameDative ?? _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleName}",
@@ -518,11 +518,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SAbyss.Seed] = new()
+                [SAbyss.QSeed] = new()
                 {
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on Abyss?
-                    Question = "Welcher Buchstabe kam bei {0} als {1}es vor?",
+                    Question = "Welches Zeichen war bei {0} das {1}e?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAbyss.DSeed] = new()
+                {
+                    // English: the Abyss whose {0} character was {1}
+                    // Example: the Abyss whose first character was A
+                    Discriminator = "dem Abgrund, dessen {0}es Zeichen {1} war,",
                 },
             },
         },
@@ -5562,7 +5571,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which shape was the {1} operand in {0}?
                     // Example: Which shape was the first operand in Encrypted Equations?
-                    Question = "Welche Form hatte bei {0} der {1} Operand?",
+                    Question = "Welche Form hatte bei {0} der {1}e Operand?",
                 },
             },
         },
@@ -5787,6 +5796,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} digit in the {2} number shown in {0}?
                     // Example: What was the first digit in the first number shown in Entry Number One?
                     Question = "Was war bei {0} die {1}e Ziffer der {2}en Zahl?",
+                },
+            },
+        },
+
+        // Épelle-moi Ça
+        [typeof(SÉpelleMoiÇa)] = new()
+        {
+            ManualQuestions = new()
+            {
+                ["What word was asked to be spelled?"] = "Die Schreibweise welches Wortes wurde verlangt?",
+            },
+            Questions = new()
+            {
+                [SÉpelleMoiÇa.Word] = new()
+                {
+                    // English: What word was asked to be spelled in {0}?
+                    Question = "Welches Wort sollte bei {0} buchstabiert werden?",
                 },
             },
         },
@@ -12662,6 +12688,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Object Shows
         [typeof(SObjectShows)] = new()
         {
+            ModuleName = "Objekt-Shows",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
                 ["What contestants were shown?"] = "Welche Kandidaten kamen vor?",
@@ -12670,8 +12698,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SObjectShows.Contestants] = new()
                 {
-                    // English: Which of these was a contestant on {0}?
-                    Question = "Wer war bei {0} ein Kandidat?",
+                    // English: Which of these was a contestant, but not the winner, on {0}?
+                    Question = "Welcher Kandidat kam bei {0} vor, war aber nicht der Sieger?",
                 },
             },
         },
@@ -20726,23 +20754,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} word in {0}?
                     // Example: What was the first word in Zoni?
                     Question = "Was war bei {0} das {1}e Wort?",
-                },
-            },
-        },
-
-        // Épelle-moi Ça
-        [typeof(SÉpelleMoiÇa)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What word was asked to be spelled?"] = "Die Schreibweise welches Wortes wurde verlangt?",
-            },
-            Questions = new()
-            {
-                [SÉpelleMoiÇa.Word] = new()
-                {
-                    // English: What word was asked to be spelled in {0}?
-                    Question = "Welches Wort sollte bei {0} buchstabiert werden?",
                 },
             },
         },

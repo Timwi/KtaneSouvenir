@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SBoomtarTheGreat
 {
-    [SouvenirQuestion("What was rule {1} in {0}?", ThreeColumns6Answers, ArgumentGroupSize = 1, Arguments = ["one", "two"], TranslateArguments = [true])]
+    [Question("What was rule {1} in {0}?", ThreeColumns6Answers, ArgumentGroupSize = 1, Arguments = ["one", "two"], TranslateArguments = [true])]
     [AnswerGenerator.Integers(1, 6)]
     Rules
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("boomtarTheGreat", "Boomtar the Great", typeof(SBoomtarTheGreat), "Anonymous")]
-    [SouvenirManualQuestion("What were the first and second rules?")]
+    [Handler("boomtarTheGreat", "Boomtar the Great", typeof(SBoomtarTheGreat), "Anonymous")]
+    [ManualQuestion("What were the first and second rules?")]
     private IEnumerator<SouvenirInstruction> ProcessBoomtarTheGreat(ModuleData module)
     {
         var comp = GetComponent(module, "boomtarTheGreat");

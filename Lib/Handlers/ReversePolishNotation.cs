@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SReversePolishNotation
 {
-    [SouvenirQuestion("What character was used in the {1} round of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What character was used in the {1} round of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-G0-9")]
     Character
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("revPolNot", "Reverse Polish Notation", typeof(SReversePolishNotation), "shortc1rcuit")]
-    [SouvenirManualQuestion("What characters were used in each round?")]
+    [Handler("revPolNot", "Reverse Polish Notation", typeof(SReversePolishNotation), "shortc1rcuit")]
+    [ManualQuestion("What characters were used in each round?")]
     private IEnumerator<SouvenirInstruction> ProcessReversePolishNotation(ModuleData module)
     {
         var comp = GetComponent(module, "ReversePolishNotation");

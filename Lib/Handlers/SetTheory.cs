@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSetTheory
 {
-    [SouvenirQuestion("What equation was shown in the {1} stage of {0}?", OneColumn4Answers, ExampleAnswers = ["(A ∩ B)", "(A ∪ B)", "(!B ∆ !A)", "(B ∩ !A)", "(!(C − B) ∪ !A)", "((B ∩ A) − C)", "(!(B ∪ A) ∆ (C ∩ !B))", "((A − !C) ∩ !(B ∪ !C))"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What equation was shown in the {1} stage of {0}?", OneColumn4Answers, ExampleAnswers = ["(A ∩ B)", "(A ∪ B)", "(!B ∆ !A)", "(B ∩ !A)", "(!(C − B) ∪ !A)", "((B ∩ A) − C)", "(!(B ∪ A) ∆ (C ∩ !B))", "((A − !C) ∩ !(B ∪ !C))"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Equations
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SetTheory", "S.E.T. Theory", typeof(SSetTheory), "Timwi")]
-    [SouvenirManualQuestion("What equations were displayed in each stage?")]
+    [Handler("SetTheory", "S.E.T. Theory", typeof(SSetTheory), "Timwi")]
+    [ManualQuestion("What equations were displayed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSetTheory(ModuleData module)
     {
         var comp = GetComponent(module, "SetTheoryScript");

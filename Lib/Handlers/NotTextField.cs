@@ -6,20 +6,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotTextField
 {
-    [SouvenirQuestion("Which letter appeared 9 times at the start of {0}?", ThreeColumns6Answers)]
+    [Question("Which letter appeared 9 times at the start of {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings('A', 'F')]
     BackgroundLetter,
 
-    [SouvenirQuestion("Which letter was pressed in the first stage of {0}?", TwoColumns4Answers)]
+    [Question("Which letter was pressed in the first stage of {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings('A', 'F')]
     InitialPresses
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notTextField", "Not Text Field", typeof(SNotTextField), "tandyCake")]
-    [SouvenirManualQuestion("Which letter appeared 9 times at the start?")]
-    [SouvenirManualQuestion("Which letters were pressed in the first stage?")]
+    [Handler("notTextField", "Not Text Field", typeof(SNotTextField), "tandyCake")]
+    [ManualQuestion("Which letter appeared 9 times at the start?")]
+    [ManualQuestion("Which letters were pressed in the first stage?")]
     private IEnumerator<SouvenirInstruction> ProcessNotTextField(ModuleData module)
     {
         var comp = GetComponent(module, "NotTextFieldScript");

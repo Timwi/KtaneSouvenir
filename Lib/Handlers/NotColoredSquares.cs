@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotColoredSquares
 {
-    [SouvenirQuestion("What was the position of the square you initially pressed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the position of the square you initially pressed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     InitialPosition
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NotColoredSquaresModule", "Not Colored Squares", typeof(SNotColoredSquares), "Kuro")]
-    [SouvenirManualQuestion("What position did you initially press?")]
+    [Handler("NotColoredSquaresModule", "Not Colored Squares", typeof(SNotColoredSquares), "Kuro")]
+    [ManualQuestion("What position did you initially press?")]
     private IEnumerator<SouvenirInstruction> ProcessNotColoredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "NotColoredSquaresScript");

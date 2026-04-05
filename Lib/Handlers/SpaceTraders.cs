@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSpaceTraders
 {
-    [SouvenirQuestion("What was the maximum tax amount per vessel in {0}?", ThreeColumns6Answers, "0 GCr", "1 GCr", "2 GCr", "3 GCr", "4 GCr", "5 GCr")]
+    [Question("What was the maximum tax amount per vessel in {0}?", ThreeColumns6Answers, "0 GCr", "1 GCr", "2 GCr", "3 GCr", "4 GCr", "5 GCr")]
     MaxTax
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("space_traders", "Space Traders", typeof(SSpaceTraders), "NickLatkovich")]
-    [SouvenirManualQuestion("What was the maximum tax amount per vessel?")]
+    [Handler("space_traders", "Space Traders", typeof(SSpaceTraders), "NickLatkovich")]
+    [ManualQuestion("What was the maximum tax amount per vessel?")]
     private IEnumerator<SouvenirInstruction> ProcessSpaceTraders(ModuleData module)
     {
         var comp = GetComponent(module, "SpaceTradersModule");

@@ -7,19 +7,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SBrokenGuitarChords
 {
-    [SouvenirQuestion("What was the displayed chord in {0}?", ThreeColumns6Answers, ExampleAnswers = ["C", "Dm", "F#sus", "Gm7", "A9", "Eadd9"])]
+    [Question("What was the displayed chord in {0}?", ThreeColumns6Answers, ExampleAnswers = ["C", "Dm", "F#sus", "Gm7", "A9", "Eadd9"])]
     DisplayedChord,
 
-    [SouvenirQuestion("In which position, from left to right, was the broken string in {0}?", ThreeColumns6Answers)]
+    [Question("In which position, from left to right, was the broken string in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 6)]
     MutedString
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("BrokenGuitarChordsModule", "Broken Guitar Chords", typeof(SBrokenGuitarChords), "Kuro")]
-    [SouvenirManualQuestion("What was the displayed chord?")]
-    [SouvenirManualQuestion("Which string was broken?")]
+    [Handler("BrokenGuitarChordsModule", "Broken Guitar Chords", typeof(SBrokenGuitarChords), "Kuro")]
+    [ManualQuestion("What was the displayed chord?")]
+    [ManualQuestion("Which string was broken?")]
     private IEnumerator<SouvenirInstruction> ProcessBrokenGuitarChords(ModuleData module)
     {
         var comp = GetComponent(module, "BrokenGuitarChordsModule");

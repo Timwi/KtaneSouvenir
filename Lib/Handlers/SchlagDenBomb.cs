@@ -6,22 +6,22 @@ using Rnd = UnityEngine.Random;
 
 public enum SSchlagDenBomb
 {
-    [SouvenirQuestion("What was the contestant’s name in {0}?", TwoColumns4Answers, "Ron", "Don", "Julia", "Cory", "Greg", "Paula", "Val", "Lisa", "Ozy", "Ozzy", "Elsa", "Cori", "Harry", "Gale", "Daniel", "Albert", "Spike", "Tommy", "Greta", "Tina", "Rob", "Edgar", "Julia", "Peter", "Millie", "Isolde", "Eris")]
+    [Question("What was the contestant’s name in {0}?", TwoColumns4Answers, "Ron", "Don", "Julia", "Cory", "Greg", "Paula", "Val", "Lisa", "Ozy", "Ozzy", "Elsa", "Cori", "Harry", "Gale", "Daniel", "Albert", "Spike", "Tommy", "Greta", "Tina", "Rob", "Edgar", "Julia", "Peter", "Millie", "Isolde", "Eris")]
     ContestantName,
 
-    [SouvenirQuestion("What was the contestant’s score in {0}?", ThreeColumns6Answers)]
+    [Question("What was the contestant’s score in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 75)]
     ContestantScore,
 
-    [SouvenirQuestion("What was the bomb’s score in {0}?", ThreeColumns6Answers)]
+    [Question("What was the bomb’s score in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 75)]
     BombScore
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("qSchlagDenBomb", "Schlag den Bomb", typeof(SSchlagDenBomb), "JerryEris")]
-    [SouvenirManualQuestion("What were the contestant’s name and both scores?")]
+    [Handler("qSchlagDenBomb", "Schlag den Bomb", typeof(SSchlagDenBomb), "JerryEris")]
+    [ManualQuestion("What were the contestant’s name and both scores?")]
     private IEnumerator<SouvenirInstruction> ProcessSchlagDenBomb(ModuleData module)
     {
         var comp = GetComponent(module, "qSchlagDenBomb");

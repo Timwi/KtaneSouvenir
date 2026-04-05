@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNameCodes
 {
-    [SouvenirQuestion("What was the {1} index in {0}?", TwoColumns4Answers, "2", "3", "4", "5", TranslateArguments = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
+    [Question("What was the {1} index in {0}?", TwoColumns4Answers, "2", "3", "4", "5", TranslateArguments = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
     Indices
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("nameCodes", "Name Codes", typeof(SNameCodes), "tandyCake")]
-    [SouvenirManualQuestion("What were the left and right indices?")]
+    [Handler("nameCodes", "Name Codes", typeof(SNameCodes), "tandyCake")]
+    [ManualQuestion("What were the left and right indices?")]
     private IEnumerator<SouvenirInstruction> ProcessNameCodes(ModuleData module)
     {
         var comp = GetComponent(module, "NameCodesScript");

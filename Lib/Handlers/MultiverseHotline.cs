@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SMultiverseHotline
 {
-    [SouvenirQuestion("What was the origin universe in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "MultiverseHotline", AudioSizeMultiplier = 4)]
+    [Question("What was the origin universe in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "MultiverseHotline", AudioSizeMultiplier = 4)]
     OriginUniverse,
 
-    [SouvenirQuestion("What was the origin universe’s initial number in {0}?", TwoColumns4Answers)]
+    [Question("What was the origin universe’s initial number in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings("3*0-9")]
     OriginUniverseInitNumber
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MultiverseHotline", "Multiverse Hotline", typeof(SMultiverseHotline), "KiloBites", AddThe = true)]
-    [SouvenirManualQuestion("What was the universe origin and its initial number?")]
+    [Handler("MultiverseHotline", "Multiverse Hotline", typeof(SMultiverseHotline), "KiloBites", AddThe = true)]
+    [ManualQuestion("What was the universe origin and its initial number?")]
     private IEnumerator<SouvenirInstruction> ProcessMultiverseHotline(ModuleData module)
     {
         var comp = GetComponent(module, "MultiverseHotlineScript");

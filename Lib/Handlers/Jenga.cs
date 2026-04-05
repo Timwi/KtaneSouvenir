@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SJenga
 {
-    [SouvenirQuestion("Which symbol was on the first correctly pulled block in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "JengaSprites")]
+    [Question("Which symbol was on the first correctly pulled block in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "JengaSprites")]
     FirstBlock
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("jenga", "Jenga", typeof(SJenga), "tandyCake")]
-    [SouvenirManualQuestion("What symbols were on the first correctly pulled block?")]
+    [Handler("jenga", "Jenga", typeof(SJenga), "tandyCake")]
+    [ManualQuestion("What symbols were on the first correctly pulled block?")]
     private IEnumerator<SouvenirInstruction> ProcessJenga(ModuleData module)
     {
         var comp = GetComponent(module, "JengaModule");

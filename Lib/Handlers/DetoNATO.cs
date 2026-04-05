@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDetoNATO
 {
-    [SouvenirQuestion("What was the {1} display in {0}?", TwoColumns4Answers, ExampleAnswers = ["Ozzy Osbourne", "Jouleliette", "Flockstrot", "Joulelette", "Jouleliett", "Uniqueform"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} display in {0}?", TwoColumns4Answers, ExampleAnswers = ["Ozzy Osbourne", "Jouleliette", "Flockstrot", "Joulelette", "Jouleliett", "Uniqueform"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Detonato", "DetoNATO", typeof(SDetoNATO), "Hawker")]
-    [SouvenirManualQuestion("What was the displayed word for each stage?")]
+    [Handler("Detonato", "DetoNATO", typeof(SDetoNATO), "Hawker")]
+    [ManualQuestion("What was the displayed word for each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDetoNATO(ModuleData module)
     {
         var comp = GetComponent(module, "Detonato");

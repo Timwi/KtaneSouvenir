@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SModuleMovements
 {
-    [SouvenirQuestion("What was the {1} module shown in {0}?", OneColumn4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequence", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes And Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} module shown in {0}?", OneColumn4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequence", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes And Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("moduleMovements", "Module Movements", typeof(SModuleMovements), "Hawker")]
-    [SouvenirManualQuestion("What module was shown for each stage?")]
+    [Handler("moduleMovements", "Module Movements", typeof(SModuleMovements), "Hawker")]
+    [ManualQuestion("What module was shown for each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessModuleMovements(ModuleData module)
     {
         var comp = GetComponent(module, "moduleMovements");

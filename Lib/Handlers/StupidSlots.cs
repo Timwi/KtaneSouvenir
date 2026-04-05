@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SStupidSlots
 {
-    [SouvenirQuestion("What was the value of the {1} arrow in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the value of the {1} arrow in {0}?", ThreeColumns6Answers, Arguments = ["top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(-30, 30)]
     Values
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("stupidSlots", "Stupid Slots", typeof(SStupidSlots), "tandyCake")]
-    [SouvenirManualQuestion("What were the values of each arrow?")]
+    [Handler("stupidSlots", "Stupid Slots", typeof(SStupidSlots), "tandyCake")]
+    [ManualQuestion("What were the values of each arrow?")]
     private IEnumerator<SouvenirInstruction> ProcessStupidSlots(ModuleData module)
     {
         var comp = GetComponent(module, "StupidSlotsScript");

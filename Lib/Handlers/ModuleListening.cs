@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SModuleListening
 {
-    [SouvenirQuestion("Which sound did the {1} button play in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue", "yellow"], ArgumentGroupSize = 1, Type = AnswerType.Audio, ForeignAudioID = "moduleListening")]
+    [Question("Which sound did the {1} button play in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue", "yellow"], ArgumentGroupSize = 1, Type = AnswerType.Audio, ForeignAudioID = "moduleListening")]
     ButtonAudio,
 
-    [SouvenirQuestion("Which sound played in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "moduleListening")]
+    [Question("Which sound played in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "moduleListening")]
     AnyAudio
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("moduleListening", "Module Listening", typeof(SModuleListening), "TasThiluna")]
-    [SouvenirManualQuestion("What sounds played?")]
-    [SouvenirManualQuestion("What sounds did each button play?")]
+    [Handler("moduleListening", "Module Listening", typeof(SModuleListening), "TasThiluna")]
+    [ManualQuestion("What sounds played?")]
+    [ManualQuestion("What sounds did each button play?")]
     private IEnumerator<SouvenirInstruction> ProcessModuleListening(ModuleData module)
     {
         var comp = GetComponent(module, "ModuleListening");

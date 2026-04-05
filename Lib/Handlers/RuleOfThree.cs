@@ -6,25 +6,25 @@ using static Souvenir.AnswerLayout;
 
 public enum SRuleOfThree
 {
-    [SouvenirQuestion("What was the {1} coordinate of the {2} vertex in {0}?", ThreeColumns6Answers, Arguments = ["X", "red", "Y", "yellow", "Z", "blue"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Question("What was the {1} coordinate of the {2} vertex in {0}?", ThreeColumns6Answers, Arguments = ["X", "red", "Y", "yellow", "Z", "blue"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     [AnswerGenerator.Integers(-13, 13)]
     QCoordinates,
 
-    [SouvenirQuestion("What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?", ThreeColumns3Answers, "-", "0", "+", TranslateArguments = [true, false, false], Arguments = ["red", "X", QandA.Ordinal, "yellow", "Y", QandA.Ordinal, "blue", "Z", QandA.Ordinal], ArgumentGroupSize = 3)]
+    [Question("What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?", ThreeColumns3Answers, "-", "0", "+", TranslateArguments = [true, false, false], Arguments = ["red", "X", QandA.Ordinal, "yellow", "Y", QandA.Ordinal, "blue", "Z", QandA.Ordinal], ArgumentGroupSize = 3)]
     QCycles,
 
-    [SouvenirDiscriminator("the Rule of Three where the {1} coordinate of the {2} vertex was {0}", Arguments = ["0", "X", "red", "1", "Y", "yellow", "-1", "Z", "blue"], ArgumentGroupSize = 3, TranslateArguments = [false, false, true])]
+    [Discriminator("the Rule of Three where the {1} coordinate of the {2} vertex was {0}", Arguments = ["0", "X", "red", "1", "Y", "yellow", "-1", "Z", "blue"], ArgumentGroupSize = 3, TranslateArguments = [false, false, true])]
     DCoordinates,
 
-    [SouvenirDiscriminator("the Rule of Three where the {1} sphere was {0} on the {2} axis in the {3} cycle", TranslateArguments = [true, true, false, false], Arguments = ["positive", "red", "X", QandA.Ordinal, "negative", "yellow", "Y", QandA.Ordinal, "zero", "blue", "Z", QandA.Ordinal], ArgumentGroupSize = 4)]
+    [Discriminator("the Rule of Three where the {1} sphere was {0} on the {2} axis in the {3} cycle", TranslateArguments = [true, true, false, false], Arguments = ["positive", "red", "X", QandA.Ordinal, "negative", "yellow", "Y", QandA.Ordinal, "zero", "blue", "Z", QandA.Ordinal], ArgumentGroupSize = 4)]
     DCycles,
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("RuleOfThreeModule", "Rule of Three", typeof(SRuleOfThree), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the positions of each sphere on each axis in each cycle?")]
-    [SouvenirManualQuestion("What were the coordinates of the vertices?")]
+    [Handler("RuleOfThreeModule", "Rule of Three", typeof(SRuleOfThree), "Quinn Wuest")]
+    [ManualQuestion("What were the positions of each sphere on each axis in each cycle?")]
+    [ManualQuestion("What were the coordinates of the vertices?")]
     private IEnumerator<SouvenirInstruction> ProcessRuleOfThree(ModuleData module)
     {
         var comp = GetComponent(module, "RuleOfThreeScript");

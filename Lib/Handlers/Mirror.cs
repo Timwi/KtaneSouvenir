@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMirror
 {
-    [SouvenirQuestion("What was the second word written by the original ghost in {0}?", TwoColumns4Answers, ExampleAnswers = ["ALPACA", "BUBBLE", "COWBOY", "DIESEL", "EULOGY", "FUSION", "GASKET", "HOODIE", "ICEBOX", "JOYPOP"])]
+    [Question("What was the second word written by the original ghost in {0}?", TwoColumns4Answers, ExampleAnswers = ["ALPACA", "BUBBLE", "COWBOY", "DIESEL", "EULOGY", "FUSION", "GASKET", "HOODIE", "ICEBOX", "JOYPOP"])]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("mirror", "Mirror", typeof(SMirror), "Timwi")]
-    [SouvenirManualQuestion("What was the second word written by the original ghost?")]
+    [Handler("mirror", "Mirror", typeof(SMirror), "Timwi")]
+    [ManualQuestion("What was the second word written by the original ghost?")]
     private IEnumerator<SouvenirInstruction> ProcessMirror(ModuleData module)
     {
         var comp = GetComponent(module, "mirror");

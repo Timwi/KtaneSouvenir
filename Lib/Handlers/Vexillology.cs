@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SVexillology
 {
-    [SouvenirQuestion("What was the {1} flagpole color on {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Yellow", "Blue", "Aqua", "White", "Black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} flagpole color on {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Yellow", "Blue", "Aqua", "White", "Black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("vexillology", "Vexillology", typeof(SVexillology), "luisdiogo98")]
-    [SouvenirManualQuestion("What were the flagpole colors?")]
+    [Handler("vexillology", "Vexillology", typeof(SVexillology), "luisdiogo98")]
+    [ManualQuestion("What were the flagpole colors?")]
     private IEnumerator<SouvenirInstruction> ProcessVexillology(ModuleData module)
     {
         var comp = GetComponent(module, "vexillologyScript");

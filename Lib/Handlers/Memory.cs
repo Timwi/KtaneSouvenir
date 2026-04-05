@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SMemory
 {
-    [SouvenirQuestion("What was the displayed number in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the displayed number in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 4)]
     QDisplay,
 
-    [SouvenirDiscriminator("the Memory that displayed a {0} in the {1} stage", Arguments = ["1", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the Memory that displayed a {0} in the {1} stage", Arguments = ["1", QandA.Ordinal], ArgumentGroupSize = 2)]
     DDisplay
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Memory", "Memory", typeof(SMemory), "Andrio Celos")]
-    [SouvenirManualQuestion("What was the display in each stage?")]
+    [Handler("Memory", "Memory", typeof(SMemory), "Andrio Celos")]
+    [ManualQuestion("What was the display in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessMemory(ModuleData module)
     {
         var comp = GetComponent(module, "MemoryComponent");

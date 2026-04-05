@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SUndertunneling
 {
-    [SouvenirQuestion("What was the position in the maze after the first phase in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the position in the maze after the first phase in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(7, 7)]
     PositionInMazeAfterPhaseOne
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("undertunneling", "Undertunneling", typeof(SUndertunneling), "KiloBites")]
-    [SouvenirManualQuestion("What was the position in the maze after completing the first phase?")]
+    [Handler("undertunneling", "Undertunneling", typeof(SUndertunneling), "KiloBites")]
+    [ManualQuestion("What was the position in the maze after completing the first phase?")]
     private IEnumerator<SouvenirInstruction> ProcessUndertunneling(ModuleData module)
     {
         var comp = GetComponent(module, "UndertunnelingScript");

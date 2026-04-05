@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SKeypadSequence
 {
-    [SouvenirQuestion("What was this key’s label on the {1} panel in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was this key’s label on the {1} panel in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Labels
 }
 
@@ -15,8 +15,8 @@ public partial class SouvenirModule
 {
     private static Sprite[] _keypadSequenceSprites;
 
-    [SouvenirHandler("keypadSeq", "Keypad Sequence", typeof(SKeypadSequence), "Anonymous")]
-    [SouvenirManualQuestion("What symbols were on the keys?")]
+    [Handler("keypadSeq", "Keypad Sequence", typeof(SKeypadSequence), "Anonymous")]
+    [ManualQuestion("What symbols were on the keys?")]
     private IEnumerator<SouvenirInstruction> ProcessKeypadSequence(ModuleData module)
     {
         var comp = GetComponent(module, "KeypadSeqScript");

@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoubleScreen
 {
-    [SouvenirQuestion("What color was the {1} screen in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateAnswers = true, Arguments = ["top", QandA.Ordinal, "bottom", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Question("What color was the {1} screen in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateAnswers = true, Arguments = ["top", QandA.Ordinal, "bottom", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("doubleScreenModule", "Double Screen", typeof(SDoubleScreen), "Anonymous")]
-    [SouvenirManualQuestion("What colors were the screens in each stage?")]
+    [Handler("doubleScreenModule", "Double Screen", typeof(SDoubleScreen), "Anonymous")]
+    [ManualQuestion("What colors were the screens in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleScreen(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleScreenScript");

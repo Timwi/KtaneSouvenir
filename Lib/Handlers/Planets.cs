@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SPlanets
 {
-    [SouvenirQuestion("What was the color of the {1} strip (from the top) in {0}?", ThreeColumns6Answers, "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} strip (from the top) in {0}?", ThreeColumns6Answers, "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Strips,
 
-    [SouvenirQuestion("What was the planet shown in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "PlanetsSprites")]
+    [Question("What was the planet shown in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "PlanetsSprites")]
     Planet
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("planets", "Planets", typeof(SPlanets), "KingSlendy")]
-    [SouvenirManualQuestion("What was the planet shown?")]
-    [SouvenirManualQuestion("What was the color for each strip?")]
+    [Handler("planets", "Planets", typeof(SPlanets), "KingSlendy")]
+    [ManualQuestion("What was the planet shown?")]
+    [ManualQuestion("What was the color for each strip?")]
     private IEnumerator<SouvenirInstruction> ProcessPlanets(ModuleData module)
     {
         var comp = GetComponent(module, "planetsModScript");

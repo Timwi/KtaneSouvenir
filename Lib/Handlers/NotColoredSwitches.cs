@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotColoredSwitches
 {
-    [SouvenirQuestion("What was the encrypted word in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Adjust", "Anchor", "Bowtie", "Button", "Cipher", "Corner"])]
+    [Question("What was the encrypted word in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Adjust", "Anchor", "Bowtie", "Button", "Cipher", "Corner"])]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NotColoredSwitchesModule", "Not Colored Switches", typeof(SNotColoredSwitches), "Quinn Wuest")]
-    [SouvenirManualQuestion("What was the encrypted word?")]
+    [Handler("NotColoredSwitchesModule", "Not Colored Switches", typeof(SNotColoredSwitches), "Quinn Wuest")]
+    [ManualQuestion("What was the encrypted word?")]
     private IEnumerator<SouvenirInstruction> ProcessNotColoredSwitches(ModuleData module)
     {
         var comp = GetComponent(module, "NotColoredSwitchesScript");

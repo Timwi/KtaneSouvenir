@@ -8,14 +8,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCalendar
 {
-    [SouvenirQuestion("What was the holiday in {0}?", OneColumn4Answers, "April Fools’", "Australia Day", "Bastille Day", "Christmas Eve", "Cinco de Mayo", "Day of German Unity", "Day of the Dead", "Earth Day", "Epiphany", "Golden Week", "Groundhog Day", "Guy Fawkes Night", "Kwanzaa", "Republic Day", "Saint Patrick’s Day", "Valentine’s Day", "Veterans Day", "World Braille Day")]
+    [Question("What was the holiday in {0}?", OneColumn4Answers, "April Fools’", "Australia Day", "Bastille Day", "Christmas Eve", "Cinco de Mayo", "Day of German Unity", "Day of the Dead", "Earth Day", "Epiphany", "Golden Week", "Groundhog Day", "Guy Fawkes Night", "Kwanzaa", "Republic Day", "Saint Patrick’s Day", "Valentine’s Day", "Veterans Day", "World Braille Day")]
     Holiday
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("calendar", "Calendar", typeof(SCalendar), "Espik")]
-    [SouvenirManualQuestion("What was the holiday?")]
+    [Handler("calendar", "Calendar", typeof(SCalendar), "Espik")]
+    [ManualQuestion("What was the holiday?")]
     private IEnumerator<SouvenirInstruction> ProcessCalendar(ModuleData module)
     {
         var comp = GetComponent(module, "calendar");

@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SColouredCubes
 {
-    [SouvenirQuestion("What was the colour of this {1} in the {2} stage of {0}?", ThreeColumns6Answers, "Black", "Indigo", "Blue", "Forest", "Teal", "Azure", "Green", "Jade", "Cyan", "Maroon", "Plum", "Violet", "Olive", "Grey", "Maya", "Lime", "Mint", "Aqua", "Red", "Rose", "Magenta", "Orange", "Salmon", "Pink", "Yellow", "Cream", "White", Arguments = ["cube", QandA.Ordinal, "stage light", QandA.Ordinal], ArgumentGroupSize = 2, UsesQuestionSprite = true, TranslateAnswers = true, TranslateArguments = [true, false])]
+    [Question("What was the colour of this {1} in the {2} stage of {0}?", ThreeColumns6Answers, "Black", "Indigo", "Blue", "Forest", "Teal", "Azure", "Green", "Jade", "Cyan", "Maroon", "Plum", "Violet", "Olive", "Grey", "Maya", "Lime", "Mint", "Aqua", "Red", "Rose", "Magenta", "Orange", "Salmon", "Pink", "Yellow", "Cream", "White", Arguments = ["cube", QandA.Ordinal, "stage light", QandA.Ordinal], ArgumentGroupSize = 2, UsesQuestionSprite = true, TranslateAnswers = true, TranslateArguments = [true, false])]
     Colours
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ColouredCubes", "Coloured Cubes", typeof(SColouredCubes), "Kuro")]
-    [SouvenirManualQuestion("What were the colours of the cubes and stage lights in each stage?")]
+    [Handler("ColouredCubes", "Coloured Cubes", typeof(SColouredCubes), "Kuro")]
+    [ManualQuestion("What were the colours of the cubes and stage lights in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessColouredCubes(ModuleData module)
     {
         var comp = GetComponent(module, "ColouredCubesModule");

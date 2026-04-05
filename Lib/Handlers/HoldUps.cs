@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SHoldUps
 {
-    [SouvenirQuestion("What was the name of the {1} shadow shown in {0}?", OneColumn4Answers, "Mandrake", "Silky", "Koropokguru", "Nue", "Jack Frost", "Leanan Sidhe", "Hua Po", "Orthrus", "Lamia", "Bicorn", "Kelpie", "Apsaras", "Makami", "Nekomata", "Sandman", "Naga", "Agathion", "Berith", "Mokoi", "Inugami", "High Pixie", "Yaksini", "Anzu", "Take-Minakata", "Thoth", "Isis", "Incubis", "Onmoraki", "Koppa-Tengu", "Orobas", "Rakshasa", "Pixie", "Angel", "Jack O' Lantern", "Succubus", "Andras", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the name of the {1} shadow shown in {0}?", OneColumn4Answers, "Mandrake", "Silky", "Koropokguru", "Nue", "Jack Frost", "Leanan Sidhe", "Hua Po", "Orthrus", "Lamia", "Bicorn", "Kelpie", "Apsaras", "Makami", "Nekomata", "Sandman", "Naga", "Agathion", "Berith", "Mokoi", "Inugami", "High Pixie", "Yaksini", "Anzu", "Take-Minakata", "Thoth", "Isis", "Incubis", "Onmoraki", "Koppa-Tengu", "Orobas", "Rakshasa", "Pixie", "Angel", "Jack O' Lantern", "Succubus", "Andras", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Shadows
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("KritHoldUps", "Hold Ups", typeof(SHoldUps), "BigCrunch22")]
-    [SouvenirManualQuestion("What was the name of each shadow shown?")]
+    [Handler("KritHoldUps", "Hold Ups", typeof(SHoldUps), "BigCrunch22")]
+    [ManualQuestion("What was the name of each shadow shown?")]
     private IEnumerator<SouvenirInstruction> ProcessHoldUps(ModuleData module)
     {
         var comp = GetComponent(module, "HoldUpsScript");

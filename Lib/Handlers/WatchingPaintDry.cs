@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SWatchingPaintDry
 {
-    [SouvenirQuestion("How many brush strokes were heard in {0}?", ThreeColumns6Answers)]
+    [Question("How many brush strokes were heard in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(3, 8)]
     StrokeCount
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("watchingPaintDry", "Watching Paint Dry", typeof(SWatchingPaintDry), "Anonymous")]
-    [SouvenirManualQuestion("How many brush strokes were there?")]
+    [Handler("watchingPaintDry", "Watching Paint Dry", typeof(SWatchingPaintDry), "Anonymous")]
+    [ManualQuestion("How many brush strokes were there?")]
     private IEnumerator<SouvenirInstruction> ProcessWatchingPaintDry(ModuleData module)
     {
         yield return WaitForSolve;

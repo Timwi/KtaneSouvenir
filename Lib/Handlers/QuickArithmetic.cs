@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SQuickArithmetic
 {
-    [SouvenirQuestion("What was the {1} color in the primary sequence in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "white", "black", "orange", "pink", "purple", "cyan", "brown", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} color in the primary sequence in {0}?", ThreeColumns6Answers, "red", "blue", "green", "yellow", "white", "black", "orange", "pink", "purple", "cyan", "brown", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors,
 
-    [SouvenirQuestion("What was the {1} digit in the {2} sequence in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "primary", QandA.Ordinal, "secondary"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Question("What was the {1} digit in the {2} sequence in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "primary", QandA.Ordinal, "secondary"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     [AnswerGenerator.Integers(0, 9)]
     PrimSecDigits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("QuickArithmetic", "Quick Arithmetic", typeof(SQuickArithmetic), "VFlyer")]
-    [SouvenirManualQuestion("What were the digits and colors in both sequences?")]
+    [Handler("QuickArithmetic", "Quick Arithmetic", typeof(SQuickArithmetic), "VFlyer")]
+    [ManualQuestion("What were the digits and colors in both sequences?")]
     private IEnumerator<SouvenirInstruction> ProcessQuickArithmetic(ModuleData module)
     {
         var comp = GetComponent(module, "QuickArithmetic");

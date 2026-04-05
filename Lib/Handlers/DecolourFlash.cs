@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SDecolourFlash
 {
-    [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", Arguments = ["colour", QandA.Ordinal, "word", QandA.Ordinal], ArgumentGroupSize = 2, TranslateAnswers = true, TranslateArguments = [true, false])]
+    [Question("What was the {1} of the {2} goal in {0}?", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", Arguments = ["colour", QandA.Ordinal, "word", QandA.Ordinal], ArgumentGroupSize = 2, TranslateAnswers = true, TranslateArguments = [true, false])]
     QGoal,
 
-    [SouvenirDiscriminator("the Decolour Flash where the {0} of the {1} goal was {2}", Arguments = ["word", QandA.Ordinal, "blue", "word", QandA.Ordinal, "green", "word", QandA.Ordinal, "red", "colour", QandA.Ordinal, "magenta", "colour", QandA.Ordinal, "yellow", "colour", QandA.Ordinal, "white"], ArgumentGroupSize = 3, TranslateArguments = [true, false, true])]
+    [Discriminator("the Decolour Flash where the {0} of the {1} goal was {2}", Arguments = ["word", QandA.Ordinal, "blue", "word", QandA.Ordinal, "green", "word", QandA.Ordinal, "red", "colour", QandA.Ordinal, "magenta", "colour", QandA.Ordinal, "yellow", "colour", QandA.Ordinal, "white"], ArgumentGroupSize = 3, TranslateArguments = [true, false, true])]
     DGoal
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("DecolourFlashModule", "Decolour Flash", typeof(SDecolourFlash), "Timwi")]
-    [SouvenirManualQuestion("What were the words and colours of each goal?")]
+    [Handler("DecolourFlashModule", "Decolour Flash", typeof(SDecolourFlash), "Timwi")]
+    [ManualQuestion("What were the words and colours of each goal?")]
     private IEnumerator<SouvenirInstruction> ProcessDecolourFlash(ModuleData module)
     {
         var comp = GetComponent(module, "DecolourFlashScript");

@@ -7,18 +7,18 @@ using Rnd = UnityEngine.Random;
 
 public enum SOctadecayotton
 {
-    [SouvenirQuestion("What was the starting sphere in {0}?", OneColumn4Answers, ExampleAnswers = ["--+", "-+-+-++-+", "-++-+--+-", "+++-+-++-", "--++-++-+-++"])]
+    [Question("What was the starting sphere in {0}?", OneColumn4Answers, ExampleAnswers = ["--+", "-+-+-++-+", "-++-+--+-", "+++-+-++-", "--++-++-+-++"])]
     Sphere,
 
-    [SouvenirQuestion("What was one of the subrotations in the {1} rotation in {0}?", OneColumn4Answers, ExampleAnswers = ["-X", "+Y-Z", "+U+V+W", "-R+S+T-O", "+P-Q-X+Y-Z"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was one of the subrotations in the {1} rotation in {0}?", OneColumn4Answers, ExampleAnswers = ["-X", "+Y-Z", "+U+V+W", "-R+S+T-O", "+P-Q-X+Y-Z"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Rotations
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TheOctadecayotton", "Octadecayotton", typeof(SOctadecayotton), "Emik", AddThe = true)]
-    [SouvenirManualQuestion("What was the starting sphere?")]
-    [SouvenirManualQuestion("What were the subtransformations in each transformation?")]
+    [Handler("TheOctadecayotton", "Octadecayotton", typeof(SOctadecayotton), "Emik", AddThe = true)]
+    [ManualQuestion("What was the starting sphere?")]
+    [ManualQuestion("What were the subtransformations in each transformation?")]
     private IEnumerator<SouvenirInstruction> ProcessOctadecayotton(ModuleData module)
     {
         var comp = GetComponent(module, "TheOctadecayottonScript");

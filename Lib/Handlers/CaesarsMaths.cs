@@ -4,14 +4,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCaesarsMaths
 {
-    [SouvenirQuestion("What color was the {1} LED in {0}?", TwoColumns4Answers, "Yellow", "Blue", "Red", "Green", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the {1} LED in {0}?", TwoColumns4Answers, "Yellow", "Blue", "Red", "Green", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     LED
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("caesarsMaths", "Caesar's Maths", typeof(SCaesarsMaths), "KiloBites")]
-    [SouvenirManualQuestion("What were the colors of each LED?")]
+    [Handler("caesarsMaths", "Caesar's Maths", typeof(SCaesarsMaths), "KiloBites")]
+    [ManualQuestion("What were the colors of each LED?")]
     private IEnumerator<SouvenirInstruction> ProcessCaesarsMaths(ModuleData module)
     {
         var comp = GetComponent(module, "caesarsMathsScript");

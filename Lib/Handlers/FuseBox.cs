@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SFuseBox
 {
-    [SouvenirQuestion("What color flashed {1} in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, IsEntireQuestionSprite = true, SpriteFieldName = "FuseBoxColorSprites", ArgumentGroupSize = 1, Arguments = [QandA.Ordinal])]
+    [Question("What color flashed {1} in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, IsEntireQuestionSprite = true, SpriteFieldName = "FuseBoxColorSprites", ArgumentGroupSize = 1, Arguments = [QandA.Ordinal])]
     Flashes,
 
-    [SouvenirQuestion("What arrow was shown {1} in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, IsEntireQuestionSprite = true, SpriteFieldName = "FuseBoxArrowSprites", ArgumentGroupSize = 1, Arguments = [QandA.Ordinal])]
+    [Question("What arrow was shown {1} in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, IsEntireQuestionSprite = true, SpriteFieldName = "FuseBoxArrowSprites", ArgumentGroupSize = 1, Arguments = [QandA.Ordinal])]
     Arrows
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("FuseBox", "Fuse Box", typeof(SFuseBox), "Anonymous", AddThe = true)]
-    [SouvenirManualQuestion("What colors flashed?")]
-    [SouvenirManualQuestion("What arrows were correct?")]
+    [Handler("FuseBox", "Fuse Box", typeof(SFuseBox), "Anonymous", AddThe = true)]
+    [ManualQuestion("What colors flashed?")]
+    [ManualQuestion("What arrows were correct?")]
     private IEnumerator<SouvenirInstruction> ProcessFuseBox(ModuleData module)
     {
         var comp = GetComponent(module, "FuseBoxScript");

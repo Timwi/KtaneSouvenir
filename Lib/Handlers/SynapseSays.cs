@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SSynapseSays
 {
-    [SouvenirQuestion("What color flashed {1} in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What color flashed {1} in the {2} stage of {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     Flashes,
 
-    [SouvenirQuestion("What color was in the {1} position of the {2} stage of {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What color was in the {1} position of the {2} stage of {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     Positions
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("synapseSays", "Synapse Says", typeof(SSynapseSays), "Quinn Wuest")]
-    [SouvenirManualQuestion("What number was displayed at each stage?")]
-    [SouvenirManualQuestion("What positions were the colors in at each stage?")]
-    [SouvenirManualQuestion("What colors flashed at each stage?")]
+    [Handler("synapseSays", "Synapse Says", typeof(SSynapseSays), "Quinn Wuest")]
+    [ManualQuestion("What number was displayed at each stage?")]
+    [ManualQuestion("What positions were the colors in at each stage?")]
+    [ManualQuestion("What colors flashed at each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSynapseSays(ModuleData module)
     {
         var comp = GetComponent(module, "SynapseSaysScript");

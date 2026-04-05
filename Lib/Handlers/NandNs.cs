@@ -6,19 +6,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SNandNs
 {
-    [SouvenirQuestion("Which label was present in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which label was present in the {1} stage of {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings(5, 'M', 'N')]
     Label,
 
-    [SouvenirQuestion("Which color was missing in the third stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Orange", "Blue", "Yellow", "Brown", TranslateAnswers = true)]
+    [Question("Which color was missing in the third stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Orange", "Blue", "Yellow", "Brown", TranslateAnswers = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NandNs", "N&Ns", typeof(SNandNs), "Anonymous")]
-    [SouvenirManualQuestion("What were the labels in stage 2 and 3?")]
-    [SouvenirManualQuestion("What was the missing color in stage 3?")]
+    [Handler("NandNs", "N&Ns", typeof(SNandNs), "Anonymous")]
+    [ManualQuestion("What were the labels in stage 2 and 3?")]
+    [ManualQuestion("What was the missing color in stage 3?")]
     private IEnumerator<SouvenirInstruction> ProcessNandNs(ModuleData module)
     {
         // No chance of missing the second stage, since the animation takes some time

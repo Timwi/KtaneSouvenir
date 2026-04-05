@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMadMemory
 {
-    [SouvenirQuestion("What was on the display in the {1} stage of {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "01", "02", "03", "04", "ONE", "TWO", "THREE", "FOUR", "WON", "TOO", "TREE", "FOR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was on the display in the {1} stage of {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "01", "02", "03", "04", "ONE", "TWO", "THREE", "FOUR", "WON", "TOO", "TREE", "FOR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Displays
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MadMemory", "Mad Memory", typeof(SMadMemory), "Kuro")]
-    [SouvenirManualQuestion("What was on the display in each stage?")]
+    [Handler("MadMemory", "Mad Memory", typeof(SMadMemory), "Kuro")]
+    [ManualQuestion("What was on the display in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessMadMemory(ModuleData module)
     {
         var comp = GetComponent(module, "MadMemory");

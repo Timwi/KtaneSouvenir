@@ -14,8 +14,8 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir, str
     public string[] DiscriminatorIdsToAvoid { get; protected set; }
     public Enum[] DiscriminatorsToAvoid { get; protected set; }
 
-    public SouvenirHandlerAttribute HandlerAttribute => EnumValue.GetHandlerAttribute();
-    public SouvenirQuestionAttribute QuestionAttribute => EnumValue.GetQuestionAttribute();
+    public HandlerAttribute HandlerAttribute => EnumValue.GetHandlerAttribute();
+    public QuestionAttribute QuestionAttribute => EnumValue.GetQuestionAttribute();
 
     public QandAStump Answers(string correct, string[] preferredWrong = null, string[] all = null, TextAnswerInfo info = default) => Answers([correct], preferredWrong, all, info);
     public QandAStump Answers(string[] correct, string[] preferredWrong = null, string[] all = null, TextAnswerInfo info = default) => new(this, new TextAnswerStump(correct, preferredWrong, all, info));

@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SNavinums
 {
-    [SouvenirQuestion("What was the {1} directional button pressed in {0}?", TwoColumns4Answers, "up", "left", "right", "down", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} directional button pressed in {0}?", TwoColumns4Answers, "up", "left", "right", "down", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DirectionalButtons,
 
-    [SouvenirQuestion("What was the initial middle digit in {0}?", ThreeColumns6Answers)]
+    [Question("What was the initial middle digit in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 9)]
     MiddleDigit
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("navinums", "Navinums", typeof(SNavinums), "Timwi")]
-    [SouvenirManualQuestion("Which directional buttons were pressed?")]
-    [SouvenirManualQuestion("What was the initial middle digit?")]
+    [Handler("navinums", "Navinums", typeof(SNavinums), "Timwi")]
+    [ManualQuestion("Which directional buttons were pressed?")]
+    [ManualQuestion("What was the initial middle digit?")]
     private IEnumerator<SouvenirInstruction> ProcessNavinums(ModuleData module)
     {
         var comp = GetComponent(module, "navinumsScript");

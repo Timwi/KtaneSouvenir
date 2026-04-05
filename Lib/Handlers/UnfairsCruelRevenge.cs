@@ -4,17 +4,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SUnfairsCruelRevenge
 {
-    [SouvenirQuestion("What was the {1} decrypted instruction in {0}?", ThreeColumns6Answers, "PCR", "PCG", "PCB", "SCC", "SCM", "SCY", "SUB", "PVP", "NXP", "PVS", "NXS", "REP", "EAT", "STR", "IKE", "PRN", "CHK", "MOT", "OPP", "SKP", "INV", "ERT", "SWP", "AGN", "SCN", "FIN", "ISH", "ALE", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} decrypted instruction in {0}?", ThreeColumns6Answers, "PCR", "PCG", "PCB", "SCC", "SCM", "SCY", "SUB", "PVP", "NXP", "PVS", "NXS", "REP", "EAT", "STR", "IKE", "PRN", "CHK", "MOT", "OPP", "SKP", "INV", "ERT", "SWP", "AGN", "SCN", "FIN", "ISH", "ALE", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Instructions,
 
-    [SouvenirQuestion("What was the {1} decrypted instruction in {0}?", ThreeColumns6Answers, "PCR", "PCG", "PCB", "SCC", "SCM", "SCY", "SUB", "PVP", "NXP", "PVS", "NXS", "REP", "EAT", "STR", "IKE", "PRN", "CHK", "MOT", "OPP", "FIN", "ISH", "ALE", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} decrypted instruction in {0}?", ThreeColumns6Answers, "PCR", "PCG", "PCB", "SCC", "SCM", "SCY", "SUB", "PVP", "NXP", "PVS", "NXS", "REP", "EAT", "STR", "IKE", "PRN", "CHK", "MOT", "OPP", "FIN", "ISH", "ALE", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     InstructionsLegacy
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("unfairsRevengeCruel", "Unfair's Cruel Revenge", typeof(SUnfairsCruelRevenge), "KiloBites")]
-    [SouvenirManualQuestion("What were the decrypted instructions?")]
+    [Handler("unfairsRevengeCruel", "Unfair's Cruel Revenge", typeof(SUnfairsCruelRevenge), "KiloBites")]
+    [ManualQuestion("What were the decrypted instructions?")]
     private IEnumerator<SouvenirInstruction> ProcessUnfairsCruelRevenge(ModuleData module)
     {
         var comp = GetComponent(module, "UnfairsCruelRevengeHandler");

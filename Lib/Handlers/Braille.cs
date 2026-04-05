@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SBraille
 {
-    [SouvenirQuestion("What was the {1} pattern in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} pattern in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Circles(2, 3, 20, 20, SuppressEmpty = true)]
     Pattern
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("BrailleModule", "Braille", typeof(SBraille), "Timwi")]
-    [SouvenirManualQuestion("Which Braille patterns were present?")]
+    [Handler("BrailleModule", "Braille", typeof(SBraille), "Timwi")]
+    [ManualQuestion("Which Braille patterns were present?")]
     private IEnumerator<SouvenirInstruction> ProcessBraille(ModuleData module)
     {
         var comp = GetComponent(module, "BrailleModule");

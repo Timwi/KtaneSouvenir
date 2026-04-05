@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCube
 {
-    [SouvenirQuestion("What was the {1} cube rotation in {0}?", TwoColumns4Answers, "rotate cw", "tip left", "tip backwards", "rotate ccw", "tip right", "tip forwards", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the {1} cube rotation in {0}?", TwoColumns4Answers, "rotate cw", "tip left", "tip backwards", "rotate ccw", "tip right", "tip forwards", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Rotations
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("cube", "Cube", typeof(SCube), "luisdiogo98", AddThe = true)]
-    [SouvenirManualQuestion("What were the cube rotations?")]
+    [Handler("cube", "Cube", typeof(SCube), "luisdiogo98", AddThe = true)]
+    [ManualQuestion("What were the cube rotations?")]
     private IEnumerator<SouvenirInstruction> ProcessCube(ModuleData module)
     {
         var comp = GetComponent(module, "theCubeScript");

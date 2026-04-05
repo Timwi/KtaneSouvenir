@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSorting
 {
-    [SouvenirQuestion("What positions were the last swap used to solve {0}?", ThreeColumns6Answers, "1 & 2", "1 & 3", "1 & 4", "1 & 5", "2 & 3", "2 & 4", "2 & 5", "3 & 4", "3 & 5", "4 & 5")]
+    [Question("What positions were the last swap used to solve {0}?", ThreeColumns6Answers, "1 & 2", "1 & 3", "1 & 4", "1 & 5", "2 & 3", "2 & 4", "2 & 5", "3 & 4", "3 & 5", "4 & 5")]
     LastSwap
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("sorting", "Sorting", typeof(SSorting), "Emik")]
-    [SouvenirManualQuestion("Which positions were involved in the final swap?")]
+    [Handler("sorting", "Sorting", typeof(SSorting), "Emik")]
+    [ManualQuestion("Which positions were involved in the final swap?")]
     private IEnumerator<SouvenirInstruction> ProcessSorting(ModuleData module)
     {
         var comp = GetComponent(module, "Sorting");

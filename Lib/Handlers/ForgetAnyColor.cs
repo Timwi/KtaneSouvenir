@@ -6,24 +6,24 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetAnyColor
 {
-    [SouvenirQuestion("What colors were the cylinders during the {1} stage of {0}?", OneColumn4Answers, ExampleAnswers = ["Orange, Yellow, Green", "Yellow, Cyan, Purple", "Green, Purple, Orange", "Green, Blue, Purple"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslatableStrings = ["{0}, {1}, {2}", "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White", "L", "M", "R"])]
+    [Question("What colors were the cylinders during the {1} stage of {0}?", OneColumn4Answers, ExampleAnswers = ["Orange, Yellow, Green", "Yellow, Cyan, Purple", "Green, Purple, Orange", "Green, Blue, Purple"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslatableStrings = ["{0}, {1}, {2}", "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White", "L", "M", "R"])]
     QCylinder,
 
-    [SouvenirQuestion("Which figure was used during the {1} stage of {0}?", ThreeColumns6Answers, ExampleAnswers = ["LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which figure was used during the {1} stage of {0}?", ThreeColumns6Answers, ExampleAnswers = ["LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     QFigure,
 
-    [SouvenirDiscriminator("the Forget Any Color whose cylinders in the {1} stage were {0}", Arguments = ["Orange, Yellow, Green", QandA.Ordinal, "Yellow, Cyan, Purple", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the Forget Any Color whose cylinders in the {1} stage were {0}", Arguments = ["Orange, Yellow, Green", QandA.Ordinal, "Yellow, Cyan, Purple", QandA.Ordinal], ArgumentGroupSize = 2)]
     DCylinder,
 
-    [SouvenirDiscriminator("the Forget Any Color which used figure {0} in the {1} stage", Arguments = ["LLLMR", QandA.Ordinal, "LMMMR", QandA.Ordinal, "LMRRR", QandA.Ordinal, "LMMRR", QandA.Ordinal, "LLMRR", QandA.Ordinal, "LLMMR", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the Forget Any Color which used figure {0} in the {1} stage", Arguments = ["LLLMR", QandA.Ordinal, "LMMMR", QandA.Ordinal, "LMRRR", QandA.Ordinal, "LMMRR", QandA.Ordinal, "LLMRR", QandA.Ordinal, "LLMMR", QandA.Ordinal], ArgumentGroupSize = 2)]
     DFigure
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ForgetAnyColor", "Forget Any Color", typeof(SForgetAnyColor), "Kuro", IsBossModule = true)]
-    [SouvenirManualQuestion("What colors were the cylinders in each stage?")]
-    [SouvenirManualQuestion("Which figure was used in each stage?")]
+    [Handler("ForgetAnyColor", "Forget Any Color", typeof(SForgetAnyColor), "Kuro", IsBossModule = true)]
+    [ManualQuestion("What colors were the cylinders in each stage?")]
+    [ManualQuestion("Which figure was used in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetAnyColor(ModuleData module)
     {
         var comp = GetComponent(module, "FACScript");

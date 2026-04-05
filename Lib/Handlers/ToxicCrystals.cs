@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SToxicCrystals
 {
-    [SouvenirQuestion("What letter was written on the casing when solving {0}?", ThreeColumns6Answers)]
+    [Question("What letter was written on the casing when solving {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-Z?")]
     Letter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ToxicCrystals", "Toxic Crystals", typeof(SToxicCrystals), "thunder725")]
-    [SouvenirManualQuestion("What letter was written on the casing when solving?")]
+    [Handler("ToxicCrystals", "Toxic Crystals", typeof(SToxicCrystals), "thunder725")]
+    [ManualQuestion("What letter was written on the casing when solving?")]
     private IEnumerator<SouvenirInstruction> ProcessToxicCrystals(ModuleData module)
     {
         var comp = GetComponent(module, "ToxicCrystals");

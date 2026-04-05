@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMafia
 {
-    [SouvenirQuestion("Who was a player, but not the Godfather, in {0}?", ThreeColumns6Answers, "Rob", "Tim", "Mary", "Briane", "Hunter", "Macy", "John", "Will", "Lacy", "Claire", "Kenny", "Rick", "Walter", "Bonnie", "Luke", "Bill", "Sarah", "Larry", "Kate", "Stacy", "Diane", "Mac", "Jim", "Clyde", "Tommy", "Lenny", "Molly", "Benny", "Phil", "Bob", "Gary", "Ted", "Kim", "Nate", "Cher", "Ron", "Thomas", "Sam", "Duke", "Jack", "Ed", "Ronny", "Terry", "Claira", "Nick", "Cob", "Ash", "Don", "Jerry", "Simon")]
+    [Question("Who was a player, but not the Godfather, in {0}?", ThreeColumns6Answers, "Rob", "Tim", "Mary", "Briane", "Hunter", "Macy", "John", "Will", "Lacy", "Claire", "Kenny", "Rick", "Walter", "Bonnie", "Luke", "Bill", "Sarah", "Larry", "Kate", "Stacy", "Diane", "Mac", "Jim", "Clyde", "Tommy", "Lenny", "Molly", "Benny", "Phil", "Bob", "Gary", "Ted", "Kim", "Nate", "Cher", "Ron", "Thomas", "Sam", "Duke", "Jack", "Ed", "Ronny", "Terry", "Claira", "Nick", "Cob", "Ash", "Don", "Jerry", "Simon")]
     Players
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MafiaModule", "Mafia", typeof(SMafia), "Timwi")]
-    [SouvenirManualQuestion("Who was a player, but not the Godfather?")]
+    [Handler("MafiaModule", "Mafia", typeof(SMafia), "Timwi")]
+    [ManualQuestion("Who was a player, but not the Godfather?")]
     private IEnumerator<SouvenirInstruction> ProcessMafia(ModuleData module)
     {
         var comp = GetComponent(module, "MafiaModule");

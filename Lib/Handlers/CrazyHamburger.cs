@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCrazyHamburger
 {
-    [SouvenirQuestion("What was the {1} ingredient shown in {0}?", ThreeColumns6Answers, "Bread", "Cheese", "Grass", "Meat", "Oil", "Peppers", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} ingredient shown in {0}?", ThreeColumns6Answers, "Bread", "Cheese", "Grass", "Meat", "Oil", "Peppers", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Ingredient
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSCrazyHamburger", "Crazy Hamburger", typeof(SCrazyHamburger), "noting3548")]
-    [SouvenirManualQuestion("What were the displayed ingredients?")]
+    [Handler("GSCrazyHamburger", "Crazy Hamburger", typeof(SCrazyHamburger), "noting3548")]
+    [ManualQuestion("What were the displayed ingredients?")]
     private IEnumerator<SouvenirInstruction> ProcessCrazyHamburger(ModuleData module)
     {
         var comp = GetComponent(module, "CrazyHamburgerScript");

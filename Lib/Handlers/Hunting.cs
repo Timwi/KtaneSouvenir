@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SHunting
 {
-    [SouvenirQuestion("Which of these symbols was displayed in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "HuntingSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which of these symbols was displayed in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "HuntingSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayedSymbols
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("hunting", "Hunting", typeof(SHunting), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which pictograms were displayed?")]
+    [Handler("hunting", "Hunting", typeof(SHunting), "Quinn Wuest")]
+    [ManualQuestion("Which pictograms were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessHunting(ModuleData module)
     {
         var comp = GetComponent(module, "hunting");

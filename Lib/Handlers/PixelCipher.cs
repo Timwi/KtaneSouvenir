@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPixelCipher
 {
-    [SouvenirQuestion("What was the keyword in {0}?", ThreeColumns6Answers, "HEART", "HAPPY", "HOUSE", "ARROW", "ARMOR", "ACORN", "CROSS", "CHORD", "CLOCK", "DONUT", "DELTA", "DUCKY", "EQUAL", "EMOJI", "EDGES", "LIBRA", "LUCKY", "LUNAR", "MEDAL", "MOVIE", "MUSIC", "PANDA", "PEARL", "PIANO", "PIXEL")]
+    [Question("What was the keyword in {0}?", ThreeColumns6Answers, "HEART", "HAPPY", "HOUSE", "ARROW", "ARMOR", "ACORN", "CROSS", "CHORD", "CLOCK", "DONUT", "DELTA", "DUCKY", "EQUAL", "EMOJI", "EDGES", "LIBRA", "LUCKY", "LUNAR", "MEDAL", "MOVIE", "MUSIC", "PANDA", "PEARL", "PIANO", "PIXEL")]
     Keyword
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("pixelcipher", "Pixel Cipher", typeof(SPixelCipher), "Eltrick")]
-    [SouvenirManualQuestion("What was the keyword?")]
+    [Handler("pixelcipher", "Pixel Cipher", typeof(SPixelCipher), "Eltrick")]
+    [ManualQuestion("What was the keyword?")]
     private IEnumerator<SouvenirInstruction> ProcessPixelCipher(ModuleData module)
     {
         var comp = GetComponent(module, "pixelcipherScript");

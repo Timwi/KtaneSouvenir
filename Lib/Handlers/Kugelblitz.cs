@@ -7,19 +7,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SKugelblitz
 {
-    [SouvenirQuestion("Which particles were present for the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ExampleAnswers = ["None", "RGB", "RYV", "ROYGBIV", "YIV", "O"], TranslatableStrings = ["R", "O", "Y", "G", "B", "I", "V", "{0}{1}{2}{3}{4}{5}{6}", "None"])]
+    [Question("Which particles were present for the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ExampleAnswers = ["None", "RGB", "RYV", "ROYGBIV", "YIV", "O"], TranslatableStrings = ["R", "O", "Y", "G", "B", "I", "V", "{0}{1}{2}{3}{4}{5}{6}", "None"])]
     BlackOrangeYellowIndigoViolet,
 
-    [SouvenirQuestion("What were the particles’ values for the {1} stage of {0}?", OneColumn4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ExampleAnswers = ["R=0, O=0, Y=0, G=0, B=0, I=0, V=0", "R=1, O=0, Y=2, G=3, B=4, I=1, V=6", "R=1, O=0, Y=1, G=1, B=1, I=1, V=0", "R=6, O=5, Y=2, G=4, B=3, I=1, V=2"], TranslatableStrings = ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"])]
+    [Question("What were the particles’ values for the {1} stage of {0}?", OneColumn4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ExampleAnswers = ["R=0, O=0, Y=0, G=0, B=0, I=0, V=0", "R=1, O=0, Y=2, G=3, B=4, I=1, V=6", "R=1, O=0, Y=1, G=1, B=1, I=1, V=0", "R=6, O=5, Y=2, G=4, B=3, I=1, V=2"], TranslatableStrings = ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"])]
     RedGreenBlue,
 
-    [SouvenirDiscriminator("the {0} Kugelblitz", Arguments = ["black", "red", "orange", "yellow", "green", "blue", "indigo", "violet"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the {0} Kugelblitz", Arguments = ["black", "red", "orange", "yellow", "green", "blue", "indigo", "violet"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Color,
 
-    [SouvenirDiscriminator("the Kugelblitz linked with no other Kugelblitzes")]
+    [Discriminator("the Kugelblitz linked with no other Kugelblitzes")]
     NoLinks,
 
-    [SouvenirDiscriminator("the {0} Kugelblitz linked with {1}", Arguments = ["black", "one other Kugelblitz", "red", "two other Kugelblitzes", "orange", "three other Kugelblitzes", "yellow", "four other Kugelblitzes", "green", "five other Kugelblitzes", "blue", "six other Kugelblitzes", "indigo", "seven other Kugelblitzes", "violet", "seven other Kugelblitzes"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    [Discriminator("the {0} Kugelblitz linked with {1}", Arguments = ["black", "one other Kugelblitz", "red", "two other Kugelblitzes", "orange", "three other Kugelblitzes", "yellow", "four other Kugelblitzes", "green", "five other Kugelblitzes", "blue", "six other Kugelblitzes", "indigo", "seven other Kugelblitzes", "violet", "seven other Kugelblitzes"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
     Links
 }
 
@@ -27,9 +27,9 @@ public partial class SouvenirModule
 {
     private readonly Dictionary<object, HashSet<int>> _kugelblitzUsedQuirks = [];
 
-    [SouvenirHandler("kugelblitz", "Kugelblitz", typeof(SKugelblitz), "Anonymous", IsBossModule = true)]
-    [SouvenirManualQuestion("Which particles were present during each stage?")]
-    [SouvenirManualQuestion("What were the particles’ values during each stage?")]
+    [Handler("kugelblitz", "Kugelblitz", typeof(SKugelblitz), "Anonymous", IsBossModule = true)]
+    [ManualQuestion("Which particles were present during each stage?")]
+    [ManualQuestion("What were the particles’ values during each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessKugelblitz(ModuleData module)
     {
         yield return WaitForActivate;

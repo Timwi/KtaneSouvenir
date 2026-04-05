@@ -5,17 +5,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SCyanButton
 {
-    [SouvenirQuestion("Where was the button at in the {1} stage of {0}?", TwoColumns4Answers, "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("Where was the button at in the {1} stage of {0}?", TwoColumns4Answers, "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     QPositions,
 
-    [SouvenirDiscriminator("the Cyan Button where the button in the {0} stage was at the {1}", Arguments = [QandA.Ordinal, "top left", QandA.Ordinal, "top middle", QandA.Ordinal, "top right", QandA.Ordinal, "bottom left", QandA.Ordinal, "bottom middle", QandA.Ordinal, "bottom right"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Discriminator("the Cyan Button where the button in the {0} stage was at the {1}", Arguments = [QandA.Ordinal, "top left", QandA.Ordinal, "top middle", QandA.Ordinal, "top right", QandA.Ordinal, "bottom left", QandA.Ordinal, "bottom middle", QandA.Ordinal, "bottom right"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     DPositions
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("CyanButtonModule", "Cyan Button", typeof(SCyanButton), "Quinn Wuest", AddThe = true)]
-    [SouvenirManualQuestion("Where was the button at each stage?")]
+    [Handler("CyanButtonModule", "Cyan Button", typeof(SCyanButton), "Quinn Wuest", AddThe = true)]
+    [ManualQuestion("Where was the button at each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessCyanButton(ModuleData module)
     {
         var comp = GetComponent(module, "CyanButtonScript");

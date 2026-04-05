@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SMssngvWls
 {
-    [SouvenirQuestion("Which vowel was missing in {0}?", TwoColumns4Answers, "A", "E", "I", "O", "U", Arguments = ["AEIOU"], ArgumentGroupSize = 1, TranslateArguments = [true], ReferenceDocumentation = true)]
+    [Question("Which vowel was missing in {0}?", TwoColumns4Answers, "A", "E", "I", "O", "U", Arguments = ["AEIOU"], ArgumentGroupSize = 1, TranslateArguments = [true], ReferenceDocumentation = true)]
     [MssNgvWlsGimmick]
     MssNgvwL
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MssngvWls", "Mssngv Wls", typeof(SMssngvWls), "Anonymous")]
-    [SouvenirManualQuestion("What was the missing vowel?")]
+    [Handler("MssngvWls", "Mssngv Wls", typeof(SMssngvWls), "Anonymous")]
+    [ManualQuestion("What was the missing vowel?")]
     private IEnumerator<SouvenirInstruction> ProcessMssngvWls(ModuleData module)
     {
         yield return WaitForSolve;

@@ -6,19 +6,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SGridlock
 {
-    [SouvenirQuestion("What was the starting color in {0}?", TwoColumns4Answers, "Green", "Yellow", "Red", "Blue", TranslateAnswers = true)]
+    [Question("What was the starting color in {0}?", TwoColumns4Answers, "Green", "Yellow", "Red", "Blue", TranslateAnswers = true)]
     StartingColor,
 
-    [SouvenirQuestion("What was the starting location in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the starting location in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     StartingLocation
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GridlockModule", "Gridlock", typeof(SGridlock), "CaitSith2")]
-    [SouvenirManualQuestion("What was the starting color?")]
-    [SouvenirManualQuestion("What was the starting position?")]
+    [Handler("GridlockModule", "Gridlock", typeof(SGridlock), "CaitSith2")]
+    [ManualQuestion("What was the starting color?")]
+    [ManualQuestion("What was the starting position?")]
     private IEnumerator<SouvenirInstruction> ProcessGridlock(ModuleData module)
     {
         var comp = GetComponent(module, "GridlockModule");

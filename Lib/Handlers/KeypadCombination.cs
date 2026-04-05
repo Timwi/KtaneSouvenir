@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SKeypadCombination
 {
-    [SouvenirQuestion("Which number was displayed on the {1} button, but not part of the answer on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which number was displayed on the {1} button, but not part of the answer on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     WrongNumbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("keypadCombinations", "Keypad Combinations", typeof(SKeypadCombination), "Hawker")]
-    [SouvenirManualQuestion("What were the numbers, but not part of the answer?")]
+    [Handler("keypadCombinations", "Keypad Combinations", typeof(SKeypadCombination), "Hawker")]
+    [ManualQuestion("What were the numbers, but not part of the answer?")]
     private IEnumerator<SouvenirInstruction> ProcessKeypadCombination(ModuleData module)
     {
         var comp = GetComponent(module, "KeypadCombinations");

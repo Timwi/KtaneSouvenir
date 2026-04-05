@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SModuleMaze
 {
-    [SouvenirQuestion("Which of the following was the starting icon for {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which of the following was the starting icon for {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     StartingIcon
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ModuleMaze", "Module Maze", typeof(SModuleMaze), "River")]
-    [SouvenirManualQuestion("What was the starting icon?")]
+    [Handler("ModuleMaze", "Module Maze", typeof(SModuleMaze), "River")]
+    [ManualQuestion("What was the starting icon?")]
     private IEnumerator<SouvenirInstruction> ProcessModuleMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ModuleMazeModule");

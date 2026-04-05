@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SMissingLetter
 {
-    [SouvenirQuestion("What letter was missing in {0}?", ThreeColumns6Answers)]
+    [Question("What letter was missing in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
     MissingLetter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("theMissingLetter", "Missing Letter", typeof(SMissingLetter), "KiloBites", AddThe = true)]
-    [SouvenirManualQuestion("What letter was missing?")]
+    [Handler("theMissingLetter", "Missing Letter", typeof(SMissingLetter), "KiloBites", AddThe = true)]
+    [ManualQuestion("What letter was missing?")]
     private IEnumerator<SouvenirInstruction> ProcessMissingLetter(ModuleData module)
     {
         var comp = GetComponent(module, "TheMissingLetterScript");

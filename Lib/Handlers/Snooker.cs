@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSnooker
 {
-    [SouvenirQuestion("How many red balls were there at the start of {0}?", ThreeColumns3Answers, "8", "9", "10")]
+    [Question("How many red balls were there at the start of {0}?", ThreeColumns3Answers, "8", "9", "10")]
     Reds
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("snooker", "Snooker", typeof(SSnooker), "TasThiluna")]
-    [SouvenirManualQuestion("How many reds were there initially?")]
+    [Handler("snooker", "Snooker", typeof(SSnooker), "TasThiluna")]
+    [ManualQuestion("How many reds were there initially?")]
     private IEnumerator<SouvenirInstruction> ProcessSnooker(ModuleData module)
     {
         var comp = GetComponent(module, "snookerScript");

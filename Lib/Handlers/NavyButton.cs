@@ -5,27 +5,27 @@ using static Souvenir.AnswerLayout;
 
 public enum SNavyButton
 {
-    [SouvenirQuestion("Which Greek letter appeared on {0} (case-sensitive)?", ThreeColumns6Answers, "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω")]
+    [Question("Which Greek letter appeared on {0} (case-sensitive)?", ThreeColumns6Answers, "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω")]
     QGreekLetters,
 
-    [SouvenirQuestion("What was the {1} of the given in {0}?", TwoColumns4Answers, "0", "1", "2", "3", Arguments = ["(0-indexed) column", "(0-indexed) row", "value"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the {1} of the given in {0}?", TwoColumns4Answers, "0", "1", "2", "3", Arguments = ["(0-indexed) column", "(0-indexed) row", "value"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     QGiven,
 
-    [SouvenirDiscriminator("the Navy Button that had a {0} on it", Arguments = ["Β", "Γ", "Δ", "Ζ", "Θ", "Κ", "Λ", "Μ", "Ν", "Ξ", "Π", "Ρ", "Σ", "Τ", "Φ", "Χ", "Ψ", "β", "γ", "δ", "ζ", "θ", "κ", "λ", "μ", "ν", "ξ", "π", "ρ", "σ", "τ", "φ", "χ", "ψ"], ArgumentGroupSize = 1)]
+    [Discriminator("the Navy Button that had a {0} on it", Arguments = ["Β", "Γ", "Δ", "Ζ", "Θ", "Κ", "Λ", "Μ", "Ν", "Ξ", "Π", "Ρ", "Σ", "Τ", "Φ", "Χ", "Ψ", "β", "γ", "δ", "ζ", "θ", "κ", "λ", "μ", "ν", "ξ", "π", "ρ", "σ", "τ", "φ", "χ", "ψ"], ArgumentGroupSize = 1)]
     DGreekLettersNV,
 
-    [SouvenirDiscriminator("the Navy Button that had an {0} on it", Arguments = ["Α", "Ε", "Η", "Ι", "Ο", "Υ", "Ω", "α", "ε", "η", "ι", "ο", "υ", "ω"], ArgumentGroupSize = 1)]
+    [Discriminator("the Navy Button that had an {0} on it", Arguments = ["Α", "Ε", "Η", "Ι", "Ο", "Υ", "Ω", "α", "ε", "η", "ι", "ο", "υ", "ω"], ArgumentGroupSize = 1)]
     DGreekLettersV,
 
-    [SouvenirDiscriminator("the Navy Button where the {0} of the given was {1}", Arguments = ["(0-indexed) column", "1", "(0-indexed) row", "1", "value", "1"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Navy Button where the {0} of the given was {1}", Arguments = ["(0-indexed) column", "1", "(0-indexed) row", "1", "value", "1"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DGiven
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NavyButtonModule", "Navy Button", typeof(SNavyButton), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("Which Greek letters appeared?")]
-    [SouvenirManualQuestion("What were the coordinates and value of the given?")]
+    [Handler("NavyButtonModule", "Navy Button", typeof(SNavyButton), "Timwi", AddThe = true)]
+    [ManualQuestion("Which Greek letters appeared?")]
+    [ManualQuestion("What were the coordinates and value of the given?")]
     private IEnumerator<SouvenirInstruction> ProcessNavyButton(ModuleData module)
     {
         var comp = GetComponent(module, "NavyButtonScript");

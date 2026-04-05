@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetMeNot
 {
-    [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Question,
 
-    [SouvenirDiscriminator("the Forget Me Not which displayed a {0} in the {1} stage", Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the Forget Me Not which displayed a {0} in the {1} stage", Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal], ArgumentGroupSize = 2)]
     Discriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MemoryV2", "Forget Me Not", typeof(SForgetMeNot), "Kuro", IsBossModule = true)]
-    [SouvenirManualQuestion("What were the displayed digits in each stage?")]
+    [Handler("MemoryV2", "Forget Me Not", typeof(SForgetMeNot), "Kuro", IsBossModule = true)]
+    [ManualQuestion("What were the displayed digits in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetMeNot(ModuleData module)
     {
         var comp = GetComponent(module, "AdvancedMemory");

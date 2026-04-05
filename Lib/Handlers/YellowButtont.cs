@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SYellowButtont
 {
-    [SouvenirQuestion("What was the filename in {0}?", TwoColumns4Answers, ExampleAnswers = ["ABACUS.JPG", "BABBLE.MP4", "CABLES.MP3", "DABBLE.CS", "EAGLES.EXE", "FABLED.ISO"])]
+    [Question("What was the filename in {0}?", TwoColumns4Answers, ExampleAnswers = ["ABACUS.JPG", "BABBLE.MP4", "CABLES.MP3", "DABBLE.CS", "EAGLES.EXE", "FABLED.ISO"])]
     Filename
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("yellowbuttont", "Yellow Button’t", typeof(SYellowButtont), "Anonymous")]
-    [SouvenirManualQuestion("What was the filename?")]
+    [Handler("yellowbuttont", "Yellow Button’t", typeof(SYellowButtont), "Anonymous")]
+    [ManualQuestion("What was the filename?")]
     private IEnumerator<SouvenirInstruction> ProcessYellowButtont(ModuleData module)
     {
         yield return WaitForSolve;

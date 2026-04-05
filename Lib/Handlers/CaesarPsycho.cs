@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SCaesarPsycho
 {
-    [SouvenirQuestion("What text was on the top display in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What text was on the top display in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("5*A-Z")]
     ScreenTexts,
 
-    [SouvenirQuestion("What color was the text on the top display in the second stage of {0}?", ThreeColumns6Answers, "white", "red", "magenta", "yellow", "green", "cyan", "violet")]
+    [Question("What color was the text on the top display in the second stage of {0}?", ThreeColumns6Answers, "white", "red", "magenta", "yellow", "green", "cyan", "violet")]
     ScreenColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("caesarPsycho", "Caesar Psycho", typeof(SCaesarPsycho), "Quinn Wuest")]
-    [SouvenirManualQuestion("What text and color were on the top display in each stage?")]
+    [Handler("caesarPsycho", "Caesar Psycho", typeof(SCaesarPsycho), "Quinn Wuest")]
+    [ManualQuestion("What text and color were on the top display in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessCaesarPsycho(ModuleData module)
     {
         var comp = GetComponent(module, "CaesarPsychoScript");

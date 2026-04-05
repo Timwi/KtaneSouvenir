@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMahjong
 {
-    [SouvenirQuestion("Which tile was shown in the bottom-left of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "MahjongSprites")]
+    [Question("Which tile was shown in the bottom-left of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "MahjongSprites")]
     CountingTile
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MahjongModule", "Mahjong", typeof(SMahjong), "River")]
-    [SouvenirManualQuestion("What was the bottom-left tile?")]
+    [Handler("MahjongModule", "Mahjong", typeof(SMahjong), "River")]
+    [ManualQuestion("What was the bottom-left tile?")]
     private IEnumerator<SouvenirInstruction> ProcessMahjong(ModuleData module)
     {
         var comp = GetComponent(module, "MahjongModule");

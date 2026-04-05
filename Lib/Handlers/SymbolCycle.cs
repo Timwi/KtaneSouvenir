@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSymbolCycle
 {
-    [SouvenirQuestion("How many symbols were cycling on the {1} screen in {0}?", TwoColumns4Answers, "2", "3", "4", "5", TranslateArguments = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
+    [Question("How many symbols were cycling on the {1} screen in {0}?", TwoColumns4Answers, "2", "3", "4", "5", TranslateArguments = [true], Arguments = ["left", "right"], ArgumentGroupSize = 1)]
     SymbolCounts
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SymbolCycleModule", "Symbol Cycle", typeof(SSymbolCycle), "CaitSith2")]
-    [SouvenirManualQuestion("How many symbols were cycling on each screen?")]
+    [Handler("SymbolCycleModule", "Symbol Cycle", typeof(SSymbolCycle), "CaitSith2")]
+    [ManualQuestion("How many symbols were cycling on each screen?")]
     private IEnumerator<SouvenirInstruction> ProcessSymbolCycle(ModuleData module)
     {
         var comp = GetComponent(module, "SymbolCycleModule");

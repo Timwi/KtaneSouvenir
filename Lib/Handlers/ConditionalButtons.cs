@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SConditionalButtons
 {
-    [SouvenirQuestion("What was the color of this button in {0}?", ThreeColumns6Answers, "black", "blue", "dark green", "light green", "orange", "pink", "purple", "red", "white", "yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the color of this button in {0}?", ThreeColumns6Answers, "black", "blue", "dark green", "light green", "orange", "pink", "purple", "red", "white", "yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("conditionalButtons", "Conditional Buttons", typeof(SConditionalButtons), "Hawker")]
-    [SouvenirManualQuestion("What was the color of each button?")]
+    [Handler("conditionalButtons", "Conditional Buttons", typeof(SConditionalButtons), "Hawker")]
+    [ManualQuestion("What was the color of each button?")]
     private IEnumerator<SouvenirInstruction> ProcessConditionalButtons(ModuleData module)
     {
         var comp = GetComponent(module, "conditionalButtons");

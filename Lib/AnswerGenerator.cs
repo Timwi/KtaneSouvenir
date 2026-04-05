@@ -16,9 +16,9 @@ namespace Souvenir;
 ///         having to write out the entire list.</para>
 ///     <para>
 ///         To use an answer generator, add an attribute which is a subclass of <see cref="AnswerGeneratorAttribute"/> to the
-///         <see cref="TextQuestion"/> enum value. <see cref="SouvenirQuestionAttribute.AllAnswers"/> should be null when using an
+///         <see cref="TextQuestion"/> enum value. <see cref="QuestionAttribute.AllAnswers"/> should be null when using an
 ///         answer generator. When the question is generated, any answer generator will be used to effectively append as many
-///         randomly selected answers as needed to <see cref="SouvenirQuestionAttribute.AllAnswers"/>. Preferred wrong answers
+///         randomly selected answers as needed to <see cref="QuestionAttribute.AllAnswers"/>. Preferred wrong answers
 ///         may still be specified in addition to an answer generator, or instead of one as was done previously.</para>
 ///     <para>
 ///         Answer generator implementations are provided as nested classes in the <see cref="AnswerGenerator"/> class. See

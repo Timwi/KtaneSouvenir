@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SCrazyMaze
 {
-    [SouvenirQuestion("What was the {1} location in {0}?", ThreeColumns6Answers, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the {1} location in {0}?", ThreeColumns6Answers, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("A-Z", "A-Z")]
     StartOrGoal
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("CrazyMazeModule", "Crazy Maze", typeof(SCrazyMaze), "Timwi")]
-    [SouvenirManualQuestion("What were the starting and goal positions?")]
+    [Handler("CrazyMazeModule", "Crazy Maze", typeof(SCrazyMaze), "Timwi")]
+    [ManualQuestion("What were the starting and goal positions?")]
     private IEnumerator<SouvenirInstruction> ProcessCrazyMaze(ModuleData module)
     {
         var comp = GetComponent(module, "CrazyMazeScript");

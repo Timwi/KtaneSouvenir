@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SQuestionMark
 {
-    [SouvenirQuestion("Which of these symbols was part of the flashing sequence in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "QuestionMarkSprites")]
+    [Question("Which of these symbols was part of the flashing sequence in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "QuestionMarkSprites")]
     FlashedSymbols
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Questionmark", "Question Mark", typeof(SQuestionMark), "Kuro")]
-    [SouvenirManualQuestion("What were the flashing symbols?")]
+    [Handler("Questionmark", "Question Mark", typeof(SQuestionMark), "Kuro")]
+    [ManualQuestion("What were the flashing symbols?")]
     private IEnumerator<SouvenirInstruction> ProcessQuestionMark(ModuleData module)
     {
         var comp = GetComponent(module, "Questionmark");

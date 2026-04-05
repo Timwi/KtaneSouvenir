@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBoneAppleTea
 {
-    [SouvenirQuestion("Which phrase was shown on {0}?", OneColumn4Answers, "Bone Apple Tea", "Seizure Salad", "Hey to break it to ya", "This is oak ward", "Clea Shay", "It's in tents", "Bench watch", "You're an armature", "Man hat in", "Try all and era", "Million Air", "Die of beaties", "Rush and roulette", "Night and shining armour", "What a nice jester", "In some near", "This is my master peace", "I'm in a colder sac", "Cereal killer", "I come here off ten", "Slide of ham", "Test lah", "Refreshing campaign", "I'm being more pacific", "God blast you", "BC soft wear", "Sense in humor", "The three must of tears", "Third da men chin", "Prang mantas", "Hammy downs", "Yum, a case idea", "Dandy long legs", "Can't merge, little lone drive", "My guest is", "Sink", "You lake it", "Emit da feet")]
+    [Question("Which phrase was shown on {0}?", OneColumn4Answers, "Bone Apple Tea", "Seizure Salad", "Hey to break it to ya", "This is oak ward", "Clea Shay", "It's in tents", "Bench watch", "You're an armature", "Man hat in", "Try all and era", "Million Air", "Die of beaties", "Rush and roulette", "Night and shining armour", "What a nice jester", "In some near", "This is my master peace", "I'm in a colder sac", "Cereal killer", "I come here off ten", "Slide of ham", "Test lah", "Refreshing campaign", "I'm being more pacific", "God blast you", "BC soft wear", "Sense in humor", "The three must of tears", "Third da men chin", "Prang mantas", "Hammy downs", "Yum, a case idea", "Dandy long legs", "Can't merge, little lone drive", "My guest is", "Sink", "You lake it", "Emit da feet")]
     Phrase
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("boneAppleTea", "Bone Apple Tea", typeof(SBoneAppleTea), "Anonymous")]
-    [SouvenirManualQuestion("What were the phrases?")]
+    [Handler("boneAppleTea", "Bone Apple Tea", typeof(SBoneAppleTea), "Anonymous")]
+    [ManualQuestion("What were the phrases?")]
     private IEnumerator<SouvenirInstruction> ProcessBoneAppleTea(ModuleData module)
     {
         yield return WaitForSolve;

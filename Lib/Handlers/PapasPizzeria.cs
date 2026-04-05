@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SPapasPizzeria
 {
-    [SouvenirQuestion("What was the letter in the order number on {0}?", ThreeColumns6Answers)]
+    [Question("What was the letter in the order number on {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("ACQBJMSD")]
     Letter,
 
-    [SouvenirQuestion("What was the {1} digit in the order number on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} digit in the order number on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 7)]
     Digit
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("papasPizzeria", "Papa’s Pizzeria", typeof(SPapasPizzeria), "Quinn Wuest")]
-    [SouvenirManualQuestion("What was the order code?")]
+    [Handler("papasPizzeria", "Papa’s Pizzeria", typeof(SPapasPizzeria), "Quinn Wuest")]
+    [ManualQuestion("What was the order code?")]
     private IEnumerator<SouvenirInstruction> ProcessPapasPizzeria(ModuleData module)
     {
         var comp = GetComponent(module, "papasPizzeriaScript");

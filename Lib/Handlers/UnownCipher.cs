@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SUnownCipher
 {
-    [SouvenirQuestion("What stat appeared on the {1} display when pressing the {2} Unown letter in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What stat appeared on the {1} display when pressing the {2} Unown letter in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(0, 15)]
     Stats
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("UnownCipher", "Unown Cipher", typeof(SUnownCipher), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the stats on the displays?")]
+    [Handler("UnownCipher", "Unown Cipher", typeof(SUnownCipher), "Quinn Wuest")]
+    [ManualQuestion("What were the stats on the displays?")]
     private IEnumerator<SouvenirInstruction> ProcessUnownCipher(ModuleData module)
     {
         var comp = GetComponent(module, "UnownCipher");

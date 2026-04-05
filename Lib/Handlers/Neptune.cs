@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNeptune
 {
-    [SouvenirQuestion("Which star was displayed in {0}?", OneColumn4Answers, ExampleAnswers = ["Bob-omb Battlefield #1", "Whomp's Fortress #2", "Jolly Roger Bay #3", "Bowser in the Sky"])]
+    [Question("Which star was displayed in {0}?", OneColumn4Answers, ExampleAnswers = ["Bob-omb Battlefield #1", "Whomp's Fortress #2", "Jolly Roger Bay #3", "Bowser in the Sky"])]
     Star
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("neptune", "Neptune", typeof(SNeptune), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which star was displayed?")]
+    [Handler("neptune", "Neptune", typeof(SNeptune), "Quinn Wuest")]
+    [ManualQuestion("Which star was displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessNeptune(ModuleData module)
     {
         var comp = GetComponent(module, "NeptuneScript");

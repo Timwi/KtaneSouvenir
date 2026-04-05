@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SThirdBase
 {
-    [SouvenirQuestion("What was the display word in the {1} stage on {0}?", ThreeColumns6Answers, "NHXS", "IH6X", "XI8Z", "I8O9", "XOHZ", "H68S", "8OXN", "Z8IX", "SXHN", "6NZH", "H6SI", "6O8I", "NXO8", "66I8", "S89H", "SNZX", "9NZS", "8I99", "ZHOX", "SI9X", "SZN6", "ZSN8", "HZN9", "X9HI", "IS9H", "XZNS", "X6IS", "8NSZ", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the display word in the {1} stage on {0}?", ThreeColumns6Answers, "NHXS", "IH6X", "XI8Z", "I8O9", "XOHZ", "H68S", "8OXN", "Z8IX", "SXHN", "6NZH", "H6SI", "6O8I", "NXO8", "66I8", "S89H", "SNZX", "9NZS", "8I99", "ZHOX", "SI9X", "SZN6", "ZSN8", "HZN9", "X9HI", "IS9H", "XZNS", "X6IS", "8NSZ", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ThirdBase", "Third Base", typeof(SThirdBase), "CaitSith2")]
-    [SouvenirManualQuestion("What were the display words?")]
+    [Handler("ThirdBase", "Third Base", typeof(SThirdBase), "CaitSith2")]
+    [ManualQuestion("What were the display words?")]
     private IEnumerator<SouvenirInstruction> ProcessThirdBase(ModuleData module)
     {
         var comp = GetComponent(module, "ThirdBaseModule");

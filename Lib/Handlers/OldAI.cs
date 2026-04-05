@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SOldAI
 {
-    [SouvenirQuestion("What was the {1} of the numbers shown in {0}?", TwoColumns4Answers, "1", "2", "3", "4", "5", Arguments = ["group", "sub-group"], TranslateArguments = [true], ArgumentGroupSize = 1)]
+    [Question("What was the {1} of the numbers shown in {0}?", TwoColumns4Answers, "1", "2", "3", "4", "5", Arguments = ["group", "sub-group"], TranslateArguments = [true], ArgumentGroupSize = 1)]
     Group
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SCP079", "Old AI", typeof(SOldAI), "noting3548")]
-    [SouvenirManualQuestion("What was the group/sub-group of the displayed numbers?")]
+    [Handler("SCP079", "Old AI", typeof(SOldAI), "noting3548")]
+    [ManualQuestion("What was the group/sub-group of the displayed numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessOldAI(ModuleData module)
     {
         var comp = GetComponent(module, "SCP079");

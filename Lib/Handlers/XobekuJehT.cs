@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SXobekuJehT
 {
-    [SouvenirQuestion("What song was played on {0}?", OneColumn4Answers, ExampleAnswers = ["Gimme Gimme Gimme", "Take On Me", "Barbie Girl", "Do I Wanna Know"])]
+    [Question("What song was played on {0}?", OneColumn4Answers, ExampleAnswers = ["Gimme Gimme Gimme", "Take On Me", "Barbie Girl", "Do I Wanna Know"])]
     [ReverseQuestionGimmick]
     Song
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("xobekuj", "xobekuJ ehT", typeof(SXobekuJehT), "Quinn Wuest")]
-    [SouvenirManualQuestion("What song was played?")]
+    [Handler("xobekuj", "xobekuJ ehT", typeof(SXobekuJehT), "Quinn Wuest")]
+    [ManualQuestion("What song was played?")]
     private IEnumerator<SouvenirInstruction> ProcessXobekuJehT(ModuleData module)
     {
         var comp = GetComponent(module, "tpircSxobekuJ");

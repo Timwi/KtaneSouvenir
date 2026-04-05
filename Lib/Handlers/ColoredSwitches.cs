@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SColoredSwitches
 {
-    [SouvenirQuestion("What was the initial position of the switches in {0}?", ThreeColumns6Answers, Type = AnswerType.SymbolsFont)]
+    [Question("What was the initial position of the switches in {0}?", ThreeColumns6Answers, Type = AnswerType.SymbolsFont)]
     [AnswerGenerator.Strings(5, 'Q', 'R')]
     InitialPosition
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ColoredSwitchesModule", "Colored Switches", typeof(SColoredSwitches), "Timwi")]
-    [SouvenirManualQuestion("What was the initial position of the switches?")]
+    [Handler("ColoredSwitchesModule", "Colored Switches", typeof(SColoredSwitches), "Timwi")]
+    [ManualQuestion("What was the initial position of the switches?")]
     private IEnumerator<SouvenirInstruction> ProcessColoredSwitches(ModuleData module)
     {
         var comp = GetComponent(module, "ColoredSwitchesModule");

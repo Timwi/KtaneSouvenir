@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotNumberPad
 {
-    [SouvenirQuestion("Which of these numbers {1} at the {2} stage of {0}?", TwoColumns4Answers, TranslateArguments = [true, false], Arguments = ["flashed", QandA.Ordinal, "did not flash", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("Which of these numbers {1} at the {2} stage of {0}?", TwoColumns4Answers, TranslateArguments = [true, false], Arguments = ["flashed", QandA.Ordinal, "did not flash", QandA.Ordinal], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(0, 9)]
     Flashes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notNumberPad", "Not Number Pad", typeof(SNotNumberPad), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which numbers flashed at each stage?")]
+    [Handler("notNumberPad", "Not Number Pad", typeof(SNotNumberPad), "Quinn Wuest")]
+    [ManualQuestion("Which numbers flashed at each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessNotNumberPad(ModuleData module)
     {
         var comp = GetComponent(module, "NotNumberPadScript");

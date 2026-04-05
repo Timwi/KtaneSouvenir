@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonShapes
 {
-    [SouvenirQuestion("What was the shape submitted at the end of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the shape submitted at the end of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Polyominoes(minCellCount: 2, maxCellCount: 5, maxWidth: 3, maxHeight: 3, requireSingleStrokePath: true)]
     SubmittedShape
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SimonShapesModule", "Simon Shapes", typeof(SSimonShapes), "tandyCake")]
-    [SouvenirManualQuestion("What was the shape submitted at the end?")]
+    [Handler("SimonShapesModule", "Simon Shapes", typeof(SSimonShapes), "tandyCake")]
+    [ManualQuestion("What was the shape submitted at the end?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonShapes(ModuleData module)
     {
         var comp = GetComponent(module, "SimonShapesScript");

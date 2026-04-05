@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCreation
 {
-    [SouvenirQuestion("What were the weather conditions on the {1} day in {0}?", TwoColumns4Answers, "Clear", "Heat Wave", "Meteor Shower", "Rain", "Windy", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What were the weather conditions on the {1} day in {0}?", TwoColumns4Answers, "Clear", "Heat Wave", "Meteor Shower", "Rain", "Windy", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Weather
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("CreationModule", "Creation", typeof(SCreation), "CaitSith2")]
-    [SouvenirManualQuestion("What was the weather condition on the first day?")]
+    [Handler("CreationModule", "Creation", typeof(SCreation), "CaitSith2")]
+    [ManualQuestion("What was the weather condition on the first day?")]
     private IEnumerator<SouvenirInstruction> ProcessCreation(ModuleData module)
     {
         // Note from Quinn Wuest:

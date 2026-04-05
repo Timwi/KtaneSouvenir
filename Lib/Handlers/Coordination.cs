@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SCoordination
 {
-    [SouvenirQuestion("What was the label of the starting coordinate in {0}?", ThreeColumns6Answers)]
+    [Question("What was the label of the starting coordinate in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-F", "1-6")]
     Label,
 
-    [SouvenirQuestion("Where was the starting coordinate in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Where was the starting coordinate in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Position
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Coordination", "Coordination", typeof(SCoordination), "Quinn Wuest")]
-    [SouvenirManualQuestion("What was the label and position of the starting coordinate?")]
+    [Handler("Coordination", "Coordination", typeof(SCoordination), "Quinn Wuest")]
+    [ManualQuestion("What was the label and position of the starting coordinate?")]
     private IEnumerator<SouvenirInstruction> ProcessCoordination(ModuleData module)
     {
         var comp = GetComponent(module, "Coordination");

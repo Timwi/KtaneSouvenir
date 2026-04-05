@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDecoloredSquares
 {
-    [SouvenirQuestion("What was the starting {1} defining color in {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["column", "row"], ArgumentGroupSize = 1)]
+    [Question("What was the starting {1} defining color in {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["column", "row"], ArgumentGroupSize = 1)]
     StartingPos
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("DecoloredSquaresModule", "Decolored Squares", typeof(SDecoloredSquares), "luisdiogo98")]
-    [SouvenirManualQuestion("What were the colors defining the starting row and column?")]
+    [Handler("DecoloredSquaresModule", "Decolored Squares", typeof(SDecoloredSquares), "luisdiogo98")]
+    [ManualQuestion("What were the colors defining the starting row and column?")]
     private IEnumerator<SouvenirInstruction> ProcessDecoloredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "DecoloredSquaresModule");

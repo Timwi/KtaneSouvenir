@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SKuro
 {
-    [SouvenirQuestion("What was Kuro’s mood in {0}?", TwoColumns4Answers, "Angry", "Happy", "Neutral", "Curious", "Devious")]
+    [Question("What was Kuro’s mood in {0}?", TwoColumns4Answers, "Angry", "Happy", "Neutral", "Curious", "Devious")]
     Mood
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Kuro", "Kuro", typeof(SKuro), "Hawker")]
-    [SouvenirManualQuestion("What was Kuro’s mood?")]
+    [Handler("Kuro", "Kuro", typeof(SKuro), "Hawker")]
+    [ManualQuestion("What was Kuro’s mood?")]
     private IEnumerator<SouvenirInstruction> ProcessKuro(ModuleData module)
     {
         var comp = GetComponent(module, "Kuro");

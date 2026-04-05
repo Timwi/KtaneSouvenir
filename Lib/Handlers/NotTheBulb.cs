@@ -6,20 +6,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotTheBulb
 {
-    [SouvenirQuestion("What word flashed on {0}?", OneColumn4Answers, ExampleAnswers = ["Amplitude", "Boulevard", "Chemistry", "Duplicate", "Eightfold", "Filaments", "Goldsmith", "Harlequin", "Injectors", "Juxtapose", "Kilohertz", "Labyrinth", "Moustache", "Neighbour", "Obscurity", "Penumbral", "Quicksand", "Rhapsodic", "Squawking", "Triglyphs", "Universal", "Vexations", "Whizbangs", "Xenoglyph", "Yardstick", "Zigamorph"])]
+    [Question("What word flashed on {0}?", OneColumn4Answers, ExampleAnswers = ["Amplitude", "Boulevard", "Chemistry", "Duplicate", "Eightfold", "Filaments", "Goldsmith", "Harlequin", "Injectors", "Juxtapose", "Kilohertz", "Labyrinth", "Moustache", "Neighbour", "Obscurity", "Penumbral", "Quicksand", "Rhapsodic", "Squawking", "Triglyphs", "Universal", "Vexations", "Whizbangs", "Xenoglyph", "Yardstick", "Zigamorph"])]
     Word,
 
-    [SouvenirQuestion("What color was the bulb on {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Purple", "White", TranslateAnswers = true)]
+    [Question("What color was the bulb on {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Purple", "White", TranslateAnswers = true)]
     Color,
 
-    [SouvenirQuestion("What was the material of the screw cap on {0}?", ThreeColumns6Answers, "Copper", "Silver", "Gold", "Plastic", "Carbon Fibre", "Ceramic", TranslateAnswers = true)]
+    [Question("What was the material of the screw cap on {0}?", ThreeColumns6Answers, "Copper", "Silver", "Gold", "Plastic", "Carbon Fibre", "Ceramic", TranslateAnswers = true)]
     ScrewCap
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notTheBulb", "Not The Bulb", typeof(SNotTheBulb), "Quinn Wuest")]
-    [SouvenirManualQuestion("What was the transmitted word?")]
+    [Handler("notTheBulb", "Not The Bulb", typeof(SNotTheBulb), "Quinn Wuest")]
+    [ManualQuestion("What was the transmitted word?")]
     private IEnumerator<SouvenirInstruction> ProcessNotTheBulb(ModuleData module)
     {
         var comp = GetComponent(module, "NtBScript");

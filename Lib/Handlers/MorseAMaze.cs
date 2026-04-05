@@ -5,23 +5,23 @@ using static Souvenir.AnswerLayout;
 
 public enum SMorseAMaze
 {
-    [SouvenirQuestion("What was the starting location in {0}?", ThreeColumns6Answers)]
+    [Question("What was the starting location in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-F", "1-6")]
     StartingCoordinate,
 
-    [SouvenirQuestion("What was the ending location in {0}?", ThreeColumns6Answers)]
+    [Question("What was the ending location in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-F", "1-6")]
     EndingCoordinate,
 
-    [SouvenirQuestion("What was the word shown as Morse code in {0}?", ThreeColumns6Answers, ExampleAnswers = ["couch", "strobe", "smoke", "assay", "monkey", "glass", "starts", "strode", "office", "essays", "couple", "bosses"])]
+    [Question("What was the word shown as Morse code in {0}?", ThreeColumns6Answers, ExampleAnswers = ["couch", "strobe", "smoke", "assay", "monkey", "glass", "starts", "strode", "office", "essays", "couple", "bosses"])]
     MorseCodeWord
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MorseAMaze", "Morse-A-Maze", typeof(SMorseAMaze), "CaitSith2")]
-    [SouvenirManualQuestion("What were the starting and ending locations?")]
-    [SouvenirManualQuestion("What was the Morse code word played?")]
+    [Handler("MorseAMaze", "Morse-A-Maze", typeof(SMorseAMaze), "CaitSith2")]
+    [ManualQuestion("What were the starting and ending locations?")]
+    [ManualQuestion("What was the Morse code word played?")]
     private IEnumerator<SouvenirInstruction> ProcessMorseAMaze(ModuleData module)
     {
         var comp = GetComponent(module, "MorseAMaze");

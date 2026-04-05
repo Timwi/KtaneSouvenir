@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonStacks
 {
-    [SouvenirQuestion("Which color flashed in the {1} stage of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Yellow", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which color flashed in the {1} stage of {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Yellow", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonstacks", "Simon Stacks", typeof(SSimonStacks), "Kuro")]
-    [SouvenirManualQuestion("Which colors flashed in each stage?")]
+    [Handler("simonstacks", "Simon Stacks", typeof(SSimonStacks), "Kuro")]
+    [ManualQuestion("Which colors flashed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonStacks(ModuleData module)
     {
         var comp = GetComponent(module, "simonstacksScript");

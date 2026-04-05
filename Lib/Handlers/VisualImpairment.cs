@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SVisualImpairment
 {
-    [SouvenirQuestion("What was the desired color in the {1} stage on {0}?", TwoColumns4Answers, "Blue", "Green", "Red", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the desired color in the {1} stage on {0}?", TwoColumns4Answers, "Blue", "Green", "Red", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("visual_impairment", "Visual Impairment", typeof(SVisualImpairment), "Timwi")]
-    [SouvenirManualQuestion("What were the desired colors?")]
+    [Handler("visual_impairment", "Visual Impairment", typeof(SVisualImpairment), "Timwi")]
+    [ManualQuestion("What were the desired colors?")]
     private IEnumerator<SouvenirInstruction> ProcessVisualImpairment(ModuleData module)
     {
         var comp = GetComponent(module, "VisualImpairment");

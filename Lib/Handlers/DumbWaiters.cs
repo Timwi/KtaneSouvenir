@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDumbWaiters
 {
-    [SouvenirQuestion("Which player {1} present in {0}?", OneColumn4Answers, ExampleAnswers = ["Arceus", "Danny7007", "EpicToast", "eXish", "Fang", "Makebao", "MCD573", "Mr. Peanut", "Mythers", "Xmaster"], Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which player {1} present in {0}?", OneColumn4Answers, ExampleAnswers = ["Arceus", "Danny7007", "EpicToast", "eXish", "Fang", "Makebao", "MCD573", "Mr. Peanut", "Mythers", "Xmaster"], Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     PlayerAvailable
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("dumbWaiters", "Dumb Waiters", typeof(SDumbWaiters), "BigCrunch22")]
-    [SouvenirManualQuestion("Which players were present?")]
+    [Handler("dumbWaiters", "Dumb Waiters", typeof(SDumbWaiters), "BigCrunch22")]
+    [ManualQuestion("Which players were present?")]
     private IEnumerator<SouvenirInstruction> ProcessDumbWaiters(ModuleData module)
     {
         var comp = GetComponent(module, "dumbWaiters");

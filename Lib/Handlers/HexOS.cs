@@ -6,27 +6,27 @@ using static Souvenir.AnswerLayout;
 
 public enum SHexOS
 {
-    [SouvenirQuestion("What was the deciphered phrase in {0}?", ThreeColumns6Answers, ExampleAnswers = ["a maze", "someda", "but i ", "they h", "shorn o", "more s", "if onl", "grew b"])]
+    [Question("What was the deciphered phrase in {0}?", ThreeColumns6Answers, ExampleAnswers = ["a maze", "someda", "but i ", "they h", "shorn o", "more s", "if onl", "grew b"])]
     OctCipher,
 
-    [SouvenirQuestion("What were the deciphered letters in {0}?", ThreeColumns6Answers)]
+    [Question("What were the deciphered letters in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("2* A-Z")]
     Cipher,
 
-    [SouvenirQuestion("What were the rhythm values in {0}?", ThreeColumns6Answers, ExampleAnswers = ["0001", "0012", "0123", "1230", "2300", "3000"])]
+    [Question("What were the rhythm values in {0}?", ThreeColumns6Answers, ExampleAnswers = ["0001", "0012", "0123", "1230", "2300", "3000"])]
     Sum,
 
-    [SouvenirQuestion("What was the {1} 3-digit number cycled by the screen in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} 3-digit number cycled by the screen in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 999, "000")]
     Screen
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("hexOS", "hexOS", typeof(SHexOS), "Emik")]
-    [SouvenirManualQuestion("What were the deciphered letters or phrase?")]
-    [SouvenirManualQuestion("What were the 3-digit numbers cycled by the screen?")]
-    [SouvenirManualQuestion("What were the rhythm values?")]
+    [Handler("hexOS", "hexOS", typeof(SHexOS), "Emik")]
+    [ManualQuestion("What were the deciphered letters or phrase?")]
+    [ManualQuestion("What were the 3-digit numbers cycled by the screen?")]
+    [ManualQuestion("What were the rhythm values?")]
     private IEnumerator<SouvenirInstruction> ProcessHexOS(ModuleData module)
     {
         var comp = GetComponent(module, "HexOS");

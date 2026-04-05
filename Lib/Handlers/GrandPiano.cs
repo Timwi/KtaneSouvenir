@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SGrandPiano
 {
-    [SouvenirQuestion("Which key was part of the {1} set in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which key was part of the {1} set in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-G", "1-7")]
     [AnswerGenerator.Strings("AB", "0")]
     [AnswerGenerator.Strings("C", "8")]
@@ -14,7 +14,7 @@ public enum SGrandPiano
     [AnswerGenerator.Strings("A", "♯", "0")]
     Key,
 
-    [SouvenirQuestion("Which key was the fifth set in {0}?", ThreeColumns6Answers)]
+    [Question("Which key was the fifth set in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("DEGAB", "♭", "1-7")]
     [AnswerGenerator.Strings("B", "♭", "0")]
     FinalKey
@@ -22,8 +22,8 @@ public enum SGrandPiano
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("grandPiano", "Grand Piano", typeof(SGrandPiano), "Anonymous")]
-    [SouvenirManualQuestion("What were the given notes?")]
+    [Handler("grandPiano", "Grand Piano", typeof(SGrandPiano), "Anonymous")]
+    [ManualQuestion("What were the given notes?")]
     private IEnumerator<SouvenirInstruction> ProcessGrandPiano(ModuleData module)
     {
         yield return WaitForSolve;

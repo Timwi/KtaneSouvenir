@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMatrix
 {
-    [SouvenirQuestion("Which word was part of the latest access code used in {0}?", TwoColumns4Answers, "Twins", "Neo", "Seraph", "Cypher", "Persephone", "Tank", "Dozer", "Mouse", "Switch", "Architect", "Smith", "Merovingian", "Morpheus", "Niobe", "Bane", "Oracle", "Keymaker", "Link", "Trinity", "Apoc")]
+    [Question("Which word was part of the latest access code used in {0}?", TwoColumns4Answers, "Twins", "Neo", "Seraph", "Cypher", "Persephone", "Tank", "Dozer", "Mouse", "Switch", "Architect", "Smith", "Merovingian", "Morpheus", "Niobe", "Bane", "Oracle", "Keymaker", "Link", "Trinity", "Apoc")]
     AccessCode
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("matrix", "Matrix", typeof(SMatrix), "BigCrunch22", AddThe = true)]
-    [SouvenirManualQuestion("Which word was part of the latest access code used?")]
+    [Handler("matrix", "Matrix", typeof(SMatrix), "BigCrunch22", AddThe = true)]
+    [ManualQuestion("Which word was part of the latest access code used?")]
     private IEnumerator<SouvenirInstruction> ProcessMatrix(ModuleData module)
     {
         var comp = GetComponent(module, "MatrixScript");

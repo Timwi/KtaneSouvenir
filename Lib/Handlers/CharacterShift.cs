@@ -7,19 +7,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SCharacterShift
 {
-    [SouvenirQuestion("Which letter was present but not submitted on the left slider of {0}?", ThreeColumns6Answers)]
+    [Question("Which letter was present but not submitted on the left slider of {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-Z")]
     Letters,
 
-    [SouvenirQuestion("Which digit was present but not submitted on the right slider of {0}?", ThreeColumns6Answers)]
+    [Question("Which digit was present but not submitted on the right slider of {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("0-9")]
     Digits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("characterShift", "Character Shift", typeof(SCharacterShift), "Kuro")]
-    [SouvenirManualQuestion("What were the characters on the sliders?")]
+    [Handler("characterShift", "Character Shift", typeof(SCharacterShift), "Kuro")]
+    [ManualQuestion("What were the characters on the sliders?")]
     private IEnumerator<SouvenirInstruction> ProcessCharacterShift(ModuleData module)
     {
         var comp = GetComponent(module, "characterShift");

@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMemorableButtons
 {
-    [SouvenirQuestion("What was the {1} correct symbol pressed in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "J", "K", "L", "P", "Q", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.DynamicFont)]
+    [Question("What was the {1} correct symbol pressed in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "J", "K", "L", "P", "Q", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.DynamicFont)]
     Symbols
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("memorableButtons", "Memorable Buttons", typeof(SMemorableButtons), "Timwi")]
-    [SouvenirManualQuestion("What were the symbols on the correct buttons?")]
+    [Handler("memorableButtons", "Memorable Buttons", typeof(SMemorableButtons), "Timwi")]
+    [ManualQuestion("What were the symbols on the correct buttons?")]
     private IEnumerator<SouvenirInstruction> ProcessMemorableButtons(ModuleData module)
     {
         var comp = GetComponent(module, "MemorableButtons");

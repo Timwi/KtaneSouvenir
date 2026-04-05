@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SRetirement
 {
-    [SouvenirQuestion("Which one of these houses was on offer, but not chosen by Bob in {0}?", TwoColumns4Answers, ExampleAnswers = ["Hotham Place", "Homestead", "Riverwell", "Lodge Park"])]
+    [Question("Which one of these houses was on offer, but not chosen by Bob in {0}?", TwoColumns4Answers, ExampleAnswers = ["Hotham Place", "Homestead", "Riverwell", "Lodge Park"])]
     Houses
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("retirement", "Retirement", typeof(SRetirement), "luisdiogo98")]
-    [SouvenirManualQuestion("Which houses were on offer, but not chosen by Bob?")]
+    [Handler("retirement", "Retirement", typeof(SRetirement), "luisdiogo98")]
+    [ManualQuestion("Which houses were on offer, but not chosen by Bob?")]
     private IEnumerator<SouvenirInstruction> ProcessRetirement(ModuleData module)
     {
         var comp = GetComponent(module, "retirementScript");

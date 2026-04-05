@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum STenpins
 {
-    [SouvenirQuestion("What was the {1} split in {0}?", OneColumn4Answers, "Goal Posts", "Cincinnati", "Woolworth Store", "Lily", "3-7 Split", "Cocked Hat", "4-7-10 Split", "Big Four", "Greek Church", "Big Five", "Big Six", "HOW", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [Question("What was the {1} split in {0}?", OneColumn4Answers, "Goal Posts", "Cincinnati", "Woolworth Store", "Lily", "3-7 Split", "Cocked Hat", "4-7-10 Split", "Big Four", "Greek Church", "Big Five", "Big Six", "HOW", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     Splits
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("tenpins", "Tenpins", typeof(STenpins), "TasThiluna")]
-    [SouvenirManualQuestion("What were the splits?")]
+    [Handler("tenpins", "Tenpins", typeof(STenpins), "TasThiluna")]
+    [ManualQuestion("What were the splits?")]
     private IEnumerator<SouvenirInstruction> ProcessTenpins(ModuleData module)
     {
         var comp = GetComponent(module, "tenpins");

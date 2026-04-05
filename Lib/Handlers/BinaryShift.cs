@@ -6,21 +6,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SBinaryShift
 {
-    [SouvenirQuestion("What was the {1} initial number in {0}?", ThreeColumns6Answers, ExampleAnswers = ["13", "14", "34", "46", "53", "64", "67", "77", "82", "96"], Arguments = ["top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the {1} initial number in {0}?", ThreeColumns6Answers, ExampleAnswers = ["13", "14", "34", "46", "53", "64", "67", "77", "82", "96"], Arguments = ["top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     InitialNumber,
 
-    [SouvenirQuestion("What number was selected at stage {1} in {0}?", ThreeColumns6Answers, "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true, Arguments = ["0", "1", "2"], ArgumentGroupSize = 1)]
+    [Question("What number was selected at stage {1} in {0}?", ThreeColumns6Answers, "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true, Arguments = ["0", "1", "2"], ArgumentGroupSize = 1)]
     SelectedNumberPossition,
 
-    [SouvenirQuestion("What number was not selected at stage {1} in {0}?", ThreeColumns6Answers, "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true, Arguments = ["0", "1", "2"], ArgumentGroupSize = 1)]
+    [Question("What number was not selected at stage {1} in {0}?", ThreeColumns6Answers, "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true, Arguments = ["0", "1", "2"], ArgumentGroupSize = 1)]
     NotSelectedNumberPossition
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("binary_shift", "Binary Shift", typeof(SBinaryShift), "NickLatkovich")]
-    [SouvenirManualQuestion("What were the initial numbers?")]
-    [SouvenirManualQuestion("What number was selected at each stage?")]
+    [Handler("binary_shift", "Binary Shift", typeof(SBinaryShift), "NickLatkovich")]
+    [ManualQuestion("What were the initial numbers?")]
+    [ManualQuestion("What number was selected at each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessBinaryShift(ModuleData module)
     {
         var comp = GetComponent(module, "BinaryShiftModule");

@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SAmusementParks
 {
-    [SouvenirQuestion("Which ride was available in {0}?", OneColumn4Answers, "Carousel", "Drop Tower", "Enterprise", "Ferris Wheel", "Ghost Train", "Inverted Coaster", "Junior Coaster", "Launched Coaster", "Log Flume", "Omnimover", "Pirate Ship", "River Rapids", "Safari", "Star Flyer", "Top Spin", "Tourbillon", "Vintage Cars", "Walkthrough", "Wooden Coaster")]
+    [Question("Which ride was available in {0}?", OneColumn4Answers, "Carousel", "Drop Tower", "Enterprise", "Ferris Wheel", "Ghost Train", "Inverted Coaster", "Junior Coaster", "Launched Coaster", "Log Flume", "Omnimover", "Pirate Ship", "River Rapids", "Safari", "Star Flyer", "Top Spin", "Tourbillon", "Vintage Cars", "Walkthrough", "Wooden Coaster")]
     Rides
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("amusementParks", "Amusement Parks", typeof(SAmusementParks), "Anonymous")]
-    [SouvenirManualQuestion("Which rides were available?")]
+    [Handler("amusementParks", "Amusement Parks", typeof(SAmusementParks), "Anonymous")]
+    [ManualQuestion("Which rides were available?")]
     private IEnumerator<SouvenirInstruction> ProcessAmusementParks(ModuleData module)
     {
         yield return WaitForSolve;

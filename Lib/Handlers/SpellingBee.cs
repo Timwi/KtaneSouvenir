@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSpellingBee
 {
-    [SouvenirQuestion("What word was asked to be spelled in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "SpellingBeeAudio")]
+    [Question("What word was asked to be spelled in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "SpellingBeeAudio")]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("spellingBee", "Spelling Bee", typeof(SSpellingBee), "BigCrunch22")]
-    [SouvenirManualQuestion("What word was asked to be spelled?")]
+    [Handler("spellingBee", "Spelling Bee", typeof(SSpellingBee), "BigCrunch22")]
+    [ManualQuestion("What word was asked to be spelled?")]
     private IEnumerator<SouvenirInstruction> ProcessSpellingBee(ModuleData module)
     {
         var comp = GetComponent(module, "spellingBeeScript");

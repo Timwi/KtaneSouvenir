@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotKeypad
 {
-    [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color flashed {1} in the final sequence in {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Color,
 
-    [SouvenirQuestion("Which symbol was on the button that flashed {1} in the final sequence in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "KeypadSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which symbol was on the button that flashed {1} in the final sequence in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "KeypadSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Symbol
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NotKeypad", "Not Keypad", typeof(SNotKeypad), "Andrio Celos")]
-    [SouvenirManualQuestion("Which colours flashed in the final sequence?")]
-    [SouvenirManualQuestion("Which symbols were on the buttons that flashed in the final sequence?")]
+    [Handler("NotKeypad", "Not Keypad", typeof(SNotKeypad), "Andrio Celos")]
+    [ManualQuestion("Which colours flashed in the final sequence?")]
+    [ManualQuestion("Which symbols were on the buttons that flashed in the final sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessNotKeypad(ModuleData module)
     {
         var comp = GetComponent(module, "NotKeypad");

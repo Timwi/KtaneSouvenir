@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SNandMs
 {
-    [SouvenirQuestion("What was the label of the correct button in {0}?", TwoColumns4Answers)]
+    [Question("What was the label of the correct button in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings(5, 'M', 'N')]
     Answer
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NandMs", "N&Ms", typeof(SNandMs), "TasThiluna")]
-    [SouvenirManualQuestion("What was the label of the correct button?")]
+    [Handler("NandMs", "N&Ms", typeof(SNandMs), "TasThiluna")]
+    [ManualQuestion("What was the label of the correct button?")]
     private IEnumerator<SouvenirInstruction> ProcessNandMs(ModuleData module)
     {
         var comp = GetComponent(module, "NandMs");

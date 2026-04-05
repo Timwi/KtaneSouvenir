@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotTheButton
 {
-    [SouvenirQuestion("What colors did the light glow in {0}?", ThreeColumns6Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue", TranslateAnswers = true)]
+    [Question("What colors did the light glow in {0}?", ThreeColumns6Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue", TranslateAnswers = true)]
     LightColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("NotButton", "Not the Button", typeof(SNotTheButton), "Andrio Celos")]
-    [SouvenirManualQuestion("What color did the light glow?")]
+    [Handler("NotButton", "Not the Button", typeof(SNotTheButton), "Andrio Celos")]
+    [ManualQuestion("What color did the light glow?")]
     private IEnumerator<SouvenirInstruction> ProcessNotTheButton(ModuleData module)
     {
         var comp = GetComponent(module, "NotButton");

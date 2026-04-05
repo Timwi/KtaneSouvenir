@@ -6,43 +6,43 @@ using static Souvenir.AnswerLayout;
 
 public enum SBlueButton
 {
-    [SouvenirQuestion("What was D in {0}?", TwoColumns4Answers)]
+    [Question("What was D in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Integers(1, 4)]
     D,
 
-    [SouvenirQuestion("What was {1} in {0}?", TwoColumns4Answers, Arguments = ["E", "F", "G", "H"], ArgumentGroupSize = 1)]
+    [Question("What was {1} in {0}?", TwoColumns4Answers, Arguments = ["E", "F", "G", "H"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 3)]
     EFGH,
 
-    [SouvenirQuestion("What was M in {0}?", ThreeColumns6Answers)]
+    [Question("What was M in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 9)]
     M,
 
-    [SouvenirQuestion("What was N in {0}?", ThreeColumns6Answers)]
+    [Question("What was N in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(4, 9)]
     N,
 
-    [SouvenirQuestion("What was P in {0}?", ThreeColumns6Answers, "♠♥♣", "♠♣♥", "♥♠♣", "♥♣♠", "♣♠♥", "♣♥♠")]
+    [Question("What was P in {0}?", ThreeColumns6Answers, "♠♥♣", "♠♣♥", "♥♠♣", "♥♣♠", "♣♠♥", "♣♥♠")]
     P,
 
-    [SouvenirQuestion("What was Q in {0}?", ThreeColumns6Answers, "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow", TranslateAnswers = true)]
+    [Question("What was Q in {0}?", ThreeColumns6Answers, "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow", TranslateAnswers = true)]
     Q,
 
-    [SouvenirQuestion("What was X in {0}?", TwoColumns4Answers)]
+    [Question("What was X in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Integers(1, 5)]
     X,
 
-    [SouvenirDiscriminator("the Blue Button where Q was {0}", Arguments = ["Blue", "Green", "Cyan", "Red", "Magenta", "Yellow"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Blue Button where Q was {0}", Arguments = ["Blue", "Green", "Cyan", "Red", "Magenta", "Yellow"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DQ,
 
-    [SouvenirDiscriminator("the Blue Button where {0} was {1}")]
+    [Discriminator("the Blue Button where {0} was {1}")]
     DOther
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("BlueButtonModule", "Blue Button", typeof(SBlueButton), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What were D, E, F, G, H, M, N, P, Q, and X?")]
+    [Handler("BlueButtonModule", "Blue Button", typeof(SBlueButton), "Timwi", AddThe = true)]
+    [ManualQuestion("What were D, E, F, G, H, M, N, P, Q, and X?")]
     private IEnumerator<SouvenirInstruction> ProcessBlueButton(ModuleData module)
     {
         var comp = GetComponent(module, "BlueButtonScript");

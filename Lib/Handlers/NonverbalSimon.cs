@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNonverbalSimon
 {
-    [SouvenirQuestion("Which button flashed in the {1} stage in {0}?", TwoColumns4Answers, IsEntireQuestionSprite = true, Type = AnswerType.Sprites, SpriteFieldName = "NonverbalSimonSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which button flashed in the {1} stage in {0}?", TwoColumns4Answers, IsEntireQuestionSprite = true, Type = AnswerType.Sprites, SpriteFieldName = "NonverbalSimonSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Flashes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("nonverbalSimon", "❖", typeof(SNonverbalSimon), "Anonymous")]
-    [SouvenirManualQuestion("What were the flashes?")]
+    [Handler("nonverbalSimon", "❖", typeof(SNonverbalSimon), "Anonymous")]
+    [ManualQuestion("What were the flashes?")]
     private IEnumerator<SouvenirInstruction> ProcessNonverbalSimon(ModuleData module)
     {
         var comp = GetComponent(module, "NonverbalSimonHandler");

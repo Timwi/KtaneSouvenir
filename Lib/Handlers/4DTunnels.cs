@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum S4DTunnels
 {
-    [SouvenirQuestion("What was the {1} goal node in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.FourDTunnelsFont)]
+    [Question("What was the {1} goal node in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.FourDTunnelsFont)]
     [AnswerGenerator.Strings("")]
     TargetNode
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("4dTunnels", "4D Tunnels", typeof(S4DTunnels), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the goal symbols?")]
+    [Handler("4dTunnels", "4D Tunnels", typeof(S4DTunnels), "Quinn Wuest")]
+    [ManualQuestion("What were the goal symbols?")]
     private IEnumerator<SouvenirInstruction> Process4DTunnels(ModuleData module)
     {
         var comp = GetComponent(module, "FourDTunnels");

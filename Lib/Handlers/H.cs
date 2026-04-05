@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SH
 {
-    [SouvenirQuestion("What was the transmitted letter in {0}?", ThreeColumns6Answers)]
+    [Question("What was the transmitted letter in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-Z")]
     Letter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Averageh", "h", typeof(SH), "Hawker")]
-    [SouvenirManualQuestion("What was the transmitted letter?")]
+    [Handler("Averageh", "h", typeof(SH), "Hawker")]
+    [ManualQuestion("What was the transmitted letter?")]
     private IEnumerator<SouvenirInstruction> ProcessH(ModuleData module)
     {
         var comp = GetComponent(module, "HexOS");

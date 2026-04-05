@@ -7,17 +7,17 @@ using Rnd = UnityEngine.Random;
 
 public enum SNegativity
 {
-    [SouvenirQuestion("In base 10, what was the value submitted in {0}?", ThreeColumns6Answers, ExampleAnswers = ["0", "9990", "-9990", "-1234", "5678", "-90"])]
+    [Question("In base 10, what was the value submitted in {0}?", ThreeColumns6Answers, ExampleAnswers = ["0", "9990", "-9990", "-1234", "5678", "-90"])]
     SubmittedValue,
 
-    [SouvenirQuestion("Excluding 0s, what was the submitted balanced ternary in {0}?", TwoColumns4Answers, ExampleAnswers = ["+-", "-++", "++-+-", "++++-", "-----", "+-----++++"])]
+    [Question("Excluding 0s, what was the submitted balanced ternary in {0}?", TwoColumns4Answers, ExampleAnswers = ["+-", "-++", "++-+-", "++++-", "-----", "+-----++++"])]
     SubmittedTernary
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Negativity", "Negativity", typeof(SNegativity), "VFlyer")]
-    [SouvenirManualQuestion("What was the submitted value (in base 10 and in balanced ternary)?")]
+    [Handler("Negativity", "Negativity", typeof(SNegativity), "VFlyer")]
+    [ManualQuestion("What was the submitted value (in base 10 and in balanced ternary)?")]
     private IEnumerator<SouvenirInstruction> ProcessNegativity(ModuleData module)
     {
         var comp = GetComponent(module, "NegativityScript");

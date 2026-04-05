@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SUfoSatellites
 {
-    [SouvenirQuestion("Which number was not present on {0}?", TwoColumns4Answers)]
+    [Question("Which number was not present on {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Integers(0, 9)]
     Numbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("UfoSatellites", "UFO Satellites", typeof(SUfoSatellites), "thunder725")]
-    [SouvenirManualQuestion("Which numbers were present?")]
+    [Handler("UfoSatellites", "UFO Satellites", typeof(SUfoSatellites), "thunder725")]
+    [ManualQuestion("Which numbers were present?")]
     private IEnumerator<SouvenirInstruction> ProcessUfoSatellites(ModuleData module)
     {
         var comp = GetComponent(module, "UfoSatellitesScript");

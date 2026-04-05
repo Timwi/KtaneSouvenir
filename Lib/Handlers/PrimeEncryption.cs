@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPrimeEncryption
 {
-    [SouvenirQuestion("What was the number shown in {0}?", ThreeColumns6Answers, ExampleAnswers = ["1147", "1271", "1333", "1457", "1643", "1829"])]
+    [Question("What was the number shown in {0}?", ThreeColumns6Answers, ExampleAnswers = ["1147", "1271", "1333", "1457", "1643", "1829"])]
     DisplayedValue
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("primeEncryption", "Prime Encryption", typeof(SPrimeEncryption), "VFlyer")]
-    [SouvenirManualQuestion("What was the displayed number?")]
+    [Handler("primeEncryption", "Prime Encryption", typeof(SPrimeEncryption), "VFlyer")]
+    [ManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessPrimeEncryption(ModuleData module)
     {
         var comp = GetComponent(module, "PrimeEncryptionScript");

@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SDimensionDisruption
 {
-    [SouvenirQuestion("Which of these was a visible character in {0}?", ThreeColumns6Answers)]
+    [Question("Which of these was a visible character in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-Z0-9")]
     QVisibleLetters,
 
-    [SouvenirDiscriminator("the Dimension Disruption where {0} was a visible character", Arguments = ["A"], ArgumentGroupSize = 1)]
+    [Discriminator("the Dimension Disruption where {0} was a visible character", Arguments = ["A"], ArgumentGroupSize = 1)]
     DVisibleLetters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("dimensionDisruption", "Dimension Disruption", typeof(SDimensionDisruption), "Hawker")]
-    [SouvenirManualQuestion("What were the visible characters?")]
+    [Handler("dimensionDisruption", "Dimension Disruption", typeof(SDimensionDisruption), "Hawker")]
+    [ManualQuestion("What were the visible characters?")]
     private IEnumerator<SouvenirInstruction> ProcessDimensionDisruption(ModuleData module)
     {
         var comp = GetComponent(module, "dimensionDisruptionScript");

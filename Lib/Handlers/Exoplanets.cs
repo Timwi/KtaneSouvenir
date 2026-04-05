@@ -5,23 +5,23 @@ using static Souvenir.AnswerLayout;
 
 public enum SExoplanets
 {
-    [SouvenirQuestion("What was the starting target planet in {0}?", TwoColumns4Answers, "outer", "middle", "inner", "none", TranslateAnswers = true)]
+    [Question("What was the starting target planet in {0}?", TwoColumns4Answers, "outer", "middle", "inner", "none", TranslateAnswers = true)]
     StartingTargetPlanet,
 
-    [SouvenirQuestion("What was the starting target digit in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+    [Question("What was the starting target digit in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
     StartingTargetDigit,
 
-    [SouvenirQuestion("What was the final target planet in {0}?", TwoColumns4Answers, "outer", "middle", "inner", "none", TranslateAnswers = true)]
+    [Question("What was the final target planet in {0}?", TwoColumns4Answers, "outer", "middle", "inner", "none", TranslateAnswers = true)]
     TargetPlanet,
 
-    [SouvenirQuestion("What was the final target digit in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+    [Question("What was the final target digit in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
     TargetDigit
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("exoplanets", "Exoplanets", typeof(SExoplanets), "Brawlboxgaming")]
-    [SouvenirManualQuestion("What were the starting and final target planet and digit?")]
+    [Handler("exoplanets", "Exoplanets", typeof(SExoplanets), "Brawlboxgaming")]
+    [ManualQuestion("What were the starting and final target planet and digit?")]
     private IEnumerator<SouvenirInstruction> ProcessExoplanets(ModuleData module)
     {
         var comp = GetComponent(module, "exoplanets");

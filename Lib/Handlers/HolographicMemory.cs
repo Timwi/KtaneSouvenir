@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SHolographicMemory
 {
-    [SouvenirQuestion("Which side did this symbol appear in {0}?", TwoColumns2Answers, "Light", "Dark", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("Which side did this symbol appear in {0}?", TwoColumns2Answers, "Light", "Dark", UsesQuestionSprite = true, TranslateAnswers = true)]
     InitialGrid
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("holographicMemory", "Holographic Memory", typeof(SHolographicMemory), "KiloBites")]
-    [SouvenirManualQuestion("Which side did each symbol appear?")]
+    [Handler("holographicMemory", "Holographic Memory", typeof(SHolographicMemory), "KiloBites")]
+    [ManualQuestion("Which side did each symbol appear?")]
     private IEnumerator<SouvenirInstruction> ProcessHolographicMemory(ModuleData module)
     {
         var comp = GetComponent(module, "HoloScript");

@@ -7,21 +7,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SCheatCheckout
 {
-    [SouvenirQuestion("What was the cryptocurrency of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the cryptocurrency of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Currency,
 
-    [SouvenirQuestion("What was the hack method for the {1} hack of {0}?", TwoColumns4Answers, "DSA", "W", "CI", "XSS", "BFA", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the hack method for the {1} hack of {0}?", TwoColumns4Answers, "DSA", "W", "CI", "XSS", "BFA", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Hack,
 
-    [SouvenirQuestion("What was the site for the {1} hack of {0}?", OneColumn4Answers, ExampleAnswers = ["medicalsite.co", "checkout.kt", "collection.com", "ktane.timwi.de", "cartoon.com", "galaxydeliver.com"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the site for the {1} hack of {0}?", OneColumn4Answers, ExampleAnswers = ["medicalsite.co", "checkout.kt", "collection.com", "ktane.timwi.de", "cartoon.com", "galaxydeliver.com"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Site
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("kataCheatCheckout", "Cheat Checkout", typeof(SCheatCheckout), "Hawker")]
-    [SouvenirManualQuestion("What was the cryptocurrency?")]
-    [SouvenirManualQuestion("What was the site and hack method for each hack?")]
+    [Handler("kataCheatCheckout", "Cheat Checkout", typeof(SCheatCheckout), "Hawker")]
+    [ManualQuestion("What was the cryptocurrency?")]
+    [ManualQuestion("What was the site and hack method for each hack?")]
     private IEnumerator<SouvenirInstruction> ProcessCheatCheckout(ModuleData module)
     {
         var comp = GetComponent(module, "CheatCheckoutRemake");

@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SColourFlash
 {
-    [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
+    [Question("What was the color of the last word in the sequence in {0}?", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
     LastColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ColourFlash", "Colour Flash", typeof(SColourFlash), "LotsOfS")]
-    [SouvenirManualQuestion("What was the color of the last word in the sequence?")]
+    [Handler("ColourFlash", "Colour Flash", typeof(SColourFlash), "LotsOfS")]
+    [ManualQuestion("What was the color of the last word in the sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessColourFlash(ModuleData module)
     {
         var comp = GetComponent(module, "ColourFlashModule");

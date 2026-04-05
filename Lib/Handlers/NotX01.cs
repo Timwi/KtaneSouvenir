@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotX01
 {
-    [SouvenirQuestion("Which sector value {1} present on {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which sector value {1} present on {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     SectorValues
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notX01", "Not X01", typeof(SNotX01), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the sector values?")]
+    [Handler("notX01", "Not X01", typeof(SNotX01), "Quinn Wuest")]
+    [ManualQuestion("What were the sector values?")]
     private IEnumerator<SouvenirInstruction> ProcessNotX01(ModuleData module)
     {
         var comp = GetComponent(module, "NX01Script");

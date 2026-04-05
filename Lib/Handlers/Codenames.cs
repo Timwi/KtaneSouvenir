@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCodenames
 {
-    [SouvenirQuestion("Which of these words was submitted in {0}?", TwoColumns4Answers, ExampleAnswers = ["Hyperborean", "Weenus", "Melody", "King"])]
+    [Question("Which of these words was submitted in {0}?", TwoColumns4Answers, ExampleAnswers = ["Hyperborean", "Weenus", "Melody", "King"])]
     Answers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("codenames", "Codenames", typeof(SCodenames), "TasThiluna")]
-    [SouvenirManualQuestion("Which words were submitted?")]
+    [Handler("codenames", "Codenames", typeof(SCodenames), "TasThiluna")]
+    [ManualQuestion("Which words were submitted?")]
     private IEnumerator<SouvenirInstruction> ProcessCodenames(ModuleData module)
     {
         var comp = GetComponent(module, "codenames");

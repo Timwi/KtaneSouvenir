@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SKudosudoku
 {
-    [SouvenirQuestion("Which square was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["pre-filled", "not pre-filled"], ArgumentGroupSize = 1)]
+    [Question("Which square was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["pre-filled", "not pre-filled"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(4, 4)]
     Prefilled
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("KudosudokuModule", "Kudosudoku", typeof(SKudosudoku), "Timwi")]
-    [SouvenirManualQuestion("Which squares were initially pre-filled?")]
+    [Handler("KudosudokuModule", "Kudosudoku", typeof(SKudosudoku), "Timwi")]
+    [ManualQuestion("Which squares were initially pre-filled?")]
     private IEnumerator<SouvenirInstruction> ProcessKudosudoku(ModuleData module)
     {
         var comp = GetComponent(module, "KudosudokuModule");

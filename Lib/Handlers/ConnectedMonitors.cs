@@ -7,22 +7,22 @@ using static Souvenir.AnswerLayout;
 
 public enum SConnectedMonitors
 {
-    [SouvenirQuestion("What number was initially displayed on this screen in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What number was initially displayed on this screen in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
     [AnswerGenerator.Integers(0, 99)]
     Number,
 
-    [SouvenirQuestion("What colour was the indicator on this screen in {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What colour was the indicator on this screen in {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", UsesQuestionSprite = true, TranslateAnswers = true)]
     SingleIndicator,
 
-    [SouvenirQuestion("What colour was the {1} indicator on this screen in {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What colour was the {1} indicator on this screen in {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     OrdinalIndicator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ConnectedMonitorsModule", "Connected Monitors", typeof(SConnectedMonitors), "Anonymous")]
-    [SouvenirManualQuestion("What numbers were initially displayed?")]
-    [SouvenirManualQuestion("What colors were the indicators?")]
+    [Handler("ConnectedMonitorsModule", "Connected Monitors", typeof(SConnectedMonitors), "Anonymous")]
+    [ManualQuestion("What numbers were initially displayed?")]
+    [ManualQuestion("What colors were the indicators?")]
     private IEnumerator<SouvenirInstruction> ProcessConnectedMonitors(ModuleData module)
     {
         var comp = GetComponent(module, "ConnectedMonitorsScript");

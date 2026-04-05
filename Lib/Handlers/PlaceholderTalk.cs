@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SPlaceholderTalk
 {
-    [SouvenirQuestion("What was the first half of the first phrase in {0}?", TwoColumns4Answers, ExampleAnswers = ["", "IS IN THE", "IS THE", "IS IN UH", "IS", "IS AT", "IS INN", "IS THE IN", "IN IS", "IS IN.", "IS IN", "THE", "FIRST-", "IN", "UH IS IN", "AT", "LAST-", "UH", "KEYBORD", "A"])]
+    [Question("What was the first half of the first phrase in {0}?", TwoColumns4Answers, ExampleAnswers = ["", "IS IN THE", "IS THE", "IS IN UH", "IS", "IS AT", "IS INN", "IS THE IN", "IN IS", "IS IN.", "IS IN", "THE", "FIRST-", "IN", "UH IS IN", "AT", "LAST-", "UH", "KEYBORD", "A"])]
     FirstPhrase,
 
-    [SouvenirQuestion("What was the last half of the first phrase in {0}?", TwoColumns4Answers, ExampleAnswers = ["", "FIRST POS.", "SECOND POS.", "THIRD POS.", "FOURTH POS.", "FIFTH POS.", "MILLIONTH POS.", "BILLIONTH POS.", "LAST POS.", "AN ANSWER"])]
+    [Question("What was the last half of the first phrase in {0}?", TwoColumns4Answers, ExampleAnswers = ["", "FIRST POS.", "SECOND POS.", "THIRD POS.", "FOURTH POS.", "FIFTH POS.", "MILLIONTH POS.", "BILLIONTH POS.", "LAST POS.", "AN ANSWER"])]
     Ordinal
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("placeholderTalk", "Placeholder Talk", typeof(SPlaceholderTalk), "Emik")]
-    [SouvenirManualQuestion("What was the entire first phrase?")]
-    [SouvenirManualQuestion("What was the calculated value for second phrase?")]
+    [Handler("placeholderTalk", "Placeholder Talk", typeof(SPlaceholderTalk), "Emik")]
+    [ManualQuestion("What was the entire first phrase?")]
+    [ManualQuestion("What was the calculated value for second phrase?")]
     private IEnumerator<SouvenirInstruction> ProcessPlaceholderTalk(ModuleData module)
     {
         var comp = GetComponent(module, "placeholderTalk");

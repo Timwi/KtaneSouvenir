@@ -3,7 +3,7 @@
 namespace Souvenir;
 
 [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
-public sealed class SouvenirDiscriminatorAttribute(string discriminatorText) : Attribute
+public sealed class DiscriminatorAttribute(string discriminatorText) : Attribute
 {
     public string DiscriminatorText { get; private set; } = discriminatorText;
 
@@ -15,5 +15,5 @@ public sealed class SouvenirDiscriminatorAttribute(string discriminatorText) : A
     public bool UsesQuestionSprite { get; set; }
 
     public Enum EnumValue { get; internal set; }
-    public SouvenirHandlerAttribute Handler { get; internal set; }
+    public HandlerAttribute Handler { get; internal set; }
 }

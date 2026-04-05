@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SHiddenValue
 {
-    [SouvenirQuestion("What was displayed on {0}?", TwoColumns4Answers, ExampleAnswers = ["Red 1", "Green 2", "White 3", "Yellow 4", "Magenta 5", "Cyan 6", "Purple 7"], TranslatableStrings = ["Red", "Green", "White", "Yellow", "Magenta", "Cyan", "Purple", "{0} {1}"])]
+    [Question("What was displayed on {0}?", TwoColumns4Answers, ExampleAnswers = ["Red 1", "Green 2", "White 3", "Yellow 4", "Magenta 5", "Cyan 6", "Purple 7"], TranslatableStrings = ["Red", "Green", "White", "Yellow", "Magenta", "Cyan", "Purple", "{0} {1}"])]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("theHiddenValue", "Hidden Value", typeof(SHiddenValue), "Anonymous", AddThe = true)]
-    [SouvenirManualQuestion("What numbers and colors were displayed?")]
+    [Handler("theHiddenValue", "Hidden Value", typeof(SHiddenValue), "Anonymous", AddThe = true)]
+    [ManualQuestion("What numbers and colors were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessHiddenValue(ModuleData module)
     {
         var comp = GetComponent(module, "hiddenValue");

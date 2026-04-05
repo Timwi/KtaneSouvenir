@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SXYRay
 {
-    [SouvenirQuestion("Which shape was scanned by {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "XYRaySprites")]
+    [Question("Which shape was scanned by {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "XYRaySprites")]
     Shapes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("xyRay", "XY-Ray", typeof(SXYRay), "Anonymous")]
-    [SouvenirManualQuestion("What were the scanned shapes?")]
+    [Handler("xyRay", "XY-Ray", typeof(SXYRay), "Anonymous")]
+    [ManualQuestion("What were the scanned shapes?")]
     private IEnumerator<SouvenirInstruction> ProcessXYRay(ModuleData module)
     {
         yield return WaitForSolve;

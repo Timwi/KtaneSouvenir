@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 
 namespace Souvenir;
 
-public abstract class SouvenirGimmickAttribute() : Attribute
+public abstract class GimmickAttribute() : Attribute
 {
     public abstract string ApplyGimmick(string questionText, object[] args);
 }
 
 [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
-public sealed class MssNgvWlsGimmickAttribute() : SouvenirGimmickAttribute
+public sealed class MssNgvWlsGimmickAttribute() : GimmickAttribute
 {
     public override string ApplyGimmick(string questionText, object[] args)
     {
@@ -42,7 +41,7 @@ public sealed class MssNgvWlsGimmickAttribute() : SouvenirGimmickAttribute
 }
 
 [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
-public sealed class ReverseQuestionGimmickAttribute() : SouvenirGimmickAttribute
+public sealed class ReverseQuestionGimmickAttribute() : GimmickAttribute
 {
     public override string ApplyGimmick(string questionText, object[] args)
     {

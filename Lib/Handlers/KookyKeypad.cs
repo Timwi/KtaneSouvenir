@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SKookyKeypad
 {
-    [SouvenirQuestion("What color was the {1} button’s LED in {0}?", OneColumn4Answers, "Crimson", "Red", "Coral", "Orange", "Lemon Chiffon", "Medium Spring Green", "Deep Sea Green", "Cadet Blue", "Slate Blue", "Dark Magenta", "Unlit", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslateAnswers = true)]
+    [Question("What color was the {1} button’s LED in {0}?", OneColumn4Answers, "Crimson", "Red", "Coral", "Orange", "Lemon Chiffon", "Medium Spring Green", "Deep Sea Green", "Cadet Blue", "Slate Blue", "Dark Magenta", "Unlit", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslateAnswers = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("kookyKeypadModule", "Kooky Keypad", typeof(SKookyKeypad), "Anonymous")]
-    [SouvenirManualQuestion("What colors were the LEDs?")]
+    [Handler("kookyKeypadModule", "Kooky Keypad", typeof(SKookyKeypad), "Anonymous")]
+    [ManualQuestion("What colors were the LEDs?")]
     private IEnumerator<SouvenirInstruction> ProcessKookyKeypad(ModuleData module)
     {
         yield return WaitForSolve;

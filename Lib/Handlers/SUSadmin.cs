@@ -6,19 +6,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SSUSadmin
 {
-    [SouvenirQuestion("Which security protocol was installed in {0}?", TwoColumns4Answers, "ByteDefender", "Kasperovich", "Awast", "MedicWeb", "Disco", "MOD32")]
+    [Question("Which security protocol was installed in {0}?", TwoColumns4Answers, "ByteDefender", "Kasperovich", "Awast", "MedicWeb", "Disco", "MOD32")]
     Security,
 
-    [SouvenirQuestion("What was the version number in {0}?", ThreeColumns6Answers)]
+    [Question("What was the version number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 99)]
     Version
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("susadmin", "SUSadmin", typeof(SSUSadmin), "Anonymous")]
-    [SouvenirManualQuestion("Which security protocols were installed?")]
-    [SouvenirManualQuestion("What was the version number?")]
+    [Handler("susadmin", "SUSadmin", typeof(SSUSadmin), "Anonymous")]
+    [ManualQuestion("Which security protocols were installed?")]
+    [ManualQuestion("What was the version number?")]
     private IEnumerator<SouvenirInstruction> ProcessSUSadmin(ModuleData module)
     {
         yield return WaitForSolve;

@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SHiddenColors
 {
-    [SouvenirQuestion("What was the color of the main LED in {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Magenta", "White", TranslateAnswers = true)]
+    [Question("What was the color of the main LED in {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Magenta", "White", TranslateAnswers = true)]
     LED
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("lgndHiddenColors", "Hidden Colors", typeof(SHiddenColors), "TasThiluna")]
-    [SouvenirManualQuestion("What was the main LED’s color?")]
+    [Handler("lgndHiddenColors", "Hidden Colors", typeof(SHiddenColors), "TasThiluna")]
+    [ManualQuestion("What was the main LED’s color?")]
     private IEnumerator<SouvenirInstruction> ProcessHiddenColors(ModuleData module)
     {
         var comp = GetComponent(module, "HiddenColorsScript");

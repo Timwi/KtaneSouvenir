@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoubleListening
 {
-    [SouvenirQuestion("What clip was played in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "ListeningAudio")]
+    [Question("What clip was played in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "ListeningAudio")]
     Sounds
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("doubleListening", "Double Listening", typeof(SDoubleListening), "Anonymous")]
-    [SouvenirManualQuestion("What sounds played?")]
+    [Handler("doubleListening", "Double Listening", typeof(SDoubleListening), "Anonymous")]
+    [ManualQuestion("What sounds played?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleListening(ModuleData module)
     {
         var comp = GetComponent(module, "doubleListeningScript");

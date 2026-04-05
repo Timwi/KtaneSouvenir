@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SLetterMath
 {
-    [SouvenirQuestion("What was the letter on the {1} display in {0}?", ThreeColumns6Answers, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the letter on the {1} display in {0}?", ThreeColumns6Answers, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("A-Z")]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("letterMath", "Letter Math", typeof(SLetterMath), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the letters on the display?")]
+    [Handler("letterMath", "Letter Math", typeof(SLetterMath), "Quinn Wuest")]
+    [ManualQuestion("What were the letters on the display?")]
     private IEnumerator<SouvenirInstruction> ProcessLetterMath(ModuleData module)
     {
         var comp = GetComponent(module, "LetterMathModule");

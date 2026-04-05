@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonStages
 {
-    [SouvenirQuestion("What color was the indicator in the {1} stage in {0}?", ThreeColumns6Answers, "red", "blue", "yellow", "orange", "magenta", "green", "pink", "lime", "cyan", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the indicator in the {1} stage in {0}?", ThreeColumns6Answers, "red", "blue", "yellow", "orange", "magenta", "green", "pink", "lime", "cyan", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Indicator,
 
-    [SouvenirQuestion("Which color flashed {1} in the {2} stage in {0}?", ThreeColumns6Answers, "red", "blue", "yellow", "orange", "magenta", "green", "pink", "lime", "cyan", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("Which color flashed {1} in the {2} stage in {0}?", ThreeColumns6Answers, "red", "blue", "yellow", "orange", "magenta", "green", "pink", "lime", "cyan", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     Flashes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonStages", "Simon Stages", typeof(SSimonStages), "Espik")]
-    [SouvenirManualQuestion("Which colors flashed in each stage?")]
-    [SouvenirManualQuestion("What color was the indicator in each stage?")]
+    [Handler("simonStages", "Simon Stages", typeof(SSimonStages), "Espik")]
+    [ManualQuestion("Which colors flashed in each stage?")]
+    [ManualQuestion("What color was the indicator in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonStages(ModuleData module)
     {
         var comp = GetComponent(module, "SimonStagesHandler");

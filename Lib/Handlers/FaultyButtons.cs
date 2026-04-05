@@ -4,19 +4,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SFaultyButtons
 {
-    [SouvenirQuestion("Which button referred to this button in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
+    [Question("Which button referred to this button in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     ReferredToThisButton,
 
-    [SouvenirQuestion("Which button did this button refer to in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
+    [Question("Which button did this button refer to in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     ThisButtonReferredTo
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSFaultyButtons", "Faulty Buttons", typeof(SFaultyButtons), "Kuro")]
-    [SouvenirManualQuestion("Which button did each button refer to?")]
+    [Handler("GSFaultyButtons", "Faulty Buttons", typeof(SFaultyButtons), "Kuro")]
+    [ManualQuestion("Which button did each button refer to?")]
     private IEnumerator<SouvenirInstruction> ProcessFaultyButtons(ModuleData module)
     {
         var comp = GetComponent(module, "FaultyButtonsScript");

@@ -7,19 +7,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SSwitchingMaze
 {
-    [SouvenirQuestion("What was the seed in {0}?", TwoColumns4Answers)]
+    [Question("What was the seed in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings(8, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/")]
     Seed,
 
-    [SouvenirQuestion("What was the starting maze color in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Cyan", "Yellow", "Black", "White", "Gray", "Orange", "Pink", "Brown", TranslateAnswers = true)]
+    [Question("What was the starting maze color in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Cyan", "Yellow", "Black", "White", "Gray", "Orange", "Pink", "Brown", TranslateAnswers = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MazeSwitching", "Switching Maze", typeof(SSwitchingMaze), "BigCrunch22")]
-    [SouvenirManualQuestion("What was the seed?")]
-    [SouvenirManualQuestion("What was the starting maze color?")]
+    [Handler("MazeSwitching", "Switching Maze", typeof(SSwitchingMaze), "BigCrunch22")]
+    [ManualQuestion("What was the seed?")]
+    [ManualQuestion("What was the starting maze color?")]
     private IEnumerator<SouvenirInstruction> ProcessSwitchingMaze(ModuleData module)
     {
         var comp = GetComponent(module, "SwitchingMazeScript");

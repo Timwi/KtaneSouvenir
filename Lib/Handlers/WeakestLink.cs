@@ -6,26 +6,26 @@ using static Souvenir.AnswerLayout;
 
 public enum SWeakestLink
 {
-    [SouvenirQuestion("Who did you eliminate in {0}?", OneColumn4Answers, ExampleAnswers = ["Annie", "Albert", "Josephine", "Frederick"])]
+    [Question("Who did you eliminate in {0}?", OneColumn4Answers, ExampleAnswers = ["Annie", "Albert", "Josephine", "Frederick"])]
     Elimination,
 
-    [SouvenirQuestion("Who made it to the Money Phase with you in {0}?", OneColumn4Answers, ExampleAnswers = ["Annie", "Albert", "Josephine", "Frederick"])]
+    [Question("Who made it to the Money Phase with you in {0}?", OneColumn4Answers, ExampleAnswers = ["Annie", "Albert", "Josephine", "Frederick"])]
     MoneyPhaseName,
 
-    [SouvenirQuestion("What was {1}’s skill in {0}?", OneColumn4Answers, "Geography", "Language", "Wildlife", "Biology", "Maths", "KTANE", "History", "Other", ExampleAnswers = ["KTANE", "Geography", "Language", "Wildlife"], Arguments = ["Annie", "Albert", "Josephine", "Frederick"], ArgumentGroupSize = 1)]
+    [Question("What was {1}’s skill in {0}?", OneColumn4Answers, "Geography", "Language", "Wildlife", "Biology", "Maths", "KTANE", "History", "Other", ExampleAnswers = ["KTANE", "Geography", "Language", "Wildlife"], Arguments = ["Annie", "Albert", "Josephine", "Frederick"], ArgumentGroupSize = 1)]
     Skill,
 
-    [SouvenirQuestion("What ratio did {1} get in the Question Phase in {0}?", OneColumn4Answers, Arguments = ["Annie", "Albert", "Josephine", "Frederick"], ArgumentGroupSize = 1)]
+    [Question("What ratio did {1} get in the Question Phase in {0}?", OneColumn4Answers, Arguments = ["Annie", "Albert", "Josephine", "Frederick"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("0-5", "/", "56")]
     Ratio
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TheWeakestLink", "Weakest Link", typeof(SWeakestLink), "Hawker", AddThe = true)]
-    [SouvenirManualQuestion("Who was eliminated?")]
-    [SouvenirManualQuestion("Who joined you in the Money Phase?")]
-    [SouvenirManualQuestion("What were the other contestants’ skills and correct answer ratios?")]
+    [Handler("TheWeakestLink", "Weakest Link", typeof(SWeakestLink), "Hawker", AddThe = true)]
+    [ManualQuestion("Who was eliminated?")]
+    [ManualQuestion("Who joined you in the Money Phase?")]
+    [ManualQuestion("What were the other contestants’ skills and correct answer ratios?")]
     private IEnumerator<SouvenirInstruction> ProcessWeakestLink(ModuleData module)
     {
         var comp = GetComponent(module, "WeakestLink");

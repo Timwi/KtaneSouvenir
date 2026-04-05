@@ -6,20 +6,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SOrderedKeys
 {
-    [SouvenirQuestion("What color was this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors,
 
-    [SouvenirQuestion("What was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Labels,
 
-    [SouvenirQuestion("What color was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     LabelColors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("orderedKeys", "Ordered Keys", typeof(SOrderedKeys), "TasThiluna")]
-    [SouvenirManualQuestion("What were the labels, their colors, and the colors of the keys in each stage?")]
+    [Handler("orderedKeys", "Ordered Keys", typeof(SOrderedKeys), "TasThiluna")]
+    [ManualQuestion("What were the labels, their colors, and the colors of the keys in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessOrderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "OrderedKeysScript");

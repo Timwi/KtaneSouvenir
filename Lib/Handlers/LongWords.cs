@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SLongWords
 {
-    [SouvenirQuestion("What was the word on the top display on {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABOARD", "ABRUPT", "SAFEST", "LAMBDA", "NARROW", "ECHOES", "VALVES", "YONDER", "ZIGGED", "UNBIND"])]
+    [Question("What was the word on the top display on {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABOARD", "ABRUPT", "SAFEST", "LAMBDA", "NARROW", "ECHOES", "VALVES", "YONDER", "ZIGGED", "UNBIND"])]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("LongWords", "Long Words", typeof(SLongWords), "GoodHood")]
-    [SouvenirManualQuestion("What was the word on the top display?")]
+    [Handler("LongWords", "Long Words", typeof(SLongWords), "GoodHood")]
+    [ManualQuestion("What was the word on the top display?")]
     private IEnumerator<SouvenirInstruction> ProcessLongWords(ModuleData module)
     {
         var comp = GetComponent(module, "LongWords");

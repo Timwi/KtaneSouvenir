@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum STenButtonColorCode
 {
-    [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", ThreeColumns3Answers, "red", "green", "blue", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the initial color of the {1} button in the {2} stage of {0}?", ThreeColumns3Answers, "red", "green", "blue", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     InitialColors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TenButtonColorCode", "Ten-Button Color Code", typeof(STenButtonColorCode), "Timwi")]
-    [SouvenirManualQuestion("What were the buttons’ initial colors in each stage?")]
+    [Handler("TenButtonColorCode", "Ten-Button Color Code", typeof(STenButtonColorCode), "Timwi")]
+    [ManualQuestion("What were the buttons’ initial colors in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessTenButtonColorCode(ModuleData module)
     {
         var comp = GetComponent(module, "scr_colorCode");

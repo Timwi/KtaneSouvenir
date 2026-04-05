@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SAngelHernandez
 {
-    [SouvenirQuestion("What letter was shown by the raised buttons on the {1} stage on {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What letter was shown by the raised buttons on the {1} stage on {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     MainLetter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("AngelHernandezModule", "Ángel Hernández", typeof(SAngelHernandez), "Quinn Wuest")]
-    [SouvenirManualQuestion("What letter was shown by the raised buttons in each stage?")]
+    [Handler("AngelHernandezModule", "Ángel Hernández", typeof(SAngelHernandez), "Quinn Wuest")]
+    [ManualQuestion("What letter was shown by the raised buttons in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessAngelHernandez(ModuleData module)
     {
         var comp = GetComponent(module, "AngelHernandezScript");

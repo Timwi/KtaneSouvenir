@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SFollowMe
 {
-    [SouvenirQuestion("What was the {1} flashing direction in {0}?", TwoColumns4Answers, "Up", "Down", "Left", "Right", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the {1} flashing direction in {0}?", TwoColumns4Answers, "Up", "Down", "Left", "Right", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     DisplayedPath
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("FollowMe", "Follow Me", typeof(SFollowMe), "Kuro")]
-    [SouvenirManualQuestion("What were the flashing directions?")]
+    [Handler("FollowMe", "Follow Me", typeof(SFollowMe), "Kuro")]
+    [ManualQuestion("What were the flashing directions?")]
     private IEnumerator<SouvenirInstruction> ProcessFollowMe(ModuleData module)
     {
         var comp = GetComponent(module, "FollowMe");

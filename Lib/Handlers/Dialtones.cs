@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDialtones
 {
-    [SouvenirQuestion("What dialtones were heard in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
+    [Question("What dialtones were heard in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
     Dialtones
 }
 
@@ -14,8 +14,8 @@ public partial class SouvenirModule
 {
     private static readonly Dictionary<string, AudioClip> _dialtonesAnswers = [];
 
-    [SouvenirHandler("xelDialtones", "Dialtones", typeof(SDialtones), "Anonymous")]
-    [SouvenirManualQuestion("Which tones played?")]
+    [Handler("xelDialtones", "Dialtones", typeof(SDialtones), "Anonymous")]
+    [ManualQuestion("Which tones played?")]
     private IEnumerator<SouvenirInstruction> ProcessDialtones(ModuleData module)
     {
         var comp = GetComponent(module, "Dialtones");

@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SDigitString
 {
-    [SouvenirQuestion("What was the initial number in {0}?", TwoColumns4Answers)]
+    [Question("What was the initial number in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings("1-9", "6*0-9", "1-9")]
     InitialNumber
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("digitString", "Digit String", typeof(SDigitString), "GoodHood")]
-    [SouvenirManualQuestion("What was the displayed digit string?")]
+    [Handler("digitString", "Digit String", typeof(SDigitString), "GoodHood")]
+    [ManualQuestion("What was the displayed digit string?")]
     private IEnumerator<SouvenirInstruction> ProcessDigitString(ModuleData module)
     {
         var comp = GetComponent(module, "digitString");

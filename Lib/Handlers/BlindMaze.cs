@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBlindMaze
 {
-    [SouvenirQuestion("What color was the {1} button in {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Gray", "Yellow", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["north", "east", "west", "south"], ArgumentGroupSize = 1)]
+    [Question("What color was the {1} button in {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Gray", "Yellow", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["north", "east", "west", "south"], ArgumentGroupSize = 1)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("BlindMaze", "Blind Maze", typeof(SBlindMaze), "Timwi")]
-    [SouvenirManualQuestion("What colors were the buttons?")]
+    [Handler("BlindMaze", "Blind Maze", typeof(SBlindMaze), "Timwi")]
+    [ManualQuestion("What colors were the buttons?")]
     private IEnumerator<SouvenirInstruction> ProcessBlindMaze(ModuleData module)
     {
         var comp = GetComponent(module, "BlindMaze");

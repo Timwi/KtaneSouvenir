@@ -5,17 +5,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SOnlyConnect
 {
-    [SouvenirQuestion("Which Egyptian hieroglyph was in the {1} in {0}?", TwoColumns4Answers, "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right"], ArgumentGroupSize = 1)]
+    [Question("Which Egyptian hieroglyph was in the {1} in {0}?", TwoColumns4Answers, "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right"], ArgumentGroupSize = 1)]
     QHieroglyphs,
 
-    [SouvenirDiscriminator("the Only Connect where {0} was in the {1}", Arguments = ["Two Reeds", "top left", "Lion", "top middle", "Twisted Flax", "top right", "Horned Viper", "bottom left", "Water", "bottom middle", "Eye of Horus", "bottom right"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    [Discriminator("the Only Connect where {0} was in the {1}", Arguments = ["Two Reeds", "top left", "Lion", "top middle", "Twisted Flax", "top right", "Horned Viper", "bottom left", "Water", "bottom middle", "Eye of Horus", "bottom right"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
     DHieroglyphs
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("OnlyConnectModule", "Only Connect", typeof(SOnlyConnect), "Timwi")]
-    [SouvenirManualQuestion("What were the positions of the Egyptian hieroglyphs?")]
+    [Handler("OnlyConnectModule", "Only Connect", typeof(SOnlyConnect), "Timwi")]
+    [ManualQuestion("What were the positions of the Egyptian hieroglyphs?")]
     private IEnumerator<SouvenirInstruction> ProcessOnlyConnect(ModuleData module)
     {
         var comp = GetComponent(module, "OnlyConnectModule");

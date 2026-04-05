@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SEtterna
 {
-    [SouvenirQuestion("What was the beat for the {1} arrow from the bottom in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the beat for the {1} arrow from the bottom in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 32)]
     Number
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("etterna", "Etterna", typeof(SEtterna), "Emik")]
-    [SouvenirManualQuestion("What beat was the input for each arrow?")]
+    [Handler("etterna", "Etterna", typeof(SEtterna), "Emik")]
+    [ManualQuestion("What beat was the input for each arrow?")]
     private IEnumerator<SouvenirInstruction> ProcessEtterna(ModuleData module)
     {
         var comp = GetComponent(module, "Etterna");

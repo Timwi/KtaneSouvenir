@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SWumbo
 {
-    [SouvenirQuestion("What was the number in {0}?", OneColumn4Answers, ExampleAnswers = ["30030", "813244863240810000", "0", "376639725", "27081081027000", "901800900"])]
+    [Question("What was the number in {0}?", OneColumn4Answers, ExampleAnswers = ["30030", "813244863240810000", "0", "376639725", "27081081027000", "901800900"])]
     [AnswerGenerator.Wumbo]
     Number
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("wumbo", "Wumbo", typeof(SWumbo), "Anonymous")]
-    [SouvenirManualQuestion("What was the number?")]
+    [Handler("wumbo", "Wumbo", typeof(SWumbo), "Anonymous")]
+    [ManualQuestion("What was the number?")]
     private IEnumerator<SouvenirInstruction> ProcessWumbo(ModuleData module)
     {
         yield return WaitForSolve;

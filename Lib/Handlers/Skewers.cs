@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSkewers
 {
-    [SouvenirQuestion("What color was this gem in {0}?", ThreeColumns6Answers, "Black", "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What color was this gem in {0}?", ThreeColumns6Answers, "Black", "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White", UsesQuestionSprite = true, TranslateAnswers = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Skewers", "Skewers", typeof(SSkewers), "Anonymous")]
-    [SouvenirManualQuestion("What colors were the gems?")]
+    [Handler("Skewers", "Skewers", typeof(SSkewers), "Anonymous")]
+    [ManualQuestion("What colors were the gems?")]
     private IEnumerator<SouvenirInstruction> ProcessSkewers(ModuleData module)
     {
         yield return WaitForSolve;

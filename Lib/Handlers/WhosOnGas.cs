@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SWhosOnGas
 {
-    [SouvenirQuestion("What was the display in the first phase of the {1} stage on {0}?", ThreeColumns6Answers, ExampleAnswers = ["DISPLAY", "PRESS", "PRESSED", "LAST", "START", "ONE"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the display in the first phase of the {1} stage on {0}?", ThreeColumns6Answers, ExampleAnswers = ["DISPLAY", "PRESS", "PRESSED", "LAST", "START", "ONE"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("whosOnGas", "Who’s on Gas", typeof(SWhosOnGas), "Quinn Wuest")]
-    [SouvenirManualQuestion("What was displayed in the first phase of each stage?")]
+    [Handler("whosOnGas", "Who’s on Gas", typeof(SWhosOnGas), "Quinn Wuest")]
+    [ManualQuestion("What was displayed in the first phase of each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessWhosOnGas(ModuleData module)
     {
         var comp = GetComponent(module, "WhosOnGasScript");

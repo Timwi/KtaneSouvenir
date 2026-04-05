@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SXenocryst
 {
-    [SouvenirQuestion("What was the color of the {1} flash in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} flash in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Question
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSXenocryst", "Xenocryst", typeof(SXenocryst), "GhostSalt", AddThe = true)]
-    [SouvenirManualQuestion("What was the color of each flash?")]
+    [Handler("GSXenocryst", "Xenocryst", typeof(SXenocryst), "GhostSalt", AddThe = true)]
+    [ManualQuestion("What was the color of each flash?")]
     private IEnumerator<SouvenirInstruction> ProcessXenocryst(ModuleData module)
     {
         var comp = GetComponent(module, "XenocrystScript");

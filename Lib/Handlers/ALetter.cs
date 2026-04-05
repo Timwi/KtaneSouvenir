@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SALetter
 {
-    [SouvenirQuestion("What was the initial letter in {0}?", ThreeColumns6Answers)]
+    [Question("What was the initial letter in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-Z")]
     InitialLetter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("LetterModule", "A Letter", typeof(SALetter), "Sierra")]
-    [SouvenirManualQuestion("What was the initially displayed letter?")]
+    [Handler("LetterModule", "A Letter", typeof(SALetter), "Sierra")]
+    [ManualQuestion("What was the initially displayed letter?")]
     private IEnumerator<SouvenirInstruction> ProcessALetter(ModuleData module)
     {
         var comp = GetComponent(module, "Letter");

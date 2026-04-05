@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SKeywords
 {
-    [SouvenirQuestion("What were the first four letters on the display in {0}?", ThreeColumns6Answers, ExampleAnswers = ["abvo", "pola", "drea", "buew", "utre", "oidy"])]
+    [Question("What were the first four letters on the display in {0}?", ThreeColumns6Answers, ExampleAnswers = ["abvo", "pola", "drea", "buew", "utre", "oidy"])]
     DisplayedKey
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("xtrkeywords", "Keywords", typeof(SKeywords), "Kuro")]
-    [SouvenirManualQuestion("What were the letters on the display?")]
+    [Handler("xtrkeywords", "Keywords", typeof(SKeywords), "Kuro")]
+    [ManualQuestion("What were the letters on the display?")]
     private IEnumerator<SouvenirInstruction> ProcessKeywords(ModuleData module)
     {
         var comp = GetComponent(module, "keywordsScript");

@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SGrayButton
 {
-    [SouvenirQuestion("What was the {1} coordinate on the display in {0}?", ThreeColumns6Answers, Arguments = ["horizontal", "vertical"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the {1} coordinate on the display in {0}?", ThreeColumns6Answers, Arguments = ["horizontal", "vertical"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(0, 9)]
     Coordinates
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GrayButtonModule", "Gray Button", typeof(SGrayButton), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What were the coordinates on the display?")]
+    [Handler("GrayButtonModule", "Gray Button", typeof(SGrayButton), "Timwi", AddThe = true)]
+    [ManualQuestion("What were the coordinates on the display?")]
     private IEnumerator<SouvenirInstruction> ProcessGrayButton(ModuleData module)
     {
         var comp = GetComponent(module, "GrayButtonScript");

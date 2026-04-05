@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SRule
 {
-    [SouvenirQuestion("What was the rule number in {0}?", ThreeColumns6Answers)]
+    [Question("What was the rule number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 15)]
     Number
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("theRule", "Rule", typeof(SRule), "TasThiluna", AddThe = true)]
-    [SouvenirManualQuestion("What was the rule number?")]
+    [Handler("theRule", "Rule", typeof(SRule), "TasThiluna", AddThe = true)]
+    [ManualQuestion("What was the rule number?")]
     private IEnumerator<SouvenirInstruction> ProcessRule(ModuleData module)
     {
         var comp = GetComponent(module, "TheRuleScript");

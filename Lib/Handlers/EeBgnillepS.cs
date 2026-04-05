@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SEeBgnillepS
 {
-    [SouvenirQuestion("What word was asked to be spelled in {0}?", TwoColumns4Answers, ExampleAnswers = ["odontalgia", "precocious", "privilege", "prospicience"], ReferenceDocumentation = true)]
+    [Question("What word was asked to be spelled in {0}?", TwoColumns4Answers, ExampleAnswers = ["odontalgia", "precocious", "privilege", "prospicience"], ReferenceDocumentation = true)]
     [ReverseQuestionGimmick]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("eeBgnilleps", "eeB gnillepS", typeof(SEeBgnillepS), "BigCrunch22")]
-    [SouvenirManualQuestion("What word was asked to be spelled?")]
+    [Handler("eeBgnilleps", "eeB gnillepS", typeof(SEeBgnillepS), "BigCrunch22")]
+    [ManualQuestion("What word was asked to be spelled?")]
     private IEnumerator<SouvenirInstruction> ProcessEeBgnillepS(ModuleData module)
     {
         var comp = GetComponent(module, "tpircSeeBgnillepS");

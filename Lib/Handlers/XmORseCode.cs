@@ -6,19 +6,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SXmORseCode
 {
-    [SouvenirQuestion("What word did you decrypt in {0}?", ThreeColumns6Answers, "ADMIT", "AWARD", "BANJO", "BRAVO", "CHILL", "CYCLE", "DECOR", "DISCO", "EERIE", "ERUPT", "FEWER", "FUZZY", "GERMS", "GUSTO", "HAULT", "HEXED", "ICHOR", "INFER", "JEWEL", "KTANE", "LADLE", "LYRIC", "MANGO", "MUTED", "NERDS", "NIXIE", "OOZED", "OXIDE", "PARTY", "PURSE", "QUEST", "RETRO", "ROUGH", "SCOWL", "SIXTH", "THANK", "TWINE", "UNBOX", "USHER", "VIBES", "VOICE", "WHIZZ", "WRUNG", "XENON", "YOLKS", "ZILCH")]
+    [Question("What word did you decrypt in {0}?", ThreeColumns6Answers, "ADMIT", "AWARD", "BANJO", "BRAVO", "CHILL", "CYCLE", "DECOR", "DISCO", "EERIE", "ERUPT", "FEWER", "FUZZY", "GERMS", "GUSTO", "HAULT", "HEXED", "ICHOR", "INFER", "JEWEL", "KTANE", "LADLE", "LYRIC", "MANGO", "MUTED", "NERDS", "NIXIE", "OOZED", "OXIDE", "PARTY", "PURSE", "QUEST", "RETRO", "ROUGH", "SCOWL", "SIXTH", "THANK", "TWINE", "UNBOX", "USHER", "VIBES", "VOICE", "WHIZZ", "WRUNG", "XENON", "YOLKS", "ZILCH")]
     Word,
 
-    [SouvenirQuestion("What was the {1} displayed letter (in reading order) in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} displayed letter (in reading order) in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-Z")]
     DisplayedLetters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("xmorse", "XmORse Code", typeof(SXmORseCode), "shortc1rcuit")]
-    [SouvenirManualQuestion("What were the displayed letters?")]
-    [SouvenirManualQuestion("What word did you decrypt?")]
+    [Handler("xmorse", "XmORse Code", typeof(SXmORseCode), "shortc1rcuit")]
+    [ManualQuestion("What were the displayed letters?")]
+    [ManualQuestion("What word did you decrypt?")]
     private IEnumerator<SouvenirInstruction> ProcessXmORseCode(ModuleData module)
     {
         var comp = GetComponent(module, "XmORseCode");

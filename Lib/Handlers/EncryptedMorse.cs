@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SEncryptedMorse
 {
-    [SouvenirQuestion("What was the received key in {0}?", TwoColumns4Answers)]
+    [Question("What was the received key in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings("8*A-Z")]
     Key
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("EncryptedMorse", "Encrypted Morse", typeof(SEncryptedMorse), "Espik")]
-    [SouvenirManualQuestion("What was the received key?")]
+    [Handler("EncryptedMorse", "Encrypted Morse", typeof(SEncryptedMorse), "Espik")]
+    [ManualQuestion("What was the received key?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptedMorse(ModuleData module)
     {
         var comp = GetComponent(module, "EncryptedMorseModule");

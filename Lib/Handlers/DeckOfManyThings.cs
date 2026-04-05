@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDeckOfManyThings
 {
-    [SouvenirQuestion("What deck did the first card of {0} belong to?", TwoColumns4Answers, "Standard", "Metropolitan", "Maritime", "Arctic", "Tropical", "Oasis", "Celestial", TranslateAnswers = true)]
+    [Question("What deck did the first card of {0} belong to?", TwoColumns4Answers, "Standard", "Metropolitan", "Maritime", "Arctic", "Tropical", "Oasis", "Celestial", TranslateAnswers = true)]
     FirstCard
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("deckOfManyThings", "Deck of Many Things", typeof(SDeckOfManyThings), "luisdiogo98", AddThe = true)]
-    [SouvenirManualQuestion("What deck did the first card belong to?")]
+    [Handler("deckOfManyThings", "Deck of Many Things", typeof(SDeckOfManyThings), "luisdiogo98", AddThe = true)]
+    [ManualQuestion("What deck did the first card belong to?")]
     private IEnumerator<SouvenirInstruction> ProcessDeckOfManyThings(ModuleData module)
     {
         var comp = GetComponent(module, "deckOfManyThingsScript");

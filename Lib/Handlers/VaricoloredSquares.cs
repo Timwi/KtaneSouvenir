@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SVaricoloredSquares
 {
-    [SouvenirQuestion("What was the initially pressed color on {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true)]
+    [Question("What was the initially pressed color on {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true)]
     InitialColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("VaricoloredSquaresModule", "Varicolored Squares", typeof(SVaricoloredSquares), "luisdiogo98")]
-    [SouvenirManualQuestion("What was the initially pressed color?")]
+    [Handler("VaricoloredSquaresModule", "Varicolored Squares", typeof(SVaricoloredSquares), "luisdiogo98")]
+    [ManualQuestion("What was the initially pressed color?")]
     private IEnumerator<SouvenirInstruction> ProcessVaricoloredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "VaricoloredSquaresModule");

@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SRecoloredSwitches
 {
-    [SouvenirQuestion("What was the color of the {1} LED in {0}?", TwoColumns4Answers, "red", "green", "blue", "cyan", "orange", "purple", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} LED in {0}?", TwoColumns4Answers, "red", "green", "blue", "cyan", "orange", "purple", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     LedColors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("R4YRecoloredSwitches", "Recolored Switches", typeof(SRecoloredSwitches), "Timwi")]
-    [SouvenirManualQuestion("What were the LED colors?")]
+    [Handler("R4YRecoloredSwitches", "Recolored Switches", typeof(SRecoloredSwitches), "Timwi")]
+    [ManualQuestion("What were the LED colors?")]
     private IEnumerator<SouvenirInstruction> ProcessRecoloredSwitches(ModuleData module)
     {
         var comp = GetComponent(module, "Recolored_Switches");

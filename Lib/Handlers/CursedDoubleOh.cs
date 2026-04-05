@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SCursedDoubleOh
 {
-    [SouvenirQuestion("What was the first digit of the initially displayed number in {0}?", ThreeColumns6Answers)]
+    [Question("What was the first digit of the initially displayed number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9)]
     InitialPosition
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("CursedDoubleOhModule", "Cursed Double-Oh", typeof(SCursedDoubleOh), "Kuro")]
-    [SouvenirManualQuestion("What was the first digit of the initial number?")]
+    [Handler("CursedDoubleOhModule", "Cursed Double-Oh", typeof(SCursedDoubleOh), "Kuro")]
+    [ManualQuestion("What was the first digit of the initial number?")]
     private IEnumerator<SouvenirInstruction> ProcessCursedDoubleOh(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleOhModule");

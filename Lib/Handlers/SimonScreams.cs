@@ -6,10 +6,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonScreams
 {
-    [SouvenirQuestion("Which color flashed {1} in the final sequence in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which color flashed {1} in the final sequence in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Flashing,
 
-    [SouvenirQuestion("In which stage(s) of {0} was “{1}” the applicable rule?", TwoColumns4Answers, "first", "second", "third", "first and second", "first and third", "second and third", "all of them", TranslateAnswers = true, TranslateArguments = [true], Arguments = [
+    [Question("In which stage(s) of {0} was “{1}” the applicable rule?", TwoColumns4Answers, "first", "second", "third", "first and second", "first and third", "second and third", "all of them", TranslateAnswers = true, TranslateArguments = [true], Arguments = [
                 "a color flashed, then a color two away, then the first again",
                 "a color flashed, then a color two away, then the one opposite that",
                 "a color flashed, then a color two away, then the one opposite the first",
@@ -53,15 +53,15 @@ public enum SSimonScreams
                 "two colors two apart flashed in counter-clockwise order"], ArgumentGroupSize = 1)]
     RuleSimple,
 
-    [SouvenirQuestion("In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?", TwoColumns4Answers, "first", "second", "third", "first and second", "first and third", "second and third", "all of them", TranslateAnswers = true, TranslateArguments = [true, true, true, true], Arguments = ["at most one color", "Red", "Orange", "Yellow", "at least two colors", "Green", "Blue", "Purple"], ArgumentGroupSize = 4)]
+    [Question("In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?", TwoColumns4Answers, "first", "second", "third", "first and second", "first and third", "second and third", "all of them", TranslateAnswers = true, TranslateArguments = [true, true, true, true], Arguments = ["at most one color", "Red", "Orange", "Yellow", "at least two colors", "Green", "Blue", "Purple"], ArgumentGroupSize = 4)]
     RuleComplex
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SimonScreamsModule", "Simon Screams", typeof(SSimonScreams), "Timwi")]
-    [SouvenirManualQuestion("What flashing color was used in each stage?")]
-    [SouvenirManualQuestion("Which rules applied in which stage(s)?")]
+    [Handler("SimonScreamsModule", "Simon Screams", typeof(SSimonScreams), "Timwi")]
+    [ManualQuestion("What flashing color was used in each stage?")]
+    [ManualQuestion("Which rules applied in which stage(s)?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonScreams(ModuleData module)
     {
         var comp = GetComponent(module, "SimonScreamsModule");

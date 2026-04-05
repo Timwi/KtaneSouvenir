@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SJuxtacoloredSquares
 {
-    [SouvenirQuestion("What was the color of this square in {0}?", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange", "Cyan", "Purple", "Chestnut", "Brown", "Mauve", "Azure", "Jade", "Forest", "Gray", "Black", TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("What was the color of this square in {0}?", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange", "Cyan", "Purple", "Chestnut", "Brown", "Mauve", "Azure", "Jade", "Forest", "Gray", "Black", TranslateAnswers = true, UsesQuestionSprite = true)]
     ColorsByPosition,
 
-    [SouvenirQuestion("Which square was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["red", "blue", "yellow", "green", "magenta", "orange", "cyan", "purple", "chestnut", "brown", "mauve", "azure", "jade", "forest", "gray", "black"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which square was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["red", "blue", "yellow", "green", "magenta", "orange", "cyan", "purple", "chestnut", "brown", "mauve", "azure", "jade", "forest", "gray", "black"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Grid(4, 4)]
     PositionsByColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("JuxtacoloredSquaresModule", "Juxtacolored Squares", typeof(SJuxtacoloredSquares), "Kuro")]
-    [SouvenirManualQuestion("What was each square’s color?")]
+    [Handler("JuxtacoloredSquaresModule", "Juxtacolored Squares", typeof(SJuxtacoloredSquares), "Kuro")]
+    [ManualQuestion("What was each square’s color?")]
     private IEnumerator<SouvenirInstruction> ProcessJuxtacoloredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "JuxtacoloredSquaresModule");

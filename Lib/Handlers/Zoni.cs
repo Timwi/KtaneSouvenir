@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SZoni
 {
-    [SouvenirQuestion("What was the {1} word in {0}?", OneColumn4Answers, ExampleAnswers = ["angel", "thing", "dance", "heavy", "quote", "radio"], Type = AnswerType.DynamicFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} word in {0}?", OneColumn4Answers, ExampleAnswers = ["angel", "thing", "dance", "heavy", "quote", "radio"], Type = AnswerType.DynamicFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Words
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("lgndZoni", "Zoni", typeof(SZoni), "luisdiogo98")]
-    [SouvenirManualQuestion("What were the words?")]
+    [Handler("lgndZoni", "Zoni", typeof(SZoni), "luisdiogo98")]
+    [ManualQuestion("What were the words?")]
     private IEnumerator<SouvenirInstruction> ProcessZoni(ModuleData module)
     {
         var comp = GetComponent(module, "ZoniModuleScript");

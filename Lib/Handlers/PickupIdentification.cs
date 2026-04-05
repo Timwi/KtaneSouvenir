@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPickupIdentification
 {
-    [SouvenirQuestion("What pickup was shown in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What pickup was shown in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Item
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("PickupIdentification", "Pickup Identification", typeof(SPickupIdentification), "Anonymous")]
-    [SouvenirManualQuestion("What pickups were shown?")]
+    [Handler("PickupIdentification", "Pickup Identification", typeof(SPickupIdentification), "Anonymous")]
+    [ManualQuestion("What pickups were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessPickupIdentification(ModuleData module)
     {
         var comp = GetComponent(module, "PickupIdentificationScript");

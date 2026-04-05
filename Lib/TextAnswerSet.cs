@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Souvenir;
 
-public sealed class TextAnswerSet(string[] answers, int correctIndex, SouvenirQuestionAttribute qAttr, TextAnswerInfo info) : AnswerSet(answers.Length, correctIndex, qAttr.Layout)
+public sealed class TextAnswerSet(string[] answers, int correctIndex, QuestionAttribute qAttr, TextAnswerInfo info) : AnswerSet(answers.Length, correctIndex, qAttr.Layout)
 {
     public override IEnumerable<string> DebugAnswers => answers.Distinct();
     protected override int NumAnswersProvided => answers.Length;

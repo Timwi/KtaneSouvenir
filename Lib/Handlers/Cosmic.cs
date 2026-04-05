@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SCosmic
 {
-    [SouvenirQuestion("What was the number initially shown in {0}?", ThreeColumns6Answers)]
+    [Question("What was the number initially shown in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9999)]
     Number
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("CosmicModule", "Cosmic", typeof(SCosmic), "BigCrunch22")]
-    [SouvenirManualQuestion("What was the number initially shown?")]
+    [Handler("CosmicModule", "Cosmic", typeof(SCosmic), "BigCrunch22")]
+    [ManualQuestion("What was the number initially shown?")]
     private IEnumerator<SouvenirInstruction> ProcessCosmic(ModuleData module)
     {
         var comp = GetComponent(module, "CosmicModule");

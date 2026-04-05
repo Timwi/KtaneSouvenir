@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SLondonUnderground
 {
-    [SouvenirQuestion("Where did the {1} journey on {0} {2}?", OneColumn4Answers, ExampleAnswers = ["Great Portland Street", "High Street Kensington", "King's Cross St. Pancras", "Mornington Crescent", "Shepherd's Bush Market", "Tottenham Court Road", "Walthamstow Central", "White City/Wood Lane"], TranslateArguments = [false, true], Arguments = [QandA.Ordinal, "depart from", QandA.Ordinal, "arrive to"], ArgumentGroupSize = 2)]
+    [Question("Where did the {1} journey on {0} {2}?", OneColumn4Answers, ExampleAnswers = ["Great Portland Street", "High Street Kensington", "King's Cross St. Pancras", "Mornington Crescent", "Shepherd's Bush Market", "Tottenham Court Road", "Walthamstow Central", "White City/Wood Lane"], TranslateArguments = [false, true], Arguments = [QandA.Ordinal, "depart from", QandA.Ordinal, "arrive to"], ArgumentGroupSize = 2)]
     Stations
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("londonUnderground", "London Underground", typeof(SLondonUnderground), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What were the departure and destination stations?")]
+    [Handler("londonUnderground", "London Underground", typeof(SLondonUnderground), "Timwi", AddThe = true)]
+    [ManualQuestion("What were the departure and destination stations?")]
     private IEnumerator<SouvenirInstruction> ProcessLondonUnderground(ModuleData module)
     {
         var comp = GetComponent(module, "londonUndergroundScript");

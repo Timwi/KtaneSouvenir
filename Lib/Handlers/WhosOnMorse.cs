@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SWhosOnMorse
 {
-    [SouvenirQuestion("What word was transmitted in the {1} stage on {0}?", ThreeColumns6Answers, "SHELL", "HALLS", "SLICK", "TRICK", "BOXES", "LEAKS", "STROBE", "BISTRO", "FLICK", "BOMBS", "BREAK", "BRICK", "STEAK", "STING", "VECTOR", "BEATS", "CURSE", "NICE", "VERB", "NEARLY", "CREEK", "TRIBE", "CYBER", "CINEMA", "KOALA", "WATER", "WHISK", "MATTER", "KEYS", "STUCK", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What word was transmitted in the {1} stage on {0}?", ThreeColumns6Answers, "SHELL", "HALLS", "SLICK", "TRICK", "BOXES", "LEAKS", "STROBE", "BISTRO", "FLICK", "BOMBS", "BREAK", "BRICK", "STEAK", "STING", "VECTOR", "BEATS", "CURSE", "NICE", "VERB", "NEARLY", "CREEK", "TRIBE", "CYBER", "CINEMA", "KOALA", "WATER", "WHISK", "MATTER", "KEYS", "STUCK", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     TransmitDisplay
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("whosOnMorseModule", "Who’s on Morse", typeof(SWhosOnMorse), "VFlyer")]
-    [SouvenirManualQuestion("What word was transmitted in each stage?")]
+    [Handler("whosOnMorseModule", "Who’s on Morse", typeof(SWhosOnMorse), "VFlyer")]
+    [ManualQuestion("What word was transmitted in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessWhosOnMorse(ModuleData module)
     {
         var comp = GetComponent(module, "WhosOnMorseScript");

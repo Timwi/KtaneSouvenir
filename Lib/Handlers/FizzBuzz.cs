@@ -7,15 +7,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SFizzBuzz
 {
-    [SouvenirQuestion("What was the {1} digit on the {2} display of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "top", QandA.Ordinal, "middle", QandA.Ordinal, "bottom"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Question("What was the {1} digit on the {2} display of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "top", QandA.Ordinal, "middle", QandA.Ordinal, "bottom"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     [AnswerGenerator.Integers(0, 9)]
     DisplayedNumbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("fizzBuzzModule", "FizzBuzz", typeof(SFizzBuzz), "Kuro")]
-    [SouvenirManualQuestion("What were the displayed numbers?")]
+    [Handler("fizzBuzzModule", "FizzBuzz", typeof(SFizzBuzz), "Kuro")]
+    [ManualQuestion("What were the displayed numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessFizzBuzz(ModuleData module)
     {
         var comp = GetComponent(module, "FizzBuzzModule");

@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SHighScore
 {
-    [SouvenirQuestion("What was the position of the player in {0}?", TwoColumns4Answers, "1st", "2nd", "3rd", "4th", "5th")]
+    [Question("What was the position of the player in {0}?", TwoColumns4Answers, "1st", "2nd", "3rd", "4th", "5th")]
     Position,
 
-    [SouvenirQuestion("What was the score of the player in {0}?", TwoColumns4Answers)]
+    [Question("What was the score of the player in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Integers(1750, 999990, 10)]
     Score
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ksmHighScore", "High Score", typeof(SHighScore), "Hawker", AddThe = true)]
-    [SouvenirManualQuestion("What was the player’s position and score?")]
+    [Handler("ksmHighScore", "High Score", typeof(SHighScore), "Hawker", AddThe = true)]
+    [ManualQuestion("What was the player’s position and score?")]
     private IEnumerator<SouvenirInstruction> ProcessHighScore(ModuleData module)
     {
         var comp = GetComponent(module, "HighScore");

@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SIPA
 {
-    [SouvenirQuestion("What sound played in {0}?", TwoColumns4Answers, Type = AnswerType.Audio, ForeignAudioID = "ipa", AudioSizeMultiplier = 4)]
+    [Question("What sound played in {0}?", TwoColumns4Answers, Type = AnswerType.Audio, ForeignAudioID = "ipa", AudioSizeMultiplier = 4)]
     Sound
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ipa", "IPA", typeof(SIPA), "Timwi")]
-    [SouvenirManualQuestion("What was the correct symbol?")]
+    [Handler("ipa", "IPA", typeof(SIPA), "Timwi")]
+    [ManualQuestion("What was the correct symbol?")]
     private IEnumerator<SouvenirInstruction> ProcessIPA(ModuleData module)
     {
         var comp = GetComponent(module, "ipa");

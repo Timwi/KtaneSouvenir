@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SSkewedSlots
 {
-    [SouvenirQuestion("What were the original numbers in {0}?", ThreeColumns6Answers)]
+    [Question("What were the original numbers in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 999, "000")]
     OriginalNumbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SkewedSlotsModule", "Skewed Slots", typeof(SSkewedSlots), "Timwi")]
-    [SouvenirManualQuestion("What were the original numbers?")]
+    [Handler("SkewedSlotsModule", "Skewed Slots", typeof(SSkewedSlots), "Timwi")]
+    [ManualQuestion("What were the original numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessSkewedSlots(ModuleData module)
     {
         var comp = GetComponent(module, "SkewedModule");

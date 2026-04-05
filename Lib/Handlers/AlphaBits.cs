@@ -7,15 +7,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlphaBits
 {
-    [SouvenirQuestion("What character was displayed on the {1} screen on the {2} in {0}?", ThreeColumns6Answers, TranslateArguments = [false, true], Type = AnswerType.DynamicFont, Arguments = [QandA.Ordinal, "left", QandA.Ordinal, "right"], ArgumentGroupSize = 2)]
+    [Question("What character was displayed on the {1} screen on the {2} in {0}?", ThreeColumns6Answers, TranslateArguments = [false, true], Type = AnswerType.DynamicFont, Arguments = [QandA.Ordinal, "left", QandA.Ordinal, "right"], ArgumentGroupSize = 2)]
     [AnswerGenerator.Strings("0-9A-V")]
     DisplayedCharacters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("alphaBits", "Alpha-Bits", typeof(SAlphaBits), "Timwi")]
-    [SouvenirManualQuestion("What characters were displayed on each screen?")]
+    [Handler("alphaBits", "Alpha-Bits", typeof(SAlphaBits), "Timwi")]
+    [ManualQuestion("What characters were displayed on each screen?")]
     private IEnumerator<SouvenirInstruction> ProcessAlphaBits(ModuleData module)
     {
         var comp = GetComponent(module, "AlphaBitsScript");

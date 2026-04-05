@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SBobBarks
 {
-    [SouvenirQuestion("What was the {1} indicator label in {0}?", ThreeColumns6Answers, "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY", TranslateArguments = [true], Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1)]
+    [Question("What was the {1} indicator label in {0}?", ThreeColumns6Answers, "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY", TranslateArguments = [true], Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1)]
     Indicators,
 
-    [SouvenirQuestion("Which button flashed {1} in sequence in {0}?", TwoColumns4Answers, "top left", "top right", "bottom left", "bottom right", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which button flashed {1} in sequence in {0}?", TwoColumns4Answers, "top left", "top right", "bottom left", "bottom right", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Positions
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ksmBobBarks", "Bob Barks", typeof(SBobBarks), "Kaito Sinclaire")]
-    [SouvenirManualQuestion("What were the indicator labels?")]
-    [SouvenirManualQuestion("Which buttons flashed in sequence?")]
+    [Handler("ksmBobBarks", "Bob Barks", typeof(SBobBarks), "Kaito Sinclaire")]
+    [ManualQuestion("What were the indicator labels?")]
+    [ManualQuestion("Which buttons flashed in sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessBobBarks(ModuleData module)
     {
         var comp = GetComponent(module, "BobBarks");

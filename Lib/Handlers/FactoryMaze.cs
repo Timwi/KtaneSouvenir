@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SFactoryMaze
 {
-    [SouvenirQuestion("What room did you start in in {0}?", OneColumn4Answers, "Bathroom", "Assembly Line", "Cafeteria", "Room A9", "Broom Closet", "Basement", "Copy Room", "Unnecessarily Long-Named Room", "Library", "Break Room", "Empty Room with Two Doors", "Arcade", "Classroom", "Module Testing Room", "Music Studio", "Computer Room", "Infirmary", "Bomb Room", "Space", "Storage Room", "Lounge", "Conference Room", "Kitchen", "Incinerator")]
+    [Question("What room did you start in in {0}?", OneColumn4Answers, "Bathroom", "Assembly Line", "Cafeteria", "Room A9", "Broom Closet", "Basement", "Copy Room", "Unnecessarily Long-Named Room", "Library", "Break Room", "Empty Room with Two Doors", "Arcade", "Classroom", "Module Testing Room", "Music Studio", "Computer Room", "Infirmary", "Bomb Room", "Space", "Storage Room", "Lounge", "Conference Room", "Kitchen", "Incinerator")]
     StartRoom
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("factoryMaze", "Factory Maze", typeof(SFactoryMaze), "luisdiogo98")]
-    [SouvenirManualQuestion("What room did you start in?")]
+    [Handler("factoryMaze", "Factory Maze", typeof(SFactoryMaze), "luisdiogo98")]
+    [ManualQuestion("What room did you start in?")]
     private IEnumerator<SouvenirInstruction> ProcessFactoryMaze(ModuleData module)
     {
         var comp = GetComponent(module, "FactoryMazeScript");

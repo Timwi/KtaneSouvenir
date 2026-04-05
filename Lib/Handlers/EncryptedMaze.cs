@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SEncryptedMaze
 {
-    [SouvenirQuestion("Which symbol on {0} was spinning {1}?", ThreeColumns6Answers, "f", "H", "$", "l", "B", "N", "g", "I", "%", "m", "C", "O", "h", "J", "&", "n", "D", "P", "i", "K", "'", "o", "E", "Q", "j", "L", "(", "p", "F", "R", Type = AnswerType.DynamicFont, Arguments = ["clockwise", "counter-clockwise"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which symbol on {0} was spinning {1}?", ThreeColumns6Answers, "f", "H", "$", "l", "B", "N", "g", "I", "%", "m", "C", "O", "h", "J", "&", "n", "D", "P", "i", "K", "'", "o", "E", "Q", "j", "L", "(", "p", "F", "R", Type = AnswerType.DynamicFont, Arguments = ["clockwise", "counter-clockwise"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Symbols
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("encryptedMaze", "Encrypted Maze", typeof(SEncryptedMaze), "Timwi")]
-    [SouvenirManualQuestion("Which symbol was spinning which way?")]
+    [Handler("encryptedMaze", "Encrypted Maze", typeof(SEncryptedMaze), "Timwi")]
+    [ManualQuestion("Which symbol was spinning which way?")]
     private IEnumerator<SouvenirInstruction> ProcessEncryptedMaze(ModuleData module)
     {
         var comp = GetComponent(module, "encryptedMazeScript");

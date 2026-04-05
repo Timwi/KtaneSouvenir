@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SWhoOF
 {
-    [SouvenirQuestion("What was the display in the {1} stage on {0}?", ThreeColumns6Answers, "FIRST", "OKAY", "C", "BLANK", "YOU", "READ", "YOUR", "UR", "YES", "LED", "THEIR", "RED", "HIRE", "THERE", "THEY", "THING", "CEE", "LEED", "NO", "HOLD", "PLAY", "LEAD", "HARE", "HERE", " ", "REED", "SAYS", "SEE", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the display in the {1} stage on {0}?", ThreeColumns6Answers, "FIRST", "OKAY", "C", "BLANK", "YOU", "READ", "YOUR", "UR", "YES", "LED", "THEIR", "RED", "HIRE", "THERE", "THEY", "THING", "CEE", "LEED", "NO", "HOLD", "PLAY", "LEAD", "HARE", "HERE", " ", "REED", "SAYS", "SEE", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("whoOF", "WhoOF", typeof(SWhoOF), "VFlyer")]
-    [SouvenirManualQuestion("What was on the display in each stage?")]
+    [Handler("whoOF", "WhoOF", typeof(SWhoOF), "VFlyer")]
+    [ManualQuestion("What was on the display in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessWhoOF(ModuleData module)
     {
         var comp = GetComponent(module, "whoOFScript");

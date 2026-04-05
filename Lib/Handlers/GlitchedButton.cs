@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SGlitchedButton
 {
-    [SouvenirQuestion("What was the cycling bit sequence in {0}?", OneColumn4Answers)]
+    [Question("What was the cycling bit sequence in {0}?", OneColumn4Answers)]
     [AnswerGenerator.Strings(12, "01")]
     Sequence
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GlitchedButtonModule", "Glitched Button", typeof(SGlitchedButton), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What was the cycling bit sequence?")]
+    [Handler("GlitchedButtonModule", "Glitched Button", typeof(SGlitchedButton), "Timwi", AddThe = true)]
+    [ManualQuestion("What was the cycling bit sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessGlitchedButton(ModuleData module)
     {
         var comp = GetComponent(module, "GlitchedButtonScript");

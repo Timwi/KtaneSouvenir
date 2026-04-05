@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoubleDigits
 {
-    [SouvenirQuestion("What was the digit on the {1} display in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the digit on the {1} display in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Displays
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("doubleDigitsModule", "Double Digits", typeof(SDoubleDigits), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the numbers on the displays?")]
+    [Handler("doubleDigitsModule", "Double Digits", typeof(SDoubleDigits), "Quinn Wuest")]
+    [ManualQuestion("What were the numbers on the displays?")]
     private IEnumerator<SouvenirInstruction> ProcessDoubleDigits(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleDigitsScript");

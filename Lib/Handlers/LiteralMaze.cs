@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SLiteralMaze
 {
-    [SouvenirQuestion("Which letter was in this position in {0}?", ThreeColumns6Answers)]
+    [Question("Which letter was in this position in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings('A', 'Z')]
     Letter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("literalMaze", "Literal Maze", typeof(SLiteralMaze), "Timwi")]
-    [SouvenirManualQuestion("Which letter was in each position?")]
+    [Handler("literalMaze", "Literal Maze", typeof(SLiteralMaze), "Timwi")]
+    [ManualQuestion("Which letter was in each position?")]
     private IEnumerator<SouvenirInstruction> ProcessLiteralMaze(ModuleData module)
     {
         var comp = GetComponent(module, "literalMazeScript");

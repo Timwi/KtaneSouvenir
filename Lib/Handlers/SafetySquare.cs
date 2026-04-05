@@ -7,19 +7,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SSafetySquare
 {
-    [SouvenirQuestion("What was the digit displayed on the {1} diamond in {0}?", TwoColumns4Answers, Arguments = ["red", "yellow", "blue"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the digit displayed on the {1} diamond in {0}?", TwoColumns4Answers, Arguments = ["red", "yellow", "blue"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(0, 4)]
     Digits,
 
-    [SouvenirQuestion("What was the special rule displayed on the white diamond in {0}?", OneColumn4Answers, "No special rule", "Reacts with water", "Simple asphyxiant", "Oxidizer", TranslateAnswers = true)]
+    [Question("What was the special rule displayed on the white diamond in {0}?", OneColumn4Answers, "No special rule", "Reacts with water", "Simple asphyxiant", "Oxidizer", TranslateAnswers = true)]
     SpecialRule
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("safetySquare", "Safety Square", typeof(SSafetySquare), "Kuro")]
-    [SouvenirManualQuestion("What were the displayed digits?")]
-    [SouvenirManualQuestion("What was the special rule?")]
+    [Handler("safetySquare", "Safety Square", typeof(SSafetySquare), "Kuro")]
+    [ManualQuestion("What were the displayed digits?")]
+    [ManualQuestion("What was the special rule?")]
     private IEnumerator<SouvenirInstruction> ProcessSafetySquare(ModuleData module)
     {
         var comp = GetComponent(module, "SafetySquareScript");

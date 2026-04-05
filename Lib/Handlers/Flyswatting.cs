@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SFlyswatting
 {
-    [SouvenirQuestion("Which fly was present, but not in the solution in {0}?", ThreeColumns6Answers)]
+    [Question("Which fly was present, but not in the solution in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings('A', 'Z')]
     Unpressed
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("flyswatting", "Flyswatting", typeof(SFlyswatting), "tandyCake")]
-    [SouvenirManualQuestion("Which flies were present, but not in the solution?")]
+    [Handler("flyswatting", "Flyswatting", typeof(SFlyswatting), "tandyCake")]
+    [ManualQuestion("Which flies were present, but not in the solution?")]
     private IEnumerator<SouvenirInstruction> ProcessFlyswatting(ModuleData module)
     {
         var comp = GetComponent(module, "flyswattingScript");

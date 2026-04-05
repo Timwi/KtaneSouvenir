@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPurpleArrows
 {
-    [SouvenirQuestion("What was the target word on {0}?", ThreeColumns6Answers, ExampleAnswers = ["Thesis", "Immune", "Agency", "Height", "Active", "Bother", "Viable"])]
+    [Question("What was the target word on {0}?", ThreeColumns6Answers, ExampleAnswers = ["Thesis", "Immune", "Agency", "Height", "Active", "Bother", "Viable"])]
     Finish
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("purpleArrowsModule", "Purple Arrows", typeof(SPurpleArrows), "kavinkul")]
-    [SouvenirManualQuestion("What was the target word?")]
+    [Handler("purpleArrowsModule", "Purple Arrows", typeof(SPurpleArrows), "kavinkul")]
+    [ManualQuestion("What was the target word?")]
     private IEnumerator<SouvenirInstruction> ProcessPurpleArrows(ModuleData module)
     {
         var comp = GetComponent(module, "PurpleArrowsScript");

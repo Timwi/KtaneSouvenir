@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SSaturn
 {
-    [SouvenirQuestion("Where was the goal in {0}?", ThreeColumns6Answers)]
+    [Question("Where was the goal in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), new object[] { new string[] { "0-9", " " } }, typeof(AnswerGenerator.Integers), new object[] { 0, 63 })]
     Goal
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("saturn", "Saturn", typeof(SSaturn), "Anonymous")]
-    [SouvenirManualQuestion("Where was the goal?")]
+    [Handler("saturn", "Saturn", typeof(SSaturn), "Anonymous")]
+    [ManualQuestion("Where was the goal?")]
     private IEnumerator<SouvenirInstruction> ProcessSaturn(ModuleData module)
     {
         yield return WaitForSolve;

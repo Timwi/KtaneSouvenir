@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSamples
 {
-    [SouvenirQuestion("What were the call samples {1} of {0}?", TwoColumns4Answers, ForeignAudioID = Sounds.Generated, Type = AnswerType.Audio, TranslateArguments = [true], Arguments = ["played in the first stage", "added in the second stage", "added in the third stage"], ArgumentGroupSize = 1)]
+    [Question("What were the call samples {1} of {0}?", TwoColumns4Answers, ForeignAudioID = Sounds.Generated, Type = AnswerType.Audio, TranslateArguments = [true], Arguments = ["played in the first stage", "added in the second stage", "added in the third stage"], ArgumentGroupSize = 1)]
     Samples
 }
 
@@ -15,8 +15,8 @@ public partial class SouvenirModule
 {
     public static AudioClip Temp => Sounds.GetForeignClip("simonSamples", "Kick");
 
-    [SouvenirHandler("simonSamples", "Simon Samples", typeof(SSimonSamples), "Timwi")]
-    [SouvenirManualQuestion("What were the call samples in each stage?")]
+    [Handler("simonSamples", "Simon Samples", typeof(SSimonSamples), "Timwi")]
+    [ManualQuestion("What were the call samples in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSamples(ModuleData module)
     {
         var comp = GetComponent(module, "SimonSamples");

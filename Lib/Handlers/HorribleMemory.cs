@@ -4,48 +4,48 @@ using static Souvenir.AnswerLayout;
 
 public enum SHorribleMemory
 {
-    [SouvenirQuestion("What was the color of the button in the {1} position in the {2} stage of {0}?", ThreeColumns6Answers, "blue", "green", "red", "orange", "purple", "pink", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the color of the button in the {1} position in the {2} stage of {0}?", ThreeColumns6Answers, "blue", "green", "red", "orange", "purple", "pink", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     QColorsByPosition,
 
-    [SouvenirQuestion("What was the color of the button labeled {1} in the {2} stage of {0}?", ThreeColumns6Answers, "blue", "green", "red", "orange", "purple", "pink", TranslateAnswers = true, Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal, "3", QandA.Ordinal, "4", QandA.Ordinal, "5", QandA.Ordinal, "6", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the color of the button labeled {1} in the {2} stage of {0}?", ThreeColumns6Answers, "blue", "green", "red", "orange", "purple", "pink", TranslateAnswers = true, Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal, "3", QandA.Ordinal, "4", QandA.Ordinal, "5", QandA.Ordinal, "6", QandA.Ordinal], ArgumentGroupSize = 2)]
     QColorsByLabel,
 
-    [SouvenirQuestion("What was the label of the button in the {1} position in the {2} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the label of the button in the {1} position in the {2} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(1, 6)]
     QLabelsByPosition,
 
-    [SouvenirQuestion("What was the label of the {1} button in the {2} stage of {0}?", ThreeColumns6Answers, Arguments = ["blue", QandA.Ordinal, "green", QandA.Ordinal, "red", QandA.Ordinal, "orange", QandA.Ordinal, "purple", QandA.Ordinal, "pink", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Question("What was the label of the {1} button in the {2} stage of {0}?", ThreeColumns6Answers, Arguments = ["blue", QandA.Ordinal, "green", QandA.Ordinal, "red", QandA.Ordinal, "orange", QandA.Ordinal, "purple", QandA.Ordinal, "pink", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     [AnswerGenerator.Integers(1, 6)]
     QLabelsByColor,
 
-    [SouvenirQuestion("What was the position of the {1} button in the {2} stage of {0}?", ThreeColumns6Answers, "first", "second", "third", "fourth", "fifth", "sixth", TranslateAnswers = true, Arguments = ["blue", QandA.Ordinal, "green", QandA.Ordinal, "red", QandA.Ordinal, "orange", QandA.Ordinal, "purple", QandA.Ordinal, "pink", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Question("What was the position of the {1} button in the {2} stage of {0}?", ThreeColumns6Answers, "first", "second", "third", "fourth", "fifth", "sixth", TranslateAnswers = true, Arguments = ["blue", QandA.Ordinal, "green", QandA.Ordinal, "red", QandA.Ordinal, "orange", QandA.Ordinal, "purple", QandA.Ordinal, "pink", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     QPositionsByColor,
 
-    [SouvenirQuestion("What was the position of the button labeled {1} in the {2} stage of {0}?", ThreeColumns6Answers, "first", "second", "third", "fourth", "fifth", "sixth", TranslateAnswers = true, Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal, "3", QandA.Ordinal, "4", QandA.Ordinal, "5", QandA.Ordinal, "6", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the position of the button labeled {1} in the {2} stage of {0}?", ThreeColumns6Answers, "first", "second", "third", "fourth", "fifth", "sixth", TranslateAnswers = true, Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal, "3", QandA.Ordinal, "4", QandA.Ordinal, "5", QandA.Ordinal, "6", QandA.Ordinal], ArgumentGroupSize = 2)]
     QPositionsByLabel,
 
-    [SouvenirQuestion("What number was displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What number was displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 6)]
     QDisplays,
 
-    [SouvenirDiscriminator("the Horrible Memory that had a {0} button in the {1} position in the {2} stage", Arguments = ["blue", QandA.Ordinal, QandA.Ordinal, "green", QandA.Ordinal, QandA.Ordinal, "red", QandA.Ordinal, QandA.Ordinal, "orange", QandA.Ordinal, QandA.Ordinal, "purple", QandA.Ordinal, QandA.Ordinal, "pink", QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, false, false])]
+    [Discriminator("the Horrible Memory that had a {0} button in the {1} position in the {2} stage", Arguments = ["blue", QandA.Ordinal, QandA.Ordinal, "green", QandA.Ordinal, QandA.Ordinal, "red", QandA.Ordinal, QandA.Ordinal, "orange", QandA.Ordinal, QandA.Ordinal, "purple", QandA.Ordinal, QandA.Ordinal, "pink", QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, false, false])]
     DColorAndPosition,
 
-    [SouvenirDiscriminator("the Horrible Memory that had a button labeled {0} in the {1} position in the {2} stage", Arguments = ["1", QandA.Ordinal, QandA.Ordinal, "2", QandA.Ordinal, QandA.Ordinal, "3", QandA.Ordinal, QandA.Ordinal, "4", QandA.Ordinal, QandA.Ordinal, "5", QandA.Ordinal, QandA.Ordinal, "6", QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 3)]
+    [Discriminator("the Horrible Memory that had a button labeled {0} in the {1} position in the {2} stage", Arguments = ["1", QandA.Ordinal, QandA.Ordinal, "2", QandA.Ordinal, QandA.Ordinal, "3", QandA.Ordinal, QandA.Ordinal, "4", QandA.Ordinal, QandA.Ordinal, "5", QandA.Ordinal, QandA.Ordinal, "6", QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 3)]
     DLabelAndPosition,
 
-    [SouvenirDiscriminator("the Horrible Memory that had a {0} button labeled {1} in the {2} stage", Arguments = ["blue", "1", QandA.Ordinal, "green", "2", QandA.Ordinal, "red", "3", QandA.Ordinal, "orange", "4", QandA.Ordinal, "purple", "5", QandA.Ordinal, "pink", "6", QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, false, false])]
+    [Discriminator("the Horrible Memory that had a {0} button labeled {1} in the {2} stage", Arguments = ["blue", "1", QandA.Ordinal, "green", "2", QandA.Ordinal, "red", "3", QandA.Ordinal, "orange", "4", QandA.Ordinal, "purple", "5", QandA.Ordinal, "pink", "6", QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, false, false])]
     DColorAndLabel,
 
-    [SouvenirDiscriminator("the Horrible Memory that displayed a {0} in the {1} stage", Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal, "3", QandA.Ordinal, "4", QandA.Ordinal, "5", QandA.Ordinal, "6", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the Horrible Memory that displayed a {0} in the {1} stage", Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal, "3", QandA.Ordinal, "4", QandA.Ordinal, "5", QandA.Ordinal, "6", QandA.Ordinal], ArgumentGroupSize = 2)]
     DDisplay
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("horribleMemory", "Horrible Memory", typeof(SHorribleMemory), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the colors and labels of each button in each stage?")]
-    [SouvenirManualQuestion("What digit was displayed in each stage?")]
+    [Handler("horribleMemory", "Horrible Memory", typeof(SHorribleMemory), "Quinn Wuest")]
+    [ManualQuestion("What were the colors and labels of each button in each stage?")]
+    [ManualQuestion("What digit was displayed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessHorribleMemory(ModuleData module)
     {
         var comp = GetComponent(module, "cruelMemoryScript");

@@ -6,29 +6,29 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetsUltimateShowdown
 {
-    [SouvenirQuestion("What was the {1} digit of the answer in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} digit of the answer in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Answer,
 
-    [SouvenirQuestion("What was the {1} digit of the bottom number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} digit of the bottom number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Bottom,
 
-    [SouvenirQuestion("What was the {1} digit of the initial number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} digit of the initial number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Initial,
 
-    [SouvenirQuestion("What was the {1} method used in {0}?", OneColumn4Answers, "Forget Me Not", "Simon’s Stages", "Forget Me Later", "Forget Infinity", "A>N<D", "Forget Me Now", "Forget Everything", "Forget Us Not", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} method used in {0}?", OneColumn4Answers, "Forget Me Not", "Simon’s Stages", "Forget Me Later", "Forget Infinity", "A>N<D", "Forget Me Now", "Forget Everything", "Forget Us Not", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Method
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ForgetsUltimateShowdownModule", "Forget’s Ultimate Showdown", typeof(SForgetsUltimateShowdown), "Marksam")]
-    [SouvenirManualQuestion("What was the initial number?")]
-    [SouvenirManualQuestion("What was the bottom number?")]
-    [SouvenirManualQuestion("What was the answer?")]
-    [SouvenirManualQuestion("What were the encryption methods used?")]
+    [Handler("ForgetsUltimateShowdownModule", "Forget’s Ultimate Showdown", typeof(SForgetsUltimateShowdown), "Marksam")]
+    [ManualQuestion("What was the initial number?")]
+    [ManualQuestion("What was the bottom number?")]
+    [ManualQuestion("What was the answer?")]
+    [ManualQuestion("What were the encryption methods used?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetsUltimateShowdown(ModuleData module)
     {
         var comp = GetComponent(module, "ForgetsUltimateShowdownScript");

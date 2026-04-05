@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SBeanSprouts
 {
-    [SouvenirQuestion("What was sprout {1} in {0}?", TwoColumns4Answers, "Raw", "Cooked", "Burnt", "Fake", TranslateAnswers = true, ArgumentGroupSize = 1, Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"])]
+    [Question("What was sprout {1} in {0}?", TwoColumns4Answers, "Raw", "Cooked", "Burnt", "Fake", TranslateAnswers = true, ArgumentGroupSize = 1, Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"])]
     Colors,
 
-    [SouvenirQuestion("What bean was on sprout {1} in {0}?", TwoColumns4Answers, "Left", "Right", "None", "Both", TranslateAnswers = true, ArgumentGroupSize = 1, Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"])]
+    [Question("What bean was on sprout {1} in {0}?", TwoColumns4Answers, "Left", "Right", "None", "Both", TranslateAnswers = true, ArgumentGroupSize = 1, Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"])]
     Beans
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("beanSprouts", "Bean Sprouts", typeof(SBeanSprouts), "Anonymous")]
-    [SouvenirManualQuestion("What colors were the eaten sprouts?")]
-    [SouvenirManualQuestion("Where were the eaten beans?")]
+    [Handler("beanSprouts", "Bean Sprouts", typeof(SBeanSprouts), "Anonymous")]
+    [ManualQuestion("What colors were the eaten sprouts?")]
+    [ManualQuestion("Where were the eaten beans?")]
     private IEnumerator<SouvenirInstruction> ProcessBeanSprouts(ModuleData module)
     {
         var comp = GetComponent(module, "beanSproutsScript");

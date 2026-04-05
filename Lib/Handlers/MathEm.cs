@@ -7,17 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SMathEm
 {
-    [SouvenirQuestion("What was the color of this tile before the shuffle on {0}?", TwoColumns4Answers, "White", "Bronze", "Silver", "Gold", TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("What was the color of this tile before the shuffle on {0}?", TwoColumns4Answers, "White", "Bronze", "Silver", "Gold", TranslateAnswers = true, UsesQuestionSprite = true)]
     Color,
 
-    [SouvenirQuestion("What was the design on this tile before the shuffle on {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
+    [Question("What was the design on this tile before the shuffle on {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
     Label
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("mathem", "Math ’em", typeof(SMathEm), "tandyCake")]
-    [SouvenirManualQuestion("What were the color and design of each tile before the shuffle?")]
+    [Handler("mathem", "Math ’em", typeof(SMathEm), "tandyCake")]
+    [ManualQuestion("What were the color and design of each tile before the shuffle?")]
     private IEnumerator<SouvenirInstruction> ProcessMathEm(ModuleData module)
     {
         var comp = GetComponent(module, "MathemScript");

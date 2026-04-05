@@ -6,24 +6,24 @@ using static Souvenir.AnswerLayout;
 
 public enum SRGBMaze
 {
-    [SouvenirQuestion("Where was the {1} key in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [Question("Where was the {1} key in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-H", "1-8")]
     Keys,
 
-    [SouvenirQuestion("Which maze number was the {1} maze in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [Question("Which maze number was the {1} maze in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Number,
 
-    [SouvenirQuestion("What was the exit coordinate in {0}?", ThreeColumns6Answers)]
+    [Question("What was the exit coordinate in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-H", "1-8")]
     Exit
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("rgbMaze", "RGB Maze", typeof(SRGBMaze), "kavinkul")]
-    [SouvenirManualQuestion("Where were the exit and keys of the maze?")]
-    [SouvenirManualQuestion("What was the maze number for each maze?")]
+    [Handler("rgbMaze", "RGB Maze", typeof(SRGBMaze), "kavinkul")]
+    [ManualQuestion("Where were the exit and keys of the maze?")]
+    [ManualQuestion("What was the maze number for each maze?")]
     private IEnumerator<SouvenirInstruction> ProcessRGBMaze(ModuleData module)
     {
         var comp = GetComponent(module, "RGBMazeScript");

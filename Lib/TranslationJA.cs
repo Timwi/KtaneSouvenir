@@ -5,7 +5,7 @@ namespace Souvenir;
 
 public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslationInfo>>
 {
-    public override string FormatModuleName(SouvenirQuestionAttribute qAttr, bool addSolveCount, int numSolved) => addSolveCount
+    public override string FormatModuleName(QuestionAttribute qAttr, bool addSolveCount, int numSolved) => addSolveCount
         ? $"{Ordinal(numSolved)}番目に解除された{_translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleName}"
         : _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleNameWithThe;
 
@@ -463,6 +463,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Abyss
         [typeof(SAbyss)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アビス",
             ManualQuestions = new()
             {
@@ -470,11 +471,20 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SAbyss.Seed] = new()
+                [SAbyss.QSeed] = new()
                 {
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on Abyss?
                     Question = "{0}の{1}番目に表示された文字は？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAbyss.DSeed] = new()
+                {
+                    // English: the Abyss whose {0} character was {1}
+                    // Example: the Abyss whose first character was A
+                    Discriminator = "the Abyss whose {0} character was {1}",
                 },
             },
         },
@@ -5601,6 +5611,24 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the {1} digit in the {2} number shown in {0}?
                     // Example: What was the first digit in the first number shown in Entry Number One?
                     Question = "{0}で表示された{2}番目の数字の{1}桁目は？",
+                },
+            },
+        },
+
+        // Épelle-moi Ça
+        [typeof(SÉpelleMoiÇa)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What word was asked to be spelled?"] = "綴るべき単語は？",
+            },
+            Questions = new()
+            {
+                [SÉpelleMoiÇa.Word] = new()
+                {
+                    // English: What word was asked to be spelled in {0}?
+                    Question = "{0}において綴りを尋ねられた単語は？",
                 },
             },
         },
@@ -12294,6 +12322,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Object Shows
         [typeof(SObjectShows)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "オブジェクトショー",
             ManualQuestions = new()
             {
@@ -12303,8 +12332,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SObjectShows.Contestants] = new()
                 {
-                    // English: Which of these was a contestant on {0}?
-                    Question = "{0}の参加者に含まれるのは？",
+                    // English: Which of these was a contestant, but not the winner, on {0}?
+                    Question = "Which of these was a contestant, but not the winner, on {0}?",
                 },
             },
         },
@@ -20166,24 +20195,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the {1} word in {0}?
                     // Example: What was the first word in Zoni?
                     Question = "{0}で{1}番目に解読した単語は？",
-                },
-            },
-        },
-
-        // Épelle-moi Ça
-        [typeof(SÉpelleMoiÇa)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What word was asked to be spelled?"] = "綴るべき単語は？",
-            },
-            Questions = new()
-            {
-                [SÉpelleMoiÇa.Word] = new()
-                {
-                    // English: What word was asked to be spelled in {0}?
-                    Question = "{0}において綴りを尋ねられた単語は？",
                 },
             },
         },

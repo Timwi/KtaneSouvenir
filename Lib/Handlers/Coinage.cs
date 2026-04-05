@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCoinage
 {
-    [SouvenirQuestion("Which coin was flipped in {0}?", ThreeColumns6Answers, ExampleAnswers = ["e4", "h5", "d4", "h4", "c4", "h3", "c3", "g2", "f3", "h1", "f7"])]
+    [Question("Which coin was flipped in {0}?", ThreeColumns6Answers, ExampleAnswers = ["e4", "h5", "d4", "h4", "c4", "h3", "c3", "g2", "f3", "h1", "f7"])]
     Flip
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Coinage", "Coinage", typeof(SCoinage), "Emik")]
-    [SouvenirManualQuestion("Which coin was flipped?")]
+    [Handler("Coinage", "Coinage", typeof(SCoinage), "Emik")]
+    [ManualQuestion("Which coin was flipped?")]
     private IEnumerator<SouvenirInstruction> ProcessCoinage(ModuleData module)
     {
         var comp = GetComponent(module, "CoinageScript");

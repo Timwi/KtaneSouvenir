@@ -5,33 +5,33 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlgorithmia
 {
-    [SouvenirQuestion("Which position was the {1} position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which position was the {1} position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Grid(4, 4)]
     QPositions,
 
-    [SouvenirQuestion("What was the color of the colored bulb in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Yellow", "Magenta")]
+    [Question("What was the color of the colored bulb in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Yellow", "Magenta")]
     QColor,
 
-    [SouvenirQuestion("Which number was present in the seed in {0}?", ThreeColumns6Answers)]
+    [Question("Which number was present in the seed in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 99, "00")]
     QSeed,
 
-    [SouvenirDiscriminator("the Algorithmia where this was the {0} position", UsesQuestionSprite = true, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Algorithmia where this was the {0} position", UsesQuestionSprite = true, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DPositions,
 
-    [SouvenirDiscriminator("the Algorithmia whose colored bulb was {0}", Arguments = ["red", "green", "blue", "cyan", "yellow", "magenta"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Algorithmia whose colored bulb was {0}", Arguments = ["red", "green", "blue", "cyan", "yellow", "magenta"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DColor,
 
-    [SouvenirDiscriminator("the Algorithmia that had a {0} in the seed", Arguments = ["01", "02", "03", "10", "37", "42", "47", "55", "78"], ArgumentGroupSize = 1)]
+    [Discriminator("the Algorithmia that had a {0} in the seed", Arguments = ["01", "02", "03", "10", "37", "42", "47", "55", "78"], ArgumentGroupSize = 1)]
     DSeed
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("algorithmia", "Algorithmia", typeof(SAlgorithmia), "tandyCake")]
-    [SouvenirManualQuestion("What were the starting and goal positions?")]
-    [SouvenirManualQuestion("What color was the bulb?")]
-    [SouvenirManualQuestion("Which numbers were present in the seed?")]
+    [Handler("algorithmia", "Algorithmia", typeof(SAlgorithmia), "tandyCake")]
+    [ManualQuestion("What were the starting and goal positions?")]
+    [ManualQuestion("What color was the bulb?")]
+    [ManualQuestion("Which numbers were present in the seed?")]
     private IEnumerator<SouvenirInstruction> ProcessAlgorithmia(ModuleData module)
     {
         var comp = GetComponent(module, "AlgorithmiaScript");

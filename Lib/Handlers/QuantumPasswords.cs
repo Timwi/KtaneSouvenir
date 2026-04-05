@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SQuantumPasswords
 {
-    [SouvenirQuestion("Which word was used in {0}?", ThreeColumns6Answers, "Argue", "Blaze", "Cajun", "Depth", "Endow", "Foyer", "Gimpy", "Heavy", "Index", "Joker", "Kylix", "Lambs", "Mercy", "Nifty", "Omens", "Pupil", "Risky", "Stoic", "Taboo", "Unbox", "Viced", "Waltz", "Xerus", "Yuzus", "Zilch")]
+    [Question("Which word was used in {0}?", ThreeColumns6Answers, "Argue", "Blaze", "Cajun", "Depth", "Endow", "Foyer", "Gimpy", "Heavy", "Index", "Joker", "Kylix", "Lambs", "Mercy", "Nifty", "Omens", "Pupil", "Risky", "Stoic", "Taboo", "Unbox", "Viced", "Waltz", "Xerus", "Yuzus", "Zilch")]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("quantumPasswords", "Quantum Passwords", typeof(SQuantumPasswords), "Anonymous")]
-    [SouvenirManualQuestion("Which words were used?")]
+    [Handler("quantumPasswords", "Quantum Passwords", typeof(SQuantumPasswords), "Anonymous")]
+    [ManualQuestion("Which words were used?")]
     private IEnumerator<SouvenirInstruction> ProcessQuantumPasswords(ModuleData module)
     {
         yield return WaitForSolve;

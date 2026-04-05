@@ -5,22 +5,22 @@ using static Souvenir.AnswerLayout;
 
 public enum SEnaCipher
 {
-    [SouvenirQuestion("What was the {1} keyword in {0}?", TwoColumns4Answers, ExampleAnswers = ["AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} keyword in {0}?", TwoColumns4Answers, ExampleAnswers = ["AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     KeywordAnswer,
 
-    [SouvenirQuestion("What was the transposition key in {0}?", TwoColumns4Answers)]
+    [Question("What was the transposition key in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings(6, "123456")]
     ExtAnswer,
 
-    [SouvenirQuestion("What was the encrypted word in {0}?", TwoColumns4Answers)]
+    [Question("What was the encrypted word in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings(6, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
     EncryptedAnswer
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("enaCipher", "ƎNA Cipher", typeof(SEnaCipher), "KiloBites")]
-    [SouvenirManualQuestion("What were the keyword, the transposition key and the encrypted word?")]
+    [Handler("enaCipher", "ƎNA Cipher", typeof(SEnaCipher), "KiloBites")]
+    [ManualQuestion("What were the keyword, the transposition key and the encrypted word?")]
     private IEnumerator<SouvenirInstruction> ProcessEnaCipher(ModuleData module)
     {
         var comp = GetComponent(module, "enaCipherScript");

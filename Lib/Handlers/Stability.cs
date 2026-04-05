@@ -6,19 +6,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SStability
 {
-    [SouvenirQuestion("What was the color of the {1} lit LED in {0}?", OneColumn3Answers, "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the color of the {1} lit LED in {0}?", OneColumn3Answers, "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     LedColors,
 
-    [SouvenirQuestion("What was the identification number in {0}?", ThreeColumns6Answers)]
+    [Question("What was the identification number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9999, "0000")]
     IdNumber
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("stabilityModule", "Stability", typeof(SStability), "NickLatkovich")]
-    [SouvenirManualQuestion("What were the lit LEDs’ colors?")]
-    [SouvenirManualQuestion("What was the identification number?")]
+    [Handler("stabilityModule", "Stability", typeof(SStability), "NickLatkovich")]
+    [ManualQuestion("What were the lit LEDs’ colors?")]
+    [ManualQuestion("What was the identification number?")]
     private IEnumerator<SouvenirInstruction> ProcessStability(ModuleData module)
     {
         var colorNames = new[] { "Red", "Yellow", "Blue" };

@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SInterpunct
 {
-    [SouvenirQuestion("What was the symbol displayed in the {1} stage of {0}?", ThreeColumns6Answers, "(", ",", ">", "/", "}", "]", "_", "-", "\"", "|", "»", ":", ".", "{", "<", "”", "«", "`", "[", "?", ")", "!", "\\", "'", ";", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the symbol displayed in the {1} stage of {0}?", ThreeColumns6Answers, "(", ",", ">", "/", "}", "]", "_", "-", "\"", "|", "»", ":", ".", "{", "<", "”", "«", "`", "[", "?", ")", "!", "\\", "'", ";", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Display
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("interpunct", "Interpunct", typeof(SInterpunct), "Eltrick")]
-    [SouvenirManualQuestion("What was the symbol displayed in each stage?")]
+    [Handler("interpunct", "Interpunct", typeof(SInterpunct), "Eltrick")]
+    [ManualQuestion("What was the symbol displayed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessInterpunct(ModuleData module)
     {
         var comp = GetComponent(module, "InterpunctScript");

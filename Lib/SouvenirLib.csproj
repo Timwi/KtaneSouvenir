@@ -27,9 +27,9 @@
     <GameFolder Condition="'$(GameFolder)' == '' AND '$(OS)' != 'Windows_NT' AND '$(KTANE_GAME_FOLDER)' != ''">$(KTANE_GAME_FOLDER)</GameFolder>
     <ManagedFolder Condition="'$(OS)' == 'Windows_NT'">ktane_Data\Managed</ManagedFolder>
     <ManagedFolder Condition="'$(OS)' != 'Windows_NT'">Keep Talking and Nobody Explodes.app/Contents/Resources/Data/Managed</ManagedFolder>
-    <SouvenirPostBuildTool Condition="'$(OS)' == 'Windows_NT'">..\PostBuildTool\bin\Release\net8.0-windows7.0\SouvenirPostBuildTool.exe</SouvenirPostBuildTool>
-    <SouvenirPostBuildTool Condition="'$(OS)' != 'Windows_NT'">..\PostBuildTool\bin\Release\net8.0-windows7.0\SouvenirPostBuildTool</SouvenirPostBuildTool>
-    <JsTargetFolder></JsTargetFolder>
+    <SouvenirPostBuildTool Condition="'$(OS)' == 'Windows_NT'">..\PostBuildTool\bin\Release\net4.8\SouvenirPostBuildTool.exe</SouvenirPostBuildTool>
+    <SouvenirPostBuildTool Condition="'$(OS)' != 'Windows_NT'">..\PostBuildTool\bin\Release\net4.8\SouvenirPostBuildTool</SouvenirPostBuildTool>
+    <SouvenirPostBuildToolExtraArguments></SouvenirPostBuildToolExtraArguments>
   </PropertyGroup>
   <ItemGroup>
     <None Include="SouvenirLib.csproj.user" />
@@ -109,7 +109,8 @@
     <ItemGroup>
       <SouvenirDlls Include="$(TargetDir)*.dll" />
     </ItemGroup>
-    <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(GameFolder)$(ManagedFolder)&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t &quot;$(ProjectDir).&quot; -j &quot;$(JsTargetFolder)&quot;" />
+    <Exec Command="echo $(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot; &quot;$(GameFolder)$(ManagedFolder)&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t $(SouvenirPostBuildToolExtraArguments)" />
+    <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot; &quot;$(GameFolder)$(ManagedFolder)&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t $(SouvenirPostBuildToolExtraArguments)" />
     <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(ProjectDir)..\\Assets\\Plugins\\Managed" />
     <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(GameFolder)mods\\Souvenir" />
   </Target>

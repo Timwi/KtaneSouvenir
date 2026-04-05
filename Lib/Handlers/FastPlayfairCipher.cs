@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SFastPlayfairCipher
 {
-    [SouvenirQuestion("What was the last displayed message in {0}?", ThreeColumns6Answers, ExampleAnswers = ["CT", "DK", "SA", "SG", "SH", "TG", "TZ", "FP", "JA", "ZB"])]
+    [Question("What was the last displayed message in {0}?", ThreeColumns6Answers, ExampleAnswers = ["CT", "DK", "SA", "SG", "SH", "TG", "TZ", "FP", "JA", "ZB"])]
     [AnswerGenerator.Strings("A-WYZ")]
     [AnswerGenerator.Strings("A-WYZ", "A-WYZ")]
     LastMessage
@@ -15,8 +15,8 @@ public enum SFastPlayfairCipher
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("FastPlayfairCipher", "Fast Playfair Cipher", typeof(SFastPlayfairCipher), "Dani was here")]
-    [SouvenirManualQuestion("What was the last displayed message?")]
+    [Handler("FastPlayfairCipher", "Fast Playfair Cipher", typeof(SFastPlayfairCipher), "Dani was here")]
+    [ManualQuestion("What was the last displayed message?")]
     private IEnumerator<SouvenirInstruction> ProcessFastPlayfairCipher(ModuleData module)
     {
         var comp = GetComponent(module, "FastPlayfairCipher");

@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SMashematics
 {
-    [SouvenirQuestion("What was the {1} number in the equation on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} number in the equation on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 99)]
     Calculation
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("mashematics", "Mashematics", typeof(SMashematics), "Marksam")]
-    [SouvenirManualQuestion("What were the numbers in the equation?")]
+    [Handler("mashematics", "Mashematics", typeof(SMashematics), "Marksam")]
+    [ManualQuestion("What were the numbers in the equation?")]
     private IEnumerator<SouvenirInstruction> ProcessMashematics(ModuleData module)
     {
         var comp = GetComponent(module, "mashematicsScript");

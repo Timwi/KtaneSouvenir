@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetMe
 {
-    [SouvenirQuestion("What number was in the {1} position of the initial puzzle in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1)]
+    [Question("What number was in the {1} position of the initial puzzle in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 8)]
     InitialState
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("forgetMe", "Forget Me", typeof(SForgetMe), "tandyCake")]
-    [SouvenirManualQuestion("What numbers were in which positions in the initial puzzle?")]
+    [Handler("forgetMe", "Forget Me", typeof(SForgetMe), "tandyCake")]
+    [ManualQuestion("What numbers were in which positions in the initial puzzle?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetMe(ModuleData module)
     {
         var comp = GetComponent(module, "NotForgetMeNotScript");

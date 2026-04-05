@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SMonsplodeTradingCards
 {
-    [SouvenirQuestion("Which of these cards was in your hand before the last action in {0}?", TwoColumns4Answers, "Aluga", "Asteran", "Bob", "Buhar", "Caadarim", "Clondar", "Cutie Pie", "Docsplode", "Flaurim", "Gloorim", "Lanaluff", "Lugirit", "Magmy", "Melbor", "Mountoise", "Myrchat", "Nibs", "Percy", "Pouse", "Ukkens", "Vellarim", "Violan", "Zapra", "Zenlad", "Aluga, The Fighter", "Bob, The Ancestor", "Buhar, The Protector", "Melbor, The Web Bug")]
+    [Question("Which of these cards was in your hand before the last action in {0}?", TwoColumns4Answers, "Aluga", "Asteran", "Bob", "Buhar", "Caadarim", "Clondar", "Cutie Pie", "Docsplode", "Flaurim", "Gloorim", "Lanaluff", "Lugirit", "Magmy", "Melbor", "Mountoise", "Myrchat", "Nibs", "Percy", "Pouse", "Ukkens", "Vellarim", "Violan", "Zapra", "Zenlad", "Aluga, The Fighter", "Bob, The Ancestor", "Buhar, The Protector", "Melbor, The Web Bug")]
     CardsAny,
 
-    [SouvenirQuestion("Which of these print versions was present on a card in your hand before the last action in {0}?", ThreeColumns6Answers)]
+    [Question("Which of these print versions was present on a card in your hand before the last action in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings("A-I", "1-9")]
     PrintVersionsAny
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("monsplodeCards", "Monsplode Trading Cards", typeof(SMonsplodeTradingCards), "Timwi")]
-    [SouvenirManualQuestion("What were the names and print versions of the three cards in your hand before the final trade/keep?")]
+    [Handler("monsplodeCards", "Monsplode Trading Cards", typeof(SMonsplodeTradingCards), "Timwi")]
+    [ManualQuestion("What were the names and print versions of the three cards in your hand before the final trade/keep?")]
     private IEnumerator<SouvenirInstruction> ProcessMonsplodeTradingCards(ModuleData module)
     {
         var comp = GetComponent(module, "MonsplodeCardModule");

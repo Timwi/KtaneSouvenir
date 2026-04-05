@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SWalkingCube
 {
-    [SouvenirQuestion("Which of these cells was part of the cube’s path in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which of these cells was part of the cube’s path in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     Path
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("WalkingCubeModule", "Walking Cube", typeof(SWalkingCube), "Anonymous")]
-    [SouvenirManualQuestion("Which cells did the cube walk to?")]
+    [Handler("WalkingCubeModule", "Walking Cube", typeof(SWalkingCube), "Anonymous")]
+    [ManualQuestion("Which cells did the cube walk to?")]
     private IEnumerator<SouvenirInstruction> ProcessWalkingCube(ModuleData module)
     {
         yield return WaitForSolve;

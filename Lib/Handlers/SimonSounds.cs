@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSounds
 {
-    [SouvenirQuestion("Which sample button sounded {1} in the final sequence in {0}?", TwoColumns4Answers, "red", "blue", "yellow", "green", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which sample button sounded {1} in the final sequence in {0}?", TwoColumns4Answers, "red", "blue", "yellow", "green", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     FlashingColors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonSounds", "Simon Sounds", typeof(SSimonSounds), "Timwi")]
-    [SouvenirManualQuestion("Which sample buttons sounded in each stage?")]
+    [Handler("simonSounds", "Simon Sounds", typeof(SSimonSounds), "Timwi")]
+    [ManualQuestion("Which sample buttons sounded in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSounds(ModuleData module)
     {
         var comp = GetComponent(module, "simonSoundsScript");

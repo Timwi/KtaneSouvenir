@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SNumpath
 {
-    [SouvenirQuestion("What was the color of the number on {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", TranslateAnswers = true)]
+    [Question("What was the color of the number on {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", TranslateAnswers = true)]
     Color,
 
-    [SouvenirQuestion("What was the number displayed on {0}?", ThreeColumns6Answers)]
+    [Question("What was the number displayed on {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 9)]
     Digit
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("numpath", "Numpath", typeof(SNumpath), "tandyCake")]
-    [SouvenirManualQuestion("What was the number and its color?")]
+    [Handler("numpath", "Numpath", typeof(SNumpath), "tandyCake")]
+    [ManualQuestion("What was the number and its color?")]
     private IEnumerator<SouvenirInstruction> ProcessNumpath(ModuleData module)
     {
         var comp = GetComponent(module, "NumpathScript");

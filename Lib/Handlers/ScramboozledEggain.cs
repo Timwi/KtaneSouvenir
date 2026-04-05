@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SScramboozledEggain
 {
-    [SouvenirQuestion("What was the {1} encrypted word in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Basted", "Boiled", "Boxing", "Carton", "Dumpty", "French"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} encrypted word in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Basted", "Boiled", "Boxing", "Carton", "Dumpty", "French"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ScramboozledEggainModule", "Scramboozled Eggain", typeof(SScramboozledEggain), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the encrypted words?")]
+    [Handler("ScramboozledEggainModule", "Scramboozled Eggain", typeof(SScramboozledEggain), "Quinn Wuest")]
+    [ManualQuestion("What were the encrypted words?")]
     private IEnumerator<SouvenirInstruction> ProcessScramboozledEggain(ModuleData module)
     {
         var comp = GetComponent(module, "ScramboozledEggainScript");

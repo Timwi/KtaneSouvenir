@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SColouredCylinder
 {
-    [SouvenirQuestion("What was the {1} colour flashed on the cylinder in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Magenta", "White", "Black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} colour flashed on the cylinder in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Magenta", "White", "Black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colours
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("colouredCylinder", "Coloured Cylinder", typeof(SColouredCylinder), "Anonymous")]
-    [SouvenirManualQuestion("What colours did the cylinder flash?")]
+    [Handler("colouredCylinder", "Coloured Cylinder", typeof(SColouredCylinder), "Anonymous")]
+    [ManualQuestion("What colours did the cylinder flash?")]
     private IEnumerator<SouvenirInstruction> ProcessColouredCylinder(ModuleData module)
     {
         yield return WaitForSolve;

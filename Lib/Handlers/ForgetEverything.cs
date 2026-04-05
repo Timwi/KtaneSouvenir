@@ -7,18 +7,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetEverything
 {
-    [SouvenirQuestion("What was the {1} displayed digit in the first stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} displayed digit in the first stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     QStageOneDisplay,
 
-    [SouvenirDiscriminator("the Forget Everything whose {0} displayed digit in that stage was {1}", Arguments = [QandA.Ordinal, "1", QandA.Ordinal, "2"], ArgumentGroupSize = 2)]
+    [Discriminator("the Forget Everything whose {0} displayed digit in that stage was {1}", Arguments = [QandA.Ordinal, "1", QandA.Ordinal, "2"], ArgumentGroupSize = 2)]
     DStageOneDisplay
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("HexiEvilFMN", "Forget Everything", typeof(SForgetEverything), "Kuro", IsBossModule = true)]
-    [SouvenirManualQuestion("What were the displayed digits in stage one?")]
+    [Handler("HexiEvilFMN", "Forget Everything", typeof(SForgetEverything), "Kuro", IsBossModule = true)]
+    [ManualQuestion("What were the displayed digits in stage one?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetEverything(ModuleData module)
     {
         var comp = GetComponent(module, "EvilMemory");

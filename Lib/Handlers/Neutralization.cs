@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SNeutralization
 {
-    [SouvenirQuestion("What was the acid’s color in {0}?", TwoColumns4Answers, "Yellow", "Green", "Red", "Blue", TranslateAnswers = true)]
+    [Question("What was the acid’s color in {0}?", TwoColumns4Answers, "Yellow", "Green", "Red", "Blue", TranslateAnswers = true)]
     Color,
 
-    [SouvenirQuestion("What was the acid’s volume in {0}?", TwoColumns4Answers, "5", "10", "15", "20")]
+    [Question("What was the acid’s volume in {0}?", TwoColumns4Answers, "5", "10", "15", "20")]
     Volume
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("neutralization", "Neutralization", typeof(SNeutralization), "Timwi")]
-    [SouvenirManualQuestion("What was the acid’s color/volume?")]
+    [Handler("neutralization", "Neutralization", typeof(SNeutralization), "Timwi")]
+    [ManualQuestion("What was the acid’s color/volume?")]
     private IEnumerator<SouvenirInstruction> ProcessNeutralization(ModuleData module)
     {
         var comp = GetComponent(module, "neutralization");

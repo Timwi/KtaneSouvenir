@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SAMessage
 {
-    [SouvenirQuestion("What was the initial message in {0}?", TwoColumns4Answers, Type = AnswerType.AMessageFont, FontSize = 560, CharacterSize = 0.125f)]
+    [Question("What was the initial message in {0}?", TwoColumns4Answers, Type = AnswerType.AMessageFont, FontSize = 560, CharacterSize = 0.125f)]
     [AnswerGenerator.AMessage]
     AMessage
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("AMessage", "A Message", typeof(SAMessage), "Anonymous")]
-    [SouvenirManualQuestion("What was the received message?")]
+    [Handler("AMessage", "A Message", typeof(SAMessage), "Anonymous")]
+    [ManualQuestion("What was the received message?")]
     private IEnumerator<SouvenirInstruction> ProcessAMessage(ModuleData module)
     {
         yield return WaitForSolve;

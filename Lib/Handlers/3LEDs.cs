@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum S3LEDs
 {
-    [SouvenirQuestion("What was the initial state of the LEDs in {0} (in reading order)?", TwoColumns4Answers, "off/off/off", "off/off/on", "off/on/off", "off/on/on", "on/off/off", "on/off/on", "on/on/off", "on/on/on", TranslateAnswers = true)]
+    [Question("What was the initial state of the LEDs in {0} (in reading order)?", TwoColumns4Answers, "off/off/off", "off/off/on", "off/on/off", "off/on/on", "on/off/off", "on/off/on", "on/on/off", "on/on/on", TranslateAnswers = true)]
     InitialState
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("threeLEDsModule", "3 LEDs", typeof(S3LEDs), "Timwi")]
-    [SouvenirManualQuestion("What was the initial state of the LEDs?")]
+    [Handler("threeLEDsModule", "3 LEDs", typeof(S3LEDs), "Timwi")]
+    [ManualQuestion("What was the initial state of the LEDs?")]
     private IEnumerator<SouvenirInstruction> Process3LEDs(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeLEDsScript");

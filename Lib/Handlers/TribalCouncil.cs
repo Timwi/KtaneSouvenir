@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum STribalCouncil
 {
-    [SouvenirQuestion("What was the {1} name in {0}?", TwoColumns4Answers, "Louise", "Mark", "Hannah", "Adam", "Harvey", "Maria", "Jonathan", "Carolyn", "Stacy", "Bob", Arguments = ["northeast", "southwest"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the {1} name in {0}?", TwoColumns4Answers, "Louise", "Mark", "Hannah", "Adam", "Harvey", "Maria", "Jonathan", "Carolyn", "Stacy", "Bob", Arguments = ["northeast", "southwest"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Name
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TribalCouncil", "Tribal Council", typeof(STribalCouncil), "Anonymous")]
-    [SouvenirManualQuestion("What were the northeast and southwest names?")]
+    [Handler("TribalCouncil", "Tribal Council", typeof(STribalCouncil), "Anonymous")]
+    [ManualQuestion("What were the northeast and southwest names?")]
     private IEnumerator<SouvenirInstruction> ProcessTribalCouncil(ModuleData module)
     {
         var comp = GetComponent(module, "tribalCouncilScript");

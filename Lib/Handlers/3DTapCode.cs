@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum S3DTapCode
 {
-    [SouvenirQuestion("What was the received word in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Aback", "Backs", "Habit", "Oasis", "Unzip", "Vogue"])]
+    [Question("What was the received word in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Aback", "Backs", "Habit", "Oasis", "Unzip", "Vogue"])]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("3DTapCodeModule", "3D Tap Code", typeof(S3DTapCode), "TasThiluna")]
-    [SouvenirManualQuestion("What was the received word?")]
+    [Handler("3DTapCodeModule", "3D Tap Code", typeof(S3DTapCode), "TasThiluna")]
+    [ManualQuestion("What was the received word?")]
     private IEnumerator<SouvenirInstruction> Process3DTapCode(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeDTapCodeScript");

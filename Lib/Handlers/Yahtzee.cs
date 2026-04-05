@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SYahtzee
 {
-    [SouvenirQuestion("What was the initial roll on {0}?", TwoColumns4Answers, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair", TranslateAnswers = true)]
+    [Question("What was the initial roll on {0}?", TwoColumns4Answers, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair", TranslateAnswers = true)]
     InitialRoll
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("YahtzeeModule", "Yahtzee", typeof(SYahtzee), "Timwi")]
-    [SouvenirManualQuestion("What was the first roll?")]
+    [Handler("YahtzeeModule", "Yahtzee", typeof(SYahtzee), "Timwi")]
+    [ManualQuestion("What was the first roll?")]
     private IEnumerator<SouvenirInstruction> ProcessYahtzee(ModuleData module)
     {
         var comp = GetComponent(module, "YahtzeeModule");

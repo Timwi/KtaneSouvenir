@@ -7,17 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SSouvenir
 {
-    [SouvenirQuestion("What was the first module asked about in the other Souvenir on this bomb?", OneColumn4Answers, ExampleAnswers = ["Probing", "Microcontroller", "Third Base", "Kudosudoku", "Quintuples", "3D Tunnels", "Uncolored Squares", "Pattern Cube", "Synonyms", "The Moon", "Human Resources", "Algebra"])]
+    [Question("What was the first module asked about in the other Souvenir on this bomb?", OneColumn4Answers, ExampleAnswers = ["Probing", "Microcontroller", "Third Base", "Kudosudoku", "Quintuples", "3D Tunnels", "Uncolored Squares", "Pattern Cube", "Synonyms", "The Moon", "Human Resources", "Algebra"])]
     FirstQuestion,
 
-    [SouvenirDiscriminator("Souvenir")]
+    [Discriminator("Souvenir")]
     NullDiscriminator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SouvenirModule", "Souvenir", typeof(SSouvenir), "CaitSith2", IsBossModule = true)]
-    [SouvenirManualQuestion("What was the first module the other Souvenir asked a question about?")]
+    [Handler("SouvenirModule", "Souvenir", typeof(SSouvenir), "CaitSith2", IsBossModule = true)]
+    [ManualQuestion("What was the first module the other Souvenir asked a question about?")]
     private IEnumerator<SouvenirInstruction> ProcessSouvenir(ModuleData module)
     {
         var comp = module.Module.GetComponent<SouvenirModule>();

@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SRecursivePassword
 {
-    [SouvenirQuestion("Which of these words appeared, but was not the password, in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Abyss", "Ingot", "Nonce", "Whelk", "Obeys", "Lobed"])]
+    [Question("Which of these words appeared, but was not the password, in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Abyss", "Ingot", "Nonce", "Whelk", "Obeys", "Lobed"])]
     NonPasswordWords,
 
-    [SouvenirQuestion("What was the password in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Abyss", "Ingot", "Nonce", "Whelk", "Obeys", "Lobed"])]
+    [Question("What was the password in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Abyss", "Ingot", "Nonce", "Whelk", "Obeys", "Lobed"])]
     Password
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("RecursivePassword", "Recursive Password", typeof(SRecursivePassword), "Kuro")]
-    [SouvenirManualQuestion("What were the incomplete words?")]
-    [SouvenirManualQuestion("What was the password?")]
+    [Handler("RecursivePassword", "Recursive Password", typeof(SRecursivePassword), "Kuro")]
+    [ManualQuestion("What were the incomplete words?")]
+    [ManualQuestion("What was the password?")]
     private IEnumerator<SouvenirInstruction> ProcessRecursivePassword(ModuleData module)
     {
         var comp = GetComponent(module, "RecursivePassword");

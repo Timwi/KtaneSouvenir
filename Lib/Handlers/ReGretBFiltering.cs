@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SReGretBFiltering
 {
-    [SouvenirQuestion("Which calculation was used for the {1} stage of {0}?", ThreeColumns6Answers, "+", "×", "÷", "⊻", "∧", "∨", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which calculation was used for the {1} stage of {0}?", ThreeColumns6Answers, "+", "×", "÷", "⊻", "∧", "∨", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Operator
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("regretbFiltering", "ReGret-B Filtering", typeof(SReGretBFiltering), "Anonymous")]
-    [SouvenirManualQuestion("Which calculations were used?")]
+    [Handler("regretbFiltering", "ReGret-B Filtering", typeof(SReGretBFiltering), "Anonymous")]
+    [ManualQuestion("Which calculations were used?")]
     private IEnumerator<SouvenirInstruction> ProcessReGretBFiltering(ModuleData module)
     {
         yield return WaitForSolve;

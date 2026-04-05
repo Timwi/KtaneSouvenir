@@ -7,25 +7,25 @@ using static Souvenir.AnswerLayout;
 
 public enum SWire
 {
-    [SouvenirQuestion("What was the color of the {1} dial in {0}?", ThreeColumns6Answers, "blue", "green", "grey", "orange", "purple", "red", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["top", "bottom-left", "bottom-right"], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} dial in {0}?", ThreeColumns6Answers, "blue", "green", "grey", "orange", "purple", "red", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["top", "bottom-left", "bottom-right"], ArgumentGroupSize = 1)]
     QDialColors,
 
-    [SouvenirQuestion("What was the displayed number in {0}?", ThreeColumns6Answers)]
+    [Question("What was the displayed number in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 9)]
     QDisplayedNumber,
 
-    [SouvenirDiscriminator("the Wire whose {0} dial was {1}", Arguments = ["top", "blue", "bottom-left", "green", "bottom-right", "grey", "top", "orange", "bottom-left", "purple", "bottom-right", "red"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    [Discriminator("the Wire whose {0} dial was {1}", Arguments = ["top", "blue", "bottom-left", "green", "bottom-right", "grey", "top", "orange", "bottom-left", "purple", "bottom-right", "red"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
     DDialColors,
 
-    [SouvenirDiscriminator("the Wire whose displayed number was {0}", Arguments = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
+    [Discriminator("the Wire whose displayed number was {0}", Arguments = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
     DDisplayedNumber
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("wire", "Wire", typeof(SWire), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What were the colors of the dials?")]
-    [SouvenirManualQuestion("What was the displayed number?")]
+    [Handler("wire", "Wire", typeof(SWire), "Timwi", AddThe = true)]
+    [ManualQuestion("What were the colors of the dials?")]
+    [ManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessWire(ModuleData module)
     {
         var comp = GetComponent(module, "wireScript");

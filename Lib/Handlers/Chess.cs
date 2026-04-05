@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SChess
 {
-    [SouvenirQuestion("What was the {1} coordinate in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} coordinate in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("a-f", "1-6")]
     QCoordinate,
 
-    [SouvenirDiscriminator("the Chess where the {1} coordinate was {0}", Arguments = ["a1", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the Chess where the {1} coordinate was {0}", Arguments = ["a1", QandA.Ordinal], ArgumentGroupSize = 2)]
     DCoordinate
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ChessModule", "Chess", typeof(SChess), "Timwi")]
-    [SouvenirManualQuestion("What were the coordinates?")]
+    [Handler("ChessModule", "Chess", typeof(SChess), "Timwi")]
+    [ManualQuestion("What were the coordinates?")]
     private IEnumerator<SouvenirInstruction> ProcessChess(ModuleData module)
     {
         var comp = GetComponent(module, "ChessBehaviour");

@@ -5,22 +5,22 @@ using static Souvenir.AnswerLayout;
 
 public enum SFindTheDate
 {
-    [SouvenirQuestion("What was the month displayed in the {1} stage of {0}?", TwoColumns4Answers, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the month displayed in the {1} stage of {0}?", TwoColumns4Answers, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Month,
 
-    [SouvenirQuestion("What was the day displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the day displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 31)]
     Day,
 
-    [SouvenirQuestion("What was the year displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the year displayed in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 2899, "000")]
     Year
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("DateFinder", "Find The Date", typeof(SFindTheDate), "Hawker")]
-    [SouvenirManualQuestion("What were the day, month, and year for each stage?")]
+    [Handler("DateFinder", "Find The Date", typeof(SFindTheDate), "Hawker")]
+    [ManualQuestion("What were the day, month, and year for each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessFindTheDate(ModuleData module)
     {
         var comp = GetComponent(module, "DateFinder");

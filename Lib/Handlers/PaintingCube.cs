@@ -4,14 +4,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SPaintingCube
 {
-    [SouvenirQuestion("What color was missing in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", TranslateAnswers = true)]
+    [Question("What color was missing in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", TranslateAnswers = true)]
     MissingColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("paintingCube", "Painting Cube", typeof(SPaintingCube), "KiloBites")]
-    [SouvenirManualQuestion("What color was missing?")]
+    [Handler("paintingCube", "Painting Cube", typeof(SPaintingCube), "KiloBites")]
+    [ManualQuestion("What color was missing?")]
     private IEnumerator<SouvenirInstruction> ProcessPaintingCube(ModuleData module)
     {
         var comp = GetComponent(module, "PaintingCubeScript");

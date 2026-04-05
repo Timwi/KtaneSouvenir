@@ -6,17 +6,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SVaricolourFlash
 {
-    [SouvenirQuestion("What was the word of the {1} goal in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the word of the {1} goal in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Words,
 
-    [SouvenirQuestion("What was the color of the {1} goal in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} goal in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("varicolourFlash", "Varicolour Flash", typeof(SVaricolourFlash), "Quinn Wuest")]
-    [SouvenirManualQuestion("What were the words and colours of each goal?")]
+    [Handler("varicolourFlash", "Varicolour Flash", typeof(SVaricolourFlash), "Quinn Wuest")]
+    [ManualQuestion("What were the words and colours of each goal?")]
     private IEnumerator<SouvenirInstruction> ProcessVaricolourFlash(ModuleData module)
     {
         var comp = GetComponent(module, "VCFScript");

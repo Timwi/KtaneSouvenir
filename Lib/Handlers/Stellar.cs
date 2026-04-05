@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SStellar
 {
-    [SouvenirQuestion("What was the {1} letter in {0}?", ThreeColumns6Answers, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", Arguments = ["Morse code", "tap code", "Braille"], TranslateArguments = [true], ArgumentGroupSize = 1)]
+    [Question("What was the {1} letter in {0}?", ThreeColumns6Answers, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", Arguments = ["Morse code", "tap code", "Braille"], TranslateArguments = [true], ArgumentGroupSize = 1)]
     Letters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("stellar", "Stellar", typeof(SStellar), "Timwi")]
-    [SouvenirManualQuestion("What were the letters?")]
+    [Handler("stellar", "Stellar", typeof(SStellar), "Timwi")]
+    [ManualQuestion("What were the letters?")]
     private IEnumerator<SouvenirInstruction> ProcessStellar(ModuleData module)
     {
         var comp = GetComponent(module, "StellarScript");

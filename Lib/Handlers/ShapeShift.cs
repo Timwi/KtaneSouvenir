@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SShapeShift
 {
-    [SouvenirQuestion("What was the initial shape in {0}?", TwoColumns4Answers, Type = AnswerType.SymbolsFont)]
+    [Question("What was the initial shape in {0}?", TwoColumns4Answers, Type = AnswerType.SymbolsFont)]
     [AnswerGenerator.Strings('A', 'P')]
     InitialShape
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("shapeshift", "Shape Shift", typeof(SShapeShift), "Timwi")]
-    [SouvenirManualQuestion("What was the initial shape?")]
+    [Handler("shapeshift", "Shape Shift", typeof(SShapeShift), "Timwi")]
+    [ManualQuestion("What was the initial shape?")]
     private IEnumerator<SouvenirInstruction> ProcessShapeShift(ModuleData module)
     {
         var comp = GetComponent(module, "ShapeShiftModule");

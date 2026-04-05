@@ -22,7 +22,7 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
 
     public override object[] CorrectAnswers => Correct?.Cast<object>().ToArray();
 
-    protected abstract AnswerSet MakeAnswerSet(T[] answers, int correctIndex, SouvenirQuestionAttribute qAttr, SouvenirModule souvenir);
+    protected abstract AnswerSet MakeAnswerSet(T[] answers, int correctIndex, QuestionAttribute qAttr, SouvenirModule souvenir);
 
     public override AnswerSet GenerateAnswerSet(QuestionStump questionStump, SouvenirModule souvenir)
     {

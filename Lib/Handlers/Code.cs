@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SCode
 {
-    [SouvenirQuestion("What was the displayed number in {0}?", ThreeColumns6Answers, null)]
+    [Question("What was the displayed number in {0}?", ThreeColumns6Answers, null)]
     [AnswerGenerator.Integers(999, 9999)]
     DisplayNumber
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("theCodeModule", "Code", typeof(SCode), "luisdiogo98", AddThe = true)]
-    [SouvenirManualQuestion("What was the displayed number?")]
+    [Handler("theCodeModule", "Code", typeof(SCode), "luisdiogo98", AddThe = true)]
+    [ManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessCode(ModuleData module)
     {
         var comp = GetComponent(module, "TheCodeModule");

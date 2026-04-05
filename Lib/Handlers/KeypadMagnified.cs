@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SKeypadMagnified
 {
-    [SouvenirQuestion("What was the position of the LED in {0}?", TwoColumns4Answers, "Top-left", "Top-right", "Bottom-left", "Bottom-right", TranslateAnswers = true)]
+    [Question("What was the position of the LED in {0}?", TwoColumns4Answers, "Top-left", "Top-right", "Bottom-left", "Bottom-right", TranslateAnswers = true)]
     LED
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("keypadMagnified", "Keypad Magnified", typeof(SKeypadMagnified), "tandyCake")]
-    [SouvenirManualQuestion("What was the position of the LED?")]
+    [Handler("keypadMagnified", "Keypad Magnified", typeof(SKeypadMagnified), "tandyCake")]
+    [ManualQuestion("What was the position of the LED?")]
     private IEnumerator<SouvenirInstruction> ProcessKeypadMagnified(ModuleData module)
     {
         var comp = GetComponent(module, "KeypadMagnifiedScript");

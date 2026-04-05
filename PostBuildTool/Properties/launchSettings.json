@@ -2,7 +2,7 @@
   "profiles": {
     "Run both": {
       "commandName": "Project",
-      "commandLineArgs": "\"D:\\c\\KTANE\\Souvenir\\Lib\\bin\\SouvenirLib.dll\" \"G:\\SteamLibrary\\steamapps\\common\\Keep Talking and Nobody Explodes\\ktane_Data\\Managed\" -c \"D:\\c\\KTANE\\Souvenir\\Lib\\..\\CONTRIBUTORS.md\" -d \"D:\\c\\KTANE\\Souvenir\\Lib\\..\\data.json\" -t \"D:\\c\\KTANE\\Souvenir\\Lib\\.\" -j \"D:\\c\\KTANE\\Public\\HTML\\js\\Modules\""
+      "commandLineArgs": "\"D:\\c\\KTANE\\Souvenir\\Lib\\bin\\SouvenirLib.dll\" \"D:\\c\\KTANE\\Souvenir\\Lib\\.\" \"G:\\SteamLibrary\\steamapps\\common\\Keep Talking and Nobody Explodes\\ktane_Data\\Managed\" -c \"D:\\c\\KTANE\\Souvenir\\Lib\\..\\CONTRIBUTORS.md\" -d \"D:\\c\\KTANE\\Souvenir\\Lib\\..\\data.json\" -t -j D:\\c\\KTANE\\Public\\HTML\\js\\Modules"
     },
     "Run CONTRIBUTORS.md": {
       "commandName": "Project",

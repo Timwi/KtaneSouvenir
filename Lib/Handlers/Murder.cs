@@ -6,21 +6,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SMurder
 {
-    [SouvenirQuestion("Which of these was {1} in {0}?", TwoColumns4Answers, "Miss Scarlett", "Professor Plum", "Mrs Peacock", "Reverend Green", "Colonel Mustard", "Mrs White", TranslateAnswers = true, Arguments = ["a suspect but not the murderer", "not a suspect"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which of these was {1} in {0}?", TwoColumns4Answers, "Miss Scarlett", "Professor Plum", "Mrs Peacock", "Reverend Green", "Colonel Mustard", "Mrs White", TranslateAnswers = true, Arguments = ["a suspect but not the murderer", "not a suspect"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Suspect,
 
-    [SouvenirQuestion("Which of these was {1} in {0}?", TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner", TranslateAnswers = true, Arguments = ["a potential weapon but not the murder weapon", "not a potential weapon"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which of these was {1} in {0}?", TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner", TranslateAnswers = true, Arguments = ["a potential weapon but not the murder weapon", "not a potential weapon"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Weapon,
 
-    [SouvenirQuestion("Where was the body found in {0}?", TwoColumns4Answers, "Dining Room", "Study", "Kitchen", "Lounge", "Billiard Room", "Conservatory", "Ballroom", "Hall", "Library", TranslateAnswers = true)]
+    [Question("Where was the body found in {0}?", TwoColumns4Answers, "Dining Room", "Study", "Kitchen", "Lounge", "Billiard Room", "Conservatory", "Ballroom", "Hall", "Library", TranslateAnswers = true)]
     BodyFound
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("murder", "Murder", typeof(SMurder), "Timwi")]
-    [SouvenirManualQuestion("Which were the suspects and weapons?")]
-    [SouvenirManualQuestion("Where was the body found?")]
+    [Handler("murder", "Murder", typeof(SMurder), "Timwi")]
+    [ManualQuestion("Which were the suspects and weapons?")]
+    [ManualQuestion("Where was the body found?")]
     private IEnumerator<SouvenirInstruction> ProcessMurder(ModuleData module)
     {
         var comp = GetComponent(module, "MurderModule");

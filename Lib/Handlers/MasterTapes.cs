@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMasterTapes
 {
-    [SouvenirQuestion("Which song was played in {0}?", OneColumn4Answers, "Redemption Song", "Do You Want To Know A Secret", "La Bamba", "Rock-A-Hula Baby", "Pickney Gal", "Dogs", "Young Americans", "Duvet", "Shadows Of Lost Days")]
+    [Question("Which song was played in {0}?", OneColumn4Answers, "Redemption Song", "Do You Want To Know A Secret", "La Bamba", "Rock-A-Hula Baby", "Pickney Gal", "Dogs", "Young Americans", "Duvet", "Shadows Of Lost Days")]
     PlayedSong
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("masterTape", "Master Tapes", typeof(SMasterTapes), "Kuro")]
-    [SouvenirManualQuestion("Which song was played?")]
+    [Handler("masterTape", "Master Tapes", typeof(SMasterTapes), "Kuro")]
+    [ManualQuestion("Which song was played?")]
     private IEnumerator<SouvenirInstruction> ProcessMasterTapes(ModuleData module)
     {
         var comp = GetComponent(module, "MasterTape");

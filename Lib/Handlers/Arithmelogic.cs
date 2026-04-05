@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SArithmelogic
 {
-    [SouvenirQuestion("What was the symbol on the submit button in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "ArithmelogicSprites")]
+    [Question("What was the symbol on the submit button in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "ArithmelogicSprites")]
     Submit
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("arithmelogic", "Arithmelogic", typeof(SArithmelogic), "JerryEris")]
-    [SouvenirManualQuestion("What was the symbol on the submit button?")]
+    [Handler("arithmelogic", "Arithmelogic", typeof(SArithmelogic), "JerryEris")]
+    [ManualQuestion("What was the symbol on the submit button?")]
     private IEnumerator<SouvenirInstruction> ProcessArithmelogic(ModuleData module)
     {
         var comp = GetComponent(module, "Arithmelogic");

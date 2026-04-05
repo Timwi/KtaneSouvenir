@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SRoleReversal
 {
-    [SouvenirQuestion("How many {1} wires were there in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", Arguments = ["warm-colored", "cold-colored", "primary-colored", "secondary-colored"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("How many {1} wires were there in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", Arguments = ["warm-colored", "cold-colored", "primary-colored", "secondary-colored"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Wires,
 
-    [SouvenirQuestion("What was the number corresponding to the correct condition in {0}?", ThreeColumns6Answers, "2", "3", "4", "5", "6", "7", "8")]
+    [Question("What was the number corresponding to the correct condition in {0}?", ThreeColumns6Answers, "2", "3", "4", "5", "6", "7", "8")]
     Number
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("roleReversal", "Role Reversal", typeof(SRoleReversal), "Emik")]
-    [SouvenirManualQuestion("What was the condition digit that solved the module?")]
-    [SouvenirManualQuestion("What colors were the internal wires?")]
+    [Handler("roleReversal", "Role Reversal", typeof(SRoleReversal), "Emik")]
+    [ManualQuestion("What was the condition digit that solved the module?")]
+    [ManualQuestion("What colors were the internal wires?")]
     private IEnumerator<SouvenirInstruction> ProcessRoleReversal(ModuleData module)
     {
         var comp = GetComponent(module, "roleReversal");

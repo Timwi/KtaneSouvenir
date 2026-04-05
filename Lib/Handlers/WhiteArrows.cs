@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SWhiteArrows
 {
-    [SouvenirQuestion("What was the {1} non-white arrow in {0}?", TwoColumns4Answers, ExampleAnswers = ["Blue Up", "Red Right", "Yellow Down", "Green Left", "Purple Up", "Orange Right", "Cyan Down", "Teal Left"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslatableStrings = ["Blue", "Red", "Yellow", "Green", "Purple", "Orange", "Cyan", "Teal", "Up", "Right", "Down", "Left", "{0} {1}"])]
+    [Question("What was the {1} non-white arrow in {0}?", TwoColumns4Answers, ExampleAnswers = ["Blue Up", "Red Right", "Yellow Down", "Green Left", "Purple Up", "Orange Right", "Cyan Down", "Teal Left"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslatableStrings = ["Blue", "Red", "Yellow", "Green", "Purple", "Orange", "Cyan", "Teal", "Up", "Right", "Down", "Left", "{0} {1}"])]
     Arrows
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("WhiteArrows", "White Arrows", typeof(SWhiteArrows), "Anonymous")]
-    [SouvenirManualQuestion("What were the non-white arrows?")]
+    [Handler("WhiteArrows", "White Arrows", typeof(SWhiteArrows), "Anonymous")]
+    [ManualQuestion("What were the non-white arrows?")]
     private IEnumerator<SouvenirInstruction> ProcessWhiteArrows(ModuleData module)
     {
         var comp = GetComponent(module, "WhiteArrowsScript");

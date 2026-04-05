@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SEquationsX
 {
-    [SouvenirQuestion("What was the displayed symbol in {0}?", ThreeColumns6Answers, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
+    [Question("What was the displayed symbol in {0}?", ThreeColumns6Answers, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
     Symbols
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("equationsXModule", "Equations X", typeof(SEquationsX), "kavinkul")]
-    [SouvenirManualQuestion("What was the displayed symbol?")]
+    [Handler("equationsXModule", "Equations X", typeof(SEquationsX), "kavinkul")]
+    [ManualQuestion("What was the displayed symbol?")]
     private IEnumerator<SouvenirInstruction> ProcessEquationsX(ModuleData module)
     {
         var comp = GetComponent(module, "EquationsScript");

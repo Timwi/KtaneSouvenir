@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSelects
 {
-    [SouvenirQuestion("Which color was among the colors that flashed in the {1} stage of {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which color was among the colors that flashed in the {1} stage of {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Flashes
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonSelectsModule", "Simon Selects", typeof(SSimonSelects), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which colors flashed in each stage?")]
+    [Handler("simonSelectsModule", "Simon Selects", typeof(SSimonSelects), "Quinn Wuest")]
+    [ManualQuestion("Which colors flashed in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSelects(ModuleData module)
     {
         var comp = GetComponent(module, "SimonSelectsScript");

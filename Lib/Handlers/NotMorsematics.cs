@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotMorsematics
 {
-    [SouvenirQuestion("What was the transmitted word on {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABORT", "AFTER", "AGONY", "ALIGN", "AMONG", "AMBER", "ANGST", "AZURE", "BAKER", "BAYOU", "BEACH", "BLACK", "BOGUS", "BOXES", "BRASH", "BUDGE", "CABLE", "CAULK", "CHIEF", "CLOVE", "CODEX", "CRAZE", "CRISP", "CRUEL"])]
+    [Question("What was the transmitted word on {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABORT", "AFTER", "AGONY", "ALIGN", "AMONG", "AMBER", "ANGST", "AZURE", "BAKER", "BAYOU", "BEACH", "BLACK", "BOGUS", "BOXES", "BRASH", "BUDGE", "CABLE", "CAULK", "CHIEF", "CLOVE", "CODEX", "CRAZE", "CRISP", "CRUEL"])]
     Word
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notMorsematics", "Not Morsematics", typeof(SNotMorsematics), "Quinn Wuest")]
-    [SouvenirManualQuestion("What was the transmitted word?")]
+    [Handler("notMorsematics", "Not Morsematics", typeof(SNotMorsematics), "Quinn Wuest")]
+    [ManualQuestion("What was the transmitted word?")]
     private IEnumerator<SouvenirInstruction> ProcessNotMorsematics(ModuleData module)
     {
         var comp = GetComponent(module, "NMorScript");

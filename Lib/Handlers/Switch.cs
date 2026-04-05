@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSwitch
 {
-    [SouvenirQuestion("What color was the {1} LED on the {2} flip of {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What color was the {1} LED on the {2} flip of {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", TranslateAnswers = true, TranslateArguments = [true, false], Arguments = ["top", QandA.Ordinal, "bottom", QandA.Ordinal], ArgumentGroupSize = 2)]
     InitialColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("BigSwitch", "Switch", typeof(SSwitch), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What color were the LEDs?")]
+    [Handler("BigSwitch", "Switch", typeof(SSwitch), "Timwi", AddThe = true)]
+    [ManualQuestion("What color were the LEDs?")]
     private IEnumerator<SouvenirInstruction> ProcessSwitch(ModuleData module)
     {
         var comp = GetComponent(module, "Switch");

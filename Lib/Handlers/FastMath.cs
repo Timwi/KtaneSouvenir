@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SFastMath
 {
-    [SouvenirQuestion("What was the last pair of letters in {0}?", ThreeColumns6Answers, ExampleAnswers = ["CT", "DK", "SA", "SG", "SX", "TX", "TZ", "XP", "XX", "ZB"])]
+    [Question("What was the last pair of letters in {0}?", ThreeColumns6Answers, ExampleAnswers = ["CT", "DK", "SA", "SG", "SX", "TX", "TZ", "XP", "XX", "ZB"])]
     LastLetters
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("fastMath", "Fast Math", typeof(SFastMath), "Timwi")]
-    [SouvenirManualQuestion("What was the last pair of letters?")]
+    [Handler("fastMath", "Fast Math", typeof(SFastMath), "Timwi")]
+    [ManualQuestion("What was the last pair of letters?")]
     private IEnumerator<SouvenirInstruction> ProcessFastMath(ModuleData module)
     {
         var comp = GetComponent(module, "FastMathModule");

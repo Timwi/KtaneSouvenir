@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlcoholicRampage
 {
-    [SouvenirQuestion("Who was the {1} mercenary displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Who was the {1} mercenary displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Mercenaries
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("alcoholicRampageModule", "Alcoholic Rampage", typeof(SAlcoholicRampage), "Quinn Wuest")]
-    [SouvenirManualQuestion("Which mercenaries were displayed?")]
+    [Handler("alcoholicRampageModule", "Alcoholic Rampage", typeof(SAlcoholicRampage), "Quinn Wuest")]
+    [ManualQuestion("Which mercenaries were displayed?")]
     private IEnumerator<SouvenirInstruction> ProcessAlcoholicRampage(ModuleData module)
     {
         var comp = GetComponent(module, "AlcoholicRampageScript");

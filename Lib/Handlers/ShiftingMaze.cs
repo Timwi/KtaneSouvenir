@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SShiftingMaze
 {
-    [SouvenirQuestion("What was the seed in {0}?", TwoColumns4Answers)]
+    [Question("What was the seed in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings(8, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/")]
     Seed
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("MazeShifting", "Shifting Maze", typeof(SShiftingMaze), "BigCrunch22")]
-    [SouvenirManualQuestion("What was the seed?")]
+    [Handler("MazeShifting", "Shifting Maze", typeof(SShiftingMaze), "BigCrunch22")]
+    [ManualQuestion("What was the seed?")]
     private IEnumerator<SouvenirInstruction> ProcessShiftingMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ShiftingMazeScript");

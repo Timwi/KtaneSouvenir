@@ -6,18 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SHalliGalli
 {
-    [SouvenirQuestion("Which fruit were there five of in {0}?", TwoColumns4Answers, "Strawberries", "Melons", "Lemons", "Raspberries", "Bananas", TranslateAnswers = true)]
+    [Question("Which fruit were there five of in {0}?", TwoColumns4Answers, "Strawberries", "Melons", "Lemons", "Raspberries", "Bananas", TranslateAnswers = true)]
     Fruit,
 
-    [SouvenirQuestion("What were the relevant counts in {0}?", TwoColumns4Answers, "5", "1 4", "2 3", "1 1 3", "1 2 2")]
+    [Question("What were the relevant counts in {0}?", TwoColumns4Answers, "5", "1 4", "2 3", "1 1 3", "1 2 2")]
     Counts
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("halliGalli", "Halli Galli", typeof(SHalliGalli), "Anonymous")]
-    [SouvenirManualQuestion("Which fruit were there five of?")]
-    [SouvenirManualQuestion("What were the relevant counts?")]
+    [Handler("halliGalli", "Halli Galli", typeof(SHalliGalli), "Anonymous")]
+    [ManualQuestion("Which fruit were there five of?")]
+    [ManualQuestion("What were the relevant counts?")]
     private IEnumerator<SouvenirInstruction> ProcessHalliGalli(ModuleData module)
     {
         var comp = GetComponent(module, "halliGalli");

@@ -5,17 +5,17 @@ using static Souvenir.AnswerLayout;
 
 public enum SSuitsAndColours
 {
-    [SouvenirQuestion("What was the colour of this cell in {0}?", TwoColumns4Answers, "yellow", "green", "orange", "red", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the colour of this cell in {0}?", TwoColumns4Answers, "yellow", "green", "orange", "red", UsesQuestionSprite = true, TranslateAnswers = true)]
     Colour,
 
-    [SouvenirQuestion("What was the suit of this cell in {0}?", TwoColumns4Answers, "spades", "hearts", "clubs", "diamonds", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the suit of this cell in {0}?", TwoColumns4Answers, "spades", "hearts", "clubs", "diamonds", UsesQuestionSprite = true, TranslateAnswers = true)]
     Suit
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSSuitsAndColours", "Suits and Colours", typeof(SSuitsAndColours), "Hawker")]
-    [SouvenirManualQuestion("What were the colours and suits of each cell?")]
+    [Handler("GSSuitsAndColours", "Suits and Colours", typeof(SSuitsAndColours), "Hawker")]
+    [ManualQuestion("What were the colours and suits of each cell?")]
     private IEnumerator<SouvenirInstruction> ProcessSuitsAndColours(ModuleData module)
     {
         var comp = GetComponent(module, "SuitsAndColoursScript");

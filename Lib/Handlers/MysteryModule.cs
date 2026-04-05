@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SMysteryModule
 {
-    [SouvenirQuestion("Which module was the first requested to be solved by {0}?", OneColumn4Answers, ExampleAnswers = ["Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox", "Rock-Paper-Scissors-L.-Sp."])]
+    [Question("Which module was the first requested to be solved by {0}?", OneColumn4Answers, ExampleAnswers = ["Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox", "Rock-Paper-Scissors-L.-Sp."])]
     FirstKey,
 
-    [SouvenirQuestion("Which module was hidden by {0}?", OneColumn4Answers, ExampleAnswers = ["Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox"])]
+    [Question("Which module was hidden by {0}?", OneColumn4Answers, ExampleAnswers = ["Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox"])]
     HiddenModule
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("mysterymodule", "Mystery Module", typeof(SMysteryModule), "Timwi")]
-    [SouvenirManualQuestion("Which module was hidden?")]
-    [SouvenirManualQuestion("Which module was the first requested to be solved?")]
+    [Handler("mysterymodule", "Mystery Module", typeof(SMysteryModule), "Timwi")]
+    [ManualQuestion("Which module was hidden?")]
+    [ManualQuestion("Which module was the first requested to be solved?")]
     private IEnumerator<SouvenirInstruction> ProcessMysteryModule(ModuleData module)
     {
         var comp = GetComponent(module, "MysteryModuleScript");

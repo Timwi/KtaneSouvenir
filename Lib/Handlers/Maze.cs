@@ -5,15 +5,15 @@ using static Souvenir.AnswerLayout;
 
 public enum SMaze
 {
-    [SouvenirQuestion("In which {1} was the starting position in {0}, counting from the {2}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["column", "left", "row", "top"], ArgumentGroupSize = 2)]
+    [Question("In which {1} was the starting position in {0}, counting from the {2}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["column", "left", "row", "top"], ArgumentGroupSize = 2)]
     [AnswerGenerator.Integers(1, 6)]
     StartingPosition
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("Maze", "Maze", typeof(SMaze), "Andrio Celos")]
-    [SouvenirManualQuestion("What was the starting position?")]
+    [Handler("Maze", "Maze", typeof(SMaze), "Andrio Celos")]
+    [ManualQuestion("What was the starting position?")]
     private IEnumerator<SouvenirInstruction> ProcessMaze(ModuleData module)
     {
         var comp = GetComponent(module, "InvisibleWallsComponent");

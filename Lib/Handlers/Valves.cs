@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SValves
 {
-    [SouvenirQuestion("What was the initial state of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "ValvesSprites")]
+    [Question("What was the initial state of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "ValvesSprites")]
     InitialState
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("valves", "Valves", typeof(SValves), "Hawker")]
-    [SouvenirManualQuestion("What was the initial state?")]
+    [Handler("valves", "Valves", typeof(SValves), "Hawker")]
+    [ManualQuestion("What was the initial state?")]
     private IEnumerator<SouvenirInstruction> ProcessValves(ModuleData module)
     {
         var comp = GetComponent(module, "Valves");

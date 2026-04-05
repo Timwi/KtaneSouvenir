@@ -6,14 +6,14 @@ using Rnd = UnityEngine.Random;
 
 public enum SHereditaryBaseNotation
 {
-    [SouvenirQuestion("What was the given number in {0}?", TwoColumns4Answers, ExampleAnswers = ["12", "33", "46", "112", "356"])]
+    [Question("What was the given number in {0}?", TwoColumns4Answers, ExampleAnswers = ["12", "33", "46", "112", "356"])]
     InitialNumber
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("hereditaryBaseNotationModule", "Hereditary Base Notation", typeof(SHereditaryBaseNotation), "kavinkul")]
-    [SouvenirManualQuestion("What was the number on the bottom display?")]
+    [Handler("hereditaryBaseNotationModule", "Hereditary Base Notation", typeof(SHereditaryBaseNotation), "kavinkul")]
+    [ManualQuestion("What was the number on the bottom display?")]
     private IEnumerator<SouvenirInstruction> ProcessHereditaryBaseNotation(ModuleData module)
     {
         var comp = GetComponent(module, "hereditaryBaseNotationScript");

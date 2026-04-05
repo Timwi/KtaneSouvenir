@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSimons
 {
-    [SouvenirQuestion("What was the {1} flash in the final sequence in {0}?", ThreeColumns6Answers, "TR", "TY", "TG", "TB", "LR", "LY", "LG", "LB", "RR", "RY", "RG", "RB", "BR", "BY", "BG", "BB", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} flash in the final sequence in {0}?", ThreeColumns6Answers, "TR", "TY", "TG", "TB", "LR", "LY", "LG", "LB", "RR", "RY", "RG", "RB", "BR", "BY", "BG", "BB", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     FlashingColors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonSimons", "Simon Simons", typeof(SSimonSimons), "kavinkul")]
-    [SouvenirManualQuestion("Which buttons flashed?")]
+    [Handler("simonSimons", "Simon Simons", typeof(SSimonSimons), "kavinkul")]
+    [ManualQuestion("Which buttons flashed?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSimons(ModuleData module)
     {
         var comp = GetComponent(module, "simonsScript");

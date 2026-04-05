@@ -5,20 +5,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotPianoKeys
 {
-    [SouvenirQuestion("What was the first displayed symbol on {0}?", TwoColumns4Answers, "b", "n", "#", "", Type = AnswerType.PianoKeysFont)]
+    [Question("What was the first displayed symbol on {0}?", TwoColumns4Answers, "b", "n", "#", "", Type = AnswerType.PianoKeysFont)]
     FirstSymbol,
 
-    [SouvenirQuestion("What was the second displayed symbol on {0}?", ThreeColumns6Answers, "c", "C", "^", "v", ">", "", "%", "\"", "*", Type = AnswerType.PianoKeysFont)]
+    [Question("What was the second displayed symbol on {0}?", ThreeColumns6Answers, "c", "C", "^", "v", ">", "", "%", "\"", "*", Type = AnswerType.PianoKeysFont)]
     SecondSymbol,
 
-    [SouvenirQuestion("What was the third displayed symbol on {0}?", ThreeColumns6Answers, "U", "T", "m", "w", "", "B", "x", "", "", Type = AnswerType.PianoKeysFont)]
+    [Question("What was the third displayed symbol on {0}?", ThreeColumns6Answers, "U", "T", "m", "w", "", "B", "x", "", "", Type = AnswerType.PianoKeysFont)]
     ThirdSymbol
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("notPianoKeys", "Not Piano Keys", typeof(SNotPianoKeys), "tandyCake")]
-    [SouvenirManualQuestion("What were the displayed symbols?")]
+    [Handler("notPianoKeys", "Not Piano Keys", typeof(SNotPianoKeys), "tandyCake")]
+    [ManualQuestion("What were the displayed symbols?")]
     private IEnumerator<SouvenirInstruction> ProcessNotPianoKeys(ModuleData module)
     {
         var comp = GetComponent(module, "NotPianoKeysScript");

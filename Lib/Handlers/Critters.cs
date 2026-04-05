@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SCritters
 {
-    [SouvenirQuestion("What was the color in {0}?", TwoColumns4Answers, "Yellow", "Pink", "Blue", "White", TranslateAnswers = true)]
+    [Question("What was the color in {0}?", TwoColumns4Answers, "Yellow", "Pink", "Blue", "White", TranslateAnswers = true)]
     Color
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("CrittersModule", "Critters", typeof(SCritters), "Eltrick")]
-    [SouvenirManualQuestion("What was the color?")]
+    [Handler("CrittersModule", "Critters", typeof(SCritters), "Eltrick")]
+    [ManualQuestion("What was the color?")]
     private IEnumerator<SouvenirInstruction> ProcessCritters(ModuleData module)
     {
         var comp = GetComponent(module, "CrittersScript");

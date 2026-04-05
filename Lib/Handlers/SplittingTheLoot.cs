@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSplittingTheLoot
 {
-    [SouvenirQuestion("What bag was initially colored in {0}?", ThreeColumns6Answers, ExampleAnswers = ["A5", "E6", "19", "82"])]
+    [Question("What bag was initially colored in {0}?", ThreeColumns6Answers, ExampleAnswers = ["A5", "E6", "19", "82"])]
     ColoredBag
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SplittingTheLootModule", "Splitting The Loot", typeof(SSplittingTheLoot), "luisdiogo98")]
-    [SouvenirManualQuestion("Which bag was initially colored?")]
+    [Handler("SplittingTheLootModule", "Splitting The Loot", typeof(SSplittingTheLoot), "luisdiogo98")]
+    [ManualQuestion("Which bag was initially colored?")]
     private IEnumerator<SouvenirInstruction> ProcessSplittingTheLoot(ModuleData module)
     {
         yield return WaitForActivate;

@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonShouts
 {
-    [SouvenirQuestion("Which letter flashed on the {1} button in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", TranslateArguments = [true], Arguments = ["top", "left", "right", "bottom"], ArgumentGroupSize = 1)]
+    [Question("Which letter flashed on the {1} button in {0}?", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", TranslateArguments = [true], Arguments = ["top", "left", "right", "bottom"], ArgumentGroupSize = 1)]
     FlashingLetter
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("SimonShoutsModule", "Simon Shouts", typeof(SSimonShouts), "Timwi")]
-    [SouvenirManualQuestion("What letters flashed on each button?")]
+    [Handler("SimonShoutsModule", "Simon Shouts", typeof(SSimonShouts), "Timwi")]
+    [ManualQuestion("What letters flashed on each button?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonShouts(ModuleData module)
     {
         var comp = GetComponent(module, "SimonShoutsModule");

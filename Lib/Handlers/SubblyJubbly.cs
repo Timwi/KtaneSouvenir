@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSubblyJubbly
 {
-    [SouvenirQuestion("What was a substitution word in {0}?", TwoColumns4Answers, ExampleAnswers = ["AMOGUS", "BOINKY", "CRINGE", "DUMPY", "EUPHEMISM", "FORTNITE"])]
+    [Question("What was a substitution word in {0}?", TwoColumns4Answers, ExampleAnswers = ["AMOGUS", "BOINKY", "CRINGE", "DUMPY", "EUPHEMISM", "FORTNITE"])]
     Substitutions
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("subblyJubbly", "Subbly Jubbly", typeof(SSubblyJubbly), "Anonymous")]
-    [SouvenirManualQuestion("What were the replacement phrases?")]
+    [Handler("subblyJubbly", "Subbly Jubbly", typeof(SSubblyJubbly), "Anonymous")]
+    [ManualQuestion("What were the replacement phrases?")]
     private IEnumerator<SouvenirInstruction> ProcessSubblyJubbly(ModuleData module)
     {
         var comp = GetComponent(module, "JubblyScript");

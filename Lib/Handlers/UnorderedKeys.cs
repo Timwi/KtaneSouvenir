@@ -6,21 +6,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SUnorderedKeys
 {
-    [SouvenirQuestion("What color was this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     KeyColor,
 
-    [SouvenirQuestion("What color was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     LabelColor,
 
-    [SouvenirQuestion("What was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 6)]
     Label
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("unorderedKeys", "Unordered Keys", typeof(SUnorderedKeys), "Anonymous")]
-    [SouvenirManualQuestion("What were the labels, their colors, and the colors of the keys in each stage?")]
+    [Handler("unorderedKeys", "Unordered Keys", typeof(SUnorderedKeys), "Anonymous")]
+    [ManualQuestion("What were the labels, their colors, and the colors of the keys in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessUnorderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "UnorderedKeysScript");

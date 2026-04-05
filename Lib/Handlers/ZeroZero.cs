@@ -6,22 +6,22 @@ using static Souvenir.AnswerLayout;
 
 public enum SZeroZero
 {
-    [SouvenirQuestion("Where was the {1} square in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [Question("Where was the {1} square in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(6, 6)]
     Squares,
 
-    [SouvenirQuestion("What color was the {1} star in {0}?", TwoColumns4Answers, "black", "blue", "green", "cyan", "red", "magenta", "yellow", "white", TranslateAnswers = true, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What color was the {1} star in {0}?", TwoColumns4Answers, "black", "blue", "green", "cyan", "red", "magenta", "yellow", "white", TranslateAnswers = true, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     StarColors,
 
-    [SouvenirQuestion("How many points were on the {1} star in {0}?", ThreeColumns6Answers, "2", "3", "4", "5", "6", "7", "8", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("How many points were on the {1} star in {0}?", ThreeColumns6Answers, "2", "3", "4", "5", "6", "7", "8", Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     StarPoints
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("zeroZero", "Zero, Zero", typeof(SZeroZero), "Timwi")]
-    [SouvenirManualQuestion("What were the colors and number of points on each star?")]
-    [SouvenirManualQuestion("Where were the colored squares?")]
+    [Handler("zeroZero", "Zero, Zero", typeof(SZeroZero), "Timwi")]
+    [ManualQuestion("What were the colors and number of points on each star?")]
+    [ManualQuestion("Where were the colored squares?")]
     private IEnumerator<SouvenirInstruction> ProcessZeroZero(ModuleData module)
     {
         var comp = GetComponent(module, "ZeroZeroScript");

@@ -6,15 +6,15 @@ using static Souvenir.AnswerLayout;
 
 public enum S3DTunnels
 {
-    [SouvenirQuestion("What was the {1} goal node in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.SymbolsFont)]
+    [Question("What was the {1} goal node in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.SymbolsFont)]
     [AnswerGenerator.Strings("a-z.")]
     TargetNode
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("3dTunnels", "3D Tunnels", typeof(S3DTunnels), "Timwi")]
-    [SouvenirManualQuestion("What were the goal symbols?")]
+    [Handler("3dTunnels", "3D Tunnels", typeof(S3DTunnels), "Timwi")]
+    [ManualQuestion("What were the goal symbols?")]
     private IEnumerator<SouvenirInstruction> Process3DTunnels(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeDTunnels");

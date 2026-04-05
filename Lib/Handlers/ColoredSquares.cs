@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SColoredSquares
 {
-    [SouvenirQuestion("What was the first color group in {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true)]
+    [Question("What was the first color group in {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true)]
     FirstGroup
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ColoredSquaresModule", "Colored Squares", typeof(SColoredSquares), "Timwi")]
-    [SouvenirManualQuestion("What was the first color group?")]
+    [Handler("ColoredSquaresModule", "Colored Squares", typeof(SColoredSquares), "Timwi")]
+    [ManualQuestion("What was the first color group?")]
     private IEnumerator<SouvenirInstruction> ProcessColoredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "ColoredSquaresModule");

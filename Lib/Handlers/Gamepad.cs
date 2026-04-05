@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SGamepad
 {
-    [SouvenirQuestion("What was the {1} digit on the display on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} digit on the display on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     QNumbers,
 
-    [SouvenirDiscriminator("the Gamepad whose {1} digit on the display was {0}", Arguments = ["0", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the Gamepad whose {1} digit on the display was {0}", Arguments = ["0", QandA.Ordinal], ArgumentGroupSize = 2)]
     DNumbers,
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("TheGamepadModule", "Gamepad", typeof(SGamepad), "Timwi", AddThe = true)]
-    [SouvenirManualQuestion("What were the numbers?")]
+    [Handler("TheGamepadModule", "Gamepad", typeof(SGamepad), "Timwi", AddThe = true)]
+    [ManualQuestion("What were the numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessGamepad(ModuleData module)
     {
         var comp = GetComponent(module, "GamepadModule");

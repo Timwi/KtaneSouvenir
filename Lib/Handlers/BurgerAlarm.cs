@@ -5,20 +5,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SBurgerAlarm
 {
-    [SouvenirQuestion("What was the {1} displayed digit in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} displayed digit in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Digits,
 
-    [SouvenirQuestion("What was the {1} order number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} order number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 99, "00")]
     OrderNumbers
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("burgerAlarm", "Burger Alarm", typeof(SBurgerAlarm), "Kuro")]
-    [SouvenirManualQuestion("What were the displayed digits?")]
-    [SouvenirManualQuestion("What were the order numbers?")]
+    [Handler("burgerAlarm", "Burger Alarm", typeof(SBurgerAlarm), "Kuro")]
+    [ManualQuestion("What were the displayed digits?")]
+    [ManualQuestion("What were the order numbers?")]
     private IEnumerator<SouvenirInstruction> ProcessBurgerAlarm(ModuleData module)
     {
         var comp = GetComponent(module, "burgerAlarmScript");

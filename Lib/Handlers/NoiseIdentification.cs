@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SNoiseIdentification
 {
-    [SouvenirQuestion("What was the first displayed noise type in {0}?", TwoColumns4Answers, "Crystal", "Liquid", "Moisture", "Perlin", "Voronoi", "White")]
+    [Question("What was the first displayed noise type in {0}?", TwoColumns4Answers, "Crystal", "Liquid", "Moisture", "Perlin", "Voronoi", "White")]
     Noises
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("noiseIdentification", "Noise Identification", typeof(SNoiseIdentification), "thunder725")]
-    [SouvenirManualQuestion("What was the first displayed noise type?")]
+    [Handler("noiseIdentification", "Noise Identification", typeof(SNoiseIdentification), "thunder725")]
+    [ManualQuestion("What was the first displayed noise type?")]
     private IEnumerator<SouvenirInstruction> ProcessNoiseIdentification(ModuleData module)
     {
         var comp = GetComponent(module, "noiseIdentificationScript");

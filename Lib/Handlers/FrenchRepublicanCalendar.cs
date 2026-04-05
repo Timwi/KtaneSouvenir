@@ -4,14 +4,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SFrenchRepublicanCalendar
 {
-    [SouvenirQuestion("What was the color of the LED in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateAnswers = true)]
+    [Question("What was the color of the LED in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateAnswers = true)]
     LEDColor
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("FrenchRepublicanCalendar", "French Republican Calendar", typeof(SFrenchRepublicanCalendar), "KiloBites", AddThe = true)]
-    [SouvenirManualQuestion("What was the color of the LED?")]
+    [Handler("FrenchRepublicanCalendar", "French Republican Calendar", typeof(SFrenchRepublicanCalendar), "KiloBites", AddThe = true)]
+    [ManualQuestion("What was the color of the LED?")]
     private IEnumerator<SouvenirInstruction> ProcessFrenchRepublicanCalendar(ModuleData module)
     {
         var comp = GetComponent(module, "FrenchRepublicanCalendarScript");

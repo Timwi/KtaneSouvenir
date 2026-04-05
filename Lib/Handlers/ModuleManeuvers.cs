@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SModuleManeuvers
 {
-    [SouvenirQuestion("What was the goal location in {0}?", ThreeColumns6Answers, ExampleAnswers = ["0, 0", "1, 0", "2, -1", "-2, 0", "3, 3", "12, -15"], TranslatableStrings = ["{0}, {1}"])]
+    [Question("What was the goal location in {0}?", ThreeColumns6Answers, ExampleAnswers = ["0, 0", "1, 0", "2, -1", "-2, 0", "3, 3", "12, -15"], TranslatableStrings = ["{0}, {1}"])]
     Goal
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("moduleManeuvers", "Module Maneuvers", typeof(SModuleManeuvers), "Anonymous")]
-    [SouvenirManualQuestion("What was the goal location?")]
+    [Handler("moduleManeuvers", "Module Maneuvers", typeof(SModuleManeuvers), "Anonymous")]
+    [ManualQuestion("What was the goal location?")]
     private IEnumerator<SouvenirInstruction> ProcessModuleManeuvers(ModuleData module)
     {
         yield return WaitForSolve;

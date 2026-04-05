@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SLadderLottery
 {
-    [SouvenirQuestion("Which light was on in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "LadderLotterySprites")]
+    [Question("Which light was on in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "LadderLotterySprites")]
     LightOn
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("ladderLottery", "Ladder Lottery", typeof(SLadderLottery), "Hawker")]
-    [SouvenirManualQuestion("Which light was on?")]
+    [Handler("ladderLottery", "Ladder Lottery", typeof(SLadderLottery), "Hawker")]
+    [ManualQuestion("Which light was on?")]
     private IEnumerator<SouvenirInstruction> ProcessLadderLottery(ModuleData module)
     {
         var comp = GetComponent(module, "LadderLottery");

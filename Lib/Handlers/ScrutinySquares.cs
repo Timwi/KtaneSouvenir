@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SScrutinySquares
 {
-    [SouvenirQuestion("What was the modified property of the first display in {0}?", OneColumn4Answers, "Word", "Color around word", "Color of background", "Color of word", TranslateAnswers = true)]
+    [Question("What was the modified property of the first display in {0}?", OneColumn4Answers, "Word", "Color around word", "Color of background", "Color of word", TranslateAnswers = true)]
     FirstDifference
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("scrutinySquares", "Scrutiny Squares", typeof(SScrutinySquares), "Hawker")]
-    [SouvenirManualQuestion("What was the modified property of the first displayed square?")]
+    [Handler("scrutinySquares", "Scrutiny Squares", typeof(SScrutinySquares), "Hawker")]
+    [ManualQuestion("What was the modified property of the first displayed square?")]
     private IEnumerator<SouvenirInstruction> ProcessScrutinySquares(ModuleData module)
     {
         var comp = GetComponent(module, "ScrutinySquaresScript");

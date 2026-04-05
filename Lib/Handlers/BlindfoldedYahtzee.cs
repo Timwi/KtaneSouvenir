@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SBlindfoldedYahtzee
 {
-    [SouvenirQuestion("What roll did the module claim in the {1} stage of {0}?", TwoColumns4Answers, "Yahtzee", "Large Straight", "Small Straight", "Full House", "Four of a Kind", "Chance", "Three of a Kind", "1s", "2s", "3s", "4s", "5s", "6s", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What roll did the module claim in the {1} stage of {0}?", TwoColumns4Answers, "Yahtzee", "Large Straight", "Small Straight", "Full House", "Four of a Kind", "Chance", "Three of a Kind", "1s", "2s", "3s", "4s", "5s", "6s", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Claim
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("GSBlindfoldedYahtzee", "Blindfolded Yahtzee", typeof(SBlindfoldedYahtzee), "Anonymous")]
-    [SouvenirManualQuestion("Which rolls did the module claim?")]
+    [Handler("GSBlindfoldedYahtzee", "Blindfolded Yahtzee", typeof(SBlindfoldedYahtzee), "Anonymous")]
+    [ManualQuestion("Which rolls did the module claim?")]
     private IEnumerator<SouvenirInstruction> ProcessBlindfoldedYahtzee(ModuleData module)
     {
         var comp = GetComponent(module, "BlindfoldedYahtzeeScript");

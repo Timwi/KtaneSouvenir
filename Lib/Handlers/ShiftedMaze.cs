@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SShiftedMaze
 {
-    [SouvenirQuestion("What color was the {1} marker in {0}?", TwoColumns4Answers, "White", "Blue", "Yellow", "Magenta", "Green", TranslateAnswers = true, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What color was the {1} marker in {0}?", TwoColumns4Answers, "White", "Blue", "Yellow", "Magenta", "Green", TranslateAnswers = true, Arguments = ["top-left", "top-right", "bottom-left", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Colors
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("shiftedMaze", "Shifted Maze", typeof(SShiftedMaze), "Timwi")]
-    [SouvenirManualQuestion("What were the colors of the markers?")]
+    [Handler("shiftedMaze", "Shifted Maze", typeof(SShiftedMaze), "Timwi")]
+    [ManualQuestion("What were the colors of the markers?")]
     private IEnumerator<SouvenirInstruction> ProcessShiftedMaze(ModuleData module)
     {
         var comp = GetComponent(module, "shiftedMazeScript");

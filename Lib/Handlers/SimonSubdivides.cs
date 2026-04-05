@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSubdivides
 {
-    [SouvenirQuestion("What color was the button at this position in {0}?", TwoColumns4Answers, ["Blue", "Green", "Red", "Violet"], TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("What color was the button at this position in {0}?", TwoColumns4Answers, ["Blue", "Green", "Red", "Violet"], TranslateAnswers = true, UsesQuestionSprite = true)]
     Button
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("simonSubdivides", "Simon Subdivides", typeof(SSimonSubdivides), "Anonymous")]
-    [SouvenirManualQuestion("What colors were the cells that subdivided?")]
+    [Handler("simonSubdivides", "Simon Subdivides", typeof(SSimonSubdivides), "Anonymous")]
+    [ManualQuestion("What colors were the cells that subdivided?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonSubdivides(ModuleData module)
     {
         var comp = GetComponent(module, "SSubScript");

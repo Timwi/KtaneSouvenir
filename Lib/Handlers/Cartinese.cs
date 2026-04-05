@@ -5,18 +5,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SCartinese
 {
-    [SouvenirQuestion("What color was the {1} button in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
+    [Question("What color was the {1} button in {0}?", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1, TranslateAnswers = true, TranslateArguments = [true])]
     ButtonColors,
 
-    [SouvenirQuestion("What lyric was played by the {1} button in {0}?", TwoColumns4Answers, "Aingobodirou", "Dongifubounan", "Ayofumylu", "Dimycamilayw", "Dogosemiu", "Bitgosemiu", "Iwittyluyu", "Herolideca", "Anseweke", "Likwoveke", "Omeygah", "Dediamnatifney", Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What lyric was played by the {1} button in {0}?", TwoColumns4Answers, "Aingobodirou", "Dongifubounan", "Ayofumylu", "Dimycamilayw", "Dogosemiu", "Bitgosemiu", "Iwittyluyu", "Herolideca", "Anseweke", "Likwoveke", "Omeygah", "Dediamnatifney", Arguments = ["up", "right", "down", "left"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Lyrics
 }
 
 public partial class SouvenirModule
 {
-    [SouvenirHandler("cartinese", "Cartinese", typeof(SCartinese), "Timwi")]
-    [SouvenirManualQuestion("What lyrics were played by each button?")]
-    [SouvenirManualQuestion("What color was each button?")]
+    [Handler("cartinese", "Cartinese", typeof(SCartinese), "Timwi")]
+    [ManualQuestion("What lyrics were played by each button?")]
+    [ManualQuestion("What color was each button?")]
     private IEnumerator<SouvenirInstruction> ProcessCartinese(ModuleData module)
     {
         var comp = GetComponent(module, "cartinese");
