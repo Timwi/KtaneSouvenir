@@ -5,7 +5,8 @@ using static Souvenir.AnswerLayout;
 
 public enum SEeBgnillepS
 {
-    [SouvenirQuestion("What word was asked to be spelled in {0}?", TwoColumns4Answers, ExampleAnswers = ["odontalgia", "precocious", "privilege", "prospicience"])]
+    [SouvenirQuestion("What word was asked to be spelled in {0}?", TwoColumns4Answers, ExampleAnswers = ["odontalgia", "precocious", "privilege", "prospicience"], ReferenceDocumentation = true)]
+    [ReverseQuestionGimmick]
     Word
 }
 

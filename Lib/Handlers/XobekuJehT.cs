@@ -6,6 +6,7 @@ using static Souvenir.AnswerLayout;
 public enum SXobekuJehT
 {
     [SouvenirQuestion("What song was played on {0}?", OneColumn4Answers, ExampleAnswers = ["Gimme Gimme Gimme", "Take On Me", "Barbie Girl", "Do I Wanna Know"])]
+    [ReverseQuestionGimmick]
     Song
 }
 

@@ -5372,6 +5372,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What word was asked to be spelled in {0}?
                     Question = "What word was asked to be spelled in {0}?",
+                    // Refer to translations.md to understand the weird strings
                 },
             },
         },

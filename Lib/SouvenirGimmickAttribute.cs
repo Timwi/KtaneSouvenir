@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Souvenir;
 
@@ -36,6 +37,18 @@ public sealed class MssNgvWlsGimmickAttribute() : SouvenirGimmickAttribute
             newText.Append(curWordLen == 0 ? char.ToUpperInvariant(letters.Current) : char.ToLowerInvariant(letters.Current));
             curWordLen++;
         }
+        return newText.ToString();
+    }
+}
+
+[AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
+public sealed class ReverseQuestionGimmickAttribute() : SouvenirGimmickAttribute
+{
+    public override string ApplyGimmick(string questionText, object[] args)
+    {
+        var newText = new StringBuilder();
+        for (int i = questionText.Length - 1; i >= 0; i--)
+            newText.Append(questionText[i]);
         return newText.ToString();
     }
 }

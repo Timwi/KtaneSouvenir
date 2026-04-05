@@ -5410,6 +5410,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What word was asked to be spelled in {0}?
                     Question = "Welches Wort sollte bei {0} buchstabiert werden?",
+                    // Refer to translations.md to understand the weird strings
                 },
             },
         },
