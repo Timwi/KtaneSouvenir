@@ -3994,19 +3994,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["yellow"] = "gelb",
                     },
                 },
-                [SCorners.ColorCount] = new()
-                {
-                    // English: How many corners in {0} were {1}?
-                    // Example: How many corners in Corners were red?
-                    Question = "Wie viele der Ecken bei {0} waren {1}?",
-                    Arguments = new()
-                    {
-                        ["red"] = "rot",
-                        ["green"] = "grün",
-                        ["blue"] = "blau",
-                        ["yellow"] = "gelb",
-                    },
-                },
             },
         },
 
@@ -8370,23 +8357,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ingredients
         [typeof(SIngredients)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Zutaten",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["Which ingredients were listed and which were used?"] = "Welche Zutaten kamen vor und welche wurden verwendet?",
+                ["Which ingredients were listed?"] = "Which ingredients were listed?",
             },
             Questions = new()
             {
-                [SIngredients.Ingredients] = new()
+                [SIngredients.ListedIngredients] = new()
                 {
-                    // English: Which ingredient was used in {0}?
-                    Question = "Welche Zutat wurde bei {0} verwendet?",
-                },
-                [SIngredients.NonIngredients] = new()
-                {
-                    // English: Which ingredient was listed but not used in {0}?
-                    Question = "Welche Zutat kam bei {0} vor, wurde aber nicht verwendet?",
+                    // English: Which ingredient was listed in {0}?
+                    Question = "Which ingredient was listed in {0}?",
                 },
             },
         },
@@ -13488,16 +13471,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pictionary
         [typeof(SPictionary)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was the code?"] = "Wie lautete der Code?",
             },
             Questions = new()
             {
-                [SPictionary.Code] = new()
+                [SPictionary.Colors] = new()
                 {
-                    // English: What was the code in {0}?
-                    Question = "Was war bei {0} der Code?",
+                    // English: What were the colors of the pixels in the {1} quadrant in {0}?
+                    // Example: What were the colors of the pixels in the top left quadrant in Pictionary?
+                    Question = "What were the colors of the {1} quadrant in {0}?",
+                    Arguments = new()
+                    {
+                        ["top left"] = "top left",
+                        ["top right"] = "top right",
+                        ["bottom left"] = "bottom left",
+                        ["bottom right"] = "bottom right",
+                    },
                 },
             },
         },

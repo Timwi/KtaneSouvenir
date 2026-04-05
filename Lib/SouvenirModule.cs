@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -52,6 +53,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] NonverbalSimonSprites;
     public Sprite[] OffKeysSprites;
     public Sprite[] OrderedKeysSprites;
+    public Sprite[] PictionarySprites;
     public Sprite[] PlanetsSprites;
     public Sprite[] PolygonsSprites;
     public Sprite[] QuestionMarkSprites;
@@ -80,6 +82,7 @@ public partial class SouvenirModule : MonoBehaviour
     public AudioClip[] FaerieFiresAudio;
     public AudioClip[] ListeningAudio;
     public AudioClip[] SimonSmilesAudio;
+    public AudioClip[] SpellingBeeAudio;
 
     private readonly List<UnityEngine.Object> _unityObjectsToDestroyLater = [];
 

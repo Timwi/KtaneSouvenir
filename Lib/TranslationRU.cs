@@ -4016,20 +4016,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["yellow"] = "Жёлтого",
                     },
                 },
-                [SCorners.ColorCount] = new()
-                {
-                    // English: How many corners in {0} were {1}?
-                    // Example: How many corners in Corners were red?
-                    Question = "Сколько было {1} углов {0}?",
-                    Conjugation = Conjugation.в_PrepositivePlural,
-                    Arguments = new()
-                    {
-                        ["red"] = "красных",
-                        ["green"] = "зелёных",
-                        ["blue"] = "синих",
-                        ["yellow"] = "жёлтых",
-                    },
-                },
             },
         },
 
@@ -8253,21 +8239,17 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Ingredients
         [typeof(SIngredients)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which ingredients were listed and which were used?"] = "Какие ингредиенты были указаны и какие были использованы?",
+                ["Which ingredients were listed?"] = "Which ingredients were listed?",
             },
             Questions = new()
             {
-                [SIngredients.Ingredients] = new()
+                [SIngredients.ListedIngredients] = new()
                 {
-                    // English: Which ingredient was used in {0}?
-                    Question = "Какие ингредиенты были использованны {0}?",
-                },
-                [SIngredients.NonIngredients] = new()
-                {
-                    // English: Which ingredient was listed but not used in {0}?
-                    Question = "Какие ингредиенты были указаны, но не были использованы {0}?",
+                    // English: Which ingredient was listed in {0}?
+                    Question = "Which ingredient was listed in {0}?",
                 },
             },
         },
@@ -13239,16 +13221,25 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Pictionary
         [typeof(SPictionary)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was the code?"] = "Какой был код?",
             },
             Questions = new()
             {
-                [SPictionary.Code] = new()
+                [SPictionary.Colors] = new()
                 {
-                    // English: What was the code in {0}?
-                    Question = "Какой был код {0}?",
+                    // English: What were the colors of the pixels in the {1} quadrant in {0}?
+                    // Example: What were the colors of the pixels in the top left quadrant in Pictionary?
+                    Question = "What were the colors of the {1} quadrant in {0}?",
+                    Arguments = new()
+                    {
+                        ["top left"] = "top left",
+                        ["top right"] = "top right",
+                        ["bottom left"] = "bottom left",
+                        ["bottom right"] = "bottom right",
+                    },
                 },
             },
         },

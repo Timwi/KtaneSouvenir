@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Souvenir;
+using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
 public enum SSpellingBee
 {
-    [SouvenirQuestion("What word was asked to be spelled in {0}?", TwoColumns4Answers, ExampleAnswers = ["allocation", "auxiliary", "cloying", "connoisseur", "controversial", "deceit", "garrulous", "malachite", "perambulate", "sedge"])]
+    [SouvenirQuestion("What word was asked to be spelled in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "SpellingBeeAudio")]
     Word
 }
 
@@ -20,6 +22,9 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
         var focus = GetField<int>(comp, "chosenWord").Get();
-        yield return question(SSpellingBee.Word).Answers(wordList[focus], preferredWrong: wordList.ToArray());
+        var str = $"SpellingBee_{wordList[focus]}";
+        Debug.Log("<>" + str);
+
+        yield return question(SSpellingBee.Word).Answers(SpellingBeeAudio[focus], preferredWrong: SpellingBeeAudio);
     }
 }

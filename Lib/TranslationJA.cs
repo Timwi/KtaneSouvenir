@@ -3878,19 +3878,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["yellow"] = "黄",
                     },
                 },
-                [SCorners.ColorCount] = new()
-                {
-                    // English: How many corners in {0} were {1}?
-                    // Example: How many corners in Corners were red?
-                    Question = "{0}の{1}色の角はいくつ？",
-                    Arguments = new()
-                    {
-                        ["red"] = "赤",
-                        ["green"] = "緑",
-                        ["blue"] = "青",
-                        ["yellow"] = "黄",
-                    },
-                },
             },
         },
 
@@ -8113,22 +8100,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Ingredients
         [typeof(SIngredients)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "食材",
             ManualQuestions = new()
             {
-                ["Which ingredients were listed and which were used?"] = "どの食材が記載され、どれを利用した？",
+                ["Which ingredients were listed?"] = "Which ingredients were listed?",
             },
             Questions = new()
             {
-                [SIngredients.Ingredients] = new()
+                [SIngredients.ListedIngredients] = new()
                 {
-                    // English: Which ingredient was used in {0}?
-                    Question = "{0}で使用された食材は？",
-                },
-                [SIngredients.NonIngredients] = new()
-                {
-                    // English: Which ingredient was listed but not used in {0}?
-                    Question = "{0}の一覧にあったが使用されていない食材は？",
+                    // English: Which ingredient was listed in {0}?
+                    Question = "Which ingredient was listed in {0}?",
                 },
             },
         },
@@ -13091,6 +13074,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Pictionary
         [typeof(SPictionary)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "画像ロジック",
             ManualQuestions = new()
             {
@@ -13098,10 +13082,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SPictionary.Code] = new()
+                [SPictionary.Colors] = new()
                 {
-                    // English: What was the code in {0}?
-                    Question = "{0}のコードは？",
+                    // English: What were the colors of the pixels in the {1} quadrant in {0}?
+                    // Example: What were the colors of the pixels in the top left quadrant in Pictionary?
+                    Question = "What were the colors of the {1} quadrant in {0}?",
+                    Arguments = new()
+                    {
+                        ["top left"] = "top left",
+                        ["top right"] = "top right",
+                        ["bottom left"] = "bottom left",
+                        ["bottom right"] = "bottom right",
+                    },
                 },
             },
         },
