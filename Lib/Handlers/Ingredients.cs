@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SIngredients
 {
-    [Question("Which ingredient was listed in {0}?", TwoColumns4Answers, "Veal", "Beef", "Quail", "Filet Mignon", "Crab", "Scallop", "Lobster", "Sole", "Eel", "Sea Bass", "Mussel", "Cod", "Pumpkin", "Zucchini", "Onion", "Tomato", "Eggplant", "Carrot", "Garlic", "Celery", "Morel", "Porcini", "Chanterelle", "Portobello", "Black Truffle", "King Oyster Mushroom", "Black Trumpet", "Miller Mushroom", "Cloves", "Rosemary", "Thyme", "Bay Leaf", "Basil", "Dill", "Parsley", "Saffron", "Apricot", "Gooseberry", "Lemon", "Orange", "Raspberry", "Pear", "Blackberry", "Apple", "Cheese", "Chocolate", "Caviar", "Butter", "Olive Oil", "Cornichon", "Rice", "Honey", "Sour Cherry", "Strawberry", "Blood Orange", "Banana", "Grapes", "Melon", "Watermelon")]
+    [Question("Which ingredient was listed in {0}?", OneColumn4Answers, "Veal", "Beef", "Quail", "Filet Mignon", "Crab", "Scallop", "Lobster", "Sole", "Eel", "Sea Bass", "Mussel", "Cod", "Pumpkin", "Zucchini", "Onion", "Tomato", "Eggplant", "Carrot", "Garlic", "Celery", "Morel", "Porcini", "Chanterelle", "Portobello", "Black Truffle", "King Oyster Mushroom", "Black Trumpet", "Miller Mushroom", "Cloves", "Rosemary", "Thyme", "Bay Leaf", "Basil", "Dill", "Parsley", "Saffron", "Apricot", "Gooseberry", "Lemon", "Orange", "Raspberry", "Pear", "Blackberry", "Apple", "Cheese", "Chocolate", "Caviar", "Butter", "Olive Oil", "Cornichon", "Rice", "Honey", "Sour Cherry", "Strawberry", "Blood Orange", "Banana", "Grapes", "Melon", "Watermelon")]
     ListedIngredients,
 }
 
@@ -22,7 +23,13 @@ public partial class SouvenirModule
         var initialIngredients = GetField<Array>(comp, "InitialIngredientsList").Get().Cast<object>().Select(ToFriendlyString).ToArray();
         yield return WaitForSolve;
 
-        yield return question(SIngredients.ListedIngredients).Answers(initialIngredients);
+        var display = GetField<TextMesh>(comp, "Display", isPublic: true).Get();
+
+        if (display.text == "")
+            yield return question(SIngredients.ListedIngredients).Answers(initialIngredients);
+
+        else // The display does not need to be converted with ToFriendlyString since the module does it locally
+            yield return question(SIngredients.ListedIngredients).Answers(initialIngredients.Except([display.text]).ToArray(), all: SIngredients.ListedIngredients.GetAnswers().Except([display.text]).ToArray());
     }
 
     private string ToFriendlyString(object ingr)

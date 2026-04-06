@@ -18042,23 +18042,16 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which was the first wire needing to be cut?"] = "Какой первый провод нужно было перерезать?",
-                ["What color was the second valid wire to cut?"] = "Какой был цвет второго верного перерезанного провода?",
+                ["What were the wire colors in the first stage?"] = "What were the wire colors in the first stage?",
                 ["What was the display number?"] = "Какое число было на экране?",
             },
             Questions = new()
             {
-                [SThinkingWires.FirstWire] = new()
+                [SThinkingWires.WireColor] = new()
                 {
-                    // English: What was the position from top to bottom of the first wire needing to be cut in {0}?
-                    Question = "Где находился первый провод который нужно было перерезать (сверху вниз) на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                },
-                [SThinkingWires.SecondWire] = new()
-                {
-                    // English: What color did the second valid wire to cut have to have in {0}?
-                    Question = "Какой цвет был у второго верно порезаного провода {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
+                    // English: What color was the {1} wire in the first stage of {0}?
+                    // Example: What color was the first wire in the first stage of Thinking Wires?
+                    Question = "What color was the {1} wire in the first stage of {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -18069,7 +18062,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Yellow"] = "Yellow",
                         ["White"] = "White",
                         ["Black"] = "Black",
-                        ["Any"] = "Any",
                     },
                 },
                 [SThinkingWires.DisplayNumber] = new()

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -6,11 +8,8 @@ using static Souvenir.AnswerLayout;
 
 public enum SThinkingWires
 {
-    [Question("What was the position from top to bottom of the first wire needing to be cut in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7")]
-    FirstWire,
-
-    [Question("What color did the second valid wire to cut have to have in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any", TranslateAnswers = true)]
-    SecondWire,
+    [Question("What color was the {1} wire in the first stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    WireColor,
 
     [Question("What was the display number in {0}?", ThreeColumns6Answers, "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69")]
     DisplayNumber
@@ -18,18 +17,34 @@ public enum SThinkingWires
 
 public partial class SouvenirModule
 {
-    [Handler("thinkingWiresModule", "Thinking Wires", typeof(SThinkingWires), "kavinkul")]
-    [ManualQuestion("Which was the first wire needing to be cut?")]
-    [ManualQuestion("What color was the second valid wire to cut?")]
+    [Handler("thinkingWiresModule", "Thinking Wires", typeof(SThinkingWires), "Espik")]
+    [ManualQuestion("What were the wire colors in the first stage?")]
     [ManualQuestion("What was the display number?")]
     private IEnumerator<SouvenirInstruction> ProcessThinkingWires(ModuleData module)
     {
         var comp = GetComponent(module, "thinkingWiresScript");
+        var foundWireColors = new string[7];
+
+        IEnumerator RetriveWireColors()
+        {
+            yield return null;
+            var currentWireColors = GetField<IList>(comp, "_wiresColors").Get();
+
+            for (var i = 0; i < 7; i++)
+                foundWireColors[i] = currentWireColors[i].ToString();
+        }
+
+        yield return WaitForActivate;
+        StartCoroutine(RetriveWireColors());
+
+        module.Module.OnStrike += delegate
+        {
+            StartCoroutine(RetriveWireColors());
+            return false;
+        };
+
         yield return WaitForSolve;
 
-        var validWires = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any" };
-        var firstCorrectWire = GetIntField(comp, "firstWireToCut").Get(min: 1, max: 7);
-        var secondCorrectWire = GetField<string>(comp, "secondWireToCut").Get(str => !validWires.Contains(str) ? $"invalid color; expected: {validWires.JoinString(", ")}" : null);
         var displayNumber = GetField<string>(comp, "screenNumber").Get();
 
         // List of valid display numbers for validation. 69 happens in the case of "Any" while 11 is expected to be the longest.
@@ -37,8 +52,9 @@ public partial class SouvenirModule
         if (!new[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69" }.Contains(displayNumber))
             throw new AbandonModuleException($"‘displayNumber’ has an unexpected value: {displayNumber}");
 
-        yield return question(SThinkingWires.FirstWire).Answers(firstCorrectWire.ToString());
-        yield return question(SThinkingWires.SecondWire).Answers(secondCorrectWire);
         yield return question(SThinkingWires.DisplayNumber).Answers(displayNumber);
+
+        for (var i = 0; i < 7; i++)
+            yield return question(SThinkingWires.WireColor, args: [Ordinal(i + 1)]).Answers(foundWireColors[i]);
     }
 }

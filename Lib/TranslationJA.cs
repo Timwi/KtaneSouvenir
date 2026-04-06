@@ -17904,24 +17904,20 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Thinking Wires
         [typeof(SThinkingWires)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "思考ワイヤ",
             ManualQuestions = new()
             {
-                ["Which was the first wire needing to be cut?"] = "最初に切るべきワイヤは？",
-                ["What color was the second valid wire to cut?"] = "2つ目の切断可能なワイヤの色は？",
+                ["What were the wire colors in the first stage?"] = "What were the wire colors in the first stage?",
                 ["What was the display number?"] = "ディスプレーの数字は？",
             },
             Questions = new()
             {
-                [SThinkingWires.FirstWire] = new()
+                [SThinkingWires.WireColor] = new()
                 {
-                    // English: What was the position from top to bottom of the first wire needing to be cut in {0}?
-                    Question = "{0}において最初に切る必要のあるワイヤの位置(上から下)は？",
-                },
-                [SThinkingWires.SecondWire] = new()
-                {
-                    // English: What color did the second valid wire to cut have to have in {0}?
-                    Question = "{0}において2番目に切った有効なワイヤの色は？",
+                    // English: What color was the {1} wire in the first stage of {0}?
+                    // Example: What color was the first wire in the first stage of Thinking Wires?
+                    Question = "What color was the {1} wire in the first stage of {0}?",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -17932,7 +17928,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Yellow"] = "黄",
                         ["White"] = "白",
                         ["Black"] = "黒",
-                        ["Any"] = "任意",
                     },
                 },
                 [SThinkingWires.DisplayNumber] = new()

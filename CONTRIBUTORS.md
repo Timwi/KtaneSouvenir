@@ -139,29 +139,29 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  LED Math               │  More Code         │  Samsung, The    │
     Codenames           │  M&Ms                   │  N&Ms              │  Simon’s Star    │
 
-## Implemented by kavinkul (15)
-
-    Blue Arrows      │  Green Arrows              │  Purple Arrows  │  Simon Simons    │  Transmitted Morse
-    Equations X      │  Hereditary Base Notation  │  Red Arrows     │  Simon Stores    │  Vectors
-    Faulty RGB Maze  │  Orange Arrows             │  RGB Maze       │  Thinking Wires  │  Yellow Arrows
-
 ## Implemented by Andrio Celos (14)
 
     Button, The  │  Not Keypad      │  Not Simaze          │  Perspective Pegs  │  Wire Ordering
     Maze         │  Not Maze        │  Not the Button      │  Simon Says        │  Wire Sequence
     Memory       │  Not Morse Code  │  Not Who’s on First  │  Who’s on First    │
 
+## Implemented by Espik (14)
+
+    100 Levels of Defusal  │  Calendar             │  Encrypted Morse  │  Regular Crazy Talk  │  Tricky Tetris Pieces
+    Blockbusters           │  Challenge & Contact  │  Hexabutton, The  │  Simon Stages        │  Unfair Cipher
+    Boolean Wires          │  Coffeebucks          │  Hyperlink, The   │  Thinking Wires      │
+
+## Implemented by kavinkul (14)
+
+    Blue Arrows      │  Green Arrows              │  Purple Arrows  │  Simon Simons       │  Vectors
+    Equations X      │  Hereditary Base Notation  │  Red Arrows     │  Simon Stores       │  Yellow Arrows
+    Faulty RGB Maze  │  Orange Arrows             │  RGB Maze       │  Transmitted Morse  │
+
 ## Implemented by Emik (13)
 
     1D Chess  │  hexOS                │  Palindromes       │  Quaver                  │  Sorting
     Coinage   │  Linq                 │  Phosphorescence   │  Reformed Role Reversal  │
     Etterna   │  Octadecayotton, The  │  Placeholder Talk  │  Role Reversal           │
-
-## Implemented by Espik (13)
-
-    100 Levels of Defusal  │  Calendar             │  Encrypted Morse  │  Regular Crazy Talk    │  Unfair Cipher
-    Blockbusters           │  Challenge & Contact  │  Hexabutton, The  │  Simon Stages          │
-    Boolean Wires          │  Coffeebucks          │  Hyperlink, The   │  Tricky Tetris Pieces  │
 
 ## Implemented by KiloBites (12)
 

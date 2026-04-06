@@ -18389,25 +18389,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Thinking Wires
         [typeof(SThinkingWires)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Denkdrähte",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["Which was the first wire needing to be cut?"] = "Welcher Draht musste als erster durchtrennt werden?",
-                ["What color was the second valid wire to cut?"] = "Welche Farbe hatte der zweite korrekt durchtrennte Draht?",
+                ["What were the wire colors in the first stage?"] = "What were the wire colors in the first stage?",
                 ["What was the display number?"] = "Welche Zahl war auf dem Display?",
             },
             Questions = new()
             {
-                [SThinkingWires.FirstWire] = new()
+                [SThinkingWires.WireColor] = new()
                 {
-                    // English: What was the position from top to bottom of the first wire needing to be cut in {0}?
-                    Question = "An welcher Stelle, von oben nach unten, war bei {0} der erste durchzutrennende Draht?",
-                },
-                [SThinkingWires.SecondWire] = new()
-                {
-                    // English: What color did the second valid wire to cut have to have in {0}?
-                    Question = "Welche Farbe musste bei {0} der zweite durchzutrennende Draht haben?",
+                    // English: What color was the {1} wire in the first stage of {0}?
+                    // Example: What color was the first wire in the first stage of Thinking Wires?
+                    Question = "What color was the {1} wire in the first stage of {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -18418,7 +18414,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Yellow"] = "Gelb",
                         ["White"] = "Weiß",
                         ["Black"] = "Schwarz",
-                        ["Any"] = "War egal",
                     },
                 },
                 [SThinkingWires.DisplayNumber] = new()

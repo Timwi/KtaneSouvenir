@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SObjectShows
 {
-    [Question("Which of these was a contestant, but not the winner, on {0}?", TwoColumns4Answers, ExampleAnswers = ["Battleship", "Big Circle", "Jack O’ Lantern", "Lego", "Moon", "Radio", "Combination Lock", "Cookie Jar", "Fidget Spinner"])]
+    [Question("Which of these was a contestant, but not the winner, on {0}?", OneColumn4Answers, ExampleAnswers = ["Battleship", "Big Circle", "Jack O’ Lantern", "Lego", "Moon", "Radio", "Combination Lock", "Cookie Jar", "Fidget Spinner"])]
     Contestants
 }
 
