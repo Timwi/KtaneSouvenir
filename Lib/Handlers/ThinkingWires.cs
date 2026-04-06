@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
+using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -24,26 +24,20 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "thinkingWiresScript");
         var foundWireColors = new string[7];
-
-        IEnumerator RetriveWireColors()
-        {
-            yield return null;
-            var currentWireColors = GetField<IList>(comp, "_wiresColors").Get();
-
-            for (var i = 0; i < 7; i++)
-                foundWireColors[i] = currentWireColors[i].ToString();
-        }
+        var fldSecondStage = GetField<bool>(comp, "_secondStage");
 
         yield return WaitForActivate;
-        StartCoroutine(RetriveWireColors());
 
-        module.Module.OnStrike += delegate
+        while (!module.IsSolved)
         {
-            StartCoroutine(RetriveWireColors());
-            return false;
-        };
-
-        yield return WaitForSolve;
+            yield return new WaitForSeconds(.1f);
+            if (!fldSecondStage.Get())
+            {
+                var currentWireColors = GetField<IList>(comp, "_wiresColors").Get(v => v.Count != 7 ? "expected length 7" : null);
+                for (var i = 0; i < 7; i++)
+                    foundWireColors[i] = currentWireColors[i].ToString();
+            }
+        }
 
         var displayNumber = GetField<string>(comp, "screenNumber").Get();
 

@@ -18389,12 +18389,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Thinking Wires
         [typeof(SThinkingWires)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Denkdrähte",
+            ModuleNameDative = "Denkdrähten",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the wire colors in the first stage?"] = "What were the wire colors in the first stage?",
+                ["What were the wire colors in the first stage?"] = "Welche Farbe hatte welcher Draht in der ersten Stufe?",
                 ["What was the display number?"] = "Welche Zahl war auf dem Display?",
             },
             Questions = new()
@@ -18403,7 +18403,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the {1} wire in the first stage of {0}?
                     // Example: What color was the first wire in the first stage of Thinking Wires?
-                    Question = "What color was the {1} wire in the first stage of {0}?",
+                    Question = "Welche Farbe hatte bei {0} der {1}e Draht in der ersten Stufe?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
