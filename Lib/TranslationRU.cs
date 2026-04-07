@@ -5030,25 +5030,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Divisible Numbers
-        [typeof(SDivisibleNumbers)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What were the numbers in each stage?"] = "Какие числа были на каждом этапе?",
-            },
-            Questions = new()
-            {
-                [SDivisibleNumbers.Numbers] = new()
-                {
-                    // English: What was the {1} stage’s number in {0}?
-                    // Example: What was the first stage’s number in Divisible Numbers?
-                    Question = "Какое было число {1}-го этапа {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                },
-            },
-        },
-
         // DNA Mutation
         [typeof(SDNAMutation)] = new()
         {
@@ -8368,23 +8349,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Jenga
-        [typeof(SJenga)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What symbols were on the first correctly pulled block?"] = "Какие символы были на первом правильно вытянутом блоке?",
-            },
-            Questions = new()
-            {
-                [SJenga.FirstBlock] = new()
-                {
-                    // English: Which symbol was on the first correctly pulled block in {0}?
-                    Question = "Какой символ был на первом правильно вытянутом блоке {0}?",
-                },
-            },
-        },
-
         // The Jewel Vault
         [typeof(SJewelVault)] = new()
         {
@@ -10202,24 +10166,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["starting"] = "было начало",
                         ["goal"] = "была цель",
                     },
-                },
-            },
-        },
-
-        // Memorable Buttons
-        [typeof(SMemorableButtons)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What were the symbols on the correct buttons?"] = "Какие символы были на правильных кнопках?",
-            },
-            Questions = new()
-            {
-                [SMemorableButtons.Symbols] = new()
-                {
-                    // English: What was the {1} correct symbol pressed in {0}?
-                    // Example: What was the first correct symbol pressed in Memorable Buttons?
-                    Question = "Какой был {1}-й верно нажатый символ {0}?",
                 },
             },
         },

@@ -5050,27 +5050,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Divisible Numbers
-        [typeof(SDivisibleNumbers)] = new()
-        {
-            ModuleName = "Teilbare Zahlen",
-            ModuleNameDative = "Teilbaren Zahlen",
-            Gender = Gender.Plural,
-            ManualQuestions = new()
-            {
-                ["What were the numbers in each stage?"] = "In welcher Stufe lauteten die Zahlen wie?",
-            },
-            Questions = new()
-            {
-                [SDivisibleNumbers.Numbers] = new()
-                {
-                    // English: What was the {1} stage’s number in {0}?
-                    // Example: What was the first stage’s number in Divisible Numbers?
-                    Question = "Was war bei {0} die Zahl in der {1}en Phase?",
-                },
-            },
-        },
-
         // DNA Mutation
         [typeof(SDNAMutation)] = new()
         {
@@ -8492,23 +8471,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Jenga
-        [typeof(SJenga)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What symbols were on the first correctly pulled block?"] = "Welche Symbole waren auf dem ersten korrekt gezogenen Stein?",
-            },
-            Questions = new()
-            {
-                [SJenga.FirstBlock] = new()
-                {
-                    // English: Which symbol was on the first correctly pulled block in {0}?
-                    Question = "Welches Symbol war bei {0} auf dem zuerst korrekt herausgezogenen Klotz?",
-                },
-            },
-        },
-
         // The Jewel Vault
         [typeof(SJewelVault)] = new()
         {
@@ -10383,27 +10345,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["starting"] = "die Startposition",
                         ["goal"] = "das Ziel",
                     },
-                },
-            },
-        },
-
-        // Memorable Buttons
-        [typeof(SMemorableButtons)] = new()
-        {
-            ModuleName = "Einprägsame Tasten",
-            ModuleNameDative = "Einprägsamen Tasten",
-            Gender = Gender.Plural,
-            ManualQuestions = new()
-            {
-                ["What were the symbols on the correct buttons?"] = "Welche Symbole waren auf den korrekten Tasten?",
-            },
-            Questions = new()
-            {
-                [SMemorableButtons.Symbols] = new()
-                {
-                    // English: What was the {1} correct symbol pressed in {0}?
-                    // Example: What was the first correct symbol pressed in Memorable Buttons?
-                    Question = "Welches Symbol war bei {0} als {1}es korrekt?",
                 },
             },
         },

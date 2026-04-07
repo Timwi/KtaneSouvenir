@@ -4891,25 +4891,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Divisible Numbers
-        [typeof(SDivisibleNumbers)] = new()
-        {
-            ModuleName = "割り切れる数字",
-            ManualQuestions = new()
-            {
-                ["What were the numbers in each stage?"] = "各ステージの数字は？",
-            },
-            Questions = new()
-            {
-                [SDivisibleNumbers.Numbers] = new()
-                {
-                    // English: What was the {1} stage’s number in {0}?
-                    // Example: What was the first stage’s number in Divisible Numbers?
-                    Question = "{0}でのステージ{1}の数字は？",
-                },
-            },
-        },
-
         // DNA Mutation
         [typeof(SDNAMutation)] = new()
         {
@@ -8232,24 +8213,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Jenga
-        [typeof(SJenga)] = new()
-        {
-            ModuleName = "ジェンガ",
-            ManualQuestions = new()
-            {
-                ["What symbols were on the first correctly pulled block?"] = "最初に引き抜いたブロックにあったシンボルは？",
-            },
-            Questions = new()
-            {
-                [SJenga.FirstBlock] = new()
-                {
-                    // English: Which symbol was on the first correctly pulled block in {0}?
-                    Question = "{0}で最初に正しく引き抜かれたブロックの記号は？",
-                },
-            },
-        },
-
         // The Jewel Vault
         [typeof(SJewelVault)] = new()
         {
@@ -10072,25 +10035,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["starting"] = "スタート",
                         ["goal"] = "ゴール",
                     },
-                },
-            },
-        },
-
-        // Memorable Buttons
-        [typeof(SMemorableButtons)] = new()
-        {
-            ModuleName = "記憶ボタン",
-            ManualQuestions = new()
-            {
-                ["What were the symbols on the correct buttons?"] = "正しいボタンのシンボルは？",
-            },
-            Questions = new()
-            {
-                [SMemorableButtons.Symbols] = new()
-                {
-                    // English: What was the {1} correct symbol pressed in {0}?
-                    // Example: What was the first correct symbol pressed in Memorable Buttons?
-                    Question = "{0}の{1}番目の正しいシンボルは？",
                 },
             },
         },
