@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -6,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SObjectShows
 {
-    [Question("Which of these was a contestant, but not the winner, on {0}?", OneColumn4Answers, ExampleAnswers = ["Battleship", "Big Circle", "Jack O’ Lantern", "Lego", "Moon", "Radio", "Combination Lock", "Cookie Jar", "Fidget Spinner"])]
+    [Question("Which of these was a contestant, but not the winner, on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "ObjectShowsSprites")]
     Contestants
 }
 
@@ -22,9 +23,10 @@ public partial class SouvenirModule
         var contestants = GetField<IList>(comp, "solution").Get(lst => lst.Count != 5 ? "expected length 5" : null);
         var fldId = GetField<int>(contestants[0], "id", isPublic: true);
         var allContestantNames = GetStaticField<string[]>(comp.GetType(), "characterNames").Get(v => v.Length != 30 ? "expected length 30" : null);
-        var contestantNames = Enumerable.Range(0, contestants.Count)
-            .Select(ix => allContestantNames[fldId.GetFrom(contestants[ix], v => v is < 0 or >= 30 ? "expected range 0–29" : null)])
+        var contestantIxs = Enumerable.Range(0, contestants.Count)
+            .Select(ix => fldId.GetFrom(contestants[ix], v => v is < 0 or >= 30 ? "expected range 0–29" : null))
             .ToArray();
-        yield return question(SObjectShows.Contestants).Answers(contestantNames, preferredWrong: allContestantNames);
+        var spritesToUse = contestantIxs.Select(i => ObjectShowsSprites[i]).ToArray();
+        yield return question(SObjectShows.Contestants).Answers(spritesToUse, preferredWrong: ObjectShowsSprites);
     }
 }
