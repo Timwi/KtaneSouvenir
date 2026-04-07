@@ -80,7 +80,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Texture2D[] TechnicalKeypadQuestions;
 
     public AudioClip[] AudioMorseAudio;
-    public AudioClip[] CheepCheckoutAudio;
     public AudioClip[] DialtonesAudio;
     public AudioClip[] eeBgnillepSAudio;
     public AudioClip[] ExampleAudio;

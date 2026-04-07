@@ -1,62 +1,54 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
+using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
 public enum SCheepCheckout
 {
-    [Question("Which of these bird sounds can be heard in {0}?", TwoColumns4Answers, Type = AnswerType.Audio, AudioFieldName = "CheepCheckoutAudio")]
+    [Question("Which of these bird sounds could be heard in {0}?", TwoColumns4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
     Birds
 }
 
 public partial class SouvenirModule
 {
+    private Dictionary<string, AudioClip> _cheepCheckoutAudio = null;
+
     [Handler("cheepCheckout", "Cheep Checkout", typeof(SCheepCheckout), "Quinn Wuest")]
-    [ManualQuestion("Which bird sounds can be heard?")]
+    [ManualQuestion("Which bird sounds could be heard?")]
     private IEnumerator<SouvenirInstruction> ProcessCheepCheckout(ModuleData module)
     {
         var comp = GetComponent(module, "cheepCheckoutScript");
         var fldUnicorn = GetField<bool>(comp, "unicorn");
+
+        if (_cheepCheckoutAudio is null)
+        {
+            _cheepCheckoutAudio = [];
+            var lmh = new[] { "low", "med", "high" };
+            var chirpClips = lmh.Select(prefix => Enumerable.Range(1, 3).Select(suffix => Sounds.GetForeignClip("cheepCheckout", prefix + suffix)).ToArray()).ToArray();
+
+            const string data = "Auklet=MML;Bluebird=HLM;Chickadee=MMH;Dove=MLH;Egret=LLM;Finch=MMM;Godwit=LMM;Hummingbird=LML;Ibis=HLL;Jay=LHL;Kinglet=LHM;Loon=MHM;Magpie=HMH;Nuthatch=LLH;Oriole=MLM;Pipit=LHH;Quail=MHH;Raven=HMM;Shrike=HML;Thrush=HHM;Umbrellabird=HLH;Vireo=MLL;Warbler=MHL;Xantus’s Hummingbird=LMH;Yellowlegs=HHH;Zigzag Heron=HHL";
+            foreach (var str in data.Split(';'))
+            {
+                if (str.Split('=') is { Length: 2 } parts && parts[0] is { } name && parts[1] is { } chirps)
+                    _cheepCheckoutAudio[name] = Sounds.Combine($"cheepCheckout_{name}",
+                        (0.0f, chirpClips["LMH".IndexOf(chirps[0])][0]),
+                        (0.68f, chirpClips["LMH".IndexOf(chirps[1])][1]),
+                        (1.36f, chirpClips["LMH".IndexOf(chirps[2])][2]));
+                yield return null;
+            }
+        }
+
         yield return WaitForSolve;
 
         if (fldUnicorn.Get())
             yield return legitimatelyNoQuestion(module, "The unicorn applied.");
 
-        var dict = new Dictionary<string, int>()
-        {
-            ["Auklet"] = 24,
-            ["Bluebird"] = 5,
-            ["Chickadee"] = 23,
-            ["Dove"] = 20,
-            ["Egret"] = 13,
-            ["Finch"] = 25,
-            ["Godwit"] = 16,
-            ["Hummingbird"] = 15,
-            ["Ibis"] = 4,
-            ["Jay"] = 10,
-            ["Kinglet"] = 11,
-            ["Loon"] = 19,
-            ["Magpie"] = 6,
-            ["Nuthatch"] = 12,
-            ["Oriole"] = 22,
-            ["Pipit"] = 9,
-            ["Quail"] = 17,
-            ["Raven"] = 8,
-            ["Shrike"] = 7,
-            ["Thrush"] = 2,
-            ["Umbrellabird"] = 3,
-            ["Vireo"] = 21,
-            ["Warbler"] = 18,
-            ["Xantus’s Hummingbird"] = 14,
-            ["Yellowlegs"] = 0,
-            ["Zigzag Heron"] = 1
-        };
+        var birdNames = GetListField<string>(comp, "birdNames").Get(expectedLength: 27, validator: v => v != "[Unicorn Bastard]" && !_cheepCheckoutAudio.ContainsKey(v) ? "Invalid bird name" : null);
+        var shuffledList = GetListField<int>(comp, "numberList").Get(expectedLength: 27);
+        var birdsPresent = shuffledList.Take(5).Where(ix => ix < 26).Select(ix => _cheepCheckoutAudio[birdNames[ix]]).ToArray();
 
-        var birdNames = GetListField<string>(comp, "birdNames").Get();
-        var shuffledList = GetListField<int>(comp, "numberList").Get();
-        var birdsPresent = shuffledList.Take(5).Where(ix => ix < 26).Select(ix => CheepCheckoutAudio[dict[birdNames[ix]]]).ToArray();
-
-        yield return question(SCheepCheckout.Birds).Answers(birdsPresent, preferredWrong: CheepCheckoutAudio);
+        yield return question(SCheepCheckout.Birds).Answers(birdsPresent, all: _cheepCheckoutAudio.Values.ToArray());
     }
 }

@@ -3109,14 +3109,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which bird sounds can be heard?"] = "Which bird sounds can be heard?",
+                ["Which bird sounds could be heard?"] = "Which bird sounds could be heard?",
             },
             Questions = new()
             {
                 [SCheepCheckout.Birds] = new()
                 {
-                    // English: Which of these bird sounds can be heard in {0}?
-                    Question = "Which of these bird’s sounds can be heard in {0}?",
+                    // English: Which of these bird sounds could be heard in {0}?
+                    Question = "Which of these bird sounds could be heard in {0}?",
                 },
             },
         },

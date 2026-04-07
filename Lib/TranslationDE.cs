@@ -3073,19 +3073,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Cheep Checkout
         [typeof(SCheepCheckout)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Zwitscherkasse",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["Which bird sounds can be heard?"] = "Which bird sounds can be heard?",
+                ["Which bird sounds could be heard?"] = "Welche Vogelrufe waren zu hören?",
             },
             Questions = new()
             {
                 [SCheepCheckout.Birds] = new()
                 {
-                    // English: Which of these bird sounds can be heard in {0}?
-                    Question = "Which of these bird’s sounds can be heard in {0}?",
+                    // English: Which of these bird sounds could be heard in {0}?
+                    Question = "Welcher Vogelruf war bei {0} zu hören?",
                 },
             },
         },
@@ -15031,14 +15030,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Safety Square
         [typeof(SSafetySquare)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Gefahrendiamant",
             ModuleNameDative = "Gefahrendiamanten",
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
                 ["What were the displayed digits?"] = "Welche Ziffern waren auf dem Diamanten?",
-                ["What was displayed on the white diamond?"] = "What was displayed on the white diamond?",
+                ["What was displayed on the white diamond?"] = "Was stand auf dem weißen Diamanten?",
             },
             Questions = new()
             {
@@ -15057,7 +15055,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SSafetySquare.SpecialRule] = new()
                 {
                     // English: What was displayed on the white diamond in {0}?
-                    Question = "What was displayed on the white diamond in {0}?",
+                    Question = "Was stand bei {0} auf dem weißen Diamanten?",
                 },
             },
         },
