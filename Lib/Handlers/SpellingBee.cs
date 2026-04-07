@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -13,7 +11,7 @@ public enum SSpellingBee
 
 public partial class SouvenirModule
 {
-    [Handler("spellingBee", "Spelling Bee", typeof(SSpellingBee), "BigCrunch22")]
+    [Handler("spellingBee", "Spelling Bee", typeof(SSpellingBee), "Quinn Wuest")]
     [ManualQuestion("What word was asked to be spelled?")]
     private IEnumerator<SouvenirInstruction> ProcessSpellingBee(ModuleData module)
     {
@@ -21,10 +19,8 @@ public partial class SouvenirModule
         var wordList = GetField<List<string>>(comp, "wordList", isPublic: true).Get();
 
         yield return WaitForSolve;
-        var focus = GetField<int>(comp, "chosenWord").Get();
-        var str = $"SpellingBee_{wordList[focus]}";
-        Debug.Log("<>" + str);
+        var word = GetField<int>(comp, "chosenWord").Get();
 
-        yield return question(SSpellingBee.Word).Answers(SpellingBeeAudio[focus], preferredWrong: SpellingBeeAudio);
+        yield return question(SSpellingBee.Word).Answers(SpellingBeeAudio[word], preferredWrong: SpellingBeeAudio);
     }
 }

@@ -5246,7 +5246,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What word was asked to be spelled in {0}?
                     Question = "{0}で綴るように求められた単語は？",
-                    // Refer to translations.md to understand the weird strings
                 },
             },
         },

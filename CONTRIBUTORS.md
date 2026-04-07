@@ -61,20 +61,21 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Remainder Theorem  │  Hickory Dickory Dock     │  Number Game, The        │  Smash, Marry, Kill         │
     Coffee Beans               │  Hidden Value, The        │  One Links To All        │  Stable Time Signatures     │
 
-## Implemented by Quinn Wuest (60)
+## Implemented by Quinn Wuest (62)
 
-    .--/---/..-.       │  Double Digits             │  Neptune               │  Papa’s Pizzeria      │  Simultaneous Simons
-    4D Tunnels         │  English Entries           │  Nim                   │  Parity               │  Slow Math
-    Adventure Game     │  Épelle-moi Ça             │  Not Colored Switches  │  Pictionary           │  Small Talk
-    Alcoholic Rampage  │  Guess Who?                │  Not Connection Check  │  Quadrants            │  Synapse Says
-    Ángel Hernández    │  Horrible Memory           │  Not Coordinates       │  Reverse Morse        │  Triple Term
-    Bamboozled Again   │  Hunting                   │  Not Morsematics       │  RGB Encryption       │  Uncolour Flash
-    Big Circle         │  Ingredients               │  Not Murder            │  Robo-Scanner         │  Unown Cipher
-    Bulb, The          │  Jewel Vault, The          │  Not Number Pad        │  Rule of Three        │  Unpleasant Squares
-    Caesar Psycho      │  Letter Math               │  Not Perspective Pegs  │  Scramboozled Eggain  │  Varicolour Flash
-    Coordination       │  Match Refereeing          │  Not The Bulb          │  Simon Said           │  Who’s on Gas
-    Cyan Button, The   │  Mystic Square             │  Not X01               │  Simon Selects        │  Word Count
-    Denial Displays    │  Navigation Determination  │  Off Keys              │  Simon Shuffles       │  xobekuJ ehT
+    .--/---/..-.       │  eeB gnillepS              │  Nim                   │  Pictionary           │  Spelling Bee
+    4D Tunnels         │  English Entries           │  Not Colored Switches  │  Quadrants            │  Synapse Says
+    Adventure Game     │  Épelle-moi Ça             │  Not Connection Check  │  Reverse Morse        │  Triple Term
+    Alcoholic Rampage  │  Guess Who?                │  Not Coordinates       │  RGB Encryption       │  Uncolour Flash
+    Ángel Hernández    │  Horrible Memory           │  Not Morsematics       │  Robo-Scanner         │  Unown Cipher
+    Bamboozled Again   │  Hunting                   │  Not Murder            │  Rule of Three        │  Unpleasant Squares
+    Big Circle         │  Ingredients               │  Not Number Pad        │  Scramboozled Eggain  │  Varicolour Flash
+    Bulb, The          │  Jewel Vault, The          │  Not Perspective Pegs  │  Simon Said           │  Who’s on Gas
+    Caesar Psycho      │  Letter Math               │  Not The Bulb          │  Simon Selects        │  Word Count
+    Coordination       │  Match Refereeing          │  Not X01               │  Simon Shuffles       │  xobekuJ ehT
+    Cyan Button, The   │  Mystic Square             │  Off Keys              │  Simultaneous Simons  │
+    Denial Displays    │  Navigation Determination  │  Papa’s Pizzeria       │  Slow Math            │
+    Double Digits      │  Neptune                   │  Parity                │  Small Talk           │
 
 ## Implemented by Kuro (54)
 
@@ -101,16 +102,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cheat Checkout       │  Error Codes              │  Keypad Combinations  │  Scrutiny Squares   │  Valves
     Conditional Buttons  │  Find The Date            │  Kuro                 │  Sign Language      │  Weakest Link, The
 
-## Implemented by BigCrunch22 (37)
+## Implemented by BigCrunch22 (35)
 
-    1000 Words      │  Dreamcipher    │  Matrix, The            │  Stars                   │  Violet Cipher
-    Alphabet Tiles  │  Dumb Waiters   │  Numbers                │  State of Aggregation    │  What’s on Second
-    Binary          │  eeB gnillepS   │  Orange Cipher          │  Subscribe to Pewdiepie  │  White Cipher
-    Black Cipher    │  Gray Cipher    │  Red Cipher             │  Sugar Skulls            │  Working Title
-    Blue Cipher     │  Green Cipher   │  Roger                  │  Switching Maze          │  Yellow Cipher
-    Cheep Checkout  │  Grocery Store  │  Sequencyclopedia, The  │  Topsy Turvy             │
-    Cosmic          │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
-    Deaf Alley      │  Indigo Cipher  │  Spelling Bee           │  V                       │
+    1000 Words      │  Deaf Alley     │  Indigo Cipher          │  Shifting Maze           │  Ultimate Cipher
+    Alphabet Tiles  │  Dreamcipher    │  Matrix, The            │  Stars                   │  V
+    Binary          │  Dumb Waiters   │  Numbers                │  State of Aggregation    │  Violet Cipher
+    Black Cipher    │  Gray Cipher    │  Orange Cipher          │  Subscribe to Pewdiepie  │  What’s on Second
+    Blue Cipher     │  Green Cipher   │  Red Cipher             │  Sugar Skulls            │  White Cipher
+    Cheep Checkout  │  Grocery Store  │  Roger                  │  Switching Maze          │  Working Title
+    Cosmic          │  Hold Ups       │  Sequencyclopedia, The  │  Topsy Turvy             │  Yellow Cipher
 
 ## Implemented by luisdiogo98 (31)
 
