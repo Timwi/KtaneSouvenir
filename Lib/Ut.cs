@@ -608,7 +608,7 @@ public static class Ut
     {
         var attr = question.GetQuestionAttribute();
         return attr.Type != AnswerType.Sprites
-            ? throw new AbandonModuleException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.")
+            ? throw new AbandonModuleException("A question with sprite answers must have AnswerType set to Sprites, and: EITHER have an associated SpriteFieldName property (for provided clips) OR specify “all” clips in the .Answer() call (for generated clips), OR use a sprite-based AnswerGenerator.")
             : attr.SpriteFieldName == null ? null : (Sprite[]) attr.SpriteField.GetValue(souv);
     }
 
@@ -616,7 +616,7 @@ public static class Ut
     {
         var attr = question.GetQuestionAttribute();
         return attr.Type != AnswerType.Audio || attr.AudioFieldName == null
-            ? throw new AbandonModuleException("GetAllSounds() was called on a question that doesn’t use sounds or doesn’t have an associated sounds field.")
+            ? throw new AbandonModuleException("A question with audio clips must have AnswerType set to Audio, and: EITHER have an associated AudioFieldName property (for provided clips) OR specify “all” clips in the .Answer() call (for generated clips).")
             : (AudioClip[]) attr.AudioField.GetValue(souv);
     }
 
