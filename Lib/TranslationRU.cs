@@ -10637,9 +10637,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SMorseWar.Leds] = new()
                 {
-                    // English: What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?
-                    // Example: What were the LEDs in the bottom row in Morse War (1 = on, 0 = off)?
-                    Question = "Какими были светодиоды в {1} ряду {0} (1 = вкл, 0 = выкл)?",
+                    // English: What were the LEDs in the {1} row in {0}?
+                    // Example: What were the LEDs in the bottom row in Morse War?
+                    Question = "Какими были светодиоды в {1} ряду {0}?",
                     Arguments = new()
                     {
                         ["bottom"] = "нижнем",

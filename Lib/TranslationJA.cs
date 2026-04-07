@@ -10506,9 +10506,9 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SMorseWar.Leds] = new()
                 {
-                    // English: What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?
-                    // Example: What were the LEDs in the bottom row in Morse War (1 = on, 0 = off)?
-                    Question = "{0}で{1}段のLEDの状態は(1=オン、0=オフ)？",
+                    // English: What were the LEDs in the {1} row in {0}?
+                    // Example: What were the LEDs in the bottom row in Morse War?
+                    Question = "{0}で{1}段のLEDの状態は？",
                     Arguments = new()
                     {
                         ["bottom"] = "下",

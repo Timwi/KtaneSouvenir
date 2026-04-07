@@ -10824,9 +10824,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SMorseWar.Leds] = new()
                 {
-                    // English: What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?
-                    // Example: What were the LEDs in the bottom row in Morse War (1 = on, 0 = off)?
-                    Question = "Wie sahen bei {0} die LEDs in der {1} Reihe aus (1 = an, 0 = aus)?",
+                    // English: What were the LEDs in the {1} row in {0}?
+                    // Example: What were the LEDs in the bottom row in Morse War?
+                    Question = "Wie sahen bei {0} die LEDs in der {1} Reihe aus?",
                     Arguments = new()
                     {
                         ["bottom"] = "unteren",

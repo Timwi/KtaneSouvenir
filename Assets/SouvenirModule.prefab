@@ -643,6 +643,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee2284820dc8664468b4e5b3e680dfbb, type: 3}
   - {fileID: 21300000, guid: ee84d6b32aab06b429c196fdd4a7b679, type: 3}
   - {fileID: 21300000, guid: 78ef3eb6ed9dc9c4eb776cd71a9f3dcb, type: 3}
+  MorseWarSprites:
+  - {fileID: 21300000, guid: 91451960521165348b267e8c07de3ad0, type: 3}
+  - {fileID: 21300000, guid: 780b2a6e03a949b4f872c24abc09f31d, type: 3}
+  - {fileID: 21300000, guid: ddca5afd66aee604a91f44c6866d8286, type: 3}
+  - {fileID: 21300000, guid: 53d99a6a01a8c104f9cf0822ff81e746, type: 3}
+  - {fileID: 21300000, guid: b6ac1f2c9916bba4180734bd9b2de33f, type: 3}
+  - {fileID: 21300000, guid: 0c31e98541379e44ab21998d3ea57b67, type: 3}
   NonverbalSimonSprites:
   - {fileID: 21300000, guid: c9b2f2dcf2892984196c26f35351f3b4, type: 3}
   - {fileID: 21300000, guid: d12bfb041eb4d5b43ad37303479d1f37, type: 3}

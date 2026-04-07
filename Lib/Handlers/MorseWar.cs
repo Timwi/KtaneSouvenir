@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SMorseWar
@@ -9,7 +9,7 @@ public enum SMorseWar
     [Question("What code was transmitted in {0}?", ThreeColumns6Answers, "ABR", "RBS", "SVR", "ZUX", "ZAQ", "MOI", "OPA", "VZQ", "XRP", "OLL", "AIR", "RHG", "MJN", "VTT", "XZS", "SUN")]
     Code,
 
-    [Question("What were the LEDs in the {1} row in {0} (1\u00a0=\u00a0on, 0\u00a0=\u00a0off)?", ThreeColumns6Answers, "1100", "1010", "1001", "0110", "0101", "0011", TranslateArguments = [true], Arguments = ["bottom", "middle", "top"], ArgumentGroupSize = 1)]
+    [Question("What were the LEDs in the {1} row in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "MorseWarSprites", TranslateArguments = [true], Arguments = ["bottom", "middle", "top"], ArgumentGroupSize = 1)]
     Leds
 }
 
@@ -30,7 +30,17 @@ public partial class SouvenirModule
 
         yield return question(SMorseWar.Code).Answers(wordTable[wordNum].ToUpperInvariant());
         var rowNames = new[] { "bottom", "middle", "top" };
+
+        var dict = new Dictionary<string, Sprite>()
+        {
+            ["0011"] = MorseWarSprites[0],
+            ["0101"] = MorseWarSprites[1],
+            ["0110"] = MorseWarSprites[2],
+            ["1001"] = MorseWarSprites[3],
+            ["1010"] = MorseWarSprites[4],
+            ["1100"] = MorseWarSprites[5]
+        };
         for (var i = 0; i < 3; i++)
-            yield return question(SMorseWar.Leds, args: [rowNames[i]]).Answers(rowTable[lights[i] - '1']);
+            yield return question(SMorseWar.Leds, args: [rowNames[i]]).Answers(dict[rowTable[lights[i] - '1']], preferredWrong: MorseWarSprites);
     }
 }
