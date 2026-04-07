@@ -7572,45 +7572,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Hogwarts
-        [typeof(SHogwarts)] = new()
-        {
-            ModuleName = "ホグワーツ",
-            ManualQuestions = new()
-            {
-                ["Which House was each module solved for?"] = "各モジュールを解除するための寮はどれ？",
-            },
-            Questions = new()
-            {
-                [SHogwarts.House] = new()
-                {
-                    // English: Which House was {1} solved for in {0}?
-                    // Example: Which House was Binary Puzzle solved for in Hogwarts?
-                    Question = "{0}で{1}を解除したのはどの寮？",
-                    Answers = new()
-                    {
-                        ["Gryffindor"] = "グリフォンドール",
-                        ["Hufflepuff"] = "ハッフルパフ",
-                        ["Slytherin"] = "スリザリン",
-                        ["Ravenclaw"] = "レイブンクロー",
-                    },
-                },
-                [SHogwarts.Module] = new()
-                {
-                    // English: Which module was solved for {1} in {0}?
-                    // Example: Which module was solved for Gryffindor in Hogwarts?
-                    Question = "{0}で{1}が解除したのはどのモジュール(英名)？",
-                    Arguments = new()
-                    {
-                        ["Gryffindor"] = "グリフォンドール",
-                        ["Hufflepuff"] = "ハッフルパフ",
-                        ["Slytherin"] = "スリザリン",
-                        ["Ravenclaw"] = "レイブンクロー",
-                    },
-                },
-            },
-        },
-
         // Hold Ups
         [typeof(SHoldUps)] = new()
         {
@@ -8408,25 +8369,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["starting"] = "開始地点",
                         ["goal"] = "目標地点",
                     },
-                },
-            },
-        },
-
-        // Keypad Combinations
-        [typeof(SKeypadCombination)] = new()
-        {
-            ModuleName = "キーパッドコンビネーション",
-            ManualQuestions = new()
-            {
-                ["What were the numbers, but not part of the answer?"] = "答えに含まれない、存在した数字は？",
-            },
-            Questions = new()
-            {
-                [SKeypadCombination.WrongNumbers] = new()
-                {
-                    // English: Which number was displayed on the {1} button, but not part of the answer on {0}?
-                    // Example: Which number was displayed on the first button, but not part of the answer on Keypad Combinations?
-                    Question = "{0}の{1}番目のボタンに存在した、答え以外の数字は？",
                 },
             },
         },
@@ -10881,24 +10823,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the label of the first button in {0}?
                     Question = "{0}の最初のボタンに書かれたラベルは？",
-                },
-            },
-        },
-
-        // N&Ms
-        [typeof(SNandMs)] = new()
-        {
-            ModuleName = "NとM",
-            ManualQuestions = new()
-            {
-                ["What was the label of the correct button?"] = "正しいボタンのラベルは？",
-            },
-            Questions = new()
-            {
-                [SNandMs.Answer] = new()
-                {
-                    // English: What was the label of the correct button in {0}?
-                    Question = "{0}の正しいボタンのラベルは？",
                 },
             },
         },

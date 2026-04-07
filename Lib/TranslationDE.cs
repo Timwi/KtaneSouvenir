@@ -7812,44 +7812,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Hogwarts
-        [typeof(SHogwarts)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["Which House was each module solved for?"] = "Welches Modul wurde für welches Haus entschärft?",
-            },
-            Questions = new()
-            {
-                [SHogwarts.House] = new()
-                {
-                    // English: Which House was {1} solved for in {0}?
-                    // Example: Which House was Binary Puzzle solved for in Hogwarts?
-                    Question = "Von welchem Haus wurde bei {0} {1} entschärft?",
-                    Answers = new()
-                    {
-                        ["Gryffindor"] = "Gryffindor",
-                        ["Hufflepuff"] = "Hufflepuff",
-                        ["Slytherin"] = "Slytherin",
-                        ["Ravenclaw"] = "Ravenclaw",
-                    },
-                },
-                [SHogwarts.Module] = new()
-                {
-                    // English: Which module was solved for {1} in {0}?
-                    // Example: Which module was solved for Gryffindor in Hogwarts?
-                    Question = "Welches Modul wurde bei {0} von {1} entschärft?",
-                    Arguments = new()
-                    {
-                        ["Gryffindor"] = "Gryffindor",
-                        ["Hufflepuff"] = "Hufflepuff",
-                        ["Slytherin"] = "Slytherin",
-                        ["Ravenclaw"] = "Ravenclaw",
-                    },
-                },
-            },
-        },
-
         // Hold Ups
         [typeof(SHoldUps)] = new()
         {
@@ -8672,26 +8634,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["starting"] = "Startwort",
                         ["goal"] = "Zielwort",
                     },
-                },
-            },
-        },
-
-        // Keypad Combinations
-        [typeof(SKeypadCombination)] = new()
-        {
-            ModuleName = "Tastenfeld-Kombinationen",
-            Gender = Gender.Plural,
-            ManualQuestions = new()
-            {
-                ["What were the numbers, but not part of the answer?"] = "Welche Zahlen waren vorhanden aber nicht Teil der Lösung?",
-            },
-            Questions = new()
-            {
-                [SKeypadCombination.WrongNumbers] = new()
-                {
-                    // English: Which number was displayed on the {1} button, but not part of the answer on {0}?
-                    // Example: Which number was displayed on the first button, but not part of the answer on Keypad Combinations?
-                    Question = "Welche Zahl stand bei {0} auf der {1}en Taste, war aber nicht Teil der Lösung?",
                 },
             },
         },
@@ -11209,23 +11151,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the label of the first button in {0}?
                     Question = "Welche Aufschrift hatte bei {0} die erste Taste?",
-                },
-            },
-        },
-
-        // N&Ms
-        [typeof(SNandMs)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was the label of the correct button?"] = "Welche Aufschrift hatte die korrekte Taste?",
-            },
-            Questions = new()
-            {
-                [SNandMs.Answer] = new()
-                {
-                    // English: What was the label of the correct button in {0}?
-                    Question = "Welche Aufschrift hatte bei {0} die richtige Taste?",
                 },
             },
         },

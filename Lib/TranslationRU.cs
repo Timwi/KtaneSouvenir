@@ -7711,45 +7711,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Hogwarts
-        [typeof(SHogwarts)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["Which House was each module solved for?"] = "Для каких из домов был решён каждый модуль?",
-            },
-            Questions = new()
-            {
-                [SHogwarts.House] = new()
-                {
-                    // English: Which House was {1} solved for in {0}?
-                    // Example: Which House was Binary Puzzle solved for in Hogwarts?
-                    Question = "Какому дому зачли обезвреживание модуля \"{1}\" {0}?",
-                    Answers = new()
-                    {
-                        ["Gryffindor"] = "Gryffindor",
-                        ["Hufflepuff"] = "Hufflepuff",
-                        ["Slytherin"] = "Slytherin",
-                        ["Ravenclaw"] = "Ravenclaw",
-                    },
-                },
-                [SHogwarts.Module] = new()
-                {
-                    // English: Which module was solved for {1} in {0}?
-                    // Example: Which module was solved for Gryffindor in Hogwarts?
-                    Question = "Обезвреживание какого модуля зачли {1} {0}?",
-                    Arguments = new()
-                    {
-                        ["Gryffindor"] = "Gryffindor",
-                        ["Hufflepuff"] = "Hufflepuff",
-                        ["Slytherin"] = "Slytherin",
-                        ["Ravenclaw"] = "Ravenclaw",
-                    },
-                },
-            },
-        },
-
         // Hold Ups
         [typeof(SHoldUps)] = new()
         {
@@ -8549,24 +8510,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["starting"] = "starting",
                         ["goal"] = "goal",
                     },
-                },
-            },
-        },
-
-        // Keypad Combinations
-        [typeof(SKeypadCombination)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What were the numbers, but not part of the answer?"] = "Какие были числа которые не являлись частью решения?",
-            },
-            Questions = new()
-            {
-                [SKeypadCombination.WrongNumbers] = new()
-                {
-                    // English: Which number was displayed on the {1} button, but not part of the answer on {0}?
-                    // Example: Which number was displayed on the first button, but not part of the answer on Keypad Combinations?
-                    Question = "Какое число было показано на {1}-й кнопке, но не являлось частью решения {0}?",
                 },
             },
         },
@@ -11016,25 +10959,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the label of the first button in {0}?
                     Question = "Какая была надпись на 1й кнопке {0}?",
-                },
-            },
-        },
-
-        // N&Ms
-        [typeof(SNandMs)] = new()
-        {
-            NeedsTranslation = true,
-            ModuleName = "N и M",
-            ManualQuestions = new()
-            {
-                ["What was the label of the correct button?"] = "What was the label of the correct button?",
-            },
-            Questions = new()
-            {
-                [SNandMs.Answer] = new()
-                {
-                    // English: What was the label of the correct button in {0}?
-                    Question = "Какая надпись была на правильной кнопке {0}?",
                 },
             },
         },
