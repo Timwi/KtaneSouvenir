@@ -73,12 +73,14 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] XRingSprites;
     public Sprite[] XRotorSprites;
     public Sprite[] XYRaySprites;
+
     public Texture2D[] DigitTextures;
     public Texture2D[] FuseBoxQuestions;
     public Texture2D[] NonverbalSimonQuestions;
     public Texture2D[] TechnicalKeypadQuestions;
 
     public AudioClip[] AudioMorseAudio;
+    public AudioClip[] CheepCheckoutAudio;
     public AudioClip[] DialtonesAudio;
     public AudioClip[] eeBgnillepSAudio;
     public AudioClip[] ExampleAudio;

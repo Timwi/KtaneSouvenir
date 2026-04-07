@@ -3073,53 +3073,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Cheep Checkout
         [typeof(SCheepCheckout)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Zwitscherkasse",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["Which birds were present?"] = "Welche Vögel kamen vor?",
+                ["Which bird sounds can be heard?"] = "Which bird sounds can be heard?",
             },
             Questions = new()
             {
                 [SCheepCheckout.Birds] = new()
                 {
-                    // English: Which bird {1} present in {0}?
-                    // Example: Which bird was present in Cheep Checkout?
-                    Question = "Welcher Vogel war bei {0} {1}?",
-                    Arguments = new()
-                    {
-                        ["was"] = "zu sehen",
-                        ["was not"] = "nicht zu sehen",
-                    },
-                    Answers = new()
-                    {
-                        ["Auklet"] = "Alk",
-                        ["Bluebird"] = "Berghüttensänger",
-                        ["Chickadee"] = "Chickadee-Meise",
-                        ["Dove"] = "Diamanttaube",
-                        ["Egret"] = "Europa-Reiher",
-                        ["Finch"] = "Fink",
-                        ["Godwit"] = "Gugelschnepfe",
-                        ["Hummingbird"] = "Hainkolibri",
-                        ["Ibis"] = "Ibis",
-                        ["Jay"] = "Jagdhäher",
-                        ["Kinglet"] = "Königsgoldhähnchen",
-                        ["Loon"] = "Lagunentaucher",
-                        ["Magpie"] = "Meerelster",
-                        ["Nuthatch"] = "Nusskleiber",
-                        ["Oriole"] = "Opern-Pirol",
-                        ["Pipit"] = "Pieper",
-                        ["Quail"] = "Quantwachtel",
-                        ["Raven"] = "Rabe",
-                        ["Shrike"] = "Siebentöter",
-                        ["Thrush"] = "Taunus-Drossel",
-                        ["Umbrellabird"] = "Urschirmvogel",
-                        ["Vireo"] = "Vireo",
-                        ["Warbler"] = "Waldsänger",
-                        ["Xantus’s Hummingbird"] = "Xantus-Kolibri",
-                        ["Yellowlegs"] = "Yukon-Gelbschenkel",
-                        ["Zigzag Heron"] = "Zickzackreiher",
-                    },
+                    // English: Which of these bird sounds can be heard in {0}?
+                    Question = "Which of these bird’s sounds can be heard in {0}?",
                 },
             },
         },

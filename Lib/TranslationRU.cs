@@ -3109,49 +3109,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which birds were present?"] = "Какие птицы присутствовали?",
+                ["Which bird sounds can be heard?"] = "Which bird sounds can be heard?",
             },
             Questions = new()
             {
                 [SCheepCheckout.Birds] = new()
                 {
-                    // English: Which bird {1} present in {0}?
-                    // Example: Which bird was present in Cheep Checkout?
-                    Question = "Какая птица {1} {0}?",
-                    Arguments = new()
-                    {
-                        ["was"] = "присутствовала",
-                        ["was not"] = "отсутствовала",
-                    },
-                    Answers = new()
-                    {
-                        ["Auklet"] = "Auklet",
-                        ["Bluebird"] = "Bluebird",
-                        ["Chickadee"] = "Chickadee",
-                        ["Dove"] = "Dove",
-                        ["Egret"] = "Egret",
-                        ["Finch"] = "Finch",
-                        ["Godwit"] = "Godwit",
-                        ["Hummingbird"] = "Hummingbird",
-                        ["Ibis"] = "Ibis",
-                        ["Jay"] = "Jay",
-                        ["Kinglet"] = "Kinglet",
-                        ["Loon"] = "Loon",
-                        ["Magpie"] = "Magpie",
-                        ["Nuthatch"] = "Nuthatch",
-                        ["Oriole"] = "Oriole",
-                        ["Pipit"] = "Pipit",
-                        ["Quail"] = "Quail",
-                        ["Raven"] = "Raven",
-                        ["Shrike"] = "Shrike",
-                        ["Thrush"] = "Thrush",
-                        ["Umbrellabird"] = "Umbrellabird",
-                        ["Vireo"] = "Vireo",
-                        ["Warbler"] = "Warbler",
-                        ["Xantus’s Hummingbird"] = "Xantus’s Hummingbird",
-                        ["Yellowlegs"] = "Yellowlegs",
-                        ["Zigzag Heron"] = "Zigzag Heron",
-                    },
+                    // English: Which of these bird sounds can be heard in {0}?
+                    Question = "Which of these bird’s sounds can be heard in {0}?",
                 },
             },
         },

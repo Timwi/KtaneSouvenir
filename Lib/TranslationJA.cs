@@ -2988,52 +2988,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Cheep Checkout
         [typeof(SCheepCheckout)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "鳥勘定",
             ManualQuestions = new()
             {
-                ["Which birds were present?"] = "どの鳥がいた？",
+                ["Which bird sounds can be heard?"] = "Which bird sounds can be heard?",
             },
             Questions = new()
             {
                 [SCheepCheckout.Birds] = new()
                 {
-                    // English: Which bird {1} present in {0}?
-                    // Example: Which bird was present in Cheep Checkout?
-                    Question = "{0}に存在して{1}のは？",
-                    Arguments = new()
-                    {
-                        ["was"] = "いた",
-                        ["was not"] = "いなかった",
-                    },
-                    Answers = new()
-                    {
-                        ["Auklet"] = "ウミスズメ",
-                        ["Bluebird"] = "ルリツグミ",
-                        ["Chickadee"] = "アメリカコガラ",
-                        ["Dove"] = "ハト",
-                        ["Egret"] = "シラサギ",
-                        ["Finch"] = "フィンチ",
-                        ["Godwit"] = "オグロシギ",
-                        ["Hummingbird"] = "ハチドリ",
-                        ["Ibis"] = "トキ",
-                        ["Jay"] = "カケス",
-                        ["Kinglet"] = "キクイタダキ",
-                        ["Loon"] = "アビ",
-                        ["Magpie"] = "カササギ",
-                        ["Nuthatch"] = "ゴジュウカラ",
-                        ["Oriole"] = "アメリカムクドリモドキ",
-                        ["Pipit"] = "ビンズイ",
-                        ["Quail"] = "ウズラ",
-                        ["Raven"] = "ワタリガラス",
-                        ["Shrike"] = "モズ",
-                        ["Thrush"] = "ツグミ",
-                        ["Umbrellabird"] = "カサドリ",
-                        ["Vireo"] = "モズモドキ",
-                        ["Warbler"] = "ムシクイ",
-                        ["Xantus’s Hummingbird"] = "クロビタイサファイアハチドリ",
-                        ["Yellowlegs"] = "オオキアシシギ",
-                        ["Zigzag Heron"] = "コビトサギ",
-                    },
+                    // English: Which of these bird sounds can be heard in {0}?
+                    Question = "Which of these bird’s sounds can be heard in {0}?",
                 },
             },
         },
