@@ -43,11 +43,5 @@ public sealed class MssNgvWlsGimmickAttribute() : GimmickAttribute
 [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
 public sealed class ReverseQuestionGimmickAttribute() : GimmickAttribute
 {
-    public override string ApplyGimmick(string questionText, object[] args)
-    {
-        var newText = new StringBuilder();
-        for (int i = questionText.Length - 1; i >= 0; i--)
-            newText.Append(questionText[i]);
-        return newText.ToString();
-    }
+    public override string ApplyGimmick(string questionText, object[] args) => questionText.Reverse().JoinString();
 }

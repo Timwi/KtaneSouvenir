@@ -17,7 +17,7 @@ using Rnd = UnityEngine.Random;
 /// </summary>
 public partial class SouvenirModule : MonoBehaviour
 {
-    private const string _version = "8.7";
+    private const string _version = "8.8";
 
     #region Fields
     public KMBombInfo Bomb;
