@@ -11,7 +11,7 @@ public enum SSafetySquare
     [AnswerGenerator.Integers(0, 4)]
     Digits,
 
-    [Question("What was the special rule displayed on the white diamond in {0}?", OneColumn4Answers, "No special rule", "Reacts with water", "Simple asphyxiant", "Oxidizer", TranslateAnswers = true)]
+    [Question("What was displayed on the white diamond in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "SafetySquareSprites")]
     SpecialRule
 }
 
@@ -19,17 +19,17 @@ public partial class SouvenirModule
 {
     [Handler("safetySquare", "Safety Square", typeof(SSafetySquare), "Kuro")]
     [ManualQuestion("What were the displayed digits?")]
-    [ManualQuestion("What was the special rule?")]
+    [ManualQuestion("What was displayed on the white diamond?")]
     private IEnumerator<SouvenirInstruction> ProcessSafetySquare(ModuleData module)
     {
         var comp = GetComponent(module, "SafetySquareScript");
 
-        var specialRules = new Dictionary<string, string>
+        var specialRules = new Dictionary<string, Sprite>
         {
-            [" "] = "No special rule",
-            ["W"] = "Reacts with water",
-            ["SA"] = "Simple asphyxiant",
-            ["OX"] = "Oxidizer"
+            [" "] = SafetySquareSprites[0],
+            ["W"] = SafetySquareSprites[1],
+            ["SA"] = SafetySquareSprites[2],
+            ["OX"] = SafetySquareSprites[3]
         };
         var colors = new[] { "red", "yellow", "blue" };
         var digits = colors.Select(col => GetField<TextMesh>(comp, $"{col}Text", isPublic: true).Get(mesh => mesh.text.Length != 1 || !"01234".Contains(mesh.text) ? $"text value was \"{mesh.text}\", but expected a single digit from 0-4." : null).text).ToArray();
@@ -39,6 +39,6 @@ public partial class SouvenirModule
 
         for (var ix = 0; ix < colors.Length; ix++)
             yield return question(SSafetySquare.Digits, args: [colors[ix]]).Answers(digits[ix]);
-        yield return question(SSafetySquare.SpecialRule).Answers(specialRules[symbol]);
+        yield return question(SSafetySquare.SpecialRule).Answers(specialRules[symbol], preferredWrong: SafetySquareSprites);
     }
 }

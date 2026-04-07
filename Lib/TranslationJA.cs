@@ -14703,11 +14703,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Safety Square
         [typeof(SSafetySquare)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "セイフティスクエア",
             ManualQuestions = new()
             {
                 ["What were the displayed digits?"] = "表示された数字は？",
-                ["What was the special rule?"] = "特殊ルールは？",
+                ["What was displayed on the white diamond?"] = "What was displayed on the white diamond?",
             },
             Questions = new()
             {
@@ -14725,15 +14726,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SSafetySquare.SpecialRule] = new()
                 {
-                    // English: What was the special rule displayed on the white diamond in {0}?
-                    Question = "{0}の白に表示された特殊ルールは？",
-                    Answers = new()
-                    {
-                        ["No special rule"] = "特殊ルールなし",
-                        ["Reacts with water"] = "水と過剰に反応",
-                        ["Simple asphyxiant"] = "単純窒息性ガス",
-                        ["Oxidizer"] = "空気供給なしで燃焼",
-                    },
+                    // English: What was displayed on the white diamond in {0}?
+                    Question = "What was displayed on the white diamond in {0}?",
                 },
             },
         },

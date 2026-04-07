@@ -15140,13 +15140,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Safety Square
         [typeof(SSafetySquare)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Gefahrendiamant",
             ModuleNameDative = "Gefahrendiamanten",
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
                 ["What were the displayed digits?"] = "Welche Ziffern waren auf dem Diamanten?",
-                ["What was the special rule?"] = "Was war die Spezialregel?",
+                ["What was displayed on the white diamond?"] = "What was displayed on the white diamond?",
             },
             Questions = new()
             {
@@ -15164,15 +15165,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SSafetySquare.SpecialRule] = new()
                 {
-                    // English: What was the special rule displayed on the white diamond in {0}?
-                    Question = "Welche Spezialregel stand bei {0} auf dem weißen Diamant?",
-                    Answers = new()
-                    {
-                        ["No special rule"] = "Keine Spezialregel",
-                        ["Reacts with water"] = "Reagiert mit Wasser",
-                        ["Simple asphyxiant"] = "Stickgas",
-                        ["Oxidizer"] = "Oxidationsmittel",
-                    },
+                    // English: What was displayed on the white diamond in {0}?
+                    Question = "What was displayed on the white diamond in {0}?",
                 },
             },
         },

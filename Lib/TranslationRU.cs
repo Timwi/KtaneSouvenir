@@ -14853,7 +14853,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What were the displayed digits?"] = "Какие цифры были показаны?",
-                ["What was the special rule?"] = "Какое было специальное правило?",
+                ["What was displayed on the white diamond?"] = "What was displayed on the white diamond?",
             },
             Questions = new()
             {
@@ -14871,15 +14871,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SSafetySquare.SpecialRule] = new()
                 {
-                    // English: What was the special rule displayed on the white diamond in {0}?
-                    Question = "Какое правило было показано на белом ромбе {0}?",
-                    Answers = new()
-                    {
-                        ["No special rule"] = "No special rule",
-                        ["Reacts with water"] = "Reacts with water",
-                        ["Simple asphyxiant"] = "Simple asphyxiant",
-                        ["Oxidizer"] = "Oxidizer",
-                    },
+                    // English: What was displayed on the white diamond in {0}?
+                    Question = "What was displayed on the white diamond in {0}?",
                 },
             },
         },
