@@ -181,6 +181,11 @@ public partial class SouvenirModule
                 yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
                     .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{Rnd.Range(0, 64)} ? {Rnd.Range(0, 64)} = {Rnd.Range(0, 64)}"));
 
+            // Violet Cipher, Page 1, Screen 3: only specific numbers are possible
+            else if (q.Equals(SVioletCipher.Screen) && page == 0 && screen == 2)
+                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(["1-2", "1-6"])));
+
             // Yellow Cipher special case: 8-5-7-20
             else if (Regex.IsMatch(text, @"^\d+-\d+-\d+-\d+$"))
                 yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
