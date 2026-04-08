@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -14,56 +12,25 @@ public enum SPictionary
 
 public partial class SouvenirModule
 {
-    [Handler("pictionaryModule", "Pictionary", typeof(SPictionary), "Quinn Wuest")]
+    [Handler("pictionaryModule", "Pictionary", typeof(SPictionary), "Timwi")]
     [ManualQuestion("What were the colors of the pixels?")]
     private IEnumerator<SouvenirInstruction> ProcessPictionary(ModuleData module)
     {
         var comp = GetComponent(module, "pictionaryModuleScript");
 
         yield return WaitForSolve;
+        var quadrants = new[] { "TL", "TR", "BL", "BR" }.Select(q => GetIntField(comp, q).Get(min: 0, max: 7)).ToArray();
+        const string cornerTLPatterns = "01101001011111010001111011110000";
+        const string cornerTRPatterns = "10010110101111100010110111110000";
+        const string cornerBLPatterns = "10010110001111100100101111110000";
+        const string cornerBRPatterns = "01101001001111011000011111110000";
+        var patterns = new[] { cornerTLPatterns, cornerTRPatterns, cornerBLPatterns, cornerBRPatterns };
 
-        var dict = new Dictionary<(int, int), int>
+        for (var quadrant = 0; quadrant < 4; quadrant++)
         {
-            [(0, 0)] = 0b0101,
-            [(0, 1)] = 0b1111,
-            [(0, 2)] = 0b0001,
-            [(0, 3)] = 0b1010,
-            [(0, 4)] = 0b0111,
-            [(0, 5)] = 0b1101,
-            [(0, 7)] = 0b0001,
-            [(0, 9)] = 0b0000,
-            [(1, 0)] = 0b1011,
-            [(1, 1)] = 0b0101,
-            [(1, 2)] = 0b1111,
-            [(1, 3)] = 0b1110,
-            [(1, 4)] = 0b0010,
-            [(1, 5)] = 0b1101,
-            [(1, 6)] = 0b0110,
-            [(1, 8)] = 0b0000,
-            [(2, 0)] = 0b0110,
-            [(2, 1)] = 0b1011,
-            [(2, 2)] = 0b0011,
-            [(2, 3)] = 0b1111,
-            [(2, 4)] = 0b1001,
-            [(2, 5)] = 0b1101,
-            [(2, 6)] = 0b0100,
-            [(2, 7)] = 0b0000,
-            [(3, 0)] = 0b0011,
-            [(3, 1)] = 0b1001,
-            [(3, 2)] = 0b0110,
-            [(3, 3)] = 0b0111,
-            [(3, 4)] = 0b1111,
-            [(3, 5)] = 0b1101,
-            [(3, 6)] = 0b0000,
-            [(3, 8)] = 0b1000
-        };
-
-        var code = GetField<string>(comp, "code").Get(c => c.Length != 4 || c.Any(ch => !char.IsDigit(ch)) ? "expected a sequence of four digits" : null);
-        for (int ix = 0; ix < code.Length; ix++)
-        {
-            int c = code[ix] - '0';
-            var spr = dict[(ix, c)];
-            yield return question(SPictionary.Colors, args: [new[] { "top left", "top right", "bottom left", "bottom right" }[ix]]).Answers(PictionarySprites[spr], preferredWrong: PictionarySprites);
+            var pattern = patterns[quadrant].Substring(4 * quadrants[quadrant], 4);
+            var spriteIx = (pattern[0] - '0') * 8 + (pattern[1] - '0') * 4 + (pattern[2] - '0') * 2 + (pattern[3] - '0');
+            yield return question(SPictionary.Colors, args: [new[] { "top left", "top right", "bottom left", "bottom right" }[quadrant]]).Answers(PictionarySprites[spriteIx]);
         }
     }
 }
