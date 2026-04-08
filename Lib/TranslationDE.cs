@@ -344,19 +344,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [S3LEDs.InitialState] = new()
                 {
-                    // English: What was the initial state of the LEDs in {0} (in reading order)?
-                    Question = "Was war bei {0} der Anfangszustand in Lesereihenfolge?",
-                    Answers = new()
-                    {
-                        ["off/off/off"] = "aus/aus/aus",
-                        ["off/off/on"] = "aus/aus/an",
-                        ["off/on/off"] = "aus/an/aus",
-                        ["off/on/on"] = "aus/an/an",
-                        ["on/off/off"] = "an/aus/aus",
-                        ["on/off/on"] = "an/aus/an",
-                        ["on/on/off"] = "an/an/aus",
-                        ["on/on/on"] = "an/an/an",
-                    },
+                    // English: What was the initial state of the LEDs in {0}?
+                    Question = "Was war bei {0} der Anfangszustand?",
                 },
             },
         },

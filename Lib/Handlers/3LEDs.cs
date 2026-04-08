@@ -6,20 +6,20 @@ using static Souvenir.AnswerLayout;
 
 public enum S3LEDs
 {
-    [Question("What was the initial state of the LEDs in {0} (in reading order)?", TwoColumns4Answers, "off/off/off", "off/off/on", "off/on/off", "off/on/on", "on/off/off", "on/off/on", "on/on/off", "on/on/on", TranslateAnswers = true)]
+    [Question("What was the initial state of the LEDs in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "ThreeLEDsSprites")]
     InitialState
 }
 
 public partial class SouvenirModule
 {
-    [Handler("threeLEDsModule", "3 LEDs", typeof(S3LEDs), "Timwi")]
+    [Handler("threeLEDsModule", "3 LEDs", typeof(S3LEDs), "Quinn Wuest")]
     [ManualQuestion("What was the initial state of the LEDs?")]
     private IEnumerator<SouvenirInstruction> Process3LEDs(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeLEDsScript");
         yield return WaitForSolve;
 
-        var initialStates = GetArrayField<bool>(comp, "initialStates").Get(expectedLength: 3);
-        yield return question(S3LEDs.InitialState).Answers(initialStates.Select(s => s ? "on" : "off").JoinString("/"));
+        int value = GetArrayField<bool>(comp, "initialStates").Get(expectedLength: 3).Aggregate(0, (a, b) => (a << 1) | (b ? 1 : 0));
+        yield return question(S3LEDs.InitialState).Answers(ThreeLEDsSprites[value], preferredWrong: ThreeLEDsSprites);
     }
 }

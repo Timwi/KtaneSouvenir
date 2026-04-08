@@ -68,6 +68,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] SymbolicTashaSprites;
     public Sprite[] TasqueManagingSprites;
     public Sprite[] TeaSetSprites;
+    public Sprite[] ThreeLEDsSprites;
     public Sprite[] ValvesSprites;
     public Sprite[] WarningSignsSprites;
     public Sprite[] XRingSprites;

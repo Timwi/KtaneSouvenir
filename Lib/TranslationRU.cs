@@ -384,20 +384,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [S3LEDs.InitialState] = new()
                 {
-                    // English: What was the initial state of the LEDs in {0} (in reading order)?
-                    Question = "Какое было исходное состояние у {0} (в порядке чтения)?",
+                    // English: What was the initial state of the LEDs in {0}?
+                    Question = "Какое было исходное состояние у {0}?",
                     Conjugation = Conjugation.GenitivePlural,
-                    Answers = new()
-                    {
-                        ["off/off/off"] = "выкл/выкл/выкл",
-                        ["off/off/on"] = "выкл/выкл/вкл",
-                        ["off/on/off"] = "выкл/вкл/выкл",
-                        ["off/on/on"] = "выкл/вкл/вкл",
-                        ["on/off/off"] = "вкл/выкл/выкл",
-                        ["on/off/on"] = "вкл/выкл/вкл",
-                        ["on/on/off"] = "вкл/вкл/выкл",
-                        ["on/on/on"] = "вкл/вкл/вкл",
-                    },
                 },
             },
         },

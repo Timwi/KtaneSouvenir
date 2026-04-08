@@ -3,9 +3,8 @@
 The following is a list of modules supported by Souvenir, and the fine people who have contributed their effort to make it happen:
 
 
-## Implemented by Timwi (147)
+## Implemented by Timwi (146)
 
-    3 LEDs               │  Coordinates           │  Jumble Cycle             │  Orientation Cube       │  Simon States
     3D Maze              │  Coral Cipher          │  Klaxon, The              │  Partial Derivatives    │  Simply Simon
     3D Tunnels           │  Corners               │  Kudosudoku               │  Pattern Cube           │  Skewed Slots
     7                    │  Cornflower Cipher     │  Lempel-Ziv Cipher        │  Pigpen Cycle           │  Skyrim
@@ -35,6 +34,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Morse          │  Human Resources       │  Not X-Ray                │  Simon Sings            │
     Colored Squares      │  Identity Parade       │  Object Shows             │  Simon Sounds           │
     Colored Switches     │  IPA                   │  Only Connect             │  Simon Speaks           │
+    Coordinates          │  Jumble Cycle          │  Orientation Cube         │  Simon States           │
 
 ## Implemented by Anonymous (106)
 
@@ -61,21 +61,21 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Remainder Theorem  │  Hickory Dickory Dock     │  Number Game, The        │  Smash, Marry, Kill         │
     Coffee Beans               │  Hidden Value, The        │  One Links To All        │  Stable Time Signatures     │
 
-## Implemented by Quinn Wuest (63)
+## Implemented by Quinn Wuest (64)
 
-    .--/---/..-.       │  Double Digits             │  Neptune               │  Parity               │  Small Talk
-    4D Tunnels         │  eeB gnillepS              │  Nim                   │  Pictionary           │  Spelling Bee
-    Adventure Game     │  English Entries           │  Not Colored Switches  │  Quadrants            │  Synapse Says
-    Alcoholic Rampage  │  Épelle-moi Ça             │  Not Connection Check  │  Reverse Morse        │  Triple Term
-    Ángel Hernández    │  Guess Who?                │  Not Coordinates       │  RGB Encryption       │  Uncolour Flash
-    Bamboozled Again   │  Horrible Memory           │  Not Morsematics       │  Robo-Scanner         │  Unown Cipher
-    Big Circle         │  Hunting                   │  Not Murder            │  Rule of Three        │  Unpleasant Squares
-    Bulb, The          │  Ingredients               │  Not Number Pad        │  Scramboozled Eggain  │  Varicolour Flash
-    Caesar Psycho      │  Jewel Vault, The          │  Not Perspective Pegs  │  Simon Said           │  Who’s on Gas
-    Cheep Checkout     │  Letter Math               │  Not The Bulb          │  Simon Selects        │  Word Count
-    Coordination       │  Match Refereeing          │  Not X01               │  Simon Shuffles       │  xobekuJ ehT
-    Cyan Button, The   │  Mystic Square             │  Off Keys              │  Simultaneous Simons  │
-    Denial Displays    │  Navigation Determination  │  Papa’s Pizzeria       │  Slow Math            │
+    .--/---/..-.       │  Denial Displays   │  Navigation Determination  │  Papa’s Pizzeria      │  Slow Math
+    3 LEDs             │  Double Digits     │  Neptune                   │  Parity               │  Small Talk
+    4D Tunnels         │  eeB gnillepS      │  Nim                       │  Pictionary           │  Spelling Bee
+    Adventure Game     │  English Entries   │  Not Colored Switches      │  Quadrants            │  Synapse Says
+    Alcoholic Rampage  │  Épelle-moi Ça     │  Not Connection Check      │  Reverse Morse        │  Triple Term
+    Ángel Hernández    │  Guess Who?        │  Not Coordinates           │  RGB Encryption       │  Uncolour Flash
+    Bamboozled Again   │  Horrible Memory   │  Not Morsematics           │  Robo-Scanner         │  Unown Cipher
+    Big Circle         │  Hunting           │  Not Murder                │  Rule of Three        │  Unpleasant Squares
+    Bulb, The          │  Ingredients       │  Not Number Pad            │  Scramboozled Eggain  │  Varicolour Flash
+    Caesar Psycho      │  Jewel Vault, The  │  Not Perspective Pegs      │  Simon Said           │  Who’s on Gas
+    Cheep Checkout     │  Letter Math       │  Not The Bulb              │  Simon Selects        │  Word Count
+    Coordination       │  Match Refereeing  │  Not X01                   │  Simon Shuffles       │  xobekuJ ehT
+    Cyan Button, The   │  Mystic Square     │  Off Keys                  │  Simultaneous Simons  │
 
 ## Implemented by Kuro (54)
 

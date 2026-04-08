@@ -299,19 +299,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [S3LEDs.InitialState] = new()
                 {
-                    // English: What was the initial state of the LEDs in {0} (in reading order)?
-                    Question = "{0}の初期のLEDの状態は(読み順)？",
-                    Answers = new()
-                    {
-                        ["off/off/off"] = "オフ/オフ/オフ",
-                        ["off/off/on"] = "オフ/オフ/オン",
-                        ["off/on/off"] = "オフ/オン/オフ",
-                        ["off/on/on"] = "オフ/オン/オン",
-                        ["on/off/off"] = "オン/オフ/オフ",
-                        ["on/off/on"] = "オン/オフ/オン",
-                        ["on/on/off"] = "オン/オン/オフ",
-                        ["on/on/on"] = "オン/オン/オン",
-                    },
+                    // English: What was the initial state of the LEDs in {0}?
+                    Question = "{0}の初期のLEDの状態は？",
                 },
             },
         },
