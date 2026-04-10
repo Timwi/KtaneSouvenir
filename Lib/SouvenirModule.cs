@@ -123,6 +123,7 @@ public partial class SouvenirModule : MonoBehaviour
     private int _avoidQuestions = 0;   // While this is > 0, temporarily avoid asking questions; currently only used when Souvenir is hidden by a Mystery Module
     private bool _showWarning = false;
     private List<string> _activeProcessors = [];
+    private float _lastGeneratedQuestionTime = 0;
 
     [NonSerialized]
     public double SurfaceSizeFactor;
@@ -633,8 +634,9 @@ public partial class SouvenirModule : MonoBehaviour
             if (_questions.Count == 0 && (_noUnignoredModulesLeft || _coroutinesActive == 0))
             {
                 // Very rare case: another coroutine could still be waiting to detect that a module is solved and then add another question to the queue
+                _lastGeneratedQuestionTime = Time.time;
                 if (_coroutinesActive > 0)
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitUntil(() => _coroutinesActive == 0 || Time.time - _lastGeneratedQuestionTime > 1f);
 
                 // If still no new questions, all supported modules are solved and we’re done. (Or maybe a coroutine is stuck in a loop, but then it’s bugged and we need to cancel it anyway.)
                 if (_questions.Count == 0)
@@ -890,6 +892,7 @@ public partial class SouvenirModule : MonoBehaviour
                             yield break;
                         }
                         info.Discriminators.AddSafe(module, d.Discriminator.Id, d.Discriminator);
+                        _lastGeneratedQuestionTime = Time.time;
                         yield return null;
                         break;
                     case QandAInstruction q:
@@ -907,6 +910,7 @@ public partial class SouvenirModule : MonoBehaviour
                             yield break;
                         }
                         questions.Add(q.Stump);
+                        _lastGeneratedQuestionTime = Time.time;
                         yield return null;
                         break;
                 }
