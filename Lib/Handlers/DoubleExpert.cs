@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -19,6 +20,9 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "doubleExpertScript");
 
         yield return WaitForSolve;
+
+        if (DateTime.Now is { Month: 4, Day: 9 }) // If it's April 9th, the module can be solved without any information
+            yield return legitimatelyNoQuestion(module, "Quirk 7 applied.");
 
         var startingKeyNumber = GetIntField(comp, "startKeyNumber").Get(min: 30, max: 69);
 
