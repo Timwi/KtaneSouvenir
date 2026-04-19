@@ -372,7 +372,14 @@ public partial class SouvenirModule : MonoBehaviour
                     }
                 }
 
-                Debug.LogFormat(this, "<Souvenir #{0}> Entering Unity testing mode.", _moduleId);
+                for (var i = 0; i < Fonts.Length; i++)
+                    if (Fonts[i] != null && ((AnswerType) i).ToString() != Fonts[i].name)
+                        Debug.LogError($"Error: Font #{i} ({Fonts[i].name}) does not match AnswerType enum value #{i} ({(AnswerType) i})");
+                foreach (var enumValue in (AnswerType[]) Enum.GetValues(typeof(AnswerType)))
+                    if ((int) enumValue is { } intValue && intValue >= 0 && (intValue >= Fonts.Length || Fonts[intValue] == null || intValue >= FontTextures.Length || FontTextures[intValue] == null))
+                        Debug.LogError($"Error: AnswerType enum value #{intValue} ({enumValue}) does not have a corresponding entry in Fonts and FontTextures");
+
+                Debug.Log($"<Souvenir #{_moduleId}> Entering Unity testing mode.", this);
                 _exampleModules = Ut.ModuleHandlers.Values.ToArray();
                 setExampleModule(0);
 

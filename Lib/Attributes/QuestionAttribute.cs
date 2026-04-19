@@ -20,7 +20,7 @@ public sealed class QuestionAttribute(string questionText, AnswerLayout layout, 
     public bool ReferenceDocumentation { get; set; }
     public bool UsesQuestionSprite { get; set; }
     public string[] ExampleAnswers { get; set; }
-    public AnswerType Type { get; set; } = AnswerType.Default;
+    public AnswerType Type { get; set; } = AnswerType.DefaultFont;
     public AnswerLayout Layout { get; set; } = layout;
     public string ForeignAudioID { get; set; }
     public float AudioSizeMultiplier { get; set; } = 2f;
