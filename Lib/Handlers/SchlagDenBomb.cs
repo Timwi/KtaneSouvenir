@@ -6,7 +6,7 @@ using Rnd = UnityEngine.Random;
 
 public enum SSchlagDenBomb
 {
-    [Question("What was the contestant’s name in {0}?", TwoColumns4Answers, "Ron", "Don", "Julia", "Cory", "Greg", "Paula", "Val", "Lisa", "Ozy", "Ozzy", "Elsa", "Cori", "Harry", "Gale", "Daniel", "Albert", "Spike", "Tommy", "Greta", "Tina", "Rob", "Edgar", "Julia", "Peter", "Millie", "Isolde", "Eris")]
+    [Question("What was the contestant’s name in {0}?", TwoColumns4Answers, "Albert", "Cori", "Cory", "Daniel", "Don", "Edgar", "Elsa", "Eris", "Gale", "Greg", "Greta", "Harry", "Isolde", "Julia", "Julie", "Lisa", "Millie", "Ozy", "Ozzy", "Paula", "Peter", "Rob", "Ron", "Spike", "Tina", "Tommy", "Val")]
     ContestantName,
 
     [Question("What was the contestant’s score in {0}?", ThreeColumns6Answers)]
