@@ -8907,7 +8907,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which letters were present at each stage"] = "Which letters were present at each stage",
+                ["Which letters were present at each stage?"] = "Which letters were present at each stage?",
             },
             Questions = new()
             {

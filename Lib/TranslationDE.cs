@@ -9050,7 +9050,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["Which letters were present at each stage"] = "Welche Buchstaben kamen in welcher Stufe vor?",
+                ["Which letters were present at each stage?"] = "Welche Buchstaben kamen in welcher Stufe vor?",
             },
             Questions = new()
             {

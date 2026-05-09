@@ -15,7 +15,7 @@ public enum SLEDEncryption
 public partial class SouvenirModule
 {
     [Handler("LEDEnc", "LED Encryption", typeof(SLEDEncryption), "CaitSith2")]
-    [ManualQuestion("Which letters were present at each stage")]
+    [ManualQuestion("Which letters were present at each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessLEDEncryption(ModuleData module)
     {
         var comp = GetComponent(module, "LEDEncryption");
@@ -40,7 +40,7 @@ public partial class SouvenirModule
 
             for (var i = 0; i < 4; i++)
                 fullLetters[stage][i] = buttonLabels[i].text;
-            
+
             while (fldStage.Get() == stage)
                 yield return null;
         }

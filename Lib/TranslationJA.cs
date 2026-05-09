@@ -8773,7 +8773,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "暗号化LED",
             ManualQuestions = new()
             {
-                ["Which letters were present at each stage"] = "各ステージで存在した文字は？",
+                ["Which letters were present at each stage?"] = "各ステージで存在した文字は？",
             },
             Questions = new()
             {
