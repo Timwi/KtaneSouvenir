@@ -259,7 +259,7 @@ public static class Ut
     public static T[] GetEnumValues<T>() => (T[]) Enum.GetValues(typeof(T));
 
     private static readonly string[] _joshi = "でなければ|について|かしら|くらい|けれど|なのか|ばかり|ながら|ことよ|こそ|こと|さえ|しか|した|たり|だけ|だに|だの|つつ|ても|てよ|でも|とも|から|など|なり|ので|のに|ほど|まで|もの|やら|より|って|で|と|な|に|ね|の|も|は|ば|へ|や|わ|を|か|が|さ|し|ぞ|て".Split('|');
-    private static readonly string _punctuation = ".,。、！!？?〉》」』｣)）]】〕〗〙〛}>)❩❫❭❯❱❳❵｝";
+    private static readonly string _punctuation = ".,。、！!？?〉》」』｣)）]】〕〗〙〛}>)❩❫❭❯❱❳❵｝-";
     private static readonly (char from, char to)[] _breakableRanges = [
         ('\u4E00', '\u9FA0'),   // CJK
         ('\u3041','\u30ff'),    // Hiragana + Katakana
@@ -431,9 +431,13 @@ public static class Ut
         // Return false for all the whitespace characters that should NOT be wrappable
         // NO-BREAK SPACE and NARROW NO-BREAK SPACE
         '\u00a0' or '\u202f' => false,
+
         // Return true for all the NON-whitespace characters that SHOULD be wrappable
         // ZERO WIDTH SPACE
         '\u200b' => true,
+        // Regular hyphen
+        '-' => true,
+
         // Apart from the above exceptions, wrap at whitespace characters.
         _ => char.IsWhiteSpace(txt, index),
     };

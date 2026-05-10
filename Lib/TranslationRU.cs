@@ -3386,7 +3386,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SCoffeebucks.Stress] = new()
                 {
-                    // English: What was the last customer’s preferred stress-level in {0}?
+                    // English: What was the last customer’s preferred stress level in {0}?
                     Question = "What was the last customer's preferred stress-level in {0}?",
                 },
                 [SCoffeebucks.Size] = new()

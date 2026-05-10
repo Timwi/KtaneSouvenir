@@ -190,6 +190,17 @@ public partial class SouvenirModule
                     .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{Rnd.Range(0, 64)} ? {Rnd.Range(0, 64)} = {Rnd.Range(0, 64)}"));
 
+            // Maroon Cipher, Page 1, Screen 2: Digits 1–3, 1–4 or 1–5 in some order
+            else if (question.Equals(SMaroonCipher.QScreen) && page == 0 && screen == 1)
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
+                    .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => Rnd.Range(0, 3) switch
+                    {
+                        0 => "123".ToCharArray().Shuffle().JoinString(),
+                        1 => "1234".ToCharArray().Shuffle().JoinString(),
+                        _ => "12345".ToCharArray().Shuffle().JoinString()
+                    }));
+
             // Violet Cipher, Page 1, Screen 3: only specific numbers are possible
             else if (question.Equals(SVioletCipher.QScreen) && page == 0 && screen == 2)
                 yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])

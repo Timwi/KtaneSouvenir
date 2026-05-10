@@ -3269,7 +3269,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SCoffeebucks.Stress] = new()
                 {
-                    // English: What was the last customer’s preferred stress-level in {0}?
+                    // English: What was the last customer’s preferred stress level in {0}?
                     Question = "{0}で最後に来た客のストレスレベルの好みは？",
                 },
                 [SCoffeebucks.Size] = new()

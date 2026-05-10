@@ -11,7 +11,7 @@ public enum SCoffeebucks
     [Question("What was the last customer’s preferred time of day in {0}?", TwoColumns4Answers, "Morning", "Lunchtime", "Afternoon", "Evening")]
     Time,
 
-    [Question("What was the last customer’s preferred stress-level in {0}?", TwoColumns4Answers, "Calm", "Agitated", "Stressed", "Murderous")]
+    [Question("What was the last customer’s preferred stress level in {0}?", TwoColumns4Answers, "Calm", "Agitated", "Stressed", "Murderous")]
     Stress,
 
     [Question("What was the last customer’s preferred size in {0}?", TwoColumns4Answers, "Short", "Tall", "Grande", "Venti")]
