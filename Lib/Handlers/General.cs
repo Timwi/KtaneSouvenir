@@ -55,7 +55,7 @@ public partial class SouvenirModule
     }
 
     // Used by Black, Blue, Brown, Coral, Cornflower, Cream, Crimson, Forest, Gray, Green, Indigo, Magenta, Maroon, Orange, Red, Violet, White, Yellow, and Ultimate Cipher
-    private IEnumerator<SouvenirInstruction> processColoredCiphers(ModuleData module, string componentName, Enum q)
+    private IEnumerator<SouvenirInstruction> processColoredCiphers(ModuleData module, string componentName, Enum question, Enum discriminator)
     {
         var comp = GetComponent(module, componentName);
         yield return WaitForSolve;
@@ -78,12 +78,12 @@ public partial class SouvenirModule
                     pagesList.Add((pageIx, scrIx, text));
         }
 
-        foreach (var obj in processColoredOrCompressionCiphers(q, pagesList, allWords))
+        foreach (var obj in processColoredOrCompressionCiphers(question, discriminator, pagesList, allWords))
             yield return obj;
     }
 
     // Used by Arithmetic Cipher, Blue Huffman Cipher, Lempel-Ziv Cipher, Pokémon Sprite Cipher and Yellow Huffman Cipher
-    private IEnumerator<SouvenirInstruction> processCompressionCiphers(ModuleData module, string componentName, Enum q)
+    private IEnumerator<SouvenirInstruction> processCompressionCiphers(ModuleData module, string componentName, Enum question, Enum discriminator)
     {
         var comp = GetComponent(module, componentName);
         yield return WaitForSolve;
@@ -99,12 +99,12 @@ public partial class SouvenirModule
                 if (!string.IsNullOrEmpty(pages[pageIx][scrIx]))
                     pagesList.Add((pageIx, scrIx, pages[pageIx][scrIx]));
 
-        foreach (var obj in processColoredOrCompressionCiphers(q, pagesList, allWords))
+        foreach (var obj in processColoredOrCompressionCiphers(question, discriminator, pagesList, allWords))
             yield return obj;
     }
 
     // Used by all colored ciphers, Ultimate Cipher, and the compression ciphers
-    private IEnumerable<SouvenirInstruction> processColoredOrCompressionCiphers(Enum q, IEnumerable<(int page, int screen, string text)> screenTexts, List<string>[] wordLists)
+    private IEnumerable<SouvenirInstruction> processColoredOrCompressionCiphers(Enum question, Enum discriminator, IEnumerable<(int page, int screen, string text)> screenTexts, List<string>[] wordLists)
     {
         string[] generateWrongAnswers(string correctAnswer, AnswerGeneratorAttribute<string> gen)
         {
@@ -136,10 +136,13 @@ public partial class SouvenirModule
 
         foreach (var (page, screen, text) in screenTexts)
         {
+            yield return new Discriminator(discriminator, $"{page}-{screen}", text, [text, screenNames[screen], (page + 1).ToString()]);
+
             // Black Cipher special case: A-VII-IV-V
             var rom = romanNumerals.JoinString("|");
             if (Regex.IsMatch(text, $@"^[ABC]-({rom})-({rom})-({rom})$"))
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{"ABC"[Rnd.Range(0, 3)]}-{romanNumerals.ToArray().Shuffle().Take(3).JoinString("-")}"));
 
             // Black Cipher special case: NJ-SG-CV
@@ -153,67 +156,80 @@ public partial class SouvenirModule
                         shuffle = shuffle.Insert(2 * i, "-");
                     return shuffle;
                 }
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()]).Answers(text, preferredWrong: generateWrongAnswersFnc(text, gen));
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
+                    .Answers(text, preferredWrong: generateWrongAnswersFnc(text, gen));
             }
 
             // Brown Cipher page 2 screen 3 will only have letters A to F
             else if (Regex.IsMatch(text, @"^[A-F]+$"))
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'F')));
 
             // Cornflower Cipher special case: only letters A–P
             else if (Regex.IsMatch(text, @"^[A-P]{6}$"))
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'P')));
 
             // Cornflower Cipher special case: three letters A–P and a digit
             else if (Regex.IsMatch(text, @"^[A-P]{3} \d$"))
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
                     .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]}{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]}{"ABCDEFGHIJKLMNOP"[Rnd.Range(0, 16)]} {Rnd.Range(0, 10)}"));
 
             // Arithmetic Cipher special case: three letters and a 2- or 3-digit number
             else if (Regex.IsMatch(text, @"^[A-Z]{3} \d{2,3}$"))
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]}{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]}{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]} {Rnd.Range(27, 26 * 27 + 1)}"));
 
             // Indigo Cipher special case: 24 ? 52 = 12
             else if (Regex.IsMatch(text, @"^\d+ \? \d+ = \d+$"))
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{Rnd.Range(0, 64)} ? {Rnd.Range(0, 64)} = {Rnd.Range(0, 64)}"));
 
             // Violet Cipher, Page 1, Screen 3: only specific numbers are possible
-            else if (q.Equals(SVioletCipher.Screen) && page == 0 && screen == 2)
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+            else if (question.Equals(SVioletCipher.QScreen) && page == 0 && screen == 2)
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(["1-2", "1-6"])));
 
             // Yellow Cipher special case: 8-5-7-20
             else if (Regex.IsMatch(text, @"^\d+-\d+-\d+-\d+$"))
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => $"{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}"));
 
             // Screens that have a word on them: pick other words from the same wordlist as wrong answers
             else if (text.Length is >= 4 and <= 8 && wordLists.IndexOf(wl => wl.Contains(text)) is { } wlp and not -1)
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: wordLists[wlp].ToArray());
 
             // Screens that have only 0s and 1s on them
             else if (text.Length >= 3 && text.All(ch => ch is '0' or '1'))
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, '0', '1')));
 
             // Screens that have only digits on them
             else if (text.All(ch => ch is >= '0' and <= '9'))
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, '0', '9')));
 
             // Screens that have only capital letters on them
             else if (text.All(ch => ch is >= 'A' and <= 'Z'))
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'Z')));
 
             // All other cases: jumble of letters and digits
             else
-                yield return question(q, args: [screenNames[screen], (page + 1).ToString()])
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")));
         }
     }

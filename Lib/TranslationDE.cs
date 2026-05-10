@@ -1078,6 +1078,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Arithmetic Cipher
         [typeof(SArithmeticCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Arithmetik-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -1086,11 +1087,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SArithmeticCipher.Screen] = new()
+                [SArithmeticCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Arithmetic Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SArithmeticCipher.DScreen] = new()
+                {
+                    // English: the Arithmetic Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Arithmetic Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Arithmetik-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -1791,6 +1807,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Black Cipher
         [typeof(SBlackCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Schwarze Geheimschrift",
             ModuleNameDative = "Schwarzen Geheimschrift",
             Gender = Gender.Feminine,
@@ -1800,11 +1817,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SBlackCipher.Screen] = new()
+                [SBlackCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Black Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBlackCipher.DScreen] = new()
+                {
+                    // English: the Black Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Black Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Schwarzen Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -2057,6 +2089,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Blue Cipher
         [typeof(SBlueCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Blaue Geheimschrift",
             ModuleNameDative = "Blauen Geheimschrift",
             Gender = Gender.Feminine,
@@ -2066,11 +2099,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SBlueCipher.Screen] = new()
+                [SBlueCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBlueCipher.DScreen] = new()
+                {
+                    // English: the Blue Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Blue Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Blauen Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -2084,6 +2132,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Blue Huffman Cipher
         [typeof(SBlueHuffmanCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Blaue Huffman-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -2092,11 +2141,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SBlueHuffmanCipher.Screen] = new()
+                [SBlueHuffmanCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Huffman Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBlueHuffmanCipher.DScreen] = new()
+                {
+                    // English: the Blue Huffman Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Blue Huffman Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Blaue Huffman-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -2472,6 +2536,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Brown Cipher
         [typeof(SBrownCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Braune Geheimschrift",
             ModuleNameDative = "Braunen Geheimschrift",
             Gender = Gender.Feminine,
@@ -2481,11 +2546,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SBrownCipher.Screen] = new()
+                [SBrownCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Brown Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBrownCipher.DScreen] = new()
+                {
+                    // English: the Brown Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Brown Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Braunen Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -3903,6 +3983,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Coral Cipher
         [typeof(SCoralCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Korall-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -3911,11 +3992,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SCoralCipher.Screen] = new()
+                [SCoralCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Coral Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCoralCipher.DScreen] = new()
+                {
+                    // English: the Coral Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Coral Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Korall-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -3963,6 +4059,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Cornflower Cipher
         [typeof(SCornflowerCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Kornblumen-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -3971,11 +4068,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SCornflowerCipher.Screen] = new()
+                [SCornflowerCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Cornflower Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCornflowerCipher.DScreen] = new()
+                {
+                    // English: the Cornflower Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Cornflower Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Kornblumen-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -4054,6 +4166,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Cream Cipher
         [typeof(SCreamCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Creme-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -4062,11 +4175,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SCreamCipher.Screen] = new()
+                [SCreamCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Cream Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCreamCipher.DScreen] = new()
+                {
+                    // English: the Cream Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Cream Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Creme-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -4107,6 +4235,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Crimson Cipher
         [typeof(SCrimsonCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Karmin-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -4115,11 +4244,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SCrimsonCipher.Screen] = new()
+                [SCrimsonCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Crimson Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCrimsonCipher.DScreen] = new()
+                {
+                    // English: the Crimson Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Crimson Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Karmin-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -6310,6 +6454,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Forest Cipher
         [typeof(SForestCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Wald-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -6318,11 +6463,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SForestCipher.Screen] = new()
+                [SForestCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Forest Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SForestCipher.DScreen] = new()
+                {
+                    // English: the Forest Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Forest Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Wald-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -7139,6 +7299,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Gray Cipher
         [typeof(SGrayCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Graue Geheimschrift",
             ModuleNameDative = "Grauen Geheimschrift",
             Gender = Gender.Feminine,
@@ -7148,11 +7309,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SGrayCipher.Screen] = new()
+                [SGrayCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Gray Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SGrayCipher.DScreen] = new()
+                {
+                    // English: the Gray Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Gray Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Grauen Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -7244,6 +7420,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Green Cipher
         [typeof(SGreenCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Grüne Geheimschrift",
             ModuleNameDative = "Grünen Geheimschrift",
             Gender = Gender.Feminine,
@@ -7253,11 +7430,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SGreenCipher.Screen] = new()
+                [SGreenCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Green Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SGreenCipher.DScreen] = new()
+                {
+                    // English: the Green Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Green Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Grünen Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -8253,6 +8445,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Indigo Cipher
         [typeof(SIndigoCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Indigo-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -8261,11 +8454,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SIndigoCipher.Screen] = new()
+                [SIndigoCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Indigo Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SIndigoCipher.DScreen] = new()
+                {
+                    // English: the Indigo Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Indigo Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Indigo-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -9194,6 +9402,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Lempel-Ziv Cipher
         [typeof(SLempelZivCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Lempel-Ziv-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -9202,11 +9411,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SLempelZivCipher.Screen] = new()
+                [SLempelZivCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Lempel-Ziv Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SLempelZivCipher.DScreen] = new()
+                {
+                    // English: the Lempel-Ziv Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Lempel-Ziv Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Lempel-Ziv-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -9578,7 +9802,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Magenta Cipher
         [typeof(SMagentaCipher)] = new()
         {
-            ModuleName = "Magenta-Geheimschrift",
+            NeedsTranslation = true,
+            ModuleName = "Rosa Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -9586,11 +9811,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SMagentaCipher.Screen] = new()
+                [SMagentaCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Magenta Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SMagentaCipher.DScreen] = new()
+                {
+                    // English: the Magenta Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Magenta Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Rosa Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -9830,6 +10070,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Maroon Cipher
         [typeof(SMaroonCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Kastanien-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -9838,11 +10079,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SMaroonCipher.Screen] = new()
+                [SMaroonCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Maroon Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SMaroonCipher.DScreen] = new()
+                {
+                    // English: the Maroon Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Maroon Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Kastanien-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -12793,6 +13049,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Orange Cipher
         [typeof(SOrangeCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Orangene Geheimschrift",
             ModuleNameDative = "Orangenen Geheimschrift",
             Gender = Gender.Feminine,
@@ -12802,11 +13059,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SOrangeCipher.Screen] = new()
+                [SOrangeCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Orange Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SOrangeCipher.DScreen] = new()
+                {
+                    // English: the Orange Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Orange Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Orangenen Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -13666,6 +13938,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pokémon Sprite Cipher
         [typeof(SPokémonSpriteCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Pokémon-Sprite-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -13674,11 +13947,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SPokémonSpriteCipher.Screen] = new()
+                [SPokémonSpriteCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Pokémon Sprite Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SPokémonSpriteCipher.DScreen] = new()
+                {
+                    // English: the Pokémon Sprite Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Pokémon Sprite Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Pokémon-Sprite-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -14386,6 +14674,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Red Cipher
         [typeof(SRedCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Rote Geheimschrift",
             ModuleNameDative = "Roten Geheimschrift",
             Gender = Gender.Feminine,
@@ -14395,11 +14684,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SRedCipher.Screen] = new()
+                [SRedCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Red Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SRedCipher.DScreen] = new()
+                {
+                    // English: the Red Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Red Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Roten Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -18681,6 +18985,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ultimate Cipher
         [typeof(SUltimateCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Ultimative Geheimschrift",
             ModuleNameDative = "Ultimativen Geheimschrift",
             Gender = Gender.Feminine,
@@ -18690,11 +18995,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SUltimateCipher.Screen] = new()
+                [SUltimateCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Ultimate Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SUltimateCipher.DScreen] = new()
+                {
+                    // English: the Ultimate Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Ultimate Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Ultimativen Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -19590,6 +19910,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Violet Cipher
         [typeof(SVioletCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Violette Geheimschrift",
             ModuleNameDative = "Violetten Geheimschrift",
             Gender = Gender.Feminine,
@@ -19599,11 +19920,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SVioletCipher.Screen] = new()
+                [SVioletCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Violet Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SVioletCipher.DScreen] = new()
+                {
+                    // English: the Violet Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Violet Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Violetten Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -19867,6 +20203,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // White Cipher
         [typeof(SWhiteCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Weiße Geheimschrift",
             ModuleNameDative = "Weißen Geheimschrift",
             Gender = Gender.Feminine,
@@ -19876,11 +20213,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SWhiteCipher.Screen] = new()
+                [SWhiteCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in White Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SWhiteCipher.DScreen] = new()
+                {
+                    // English: the White Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the White Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Weißen Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -20451,6 +20803,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Yellow Cipher
         [typeof(SYellowCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Gelbe Geheimschrift",
             ModuleNameDative = "Gelben Geheimschrift",
             Gender = Gender.Feminine,
@@ -20460,11 +20813,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SYellowCipher.Screen] = new()
+                [SYellowCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Yellow Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SYellowCipher.DScreen] = new()
+                {
+                    // English: the Yellow Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Yellow Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Gelben Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",
@@ -20478,6 +20846,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Yellow Huffman Cipher
         [typeof(SYellowHuffmanCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Gelbe Huffman-Geheimschrift",
             ModuleNameDative = "Gelben Huffman-Geheimschrift",
             Gender = Gender.Feminine,
@@ -20487,11 +20856,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SYellowHuffmanCipher.Screen] = new()
+                [SYellowHuffmanCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Yellow Huffman Cipher?
-                    Question = "Was war bei {0} auf dem {1} Bildschirm auf Seite {2}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SYellowHuffmanCipher.DScreen] = new()
+                {
+                    // English: the Yellow Huffman Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Yellow Huffman Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "der Gelben Huffman-Geheimschrift, auf deren {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
                         ["top"] = "oberen",

@@ -1133,11 +1133,26 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SArithmeticCipher.Screen] = new()
+                [SArithmeticCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Arithmetic Cipher?
                     Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SArithmeticCipher.DScreen] = new()
+                {
+                    // English: the Arithmetic Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Arithmetic Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Arithmetic Cipher that had {0} on the {1} screen on page {2}",
                     Arguments = new()
                     {
                         ["top"] = "top",
@@ -1839,13 +1854,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Black Cipher
         [typeof(SBlackCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SBlackCipher.Screen] = new()
+                [SBlackCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Black Cipher?
@@ -1855,6 +1871,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBlackCipher.DScreen] = new()
+                {
+                    // English: the Black Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Black Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Black Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -2102,13 +2133,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Blue Cipher
         [typeof(SBlueCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SBlueCipher.Screen] = new()
+                [SBlueCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Cipher?
@@ -2118,6 +2150,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBlueCipher.DScreen] = new()
+                {
+                    // English: the Blue Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Blue Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Blue Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -2133,11 +2180,26 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SBlueHuffmanCipher.Screen] = new()
+                [SBlueHuffmanCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Blue Huffman Cipher?
                     Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBlueHuffmanCipher.DScreen] = new()
+                {
+                    // English: the Blue Huffman Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Blue Huffman Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Blue Huffman Cipher that had {0} on the {1} screen on page {2}",
                     Arguments = new()
                     {
                         ["top"] = "top",
@@ -2519,13 +2581,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Brown Cipher
         [typeof(SBrownCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SBrownCipher.Screen] = new()
+                [SBrownCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Brown Cipher?
@@ -2535,6 +2598,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBrownCipher.DScreen] = new()
+                {
+                    // English: the Brown Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Brown Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Brown Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -3927,13 +4005,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Coral Cipher
         [typeof(SCoralCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SCoralCipher.Screen] = new()
+                [SCoralCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Coral Cipher?
@@ -3943,6 +4022,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCoralCipher.DScreen] = new()
+                {
+                    // English: the Coral Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Coral Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Coral Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -3986,13 +4080,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Cornflower Cipher
         [typeof(SCornflowerCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SCornflowerCipher.Screen] = new()
+                [SCornflowerCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Cornflower Cipher?
@@ -4002,6 +4097,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCornflowerCipher.DScreen] = new()
+                {
+                    // English: the Cornflower Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Cornflower Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Cornflower Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -4068,13 +4178,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Cream Cipher
         [typeof(SCreamCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SCreamCipher.Screen] = new()
+                [SCreamCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Cream Cipher?
@@ -4084,6 +4195,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCreamCipher.DScreen] = new()
+                {
+                    // English: the Cream Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Cream Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Cream Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -4121,13 +4247,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Crimson Cipher
         [typeof(SCrimsonCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SCrimsonCipher.Screen] = new()
+                [SCrimsonCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Crimson Cipher?
@@ -4137,6 +4264,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCrimsonCipher.DScreen] = new()
+                {
+                    // English: the Crimson Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Crimson Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Crimson Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -6236,13 +6378,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Forest Cipher
         [typeof(SForestCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SForestCipher.Screen] = new()
+                [SForestCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Forest Cipher?
@@ -6252,6 +6395,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SForestCipher.DScreen] = new()
+                {
+                    // English: the Forest Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Forest Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Forest Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -7062,13 +7220,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Gray Cipher
         [typeof(SGrayCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SGrayCipher.Screen] = new()
+                [SGrayCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Gray Cipher?
@@ -7078,6 +7237,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SGrayCipher.DScreen] = new()
+                {
+                    // English: the Gray Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Gray Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Gray Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -7160,13 +7334,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Green Cipher
         [typeof(SGreenCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом этапе?",
             },
             Questions = new()
             {
-                [SGreenCipher.Screen] = new()
+                [SGreenCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Green Cipher?
@@ -7176,6 +7351,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SGreenCipher.DScreen] = new()
+                {
+                    // English: the Green Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Green Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Green Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -8143,13 +8333,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Indigo Cipher
         [typeof(SIndigoCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SIndigoCipher.Screen] = new()
+                [SIndigoCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Indigo Cipher?
@@ -8159,6 +8350,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SIndigoCipher.DScreen] = new()
+                {
+                    // English: the Indigo Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Indigo Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Indigo Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -9059,11 +9265,26 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SLempelZivCipher.Screen] = new()
+                [SLempelZivCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Lempel-Ziv Cipher?
                     Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SLempelZivCipher.DScreen] = new()
+                {
+                    // English: the Lempel-Ziv Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Lempel-Ziv Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Lempel-Ziv Cipher that had {0} on the {1} screen on page {2}",
                     Arguments = new()
                     {
                         ["top"] = "top",
@@ -9425,13 +9646,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Magenta Cipher
         [typeof(SMagentaCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SMagentaCipher.Screen] = new()
+                [SMagentaCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Magenta Cipher?
@@ -9441,6 +9663,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SMagentaCipher.DScreen] = new()
+                {
+                    // English: the Magenta Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Magenta Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Magenta Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -9669,13 +9906,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Maroon Cipher
         [typeof(SMaroonCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SMaroonCipher.Screen] = new()
+                [SMaroonCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Maroon Cipher?
@@ -9685,6 +9923,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SMaroonCipher.DScreen] = new()
+                {
+                    // English: the Maroon Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Maroon Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Maroon Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -12565,13 +12818,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Orange Cipher
         [typeof(SOrangeCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SOrangeCipher.Screen] = new()
+                [SOrangeCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Orange Cipher?
@@ -12581,6 +12835,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SOrangeCipher.DScreen] = new()
+                {
+                    // English: the Orange Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Orange Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Orange Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -13425,11 +13694,26 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SPokémonSpriteCipher.Screen] = new()
+                [SPokémonSpriteCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Pokémon Sprite Cipher?
                     Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SPokémonSpriteCipher.DScreen] = new()
+                {
+                    // English: the Pokémon Sprite Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Pokémon Sprite Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Pokémon Sprite Cipher that had {0} on the {1} screen on page {2}",
                     Arguments = new()
                     {
                         ["top"] = "top",
@@ -14115,13 +14399,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Red Cipher
         [typeof(SRedCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SRedCipher.Screen] = new()
+                [SRedCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Red Cipher?
@@ -14131,6 +14416,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SRedCipher.DScreen] = new()
+                {
+                    // English: the Red Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Red Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Red Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -18323,13 +18623,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Ultimate Cipher
         [typeof(SUltimateCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SUltimateCipher.Screen] = new()
+                [SUltimateCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Ultimate Cipher?
@@ -18339,6 +18640,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "среднем",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SUltimateCipher.DScreen] = new()
+                {
+                    // English: the Ultimate Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Ultimate Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Ultimate Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -19210,13 +19526,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Violet Cipher
         [typeof(SVioletCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SVioletCipher.Screen] = new()
+                [SVioletCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Violet Cipher?
@@ -19226,6 +19543,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SVioletCipher.DScreen] = new()
+                {
+                    // English: the Violet Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Violet Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Violet Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -19477,13 +19809,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // White Cipher
         [typeof(SWhiteCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SWhiteCipher.Screen] = new()
+                [SWhiteCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in White Cipher?
@@ -19493,6 +19826,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SWhiteCipher.DScreen] = new()
+                {
+                    // English: the White Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the White Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the White Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -20050,13 +20398,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Yellow Cipher
         [typeof(SYellowCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
-                [SYellowCipher.Screen] = new()
+                [SYellowCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Yellow Cipher?
@@ -20066,6 +20415,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "верхнем",
                         ["middle"] = "центральном",
                         ["bottom"] = "нижнем",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SYellowCipher.DScreen] = new()
+                {
+                    // English: the Yellow Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Yellow Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Yellow Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                     },
                 },
             },
@@ -20081,11 +20445,26 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SYellowHuffmanCipher.Screen] = new()
+                [SYellowHuffmanCipher.QScreen] = new()
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Yellow Huffman Cipher?
                     Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SYellowHuffmanCipher.DScreen] = new()
+                {
+                    // English: the Yellow Huffman Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Yellow Huffman Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Yellow Huffman Cipher that had {0} on the {1} screen on page {2}",
                     Arguments = new()
                     {
                         ["top"] = "top",
