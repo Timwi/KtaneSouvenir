@@ -4564,6 +4564,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Decolored Squares
         [typeof(SDecoloredSquares)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Обесцвеченных квадратах",
             ManualModuleName = "Обесцвеченные квадраты",
             ManualQuestions = new()
@@ -4572,7 +4573,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SDecoloredSquares.StartingPos] = new()
+                [SDecoloredSquares.QStartingPos] = new()
                 {
                     // English: What was the starting {1} defining color in {0}?
                     // Example: What was the starting column defining color in Decolored Squares?
@@ -4591,6 +4592,26 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Green"] = "Зелёный",
                         ["Yellow"] = "Жёлтый",
                         ["Magenta"] = "Розовый",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SDecoloredSquares.DStartingPos] = new()
+                {
+                    // English: the Decolored Squares where was the starting {1} defining color was {0}
+                    // Example: the Decolored Squares where was the starting column defining color was White
+                    Discriminator = "the Decolored Squares where was the starting {1} defining color was {0}",
+                    Arguments = new()
+                    {
+                        ["White"] = "White",
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["column"] = "column",
+                        ["row"] = "row",
                     },
                 },
             },

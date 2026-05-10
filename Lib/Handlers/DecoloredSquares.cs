@@ -6,7 +6,10 @@ using static Souvenir.AnswerLayout;
 public enum SDecoloredSquares
 {
     [Question("What was the starting {1} defining color in {0}?", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["column", "row"], ArgumentGroupSize = 1)]
-    StartingPos
+    QStartingPos,
+
+    [Discriminator("the Decolored Squares where was the starting {1} defining color was {0}", Arguments = ["White", "column", "Red", "column", "Blue", "column", "Green", "row", "Yellow", "row", "Magenta", "row"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    DStartingPos
 }
 
 public partial class SouvenirModule
@@ -21,7 +24,9 @@ public partial class SouvenirModule
         var colColor = GetField<string>(comp, "_color1").Get();
         var rowColor = GetField<string>(comp, "_color2").Get();
 
-        yield return question(SDecoloredSquares.StartingPos, args: ["column"]).Answers(colColor);
-        yield return question(SDecoloredSquares.StartingPos, args: ["row"]).Answers(rowColor);
+        yield return new Discriminator(SDecoloredSquares.DStartingPos, "col", colColor, [colColor, "column"]);
+        yield return question(SDecoloredSquares.QStartingPos, args: ["column"]).AvoidDiscriminators("col").Answers(colColor);
+        yield return new Discriminator(SDecoloredSquares.DStartingPos, "row", rowColor, [rowColor, "row"]);
+        yield return question(SDecoloredSquares.QStartingPos, args: ["row"]).AvoidDiscriminators("row").Answers(rowColor);
     }
 }

@@ -4580,19 +4580,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the colors defining the starting row and column?"] = "Welche Farben bestimmten die Startzeile und -spalte?",
+                ["What were the colors defining the starting row and column?"] = "Welche Farben bestimmten die Startreihe und -spalte?",
             },
             Questions = new()
             {
-                [SDecoloredSquares.StartingPos] = new()
+                [SDecoloredSquares.QStartingPos] = new()
                 {
                     // English: What was the starting {1} defining color in {0}?
                     // Example: What was the starting column defining color in Decolored Squares?
                     Question = "Welche Farbe hat bei {0} die {1} bestimmt?",
                     Arguments = new()
                     {
-                        ["column"] = "Spalte",
-                        ["row"] = "Reihe",
+                        ["column"] = "Startspalte",
+                        ["row"] = "Startreihe",
                     },
                     Answers = new()
                     {
@@ -4601,7 +4601,27 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Blue"] = "Blau",
                         ["Green"] = "Grün",
                         ["Yellow"] = "Gelb",
-                        ["Magenta"] = "Magenta",
+                        ["Magenta"] = "Rosa",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SDecoloredSquares.DStartingPos] = new()
+                {
+                    // English: the Decolored Squares where was the starting {1} defining color was {0}
+                    // Example: the Decolored Squares where was the starting column defining color was White
+                    Discriminator = "den Entfärbten Feldern, bei denen {0} die {1} bestimmt hat,",
+                    Arguments = new()
+                    {
+                        ["White"] = "Weiß",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Rosa",
+                        ["column"] = "Startspalte",
+                        ["row"] = "Startreihe",
                     },
                 },
             },

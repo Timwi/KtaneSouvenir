@@ -448,7 +448,7 @@ public static class Program
                         sb.AppendLine($@"{indent()}// English: {propDDiscriminatorText.GetValue(dAttr)}");
                         if (propDArguments.GetValue(dAttr) is string[] args)
                             sb.AppendLine($@"{indent()}// Example: {string.Format((string) propDDiscriminatorText.GetValue(dAttr), processString(args.Take((int) propDArgumentGroupSize.GetValue(dAttr))).ToArray())}");
-                        sb.AppendLine($@"{indent()}Discriminator = ""{((fldDiscriminator == null ? null : (string) fldDiscriminator.GetValue(alreadyDiscriminator)) ?? (string) propDDiscriminatorText.GetValue(dAttr)).CLiteralEscape()}"",");
+                        sb.AppendLine($@"{indent()}Discriminator = ""{((alreadyDiscriminator == null ? null : (string) fldDiscriminator.GetValue(alreadyDiscriminator)) ?? (string) propDDiscriminatorText.GetValue(dAttr)).CLiteralEscape()}"",");
 
                         if ((bool) propDReferenceDocumentation.GetValue(dAttr) || propDTranslatableStrings.GetValue(dAttr) is string[] { Length: > 0 })
                             sb.AppendLine($@"{indent()}// Refer to translations.md to understand the weird strings");

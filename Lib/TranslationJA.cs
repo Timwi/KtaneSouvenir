@@ -4428,6 +4428,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Decolored Squares
         [typeof(SDecoloredSquares)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "色抜き格子",
             ManualQuestions = new()
             {
@@ -4435,7 +4436,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SDecoloredSquares.StartingPos] = new()
+                [SDecoloredSquares.QStartingPos] = new()
                 {
                     // English: What was the starting {1} defining color in {0}?
                     // Example: What was the starting column defining color in Decolored Squares?
@@ -4453,6 +4454,26 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Green"] = "緑",
                         ["Yellow"] = "黄",
                         ["Magenta"] = "マゼンタ",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SDecoloredSquares.DStartingPos] = new()
+                {
+                    // English: the Decolored Squares where was the starting {1} defining color was {0}
+                    // Example: the Decolored Squares where was the starting column defining color was White
+                    Discriminator = "the Decolored Squares where was the starting {1} defining color was {0}",
+                    Arguments = new()
+                    {
+                        ["White"] = "White",
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["column"] = "column",
+                        ["row"] = "row",
                     },
                 },
             },
