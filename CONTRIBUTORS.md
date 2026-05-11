@@ -3,11 +3,12 @@
 The following is a list of modules supported by Souvenir, and the fine people who have contributed their effort to make it happen:
 
 
-## Implemented by Timwi (147)
+## Implemented by Timwi (148)
 
-    3D Maze              │  Coral Cipher          │  Klaxon, The              │  Partial Derivatives    │  Simon States
-    3D Tunnels           │  Corners               │  Kudosudoku               │  Pattern Cube           │  Simply Simon
-    7                    │  Cornflower Cipher     │  Lempel-Ziv Cipher        │  Pictionary             │  Skewed Slots
+    3D Maze              │  Coordinates           │  Jumble Cycle             │  Orientation Cube       │  Simon Speaks
+    3D Tunnels           │  Coral Cipher          │  Klaxon, The              │  Partial Derivatives    │  Simon States
+    7                    │  Corners               │  Kudosudoku               │  Pattern Cube           │  Simply Simon
+    9-Ball               │  Cornflower Cipher     │  Lempel-Ziv Cipher        │  Pictionary             │  Skewed Slots
     Affine Cycle         │  Crazy Maze            │  Lion’s Share             │  Pigpen Cycle           │  Skyrim
     Algebra              │  Cream Cipher          │  Listening                │  Pink Button, The       │  Sonic the Hedgehog
     Alphabetical Ruling  │  Crimson Cipher        │  Literal Maze             │  Pinpoint               │  Stellar
@@ -34,7 +35,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Morse          │  Human Resources       │  Not X-Ray                │  Simon Signals          │  Zero, Zero
     Colored Squares      │  Identity Parade       │  Object Shows             │  Simon Sings            │
     Colored Switches     │  IPA                   │  Only Connect             │  Simon Sounds           │
-    Coordinates          │  Jumble Cycle          │  Orientation Cube         │  Simon Speaks           │
 
 ## Implemented by Anonymous (106)
 
@@ -180,10 +180,10 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Creation  │  Ice Cream       │  Morse-A-Maze  │  Symbol Cycle          │  Text Field
     Gridlock  │  LED Encryption  │  Souvenir      │  Symbolic Coordinates  │  Third Base
 
-## Implemented by GhostSalt (10)
+## Implemented by GhostSalt (9)
 
-    9-Ball             │  Entry Number One    │  Maze Identification  │  Not The Screw          │  Stacked Sequences
-    Entry Number Four  │  Game of Life Cruel  │  Mazeseeker           │  Puzzle Identification  │  Xenocryst, The
+    Entry Number Four  │  Game of Life Cruel   │  Mazeseeker     │  Puzzle Identification  │  Xenocryst, The
+    Entry Number One   │  Maze Identification  │  Not The Screw  │  Stacked Sequences      │
 
 ## Implemented by Marksam (8)
 

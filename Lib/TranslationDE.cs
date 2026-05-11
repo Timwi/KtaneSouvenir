@@ -477,7 +477,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ManualQuestions = new()
             {
-                ["What were the numbers on each ball?"] = "Welche Zahlen waren auf den Bällen?",
+                ["What were the numbers on each ball?"] = "Welche Zahlen waren auf den Kugeln?",
             },
             Questions = new()
             {
@@ -492,6 +492,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the letter of ball {1} in {0}?
                     // Example: What was the letter of ball 2 in 9-Ball?
                     Question = "Welchen Buchstaben hatte bei {0} die Kugel {1}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [S9Ball.Discriminator] = new()
+                {
+                    // English: the 9-Ball where ball {0} was {1}
+                    // Example: the 9-Ball where ball A was 2
+                    Discriminator = "dem 9-Ball, bei dem Kugel {0} eine {1} hatte,",
                 },
             },
         },

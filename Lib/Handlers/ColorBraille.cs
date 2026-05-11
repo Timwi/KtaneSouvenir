@@ -13,6 +13,7 @@ public partial class SouvenirModule
 {
     [Handler("ColorBrailleModule", "Color Braille", typeof(SColorBraille), "Timwi")]
     [ManualQuestion("What color was each dot?")]
+    [NoDiscriminator]
     private IEnumerator<SouvenirInstruction> ProcessColorBraille(ModuleData module)
     {
         var comp = GetComponent(module, "ColorBrailleModule");

@@ -11,12 +11,15 @@ public enum S9Ball
 
     [Question("What was the letter of ball {1} in {0}?", ThreeColumns6Answers, ExampleAnswers = ["A", "B", "C", "D", "E", "F"], Arguments = ["2", "3", "4", "5", "6", "7", "8"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-G")]
-    Numbers
+    Numbers,
+
+    [Discriminator("the 9-Ball where ball {0} was {1}", Arguments = ["A", "2", "B", "3", "C", "4", "D", "5", "E", "6", "F", "7", "G", "8"], ArgumentGroupSize = 2)]
+    Discriminator,
 }
 
 public partial class SouvenirModule
 {
-    [Handler("GSNineBall", "9-Ball", typeof(S9Ball), "GhostSalt")]
+    [Handler("GSNineBall", "9-Ball", typeof(S9Ball), "Timwi")]
     [ManualQuestion("What were the numbers on each ball?")]
     private IEnumerator<SouvenirInstruction> Process9Ball(ModuleData module)
     {
@@ -24,20 +27,11 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var balls = GetArrayField<int>(comp, "RndBallNums").Get(expectedLength: 7);
-
-        yield return question(S9Ball.Letters, args: ["A"]).Answers((balls[0] + 1).ToString());
-        yield return question(S9Ball.Letters, args: ["B"]).Answers((balls[1] + 1).ToString());
-        yield return question(S9Ball.Letters, args: ["C"]).Answers((balls[2] + 1).ToString());
-        yield return question(S9Ball.Letters, args: ["D"]).Answers((balls[3] + 1).ToString());
-        yield return question(S9Ball.Letters, args: ["E"]).Answers((balls[4] + 1).ToString());
-        yield return question(S9Ball.Letters, args: ["F"]).Answers((balls[5] + 1).ToString());
-        yield return question(S9Ball.Letters, args: ["G"]).Answers((balls[6] + 1).ToString());
-        yield return question(S9Ball.Numbers, args: ["2"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 1)]);
-        yield return question(S9Ball.Numbers, args: ["3"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 2)]);
-        yield return question(S9Ball.Numbers, args: ["4"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 3)]);
-        yield return question(S9Ball.Numbers, args: ["5"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 4)]);
-        yield return question(S9Ball.Numbers, args: ["6"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 5)]);
-        yield return question(S9Ball.Numbers, args: ["7"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 6)]);
-        yield return question(S9Ball.Numbers, args: ["8"]).Answers(new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 7)]);
+        for (var ballIx = 0; ballIx < 7; ballIx++)
+        {
+            yield return new Discriminator(S9Ball.Discriminator, $"ball-{ballIx}", balls[ballIx], args: ["ABCDEFG".Substring(ballIx, 1), (balls[ballIx] + 1).ToString()]);
+            yield return question(S9Ball.Letters, args: ["ABCDEFG".Substring(ballIx, 1)]).AvoidDiscriminators($"ball-{ballIx}").Answers((balls[ballIx] + 1).ToString());
+            yield return question(S9Ball.Numbers, args: [(balls[ballIx] + 1).ToString()]).AvoidDiscriminators($"ball-{ballIx}").Answers("ABCDEFGH".Substring(ballIx, 1));
+        }
     }
 }

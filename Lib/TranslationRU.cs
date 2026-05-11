@@ -521,6 +521,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // 9-Ball
         [typeof(S9Ball)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the numbers on each ball?"] = "Какие числа были на каждом шаре?",
@@ -538,6 +539,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the letter of ball {1} in {0}?
                     // Example: What was the letter of ball 2 in 9-Ball?
                     Question = "Какая была буква у шара \"{1}\" {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [S9Ball.Discriminator] = new()
+                {
+                    // English: the 9-Ball where ball {0} was {1}
+                    // Example: the 9-Ball where ball A was 2
+                    Discriminator = "the 9-Ball where ball {0} was {1}",
                 },
             },
         },

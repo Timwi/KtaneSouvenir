@@ -427,6 +427,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // 9-Ball
         [typeof(S9Ball)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "9ボール",
             ManualQuestions = new()
             {
@@ -445,6 +446,15 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the letter of ball {1} in {0}?
                     // Example: What was the letter of ball 2 in 9-Ball?
                     Question = "{0}のボール{1}の文字は？",
+                },
+            },
+            Discriminators = new()
+            {
+                [S9Ball.Discriminator] = new()
+                {
+                    // English: the 9-Ball where ball {0} was {1}
+                    // Example: the 9-Ball where ball A was 2
+                    Discriminator = "the 9-Ball where ball {0} was {1}",
                 },
             },
         },
