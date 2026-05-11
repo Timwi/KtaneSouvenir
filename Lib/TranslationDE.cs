@@ -1078,7 +1078,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Arithmetic Cipher
         [typeof(SArithmeticCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Arithmetik-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -1807,7 +1806,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Black Cipher
         [typeof(SBlackCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Schwarze Geheimschrift",
             ModuleNameDative = "Schwarzen Geheimschrift",
             Gender = Gender.Feminine,
@@ -2089,7 +2087,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Blue Cipher
         [typeof(SBlueCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Blaue Geheimschrift",
             ModuleNameDative = "Blauen Geheimschrift",
             Gender = Gender.Feminine,
@@ -2132,7 +2129,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Blue Huffman Cipher
         [typeof(SBlueHuffmanCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Blaue Huffman-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -2419,6 +2415,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Boxing
         [typeof(SBoxing)] = new()
         {
+            ModuleName = "Boxkampf",
+            Gender = Gender.Masculine,
             ManualQuestions = new()
             {
                 ["Which contestants and substitutes (first and last names) were shown?"] = "Welche Kandidaten und Ersatzpersonen kamen vor (Vor- und Nachnamen)?",
@@ -2445,7 +2443,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["substitute’s last name"] = "Nachname des Ersatzmanns",
                     },
                 },
-                [SBoxing.Names] = new()
+                [SBoxing.QNames] = new()
                 {
                     // English: Which {1} appeared on {0}?
                     // Example: Which contestant’s first name appeared on Boxing?
@@ -2456,6 +2454,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["contestant’s last name"] = "der Nachname eines Kandidaten",
                         ["substitute’s first name"] = "der Vorname eines Ersatzmanns",
                         ["substitute’s last name"] = "der Nachname eines Ersatzmanns",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBoxing.DNames] = new()
+                {
+                    // English: the Boxing that had {1} as a {0}
+                    // Example: the Boxing that had Muhammad as a contestant’s first name
+                    Discriminator = "dem Boxkampf, bei dem {1} als {0} vorkam,",
+                    Arguments = new()
+                    {
+                        ["contestant’s first name"] = "Kandidaten-Vorname",
+                        ["contestant’s last name"] = "Kandidaten-Nachname",
+                        ["substitute’s first name"] = "Ersatzmann-Vorname",
+                        ["substitute’s last name"] = "Ersatzmann-Nachname",
                     },
                 },
             },
@@ -2520,15 +2534,30 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SBrokenGuitarChords.DisplayedChord] = new()
+                [SBrokenGuitarChords.QDisplayedChord] = new()
                 {
                     // English: What was the displayed chord in {0}?
-                    Question = "Welcher Akkord wurde bei {0} angezeigt?",
+                    Question = "Welcher Akkord war bei {0} auf dem Display?",
                 },
-                [SBrokenGuitarChords.MutedString] = new()
+                [SBrokenGuitarChords.QMutedString] = new()
                 {
                     // English: In which position, from left to right, was the broken string in {0}?
                     Question = "An welcher Position, von links nach rechts, war bei {0} die kaputte Saite?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SBrokenGuitarChords.DDisplayedChord] = new()
+                {
+                    // English: the Broken Guitar Chords where the displayed chord was {0}
+                    // Example: the Broken Guitar Chords where the displayed chord was C
+                    Discriminator = "den Kaputten Gitarrenakkorden, bei denen {0} auf dem Display war,",
+                },
+                [SBrokenGuitarChords.DMutedString] = new()
+                {
+                    // English: the Broken Guitar Chords where string {0} (from left to right) was broken
+                    // Example: the Broken Guitar Chords where string 1 (from left to right) was broken
+                    Discriminator = "den Kaputten Gitarrenakkorden, bei denen Saite {0} (von links nach rechts) kaputt war,",
                 },
             },
         },
@@ -2536,7 +2565,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Brown Cipher
         [typeof(SBrownCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Braune Geheimschrift",
             ModuleNameDative = "Braunen Geheimschrift",
             Gender = Gender.Feminine,
@@ -3983,7 +4011,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Coral Cipher
         [typeof(SCoralCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Korall-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -4059,7 +4086,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Cornflower Cipher
         [typeof(SCornflowerCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Kornblumen-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -4166,7 +4192,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Cream Cipher
         [typeof(SCreamCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Creme-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -4235,7 +4260,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Crimson Cipher
         [typeof(SCrimsonCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Karmin-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -6454,7 +6478,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Forest Cipher
         [typeof(SForestCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Wald-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -7299,7 +7322,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Gray Cipher
         [typeof(SGrayCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Graue Geheimschrift",
             ModuleNameDative = "Grauen Geheimschrift",
             Gender = Gender.Feminine,
@@ -7420,7 +7442,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Green Cipher
         [typeof(SGreenCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Grüne Geheimschrift",
             ModuleNameDative = "Grünen Geheimschrift",
             Gender = Gender.Feminine,
@@ -8445,7 +8466,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Indigo Cipher
         [typeof(SIndigoCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Indigo-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -9402,7 +9422,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Lempel-Ziv Cipher
         [typeof(SLempelZivCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Lempel-Ziv-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -9802,7 +9821,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Magenta Cipher
         [typeof(SMagentaCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Rosa Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -10070,7 +10088,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Maroon Cipher
         [typeof(SMaroonCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Kastanien-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -13049,7 +13066,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Orange Cipher
         [typeof(SOrangeCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Orangene Geheimschrift",
             ModuleNameDative = "Orangenen Geheimschrift",
             Gender = Gender.Feminine,
@@ -13938,7 +13954,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pokémon Sprite Cipher
         [typeof(SPokémonSpriteCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Pokémon-Sprite-Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -14674,7 +14689,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Red Cipher
         [typeof(SRedCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Rote Geheimschrift",
             ModuleNameDative = "Roten Geheimschrift",
             Gender = Gender.Feminine,
@@ -18985,7 +18999,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ultimate Cipher
         [typeof(SUltimateCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Ultimative Geheimschrift",
             ModuleNameDative = "Ultimativen Geheimschrift",
             Gender = Gender.Feminine,
@@ -19910,7 +19923,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Violet Cipher
         [typeof(SVioletCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Violette Geheimschrift",
             ModuleNameDative = "Violetten Geheimschrift",
             Gender = Gender.Feminine,
@@ -20203,7 +20215,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // White Cipher
         [typeof(SWhiteCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Weiße Geheimschrift",
             ModuleNameDative = "Weißen Geheimschrift",
             Gender = Gender.Feminine,
@@ -20803,7 +20814,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Yellow Cipher
         [typeof(SYellowCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Gelbe Geheimschrift",
             ModuleNameDative = "Gelben Geheimschrift",
             Gender = Gender.Feminine,
@@ -20846,7 +20856,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Yellow Huffman Cipher
         [typeof(SYellowHuffmanCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Gelbe Huffman-Geheimschrift",
             ModuleNameDative = "Gelben Huffman-Geheimschrift",
             Gender = Gender.Feminine,

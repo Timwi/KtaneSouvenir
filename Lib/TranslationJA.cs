@@ -2351,6 +2351,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Boxing
         [typeof(SBoxing)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ボクシング",
             ManualQuestions = new()
             {
@@ -2378,7 +2379,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["substitute’s last name"] = "補欠選手の姓名",
                     },
                 },
-                [SBoxing.Names] = new()
+                [SBoxing.QNames] = new()
                 {
                     // English: Which {1} appeared on {0}?
                     // Example: Which contestant’s first name appeared on Boxing?
@@ -2389,6 +2390,22 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["contestant’s last name"] = "出場者の姓名",
                         ["substitute’s first name"] = "補欠選手の氏名",
                         ["substitute’s last name"] = "補欠選手の姓名",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBoxing.DNames] = new()
+                {
+                    // English: the Boxing that had {1} as a {0}
+                    // Example: the Boxing that had Muhammad as a contestant’s first name
+                    Discriminator = "the Boxing that had {1} as a {0}",
+                    Arguments = new()
+                    {
+                        ["contestant’s first name"] = "contestant’s first name",
+                        ["contestant’s last name"] = "contestant’s last name",
+                        ["substitute’s first name"] = "substitute’s first name",
+                        ["substitute’s last name"] = "substitute’s last name",
                     },
                 },
             },
@@ -2444,6 +2461,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Broken Guitar Chords
         [typeof(SBrokenGuitarChords)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "壊れたギター・コード",
             ManualQuestions = new()
             {
@@ -2452,15 +2470,30 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SBrokenGuitarChords.DisplayedChord] = new()
+                [SBrokenGuitarChords.QDisplayedChord] = new()
                 {
                     // English: What was the displayed chord in {0}?
                     Question = "{0}で表示されたコードは？",
                 },
-                [SBrokenGuitarChords.MutedString] = new()
+                [SBrokenGuitarChords.QMutedString] = new()
                 {
                     // English: In which position, from left to right, was the broken string in {0}?
                     Question = "{0}の壊れた弦があったのは、左から数えて何番目？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SBrokenGuitarChords.DDisplayedChord] = new()
+                {
+                    // English: the Broken Guitar Chords where the displayed chord was {0}
+                    // Example: the Broken Guitar Chords where the displayed chord was C
+                    Discriminator = "the Broken Guitar Chords where the displayed chord was {0}",
+                },
+                [SBrokenGuitarChords.DMutedString] = new()
+                {
+                    // English: the Broken Guitar Chords where string {0} (from left to right) was broken
+                    // Example: the Broken Guitar Chords where string 1 (from left to right) was broken
+                    Discriminator = "the Broken Guitar Chords where string {0} was broken",
                 },
             },
         },

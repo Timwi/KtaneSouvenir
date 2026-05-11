@@ -13,7 +13,10 @@ public enum SBoxing
     ContestantByStrength,
 
     [Question("Which {1} appeared on {0}?", TwoColumns4Answers, ExampleAnswers = ["Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander"], Arguments = ["contestant’s first name", "contestant’s last name", "substitute’s first name", "substitute’s last name"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    Names
+    QNames,
+
+    [Discriminator("the Boxing that had {1} as a {0}", Arguments = ["contestant’s first name", "Muhammad", "contestant’s last name", "Mike", "substitute’s first name", "Floyd", "substitute’s last name", "Joe"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    DNames
 }
 
 public partial class SouvenirModule
@@ -42,9 +45,18 @@ public partial class SouvenirModule
             yield return question(SBoxing.ContestantByStrength, args: ["substitute’s first name", contestantStrengths[ct].ToString()]).Answers(possibleSubstituteNames[substituteIndices[ct]], preferredWrong: possibleSubstituteNames);
             yield return question(SBoxing.ContestantByStrength, args: ["substitute’s last name", contestantStrengths[ct].ToString()]).Answers(possibleLastNames[substituteLastNameIndices[ct]], preferredWrong: possibleLastNames);
         }
-        yield return question(SBoxing.Names, args: ["contestant’s first name",]).Answers(contestantIndices.Select(ix => possibleNames[ix]).ToArray(), preferredWrong: possibleNames);
-        yield return question(SBoxing.Names, args: ["contestant’s last name"]).Answers(lastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrong: possibleLastNames);
-        yield return question(SBoxing.Names, args: ["substitute’s first name"]).Answers(substituteIndices.Select(ix => possibleSubstituteNames[ix]).ToArray(), preferredWrong: possibleSubstituteNames);
-        yield return question(SBoxing.Names, args: ["substitute’s last name"]).Answers(substituteLastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrong: possibleLastNames);
+        yield return question(SBoxing.QNames, args: ["contestant’s first name",]).Answers(contestantIndices.Select(ix => possibleNames[ix]).ToArray(), preferredWrong: possibleNames);
+        yield return question(SBoxing.QNames, args: ["contestant’s last name"]).Answers(lastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrong: possibleLastNames);
+        yield return question(SBoxing.QNames, args: ["substitute’s first name"]).Answers(substituteIndices.Select(ix => possibleSubstituteNames[ix]).ToArray(), preferredWrong: possibleSubstituteNames);
+        yield return question(SBoxing.QNames, args: ["substitute’s last name"]).Answers(substituteLastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrong: possibleLastNames);
+
+        foreach (var ix in contestantIndices)
+            yield return new Discriminator(SBoxing.DNames, $"cn-{ix}", args: ["contestant’s first name", possibleNames[ix]], avoidAnswers: [possibleNames[ix]]);
+        foreach (var ix in lastNameIndices)
+            yield return new Discriminator(SBoxing.DNames, $"ln-{ix}", args: ["contestant’s last name", possibleLastNames[ix]], avoidAnswers: [possibleLastNames[ix]]);
+        foreach (var ix in substituteIndices)
+            yield return new Discriminator(SBoxing.DNames, $"sn-{ix}", args: ["substitute’s first name", possibleSubstituteNames[ix]], avoidAnswers: [possibleSubstituteNames[ix]]);
+        foreach (var ix in substituteLastNameIndices)
+            yield return new Discriminator(SBoxing.DNames, $"sl-{ix}", args: ["substitute’s last name", possibleLastNames[ix]], avoidAnswers: [possibleLastNames[ix]]);
     }
 }

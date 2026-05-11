@@ -2458,6 +2458,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Boxing
         [typeof(SBoxing)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["Which contestants and substitutes (first and last names) were shown?"] = "Какие участники и замены(имена и фамилии) были показаны?",
@@ -2486,7 +2487,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["substitute’s last name"] = "Какая была фамилия запасного",
                     },
                 },
-                [SBoxing.Names] = new()
+                [SBoxing.QNames] = new()
                 {
                     // English: Which {1} appeared on {0}?
                     // Example: Which contestant’s first name appeared on Boxing?
@@ -2498,6 +2499,22 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["contestant’s last name"] = "Какая фамилия участника",
                         ["substitute’s first name"] = "Какое имя запасного участника",
                         ["substitute’s last name"] = "Какая фамилия запасного участника",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBoxing.DNames] = new()
+                {
+                    // English: the Boxing that had {1} as a {0}
+                    // Example: the Boxing that had Muhammad as a contestant’s first name
+                    Discriminator = "the Boxing that had {1} as a {0}",
+                    Arguments = new()
+                    {
+                        ["contestant’s first name"] = "contestant’s first name",
+                        ["contestant’s last name"] = "contestant’s last name",
+                        ["substitute’s first name"] = "substitute’s first name",
+                        ["substitute’s last name"] = "substitute’s last name",
                     },
                 },
             },
@@ -2556,6 +2573,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Broken Guitar Chords
         [typeof(SBrokenGuitarChords)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was the displayed chord?"] = "Какой аккорд был показан?",
@@ -2563,17 +2581,32 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SBrokenGuitarChords.DisplayedChord] = new()
+                [SBrokenGuitarChords.QDisplayedChord] = new()
                 {
                     // English: What was the displayed chord in {0}?
                     Question = "Какой аккорд был показан на {0}?",
                     Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
-                [SBrokenGuitarChords.MutedString] = new()
+                [SBrokenGuitarChords.QMutedString] = new()
                 {
                     // English: In which position, from left to right, was the broken string in {0}?
                     Question = "На какой позиции (слева направо) была сломанная струна {0}?",
                     Conjugation = Conjugation.PrepositiveMascNeuter,
+                },
+            },
+            Discriminators = new()
+            {
+                [SBrokenGuitarChords.DDisplayedChord] = new()
+                {
+                    // English: the Broken Guitar Chords where the displayed chord was {0}
+                    // Example: the Broken Guitar Chords where the displayed chord was C
+                    Discriminator = "the Broken Guitar Chords where the displayed chord was {0}",
+                },
+                [SBrokenGuitarChords.DMutedString] = new()
+                {
+                    // English: the Broken Guitar Chords where string {0} (from left to right) was broken
+                    // Example: the Broken Guitar Chords where string 1 (from left to right) was broken
+                    Discriminator = "the Broken Guitar Chords where string {0} was broken",
                 },
             },
         },
