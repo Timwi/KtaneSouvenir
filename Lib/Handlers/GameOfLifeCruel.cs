@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -6,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SGameOfLifeCruel
 {
-    [Question("Which of these was a color combination that occurred in {0}?", TwoColumns4Answers, ExampleAnswers = ["Red/Orange", "Orange/Yellow", "Yellow/Green", "Green/Blue"])]
+    [Question("Which of these was a color combination that occurred in {0}?", TwoColumns4Answers, ExampleAnswers = ["Red/Orange", "Orange/Yellow", "Yellow/Green", "Green/Blue"], TranslatableStrings = ["Solid {0}", "{0}/{1}", "Black", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Brown"])]
     Colors
 }
 
@@ -19,24 +20,29 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "GameOfLifeCruel");
         yield return WaitForSolve;
 
-        var colors = new[] { "Black", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Brown" };
+        var colors = new[] { "Black", null, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Brown" }
+            .Select(str => str == null ? null : TranslateQuestionString(SGameOfLifeCruel.Colors, str)).ToArray();
         var colors1 = GetArrayField<int>(comp, "BtnColor1init").Get();
         var colors2 = GetArrayField<int>(comp, "BtnColor2init").Get();
 
-        var answersList = new List<string>();
-        for (var i = 0; i < 9; i++)
-            if (i != 1)
-                for (var j = 0; j < 9; j++)
-                    if (j != 1 && (i > 1 || j > 1))
-                        answersList.Add(colors[i] == colors[j] ? $"Solid {colors[i]}" : $"{colors[i]}/{colors[j]}");
-        var allAnswers = answersList.ToArray();
-        var correctAnswers = Enumerable.Range(0, 48).Where(i => (colors1[i] > 1 || colors2[i] > 1) && colors1[i] != 1 && colors2[i] != 1)
-            .SelectMany(i => colors1[i] == colors2[i] ? new[] { $"Solid {colors[colors1[i]]}" } : new[] { $"{colors[colors1[i]]}/{colors[colors2[i]]}", $"{colors[colors2[i]]}/{colors[colors1[i]]}" })
-            .Distinct().ToArray();
+        var correctAnswers = (
+            from ix in Enumerable.Range(0, 48)
+            let i = Math.Min(colors1[ix], colors2[ix])
+            let j = Math.Max(colors1[ix], colors2[ix])
+            where (i > 1 || j > 1) && i != 1 && j != 1
+            select string.Format(TranslateQuestionString(SGameOfLifeCruel.Colors, i == j ? "Solid {0}" : "{0}/{1}"), colors[i], colors[j])).ToArray();
 
         if (correctAnswers.Length == 0)
             yield return legitimatelyNoQuestion(module, "There were no colored squares.");
 
-        yield return question(SGameOfLifeCruel.Colors).Answers(correctAnswers, preferredWrong: allAnswers);
+        var allAnswers = (
+            from i in Enumerable.Range(0, 9)
+            where i != 1
+            from j in Enumerable.Range(i, 9 - i)
+            where j != 1 && (i > 1 || j > 1)
+            select string.Format(TranslateQuestionString(SGameOfLifeCruel.Colors, i == j ? "Solid {0}" : "{0}/{1}"), colors[i], colors[j])).ToArray();
+        UnityEngine.Debug.Log($"♦ {allAnswers.JoinString("\n")}");
+
+        yield return question(SGameOfLifeCruel.Colors).Answers(correctAnswers, all: allAnswers);
     }
 }

@@ -7095,6 +7095,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which of these was a color combination that occurred in {0}?
                     Question = "Welche Farbkombination kam bei {0} vor?",
+                    // Refer to translations.md to understand the weird strings
+                    Additional = new()
+                    {
+                        ["Solid {0}"] = "Uni {0}",
+                        ["{0}/{1}"] = "{0}/{1}",
+                        ["Black"] = "Schwarz",
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["Brown"] = "Braun",
+                    },
                 },
             },
         },

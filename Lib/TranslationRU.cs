@@ -7038,6 +7038,20 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: Which of these was a color combination that occurred in {0}?
                     Question = "Какие комбинации цветов присутствовали {0}?",
+                    // Refer to translations.md to understand the weird strings
+                    Additional = new()
+                    {
+                        ["Solid {0}"] = "Solid {0}",
+                        ["{0}/{1}"] = "{0}/{1}",
+                        ["Black"] = "Black",
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Brown"] = "Brown",
+                    },
                 },
             },
         },

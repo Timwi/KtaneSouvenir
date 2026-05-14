@@ -152,6 +152,11 @@ Alternatively, you can find `Souvenir-settings.txt` in the `mod-settings` folder
 - `"{0}, {1}, {2}"` is used to combine the colors together to describe the module’s cylinders. This will end up like `Red, Green, Blue`.
 - `"L"`, `"M"`, and `"R"` are used to describe the module’s figures. Five of these will be concatenated (e.g. `LLMMR`).
 
+## Game of Life Cruel
+
+- `"Solid {0}"` is used to construct answers such as `Solid Red`.
+- `"{0}/{1}"` is used to construct answers consisting of two colors, e.g. `Red/Yellow`.
+
 ## Hidden Value, The
 
 - `"{0} {1}"` is used to construct answers, e.g. `Red 7`.

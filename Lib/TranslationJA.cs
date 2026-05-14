@@ -6892,6 +6892,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Game of Life Cruel
         [typeof(SGameOfLifeCruel)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "残忍ライフゲーム",
             ManualQuestions = new()
             {
@@ -6903,6 +6904,20 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which of these was a color combination that occurred in {0}?
                     Question = "{0}に出現した色の組み合わせに含まれるのは？",
+                    // Refer to translations.md to understand the weird strings
+                    Additional = new()
+                    {
+                        ["Solid {0}"] = "Solid {0}",
+                        ["{0}/{1}"] = "{0}/{1}",
+                        ["Black"] = "Black",
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Brown"] = "Brown",
+                    },
                 },
             },
         },
