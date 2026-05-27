@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -6,7 +7,7 @@ using static Souvenir.AnswerLayout;
 public enum SChallengeAndContact
 {
     [Question("What was the {1} displayed letter in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    [AnswerGenerator.Strings('a', 'z')]
+    [AnswerGenerator.Strings('A', 'Z')]
     Letters
 }
 
@@ -20,7 +21,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var allLetters = GetArrayField<string>(comp, "displayedLetters").Get(expectedLength: 3);
+        var allLetters = GetArrayField<string>(comp, "displayedLetters").Get(expectedLength: 3).Select(s => s.ToUpperInvariant()).ToArray();
 
         yield return question(SChallengeAndContact.Letters, args: [Ordinal(1)]).Answers(allLetters[0], preferredWrong: allLetters);
         yield return question(SChallengeAndContact.Letters, args: [Ordinal(2)]).Answers(allLetters[1], preferredWrong: allLetters);
