@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SFreeParking
 {
-    [Question("What was the player token in {0}?", ThreeColumns6Answers, "Dog", "Wheelbarrow", "Cat", "Iron", "Top Hat", "Car", "Battleship", TranslateAnswers = true)]
+    [Question("What was the player token in {0}?", TwoColumns4Answers, "Dog", "Wheelbarrow", "Cat", "Iron", "Top Hat", "Car", "Battleship", TranslateAnswers = true)]
     Token
 }
 
