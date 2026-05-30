@@ -15,6 +15,6 @@ public enum SRedCipher
 public partial class SouvenirModule
 {
     [Handler("redCipher", "Red Cipher", typeof(SRedCipher), "BigCrunch22")]
-    [ManualQuestion("What was on each relevant screen?")]
+    [ManualQuestion("What was on each screen?")]
     private IEnumerator<SouvenirInstruction> ProcessRedCipher(ModuleData module) => processColoredCiphers(module, "redCipher", SRedCipher.QScreen, SRedCipher.DScreen);
 }

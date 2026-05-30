@@ -26,7 +26,8 @@ public partial class SouvenirModule
         var isShiny = unowns.Select(u => GetField<bool>(u, "shiny").Get()).ToArray();
         var prefWrong = Enumerable.Range(0, 16).Where(x => x % 4 >= 2).Select(x => x.ToString()).ToArray();
 
-        for (int letter = 0; letter < 5; letter++) {
+        for (int letter = 0; letter < 5; letter++)
+        {
             if (isShiny[letter])
             {
                 // Only ask a question for the first stat where the values can only be in prefWrong. The other three stats will be 10.

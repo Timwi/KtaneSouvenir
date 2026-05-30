@@ -12878,7 +12878,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was on each relevant screen?"] = "What was on each relevant screen?",
+                ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
@@ -14459,7 +14459,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was on each relevant screen?"] = "What was on each relevant screen?",
+                ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {
@@ -18670,7 +18670,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was on each relevant screen?"] = "What was on each relevant screen?",
+                ["What was on each screen?"] = "Что было на каждом экране?",
             },
             Questions = new()
             {

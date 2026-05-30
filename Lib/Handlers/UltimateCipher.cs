@@ -15,6 +15,6 @@ public enum SUltimateCipher
 public partial class SouvenirModule
 {
     [Handler("ultimateCipher", "Ultimate Cipher", typeof(SUltimateCipher), "BigCrunch22")]
-    [ManualQuestion("What was on each relevant screen?")]
+    [ManualQuestion("What was on each screen?")]
     private IEnumerator<SouvenirInstruction> ProcessUltimateCipher(ModuleData module) => processColoredCiphers(module, "ultimateCipher", SUltimateCipher.QScreen, SUltimateCipher.DScreen);
 }

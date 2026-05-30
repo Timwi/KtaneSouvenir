@@ -12741,7 +12741,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "橙色暗号",
             ManualQuestions = new()
             {
-                ["What was on each relevant screen?"] = "What was on each relevant screen?",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -14318,7 +14318,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "赤色暗号",
             ManualQuestions = new()
             {
-                ["What was on each relevant screen?"] = "What was on each relevant screen?",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {
@@ -18542,7 +18542,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "究極暗号",
             ManualQuestions = new()
             {
-                ["What was on each relevant screen?"] = "What was on each relevant screen?",
+                ["What was on each screen?"] = "各ディスプレーの文字は？",
             },
             Questions = new()
             {

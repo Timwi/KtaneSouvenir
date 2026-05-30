@@ -13089,13 +13089,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Orange Cipher
         [typeof(SOrangeCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Orangene Geheimschrift",
             ModuleNameDative = "Orangenen Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was on each relevant screen?"] = "What was on each relevant screen?",
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
             },
             Questions = new()
             {
@@ -14713,13 +14712,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Red Cipher
         [typeof(SRedCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Rote Geheimschrift",
             ModuleNameDative = "Roten Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was on each relevant screen?"] = "What was on each relevant screen?",
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
             },
             Questions = new()
             {
@@ -15481,12 +15479,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Scavenger Hunt
         [typeof(SScavengerHunt)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Schnitzeljagd",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["Which tiles gave relevant clues in each stage?"] = "Which tiles gave relevant clues in each stage?",
+                ["Which tiles gave relevant clues in each stage?"] = "Auf welchen Feldern waren relevante Hinweise für welche Stufe?",
             },
             Questions = new()
             {
@@ -15494,7 +15491,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which of these tiles gave a relevant clue in the {1} stage of {0}?
                     // Example: Which of these tiles gave a relevant clue in the first stage of Scavenger Hunt?
-                    Question = "Which of these tiles gave a relevant clue in the {1} stage of {0}?",
+                    Question = "Auf welchem Feld war bei {0} ein für die {1}e Stufe relevanter Hinweis?",
                 },
             },
         },
@@ -19013,13 +19010,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ultimate Cipher
         [typeof(SUltimateCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Ultimative Geheimschrift",
             ModuleNameDative = "Ultimativen Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was on each relevant screen?"] = "What was on each relevant screen?",
+                ["What was on each screen?"] = "Was stand auf welchem Display?",
             },
             Questions = new()
             {
