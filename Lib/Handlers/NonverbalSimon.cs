@@ -30,7 +30,7 @@ public partial class SouvenirModule
 
             if (module.Info.NumModules > 1)
             {
-                var num = module.SolveIndex.ToString();
+                var num = (module.SolveIndex + 1).ToString();
                 var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
                 tmp.SetPixels(tex.GetPixels());
                 tex = NonverbalSimonQuestions.First(t => t.name.Equals("Name"));

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SHinges
 {
-    [Question("Which of these hinges was initially {1} {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "HingesSprites", Arguments = ["present on", "absent from"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which of these hinges was initially {1} {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "HingesSprites", Arguments = ["present on", "absent from"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Initial,
 
     [Discriminator("the Hinges where this hinge was initally {0}", UsesQuestionSprite = true, Arguments = ["present", "absent"], ArgumentGroupSize = 1, TranslateArguments = [true])]
@@ -35,10 +35,11 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        // There are eight hinges in total, so at least one question will generate.
-        if (presentHinges.Count is <= 4 and >= 1)
+        if (presentHinges.Count is <= 5 and >= 4) // Module spawned with 4 or 5 hinges
             yield return question(SHinges.Initial, args: ["present on"]).Answers(presentHinges.ToArray());
-        if (absentHinges.Count is <= 4 and >= 1)
+        else if (absentHinges.Count is <= 2 and >= 1) // Module spawned with 6 or 7 hinges
             yield return question(SHinges.Initial, args: ["absent from"]).Answers(absentHinges.ToArray());
+        else // Module spawned with 1 hinge
+            yield return legitimatelyNoQuestion(module, "Only one hinge was present.");
     }
 }

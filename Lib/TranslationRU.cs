@@ -12878,7 +12878,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "Что было на каждом экране?",
+                ["What was on each relevant screen?"] = "What was on each relevant screen?",
             },
             Questions = new()
             {
@@ -14459,7 +14459,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "Что было на каждом экране?",
+                ["What was on each relevant screen?"] = "What was on each relevant screen?",
             },
             Questions = new()
             {
@@ -15199,31 +15199,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Scavenger Hunt
         [typeof(SScavengerHunt)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which tile was correctly submitted in the first stage?"] = "Какая плитка была правильно выбрана на первом этапе?",
-                ["Where were the red, green, and blue tiles in the first stage?"] = "Где была красная, зелёная и синяя плитка на первом этапе?",
+                ["Which tiles gave relevant clues in each stage?"] = "Which tiles gave relevant clues in each stage?",
             },
             Questions = new()
             {
-                [SScavengerHunt.KeySquare] = new()
+                [SScavengerHunt.ClueTiles] = new()
                 {
-                    // English: Which tile was correctly submitted in the first stage of {0}?
-                    Question = "Какая плитка была верным ответом на первом этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                },
-                [SScavengerHunt.ColoredTiles] = new()
-                {
-                    // English: Which of these tiles was {1} in the first stage of {0}?
-                    // Example: Which of these tiles was red in the first stage of Scavenger Hunt?
-                    Question = "Какая из этих плиток была {1} на первом этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                    Arguments = new()
-                    {
-                        ["red"] = "красной",
-                        ["green"] = "зелёной",
-                        ["blue"] = "синей",
-                    },
+                    // English: Which of these tiles gave a relevant clue in the {1} stage of {0}?
+                    // Example: Which of these tiles gave a relevant clue in the first stage of Scavenger Hunt?
+                    Question = "Which of these tiles gave a relevant clue in the {1} stage of {0}?",
                 },
             },
         },
@@ -18683,7 +18670,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "Что было на каждом экране?",
+                ["What was on each relevant screen?"] = "What was on each relevant screen?",
             },
             Questions = new()
             {

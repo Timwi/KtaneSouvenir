@@ -12741,7 +12741,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "橙色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各ディスプレーの文字は？",
+                ["What was on each relevant screen?"] = "What was on each relevant screen?",
             },
             Questions = new()
             {
@@ -14318,7 +14318,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "赤色暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各ディスプレーの文字は？",
+                ["What was on each relevant screen?"] = "What was on each relevant screen?",
             },
             Questions = new()
             {
@@ -15062,30 +15062,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Scavenger Hunt
         [typeof(SScavengerHunt)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "宝探し",
             ManualQuestions = new()
             {
-                ["Which tile was correctly submitted in the first stage?"] = "最初のステージで正しく送信したタイルは？",
-                ["Where were the red, green, and blue tiles in the first stage?"] = "最初のステージで赤、緑、青のタイルは何処にあった？",
+                ["Which tiles gave relevant clues in each stage?"] = "Which tiles gave relevant clues in each stage?",
             },
             Questions = new()
             {
-                [SScavengerHunt.KeySquare] = new()
+                [SScavengerHunt.ClueTiles] = new()
                 {
-                    // English: Which tile was correctly submitted in the first stage of {0}?
-                    Question = "{0}のステージ{1}で正しく送信されたタイルは？",
-                },
-                [SScavengerHunt.ColoredTiles] = new()
-                {
-                    // English: Which of these tiles was {1} in the first stage of {0}?
-                    // Example: Which of these tiles was red in the first stage of Scavenger Hunt?
-                    Question = "{0}の最初のステージで{1}色だったタイルは？",
-                    Arguments = new()
-                    {
-                        ["red"] = "赤",
-                        ["green"] = "緑",
-                        ["blue"] = "青",
-                    },
+                    // English: Which of these tiles gave a relevant clue in the {1} stage of {0}?
+                    // Example: Which of these tiles gave a relevant clue in the first stage of Scavenger Hunt?
+                    Question = "Which of these tiles gave a relevant clue in the {1} stage of {0}?",
                 },
             },
         },
@@ -18553,7 +18542,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "究極暗号",
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "各ディスプレーの文字は？",
+                ["What was on each relevant screen?"] = "What was on each relevant screen?",
             },
             Questions = new()
             {

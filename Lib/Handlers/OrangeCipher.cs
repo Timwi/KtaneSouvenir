@@ -15,6 +15,6 @@ public enum SOrangeCipher
 public partial class SouvenirModule
 {
     [Handler("orangeCipher", "Orange Cipher", typeof(SOrangeCipher), "BigCrunch22")]
-    [ManualQuestion("What was on each screen?")]
+    [ManualQuestion("What was on each relevant screen?")]
     private IEnumerator<SouvenirInstruction> ProcessOrangeCipher(ModuleData module) => processColoredCiphers(module, "orangeCipher", SOrangeCipher.QScreen, SOrangeCipher.DScreen);
 }

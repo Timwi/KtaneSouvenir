@@ -6,24 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum SScavengerHunt
 {
-    [Question("Which tile was correctly submitted in the first stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which of these tiles gave a relevant clue in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
-    KeySquare,
-
-    [Question("Which of these tiles was {1} in the first stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
-    [AnswerGenerator.Grid(4, 4)]
-    ColoredTiles
+    ClueTiles
 }
 
 public partial class SouvenirModule
 {
     [Handler("scavengerHunt", "Scavenger Hunt", typeof(SScavengerHunt), "Timwi")]
-    [ManualQuestion("Which tile was correctly submitted in the first stage?")]
-    [ManualQuestion("Where were the red, green, and blue tiles in the first stage?")]
+    [ManualQuestion("Which tiles gave relevant clues in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessScavengerHunt(ModuleData module)
     {
         var comp = GetComponent(module, "scavengerHunt");
-        var keySquare = GetIntField(comp, "keySquare").Get(min: 0, max: 15);
 
         // Coordinates of the color that the user needed
         var relTiles = GetArrayField<int>(comp, "relTiles").Get(expectedLength: 2, validator: v => v is < 0 or > 15 ? "expected range 0–15" : null);
@@ -31,19 +25,9 @@ public partial class SouvenirModule
         // Coordinates of the other colors
         var decoyTiles = GetArrayField<int>(comp, "decoyTiles").Get(expectedLength: 4, validator: v => v is < 0 or > 15 ? "expected range 0–15" : null);
 
-        // Which color is the ‘relTiles’ color
-        var colorIndex = GetIntField(comp, "colorIndex").Get(min: 0, max: 2);
-
-        // 0 = red, 1 = green, 2 = blue
-        var redTiles = colorIndex == 0 ? relTiles : decoyTiles.Take(2).ToArray();
-        var greenTiles = colorIndex == 1 ? relTiles : colorIndex == 0 ? decoyTiles.Take(2).ToArray() : decoyTiles.Skip(2).ToArray();
-        var blueTiles = colorIndex == 2 ? relTiles : decoyTiles.Skip(2).ToArray();
-
         yield return WaitForSolve;
 
-        yield return question(SScavengerHunt.KeySquare).Answers(new Coord(4, 4, keySquare));
-        yield return question(SScavengerHunt.ColoredTiles, args: ["red"]).Answers(redTiles.Select(c => new Coord(4, 4, c)).ToArray());
-        yield return question(SScavengerHunt.ColoredTiles, args: ["green"]).Answers(greenTiles.Select(c => new Coord(4, 4, c)).ToArray());
-        yield return question(SScavengerHunt.ColoredTiles, args: ["blue"]).Answers(blueTiles.Select(c => new Coord(4, 4, c)).ToArray());
+        yield return question(SScavengerHunt.ClueTiles, args: [Ordinal(1)]).Answers(relTiles.Select(c => new Coord(4, 4, c)).ToArray());
+        yield return question(SScavengerHunt.ClueTiles, args: [Ordinal(2)]).Answers(decoyTiles.Select(c => new Coord(4, 4, c)).ToArray());
     }
 }

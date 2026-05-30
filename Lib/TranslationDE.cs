@@ -13089,12 +13089,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Orange Cipher
         [typeof(SOrangeCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Orangene Geheimschrift",
             ModuleNameDative = "Orangenen Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "Was stand auf welchem Display?",
+                ["What was on each relevant screen?"] = "What was on each relevant screen?",
             },
             Questions = new()
             {
@@ -14712,12 +14713,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Red Cipher
         [typeof(SRedCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Rote Geheimschrift",
             ModuleNameDative = "Roten Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "Was stand auf welchem Display?",
+                ["What was on each relevant screen?"] = "What was on each relevant screen?",
             },
             Questions = new()
             {
@@ -15479,31 +15481,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Scavenger Hunt
         [typeof(SScavengerHunt)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Schnitzeljagd",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["Which tile was correctly submitted in the first stage?"] = "Welches Feld wurde in der ersten Stufe korrekt eingegeben?",
-                ["Where were the red, green, and blue tiles in the first stage?"] = "Wo waren in der ersten Stufe die roten/grünen/blauen Felder?",
+                ["Which tiles gave relevant clues in each stage?"] = "Which tiles gave relevant clues in each stage?",
             },
             Questions = new()
             {
-                [SScavengerHunt.KeySquare] = new()
+                [SScavengerHunt.ClueTiles] = new()
                 {
-                    // English: Which tile was correctly submitted in the first stage of {0}?
-                    Question = "Welches Feld wurde bei {0} in der ersten Stufe korrekt eingegeben?",
-                },
-                [SScavengerHunt.ColoredTiles] = new()
-                {
-                    // English: Which of these tiles was {1} in the first stage of {0}?
-                    // Example: Which of these tiles was red in the first stage of Scavenger Hunt?
-                    Question = "Welches dieser Felder war bei {0} in der ersten Stufe {1}?",
-                    Arguments = new()
-                    {
-                        ["red"] = "rot",
-                        ["green"] = "grün",
-                        ["blue"] = "blau",
-                    },
+                    // English: Which of these tiles gave a relevant clue in the {1} stage of {0}?
+                    // Example: Which of these tiles gave a relevant clue in the first stage of Scavenger Hunt?
+                    Question = "Which of these tiles gave a relevant clue in the {1} stage of {0}?",
                 },
             },
         },
@@ -19022,12 +19013,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Ultimate Cipher
         [typeof(SUltimateCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Ultimative Geheimschrift",
             ModuleNameDative = "Ultimativen Geheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "Was stand auf welchem Display?",
+                ["What was on each relevant screen?"] = "What was on each relevant screen?",
             },
             Questions = new()
             {
