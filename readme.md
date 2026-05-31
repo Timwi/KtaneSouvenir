@@ -50,7 +50,7 @@ First, ensure that there isn’t already a contributor working on adding the mod
 
 The actual source code is in `Lib`. Open `Lib/SouvenirLib.sln` in Visual Studio to get started. The module handlers are in `Lib/Handlers`.
 
-If your installation of KTANE is *not* in the default folder (`C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\`), create a `SouvenirLib.csproj.user` file containing the following and change the folder accordingly. You MUST end your path with a backslash (`\`).
+If your installation of KTANE is *not* in the default folder (`C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\`), create a `Lib/SouvenirLib.csproj.user` file containing the following and change the folder accordingly. You MUST end your path with a backslash (`\`).
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -66,16 +66,27 @@ To add a new module, the following steps are required:
 
 - Unsubscribe from the Workshop version of Souvenir.
 - Build the asset bundle in Unity with no assembly (F7) and copy the result to your game’s `mods` folder. You only need to do this once as long as you keep that local copy of Souvenir there.
-- Follow the steps in `documentation.md`. You can either start fresh, or find an existing handler for a module that is similar to the one you wish to implement and take a copy of it.
+- Follow the steps in `documentation.md`. You can either start fresh, or find an existing handler for a module that is similar to the one you wish to implement, take a copy of it and modify it.
 - Compile the project.
 - Run Souvenir in Unity and issue a TP command (such as `!1 bulb`) to see your question to make sure that it looks okay.
 - Test your Souvenir modifications in-game (e.g. by using Dynamic Mission Generator). Test all corner cases, including getting a strike on the module.
 - If your question does not show up and/or Souvenir displays a warning triangle, look at your logfile (the actual file, not the LFA) for error messages from Souvenir. You can Ctrl+F in the logfile for `<Souvenir` to find them.
 - Please make a separate git commit for each module you implement. If you made multiple commits for the same module, please squash them into one.
-- After submitting the pull request, DM me (Timwi on Discord) the questions to be added to the manual, in the format `Module Name: Question? Question?`, for example:
-    ```
-    Quiz Buzz: What was the number initially on the display?
-    Memory Wires: What were the wire colours? What were the displayed digits?
-    The Matrix: Which word was part of the latest access code? What was the glitched word?
-    ```
-    I will do the rest to update the manual and the info on the repo.
+- After submitting the pull request, DM me (Timwi on Discord) to let me know and I can do the rest for you.
+
+## If you have direct push access
+
+Here’s how to fully update Souvenir (both workshop and repo manual):
+
+- Create a `Lib/SouvenirLib.csproj.user` file with the following contents (or, if you already have one, add the `<SouvenirPostBuildToolExtraArguments>` line to it). Make sure to change the path to point to your local clone of KtaneContent:
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <ProjectView>ProjectFiles</ProjectView>
+      <SouvenirPostBuildToolExtraArguments>-j C:\PathToKtaneContent\HTML\js\Modules</SouvenirPostBuildToolExtraArguments>
+    </PropertyGroup>
+  </Project>
+  ```
+- Compile SouvenirLib. This will automatically update the JS files used by the manual on the repo.
+- Commit and push the repo changes and use Unity to upload Souvenir to the workshop.

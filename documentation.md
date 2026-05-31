@@ -4,7 +4,7 @@ This document explains how to implement Souvenir support for a module. We will s
 
 ## Build the mod
 
-To begin, to the following:
+To begin, do the following:
 
 * Unsubscribe from the Workshop version of Souvenir.
 * Build the asset bundle in Unity with no assembly (F7) and copy the result to your game’s `mods` folder.
@@ -21,33 +21,33 @@ Inside the `Handlers` folder, you will find a source file for each supported mod
 
 Every Souvenir-supported module gets an enum type whose name is `S` followed by the name of the module (for example: `S3DMaze`). In it, you can declare *questions* that Souvenir can ask about (as well as *discriminators*, which are optional and will be covered later).
 
-To create a new Souvenir question, declare an enum value and give it a `[SouvenirQuestion(...)]` attribute. We will use the two questions for 3D Maze as an example:
+To create a new Souvenir question, declare an enum value and give it a `[Question(...)]` attribute. We will use the two questions for 3D Maze as an example:
 
 ```cs
 public enum S3DMaze
 {
-    [SouvenirQuestion("What were the markings in {0}?", ThreeColumns6Answers, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
+    [Question("What were the markings in {0}?", ThreeColumns6Answers, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
     Markings,
 
-    [SouvenirQuestion("What was the cardinal direction in {0}?", TwoColumns4Answers, "North", "South", "West", "East", TranslateAnswers = true)]
+    [Question("What was the cardinal direction in {0}?", TwoColumns4Answers, "North", "South", "West", "East", TranslateAnswers = true)]
     Bearing
 }
 ```
 
-In order, the parameters to the `[SouvenirQuestion(...)]` attributes are:
+In order, the parameters to the `[Question(...)]` attributes are:
 
 * The question text. Use `{0}` instead of the module name, so that Souvenir can use the same question to ask either `What were the markings in 3D Maze?` as well as `What were the markings in the 3D Maze you solved first/second/etc.?`.
 * An `AnswerLayout` value that determines how many answers are shown and how they are laid out. Take a look at `AnswerLayout.cs` to find out what values are available. Use `OneColumn4Answers` if the answers are going to be rather long (e.g. station names in *London Underground*).
 * A list of possible answers. In our example, we can see that the first question lists all the combinations of markings possible in 3D Maze, while the second includes all of the cardinal directions that could be answers.
 	* Please include this whenever the full set of possible answers is available, even if there are hundreds.
 	* If your handler provides the full list of answers at runtime, please include `ExampleAnswers = [...]` instead so that the question can still be rendered meaningfully in TestHarness. *1000 Words* shows an example of this.
-	* If the answers are numbers or strings of random characters that can be automatically generated, use an `AnswerGenerator`, which is a separate attribute to be added below the `[SouvenirQuestion(...)]` attribute. For example, `[AnswerGenerator.Integers(0, 10)]` will generate numerical answers in the range 0 through 10; `[AnswerGenerator.Strings('A', 'Z')]` will generate answers consisting of a single letter. You can search the code for `AnswerGenerator` to see some examples.
+	* If the answers are numbers or strings of random characters that can be automatically generated, use an `AnswerGenerator`, which is a separate attribute to be added below the `[Question(...)]` attribute. For example, `[AnswerGenerator.Integers(0, 10)]` will generate numerical answers in the range 0 through 10; `[AnswerGenerator.Strings('A', 'Z')]` will generate answers consisting of a single letter. You can search the code for `AnswerGenerator` to see some examples.
 * Specify `TranslateAnswers = true` if the answers need translating into other languages.
 
 After the list of answers, several optional parameters can be added. The most important ones are `Arguments`, `ArgumentGroupSize`, and `TranslateArguments`. To explain these, let’s use this example from *Bitmaps*:
 
 ```cs
-    [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right"], ArgumentGroupSize = 2)]
+    [Question("How many pixels were {1} in the {2} quadrant in {0}?", ThreeColumns6Answers, TranslateArguments = [true, true], Arguments = ["white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right"], ArgumentGroupSize = 2)]
 ```
 
 We want the question to vary from time to time: sometimes ask about the top-left quadrant, sometimes the other quadrants; and sometimes the black pixels, sometimes the white. To accommodate this, we note the following:
@@ -158,7 +158,7 @@ The `.Answers(...)` function can take the following parameters:
 
 * The correct answer or answers is/are always the first parameter.
 * Use `preferredWrong: [...]` to specify some wrong answers that Souvenir should include with higher likelihood. For example, in a module with multiple stages, include the answers from the other stages here. It’s OK for this to include correct answers; Souvenir will sift those out.
-* Use `all: [...]` to specify all possible answers. You only need to do that if you haven’t already specified all possible answers in the `[SouvenirQuestion(...)]` attribute and you haven’t specified an `AnswerGenerator`.
+* Use `all: [...]` to specify all possible answers. You only need to do that if you haven’t already specified all possible answers in the `[Question(...)]` attribute and you haven’t specified an `AnswerGenerator`.
 * All of these can be either `string[]` (for text answers), `AudioClip[]`, `Sprite[]`, or `Coord[]` (auto-generated sprites for grid-like structures, e.g. mazes).
 * For text answers, if you specified `Type = AnswerType.DynamicFont` in the question attribute, use `info: new(...)` to provide the font and font texture.
 
@@ -187,7 +187,7 @@ There are a few different ways to create a question that uses sprites or audio c
 * **Include the sprites/audio clips in the Souvenir mod itself.** If at all possible, this should only be used if the other options are not available, as it means the sprites/audio clips are shipped with Souvenir, increasing the size of the mod. If you do decide for this option, make sure to:
 	* Declare a field of type `Sprite[]`/`AudioClip[]` and assign all the sprites/audio clips you need using the Unity editor. For example, `ArithmelogicSprites` contains the sprites for one of the Arithmelogic questions.
 	* Please sort the field alphabetically among the others starting in `SouvenirModule.cs` line 30 (sprites)/line 88 (audio).
-	* In the `[SouvenirQuestion(...)]` attribute, use `Type = AnswerType.Sprites`/`Type = AnswerType.Audio` and specify either `SpriteFieldName = "..."` or `AudioFieldName = "..."` (insert the name of the new field you just added).
+	* In the `[Question(...)]` attribute, use `Type = AnswerType.Sprites`/`Type = AnswerType.Audio` and specify either `SpriteFieldName = "..."` or `AudioFieldName = "..."` (insert the name of the new field you just added).
 	* Now you can simply use these sprites/audio clips in your call to `.Answers(...)`.
 
 ## Testing in-game and submitting
@@ -209,7 +209,7 @@ When you are done, you need to test your new Souvenir support, and then submit t
 
 ## Full list of options
 
-### `[SouvenirQuestion(...)]`
+### `[Question(...)]`
 
 * **`Arguments`** — Specifies a set of possible arguments to be inserted in place of `{1}`, `{2}`, etc. If an argument must be translated into other languages, this must list all possible values for that argument (e.g. don’t just include “top-left” and “top-right” if there is also a “bottom-left” and a “bottom-right”).
 * **`ArgumentGroupSize`** — Number of arguments (not counting the `{0}` for the module name).
@@ -226,19 +226,19 @@ When you are done, you need to test your new Souvenir support, and then submit t
 * **`IsEntireQuestionSprite`** — If `true`, specifies that the entire question is a sprite that fills the whole question area, replacing the question text entirely (example: *Fuse Box*). In this case, the question text will still appear in the logging.
 * **`SpriteFieldName`**, **`AudioFieldName`** — If the answers are sprites or audio clips, it is preferable if you can obtain the sprites/audio from the module so that Souvenir doesn’t have to include a copy of them; however, in cases where this is unavoidable, declare a field of type `Sprite[]`/`AudioClip[]` (please sort it alphabetically among the others starting in `SouvenirModule.cs` line 30 (sprites)/line 88 (audio)), assign the sprites/audio clips in the Unity editor, and then specify the name of that field here.
 
-### `[SouvenirDiscriminator(...)]`
+### `[Discriminator(...)]`
 
 This is used to create a *discriminator* that can be used to distinguish between multiple instances of the same module on the bomb. Ordinarily, if there are two *Connection Check* modules, Souvenir might ask about “the Connection Check you solved first/second/etc.”, but this can be used to phrase other ways of distinguishing them, such as “the Connection Check with no 2s”.
 
 ```cs
-[SouvenirDiscriminator("the Connection Check with no {0}s", Arguments = ["1", "2", "3", "4", "5", "6", "7", "8"], ArgumentGroupSize = 1)]
+[Discriminator("the Connection Check with no {0}s", Arguments = ["1", "2", "3", "4", "5", "6", "7", "8"], ArgumentGroupSize = 1)]
 NoNs
 ```
 
 Since questions about boss modules must be asked before they can be solved, this is **required for boss modules.**
 
 ```cs
-[SouvenirDiscriminator("the Forget Me Not which displayed a {0} in the {1} stage", Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal], ArgumentGroupSize = 2)]
+[Discriminator("the Forget Me Not which displayed a {0} in the {1} stage", Arguments = ["1", QandA.Ordinal, "2", QandA.Ordinal], ArgumentGroupSize = 2)]
 Discriminator
 ```
 
@@ -272,7 +272,7 @@ Use this to ensure that the question and the discriminator don’t refer to the 
 
 * The first parameter is either a single correct answer or an array of correct answers. These can be `string`, `AudioClip`, `Sprite` or `Coord`.
 * **`preferredWrong: [...]`** — specifies some wrong answers that Souvenir should include with higher likelihood. For example, in a module with multiple stages, include the answers from the other stages here. It’s OK for this to include correct answers; Souvenir will sift those out.
-* **`all: [...]`** — specifies all possible answers. You only need to include this if you haven’t already specified all possible answers in the `[SouvenirQuestion(...)]` attribute and you haven’t specified an `AnswerGenerator`.
+* **`all: [...]`** — specifies all possible answers. You only need to include this if you haven’t already specified all possible answers in the `[Question(...)]` attribute and you haven’t specified an `AnswerGenerator`.
 * **`info: new(...)`** — specifies font information. Valid only for text answers, and only if the question has `Type = AnswerType.DynamicFont`.
 	* **`font:`** — specifies the font (to be obtained from the module). Required for `Type = AnswerType.DynamicFont`.
 	* **`fontTexture:`** — specifies the font texture (to be obtained from the module). Required for `Type = AnswerType.DynamicFont`.
@@ -323,6 +323,8 @@ If a discriminator becomes invalid at runtime for a particular module (usually u
 ```cs
 yield return new Discriminator(...) { AvoidEntirely = true };
 ```
+
+This is used, for example, by KayMazey Talk to make sure that the starting position is only a valid discriminator if the module didn’t strike.
 
 ## Reflection helpers
 

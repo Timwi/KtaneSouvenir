@@ -109,7 +109,6 @@
     <ItemGroup>
       <SouvenirDlls Include="$(TargetDir)*.dll" />
     </ItemGroup>
-    <Exec Command="echo $(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot; &quot;$(GameFolder)$(ManagedFolder)&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t $(SouvenirPostBuildToolExtraArguments)" />
     <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot; &quot;$(GameFolder)$(ManagedFolder)&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t $(SouvenirPostBuildToolExtraArguments)" />
     <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(ProjectDir)..\\Assets\\Plugins\\Managed" />
     <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(GameFolder)mods\\Souvenir" />
