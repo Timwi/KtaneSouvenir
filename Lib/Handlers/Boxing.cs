@@ -50,13 +50,13 @@ public partial class SouvenirModule
         yield return question(SBoxing.QNames, args: ["substitute’s first name"]).Answers(substituteIndices.Select(ix => possibleSubstituteNames[ix]).ToArray(), preferredWrong: possibleSubstituteNames);
         yield return question(SBoxing.QNames, args: ["substitute’s last name"]).Answers(substituteLastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrong: possibleLastNames);
 
-        foreach (var ix in contestantIndices)
+        foreach (var ix in contestantIndices.Distinct())
             yield return new Discriminator(SBoxing.DNames, $"cn-{ix}", args: ["contestant’s first name", possibleNames[ix]], avoidAnswers: [possibleNames[ix]]);
-        foreach (var ix in lastNameIndices)
+        foreach (var ix in lastNameIndices.Distinct())
             yield return new Discriminator(SBoxing.DNames, $"ln-{ix}", args: ["contestant’s last name", possibleLastNames[ix]], avoidAnswers: [possibleLastNames[ix]]);
-        foreach (var ix in substituteIndices)
+        foreach (var ix in substituteIndices.Distinct())
             yield return new Discriminator(SBoxing.DNames, $"sn-{ix}", args: ["substitute’s first name", possibleSubstituteNames[ix]], avoidAnswers: [possibleSubstituteNames[ix]]);
-        foreach (var ix in substituteLastNameIndices)
+        foreach (var ix in substituteLastNameIndices.Distinct())
             yield return new Discriminator(SBoxing.DNames, $"sl-{ix}", args: ["substitute’s last name", possibleLastNames[ix]], avoidAnswers: [possibleLastNames[ix]]);
     }
 }
