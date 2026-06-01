@@ -2424,12 +2424,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Boxing
         [typeof(SBoxing)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Boxkampf",
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["Which contestants were shown?"] = "Which contestants were shown?",
+                ["Which contestants were shown?"] = "Welche Kandidaten kamen vor?",
                 ["Who had which punch strength rating?"] = "Wer hatte welche Schlagstärke?",
             },
             Questions = new()
@@ -2438,18 +2437,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was {1}’s strength rating on {0}?
                     // Example: What was Muhammad’s strength rating on Boxing?
-                    Question = "Was war bei {0} die Kraftstufe von {1}?",
+                    Question = "Was war bei {0} die Schlagstärke von {1}?",
                 },
                 [SBoxing.ContestantByStrength] = new()
                 {
                     // English: Which contestant had strength rating {1} on {0}?
                     // Example: Which contestant had strength rating 0 on Boxing?
-                    Question = "Which contestant had strength rating {1} on {0}?",
+                    Question = "Welcher Kandidat hatte bei {0} die Schlagstärke {1}?",
                 },
                 [SBoxing.QNames] = new()
                 {
                     // English: Which contestant appeared on {0}?
-                    Question = "Which contestant appeared on {0}?",
+                    Question = "Welcher Kandidat kam bei {0} vor?",
                 },
             },
             Discriminators = new()
@@ -2458,7 +2457,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Boxing that had {0} as a contestant
                     // Example: the Boxing that had Muhammad as a contestant
-                    Discriminator = "the Boxing that had {0} as a contestant",
+                    Discriminator = "dem Boxkampf, bei dem {0} als Kandidat vorkam,",
                 },
             },
         },
@@ -5404,13 +5403,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Dreamcipher
         [typeof(SDreamcipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Traumschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What were the displayed glyphs?"] = "What were the displayed glyphs?",
-                ["What was the initial binary string?"] = "What was the initial binary string?",
+                ["What were the displayed glyphs?"] = "Welche Schriftzeichen kamen vor?",
+                ["What was the initial binary string?"] = "Was war die anfängliche Bitfolge?",
             },
             Questions = new()
             {
@@ -5418,12 +5416,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} displayed glyph in {0}?
                     // Example: What was the first displayed glyph in Dreamcipher?
-                    Question = "What was the {1} displayed glyph in {0}?",
+                    Question = "Was war bei {0} das {1}e Schriftzeichen?",
                 },
                 [SDreamcipher.Binary] = new()
                 {
                     // English: What was the initial binary string in {0}?
-                    Question = "What was the initial binary string in {0}?",
+                    Question = "Was war bei {0} die anfängliche Bitfolge?",
                 },
             },
         },
