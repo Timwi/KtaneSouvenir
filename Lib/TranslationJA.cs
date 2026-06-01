@@ -2392,9 +2392,9 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SBoxing.DNames] = new()
                 {
-                    // English: the Boxing that had {0} as a contestant?
-                    // Example: the Boxing that had Muhammad as a contestant?
-                    Discriminator = "the Boxing that had {0} as a contestant?",
+                    // English: the Boxing that had {0} as a contestant
+                    // Example: the Boxing that had Muhammad as a contestant
+                    Discriminator = "the Boxing that had {0} as a contestant",
                 },
             },
         },
@@ -5247,17 +5247,25 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Dreamcipher
         [typeof(SDreamcipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "夢想暗号",
             ManualQuestions = new()
             {
-                ["What was the decrypted word?"] = "解読した単語は？",
+                ["What were the displayed glyphs?"] = "What were the displayed glyphs?",
+                ["What was the initial binary string?"] = "What was the initial binary string?",
             },
             Questions = new()
             {
-                [SDreamcipher.Word] = new()
+                [SDreamcipher.Glyphs] = new()
                 {
-                    // English: What was the decrypted word in {0}?
-                    Question = "{0}で解読した単語は？",
+                    // English: What was the {1} displayed glyph in {0}?
+                    // Example: What was the first displayed glyph in Dreamcipher?
+                    Question = "What was the {1} displayed glyph in {0}?",
+                },
+                [SDreamcipher.Binary] = new()
+                {
+                    // English: What was the initial binary string in {0}?
+                    Question = "What was the initial binary string in {0}?",
                 },
             },
         },

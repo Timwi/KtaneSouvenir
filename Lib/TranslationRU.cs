@@ -2499,9 +2499,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SBoxing.DNames] = new()
                 {
-                    // English: the Boxing that had {0} as a contestant?
-                    // Example: the Boxing that had Muhammad as a contestant?
-                    Discriminator = "the Boxing that had {0} as a contestant?",
+                    // English: the Boxing that had {0} as a contestant
+                    // Example: the Boxing that had Muhammad as a contestant
+                    Discriminator = "the Boxing that had {0} as a contestant",
                 },
             },
         },
@@ -5375,16 +5375,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Dreamcipher
         [typeof(SDreamcipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the decrypted word?"] = "Какое слово было расшифровано?",
+                ["What were the displayed glyphs?"] = "What were the displayed glyphs?",
+                ["What was the initial binary string?"] = "What was the initial binary string?",
             },
             Questions = new()
             {
-                [SDreamcipher.Word] = new()
+                [SDreamcipher.Glyphs] = new()
                 {
-                    // English: What was the decrypted word in {0}?
-                    Question = "Какое было расшифрованное слово {0}?",
+                    // English: What was the {1} displayed glyph in {0}?
+                    // Example: What was the first displayed glyph in Dreamcipher?
+                    Question = "What was the {1} displayed glyph in {0}?",
+                },
+                [SDreamcipher.Binary] = new()
+                {
+                    // English: What was the initial binary string in {0}?
+                    Question = "What was the initial binary string in {0}?",
                 },
             },
         },

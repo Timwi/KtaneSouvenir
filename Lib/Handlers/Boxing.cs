@@ -15,7 +15,7 @@ public enum SBoxing
     [Question("Which contestant appeared on {0}?", TwoColumns4Answers, ExampleAnswers = ["Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander"])]
     QNames,
 
-    [Discriminator("the Boxing that had {0} as a contestant?", Arguments = ["Muhammad", "Mike", "Floyd", "Joe"], ArgumentGroupSize = 1)]
+    [Discriminator("the Boxing that had {0} as a contestant", Arguments = ["Muhammad", "Mike", "Floyd", "Joe"], ArgumentGroupSize = 1)]
     DNames
 }
 

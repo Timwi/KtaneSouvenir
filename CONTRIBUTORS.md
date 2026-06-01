@@ -102,15 +102,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cheat Checkout       │  Error Codes              │  Kuro               │  Sign Language      │  Weakest Link, The
     Conditional Buttons  │  Find The Date            │  Ladder Lottery     │  Simon Serves       │
 
-## Implemented by BigCrunch22 (34)
+## Implemented by BigCrunch22 (33)
 
-    1000 Words      │  Dreamcipher    │  Matrix, The            │  Stars                   │  V
-    Alphabet Tiles  │  Dumb Waiters   │  Numbers                │  State of Aggregation    │  Violet Cipher
-    Binary          │  Gray Cipher    │  Orange Cipher          │  Subscribe to Pewdiepie  │  What’s on Second
-    Black Cipher    │  Green Cipher   │  Red Cipher             │  Sugar Skulls            │  White Cipher
-    Blue Cipher     │  Grocery Store  │  Roger                  │  Switching Maze          │  Working Title
-    Cosmic          │  Hold Ups       │  Sequencyclopedia, The  │  Topsy Turvy             │  Yellow Cipher
-    Deaf Alley      │  Indigo Cipher  │  Shifting Maze          │  Ultimate Cipher         │
+    1000 Words      │  Dumb Waiters   │  Numbers                │  State of Aggregation    │  Violet Cipher
+    Alphabet Tiles  │  Gray Cipher    │  Orange Cipher          │  Subscribe to Pewdiepie  │  What’s on Second
+    Binary          │  Green Cipher   │  Red Cipher             │  Sugar Skulls            │  White Cipher
+    Black Cipher    │  Grocery Store  │  Roger                  │  Switching Maze          │  Working Title
+    Blue Cipher     │  Hold Ups       │  Sequencyclopedia, The  │  Topsy Turvy             │  Yellow Cipher
+    Cosmic          │  Indigo Cipher  │  Shifting Maze          │  Ultimate Cipher         │
+    Deaf Alley      │  Matrix, The    │  Stars                  │  V                       │
 
 ## Implemented by luisdiogo98 (31)
 
@@ -139,17 +139,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  LED Math               │  More Code         │  Simon’s Star    │
     Codenames           │  M&Ms                   │  Ordered Keys      │  Small Circle    │
 
+## Implemented by Espik (15)
+
+    100 Levels of Defusal  │  Calendar             │  Dreamcipher      │  Hyperlink, The      │  Thinking Wires
+    Blockbusters           │  Challenge & Contact  │  Encrypted Morse  │  Regular Crazy Talk  │  Tricky Tetris Pieces
+    Boolean Wires          │  Coffeebucks          │  Hexabutton, The  │  Simon Stages        │  Unfair Cipher
+
 ## Implemented by Andrio Celos (14)
 
     Button, The  │  Not Keypad      │  Not Simaze          │  Perspective Pegs  │  Wire Ordering
     Maze         │  Not Maze        │  Not the Button      │  Simon Says        │  Wire Sequence
     Memory       │  Not Morse Code  │  Not Who’s on First  │  Who’s on First    │
-
-## Implemented by Espik (14)
-
-    100 Levels of Defusal  │  Calendar             │  Encrypted Morse  │  Regular Crazy Talk  │  Tricky Tetris Pieces
-    Blockbusters           │  Challenge & Contact  │  Hexabutton, The  │  Simon Stages        │  Unfair Cipher
-    Boolean Wires          │  Coffeebucks          │  Hyperlink, The   │  Thinking Wires      │
 
 ## Implemented by kavinkul (14)
 
