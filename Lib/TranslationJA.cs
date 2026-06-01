@@ -2365,7 +2365,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "ボクシング",
             ManualQuestions = new()
             {
-                ["Which contestants and substitutes (first and last names) were shown?"] = "どの出場者と補欠者(姓名)が表示された？",
+                ["Which contestants were shown?"] = "Which contestants were shown?",
                 ["Who had which punch strength rating?"] = "誰がどのくらいのパンチ力を持っている？",
             },
             Questions = new()
@@ -2378,45 +2378,23 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SBoxing.ContestantByStrength] = new()
                 {
-                    // English: What was the {1} of the contestant with strength rating {2} on {0}?
-                    // Example: What was the first name of the contestant with strength rating 0 on Boxing?
-                    Question = "{0}で強さ{2}の出場者の{1}は？",
-                    Arguments = new()
-                    {
-                        ["first name"] = "氏名",
-                        ["last name"] = "姓名",
-                        ["substitute’s first name"] = "補欠選手の氏名",
-                        ["substitute’s last name"] = "補欠選手の姓名",
-                    },
+                    // English: Which contestant had strength rating {1} on {0}?
+                    // Example: Which contestant had strength rating 0 on Boxing?
+                    Question = "Which contestant had strength rating {1} on {0}?",
                 },
                 [SBoxing.QNames] = new()
                 {
-                    // English: Which {1} appeared on {0}?
-                    // Example: Which contestant’s first name appeared on Boxing?
-                    Question = "{0}の{1}は？",
-                    Arguments = new()
-                    {
-                        ["contestant’s first name"] = "出場者の氏名",
-                        ["contestant’s last name"] = "出場者の姓名",
-                        ["substitute’s first name"] = "補欠選手の氏名",
-                        ["substitute’s last name"] = "補欠選手の姓名",
-                    },
+                    // English: Which contestant appeared on {0}?
+                    Question = "Which contestant appeared on {0}?",
                 },
             },
             Discriminators = new()
             {
                 [SBoxing.DNames] = new()
                 {
-                    // English: the Boxing that had {1} as a {0}
-                    // Example: the Boxing that had Muhammad as a contestant’s first name
-                    Discriminator = "the Boxing that had {1} as a {0}",
-                    Arguments = new()
-                    {
-                        ["contestant’s first name"] = "contestant’s first name",
-                        ["contestant’s last name"] = "contestant’s last name",
-                        ["substitute’s first name"] = "substitute’s first name",
-                        ["substitute’s last name"] = "substitute’s last name",
-                    },
+                    // English: the Boxing that had {0} as a contestant?
+                    // Example: the Boxing that had Muhammad as a contestant?
+                    Discriminator = "the Boxing that had {0} as a contestant?",
                 },
             },
         },
@@ -4281,26 +4259,9 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["Which cells were prefilled at the start?"] = "最初に埋められていたセルは？",
-                ["Which symbol pair appeared where?"] = "どのシンボルがどこに表示されていた？",
             },
             Questions = new()
             {
-                [SCRule.SymbolPair] = new()
-                {
-                    // English: Which symbol pair was here in {0}? (+ sprite)
-                    Question = "{0}のこの位置にあったシンボルのペアは？",
-                },
-                [SCRule.SymbolPairCell] = new()
-                {
-                    // English: Where was {1} in {0}?
-                    // Example: Where was ♤♤ in The cRule?
-                    Question = "{0}で{1}はどこにあった？",
-                },
-                [SCRule.SymbolPairPresent] = new()
-                {
-                    // English: Which symbol pair was present on {0}?
-                    Question = "{0}に存在していたシンボルのペアは？",
-                },
                 [SCRule.Prefilled] = new()
                 {
                     // English: Which cell was pre-filled at the start of {0}?

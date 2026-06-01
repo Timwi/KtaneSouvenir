@@ -2424,11 +2424,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Boxing
         [typeof(SBoxing)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Boxkampf",
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["Which contestants and substitutes (first and last names) were shown?"] = "Welche Kandidaten und Ersatzpersonen kamen vor (Vor- und Nachnamen)?",
+                ["Which contestants were shown?"] = "Which contestants were shown?",
                 ["Who had which punch strength rating?"] = "Wer hatte welche Schlagstärke?",
             },
             Questions = new()
@@ -2441,45 +2442,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SBoxing.ContestantByStrength] = new()
                 {
-                    // English: What was the {1} of the contestant with strength rating {2} on {0}?
-                    // Example: What was the first name of the contestant with strength rating 0 on Boxing?
-                    Question = "Was war bei {0} der {1} des Kandidaten mit Kraftstufe {2}?",
-                    Arguments = new()
-                    {
-                        ["first name"] = "Vorname",
-                        ["last name"] = "Nachname",
-                        ["substitute’s first name"] = "Vorname des Ersatzmanns",
-                        ["substitute’s last name"] = "Nachname des Ersatzmanns",
-                    },
+                    // English: Which contestant had strength rating {1} on {0}?
+                    // Example: Which contestant had strength rating 0 on Boxing?
+                    Question = "Which contestant had strength rating {1} on {0}?",
                 },
                 [SBoxing.QNames] = new()
                 {
-                    // English: Which {1} appeared on {0}?
-                    // Example: Which contestant’s first name appeared on Boxing?
-                    Question = "Was war bei {0} {1}?",
-                    Arguments = new()
-                    {
-                        ["contestant’s first name"] = "der Vorname eines Kandidaten",
-                        ["contestant’s last name"] = "der Nachname eines Kandidaten",
-                        ["substitute’s first name"] = "der Vorname eines Ersatzmanns",
-                        ["substitute’s last name"] = "der Nachname eines Ersatzmanns",
-                    },
+                    // English: Which contestant appeared on {0}?
+                    Question = "Which contestant appeared on {0}?",
                 },
             },
             Discriminators = new()
             {
                 [SBoxing.DNames] = new()
                 {
-                    // English: the Boxing that had {1} as a {0}
-                    // Example: the Boxing that had Muhammad as a contestant’s first name
-                    Discriminator = "dem Boxkampf, bei dem {1} als {0} vorkam,",
-                    Arguments = new()
-                    {
-                        ["contestant’s first name"] = "Kandidaten-Vorname",
-                        ["contestant’s last name"] = "Kandidaten-Nachname",
-                        ["substitute’s first name"] = "Ersatzmann-Vorname",
-                        ["substitute’s last name"] = "Ersatzmann-Nachname",
-                    },
+                    // English: the Boxing that had {0} as a contestant?
+                    // Example: the Boxing that had Muhammad as a contestant?
+                    Discriminator = "the Boxing that had {0} as a contestant?",
                 },
             },
         },
@@ -4400,26 +4379,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["Which cells were prefilled at the start?"] = "Welche Zellen waren am Anfang vorgegeben?",
-                ["Which symbol pair appeared where?"] = "Welches Symbolpaar erschien wo?",
             },
             Questions = new()
             {
-                [SCRule.SymbolPair] = new()
-                {
-                    // English: Which symbol pair was here in {0}? (+ sprite)
-                    Question = "Welches Symbolpaar war bei {0} an dieser Stelle?",
-                },
-                [SCRule.SymbolPairCell] = new()
-                {
-                    // English: Where was {1} in {0}?
-                    // Example: Where was ♤♤ in The cRule?
-                    Question = "Wo war {1} bei {0}?",
-                },
-                [SCRule.SymbolPairPresent] = new()
-                {
-                    // English: Which symbol pair was present on {0}?
-                    Question = "Welches Symbolpaar kam bei {0} vor?",
-                },
                 [SCRule.Prefilled] = new()
                 {
                     // English: Which cell was pre-filled at the start of {0}?

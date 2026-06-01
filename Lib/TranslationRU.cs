@@ -2471,7 +2471,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which contestants and substitutes (first and last names) were shown?"] = "Какие участники и замены(имена и фамилии) были показаны?",
+                ["Which contestants were shown?"] = "Which contestants were shown?",
                 ["Who had which punch strength rating?"] = "Кто имел какую силу удара?",
             },
             Questions = new()
@@ -2485,47 +2485,23 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SBoxing.ContestantByStrength] = new()
                 {
-                    // English: What was the {1} of the contestant with strength rating {2} on {0}?
-                    // Example: What was the first name of the contestant with strength rating 0 on Boxing?
-                    Question = "{1} участника с оценкой силы {2} {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                    Arguments = new()
-                    {
-                        ["first name"] = "Какое было имя",
-                        ["last name"] = "Какая была фамилия",
-                        ["substitute’s first name"] = "Какое было имя запасного",
-                        ["substitute’s last name"] = "Какая была фамилия запасного",
-                    },
+                    // English: Which contestant had strength rating {1} on {0}?
+                    // Example: Which contestant had strength rating 0 on Boxing?
+                    Question = "Which contestant had strength rating {1} on {0}?",
                 },
                 [SBoxing.QNames] = new()
                 {
-                    // English: Which {1} appeared on {0}?
-                    // Example: Which contestant’s first name appeared on Boxing?
-                    Question = "{1} было показано на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                    Arguments = new()
-                    {
-                        ["contestant’s first name"] = "Какое имя участника",
-                        ["contestant’s last name"] = "Какая фамилия участника",
-                        ["substitute’s first name"] = "Какое имя запасного участника",
-                        ["substitute’s last name"] = "Какая фамилия запасного участника",
-                    },
+                    // English: Which contestant appeared on {0}?
+                    Question = "Which contestant appeared on {0}?",
                 },
             },
             Discriminators = new()
             {
                 [SBoxing.DNames] = new()
                 {
-                    // English: the Boxing that had {1} as a {0}
-                    // Example: the Boxing that had Muhammad as a contestant’s first name
-                    Discriminator = "the Boxing that had {1} as a {0}",
-                    Arguments = new()
-                    {
-                        ["contestant’s first name"] = "contestant’s first name",
-                        ["contestant’s last name"] = "contestant’s last name",
-                        ["substitute’s first name"] = "substitute’s first name",
-                        ["substitute’s last name"] = "substitute’s last name",
-                    },
+                    // English: the Boxing that had {0} as a contestant?
+                    // Example: the Boxing that had Muhammad as a contestant?
+                    Discriminator = "the Boxing that had {0} as a contestant?",
                 },
             },
         },
@@ -4412,29 +4388,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["Which cells were prefilled at the start?"] = "Which cells were prefilled at the start?",
-                ["Which symbol pair appeared where?"] = "Which symbol pair appeared where?",
             },
             Questions = new()
             {
-                [SCRule.SymbolPair] = new()
-                {
-                    // English: Which symbol pair was here in {0}? (+ sprite)
-                    Question = "Какая пара символов была здесь {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                },
-                [SCRule.SymbolPairCell] = new()
-                {
-                    // English: Where was {1} in {0}?
-                    // Example: Where was ♤♤ in The cRule?
-                    Question = "Где находилось {1} {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                },
-                [SCRule.SymbolPairPresent] = new()
-                {
-                    // English: Which symbol pair was present on {0}?
-                    Question = "Какая пара символов присутствовала {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                },
                 [SCRule.Prefilled] = new()
                 {
                     // English: Which cell was pre-filled at the start of {0}?
