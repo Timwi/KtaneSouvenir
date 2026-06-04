@@ -3341,23 +3341,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Codenames
-        [typeof(SCodenames)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["Which words were submitted?"] = "Какие слова были введены?",
-            },
-            Questions = new()
-            {
-                [SCodenames.Answers] = new()
-                {
-                    // English: Which of these words was submitted in {0}?
-                    Question = "Какое из слов было введено {0}?",
-                },
-            },
-        },
-
         // Coffee Beans
         [typeof(SCoffeeBeans)] = new()
         {
@@ -13745,24 +13728,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Polygons
-        [typeof(SPolygons)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["Which polygons were present?"] = "Какие фигуры присутствовали?",
-            },
-            Questions = new()
-            {
-                [SPolygons.Polygon] = new()
-                {
-                    // English: Which polygon was present on {0}?
-                    Question = "Какой многоугольник присутствовал на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                },
-            },
-        },
-
         // Polyhedral Maze
         [typeof(SPolyhedralMaze)] = new()
         {
@@ -14271,40 +14236,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: How many jewels were in the starting common pool in {0}?
                     Question = "Сколько драгоценностей было в начальном общем схроне {0}?",
-                },
-            },
-        },
-
-        // Railway Cargo Loading
-        [typeof(SRailwayCargoLoading)] = new()
-        {
-            ModuleName = "Загрузке ЖД состава",
-            ManualModuleName = "Загрузка ЖД состава",
-            ManualQuestions = new()
-            {
-                ["What were the coupled cars?"] = "Какие вагоны были присоединены?",
-                ["Which freight table rules applied?"] = "Какие правила из грузовой таблицы были применены?",
-            },
-            Questions = new()
-            {
-                [SRailwayCargoLoading.Cars] = new()
-                {
-                    // English: What was the {1} car in {0}?
-                    // Example: What was the first car in Railway Cargo Loading?
-                    Question = "Какой вагон был присоединён {1}-м {0}?",
-                    Conjugation = Conjugation.в_PrepositiveFeminine,
-                },
-                [SRailwayCargoLoading.FreightTableRules] = new()
-                {
-                    // English: Which freight table rule {1} in {0}?
-                    // Example: Which freight table rule was met in Railway Cargo Loading?
-                    Question = "Какое правило из таблицы грузовых вагонов {1} {0}?",
-                    Conjugation = Conjugation.в_PrepositiveFeminine,
-                    Arguments = new()
-                    {
-                        ["was met"] = "было применено",
-                        ["wasn’t met"] = "не было применено",
-                    },
                 },
             },
         },
@@ -17232,25 +17163,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Stable Time Signatures
-        [typeof(SStableTimeSignatures)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What time signatures played?"] = "What time signatures played?",
-            },
-            Questions = new()
-            {
-                [SStableTimeSignatures.Signatures] = new()
-                {
-                    // English: What was the {1} time signature in {0}?
-                    // Example: What was the first time signature in Stable Time Signatures?
-                    Question = "Какая была {1}-я сигнатура времени {0}?",
-                },
-            },
-        },
-
         // Stacked Sequences
         [typeof(SStackedSequences)] = new()
         {
@@ -18307,24 +18219,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["bottom-middle"] = "bottom-middle",
                         ["bottom-right"] = "bottom-right",
                     },
-                },
-            },
-        },
-
-        // Time Signatures
-        [typeof(STimeSignatures)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What time signatures played?"] = "Какие сигнатуры были проиграны?",
-            },
-            Questions = new()
-            {
-                [STimeSignatures.Signatures] = new()
-                {
-                    // English: What was the {1} time signature in {0}?
-                    // Example: What was the first time signature in Time Signatures?
-                    Question = "Какая была {1}-я сигнатура времени {0}?",
                 },
             },
         },

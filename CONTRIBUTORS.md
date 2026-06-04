@@ -36,30 +36,29 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Squares      │  Identity Parade       │  Object Shows             │  Simon Sings            │
     Colored Switches     │  IPA                   │  Only Connect             │  Simon Sounds           │
 
-## Implemented by Anonymous (106)
+## Implemented by Anonymous (103)
 
-    ↻↺                         │  Color One Two            │  HyperForget             │  Pentabutton, The           │  Starstruck
-    ❖                          │  Coloured Cylinder        │  KayMazey Talk           │  Pickup Identification      │  Stroop’s Test
-    0                          │  Concentration            │  Keypad Maze             │  Pointless Machines         │  Subbly Jubbly
-    1, 2, 3 Game, The          │  Connected Monitors       │  Keypad Sequence         │  Polygons                   │  SUSadmin
-    21                         │  Dialtones                │  Kooky Keypad            │  Prison Break               │  TAC
-    A Message                  │  Divided Squares          │  Kugelblitz              │  Puzzling Hexabuttons       │  Thirty Dollar Module
-    Amusement Parks            │  Doofenshmirtz Evil Inc.  │  Labyrinth, The          │  Q & A                      │  Time Signatures
-    Audio Morse                │  Double Arrows            │  Maroon Button, The      │  Quantum Passwords          │  Tribal Council
-    Bean Sprouts               │  Double Listening         │  Maze Swap               │  Quantum Ternary Converter  │  Unordered Keys
-    Beans                      │  Double Screen            │  Module Maneuvers        │  Quiplash                   │  Updog
-    Big Bean                   │  Emoji                    │  Money Game              │  Red Button’t               │  Variety
-    Blindfolded Yahtzee        │  Faerie Fires             │  Mssngv Wls              │  ReGret-B Filtering         │  Walking Cube
-    Blinking Notes             │  Forget Our Voices        │  N&Ns                    │  Reordered Keys             │  Watching Paint Dry
-    Bone Apple Tea             │  Fuse Box, The            │  Naming Conventions      │  RNG Crystal                │  White Arrows
-    Boob Tube                  │  Ghost Movement           │  Next In Line            │  RPS Judging                │  Wumbo
-    Boomtar the Great          │  Goofy’s Game             │  Not Colour Flash        │  Saturn                     │  X-Ring
-    Bottom Gear                │  Grand Piano              │  Not Double-Oh           │  Simon Smiles               │  XY-Ray
-    Buttonage                  │  Gyromaze                 │  Not Password            │  Simon Subdivides           │  Yellow Button’t
-    Cacti’s Conundrum          │  Halli Galli              │  Not Red Arrows          │  Simon Swizzles             │
-    CA-RPS                     │  hexOrbits                │  Not The Plunger Button  │  Skewers                    │
-    Chinese Remainder Theorem  │  Hickory Dickory Dock     │  Number Game, The        │  Smash, Marry, Kill         │
-    Coffee Beans               │  Hidden Value, The        │  One Links To All        │  Stable Time Signatures     │
+    ↻↺                         │  Coffee Beans             │  Hickory Dickory Dock  │  Not The Plunger Button     │  Skewers
+    ❖                          │  Color One Two            │  Hidden Value, The     │  Number Game, The           │  Smash, Marry, Kill
+    0                          │  Coloured Cylinder        │  HyperForget           │  One Links To All           │  Starstruck
+    1, 2, 3 Game, The          │  Concentration            │  KayMazey Talk         │  Pentabutton, The           │  Stroop’s Test
+    21                         │  Connected Monitors       │  Keypad Maze           │  Pickup Identification      │  Subbly Jubbly
+    A Message                  │  Dialtones                │  Keypad Sequence       │  Pointless Machines         │  SUSadmin
+    Amusement Parks            │  Divided Squares          │  Kooky Keypad          │  Prison Break               │  TAC
+    Audio Morse                │  Doofenshmirtz Evil Inc.  │  Kugelblitz            │  Puzzling Hexabuttons       │  Thirty Dollar Module
+    Bean Sprouts               │  Double Arrows            │  Labyrinth, The        │  Q & A                      │  Tribal Council
+    Beans                      │  Double Listening         │  Maroon Button, The    │  Quantum Passwords          │  Unordered Keys
+    Big Bean                   │  Double Screen            │  Maze Swap             │  Quantum Ternary Converter  │  Updog
+    Blindfolded Yahtzee        │  Emoji                    │  Module Maneuvers      │  Quiplash                   │  Variety
+    Blinking Notes             │  Faerie Fires             │  Money Game            │  Red Button’t               │  Walking Cube
+    Bone Apple Tea             │  Forget Our Voices        │  Mssngv Wls            │  ReGret-B Filtering         │  Watching Paint Dry
+    Boob Tube                  │  Fuse Box, The            │  N&Ns                  │  Reordered Keys             │  White Arrows
+    Boomtar the Great          │  Ghost Movement           │  Naming Conventions    │  RNG Crystal                │  Wumbo
+    Bottom Gear                │  Goofy’s Game             │  Next In Line          │  RPS Judging                │  X-Ring
+    Buttonage                  │  Grand Piano              │  Not Colour Flash      │  Saturn                     │  XY-Ray
+    Cacti’s Conundrum          │  Gyromaze                 │  Not Double-Oh         │  Simon Smiles               │  Yellow Button’t
+    CA-RPS                     │  Halli Galli              │  Not Password          │  Simon Subdivides           │
+    Chinese Remainder Theorem  │  hexOrbits                │  Not Red Arrows        │  Simon Swizzles             │
 
 ## Implemented by Quinn Wuest (63)
 
@@ -131,13 +130,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Forget Me             │  Metamorse         │  Numpath          │  Superparsing          │
     Kanye Encounter, The  │  M-Seq             │  Red Herring      │  Tasque Managing       │
 
-## Implemented by TasThiluna (22)
+## Implemented by TasThiluna (21)
 
-    3D Tap Code         │  Encryption Bingo       │  M&Ns              │  Rainbow Arrows  │  Snooker
-    Bakery              │  Hidden Colors          │  Mister Softee     │  Rule, The       │  Tenpins
-    Bamboozling Button  │  Identification Crisis  │  Module Listening  │  Samsung, The    │
-    Chinese Counting    │  LED Math               │  More Code         │  Simon’s Star    │
-    Codenames           │  M&Ms                   │  Ordered Keys      │  Small Circle    │
+    3D Tap Code         │  Hidden Colors          │  Mister Softee     │  Rule, The     │  Tenpins
+    Bakery              │  Identification Crisis  │  Module Listening  │  Samsung, The  │
+    Bamboozling Button  │  LED Math               │  More Code         │  Simon’s Star  │
+    Chinese Counting    │  M&Ms                   │  Ordered Keys      │  Small Circle  │
+    Encryption Bingo    │  M&Ns                   │  Rainbow Arrows    │  Snooker       │
 
 ## Implemented by Espik (15)
 
@@ -234,7 +233,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Placement Roulette       │  Brawlboxgaming
     Planets                  │  KingSlendy
     Raiding Temples          │  GoodHood
-    Railway Cargo Loading    │  LotsOfS
     Reverse Polish Notation  │  shortc1rcuit
     Sbemail Songs            │  ObjectsCountries
     Schlag den Bomb          │  JerryEris

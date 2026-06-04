@@ -3309,23 +3309,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Codenames
-        [typeof(SCodenames)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["Which words were submitted?"] = "Welche Wörter wurden eingegeben?",
-            },
-            Questions = new()
-            {
-                [SCodenames.Answers] = new()
-                {
-                    // English: Which of these words was submitted in {0}?
-                    Question = "Welches Wort war bei {0} ein Lösungswort?",
-                },
-            },
-        },
-
         // Coffee Beans
         [typeof(SCoffeeBeans)] = new()
         {
@@ -13983,25 +13966,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Polygons
-        [typeof(SPolygons)] = new()
-        {
-            ModuleName = "Polygone",
-            Gender = Gender.Plural,
-            ManualQuestions = new()
-            {
-                ["Which polygons were present?"] = "Welche Polygone waren vorhanden?",
-            },
-            Questions = new()
-            {
-                [SPolygons.Polygon] = new()
-                {
-                    // English: Which polygon was present on {0}?
-                    Question = "Welches Polygon kam bei {0} vor?",
-                },
-            },
-        },
-
         // Polyhedral Maze
         [typeof(SPolyhedralMaze)] = new()
         {
@@ -14525,38 +14489,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: How many jewels were in the starting common pool in {0}?
                     Question = "Wie viele Juwelen waren bei {0} am Anfang im gemeinsamen Pool?",
-                },
-            },
-        },
-
-        // Railway Cargo Loading
-        [typeof(SRailwayCargoLoading)] = new()
-        {
-            ModuleName = "Bahnfrachtverladung",
-            Gender = Gender.Feminine,
-            ManualQuestions = new()
-            {
-                ["What were the coupled cars?"] = "Welche Waggons wurden gekoppelt?",
-                ["Which freight table rules applied?"] = "Welche Frachtregeln in der Tabelle trafen zu?",
-            },
-            Questions = new()
-            {
-                [SRailwayCargoLoading.Cars] = new()
-                {
-                    // English: What was the {1} car in {0}?
-                    // Example: What was the first car in Railway Cargo Loading?
-                    Question = "Welcher Waggon wurde bei {0} als {1}er gekoppelt?",
-                },
-                [SRailwayCargoLoading.FreightTableRules] = new()
-                {
-                    // English: Which freight table rule {1} in {0}?
-                    // Example: Which freight table rule was met in Railway Cargo Loading?
-                    Question = "Welche Frachtregel in der Tabelle traf bei {0} {1}?",
-                    Arguments = new()
-                    {
-                        ["was met"] = "zu",
-                        ["wasn’t met"] = "nicht zu",
-                    },
                 },
             },
         },
@@ -17545,27 +17477,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Stable Time Signatures
-        [typeof(SStableTimeSignatures)] = new()
-        {
-            ModuleName = "Stabile Taktarten",
-            ModuleNameDative = "Stabilen Taktarten",
-            Gender = Gender.Plural,
-            ManualQuestions = new()
-            {
-                ["What time signatures played?"] = "In welchen Takten wurde gespielt?",
-            },
-            Questions = new()
-            {
-                [SStableTimeSignatures.Signatures] = new()
-                {
-                    // English: What was the {1} time signature in {0}?
-                    // Example: What was the first time signature in Stable Time Signatures?
-                    Question = "Was war bei {0} die {1}e Taktart?",
-                },
-            },
-        },
-
         // Stacked Sequences
         [typeof(SStackedSequences)] = new()
         {
@@ -18639,26 +18550,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["bottom-middle"] = "untere mittlere",
                         ["bottom-right"] = "untere rechte",
                     },
-                },
-            },
-        },
-
-        // Time Signatures
-        [typeof(STimeSignatures)] = new()
-        {
-            ModuleName = "Taktangaben",
-            Gender = Gender.Plural,
-            ManualQuestions = new()
-            {
-                ["What time signatures played?"] = "In welchen Takten wurde gespielt?",
-            },
-            Questions = new()
-            {
-                [STimeSignatures.Signatures] = new()
-                {
-                    // English: What was the {1} time signature in {0}?
-                    // Example: What was the first time signature in Time Signatures?
-                    Question = "Was war bei {0} die {1}e Taktangabe?",
                 },
             },
         },

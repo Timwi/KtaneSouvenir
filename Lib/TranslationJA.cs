@@ -3224,24 +3224,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Codenames
-        [typeof(SCodenames)] = new()
-        {
-            ModuleName = "コードネーム",
-            ManualQuestions = new()
-            {
-                ["Which words were submitted?"] = "どの言葉を送信した？",
-            },
-            Questions = new()
-            {
-                [SCodenames.Answers] = new()
-                {
-                    // English: Which of these words was submitted in {0}?
-                    Question = "{0}で送信された単語に含まれるのは？",
-                },
-            },
-        },
-
         // Coffee Beans
         [typeof(SCoffeeBeans)] = new()
         {
@@ -13611,24 +13593,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Polygons
-        [typeof(SPolygons)] = new()
-        {
-            ModuleName = "多角形",
-            ManualQuestions = new()
-            {
-                ["Which polygons were present?"] = "存在した図形は？",
-            },
-            Questions = new()
-            {
-                [SPolygons.Polygon] = new()
-                {
-                    // English: Which polygon was present on {0}?
-                    Question = "{0}で表示された図形は？",
-                },
-            },
-        },
-
         // Polyhedral Maze
         [typeof(SPolyhedralMaze)] = new()
         {
@@ -14138,37 +14102,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: How many jewels were in the starting common pool in {0}?
                     Question = "{0}で初期の共有財産にあった宝石の数は？",
-                },
-            },
-        },
-
-        // Railway Cargo Loading
-        [typeof(SRailwayCargoLoading)] = new()
-        {
-            ModuleName = "鉄道貨物積載センター",
-            ManualQuestions = new()
-            {
-                ["What were the coupled cars?"] = "連結した車両は？",
-                ["Which freight table rules applied?"] = "貨車検索表で当てはまった条件は？ ",
-            },
-            Questions = new()
-            {
-                [SRailwayCargoLoading.Cars] = new()
-                {
-                    // English: What was the {1} car in {0}?
-                    // Example: What was the first car in Railway Cargo Loading?
-                    Question = "{0}の{1}両目は？",
-                },
-                [SRailwayCargoLoading.FreightTableRules] = new()
-                {
-                    // English: Which freight table rule {1} in {0}?
-                    // Example: Which freight table rule was met in Railway Cargo Loading?
-                    Question = "{0}の貨車検索表で{1}ルールは？",
-                    Arguments = new()
-                    {
-                        ["was met"] = "合致した",
-                        ["wasn’t met"] = "合致しなかった",
-                    },
                 },
             },
         },
@@ -17105,25 +17038,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Stable Time Signatures
-        [typeof(SStableTimeSignatures)] = new()
-        {
-            ModuleName = "安定拍子記号",
-            ManualQuestions = new()
-            {
-                ["What time signatures played?"] = "再生された拍子記号は？",
-            },
-            Questions = new()
-            {
-                [SStableTimeSignatures.Signatures] = new()
-                {
-                    // English: What was the {1} time signature in {0}?
-                    // Example: What was the first time signature in Stable Time Signatures?
-                    Question = "{0}の{1}番目の拍子記号は？",
-                },
-            },
-        },
-
         // Stacked Sequences
         [typeof(SStackedSequences)] = new()
         {
@@ -18180,25 +18094,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["bottom-middle"] = "下",
                         ["bottom-right"] = "右下",
                     },
-                },
-            },
-        },
-
-        // Time Signatures
-        [typeof(STimeSignatures)] = new()
-        {
-            ModuleName = "拍子記号",
-            ManualQuestions = new()
-            {
-                ["What time signatures played?"] = "再生された拍子記号は？",
-            },
-            Questions = new()
-            {
-                [STimeSignatures.Signatures] = new()
-                {
-                    // English: What was the {1} time signature in {0}?
-                    // Example: What was the first time signature in Time Signatures?
-                    Question = "{0}の{1}番目の拍子記号は？",
                 },
             },
         },
