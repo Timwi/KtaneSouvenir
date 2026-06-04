@@ -4973,11 +4973,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Directional Button
         [typeof(SDirectionalButton)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Richtungsknopf",
+            Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["What were the button's color and label in each stage?"] = "What were the button's color and label in each stage?",
+                ["What were the button's color and label in each stage?"] = "Welche Farbe und Aufschrift hatte der Knopf in welcher Stufe?",
             },
             Questions = new()
             {
@@ -4985,13 +4985,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the button in the {1} stage of {0}?
                     // Example: What color was the button in the first stage of Directional Button?
-                    Question = "What color was the button in the {1} stage of {0}?",
+                    Question = "Welche Farbe hatte der Knopf bei {0} in der {1}en Stufe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["White"] = "Weiß",
+                    },
                 },
                 [SDirectionalButton.Label] = new()
                 {
                     // English: What label was on the button in the {1} stage of {0}?
                     // Example: What label was on the button in the first stage of Directional Button?
-                    Question = "What label was on the button in the {1} stage of {0}?",
+                    Question = "Was stand bei {0} in der {1}en Stufe auf dem Knopf?",
                 },
             },
         },
@@ -11946,19 +11952,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not Morse Code
         [typeof(SNotMorseCode)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Morsezeichen Mal Anders",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the transmitted words?"] = "What were the transmitted words?",
+                ["What were the transmitted words?"] = "Welche Wörter wurden übermittelt?",
             },
             Questions = new()
             {
                 [SNotMorseCode.Words] = new()
                 {
                     // English: Which of these words was transmitted in {0}?
-                    Question = "Which of these words was transmitted in {0}?",
+                    Question = "Welches Wort wurde bei {0} übermittelt?",
                 },
             },
         },
@@ -19196,10 +19201,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unicode
         [typeof(SUnicode)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the symbols?"] = "What were the symbols?",
+                ["What were the symbols?"] = "Welche Zeichen kamen vor?",
             },
             Questions = new()
             {
@@ -19207,7 +19211,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} symbol in {0}?
                     // Example: What was the first symbol in Unicode?
-                    Question = "What was the {1} symbol in {0}?",
+                    Question = "Was war bei {0} das {1}e Zeichen?",
                 },
             },
         },

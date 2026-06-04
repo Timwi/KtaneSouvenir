@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDirectionalButton
 {
-    [Question("What color was the button in the {1} stage of {0}?", ThreeColumns3Answers, "Red", "Blue", "White", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the button in the {1} stage of {0}?", ThreeColumns3Answers, "Red", "Blue", "White", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Color,
 
     [Question("What label was on the button in the {1} stage of {0}?", TwoColumns2Answers, "Abort", "Detonate", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]

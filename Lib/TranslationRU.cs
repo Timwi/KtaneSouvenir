@@ -4973,6 +4973,12 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What color was the button in the {1} stage of {0}?
                     // Example: What color was the button in the first stage of Directional Button?
                     Question = "What color was the button in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["White"] = "White",
+                    },
                 },
                 [SDirectionalButton.Label] = new()
                 {
