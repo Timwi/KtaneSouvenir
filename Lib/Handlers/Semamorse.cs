@@ -16,7 +16,7 @@ public enum SSemamorse
 public partial class SouvenirModule
 {
     [Handler("semamorse", "Semamorse", typeof(SSemamorse), "Timwi")]
-    [ManualQuestion("What were Morse and semaphore letters and color used for the starting value?")]
+    [ManualQuestion("What were the Morse and semaphore letters and color used for the starting value?")]
     private IEnumerator<SouvenirInstruction> ProcessSemamorse(ModuleData module)
     {
         var comp = GetComponent(module, "semamorse");

@@ -15108,7 +15108,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "セマモールス",
             ManualQuestions = new()
             {
-                ["What were Morse and semaphore letters and color used for the starting value?"] = "初期値の計算で使われたモールス信号、セマフォア信号は？",
+                ["What were the Morse and semaphore letters and color used for the starting value?"] = "初期値の計算で使われたモールス信号、セマフォア信号は？",
             },
             Questions = new()
             {

@@ -15237,7 +15237,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             ManualQuestions = new()
             {
-                ["What were Morse and semaphore letters and color used for the starting value?"] = "Какие буквы Морзе, буквы семафора и какой цвет были использованы в начальном значении?",
+                ["What were the Morse and semaphore letters and color used for the starting value?"] = "Какие буквы Морзе, буквы семафора и какой цвет были использованы в начальном значении?",
             },
             Questions = new()
             {

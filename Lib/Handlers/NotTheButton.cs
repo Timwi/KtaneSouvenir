@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotTheButton
 {
-    [Question("What colors did the light glow in {0}?", ThreeColumns6Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue", TranslateAnswers = true)]
+    [Question("What colors did the light glow in {0}?", TwoColumns4Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue", TranslateAnswers = true)]
     LightColor
 }
 

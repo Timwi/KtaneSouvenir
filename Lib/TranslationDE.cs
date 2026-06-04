@@ -15525,7 +15525,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Winkermorse",
             ManualQuestions = new()
             {
-                ["What were Morse and semaphore letters and color used for the starting value?"] = "Für den Startwert kam welcher Morsebuchstabe, welcher Winkerbuchstabe und welche Farbe zum Einsatz?",
+                ["What were the Morse and semaphore letters and color used for the starting value?"] = "Für den Startwert kam welcher Morsebuchstabe, welcher Winkerbuchstabe und welche Farbe zum Einsatz?",
             },
             Questions = new()
             {
