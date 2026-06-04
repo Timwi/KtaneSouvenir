@@ -3,30 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using Souvenir.Reflection;
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SUnicode
 {
-    [Question("What was the {1} submitted code in {0}?", ThreeColumns6Answers, "00A7", "00B6", "0126", "04D4", "017F", "01F6", "01F7", "2042", "037C", "03C2", "040B", "20AA", "042E", "0460", "046C", "20B0", "222F", "222B", "2569", "04EC", "260A", "04A6", "2626", "FB21", "0428", "03A9", "0583", "2592", "254B", "2318", "2234", "2205", "2104", "04A8", "2605", "019B", "03EA", "062A", "067C", "063A", "06BA", "00FE", "0194", "0239", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    SortedAnswer
+    [Question("What was the {1} symbol in {0}?", ThreeColumns6Answers, "§", "¶", "Ħ", "Ӕ", "ſ", "Ƕ", "Ƿ", "⁂", "ͼ", "ς", "Ћ", "₪", "Ю", "Ѡ", "Ѭ", "₰", "∯", "∫", "╩", "Ӭ", "☊", "Ҧ", "☦", "ﬡ", "ш", "Ω", "փ", "▒", "╋", "⌘", "∴", "∅", "℄", "Ҩ", "★", "ƛ", "Ϫ", "ت", "ټ", "غ", "ں", "þ", "Ɣ", "ȹ", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    Symbols
 }
 
 public partial class SouvenirModule
 {
-    [Handler("UnicodeModule", "Unicode", typeof(SUnicode), "Marksam")]
-    [ManualQuestion("What were the submitted codes?")]
+    [Handler("UnicodeModule", "Unicode", typeof(SUnicode), "Espik")]
+    [ManualQuestion("What were the symbols?")]
     private IEnumerator<SouvenirInstruction> ProcessUnicode(ModuleData module)
     {
         var comp = GetComponent(module, "UnicodeScript");
-        yield return WaitForSolve;
 
-        PropertyInfo<string> propCode = null;
-        var symbols = GetField<IEnumerable>(comp, "SelectedSymbols").Get().Cast<object>().Select(x => (propCode ??= GetProperty<string>(x, "Code", isPublic: true)).GetFrom(x)).ToList();
+        var displayedSymbols = GetArrayField<TextMesh>(comp, "SymbolsScreen", isPublic: true).Get(expectedLength: 4);
+        var selectedSymbols = new string[4];
 
-        if (symbols.Count != 4)
-            throw new AbandonModuleException($"‘SelectedSymbols’ has unexpected length {symbols.Count} (expected 4).");
+        if (displayedSymbols.Count() != 4)
+            throw new AbandonModuleException($"‘SymbolsScreen’ has unexpected length {displayedSymbols.Count()} (expected 4).");
+
+        yield return WaitForActivate;
 
         for (var i = 0; i < 4; i++)
-            yield return question(SUnicode.SortedAnswer, args: [Ordinal(i + 1)]).Answers(symbols[i]);
+            selectedSymbols[i] = displayedSymbols[i].text;
+
+        yield return WaitForSolve;
+
+        for (var i = 0; i < 4; i++)
+            yield return question(SUnicode.Symbols, args: [Ordinal(i + 1)]).Answers(selectedSymbols[i]);
     }
 }

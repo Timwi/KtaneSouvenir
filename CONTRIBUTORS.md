@@ -90,16 +90,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Keypads         │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
     Cursed Double-Oh      │  Forget Me Now      │  Mad Memory            │  Safety Square          │
 
-## Implemented by Hawker (39)
+## Implemented by Hawker (38)
 
-    3N+1                 │  Customer Identification  │  Flavor Text EX     │  LED Grid           │  Sonic & Knuckles
-    Arena, The           │  DetoNATO                 │  Garfield Kart      │  Mixometer          │  Spongebob Birthday Identification
-    Bar Charts           │  Dimension Disruption     │  Garnet Thief, The  │  Module Movements   │  Subway
-    Book of Mario        │  Directional Button       │  Girlfriend         │  RGB Sequences      │  Suits and Colours
-    Bordered Keys        │  Disordered Keys          │  h                  │  Robot Programming  │  UNO!
-    Character Slots      │  Earthbound               │  High Score, The    │  Scrutiny Squares   │  Valves
-    Cheat Checkout       │  Error Codes              │  Kuro               │  Sign Language      │  Weakest Link, The
-    Conditional Buttons  │  Find The Date            │  Ladder Lottery     │  Simon Serves       │
+    3N+1                 │  Customer Identification  │  Garfield Kart      │  Mixometer          │  Spongebob Birthday Identification
+    Arena, The           │  DetoNATO                 │  Garnet Thief, The  │  Module Movements   │  Subway
+    Bar Charts           │  Dimension Disruption     │  Girlfriend         │  RGB Sequences      │  Suits and Colours
+    Book of Mario        │  Disordered Keys          │  h                  │  Robot Programming  │  UNO!
+    Bordered Keys        │  Earthbound               │  High Score, The    │  Scrutiny Squares   │  Valves
+    Character Slots      │  Error Codes              │  Kuro               │  Sign Language      │  Weakest Link, The
+    Cheat Checkout       │  Find The Date            │  Ladder Lottery     │  Simon Serves       │
+    Conditional Buttons  │  Flavor Text EX           │  LED Grid           │  Sonic & Knuckles   │
 
 ## Implemented by BigCrunch22 (33)
 
@@ -138,11 +138,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  M&Ms                   │  Ordered Keys      │  Small Circle  │
     Encryption Bingo    │  M&Ns                   │  Rainbow Arrows    │  Snooker       │
 
-## Implemented by Espik (15)
+## Implemented by Espik (17)
 
-    100 Levels of Defusal  │  Calendar             │  Dreamcipher      │  Hyperlink, The      │  Thinking Wires
-    Blockbusters           │  Challenge & Contact  │  Encrypted Morse  │  Regular Crazy Talk  │  Tricky Tetris Pieces
-    Boolean Wires          │  Coffeebucks          │  Hexabutton, The  │  Simon Stages        │  Unfair Cipher
+    100 Levels of Defusal  │  Challenge & Contact  │  Encrypted Morse     │  Simon Stages          │  Unicode
+    Blockbusters           │  Coffeebucks          │  Hexabutton, The     │  Thinking Wires        │
+    Boolean Wires          │  Directional Button   │  Hyperlink, The      │  Tricky Tetris Pieces  │
+    Calendar               │  Dreamcipher          │  Regular Crazy Talk  │  Unfair Cipher         │
 
 ## Implemented by Andrio Celos (14)
 
@@ -184,11 +185,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Entry Number Four  │  Game of Life Cruel   │  Mazeseeker     │  Puzzle Identification  │  Xenocryst, The
     Entry Number One   │  Maze Identification  │  Not The Screw  │  Stacked Sequences      │
 
-## Implemented by Marksam (8)
-
-    Brown Cipher                │  Great Void, The  │  Mashematics  │  Unicode
-    Forget’s Ultimate Showdown  │  Lombax Cubes     │  UltraStores  │  Wolf, Goat, and Cabbage
-
 ## Implemented by NickLatkovich (8)
 
     Alfa-Bravo    │  Character Codes      │  Eight          │  Stability
@@ -198,6 +194,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     Critters        │  Infinite Loop  │  Numbered Buttons    │  Pixel Cipher
     Factoring Maze  │  Interpunct     │  Password Destroyer  │
+
+## Implemented by Marksam (7)
+
+    Brown Cipher                │  Great Void, The  │  Mashematics  │  Wolf, Goat, and Cabbage
+    Forget’s Ultimate Showdown  │  Lombax Cubes     │  UltraStores  │
 
 ## Implemented by thunder725 (7)
 

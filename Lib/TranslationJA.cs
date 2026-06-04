@@ -4831,18 +4831,25 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Directional Button
         [typeof(SDirectionalButton)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "方向ボタン",
             ManualQuestions = new()
             {
-                ["How many times did you press the button in each stage?"] = "各ステージで何回ボタンを押した？",
+                ["What were the button's color and label in each stage?"] = "What were the button's color and label in each stage?",
             },
             Questions = new()
             {
-                [SDirectionalButton.ButtonCount] = new()
+                [SDirectionalButton.Color] = new()
                 {
-                    // English: How many times did you press the button in the {1} stage of {0}?
-                    // Example: How many times did you press the button in the first stage of Directional Button?
-                    Question = "{0}のステージ{1}で押したボタンの回数は？",
+                    // English: What color was the button in the {1} stage of {0}?
+                    // Example: What color was the button in the first stage of Directional Button?
+                    Question = "What color was the button in the {1} stage of {0}?",
+                },
+                [SDirectionalButton.Label] = new()
+                {
+                    // English: What label was on the button in the {1} stage of {0}?
+                    // Example: What label was on the button in the first stage of Directional Button?
+                    Question = "What label was on the button in the {1} stage of {0}?",
                 },
             },
         },
@@ -11619,18 +11626,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Not Morse Code
         [typeof(SNotMorseCode)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "偽モールス信号",
             ManualQuestions = new()
             {
-                ["What was the sequence of words you submitted?"] = "送信した単語の並びは？",
+                ["What were the transmitted words?"] = "What were the transmitted words?",
             },
             Questions = new()
             {
-                [SNotMorseCode.Word] = new()
+                [SNotMorseCode.Words] = new()
                 {
-                    // English: What was the {1} correct word you submitted in {0}?
-                    // Example: What was the first correct word you submitted in Not Morse Code?
-                    Question = "{0}の{1}番目に送信した単語は？",
+                    // English: Which of these words was transmitted in {0}?
+                    Question = "Which of these words was transmitted in {0}?",
                 },
             },
         },
@@ -18705,18 +18712,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Unicode
         [typeof(SUnicode)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ユニコード",
             ManualQuestions = new()
             {
-                ["What were the submitted codes?"] = "送信したコードは？",
+                ["What were the symbols?"] = "What were the symbols?",
             },
             Questions = new()
             {
-                [SUnicode.SortedAnswer] = new()
+                [SUnicode.Symbols] = new()
                 {
-                    // English: What was the {1} submitted code in {0}?
-                    // Example: What was the first submitted code in Unicode?
-                    Question = "{0}にて{1}番目に送信したコードは？",
+                    // English: What was the {1} symbol in {0}?
+                    // Example: What was the first symbol in Unicode?
+                    Question = "What was the {1} symbol in {0}?",
                 },
             },
         },
