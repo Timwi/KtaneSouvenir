@@ -18005,7 +18005,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Symbolic Tasha
         [typeof(SSymbolicTasha)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Symbole-Tasha",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -18022,23 +18021,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Taste hat bei {0} als {1}e geblinkt?",
                     Answers = new()
                     {
-                        ["Pink"] = "pink",
-                        ["Green"] = "grün",
-                        ["Yellow"] = "gelb",
-                        ["Blue"] = "blau",
+                        ["Pink"] = "Pink",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Blue"] = "Blau",
                     },
                 },
                 [SSymbolicTasha.Symbols] = new()
                 {
                     // English: Which symbol was on the {1} button in {0}?
                     // Example: Which symbol was on the blue button in Symbolic Tasha?
-                    Question = "Which symbol was on the {1} button in {0}?",
+                    Question = "Welches Symbol war bei {0} auf der {1} Taste?",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["green"] = "green",
-                        ["yellow"] = "yellow",
-                        ["pink"] = "pink",
+                        ["blue"] = "blauen",
+                        ["green"] = "grünen",
+                        ["yellow"] = "gelben",
+                        ["pink"] = "pinkfarbenen",
                     },
                 },
             },
