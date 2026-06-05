@@ -18005,6 +18005,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Symbolic Tasha
         [typeof(SSymbolicTasha)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Symbole-Tasha",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -18014,19 +18015,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SSymbolicTasha.DirectionFlashes] = new()
-                {
-                    // English: Which button flashed {1} in the final sequence of {0}?
-                    // Example: Which button flashed first in the final sequence of Symbolic Tasha?
-                    Question = "Welche Taste hat bei {0} als {1}e geblinkt?",
-                    Answers = new()
-                    {
-                        ["Top"] = "obere",
-                        ["Right"] = "rechte",
-                        ["Bottom"] = "untere",
-                        ["Left"] = "linke",
-                    },
-                },
                 [SSymbolicTasha.ColorFlashes] = new()
                 {
                     // English: Which button flashed {1} in the final sequence of {0}?
@@ -18043,14 +18031,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SSymbolicTasha.Symbols] = new()
                 {
                     // English: Which symbol was on the {1} button in {0}?
-                    // Example: Which symbol was on the top button in Symbolic Tasha?
+                    // Example: Which symbol was on the blue button in Symbolic Tasha?
                     Question = "Which symbol was on the {1} button in {0}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["right"] = "right",
-                        ["bottom"] = "bottom",
-                        ["left"] = "left",
                         ["blue"] = "blue",
                         ["green"] = "green",
                         ["yellow"] = "yellow",

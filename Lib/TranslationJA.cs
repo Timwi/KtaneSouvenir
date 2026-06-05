@@ -17565,19 +17565,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SSymbolicTasha.DirectionFlashes] = new()
-                {
-                    // English: Which button flashed {1} in the final sequence of {0}?
-                    // Example: Which button flashed first in the final sequence of Symbolic Tasha?
-                    Question = "{0}の最後のシークエンスで{1}番目に点滅したものは？",
-                    Answers = new()
-                    {
-                        ["Top"] = "上",
-                        ["Right"] = "右",
-                        ["Bottom"] = "下",
-                        ["Left"] = "左",
-                    },
-                },
                 [SSymbolicTasha.ColorFlashes] = new()
                 {
                     // English: Which button flashed {1} in the final sequence of {0}?
@@ -17594,14 +17581,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SSymbolicTasha.Symbols] = new()
                 {
                     // English: Which symbol was on the {1} button in {0}?
-                    // Example: Which symbol was on the top button in Symbolic Tasha?
+                    // Example: Which symbol was on the blue button in Symbolic Tasha?
                     Question = "{0}の{1}の位置のシンボルは？",
                     Arguments = new()
                     {
-                        ["top"] = "上",
-                        ["right"] = "右",
-                        ["bottom"] = "下",
-                        ["left"] = "左",
                         ["blue"] = "青",
                         ["green"] = "緑",
                         ["yellow"] = "黄色",

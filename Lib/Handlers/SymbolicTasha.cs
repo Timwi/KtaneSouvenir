@@ -6,13 +6,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SSymbolicTasha
 {
-    [Question("Which button flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Top", "Right", "Bottom", "Left", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
-    DirectionFlashes,
-
     [Question("Which button flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Pink", "Green", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     ColorFlashes,
 
-    [Question("Which symbol was on the {1} button in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "SymbolicTashaSprites", Arguments = ["top", "right", "bottom", "left", "blue", "green", "yellow", "pink"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which symbol was on the {1} button in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "SymbolicTashaSprites", Arguments = ["blue", "green", "yellow", "pink"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Symbols
 }
 
@@ -26,10 +23,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "symbolicTasha");
         yield return WaitForSolve;
 
-        var positionNames = new[] { "Top", "Right", "Bottom", "Left" };
         var colorNames = new[] { "Pink", "Green", "Yellow", "Blue" };
-
-        var positionNamesLc = new[] { "top", "right", "bottom", "left" };
         var colorNamesLc = new[] { "pink", "green", "yellow", "blue" };
 
         var cracked = GetArrayField<bool>(comp, "cracked").Get();
@@ -38,14 +32,12 @@ public partial class SouvenirModule
         var buttonColors = GetField<Array>(comp, "buttonColors").Get(validator: arr => arr.Length != 4 ? "expected length 4" : null).Cast<object>().Select(obj => (int) obj).ToArray();
         for (var pos = 0; pos < 5; pos++)
         {
-            yield return question(SSymbolicTasha.DirectionFlashes, args: [Ordinal(pos + 1)]).Answers(positionNames[flashing[pos]]);
             yield return question(SSymbolicTasha.ColorFlashes, args: [Ordinal(pos + 1)]).Answers(colorNames[buttonColors[flashing[pos]]]);
         }
 
         for (var btn = 0; btn < 4; btn++)
             if (presentSymbols[btn] < 0)
             {
-                yield return question(SSymbolicTasha.Symbols, args: [positionNamesLc[btn]]).Answers(SymbolicTashaSprites[-presentSymbols[btn] - 1], preferredWrong: SymbolicTashaSprites);
                 yield return question(SSymbolicTasha.Symbols, args: [colorNamesLc[buttonColors[btn]]]).Answers(SymbolicTashaSprites[-presentSymbols[btn] - 1], preferredWrong: SymbolicTashaSprites);
             }
     }

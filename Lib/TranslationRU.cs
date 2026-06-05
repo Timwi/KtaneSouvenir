@@ -17686,20 +17686,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SSymbolicTasha.DirectionFlashes] = new()
-                {
-                    // English: Which button flashed {1} in the final sequence of {0}?
-                    // Example: Which button flashed first in the final sequence of Symbolic Tasha?
-                    Question = "Какая кнопка горела {1}-й в финальной последовательности {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                    Answers = new()
-                    {
-                        ["Top"] = "Верхняя",
-                        ["Right"] = "Правая",
-                        ["Bottom"] = "Нижняя",
-                        ["Left"] = "Левая",
-                    },
-                },
                 [SSymbolicTasha.ColorFlashes] = new()
                 {
                     // English: Which button flashed {1} in the final sequence of {0}?
@@ -17717,15 +17703,11 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 [SSymbolicTasha.Symbols] = new()
                 {
                     // English: Which symbol was on the {1} button in {0}?
-                    // Example: Which symbol was on the top button in Symbolic Tasha?
+                    // Example: Which symbol was on the blue button in Symbolic Tasha?
                     Question = "Какой символ был на {1} кнопке {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
                     Arguments = new()
                     {
-                        ["top"] = "верхней",
-                        ["right"] = "правой",
-                        ["bottom"] = "нижней",
-                        ["left"] = "левой",
                         ["blue"] = "синей",
                         ["green"] = "зелёной",
                         ["yellow"] = "жёлтой",

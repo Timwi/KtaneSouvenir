@@ -20,6 +20,12 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        // If none of the rules apply, don't ask a question
+        if (!GetField<bool>(comp, "rule1").Get() && !GetField<bool>(comp, "rule2").Get() && !GetField<bool>(comp, "rule3").Get() && !GetField<bool>(comp, "rule4").Get() && !GetField<bool>(comp, "rule5").Get())
+        {
+            yield return legitimatelyNoQuestion(module, "None of the rules applied.");
+        }
+
         var allWords = GetArrayField<string>(comp, "allWords").Get();
         var currentWords = GetField<List<string>>(comp, "currentWords").Get();
 
