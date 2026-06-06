@@ -130,6 +130,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Forget Me             │  Metamorse         │  Numpath          │  Superparsing          │
     Kanye Encounter, The  │  M-Seq             │  Red Herring      │  Tasque Managing       │
 
+## Implemented by Espik (21)
+
+    100 Levels of Defusal  │  Coffeebucks         │  Hexabutton, The     │  Simon Stages          │  Unicode
+    Blockbusters           │  Directional Button  │  Hyperlink, The      │  Sorting               │
+    Boolean Wires          │  Dreamcipher         │  Not Who’s on First  │  Thinking Wires        │
+    Calendar               │  Encrypted Morse     │  Regular Crazy Talk  │  Tricky Tetris Pieces  │
+    Challenge & Contact    │  Etterna             │  Role Reversal       │  Unfair Cipher         │
+
 ## Implemented by TasThiluna (21)
 
     3D Tap Code         │  Hidden Colors          │  Mister Softee     │  Rule, The     │  Tenpins
@@ -138,24 +146,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  M&Ms                   │  Ordered Keys      │  Small Circle  │
     Encryption Bingo    │  M&Ns                   │  Rainbow Arrows    │  Snooker       │
 
-## Implemented by Espik (20)
-
-    100 Levels of Defusal  │  Challenge & Contact  │  Encrypted Morse  │  Regular Crazy Talk  │  Thinking Wires
-    Blockbusters           │  Coffeebucks          │  Etterna          │  Role Reversal       │  Tricky Tetris Pieces
-    Boolean Wires          │  Directional Button   │  Hexabutton, The  │  Simon Stages        │  Unfair Cipher
-    Calendar               │  Dreamcipher          │  Hyperlink, The   │  Sorting             │  Unicode
-
-## Implemented by Andrio Celos (14)
-
-    Button, The  │  Not Keypad      │  Not Simaze          │  Perspective Pegs  │  Wire Ordering
-    Maze         │  Not Maze        │  Not the Button      │  Simon Says        │  Wire Sequence
-    Memory       │  Not Morse Code  │  Not Who’s on First  │  Who’s on First    │
-
 ## Implemented by kavinkul (14)
 
     Blue Arrows      │  Green Arrows              │  Purple Arrows  │  Simon Simons       │  Vectors
     Equations X      │  Hereditary Base Notation  │  Red Arrows     │  Simon Stores       │  Yellow Arrows
     Faulty RGB Maze  │  Orange Arrows             │  RGB Maze       │  Transmitted Morse  │
+
+## Implemented by Andrio Celos (13)
+
+    Button, The  │  Not Keypad      │  Not Simaze        │  Simon Says      │  Wire Sequence
+    Maze         │  Not Maze        │  Not the Button    │  Who’s on First  │
+    Memory       │  Not Morse Code  │  Perspective Pegs  │  Wire Ordering   │
 
 ## Implemented by KiloBites (12)
 

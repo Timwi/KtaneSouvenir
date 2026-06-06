@@ -12228,60 +12228,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Not Who’s on First
         [typeof(SNotWhosOnFirst)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "偽表比較",
             ManualQuestions = new()
             {
-                ["What were the positions and labels of the correct buttons you pressed and the reference buttons?"] = "押した正しいボタンおよび参照したボタンの位置とラベルは？",
-                ["What was the calculated number in the second stage?"] = "ステージ2で計算した数は？",
+                ["What were the first four display words?"] = "What were the first four display words?",
             },
             Questions = new()
             {
-                [SNotWhosOnFirst.PressedPosition] = new()
+                [SNotWhosOnFirst.Display] = new()
                 {
-                    // English: In which position was the button you pressed in the {1} stage on {0}?
-                    // Example: In which position was the button you pressed in the first stage on Not Who’s on First?
-                    Question = "{0}のステージ{1}で押したボタンの位置は？",
-                    Answers = new()
-                    {
-                        ["top left"] = "左上",
-                        ["top right"] = "右上",
-                        ["middle left"] = "左中央",
-                        ["middle right"] = "右中央",
-                        ["bottom left"] = "左下",
-                        ["bottom right"] = "右下",
-                    },
-                },
-                [SNotWhosOnFirst.PressedLabel] = new()
-                {
-                    // English: What was the label on the button you pressed in the {1} stage on {0}?
-                    // Example: What was the label on the button you pressed in the first stage on Not Who’s on First?
-                    Question = "{0}のステージ{1}で押したボタンのラベルは？",
-                },
-                [SNotWhosOnFirst.ReferencePosition] = new()
-                {
-                    // English: In which position was the reference button in the {1} stage on {0}?
-                    // Example: In which position was the reference button in the first stage on Not Who’s on First?
-                    Question = "{0}のステージ{1}で参照したボタンの位置は？",
-                    Answers = new()
-                    {
-                        ["top left"] = "左上",
-                        ["top right"] = "右上",
-                        ["middle left"] = "左中央",
-                        ["middle right"] = "右中央",
-                        ["bottom left"] = "左下",
-                        ["bottom right"] = "右下",
-                    },
-                },
-                [SNotWhosOnFirst.ReferenceLabel] = new()
-                {
-                    // English: What was the label on the reference button in the {1} stage on {0}?
-                    // Example: What was the label on the reference button in the first stage on Not Who’s on First?
-                    Question = "{0}のステージ{1}で参照したボタンのラベルは？",
-                },
-                [SNotWhosOnFirst.Sum] = new()
-                {
-                    // English: What was the calculated number in the second stage on {0}?
-                    Question = "{0}のステージ2で計算した値は？",
+                    // English: What was the display in the {1} stage on {0}?
+                    // Example: What was the display in the first stage on Not Who’s on First?
+                    Question = "What was the display in the {1} stage on {0}?",
                 },
             },
         },

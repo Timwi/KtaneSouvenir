@@ -12562,60 +12562,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not Who’s on First
         [typeof(SNotWhosOnFirst)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "“Was” Steht Auf Dem Knopf Mal Anders",
             ManualQuestions = new()
             {
-                ["What were the positions and labels of the correct buttons you pressed and the reference buttons?"] = "Welche der betätigten Tasten und welche Referenztasten hatten welche Position und welche Aufschrift?",
-                ["What was the calculated number in the second stage?"] = "Welche Zahl wurde in der zweiten Stufe berechnet?",
+                ["What were the first four display words?"] = "What were the first four display words?",
             },
             Questions = new()
             {
-                [SNotWhosOnFirst.PressedPosition] = new()
+                [SNotWhosOnFirst.Display] = new()
                 {
-                    // English: In which position was the button you pressed in the {1} stage on {0}?
-                    // Example: In which position was the button you pressed in the first stage on Not Who’s on First?
-                    Question = "Welche Taste wurde bei {0} in der {1}en Stufe gedrückt?",
-                    Answers = new()
-                    {
-                        ["top left"] = "oben links",
-                        ["top right"] = "oben rechts",
-                        ["middle left"] = "Mitte links",
-                        ["middle right"] = "Mitte rechts",
-                        ["bottom left"] = "unten links",
-                        ["bottom right"] = "unten rechts",
-                    },
-                },
-                [SNotWhosOnFirst.PressedLabel] = new()
-                {
-                    // English: What was the label on the button you pressed in the {1} stage on {0}?
-                    // Example: What was the label on the button you pressed in the first stage on Not Who’s on First?
-                    Question = "Was stand auf der Taste, die bei {0} in der {1}en Stufe gedrückt wurde?",
-                },
-                [SNotWhosOnFirst.ReferencePosition] = new()
-                {
-                    // English: In which position was the reference button in the {1} stage on {0}?
-                    // Example: In which position was the reference button in the first stage on Not Who’s on First?
-                    Question = "Welche Taste war bei {0} in der {1}en Stufe die Referenztaste?",
-                    Answers = new()
-                    {
-                        ["top left"] = "oben links",
-                        ["top right"] = "oben rechts",
-                        ["middle left"] = "Mitte links",
-                        ["middle right"] = "Mitte rechts",
-                        ["bottom left"] = "unten links",
-                        ["bottom right"] = "unten rechts",
-                    },
-                },
-                [SNotWhosOnFirst.ReferenceLabel] = new()
-                {
-                    // English: What was the label on the reference button in the {1} stage on {0}?
-                    // Example: What was the label on the reference button in the first stage on Not Who’s on First?
-                    Question = "Was stand auf der Referenztaste, die bei {0} in der {1}en Stufe verwendet wurde?",
-                },
-                [SNotWhosOnFirst.Sum] = new()
-                {
-                    // English: What was the calculated number in the second stage on {0}?
-                    Question = "Was war bei {0} in der zweiten Stufe die berechnete Zahl?",
+                    // English: What was the display in the {1} stage on {0}?
+                    // Example: What was the display in the first stage on Not Who’s on First?
+                    Question = "What was the display in the {1} stage on {0}?",
                 },
             },
         },

@@ -12353,64 +12353,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Not Who’s on First
         [typeof(SNotWhosOnFirst)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the positions and labels of the correct buttons you pressed and the reference buttons?"] = "Какие кнопки в какой позиции вы нажали; ссылаясь на какие кнопки?",
-                ["What was the calculated number in the second stage?"] = "Какая величина была вычислена во втором этапе?",
+                ["What were the first four display words?"] = "What were the first four display words?",
             },
             Questions = new()
             {
-                [SNotWhosOnFirst.PressedPosition] = new()
+                [SNotWhosOnFirst.Display] = new()
                 {
-                    // English: In which position was the button you pressed in the {1} stage on {0}?
-                    // Example: In which position was the button you pressed in the first stage on Not Who’s on First?
-                    Question = "На какой позиции была кнопка, которую вы нажали на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                    Answers = new()
-                    {
-                        ["top left"] = "сверху слева",
-                        ["top right"] = "сверху справа",
-                        ["middle left"] = "посередине слева",
-                        ["middle right"] = "посередине справа",
-                        ["bottom left"] = "снизу слева",
-                        ["bottom right"] = "снизу справа",
-                    },
-                },
-                [SNotWhosOnFirst.PressedLabel] = new()
-                {
-                    // English: What was the label on the button you pressed in the {1} stage on {0}?
-                    // Example: What was the label on the button you pressed in the first stage on Not Who’s on First?
-                    Question = "Что было написано на кнопке, которую вы нажали на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                },
-                [SNotWhosOnFirst.ReferencePosition] = new()
-                {
-                    // English: In which position was the reference button in the {1} stage on {0}?
-                    // Example: In which position was the reference button in the first stage on Not Who’s on First?
-                    Question = "На какой позиции была кнопка-ссылка на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                    Answers = new()
-                    {
-                        ["top left"] = "сверху слева",
-                        ["top right"] = "сверху справа",
-                        ["middle left"] = "посередине слева",
-                        ["middle right"] = "посередине справа",
-                        ["bottom left"] = "снизу слева",
-                        ["bottom right"] = "снизу справа",
-                    },
-                },
-                [SNotWhosOnFirst.ReferenceLabel] = new()
-                {
-                    // English: What was the label on the reference button in the {1} stage on {0}?
-                    // Example: What was the label on the reference button in the first stage on Not Who’s on First?
-                    Question = "Что было написано на кнопке-ссылке на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                },
-                [SNotWhosOnFirst.Sum] = new()
-                {
-                    // English: What was the calculated number in the second stage on {0}?
-                    Question = "Какое было рассчитанное число на втором этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    // English: What was the display in the {1} stage on {0}?
+                    // Example: What was the display in the first stage on Not Who’s on First?
+                    Question = "What was the display in the {1} stage on {0}?",
                 },
             },
         },

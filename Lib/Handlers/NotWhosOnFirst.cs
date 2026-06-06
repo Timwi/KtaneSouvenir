@@ -1,53 +1,36 @@
 ﻿using System.Collections.Generic;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SNotWhosOnFirst
 {
-    [Question("In which position was the button you pressed in the {1} stage on {0}?", TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    PressedPosition,
-
-    [Question("What was the label on the button you pressed in the {1} stage on {0}?", ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    PressedLabel,
-
-    [Question("In which position was the reference button in the {1} stage on {0}?", TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    ReferencePosition,
-
-    [Question("What was the label on the reference button in the {1} stage on {0}?", ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    ReferenceLabel,
-
-    [Question("What was the calculated number in the second stage on {0}?", ThreeColumns6Answers)]
-    [AnswerGenerator.Integers(1, 60)]
-    Sum
+    [Question("What was the display in the {1} stage on {0}?", TwoColumns4Answers, "BLANK", "C", "CEE", "DISPLAY", "FIRST", "HOLD ON", "LEAD", "LED", "LEED", "NO", "NOTHING", "OK", "OKAY", "READ", "RED", "REED", "SAY", "SAYS", "SEE", "THEIR", "THERE", "THEY ARE", "THEY’RE", "U", "UR", "YES", "YOU", "YOU ARE", "YOU’RE", "YOUR", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    Display
 }
 
 public partial class SouvenirModule
 {
-    [Handler("NotWhosOnFirst", "Not Who’s on First", typeof(SNotWhosOnFirst), "Andrio Celos")]
-    [ManualQuestion("What were the positions and labels of the correct buttons you pressed and the reference buttons?")]
-    [ManualQuestion("What was the calculated number in the second stage?")]
+    [Handler("NotWhosOnFirst", "Not Who’s on First", typeof(SNotWhosOnFirst), "Espik")]
+    [ManualQuestion("What were the first four display words?")]
     private IEnumerator<SouvenirInstruction> ProcessNotWhosOnFirst(ModuleData module)
     {
         var comp = GetComponent(module, "NotWhosOnFirst");
-        var fldPositions = GetArrayField<int>(comp, "rememberedPositions");
-        var fldLabels = GetArrayField<string>(comp, "rememberedLabels");
-        var fldSum = GetIntField(comp, "stage2Sum");
+        var fldStage = GetProperty<int>(comp, "StagesCompleted", isPublic: true);
+        var displays = new string[5];
 
-        yield return WaitForSolve;
+        var connector = GetProperty<object>(comp, "Connector").Get();
+        var propDisplayText = GetProperty<string>(connector, "DisplayText", isPublic: true);
 
-        var positions = SNotWhosOnFirst.PressedPosition.GetAnswers();
-        var sumCorrectAnswers = new[] { fldSum.Get().ToString() };
+        while (module.Unsolved)
+        {
+            var stage = fldStage.Get();
+            displays[stage] = propDisplayText.Get();
+
+            yield return null;
+        }
+
         for (var i = 0; i < 4; i++)
-        {
-            yield return question(SNotWhosOnFirst.PressedPosition, args: [Ordinal(i + 1)]).Answers(positions[fldPositions.Get()[i]]);
-            yield return question(SNotWhosOnFirst.PressedLabel, args: [Ordinal(i + 1)]).Answers(fldLabels.Get()[i]);
-        }
-        for (var i = 4; i < 6; i++)
-        {
-            yield return question(SNotWhosOnFirst.ReferencePosition, args: [Ordinal(i - 1)]).Answers(positions[fldPositions.Get()[i]]);
-            yield return question(SNotWhosOnFirst.ReferenceLabel, args: [Ordinal(i - 1)]).Answers(fldLabels.Get()[i]);
-        }
-        yield return question(SNotWhosOnFirst.Sum).Answers(sumCorrectAnswers);
+            yield return question(SNotWhosOnFirst.Display, args: [Ordinal(i + 1)]).Answers(displays[i]);
     }
 }
