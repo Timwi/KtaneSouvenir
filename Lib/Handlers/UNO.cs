@@ -21,6 +21,6 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        yield return question(SUNO.InitialCard).Answers(new string[] { titleCase(mthGetUnoName.Invoke(fldFirstInDeck.Get())) });
+        yield return question(SUNO.InitialCard).Answers([titleCase(mthGetUnoName.Invoke([fldFirstInDeck.Get()]))]);
     }
 }

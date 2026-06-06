@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 public enum SSaturn
 {
     [Question("Where was the goal in {0}?", ThreeColumns6Answers)]
-    [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), new object[] { new string[] { "0-9", " " } }, typeof(AnswerGenerator.Integers), new object[] { 0, 63 })]
+    [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), [new string[] { "0-9", " " }], typeof(AnswerGenerator.Integers), [0, 63])]
     Goal
 }
 
@@ -22,7 +22,7 @@ public partial class SouvenirModule
 
         var hideButton = GetField<KMSelectable>(comp, "HideButton", true).Get();
         if (!TwitchPlaysActive && hideButton.OnInteract is not null)
-            StartCoroutine(GetMethod<IEnumerator>(comp, "HidePlanet", 0).Invoke());
+            StartCoroutine(GetMethod<IEnumerator>(comp, "HidePlanet", 0).Invoke([]));
         hideButton.OnInteract = null;
 
         var index = GetIntField(comp, "EndIndex").Get(min: 0, max: 64 * 5);

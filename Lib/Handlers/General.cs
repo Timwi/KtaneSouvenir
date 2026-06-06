@@ -42,12 +42,12 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var stateCodes = mthGetStates.Invoke() ?? throw new AbandonModuleException("GetAllStates() returned null.");
+        var stateCodes = mthGetStates.Invoke([]);
         if (stateCodes.Count == 0)
             throw new AbandonModuleException("GetAllStates() returned an empty list.");
 
-        var states = stateCodes.Select(code => mthGetName.Invoke(code)).ToArray();
-        var origin = mthGetName.Invoke(fldOrigin.Get());
+        var states = stateCodes.Select(code => mthGetName.Invoke([code])).ToArray();
+        var origin = mthGetName.Invoke([fldOrigin.Get()]);
         if (!states.Contains(origin))
             throw new AbandonModuleException($"‘_originState’ was not contained in the list of all states (“{origin}” not in: [{states.JoinString(", ")}]).");
 
@@ -62,8 +62,8 @@ public partial class SouvenirModule
 
         var pages = GetField<IList>(comp, "pages").Get(v => v.Count == 0 ? "expected at least one page" : null);
         var fldScreens = GetProperty<IList>(pages[0], "Screens", isPublic: true);
-        var fldText = GetProperty<string>(fldScreens.Get(v => v.Count == 0 ? "expected at least one screen per page" : null)[0], "Text", isPublic: true);
-        var fldAvoid = GetProperty<bool>(fldScreens.Get(v => v.Count == 0 ? "expected at least one screen per page" : null)[0], "SouvenirAvoid", isPublic: true);
+        var fldText = GetProperty<string>(fldScreens.Get(validator: v => v.Count == 0 ? "expected at least one screen per page" : null)[0], "Text", isPublic: true);
+        var fldAvoid = GetProperty<bool>(fldScreens.Get(validator: v => v.Count == 0 ? "expected at least one screen per page" : null)[0], "SouvenirAvoid", isPublic: true);
 
         var allWordsType = comp.GetType().Assembly.GetType("Words.Data") ?? throw new AbandonModuleException("I cannot find the Words.Data type.");
         var allWordsObj = Activator.CreateInstance(allWordsType);
@@ -72,7 +72,7 @@ public partial class SouvenirModule
         var pagesList = new List<(int page, int screen, string text)>();
         for (var pageIx = 0; pageIx < pages.Count; pageIx++)
         {
-            var screenObjs = fldScreens.GetFrom(pages[pageIx], v => v.Count == 0 ? "expected at least one screen per page" : null);
+            var screenObjs = fldScreens.GetFrom(pages[pageIx], validator: v => v.Count == 0 ? "expected at least one screen per page" : null);
             for (var scrIx = 0; scrIx < screenObjs.Count; scrIx++)
                 if (!fldAvoid.GetFrom(screenObjs[scrIx]) && fldText.GetFrom(screenObjs[scrIx], nullAllowed: true) is { } text && !string.IsNullOrEmpty(text))
                     pagesList.Add((pageIx, scrIx, text));
@@ -287,7 +287,7 @@ public partial class SouvenirModule
         }
 
         while (answers.Count < 6)
-            answers.Add(mthConvertToBase.Invoke(Rnd.Range(min, max), radix));
+            answers.Add(mthConvertToBase.Invoke([Rnd.Range(min, max), radix]));
         yield return question(q).Answers(displayedNumber, preferredWrong: answers.ToArray());
     }
 }

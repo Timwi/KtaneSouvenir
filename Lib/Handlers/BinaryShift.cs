@@ -32,14 +32,14 @@ public partial class SouvenirModule
         var allPositions = new[] { "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right" };
         for (var position = 0; position < 9; position++)
         {
-            var initialNumber = GetMethod<int>(comp, "GetInitialNumber", 1, true).Invoke(position);
+            var initialNumber = GetMethod<int>(comp, "GetInitialNumber", 1, true).Invoke([position]);
             var possibleInitialNumbers = GetProperty<HashSet<int>>(comp, "possibleInitialNumbers", true).Get().Select(n => n.ToString()).ToArray();
             yield return question(SBinaryShift.InitialNumber, args: [allPositions[position]]).Answers(initialNumber.ToString(), preferredWrong: possibleInitialNumbers);
         }
         var stagesCount = GetProperty<int>(comp, "stagesCount", true).Get();
         for (var stage = 0; stage < stagesCount; stage++)
         {
-            var selectedNumberPositions = GetMethod<HashSet<int>>(comp, "GetSelectedNumberPositions", 1, true).Invoke(stage);
+            var selectedNumberPositions = GetMethod<HashSet<int>>(comp, "GetSelectedNumberPositions", 1, true).Invoke([stage]);
             if (selectedNumberPositions.Count < 5)
                 yield return question(SBinaryShift.SelectedNumberPossition, args: [stage.ToString()]).Answers(selectedNumberPositions.Select(p => allPositions[p]).ToArray(), preferredWrong: allPositions);
             else if (selectedNumberPositions.Count > 5)

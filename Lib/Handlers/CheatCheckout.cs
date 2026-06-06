@@ -29,9 +29,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var hackGenerator = GetField<object>(comp, "_hackGenerator").Get();
-        var hacks = GetMethod<IList>(hackGenerator, "GetHacks", 0, isPublic: true).Invoke();
-        if (hacks == null || hacks.Count != 5)
-            throw new AbandonModuleException($"expected exactly 5 hacks, got {hacks.Stringify()}");
+        var hacks = GetMethod<IList>(hackGenerator, "GetHacks", 0, isPublic: true).Invoke([], h => h.Count != 5 ? "expected exactly 5 hacks" : null);
 
         var websites = new string[hacks.Count];
         var hackMethods = new string[hacks.Count];

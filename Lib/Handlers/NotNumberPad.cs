@@ -22,7 +22,7 @@ public partial class SouvenirModule
 
         var flashes = GetField<IList>(comp, "flashes").Get();
         var mthGetNumbers = GetMethod<int[]>(flashes[0], "GetNumbers", 0, isPublic: true);
-        var numbers = Enumerable.Range(0, 3).Select(stage => mthGetNumbers.InvokeOn(flashes[stage]).Select(i => i.ToString()).ToArray()).ToArray();
+        var numbers = Enumerable.Range(0, 3).Select(stage => mthGetNumbers.InvokeOn(flashes[stage], []).Select(i => i.ToString()).ToArray()).ToArray();
         var numStrs = Enumerable.Range(0, 10).Select(i => i.ToString()).ToArray();
         for (var stage = 0; stage < 3; stage++)
         {

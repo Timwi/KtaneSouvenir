@@ -44,7 +44,7 @@ public partial class SouvenirModule
         var submission = GetArrayField<int>(comp, "Submission").Get();
         for (var i = 0; i < submission.Length; i++)
             submission[i] = 0;
-        GetMethod(comp, "UpdateDisplays", numParameters: 0).Invoke();
+        GetMethod(comp, "UpdateDisplays", numParameters: 0).Invoke([], nullAllowed: true);
 
         // Obtain the brick sizes and colors
         var fldBrickColors = GetIntField(pieces[0], "BrickColor", isPublic: true);

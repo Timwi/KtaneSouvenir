@@ -31,7 +31,7 @@ public partial class SouvenirModule
         var monitors = GetField<IList>(comp, "_monitors").Get(l => l.Count != 15 ? $"Bad monitor list length {l}" : null);
         var displayProp = GetProperty<int>(monitors[0], "DisplayValue", isPublic: true);
         // Grab screen values before they change from the blue-green rule
-        var displays = monitors.Cast<object>().Select(m => displayProp.GetFrom(m, v => v is > 99 or < 0 ? $"Bad monitor value {v}" : null)).ToArray();
+        var displays = monitors.Cast<object>().Select(m => displayProp.GetFrom(m, validator: v => v is > 99 or < 0 ? $"Bad monitor value {v}" : null)).ToArray();
 
         yield return WaitForSolve;
 
@@ -48,7 +48,7 @@ public partial class SouvenirModule
                         inds.Count == 1 ? SConnectedMonitors.SingleIndicator : SConnectedMonitors.OrdinalIndicator,
                         args: [Ordinal(indIx + 1)],
                         questionSprite: ConnectedMonitorsSprites[ix])
-                    .Answers(colorProp.GetFrom(inds[indIx], v => (int) v is < 0 or > 5 ? $"Bad indicator color {v} (Monitor {ix}) (Indicator {indIx})" : null).ToString());
+                    .Answers(colorProp.GetFrom(inds[indIx], validator: v => (int) v is < 0 or > 5 ? $"Bad indicator color {v} (Monitor {ix}) (Indicator {indIx})" : null).ToString());
             }
         }
     }

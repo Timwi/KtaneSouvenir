@@ -1893,7 +1893,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Blind Maze
         [typeof(SBlindMaze)] = new()
         {
-            ModuleName = "Blinder Irrgarten",
+            ModuleName = "Blindes Labyrinth",
             ManualQuestions = new()
             {
                 ["What colors were the buttons?"] = "Welche Farbe hatten die Tasten?",
@@ -4136,9 +4136,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Crazy Maze
         [typeof(SCrazyMaze)] = new()
         {
-            ModuleName = "Verrückter Irrgarten",
-            ModuleNameDative = "Verrückten Irrgarten",
-            Gender = Gender.Masculine,
+            ModuleName = "Verrücktes Labyrinth",
+            ModuleNameDative = "Verrückten Labyrinth",
             ManualQuestions = new()
             {
                 ["What were the starting and goal positions?"] = "Wo war die Start- und Zielposition?",
@@ -4570,7 +4569,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // DACH Maze
         [typeof(SDACHMaze)] = new()
         {
-            ModuleName = "DACH-Irrgarten",
+            ModuleName = "DACH-Labyrinth",
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
@@ -10325,8 +10324,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Mazematics
         [typeof(SMazematics)] = new()
         {
-            ModuleName = "Irrgartenmatik",
-            Gender = Gender.Feminine,
+            ModuleName = "Mathyrinth",
             ManualQuestions = new()
             {
                 ["What were the initial and goal values?"] = "Was war der Start- und Zielwert?",

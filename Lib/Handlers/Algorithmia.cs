@@ -46,7 +46,7 @@ public partial class SouvenirModule
 
         var fldSeed = GetField<object>(comp, "seed");
         var prpSeedValues = GetProperty<int[]>(fldSeed.Get(), "values", true);
-        var seedVals = prpSeedValues.Get(arr =>
+        var seedVals = prpSeedValues.Get(validator: arr =>
             arr.Length != 10 ? "expected length 10" :
             arr.Any(val => val is < 0 or > 99) ? "expected in range 0-99" :
             null);

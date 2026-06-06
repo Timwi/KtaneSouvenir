@@ -27,8 +27,8 @@ public partial class SouvenirModule
 
         for (var lightIx = 0; lightIx < lights.Length; lightIx++)
         {
-            mthSetOutputLight.InvokeOn(lights.GetValue(lightIx), false);
-            mthTurnInputLightOff.InvokeOn(lights.GetValue(lightIx));
+            mthSetOutputLight.InvokeOn(lights.GetValue(lightIx), [false], nullAllowed: true);
+            mthTurnInputLightOff.InvokeOn(lights.GetValue(lightIx), [], nullAllowed: true);
         }
 
         var noteNames = GetField<Array>(givenChord, "notes").Get(v => v.Length != 4 ? "expected length 4" : null).Cast<object>().Select(note => note.ToString().Replace("sharp", "♯")).ToArray();

@@ -73,7 +73,7 @@ public partial class SouvenirModule
 
             var clrs = infs.Select(inf => inf.Color.ToString()).ToArray();
             var lbls = infs.Select(inf => inf.Label).ToArray();
-            var iOp = mthGetName.InvokeOn(gateOperator);
+            var iOp = mthGetName.InvokeOn(gateOperator, []);
 
             var stage = fldStage.Get();
             if (stage != curStage || !clrs.SequenceEqual(colors[stage - 1]) || !lbls.SequenceEqual(labels[stage - 1]) || iOp != initialOperators[stage - 1])

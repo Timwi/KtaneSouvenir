@@ -42,16 +42,16 @@ public partial class SouvenirModule
 
         var validCards = new[] { "1", "2", "3", "backwards 4", "5", "6", "single-step 7", "8 or discard", "9", "10", "12", "13", "Trickster", "Warrior" };
         var ruleseed = GetField<object>(comp, "RuleSeedable", isPublic: true).Get();
-        var rng = GetMethod<object>(ruleseed, "GetRNG", 0, isPublic: true).Invoke();
+        var rng = GetMethod<object>(ruleseed, "GetRNG", 0, isPublic: true).Invoke([]);
         var seed = GetProperty<int>(rng, "Seed", isPublic: true).Get();
         if (seed != 1)
         {
             GetMethod<object>(rng, "ShuffleFisherYates", 1, isPublic: true).Invoke(GetArrayField<string>(comp, "_allNames").Get(expectedLength: 32).ToArray());
             var next = GetMethod<int>(rng, "Next", 2, isPublic: true);
-            var backwards = next.Invoke(3, 6);
-            var singleStep = next.Invoke(6, 8);
-            var discard = next.Invoke(8, 11);
-            var missing = next.Invoke(0, 10);
+            var backwards = next.Invoke([3, 6]);
+            var singleStep = next.Invoke([6, 8]);
+            var discard = next.Invoke([8, 11]);
+            var missing = next.Invoke([0, 10]);
             var cards = Enumerable.Range(1, 13).Except([backwards, singleStep, discard]).ToList();
             cards.RemoveAt(missing);
             validCards = cards

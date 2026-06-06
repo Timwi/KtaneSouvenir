@@ -19,7 +19,7 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessTechnicalKeypad(ModuleData module)
     {
         var comp = GetComponent(module, "TechnicalKeypadModule");
-        var digits = GetProperty<string>(GetField<object>(comp, "_keypadInfo").Get(), "Digits", isPublic: true).Get(seq => seq.Length != 12 ? "expected length 12" : null);
+        var digits = GetProperty<string>(GetField<object>(comp, "_keypadInfo").Get(), "Digits", isPublic: true).Get(validator: seq => seq.Length != 12 ? "expected length 12" : null);
 
         yield return WaitForSolve;
 

@@ -27,7 +27,7 @@ public partial class SouvenirModule
         {
             var wrongAnswers = new HashSet<string> { equations[stage] };
             while (wrongAnswers.Count < 4)
-                wrongAnswers.Add(mthGenerate.Invoke(stage).ToString());
+                wrongAnswers.Add(mthGenerate.Invoke([stage]).ToString());
             yield return question(SSetTheory.Equations, args: [Ordinal(stage + 1)]).Answers(equations[stage], preferredWrong: wrongAnswers.ToArray());
         }
     }

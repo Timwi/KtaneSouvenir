@@ -25,9 +25,7 @@ public partial class SouvenirModule
             yield return legitimatelyNoQuestion(module, $"The module was solved via luck or the autosolver. ({style})");
 
         var taps = GetField<int>(comp, "_taps").Get();
-        var degree = GetStaticMethod<int>(comp.GetType(), "LfsrPolynomialDegree", 1).Invoke(taps);
-        if (degree is < 17 or > 23)
-            throw new AbandonModuleException($"Bad register size {degree}");
+        var degree = GetStaticMethod<int>(comp.GetType(), "LfsrPolynomialDegree", 1).Invoke([taps], validator: deg => deg is < 17 or > 23 ? "bad register size" : null);
 
         var allPossible = Enumerable.Range(0, degree).ToArray();
         var answers = allPossible.Where(i => ((1 << i) & taps) != 0).ToArray();

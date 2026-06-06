@@ -25,12 +25,12 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var indicators = indicatorList.Invoke();
-        var stage1Flash = flashList.Invoke(1);
-        var stage2Flash = flashList.Invoke(2);
-        var stage3Flash = flashList.Invoke(3);
-        var stage4Flash = flashList.Invoke(4);
-        var stage5Flash = flashList.Invoke(5);
+        var indicators = indicatorList.Invoke([]);
+        var stage1Flash = flashList.Invoke([1]);
+        var stage2Flash = flashList.Invoke([2]);
+        var stage3Flash = flashList.Invoke([3]);
+        var stage4Flash = flashList.Invoke([4]);
+        var stage5Flash = flashList.Invoke([5]);
 
         for (var i = 0; i < indicators.Count; i++)
             yield return question(SSimonStages.Indicator, args: [Ordinal(i + 1)]).Answers(indicators[i]);

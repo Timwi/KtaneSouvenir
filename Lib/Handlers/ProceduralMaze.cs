@@ -21,7 +21,7 @@ public partial class SouvenirModule
 
         var initialSeed = GetField<string>(comp, "_initialSeed").Get();
 
-        StartCoroutine(GetMethod<IEnumerator>(GetField<object>(comp, "_mazeRenderer").Get(), "HideRings", 0, true).Invoke());
+        StartCoroutine(GetMethod<IEnumerator>(GetField<object>(comp, "_mazeRenderer").Get(), "HideRings", 0, true).Invoke([]));
         yield return question(SProceduralMaze.InitialSeed).Answers(initialSeed);
     }
 }

@@ -69,7 +69,7 @@ public partial class SouvenirModule
             else
             {
                 var displays = GetArrayField<int>(display, "_displayedDigitPerState").Get(expectedLength: 9);
-                var solution = GetProperty<int>(display, "State", isPublic: true).Get(v => v is < 0 || v >= amount ? $"Bad digit display solution state {v}" : null);
+                var solution = GetProperty<int>(display, "State", isPublic: true).Get(validator: v => v is < 0 || v >= amount ? $"Bad digit display solution state {v}" : null);
                 var ans = Enumerable.Range(0, amount).Except([solution]).Select(ix => displays[ix].ToString()).ToArray();
                 yield return question(SVariety.DigitDisplay).Answers(ans, preferredWrong: [displays[solution].ToString()]);
             }
@@ -88,7 +88,7 @@ public partial class SouvenirModule
                 Debug.Log($"<Souvenir #{_moduleId}> Variety: Not asking about the letter display because there was only one valid word.");
             else
             {
-                var solution = GetProperty<int>(display, "State", isPublic: true).Get(v => v is < 0 || v >= words.Length ? $"Bad letter display solution state {v}" : null);
+                var solution = GetProperty<int>(display, "State", isPublic: true).Get(validator: v => v is < 0 || v >= words.Length ? $"Bad letter display solution state {v}" : null);
                 yield return question(SVariety.LetterDisplay).Answers(words.Where((_, i) => i != solution).ToArray(), preferredWrong: [words[solution]]);
             }
             yield return new Discriminator(SVariety.Has, "letter")

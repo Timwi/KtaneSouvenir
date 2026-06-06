@@ -25,12 +25,12 @@ public partial class SouvenirModule
         var upperBound = new[] { 19682, 60000, 80000, 100000, 100000 }[baseN - 3];
         var initialNum = GetIntField(comp, "initialNumber").Get(1, upperBound);
 
-        var answer = mthNumberToBaseNString.Invoke(baseN, initialNum).ToString();
+        var answer = mthNumberToBaseNString.Invoke([baseN, initialNum]).ToString();
         var invalidAnswer = new HashSet<string> { answer };
 
         // Generate fake options in the same base of the answer
         while (invalidAnswer.Count() < 4)
-            invalidAnswer.Add(mthNumberToBaseNString.Invoke(baseN, Rnd.Range(1, upperBound + 1)).ToString());
+            invalidAnswer.Add(mthNumberToBaseNString.Invoke([baseN, Rnd.Range(1, upperBound + 1)]).ToString());
 
         yield return question(SHereditaryBaseNotation.InitialNumber).Answers(answer, preferredWrong: invalidAnswer.ToArray());
     }
