@@ -15,7 +15,7 @@ public enum SDirectionalButton
 public partial class SouvenirModule
 {
     [Handler("directionalButton", "Directional Button", typeof(SDirectionalButton), "Espik")]
-    [ManualQuestion("What were the button's color and label in each stage?")]
+    [ManualQuestion("What were the button’s color and label in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessDirectionalButton(ModuleData module)
     {
         var comp = GetComponent(module, "DirectrionalButtonScripty");

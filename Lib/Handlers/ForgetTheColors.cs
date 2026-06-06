@@ -36,18 +36,18 @@ public enum SForgetTheColors
     [Discriminator("the Forget The Colors which had {0} on its {2} nixie in stage {1}", Arguments = ["0", "0", "left", "1", "1", "right"], ArgumentGroupSize = 3, TranslateArguments = [false, false, true])]
     DNixieNumber,
 
-    [Discriminator("the Forget The Colors which had a(n) {0} cylinder in stage {1}", Arguments = ["Red", "1", "Orange", "1", "Yellow", "1", "Green", "1", "Cyan", "1", "Blue", "1", "Purple", "1", "Pink", "1", "Maroon", "1", "White", "1"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Forget The Colors which had {0} cylinder in stage {1}", Arguments = ["a red", "1", "an orange", "1", "a yellow", "1", "a green", "1", "a cyan", "1", "a blue", "1", "a purple", "1", "a pink", "1", "a maroon", "1", "a white", "1"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DCylinderColor,
 
-    [Discriminator("the Forget The Colors whose gear color was {0} in stage {1}", Arguments = ["Red", "1", "Orange", "1", "Yellow", "1", "Green", "1", "Cyan", "1", "Blue", "1", "Purple", "1", "Pink", "1", "Maroon", "1", "White", "1"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Forget The Colors whose gear color was {0} in stage {1}", Arguments = ["red", "1", "orange", "1", "yellow", "1", "green", "1", "cyan", "1", "blue", "1", "purple", "1", "pink", "1", "maroon", "1", "white", "1"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DGearColor
 }
 
 public partial class SouvenirModule
 {
     [Handler("ForgetTheColors", "Forget The Colors", typeof(SForgetTheColors), "Kuro", IsBossModule = true)]
-    [ManualQuestion("What were the large display's, gear's, and nixies' numbers in each stage?")]
-    [ManualQuestion("What were the cylinders' and gear's colors in each stage?")]
+    [ManualQuestion("What were the large display’s, gear’s, and nixies’ numbers in each stage?")]
+    [ManualQuestion("What were the cylinders’ and gear’s colors in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetTheColors(ModuleData module)
     {
         var comp = GetComponent(module, "FTCScript");
@@ -64,16 +64,18 @@ public partial class SouvenirModule
         if (myGearColors.Count == 0)
             yield return legitimatelyNoQuestion(module, "There were no stages.");
 
+        static string addAorAn(string color) => $"{(color == "Orange" ? "an" : "a")} {color.ToLowerInvariant()}";
+
         for (var stage = 0; stage < myGearNumbers.Count; stage++)
         {
             yield return new Discriminator(SForgetTheColors.DGearNumber, $"gearnumber{stage}", myGearNumbers[stage], args: [myGearNumbers[stage].ToString(), stage.ToString()]);
             yield return new Discriminator(SForgetTheColors.DLargeDisplay, $"largedisplay{stage}", myLargeDisplays[stage], args: [myLargeDisplays[stage].ToString(), stage.ToString()]);
             yield return new Discriminator(SForgetTheColors.DNixieNumber, $"leftnixie{stage}", myNixieNumbers[2 * stage], args: [myNixieNumbers[2 * stage].ToString(), stage.ToString(), "left"]);
             yield return new Discriminator(SForgetTheColors.DNixieNumber, $"rightnixie{stage}", myNixieNumbers[2 * stage + 1], args: [myNixieNumbers[2 * stage + 1].ToString(), stage.ToString(), "right"]);
-            yield return new Discriminator(SForgetTheColors.DCylinderColor, $"leftcylinder{stage}", myCylinderColors[4 * stage], args: [colors[myCylinderColors[4 * stage]], stage.ToString()]);
-            yield return new Discriminator(SForgetTheColors.DCylinderColor, $"middlecylinder{stage}", myCylinderColors[4 * stage + 1], args: [colors[myCylinderColors[4 * stage + 1]], stage.ToString()]);
-            yield return new Discriminator(SForgetTheColors.DCylinderColor, $"rightcylinder{stage}", myCylinderColors[4 * stage + 2], args: [colors[myCylinderColors[4 * stage + 2]], stage.ToString()]);
-            yield return new Discriminator(SForgetTheColors.DGearColor, $"gearcolor{stage}", myGearColors[stage], args: [myGearColors[stage], stage.ToString()]);
+            yield return new Discriminator(SForgetTheColors.DCylinderColor, $"leftcylinder{stage}", myCylinderColors[4 * stage], args: [addAorAn(colors[myCylinderColors[4 * stage]]), stage.ToString()]);
+            yield return new Discriminator(SForgetTheColors.DCylinderColor, $"middlecylinder{stage}", myCylinderColors[4 * stage + 1], args: [addAorAn(colors[myCylinderColors[4 * stage + 1]]), stage.ToString()]);
+            yield return new Discriminator(SForgetTheColors.DCylinderColor, $"rightcylinder{stage}", myCylinderColors[4 * stage + 2], args: [addAorAn(colors[myCylinderColors[4 * stage + 2]]), stage.ToString()]);
+            yield return new Discriminator(SForgetTheColors.DGearColor, $"gearcolor{stage}", myGearColors[stage], args: [myGearColors[stage].ToLowerInvariant(), stage.ToString()]);
 
             yield return question(SForgetTheColors.QGearNumber, args: [stage.ToString()]).AvoidDiscriminators(SForgetTheColors.DGearNumber).Answers(myGearNumbers[stage].ToString());
             yield return question(SForgetTheColors.QLargeDisplay, args: [stage.ToString()]).AvoidDiscriminators(SForgetTheColors.DLargeDisplay).Answers(myLargeDisplays[stage].ToString());

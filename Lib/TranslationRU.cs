@@ -4964,7 +4964,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualModuleName = "Направляющая кнопка",
             ManualQuestions = new()
             {
-                ["What were the button's color and label in each stage?"] = "What were the button's color and label in each stage?",
+                ["What were the button’s color and label in each stage?"] = "What were the button’s color and label in each stage?",
             },
             Questions = new()
             {
@@ -6017,7 +6017,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the faeries' colors and pitches?"] = "What were the faeries' colors and pitches?",
+                ["What were the faeries’ colors and pitches?"] = "What were the faeries’ colors and pitches?",
             },
             Questions = new()
             {
@@ -6691,8 +6691,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualModuleName = "Забудь цвета",
             ManualQuestions = new()
             {
-                ["What were the large display's, gear's, and nixies' numbers in each stage?"] = "What were the large display's, gear's, and nixies' numbers in each stage?",
-                ["What were the cylinders' and gear's colors in each stage?"] = "What were the cylinders' and gear's colors in each stage?",
+                ["What were the large display’s, gear’s, and nixies’ numbers in each stage?"] = "What were the large display’s, gear’s, and nixies’ numbers in each stage?",
+                ["What were the cylinders’ and gear’s colors in each stage?"] = "What were the cylinders’ and gear’s colors in each stage?",
             },
             Questions = new()
             {
@@ -6788,40 +6788,40 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SForgetTheColors.DCylinderColor] = new()
                 {
-                    // English: the Forget The Colors which had a(n) {0} cylinder in stage {1}
-                    // Example: the Forget The Colors which had a(n) Red cylinder in stage 1
+                    // English: the Forget The Colors which had {0} cylinder in stage {1}
+                    // Example: the Forget The Colors which had a red cylinder in stage 1
                     Discriminator = "the Forget The Colors which had a(n) {0} cylinder in stage {1}",
                     Arguments = new()
                     {
-                        ["Red"] = "Красный",
-                        ["Orange"] = "Оранжевый",
-                        ["Yellow"] = "Жёлтый",
-                        ["Green"] = "Зелёный",
-                        ["Cyan"] = "Голубой",
-                        ["Blue"] = "Синий",
-                        ["Purple"] = "Фиолетоывй",
-                        ["Pink"] = "Розовый",
-                        ["Maroon"] = "Бордовый",
-                        ["White"] = "Белый",
+                        ["a red"] = "a red",
+                        ["an orange"] = "an orange",
+                        ["a yellow"] = "a yellow",
+                        ["a green"] = "a green",
+                        ["a cyan"] = "a cyan",
+                        ["a blue"] = "a blue",
+                        ["a purple"] = "a purple",
+                        ["a pink"] = "a pink",
+                        ["a maroon"] = "a maroon",
+                        ["a white"] = "a white",
                     },
                 },
                 [SForgetTheColors.DGearColor] = new()
                 {
                     // English: the Forget The Colors whose gear color was {0} in stage {1}
-                    // Example: the Forget The Colors whose gear color was Red in stage 1
+                    // Example: the Forget The Colors whose gear color was red in stage 1
                     Discriminator = "the Forget The Colors whose gear color was {0} in stage {1}",
                     Arguments = new()
                     {
-                        ["Red"] = "Красный",
-                        ["Orange"] = "Оранжевый",
-                        ["Yellow"] = "Жёлтый",
-                        ["Green"] = "Зелёный",
-                        ["Cyan"] = "Голубой",
-                        ["Blue"] = "Синий",
-                        ["Purple"] = "Фиолетоывй",
-                        ["Pink"] = "Розовый",
-                        ["Maroon"] = "Бордовый",
-                        ["White"] = "Белый",
+                        ["red"] = "красный",
+                        ["orange"] = "оранжевый",
+                        ["yellow"] = "жёлтый",
+                        ["green"] = "зелёный",
+                        ["cyan"] = "голубой",
+                        ["blue"] = "синий",
+                        ["purple"] = "фиолетоывй",
+                        ["pink"] = "розовый",
+                        ["maroon"] = "бордовый",
+                        ["white"] = "белый",
                     },
                 },
             },

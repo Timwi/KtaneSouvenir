@@ -4976,7 +4976,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["What were the button's color and label in each stage?"] = "Welche Farbe und Aufschrift hatte der Knopf in welcher Stufe?",
+                ["What were the button’s color and label in each stage?"] = "Welche Farbe und Aufschrift hatte der Knopf in welcher Stufe?",
             },
             Questions = new()
             {
@@ -5950,10 +5950,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Etterna
         [typeof(SEtterna)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What color was each arrow?"] = "What color was each arrow?",
+                ["What color was each arrow?"] = "Welcher Pfeil hatte welche Farbe?",
             },
             Questions = new()
             {
@@ -5961,17 +5960,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the {1} arrow from the bottom in {0}?
                     // Example: What color was the first arrow from the bottom in Etterna?
-                    Question = "What color was the {1} arrow from the bottom in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der {1}e Pfeil von unten?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Blue"] = "Blue",
-                        ["Green"] = "Green",
-                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
                         ["Pink"] = "Pink",
                         ["Orange"] = "Orange",
-                        ["Cyan"] = "Cyan",
-                        ["Gray"] = "Gray",
+                        ["Cyan"] = "Türkis",
+                        ["Gray"] = "Grau",
                     },
                 },
             },
@@ -6067,7 +6066,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Feenfeuer",
             ManualQuestions = new()
             {
-                ["What were the faeries' colors and pitches?"] = "Welche Farbe und Tonhöhe hatten die Feen?",
+                ["What were the faeries’ colors and pitches?"] = "Welche Farbe und Tonhöhe hatten die Feen?",
             },
             Questions = new()
             {
@@ -6744,12 +6743,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Forget The Colors
         [typeof(SForgetTheColors)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Vergiss Die Farben",
             ManualQuestions = new()
             {
-                ["What were the large display's, gear's, and nixies' numbers in each stage?"] = "What were the large display's, gear's, and nixies' numbers in each stage?",
-                ["What were the cylinders' and gear's colors in each stage?"] = "What were the cylinders' and gear's colors in each stage?",
+                ["What were the large display’s, gear’s, and nixies’ numbers in each stage?"] = "Welche Zahl war in welcher Stufe auf dem Display, Zahnrad und den Nixieröhren?",
+                ["What were the cylinders’ and gear’s colors in each stage?"] = "Welche Farben hatten in welcher Stufe die Zylinder und das Zahnrad?",
             },
             Questions = new()
             {
@@ -6769,18 +6767,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What number was on the {2} nixie during stage {1} of {0}?
                     // Example: What number was on the left nixie during stage 0 of Forget The Colors?
-                    Question = "What number was on the {2} nixie during stage {1} of {0}?",
+                    Question = "Welche Zahl war bei {0} in Stufe {1} auf der {2} Nixieröhre?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "linken",
+                        ["right"] = "rechten",
                     },
                 },
                 [SForgetTheColors.QCylinderColor] = new()
                 {
                     // English: What color was on a cylinder during stage {1} of {0}?
                     // Example: What color was on a cylinder during stage 0 of Forget The Colors?
-                    Question = "What color was on a cylinder during stage {1} of {0}?",
+                    Question = "Welche Farbe kam bei {0} in Stufe {1} auf einem Zylinder vor?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -6833,49 +6831,49 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget The Colors which had {0} on its {2} nixie in stage {1}
                     // Example: the Forget The Colors which had 0 on its left nixie in stage 0
-                    Discriminator = "the Forget The Colors which had {0} on its {2} nixie in stage {1}",
+                    Discriminator = "dem Vergiss Die Farben, dessen {2} Nixieröhre in Stufe {1} {0} anzeigte,",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "linke",
+                        ["right"] = "rechte",
                     },
                 },
                 [SForgetTheColors.DCylinderColor] = new()
                 {
-                    // English: the Forget The Colors which had a(n) {0} cylinder in stage {1}
-                    // Example: the Forget The Colors which had a(n) Red cylinder in stage 1
-                    Discriminator = "the Forget The Colors which had a(n) {0} cylinder in stage {1}",
+                    // English: the Forget The Colors which had {0} cylinder in stage {1}
+                    // Example: the Forget The Colors which had a red cylinder in stage 1
+                    Discriminator = "dem Vergiss Die Farben, bei dem in Stufe {1} ein {2} Zylinder vorkam,",
                     Arguments = new()
                     {
-                        ["Red"] = "Rot",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Gelb",
-                        ["Green"] = "Grün",
-                        ["Cyan"] = "Türkis",
-                        ["Blue"] = "Blau",
-                        ["Purple"] = "Lila",
-                        ["Pink"] = "Pink",
-                        ["Maroon"] = "Kastanie",
-                        ["White"] = "Weiß",
+                        ["a red"] = "roter",
+                        ["an orange"] = "orangener",
+                        ["a yellow"] = "gelber",
+                        ["a green"] = "grüner",
+                        ["a cyan"] = "türkiser",
+                        ["a blue"] = "blauer",
+                        ["a purple"] = "lilaner",
+                        ["a pink"] = "pinker",
+                        ["a maroon"] = "kastanienfarbiger",
+                        ["a white"] = "weißer",
                     },
                 },
                 [SForgetTheColors.DGearColor] = new()
                 {
                     // English: the Forget The Colors whose gear color was {0} in stage {1}
-                    // Example: the Forget The Colors whose gear color was Red in stage 1
+                    // Example: the Forget The Colors whose gear color was red in stage 1
                     Discriminator = "dem Vergiss Die Farben, bei dem die Zahnradfarbe in Stufe {1} {0} war,",
                     Arguments = new()
                     {
-                        ["Red"] = "Rot",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Gelb",
-                        ["Green"] = "Grün",
-                        ["Cyan"] = "Türkis",
-                        ["Blue"] = "Blau",
-                        ["Purple"] = "Lila",
-                        ["Pink"] = "Pink",
-                        ["Maroon"] = "Kastanie",
-                        ["White"] = "Weiß",
+                        ["red"] = "rot",
+                        ["orange"] = "orange",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["cyan"] = "türkis",
+                        ["blue"] = "blau",
+                        ["purple"] = "lila",
+                        ["pink"] = "pink",
+                        ["maroon"] = "kastanienfarbig",
+                        ["white"] = "weiß",
                     },
                 },
             },
@@ -12562,11 +12560,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not Who’s on First
         [typeof(SNotWhosOnFirst)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "“Was” Steht Auf Dem Knopf Mal Anders",
             ManualQuestions = new()
             {
-                ["What were the first four display words?"] = "What were the first four display words?",
+                ["What were the first four display words?"] = "Welche Wörter waren in den ersten vier Stufen auf dem Display?",
             },
             Questions = new()
             {
@@ -12574,7 +12571,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the display in the {1} stage on {0}?
                     // Example: What was the display in the first stage on Not Who’s on First?
-                    Question = "What was the display in the {1} stage on {0}?",
+                    Question = "Was war bei {0} in der {1}en Stufe auf dem Display?",
                 },
             },
         },
@@ -15111,19 +15108,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Role Reversal
         [typeof(SRoleReversal)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Rollenumkehr",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the seed?"] = "What was the seed?",
+                ["What was the seed?"] = "Was war der Seedcode?",
             },
             Questions = new()
             {
                 [SRoleReversal.Seed] = new()
                 {
                     // English: What was the seed in {0}?
-                    Question = "What was the seed in {0}?",
+                    Question = "Was war bei {0} der Seedcode?",
                 },
             },
         },
@@ -17292,19 +17288,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Sorting
         [typeof(SSorting)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Sortierung",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["Which sorting algorithm was used?"] = "Which sorting algorithm was used?",
+                ["Which sorting algorithm was used?"] = "Welcher Sortieralgorithmus kam zum Einsatz?",
             },
             Questions = new()
             {
                 [SSorting.Algorithm] = new()
                 {
                     // English: Which sorting algorithm was used in {0}?
-                    Question = "Which sorting algorithm was used in {0}?",
+                    Question = "Welcher Sortieralgorithmus kam bei {0} zum Einsatz?",
                 },
             },
         },

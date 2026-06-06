@@ -4835,7 +4835,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "方向ボタン",
             ManualQuestions = new()
             {
-                ["What were the button's color and label in each stage?"] = "What were the button's color and label in each stage?",
+                ["What were the button’s color and label in each stage?"] = "What were the button’s color and label in each stage?",
             },
             Questions = new()
             {
@@ -5896,7 +5896,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "妖精の火",
             ManualQuestions = new()
             {
-                ["What were the faeries' colors and pitches?"] = "妖精の色と音程は？",
+                ["What were the faeries’ colors and pitches?"] = "妖精の色と音程は？",
             },
             Questions = new()
             {
@@ -6565,8 +6565,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "色忘る",
             ManualQuestions = new()
             {
-                ["What were the large display's, gear's, and nixies' numbers in each stage?"] = "What were the large display's, gear's, and nixies' numbers in each stage?",
-                ["What were the cylinders' and gear's colors in each stage?"] = "What were the cylinders' and gear's colors in each stage?",
+                ["What were the large display’s, gear’s, and nixies’ numbers in each stage?"] = "What were the large display’s, gear’s, and nixies’ numbers in each stage?",
+                ["What were the cylinders’ and gear’s colors in each stage?"] = "What were the cylinders’ and gear’s colors in each stage?",
             },
             Questions = new()
             {
@@ -6659,40 +6659,40 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SForgetTheColors.DCylinderColor] = new()
                 {
-                    // English: the Forget The Colors which had a(n) {0} cylinder in stage {1}
-                    // Example: the Forget The Colors which had a(n) Red cylinder in stage 1
+                    // English: the Forget The Colors which had {0} cylinder in stage {1}
+                    // Example: the Forget The Colors which had a red cylinder in stage 1
                     Discriminator = "the Forget The Colors which had a(n) {0} cylinder in stage {1}",
                     Arguments = new()
                     {
-                        ["Red"] = "赤",
-                        ["Orange"] = "オレンジ",
-                        ["Yellow"] = "黄",
-                        ["Green"] = "緑",
-                        ["Cyan"] = "シアン",
-                        ["Blue"] = "青",
-                        ["Purple"] = "紫",
-                        ["Pink"] = "ピンク",
-                        ["Maroon"] = "栗",
-                        ["White"] = "白",
+                        ["a red"] = "a red",
+                        ["an orange"] = "an orange",
+                        ["a yellow"] = "a yellow",
+                        ["a green"] = "a green",
+                        ["a cyan"] = "a cyan",
+                        ["a blue"] = "a blue",
+                        ["a purple"] = "a purple",
+                        ["a pink"] = "a pink",
+                        ["a maroon"] = "a maroon",
+                        ["a white"] = "a white",
                     },
                 },
                 [SForgetTheColors.DGearColor] = new()
                 {
                     // English: the Forget The Colors whose gear color was {0} in stage {1}
-                    // Example: the Forget The Colors whose gear color was Red in stage 1
+                    // Example: the Forget The Colors whose gear color was red in stage 1
                     Discriminator = "ステージ{1}のギアの色が{0}であった色忘る",
                     Arguments = new()
                     {
-                        ["Red"] = "赤",
-                        ["Orange"] = "オレンジ",
-                        ["Yellow"] = "黄",
-                        ["Green"] = "緑",
-                        ["Cyan"] = "シアン",
-                        ["Blue"] = "青",
-                        ["Purple"] = "紫",
-                        ["Pink"] = "ピンク",
-                        ["Maroon"] = "栗",
-                        ["White"] = "白",
+                        ["red"] = "red",
+                        ["orange"] = "orange",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["blue"] = "blue",
+                        ["purple"] = "purple",
+                        ["pink"] = "pink",
+                        ["maroon"] = "maroon",
+                        ["white"] = "white",
                     },
                 },
             },
