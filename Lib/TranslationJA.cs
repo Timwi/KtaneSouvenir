@@ -6561,11 +6561,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Forget The Colors
         [typeof(SForgetTheColors)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "色忘る",
             ManualQuestions = new()
             {
-                ["What were the large display, gear and the sine number’s last digit in each stage?"] = "各ステージの大きなディスプレー、歯車、sin値の下一桁は？",
-                ["Which edgework-based rule was applied in each stage?"] = "各ステージにおいて、どのエッジワークに基づくルールが当てはまった？",
+                ["What were the large display's, gear's, and nixies' numbers in each stage?"] = "What were the large display's, gear's, and nixies' numbers in each stage?",
+                ["What were the cylinders' and gear's colors in each stage?"] = "What were the cylinders' and gear's colors in each stage?",
             },
             Questions = new()
             {
@@ -6581,11 +6582,35 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // Example: What number was on the large display during stage 0 of Forget The Colors?
                     Question = "{0}のステージ{1}における大きなディスプレーはの数字は？",
                 },
-                [SForgetTheColors.QSineNumber] = new()
+                [SForgetTheColors.QNixieNumber] = new()
                 {
-                    // English: What was the last decimal in the sine number received during stage {1} of {0}?
-                    // Example: What was the last decimal in the sine number received during stage 0 of Forget The Colors?
-                    Question = "{0}のステージ{1}で取得したsin値の下一桁は？",
+                    // English: What number was on the {2} nixie during stage {1} of {0}?
+                    // Example: What number was on the left nixie during stage 0 of Forget The Colors?
+                    Question = "What number was on the {2} nixie during stage {1} of {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
+                },
+                [SForgetTheColors.QCylinderColor] = new()
+                {
+                    // English: What color was on a cylinder during stage {1} of {0}?
+                    // Example: What color was on a cylinder during stage 0 of Forget The Colors?
+                    Question = "What color was on a cylinder during stage {1} of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "赤",
+                        ["Orange"] = "オレンジ",
+                        ["Yellow"] = "黄",
+                        ["Green"] = "緑",
+                        ["Cyan"] = "シアン",
+                        ["Blue"] = "青",
+                        ["Purple"] = "紫",
+                        ["Pink"] = "ピンク",
+                        ["Maroon"] = "栗",
+                        ["White"] = "白",
+                    },
                 },
                 [SForgetTheColors.QGearColor] = new()
                 {
@@ -6604,27 +6629,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Pink"] = "ピンク",
                         ["Maroon"] = "栗",
                         ["White"] = "白",
-                        ["Gray"] = "灰",
-                    },
-                },
-                [SForgetTheColors.QRuleColor] = new()
-                {
-                    // English: Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?
-                    // Example: Which edgework-based rule was applied to the sum of nixies and gear during stage 0 of Forget The Colors?
-                    Question = "{0}のステージ{1}におけるエッジワーク修正後のニキシー管の合計は？",
-                    Answers = new()
-                    {
-                        ["Red"] = "赤",
-                        ["Orange"] = "オレンジ",
-                        ["Yellow"] = "黄",
-                        ["Green"] = "緑",
-                        ["Cyan"] = "シアン",
-                        ["Blue"] = "青",
-                        ["Purple"] = "紫",
-                        ["Pink"] = "ピンク",
-                        ["Maroon"] = "栗",
-                        ["White"] = "白",
-                        ["Gray"] = "灰",
                     },
                 },
             },
@@ -6642,17 +6646,22 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // Example: the Forget The Colors which had 426 on its large display in stage 1
                     Discriminator = "ステージ{1}の大きなディスプレーの数字が{0}であった色忘る",
                 },
-                [SForgetTheColors.DSineNumber] = new()
+                [SForgetTheColors.DNixieNumber] = new()
                 {
-                    // English: the Forget The Colors whose received sine number in stage {1} ended with a {0}
-                    // Example: the Forget The Colors whose received sine number in stage 1 ended with a 0
-                    Discriminator = "ステージ{1}のsin値の末尾が{0}であった色忘る",
+                    // English: the Forget The Colors which had {0} on its {2} nixie in stage {1}
+                    // Example: the Forget The Colors which had 0 on its left nixie in stage 0
+                    Discriminator = "the Forget The Colors which had {0} on its {2} nixie in stage {1}",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
                 },
-                [SForgetTheColors.DColor] = new()
+                [SForgetTheColors.DCylinderColor] = new()
                 {
-                    // English: the Forget The Colors whose {2} was {0} in stage {1}
-                    // Example: the Forget The Colors whose gear color was Red in stage 1
-                    Discriminator = "ステージ{1}の{2}が{0}であった色忘る",
+                    // English: the Forget The Colors which had a(n) {0} cylinder in stage {1}
+                    // Example: the Forget The Colors which had a(n) Red cylinder in stage 1
+                    Discriminator = "the Forget The Colors which had a(n) {0} cylinder in stage {1}",
                     Arguments = new()
                     {
                         ["Red"] = "赤",
@@ -6665,8 +6674,25 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Pink"] = "ピンク",
                         ["Maroon"] = "栗",
                         ["White"] = "白",
-                        ["gear color"] = "ギアの色",
-                        ["rule color"] = "ルールの色",
+                    },
+                },
+                [SForgetTheColors.DGearColor] = new()
+                {
+                    // English: the Forget The Colors whose gear color was {0} in stage {1}
+                    // Example: the Forget The Colors whose gear color was Red in stage 1
+                    Discriminator = "ステージ{1}のギアの色が{0}であった色忘る",
+                    Arguments = new()
+                    {
+                        ["Red"] = "赤",
+                        ["Orange"] = "オレンジ",
+                        ["Yellow"] = "黄",
+                        ["Green"] = "緑",
+                        ["Cyan"] = "シアン",
+                        ["Blue"] = "青",
+                        ["Purple"] = "紫",
+                        ["Pink"] = "ピンク",
+                        ["Maroon"] = "栗",
+                        ["White"] = "白",
                     },
                 },
             },

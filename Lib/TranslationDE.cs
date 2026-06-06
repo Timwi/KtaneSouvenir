@@ -6744,11 +6744,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Forget The Colors
         [typeof(SForgetTheColors)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Vergiss Die Farben",
             ManualQuestions = new()
             {
-                ["What were the large display, gear and the sine number’s last digit in each stage?"] = "Welches Zahnrad, welche letzte Ziffer der Sinuszahl und welche Anzeige auf dem großen Display kam in welcher Stufe vor?",
-                ["Which edgework-based rule was applied in each stage?"] = "Welche Peripherie-Regel kam in welcher Stufe zum Einsatz?",
+                ["What were the large display's, gear's, and nixies' numbers in each stage?"] = "What were the large display's, gear's, and nixies' numbers in each stage?",
+                ["What were the cylinders' and gear's colors in each stage?"] = "What were the cylinders' and gear's colors in each stage?",
             },
             Questions = new()
             {
@@ -6764,11 +6765,35 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // Example: What number was on the large display during stage 0 of Forget The Colors?
                     Question = "Welche Zahl war bei {0} in Stufe {1} auf dem großen Display?",
                 },
-                [SForgetTheColors.QSineNumber] = new()
+                [SForgetTheColors.QNixieNumber] = new()
                 {
-                    // English: What was the last decimal in the sine number received during stage {1} of {0}?
-                    // Example: What was the last decimal in the sine number received during stage 0 of Forget The Colors?
-                    Question = "Was war bei {0} die letzte Ziffer in der in Stufe {1} erhaltenen Sinuszahl?",
+                    // English: What number was on the {2} nixie during stage {1} of {0}?
+                    // Example: What number was on the left nixie during stage 0 of Forget The Colors?
+                    Question = "What number was on the {2} nixie during stage {1} of {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
+                },
+                [SForgetTheColors.QCylinderColor] = new()
+                {
+                    // English: What color was on a cylinder during stage {1} of {0}?
+                    // Example: What color was on a cylinder during stage 0 of Forget The Colors?
+                    Question = "What color was on a cylinder during stage {1} of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Cyan"] = "Türkis",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["Pink"] = "Pink",
+                        ["Maroon"] = "Kastanie",
+                        ["White"] = "Weiß",
+                    },
                 },
                 [SForgetTheColors.QGearColor] = new()
                 {
@@ -6787,27 +6812,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Pink"] = "Pink",
                         ["Maroon"] = "Kastanie",
                         ["White"] = "Weiß",
-                        ["Gray"] = "Grau",
-                    },
-                },
-                [SForgetTheColors.QRuleColor] = new()
-                {
-                    // English: Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?
-                    // Example: Which edgework-based rule was applied to the sum of nixies and gear during stage 0 of Forget The Colors?
-                    Question = "Welche peripheriebasierte Regel wurde bei {0} in Stufe {1} auf die Summe der Nixies und des Zahnrads angewandt?",
-                    Answers = new()
-                    {
-                        ["Red"] = "Rot",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Gelb",
-                        ["Green"] = "Grün",
-                        ["Cyan"] = "Türkis",
-                        ["Blue"] = "Blau",
-                        ["Purple"] = "Lila",
-                        ["Pink"] = "Pink",
-                        ["Maroon"] = "Kastanie",
-                        ["White"] = "Weiß",
-                        ["Gray"] = "Grau",
                     },
                 },
             },
@@ -6825,17 +6829,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // Example: the Forget The Colors which had 426 on its large display in stage 1
                     Discriminator = "dem Vergiss Die Farben, dessen großes Display in Stufe {1} {0} anzeigte,",
                 },
-                [SForgetTheColors.DSineNumber] = new()
+                [SForgetTheColors.DNixieNumber] = new()
                 {
-                    // English: the Forget The Colors whose received sine number in stage {1} ended with a {0}
-                    // Example: the Forget The Colors whose received sine number in stage 1 ended with a 0
-                    Discriminator = "dem Vergiss Die Farben, dessen erhaltene Sinuszahl in Stufe {1} auf {0} endete,",
+                    // English: the Forget The Colors which had {0} on its {2} nixie in stage {1}
+                    // Example: the Forget The Colors which had 0 on its left nixie in stage 0
+                    Discriminator = "the Forget The Colors which had {0} on its {2} nixie in stage {1}",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
                 },
-                [SForgetTheColors.DColor] = new()
+                [SForgetTheColors.DCylinderColor] = new()
                 {
-                    // English: the Forget The Colors whose {2} was {0} in stage {1}
-                    // Example: the Forget The Colors whose gear color was Red in stage 1
-                    Discriminator = "dem Vergiss Die Farben, bei dem {2} in Stufe {1} {0} war,",
+                    // English: the Forget The Colors which had a(n) {0} cylinder in stage {1}
+                    // Example: the Forget The Colors which had a(n) Red cylinder in stage 1
+                    Discriminator = "the Forget The Colors which had a(n) {0} cylinder in stage {1}",
                     Arguments = new()
                     {
                         ["Red"] = "Rot",
@@ -6848,8 +6857,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Pink"] = "Pink",
                         ["Maroon"] = "Kastanie",
                         ["White"] = "Weiß",
-                        ["gear color"] = "die Zahnradfarbe",
-                        ["rule color"] = "die Regelfarbe",
+                    },
+                },
+                [SForgetTheColors.DGearColor] = new()
+                {
+                    // English: the Forget The Colors whose gear color was {0} in stage {1}
+                    // Example: the Forget The Colors whose gear color was Red in stage 1
+                    Discriminator = "dem Vergiss Die Farben, bei dem die Zahnradfarbe in Stufe {1} {0} war,",
+                    Arguments = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Cyan"] = "Türkis",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["Pink"] = "Pink",
+                        ["Maroon"] = "Kastanie",
+                        ["White"] = "Weiß",
                     },
                 },
             },

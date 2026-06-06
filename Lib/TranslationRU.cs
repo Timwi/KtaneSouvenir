@@ -6691,8 +6691,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualModuleName = "Забудь цвета",
             ManualQuestions = new()
             {
-                ["What were the large display, gear and the sine number’s last digit in each stage?"] = "Какая последняя цифра была указана на экране/шестерёнке/синусе на каждом этапе?",
-                ["Which edgework-based rule was applied in each stage?"] = "Какая информация с бомбы была применена на каждом этапе?",
+                ["What were the large display's, gear's, and nixies' numbers in each stage?"] = "What were the large display's, gear's, and nixies' numbers in each stage?",
+                ["What were the cylinders' and gear's colors in each stage?"] = "What were the cylinders' and gear's colors in each stage?",
             },
             Questions = new()
             {
@@ -6710,12 +6710,35 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     Question = "Какое число было на большом экране на {1}-м этапе {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
                 },
-                [SForgetTheColors.QSineNumber] = new()
+                [SForgetTheColors.QNixieNumber] = new()
                 {
-                    // English: What was the last decimal in the sine number received during stage {1} of {0}?
-                    // Example: What was the last decimal in the sine number received during stage 0 of Forget The Colors?
-                    Question = "Какая была последняя дробная цифра полученного числа синуса на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    // English: What number was on the {2} nixie during stage {1} of {0}?
+                    // Example: What number was on the left nixie during stage 0 of Forget The Colors?
+                    Question = "What number was on the {2} nixie during stage {1} of {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
+                },
+                [SForgetTheColors.QCylinderColor] = new()
+                {
+                    // English: What color was on a cylinder during stage {1} of {0}?
+                    // Example: What color was on a cylinder during stage 0 of Forget The Colors?
+                    Question = "What color was on a cylinder during stage {1} of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Cyan"] = "Голубой",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетоывй",
+                        ["Pink"] = "Розовый",
+                        ["Maroon"] = "Бордовый",
+                        ["White"] = "Белый",
+                    },
                 },
                 [SForgetTheColors.QGearColor] = new()
                 {
@@ -6735,28 +6758,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Pink"] = "Розовый",
                         ["Maroon"] = "Бордовый",
                         ["White"] = "Белый",
-                        ["Gray"] = "Серый",
-                    },
-                },
-                [SForgetTheColors.QRuleColor] = new()
-                {
-                    // English: Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?
-                    // Example: Which edgework-based rule was applied to the sum of nixies and gear during stage 0 of Forget The Colors?
-                    Question = "Какого цвета было правило, по которому вы сложили числа на лампах и шестерёнках на {1}-м этапе {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                    Answers = new()
-                    {
-                        ["Red"] = "Красный",
-                        ["Orange"] = "Оранжевый",
-                        ["Yellow"] = "Жёлтый",
-                        ["Green"] = "Зелёный",
-                        ["Cyan"] = "Голубой",
-                        ["Blue"] = "Синий",
-                        ["Purple"] = "Фиолетоывй",
-                        ["Pink"] = "Розовый",
-                        ["Maroon"] = "Бордовый",
-                        ["White"] = "Белый",
-                        ["Gray"] = "Серый",
                     },
                 },
             },
@@ -6774,31 +6775,53 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // Example: the Forget The Colors which had 426 on its large display in stage 1
                     Discriminator = "\"Забудь цвета\", где на {1}-м этапе на большом экране было {0}",
                 },
-                [SForgetTheColors.DSineNumber] = new()
+                [SForgetTheColors.DNixieNumber] = new()
                 {
-                    // English: the Forget The Colors whose received sine number in stage {1} ended with a {0}
-                    // Example: the Forget The Colors whose received sine number in stage 1 ended with a 0
-                    Discriminator = "\"Забудь цвета\", где на {1}-м этапе полученное число синуса оканчивалось на {0}",
-                },
-                [SForgetTheColors.DColor] = new()
-                {
-                    // English: the Forget The Colors whose {2} was {0} in stage {1}
-                    // Example: the Forget The Colors whose gear color was Red in stage 1
-                    Discriminator = "the Forget The Colors whose {2} was {0} in stage {1}",
+                    // English: the Forget The Colors which had {0} on its {2} nixie in stage {1}
+                    // Example: the Forget The Colors which had 0 on its left nixie in stage 0
+                    Discriminator = "the Forget The Colors which had {0} on its {2} nixie in stage {1}",
                     Arguments = new()
                     {
-                        ["Red"] = "Red",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Cyan"] = "Cyan",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
-                        ["Pink"] = "Pink",
-                        ["Maroon"] = "Maroon",
-                        ["White"] = "White",
-                        ["gear color"] = "gear color",
-                        ["rule color"] = "rule color",
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
+                },
+                [SForgetTheColors.DCylinderColor] = new()
+                {
+                    // English: the Forget The Colors which had a(n) {0} cylinder in stage {1}
+                    // Example: the Forget The Colors which had a(n) Red cylinder in stage 1
+                    Discriminator = "the Forget The Colors which had a(n) {0} cylinder in stage {1}",
+                    Arguments = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Cyan"] = "Голубой",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетоывй",
+                        ["Pink"] = "Розовый",
+                        ["Maroon"] = "Бордовый",
+                        ["White"] = "Белый",
+                    },
+                },
+                [SForgetTheColors.DGearColor] = new()
+                {
+                    // English: the Forget The Colors whose gear color was {0} in stage {1}
+                    // Example: the Forget The Colors whose gear color was Red in stage 1
+                    Discriminator = "the Forget The Colors whose gear color was {0} in stage {1}",
+                    Arguments = new()
+                    {
+                        ["Red"] = "Красный",
+                        ["Orange"] = "Оранжевый",
+                        ["Yellow"] = "Жёлтый",
+                        ["Green"] = "Зелёный",
+                        ["Cyan"] = "Голубой",
+                        ["Blue"] = "Синий",
+                        ["Purple"] = "Фиолетоывй",
+                        ["Pink"] = "Розовый",
+                        ["Maroon"] = "Бордовый",
+                        ["White"] = "Белый",
                     },
                 },
             },
