@@ -5900,17 +5900,29 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Etterna
         [typeof(SEtterna)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What beat was the input for each arrow?"] = "На каком бите была введена каждая стрелка?",
+                ["What color was each arrow?"] = "What color was each arrow?",
             },
             Questions = new()
             {
-                [SEtterna.Number] = new()
+                [SEtterna.Color] = new()
                 {
-                    // English: What was the beat for the {1} arrow from the bottom in {0}?
-                    // Example: What was the beat for the first arrow from the bottom in Etterna?
-                    Question = "Какой бит был у {1}-й стрелки снизу вверх {0}?",
+                    // English: What color was the {1} arrow from the bottom in {0}?
+                    // Example: What color was the first arrow from the bottom in Etterna?
+                    Question = "What color was the {1} arrow from the bottom in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Pink"] = "Pink",
+                        ["Orange"] = "Orange",
+                        ["Cyan"] = "Cyan",
+                        ["Gray"] = "Gray",
+                    },
                 },
             },
         },
@@ -13556,7 +13568,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the entire first phrase?"] = "Какая была первая фраза?",
-                ["What was the calculated value for second phrase?"] = "Какая величина была у второй фразы??",
             },
             Questions = new()
             {
@@ -14842,30 +14853,17 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Role Reversal
         [typeof(SRoleReversal)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the condition digit that solved the module?"] = "Какой номер условия обезвредил модуль?",
-                ["What colors were the internal wires?"] = "Какого цвета были внутренние провода?",
+                ["What was the seed?"] = "What was the seed?",
             },
             Questions = new()
             {
-                [SRoleReversal.Wires] = new()
+                [SRoleReversal.Seed] = new()
                 {
-                    // English: How many {1} wires were there in {0}?
-                    // Example: How many warm-colored wires were there in Role Reversal?
-                    Question = "Сколько проводов, окрашенных в {1} было {0}?",
-                    Arguments = new()
-                    {
-                        ["warm-colored"] = "тёплые цвета",
-                        ["cold-colored"] = "холодные цвета",
-                        ["primary-colored"] = "основные цвета",
-                        ["secondary-colored"] = "вторичные цвета",
-                    },
-                },
-                [SRoleReversal.Number] = new()
-                {
-                    // English: What was the number corresponding to the correct condition in {0}?
-                    Question = "Какое был номер у верного условия {0}?",
+                    // English: What was the seed in {0}?
+                    Question = "What was the seed in {0}?",
                 },
             },
         },
@@ -16997,19 +16995,19 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Sorting
         [typeof(SSorting)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Сортировке",
             ManualModuleName = "Сортировка",
             ManualQuestions = new()
             {
-                ["Which positions were involved in the final swap?"] = "Какие позиции участвовали в последней замене чисел?",
+                ["Which sorting algorithm was used?"] = "Which sorting algorithm was used?",
             },
             Questions = new()
             {
-                [SSorting.LastSwap] = new()
+                [SSorting.Algorithm] = new()
                 {
-                    // English: What positions were the last swap used to solve {0}?
-                    Question = "Какие позиции участвовали в последней замене чисел {0}?",
-                    Conjugation = Conjugation.в_PrepositiveFeminine,
+                    // English: Which sorting algorithm was used in {0}?
+                    Question = "Which sorting algorithm was used in {0}?",
                 },
             },
         },
@@ -19904,7 +19902,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What were the colors and numbers on the displays?"] = "Какие цвета и числа были на экранах?",
-                ["What were the colors of the wires?"] = "Какие цвета были на проводах?",
             },
             Questions = new()
             {
@@ -19932,24 +19929,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // Example: What number was on the first display from the left in Wire Ordering?
                     Question = "Какое число было на {1}-м экране слева на {0}?",
                     Conjugation = Conjugation.PrepositiveMascNeuter,
-                },
-                [SWireOrdering.WireColor] = new()
-                {
-                    // English: What color was the {1} wire from the left in {0}?
-                    // Example: What color was the first wire from the left in Wire Ordering?
-                    Question = "Какого цвета был {1}-й провод слева на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                    Answers = new()
-                    {
-                        ["red"] = "Красного",
-                        ["orange"] = "Оранжевого",
-                        ["yellow"] = "Жёлтого",
-                        ["green"] = "Зелёного",
-                        ["blue"] = "Синего",
-                        ["purple"] = "Фиолетового",
-                        ["white"] = "Белого",
-                        ["black"] = "Чёрного",
-                    },
                 },
             },
         },

@@ -5779,18 +5779,30 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Etterna
         [typeof(SEtterna)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "エテルナ",
             ManualQuestions = new()
             {
-                ["What beat was the input for each arrow?"] = "各矢印による入力はどのような拍子だった？",
+                ["What color was each arrow?"] = "What color was each arrow?",
             },
             Questions = new()
             {
-                [SEtterna.Number] = new()
+                [SEtterna.Color] = new()
                 {
-                    // English: What was the beat for the {1} arrow from the bottom in {0}?
-                    // Example: What was the beat for the first arrow from the bottom in Etterna?
-                    Question = "{0}の下から{1}番目の矢印のビートは？",
+                    // English: What color was the {1} arrow from the bottom in {0}?
+                    // Example: What color was the first arrow from the bottom in Etterna?
+                    Question = "What color was the {1} arrow from the bottom in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Pink"] = "Pink",
+                        ["Orange"] = "Orange",
+                        ["Cyan"] = "Cyan",
+                        ["Gray"] = "Gray",
+                    },
                 },
             },
         },
@@ -13421,7 +13433,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What was the entire first phrase?"] = "最初のフレーズは？",
-                ["What was the calculated value for second phrase?"] = "2番目のフレーズで計算された値は？",
             },
             Questions = new()
             {
@@ -14712,28 +14723,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the condition digit that solved the module?"] = "モジュールを解除するために必要だった数字は？",
-                ["What colors were the internal wires?"] = "内部のワイヤの色は？",
+                ["What was the seed?"] = "What was the seed?",
             },
             Questions = new()
             {
-                [SRoleReversal.Wires] = new()
+                [SRoleReversal.Seed] = new()
                 {
-                    // English: How many {1} wires were there in {0}?
-                    // Example: How many warm-colored wires were there in Role Reversal?
-                    Question = "{0}における{1}系のワイヤの総数は？",
-                    Arguments = new()
-                    {
-                        ["warm-colored"] = "暖色",
-                        ["cold-colored"] = "寒色",
-                        ["primary-colored"] = "原色",
-                        ["secondary-colored"] = "二次色",
-                    },
-                },
-                [SRoleReversal.Number] = new()
-                {
-                    // English: What was the number corresponding to the correct condition in {0}?
-                    Question = "{0}の正しい状態の数字は？",
+                    // English: What was the seed in {0}?
+                    Question = "What was the seed in {0}?",
                 },
             },
         },
@@ -16876,17 +16873,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Sorting
         [typeof(SSorting)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "並び替え",
             ManualQuestions = new()
             {
-                ["Which positions were involved in the final swap?"] = "最後の入れ替えに関係していたのはどの位置？",
+                ["Which sorting algorithm was used?"] = "Which sorting algorithm was used?",
             },
             Questions = new()
             {
-                [SSorting.LastSwap] = new()
+                [SSorting.Algorithm] = new()
                 {
-                    // English: What positions were the last swap used to solve {0}?
-                    Question = "{0}を解く際の最後の入れ替えはどの位置で行われた？",
+                    // English: Which sorting algorithm was used in {0}?
+                    Question = "Which sorting algorithm was used in {0}?",
                 },
             },
         },
@@ -19777,7 +19775,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What were the colors and numbers on the displays?"] = "ディスプレーの数字と色は？",
-                ["What were the colors of the wires?"] = "ワイヤの色は？",
             },
             Questions = new()
             {
@@ -19803,23 +19800,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What number was on the {1} display from the left in {0}?
                     // Example: What number was on the first display from the left in Wire Ordering?
                     Question = "{0}の左から{1}番目のディスプレーの数字は？",
-                },
-                [SWireOrdering.WireColor] = new()
-                {
-                    // English: What color was the {1} wire from the left in {0}?
-                    // Example: What color was the first wire from the left in Wire Ordering?
-                    Question = "{0}の左から{1}番目のワイヤの色は？",
-                    Answers = new()
-                    {
-                        ["red"] = "赤",
-                        ["orange"] = "オレンジ",
-                        ["yellow"] = "黄",
-                        ["green"] = "緑",
-                        ["blue"] = "青",
-                        ["purple"] = "紫",
-                        ["white"] = "白",
-                        ["black"] = "黒",
-                    },
                 },
             },
         },

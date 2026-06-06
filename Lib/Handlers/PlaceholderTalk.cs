@@ -17,7 +17,6 @@ public partial class SouvenirModule
 {
     [Handler("placeholderTalk", "Placeholder Talk", typeof(SPlaceholderTalk), "Emik")]
     [ManualQuestion("What was the entire first phrase?")]
-    [ManualQuestion("What was the calculated value for second phrase?")]
     private IEnumerator<SouvenirInstruction> ProcessPlaceholderTalk(ModuleData module)
     {
         var comp = GetComponent(module, "placeholderTalk");

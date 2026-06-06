@@ -5,22 +5,23 @@ using static Souvenir.AnswerLayout;
 
 public enum SEtterna
 {
-    [Question("What was the beat for the {1} arrow from the bottom in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    [AnswerGenerator.Integers(1, 32)]
-    Number
+    [Question("What color was the {1} arrow from the bottom in {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Pink", "Orange", "Cyan", "Gray", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    Color
 }
 
 public partial class SouvenirModule
 {
-    [Handler("etterna", "Etterna", typeof(SEtterna), "Emik")]
-    [ManualQuestion("What beat was the input for each arrow?")]
+    [Handler("etterna", "Etterna", typeof(SEtterna), "Espik")]
+    [ManualQuestion("What color was each arrow?")]
     private IEnumerator<SouvenirInstruction> ProcessEtterna(ModuleData module)
     {
         var comp = GetComponent(module, "Etterna");
         yield return WaitForSolve;
 
-        var correct = GetArrayField<byte>(comp, "correct").Get(expectedLength: 4, validator: b => b is > 32 or 0 ? "expected 1–32" : null);
-        for (var ix = 0; ix < correct.Length; ix++)
-            yield return question(SEtterna.Number, args: [Ordinal(ix + 1)]).Answers(correct[ix].ToString());
+        var arrowColors = GetArrayField<byte>(comp, "_color").Get(expectedLength: 4);
+        var allColors = SEtterna.Color.GetAnswers();
+        
+        for (var ix = 0; ix < arrowColors.Length; ix++)
+            yield return question(SEtterna.Color, args: [Ordinal(ix + 1)]).Answers(allColors[arrowColors[ix]]);
     }
 }

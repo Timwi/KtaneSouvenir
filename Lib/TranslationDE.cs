@@ -5950,17 +5950,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Etterna
         [typeof(SEtterna)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What beat was the input for each arrow?"] = "Welcher Beat wurde für welchen Pfeil eingegeben?",
+                ["What color was each arrow?"] = "What color was each arrow?",
             },
             Questions = new()
             {
-                [SEtterna.Number] = new()
+                [SEtterna.Color] = new()
                 {
-                    // English: What was the beat for the {1} arrow from the bottom in {0}?
-                    // Example: What was the beat for the first arrow from the bottom in Etterna?
-                    Question = "Welcher Beat entsprach bei {0} dem {1}en Pfeil von unten?",
+                    // English: What color was the {1} arrow from the bottom in {0}?
+                    // Example: What color was the first arrow from the bottom in Etterna?
+                    Question = "What color was the {1} arrow from the bottom in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Pink"] = "Pink",
+                        ["Orange"] = "Orange",
+                        ["Cyan"] = "Cyan",
+                        ["Gray"] = "Gray",
+                    },
                 },
             },
         },
@@ -13789,7 +13801,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What was the entire first phrase?"] = "Wie lautete die gesamte erste Phrase?",
-                ["What was the calculated value for second phrase?"] = "Welcher Wert wurde für die zweite Phrase berechnet?",
             },
             Questions = new()
             {
@@ -15115,32 +15126,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Role Reversal
         [typeof(SRoleReversal)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Rollenumkehr",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the condition digit that solved the module?"] = "Mit der Bedingung mit welcher Ziffer wurde das Modul entschärft?",
-                ["What colors were the internal wires?"] = "Welche Farben hatten die internen Drähte?",
+                ["What was the seed?"] = "What was the seed?",
             },
             Questions = new()
             {
-                [SRoleReversal.Wires] = new()
+                [SRoleReversal.Seed] = new()
                 {
-                    // English: How many {1} wires were there in {0}?
-                    // Example: How many warm-colored wires were there in Role Reversal?
-                    Question = "Wie viele der Drähte bei {0} hatten eine {1} Farbe?",
-                    Arguments = new()
-                    {
-                        ["warm-colored"] = "warme",
-                        ["cold-colored"] = "kalte",
-                        ["primary-colored"] = "primäre",
-                        ["secondary-colored"] = "sekundäre",
-                    },
-                },
-                [SRoleReversal.Number] = new()
-                {
-                    // English: What was the number corresponding to the correct condition in {0}?
-                    Question = "Welche Zahl entspricht der Bedingung, die bei {0} zutraf?",
+                    // English: What was the seed in {0}?
+                    Question = "What was the seed in {0}?",
                 },
             },
         },
@@ -17309,18 +17307,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Sorting
         [typeof(SSorting)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Sortierung",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["Which positions were involved in the final swap?"] = "Welche Positionen waren am letzten Tausch beteiligt?",
+                ["Which sorting algorithm was used?"] = "Which sorting algorithm was used?",
             },
             Questions = new()
             {
-                [SSorting.LastSwap] = new()
+                [SSorting.Algorithm] = new()
                 {
-                    // English: What positions were the last swap used to solve {0}?
-                    Question = "Welche Positionen wurden bei {0} zuletzt vertauscht?",
+                    // English: Which sorting algorithm was used in {0}?
+                    Question = "Which sorting algorithm was used in {0}?",
                 },
             },
         },
@@ -20279,7 +20278,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What were the colors and numbers on the displays?"] = "Welche Farben und Zahlen waren auf den Displays?",
-                ["What were the colors of the wires?"] = "Welche Farbe hatten die Drähte?",
             },
             Questions = new()
             {
@@ -20305,23 +20303,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What number was on the {1} display from the left in {0}?
                     // Example: What number was on the first display from the left in Wire Ordering?
                     Question = "Welche Zahl war bei {0} auf dem {1}en Display von links?",
-                },
-                [SWireOrdering.WireColor] = new()
-                {
-                    // English: What color was the {1} wire from the left in {0}?
-                    // Example: What color was the first wire from the left in Wire Ordering?
-                    Question = "Welche Farbe hatte bei {0} der {1}e Draht von links?",
-                    Answers = new()
-                    {
-                        ["red"] = "rot",
-                        ["orange"] = "orange",
-                        ["yellow"] = "gelb",
-                        ["green"] = "grün",
-                        ["blue"] = "blau",
-                        ["purple"] = "lila",
-                        ["white"] = "weiß",
-                        ["black"] = "schwarz",
-                    },
                 },
             },
         },

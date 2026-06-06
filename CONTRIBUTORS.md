@@ -138,12 +138,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  M&Ms                   │  Ordered Keys      │  Small Circle  │
     Encryption Bingo    │  M&Ns                   │  Rainbow Arrows    │  Snooker       │
 
-## Implemented by Espik (17)
+## Implemented by Espik (20)
 
-    100 Levels of Defusal  │  Challenge & Contact  │  Encrypted Morse     │  Simon Stages          │  Unicode
-    Blockbusters           │  Coffeebucks          │  Hexabutton, The     │  Thinking Wires        │
-    Boolean Wires          │  Directional Button   │  Hyperlink, The      │  Tricky Tetris Pieces  │
-    Calendar               │  Dreamcipher          │  Regular Crazy Talk  │  Unfair Cipher         │
+    100 Levels of Defusal  │  Challenge & Contact  │  Encrypted Morse  │  Regular Crazy Talk  │  Thinking Wires
+    Blockbusters           │  Coffeebucks          │  Etterna          │  Role Reversal       │  Tricky Tetris Pieces
+    Boolean Wires          │  Directional Button   │  Hexabutton, The  │  Simon Stages        │  Unfair Cipher
+    Calendar               │  Dreamcipher          │  Hyperlink, The   │  Sorting             │  Unicode
 
 ## Implemented by Andrio Celos (14)
 
@@ -156,12 +156,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Blue Arrows      │  Green Arrows              │  Purple Arrows  │  Simon Simons       │  Vectors
     Equations X      │  Hereditary Base Notation  │  Red Arrows     │  Simon Stores       │  Yellow Arrows
     Faulty RGB Maze  │  Orange Arrows             │  RGB Maze       │  Transmitted Morse  │
-
-## Implemented by Emik (13)
-
-    1D Chess  │  hexOS                │  Palindromes       │  Quaver                  │  Sorting
-    Coinage   │  Linq                 │  Phosphorescence   │  Reformed Role Reversal  │
-    Etterna   │  Octadecayotton, The  │  Placeholder Talk  │  Role Reversal           │
 
 ## Implemented by KiloBites (12)
 
@@ -179,6 +173,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     Creation  │  Ice Cream       │  Morse-A-Maze  │  Symbol Cycle          │  Text Field
     Gridlock  │  LED Encryption  │  Souvenir      │  Symbolic Coordinates  │  Third Base
+
+## Implemented by Emik (10)
+
+    1D Chess  │  hexOS  │  Octadecayotton, The  │  Phosphorescence   │  Quaver
+    Coinage   │  Linq   │  Palindromes          │  Placeholder Talk  │  Reformed Role Reversal
 
 ## Implemented by GhostSalt (9)
 
