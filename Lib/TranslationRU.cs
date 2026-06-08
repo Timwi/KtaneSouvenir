@@ -14851,49 +14851,34 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which rounds did each team win/lose/tie?"] = "Which rounds did each team win/lose/tie?",
+                ["What were the gestures in each round?"] = "What were the gestures in each round?",
             },
             Questions = new()
             {
-                [SRPSJudging.QWinner] = new()
+                [SRPSJudging.QGesture] = new()
                 {
-                    // English: Which round did the {1} team {2} in {0}?
-                    // Example: Which round did the red team win in RPS Judging?
-                    Question = "Which round did the {1} team {2} in {0}?",
+                    // English: What was the {2} team’s gesture in the {1} round of {0}?
+                    // Example: What was the blue team’s gesture in the first round of RPS Judging?
+                    Question = "What was the {2} team’s gesture in the {1} round of {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
                         ["blue"] = "blue",
-                        ["win"] = "win",
-                        ["lose"] = "lose",
+                        ["red"] = "red",
                     },
-                },
-                [SRPSJudging.QDraw] = new()
-                {
-                    // English: Which round was a draw in {0}?
-                    Question = "Which round was a draw in {0}?",
                 },
             },
             Discriminators = new()
             {
-                [SRPSJudging.DWinner] = new()
+                [SRPSJudging.DGesture] = new()
                 {
-                    // English: the RPS Judging where the {0} team {1} the {2} round
-                    // Example: the RPS Judging where the red team won the first round
-                    Discriminator = "the RPS Judging where the {0} team {1} the {2} round",
+                    // English: the RPS Judging where the {2} team’s gesture was {0} the {1} round
+                    // Example: the RPS Judging where the blue team’s gesture was Dynamite the first round
+                    Discriminator = "the RPS Judging where the {2} team’s gesture was {0} the {1} round",
                     Arguments = new()
                     {
-                        ["red"] = "red",
                         ["blue"] = "blue",
-                        ["won"] = "won",
-                        ["lost"] = "lost",
+                        ["red"] = "red",
                     },
-                },
-                [SRPSJudging.DDraw] = new()
-                {
-                    // English: the RPS Judging with a draw in the {0} round
-                    // Example: the RPS Judging with a draw in the first round
-                    Discriminator = "the RPS Judging with a draw in the {0} round",
                 },
             },
         },
@@ -16294,7 +16279,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualModuleName = "Саймон выступает",
             ManualQuestions = new()
             {
-                ["Which colors flashed in each stage?"] = "Какие цвета горели на каждом этапе?",
                 ["What color was the indicator in each stage?"] = "Какого цвета был индикатор на каждом этапе?",
             },
             Questions = new()
@@ -16316,25 +16300,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["lime"] = "Лаймового",
                         ["cyan"] = "Голубого",
                         ["white"] = "Белого",
-                    },
-                },
-                [SSimonStages.Flashes] = new()
-                {
-                    // English: Which color flashed {1} in the {2} stage in {0}?
-                    // Example: Which color flashed first in the first stage in Simon Stages?
-                    Question = "Какой цвет горел {1}-м на {2}-м этапе {0}?",
-                    Answers = new()
-                    {
-                        ["red"] = "Красный",
-                        ["blue"] = "Синий",
-                        ["yellow"] = "Жёлтый",
-                        ["orange"] = "Оранжевый",
-                        ["magenta"] = "Пурпурный",
-                        ["green"] = "Зелёный",
-                        ["pink"] = "Розовый",
-                        ["lime"] = "Лаймовый",
-                        ["cyan"] = "Голубой",
-                        ["white"] = "Белый",
                     },
                 },
             },

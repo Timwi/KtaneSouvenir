@@ -14726,49 +14726,34 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which rounds did each team win/lose/tie?"] = "各チームが勝ち/負け/引き分けになったのはどのラウンド？",
+                ["What were the gestures in each round?"] = "What were the gestures in each round?",
             },
             Questions = new()
             {
-                [SRPSJudging.QWinner] = new()
+                [SRPSJudging.QGesture] = new()
                 {
-                    // English: Which round did the {1} team {2} in {0}?
-                    // Example: Which round did the red team win in RPS Judging?
-                    Question = "{0}で{1}チームが{2}ラウンドは？",
+                    // English: What was the {2} team’s gesture in the {1} round of {0}?
+                    // Example: What was the blue team’s gesture in the first round of RPS Judging?
+                    Question = "What was the {2} team’s gesture in the {1} round of {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "赤",
-                        ["blue"] = "青",
-                        ["win"] = "勝った",
-                        ["lose"] = "負けた",
+                        ["blue"] = "blue",
+                        ["red"] = "red",
                     },
-                },
-                [SRPSJudging.QDraw] = new()
-                {
-                    // English: Which round was a draw in {0}?
-                    Question = "{0}で引き分けだったラウンドは？",
                 },
             },
             Discriminators = new()
             {
-                [SRPSJudging.DWinner] = new()
+                [SRPSJudging.DGesture] = new()
                 {
-                    // English: the RPS Judging where the {0} team {1} the {2} round
-                    // Example: the RPS Judging where the red team won the first round
-                    Discriminator = "{0}チームがラウンド{1}で{2}RPS Judging",
+                    // English: the RPS Judging where the {2} team’s gesture was {0} the {1} round
+                    // Example: the RPS Judging where the blue team’s gesture was Dynamite the first round
+                    Discriminator = "the RPS Judging where the {2} team’s gesture was {0} the {1} round",
                     Arguments = new()
                     {
-                        ["red"] = "赤",
-                        ["blue"] = "青",
-                        ["won"] = "勝った",
-                        ["lost"] = "負けた",
+                        ["blue"] = "blue",
+                        ["red"] = "red",
                     },
-                },
-                [SRPSJudging.DDraw] = new()
-                {
-                    // English: the RPS Judging with a draw in the {0} round
-                    // Example: the RPS Judging with a draw in the first round
-                    Discriminator = "ラウンド{0}で引き分けだったRPS Judging",
                 },
             },
         },
@@ -16180,7 +16165,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "サイモンステージ",
             ManualQuestions = new()
             {
-                ["Which colors flashed in each stage?"] = "各ステージで点滅した色は？",
                 ["What color was the indicator in each stage?"] = "各ステージにおけるインジケーターの色は？",
             },
             Questions = new()
@@ -16190,25 +16174,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What color was the indicator in the {1} stage in {0}?
                     // Example: What color was the indicator in the first stage in Simon Stages?
                     Question = "{0}のステージ{1}におけるインジケーターの色は？",
-                    Answers = new()
-                    {
-                        ["red"] = "赤",
-                        ["blue"] = "青",
-                        ["yellow"] = "黄",
-                        ["orange"] = "オレンジ",
-                        ["magenta"] = "マゼンタ",
-                        ["green"] = "緑",
-                        ["pink"] = "ピンク",
-                        ["lime"] = "黄緑",
-                        ["cyan"] = "シアン",
-                        ["white"] = "白",
-                    },
-                },
-                [SSimonStages.Flashes] = new()
-                {
-                    // English: Which color flashed {1} in the {2} stage in {0}?
-                    // Example: Which color flashed first in the first stage in Simon Stages?
-                    Question = "{0}のステージ{2}における{1}番目の点滅した色は？",
                     Answers = new()
                     {
                         ["red"] = "赤",

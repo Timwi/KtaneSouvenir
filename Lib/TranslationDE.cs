@@ -15127,51 +15127,37 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // RPS Judging
         [typeof(SRPSJudging)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which rounds did each team win/lose/tie?"] = "In welcher Runde war unentschieden bzw. wer gewann/verlor?",
+                ["What were the gestures in each round?"] = "What were the gestures in each round?",
             },
             Questions = new()
             {
-                [SRPSJudging.QWinner] = new()
+                [SRPSJudging.QGesture] = new()
                 {
-                    // English: Which round did the {1} team {2} in {0}?
-                    // Example: Which round did the red team win in RPS Judging?
-                    Question = "In welcher Runde hat bei {0} das {1} Team {2}?",
+                    // English: What was the {2} team’s gesture in the {1} round of {0}?
+                    // Example: What was the blue team’s gesture in the first round of RPS Judging?
+                    Question = "What was the {2} team’s gesture in the {1} round of {0}?",
                     Arguments = new()
                     {
-                        ["red"] = "rote",
-                        ["blue"] = "blaue",
-                        ["win"] = "gewonnen",
-                        ["lose"] = "verloren",
+                        ["blue"] = "blue",
+                        ["red"] = "red",
                     },
-                },
-                [SRPSJudging.QDraw] = new()
-                {
-                    // English: Which round was a draw in {0}?
-                    Question = "In welcher Runde war bei {0} unentschieden?",
                 },
             },
             Discriminators = new()
             {
-                [SRPSJudging.DWinner] = new()
+                [SRPSJudging.DGesture] = new()
                 {
-                    // English: the RPS Judging where the {0} team {1} the {2} round
-                    // Example: the RPS Judging where the red team won the first round
-                    Discriminator = "dem RPS Judging, bei dem das {0} Team die {2}e Runde {1},",
+                    // English: the RPS Judging where the {2} team’s gesture was {0} the {1} round
+                    // Example: the RPS Judging where the blue team’s gesture was Dynamite the first round
+                    Discriminator = "the RPS Judging where the {2} team’s gesture was {0} the {1} round",
                     Arguments = new()
                     {
-                        ["red"] = "red",
                         ["blue"] = "blue",
-                        ["won"] = "gewann",
-                        ["lost"] = "verlor",
+                        ["red"] = "red",
                     },
-                },
-                [SRPSJudging.DDraw] = new()
-                {
-                    // English: the RPS Judging with a draw in the {0} round
-                    // Example: the RPS Judging with a draw in the first round
-                    Discriminator = "dem RPS Judging, bei dem in der {0}en Runde unentschieden war,",
                 },
             },
         },
@@ -16606,7 +16592,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["Which colors flashed in each stage?"] = "Welche Farben sind in welcher Stufe aufgeleuchtet?",
                 ["What color was the indicator in each stage?"] = "Welche Farbe hatte der Indikator in welcher Stufe?",
             },
             Questions = new()
@@ -16616,25 +16601,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was the indicator in the {1} stage in {0}?
                     // Example: What color was the indicator in the first stage in Simon Stages?
                     Question = "Welche Farbe hatte bei {0} der Indikator in der {1}en Stufe?",
-                    Answers = new()
-                    {
-                        ["red"] = "rot",
-                        ["blue"] = "blau",
-                        ["yellow"] = "gelb",
-                        ["orange"] = "orange",
-                        ["magenta"] = "magenta",
-                        ["green"] = "grün",
-                        ["pink"] = "pink",
-                        ["lime"] = "limette",
-                        ["cyan"] = "türkis",
-                        ["white"] = "weiß",
-                    },
-                },
-                [SSimonStages.Flashes] = new()
-                {
-                    // English: Which color flashed {1} in the {2} stage in {0}?
-                    // Example: Which color flashed first in the first stage in Simon Stages?
-                    Question = "Welche Farbe ist bei {0} als {1}e in der {2}en Stufe aufgeleuchtet?",
                     Answers = new()
                     {
                         ["red"] = "rot",

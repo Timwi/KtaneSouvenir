@@ -6,99 +6,38 @@ using static Souvenir.AnswerLayout;
 
 public enum SRPSJudging
 {
-    [Question("Which round did the {1} team {2} in {0}?", ThreeColumns6Answers, ExampleAnswers = [QandA.Ordinal], Arguments = ["red", "win", "blue", "win", "red", "lose", "blue", "lose"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
-    QWinner,
+    [Question("What was the {2} team’s gesture in the {1} round of {0}?", TwoColumns4Answers, "Dynamite", "Tornado", "Quicksand", "Pit", "Chain", "Gun", "Law", "Whip", "Sword", "Rock", "Death", "Wall", "Sun", "Camera", "Fire", "Chainsaw", "School", "Scissors", "Poison", "Cage", "Axe", "Peace", "Computer", "Castle", "Snake", "Blood", "Porcupine", "Vulture", "Monkey", "King", "Queen", "Prince", "Princess", "Police", "Woman", "Baby", "Man", "Home", "Train", "Car", "Noise", "Bicycle", "Tree", "Turnip", "Duck", "Wolf", "Cat", "Bird", "Fish", "Spider", "Cockroach", "Brain", "Community", "Cross", "Money", "Vampire", "Sponge", "Church", "Butter", "Book", "Paper", "Cloud", "Airplane", "Moon", "Grass", "Film", "Toilet", "Air", "Planet", "Guitar", "Bowl", "Cup", "Beer", "Rain", "Water", "TV", "Rainbow", "UFO", "Alien", "Prayer", "Mountain", "Satan", "Dragon", "Diamond", "Platinum", "Gold", "Devil", "Fence", "Video Game", "Math", "Robot", "Heart", "Electricity", "Lightning", "Medusa", "Power", "Laser", "Nuke", "Sky", "Tank", "Helicopter", Arguments = [QandA.Ordinal, "blue", QandA.Ordinal, "red"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    QGesture,
 
-    [Question("Which round was a draw in {0}?", ThreeColumns6Answers, ExampleAnswers = [QandA.Ordinal])]
-    QDraw,
-
-    [Discriminator("the RPS Judging where the {0} team {1} the {2} round", Arguments = ["red", "won", QandA.Ordinal, "red", "lost", QandA.Ordinal, "blue", "won", QandA.Ordinal, "blue", "lost", QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, true, false])]
-    DWinner,
-
-    [Discriminator("the RPS Judging with a draw in the {0} round", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    DDraw
+    [Discriminator("the RPS Judging where the {2} team’s gesture was {0} the {1} round", Arguments = ["Dynamite", QandA.Ordinal, "blue", "Tornado", QandA.Ordinal, "red"], ArgumentGroupSize = 3, TranslateArguments = [false, false, true])]
+    DGesture,
 }
 
 public partial class SouvenirModule
 {
     [Handler("RPSJudging", "RPS Judging", typeof(SRPSJudging), "Anonymous", IsBossModule = true)]
-    [ManualQuestion("Which rounds did each team win/lose/tie?")]
+    [ManualQuestion("What were the gestures in each round?")]
     private IEnumerator<SouvenirInstruction> ProcessRPSJudging(ModuleData module)
     {
         var comp = GetComponent(module, "RPSJudgingScript");
 
-        const int OutcomeRed = -1;
-        const int OutcomeDraw = 0;
-        const int OutcomeBlue = 1;
-        var outcomes = new[] { OutcomeRed, OutcomeDraw, OutcomeBlue };
-
         while (!_noUnignoredModulesLeft)
             yield return null;
 
-        var leftDisplays = GetListField<int>(comp, "LeftDisplays").Get(minLength: 0, validator: v => v is < 0 or > 100 ? "Expected range [0, 101]" : null);
-        var rightDisplays = GetListField<int>(comp, "RightDisplays").Get(expectedLength: leftDisplays.Count, validator: v => v is < 0 or > 100 ? "Expected range [0, 101]" : null);
+        var leftDisplays = GetListField<int>(comp, "LeftDisplays").Get(minLength: 0, validator: v => v is < 0 or > 100 ? "Expected range [0, 100]" : null);
+        var rightDisplays = GetListField<int>(comp, "RightDisplays").Get(expectedLength: leftDisplays.Count, validator: v => v is < 0 or > 100 ? "Expected range [0, 100]" : null);
 
         if (leftDisplays.Count == 0)
             yield return legitimatelyNoQuestion(module, "There were no stages.");
 
-        yield return null;
+        var allGestures = SRPSJudging.QGesture.GetAnswers();
 
-        bool pickAnswers(List<int> valid, out string[] correct, out string[] incorrect)
-        {
-            correct = valid.Select(x => Ordinal(x + 1)).ToArray();
-            incorrect = Enumerable.Range(0, leftDisplays.Count).Except(valid).Select(x => Ordinal(x + 1)).ToArray();
-            return correct.Length > 0 && incorrect.Length > 0;
-        }
-
-        static int matchup(int blue, int red) => blue == red ? OutcomeDraw : (red - blue + 101) % 101 < 51 ? OutcomeBlue : OutcomeRed;
-
-        List<int> blueWins = [], redWins = [], draws = [];
         for (var stage = 0; stage < leftDisplays.Count; stage++)
         {
-            switch (matchup(leftDisplays[stage], rightDisplays[stage]))
-            {
-                case OutcomeRed:
-                    redWins.Add(stage);
-                    yield return new Discriminator(SRPSJudging.DWinner, $"red-win-{stage}", args: ["red", "won", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
-                    yield return new Discriminator(SRPSJudging.DWinner, $"blue-lose-{stage}", args: ["blue", "lost", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
-                    break;
-
-                case OutcomeDraw:
-                    draws.Add(stage);
-                    yield return new Discriminator(SRPSJudging.DDraw, $"draw-{stage}", args: [Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
-                    break;
-
-                case OutcomeBlue:
-                    blueWins.Add(stage);
-                    yield return new Discriminator(SRPSJudging.DWinner, $"blue-win-{stage}", args: ["blue", "won", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
-                    yield return new Discriminator(SRPSJudging.DWinner, $"red-lose-{stage}", args: ["red", "lost", Ordinal(stage + 1)], avoidAnswers: [Ordinal(stage + 1)]);
-                    break;
-
-                default:
-                    throw new InvalidOperationException();
-            }
+            yield return new Discriminator(SRPSJudging.DGesture, $"blue-{stage}", leftDisplays[stage], args: [allGestures[leftDisplays[stage]], Ordinal(stage + 1), "blue"]);
+            yield return new Discriminator(SRPSJudging.DGesture, $"red-{stage}", rightDisplays[stage], args: [allGestures[rightDisplays[stage]], Ordinal(stage + 1), "red"]);
+            yield return question(SRPSJudging.QGesture, args: [Ordinal(stage + 1), "blue"]).AvoidDiscriminators($"blue-{stage}").Answers(allGestures[leftDisplays[stage]]);
+            yield return question(SRPSJudging.QGesture, args: [Ordinal(stage + 1), "red"]).AvoidDiscriminators($"red-{stage}").Answers(allGestures[rightDisplays[stage]]);
         }
-
-        var any = false;
-        if (draws.Count > 0 && pickAnswers(draws, out var correct, out var incorrect))
-        {
-            yield return question(SRPSJudging.QDraw).Answers(correct, preferredWrong: incorrect);
-            any = true;
-        }
-        if (blueWins.Count > 0 && pickAnswers(blueWins, out correct, out incorrect))
-        {
-            yield return question(SRPSJudging.QWinner, args: ["blue", "win"]).Answers(correct, preferredWrong: incorrect);
-            yield return question(SRPSJudging.QWinner, args: ["red", "lose"]).Answers(correct, preferredWrong: incorrect);
-            any = true;
-        }
-        if (redWins.Count > 0 && pickAnswers(redWins, out correct, out incorrect))
-        {
-            yield return question(SRPSJudging.QWinner, args: ["blue", "lose"]).Answers(correct, preferredWrong: incorrect);
-            yield return question(SRPSJudging.QWinner, args: ["red", "win"]).Answers(correct, preferredWrong: incorrect);
-            any = true;
-        }
-
-        if (!any)
-            yield return legitimatelyNoQuestion(module, "Every stage had the same outcome.");
     }
 }
