@@ -3165,7 +3165,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the cryptocurrency?"] = "What was the cryptocurrency?",
-                ["What was the site and hack method for each hack?"] = "What was the site and hack method for each hack?",
+                ["Which websites got hacked?"] = "Which websites got hacked?",
             },
             Questions = new()
             {
@@ -3174,17 +3174,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the cryptocurrency of {0}?
                     Question = "What was the cryptocurrency of {0}?",
                 },
-                [SCheatCheckout.Hack] = new()
+                [SCheatCheckout.Sites] = new()
                 {
-                    // English: What was the hack method for the {1} hack of {0}?
-                    // Example: What was the hack method for the first hack of Cheat Checkout?
-                    Question = "What was the hack method for the {1} hack of {0}?",
-                },
-                [SCheatCheckout.Site] = new()
-                {
-                    // English: What was the site for the {1} hack of {0}?
-                    // Example: What was the site for the first hack of Cheat Checkout?
-                    Question = "What was the site for the {1} hack of {0}?",
+                    // English: Which website got hacked in {0}?
+                    Question = "Which website got hacked in {0}?",
                 },
             },
         },

@@ -3125,12 +3125,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Cheat Checkout
         [typeof(SCheatCheckout)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Schlingelkasse",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
                 ["What was the cryptocurrency?"] = "Um welche Kryptowährung ging es?",
-                ["What was the site and hack method for each hack?"] = "Welche Site wurde mit welcher Methode gehackt?",
+                ["Which websites got hacked?"] = "Which websites got hacked?",
             },
             Questions = new()
             {
@@ -3139,17 +3140,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the cryptocurrency of {0}?
                     Question = "Was war bei {0} die Kryptowährung?",
                 },
-                [SCheatCheckout.Hack] = new()
+                [SCheatCheckout.Sites] = new()
                 {
-                    // English: What was the hack method for the {1} hack of {0}?
-                    // Example: What was the hack method for the first hack of Cheat Checkout?
-                    Question = "Was war bei {0} die {1}e Exploitmethode?",
-                },
-                [SCheatCheckout.Site] = new()
-                {
-                    // English: What was the site for the {1} hack of {0}?
-                    // Example: What was the site for the first hack of Cheat Checkout?
-                    Question = "Welche Domain wurde bei {0} vom {1}en Exploit angegriffen?",
+                    // English: Which website got hacked in {0}?
+                    Question = "Which website got hacked in {0}?",
                 },
             },
         },

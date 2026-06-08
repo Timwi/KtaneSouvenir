@@ -11,18 +11,15 @@ public enum SCheatCheckout
     [Question("What was the cryptocurrency of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     Currency,
 
-    [Question("What was the hack method for the {1} hack of {0}?", TwoColumns4Answers, "DSA", "W", "CI", "XSS", "BFA", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    Hack,
-
-    [Question("What was the site for the {1} hack of {0}?", OneColumn4Answers, ExampleAnswers = ["medicalsite.co", "checkout.kt", "collection.com", "ktane.timwi.de", "cartoon.com", "galaxydeliver.com"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    Site
+    [Question("Which website got hacked in {0}?", OneColumn4Answers, "repost.com", "pointercat.com", "usb.os", "color.org", "ktane.timwi.de", "lol.gg", "velvet.ss", "watch.tv", "onion.co", "flybird.tv", "sellcoin.org", "collection.com", "razor.pt", "checkout.kt", "crunch.bg", "locco.pt", "plant.tr", "cartoon.com", "blogsite.co", "voila.lc", "ktane.gov", "loli.co", "anime.st", "medicalsite.co", "recoil.pt", "numerical.ss", "isight.com", "symbolic.co", "grocery.st", "galaxydeliver.com", "vilesight.ei", "random.site")]
+    Sites
 }
 
 public partial class SouvenirModule
 {
     [Handler("kataCheatCheckout", "Cheat Checkout", typeof(SCheatCheckout), "Timwi")]
     [ManualQuestion("What was the cryptocurrency?")]
-    [ManualQuestion("What was the site and hack method for each hack?")]
+    [ManualQuestion("Which websites got hacked?")]
     private IEnumerator<SouvenirInstruction> ProcessCheatCheckout(ModuleData module)
     {
         var comp = GetComponent(module, "CheatCheckoutV3");
@@ -32,24 +29,13 @@ public partial class SouvenirModule
         var hacks = GetMethod<IList>(hackGenerator, "GetHacks", 0, isPublic: true).Invoke([], h => h.Count != 5 ? "expected exactly 5 hacks" : null);
 
         var websites = new string[hacks.Count];
-        var hackMethods = new string[hacks.Count];
         for (var i = 0; i < hacks.Count; i++)
         {
-            hackMethods[i] = hacks[i].GetType().Name switch
-            {
-                "DSAHack" => "DSA",
-                "WormHack" => "W",
-                "CIHack" => "CI",
-                "XSSHack" => "XSS",
-                "BFAHack" => "BFA",
-                var typeName => throw new AbandonModuleException($"Invalid hack method: {typeName}"),
-            };
             var website = GetProperty<object>(hacks[i], "Website", isPublic: true).Get();
             websites[i] = GetField<string>(website, "Url", isPublic: true).Get();
         }
 
         var objCrypto = GetField<object>(comp, "_chosenCrypto").Get();
-        var cryptoName = GetField<string>(objCrypto, "Name", isPublic: true).Get();
         var possibleCryptos = GetStaticField<Array>(comp.GetType(), "_possibleCryptos").Get(v => v.Length != 9 ? "expected 9 possible cryptos" : null);
         var cryptoIx = Array.IndexOf(possibleCryptos, objCrypto);
 
@@ -57,10 +43,6 @@ public partial class SouvenirModule
         var sprites = spriteRenderers.Select(sr => Sprites.TranslateSprite(sr.sprite, 800)).ToArray();
         yield return question(SCheatCheckout.Currency).Answers(sprites[cryptoIx], all: sprites);
 
-        for (var i = 0; i < hacks.Count; i++)
-        {
-            yield return question(SCheatCheckout.Hack, args: [Ordinal(i + 1)]).Answers(hackMethods[i], all: hackMethods);
-            yield return question(SCheatCheckout.Site, args: [Ordinal(i + 1)]).Answers(websites[i], all: websites);
-        }
+        yield return question(SCheatCheckout.Sites).Answers(websites);
     }
 }

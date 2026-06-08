@@ -3047,11 +3047,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Cheat Checkout
         [typeof(SCheatCheckout)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "狡勘定",
             ManualQuestions = new()
             {
                 ["What was the cryptocurrency?"] = "仮想通貨は？",
-                ["What was the site and hack method for each hack?"] = "各ハッキングにおけるサイトとハッキングの手法は？",
+                ["Which websites got hacked?"] = "Which websites got hacked?",
             },
             Questions = new()
             {
@@ -3060,17 +3061,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the cryptocurrency of {0}?
                     Question = "{0}の暗号通貨は？",
                 },
-                [SCheatCheckout.Hack] = new()
+                [SCheatCheckout.Sites] = new()
                 {
-                    // English: What was the hack method for the {1} hack of {0}?
-                    // Example: What was the hack method for the first hack of Cheat Checkout?
-                    Question = "{0}の{1}番目のハッキングで使用されたハッキング方法は？",
-                },
-                [SCheatCheckout.Site] = new()
-                {
-                    // English: What was the site for the {1} hack of {0}?
-                    // Example: What was the site for the first hack of Cheat Checkout?
-                    Question = "{0}の{1}番目のハッキング先のサイトは？",
+                    // English: Which website got hacked in {0}?
+                    Question = "Which website got hacked in {0}?",
                 },
             },
         },
