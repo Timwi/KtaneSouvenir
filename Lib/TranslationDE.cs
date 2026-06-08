@@ -5973,47 +5973,31 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Exoplanets
         [typeof(SExoplanets)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Exoplaneten",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the starting and final target planet and digit?"] = "Was war die anfängliche und endgültige Ziffer und der anfängliche und endgültige Zielplanet?",
+                ["Which directions were the planets orbiting the star?"] = "Which directions were the planets orbiting the star?",
             },
             Questions = new()
             {
-                [SExoplanets.StartingTargetPlanet] = new()
+                [SExoplanets.PlanetDirection] = new()
                 {
-                    // English: What was the starting target planet in {0}?
-                    Question = "Was war bei {0} am Anfang der Zielplanet?",
+                    // English: Which direction was the {1} planet orbiting the star in {0}?
+                    // Example: Which direction was the inner planet orbiting the star in Exoplanets?
+                    Question = "Which direction was the {1} planet orbiting the star in {0}?",
+                    Arguments = new()
+                    {
+                        ["inner"] = "inner",
+                        ["middle"] = "middle",
+                        ["outer"] = "outer",
+                    },
                     Answers = new()
                     {
-                        ["outer"] = "der äußere",
-                        ["middle"] = "der mittlere",
-                        ["inner"] = "der innere",
-                        ["none"] = "keiner",
+                        ["clockwise"] = "clockwise",
+                        ["counterclockwise"] = "counterclockwise",
                     },
-                },
-                [SExoplanets.StartingTargetDigit] = new()
-                {
-                    // English: What was the starting target digit in {0}?
-                    Question = "Was war bei {0} am Anfang die Zielziffer?",
-                },
-                [SExoplanets.TargetPlanet] = new()
-                {
-                    // English: What was the final target planet in {0}?
-                    Question = "Was war bei {0} am Ende der Zielplanet?",
-                    Answers = new()
-                    {
-                        ["outer"] = "der äußere",
-                        ["middle"] = "der mittlere",
-                        ["inner"] = "der innere",
-                        ["none"] = "keiner",
-                    },
-                },
-                [SExoplanets.TargetDigit] = new()
-                {
-                    // English: What was the final target digit in {0}?
-                    Question = "Was war bei {0} am Ende die Zielziffer?",
                 },
             },
         },

@@ -5804,46 +5804,30 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Exoplanets
         [typeof(SExoplanets)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "太陽系外惑星",
             ManualQuestions = new()
             {
-                ["What were the starting and final target planet and digit?"] = "開始時と解除時のターゲット惑星と数字は？",
+                ["Which directions were the planets orbiting the star?"] = "Which directions were the planets orbiting the star?",
             },
             Questions = new()
             {
-                [SExoplanets.StartingTargetPlanet] = new()
+                [SExoplanets.PlanetDirection] = new()
                 {
-                    // English: What was the starting target planet in {0}?
-                    Question = "{0}の開始ターゲット惑星は？",
+                    // English: Which direction was the {1} planet orbiting the star in {0}?
+                    // Example: Which direction was the inner planet orbiting the star in Exoplanets?
+                    Question = "Which direction was the {1} planet orbiting the star in {0}?",
+                    Arguments = new()
+                    {
+                        ["inner"] = "inner",
+                        ["middle"] = "middle",
+                        ["outer"] = "outer",
+                    },
                     Answers = new()
                     {
-                        ["outer"] = "外側",
-                        ["middle"] = "中央",
-                        ["inner"] = "内側",
-                        ["none"] = "なし",
+                        ["clockwise"] = "clockwise",
+                        ["counterclockwise"] = "counterclockwise",
                     },
-                },
-                [SExoplanets.StartingTargetDigit] = new()
-                {
-                    // English: What was the starting target digit in {0}?
-                    Question = "{0}の開始ターゲット値は？",
-                },
-                [SExoplanets.TargetPlanet] = new()
-                {
-                    // English: What was the final target planet in {0}?
-                    Question = "{0}の最終ターゲット惑星は？",
-                    Answers = new()
-                    {
-                        ["outer"] = "外側",
-                        ["middle"] = "中央",
-                        ["inner"] = "内側",
-                        ["none"] = "なし",
-                    },
-                },
-                [SExoplanets.TargetDigit] = new()
-                {
-                    // English: What was the final target digit in {0}?
-                    Question = "{0}の最終ターゲット値は？",
                 },
             },
         },

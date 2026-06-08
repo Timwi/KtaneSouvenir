@@ -5923,49 +5923,29 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Exoplanets
         [typeof(SExoplanets)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the starting and final target planet and digit?"] = "Какая была начальная и целевая планета и цифра?",
+                ["Which directions were the planets orbiting the star?"] = "Which directions were the planets orbiting the star?",
             },
             Questions = new()
             {
-                [SExoplanets.StartingTargetPlanet] = new()
+                [SExoplanets.PlanetDirection] = new()
                 {
-                    // English: What was the starting target planet in {0}?
-                    Question = "Какая была начальная целевая планета из {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    // English: Which direction was the {1} planet orbiting the star in {0}?
+                    // Example: Which direction was the inner planet orbiting the star in Exoplanets?
+                    Question = "Which direction was the {1} planet orbiting the star in {0}?",
+                    Arguments = new()
+                    {
+                        ["inner"] = "inner",
+                        ["middle"] = "middle",
+                        ["outer"] = "outer",
+                    },
                     Answers = new()
                     {
-                        ["outer"] = "Внешняя",
-                        ["middle"] = "Средняя",
-                        ["inner"] = "Внутреняя",
-                        ["none"] = "Никакая",
+                        ["clockwise"] = "clockwise",
+                        ["counterclockwise"] = "counterclockwise",
                     },
-                },
-                [SExoplanets.StartingTargetDigit] = new()
-                {
-                    // English: What was the starting target digit in {0}?
-                    Question = "Какая была начальная целевая цифра {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                },
-                [SExoplanets.TargetPlanet] = new()
-                {
-                    // English: What was the final target planet in {0}?
-                    Question = "Какая была финальная целевая планета из {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                    Answers = new()
-                    {
-                        ["outer"] = "Внешняя",
-                        ["middle"] = "Средняя",
-                        ["inner"] = "Внутреняя",
-                        ["none"] = "Никакая",
-                    },
-                },
-                [SExoplanets.TargetDigit] = new()
-                {
-                    // English: What was the final target digit in {0}?
-                    Question = "Какая была финальная целевая цифра {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },
