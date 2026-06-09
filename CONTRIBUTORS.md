@@ -130,21 +130,20 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Forget Me             │  Metamorse         │  Numpath          │  Superparsing          │
     Kanye Encounter, The  │  M-Seq             │  Red Herring      │  Tasque Managing       │
 
-## Implemented by Espik (22)
+## Implemented by Espik (23)
 
-    100 Levels of Defusal  │  Coffeebucks         │  Exoplanets          │  Role Reversal         │  Unfair Cipher
-    Blockbusters           │  Directional Button  │  Hexabutton, The     │  Simon Stages          │  Unicode
-    Boolean Wires          │  Dreamcipher         │  Hyperlink, The      │  Sorting               │
-    Calendar               │  Encrypted Morse     │  Not Who’s on First  │  Thinking Wires        │
-    Challenge & Contact    │  Etterna             │  Regular Crazy Talk  │  Tricky Tetris Pieces  │
+    100 Levels of Defusal  │  Coffeebucks         │  Exoplanets          │  Role Reversal   │  Tricky Tetris Pieces
+    Blockbusters           │  Directional Button  │  Hexabutton, The     │  Samsung, The    │  Unfair Cipher
+    Boolean Wires          │  Dreamcipher         │  Hyperlink, The      │  Simon Stages    │  Unicode
+    Calendar               │  Encrypted Morse     │  Not Who’s on First  │  Sorting         │
+    Challenge & Contact    │  Etterna             │  Regular Crazy Talk  │  Thinking Wires  │
 
-## Implemented by TasThiluna (21)
+## Implemented by TasThiluna (20)
 
-    3D Tap Code         │  Hidden Colors          │  Mister Softee     │  Rule, The     │  Tenpins
-    Bakery              │  Identification Crisis  │  Module Listening  │  Samsung, The  │
-    Bamboozling Button  │  LED Math               │  More Code         │  Simon’s Star  │
-    Chinese Counting    │  M&Ms                   │  Ordered Keys      │  Small Circle  │
-    Encryption Bingo    │  M&Ns                   │  Rainbow Arrows    │  Snooker       │
+    3D Tap Code         │  Encryption Bingo       │  M&Ms              │  More Code       │  Simon’s Star
+    Bakery              │  Hidden Colors          │  M&Ns              │  Ordered Keys    │  Small Circle
+    Bamboozling Button  │  Identification Crisis  │  Mister Softee     │  Rainbow Arrows  │  Snooker
+    Chinese Counting    │  LED Math               │  Module Listening  │  Rule, The       │  Tenpins
 
 ## Implemented by kavinkul (14)
 

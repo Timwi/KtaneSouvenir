@@ -14860,15 +14860,77 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Where was each app?"] = "各アプリはどこ？",
+                ["What was the language of the equation in Duolingo?"] = "What was the language of the equation in Duolingo?",
+                ["What were the coordinates in Google Maps?"] = "What were the coordinates in Google Maps?",
+                ["What were the symbols and their colors in the cycle in Photomath?"] = "What were the symbols and their colors in the cycle in Photomath?",
+                ["What was the starting symbol in Photomath?"] = "What was the starting symbol in Photomath?",
+                ["What song was played in Spotify?"] = "What song was played in Spotify?",
+                ["What was the Braille pattern in Discord?"] = "What was the Braille pattern in Discord?",
             },
             Questions = new()
             {
-                [SSamsung.AppPositions] = new()
+                [SSamsung.DuolingoLanguage] = new()
                 {
-                    // English: Where was {1} in {0}?
-                    // Example: Where was Duolingo in The Samsung?
-                    Question = "{0}の{1}はどこ？",
+                    // English: What was the language of the equation shown by Duolingo in {0}?
+                    Question = "What was the language of the equation shown by Duolingo in {0}?",
+                    Answers = new()
+                    {
+                        ["Spanish"] = "Spanish",
+                        ["Italian"] = "Italian",
+                        ["Chinese"] = "Chinese",
+                        ["French"] = "French",
+                        ["Afrikaans"] = "Afrikaans",
+                        ["Swahili"] = "Swahili",
+                        ["Japanese"] = "Japanese",
+                        ["Korean"] = "Korean",
+                        ["Mongolian"] = "Mongolian",
+                        ["Thai"] = "Thai",
+                    },
+                },
+                [SSamsung.GoogleMapsCoordinate] = new()
+                {
+                    // English: What was a {1} coordinate shown by Google Maps in {0}?
+                    // Example: What was a latitude coordinate shown by Google Maps in The Samsung?
+                    Question = "What was a {1} coordinate shown by Google Maps in {0}?",
+                    Arguments = new()
+                    {
+                        ["latitude"] = "latitude",
+                        ["longitude"] = "longitude",
+                    },
+                },
+                [SSamsung.PhotomathCycleSymbol] = new()
+                {
+                    // English: What was the {1} symbol of the cycle shown by Photomath in {0}?
+                    // Example: What was the first symbol of the cycle shown by Photomath in The Samsung?
+                    Question = "What was the {1} symbol of the cycle shown by Photomath in {0}?",
+                },
+                [SSamsung.PhotomathCycleColor] = new()
+                {
+                    // English: What color was the {1} symbol of the cycle shown by Photomath in {0}?
+                    // Example: What color was the first symbol of the cycle shown by Photomath in The Samsung?
+                    Question = "What color was the {1} symbol of the cycle shown by Photomath in {0}?",
+                    Answers = new()
+                    {
+                        ["blue"] = "blue",
+                        ["purple"] = "purple",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                    },
+                },
+                [SSamsung.PhotomathStartymbol] = new()
+                {
+                    // English: What was the starting symbol for Photomath in {0}?
+                    Question = "What was the starting symbol for Photomath in {0}?",
+                },
+                [SSamsung.SpotifySong] = new()
+                {
+                    // English: What song was played by Spotify in {0}?
+                    Question = "What song was played by Spotify in {0}?",
+                },
+                [SSamsung.DiscordPattern] = new()
+                {
+                    // English: What Braille pattern was shown by Discord in {0}?
+                    Question = "What Braille pattern was shown by Discord in {0}?",
                 },
             },
         },
