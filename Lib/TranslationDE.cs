@@ -5984,7 +5984,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which direction was the {1} planet orbiting the star in {0}?
                     // Example: Which direction was the inner planet orbiting the star in Exoplanets?
-                    Question = "Wierum verlief bei {0} die Umlaufbahn des {1}en Planeten um den Stern?",
+                    Question = "Wierum verlief bei {0} die Umlaufbahn des {1} Planeten um den Stern?",
                     Arguments = new()
                     {
                         ["inner"] = "inneren",
