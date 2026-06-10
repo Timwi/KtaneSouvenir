@@ -685,10 +685,19 @@ public partial class SouvenirModule : MonoBehaviour
     private void SetQuestion(QandA q)
     {
         _currentQuestion = q;
+
+        // Some modules, such as Mystery Module and Cursed, change Souvenir’s localScale in order to hide Souvenir.
+        // Let’s deal with this by temporarily resizing it and then putting it back within the same frame, so it’s unnoticeable.
+        // (Note that Mystery Module is also dealt with by not asking questions while Souvenir is hidden, so this actually only applies to Cursed.)
+        var prevScale = gameObject.transform.localScale;
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
+
         q.SetQandAs(this);
         Debug.Log($"[Souvenir #{_moduleId}] Asking question: {q.DebugString}");
         AnswersParent.SetActive(true);
         Audio.PlaySoundAtTransform("Question", transform);
+
+        gameObject.transform.localScale = prevScale;
     }
 
     private static readonly double[][] _acceptableWidthsWithoutQuestionSprite = Ut.NewArray<double[]>(
