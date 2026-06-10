@@ -14917,7 +14917,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["yellow"] = "yellow",
                     },
                 },
-                [SSamsung.PhotomathStartymbol] = new()
+                [SSamsung.PhotomathStartSymbol] = new()
                 {
                     // English: What was the starting symbol for Photomath in {0}?
                     Question = "What was the starting symbol for Photomath in {0}?",

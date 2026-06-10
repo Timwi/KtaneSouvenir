@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Souvenir;
 using UnityEngine;
 using static Souvenir.AnswerLayout;
@@ -20,7 +22,7 @@ public enum SSamsung
     PhotomathCycleColor,
 
     [Question("What was the starting symbol for Photomath in {0}?", ThreeColumns6Answers, "Σ", "ℝ", "≜", "!", "δ", "∞", "⋰", "∝", "∴", "¬")]
-    PhotomathStartymbol,
+    PhotomathStartSymbol,
 
     [Question("What song was played by Spotify in {0}?", TwoColumns4Answers, Type = AnswerType.Audio, ForeignAudioID = "theSamsung")]
     SpotifySong,
@@ -137,7 +139,7 @@ public partial class SouvenirModule
             yield return question(SSamsung.PhotomathCycleColor, args: [Ordinal(i + 1)]).Answers(allColors[colorIndecies[cycleColors[i]]]);
         }
 
-        yield return question(SSamsung.PhotomathStartymbol).Answers(symbols[startValue]);
+        yield return question(SSamsung.PhotomathStartSymbol).Answers(symbols[startValue]);
 
         // Spotify
         var samsungSettings = GetField<object>(comp, "Settings").Get();
@@ -180,5 +182,19 @@ public partial class SouvenirModule
             yield return question(SSamsung.SpotifySong).Answers(songs[songIndex], all: songs.ToArray());
 
         // Discord
+        var users = GetField<IList>(comp, "users").Get(x => x.Count != 6 ? "expected length 6" : null);
+        var fldPosition = GetIntField(users[0], "positionNumber", isPublic: true);
+        var userPositions = users.Cast<object>().Select(x => fldPosition.GetFrom(x)).ToArray();
+
+        var filledDots = new bool[6];
+        var dotPositions = new int[6] { 0, 4, 8, 1, 5, 9 };
+
+        for (var i = 0; i < filledDots.Length; i++)
+            filledDots[i] = userPositions.Any(x => x == dotPositions[i]);
+
+        if (filledDots.Contains(true))
+        {
+            //yield return question(SSamsung.DiscordPattern).Answers(filledDots);
+        }
     }
 }
