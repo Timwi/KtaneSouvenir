@@ -3125,13 +3125,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Cheat Checkout
         [typeof(SCheatCheckout)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Schlingelkasse",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
                 ["What was the cryptocurrency?"] = "Um welche Kryptowährung ging es?",
-                ["Which websites got hacked?"] = "Which websites got hacked?",
+                ["Which websites got hacked?"] = "Welche Websites wurden gehackt?",
             },
             Questions = new()
             {
@@ -3143,7 +3142,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SCheatCheckout.Sites] = new()
                 {
                     // English: Which website got hacked in {0}?
-                    Question = "Which website got hacked in {0}?",
+                    Question = "Welche Website wurde bei {0} gehackt?",
                 },
             },
         },
@@ -5973,12 +5972,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Exoplanets
         [typeof(SExoplanets)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Exoplaneten",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["Which directions were the planets orbiting the star?"] = "Which directions were the planets orbiting the star?",
+                ["Which directions were the planets orbiting the star?"] = "Wierum verlief die Umlaufbahn der Planeten um den Stern?",
             },
             Questions = new()
             {
@@ -5986,17 +5984,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which direction was the {1} planet orbiting the star in {0}?
                     // Example: Which direction was the inner planet orbiting the star in Exoplanets?
-                    Question = "Which direction was the {1} planet orbiting the star in {0}?",
+                    Question = "Wierum verlief bei {0} die Umlaufbahn des {1}en Planeten um den Stern?",
                     Arguments = new()
                     {
-                        ["inner"] = "inner",
-                        ["middle"] = "middle",
-                        ["outer"] = "outer",
+                        ["inner"] = "inneren",
+                        ["middle"] = "mittleren",
+                        ["outer"] = "äußeren",
                     },
                     Answers = new()
                     {
-                        ["clockwise"] = "clockwise",
-                        ["counterclockwise"] = "counterclockwise",
+                        ["clockwise"] = "Im Uhrzeigersinn",
+                        ["counterclockwise"] = "Gegen den Uhrzeigersinn",
                     },
                 },
             },
@@ -15105,10 +15103,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // RPS Judging
         [typeof(SRPSJudging)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "SSP-Richter",
+            Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["What were the gestures in each round?"] = "What were the gestures in each round?",
+                ["What were the gestures in each round?"] = "Welche Gesten kamen in welcher Runde vor?",
             },
             Questions = new()
             {
@@ -15116,11 +15115,115 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {2} team’s gesture in the {1} round of {0}?
                     // Example: What was the blue team’s gesture in the first round of RPS Judging?
-                    Question = "What was the {2} team’s gesture in the {1} round of {0}?",
+                    Question = "Was war bei {0} {2} Geste in der {1}en Runde?",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["red"] = "red",
+                        ["blue"] = "Team Blaus",
+                        ["red"] = "Team Rots",
+                    },
+                    Answers = new()
+                    {
+                        ["Dynamite"] = "Dynamit",
+                        ["Tornado"] = "Tornado",
+                        ["Quicksand"] = "Treibsand",
+                        ["Pit"] = "Grube",
+                        ["Chain"] = "Kette",
+                        ["Gun"] = "Gewehr",
+                        ["Law"] = "Gesetz",
+                        ["Whip"] = "Peitsche",
+                        ["Sword"] = "Schwert",
+                        ["Rock"] = "Stein",
+                        ["Death"] = "Tod",
+                        ["Wall"] = "Mauer",
+                        ["Sun"] = "Sonne",
+                        ["Camera"] = "Kamera",
+                        ["Fire"] = "Feuer",
+                        ["Chainsaw"] = "Kettensäge",
+                        ["School"] = "Schule",
+                        ["Scissors"] = "Schere",
+                        ["Poison"] = "Gift",
+                        ["Cage"] = "Käfig",
+                        ["Axe"] = "Axt",
+                        ["Peace"] = "Frieden",
+                        ["Computer"] = "Computer",
+                        ["Castle"] = "Burg",
+                        ["Snake"] = "Schlange",
+                        ["Blood"] = "Blut",
+                        ["Porcupine"] = "Stachelschwein",
+                        ["Vulture"] = "Geier",
+                        ["Monkey"] = "Affe",
+                        ["King"] = "König",
+                        ["Queen"] = "Königin",
+                        ["Prince"] = "Prinz",
+                        ["Princess"] = "Prinzessin",
+                        ["Police"] = "Polizei",
+                        ["Woman"] = "Frau",
+                        ["Baby"] = "Baby",
+                        ["Man"] = "Mann",
+                        ["Home"] = "Zuhause",
+                        ["Train"] = "Zug",
+                        ["Car"] = "Auto",
+                        ["Noise"] = "Lärm",
+                        ["Bicycle"] = "Fahrrad",
+                        ["Tree"] = "Baum",
+                        ["Turnip"] = "Rübe",
+                        ["Duck"] = "Ente",
+                        ["Wolf"] = "Wolf",
+                        ["Cat"] = "Katze",
+                        ["Bird"] = "Vogel",
+                        ["Fish"] = "Fisch",
+                        ["Spider"] = "Spinne",
+                        ["Cockroach"] = "Kakerlake",
+                        ["Brain"] = "Gehirn",
+                        ["Community"] = "Gemeinschaft",
+                        ["Cross"] = "Kreuz",
+                        ["Money"] = "Geld",
+                        ["Vampire"] = "Vampir",
+                        ["Sponge"] = "Schwamm",
+                        ["Church"] = "Kirche",
+                        ["Butter"] = "Butter",
+                        ["Book"] = "Buch",
+                        ["Paper"] = "Papier",
+                        ["Cloud"] = "Wolke",
+                        ["Airplane"] = "Flugzeug",
+                        ["Moon"] = "Mond",
+                        ["Grass"] = "Gras",
+                        ["Film"] = "Film",
+                        ["Toilet"] = "Klo",
+                        ["Air"] = "Luft",
+                        ["Planet"] = "Planet",
+                        ["Guitar"] = "Gitarre",
+                        ["Bowl"] = "Schüssel",
+                        ["Cup"] = "Tasse",
+                        ["Beer"] = "Bier",
+                        ["Rain"] = "Regen",
+                        ["Water"] = "Wasser",
+                        ["TV"] = "Fernseher",
+                        ["Rainbow"] = "Regenbogen",
+                        ["UFO"] = "UFO",
+                        ["Alien"] = "Außerirdischer",
+                        ["Prayer"] = "Gebet",
+                        ["Mountain"] = "Berg",
+                        ["Satan"] = "Satan",
+                        ["Dragon"] = "Drache",
+                        ["Diamond"] = "Diamant",
+                        ["Platinum"] = "Platin",
+                        ["Gold"] = "Gold",
+                        ["Devil"] = "Teufel",
+                        ["Fence"] = "Zaun",
+                        ["Video Game"] = "Computerspiel",
+                        ["Math"] = "Mathe",
+                        ["Robot"] = "Roboter",
+                        ["Heart"] = "Herz",
+                        ["Electricity"] = "Strom",
+                        ["Lightning"] = "Blitz",
+                        ["Medusa"] = "Medusa",
+                        ["Power"] = "Macht",
+                        ["Laser"] = "Laser",
+                        ["Nuke"] = "Atombombe",
+                        ["Sky"] = "Himmel",
+                        ["Tank"] = "Panzer",
+                        ["Helicopter"] = "Hubschrauber",
                     },
                 },
             },
@@ -15130,11 +15233,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the RPS Judging where the {2} team’s gesture was {0} the {1} round
                     // Example: the RPS Judging where the blue team’s gesture was Dynamite the first round
-                    Discriminator = "the RPS Judging where the {2} team’s gesture was {0} the {1} round",
+                    Discriminator = "dem SSP-Richter, bei dem {2} Geste in der {1}en Runde {0} war,",
                     Arguments = new()
                     {
-                        ["blue"] = "blue",
-                        ["red"] = "red",
+                        ["blue"] = "Team Blaus",
+                        ["red"] = "Team Rots",
                     },
                 },
             },
@@ -15266,36 +15369,35 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Samsung
         [typeof(SSamsung)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Das Samsung",
             ModuleNameDative = "Samsung",
             ManualModuleName = "Das\uE001Samsung",
             ManualQuestions = new()
             {
-                ["What was the language of the equation in Duolingo?"] = "What was the language of the equation in Duolingo?",
-                ["What were the coordinates in Google Maps?"] = "What were the coordinates in Google Maps?",
-                ["What were the symbols and their colors in the cycle in Photomath?"] = "What were the symbols and their colors in the cycle in Photomath?",
-                ["What was the starting symbol in Photomath?"] = "What was the starting symbol in Photomath?",
-                ["What song was played in Spotify?"] = "What song was played in Spotify?",
-                ["What was the Braille pattern in Discord?"] = "What was the Braille pattern in Discord?",
+                ["What was the language of the equation in Duolingo?"] = "In welcher Sprache war bei Duolingo die Gleichung?",
+                ["What were the coordinates in Google Maps?"] = "Welche Koordinaten kamen bei Google Maps vor?",
+                ["What were the symbols and their colors in the cycle in Photomath?"] = "Welche Symbole kamen bei Photomath in welchen Farben vor?",
+                ["What was the starting symbol in Photomath?"] = "Was war bei Photomath das Startsymbol?",
+                ["What song was played in Spotify?"] = "Welches Lied wurde von Spotify abgespielt?",
+                ["What was the Braille pattern in Discord?"] = "Was war bei Discord das Braille-Muster?",
             },
             Questions = new()
             {
                 [SSamsung.DuolingoLanguage] = new()
                 {
                     // English: What was the language of the equation shown by Duolingo in {0}?
-                    Question = "What was the language of the equation shown by Duolingo in {0}?",
+                    Question = "In welcher Sprache war bei {0} bei Duolingo die Gleichung?",
                     Answers = new()
                     {
-                        ["Spanish"] = "Spanish",
-                        ["Italian"] = "Italian",
-                        ["Chinese"] = "Chinese",
-                        ["French"] = "French",
+                        ["Spanish"] = "Spanisch",
+                        ["Italian"] = "Italienisch",
+                        ["Chinese"] = "Chinesisch",
+                        ["French"] = "Französisch",
                         ["Afrikaans"] = "Afrikaans",
                         ["Swahili"] = "Swahili",
-                        ["Japanese"] = "Japanese",
-                        ["Korean"] = "Korean",
-                        ["Mongolian"] = "Mongolian",
+                        ["Japanese"] = "Japanisch",
+                        ["Korean"] = "Koreanisch",
+                        ["Mongolian"] = "Mongolisch",
                         ["Thai"] = "Thai",
                     },
                 },
@@ -15303,46 +15405,46 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was a {1} coordinate shown by Google Maps in {0}?
                     // Example: What was a latitude coordinate shown by Google Maps in The Samsung?
-                    Question = "What was a {1} coordinate shown by Google Maps in {0}?",
+                    Question = "Wie lautete bei {0} bei Google Maps die {1}-Koordinate?",
                     Arguments = new()
                     {
-                        ["latitude"] = "latitude",
-                        ["longitude"] = "longitude",
+                        ["latitude"] = "Breitengrad",
+                        ["longitude"] = "Längengrad",
                     },
                 },
                 [SSamsung.PhotomathCycleSymbol] = new()
                 {
                     // English: What was the {1} symbol of the cycle shown by Photomath in {0}?
                     // Example: What was the first symbol of the cycle shown by Photomath in The Samsung?
-                    Question = "What was the {1} symbol of the cycle shown by Photomath in {0}?",
+                    Question = "Was war bei {0} im Photomath-Zyklus das {1}e Symbol?",
                 },
                 [SSamsung.PhotomathCycleColor] = new()
                 {
                     // English: What color was the {1} symbol of the cycle shown by Photomath in {0}?
                     // Example: What color was the first symbol of the cycle shown by Photomath in The Samsung?
-                    Question = "What color was the {1} symbol of the cycle shown by Photomath in {0}?",
+                    Question = "Welche Farbe hatte bei {0} im Photomath-Zyklus das {1}e Symbol?",
                     Answers = new()
                     {
-                        ["blue"] = "blue",
-                        ["purple"] = "purple",
-                        ["green"] = "green",
-                        ["yellow"] = "yellow",
+                        ["blue"] = "blau",
+                        ["purple"] = "lila",
+                        ["green"] = "grün",
+                        ["yellow"] = "gelb",
                     },
                 },
                 [SSamsung.PhotomathStartSymbol] = new()
                 {
                     // English: What was the starting symbol for Photomath in {0}?
-                    Question = "What was the starting symbol for Photomath in {0}?",
+                    Question = "Was war bei {0} bei Photomath das Startsymbol?",
                 },
                 [SSamsung.SpotifySong] = new()
                 {
                     // English: What song was played by Spotify in {0}?
-                    Question = "What song was played by Spotify in {0}?",
+                    Question = "Welches Lied wurde bei {0} von Spotify abgespielt?",
                 },
                 [SSamsung.DiscordPattern] = new()
                 {
                     // English: What Braille pattern was shown by Discord in {0}?
-                    Question = "What Braille pattern was shown by Discord in {0}?",
+                    Question = "Welches Braille-Muster wurde bei {0} in Discord angezeigt?",
                 },
             },
         },

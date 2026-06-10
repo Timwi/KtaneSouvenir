@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Souvenir;
 using UnityEngine;
 using static Souvenir.AnswerLayout;
+using Rnd = UnityEngine.Random;
 
 public enum SSamsung
 {
@@ -62,35 +62,8 @@ public partial class SouvenirModule
         var bottomCountryValue = GetIntField(comp, "country2").Get();
         var preferredWrongCountries = Enumerable.Range(0, 10).Except([topCountryValue, bottomCountryValue]).ToArray();
 
-        /*
-        var allLatitudes = GetArrayField<float[]>(comp, "latCords").Get(expectedLength: 10);
-        var allLongitudes = GetArrayField<float[]>(comp, "lonCords").Get(expectedLength: 10);
-        */
-        var allLatitudes = new float[][] {
-            new[] { 32.886970f, 40.353244f },
-            new[] { 50.007742f, 64.623881f },
-            new[] { 18.554616f, 25.459147f },
-            new[] { 56.218924f, 65.425386f },
-            new[] { 49.336579f, 52.972463f },
-            new[] { -31.079284f, -20.739675f },
-            new[] { 50.836475f, 53.035930f },
-            new[] { 31.428669f, 39.707192f },
-            new[] { -21.518496f, -5.633482f },
-            new[] { -33.339706f, -29.531405f }
-        };
-
-        var allLongitudes = new float[][] {
-            new[] { -116.121098f, -81.843754f },
-            new[] { -122.115239f, -97.417976f },
-            new[] { -103.130860f, -98.455078f },
-            new[] { 40.464846f, 128.988279f },
-            new[] { 7.470706f, 11.610353f },
-            new[] { 119.950928f, 144.386716f },
-            new[] { -4.003420f, -0.259280f },
-            new[] { 82.001950f, 113.642575f },
-            new[] { -56.329102f, -40.535155f },
-            new[] { 18.769041f, 24.117188f }
-        };
+        var allLatitudes = GetStaticField<float[][]>(comp.GetType(), "latCords").Get(v => v.Length != 10 ? "expected length 10" : null);
+        var allLongitudes = GetStaticField<float[][]>(comp.GetType(), "lonCords").Get(v => v.Length != 10 ? "expected length 10" : null);
 
         var preferredWrongLatitudes = new List<string>();
         var preferredWrongLongitudes = new List<string>();
@@ -100,23 +73,20 @@ public partial class SouvenirModule
         preferredWrongLongitudes.Add(longitudes[0]);
         preferredWrongLongitudes.Add(longitudes[1]);
 
+        var latitudesParsed = latitudes.Select(str => Math.Floor(float.Parse(str))).ToArray();
+        var longitudesParsed = longitudes.Select(str => Math.Floor(float.Parse(str))).ToArray();
         for (var i = 0; i < preferredWrongCountries.Length; i++)
         {
-            var randomCoord = 0.0f;
-
+            float randomCoord;
             do
-            {
-                randomCoord = UnityEngine.Random.Range(allLatitudes[preferredWrongCountries[i]][0], allLatitudes[preferredWrongCountries[i]][1]);
-            }
-            while ((Math.Floor(randomCoord) == Math.Floor(float.Parse(latitudes[0]))) || (Math.Floor(randomCoord) == Math.Floor(float.Parse(latitudes[1]))));
+                randomCoord = Rnd.Range(allLatitudes[preferredWrongCountries[i]][0], allLatitudes[preferredWrongCountries[i]][1]);
+            while (latitudesParsed.Contains(Math.Floor(randomCoord)));
 
             preferredWrongLatitudes.Add(randomCoord.ToString());
 
             do
-            {
-                randomCoord = UnityEngine.Random.Range(allLongitudes[preferredWrongCountries[i]][0], allLongitudes[preferredWrongCountries[i]][1]);
-            }
-            while ((Math.Floor(randomCoord) == Math.Floor(float.Parse(longitudes[0]))) || (Math.Floor(randomCoord) == Math.Floor(float.Parse(longitudes[1]))));
+                randomCoord = Rnd.Range(allLongitudes[preferredWrongCountries[i]][0], allLongitudes[preferredWrongCountries[i]][1]);
+            while (longitudesParsed.Contains(Math.Floor(randomCoord)));
 
             preferredWrongLongitudes.Add(randomCoord.ToString());
         }
@@ -130,13 +100,13 @@ public partial class SouvenirModule
         var startValue = GetIntField(comp, "startingValue").Get();
 
         var allColors = SSamsung.PhotomathCycleColor.GetAnswers();
-        var colorIndecies = GetListField<int>(comp, "photomathUsedColors").Get(expectedLength: 4);
+        var colorIndices = GetListField<int>(comp, "photomathUsedColors").Get(expectedLength: 4);
         var cycleColors = GetArrayField<int>(comp, "operations").Get(expectedLength: 4);
 
         for (var i = 0; i < cycleValues.Length; i++)
         {
             yield return question(SSamsung.PhotomathCycleSymbol, args: [Ordinal(i + 1)]).Answers(symbols[cycleValues[i]]);
-            yield return question(SSamsung.PhotomathCycleColor, args: [Ordinal(i + 1)]).Answers(allColors[colorIndecies[cycleColors[i]]]);
+            yield return question(SSamsung.PhotomathCycleColor, args: [Ordinal(i + 1)]).Answers(allColors[colorIndices[cycleColors[i]]]);
         }
 
         yield return question(SSamsung.PhotomathStartSymbol).Answers(symbols[startValue]);
@@ -150,16 +120,10 @@ public partial class SouvenirModule
         var noCopyrightSongs = new List<AudioClip>();
         var decoySongs = new List<AudioClip>();
 
-        /*
-        var songNames = GetArrayField<string>(comp, "songNames").Get(expectedLength: 10);
-        var noCopyrightSongNames = GetArrayField<string>(comp, "ncSongNames").Get(expectedLength: 10);
-        */
-        var songNames = new[] { "harderBetterFasterStronger", "beatIt", "dangerZone", "youSpinMeRound", "hardwareStore", "xoTourLlif3", "runaway", "dontFearTheReaper", "touchToneTelephone", "rulerOfEverything" };
-        var noCopyrightSongNames = new[] { "dannyDontYouKnow", "atTheSpeedOfLight", "vitality", "exitThisEarthsAtomosphere", "ransom", "newFriendly", "astronomia", "spanishFlea", "mountainKing", "clutterfunk" };
+        var songNames = GetStaticField<string[]>(comp.GetType(), "songNames").Get(v => v.Length != 10 ? "expected length 10" : null);
+        var noCopyrightSongNames = GetStaticField<string[]>(comp.GetType(), "ncSongNames").Get(v => v.Length != 10 ? "expected length 10" : null);
 
-        var fullSolution = GetArrayField<int>(comp, "solution").Get();
-        var songIndex = fullSolution[5];
-
+        var songIndex = GetArrayField<int>(comp, "solution").Get(expectedLength: 8)[5];
         var decoyUsed = GetField<bool>(comp, "decoyUsed").Get();
         var decoyIndex = GetIntField(comp, "decoyIndex").Get();
 
@@ -186,15 +150,14 @@ public partial class SouvenirModule
         var fldPosition = GetIntField(users[0], "positionNumber", isPublic: true);
         var userPositions = users.Cast<object>().Select(x => fldPosition.GetFrom(x)).ToArray();
 
-        var filledDots = new bool[6];
-        var dotPositions = new int[6] { 0, 4, 8, 1, 5, 9 };
+        var filledDots = 0;
+        var dotPositions = new int[6] { 0, 1, 4, 5, 8, 9 };
 
-        for (var i = 0; i < filledDots.Length; i++)
-            filledDots[i] = userPositions.Any(x => x == dotPositions[i]);
+        for (var i = 0; i < dotPositions.Length; i++)
+            if (userPositions.Any(x => x == dotPositions[i]))
+                filledDots |= 1 << i;
 
-        if (filledDots.Contains(true))
-        {
-            //yield return question(SSamsung.DiscordPattern).Answers(filledDots);
-        }
+        if (filledDots != 0)
+            yield return question(SSamsung.DiscordPattern).Answers(Sprites.GenerateCirclesSprite(2, 3, filledDots, 20, 20));
     }
 }
