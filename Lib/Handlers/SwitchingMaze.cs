@@ -25,11 +25,14 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "SwitchingMazeScript");
         var seedTextMesh = GetField<TextMesh>(comp, "Seedling", isPublic: true).Get();
         var fldNumberBasis = GetField<int>(comp, "NumberBasis");
+        var fldCoordinates = GetArrayField<int[]>(comp, "Copper");
 
         yield return WaitForActivate;
 
         var seed = seedTextMesh.text;
         var numberBasis = fldNumberBasis.Get();
+        var coordinates = new int[2][];
+        var matchingCoordinates = false;
 
         var hadStrike = false;
         module.Module.OnStrike += delegate { hadStrike = true; return false; };
@@ -40,6 +43,10 @@ public partial class SouvenirModule
             {
                 seed = seedTextMesh.text;
                 numberBasis = fldNumberBasis.Get();
+                coordinates[0] = fldCoordinates.Get(expectedLength: 3)[0];
+                coordinates[1] = fldCoordinates.Get(expectedLength: 3)[1];
+
+                matchingCoordinates = coordinates[0][0] == coordinates[1][0] && coordinates[0][1] == coordinates[1][1];
                 hadStrike = false;
             }
             yield return null;
@@ -49,6 +56,8 @@ public partial class SouvenirModule
         var colorsOfTheMaze = GetArrayField<string>(comp, "ColorsOfMaze").Get();
 
         yield return question(SSwitchingMaze.Seed).Answers(seedSplit[1]);
-        yield return question(SSwitchingMaze.Color).Answers(colorsOfTheMaze[numberBasis], preferredWrong: colorsOfTheMaze);
+
+        if (!matchingCoordinates)
+            yield return question(SSwitchingMaze.Color).Answers(colorsOfTheMaze[numberBasis], preferredWrong: colorsOfTheMaze);
     }
 }

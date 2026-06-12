@@ -11137,7 +11137,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             ManualQuestions = new()
             {
-                ["Which module was hidden?"] = "Какой модуль был спрятан?",
                 ["Which module was the first requested to be solved?"] = "Какой модуль требовалось решить первым?",
             },
             Questions = new()
@@ -11146,12 +11145,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: Which module was the first requested to be solved by {0}?
                     Question = "Какой модуль надо было обезвредить первым на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                },
-                [SMysteryModule.HiddenModule] = new()
-                {
-                    // English: Which module was hidden by {0}?
-                    Question = "Какой модуль был спрятан за {0}?",
                     Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
             },
@@ -13027,24 +13020,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Palindromes
         [typeof(SPalindromes)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What number was X, Y, Z, and the screen display?"] = "Что было в X, Y, Z и на экране?",
+                ["What number was the screen display?"] = "What number was the screen display?",
             },
             Questions = new()
             {
                 [SPalindromes.Numbers] = new()
                 {
-                    // English: What was {1}’s {2} digit from the right in {0}?
-                    // Example: What was X’s first digit from the right in Palindromes?
-                    Question = "Какая была {2}-я цифра справа {1} {0}?",
-                    Arguments = new()
-                    {
-                        ["X"] = "у X",
-                        ["Y"] = "у Y",
-                        ["Z"] = "у Z",
-                        ["the screen"] = "на экране",
-                    },
+                    // English: What was the screens’s {1} digit from the right in {0}?
+                    // Example: What was the screens’s first digit from the right in Palindromes?
+                    Question = "Какая была {1}-я цифра справа на экране {0}?",
                 },
             },
         },

@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SPalindromes
 {
-    [Question("What was {1}’s {2} digit from the right in {0}?", ThreeColumns6Answers, TranslateArguments = [true, false], Arguments = ["X", QandA.Ordinal, "Y", QandA.Ordinal, "Z", QandA.Ordinal, "the screen", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the screens’s {1} digit from the right in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Numbers
 }
@@ -13,28 +13,22 @@ public enum SPalindromes
 public partial class SouvenirModule
 {
     [Handler("palindromes", "Palindromes", typeof(SPalindromes), "Emik")]
-    [ManualQuestion("What number was X, Y, Z, and the screen display?")]
+    [ManualQuestion("What number was the screen display?")]
     private IEnumerator<SouvenirInstruction> ProcessPalindromes(ModuleData module)
     {
         var comp = GetComponent(module, "Palindromes");
-        var fldX = GetField<string>(comp, "x");
-        var fldY = GetField<string>(comp, "y");
-        var fldZ = GetField<string>(comp, "z");
         var fldN = GetField<string>(comp, "n");
 
         yield return WaitForSolve;
 
-        var vars = new[] { fldN, fldX, fldY, fldZ };
-        for (var varIx = 0; varIx < vars.Length; varIx++)
-            for (var digitIx = 0; digitIx < (varIx < 2 ? 5 : 4); digitIx++)       // 5 if x or n, else 4
-            {
-                var numString = vars[varIx].Get();
-                var digit = numString[numString.Length - 1 - digitIx];
-                if (digit is < '0' or > '9')
-                    throw new AbandonModuleException($"The chosen character ('{digit}') was unexpected (expected a digit 0–9).");
-
-                var labels = new[] { "the screen", "X", "Y", "Z" };
-                yield return question(SPalindromes.Numbers, args: [labels[varIx], Ordinal(digitIx + 1)]).Answers(digit.ToString());
-            }
+        for (var digitIx = 0; digitIx < 9; digitIx++)
+        {
+            var numString = fldN.Get();
+            var digit = numString[numString.Length - 1 - digitIx];
+            if (digit is < '0' or > '9')
+                throw new AbandonModuleException($"The chosen character ('{digit}') was unexpected (expected a digit 0–9).");
+        
+            yield return question(SPalindromes.Numbers, args: [Ordinal(digitIx + 1)]).Answers(digit.ToString());
+        }
     }
 }

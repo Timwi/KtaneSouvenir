@@ -11318,7 +11318,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Mystery-Modul",
             ManualQuestions = new()
             {
-                ["Which module was hidden?"] = "Welches Modul war versteckt?",
                 ["Which module was the first requested to be solved?"] = "Die Entschärfung welches Moduls wurde als erstes verlangt?",
             },
             Questions = new()
@@ -11327,11 +11326,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which module was the first requested to be solved by {0}?
                     Question = "Die Entschärfung welches Moduls wurde bei {0} als erste verlangt?",
-                },
-                [SMysteryModule.HiddenModule] = new()
-                {
-                    // English: Which module was hidden by {0}?
-                    Question = "Welches Modul wurde bei {0} versteckt?",
                 },
             },
         },
@@ -13255,26 +13249,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Palindromes
         [typeof(SPalindromes)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Palindrome",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What number was X, Y, Z, and the screen display?"] = "Was war X, Y, Z und die Anzeige auf dem Display?",
+                ["What number was the screen display?"] = "What number was the screen display?",
             },
             Questions = new()
             {
                 [SPalindromes.Numbers] = new()
                 {
-                    // English: What was {1}’s {2} digit from the right in {0}?
-                    // Example: What was X’s first digit from the right in Palindromes?
-                    Question = "Was war bei {0} die {2}e Ziffer von rechts {1}?",
-                    Arguments = new()
-                    {
-                        ["X"] = "von X",
-                        ["Y"] = "von Y",
-                        ["Z"] = "von Z",
-                        ["the screen"] = "auf dem Display",
-                    },
+                    // English: What was the screens’s {1} digit from the right in {0}?
+                    // Example: What was the screens’s first digit from the right in Palindromes?
+                    Question = "Was war bei {0} die {1}e Ziffer von rechts auf dem Display?",
                 },
             },
         },

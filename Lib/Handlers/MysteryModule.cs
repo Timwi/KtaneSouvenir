@@ -6,16 +6,12 @@ using static Souvenir.AnswerLayout;
 public enum SMysteryModule
 {
     [Question("Which module was the first requested to be solved by {0}?", OneColumn4Answers, ExampleAnswers = ["Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox", "Rock-Paper-Scissors-L.-Sp."])]
-    FirstKey,
-
-    [Question("Which module was hidden by {0}?", OneColumn4Answers, ExampleAnswers = ["Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox"])]
-    HiddenModule
+    FirstKey
 }
 
 public partial class SouvenirModule
 {
     [Handler("mysterymodule", "Mystery Module", typeof(SMysteryModule), "Timwi")]
-    [ManualQuestion("Which module was hidden?")]
     [ManualQuestion("Which module was the first requested to be solved?")]
     private IEnumerator<SouvenirInstruction> ProcessMysteryModule(ModuleData module)
     {
@@ -49,7 +45,6 @@ public partial class SouvenirModule
                 yield return new WaitForSeconds(.1f);
 
             yield return question(SMysteryModule.FirstKey).Answers(keyModule.ModuleDisplayName, preferredWrong: Bomb.GetSolvableModuleNames().ToArray());
-            yield return question(SMysteryModule.HiddenModule).Answers(mystifiedModule.ModuleDisplayName, preferredWrong: Bomb.GetSolvableModuleNames().ToArray());
         }
         finally
         {

@@ -11019,7 +11019,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "ミステリーモジュール",
             ManualQuestions = new()
             {
-                ["Which module was hidden?"] = "どのモジュールが隠されていた？",
                 ["Which module was the first requested to be solved?"] = "最初に解除するように指示されたモジュールは？",
             },
             Questions = new()
@@ -11028,11 +11027,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which module was the first requested to be solved by {0}?
                     Question = "{0}で最初に解除するように指示されたモジュールは(英名)？",
-                },
-                [SMysteryModule.HiddenModule] = new()
-                {
-                    // English: Which module was hidden by {0}?
-                    Question = "{0}で隠されていたモジュールは(英名)？",
                 },
             },
         },
@@ -12904,25 +12898,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Palindromes
         [typeof(SPalindromes)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "回文",
             ManualQuestions = new()
             {
-                ["What number was X, Y, Z, and the screen display?"] = "X、Y、Z、画面に表示された数は？",
+                ["What number was the screen display?"] = "What number was the screen display?",
             },
             Questions = new()
             {
                 [SPalindromes.Numbers] = new()
                 {
-                    // English: What was {1}’s {2} digit from the right in {0}?
-                    // Example: What was X’s first digit from the right in Palindromes?
-                    Question = "{0}で{1}の右から{2}桁目は？",
-                    Arguments = new()
-                    {
-                        ["X"] = "X",
-                        ["Y"] = "Y",
-                        ["Z"] = "Z",
-                        ["the screen"] = "ディスプレー",
-                    },
+                    // English: What was the screens’s {1} digit from the right in {0}?
+                    // Example: What was the screens’s first digit from the right in Palindromes?
+                    Question = "{0}でディスプレーの右から{1}桁目は？",
                 },
             },
         },
