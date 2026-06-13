@@ -7587,6 +7587,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // hexOS
         [typeof(SHexOS)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the deciphered letters or phrase?"] = "Какие буквы или фраза были расшифрованы??",
@@ -7605,10 +7606,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What were the deciphered letters in {0}?
                     Question = "Какие буквы были расшифрованны {0}?",
                 },
-                [SHexOS.Sum] = new()
+                [SHexOS.Rhythm] = new()
                 {
-                    // English: What were the rhythm values in {0}?
-                    Question = "Какие были значения ритмов {0}?",
+                    // English: Which rhythm value was present in {0}?
+                    Question = "Which rhythm value was present in {0}?",
                 },
                 [SHexOS.Screen] = new()
                 {

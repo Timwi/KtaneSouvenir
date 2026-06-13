@@ -27,12 +27,18 @@ public partial class SouvenirModule
         var fldNumberBasis = GetField<int>(comp, "NumberBasis");
         var fldCoordinates = GetArrayField<int[]>(comp, "Copper");
 
+        var coordinates = new int[2][];
+        var matchingCoordinates = false;
+
         yield return WaitForActivate;
 
         var seed = seedTextMesh.text;
         var numberBasis = fldNumberBasis.Get();
-        var coordinates = new int[2][];
-        var matchingCoordinates = false;
+
+        coordinates[0] = fldCoordinates.Get(expectedLength: 3)[0];
+        coordinates[1] = fldCoordinates.Get(expectedLength: 3)[1];
+
+        matchingCoordinates = coordinates[0][0] == coordinates[1][0] && coordinates[0][1] == coordinates[1][1];
 
         var hadStrike = false;
         module.Module.OnStrike += delegate { hadStrike = true; return false; };

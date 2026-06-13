@@ -7467,6 +7467,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // hexOS
         [typeof(SHexOS)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "HexOS",
             ManualQuestions = new()
             {
@@ -7486,10 +7487,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What were the deciphered letters in {0}?
                     Question = "{0}で解読した英字は？",
                 },
-                [SHexOS.Sum] = new()
+                [SHexOS.Rhythm] = new()
                 {
-                    // English: What were the rhythm values in {0}?
-                    Question = "{0}のリズムの値は？",
+                    // English: Which rhythm value was present in {0}?
+                    Question = "Which rhythm value was present in {0}?",
                 },
                 [SHexOS.Screen] = new()
                 {

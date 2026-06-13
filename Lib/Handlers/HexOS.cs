@@ -13,8 +13,8 @@ public enum SHexOS
     [AnswerGenerator.Strings("2* A-Z")]
     Cipher,
 
-    [Question("What were the rhythm values in {0}?", ThreeColumns6Answers, ExampleAnswers = ["0001", "0012", "0123", "1230", "2300", "3000"])]
-    Sum,
+    [Question("Which rhythm value was present in {0}?", ThreeColumns6Answers, ExampleAnswers = ["0000", "0001", "0010", "0011", "0100", "0101"])]
+    Rhythm,
 
     [Question("What was the {1} 3-digit number cycled by the screen in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 999, "000")]
@@ -38,19 +38,20 @@ public partial class SouvenirModule
         var octOS = GetField<bool>(comp, "solvedInOctOS").Get();
         var decipher = GetField<char[]>(comp, "decipher").Get(arr => arr.Length is not 2 and not 6 ? "expected length 2 or 6" : arr.Any(ch => !validCharacters.Contains(char.ToUpperInvariant(ch))) ? "expected characters A–Z or space" : null);
         var screen = GetField<string>(comp, "screen").Get(s => s.Length != 30 ? "expected length 30" : s.Any(ch => !char.IsDigit(ch)) ? "expected only digits" : null);
-        var sum = GetField<string>(comp, "sum").Get(s => s.Length != 4 ? "expected length 4" : s.Any(ch => ch is not '0' and not '1' and not '2' and not '3') ? "expected only characters 0–3" : null);
+        var hexRhythms = GetArrayField<byte>(comp, "_rhythms").Get(expectedLength: 2);
+        var octRhythms = GetArrayField<byte>(comp, "_octRhythms").Get(expectedLength: 2);
         var cipherWrongAnswers = octOS ? validPhrases.SelectMany(str => Enumerable.Range(0, str.Length - 6).Select(ix => str.Substring(ix, 6))).ToArray() : validCharacters.SelectMany(c1 => validCharacters.Select(c2 => string.Concat(c1, c2))).ToArray();
 
-        var wrongAnswers = octOS
-            // Generate every combination of 0, 1, 2, & 3 so long as the left two numbers don’t match the right (3031 is valid but 3131 is not)
-            ? Enumerable.Range(0, 256).Where(i => i / 16 != i % 16).Select(i => new[] { i / 64, (i / 16) % 4, (i / 4) % 4, i % 4 }.JoinString()).ToArray()
-            // Generate every combination of 0, 1, & 2 so long as the left two numbers don’t match the right (2021 is valid but 2121 is not)
-            : Enumerable.Range(0, 81).Where(i => i / 9 != i % 9).Select(i => new[] { i / 27, (i / 9) % 3, (i / 3) % 3, i % 3 }.JoinString()).ToArray();
+        var allRhythms = octOS
+            ? new[] { "00", "01", "02", "03", "10", "11", "12", "13", "20", "21", "22", "23", "30", "31", "32", "33" }
+            : new[] { "0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111" };
 
         yield return octOS
             ? question(SHexOS.OctCipher).Answers(decipher.JoinString(), preferredWrong: cipherWrongAnswers)
             : question(SHexOS.Cipher).Answers([decipher.JoinString(), decipher.Reverse().JoinString()], preferredWrong: cipherWrongAnswers);
-        yield return question(SHexOS.Sum).Answers(sum, preferredWrong: wrongAnswers);
+        yield return octOS
+            ? question(SHexOS.Rhythm).Answers(octRhythms.Select(x => allRhythms[x]).ToArray(), all: allRhythms)
+            : question(SHexOS.Rhythm).Answers(hexRhythms.Select(x => allRhythms[x]).ToArray(), all: allRhythms);
         for (var offset = 0; offset < 10; offset++)
             yield return question(SHexOS.Screen, args: [Ordinal(offset + 1)]).Answers(screen.Substring(offset * 3, 3));
     }
