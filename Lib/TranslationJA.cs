@@ -9615,8 +9615,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "MとN",
             ManualQuestions = new()
             {
-                ["What were the colors of the labels on the buttons?"] = "ボタンのラベルの色は？",
-                ["What were the labels of the buttons?"] = "What were the labels of the buttons?",
+                ["What were the labels on the buttons and their colors?"] = "What were the labels on the buttons and their colors?",
             },
             Questions = new()
             {
@@ -12787,14 +12786,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "回文",
             ManualQuestions = new()
             {
-                ["What number was the screen display?"] = "What number was the screen display?",
+                ["What number was on the display?"] = "What number was on the display?",
             },
             Questions = new()
             {
                 [SPalindromes.Numbers] = new()
                 {
-                    // English: What was the screens’s {1} digit from the right in {0}?
-                    // Example: What was the screens’s first digit from the right in Palindromes?
+                    // English: What was the {1} digit from the right on the display in {0}?
+                    // Example: What was the first digit from the right on the display in Palindromes?
                     Question = "{0}でディスプレーの右から{1}桁目は？",
                 },
             },

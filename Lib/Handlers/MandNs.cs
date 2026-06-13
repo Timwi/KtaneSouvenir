@@ -16,8 +16,7 @@ public enum SMandNs
 public partial class SouvenirModule
 {
     [Handler("MandNs", "M&Ns", typeof(SMandNs), "TasThiluna")]
-    [ManualQuestion("What were the colors of the labels on the buttons?")]
-    [ManualQuestion("What were the labels of the buttons?")]
+    [ManualQuestion("What were the labels on the buttons and their colors?")]
     private IEnumerator<SouvenirInstruction> ProcessMandNs(ModuleData module)
     {
         var comp = GetComponent(module, "MandNs");

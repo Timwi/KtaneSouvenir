@@ -7676,7 +7676,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // hexOS
         [typeof(SHexOS)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the deciphered letters or phrase?"] = "Wie lautete die entschlüsselte Botschaft (Buchstaben oder Phrase)?",
@@ -7698,7 +7697,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SHexOS.Rhythm] = new()
                 {
                     // English: Which rhythm value was present in {0}?
-                    Question = "Which rhythm value was present in {0}?",
+                    Question = "Welcher Rhythmuswert kam bei {0} vor?",
                 },
                 [SHexOS.Screen] = new()
                 {
@@ -9881,12 +9880,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // M&Ns
         [typeof(SMandNs)] = new()
         {
-            NeedsTranslation = true,
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the colors of the labels on the buttons?"] = "Welche Taste hatte eine Aufschrift in welcher Farbe?",
-                ["What were the labels of the buttons?"] = "What were the labels of the buttons?",
+                ["What were the labels on the buttons and their colors?"] = "Welche Taste hatte welche Aufschrift in welcher Farbe?",
             },
             Questions = new()
             {
@@ -9909,7 +9906,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the text on the {1} button in {0}?
                     // Example: What was the text on the first button in M&Ns?
-                    Question = "What was the text on the {1} button in {0}?",
+                    Question = "Welche Aufschrift hatte bei {0} die {1}e Taste?",
                 },
             },
         },
@@ -13133,19 +13130,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Palindromes
         [typeof(SPalindromes)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Palindrome",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What number was the screen display?"] = "What number was the screen display?",
+                ["What number was on the display?"] = "Welche Zahl war auf dem Display?",
             },
             Questions = new()
             {
                 [SPalindromes.Numbers] = new()
                 {
-                    // English: What was the screens’s {1} digit from the right in {0}?
-                    // Example: What was the screens’s first digit from the right in Palindromes?
+                    // English: What was the {1} digit from the right on the display in {0}?
+                    // Example: What was the first digit from the right on the display in Palindromes?
                     Question = "Was war bei {0} die {1}e Ziffer von rechts auf dem Display?",
                 },
             },
@@ -18458,10 +18454,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Thirty One
         [typeof(SThirtyOne)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the first cards in each stage?"] = "What were the first cards in each stage?",
+                ["What were the first cards in each stage?"] = "Welche Karte war in welcher Stufe die erste?",
             },
             Questions = new()
             {
@@ -18469,7 +18464,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the first card in the {1} stage of {0}?
                     // Example: What was the first card in the first stage of Thirty One?
-                    Question = "What was the first card in the {1} stage of {0}?",
+                    Question = "Welche Karte war bei {0} die erste in der {1}en Stufe?",
                 },
             },
         },

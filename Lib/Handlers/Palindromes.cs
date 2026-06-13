@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SPalindromes
 {
-    [Question("What was the screens’s {1} digit from the right in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} digit from the right on the display in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Numbers
 }
@@ -13,7 +13,7 @@ public enum SPalindromes
 public partial class SouvenirModule
 {
     [Handler("palindromes", "Palindromes", typeof(SPalindromes), "Emik")]
-    [ManualQuestion("What number was the screen display?")]
+    [ManualQuestion("What number was on the display?")]
     private IEnumerator<SouvenirInstruction> ProcessPalindromes(ModuleData module)
     {
         var comp = GetComponent(module, "Palindromes");

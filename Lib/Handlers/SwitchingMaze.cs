@@ -27,7 +27,6 @@ public partial class SouvenirModule
         var fldNumberBasis = GetField<int>(comp, "NumberBasis");
         var fldCoordinates = GetArrayField<int[]>(comp, "Copper");
 
-        var coordinates = new int[2][];
         var matchingCoordinates = false;
 
         yield return WaitForActivate;
@@ -35,9 +34,7 @@ public partial class SouvenirModule
         var seed = seedTextMesh.text;
         var numberBasis = fldNumberBasis.Get();
 
-        coordinates[0] = fldCoordinates.Get(expectedLength: 3)[0];
-        coordinates[1] = fldCoordinates.Get(expectedLength: 3)[1];
-
+        var coordinates = fldCoordinates.Get(expectedLength: 3);
         matchingCoordinates = coordinates[0][0] == coordinates[1][0] && coordinates[0][1] == coordinates[1][1];
 
         var hadStrike = false;
@@ -49,9 +46,7 @@ public partial class SouvenirModule
             {
                 seed = seedTextMesh.text;
                 numberBasis = fldNumberBasis.Get();
-                coordinates[0] = fldCoordinates.Get(expectedLength: 3)[0];
-                coordinates[1] = fldCoordinates.Get(expectedLength: 3)[1];
-
+                coordinates = fldCoordinates.Get(expectedLength: 3);
                 matchingCoordinates = coordinates[0][0] == coordinates[1][0] && coordinates[0][1] == coordinates[1][1];
                 hadStrike = false;
             }
