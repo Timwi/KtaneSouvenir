@@ -333,23 +333,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // 3 LEDs
-        [typeof(S3LEDs)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was the initial state of the LEDs?"] = "Wie sahen die LEDs am Anfang aus?",
-            },
-            Questions = new()
-            {
-                [S3LEDs.InitialState] = new()
-                {
-                    // English: What was the initial state of the LEDs in {0}?
-                    Question = "Was war bei {0} der Anfangszustand?",
-                },
-            },
-        },
-
         // 3N+1
         [typeof(S3NPlus1)] = new()
         {
@@ -1140,24 +1123,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on ASCII Maze?
                     Question = "Was war bei {0} das {1}e angezeigte Zeichen?",
-                },
-            },
-        },
-
-        // Audio Morse
-        [typeof(SAudioMorse)] = new()
-        {
-            ModuleName = "Audio-Morse",
-            ManualQuestions = new()
-            {
-                ["What was the Morse code?"] = "Was war der Morsecode?",
-            },
-            Questions = new()
-            {
-                [SAudioMorse.Sound] = new()
-                {
-                    // English: What was signaled in {0}?
-                    Question = "Was war bei {0} zu hören?",
                 },
             },
         },
@@ -2861,32 +2826,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the text on the top display in the second stage of {0}?
                     Question = "Welche Farbe hatte bei {0} in der {1}en Stufe der Text auf dem oberen Display?",
-                },
-            },
-        },
-
-        // Caesar's Maths
-        [typeof(SCaesarsMaths)] = new()
-        {
-            ModuleName = "Cäsars Mathe",
-            ManualQuestions = new()
-            {
-                ["What were the colors of each LED?"] = "Welche LED hatte welche Farbe?",
-            },
-            Questions = new()
-            {
-                [SCaesarsMaths.LED] = new()
-                {
-                    // English: What color was the {1} LED in {0}?
-                    // Example: What color was the first LED in Caesar's Maths?
-                    Question = "Welche Farbe hatte bei {0} die {1}e LED?",
-                    Answers = new()
-                    {
-                        ["Yellow"] = "Gelb",
-                        ["Blue"] = "Blau",
-                        ["Red"] = "Rot",
-                        ["Green"] = "Grün",
-                    },
                 },
             },
         },
@@ -5657,40 +5596,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Which shape was the {1} operand in {0}?
                     // Example: Which shape was the first operand in Encrypted Equations?
                     Question = "Welche Form hatte bei {0} der {1}e Operand?",
-                },
-            },
-        },
-
-        // Encrypted Hangman
-        [typeof(SEncryptedHangman)] = new()
-        {
-            ModuleName = "Hangman Verschlüsselt",
-            Gender = Gender.Masculine,
-            ManualQuestions = new()
-            {
-                ["What was the encrypted module name and encryption method?"] = "Welcher Modulname wurde wie verschlüsselt?",
-            },
-            Questions = new()
-            {
-                [SEncryptedHangman.Module] = new()
-                {
-                    // English: What module name was encrypted by {0}?
-                    Question = "Welcher Modulname kam bei {0} verschlüsselt vor?",
-                },
-                [SEncryptedHangman.EncryptionMethod] = new()
-                {
-                    // English: What method of encryption was used by {0}?
-                    Question = "Welche Verschlüsselungsmethode kam bei {0} zum Einsatz?",
-                    Answers = new()
-                    {
-                        ["Caesar Cipher"] = "Cäsar-Geheimschrift",
-                        ["Atbash Cipher"] = "Atbash-Geheimschrift",
-                        ["Rot-13 Cipher"] = "Rot-13-Geheimschrift",
-                        ["Affine Cipher"] = "Affine Geheimschrift",
-                        ["Modern Cipher"] = "Moderne Geheimschrift",
-                        ["Vigenère Cipher"] = "Vigenère-Geheimschrift",
-                        ["Playfair Cipher"] = "Playfair-Geheimschrift",
-                    },
                 },
             },
         },
@@ -11565,30 +11470,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which chapter number was present in {0}?
                     Question = "Welche Kapitelnummer kam bei {0} vor?",
-                },
-            },
-        },
-
-        // Negativity
-        [typeof(SNegativity)] = new()
-        {
-            ModuleName = "Negativität",
-            Gender = Gender.Feminine,
-            ManualQuestions = new()
-            {
-                ["What was the submitted value (in base 10 and in balanced ternary)?"] = "Welcher Wert wurde eingegeben (im Dezimal- und im balancierten Ternärsystem)?",
-            },
-            Questions = new()
-            {
-                [SNegativity.SubmittedValue] = new()
-                {
-                    // English: In base 10, what was the value submitted in {0}?
-                    Question = "Welcher Wert wurde bei {0} eingegeben (im Dezimalsystem)?",
-                },
-                [SNegativity.SubmittedTernary] = new()
-                {
-                    // English: Excluding 0s, what was the submitted balanced ternary in {0}?
-                    Question = "Welche balancierte Ternärzahl wurde bei {0} eingegeben, wenn man die Nullen rausnimmt?",
                 },
             },
         },

@@ -373,24 +373,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // 3 LEDs
-        [typeof(S3LEDs)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was the initial state of the LEDs?"] = "Какое было исходное состояние у светодиодов?",
-            },
-            Questions = new()
-            {
-                [S3LEDs.InitialState] = new()
-                {
-                    // English: What was the initial state of the LEDs in {0}?
-                    Question = "Какое было исходное состояние у {0}?",
-                    Conjugation = Conjugation.GenitivePlural,
-                },
-            },
-        },
-
         // 3N+1
         [typeof(S3NPlus1)] = new()
         {
@@ -1187,23 +1169,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on ASCII Maze?
                     Question = "Какой был {1}-й символ, отображённый {0}?",
-                },
-            },
-        },
-
-        // Audio Morse
-        [typeof(SAudioMorse)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was the Morse code?"] = "Что было передано по Морзе?",
-            },
-            Questions = new()
-            {
-                [SAudioMorse.Sound] = new()
-                {
-                    // English: What was signaled in {0}?
-                    Question = "Что было в сигнале {0}?",
                 },
             },
         },
@@ -2899,32 +2864,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What color was the text on the top display in the second stage of {0}?
                     Question = "Какого цвета был текст на верхнем экране на втором этапе {0}?",
-                },
-            },
-        },
-
-        // Caesar's Maths
-        [typeof(SCaesarsMaths)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What were the colors of each LED?"] = "What were the colors of each LED?",
-            },
-            Questions = new()
-            {
-                [SCaesarsMaths.LED] = new()
-                {
-                    // English: What color was the {1} LED in {0}?
-                    // Example: What color was the first LED in Caesar's Maths?
-                    Question = "What color was the {1} LED in {0}?",
-                    Answers = new()
-                    {
-                        ["Yellow"] = "Yellow",
-                        ["Blue"] = "Blue",
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                    },
                 },
             },
         },
@@ -5615,39 +5554,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: Which shape was the {1} operand in {0}?
                     // Example: Which shape was the first operand in Encrypted Equations?
                     Question = "Какая фигура была {1}-й переменной {0}?",
-                },
-            },
-        },
-
-        // Encrypted Hangman
-        [typeof(SEncryptedHangman)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What was the encrypted module name and encryption method?"] = "Какой модуль был зашифрован и каким методом?",
-            },
-            Questions = new()
-            {
-                [SEncryptedHangman.Module] = new()
-                {
-                    // English: What module name was encrypted by {0}?
-                    Question = "Какое название модуля было зашифрованно {0}?",
-                },
-                [SEncryptedHangman.EncryptionMethod] = new()
-                {
-                    // English: What method of encryption was used by {0}?
-                    Question = "Какой метод шифрования был применён {0}?",
-                    Answers = new()
-                    {
-                        ["Caesar Cipher"] = "Caesar Cipher",
-                        ["Atbash Cipher"] = "Atbash Cipher",
-                        ["Rot-13 Cipher"] = "Rot-13 Cipher",
-                        ["Affine Cipher"] = "Affine Cipher",
-                        ["Modern Cipher"] = "Modern Cipher",
-                        ["Vigenère Cipher"] = "Vigenère Cipher",
-                        ["Playfair Cipher"] = "Playfair Cipher",
-                    },
                 },
             },
         },
@@ -11380,28 +11286,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: Which chapter number was present in {0}?
                     Question = "Which chapter number was present in {0}?",
-                },
-            },
-        },
-
-        // Negativity
-        [typeof(SNegativity)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was the submitted value (in base 10 and in balanced ternary)?"] = "Какая величина была отправления (в десятеричной и сбалансированной троичной системе)?",
-            },
-            Questions = new()
-            {
-                [SNegativity.SubmittedValue] = new()
-                {
-                    // English: In base 10, what was the value submitted in {0}?
-                    Question = "Какое значение было введено (в десятиричной системе) {0}?",
-                },
-                [SNegativity.SubmittedTernary] = new()
-                {
-                    // English: Excluding 0s, what was the submitted balanced ternary in {0}?
-                    Question = "Какой сбалансированный троичный код был введён {0} (исключая нули)?",
                 },
             },
         },

@@ -67,7 +67,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] SymbolicTashaSprites;
     public Sprite[] TasqueManagingSprites;
     public Sprite[] TeaSetSprites;
-    public Sprite[] ThreeLEDsSprites;
     public Sprite[] ValvesSprites;
     public Sprite[] WarningSignsSprites;
     public Sprite[] XRingSprites;
@@ -79,7 +78,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Texture2D[] NonverbalSimonQuestions;
     public Texture2D[] TechnicalKeypadQuestions;
 
-    public AudioClip[] AudioMorseAudio;
     public AudioClip[] DialtonesAudio;
     public AudioClip[] eeBgnillepSAudio;
     public AudioClip[] ExampleAudio;

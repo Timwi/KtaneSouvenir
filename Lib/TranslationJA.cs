@@ -287,24 +287,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // 3 LEDs
-        [typeof(S3LEDs)] = new()
-        {
-            ModuleName = "3つのLED",
-            ManualQuestions = new()
-            {
-                ["What was the initial state of the LEDs?"] = "LEDの初期配置は？",
-            },
-            Questions = new()
-            {
-                [S3LEDs.InitialState] = new()
-                {
-                    // English: What was the initial state of the LEDs in {0}?
-                    Question = "{0}の初期のLEDの状態は？",
-                },
-            },
-        },
-
         // 3N+1
         [typeof(S3NPlus1)] = new()
         {
@@ -1090,24 +1072,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on ASCII Maze?
                     Question = "{0}の{1}番目に表示された文字は？",
-                },
-            },
-        },
-
-        // Audio Morse
-        [typeof(SAudioMorse)] = new()
-        {
-            ModuleName = "音声モールス",
-            ManualQuestions = new()
-            {
-                ["What was the Morse code?"] = "モールス信号は？",
-            },
-            Questions = new()
-            {
-                [SAudioMorse.Sound] = new()
-                {
-                    // English: What was signaled in {0}?
-                    Question = "{0}で送信されたものは？",
                 },
             },
         },
@@ -2784,32 +2748,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What color was the text on the top display in the second stage of {0}?
                     Question = "{0}のステージ2における上のディスプレーに表示された単語の色は？",
-                },
-            },
-        },
-
-        // Caesar's Maths
-        [typeof(SCaesarsMaths)] = new()
-        {
-            ModuleName = "カエサル数学",
-            ManualQuestions = new()
-            {
-                ["What were the colors of each LED?"] = "各LEDの色は？",
-            },
-            Questions = new()
-            {
-                [SCaesarsMaths.LED] = new()
-                {
-                    // English: What color was the {1} LED in {0}?
-                    // Example: What color was the first LED in Caesar's Maths?
-                    Question = "{0}の{1}番目のLEDの色は？",
-                    Answers = new()
-                    {
-                        ["Yellow"] = "黄",
-                        ["Blue"] = "青",
-                        ["Red"] = "赤",
-                        ["Green"] = "緑",
-                    },
                 },
             },
         },
@@ -5494,39 +5432,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: Which shape was the {1} operand in {0}?
                     // Example: Which shape was the first operand in Encrypted Equations?
                     Question = "{0}の{1}の演算子の図形は？",
-                },
-            },
-        },
-
-        // Encrypted Hangman
-        [typeof(SEncryptedHangman)] = new()
-        {
-            ModuleName = "暗号化ハングマン",
-            ManualQuestions = new()
-            {
-                ["What was the encrypted module name and encryption method?"] = "暗号化モジュールの名前と暗号化規則は？",
-            },
-            Questions = new()
-            {
-                [SEncryptedHangman.Module] = new()
-                {
-                    // English: What module name was encrypted by {0}?
-                    Question = "{0}で暗号化されていたモジュール名は？",
-                },
-                [SEncryptedHangman.EncryptionMethod] = new()
-                {
-                    // English: What method of encryption was used by {0}?
-                    Question = "{0}で使われた暗号化方式は？",
-                    Answers = new()
-                    {
-                        ["Caesar Cipher"] = "カエサル暗号",
-                        ["Atbash Cipher"] = "Atbash暗号",
-                        ["Rot-13 Cipher"] = "ROT-13暗号",
-                        ["Affine Cipher"] = "アフィン暗号",
-                        ["Modern Cipher"] = "現代暗号",
-                        ["Vigenère Cipher"] = "ヴィジュネル暗号",
-                        ["Playfair Cipher"] = "プレイフェア暗号",
-                    },
                 },
             },
         },
@@ -11260,29 +11165,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which chapter number was present in {0}?
                     Question = "Which chapter number was present in {0}?",
-                },
-            },
-        },
-
-        // Negativity
-        [typeof(SNegativity)] = new()
-        {
-            ModuleName = "負極性",
-            ManualQuestions = new()
-            {
-                ["What was the submitted value (in base 10 and in balanced ternary)?"] = "送信した値は(十進数と平衡三進数で)？",
-            },
-            Questions = new()
-            {
-                [SNegativity.SubmittedValue] = new()
-                {
-                    // English: In base 10, what was the value submitted in {0}?
-                    Question = "{0}で送信した値は十進数でいくつ？",
-                },
-                [SNegativity.SubmittedTernary] = new()
-                {
-                    // English: Excluding 0s, what was the submitted balanced ternary in {0}?
-                    Question = "0を除き、{0}で送信した値は均衡三進数でいくつ？",
                 },
             },
         },
