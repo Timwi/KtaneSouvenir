@@ -4335,10 +4335,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     Question = "{0}の{1}回目のキューブの回転は？",
                     Answers = new()
                     {
-                        ["rotate cw"] = "時計回り",
+                        ["rotate clockwise"] = "時計回り",
                         ["tip left"] = "左回転",
                         ["tip backwards"] = "上回転",
-                        ["rotate ccw"] = "反時計回り",
+                        ["rotate counterclockwise"] = "反時計回り",
                         ["tip right"] = "右回転",
                         ["tip forwards"] = "下回転",
                     },

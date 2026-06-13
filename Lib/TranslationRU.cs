@@ -4466,10 +4466,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     Conjugation = Conjugation.GenitiveMascNeuter,
                     Answers = new()
                     {
-                        ["rotate cw"] = "поворот по часовой",
+                        ["rotate clockwise"] = "поворот по часовой",
                         ["tip left"] = "наклон влево",
                         ["tip backwards"] = "наклон назад",
-                        ["rotate ccw"] = "поворот против часовой",
+                        ["rotate counterclockwise"] = "поворот против часовой",
                         ["tip right"] = "наклон вправо",
                         ["tip forwards"] = "наклон вперёд",
                     },

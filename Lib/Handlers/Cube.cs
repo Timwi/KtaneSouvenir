@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCube
 {
-    [Question("What was the {1} cube rotation in {0}?", TwoColumns4Answers, "rotate cw", "tip left", "tip backwards", "rotate ccw", "tip right", "tip forwards", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the {1} cube rotation in {0}?", OneColumn4Answers, "rotate clockwise", "tip left", "tip backwards", "rotate counterclockwise", "tip right", "tip forwards", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Rotations
 }
 
@@ -20,7 +20,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var rotations = GetListField<int>(comp, "selectedRotations").Get(expectedLength: 6);
-        var rotationNames = new[] { "rotate cw", "tip left", "tip backwards", "rotate ccw", "tip right", "tip forwards" };
+        var rotationNames = new[] { "rotate clockwise", "tip left", "tip backwards", "rotate counterclockwise", "tip right", "tip forwards" };
         var allRotations = rotations.Select(r => rotationNames[r]).ToArray();
 
         for (var ix = 0; ix < rotations.Count; ix++)

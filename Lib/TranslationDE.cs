@@ -4459,10 +4459,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Was war bei {0} die {1}e Rotation?",
                     Answers = new()
                     {
-                        ["rotate cw"] = "im Uhrzeigersinn",
+                        ["rotate clockwise"] = "im Uhrzeigersinn",
                         ["tip left"] = "nach links gekippt",
                         ["tip backwards"] = "nach hinten gekippt",
-                        ["rotate ccw"] = "gegen den Uhrzeigersinn",
+                        ["rotate counterclockwise"] = "gegen den Uhrzeigersinn",
                         ["tip right"] = "nach rechts gekippt",
                         ["tip forwards"] = "nach vorne gekippt",
                     },
