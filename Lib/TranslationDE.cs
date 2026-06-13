@@ -9880,11 +9880,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // M&Ns
         [typeof(SMandNs)] = new()
         {
+            NeedsTranslation = true,
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
                 ["What were the colors of the labels on the buttons?"] = "Welche Taste hatte eine Aufschrift in welcher Farbe?",
-                ["What was the label of the correct button?"] = "Welche Aufschrift hatte die korrekte Taste?",
+                ["What were the labels of the buttons?"] = "What were the labels of the buttons?",
             },
             Questions = new()
             {
@@ -9903,10 +9904,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["brown"] = "braun",
                     },
                 },
-                [SMandNs.Label] = new()
+                [SMandNs.Labels] = new()
                 {
-                    // English: What was the text on the correct button in {0}?
-                    Question = "Welche Aufschrift hatte bei {0} die korrekte Taste?",
+                    // English: What was the text on the {1} button in {0}?
+                    // Example: What was the text on the first button in M&Ns?
+                    Question = "What was the text on the {1} button in {0}?",
                 },
             },
         },

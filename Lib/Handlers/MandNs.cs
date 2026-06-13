@@ -8,16 +8,16 @@ public enum SMandNs
     [Question("What color was the text on the {1} button in {0}?", ThreeColumns6Answers, "red", "green", "orange", "blue", "yellow", "brown", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors,
 
-    [Question("What was the text on the correct button in {0}?", TwoColumns4Answers)]
+    [Question("What was the text on the {1} button in {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings(5, 'M', 'N')]
-    Label
+    Labels
 }
 
 public partial class SouvenirModule
 {
     [Handler("MandNs", "M&Ns", typeof(SMandNs), "TasThiluna")]
     [ManualQuestion("What were the colors of the labels on the buttons?")]
-    [ManualQuestion("What was the label of the correct button?")]
+    [ManualQuestion("What were the labels of the buttons?")]
     private IEnumerator<SouvenirInstruction> ProcessMandNs(ModuleData module)
     {
         var comp = GetComponent(module, "MandNs");
@@ -26,9 +26,10 @@ public partial class SouvenirModule
         var colorNames = new[] { "red", "green", "orange", "blue", "yellow", "brown" };
         var colors = GetArrayField<int>(comp, "buttonColors").Get();
         var labels = GetArrayField<string>(comp, "convertedValues").Get();
-        var solution = GetIntField(comp, "solution").Get();
         for (var i = 0; i < 5; i++)
+        {
             yield return question(SMandNs.Colors, args: [Ordinal(i + 1)]).Answers(colorNames[colors[i]]);
-        yield return question(SMandNs.Label).Answers(labels[solution], preferredWrong: labels);
+            yield return question(SMandNs.Labels, args: [Ordinal(i + 1)]).Answers(labels[i], preferredWrong: labels);
+        }
     }
 }

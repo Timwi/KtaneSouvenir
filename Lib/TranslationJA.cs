@@ -9610,11 +9610,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // M&Ns
         [typeof(SMandNs)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "MとN",
             ManualQuestions = new()
             {
                 ["What were the colors of the labels on the buttons?"] = "ボタンのラベルの色は？",
-                ["What was the label of the correct button?"] = "正しいボタンのラベルは？",
+                ["What were the labels of the buttons?"] = "What were the labels of the buttons?",
             },
             Questions = new()
             {
@@ -9633,10 +9634,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["brown"] = "茶",
                     },
                 },
-                [SMandNs.Label] = new()
+                [SMandNs.Labels] = new()
                 {
-                    // English: What was the text on the correct button in {0}?
-                    Question = "{0}の正しいボタンのテキストは？",
+                    // English: What was the text on the {1} button in {0}?
+                    // Example: What was the text on the first button in M&Ns?
+                    Question = "What was the text on the {1} button in {0}?",
                 },
             },
         },

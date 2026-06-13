@@ -9734,7 +9734,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What were the colors of the labels on the buttons?"] = "What were the colors of the labels on the buttons?",
-                ["What was the label of the correct button?"] = "What was the label of the correct button?",
+                ["What were the labels of the buttons?"] = "What were the labels of the buttons?",
             },
             Questions = new()
             {
@@ -9753,10 +9753,11 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["brown"] = "Коричневого",
                     },
                 },
-                [SMandNs.Label] = new()
+                [SMandNs.Labels] = new()
                 {
-                    // English: What was the text on the correct button in {0}?
-                    Question = "Какая надпись была на правильной кнопке {0}?",
+                    // English: What was the text on the {1} button in {0}?
+                    // Example: What was the text on the first button in M&Ns?
+                    Question = "What was the text on the {1} button in {0}?",
                 },
             },
         },
