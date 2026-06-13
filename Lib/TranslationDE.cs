@@ -18454,6 +18454,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Thirty One
+        [typeof(SThirtyOne)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the first cards in each stage?"] = "What were the first cards in each stage?",
+            },
+            Questions = new()
+            {
+                [SThirtyOne.FirstCard] = new()
+                {
+                    // English: What was the first card in the {1} stage of {0}?
+                    // Example: What was the first card in the first stage of Thirty One?
+                    Question = "What was the first card in the {1} stage of {0}?",
+                },
+            },
+        },
+
         // Tic Tac Toe
         [typeof(STicTacToe)] = new()
         {

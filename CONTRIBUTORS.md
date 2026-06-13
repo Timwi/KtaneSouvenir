@@ -130,12 +130,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Forget Me             │  Metamorse         │  Numpath          │  Superparsing          │
     Kanye Encounter, The  │  M-Seq             │  Red Herring      │  Tasque Managing       │
 
-## Implemented by Espik (23)
+## Implemented by Espik (24)
 
-    100 Levels of Defusal  │  Coffeebucks         │  Exoplanets          │  Role Reversal   │  Tricky Tetris Pieces
-    Blockbusters           │  Directional Button  │  Hexabutton, The     │  Samsung, The    │  Unfair Cipher
-    Boolean Wires          │  Dreamcipher         │  Hyperlink, The      │  Simon Stages    │  Unicode
-    Calendar               │  Encrypted Morse     │  Not Who’s on First  │  Sorting         │
+    100 Levels of Defusal  │  Coffeebucks         │  Exoplanets          │  Role Reversal   │  Thirty One
+    Blockbusters           │  Directional Button  │  Hexabutton, The     │  Samsung, The    │  Tricky Tetris Pieces
+    Boolean Wires          │  Dreamcipher         │  Hyperlink, The      │  Simon Stages    │  Unfair Cipher
+    Calendar               │  Encrypted Morse     │  Not Who’s on First  │  Sorting         │  Unicode
     Challenge & Contact    │  Etterna             │  Regular Crazy Talk  │  Thinking Wires  │
 
 ## Implemented by TasThiluna (20)
