@@ -6,7 +6,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SThirtyOne
 {
-    [Question("What was the first card in the {1} stage of {0}?", ThreeColumns6Answers, "A♤", "2♤", "3♤", "4♤", "5♤", "6♤", "7♤", "8♤", "9♤", "10♤", "J♤", "Q♤", "K♤", "A♡", "2♡", "3♡", "4♡", "5♡", "6♡", "7♡", "8♡", "9♡", "10♡", "J♡", "Q♡", "K♡", "A♧", "2♧", "3♧", "4♧", "5♧", "6♧", "7♧", "8♧", "9♧", "10♧", "J♧", "Q♧", "K♧", "A♢", "2♢", "3♢", "4♢", "5♢", "6♢", "7♢", "8♢", "9♢", "10♢", "J♢", "Q♢", "K♢", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the first card in the {1} stage of {0}?", ThreeColumns6Answers,
+        // These are ranks Ace-King and suits ♠/♥/♣/♦ but mapped to the codepoints in the symbol font
+        "1=", "2=", "3=", "4=", "5=", "6=", "7=", "8=", "9=", "0=", ":=", ";=", "<=", "1>", "2>", "3>", "4>", "5>", "6>", "7>", "8>", "9>", "0>", ":>", ";>", "<>", "1?", "2?", "3?", "4?", "5?", "6?", "7?", "8?", "9?", "0?", ":?", ";?", "<?", "1@", "2@", "3@", "4@", "5@", "6@", "7@", "8@", "9@", "0@", ":@", ";@", "<@",
+        Type = AnswerType.SymbolsFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     FirstCard
 }
 
@@ -18,8 +21,8 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "ThirtyOneModuleScript");
 
-        var ranks = new string[13] { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
-        var suits = new string[4] { "♤", "♡", "♧", "♢" };
+        var ranks = new string[13] { "1" /*A*/, "2", "3", "4", "5", "6", "7", "8", "9", "0" /*10*/, ":" /*J*/, ";" /*Q*/, "<" /*K*/ };
+        var suits = new string[4] { "=" /*♠*/, ">" /*♥*/, "?" /*♣*/, "@" /*♦*/ };
 
         var cards = new string[3];
 
