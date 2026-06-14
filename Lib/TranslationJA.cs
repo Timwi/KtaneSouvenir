@@ -12467,6 +12467,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Only Connect
         [typeof(SOnlyConnect)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "オンリーコネクト",
             ManualQuestions = new()
             {
@@ -12488,32 +12489,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["bottom middle"] = "下",
                         ["bottom right"] = "右下",
                     },
-                    Answers = new()
-                    {
-                        ["Two Reeds"] = "二本の葦",
-                        ["Lion"] = "ライオン",
-                        ["Twisted Flax"] = "よりあわせた亜麻糸",
-                        ["Horned Viper"] = "ヘビ",
-                        ["Water"] = "水",
-                        ["Eye of Horus"] = "ホルスの目",
-                    },
                 },
             },
             Discriminators = new()
             {
                 [SOnlyConnect.DHieroglyphs] = new()
                 {
-                    // English: the Only Connect where {0} was in the {1}
-                    // Example: the Only Connect where Two Reeds was in the top left
-                    Discriminator = "{0}が{1}にあったオンリーコネクト",
+                    // English: the Only Connect where this hieroglyph was in the {0}
+                    // Example: the Only Connect where this hieroglyph was in the top left
+                    Discriminator = "the Only Connect where this hieroglyph was in the {0}",
                     Arguments = new()
                     {
-                        ["Two Reeds"] = "二本の葦",
-                        ["Lion"] = "ライオン",
-                        ["Twisted Flax"] = "よりあわせた亜麻糸",
-                        ["Horned Viper"] = "ヘビ",
-                        ["Water"] = "水",
-                        ["Eye of Horus"] = "ホルスの目",
                         ["top left"] = "左上",
                         ["top middle"] = "上",
                         ["top right"] = "右上",

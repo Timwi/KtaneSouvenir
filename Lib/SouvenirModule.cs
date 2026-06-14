@@ -53,6 +53,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] NonverbalSimonSprites;
     public Sprite[] ObjectShowsSprites;
     public Sprite[] OffKeysSprites;
+    public Sprite[] OnlyConnectSprites;
     public Sprite[] OrderedKeysSprites;
     public Sprite[] PictionarySprites;
     public Sprite[] PlanetsSprites;

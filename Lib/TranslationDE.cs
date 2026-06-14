@@ -12820,24 +12820,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which Egyptian hieroglyph was in the {1} in {0}?
                     // Example: Which Egyptian hieroglyph was in the top left in Only Connect?
-                    Question = "Welches ägyptische Hieroglyph war bei {0} {1}?",
+                    Question = "Welche ägyptische Hieroglyphe war bei {0} {1}?",
                     Arguments = new()
                     {
                         ["top left"] = "oben links",
-                        ["top middle"] = "oben Mitte",
+                        ["top middle"] = "oben mittig",
                         ["top right"] = "oben rechts",
                         ["bottom left"] = "unten links",
-                        ["bottom middle"] = "unten Mitte",
+                        ["bottom middle"] = "unten mittig",
                         ["bottom right"] = "unten rechts",
-                    },
-                    Answers = new()
-                    {
-                        ["Two Reeds"] = "Zwei Riede",
-                        ["Lion"] = "Löwe",
-                        ["Twisted Flax"] = "Gedrehter Flachs",
-                        ["Horned Viper"] = "Gehörnte Viper",
-                        ["Water"] = "Wasser",
-                        ["Eye of Horus"] = "Auge des Horus",
                     },
                 },
             },
@@ -12845,17 +12836,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SOnlyConnect.DHieroglyphs] = new()
                 {
-                    // English: the Only Connect where {0} was in the {1}
-                    // Example: the Only Connect where Two Reeds was in the top left
-                    Discriminator = "das Only Connect, bei dem {0} {1} war, ",
+                    // English: the Only Connect where this hieroglyph was in the {0}
+                    // Example: the Only Connect where this hieroglyph was in the top left
+                    Discriminator = "dem Only Connect, bei dem diese Hieroglyphe {0} war,",
                     Arguments = new()
                     {
-                        ["Two Reeds"] = "die zwei Riede",
-                        ["Lion"] = "der Löwe",
-                        ["Twisted Flax"] = "der gedrehte Flachs",
-                        ["Horned Viper"] = "die gehörnte Viper",
-                        ["Water"] = "das Wasser",
-                        ["Eye of Horus"] = "das Auge des Horus",
                         ["top left"] = "oben links",
                         ["top middle"] = "oben mittig",
                         ["top right"] = "oben rechts",

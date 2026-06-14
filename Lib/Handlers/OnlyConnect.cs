@@ -5,10 +5,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SOnlyConnect
 {
-    [Question("Which Egyptian hieroglyph was in the {1} in {0}?", TwoColumns4Answers, "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus", TranslateAnswers = true, TranslateArguments = [true], Arguments = ["top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right"], ArgumentGroupSize = 1)]
+    [Question("Which Egyptian hieroglyph was in the {1} in {0}?", ThreeColumns6Answers, TranslateArguments = [true], Arguments = ["top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right"], ArgumentGroupSize = 1, Type = AnswerType.Sprites, SpriteFieldName = "OnlyConnectSprites")]
     QHieroglyphs,
 
-    [Discriminator("the Only Connect where {0} was in the {1}", Arguments = ["Two Reeds", "top left", "Lion", "top middle", "Twisted Flax", "top right", "Horned Viper", "bottom left", "Water", "bottom middle", "Eye of Horus", "bottom right"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    [Discriminator("the Only Connect where this hieroglyph was in the {0}", Arguments = ["top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right"], ArgumentGroupSize = 1, UsesQuestionSprite = true, TranslateArguments = [true])]
     DHieroglyphs
 }
 
@@ -25,14 +25,13 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var hieroglyphs = new[] { "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus" };
         var positions = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" };
         for (var i = 0; i < positions.Length; i++)
         {
-            yield return new Discriminator(SOnlyConnect.DHieroglyphs, $"hieroglyph-{i}", hieroglyphs[hieroglyphsDisplayed[i]], args: [hieroglyphs[hieroglyphsDisplayed[i]], positions[i]], avoidAnswers: [hieroglyphs[hieroglyphsDisplayed[i]]]);
+            yield return new Discriminator(SOnlyConnect.DHieroglyphs, $"hieroglyph-{i}", hieroglyphsDisplayed[i], args: [positions[i]], questionSprite: OnlyConnectSprites[hieroglyphsDisplayed[i]]);
             yield return question(SOnlyConnect.QHieroglyphs, args: [positions[i]])
                 .AvoidDiscriminators($"hieroglyph-{i}")
-                .Answers(hieroglyphs[hieroglyphsDisplayed[i]]);
+                .Answers(OnlyConnectSprites[hieroglyphsDisplayed[i]]);
         }
     }
 }

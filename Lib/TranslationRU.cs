@@ -12606,32 +12606,17 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["bottom middle"] = "снизу посередине",
                         ["bottom right"] = "справа снизу",
                     },
-                    Answers = new()
-                    {
-                        ["Two Reeds"] = "Два тростника",
-                        ["Lion"] = "Лев",
-                        ["Twisted Flax"] = "Скрученный лён",
-                        ["Horned Viper"] = "Рогатая гадюка",
-                        ["Water"] = "Вода",
-                        ["Eye of Horus"] = "Глаз Гора",
-                    },
                 },
             },
             Discriminators = new()
             {
                 [SOnlyConnect.DHieroglyphs] = new()
                 {
-                    // English: the Only Connect where {0} was in the {1}
-                    // Example: the Only Connect where Two Reeds was in the top left
-                    Discriminator = "the Only Connect where {0} was in the {1}",
+                    // English: the Only Connect where this hieroglyph was in the {0}
+                    // Example: the Only Connect where this hieroglyph was in the top left
+                    Discriminator = "the Only Connect where this hieroglyph was in the {0}",
                     Arguments = new()
                     {
-                        ["Two Reeds"] = "Two Reeds",
-                        ["Lion"] = "Lion",
-                        ["Twisted Flax"] = "Twisted Flax",
-                        ["Horned Viper"] = "Horned Viper",
-                        ["Water"] = "Water",
-                        ["Eye of Horus"] = "Eye of Horus",
                         ["top left"] = "top left",
                         ["top middle"] = "top middle",
                         ["top right"] = "top right",

@@ -724,6 +724,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 35cd1bc6ca3a80842b65c58ddd47b1ba, type: 3}
   - {fileID: 21300000, guid: 154cc349951f6ad41a63ff123b368ac1, type: 3}
   - {fileID: 21300000, guid: dd08bd4a47fd28d4784df40cd1dade21, type: 3}
+  OnlyConnectSprites:
+  - {fileID: 21300000, guid: 5787f6869f4a33f4e8ed88f702b0db79, type: 3}
+  - {fileID: 21300000, guid: bd18d8c9c20e1dc418596d9e3cac3ea0, type: 3}
+  - {fileID: 21300000, guid: b2cb3b811ba8b7348b93b8042b5f3c06, type: 3}
+  - {fileID: 21300000, guid: 3f95f2ad1331a5546a5f62372f06ea68, type: 3}
+  - {fileID: 21300000, guid: db605976feb98dd41a8c13aad60faa76, type: 3}
+  - {fileID: 21300000, guid: ec31bb7f09d73c64bab016e9f7d4a345, type: 3}
   OrderedKeysSprites:
   - {fileID: 21300000, guid: 5bf5f246fc90e744ebf3278465e7740c, type: 3}
   - {fileID: 21300000, guid: 6253f7ca072a2db46a7dd44b5e76d122, type: 3}
