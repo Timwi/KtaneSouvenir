@@ -5363,7 +5363,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What was the color of the curtain?"] = "Welche Farbe hatte der Vorhang?",
-                ["How was the duck approached?"] = "Wie wurde auf die Ente zugegangen?",
             },
             Questions = new()
             {
@@ -8503,9 +8502,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // IPA
         [typeof(SIPA)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the correct symbol?"] = "Was war das richtige Zeichen?",
+                ["What sound was played?"] = "What sound was played?",
             },
             Questions = new()
             {

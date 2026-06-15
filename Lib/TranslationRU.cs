@@ -5331,7 +5331,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the color of the curtain?"] = "What was the color of the curtain?",
-                ["How was the duck approached?"] = "How was the duck approached?",
             },
             Questions = new()
             {
@@ -8392,7 +8391,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the correct symbol?"] = "Какой звук был проигран?",
+                ["What sound was played?"] = "What sound was played?",
             },
             Questions = new()
             {

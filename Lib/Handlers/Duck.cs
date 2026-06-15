@@ -13,7 +13,6 @@ public partial class SouvenirModule
 {
     [Handler("theDuck", "Duck", typeof(SDuck), "Kuro", AddThe = true)]
     [ManualQuestion("What was the color of the curtain?")]
-    [ManualQuestion("How was the duck approached?")]
     private IEnumerator<SouvenirInstruction> ProcessDuck(ModuleData module)
     {
         var comp = GetComponent(module, "theDuckScript");

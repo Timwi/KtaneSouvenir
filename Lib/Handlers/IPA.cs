@@ -14,7 +14,7 @@ public enum SIPA
 public partial class SouvenirModule
 {
     [Handler("ipa", "IPA", typeof(SIPA), "Timwi")]
-    [ManualQuestion("What was the correct symbol?")]
+    [ManualQuestion("What sound was played?")]
     private IEnumerator<SouvenirInstruction> ProcessIPA(ModuleData module)
     {
         var comp = GetComponent(module, "ipa");

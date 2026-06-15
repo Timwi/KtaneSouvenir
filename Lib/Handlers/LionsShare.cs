@@ -37,6 +37,6 @@ public partial class SouvenirModule
 
         yield return question(SLionsShare.Year).Answers(yearText, preferredWrong: preferredWrongYears);
         if (removedLions.Length > 0)
-            yield return question(SLionsShare.RemovedLions).Answers(removedLions, preferredWrong: allLionNames.ToArray());
+            yield return question(SLionsShare.RemovedLions).Answers(removedLions, preferredWrong: allLionNames.Except(lionNames).ToArray());
     }
 }

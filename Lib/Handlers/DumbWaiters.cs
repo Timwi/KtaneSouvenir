@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDumbWaiters
 {
-    [Question("Which player {1} present in {0}?", OneColumn4Answers, ExampleAnswers = ["Arceus", "Danny7007", "EpicToast", "eXish", "Fang", "Makebao", "MCD573", "Mr. Peanut", "Mythers", "Xmaster"], Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which player {1} present in {0}?", TwoColumns4Answers, "TasThiluna", "Deaf", "Blananas2", "Fish", "Usernam3", "EpicToast", "Makebao", "KavinKul", "Crazycaleb", "tandyCake", "Fang", "Vinco", "Arceus", "Xmaster", "FredV", "Kaito", "SillyPuppy", "Edan", "Mythers", "Procyon", "eXish", "RedPenguin", "MCD573", "Mr. Peanut", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     PlayerAvailable
 }
 

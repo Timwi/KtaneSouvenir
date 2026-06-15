@@ -5204,7 +5204,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What was the color of the curtain?"] = "カーテンの色は？",
-                ["How was the duck approached?"] = "アヒルへの接触方法は？",
             },
             Questions = new()
             {
@@ -8269,9 +8268,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // IPA
         [typeof(SIPA)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the correct symbol?"] = "正しい記号は？",
+                ["What sound was played?"] = "What sound was played?",
             },
             Questions = new()
             {
