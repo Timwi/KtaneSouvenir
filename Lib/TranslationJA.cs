@@ -14422,6 +14422,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     Question = "{0}の{1}番目のLEDの色は？",
                     Answers = new()
                     {
+                        ["Black"] = "黒",
                         ["Red"] = "赤",
                         ["Green"] = "緑",
                         ["Blue"] = "青",

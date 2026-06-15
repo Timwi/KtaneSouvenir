@@ -14541,6 +14541,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     Question = "Какой был цвет {1}-го светодиода {0}?",
                     Answers = new()
                     {
+                        ["Black"] = "Black",
                         ["Red"] = "Red",
                         ["Green"] = "Green",
                         ["Blue"] = "Blue",

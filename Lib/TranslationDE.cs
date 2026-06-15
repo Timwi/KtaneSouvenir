@@ -8502,10 +8502,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // IPA
         [typeof(SIPA)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What sound was played?"] = "What sound was played?",
+                ["What sound was played?"] = "Welcher Ton kam vor?",
             },
             Questions = new()
             {
@@ -14817,6 +14816,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Farbe hatte bei {0} die {1}e LED?",
                     Answers = new()
                     {
+                        ["Black"] = "Schwarz",
                         ["Red"] = "Rot",
                         ["Green"] = "Grün",
                         ["Blue"] = "Blau",
