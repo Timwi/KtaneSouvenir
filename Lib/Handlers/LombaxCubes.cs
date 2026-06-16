@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLombaxCubes
 {
-    [Question("What was the {1} letter on the button in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} letter on the button in {0}?", ThreeColumns6Answers, Type = AnswerType.LombaxFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-Z")]
     Letters
 }

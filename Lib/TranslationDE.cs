@@ -7279,21 +7279,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Great Void
         [typeof(SGreatVoid)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Die Große Leere",
             ModuleNameDative = "Großen Leere",
             Gender = Gender.Feminine,
             ManualModuleName = "Die\uE001Große Leere",
             ManualQuestions = new()
             {
-                ["What were the digits and colors?"] = "Welche Ziffern und Farben kamen vor?",
+                ["What were the symbols and colors?"] = "What were the symbols and colors?",
             },
             Questions = new()
             {
-                [SGreatVoid.Digit] = new()
+                [SGreatVoid.Symbol] = new()
                 {
-                    // English: What was the {1} digit in {0}?
-                    // Example: What was the first digit in The Great Void?
-                    Question = "Was war bei {0} die {1}e Ziffer?",
+                    // English: What was the {1} symbol in {0}?
+                    // Example: What was the first symbol in The Great Void?
+                    Question = "What was the {1} symbol in {0}?",
                 },
                 [SGreatVoid.Color] = new()
                 {
@@ -13614,18 +13615,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pixel Cipher
         [typeof(SPixelCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Pixelgeheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the keyword?"] = "Wie lautete das Schlüsselwort?",
+                ["What were the displayed numbers?"] = "What were the displayed numbers?",
             },
             Questions = new()
             {
-                [SPixelCipher.Keyword] = new()
+                [SPixelCipher.Numbers] = new()
                 {
-                    // English: What was the keyword in {0}?
-                    Question = "Was war bei {0} das Schlüsselwort?",
+                    // English: What was the {1} displayed number in {0}?
+                    // Example: What was the first displayed number in Pixel Cipher?
+                    Question = "What was the {1} displayed number in {0}?",
                 },
             },
         },

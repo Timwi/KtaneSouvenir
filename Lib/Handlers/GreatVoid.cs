@@ -5,9 +5,9 @@ using static Souvenir.AnswerLayout;
 
 public enum SGreatVoid
 {
-    [Question("What was the {1} digit in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    [AnswerGenerator.Integers(0, 9)]
-    Digit,
+    [Question("What was the {1} symbol in {0}?", ThreeColumns6Answers, Type = AnswerType.GreatVoidFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [AnswerGenerator.Integers(0, 6)]
+    Symbol,
 
     [Question("What was the {1} color in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "Cyan", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Color
@@ -16,7 +16,7 @@ public enum SGreatVoid
 public partial class SouvenirModule
 {
     [Handler("greatVoid", "Great Void", typeof(SGreatVoid), "Marksam", AddThe = true)]
-    [ManualQuestion("What were the digits and colors?")]
+    [ManualQuestion("What were the symbols and colors?")]
     private IEnumerator<SouvenirInstruction> ProcessGreatVoid(ModuleData module)
     {
         var comp = GetComponent(module, "TheGreatVoid");
@@ -28,7 +28,7 @@ public partial class SouvenirModule
         var colorNames = new[] { "Red", "Green", "Blue", "Magenta", "Yellow", "Cyan", "White" };
         for (var i = 0; i < 6; i++)
         {
-            yield return question(SGreatVoid.Digit, args: [Ordinal(i + 1)]).Answers(fldDigits.Get()[i].ToString());
+            yield return question(SGreatVoid.Symbol, args: [Ordinal(i + 1)]).Answers(fldDigits.Get()[i].ToString());
             yield return question(SGreatVoid.Color, args: [Ordinal(i + 1)]).Answers(colorNames[fldColors.Get()[i]]);
         }
     }

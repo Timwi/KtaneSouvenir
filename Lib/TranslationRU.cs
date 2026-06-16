@@ -7202,15 +7202,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the digits and colors?"] = "What were the digits and colors?",
+                ["What were the symbols and colors?"] = "What were the symbols and colors?",
             },
             Questions = new()
             {
-                [SGreatVoid.Digit] = new()
+                [SGreatVoid.Symbol] = new()
                 {
-                    // English: What was the {1} digit in {0}?
-                    // Example: What was the first digit in The Great Void?
-                    Question = "Какая была {1}-я цифра {0}?",
+                    // English: What was the {1} symbol in {0}?
+                    // Example: What was the first symbol in The Great Void?
+                    Question = "What was the {1} symbol in {0}?",
                 },
                 [SGreatVoid.Color] = new()
                 {
@@ -13374,16 +13374,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Pixel Cipher
         [typeof(SPixelCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the keyword?"] = "Какое было ключевое слово?",
+                ["What were the displayed numbers?"] = "What were the displayed numbers?",
             },
             Questions = new()
             {
-                [SPixelCipher.Keyword] = new()
+                [SPixelCipher.Numbers] = new()
                 {
-                    // English: What was the keyword in {0}?
-                    Question = "Какое было ключевое слово {0}?",
+                    // English: What was the {1} displayed number in {0}?
+                    // Example: What was the first displayed number in Pixel Cipher?
+                    Question = "What was the {1} displayed number in {0}?",
                 },
             },
         },

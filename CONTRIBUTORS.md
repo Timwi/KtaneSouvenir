@@ -130,13 +130,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Forget Me             │  Metamorse         │  Numpath          │  Superparsing          │
     Kanye Encounter, The  │  M-Seq             │  Red Herring      │  Tasque Managing       │
 
-## Implemented by Espik (24)
+## Implemented by Espik (25)
 
-    100 Levels of Defusal  │  Coffeebucks         │  Exoplanets          │  Role Reversal   │  Thirty One
-    Blockbusters           │  Directional Button  │  Hexabutton, The     │  Samsung, The    │  Tricky Tetris Pieces
-    Boolean Wires          │  Dreamcipher         │  Hyperlink, The      │  Simon Stages    │  Unfair Cipher
-    Calendar               │  Encrypted Morse     │  Not Who’s on First  │  Sorting         │  Unicode
-    Challenge & Contact    │  Etterna             │  Regular Crazy Talk  │  Thinking Wires  │
+    100 Levels of Defusal  │  Coffeebucks         │  Exoplanets          │  Regular Crazy Talk  │  Thinking Wires
+    Blockbusters           │  Directional Button  │  Hexabutton, The     │  Role Reversal       │  Thirty One
+    Boolean Wires          │  Dreamcipher         │  Hyperlink, The      │  Samsung, The        │  Tricky Tetris Pieces
+    Calendar               │  Encrypted Morse     │  Not Who’s on First  │  Simon Stages        │  Unfair Cipher
+    Challenge & Contact    │  Etterna             │  Pixel Cipher        │  Sorting             │  Unicode
 
 ## Implemented by TasThiluna (20)
 
@@ -188,11 +188,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Alfa-Bravo    │  Character Codes      │  Eight          │  Stability
     Binary Shift  │  Colors Maximization  │  Space Traders  │  Sysadmin
 
-## Implemented by Eltrick (7)
-
-    Critters        │  Infinite Loop  │  Numbered Buttons    │  Pixel Cipher
-    Factoring Maze  │  Interpunct     │  Password Destroyer  │
-
 ## Implemented by Marksam (7)
 
     Brown Cipher                │  Great Void, The  │  Mashematics  │  Wolf, Goat, and Cabbage
@@ -202,6 +197,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     DNA Mutation   │  Lime Arrows           │  Scorching Alchemist  │  UFO Satellites
     Giants Cipher  │  Noise Identification  │  Toxic Crystals       │
+
+## Implemented by Eltrick (6)
+
+    Critters        │  Infinite Loop  │  Numbered Buttons
+    Factoring Maze  │  Interpunct     │  Password Destroyer
 
 ## Others
 

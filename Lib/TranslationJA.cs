@@ -7080,18 +7080,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Great Void
         [typeof(SGreatVoid)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "超空洞",
             ManualQuestions = new()
             {
-                ["What were the digits and colors?"] = "数字と色は？",
+                ["What were the symbols and colors?"] = "What were the symbols and colors?",
             },
             Questions = new()
             {
-                [SGreatVoid.Digit] = new()
+                [SGreatVoid.Symbol] = new()
                 {
-                    // English: What was the {1} digit in {0}?
-                    // Example: What was the first digit in The Great Void?
-                    Question = "{0}の{1}番目の数字は？",
+                    // English: What was the {1} symbol in {0}?
+                    // Example: What was the first symbol in The Great Void?
+                    Question = "What was the {1} symbol in {0}?",
                 },
                 [SGreatVoid.Color] = new()
                 {
@@ -13256,17 +13257,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Pixel Cipher
         [typeof(SPixelCipher)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ピクセル暗号",
             ManualQuestions = new()
             {
-                ["What was the keyword?"] = "キーワードは？",
+                ["What were the displayed numbers?"] = "What were the displayed numbers?",
             },
             Questions = new()
             {
-                [SPixelCipher.Keyword] = new()
+                [SPixelCipher.Numbers] = new()
                 {
-                    // English: What was the keyword in {0}?
-                    Question = "{0}のキーワードは？",
+                    // English: What was the {1} displayed number in {0}?
+                    // Example: What was the first displayed number in Pixel Cipher?
+                    Question = "What was the {1} displayed number in {0}?",
                 },
             },
         },
