@@ -1505,11 +1505,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Was war bei {0} die Zutat an {1}er Stelle?",
                     Answers = new()
                     {
-                        ["Adelhyde"] = "Adelhyde",
-                        ["Flanergide"] = "Flanergide",
-                        ["Bronson Extract"] = "Bronson Extract",
-                        ["Karmotrine"] = "Karmotrine",
-                        ["Powdered Delta"] = "Powdered Delta",
+                        ["Adelhyde"] = "Adelhyd",
+                        ["Flanergide"] = "Flanergid",
+                        ["Bronson Extract"] = "Bronson-Extrakt",
+                        ["Karmotrine"] = "Karmotrin",
+                        ["Powdered Delta"] = "Puderdelta",
                     },
                 },
             },
