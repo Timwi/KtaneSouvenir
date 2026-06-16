@@ -106,6 +106,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // 100 Levels of Defusal
         [typeof(S100LevelsOfDefusal)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "100 Ebenen der Entschärfung",
             Gender = Gender.Plural,
             ManualQuestions = new()
@@ -116,18 +117,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [S100LevelsOfDefusal.Letters] = new()
                 {
-                    // English: What was the {1} displayed letter in {0}?
-                    // Example: What was the first displayed letter in 100 Levels of Defusal?
-                    Question = "Was war bei {0} der {1}e angezeigte Buchstabe?",
-                },
-            },
-            Discriminators = new()
-            {
-                [S100LevelsOfDefusal.Discriminator] = new()
-                {
-                    // English: the 100 Levels of Defusal where the {0} displayed letter was {1}
-                    // Example: the 100 Levels of Defusal where the first displayed letter was B
-                    Discriminator = "den 100 Ebenen der Entschärfung, deren {0}er Buchstabe {1} war,",
+                    // English: Which letter was displayed in {0}?
+                    Question = "Which letter was displayed in {0}?",
                 },
             },
         },
@@ -2833,6 +2824,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Calendar
         [typeof(SCalendar)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Kalender",
             Gender = Gender.Masculine,
             ManualQuestions = new()
@@ -2845,6 +2837,27 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the holiday in {0}?
                     Question = "Welcher Feiertag kam bei {0} vor?",
+                    Answers = new()
+                    {
+                        ["April Fools’"] = "April Fools’",
+                        ["Australia Day"] = "Australia Day",
+                        ["Bastille Day"] = "Bastille Day",
+                        ["Christmas Eve"] = "Christmas Eve",
+                        ["Cinco de Mayo"] = "Cinco de Mayo",
+                        ["Day of German Unity"] = "Day of German Unity",
+                        ["Day of the Dead"] = "Day of the Dead",
+                        ["Earth Day"] = "Earth Day",
+                        ["Epiphany"] = "Epiphany",
+                        ["Golden Week"] = "Golden Week",
+                        ["Groundhog Day"] = "Groundhog Day",
+                        ["Guy Fawkes Night"] = "Guy Fawkes Night",
+                        ["Kwanzaa"] = "Kwanzaa",
+                        ["Republic Day"] = "Republic Day",
+                        ["Saint Patrick’s Day"] = "Saint Patrick’s Day",
+                        ["Valentine’s Day"] = "Valentine’s Day",
+                        ["Veterans Day"] = "Veterans Day",
+                        ["World Braille Day"] = "World Braille Day",
+                    },
                 },
             },
         },
@@ -7592,6 +7605,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Der Hexaknopf",
             ModuleNameDative = "Hexaknopf",
             Gender = Gender.Masculine,
@@ -7612,6 +7626,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     {
                         ["the color"] = "hatte",
                         ["the flickering color"] = "flickerte bei",
+                    },
+                    Answers = new()
+                    {
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["gray"] = "gray",
+                        ["green"] = "green",
+                        ["magenta"] = "magenta",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
                     },
                 },
                 [SHexabutton.Letter] = new()
@@ -8605,6 +8629,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Juxtacolored Squares
         [typeof(SJuxtacoloredSquares)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Gefärbte Nachbarfelder",
             ModuleNameDative = "Gefärbten Nachbarfeldern",
             Gender = Gender.Plural,
@@ -13813,32 +13838,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Was war bei {0} die Startposition?",
                 },
             },
-            Discriminators = new()
-            {
-                [SPolyhedralMaze.MazeShape] = new()
-                {
-                    // English: {0}
-                    // Example: the 4-truncated deltoidal icositetrahedral Polyhedral Maze
-                    Discriminator = "dem Polyederlabyrinth mit einem {0}",
-                    Arguments = new()
-                    {
-                        ["the 4-truncated deltoidal icositetrahedral Polyhedral Maze"] = "4-gestumpften Deltoidikositetraeder",
-                        ["the chamfered dodecahedral Polyhedral Maze"] = "abgekanteten Dodekaeder",
-                        ["the chamfered icosahedral Polyhedral Maze"] = "abgekanteten Ikosaeder",
-                        ["the deltoidal hexecontahedral Polyhedral Maze"] = "Deltoidhexakontaeder",
-                        ["the disdyakis dodecahedral Polyhedral Maze"] = "Disdyakisdodekaeder",
-                        ["the joined snub cubic Polyhedral Maze"] = "verbundenen abgeschrägten Hexaeder",
-                        ["the joined rhombicuboctahedral Polyhedral Maze"] = "verbundenen Rhombenkuboktaeder",
-                        ["the pentagonal hexecontahedral Polyhedral Maze"] = "Pentagonhexakontaeder",
-                        ["the orthokis propello cubic Polyhedral Maze"] = "Orthokis-Propello-Würfel",
-                        ["the pentakis dodecahedral Polyhedral Maze"] = "Pentakisdodekaeder",
-                        ["the rectified rhombicuboctahedral Polyhedral Maze"] = "Rhombenkuboktaederstumpf",
-                        ["the triakis icosahedral Polyhedral Maze"] = "Triakisikosaeder",
-                        ["the rhombicosidodecahedral Polyhedral Maze"] = "Rhombenikosidodekaeder",
-                        ["the canonical rectified snub cubic Polyhedral Maze"] = "kanonischen abgeschrägten Hexaederstumpf",
-                    },
-                },
-            },
         },
 
         // Prime Encryption
@@ -16364,6 +16363,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Speaks
         [typeof(SSimonSpeaks)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Simon Spricht",
             ManualQuestions = new()
             {
@@ -16397,6 +16397,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which language was the bubble that flashed third in {0} in?
                     Question = "Welche Sprache hatte bei {0} die als dritte aufleuchtende Sprechblase?",
+                    Answers = new()
+                    {
+                        ["English"] = "English",
+                        ["Danish"] = "Danish",
+                        ["Dutch"] = "Dutch",
+                        ["Esperanto"] = "Esperanto",
+                        ["Finnish"] = "Finnish",
+                        ["French"] = "French",
+                        ["German"] = "German",
+                        ["Hungarian"] = "Hungarian",
+                        ["Italian"] = "Italian",
+                    },
                 },
                 [SSimonSpeaks.Words] = new()
                 {
@@ -19266,6 +19278,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // USA Maze
         [typeof(SUSAMaze)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "USA-Labyrinth",
             ManualQuestions = new()
             {
@@ -19277,6 +19290,59 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which state did you depart from in {0}?
                     Question = "In welchem Bundesstaat ging es bei {0} los?",
+                    Answers = new()
+                    {
+                        ["Alaska"] = "Alaska",
+                        ["Alabama"] = "Alabama",
+                        ["Arkansas"] = "Arkansas",
+                        ["Arizona"] = "Arizona",
+                        ["California"] = "California",
+                        ["Colorado"] = "Colorado",
+                        ["Connecticut"] = "Connecticut",
+                        ["Delaware"] = "Delaware",
+                        ["Florida"] = "Florida",
+                        ["Georgia"] = "Georgia",
+                        ["Hawaii"] = "Hawaii",
+                        ["Iowa"] = "Iowa",
+                        ["Idaho"] = "Idaho",
+                        ["Illinois"] = "Illinois",
+                        ["Indiana"] = "Indiana",
+                        ["Kansas"] = "Kansas",
+                        ["Kentucky"] = "Kentucky",
+                        ["Louisiana"] = "Louisiana",
+                        ["Massachusetts"] = "Massachusetts",
+                        ["Maryland"] = "Maryland",
+                        ["Maine"] = "Maine",
+                        ["Michigan"] = "Michigan",
+                        ["Minnesota"] = "Minnesota",
+                        ["Missouri"] = "Missouri",
+                        ["Mississippi"] = "Mississippi",
+                        ["Montana"] = "Montana",
+                        ["North Carolina"] = "North Carolina",
+                        ["North Dakota"] = "North Dakota",
+                        ["Nebraska"] = "Nebraska",
+                        ["New Hampshire"] = "New Hampshire",
+                        ["New Jersey"] = "New Jersey",
+                        ["New Mexico"] = "New Mexico",
+                        ["Nevada"] = "Nevada",
+                        ["New York"] = "New York",
+                        ["Ohio"] = "Ohio",
+                        ["Oklahoma"] = "Oklahoma",
+                        ["Oregon"] = "Oregon",
+                        ["Pennsylvania"] = "Pennsylvania",
+                        ["Rhode Island"] = "Rhode Island",
+                        ["South Carolina"] = "South Carolina",
+                        ["South Dakota"] = "South Dakota",
+                        ["Tennessee"] = "Tennessee",
+                        ["Texas"] = "Texas",
+                        ["Utah"] = "Utah",
+                        ["Virginia"] = "Virginia",
+                        ["Vermont"] = "Vermont",
+                        ["Washington"] = "Washington",
+                        ["Wisconsin"] = "Wisconsin",
+                        ["West Virginia"] = "West Virginia",
+                        ["Wyoming"] = "Wyoming",
+                    },
                 },
             },
         },
@@ -20210,11 +20276,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Wolf, Goat, and Cabbage
         [typeof(SWolfGoatAndCabbage)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Wolf, Ziege und Kohl",
             ManualQuestions = new()
             {
                 ["Which creatures were present?"] = "Welche Kreaturen kamen vor?",
-                ["What size was the boat?"] = "Wie groß war das Boot?",
             },
             Questions = new()
             {
@@ -20228,11 +20294,31 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["present"] = "vor",
                         ["not present"] = "nicht vor",
                     },
-                },
-                [SWolfGoatAndCabbage.BoatSize] = new()
-                {
-                    // English: What was the boat size in {0}?
-                    Question = "Wie groß war bei {0} das Boot?",
+                    Answers = new()
+                    {
+                        ["Cat"] = "Cat",
+                        ["Wolf"] = "Wolf",
+                        ["Rabbit"] = "Rabbit",
+                        ["Berry"] = "Berry",
+                        ["Fish"] = "Fish",
+                        ["Dog"] = "Dog",
+                        ["Duck"] = "Duck",
+                        ["Goat"] = "Goat",
+                        ["Fox"] = "Fox",
+                        ["Grass"] = "Grass",
+                        ["Rice"] = "Rice",
+                        ["Mouse"] = "Mouse",
+                        ["Bear"] = "Bear",
+                        ["Cabbage"] = "Cabbage",
+                        ["Chicken"] = "Chicken",
+                        ["Goose"] = "Goose",
+                        ["Corn"] = "Corn",
+                        ["Carrot"] = "Carrot",
+                        ["Horse"] = "Horse",
+                        ["Earthworm"] = "Earthworm",
+                        ["Kiwi"] = "Kiwi",
+                        ["Seeds"] = "Seeds",
+                    },
                 },
             },
         },

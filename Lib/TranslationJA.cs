@@ -66,6 +66,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // 100 Levels of Defusal
         [typeof(S100LevelsOfDefusal)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "解除レベル100",
             ManualQuestions = new()
             {
@@ -75,18 +76,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [S100LevelsOfDefusal.Letters] = new()
                 {
-                    // English: What was the {1} displayed letter in {0}?
-                    // Example: What was the first displayed letter in 100 Levels of Defusal?
-                    Question = "{0}で{1}番目に表示された文字は？",
-                },
-            },
-            Discriminators = new()
-            {
-                [S100LevelsOfDefusal.Discriminator] = new()
-                {
-                    // English: the 100 Levels of Defusal where the {0} displayed letter was {1}
-                    // Example: the 100 Levels of Defusal where the first displayed letter was B
-                    Discriminator = "表示された{0}番目の英字が{1}だった解除レベル100",
+                    // English: Which letter was displayed in {0}?
+                    Question = "Which letter was displayed in {0}?",
                 },
             },
         },
@@ -2755,6 +2746,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Calendar
         [typeof(SCalendar)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "カレンダー",
             ManualQuestions = new()
             {
@@ -2766,6 +2758,27 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the holiday in {0}?
                     Question = "{0}の祝日は？",
+                    Answers = new()
+                    {
+                        ["April Fools’"] = "April Fools’",
+                        ["Australia Day"] = "Australia Day",
+                        ["Bastille Day"] = "Bastille Day",
+                        ["Christmas Eve"] = "Christmas Eve",
+                        ["Cinco de Mayo"] = "Cinco de Mayo",
+                        ["Day of German Unity"] = "Day of German Unity",
+                        ["Day of the Dead"] = "Day of the Dead",
+                        ["Earth Day"] = "Earth Day",
+                        ["Epiphany"] = "Epiphany",
+                        ["Golden Week"] = "Golden Week",
+                        ["Groundhog Day"] = "Groundhog Day",
+                        ["Guy Fawkes Night"] = "Guy Fawkes Night",
+                        ["Kwanzaa"] = "Kwanzaa",
+                        ["Republic Day"] = "Republic Day",
+                        ["Saint Patrick’s Day"] = "Saint Patrick’s Day",
+                        ["Valentine’s Day"] = "Valentine’s Day",
+                        ["Veterans Day"] = "Veterans Day",
+                        ["World Braille Day"] = "World Braille Day",
+                    },
                 },
             },
         },
@@ -7385,6 +7398,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "六角形ボタン",
             ManualQuestions = new()
             {
@@ -7402,6 +7416,16 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     {
                         ["the color"] = "色",
                         ["the flickering color"] = "点滅した色",
+                    },
+                    Answers = new()
+                    {
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["gray"] = "gray",
+                        ["green"] = "green",
+                        ["magenta"] = "magenta",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
                     },
                 },
                 [SHexabutton.Letter] = new()
@@ -13454,32 +13478,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     Question = "{0}の開始番号は？",
                 },
             },
-            Discriminators = new()
-            {
-                [SPolyhedralMaze.MazeShape] = new()
-                {
-                    // English: {0}
-                    // Example: the 4-truncated deltoidal icositetrahedral Polyhedral Maze
-                    Discriminator = "{0}",
-                    Arguments = new()
-                    {
-                        ["the 4-truncated deltoidal icositetrahedral Polyhedral Maze"] = "四切頂凧形二十四面体の多面体迷路",
-                        ["the chamfered dodecahedral Polyhedral Maze"] = "切稜十二面体の多面体迷路",
-                        ["the chamfered icosahedral Polyhedral Maze"] = "切稜二十面体の多面体迷路",
-                        ["the deltoidal hexecontahedral Polyhedral Maze"] = "切稜六十面体の多面体迷路",
-                        ["the disdyakis dodecahedral Polyhedral Maze"] = "六方二十面体の多面体迷路",
-                        ["the joined snub cubic Polyhedral Maze"] = "菱方変形立方体の多面体迷路",
-                        ["the joined rhombicuboctahedral Polyhedral Maze"] = "斜方菱方八面体の多面体迷路",
-                        ["the pentagonal hexecontahedral Polyhedral Maze"] = "五角六十面体の多面体迷路",
-                        ["the orthokis propello cubic Polyhedral Maze"] = "凧方プロペラキューブの多面体迷路",
-                        ["the pentakis dodecahedral Polyhedral Maze"] = "五方十二面体の多面体迷路",
-                        ["the rectified rhombicuboctahedral Polyhedral Maze"] = "切頂斜方立方八面体の多面体迷路",
-                        ["the triakis icosahedral Polyhedral Maze"] = "三方二十面体の多面体迷路",
-                        ["the rhombicosidodecahedral Polyhedral Maze"] = "斜方二十・十二面体の多面体迷路",
-                        ["the canonical rectified snub cubic Polyhedral Maze"] = "一様切頂変形立方体の多面体迷路",
-                    },
-                },
-            },
         },
 
         // Prime Encryption
@@ -15946,6 +15944,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Simon Speaks
         [typeof(SSimonSpeaks)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "サイモンの発話",
             ManualQuestions = new()
             {
@@ -15979,6 +15978,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which language was the bubble that flashed third in {0} in?
                     Question = "{0}の3回目の点滅の言語は？",
+                    Answers = new()
+                    {
+                        ["English"] = "English",
+                        ["Danish"] = "Danish",
+                        ["Dutch"] = "Dutch",
+                        ["Esperanto"] = "Esperanto",
+                        ["Finnish"] = "Finnish",
+                        ["French"] = "French",
+                        ["German"] = "German",
+                        ["Hungarian"] = "Hungarian",
+                        ["Italian"] = "Italian",
+                    },
                 },
                 [SSimonSpeaks.Words] = new()
                 {
@@ -18796,6 +18807,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // USA Maze
         [typeof(SUSAMaze)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "USA迷路",
             ManualQuestions = new()
             {
@@ -18807,6 +18819,59 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which state did you depart from in {0}?
                     Question = "{0}の開始地点は？",
+                    Answers = new()
+                    {
+                        ["Alaska"] = "Alaska",
+                        ["Alabama"] = "Alabama",
+                        ["Arkansas"] = "Arkansas",
+                        ["Arizona"] = "Arizona",
+                        ["California"] = "California",
+                        ["Colorado"] = "Colorado",
+                        ["Connecticut"] = "Connecticut",
+                        ["Delaware"] = "Delaware",
+                        ["Florida"] = "Florida",
+                        ["Georgia"] = "Georgia",
+                        ["Hawaii"] = "Hawaii",
+                        ["Iowa"] = "Iowa",
+                        ["Idaho"] = "Idaho",
+                        ["Illinois"] = "Illinois",
+                        ["Indiana"] = "Indiana",
+                        ["Kansas"] = "Kansas",
+                        ["Kentucky"] = "Kentucky",
+                        ["Louisiana"] = "Louisiana",
+                        ["Massachusetts"] = "Massachusetts",
+                        ["Maryland"] = "Maryland",
+                        ["Maine"] = "Maine",
+                        ["Michigan"] = "Michigan",
+                        ["Minnesota"] = "Minnesota",
+                        ["Missouri"] = "Missouri",
+                        ["Mississippi"] = "Mississippi",
+                        ["Montana"] = "Montana",
+                        ["North Carolina"] = "North Carolina",
+                        ["North Dakota"] = "North Dakota",
+                        ["Nebraska"] = "Nebraska",
+                        ["New Hampshire"] = "New Hampshire",
+                        ["New Jersey"] = "New Jersey",
+                        ["New Mexico"] = "New Mexico",
+                        ["Nevada"] = "Nevada",
+                        ["New York"] = "New York",
+                        ["Ohio"] = "Ohio",
+                        ["Oklahoma"] = "Oklahoma",
+                        ["Oregon"] = "Oregon",
+                        ["Pennsylvania"] = "Pennsylvania",
+                        ["Rhode Island"] = "Rhode Island",
+                        ["South Carolina"] = "South Carolina",
+                        ["South Dakota"] = "South Dakota",
+                        ["Tennessee"] = "Tennessee",
+                        ["Texas"] = "Texas",
+                        ["Utah"] = "Utah",
+                        ["Virginia"] = "Virginia",
+                        ["Vermont"] = "Vermont",
+                        ["Washington"] = "Washington",
+                        ["Wisconsin"] = "Wisconsin",
+                        ["West Virginia"] = "West Virginia",
+                        ["Wyoming"] = "Wyoming",
+                    },
                 },
             },
         },
@@ -19718,11 +19783,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Wolf, Goat, and Cabbage
         [typeof(SWolfGoatAndCabbage)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "川渡り問題",
             ManualQuestions = new()
             {
                 ["Which creatures were present?"] = "どの生物がいた？",
-                ["What size was the boat?"] = "ボートのサイズは？",
             },
             Questions = new()
             {
@@ -19736,11 +19801,31 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["present"] = "存在した",
                         ["not present"] = "存在しなかった",
                     },
-                },
-                [SWolfGoatAndCabbage.BoatSize] = new()
-                {
-                    // English: What was the boat size in {0}?
-                    Question = "{0}のボートのサイズは？",
+                    Answers = new()
+                    {
+                        ["Cat"] = "Cat",
+                        ["Wolf"] = "Wolf",
+                        ["Rabbit"] = "Rabbit",
+                        ["Berry"] = "Berry",
+                        ["Fish"] = "Fish",
+                        ["Dog"] = "Dog",
+                        ["Duck"] = "Duck",
+                        ["Goat"] = "Goat",
+                        ["Fox"] = "Fox",
+                        ["Grass"] = "Grass",
+                        ["Rice"] = "Rice",
+                        ["Mouse"] = "Mouse",
+                        ["Bear"] = "Bear",
+                        ["Cabbage"] = "Cabbage",
+                        ["Chicken"] = "Chicken",
+                        ["Goose"] = "Goose",
+                        ["Corn"] = "Corn",
+                        ["Carrot"] = "Carrot",
+                        ["Horse"] = "Horse",
+                        ["Earthworm"] = "Earthworm",
+                        ["Kiwi"] = "Kiwi",
+                        ["Seeds"] = "Seeds",
+                    },
                 },
             },
         },

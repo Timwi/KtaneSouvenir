@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SHexabutton
 {
-    [Question("What was {1} of {0} when it was held?", ThreeColumns6Answers, "blue", "cyan", "gray", "green", "magenta", "purple", "white", TranslateArguments = [true], Arguments = ["the color", "the flickering color"], ArgumentGroupSize = 1)]
+    [Question("What was {1} of {0} when it was held?", ThreeColumns6Answers, "blue", "cyan", "gray", "green", "magenta", "purple", "white", TranslateArguments = [true], Arguments = ["the color", "the flickering color"], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Color,
 
     [Question("What Morse Code letter was transmitted by {0}?", ThreeColumns6Answers)]

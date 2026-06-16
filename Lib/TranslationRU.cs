@@ -154,19 +154,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [S100LevelsOfDefusal.Letters] = new()
                 {
-                    // English: What was the {1} displayed letter in {0}?
-                    // Example: What was the first displayed letter in 100 Levels of Defusal?
-                    Question = "Какая была {1}-я показанная буква {0}?",
-                    Conjugation = Conjugation.в_PrepositivePlural,
-                },
-            },
-            Discriminators = new()
-            {
-                [S100LevelsOfDefusal.Discriminator] = new()
-                {
-                    // English: the 100 Levels of Defusal where the {0} displayed letter was {1}
-                    // Example: the 100 Levels of Defusal where the first displayed letter was B
-                    Discriminator = "the 100 Levels of Defusal where the {0} displayed letter was {1}",
+                    // English: Which letter was displayed in {0}?
+                    Question = "Which letter was displayed in {0}?",
                 },
             },
         },
@@ -2882,6 +2871,27 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the holiday in {0}?
                     Question = "What was the holiday in {0}?",
+                    Answers = new()
+                    {
+                        ["April Fools’"] = "April Fools’",
+                        ["Australia Day"] = "Australia Day",
+                        ["Bastille Day"] = "Bastille Day",
+                        ["Christmas Eve"] = "Christmas Eve",
+                        ["Cinco de Mayo"] = "Cinco de Mayo",
+                        ["Day of German Unity"] = "Day of German Unity",
+                        ["Day of the Dead"] = "Day of the Dead",
+                        ["Earth Day"] = "Earth Day",
+                        ["Epiphany"] = "Epiphany",
+                        ["Golden Week"] = "Golden Week",
+                        ["Groundhog Day"] = "Groundhog Day",
+                        ["Guy Fawkes Night"] = "Guy Fawkes Night",
+                        ["Kwanzaa"] = "Kwanzaa",
+                        ["Republic Day"] = "Republic Day",
+                        ["Saint Patrick’s Day"] = "Saint Patrick’s Day",
+                        ["Valentine’s Day"] = "Valentine’s Day",
+                        ["Veterans Day"] = "Veterans Day",
+                        ["World Braille Day"] = "World Braille Day",
+                    },
                 },
             },
         },
@@ -7520,6 +7530,16 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     {
                         ["the color"] = "the color",
                         ["the flickering color"] = "the flickering color",
+                    },
+                    Answers = new()
+                    {
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["gray"] = "gray",
+                        ["green"] = "green",
+                        ["magenta"] = "magenta",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
                     },
                 },
                 [SHexabutton.Letter] = new()
@@ -13573,32 +13593,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     Question = "Какая была начальная позиция {0}?",
                 },
             },
-            Discriminators = new()
-            {
-                [SPolyhedralMaze.MazeShape] = new()
-                {
-                    // English: {0}
-                    // Example: the 4-truncated deltoidal icositetrahedral Polyhedral Maze
-                    Discriminator = "{0}",
-                    Arguments = new()
-                    {
-                        ["the 4-truncated deltoidal icositetrahedral Polyhedral Maze"] = "the 4-truncated deltoidal icositetrahedral Polyhedral Maze",
-                        ["the chamfered dodecahedral Polyhedral Maze"] = "the chamfered dodecahedral Polyhedral Maze",
-                        ["the chamfered icosahedral Polyhedral Maze"] = "the chamfered icosahedral Polyhedral Maze",
-                        ["the deltoidal hexecontahedral Polyhedral Maze"] = "the deltoidal hexecontahedral Polyhedral Maze",
-                        ["the disdyakis dodecahedral Polyhedral Maze"] = "the disdyakis dodecahedral Polyhedral Maze",
-                        ["the joined snub cubic Polyhedral Maze"] = "the joined snub cubic Polyhedral Maze",
-                        ["the joined rhombicuboctahedral Polyhedral Maze"] = "the joined rhombicuboctahedral Polyhedral Maze",
-                        ["the pentagonal hexecontahedral Polyhedral Maze"] = "the pentagonal hexecontahedral Polyhedral Maze",
-                        ["the orthokis propello cubic Polyhedral Maze"] = "the orthokis propello cubic Polyhedral Maze",
-                        ["the pentakis dodecahedral Polyhedral Maze"] = "the pentakis dodecahedral Polyhedral Maze",
-                        ["the rectified rhombicuboctahedral Polyhedral Maze"] = "the rectified rhombicuboctahedral Polyhedral Maze",
-                        ["the triakis icosahedral Polyhedral Maze"] = "the triakis icosahedral Polyhedral Maze",
-                        ["the rhombicosidodecahedral Polyhedral Maze"] = "the rhombicosidodecahedral Polyhedral Maze",
-                        ["the canonical rectified snub cubic Polyhedral Maze"] = "the canonical rectified snub cubic Polyhedral Maze",
-                    },
-                },
-            },
         },
 
         // Prime Encryption
@@ -16052,6 +16046,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Simon Speaks
         [typeof(SSimonSpeaks)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "\"Саймон общается\"",
             ManualModuleName = "Саймон общается",
             ManualQuestions = new()
@@ -16086,6 +16081,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: Which language was the bubble that flashed third in {0} in?
                     Question = "Какого языка была надпись на третьем загоревшемся диалоговом облаке {0}?",
+                    Answers = new()
+                    {
+                        ["English"] = "English",
+                        ["Danish"] = "Danish",
+                        ["Dutch"] = "Dutch",
+                        ["Esperanto"] = "Esperanto",
+                        ["Finnish"] = "Finnish",
+                        ["French"] = "French",
+                        ["German"] = "German",
+                        ["Hungarian"] = "Hungarian",
+                        ["Italian"] = "Italian",
+                    },
                 },
                 [SSimonSpeaks.Words] = new()
                 {
@@ -18906,6 +18913,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // USA Maze
         [typeof(SUSAMaze)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Американском лабиринте",
             ManualModuleName = "Американский лабиринт",
             ManualQuestions = new()
@@ -18918,6 +18926,59 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: Which state did you depart from in {0}?
                     Question = "Из какого штата вы отправились {0}?",
+                    Answers = new()
+                    {
+                        ["Alaska"] = "Alaska",
+                        ["Alabama"] = "Alabama",
+                        ["Arkansas"] = "Arkansas",
+                        ["Arizona"] = "Arizona",
+                        ["California"] = "California",
+                        ["Colorado"] = "Colorado",
+                        ["Connecticut"] = "Connecticut",
+                        ["Delaware"] = "Delaware",
+                        ["Florida"] = "Florida",
+                        ["Georgia"] = "Georgia",
+                        ["Hawaii"] = "Hawaii",
+                        ["Iowa"] = "Iowa",
+                        ["Idaho"] = "Idaho",
+                        ["Illinois"] = "Illinois",
+                        ["Indiana"] = "Indiana",
+                        ["Kansas"] = "Kansas",
+                        ["Kentucky"] = "Kentucky",
+                        ["Louisiana"] = "Louisiana",
+                        ["Massachusetts"] = "Massachusetts",
+                        ["Maryland"] = "Maryland",
+                        ["Maine"] = "Maine",
+                        ["Michigan"] = "Michigan",
+                        ["Minnesota"] = "Minnesota",
+                        ["Missouri"] = "Missouri",
+                        ["Mississippi"] = "Mississippi",
+                        ["Montana"] = "Montana",
+                        ["North Carolina"] = "North Carolina",
+                        ["North Dakota"] = "North Dakota",
+                        ["Nebraska"] = "Nebraska",
+                        ["New Hampshire"] = "New Hampshire",
+                        ["New Jersey"] = "New Jersey",
+                        ["New Mexico"] = "New Mexico",
+                        ["Nevada"] = "Nevada",
+                        ["New York"] = "New York",
+                        ["Ohio"] = "Ohio",
+                        ["Oklahoma"] = "Oklahoma",
+                        ["Oregon"] = "Oregon",
+                        ["Pennsylvania"] = "Pennsylvania",
+                        ["Rhode Island"] = "Rhode Island",
+                        ["South Carolina"] = "South Carolina",
+                        ["South Dakota"] = "South Dakota",
+                        ["Tennessee"] = "Tennessee",
+                        ["Texas"] = "Texas",
+                        ["Utah"] = "Utah",
+                        ["Virginia"] = "Virginia",
+                        ["Vermont"] = "Vermont",
+                        ["Washington"] = "Washington",
+                        ["Wisconsin"] = "Wisconsin",
+                        ["West Virginia"] = "West Virginia",
+                        ["Wyoming"] = "Wyoming",
+                    },
                 },
             },
         },
@@ -19835,10 +19896,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Wolf, Goat, and Cabbage
         [typeof(SWolfGoatAndCabbage)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["Which creatures were present?"] = "Какие существа присутствовали?",
-                ["What size was the boat?"] = "Какого размера была лодка?",
             },
             Questions = new()
             {
@@ -19852,11 +19913,31 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["present"] = "присутствовало",
                         ["not present"] = "отсутствовало",
                     },
-                },
-                [SWolfGoatAndCabbage.BoatSize] = new()
-                {
-                    // English: What was the boat size in {0}?
-                    Question = "Какого размера была лодка {0}?",
+                    Answers = new()
+                    {
+                        ["Cat"] = "Cat",
+                        ["Wolf"] = "Wolf",
+                        ["Rabbit"] = "Rabbit",
+                        ["Berry"] = "Berry",
+                        ["Fish"] = "Fish",
+                        ["Dog"] = "Dog",
+                        ["Duck"] = "Duck",
+                        ["Goat"] = "Goat",
+                        ["Fox"] = "Fox",
+                        ["Grass"] = "Grass",
+                        ["Rice"] = "Rice",
+                        ["Mouse"] = "Mouse",
+                        ["Bear"] = "Bear",
+                        ["Cabbage"] = "Cabbage",
+                        ["Chicken"] = "Chicken",
+                        ["Goose"] = "Goose",
+                        ["Corn"] = "Corn",
+                        ["Carrot"] = "Carrot",
+                        ["Horse"] = "Horse",
+                        ["Earthworm"] = "Earthworm",
+                        ["Kiwi"] = "Kiwi",
+                        ["Seeds"] = "Seeds",
+                    },
                 },
             },
         },
