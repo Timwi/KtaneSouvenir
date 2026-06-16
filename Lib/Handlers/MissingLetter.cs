@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SMissingLetter
@@ -19,8 +21,18 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "TheMissingLetterScript");
         yield return WaitForSolve;
 
+        var labels = GetArrayField<TextMesh>(comp, "Labels", isPublic: true).Get(expectedLength: 25);
         var letters = GetListField<char>(comp, "alph").Get(expectedLength: 26);
-        var n = GetIntField(comp, "resultN").Get(min: 1, max: 5);
+
+        IEnumerator DisappearLetters()
+        {
+            foreach (var label in labels)
+            {
+                label.text = "";
+                yield return new WaitForSeconds(.1f);
+            }
+        }
+        StartCoroutine(DisappearLetters());
 
         yield return question(SMissingLetter.MissingLetter).Answers(letters.Last().ToString());
     }

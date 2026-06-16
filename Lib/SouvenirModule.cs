@@ -38,6 +38,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] CycleModuleEightSprites;
     public Sprite[] CycleModuleTwelveSprites;
     public Sprite[] CycleModuleCrypticSprites;
+    public Sprite[] ElderFutharkSprites;
     public Sprite[] EncryptedEquationsSprites;
     public Sprite[] ExampleSprites;
     public Sprite[] FlagsSprites;

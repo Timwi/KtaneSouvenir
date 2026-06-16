@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 
@@ -6,8 +7,11 @@ using static Souvenir.AnswerLayout;
 
 public enum SElderFuthark
 {
-    [Question("What was the {1} rune shown on {0}?", ThreeColumns6Answers, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "y", "l", "m", "n", "o", "p", "z", "r", "s", "t", "u", "v", "x", Type = AnswerType.ElderRuneFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    Runes
+    [Question("What was the {1} rune shown on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.Sprites, SpriteFieldName = "ElderFutharkSprites")]
+    Runes,
+
+    [Discriminator("the Elder Futhark that had this rune on it", UsesQuestionSprite = true)]
+    Discriminator
 }
 
 public partial class SouvenirModule
@@ -21,36 +25,14 @@ public partial class SouvenirModule
 
         var pickedRuneNames = GetArrayField<string>(comp, "pickedRuneNames").Get(expectedLength: 3);
 
-        var runeCharacters = new Dictionary<string, string>
-        {
-            ["Ansuz"] = "a",
-            ["Berkana"] = "b",
-            ["Kenaz"] = "c",
-            ["Dagaz"] = "d",
-            ["Ehwaz"] = "e",
-            ["Fehu"] = "f",
-            ["Gebo"] = "g",
-            ["Hagalaz"] = "h",
-            ["Isa"] = "i",
-            ["Jera"] = "j",
-            ["Eihwaz"] = "y",
-            ["Laguz"] = "l",
-            ["Mannaz"] = "m",
-            ["Nauthiz"] = "n",
-            ["Othila"] = "o",
-            ["Perthro"] = "p",
-            ["Algiz"] = "z",
-            ["Raido"] = "r",
-            ["Sowulo"] = "s",
-            ["Teiwaz"] = "t",
-            ["Uruz"] = "u",
-            ["Wunjo"] = "v",
-            ["Thurisaz"] = "x",
-        };
+        var runeCharacters = new string[] { "Ansuz", "Berkana", "Kenaz", "Dagaz", "Ehwaz", "Fehu", "Gebo", "Hagalaz", "Isa", "Jera", "Eihwaz", "Laguz", "Mannaz", "Nauthiz", "Othila", "Perthro", "Algiz", "Raido", "Sowulo", "Teiwaz", "Uruz", "Wunjo", "Thurisaz" };
 
-        var pickedRunes = pickedRuneNames.Select(x => runeCharacters[x]).ToArray();
+        var pickedRunes = pickedRuneNames.Select(x => ElderFutharkSprites[Array.IndexOf(runeCharacters, x)]).ToArray();
 
         for (var i = 0; i < pickedRunes.Length; i++)
-            yield return question(SElderFuthark.Runes, args: [Ordinal(i + 1)]).Answers(pickedRunes[i], preferredWrong: pickedRunes);
+        {
+            yield return question(SElderFuthark.Runes, args: [Ordinal(i + 1)]).Answers(pickedRunes[i]);
+            yield return new Discriminator(SElderFuthark.Discriminator, $"futhark-{pickedRuneNames[i]}", questionSprite: pickedRunes[i]);
+        }
     }
 }

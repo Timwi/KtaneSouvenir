@@ -33,9 +33,6 @@ public enum AnswerType
     AMessageFont = 10,
     FourDTunnelsFont = 11,
     CubeFont = 12,
-    GreatVoidFont = 13,
-    ElderRuneFont = 14,
-    LombaxFont = 15,
 
     DynamicFont = -1, // Special value to indicate that the module handler will obtain the font from the client module
     Sprites = -2,     // Special value for answers that use sprites

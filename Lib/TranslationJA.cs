@@ -80,6 +80,39 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     Question = "Which letter was displayed in {0}?",
                 },
             },
+            Discriminators = new()
+            {
+                [S100LevelsOfDefusal.Discriminator] = new()
+                {
+                    // English: the 100 Levels of Defusal that had {0} on it
+                    // Example: the 100 Levels of Defusal that had a B on it
+                    Discriminator = "the 100 Levels of Defusal that had {0} on it",
+                    Arguments = new()
+                    {
+                        ["a B"] = "a B",
+                        ["a C"] = "a C",
+                        ["a D"] = "a D",
+                        ["an F"] = "an F",
+                        ["a G"] = "a G",
+                        ["an H"] = "an H",
+                        ["a J"] = "a J",
+                        ["a K"] = "a K",
+                        ["an L"] = "an L",
+                        ["an M"] = "an M",
+                        ["an N"] = "an N",
+                        ["a P"] = "a P",
+                        ["a Q"] = "a Q",
+                        ["an R"] = "an R",
+                        ["an S"] = "an S",
+                        ["a T"] = "a T",
+                        ["a V"] = "a V",
+                        ["a W"] = "a W",
+                        ["an X"] = "an X",
+                        ["a Y"] = "a Y",
+                        ["a Z"] = "a Z",
+                    },
+                },
+            },
         },
 
         // The 1, 2, 3 Game
@@ -5341,6 +5374,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Elder Futhark
         [typeof(SElderFuthark)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "エルダー・フサルク",
             ManualQuestions = new()
             {
@@ -5353,6 +5387,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the {1} rune shown on {0}?
                     // Example: What was the first rune shown on Elder Futhark?
                     Question = "{0}の{1}番目に表示されたルーンは？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SElderFuthark.Discriminator] = new()
+                {
+                    // English: the Elder Futhark that had this rune on it
+                    Discriminator = "the Elder Futhark that had this rune on it",
                 },
             },
         },

@@ -106,7 +106,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // 100 Levels of Defusal
         [typeof(S100LevelsOfDefusal)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "100 Ebenen der Entschärfung",
             Gender = Gender.Plural,
             ManualQuestions = new()
@@ -118,7 +117,40 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [S100LevelsOfDefusal.Letters] = new()
                 {
                     // English: Which letter was displayed in {0}?
-                    Question = "Which letter was displayed in {0}?",
+                    Question = "Welcher Buchstabe kam bei {0} vor?",
+                },
+            },
+            Discriminators = new()
+            {
+                [S100LevelsOfDefusal.Discriminator] = new()
+                {
+                    // English: the 100 Levels of Defusal that had {0} on it
+                    // Example: the 100 Levels of Defusal that had a B on it
+                    Discriminator = "den 100 Ebenen der Entschärfung mit einem {0} noch",
+                    Arguments = new()
+                    {
+                        ["a B"] = "B",
+                        ["a C"] = "C",
+                        ["a D"] = "D",
+                        ["an F"] = "F",
+                        ["a G"] = "G",
+                        ["an H"] = "H",
+                        ["a J"] = "J",
+                        ["a K"] = "K",
+                        ["an L"] = "L",
+                        ["an M"] = "M",
+                        ["an N"] = "N",
+                        ["a P"] = "P",
+                        ["a Q"] = "Q",
+                        ["an R"] = "R",
+                        ["an S"] = "S",
+                        ["a T"] = "T",
+                        ["a V"] = "V",
+                        ["a W"] = "W",
+                        ["an X"] = "X",
+                        ["a Y"] = "Y",
+                        ["a Z"] = "Z",
+                    },
                 },
             },
         },
@@ -2824,7 +2856,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Calendar
         [typeof(SCalendar)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Kalender",
             Gender = Gender.Masculine,
             ManualQuestions = new()
@@ -2839,24 +2870,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welcher Feiertag kam bei {0} vor?",
                     Answers = new()
                     {
-                        ["April Fools’"] = "April Fools’",
+                        ["April Fools’"] = "1. April",
                         ["Australia Day"] = "Australia Day",
-                        ["Bastille Day"] = "Bastille Day",
-                        ["Christmas Eve"] = "Christmas Eve",
+                        ["Bastille Day"] = "Bastille-Tag",
+                        ["Christmas Eve"] = "Heiligabend",
                         ["Cinco de Mayo"] = "Cinco de Mayo",
-                        ["Day of German Unity"] = "Day of German Unity",
-                        ["Day of the Dead"] = "Day of the Dead",
-                        ["Earth Day"] = "Earth Day",
-                        ["Epiphany"] = "Epiphany",
-                        ["Golden Week"] = "Golden Week",
-                        ["Groundhog Day"] = "Groundhog Day",
-                        ["Guy Fawkes Night"] = "Guy Fawkes Night",
+                        ["Day of German Unity"] = "Tag der Deutschen Einheit",
+                        ["Day of the Dead"] = "Tag der Tot",
+                        ["Earth Day"] = "Tag der Erde",
+                        ["Epiphany"] = "Heilige Drei Könige",
+                        ["Golden Week"] = "Goldene Woche",
+                        ["Groundhog Day"] = "Murmeltiertag",
+                        ["Guy Fawkes Night"] = "Guy-Fawkes-Nacht",
                         ["Kwanzaa"] = "Kwanzaa",
-                        ["Republic Day"] = "Republic Day",
+                        ["Republic Day"] = "Festa della Repubblica",
                         ["Saint Patrick’s Day"] = "Saint Patrick’s Day",
-                        ["Valentine’s Day"] = "Valentine’s Day",
-                        ["Veterans Day"] = "Veterans Day",
-                        ["World Braille Day"] = "World Braille Day",
+                        ["Valentine’s Day"] = "Valentinstag",
+                        ["Veterans Day"] = "Veteranentag",
+                        ["World Braille Day"] = "Welt-Braille-Tag",
                     },
                 },
             },
@@ -5504,7 +5535,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleNameDative = "Älteren Futhark",
             ManualQuestions = new()
             {
-                ["What were the runes shown?"] = "Welche Runen waren zu sehen?",
+                ["What were the runes shown?"] = "Welche Runen kamen vor?",
             },
             Questions = new()
             {
@@ -5513,6 +5544,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} rune shown on {0}?
                     // Example: What was the first rune shown on Elder Futhark?
                     Question = "Was war bei {0} die {1}e Rune?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SElderFuthark.Discriminator] = new()
+                {
+                    // English: the Elder Futhark that had this rune on it
+                    Discriminator = "dem Elder Futhark mit dieser Rune",
                 },
             },
         },
@@ -7279,14 +7318,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Great Void
         [typeof(SGreatVoid)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Die Große Leere",
             ModuleNameDative = "Großen Leere",
             Gender = Gender.Feminine,
             ManualModuleName = "Die\uE001Große Leere",
             ManualQuestions = new()
             {
-                ["What were the symbols and colors?"] = "What were the symbols and colors?",
+                ["What were the symbols and colors?"] = "Welche Symbole hatten welche Farbe?",
             },
             Questions = new()
             {
@@ -7294,7 +7332,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} symbol in {0}?
                     // Example: What was the first symbol in The Great Void?
-                    Question = "What was the {1} symbol in {0}?",
+                    Question = "Was war bei {0} das {1}e Symbol?",
                 },
                 [SGreatVoid.Color] = new()
                 {
@@ -7306,7 +7344,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Red"] = "Rot",
                         ["Green"] = "Grün",
                         ["Blue"] = "Blau",
-                        ["Magenta"] = "Magenta",
+                        ["Magenta"] = "Rosa",
                         ["Yellow"] = "Gelb",
                         ["Cyan"] = "Türkis",
                         ["White"] = "Weiß",
@@ -7606,7 +7644,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Der Hexaknopf",
             ModuleNameDative = "Hexaknopf",
             Gender = Gender.Masculine,
@@ -7625,18 +7662,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Farbe {1} {0} beim Gedrückthalten?",
                     Arguments = new()
                     {
-                        ["the color"] = "hatte",
+                        ["the color"] = "erschien bei",
                         ["the flickering color"] = "flickerte bei",
                     },
                     Answers = new()
                     {
-                        ["blue"] = "blue",
-                        ["cyan"] = "cyan",
-                        ["gray"] = "gray",
-                        ["green"] = "green",
-                        ["magenta"] = "magenta",
-                        ["purple"] = "purple",
-                        ["white"] = "white",
+                        ["blue"] = "blau",
+                        ["cyan"] = "türkis",
+                        ["gray"] = "grau",
+                        ["green"] = "grün",
+                        ["magenta"] = "rosa",
+                        ["purple"] = "lila",
+                        ["white"] = "weiß",
                     },
                 },
                 [SHexabutton.Letter] = new()
@@ -8630,7 +8667,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Juxtacolored Squares
         [typeof(SJuxtacoloredSquares)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Gefärbte Nachbarfelder",
             ModuleNameDative = "Gefärbten Nachbarfeldern",
             Gender = Gender.Plural,
@@ -8643,50 +8679,50 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SJuxtacoloredSquares.ColorsByPosition] = new()
                 {
                     // English: What was the color of this square in {0}? (+ sprite)
-                    Question = "What was the color of this square in {0}?",
+                    Question = "Welche Farbe hatte bei {0} dieses Feld?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Blue"] = "Blue",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Magenta"] = "Magenta",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Magenta"] = "Rosa",
                         ["Orange"] = "Orange",
-                        ["Cyan"] = "Cyan",
-                        ["Purple"] = "Purple",
-                        ["Chestnut"] = "Chestnut",
-                        ["Brown"] = "Brown",
-                        ["Mauve"] = "Mauve",
-                        ["Azure"] = "Azure",
+                        ["Cyan"] = "Türkis",
+                        ["Purple"] = "Lila",
+                        ["Chestnut"] = "Kastanie",
+                        ["Brown"] = "Braun",
+                        ["Mauve"] = "Malve",
+                        ["Azure"] = "Azur",
                         ["Jade"] = "Jade",
-                        ["Forest"] = "Forest",
-                        ["Gray"] = "Gray",
-                        ["Black"] = "Black",
+                        ["Forest"] = "Waldgrün",
+                        ["Gray"] = "Grau",
+                        ["Black"] = "Schwarz",
                     },
                 },
                 [SJuxtacoloredSquares.PositionsByColor] = new()
                 {
                     // English: Which square was {1} in {0}?
                     // Example: Which square was red in Juxtacolored Squares?
-                    Question = "Which square was {1} in {0}?",
+                    Question = "Welches Feld war bei {0} {1}?",
                     Arguments = new()
                     {
-                        ["red"] = "red",
-                        ["blue"] = "blue",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["magenta"] = "magenta",
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["magenta"] = "rosa",
                         ["orange"] = "orange",
-                        ["cyan"] = "cyan",
-                        ["purple"] = "purple",
-                        ["chestnut"] = "chestnut",
-                        ["brown"] = "brown",
-                        ["mauve"] = "mauve",
-                        ["azure"] = "azure",
-                        ["jade"] = "jade",
-                        ["forest"] = "forest",
-                        ["gray"] = "gray",
-                        ["black"] = "black",
+                        ["cyan"] = "türkis",
+                        ["purple"] = "lila",
+                        ["chestnut"] = "kastanienfarbig",
+                        ["brown"] = "braun",
+                        ["mauve"] = "malvenfarbig",
+                        ["azure"] = "azurblau",
+                        ["jade"] = "jadegrün",
+                        ["forest"] = "waldgrün",
+                        ["gray"] = "grau",
+                        ["black"] = "schwarz",
                     },
                 },
             },
@@ -13615,12 +13651,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Pixel Cipher
         [typeof(SPixelCipher)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Pixelgeheimschrift",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What were the displayed numbers?"] = "What were the displayed numbers?",
+                ["What were the displayed numbers?"] = "Welche Zahlen waren auf dem Display?",
             },
             Questions = new()
             {
@@ -13628,7 +13663,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} displayed number in {0}?
                     // Example: What was the first displayed number in Pixel Cipher?
-                    Question = "What was the {1} displayed number in {0}?",
+                    Question = "Was war bei {0} die {1}e Zahl auf dem Display?",
                 },
             },
         },
@@ -16366,7 +16401,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Speaks
         [typeof(SSimonSpeaks)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Simon Spricht",
             ManualQuestions = new()
             {
@@ -16402,15 +16436,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Sprache hatte bei {0} die als dritte aufleuchtende Sprechblase?",
                     Answers = new()
                     {
-                        ["English"] = "English",
-                        ["Danish"] = "Danish",
-                        ["Dutch"] = "Dutch",
+                        ["English"] = "Englisch",
+                        ["Danish"] = "Dänisch",
+                        ["Dutch"] = "Niederländisch",
                         ["Esperanto"] = "Esperanto",
-                        ["Finnish"] = "Finnish",
-                        ["French"] = "French",
-                        ["German"] = "German",
-                        ["Hungarian"] = "Hungarian",
-                        ["Italian"] = "Italian",
+                        ["Finnish"] = "Finnisch",
+                        ["French"] = "Französisch",
+                        ["German"] = "Deutsch",
+                        ["Hungarian"] = "Ungarisch",
+                        ["Italian"] = "Italienisch",
                     },
                 },
                 [SSimonSpeaks.Words] = new()
@@ -19281,7 +19315,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // USA Maze
         [typeof(SUSAMaze)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "USA-Labyrinth",
             ManualQuestions = new()
             {
@@ -19299,7 +19332,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Alabama"] = "Alabama",
                         ["Arkansas"] = "Arkansas",
                         ["Arizona"] = "Arizona",
-                        ["California"] = "California",
+                        ["California"] = "Kalifornien",
                         ["Colorado"] = "Colorado",
                         ["Connecticut"] = "Connecticut",
                         ["Delaware"] = "Delaware",
@@ -20279,7 +20312,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Wolf, Goat, and Cabbage
         [typeof(SWolfGoatAndCabbage)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Wolf, Ziege und Kohl",
             ManualQuestions = new()
             {
@@ -20291,7 +20323,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which of these was {1} on {0}?
                     // Example: Which of these was present on Wolf, Goat, and Cabbage?
-                    Question = "Welches dieser Tiere kam bei {0} {1}?",
+                    Question = "Was kam bei {0} {1}?",
                     Arguments = new()
                     {
                         ["present"] = "vor",
@@ -20299,28 +20331,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     },
                     Answers = new()
                     {
-                        ["Cat"] = "Cat",
+                        ["Cat"] = "Katze",
                         ["Wolf"] = "Wolf",
-                        ["Rabbit"] = "Rabbit",
-                        ["Berry"] = "Berry",
-                        ["Fish"] = "Fish",
-                        ["Dog"] = "Dog",
-                        ["Duck"] = "Duck",
-                        ["Goat"] = "Goat",
-                        ["Fox"] = "Fox",
-                        ["Grass"] = "Grass",
-                        ["Rice"] = "Rice",
-                        ["Mouse"] = "Mouse",
-                        ["Bear"] = "Bear",
-                        ["Cabbage"] = "Cabbage",
-                        ["Chicken"] = "Chicken",
-                        ["Goose"] = "Goose",
-                        ["Corn"] = "Corn",
-                        ["Carrot"] = "Carrot",
-                        ["Horse"] = "Horse",
-                        ["Earthworm"] = "Earthworm",
+                        ["Rabbit"] = "Kaninchen",
+                        ["Berry"] = "Beere",
+                        ["Fish"] = "Fisch",
+                        ["Dog"] = "Hund",
+                        ["Duck"] = "Ente",
+                        ["Goat"] = "Ziege",
+                        ["Fox"] = "Fuchs",
+                        ["Grass"] = "Gras",
+                        ["Rice"] = "Reis",
+                        ["Mouse"] = "Maus",
+                        ["Bear"] = "Bär",
+                        ["Cabbage"] = "Kohl",
+                        ["Chicken"] = "Huhn",
+                        ["Goose"] = "Gans",
+                        ["Corn"] = "Mais",
+                        ["Carrot"] = "Möhre",
+                        ["Horse"] = "Pferd",
+                        ["Earthworm"] = "Regenwurm",
                         ["Kiwi"] = "Kiwi",
-                        ["Seeds"] = "Seeds",
+                        ["Seeds"] = "Samen",
                     },
                 },
             },
