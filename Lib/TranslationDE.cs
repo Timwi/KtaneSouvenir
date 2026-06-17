@@ -3507,21 +3507,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SColoredKeys.DisplayWord] = new()
+                [SColoredKeys.QDisplayWord] = new()
                 {
                     // English: What was the displayed word in {0}?
-                    Question = "Was war bei {0} das Wort auf dem Display?",
-                    Answers = new()
-                    {
-                        ["red"] = "rot",
-                        ["blue"] = "blau",
-                        ["green"] = "grün",
-                        ["yellow"] = "gelb",
-                        ["purple"] = "lila",
-                        ["white"] = "weiß",
-                    },
+                    Question = "Welches Wort war bei {0} auf dem Display?",
                 },
-                [SColoredKeys.DisplayWordColor] = new()
+                [SColoredKeys.QDisplayWordColor] = new()
                 {
                     // English: What was the displayed word’s color in {0}?
                     Question = "Welche Farbe hatte bei {0} das Wort auf dem Display?",
@@ -3535,7 +3526,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["white"] = "weiß",
                     },
                 },
-                [SColoredKeys.KeyLetter] = new()
+                [SColoredKeys.QKeyLetter] = new()
                 {
                     // English: What letter was on the {1} key in {0}?
                     // Example: What letter was on the top-left key in Colored Keys?
@@ -3548,7 +3539,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["bottom-right"] = "untere rechten",
                     },
                 },
-                [SColoredKeys.KeyColor] = new()
+                [SColoredKeys.QKeyColor] = new()
                 {
                     // English: What was the color of the {1} key in {0}?
                     // Example: What was the color of the top-left key in Colored Keys?
@@ -3562,6 +3553,62 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     },
                     Answers = new()
                     {
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["yellow"] = "gelb",
+                        ["purple"] = "lila",
+                        ["white"] = "weiß",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SColoredKeys.DDisplayWord] = new()
+                {
+                    // English: the Colored Keys whose displayed word was “{0}”
+                    // Example: the Colored Keys whose displayed word was “red”
+                    Discriminator = "den Gefärbten Tasten, deren Wort auf dem Display „{0}“ war,",
+                },
+                [SColoredKeys.DDisplayWordColor] = new()
+                {
+                    // English: the Colored Keys whose word was displayed in {0}
+                    // Example: the Colored Keys whose word was displayed in red
+                    Discriminator = "den Gefärbten Tasten, deren Wort auf dem Display {0} gefärbt war,",
+                    Arguments = new()
+                    {
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                        ["green"] = "grün",
+                        ["yellow"] = "gelb",
+                        ["purple"] = "lila",
+                        ["white"] = "weiß",
+                    },
+                },
+                [SColoredKeys.DKeyLetter] = new()
+                {
+                    // English: the Colored Keys whose letter on the {0} key was {1}
+                    // Example: the Colored Keys whose letter on the top-left key was A
+                    Discriminator = "den Gefärbten Tasten, deren Buchstabe auf der {0} Taste {1} war,",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "oberen linken",
+                        ["top-right"] = "oberen rechten",
+                        ["bottom-left"] = "unteren linken",
+                        ["bottom-right"] = "unteren rechten",
+                    },
+                },
+                [SColoredKeys.DKeyColor] = new()
+                {
+                    // English: the Colored Keys whose {0} key was {1}
+                    // Example: the Colored Keys whose top-left key was red
+                    Discriminator = "den Gefärbten Tasten, deren {0} Taste {1} war,",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "obere linke",
+                        ["top-right"] = "obere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
                         ["red"] = "rot",
                         ["blue"] = "blau",
                         ["green"] = "grün",

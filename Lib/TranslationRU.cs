@@ -3527,6 +3527,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Colored Keys
         [typeof(SColoredKeys)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Цветных кнопках",
             ManualModuleName = "Цветные кнопки",
             ManualQuestions = new()
@@ -3536,22 +3537,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SColoredKeys.DisplayWord] = new()
+                [SColoredKeys.QDisplayWord] = new()
                 {
                     // English: What was the displayed word in {0}?
                     Question = "Какое слово было отображено на дисплее на {0}?",
                     Conjugation = Conjugation.PrepositivePlural,
-                    Answers = new()
-                    {
-                        ["red"] = "Red",
-                        ["blue"] = "Blue",
-                        ["green"] = "Green",
-                        ["yellow"] = "Yellow",
-                        ["purple"] = "Purple",
-                        ["white"] = "White",
-                    },
                 },
-                [SColoredKeys.DisplayWordColor] = new()
+                [SColoredKeys.QDisplayWordColor] = new()
                 {
                     // English: What was the displayed word’s color in {0}?
                     Question = "Какого цвета было отображённое слово {0}?",
@@ -3566,7 +3558,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["white"] = "Белого",
                     },
                 },
-                [SColoredKeys.KeyLetter] = new()
+                [SColoredKeys.QKeyLetter] = new()
                 {
                     // English: What letter was on the {1} key in {0}?
                     // Example: What letter was on the top-left key in Colored Keys?
@@ -3580,7 +3572,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["bottom-right"] = "нижней правой",
                     },
                 },
-                [SColoredKeys.KeyColor] = new()
+                [SColoredKeys.QKeyColor] = new()
                 {
                     // English: What was the color of the {1} key in {0}?
                     // Example: What was the color of the top-left key in Colored Keys?
@@ -3601,6 +3593,62 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["yellow"] = "Жёлтого",
                         ["purple"] = "Фиолетового",
                         ["white"] = "Белого",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SColoredKeys.DDisplayWord] = new()
+                {
+                    // English: the Colored Keys whose displayed word was “{0}”
+                    // Example: the Colored Keys whose displayed word was “red”
+                    Discriminator = "the Colored Keys whose displayed word was “{0}”",
+                },
+                [SColoredKeys.DDisplayWordColor] = new()
+                {
+                    // English: the Colored Keys whose word was displayed in {0}
+                    // Example: the Colored Keys whose word was displayed in red
+                    Discriminator = "the Colored Keys whose word was displayed in {0}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
+                    },
+                },
+                [SColoredKeys.DKeyLetter] = new()
+                {
+                    // English: the Colored Keys whose letter on the {0} key was {1}
+                    // Example: the Colored Keys whose letter on the top-left key was A
+                    Discriminator = "the Colored Keys whose letter on the {0} key was {1}",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-right"] = "top-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-right"] = "bottom-right",
+                    },
+                },
+                [SColoredKeys.DKeyColor] = new()
+                {
+                    // English: the Colored Keys whose {0} key was {1}
+                    // Example: the Colored Keys whose top-left key was red
+                    Discriminator = "the Colored Keys whose {0} key was {1}",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-right"] = "top-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-right"] = "bottom-right",
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
                     },
                 },
             },
