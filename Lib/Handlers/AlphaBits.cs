@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlphaBits
 {
-    [Question("What character was displayed on the {1} screen on the {2} in {0}?", ThreeColumns6Answers, TranslateArguments = [false, true], Type = AnswerType.DynamicFont, Arguments = [QandA.Ordinal, "left", QandA.Ordinal, "right"], ArgumentGroupSize = 2)]
+    [Question("What character was displayed on the {1} screen on the {2} in {0}?", ThreeColumns6Answers, TranslateArguments = [true, true], Type = AnswerType.DynamicFont, Arguments = ["top", "left", "top", "right", "middle", "left", "middle", "right", "bottom", "left", "bottom", "right"], ArgumentGroupSize = 2)]
     [AnswerGenerator.Strings("0-9A-V")]
     DisplayedCharacters
 }

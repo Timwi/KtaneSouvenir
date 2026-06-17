@@ -7,10 +7,7 @@ using static Souvenir.AnswerLayout;
 public enum SPentabutton
 {
     [Question("What was the base colour in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", TranslateAnswers = true)]
-    BaseColor,
-
-    [Discriminator("the Pentabutton labelled “{0}”", Arguments = ["press", "detonate", "hold", "abort", "release", "poke", "punch", "depress", "push", "select", "explode", "boom", "ignite", "escape", "colour", "penta", "button"], ArgumentGroupSize = 1)]
-    Label
+    BaseColor
 }
 
 public partial class SouvenirModule
@@ -20,9 +17,6 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessPentabutton(ModuleData module)
     {
         var comp = GetComponent(module, "PentabuttonScript");
-
-        var label = GetField<TextMesh>(comp, "Label", isPublic: true).Get().text;
-        yield return new Discriminator(SPentabutton.Label, "label", label, [label]);
 
         yield return WaitForSolve;
 

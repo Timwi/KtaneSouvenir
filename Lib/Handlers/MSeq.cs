@@ -27,9 +27,9 @@ public partial class SouvenirModule
         var obtainedDigits = GetArrayField<int>(comp, "obtainedDigits").Get(expectedLength: 3);
         var submittedNum = GetIntField(comp, "finalNumber").Get(min: 25, max: 225);
 
-        yield return question(SMSeq.Obtained, args: ["first"]).Answers(obtainedDigits[0].ToString());
-        yield return question(SMSeq.Obtained, args: ["second"]).Answers(obtainedDigits[1].ToString());
-        yield return question(SMSeq.Obtained, args: ["third"]).Answers(obtainedDigits[2].ToString());
+        yield return question(SMSeq.Obtained, args: [Ordinal(1)]).Answers(obtainedDigits[0].ToString());
+        yield return question(SMSeq.Obtained, args: [Ordinal(2)]).Answers(obtainedDigits[1].ToString());
+        yield return question(SMSeq.Obtained, args: [Ordinal(3)]).Answers(obtainedDigits[2].ToString());
         yield return question(SMSeq.Submitted).Answers(submittedNum.ToString());
     }
 }

@@ -46,7 +46,7 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "Green", "Blue", "Red", "Pink", "Yellow" };
 
-        yield return question(SDoubleColor.Colors, args: ["first"]).Answers(colorNames[color1]);
-        yield return question(SDoubleColor.Colors, args: ["second"]).Answers(colorNames[color2]);
+        yield return question(SDoubleColor.Colors, args: [Ordinal(1)]).Answers(colorNames[color1]);
+        yield return question(SDoubleColor.Colors, args: [Ordinal(2)]).Answers(colorNames[color2]);
     }
 }

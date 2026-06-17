@@ -951,6 +951,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Alpha-Bits
         [typeof(SAlphaBits)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アルファビッツ",
             ManualQuestions = new()
             {
@@ -961,10 +962,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SAlphaBits.DisplayedCharacters] = new()
                 {
                     // English: What character was displayed on the {1} screen on the {2} in {0}?
-                    // Example: What character was displayed on the first screen on the left in Alpha-Bits?
+                    // Example: What character was displayed on the top screen on the left in Alpha-Bits?
                     Question = "{0}で{2}の{1}つ目の画面に表示されている文字は？",
                     Arguments = new()
                     {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                         ["left"] = "左",
                         ["right"] = "右",
                     },
@@ -13090,15 +13094,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Purple"] = "紫",
                         ["White"] = "白",
                     },
-                },
-            },
-            Discriminators = new()
-            {
-                [SPentabutton.Label] = new()
-                {
-                    // English: the Pentabutton labelled “{0}”
-                    // Example: the Pentabutton labelled “press”
-                    Discriminator = "「{0}」が書かれた五角形ボタン",
                 },
             },
         },

@@ -54,9 +54,9 @@ public partial class SouvenirModule
         if (topColor1 < 1 || topColor1 > 6 || bottomColor1 < 1 || bottomColor1 > 6 || topColor2 < 1 || topColor2 > 6 || bottomColor2 < 1 || bottomColor2 > 6)
             throw new AbandonModuleException($"topColor1/bottomColor1/topColor2/bottomColor2 have unexpected values: {topColor1}, {bottomColor1}, {topColor2}, {bottomColor2} (expected 1–6).");
 
-        yield return question(SSwitch.InitialColor, args: ["top", "first"]).Answers(colorNames[topColor1 - 1]);
-        yield return question(SSwitch.InitialColor, args: ["bottom", "first"]).Answers(colorNames[bottomColor1 - 1]);
-        yield return question(SSwitch.InitialColor, args: ["top", "second"]).Answers(colorNames[topColor2 - 1]);
-        yield return question(SSwitch.InitialColor, args: ["bottom", "second"]).Answers(colorNames[bottomColor2 - 1]);
+        yield return question(SSwitch.InitialColor, args: ["top", Ordinal(1)]).Answers(colorNames[topColor1 - 1]);
+        yield return question(SSwitch.InitialColor, args: ["bottom", Ordinal(1)]).Answers(colorNames[bottomColor1 - 1]);
+        yield return question(SSwitch.InitialColor, args: ["top", Ordinal(2)]).Answers(colorNames[topColor2 - 1]);
+        yield return question(SSwitch.InitialColor, args: ["bottom", Ordinal(2)]).Answers(colorNames[bottomColor2 - 1]);
     }
 }

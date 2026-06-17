@@ -1049,6 +1049,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Alpha-Bits
         [typeof(SAlphaBits)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What characters were displayed on each screen?"] = "Какие символы были показаны на каждом экране?",
@@ -1058,10 +1059,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 [SAlphaBits.DisplayedCharacters] = new()
                 {
                     // English: What character was displayed on the {1} screen on the {2} in {0}?
-                    // Example: What character was displayed on the first screen on the left in Alpha-Bits?
+                    // Example: What character was displayed on the top screen on the left in Alpha-Bits?
                     Question = "Какой символ был на {1}-м экране {2} {0}?",
                     Arguments = new()
                     {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
                         ["left"] = "слева",
                         ["right"] = "справа",
                     },
@@ -13205,15 +13209,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Purple"] = "Фиолетовый",
                         ["White"] = "Белый",
                     },
-                },
-            },
-            Discriminators = new()
-            {
-                [SPentabutton.Label] = new()
-                {
-                    // English: the Pentabutton labelled “{0}”
-                    // Example: the Pentabutton labelled “press”
-                    Discriminator = "the Pentabutton labelled “{0}”",
                 },
             },
         },

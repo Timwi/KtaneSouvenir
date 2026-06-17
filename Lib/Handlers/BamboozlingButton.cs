@@ -59,25 +59,25 @@ public partial class SouvenirModule
 
             if (allDisplays.Contains(texts[moduleData[i][7]]))
             {
-                yield return question(SBamboozlingButton.DisplayColor, args: [Ordinal(i + 1), "fourth"]).Answers(colors[moduleData[i][1]]);
-                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), "fourth"]).Answers(texts[moduleData[i][5]], all:secondDisplayTexts);
+                yield return question(SBamboozlingButton.DisplayColor, args: [Ordinal(i + 1), Ordinal(4)]).Answers(colors[moduleData[i][1]]);
+                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), Ordinal(4)]).Answers(texts[moduleData[i][5]], all:secondDisplayTexts);
             }
 
             else if (allDisplays.Contains(texts[moduleData[i][8]]))
             {
-                yield return question(SBamboozlingButton.DisplayColor, args: [Ordinal(i + 1), "fifth"]).Answers(colors[moduleData[i][2]]);
-                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), "fifth"]).Answers(texts[moduleData[i][6]], all: secondDisplayTexts);
+                yield return question(SBamboozlingButton.DisplayColor, args: [Ordinal(i + 1), Ordinal(5)]).Answers(colors[moduleData[i][2]]);
+                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), Ordinal(5)]).Answers(texts[moduleData[i][6]], all: secondDisplayTexts);
             }
 
             else
             {
                 yield return question(SBamboozlingButton.Color, args: [Ordinal(i + 1)]).Answers(colors[moduleData[i][0]]);
-                yield return question(SBamboozlingButton.DisplayColor, args: [Ordinal(i + 1), "fourth"]).Answers(colors[moduleData[i][1]]);
-                yield return question(SBamboozlingButton.DisplayColor, args: [Ordinal(i + 1), "fifth"]).Answers(colors[moduleData[i][2]]);
-                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), "first"]).Answers(texts[moduleData[i][3]], all: firstDisplayTexts);
-                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), "third"]).Answers(texts[moduleData[i][4]], all: firstDisplayTexts);
-                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), "fourth"]).Answers(texts[moduleData[i][5]], all: secondDisplayTexts);
-                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), "fifth"]).Answers(texts[moduleData[i][6]], all: secondDisplayTexts);
+                yield return question(SBamboozlingButton.DisplayColor, args: [Ordinal(i + 1), Ordinal(4)]).Answers(colors[moduleData[i][1]]);
+                yield return question(SBamboozlingButton.DisplayColor, args: [Ordinal(i + 1), Ordinal(5)]).Answers(colors[moduleData[i][2]]);
+                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), Ordinal(1)]).Answers(texts[moduleData[i][3]], all: firstDisplayTexts);
+                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), Ordinal(3)]).Answers(texts[moduleData[i][4]], all: firstDisplayTexts);
+                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), Ordinal(4)]).Answers(texts[moduleData[i][5]], all: secondDisplayTexts);
+                yield return question(SBamboozlingButton.Display, args: [Ordinal(i + 1), Ordinal(5)]).Answers(texts[moduleData[i][6]], all: secondDisplayTexts);
                 yield return question(SBamboozlingButton.Label, args: [Ordinal(i + 1), "top"]).Answers(texts[moduleData[i][7]]);
                 yield return question(SBamboozlingButton.Label, args: [Ordinal(i + 1), "bottom"]).Answers(texts[moduleData[i][8]]);
             }
