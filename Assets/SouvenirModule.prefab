@@ -674,6 +674,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 53d99a6a01a8c104f9cf0822ff81e746, type: 3}
   - {fileID: 21300000, guid: b6ac1f2c9916bba4180734bd9b2de33f, type: 3}
   - {fileID: 21300000, guid: 0c31e98541379e44ab21998d3ea57b67, type: 3}
+  NineBallSprites:
+  - {fileID: 21300000, guid: df0b597e5864597429450fbb6ddd4559, type: 3}
+  - {fileID: 21300000, guid: 152e7aeddeb32244dbce25a82c9ec44d, type: 3}
+  - {fileID: 21300000, guid: 07f347532abbfcc48a863f882129962b, type: 3}
+  - {fileID: 21300000, guid: f519dd7042c8dd045a9cc0e546b956ff, type: 3}
+  - {fileID: 21300000, guid: 2f7ecfeb13f68a94abc5194492c49080, type: 3}
+  - {fileID: 21300000, guid: e452dfc826eeb7f44881ff442b04ce02, type: 3}
+  - {fileID: 21300000, guid: 05d7de8a8a1c4e446b4bba9e31e026b2, type: 3}
   NonverbalSimonSprites:
   - {fileID: 21300000, guid: c9b2f2dcf2892984196c26f35351f3b4, type: 3}
   - {fileID: 21300000, guid: d12bfb041eb4d5b43ad37303479d1f37, type: 3}

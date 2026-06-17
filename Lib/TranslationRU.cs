@@ -532,26 +532,25 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [S9Ball.Letters] = new()
+                [S9Ball.QPositions] = new()
                 {
-                    // English: What was the number of ball {1} in {0}?
-                    // Example: What was the number of ball A in 9-Ball?
-                    Question = "Какой был номер у шара \"{1}\" {0}?",
+                    // English: What was the number of this ball in {0}? (+ sprite)
+                    Question = "What was the number of this ball in {0}?",
                 },
-                [S9Ball.Numbers] = new()
+                [S9Ball.QNumbers] = new()
                 {
-                    // English: What was the letter of ball {1} in {0}?
-                    // Example: What was the letter of ball 2 in 9-Ball?
-                    Question = "Какая была буква у шара \"{1}\" {0}?",
+                    // English: Which ball was ball {1} in {0}?
+                    // Example: Which ball was ball 2 in 9-Ball?
+                    Question = "Which ball was ball {1} in {0}?",
                 },
             },
             Discriminators = new()
             {
                 [S9Ball.Discriminator] = new()
                 {
-                    // English: the 9-Ball where ball {0} was {1}
-                    // Example: the 9-Ball where ball A was 2
-                    Discriminator = "the 9-Ball where ball {0} was {1}",
+                    // English: the 9-Ball where ball {0} was here
+                    // Example: the 9-Ball where ball 2 was here
+                    Discriminator = "the 9-Ball where ball {0} was here",
                 },
             },
         },

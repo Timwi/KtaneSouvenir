@@ -22,6 +22,9 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        if (GetField<bool>(comp, "error").Get())
+            yield return legitimatelyNoQuestion(module, "There was an error with the module (see its logging).");
+
         var start = GetField<string>(comp, "title1").Get();
         var end = GetField<string>(comp, "title2").Get();
         var path = GetListField<string>(comp, "exampleSolution").Get().ToArray();

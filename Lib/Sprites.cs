@@ -69,12 +69,21 @@ public static class Sprites
             var tx = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
             tx.SetPixels32(Ut.NewArray(textureWidth * textureHeight, pixel =>
             {
-                for (var dotX = 0; dotX < width; dotX++)
-                    for (var dotY = 0; dotY < height; dotY++)
-                        if ((circlesPresent & (1 << (dotX + width * dotY))) != 0
-                                ? IsPointInCircle(pixel % textureWidth, textureHeight - 1 - (pixel / textureWidth), radius, gap, dotX, dotY)
-                                : outline && IsPointInAnnulus(pixel % textureWidth, textureHeight - 1 - (pixel / textureWidth), radius, radius - 5, gap, dotX, dotY))
-                            return new Color32(0xFF, 0xF8, 0xDD, 0xFF);
+                var x = pixel % textureWidth;
+                var y = textureHeight - 1 - (pixel / textureWidth);
+
+                if (x % (2 * radius + gap) > 2 * radius || y % (2 * radius + gap) > 2 * radius)
+                    goto black;
+
+                var dotX = x / (2 * radius + gap);
+                var dotY = y / (2 * radius + gap);
+
+                if ((circlesPresent & (1 << (dotX + width * dotY))) != 0
+                        ? IsPointInCircle(x, y, radius, gap, dotX, dotY)
+                        : outline && IsPointInAnnulus(x, y, radius, radius - 5, gap, dotX, dotY))
+                    return new Color32(0xFF, 0xF8, 0xDD, 0xFF);
+
+                black:
                 return new Color32(0x00, 0x00, 0x00, 0x00);
             }));
             tx.Apply();

@@ -51,6 +51,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] MahjongSprites;
     public Sprite[] MemorySprites;
     public Sprite[] MorseWarSprites;
+    public Sprite[] NineBallSprites;
     public Sprite[] NonverbalSimonSprites;
     public Sprite[] ObjectShowsSprites;
     public Sprite[] OffKeysSprites;
@@ -470,6 +471,7 @@ public partial class SouvenirModule : MonoBehaviour
     {
         var hAttr = _exampleModules[_curExampleModule];
         var qAttr = _exampleQuestions[_curExampleQuestion];
+        var usesQuestionSprite = false;
 
         var fmt = new object[qAttr.ArgumentGroupSize + 1];
         if (_curExampleDiscriminator == 0)
@@ -491,6 +493,7 @@ public partial class SouvenirModule : MonoBehaviour
                 .Select<string, object>((arg, ix) => arg == QandA.Ordinal ? Ordinal(Rnd.Range(1, 11)) : Snip(dAttr.TranslateArguments != null && dAttr.TranslateArguments[ix] ? TranslateDiscriminatorArgument(dAttr.EnumValue, arg) : arg))
                 .ToArray();
             fmt[0] = string.Format(TranslateDiscriminator(dAttr.EnumValue, dAttr.DiscriminatorText), dFmt);
+            usesQuestionSprite = dAttr.UsesQuestionSprite;
         }
 
         if (_exampleQuestionArguments != null && _exampleQuestionArguments[_curExampleQuestionArgument] is { } args)
@@ -501,7 +504,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         QuestionBase question = qAttr.IsEntireQuestionSprite
             ? new SpriteQuestion(questionText, SymbolicCoordinatesSprites[0])
-            : new TextQuestion(questionText, qAttr.Layout, qAttr.UsesQuestionSprite ? SymbolicCoordinatesSprites[0] : null, 0);
+            : new TextQuestion(questionText, qAttr.Layout, qAttr.UsesQuestionSprite || usesQuestionSprite ? SymbolicCoordinatesSprites[0] : null, 0);
 
         AnswerSet answerSet;
         switch (qAttr.Type)

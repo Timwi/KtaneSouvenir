@@ -487,26 +487,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [S9Ball.Letters] = new()
+                [S9Ball.QPositions] = new()
                 {
-                    // English: What was the number of ball {1} in {0}?
-                    // Example: What was the number of ball A in 9-Ball?
-                    Question = "Welche Zahl hatte bei {0} die Kugel {1}?",
+                    // English: What was the number of this ball in {0}? (+ sprite)
+                    Question = "Welche Zahl war bei {0} auf dieser Kugel?",
                 },
-                [S9Ball.Numbers] = new()
+                [S9Ball.QNumbers] = new()
                 {
-                    // English: What was the letter of ball {1} in {0}?
-                    // Example: What was the letter of ball 2 in 9-Ball?
-                    Question = "Welchen Buchstaben hatte bei {0} die Kugel {1}?",
+                    // English: Which ball was ball {1} in {0}?
+                    // Example: Which ball was ball 2 in 9-Ball?
+                    Question = "Wo war bei {0} Kugel {1}?",
                 },
             },
             Discriminators = new()
             {
                 [S9Ball.Discriminator] = new()
                 {
-                    // English: the 9-Ball where ball {0} was {1}
-                    // Example: the 9-Ball where ball A was 2
-                    Discriminator = "dem 9-Ball, bei dem Kugel {0} eine {1} hatte,",
+                    // English: the 9-Ball where ball {0} was here
+                    // Example: the 9-Ball where ball 2 was here
+                    Discriminator = "dem 9-Ball, bei dem Kugel {0} hier war,",
                 },
             },
         },
