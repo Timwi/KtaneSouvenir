@@ -15,6 +15,7 @@ public partial class SouvenirModule
 {
     [Handler("3dTunnels", "3D Tunnels", typeof(S3DTunnels), "Timwi")]
     [ManualQuestion("What were the goal symbols?")]
+    [NoDiscriminator]   // unless we want to turn the symbols from the font into sprites
     private IEnumerator<SouvenirInstruction> Process3DTunnels(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeDTunnels");

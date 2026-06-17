@@ -13,6 +13,7 @@ public partial class SouvenirModule
 {
     [Handler("64", "64", typeof(S64), "Kuro")]
     [ManualQuestion("What was the displayed number?")]
+    [NoDiscriminator]
     private IEnumerator<SouvenirInstruction> Process64(ModuleData module) =>
         process6421(module, "SixtyFourScript", "numberIn64", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", 64, 0, 16777216, S64.DisplayedNumber);
 }

@@ -7,7 +7,10 @@ using static Souvenir.AnswerLayout;
 public enum SV
 {
     [Question("Which word {1} shown in {0}?", OneColumn4Answers, Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true], ExampleAnswers = ["Vacant", "Valorous", "Volition", "Vermin", "Vanity", "Visage", "Voracious", "Veers", "Vengeance", "Violation", "Vigilant", "Veteran", "Vanguarding", "Villain"])]
-    Words
+    QWords,
+
+    [Discriminator("the V that had the word {0} on it", Arguments = ["Vacant", "Valorous", "Volition", "Vermin", "Vanity", "Visage", "Voracious", "Veers", "Vengeance", "Violation", "Vigilant", "Veteran", "Vanguarding", "Villain"], ArgumentGroupSize = 1)]
+    DWords
 }
 
 public partial class SouvenirModule
@@ -21,15 +24,15 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         // If none of the rules apply, don't ask a question
-        if (!GetField<bool>(comp, "rule1").Get() && !GetField<bool>(comp, "rule2").Get() && !GetField<bool>(comp, "rule3").Get() && !GetField<bool>(comp, "rule4").Get() && !GetField<bool>(comp, "rule5").Get())
-        {
+        if (!Enumerable.Range(1, 5).Any(i => GetField<bool>(comp, $"rule{i}").Get()))
             yield return legitimatelyNoQuestion(module, "None of the rules applied.");
-        }
 
         var allWords = GetArrayField<string>(comp, "allWords").Get();
-        var currentWords = GetField<List<string>>(comp, "currentWords").Get();
+        var currentWords = GetListField<string>(comp, "currentWords").Get(expectedLength: 6);
 
-        yield return question(SV.Words, args: ["was"]).Answers(currentWords.ToArray(), preferredWrong: allWords);
-        yield return question(SV.Words, args: ["was not"]).Answers(allWords.Where(a => !currentWords.Contains(a)).ToArray(), preferredWrong: allWords);
+        yield return question(SV.QWords, args: ["was"]).Answers(currentWords.ToArray(), preferredWrong: allWords);
+        yield return question(SV.QWords, args: ["was not"]).Answers(allWords.Where(a => !currentWords.Contains(a)).ToArray(), preferredWrong: allWords);
+        foreach (var word in currentWords)
+            yield return new Discriminator(SV.DWords, $"V-{word}", args: [word], avoidAnswers: [word]);
     }
 }

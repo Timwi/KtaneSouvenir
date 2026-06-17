@@ -14,6 +14,7 @@ public partial class SouvenirModule
 {
     [Handler("LetterModule", "A Letter", typeof(SALetter), "Sierra")]
     [ManualQuestion("What was the initially displayed letter?")]
+    [NoDiscriminator]
     private IEnumerator<SouvenirInstruction> ProcessALetter(ModuleData module)
     {
         var comp = GetComponent(module, "Letter");

@@ -7,11 +7,17 @@ using static Souvenir.AnswerLayout;
 
 public enum S123Game
 {
-    [Question("Who was the opponent in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
-    Profile,
+    [Question("What was the opponent avatar in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    QProfile,
 
-    [Question("Who was the opponent in {0}?", ThreeColumns6Answers, "Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu", "Yuram")]
-    Name
+    [Question("What was the opponent name in {0}?", ThreeColumns6Answers, "Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu", "Yuram")]
+    QName,
+
+    [Discriminator("the 1, 2, 3 Game with this opponent avatar", UsesQuestionSprite = true)]
+    DProfile,
+
+    [Discriminator("the 1, 2, 3 Game with the opponent name {0}", Arguments = ["Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu"], ArgumentGroupSize = 1)]
+    DName
 }
 
 public partial class SouvenirModule
@@ -31,7 +37,9 @@ public partial class SouvenirModule
         var sprite = GetField<int>(comp, "ProfileSelector").Get(v => v is < 0 or >= 12 ? "expected sprite index 0–11" : null);
         var name = GetField<int>(comp, "NameSelector").Get(v => v is < 0 or >= 13 ? "expected name index 0–12" : null);
 
-        yield return question(S123Game.Profile).Answers(sprites[sprite], all: sprites);
-        yield return question(S123Game.Name).Answers(names[name]);
+        yield return question(S123Game.QProfile).AvoidDiscriminators(S123Game.DProfile).Answers(sprites[sprite], all: sprites);
+        yield return question(S123Game.QName).AvoidDiscriminators(S123Game.DName).Answers(names[name]);
+        yield return new Discriminator(S123Game.DProfile, "123profile", sprite, questionSprite: sprites[sprite]);
+        yield return new Discriminator(S123Game.DName, "123name", sprite, args: [names[name]]);
     }
 }

@@ -13,6 +13,7 @@ public partial class SouvenirModule
 {
     [Handler("TwennyWan", "21", typeof(S21), "Anonymous")]
     [ManualQuestion("What was the displayed number?")]
+    [NoDiscriminator]
     private IEnumerator<SouvenirInstruction> Process21(ModuleData module) =>
         process6421(module, "TwennyWan", "numberin21", "0123456789ABCDEFGHIJK", 21, 9261, 194480, S21.DisplayedNumber);
 }

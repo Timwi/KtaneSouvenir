@@ -6,9 +6,12 @@ using static Souvenir.AnswerLayout;
 
 public enum S0
 {
-    [Question("What was the initially displayed number in {0}?", TwoColumns4Answers)]
-    [AnswerGenerator.Integers(100000000, 999999999)]
-    Number
+    [Question("What was the {1} digit in the displayed number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [AnswerGenerator.Integers(0, 9)]
+    QNumber,
+
+    [Discriminator("the 0 whose {0} digit was {1}", Arguments = [QandA.Ordinal, "0", QandA.Ordinal, "1", QandA.Ordinal, "2", QandA.Ordinal, "3", QandA.Ordinal, "4", QandA.Ordinal, "5", QandA.Ordinal, "6", QandA.Ordinal, "7", QandA.Ordinal, "8", QandA.Ordinal, "9"], ArgumentGroupSize = 2)]
+    DNumber
 }
 
 public partial class SouvenirModule
@@ -22,6 +25,10 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        yield return question(S0.Number).Answers(solution);
+        for (var digit = 0; digit < 9; digit++)
+        {
+            yield return new Discriminator(S0.DNumber, $"zero-{digit}", solution[digit], args: [Ordinal(digit + 1), solution[digit].ToString()]);
+            yield return question(S0.QNumber, args: [Ordinal(digit + 1)]).AvoidDiscriminators($"zero-{digit}").Answers(solution[digit].ToString());
+        }
     }
 }

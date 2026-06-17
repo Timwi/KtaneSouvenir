@@ -7,7 +7,10 @@ using static Souvenir.AnswerLayout;
 public enum SAlcoholicRampage
 {
     [Question("Who was the {1} mercenary displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    Mercenaries
+    QMercenaries,
+
+    [Discriminator("the Alcoholic Rampage where the {0} mercenary was this", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    DMercenaries
 }
 
 public partial class SouvenirModule
@@ -19,7 +22,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "AlcoholicRampageScript");
         var fldStage = GetIntField(comp, "stage");
         var fldChosenMerc = GetIntField(comp, "chosenMerc");
-        var mercs = new int[3];
+        var mercs = new int[] { -1, -1, -1 };
 
         var mercIcons = GetArrayField<Sprite>(comp, "mercIcons", isPublic: true).Get(expectedLength: 8).TranslateSprites(800f).ToArray();
 
@@ -30,7 +33,13 @@ public partial class SouvenirModule
         }
 
         yield return WaitForSolve;
+
         for (var s = 0; s < 3; s++)
-            yield return question(SAlcoholicRampage.Mercenaries, args: [Ordinal(s + 1)]).Answers(mercIcons[mercs[s]], all: mercIcons);
+        {
+            if (mercs[s] == -1)
+                throw new AbandonModuleException($"Did not get a mercenary number for stage {s + 1}.");
+            yield return question(SAlcoholicRampage.QMercenaries, args: [Ordinal(s + 1)]).AvoidDiscriminators($"merc-{s}").Answers(mercIcons[mercs[s]], all: mercIcons);
+            yield return new Discriminator(SAlcoholicRampage.DMercenaries, $"merc-{s}", mercs[s], args: [Ordinal(s + 1)], questionSprite: mercIcons[mercs[s]]);
+        }
     }
 }

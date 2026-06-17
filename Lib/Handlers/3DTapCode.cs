@@ -14,6 +14,7 @@ public partial class SouvenirModule
 {
     [Handler("3DTapCodeModule", "3D Tap Code", typeof(S3DTapCode), "TasThiluna")]
     [ManualQuestion("What was the received word?")]
+    [NoDiscriminator]
     private IEnumerator<SouvenirInstruction> Process3DTapCode(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeDTapCodeScript");

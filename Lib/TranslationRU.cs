@@ -94,17 +94,27 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // 0
         [typeof(S0)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was the starting number?"] = "Какое число было изначально показано?",
             },
             Questions = new()
             {
-                [S0.Number] = new()
+                [S0.QNumber] = new()
                 {
-                    // English: What was the initially displayed number in {0}?
-                    Question = "Какое число было изначально показано на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
+                    // English: What was the {1} digit in the displayed number in {0}?
+                    // Example: What was the first digit in the displayed number in 0?
+                    Question = "What was the {1} digit in the displayed number in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [S0.DNumber] = new()
+                {
+                    // English: the 0 whose {0} digit was {1}
+                    // Example: the 0 whose first digit was 0
+                    Discriminator = "the 0 whose {0} digit was {1}",
                 },
             },
         },
@@ -203,15 +213,29 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [S123Game.Profile] = new()
+                [S123Game.QProfile] = new()
                 {
-                    // English: Who was the opponent in {0}?
+                    // English: What was the opponent avatar in {0}?
                     Question = "Кто был вашим оппонентом {0}?",
                 },
-                [S123Game.Name] = new()
+                [S123Game.QName] = new()
                 {
-                    // English: Who was the opponent in {0}?
+                    // English: What was the opponent name in {0}?
                     Question = "Кто был вашим оппонентом {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [S123Game.DProfile] = new()
+                {
+                    // English: the 1, 2, 3 Game with this opponent avatar
+                    Discriminator = "the 1, 2, 3 Game with this avatar",
+                },
+                [S123Game.DName] = new()
+                {
+                    // English: the 1, 2, 3 Game with the opponent name {0}
+                    // Example: the 1, 2, 3 Game with the opponent name Changyeop
+                    Discriminator = "the 1, 2, 3 Game with the name {0}",
                 },
             },
         },
@@ -753,11 +777,20 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SAlcoholicRampage.Mercenaries] = new()
+                [SAlcoholicRampage.QMercenaries] = new()
                 {
                     // English: Who was the {1} mercenary displayed in {0}?
                     // Example: Who was the first mercenary displayed in Alcoholic Rampage?
                     Question = "Who was the {1} mercenary you killed in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAlcoholicRampage.DMercenaries] = new()
+                {
+                    // English: the Alcoholic Rampage where the {0} mercenary was this
+                    // Example: the Alcoholic Rampage where the first mercenary was this
+                    Discriminator = "the Alcoholic Rampage where the {0} mercenary was this",
                 },
             },
         },
@@ -19029,13 +19062,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // V
         [typeof(SV)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["Which words were shown?"] = "Какие слова были показаны?",
             },
             Questions = new()
             {
-                [SV.Words] = new()
+                [SV.QWords] = new()
                 {
                     // English: Which word {1} shown in {0}?
                     // Example: Which word was shown in V?
@@ -19045,6 +19079,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["was"] = "было",
                         ["was not"] = "не было",
                     },
+                },
+            },
+            Discriminators = new()
+            {
+                [SV.DWords] = new()
+                {
+                    // English: the V that had the word {0} on it
+                    // Example: the V that had the word Vacant on it
+                    Discriminator = "the V that had the word {0} on it",
                 },
             },
         },
