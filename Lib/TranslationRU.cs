@@ -103,8 +103,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [S0.QNumber] = new()
                 {
-                    // English: What was the {1} digit in the displayed number in {0}?
-                    // Example: What was the first digit in the displayed number in 0?
+                    // English: What was the {1} digit in the initially displayed number in {0}?
+                    // Example: What was the first digit in the initially displayed number in 0?
                     Question = "What was the {1} digit in the displayed number in {0}?",
                 },
             },
@@ -112,8 +112,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [S0.DNumber] = new()
                 {
-                    // English: the 0 whose {0} digit was {1}
-                    // Example: the 0 whose first digit was 0
+                    // English: the 0 where its {0} digit was {1}
+                    // Example: the 0 where its first digit was 0
                     Discriminator = "the 0 whose {0} digit was {1}",
                 },
             },

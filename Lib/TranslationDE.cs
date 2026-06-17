@@ -67,18 +67,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [S0.QNumber] = new()
                 {
-                    // English: What was the {1} digit in the displayed number in {0}?
-                    // Example: What was the first digit in the displayed number in 0?
-                    Question = "Was war bei {0} die {1}e Ziffer auf dem Display?",
+                    // English: What was the {1} digit in the initially displayed number in {0}?
+                    // Example: What was the first digit in the initially displayed number in 0?
+                    Question = "Was war bei {0} die {1}e Ziffer der Startzahl?",
                 },
             },
             Discriminators = new()
             {
                 [S0.DNumber] = new()
                 {
-                    // English: the 0 whose {0} digit was {1}
-                    // Example: the 0 whose first digit was 0
-                    Discriminator = "dem 0, dessen {0}e Ziffer {1} war,",
+                    // English: the 0 where its {0} digit was {1}
+                    // Example: the 0 where its first digit was 0
+                    Discriminator = "dem 0, bei dessen Startzahl die {0}e Ziffer {1} war,",
                 },
             },
         },
