@@ -6149,14 +6149,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the last displayed message?"] = "Was war die letzte Botschaft?",
+                ["What was the last displayed message?"] = "Wie lautete die letzte Nachricht?",
             },
             Questions = new()
             {
                 [SFastPlayfairCipher.LastMessage] = new()
                 {
                     // English: What was the last displayed message in {0}?
-                    Question = "Was war bei {0} die letzte Botschaft?",
+                    Question = "Was war bei {0} die letzte Nachricht?",
                 },
             },
         },
@@ -7821,7 +7821,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ManualQuestions = new()
             {
-                ["What were the deciphered letters or phrase?"] = "Wie lautete die entschlüsselte Botschaft (Buchstaben oder Phrase)?",
+                ["What were the deciphered letters or phrase?"] = "Wie lautete die entschlüsselte Nachricht (Buchstaben oder Phrase)?",
                 ["What were the 3-digit numbers cycled by the screen?"] = "Welche 3-stelligen Zahlen kamen auf dem Display vor?",
                 ["What were the rhythm values?"] = "Welche Rhythmuswerte kamen vor?",
             },
@@ -9929,7 +9929,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["Which color and message did the bubble (not) display?"] = "Welche Farbe und Botschaft war (nicht) auf der Blase sichtbar?",
+                ["Which color and message did the bubble (not) display?"] = "Welche Farbe und Nachricht war (nicht) auf der Blase sichtbar?",
                 ["Which main page did Homestar, the background, or any of the buttons’ effects come from?"] = "Von welcher Hauptseite war Homestar, der Hintergrund und die Effekte der Tasten?",
             },
             Questions = new()
@@ -19093,7 +19093,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the encrypted message?"] = "Was war die verschlüsselte Botschaft?",
+                ["What was the encrypted message?"] = "Wie lautete die verschlüsselte Nachricht?",
                 ["What digits corresponded to the ciphers used?"] = "Welche Ziffern entsprechen den verwendeten Chiffren?",
             },
             Questions = new()
@@ -19102,13 +19102,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} letter of the encrypted message in {0}?
                     // Example: What was the first letter of the encrypted message in Unfair’s Cruel Revenge?
-                    Question = "Was war bei {0} der {1}e Buchstabe der verschlüsselten Botschaft?",
+                    Question = "Was war bei {0} der {1}e Buchstabe der verschlüsselten Nachricht?",
                 },
                 [SUnfairsCruelRevenge.CipherDigits] = new()
                 {
                     // English: What digit corresponded to the {1} cipher used to encrypt the message in {0}?
                     // Example: What digit corresponded to the first cipher used to encrypt the message in Unfair’s Cruel Revenge?
-                    Question = "Welche Ziffer entsprach bei {0} der {1}en Chiffre, mit der die Botschaft verschlüsselt war?",
+                    Question = "Welche Ziffer entsprach bei {0} der {1}en Chiffre, mit der die Nachricht verschlüsselt war?",
                 },
             },
         },
@@ -19120,7 +19120,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the encrypted message?"] = "Was war die verschlüsselte Botschaft?",
+                ["What was the encrypted message?"] = "Wie lautete die verschlüsselte Nachricht?",
             },
             Questions = new()
             {
@@ -19128,7 +19128,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} letter of the encrypted message in {0}?
                     // Example: What was the first letter of the encrypted message in Unfair’s Revenge?
-                    Question = "Was war bei {0} der {1}e Buchstabe der verschlüsselten Botschaft?",
+                    Question = "Was war bei {0} der {1}e Buchstabe der verschlüsselten Nachricht?",
                 },
             },
         },
