@@ -18657,24 +18657,26 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Unfair's Cruel Revenge
         [typeof(SUnfairsCruelRevenge)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アンフェアの残忍逆襲",
             ManualQuestions = new()
             {
-                ["What were the decrypted instructions?"] = "解読した指示は？",
+                ["What was the encrypted message?"] = "What was the encrypted message?",
+                ["What digits corresponded to the ciphers used?"] = "What digits corresponded to the ciphers used?",
             },
             Questions = new()
             {
-                [SUnfairsCruelRevenge.Instructions] = new()
+                [SUnfairsCruelRevenge.Message] = new()
                 {
-                    // English: What was the {1} decrypted instruction in {0}?
-                    // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?
-                    Question = "{0}で解読した指示の{1}番目は？",
+                    // English: What was the {1} letter of the encrypted message in {0}?
+                    // Example: What was the first letter of the encrypted message in Unfair's Cruel Revenge?
+                    Question = "What was the {1} letter of the encrypted message in {0}?",
                 },
-                [SUnfairsCruelRevenge.InstructionsLegacy] = new()
+                [SUnfairsCruelRevenge.CipherDigits] = new()
                 {
-                    // English: What was the {1} decrypted instruction in {0}?
-                    // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?
-                    Question = "{0}で解読した指示の{1}番目は？",
+                    // English: What digit corresponded to the {1} cipher used to encrypt the message in {0}?
+                    // Example: What digit corresponded to the first cipher used to encrypt the message in Unfair's Cruel Revenge?
+                    Question = "What digit corresponded to the {1} cipher used to encrypt the message in {0}?",
                 },
             },
         },
@@ -18682,18 +18684,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Unfair’s Revenge
         [typeof(SUnfairsRevenge)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アンフェアの逆襲",
             ManualQuestions = new()
             {
-                ["What were the decrypted instructions?"] = "解読した指示は？",
+                ["What was the encrypted message?"] = "What was the encrypted message?",
             },
             Questions = new()
             {
-                [SUnfairsRevenge.Instructions] = new()
+                [SUnfairsRevenge.Letters] = new()
                 {
-                    // English: What was the {1} decrypted instruction in {0}?
-                    // Example: What was the first decrypted instruction in Unfair’s Revenge?
-                    Question = "{0}で{1}番目に解読した指示は？",
+                    // English: What was the {1} letter of the encrypted message in {0}?
+                    // Example: What was the first letter of the encrypted message in Unfair’s Revenge?
+                    Question = "What was the {1} letter of the encrypted message in {0}?",
                 },
             },
         },

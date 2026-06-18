@@ -18762,21 +18762,22 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the decrypted instructions?"] = "What were the decrypted instructions?",
+                ["What was the encrypted message?"] = "What was the encrypted message?",
+                ["What digits corresponded to the ciphers used?"] = "What digits corresponded to the ciphers used?",
             },
             Questions = new()
             {
-                [SUnfairsCruelRevenge.Instructions] = new()
+                [SUnfairsCruelRevenge.Message] = new()
                 {
-                    // English: What was the {1} decrypted instruction in {0}?
-                    // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?
-                    Question = "What was the {1} decrypted instruction in {0}?",
+                    // English: What was the {1} letter of the encrypted message in {0}?
+                    // Example: What was the first letter of the encrypted message in Unfair's Cruel Revenge?
+                    Question = "What was the {1} letter of the encrypted message in {0}?",
                 },
-                [SUnfairsCruelRevenge.InstructionsLegacy] = new()
+                [SUnfairsCruelRevenge.CipherDigits] = new()
                 {
-                    // English: What was the {1} decrypted instruction in {0}?
-                    // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?
-                    Question = "What was the {1} decrypted instruction in {0}?",
+                    // English: What digit corresponded to the {1} cipher used to encrypt the message in {0}?
+                    // Example: What digit corresponded to the first cipher used to encrypt the message in Unfair's Cruel Revenge?
+                    Question = "What digit corresponded to the {1} cipher used to encrypt the message in {0}?",
                 },
             },
         },
@@ -18784,17 +18785,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Unfair’s Revenge
         [typeof(SUnfairsRevenge)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the decrypted instructions?"] = "Какие инструкции были расшифрованы?",
+                ["What was the encrypted message?"] = "What was the encrypted message?",
             },
             Questions = new()
             {
-                [SUnfairsRevenge.Instructions] = new()
+                [SUnfairsRevenge.Letters] = new()
                 {
-                    // English: What was the {1} decrypted instruction in {0}?
-                    // Example: What was the first decrypted instruction in Unfair’s Revenge?
-                    Question = "Какая {1}-я инструкция была зашифрована {0}?",
+                    // English: What was the {1} letter of the encrypted message in {0}?
+                    // Example: What was the first letter of the encrypted message in Unfair’s Revenge?
+                    Question = "What was the {1} letter of the encrypted message in {0}?",
                 },
             },
         },

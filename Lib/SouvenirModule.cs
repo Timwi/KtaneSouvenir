@@ -490,7 +490,7 @@ public partial class SouvenirModule : MonoBehaviour
             var dAttr = _exampleDiscriminators[_curExampleDiscriminator];
             var dGs = dAttr.ArgumentGroupSize;
             var dFmt = dGs == 0 ? [] : _exampleDiscriminatorArguments[_curExampleDiscriminatorArgument]
-                .Select<string, object>((arg, ix) => arg == QandA.Ordinal ? Ordinal(Rnd.Range(1, 11)) : Snip(dAttr.TranslateArguments != null && dAttr.TranslateArguments[ix] ? TranslateDiscriminatorArgument(dAttr.EnumValue, arg) : arg))
+                .Select<string, object>((arg, ix) => arg == QandA.Ordinal ? Ordinal(Rnd.Range(1, 13)) : Snip(dAttr.TranslateArguments != null && dAttr.TranslateArguments[ix] ? TranslateDiscriminatorArgument(dAttr.EnumValue, arg) : arg))
                 .ToArray();
             fmt[0] = string.Format(TranslateDiscriminator(dAttr.EnumValue, dAttr.DiscriminatorText), dFmt);
             usesQuestionSprite = dAttr.UsesQuestionSprite;
@@ -498,7 +498,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         if (_exampleQuestionArguments != null && _exampleQuestionArguments[_curExampleQuestionArgument] is { } args)
             for (var i = 0; i < args.Length; i++)
-                fmt[i + 1] = args[i] == QandA.Ordinal ? Ordinal(Rnd.Range(1, 11)) : Snip(TranslateQuestionArgument(qAttr.EnumValue, args[i]));
+                fmt[i + 1] = args[i] == QandA.Ordinal ? Ordinal(Rnd.Range(1, 13)) : Snip(TranslateQuestionArgument(qAttr.EnumValue, args[i]));
 
         var questionText = qAttr.Gimmicks.Aggregate(string.Format(TranslateQuestion(qAttr.EnumValue), fmt), (prev, gimmick) => gimmick.ApplyGimmick(prev, fmt));
 
@@ -1174,6 +1174,8 @@ public partial class SouvenirModule : MonoBehaviour
                     8 => "eighth",
                     9 => "ninth",
                     10 => "tenth",
+                    11 => "eleventh",
+                    12 => "twelfth",
                     _ => (number / 10 % 10 == 1 ? 0 : number % 10) switch
                     {
                         1 => number + "st",

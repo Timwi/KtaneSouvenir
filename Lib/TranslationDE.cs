@@ -19114,25 +19114,27 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unfair's Cruel Revenge
         [typeof(SUnfairsCruelRevenge)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Unfairs Höllische Rache",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What were the decrypted instructions?"] = "Wie lauteten die entschlüsselten Instruktionen?",
+                ["What was the encrypted message?"] = "What was the encrypted message?",
+                ["What digits corresponded to the ciphers used?"] = "What digits corresponded to the ciphers used?",
             },
             Questions = new()
             {
-                [SUnfairsCruelRevenge.Instructions] = new()
+                [SUnfairsCruelRevenge.Message] = new()
                 {
-                    // English: What was the {1} decrypted instruction in {0}?
-                    // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?
-                    Question = "Was war bei {0} die {1}e entschlüsselte Anweisung?",
+                    // English: What was the {1} letter of the encrypted message in {0}?
+                    // Example: What was the first letter of the encrypted message in Unfair's Cruel Revenge?
+                    Question = "What was the {1} letter of the encrypted message in {0}?",
                 },
-                [SUnfairsCruelRevenge.InstructionsLegacy] = new()
+                [SUnfairsCruelRevenge.CipherDigits] = new()
                 {
-                    // English: What was the {1} decrypted instruction in {0}?
-                    // Example: What was the first decrypted instruction in Unfair's Cruel Revenge?
-                    Question = "Was war bei {0} die {1}e entschlüsselte Anweisung?",
+                    // English: What digit corresponded to the {1} cipher used to encrypt the message in {0}?
+                    // Example: What digit corresponded to the first cipher used to encrypt the message in Unfair's Cruel Revenge?
+                    Question = "What digit corresponded to the {1} cipher used to encrypt the message in {0}?",
                 },
             },
         },
@@ -19140,19 +19142,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unfair’s Revenge
         [typeof(SUnfairsRevenge)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Unfairs Rache",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What were the decrypted instructions?"] = "Wie lauteten die entschlüsselten Instruktionen?",
+                ["What was the encrypted message?"] = "What was the encrypted message?",
             },
             Questions = new()
             {
-                [SUnfairsRevenge.Instructions] = new()
+                [SUnfairsRevenge.Letters] = new()
                 {
-                    // English: What was the {1} decrypted instruction in {0}?
-                    // Example: What was the first decrypted instruction in Unfair’s Revenge?
-                    Question = "Was war bei {0} die {1}e entschlüsselte Anweisung?",
+                    // English: What was the {1} letter of the encrypted message in {0}?
+                    // Example: What was the first letter of the encrypted message in Unfair’s Revenge?
+                    Question = "What was the {1} letter of the encrypted message in {0}?",
                 },
             },
         },

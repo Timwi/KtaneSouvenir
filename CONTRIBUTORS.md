@@ -121,6 +121,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Ultracube, The      │
     Decolored Squares         │  iPhone, The         │  Pie                │  USA Maze            │
 
+## Implemented by Espik (27)
+
+    100 Levels of Defusal  │  Directional Button  │  Hyperlink, The      │  Simon Stages          │  Unfair’s Revenge
+    Blockbusters           │  Dreamcipher         │  Not Who’s on First  │  Sorting               │  Unfair's Cruel Revenge
+    Boolean Wires          │  Encrypted Morse     │  Pixel Cipher        │  Thinking Wires        │  Unicode
+    Calendar               │  Etterna             │  Regular Crazy Talk  │  Thirty One            │
+    Challenge & Contact    │  Exoplanets          │  Role Reversal       │  Tricky Tetris Pieces  │
+    Coffeebucks            │  Hexabutton, The     │  Samsung, The        │  Unfair Cipher         │
+
 ## Implemented by tandyCake (26)
 
     Algorithmia           │  Keypad Magnified  │  Name Codes       │  Shogi Identification  │  Touch Transmission
@@ -129,14 +138,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Flyswatting           │  Math ’em          │  Not Word Search  │  Stupid Slots          │
     Forget Me             │  Metamorse         │  Numpath          │  Superparsing          │
     Kanye Encounter, The  │  M-Seq             │  Red Herring      │  Tasque Managing       │
-
-## Implemented by Espik (25)
-
-    100 Levels of Defusal  │  Coffeebucks         │  Exoplanets          │  Regular Crazy Talk  │  Thinking Wires
-    Blockbusters           │  Directional Button  │  Hexabutton, The     │  Role Reversal       │  Thirty One
-    Boolean Wires          │  Dreamcipher         │  Hyperlink, The      │  Samsung, The        │  Tricky Tetris Pieces
-    Calendar               │  Encrypted Morse     │  Not Who’s on First  │  Simon Stages        │  Unfair Cipher
-    Challenge & Contact    │  Etterna             │  Pixel Cipher        │  Sorting             │  Unicode
 
 ## Implemented by TasThiluna (20)
 
@@ -157,12 +158,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Maze         │  Not Maze        │  Not the Button    │  Who’s on First  │
     Memory       │  Not Morse Code  │  Perspective Pegs  │  Wire Ordering   │
 
-## Implemented by KiloBites (11)
-
-    ƎNA Cipher                       │  Missing Letter, The      │  Painting Cube        │  Unfair's Cruel Revenge
-    French Republican Calendar, The  │  Multiverse Hotline, The  │  Pattern Recognition  │  X-Rotor
-    Holographic Memory               │  Off-White Cipher         │  Undertunneling       │
-
 ## Implemented by CaitSith2 (10)
 
     Creation  │  Ice Cream       │  Morse-A-Maze  │  Symbol Cycle          │  Text Field
@@ -173,15 +168,20 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     1D Chess  │  hexOS  │  Octadecayotton, The  │  Phosphorescence   │  Quaver
     Coinage   │  Linq   │  Palindromes          │  Placeholder Talk  │  Reformed Role Reversal
 
-## Implemented by VFlyer (10)
+## Implemented by KiloBites (10)
 
-    Abyss           │  Flashing Arrows  │  Pie Flash         │  Quick Arithmetic  │  Who’s on Morse
-    Color Addition  │  Homophones       │  Prime Encryption  │  Unfair’s Revenge  │  WhoOF
+    ƎNA Cipher                       │  Holographic Memory   │  Multiverse Hotline, The  │  Painting Cube        │  Undertunneling
+    French Republican Calendar, The  │  Missing Letter, The  │  Off-White Cipher         │  Pattern Recognition  │  X-Rotor
 
 ## Implemented by GhostSalt (9)
 
     Entry Number Four  │  Game of Life Cruel   │  Mazeseeker     │  Puzzle Identification  │  Xenocryst, The
     Entry Number One   │  Maze Identification  │  Not The Screw  │  Stacked Sequences      │
+
+## Implemented by VFlyer (9)
+
+    Abyss           │  Flashing Arrows  │  Pie Flash         │  Quick Arithmetic  │  WhoOF
+    Color Addition  │  Homophones       │  Prime Encryption  │  Who’s on Morse    │
 
 ## Implemented by NickLatkovich (8)
 
