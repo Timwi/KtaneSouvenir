@@ -121,14 +121,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Ultracube, The      │
     Decolored Squares         │  iPhone, The         │  Pie                │  USA Maze            │
 
-## Implemented by Espik (27)
+## Implemented by Espik (28)
 
-    100 Levels of Defusal  │  Directional Button  │  Hyperlink, The      │  Simon Stages          │  Unfair’s Revenge
-    Blockbusters           │  Dreamcipher         │  Not Who’s on First  │  Sorting               │  Unfair's Cruel Revenge
-    Boolean Wires          │  Encrypted Morse     │  Pixel Cipher        │  Thinking Wires        │  Unicode
-    Calendar               │  Etterna             │  Regular Crazy Talk  │  Thirty One            │
-    Challenge & Contact    │  Exoplanets          │  Role Reversal       │  Tricky Tetris Pieces  │
-    Coffeebucks            │  Hexabutton, The     │  Samsung, The        │  Unfair Cipher         │
+    100 Levels of Defusal  │  Directional Button  │  Hyperlink, The          │  Samsung, The          │  Unfair Cipher
+    Blockbusters           │  Dreamcipher         │  Not Who’s on First      │  Simon Stages          │  Unfair’s Revenge
+    Boolean Wires          │  Encrypted Morse     │  Pixel Cipher            │  Sorting               │  Unfair's Cruel Revenge
+    Calendar               │  Etterna             │  Reformed Role Reversal  │  Thinking Wires        │  Unicode
+    Challenge & Contact    │  Exoplanets          │  Regular Crazy Talk      │  Thirty One            │
+    Coffeebucks            │  Hexabutton, The     │  Role Reversal           │  Tricky Tetris Pieces  │
 
 ## Implemented by tandyCake (26)
 
@@ -163,15 +163,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Creation  │  Ice Cream       │  Morse-A-Maze  │  Symbol Cycle          │  Text Field
     Gridlock  │  LED Encryption  │  Souvenir      │  Symbolic Coordinates  │  Third Base
 
-## Implemented by Emik (10)
-
-    1D Chess  │  hexOS  │  Octadecayotton, The  │  Phosphorescence   │  Quaver
-    Coinage   │  Linq   │  Palindromes          │  Placeholder Talk  │  Reformed Role Reversal
-
 ## Implemented by KiloBites (10)
 
     ƎNA Cipher                       │  Holographic Memory   │  Multiverse Hotline, The  │  Painting Cube        │  Undertunneling
     French Republican Calendar, The  │  Missing Letter, The  │  Off-White Cipher         │  Pattern Recognition  │  X-Rotor
+
+## Implemented by Emik (9)
+
+    1D Chess  │  hexOS  │  Octadecayotton, The  │  Phosphorescence   │  Quaver
+    Coinage   │  Linq   │  Palindromes          │  Placeholder Talk  │
 
 ## Implemented by GhostSalt (9)
 

@@ -14353,46 +14353,20 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What did the solving condition state?"] = "Что было указано в финальном условии?",
-                ["What were the wire colors?"] = "What were the wire colors?",
+                ["What base was the seed in?"] = "What base was the seed in?",
+                ["What was the lookup number?"] = "What was the lookup number?",
             },
             Questions = new()
             {
-                [SReformedRoleReversal.Condition] = new()
+                [SReformedRoleReversal.Base] = new()
                 {
-                    // English: Which condition was the solving condition in {0}?
-                    Question = "На каком условии был обезврежен {0}?",
-                    Conjugation = Conjugation.NominativeMasculine,
-                    Answers = new()
-                    {
-                        ["second"] = "2-м",
-                        ["third"] = "3-м",
-                        ["4th"] = "4-м",
-                        ["5th"] = "5-м",
-                        ["6th"] = "6-м",
-                        ["7th"] = "7-м",
-                        ["8th"] = "8-м",
-                    },
+                    // English: What was the base of the seed in {0}?
+                    Question = "What was the base of the seed in {0}?",
                 },
-                [SReformedRoleReversal.Wire] = new()
+                [SReformedRoleReversal.Lookup] = new()
                 {
-                    // English: What color was the {1} wire in {0}?
-                    // Example: What color was the first wire in Reformed Role Reversal?
-                    Question = "Какого цвета был {1}-й провод {0}?",
-                    Conjugation = Conjugation.NominativeMasculine,
-                    Answers = new()
-                    {
-                        ["Navy"] = "Navy",
-                        ["Lapis"] = "Lapis",
-                        ["Blue"] = "Blue",
-                        ["Sky"] = "Sky",
-                        ["Teal"] = "Teal",
-                        ["Plum"] = "Plum",
-                        ["Violet"] = "Violet",
-                        ["Purple"] = "Purple",
-                        ["Magenta"] = "Magenta",
-                        ["Lavender"] = "Lavender",
-                    },
+                    // English: What was the lookup number in {0}?
+                    Question = "What was the lookup number in {0}?",
                 },
             },
         },

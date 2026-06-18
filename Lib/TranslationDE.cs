@@ -14616,49 +14616,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Reformed Role Reversal
         [typeof(SReformedRoleReversal)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Reformierte Rollenumkehr",
             ModuleNameDative = "Reformierten Rollenumkehr",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What did the solving condition state?"] = "Was besagte die Lösungsbedingung?",
-                ["What were the wire colors?"] = "Welcher Draht hatte welche Farbe?",
+                ["What base was the seed in?"] = "What base was the seed in?",
+                ["What was the lookup number?"] = "What was the lookup number?",
             },
             Questions = new()
             {
-                [SReformedRoleReversal.Condition] = new()
+                [SReformedRoleReversal.Base] = new()
                 {
-                    // English: Which condition was the solving condition in {0}?
-                    Question = "Welche Lösungsbedingung war bei {0} relevant?",
-                    Answers = new()
-                    {
-                        ["second"] = "die zweite",
-                        ["third"] = "die dritte",
-                        ["4th"] = "die vierte",
-                        ["5th"] = "die fünfte",
-                        ["6th"] = "die sechste",
-                        ["7th"] = "die siebte",
-                        ["8th"] = "die achte",
-                    },
+                    // English: What was the base of the seed in {0}?
+                    Question = "What was the base of the seed in {0}?",
                 },
-                [SReformedRoleReversal.Wire] = new()
+                [SReformedRoleReversal.Lookup] = new()
                 {
-                    // English: What color was the {1} wire in {0}?
-                    // Example: What color was the first wire in Reformed Role Reversal?
-                    Question = "Welche Farbe hatte bei {0} der {1}e Draht?",
-                    Answers = new()
-                    {
-                        ["Navy"] = "Marineblau",
-                        ["Lapis"] = "Lapis",
-                        ["Blue"] = "Blau",
-                        ["Sky"] = "Himmel",
-                        ["Teal"] = "Blaugrün",
-                        ["Plum"] = "Pflaume",
-                        ["Violet"] = "Violett",
-                        ["Purple"] = "Lila",
-                        ["Magenta"] = "Rosa",
-                        ["Lavender"] = "Lavendel",
-                    },
+                    // English: What was the lookup number in {0}?
+                    Question = "What was the lookup number in {0}?",
                 },
             },
         },
