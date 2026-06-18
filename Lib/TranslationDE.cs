@@ -995,7 +995,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Alpha-Bits
         [typeof(SAlphaBits)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What characters were displayed on each screen?"] = "Welche Zeichen waren auf den Displays?",
@@ -1006,12 +1005,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What character was displayed on the {1} screen on the {2} in {0}?
                     // Example: What character was displayed on the top screen on the left in Alpha-Bits?
-                    Question = "Welches Zeichen wurde bei {0} im {1}en {2} Display angezeigt?",
+                    Question = "Welches Zeichen wurde bei {0} im {1} {2} Display angezeigt?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                         ["left"] = "linken",
                         ["right"] = "rechten",
                     },
@@ -14616,26 +14615,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Reformed Role Reversal
         [typeof(SReformedRoleReversal)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Reformierte Rollenumkehr",
             ModuleNameDative = "Reformierten Rollenumkehr",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What base was the seed in?"] = "What base was the seed in?",
-                ["What was the lookup number?"] = "What was the lookup number?",
+                ["What base was the seed in?"] = "In welchem Zahlensystem war der Seedcode?",
+                ["What was the lookup number?"] = "Was war die Lookup-Ziffer?",
             },
             Questions = new()
             {
                 [SReformedRoleReversal.Base] = new()
                 {
                     // English: What was the base of the seed in {0}?
-                    Question = "What was the base of the seed in {0}?",
+                    Question = "In welchem Zahlensystem war bei {0} der Seedcode?",
                 },
                 [SReformedRoleReversal.Lookup] = new()
                 {
                     // English: What was the lookup number in {0}?
-                    Question = "What was the lookup number in {0}?",
+                    Question = "Was war bei {0} die Lookup-Ziffer?",
                 },
             },
         },
@@ -19088,30 +19086,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Unfair's Cruel Revenge
+        // Unfair’s Cruel Revenge
         [typeof(SUnfairsCruelRevenge)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Unfairs Höllische Rache",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the encrypted message?"] = "What was the encrypted message?",
-                ["What digits corresponded to the ciphers used?"] = "What digits corresponded to the ciphers used?",
+                ["What was the encrypted message?"] = "Was war die verschlüsselte Botschaft?",
+                ["What digits corresponded to the ciphers used?"] = "Welche Ziffern entsprechen den verwendeten Chiffren?",
             },
             Questions = new()
             {
                 [SUnfairsCruelRevenge.Message] = new()
                 {
                     // English: What was the {1} letter of the encrypted message in {0}?
-                    // Example: What was the first letter of the encrypted message in Unfair's Cruel Revenge?
-                    Question = "What was the {1} letter of the encrypted message in {0}?",
+                    // Example: What was the first letter of the encrypted message in Unfair’s Cruel Revenge?
+                    Question = "Was war bei {0} der {1}e Buchstabe der verschlüsselten Botschaft?",
                 },
                 [SUnfairsCruelRevenge.CipherDigits] = new()
                 {
                     // English: What digit corresponded to the {1} cipher used to encrypt the message in {0}?
-                    // Example: What digit corresponded to the first cipher used to encrypt the message in Unfair's Cruel Revenge?
-                    Question = "What digit corresponded to the {1} cipher used to encrypt the message in {0}?",
+                    // Example: What digit corresponded to the first cipher used to encrypt the message in Unfair’s Cruel Revenge?
+                    Question = "Welche Ziffer entsprach bei {0} der {1}en Chiffre, mit der die Botschaft verschlüsselt war?",
                 },
             },
         },
@@ -19119,12 +19116,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Unfair’s Revenge
         [typeof(SUnfairsRevenge)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Unfairs Rache",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the encrypted message?"] = "What was the encrypted message?",
+                ["What was the encrypted message?"] = "Was war die verschlüsselte Botschaft?",
             },
             Questions = new()
             {
@@ -19132,7 +19128,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} letter of the encrypted message in {0}?
                     // Example: What was the first letter of the encrypted message in Unfair’s Revenge?
-                    Question = "What was the {1} letter of the encrypted message in {0}?",
+                    Question = "Was war bei {0} der {1}e Buchstabe der verschlüsselten Botschaft?",
                 },
             },
         },

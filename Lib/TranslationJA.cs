@@ -18630,7 +18630,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Unfair's Cruel Revenge
+        // Unfair’s Cruel Revenge
         [typeof(SUnfairsCruelRevenge)] = new()
         {
             NeedsTranslation = true,
@@ -18645,13 +18645,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SUnfairsCruelRevenge.Message] = new()
                 {
                     // English: What was the {1} letter of the encrypted message in {0}?
-                    // Example: What was the first letter of the encrypted message in Unfair's Cruel Revenge?
+                    // Example: What was the first letter of the encrypted message in Unfair’s Cruel Revenge?
                     Question = "What was the {1} letter of the encrypted message in {0}?",
                 },
                 [SUnfairsCruelRevenge.CipherDigits] = new()
                 {
                     // English: What digit corresponded to the {1} cipher used to encrypt the message in {0}?
-                    // Example: What digit corresponded to the first cipher used to encrypt the message in Unfair's Cruel Revenge?
+                    // Example: What digit corresponded to the first cipher used to encrypt the message in Unfair’s Cruel Revenge?
                     Question = "What digit corresponded to the {1} cipher used to encrypt the message in {0}?",
                 },
             },

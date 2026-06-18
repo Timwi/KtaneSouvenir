@@ -16,7 +16,7 @@ public enum SUnfairsCruelRevenge
 
 public partial class SouvenirModule
 {
-    [Handler("unfairsRevengeCruel", "Unfair's Cruel Revenge", typeof(SUnfairsCruelRevenge), "Espik")]
+    [Handler("unfairsRevengeCruel", "Unfair’s Cruel Revenge", typeof(SUnfairsCruelRevenge), "Espik")]
     [ManualQuestion("What was the encrypted message?")]
     [ManualQuestion("What digits corresponded to the ciphers used?")]
     private IEnumerator<SouvenirInstruction> ProcessUnfairsCruelRevenge(ModuleData module)

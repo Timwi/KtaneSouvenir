@@ -124,8 +124,8 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 ## Implemented by Espik (28)
 
     100 Levels of Defusal  │  Directional Button  │  Hyperlink, The          │  Samsung, The          │  Unfair Cipher
-    Blockbusters           │  Dreamcipher         │  Not Who’s on First      │  Simon Stages          │  Unfair’s Revenge
-    Boolean Wires          │  Encrypted Morse     │  Pixel Cipher            │  Sorting               │  Unfair's Cruel Revenge
+    Blockbusters           │  Dreamcipher         │  Not Who’s on First      │  Simon Stages          │  Unfair’s Cruel Revenge
+    Boolean Wires          │  Encrypted Morse     │  Pixel Cipher            │  Sorting               │  Unfair’s Revenge
     Calendar               │  Etterna             │  Reformed Role Reversal  │  Thinking Wires        │  Unicode
     Challenge & Contact    │  Exoplanets          │  Regular Crazy Talk      │  Thirty One            │
     Coffeebucks            │  Hexabutton, The     │  Role Reversal           │  Tricky Tetris Pieces  │
