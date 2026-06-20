@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SBraille
 {
-    [Question("What was the {1} pattern in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} pattern in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Circles(2, 3, 20, 20, SuppressEmpty = true)]
     Pattern
 }

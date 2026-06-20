@@ -6,22 +6,22 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSignals
 {
-    [Question("What shape was the {1} arrow in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = nameof(SouvenirModule.SimonSignalsSprites), Arguments = ["red", "green", "blue", "gray"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What shape was the {1} arrow in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = nameof(SouvenirModule.SimonSignalsSprites), Arguments = ["red", "green", "blue", "gray"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     ColorToShape,
 
     [Question("How many directions did the {1} arrow in {0} have?", TwoColumns4Answers, "3", "4", "5", "6", Arguments = ["red", "green", "blue", "gray"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     ColorToRotations,
 
-    [Question("What color was the arrow with this shape in {0}?", TwoColumns4Answers, "red", "green", "blue", "gray", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What color was the arrow with this shape in {0}?", TwoColumns4Answers, "red", "green", "blue", "gray", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     ShapeToColor,
 
-    [Question("How many directions did the arrow with this shape have in {0}?", TwoColumns4Answers, "3", "4", "5", "6", UsesQuestionSprite = true)]
+    [Question("How many directions did the arrow with this shape have in {0}?", TwoColumns4Answers, "3", "4", "5", "6", QuestionExtraType = InfoType.Sprites)]
     ShapeToRotations,
 
     [Question("What color was the arrow with {1} possible directions in {0}?", TwoColumns4Answers, "red", "green", "blue", "gray", TranslateAnswers = true, Arguments = ["3", "4", "5", "6"], ArgumentGroupSize = 1)]
     RotationsToColor,
 
-    [Question("What shape was the arrow with {1} possible directions in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = nameof(SouvenirModule.SimonSignalsSprites), Arguments = ["3", "4", "5", "6"], ArgumentGroupSize = 1)]
+    [Question("What shape was the arrow with {1} possible directions in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, SpriteFieldName = nameof(SouvenirModule.SimonSignalsSprites), Arguments = ["3", "4", "5", "6"], ArgumentGroupSize = 1)]
     RotationsToShape
 }
 
@@ -53,8 +53,8 @@ public partial class SouvenirModule
             // If this arrow has a unique shape, we can ask for its color and its number of rotations
             if (colorsShapes.Count(cs => (cs & 7) == (colorsShapes[i] & 7)) == 1)
             {
-                yield return question(SSimonSignals.ShapeToColor, questionSprite: SimonSignalsSprites[colorsShapes[i] & 7]).Answers(colorNames[colorsShapes[i] >> 3]);
-                yield return question(SSimonSignals.ShapeToRotations, questionSprite: SimonSignalsSprites[colorsShapes[i] & 7]).Answers(numRotations[i].ToString());
+                yield return question(SSimonSignals.ShapeToColor, questionExtra: SimonSignalsSprites[colorsShapes[i] & 7]).Answers(colorNames[colorsShapes[i] >> 3]);
+                yield return question(SSimonSignals.ShapeToRotations, questionExtra: SimonSignalsSprites[colorsShapes[i] & 7]).Answers(numRotations[i].ToString());
                 any = true;
             }
 

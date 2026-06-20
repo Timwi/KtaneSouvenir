@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SSonicTheHedgehog
 {
-    [Question("What was the {1} picture on {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.Sprites, SpriteFieldName = "SonicTheHedgehogSprites")]
+    [Question("What was the {1} picture on {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, AnswerType = InfoType.Sprites, SpriteFieldName = "SonicTheHedgehogSprites")]
     Pictures,
 
-    [Question("Which sound was played by the {1} screen on {0}?", TwoColumns4Answers, Type = AnswerType.Audio, ForeignAudioID = "sonic", AudioSizeMultiplier = 4, Arguments = ["Running Boots", "Invincibility", "Extra Life", "Rings"], TranslateArguments = [true], ArgumentGroupSize = 1)]
+    [Question("Which sound was played by the {1} screen on {0}?", TwoColumns4Answers, AnswerType = InfoType.Audio, ForeignAudioID = "sonic", AudioSizeMultiplier = 4, Arguments = ["Running Boots", "Invincibility", "Extra Life", "Rings"], TranslateArguments = [true], ArgumentGroupSize = 1)]
     Sounds
 }
 

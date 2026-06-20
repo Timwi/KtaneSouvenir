@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Souvenir;
 
-public sealed class TextQuestion(string question, AnswerLayout layout, Sprite questionSprite = null, float questionSpriteRotation = 0) : QuestionBase(question)
+public sealed class TextQuestion(string question, AnswerLayout layout, QuestionExtra questionExtra = null) : QuestionBase(question)
 {
     private double desiredHeightFactor => layout switch
     {
@@ -17,18 +17,7 @@ public sealed class TextQuestion(string question, AnswerLayout layout, Sprite qu
         _ => throw new InvalidOperationException("Invalid AnswerLayout."),
     };
 
-    public override string DebugText => $"{_text}{(questionSprite == null ? "" : $" (sprite: {questionSprite.name}{(questionSpriteRotation != 0 ? $" (rotated {questionSpriteRotation}°)" : "")})")}";
+    public override string DebugText => $"{_text}{(questionExtra == null ? "" : $", {questionExtra}")}";
 
-    public override void SetQuestion(SouvenirModule souv)
-    {
-        if (questionSprite != null)
-        {
-            var sprite = Sprite.Create(questionSprite.texture, questionSprite.rect, new Vector2(1, .5f), questionSprite.pixelsPerUnit);
-            sprite.name = questionSprite.name;
-            souv.QuestionSprite.sprite = sprite;
-            souv.QuestionSprite.transform.localEulerAngles = new Vector3(90, questionSpriteRotation);
-            souv.QuestionSprite.gameObject.SetActive(true);
-        }
-        souv.SetWordWrappedText(_text, desiredHeightFactor, questionSprite != null);
-    }
+    public override void SetQuestion(SouvenirModule souv) => souv.SetWordWrappedText(_text, desiredHeightFactor, questionExtra?.Setup(souv));
 }

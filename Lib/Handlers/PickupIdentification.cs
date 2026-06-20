@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SPickupIdentification
 {
-    [Question("What pickup was shown in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What pickup was shown in the {1} stage of {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Item
 }
 

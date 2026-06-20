@@ -24,29 +24,42 @@ public static class Program
             return 1;
         }
 
-        AppDomain.CurrentDomain.AssemblyResolve += delegate (object sender, ResolveEventArgs e)
+        try
         {
-            var assemblyPath = Path.Combine(opt.GameFolder, new AssemblyName(e.Name).Name + ".dll");
-            return File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null;
-        };
-        var assembly = Assembly.LoadFrom(opt.AssemblyPath);
+            AppDomain.CurrentDomain.AssemblyResolve += delegate (object sender, ResolveEventArgs e)
+            {
+                var assemblyPath = Path.Combine(opt.GameFolder, new AssemblyName(e.Name).Name + ".dll");
+                return File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null;
+            };
+            var assembly = Assembly.LoadFrom(opt.AssemblyPath);
 
-        if (opt.ContributorsFile != null)
-            DoContributorStuff(opt.ContributorsFile, assembly);
+            if (opt.ContributorsFile != null)
+                DoContributorStuff(opt.ContributorsFile, assembly);
 
-        if (opt.JsFile != null)
-            DoManualQuestionsStuff(opt.JsFile, assembly);
+            if (opt.JsFile != null)
+                DoManualQuestionsStuff(opt.JsFile, assembly);
 
-        Dictionary<string, string> translationStats = null;
-        if (opt.DoTranslations)
-            translationStats = DoTranslationStuff(opt.SourceFolder, assembly);
+            Dictionary<string, string> translationStats = null;
+            if (opt.DoTranslations)
+                translationStats = DoTranslationStuff(opt.SourceFolder, assembly);
 
-        if (opt.DataFile != null)
-            DoDataFileStuff(opt.DataFile, assembly, translationStats);
+            if (opt.DataFile != null)
+                DoDataFileStuff(opt.DataFile, assembly, translationStats);
 
-        if (opt.FindDiscriminators)
-            DoFindDiscriminators(opt.SourceFolder, assembly);
-
+            if (opt.FindDiscriminators)
+                DoFindDiscriminators(opt.SourceFolder, assembly);
+        }
+        catch (SouvenirErrorException e)
+        {
+            Console.WriteLine(e.Message);
+            return 1;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"UNKNOWN(1,1): error SOUV9999: {e.Message} ({e.GetType().FullName}) Translation stuff has NOT been updated.");
+            Console.WriteLine(e.StackTrace);
+            return 1;
+        }
         return 0;
     }
 
@@ -193,10 +206,11 @@ public static class Program
         File.WriteAllText(filepath, sb.ToString());
     }
 
-    private static Dictionary<string, string> DoTranslationStuff(string translationFilePath, Assembly assembly)
+    private static Dictionary<string, string> DoTranslationStuff(string sourcePath, Assembly assembly)
     {
         var manualQuestionAttrType = assembly.GetType("Souvenir.ManualQuestionAttribute");
         var propManualQuestionText = manualQuestionAttrType.GetProperty("QuestionText", BindingFlags.Public | BindingFlags.Instance, null, typeof(string), [], null);
+        var infoTypeType = assembly.GetType("InfoType");
 
         var handlerAttrType = assembly.GetType("Souvenir.HandlerAttribute");
         var propModuleId = handlerAttrType.GetProperty("ModuleId", BindingFlags.Public | BindingFlags.Instance, null, typeof(string), [], null);
@@ -213,7 +227,7 @@ public static class Program
         var propQTranslateArguments = questionAttrType.GetProperty("TranslateArguments", BindingFlags.Public | BindingFlags.Instance, null, typeof(bool[]), [], null);
         var propQTranslatableStrings = questionAttrType.GetProperty("TranslatableStrings", BindingFlags.Public | BindingFlags.Instance, null, typeof(string[]), [], null);
         var propQReferenceDocumentation = questionAttrType.GetProperty("ReferenceDocumentation", BindingFlags.Public | BindingFlags.Instance, null, typeof(bool), [], null);
-        var propQUsesQuestionSprite = questionAttrType.GetProperty("UsesQuestionSprite", BindingFlags.Public | BindingFlags.Instance, null, typeof(bool), [], null);
+        var propQQuestionExtraType = questionAttrType.GetProperty("QuestionExtraType", BindingFlags.Public | BindingFlags.Instance, null, infoTypeType, [], null);
         var propQIsEntireQuestionSprite = questionAttrType.GetProperty("IsEntireQuestionSprite", BindingFlags.Public | BindingFlags.Instance, null, typeof(bool), [], null);
 
         var discrAttrType = assembly.GetType("Souvenir.DiscriminatorAttribute");
@@ -223,6 +237,7 @@ public static class Program
         var propDTranslateArguments = discrAttrType.GetProperty("TranslateArguments", BindingFlags.Public | BindingFlags.Instance, null, typeof(bool[]), [], null);
         var propDTranslatableStrings = discrAttrType.GetProperty("TranslatableStrings", BindingFlags.Public | BindingFlags.Instance, null, typeof(string[]), [], null);
         var propDReferenceDocumentation = discrAttrType.GetProperty("ReferenceDocumentation", BindingFlags.Public | BindingFlags.Instance, null, typeof(bool), [], null);
+        var propDQuestionExtraType = discrAttrType.GetProperty("QuestionExtraType", BindingFlags.Public | BindingFlags.Instance, null, infoTypeType, [], null);
 
         var removeAttrType = assembly.GetType("Souvenir.RemoveAttribute");
 
@@ -255,7 +270,7 @@ public static class Program
         var translationStats = new Dictionary<string, string>();
         foreach (var language in languages)
         {
-            var path = Path.Combine(translationFilePath, $"Translation{language.ToUpperInvariant()}.cs");
+            var path = Path.Combine(sourcePath, $"Translation{language.ToUpperInvariant()}.cs");
             if (!File.Exists(path))
             {
                 Console.Error.WriteLine($@"File {path} does not exist.");
@@ -383,7 +398,7 @@ public static class Program
                         sb.AppendLine($"{indent()}// This question is depicted visually, rather than with words. The translation here will only be used for logging.");
                     else
                     {
-                        var extra = (bool) propQUsesQuestionSprite.GetValue(qAttr) ? $@" (+ sprite)" : "";
+                        var extra = propQQuestionExtraType.GetValue(qAttr).ToString() == "None" ? "" : $@" (+ extra)";
                         sb.AppendLine($@"{indent()}// English: {propQQuestionText.GetValue(qAttr)}{extra}");
                         if (propQArguments.GetValue(qAttr) is string[] args)
                             sb.AppendLine($@"{indent()}// Example: {string.Format((string) propQQuestionText.GetValue(qAttr), [((bool) propAddThe.GetValue(handler) ? "The " : "") + propModuleName.GetValue(handler), .. processString(args.Take((int) propQArgumentGroupSize.GetValue(qAttr)))])}{extra}");
@@ -413,8 +428,27 @@ public static class Program
                     if ((bool) propQReferenceDocumentation.GetValue(qAttr) || propQTranslatableStrings.GetValue(qAttr) is string[] { Length: > 0 })
                         sb.AppendLine($@"{indent()}// Refer to translations.md to understand the weird strings");
 
-                    if (propQArguments.GetValue(qAttr) is string[] { Length: > 0 } origArguments && propQArgumentGroupSize.GetValue(qAttr) is int groupSize && propQTranslateArguments.GetValue(qAttr) is bool[] trArgs)
+                    if (propQArguments.GetValue(qAttr) is string[] { Length: var len and > 0 } origArguments
+                            && propQArgumentGroupSize.GetValue(qAttr) is int groupSize
+                            && propQTranslateArguments.GetValue(qAttr) is bool[] trArgs
+                            && trArgs.Contains(true))
+                    {
+                        (string code, string msg) error = default;
+                        if (len % groupSize != 0)
+                            error = ("SOUV0002", "length of Arguments is not divisible by ArgumentGroupSize.");
+                        if (trArgs.Length != groupSize)
+                            error = ("SOUV0003", "length of TranslateArguments is not equal to ArgumentGroupSize.");
+                        var argValues = Regex.Matches((string) propQQuestionText.GetValue(qAttr), @"\{(\d+)[:\}]").Cast<Match>().Select(m => int.Parse(m.Groups[1].Value)).ToHashSet();
+                        if (argValues.Any(v => v < 0 || v > groupSize))
+                            error = ("SOUV0004", "interpolation holes do not match ArgumentGroupSize.");
+                        if (error.msg != null)
+                        {
+                            var sourceFile = Path.GetFullPath(Path.Combine(sourcePath, "Handlers", $"{enumType.Name.Substring(1)}.cs"));
+                            var lineNumber = File.Exists(sourceFile) ? File.ReadLines(sourceFile).IndexOf(line => Regex.IsMatch(line, $@"^\s*{Regex.Escape(enumValue.ToString())}\s*,?\s*$")) : -1;
+                            throw new SouvenirErrorException($"{sourceFile}({(lineNumber == -1 ? 1 : lineNumber + 1)},1): error {error.code}: {enumValue.GetType().Name}.{enumValue} {error.msg}");
+                        }
                         AddDictionary("Arguments", Enumerable.Range(0, groupSize).Where(ix => trArgs[ix]).SelectMany(ix => Enumerable.Range(0, origArguments.Length / groupSize).Select(jx => origArguments[jx * groupSize + ix])).Distinct(), alreadyQuestion == null ? null : (Dictionary<string, string>) fldArguments.GetValue(alreadyQuestion));
+                    }
                     if (propQAllAnswers.GetValue(qAttr) is string[] { Length: > 0 } origAnswers && (bool) propQTranslateAnswers.GetValue(qAttr))
                         AddDictionary("Answers", origAnswers.Distinct(), alreadyQuestion == null ? null : (Dictionary<string, string>) fldAnswers.GetValue(alreadyQuestion));
                     if (propQTranslatableStrings.GetValue(qAttr) is string[] { Length: > 0 } origStrings)
@@ -445,16 +479,37 @@ public static class Program
                         sb.AppendLine($"{indent()}{{");
                         indentation += 4;
 
-                        sb.AppendLine($@"{indent()}// English: {propDDiscriminatorText.GetValue(dAttr)}");
+                        var extra = propDQuestionExtraType.GetValue(dAttr).ToString() == "None" ? "" : $@" (+ extra)";
+                        sb.AppendLine($@"{indent()}// English: {propDDiscriminatorText.GetValue(dAttr)}{extra}");
                         if (propDArguments.GetValue(dAttr) is string[] args)
-                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) propDDiscriminatorText.GetValue(dAttr), processString(args.Take((int) propDArgumentGroupSize.GetValue(dAttr))).ToArray())}");
+                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) propDDiscriminatorText.GetValue(dAttr), processString(args.Take((int) propDArgumentGroupSize.GetValue(dAttr))).ToArray())}{extra}");
                         sb.AppendLine($@"{indent()}Discriminator = ""{((alreadyDiscriminator == null ? null : (string) fldDiscriminator.GetValue(alreadyDiscriminator)) ?? (string) propDDiscriminatorText.GetValue(dAttr)).CLiteralEscape()}"",");
 
                         if ((bool) propDReferenceDocumentation.GetValue(dAttr) || propDTranslatableStrings.GetValue(dAttr) is string[] { Length: > 0 })
                             sb.AppendLine($@"{indent()}// Refer to translations.md to understand the weird strings");
 
-                        if (propDArguments.GetValue(dAttr) is string[] { Length: > 0 } origArguments && propDArgumentGroupSize.GetValue(dAttr) is int groupSize && propDTranslateArguments.GetValue(dAttr) is bool[] trArgs)
+                        if (propDArguments.GetValue(dAttr) is string[] { Length: var len and > 0 } origArguments
+                                && propDArgumentGroupSize.GetValue(dAttr) is int groupSize
+                                && propDTranslateArguments.GetValue(dAttr) is bool[] trArgs
+                                && trArgs.Contains(true))
+                        {
+                            (string code, string msg) error = default;
+                            if (len % groupSize != 0)
+                                error = ("SOUV0005", "length of Arguments is not divisible by ArgumentGroupSize.");
+                            if (trArgs.Length != groupSize)
+                                error = ("SOUV0006", "length of TranslateArguments is not equal to ArgumentGroupSize.");
+                            var argValues = Regex.Matches((string) propDDiscriminatorText.GetValue(dAttr), @"\{(\d+)[:\}]").Cast<Match>().Select(m => int.Parse(m.Groups[1].Value)).ToHashSet();
+                            if (argValues.Any(v => v < 0 || v >= groupSize))
+                                error = ("SOUV0007", "interpolation holes do not match ArgumentGroupSize.");
+                            if (error.msg != null)
+                            {
+                                var sourceFile = Path.GetFullPath(Path.Combine(sourcePath, "Handlers", $"{enumType.Name.Substring(1)}.cs"));
+                                var lineNumber = File.Exists(sourceFile) ? File.ReadLines(sourceFile).IndexOf(line => Regex.IsMatch(line, $@"^\s*{Regex.Escape(enumValue.ToString())}\s*,?\s*$")) : -1;
+                                throw new SouvenirErrorException($"{sourceFile}({(lineNumber == -1 ? 1 : lineNumber + 1)},1): error {error.code}: {enumValue.GetType().Name}.{enumValue} {error.msg}");
+                            }
+
                             AddDictionary("Arguments", Enumerable.Range(0, groupSize).Where(ix => trArgs[ix]).SelectMany(ix => Enumerable.Range(0, origArguments.Length / groupSize).Select(jx => origArguments[jx * groupSize + ix])).Distinct(), alreadyDiscriminator == null ? null : (Dictionary<string, string>) fldDArguments.GetValue(alreadyDiscriminator));
+                        }
 
                         if (propDTranslatableStrings.GetValue(dAttr) is string[] { Length: > 0 } origStrings)
                             AddDictionary("Additional", origStrings.Distinct(), alreadyDiscriminator == null ? null : (Dictionary<string, string>) fldDAdditional.GetValue(alreadyDiscriminator));

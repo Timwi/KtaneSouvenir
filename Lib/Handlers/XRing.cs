@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SXRing
 {
-    [Question("Which symbol was scanned in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "XRingSprites")]
+    [Question("Which symbol was scanned in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "XRingSprites")]
     Symbol
 }
 

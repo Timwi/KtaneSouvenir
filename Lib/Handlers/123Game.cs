@@ -7,13 +7,13 @@ using static Souvenir.AnswerLayout;
 
 public enum S123Game
 {
-    [Question("What was the opponent avatar in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the opponent avatar in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     QProfile,
 
     [Question("What was the opponent name in {0}?", ThreeColumns6Answers, "Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu", "Yuram")]
     QName,
 
-    [Discriminator("the 1, 2, 3 Game with this opponent avatar", UsesQuestionSprite = true)]
+    [Discriminator("the 1, 2, 3 Game with this opponent avatar", QuestionExtraType = InfoType.Sprites)]
     DProfile,
 
     [Discriminator("the 1, 2, 3 Game with the opponent name {0}", Arguments = ["Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu"], ArgumentGroupSize = 1)]
@@ -39,7 +39,7 @@ public partial class SouvenirModule
 
         yield return question(S123Game.QProfile).AvoidDiscriminators(S123Game.DProfile).Answers(sprites[sprite], all: sprites);
         yield return question(S123Game.QName).AvoidDiscriminators(S123Game.DName).Answers(names[name]);
-        yield return new Discriminator(S123Game.DProfile, "123profile", sprite, questionSprite: sprites[sprite]);
+        yield return new Discriminator(S123Game.DProfile, "123profile", sprite, questionExtra: sprites[sprite]);
         yield return new Discriminator(S123Game.DName, "123name", sprite, args: [names[name]]);
     }
 }

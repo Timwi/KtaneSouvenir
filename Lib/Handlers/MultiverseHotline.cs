@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMultiverseHotline
 {
-    [Question("What was the origin universe in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "MultiverseHotline", AudioSizeMultiplier = 4)]
+    [Question("What was the origin universe in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Audio, ForeignAudioID = "MultiverseHotline", AudioSizeMultiplier = 4)]
     OriginUniverse,
 
     [Question("What was the origin universe’s initial number in {0}?", TwoColumns4Answers)]

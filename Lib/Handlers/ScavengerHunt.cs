@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SScavengerHunt
 {
-    [Question("Which of these tiles gave a relevant clue in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.Sprites)]
+    [Question("Which of these tiles gave a relevant clue in the {1} stage of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     ClueTiles
 }

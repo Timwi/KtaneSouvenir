@@ -611,7 +611,7 @@ public static class Ut
     public static Sprite[] GetAllSprites(this Enum question, SouvenirModule souv)
     {
         var attr = question.GetQuestionAttribute();
-        return attr.Type != AnswerType.Sprites
+        return attr.AnswerType != InfoType.Sprites
             ? throw new AbandonModuleException("A question with sprite answers must have AnswerType set to Sprites, and: EITHER have an associated SpriteFieldName property (for provided clips) OR specify “all” clips in the .Answer() call (for generated clips), OR use a sprite-based AnswerGenerator.")
             : attr.SpriteFieldName == null ? null : (Sprite[]) attr.SpriteField.GetValue(souv);
     }
@@ -619,7 +619,7 @@ public static class Ut
     public static AudioClip[] GetAllSounds(this Enum question, SouvenirModule souv)
     {
         var attr = question.GetQuestionAttribute();
-        return attr.Type != AnswerType.Audio || attr.AudioFieldName == null
+        return attr.AnswerType != InfoType.Audio || attr.AudioFieldName == null
             ? throw new AbandonModuleException("A question with audio clips must have AnswerType set to Audio, and: EITHER have an associated AudioFieldName property (for provided clips) OR specify “all” clips in the .Answer() call (for generated clips).")
             : (AudioClip[]) attr.AudioField.GetValue(souv);
     }

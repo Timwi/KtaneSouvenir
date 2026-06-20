@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SZeroZero
 {
-    [Question("Where was the {1} square in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
+    [Question("Where was the {1} square in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, TranslateArguments = [true], Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(6, 6)]
     Squares,
 

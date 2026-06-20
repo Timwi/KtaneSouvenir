@@ -9,7 +9,7 @@ public enum SCoordination
     [AnswerGenerator.Strings("A-F", "1-6")]
     Label,
 
-    [Question("Where was the starting coordinate in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Where was the starting coordinate in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Position
 }

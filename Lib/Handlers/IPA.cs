@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SIPA
 {
-    [Question("What sound played in {0}?", TwoColumns4Answers, Type = AnswerType.Audio, ForeignAudioID = "ipa", AudioSizeMultiplier = 4)]
+    [Question("What sound played in {0}?", TwoColumns4Answers, AnswerType = InfoType.Audio, ForeignAudioID = "ipa", AudioSizeMultiplier = 4)]
     Sound
 }
 

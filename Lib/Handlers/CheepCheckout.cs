@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCheepCheckout
 {
-    [Question("Which of these bird sounds could be heard in {0}?", TwoColumns4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
+    [Question("Which of these bird sounds could be heard in {0}?", TwoColumns4Answers, AnswerType = InfoType.Audio, ForeignAudioID = Sounds.Generated)]
     Birds
 }
 

@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SSonicKnuckles
 {
-    [Question("Which badnik was shown in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "SonicKnucklesBadniksSprites")]
+    [Question("Which badnik was shown in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "SonicKnucklesBadniksSprites")]
     Badnik,
 
-    [Question("Which monitor was shown in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "SonicKnucklesMonitorsSprites")]
+    [Question("Which monitor was shown in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "SonicKnucklesMonitorsSprites")]
     Monitor
 }
 

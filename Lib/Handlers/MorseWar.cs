@@ -9,7 +9,7 @@ public enum SMorseWar
     [Question("What code was transmitted in {0}?", ThreeColumns6Answers, "ABR", "RBS", "SVR", "ZUX", "ZAQ", "MOI", "OPA", "VZQ", "XRP", "OLL", "AIR", "RHG", "MJN", "VTT", "XZS", "SUN")]
     Code,
 
-    [Question("What were the LEDs in the {1} row in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "MorseWarSprites", TranslateArguments = [true], Arguments = ["bottom", "middle", "top"], ArgumentGroupSize = 1)]
+    [Question("What were the LEDs in the {1} row in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "MorseWarSprites", TranslateArguments = [true], Arguments = ["bottom", "middle", "top"], ArgumentGroupSize = 1)]
     Leds
 }
 

@@ -18,9 +18,9 @@ public sealed class QuestionAttribute(string questionText, AnswerLayout layout, 
     public bool[] TranslateArguments { get; set; }
     public string[] TranslatableStrings { get; set; }
     public bool ReferenceDocumentation { get; set; }
-    public bool UsesQuestionSprite { get; set; }
+    public InfoType QuestionExtraType { get; set; }
     public string[] ExampleAnswers { get; set; }
-    public AnswerType Type { get; set; } = AnswerType.DefaultFont;
+    public InfoType AnswerType { get; set; } = InfoType.None;
     public AnswerLayout Layout { get; set; } = layout;
     public string ForeignAudioID { get; set; }
     public float AudioSizeMultiplier { get; set; } = 2f;

@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SElderFuthark
 {
-    [Question("What was the {1} rune shown on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.Sprites, SpriteFieldName = "ElderFutharkSprites")]
+    [Question("What was the {1} rune shown on {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, AnswerType = InfoType.Sprites, SpriteFieldName = "ElderFutharkSprites")]
     Runes,
 
-    [Discriminator("the Elder Futhark that had this rune on it", UsesQuestionSprite = true)]
+    [Discriminator("the Elder Futhark that had this rune on it", QuestionExtraType = InfoType.Sprites)]
     Discriminator
 }
 
@@ -32,7 +32,7 @@ public partial class SouvenirModule
         for (var i = 0; i < pickedRunes.Length; i++)
         {
             yield return question(SElderFuthark.Runes, args: [Ordinal(i + 1)]).Answers(pickedRunes[i]);
-            yield return new Discriminator(SElderFuthark.Discriminator, $"futhark-{pickedRuneNames[i]}", questionSprite: pickedRunes[i]);
+            yield return new Discriminator(SElderFuthark.Discriminator, $"futhark-{pickedRuneNames[i]}", questionExtra: pickedRunes[i]);
         }
     }
 }

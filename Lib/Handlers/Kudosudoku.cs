@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SKudosudoku
 {
-    [Question("Which square was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["pre-filled", "not pre-filled"], ArgumentGroupSize = 1)]
+    [Question("Which square was {1} in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, TranslateArguments = [true], Arguments = ["pre-filled", "not pre-filled"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(4, 4)]
     Prefilled
 }

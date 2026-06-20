@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SModuleMaze
 {
-    [Question("Which of the following was the starting icon for {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which of the following was the starting icon for {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     StartingIcon
 }
 

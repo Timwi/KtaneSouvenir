@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SXRotor
 {
-    [Question("Which symbol was scanned in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "XRotorSprites")]
+    [Question("Which symbol was scanned in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "XRotorSprites")]
     Symbol
 }
 

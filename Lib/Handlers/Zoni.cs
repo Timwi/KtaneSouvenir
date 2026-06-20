@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SZoni
 {
-    [Question("What was the {1} word in {0}?", OneColumn4Answers, ExampleAnswers = ["angel", "thing", "dance", "heavy", "quote", "radio"], Type = AnswerType.DynamicFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} word in {0}?", OneColumn4Answers, ExampleAnswers = ["angel", "thing", "dance", "heavy", "quote", "radio"], AnswerType = InfoType.DynamicFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Words
 }
 

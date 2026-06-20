@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SUnfairsRevenge
 {
-    [Question("What was the {1} letter of the encrypted message in {0}?", ThreeColumns6Answers, Type = AnswerType.DynamicFont, CharacterSize = 0.4f, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} letter of the encrypted message in {0}?", ThreeColumns6Answers, AnswerType = InfoType.DynamicFont, CharacterSize = 0.4f, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings('A', 'Z')]
     Letters
 }

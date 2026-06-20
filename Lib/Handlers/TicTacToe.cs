@@ -6,10 +6,10 @@ using static Souvenir.AnswerLayout;
 
 public enum STicTacToe
 {
-    [Question("What was on the {1} button at the start of {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "O", "X", Type = AnswerType.TicTacToeFont, Arguments = ["top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was on the {1} button at the start of {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "O", "X", AnswerType = InfoType.TicTacToeFont, Arguments = ["top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     QButton,
 
-    [Discriminator("the Tic Tac Toe where the {0} button was {1}", Arguments = ["top-left", "1", "top-middle", "2", "top-right", "3", "middle-left", "4", "middle-center", "5", "middle-right", "6", "bottom-left", "7", "bottom-middle", "8", "bottom-right", "9", "bottom-right", "O", "bottom-right", "X"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Tic Tac Toe where this was on the {0} button", Arguments = ["top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", "bottom-right", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true], QuestionExtraType = InfoType.TicTacToeFont)]
     DButton
 }
 
@@ -38,7 +38,7 @@ public partial class SouvenirModule
         {
             var buttonName = buttonNames[Array.IndexOf(keypadPhysical, keypadButtons[ix])];
             var value = placedX[ix] == null ? (ix + 1).ToString() : placedX[ix].Value ? "X" : "O";
-            yield return new Discriminator(STicTacToe.DButton, $"position{ix}", value, args: [buttonName, value]);
+            yield return new Discriminator(STicTacToe.DButton, $"position{ix}", value, args: [buttonName], questionExtra: value);
             yield return question(STicTacToe.QButton, args: [buttonName]).AvoidDiscriminators($"position{ix}").Answers(value);
         }
     }

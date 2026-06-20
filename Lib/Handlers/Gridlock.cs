@@ -9,7 +9,7 @@ public enum SGridlock
     [Question("What was the starting color in {0}?", TwoColumns4Answers, "Green", "Yellow", "Red", "Blue", TranslateAnswers = true)]
     StartingColor,
 
-    [Question("What was the starting location in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the starting location in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     StartingLocation
 }

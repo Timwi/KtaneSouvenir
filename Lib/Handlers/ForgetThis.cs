@@ -7,7 +7,7 @@ public enum SForgetThis
     [Question("What color was the LED in the {1} stage of {0}?", ThreeColumns6Answers, "Cyan", "Magenta", "Yellow", "Black", "White", "Green", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     QColors,
 
-    [Question("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.AsciiMazeFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the digit displayed in the {1} stage of {0}?", ThreeColumns6Answers, AnswerType = InfoType.AsciiMazeFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("0-9A-Z")]
     QDigits,
 

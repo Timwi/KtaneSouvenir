@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum STrickyTetrisPieces
 {
-    [Question("What was the first piece you pressed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the first piece you pressed in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Polyominoes(minCellCount: 4, excludeEqualRotations: true)]
     FirstShape,
 

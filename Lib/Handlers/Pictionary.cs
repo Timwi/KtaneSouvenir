@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SPictionary
 {
-    [Question("What were the colors of the pixels in the {1} quadrant in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "PictionarySprites", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What were the colors of the pixels in the {1} quadrant in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "PictionarySprites", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Colors
 }
 

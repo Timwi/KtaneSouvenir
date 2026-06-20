@@ -95,6 +95,8 @@ public partial class SouvenirModule : MonoBehaviour
     public Renderer TextRenderer;
     public Renderer SurfaceRenderer;
     public SpriteRenderer QuestionSprite;
+    public TextMesh QuestionExtraText;
+    public Renderer QuestionExtraTextRenderer;
     public SpriteRenderer EntireQuestionSprite;
     public GameObject WarningIcon;
     public Material FontMaterial;
@@ -292,7 +294,7 @@ public partial class SouvenirModule : MonoBehaviour
         disappear();
         WarningIcon.SetActive(false);
 
-        SetWordWrappedText((_translation?.IntroTexts ?? _intros).PickRandom(), 1.75, useQuestionSprite: false);
+        SetWordWrappedText((_translation?.IntroTexts ?? _intros).PickRandom(), 1.75);
 
         if (transform.parent != null && !Application.isEditor)
         {
@@ -345,23 +347,23 @@ public partial class SouvenirModule : MonoBehaviour
                     {
                         if (qAttr.TranslateArguments != null && qAttr.TranslateArguments.Length != qAttr.ArgumentGroupSize)
                             Debug.LogError($"<Souvenir #{_moduleId}> Question {qs}: The length of the ‘{nameof(qAttr.TranslateArguments)}’ array must match ‘{nameof(qAttr.ArgumentGroupSize)}’.");
-                        if (qAttr.SpriteFieldName != null && qAttr.Type != AnswerType.Sprites)
-                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) specifies a SpriteField. This should only be used for questions of type Sprites.");
+                        if (qAttr.SpriteFieldName != null && qAttr.AnswerType != InfoType.Sprites)
+                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.AnswerType}) specifies a SpriteField. This should only be used for questions of type Sprites.");
                         if (qAttr.AllAnswers != null && qAttr.AnswerGenerators != null)
-                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) specifies both AllAnswers and an answer generator. When using an answer generator, please set AllAnswers explicitly to null.");
+                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.AnswerType}) specifies both AllAnswers and an answer generator. When using an answer generator, please set AllAnswers explicitly to null.");
                         if (qAttr.AnswerGenerators is { Length: > 1 } && qAttr.AnswerGenerators.Select(g => g.ElementType).Distinct().Count() is not 1)
-                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses multiple answer generators, but they generate different types of answers. Ensure all answer generators are appropriate for the question.");
+                            Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.AnswerType}) uses multiple answer generators, but they generate different types of answers. Ensure all answer generators are appropriate for the question.");
 
-                        switch (qAttr.Type)
+                        switch (qAttr.AnswerType)
                         {
-                            case AnswerType.Sprites:
+                            case InfoType.Sprites:
                                 if (qAttr.AnswerGenerators != null && qAttr.AnswerGenerators.Any(g => g is not AnswerGeneratorAttribute<Sprite>))
-                                    Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses an answer generator for something other than sprites. Change the answer type or specify a sprite answer generator (e.g. [AnswerGenerator.Grid(4, 4)]).");
+                                    Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.AnswerType}) uses an answer generator for something other than sprites. Change the answer type or specify a sprite answer generator (e.g. [AnswerGenerator.Grid(4, 4)]).");
                                 break;
 
-                            case AnswerType.Audio:
+                            case InfoType.Audio:
                                 if (qAttr.AnswerGenerators != null)
-                                    Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.Type}) uses an answer generator. This is not supported for audio questions.");
+                                    Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.AnswerType}) uses an answer generator. This is not supported for audio questions.");
                                 break;
 
                             default:
@@ -373,11 +375,11 @@ public partial class SouvenirModule : MonoBehaviour
                 }
 
                 for (var i = 0; i < Fonts.Length; i++)
-                    if (Fonts[i] != null && ((AnswerType) i).ToString() != Fonts[i].name)
-                        Debug.LogError($"Error: Font #{i} ({Fonts[i].name}) does not match AnswerType enum value #{i} ({(AnswerType) i})");
-                foreach (var enumValue in (AnswerType[]) Enum.GetValues(typeof(AnswerType)))
+                    if (Fonts[i] != null && ((InfoType) i).ToString() != Fonts[i].name)
+                        Debug.LogError($"Error: Font #{i} ({Fonts[i].name}) does not match InfoType enum value #{i} ({(InfoType) i})");
+                foreach (var enumValue in (InfoType[]) Enum.GetValues(typeof(InfoType)))
                     if ((int) enumValue is { } intValue && intValue >= 0 && (intValue >= Fonts.Length || Fonts[intValue] == null || intValue >= FontTextures.Length || FontTextures[intValue] == null))
-                        Debug.LogError($"Error: AnswerType enum value #{intValue} ({enumValue}) does not have a corresponding entry in Fonts and FontTextures");
+                        Debug.LogError($"Error: InfoType enum value #{intValue} ({enumValue}) does not have a corresponding entry in Fonts and FontTextures");
 
                 Debug.Log($"<Souvenir #{_moduleId}> Entering Unity testing mode.", this);
                 _exampleModules = Ut.ModuleHandlers.Values.ToArray();
@@ -408,7 +410,7 @@ public partial class SouvenirModule : MonoBehaviour
         var intros = _translation?.IntroTexts ?? _intros;
         _curIntro = (index % intros.Length + intros.Length) % intros.Length;
         disappear();
-        SetWordWrappedText(intros[_curIntro], 1.75, useQuestionSprite: false);
+        SetWordWrappedText(intros[_curIntro], 1.75);
         foreach (var ans in Answers)
             ans.transform.Find("AnswerText").GetComponent<TextMesh>().text = "";
         AnswersParent.SetActive(true);
@@ -471,7 +473,7 @@ public partial class SouvenirModule : MonoBehaviour
     {
         var hAttr = _exampleModules[_curExampleModule];
         var qAttr = _exampleQuestions[_curExampleQuestion];
-        var usesQuestionSprite = false;
+        var questionExtraType = InfoType.None;
 
         var fmt = new object[qAttr.ArgumentGroupSize + 1];
         if (_curExampleDiscriminator == 0)
@@ -493,7 +495,7 @@ public partial class SouvenirModule : MonoBehaviour
                 .Select<string, object>((arg, ix) => arg == QandA.Ordinal ? Ordinal(Rnd.Range(1, 13)) : Snip(dAttr.TranslateArguments != null && dAttr.TranslateArguments[ix] ? TranslateDiscriminatorArgument(dAttr.EnumValue, arg) : arg))
                 .ToArray();
             fmt[0] = string.Format(TranslateDiscriminator(dAttr.EnumValue, dAttr.DiscriminatorText), dFmt);
-            usesQuestionSprite = dAttr.UsesQuestionSprite;
+            questionExtraType = dAttr.QuestionExtraType;
         }
 
         if (_exampleQuestionArguments != null && _exampleQuestionArguments[_curExampleQuestionArgument] is { } args)
@@ -501,20 +503,29 @@ public partial class SouvenirModule : MonoBehaviour
                 fmt[i + 1] = args[i] == QandA.Ordinal ? Ordinal(Rnd.Range(1, 13)) : Snip(TranslateQuestionArgument(qAttr.EnumValue, args[i]));
 
         var questionText = qAttr.Gimmicks.Aggregate(string.Format(TranslateQuestion(qAttr.EnumValue), fmt), (prev, gimmick) => gimmick.ApplyGimmick(prev, fmt));
+        var questionExtra = qAttr.QuestionExtraType != InfoType.None && questionExtraType != InfoType.None ? WarningIcon.GetComponent<SpriteRenderer>().sprite :
+            (questionExtraType == InfoType.None ? qAttr.QuestionExtraType : questionExtraType) switch
+            {
+                InfoType.None => (QuestionExtra) null,
+                InfoType.Audio => throw new InvalidOperationException($"{qAttr.EnumValue.GetType().Name}.{qAttr.EnumValue}: A question extra cannot be of type audio."),
+                InfoType.Sprites => SymbolicCoordinatesSprites[0],
+                InfoType.DynamicFont => new QuestionExtraText("A", Fonts[(int) InfoType.AsciiMazeFont], FontTextures[(int) InfoType.AsciiMazeFont]),
+                var type => new QuestionExtraText("A", Fonts[(int) type], FontTextures[(int) type])
+            };
 
         QuestionBase question = qAttr.IsEntireQuestionSprite
             ? new SpriteQuestion(questionText, SymbolicCoordinatesSprites[0])
-            : new TextQuestion(questionText, qAttr.Layout, qAttr.UsesQuestionSprite || usesQuestionSprite ? SymbolicCoordinatesSprites[0] : null, 0);
+            : new TextQuestion(questionText, qAttr.Layout, questionExtra: null);
 
         AnswerSet answerSet;
-        switch (qAttr.Type)
+        switch (qAttr.AnswerType)
         {
-            case AnswerType.Audio:
+            case InfoType.Audio:
                 var audioClips = qAttr.AudioFieldName == null ? ExampleAudio : (AudioClip[]) typeof(SouvenirModule).GetField(qAttr.AudioFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleAudio;
                 audioClips = audioClips?.Shuffle().Take(qAttr.NumAnswers).ToArray();
                 answerSet = new AudioAnswerSet(qAttr, audioClips, 0, this);
                 break;
-            case AnswerType.Sprites:
+            case InfoType.Sprites:
                 var answerSprites = qAttr.SpriteFieldName == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(qAttr.SpriteFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
                 answerSprites = answerSprites?.Shuffle().Take(qAttr.NumAnswers).ToArray();
                 if (qAttr.AnswerGenerators?.FirstOrDefault() is AnswerGeneratorAttribute<Sprite>)
@@ -564,6 +575,7 @@ public partial class SouvenirModule : MonoBehaviour
     {
         TextMesh.gameObject.SetActive(false);
         QuestionSprite.gameObject.SetActive(false);
+        QuestionExtraText.gameObject.SetActive(false);
         EntireQuestionSprite.gameObject.SetActive(false);
         AnswersParent.SetActive(false);
     }
@@ -695,15 +707,19 @@ public partial class SouvenirModule : MonoBehaviour
         var prevScale = gameObject.transform.localScale;
         gameObject.transform.localScale = new Vector3(1, 1, 1);
 
-        q.SetQandAs(this);
         Debug.Log($"[Souvenir #{_moduleId}] Asking question: {q.DebugString}");
+
+        var origRotation = TextMesh.transform.rotation;
+        TextMesh.transform.eulerAngles = new Vector3(90, 0, 0);
+        q.SetQandAs(this);
+        TextMesh.transform.rotation = origRotation;
         AnswersParent.SetActive(true);
         Audio.PlaySoundAtTransform("Question", transform);
 
         gameObject.transform.localScale = prevScale;
     }
 
-    private static readonly double[][] _acceptableWidthsWithoutQuestionSprite = Ut.NewArray<double[]>(
+    private static readonly double[][] _acceptableWidthsWithoutQuestionExtra = Ut.NewArray<double[]>(
         // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
         [0, 1.1896],
         [0.0712, 1.258],
@@ -712,7 +728,7 @@ public partial class SouvenirModule : MonoBehaviour
         [0.3888, 1.4958],
         [0.443, 1.668]);
 
-    public void SetWordWrappedText(string text, double desiredHeightFactor, bool useQuestionSprite)
+    public void SetWordWrappedText(string text, double desiredHeightFactor, double[][] acceptableWidths = null)
     {
         TextMesh.gameObject.SetActive(true);
         TextMesh.font = Fonts[_translation?.DefaultFontIndex ?? 0];
@@ -720,25 +736,12 @@ public partial class SouvenirModule : MonoBehaviour
         TextRenderer.material.mainTexture = FontTextures[_translation?.DefaultFontIndex ?? 0];
         TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
 
-        var acceptableWidths = _acceptableWidthsWithoutQuestionSprite;
-        if (useQuestionSprite)
-        {
-            acceptableWidths = Ut.NewArray<double[]>(
-                [0, 1.1896],
-                [0.0712, 1.258],
-                [0.1476, 1.258],
-                [0.306, 1.3442],
-                [0.443, 1.668],
-                [0.549, 1.668],
-                [0.55, 1.6 - .874 * QuestionSprite.sprite.rect.width / QuestionSprite.sprite.pixelsPerUnit]);
-        }
+        acceptableWidths ??= _acceptableWidthsWithoutQuestionExtra;
 
         var low = 1;
         var high = 256;
         var desiredHeight = desiredHeightFactor * SurfaceSizeFactor;
         var wrappeds = new Dictionary<int, string>();
-        var origRotation = TextMesh.transform.rotation;
-        TextMesh.transform.eulerAngles = new Vector3(90, 0, 0);
 
         while (high - low > 1)
         {
@@ -824,7 +827,6 @@ public partial class SouvenirModule : MonoBehaviour
 
         TextMesh.fontSize = low;
         TextMesh.text = wrappeds[low];
-        TextMesh.transform.rotation = origRotation;
         TextMesh.gameObject.SetActive(true);
     }
 
@@ -920,7 +922,7 @@ public partial class SouvenirModule : MonoBehaviour
                             _showWarning = true;
                             yield break;
                         }
-                        if (q.Stump.QuestionStump.QuestionAttribute.Type == AnswerType.DynamicFont &&
+                        if (q.Stump.QuestionStump.QuestionAttribute.AnswerType == InfoType.DynamicFont &&
                             q.Stump.AnswerStump is not TextAnswerStump { Info: { Font: not null, FontTexture: not null } })
                         {
                             Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because the question {q.Stump.QuestionStump.EnumValue.GetType().Name}.{q.Stump.QuestionStump.EnumValue} is marked as using a dynamic font, but no font or font texture was specified. You must provide both a font and a font texture by passing a {nameof(TextAnswerInfo)} object.");
@@ -950,85 +952,90 @@ public partial class SouvenirModule : MonoBehaviour
         while (info.NumFinished < info.NumModules)
             yield return null;
 
-        if (questions.Count > 0)
-            Debug.Log($"<Souvenir #{_moduleId}> Questions for {module.ModuleDisplayName}:\n{questions.Select(q => $"• {q}").JoinString("\n")}");
-        if (info.Discriminators.Get(module) is { Count: > 0 } logDiscr)
-            Debug.Log($"<Souvenir #{_moduleId}> Discriminators for {module.ModuleDisplayName}:\n{logDiscr.Select(d => $"• {d.Value}").JoinString("\n")}");
-
-        var bossTried = false;
-        tryAgain:
-        if (questions.Count == 0)
+        try
         {
-            if (!_legitimatelyNoQuestions.Contains(module))
+            if (questions.Count > 0)
+                Debug.Log($"<Souvenir #{_moduleId}> Questions for {module.ModuleDisplayName}:\n{questions.Select(q => $"• {q}").JoinString("\n")}");
+            if (info.Discriminators.Get(module) is { Count: > 0 } logDiscr)
+                Debug.Log($"<Souvenir #{_moduleId}> Discriminators for {module.ModuleDisplayName}:\n{logDiscr.Select(d => $"• {d.Value}").JoinString("\n")}");
+
+            var bossTried = false;
+            tryAgain:
+            if (questions.Count == 0)
             {
-                if (bossTried)
-                    Debug.Log($"[Souvenir #{_moduleId}] There was no question for {module.ModuleDisplayName} because it is a boss module and there were no applicable discriminators.");
-                else
+                if (!_legitimatelyNoQuestions.Contains(module))
                 {
-                    Debug.Log($"[Souvenir #{_moduleId}] The handler for {module.ModuleDisplayName} did not generate any questions. Please report this to the contributor for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.");
-                    _showWarning = true;
+                    if (bossTried)
+                        Debug.Log($"[Souvenir #{_moduleId}] There was no question for {module.ModuleDisplayName} because it is a boss module and there were no applicable discriminators.");
+                    else
+                    {
+                        Debug.Log($"[Souvenir #{_moduleId}] The handler for {module.ModuleDisplayName} did not generate any questions. Please report this to the contributor for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.");
+                        _showWarning = true;
+                    }
                 }
+            }
+            else
+            {
+                // Construct the answers first, then pick a discriminator that doesn’t conflict with them
+                var q = questions.PickRandom();
+                var answerSet = q.AnswerStump.GenerateAnswerSet(q.QuestionStump, this);
+                if (answerSet == null)
+                    // An error message will have already been logged
+                    yield break;
+                var questionHasExtra = q.QuestionStump is TextQuestionStump { QuestionExtra: { } } or SpriteQuestionStump;
+                string moduleFormat = null;
+                QuestionExtra questionExtraFromDiscriminator = null;
+                if (info.NumModules > 1)
+                {
+                    if (info.Discriminators.Get(module) is { Count: > 0 } discrRaw)
+                    {
+                        var discrs = discrRaw.Values.Where(d =>
+                                !d.AvoidEntirely &&
+                                // avoid discriminators that the question explicitly tells us to avoid
+                                q.QuestionStump.DiscriminatorsToAvoid?.Contains(d.EnumValue) != true &&
+                                q.QuestionStump.DiscriminatorIdsToAvoid?.Contains(d.Id) != true &&
+                                // avoid discriminators that clash with one of the answers we already selected
+                                d.AvoidAnswers?.Intersect(answerSet.Answers).Any() != true &&
+                                // can’t use a question sprite if the question already uses one
+                                (d.QuestionExtra == null || !questionHasExtra) &&
+                                // use this discriminator only if its value is actually unique
+                                info.Discriminators.Values.Count(ds => ds.TryGetValue(d.Id, out var cd) && Equals(cd.Value, d.Value)) == 1)
+                            .GroupBy(d => d.PriorityFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? d.Priority)
+                            .OrderBy(gr => gr.Key)
+                            .FirstOrDefault()?.ToArray();
+
+                        if (discrs == null && hAttr.IsBossModule)
+                        {
+                            Debug.Log($"<Souvenir #{_moduleId}> No applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with args {q.QuestionStump.Args.Stringify()} and answers {answerSet.DebugAnswers.ToArray().Stringify()}.");
+                            questions.Remove(q);
+                            bossTried = true;
+                            goto tryAgain;
+                        }
+
+                        // If this is false, the solve-count discriminator was picked and ‘moduleFormat’ will default to it later
+                        if (discrs?.Concat(hAttr.IsBossModule ? [] : [null]).PickRandom() is { } discr && discr.EnumValue.GetDiscriminatorAttribute() is var dAttr)
+                        {
+                            moduleFormat = string.Format(
+                                TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText),
+                                (discr.Arguments ?? discr.ArgumentsFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? [])
+                                    .Select<string, object>((arg, ix) => Snip(dAttr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg))
+                                    .ToArray());
+                            questionExtraFromDiscriminator = discr.QuestionExtra?.Uplift(this, dAttr.QuestionExtraType);
+                        }
+                    }
+
+                    if (moduleFormat == null && hAttr.IsBossModule)
+                    {
+                        Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because there was no applicable discriminator.");
+                        yield break;
+                    }
+                }
+                _questions.Add(q.GenerateQandA(answerSet, moduleFormat ?? formatModuleName(q.QuestionStump.QuestionAttribute, info.NumModules > 1, data.SolveIndex + 1), Bomb.GetSolvedModuleIDs().Count, questionExtraFromDiscriminator));
             }
         }
-        else
+        catch (Exception e)
         {
-            // Construct the answers first, then pick a discriminator that doesn’t conflict with them
-            var q = questions.PickRandom();
-            var answerSet = q.AnswerStump.GenerateAnswerSet(q.QuestionStump, this);
-            if (answerSet == null)
-                // An error message will have already been logged
-                yield break;
-            var questionHasQuestionSprite = q.QuestionStump is TextQuestionStump { QuestionSprite: { } } or SpriteQuestionStump;
-            string moduleFormat = null;
-            Sprite questionSpriteFromDiscriminator = null;
-            var questionSpriteRotationFromDiscriminator = 0f;
-            if (info.NumModules > 1)
-            {
-                if (info.Discriminators.Get(module) is { Count: > 0 } discrRaw)
-                {
-                    var discrs = discrRaw.Values.Where(d =>
-                            !d.AvoidEntirely &&
-                            // avoid discriminators that the question explicitly tells us to avoid
-                            q.QuestionStump.DiscriminatorsToAvoid?.Contains(d.EnumValue) != true &&
-                            q.QuestionStump.DiscriminatorIdsToAvoid?.Contains(d.Id) != true &&
-                            // avoid discriminators that clash with one of the answers we already selected
-                            d.AvoidAnswers?.Intersect(answerSet.Answers).Any() != true &&
-                            // can’t use a question sprite if the question already uses one
-                            (d.QuestionSprite == null || !questionHasQuestionSprite) &&
-                            // use this discriminator only if its value is actually unique
-                            info.Discriminators.Values.Count(ds => ds.TryGetValue(d.Id, out var cd) && Equals(cd.Value, d.Value)) == 1)
-                        .GroupBy(d => d.PriorityFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? d.Priority)
-                        .OrderBy(gr => gr.Key)
-                        .FirstOrDefault()?.ToArray();
-
-                    if (discrs == null && hAttr.IsBossModule)
-                    {
-                        Debug.Log($"<Souvenir #{_moduleId}> No applicable discriminator to ask question {q.QuestionStump.EnumValue.GetType().Name}.{q.QuestionStump.EnumValue} with args {q.QuestionStump.Args.Stringify()} and answers {answerSet.DebugAnswers.ToArray().Stringify()}.");
-                        questions.Remove(q);
-                        bossTried = true;
-                        goto tryAgain;
-                    }
-
-                    // If this is false, the solve-count discriminator was picked and ‘moduleFormat’ will default to it later
-                    if (discrs?.Concat(hAttr.IsBossModule ? [] : [null]).PickRandom() is { } discr && discr.EnumValue.GetDiscriminatorAttribute() is var dAttr)
-                    {
-                        moduleFormat = string.Format(
-                            TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText),
-                            (discr.Arguments ?? discr.ArgumentsFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? [])
-                                .Select<string, object>((arg, ix) => Snip(dAttr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg))
-                                .ToArray());
-                        questionSpriteFromDiscriminator = discr.QuestionSprite;
-                        questionSpriteRotationFromDiscriminator = discr.QuestionSpriteRotation;
-                    }
-                }
-
-                if (moduleFormat == null && hAttr.IsBossModule)
-                {
-                    Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because there was no applicable discriminator.");
-                    yield break;
-                }
-            }
-            _questions.Add(q.GenerateQandA(answerSet, moduleFormat ?? formatModuleName(q.QuestionStump.QuestionAttribute, info.NumModules > 1, data.SolveIndex + 1), Bomb.GetSolvedModuleIDs().Count, questionSpriteFromDiscriminator, questionSpriteRotationFromDiscriminator));
+            Debug.LogError($"[Souvenir #{_moduleId}] Error in handler for {module.ModuleDisplayName}: {e.Message}\n{e.StackTrace}");
         }
         Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Finished processing.");
     }
@@ -1145,10 +1152,10 @@ public partial class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Methods for adding questions to the pool (used by module handlers)
-    private static readonly AnswerType[] _standardAnswerTypes = Ut.GetEnumValues<AnswerType>().Where(a => (int) a >= 0).ToArray();
+    private static readonly InfoType[] _standardAnswerTypes = Ut.GetEnumValues<InfoType>().Where(a => (int) a >= 0).ToArray();
 
-    private QuestionStump question(Enum question, string[] args = null, Sprite questionSprite = null, float questionSpriteRotation = 0) =>
-        new TextQuestionStump(question, this, args, questionSprite, questionSpriteRotation);
+    private QuestionStump question(Enum question, string[] args = null, QuestionExtra questionExtra = null) =>
+        new TextQuestionStump(question, this, args, questionExtra);
     private QuestionStump question(Enum question, Sprite entireQuestionSprite, string[] args = null) =>
         new SpriteQuestionStump(question, this, args, entireQuestionSprite);
 

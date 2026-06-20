@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SKeypadMaze
 {
-    [Question("Which of these cells was yellow in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which of these cells was yellow in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Yellow
 }

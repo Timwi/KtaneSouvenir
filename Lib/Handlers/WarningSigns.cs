@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SWarningSigns
 {
-    [Question("What was the displayed sign in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "WarningSignsSprites")]
+    [Question("What was the displayed sign in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "WarningSignsSprites")]
     DisplayedSign
 }
 

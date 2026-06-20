@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SMisterSoftee
 {
-    [Question("Where was the SpongeBob Bar on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Where was the SpongeBob Bar on {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     SpongebobPosition,
 
-    [Question("Which treat was present on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which treat was present on {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     TreatsPresent
 }
 

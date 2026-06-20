@@ -19,7 +19,7 @@ public enum SSkyrim
     [Question("Which city was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Dawnstar", "Ivarstead", "Markarth", "Riverwood", "Rorikstead", "Solitude", "Whiterun", "Windhelm", "Winterhold", TranslateAnswers = true)]
     City,
 
-    [Question("Which dragon shout was selectable, but not the solution, in {0}?", OneColumn4Answers, "fus ro dah", "zun hal vik", "liz slen nus", "wuld nah kest", "jor zah frul", "fas ru mar", "yol tor shul", "kan drem ov", "tid klo ul", Type = AnswerType.DynamicFont)]
+    [Question("Which dragon shout was selectable, but not the solution, in {0}?", OneColumn4Answers, "fus ro dah", "zun hal vik", "liz slen nus", "wuld nah kest", "jor zah frul", "fas ru mar", "yol tor shul", "kan drem ov", "tid klo ul", AnswerType = InfoType.DynamicFont)]
     DragonShout
 }
 

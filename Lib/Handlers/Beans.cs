@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SBeans
 {
-    [Question("What was this bean in {0}?", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was this bean in {0}?", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     Colors
 }
 
@@ -28,6 +28,6 @@ public partial class SouvenirModule
 
         for (var i = 0; i < 9; i++)
             if (eaten[i].transform.localScale.magnitude <= Mathf.Epsilon)
-                yield return question(SBeans.Colors, questionSprite: Sprites.GenerateGridSprite(3, 3, i)).Answers(flavors[bns[i]]);
+                yield return question(SBeans.Colors, questionExtra: Sprites.GenerateGridSprite(3, 3, i)).Answers(flavors[bns[i]]);
     }
 }

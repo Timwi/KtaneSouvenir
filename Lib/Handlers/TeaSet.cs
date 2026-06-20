@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum STeaSet
 {
-    [Question("Which ingredient was displayed {1}, from left to right, in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "TeaSetSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which ingredient was displayed {1}, from left to right, in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "TeaSetSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayedIngredients
 }
 

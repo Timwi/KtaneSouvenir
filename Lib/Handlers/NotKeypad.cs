@@ -9,7 +9,7 @@ public enum SNotKeypad
     [Question("What color flashed {1} in the final sequence in {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Color,
 
-    [Question("Which symbol was on the button that flashed {1} in the final sequence in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "KeypadSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which symbol was on the button that flashed {1} in the final sequence in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "KeypadSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Symbol
 }
 

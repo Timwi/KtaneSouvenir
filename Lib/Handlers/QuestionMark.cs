@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SQuestionMark
 {
-    [Question("Which of these symbols was part of the flashing sequence in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "QuestionMarkSprites")]
+    [Question("Which of these symbols was part of the flashing sequence in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "QuestionMarkSprites")]
     FlashedSymbols
 }
 

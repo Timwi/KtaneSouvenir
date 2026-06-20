@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SUndertunneling
 {
-    [Question("What was the position in the maze after the first phase in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the position in the maze after the first phase in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(7, 7)]
     PositionInMazeAfterPhaseOne
 }

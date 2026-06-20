@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSymbolicCoordinates
 {
-    [Question("What was the {1} symbol in the {2} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "SymbolicCoordinatesSprites", TranslateArguments = [true, false], Arguments = ["left", QandA.Ordinal, "middle", QandA.Ordinal, "right", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the {1} symbol in the {2} stage of {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "SymbolicCoordinatesSprites", TranslateArguments = [true, false], Arguments = ["left", QandA.Ordinal, "middle", QandA.Ordinal, "right", QandA.Ordinal], ArgumentGroupSize = 2)]
     ymbols
 }
 

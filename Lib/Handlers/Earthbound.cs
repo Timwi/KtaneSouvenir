@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SEarthbound
 {
-    [Question("What was the background in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the background in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     Background,
 
-    [Question("Which monster was displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which monster was displayed in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     Monster
 }
 

@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoofenshmirtzEvilInc
 {
-    [Question("What jingle played in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = "doofenshmirtzEvilIncModule", AudioSizeMultiplier = 8)]
+    [Question("What jingle played in {0}?", OneColumn4Answers, AnswerType = InfoType.Audio, ForeignAudioID = "doofenshmirtzEvilIncModule", AudioSizeMultiplier = 8)]
     Jingles,
 
-    [Question("Which image was shown in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which image was shown in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     Inators
 }
 

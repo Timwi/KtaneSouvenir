@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMatchRefereeing
 {
-    [Question("Which planet was present in the {1} stage of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which planet was present in the {1} stage of {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Planet
 }
 

@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCARPS
 {
-    [Question("What color was this cell initially in {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Black", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What color was this cell initially in {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Black", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     Cell
 }
 
@@ -29,6 +29,6 @@ public partial class SouvenirModule
 
         var colors = new[] { "Black", "Red", "Green", "Blue" };
         for (var i = 0; i < niceGrid.Length; i++)
-            yield return question(SCARPS.Cell, questionSprite: Sprites.GenerateGridSprite(6, 8, i)).Answers(colors[niceGrid[i]]);
+            yield return question(SCARPS.Cell, questionExtra: Sprites.GenerateGridSprite(6, 8, i)).Answers(colors[niceGrid[i]]);
     }
 }

@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SFuseBox
 {
-    [Question("What color flashed {1} in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, IsEntireQuestionSprite = true, SpriteFieldName = "FuseBoxColorSprites", ArgumentGroupSize = 1, Arguments = [QandA.Ordinal])]
+    [Question("What color flashed {1} in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, IsEntireQuestionSprite = true, SpriteFieldName = "FuseBoxColorSprites", ArgumentGroupSize = 1, Arguments = [QandA.Ordinal])]
     Flashes,
 
-    [Question("What arrow was shown {1} in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, IsEntireQuestionSprite = true, SpriteFieldName = "FuseBoxArrowSprites", ArgumentGroupSize = 1, Arguments = [QandA.Ordinal])]
+    [Question("What arrow was shown {1} in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, IsEntireQuestionSprite = true, SpriteFieldName = "FuseBoxArrowSprites", ArgumentGroupSize = 1, Arguments = [QandA.Ordinal])]
     Arrows
 }
 

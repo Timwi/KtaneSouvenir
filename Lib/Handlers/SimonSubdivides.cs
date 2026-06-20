@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSubdivides
 {
-    [Question("What color was the button at this position in {0}?", TwoColumns4Answers, ["Blue", "Green", "Red", "Violet"], TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("What color was the button at this position in {0}?", TwoColumns4Answers, ["Blue", "Green", "Red", "Violet"], TranslateAnswers = true, QuestionExtraType = InfoType.Sprites)]
     Button
 }
 
@@ -29,12 +29,14 @@ public partial class SouvenirModule
         {
             if (split[0][a])
             {
-                yield return question(SSimonSubdivides.Button, questionSprite: Sprites.GenerateGridSprite(new Coord(2, 2, dirs[a].x, dirs[a].y)), questionSpriteRotation: 45f)
-                    .Answers(colors[arrange[0, a]]);
+                var questionSprite = new QuestionExtraSprite(Sprites.GenerateGridSprite(new Coord(2, 2, dirs[a].x, dirs[a].y)), 45f);
+                yield return question(SSimonSubdivides.Button, questionExtra: questionSprite).Answers(colors[arrange[0, a]]);
                 for (var b = 0; b < 4; b++)
                     if (split[a + 1][b])
-                        yield return question(SSimonSubdivides.Button, questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, dirs[a].x * 2 + dirs[b].x, dirs[a].y * 2 + dirs[b].y)), questionSpriteRotation: 45f)
-                            .Answers(colors[arrange[a + 1, b]]);
+                    {
+                        var questionSprite2 = new QuestionExtraSprite(Sprites.GenerateGridSprite(new Coord(4, 4, dirs[a].x * 2 + dirs[b].x, dirs[a].y * 2 + dirs[b].y)), 45f);
+                        yield return question(SSimonSubdivides.Button, questionExtra: questionSprite2).Answers(colors[arrange[a + 1, b]]);
+                    }
             }
         }
     }

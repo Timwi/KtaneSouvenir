@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum STwodoku
 {
-    [Question("Which of these squares in {0} was {1}?", ThreeColumns6Answers, Arguments = ["a given digit", "a given shape", "highlighted"], ArgumentGroupSize = 1, TranslateArguments = [true], Type = AnswerType.Sprites)]
+    [Question("Which of these squares in {0} was {1}?", ThreeColumns6Answers, Arguments = ["a given digit", "a given shape", "highlighted"], ArgumentGroupSize = 1, TranslateArguments = [true], AnswerType = InfoType.Sprites)]
     Givens,
 
-    [Question("What was in this grid position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, UsesQuestionSprite = true)]
+    [Question("What was in this grid position in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, QuestionExtraType = InfoType.Sprites)]
     GridPositions,
 }
 
@@ -58,13 +58,13 @@ public partial class SouvenirModule
         yield return question(STwodoku.Givens, args: ["highlighted"]).Answers(highlightsOnModule.Select(cell => new Coord(6, 6, cell)).ToArray());
 
         foreach (var (location, symIx) in shapesOnModule)
-            yield return question(STwodoku.GridPositions, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 6, location)))
+            yield return question(STwodoku.GridPositions, questionExtra: Sprites.GenerateGridSprite(new Coord(6, 6, location)))
                 .Answers(symbolSprites[symIx], all: allSprites);
         foreach (var (location, number) in numbersOnModule)
-            yield return question(STwodoku.GridPositions, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 6, location)))
+            yield return question(STwodoku.GridPositions, questionExtra: Sprites.GenerateGridSprite(new Coord(6, 6, location)))
                 .Answers(numberSprites[number], all: allSprites);
         foreach (var cell in highlightsOnModule)
-            yield return question(STwodoku.GridPositions, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 6, cell)))
+            yield return question(STwodoku.GridPositions, questionExtra: Sprites.GenerateGridSprite(new Coord(6, 6, cell)))
                 .Answers(highlightSprite, all: allSprites);
     }
 }

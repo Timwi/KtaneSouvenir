@@ -7,9 +7,12 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlphaBits
 {
-    [Question("What character was displayed on the {1} screen on the {2} in {0}?", ThreeColumns6Answers, TranslateArguments = [true, true], Type = AnswerType.DynamicFont, Arguments = ["top", "left", "top", "right", "middle", "left", "middle", "right", "bottom", "left", "bottom", "right"], ArgumentGroupSize = 2)]
+    [Question("What character was displayed on the {1} screen in {0}?", ThreeColumns6Answers, AnswerType = InfoType.DynamicFont, Arguments = ["top-left", "middle-left", "bottom-left", "top-right", "middle-right", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("0-9A-V")]
-    DisplayedCharacters
+    DisplayedCharacters,
+
+    [Discriminator("the Alpha-Bits whose {0} screen showed this", Arguments = ["top-left", "middle-left", "bottom-left", "top-right", "middle-right", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true], QuestionExtraType = InfoType.Sprites)]
+    Discriminator
 }
 
 public partial class SouvenirModule
@@ -30,8 +33,13 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        var displayNames = new[] { "top-left", "middle-left", "bottom-left", "top-right", "middle-right", "bottom-right" };
         for (var displayIx = 0; displayIx < 6; displayIx++)
-            yield return question(SAlphaBits.DisplayedCharacters, args: [new[] { "top", "middle", "bottom" }[displayIx % 3], new[] { "left", "right" }[displayIx / 3]])
+        {
+            yield return question(SAlphaBits.DisplayedCharacters, args: [displayNames[displayIx]]).AvoidDiscriminators($"display-{displayIx}")
                 .Answers(displayedCharacters[displayIx], preferredWrong: displayedCharacters, info: new TextAnswerInfo(font, fontTexture));
+            yield return new Discriminator(SAlphaBits.Discriminator, $"display-{displayIx}", displayedCharacters[displayIx], [displayNames[displayIx]],
+                new QuestionExtraText(displayedCharacters[displayIx], font, fontTexture));
+        }
     }
 }

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SStarstruck
 {
-    [Question("Which star was present on {0}?", ThreeColumns6Answers, Type = AnswerType.DynamicFont, FontSize = 432, CharacterSize = 1 / 7f)]
+    [Question("Which star was present on {0}?", ThreeColumns6Answers, AnswerType = InfoType.DynamicFont, FontSize = 432, CharacterSize = 1 / 7f)]
     [AnswerGenerator.Strings("a-zA-Z0-9!@#$%^&*()=+_,./<>?;:[]\\{}|-")]
     Star
 }

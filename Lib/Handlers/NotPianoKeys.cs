@@ -5,13 +5,13 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotPianoKeys
 {
-    [Question("What was the first displayed symbol on {0}?", TwoColumns4Answers, "b", "n", "#", "", Type = AnswerType.PianoKeysFont)]
+    [Question("What was the first displayed symbol on {0}?", TwoColumns4Answers, "b", "n", "#", "", AnswerType = InfoType.PianoKeysFont)]
     FirstSymbol,
 
-    [Question("What was the second displayed symbol on {0}?", ThreeColumns6Answers, "c", "C", "^", "v", ">", "", "%", "\"", "*", Type = AnswerType.PianoKeysFont)]
+    [Question("What was the second displayed symbol on {0}?", ThreeColumns6Answers, "c", "C", "^", "v", ">", "", "%", "\"", "*", AnswerType = InfoType.PianoKeysFont)]
     SecondSymbol,
 
-    [Question("What was the third displayed symbol on {0}?", ThreeColumns6Answers, "U", "T", "m", "w", "", "B", "x", "", "", Type = AnswerType.PianoKeysFont)]
+    [Question("What was the third displayed symbol on {0}?", ThreeColumns6Answers, "U", "T", "m", "w", "", "B", "x", "", "", AnswerType = InfoType.PianoKeysFont)]
     ThirdSymbol
 }
 

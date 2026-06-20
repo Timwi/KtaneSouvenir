@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SHunting
 {
-    [Question("Which of these symbols was displayed in the {1} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "HuntingSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which of these symbols was displayed in the {1} stage of {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "HuntingSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayedSymbols
 }
 

@@ -6,26 +6,26 @@ using static Souvenir.AnswerLayout;
 
 public enum SDisorderedKeys
 {
-    [Question("What was the missing information for this key in {0}?", OneColumn3Answers, "Key color", "Label color", "Label", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the missing information for this key in {0}?", OneColumn3Answers, "Key color", "Label color", "Label", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     MissingInfo,
 
-    [Question("What was the unrevealed key color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the unrevealed key color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     UnrevealedKeyColor,
 
-    [Question("What was the unrevealed label color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the unrevealed label color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     UnrevealedLabelColor,
 
-    [Question("What was the unrevealed label for this key in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What was the unrevealed label for this key in {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites)]
     [AnswerGenerator.Integers(1, 6)]
     UnrevealedKeyLabel,
 
-    [Question("What was the revealed key color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the revealed key color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     RevealedKeyColor,
 
-    [Question("What was the revealed label color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the revealed label color for this key in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     RevealedLabelColor,
 
-    [Question("What was the revealed label for this key in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What was the revealed label for this key in {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites)]
     [AnswerGenerator.Integers(1, 6)]
     RevealedLabel
 }
@@ -83,14 +83,14 @@ public partial class SouvenirModule
 
         for (var keyIndex = 0; keyIndex < 6; keyIndex++)
         {
-            yield return question(SDisorderedKeys.MissingInfo, questionSprite: OrderedKeysSprites[keyIndex]).Answers(missingStrArr[missing[keyIndex]]);
+            yield return question(SDisorderedKeys.MissingInfo, questionExtra: OrderedKeysSprites[keyIndex]).Answers(missingStrArr[missing[keyIndex]]);
 
             if (missing[keyIndex] != 0)   // Key color
-                yield return question(SDisorderedKeys.UnrevealedKeyColor, questionSprite: OrderedKeysSprites[keyIndex]).Answers(unrevealedKeyColors[keyIndex]);
+                yield return question(SDisorderedKeys.UnrevealedKeyColor, questionExtra: OrderedKeysSprites[keyIndex]).Answers(unrevealedKeyColors[keyIndex]);
             if (missing[keyIndex] != 1)     // Label color
-                yield return question(SDisorderedKeys.UnrevealedLabelColor, questionSprite: OrderedKeysSprites[keyIndex]).Answers(unrevealedLabelColors[keyIndex]);
+                yield return question(SDisorderedKeys.UnrevealedLabelColor, questionExtra: OrderedKeysSprites[keyIndex]).Answers(unrevealedLabelColors[keyIndex]);
             if (missing[keyIndex] != 2)     // Label
-                yield return question(SDisorderedKeys.UnrevealedKeyLabel, questionSprite: OrderedKeysSprites[keyIndex]).Answers(unrevealedLabels[keyIndex]);
+                yield return question(SDisorderedKeys.UnrevealedKeyLabel, questionExtra: OrderedKeysSprites[keyIndex]).Answers(unrevealedLabels[keyIndex]);
 
             // If not a sequential nor false key, ask about reavealed key info
             if (quirks[keyIndex] < 4)
@@ -98,9 +98,9 @@ public partial class SouvenirModule
                 // If only one first or last key, don't ask about revealed key info
                 if (!((quirks[keyIndex] == 2 && oneFirstKey) || (quirks[keyIndex] == 3 && oneLastKey)))
                 {
-                    yield return question(SDisorderedKeys.RevealedKeyColor, questionSprite: OrderedKeysSprites[keyIndex]).Answers(colorList[info[keyIndex][0]]);
-                    yield return question(SDisorderedKeys.RevealedLabelColor, questionSprite: OrderedKeysSprites[keyIndex]).Answers(colorList[info[keyIndex][1]]);
-                    yield return question(SDisorderedKeys.RevealedLabel, questionSprite: OrderedKeysSprites[keyIndex]).Answers((info[keyIndex][2] + 1).ToString());
+                    yield return question(SDisorderedKeys.RevealedKeyColor, questionExtra: OrderedKeysSprites[keyIndex]).Answers(colorList[info[keyIndex][0]]);
+                    yield return question(SDisorderedKeys.RevealedLabelColor, questionExtra: OrderedKeysSprites[keyIndex]).Answers(colorList[info[keyIndex][1]]);
+                    yield return question(SDisorderedKeys.RevealedLabel, questionExtra: OrderedKeysSprites[keyIndex]).Answers((info[keyIndex][2] + 1).ToString());
                 }
             }
         }

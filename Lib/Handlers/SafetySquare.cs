@@ -11,7 +11,7 @@ public enum SSafetySquare
     [AnswerGenerator.Integers(0, 4)]
     Digits,
 
-    [Question("What was displayed on the white diamond in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "SafetySquareSprites")]
+    [Question("What was displayed on the white diamond in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "SafetySquareSprites")]
     SpecialRule
 }
 

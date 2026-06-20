@@ -41,7 +41,6 @@ public partial class SouvenirModule
             from j in Enumerable.Range(i, 9 - i)
             where j != 1 && (i > 1 || j > 1)
             select string.Format(TranslateQuestionString(SGameOfLifeCruel.Colors, i == j ? "Solid {0}" : "{0}/{1}"), colors[i], colors[j])).ToArray();
-        UnityEngine.Debug.Log($"♦ {allAnswers.JoinString("\n")}");
 
         yield return question(SGameOfLifeCruel.Colors).Answers(correctAnswers, all: allAnswers);
     }

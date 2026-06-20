@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SUnpleasantSquares
 {
-    [Question("What was the color of this square in {0}?", TwoColumns4Answers, "Red", "Yellow", "Jade", "Azure", "Violet", TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("What was the color of this square in {0}?", TwoColumns4Answers, "Red", "Yellow", "Jade", "Azure", "Violet", TranslateAnswers = true, QuestionExtraType = InfoType.Sprites)]
     Color
 }
 
@@ -26,7 +26,7 @@ public partial class SouvenirModule
                 if (p == 12)
                     continue;
                 var coord = new Coord(5, 5, p);
-                yield return question(SUnpleasantSquares.Color, questionSprite: Sprites.GenerateGridSprite(coord)).Answers(colorNames[subGrid[x, y]]);
+                yield return question(SUnpleasantSquares.Color, questionExtra: Sprites.GenerateGridSprite(coord)).Answers(colorNames[subGrid[x, y]]);
             }
     }
 }

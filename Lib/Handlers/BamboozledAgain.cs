@@ -8,10 +8,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SBamboozledAgain
 {
-    [Question("What text was initially shown on this button in {0}?", TwoColumns4Answers, "THE LETTER", "ONE LETTER", "THE COLOUR", "ONE COLOUR", "THE PHRASE", "ONE PHRASE", "ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "QUEBEC", "TANGO", "WHISKEY", "VICTOR", "YANKEE", "ECHO ECHO", "E THEN E", "ALPHA PAPA", "PAPA ALPHA", "PAPHA ALPA", "T GOLF", "TANGOLF", "WHISKEE", "WHISKY", "CHARLIE C", "C CHARLIE", "YANGO", "DELTA NEXT", "CUEBEQ", "MILO", "KI LO", "HI-LO", "VVICTOR", "VICTORR", "LIME BRAVO", "BLUE BRAVO", "G IN JADE", "G IN ROSE", "BLUE IN RED", "YES BUT NO", "COLOUR", "MESSAGE", "CIPHER", "BUTTON", "TWO BUTTONS", "SIX BUTTONS", "I GIVE UP", "ONE ELEVEN", "ONE ONE ONE", "THREE ONES", "WHAT?", "THIS?", "THAT?", "BLUE!", "ECHO!", "BLANK", "BLANK?!", "NOTHING", "YELLOW TEXT", "BLACK TEXT?", "QUOTE V", "END QUOTE", "\"QUOTE K\"", "IN RED", "ORANGE", "IN YELLOW", "LIME", "IN GREEN", "JADE", "IN CYAN", "AZURE", "IN BLUE", "VIOLET", "IN MAGENTA", "ROSE", UsesQuestionSprite = true)]
+    [Question("What text was initially shown on this button in {0}?", TwoColumns4Answers, "THE LETTER", "ONE LETTER", "THE COLOUR", "ONE COLOUR", "THE PHRASE", "ONE PHRASE", "ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "QUEBEC", "TANGO", "WHISKEY", "VICTOR", "YANKEE", "ECHO ECHO", "E THEN E", "ALPHA PAPA", "PAPA ALPHA", "PAPHA ALPA", "T GOLF", "TANGOLF", "WHISKEE", "WHISKY", "CHARLIE C", "C CHARLIE", "YANGO", "DELTA NEXT", "CUEBEQ", "MILO", "KI LO", "HI-LO", "VVICTOR", "VICTORR", "LIME BRAVO", "BLUE BRAVO", "G IN JADE", "G IN ROSE", "BLUE IN RED", "YES BUT NO", "COLOUR", "MESSAGE", "CIPHER", "BUTTON", "TWO BUTTONS", "SIX BUTTONS", "I GIVE UP", "ONE ELEVEN", "ONE ONE ONE", "THREE ONES", "WHAT?", "THIS?", "THAT?", "BLUE!", "ECHO!", "BLANK", "BLANK?!", "NOTHING", "YELLOW TEXT", "BLACK TEXT?", "QUOTE V", "END QUOTE", "\"QUOTE K\"", "IN RED", "ORANGE", "IN YELLOW", "LIME", "IN GREEN", "JADE", "IN CYAN", "AZURE", "IN BLUE", "VIOLET", "IN MAGENTA", "ROSE", QuestionExtraType = InfoType.Sprites)]
     ButtonText,
 
-    [Question("What was the initial color of this button in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the initial color of this button in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     ButtonColor,
 
     [Question("What was the {1} decrypted text on the display in {0}?", TwoColumns4Answers, "THE LETTER", "ONE LETTER", "THE COLOUR", "ONE COLOUR", "THE PHRASE", "ONE PHRASE", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
@@ -70,10 +70,10 @@ public partial class SouvenirModule
         var displayColors = colorIndex.Select(index => color[index]).ToArray();
 
         for (var index = 0; index < initialButtonTexts.Length; index++)
-            yield return question(SBamboozledAgain.ButtonText, questionSprite: Sprites.GenerateGridSprite(3, 2, index))
+            yield return question(SBamboozledAgain.ButtonText, questionExtra: Sprites.GenerateGridSprite(3, 2, index))
                 .Answers(initialButtonTexts[index], preferredWrong: initialButtonTexts.Except([initialButtonTexts[index]]).ToArray());
         for (var index = 0; index < initialButtonColors.Length; index++)
-            yield return question(SBamboozledAgain.ButtonColor, questionSprite: Sprites.GenerateGridSprite(3, 2, index))
+            yield return question(SBamboozledAgain.ButtonColor, questionExtra: Sprites.GenerateGridSprite(3, 2, index))
                 .Answers(initialButtonColors[index], preferredWrong: initialButtonColors.Except([initialButtonColors[index]]).ToArray());
         for (var index = 0; index < firstRowTexts.Length; index++)
             yield return question(SBamboozledAgain.DisplayTexts1, args: [Ordinal(2 * index + 1)])

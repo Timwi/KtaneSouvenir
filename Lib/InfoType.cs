@@ -1,9 +1,9 @@
 ﻿namespace Souvenir;
 
-public enum AnswerType
+public enum InfoType
 {
     // These values must match the indexes in SouvenirModule.Fonts/SouvenirModule.FontTextures
-    DefaultFont = 0,
+    None = 0,   // For answers, maps to the default font (Gabriola); for question extras, means no question extra
 
     // Special symbols in the Symbol font:
     //          0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F

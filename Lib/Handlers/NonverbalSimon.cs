@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SNonverbalSimon
 {
-    [Question("Which button flashed in the {1} stage in {0}?", TwoColumns4Answers, IsEntireQuestionSprite = true, Type = AnswerType.Sprites, SpriteFieldName = "NonverbalSimonSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which button flashed in the {1} stage in {0}?", TwoColumns4Answers, IsEntireQuestionSprite = true, AnswerType = InfoType.Sprites, SpriteFieldName = "NonverbalSimonSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Flashes
 }
 

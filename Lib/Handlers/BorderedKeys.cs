@@ -6,21 +6,21 @@ using static Souvenir.AnswerLayout;
 
 public enum SBorderedKeys
 {
-    [Question("What was this key’s border color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was this key’s border color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     BorderColor,
 
-    [Question("What was the digit displayed when this key was pressed in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What was the digit displayed when this key was pressed in {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites)]
     [AnswerGenerator.Integers(1, 6)]
     Digit,
 
-    [Question("What was this key’s key color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was this key’s key color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     KeyColor,
 
-    [Question("What was this key’s label when it was pressed in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What was this key’s label when it was pressed in {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites)]
     [AnswerGenerator.Integers(1, 6)]
     Label,
 
-    [Question("What was this key’s label color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was this key’s label color when it was pressed in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     LabelColor
 }
 
@@ -75,11 +75,11 @@ public partial class SouvenirModule
         {
             if (borderColors[keyIndex] != null)
             {
-                yield return question(SBorderedKeys.BorderColor, questionSprite: OrderedKeysSprites[keyIndex]).Answers(borderColors[keyIndex]);
-                yield return question(SBorderedKeys.Digit, questionSprite: OrderedKeysSprites[keyIndex]).Answers(digits[keyIndex]);
-                yield return question(SBorderedKeys.KeyColor, questionSprite: OrderedKeysSprites[keyIndex]).Answers(keysColors[keyIndex]);
-                yield return question(SBorderedKeys.Label, questionSprite: OrderedKeysSprites[keyIndex]).Answers(labels[keyIndex]);
-                yield return question(SBorderedKeys.LabelColor, questionSprite: OrderedKeysSprites[keyIndex]).Answers(labelColors[keyIndex]);
+                yield return question(SBorderedKeys.BorderColor, questionExtra: OrderedKeysSprites[keyIndex]).Answers(borderColors[keyIndex]);
+                yield return question(SBorderedKeys.Digit, questionExtra: OrderedKeysSprites[keyIndex]).Answers(digits[keyIndex]);
+                yield return question(SBorderedKeys.KeyColor, questionExtra: OrderedKeysSprites[keyIndex]).Answers(keysColors[keyIndex]);
+                yield return question(SBorderedKeys.Label, questionExtra: OrderedKeysSprites[keyIndex]).Answers(labels[keyIndex]);
+                yield return question(SBorderedKeys.LabelColor, questionExtra: OrderedKeysSprites[keyIndex]).Answers(labelColors[keyIndex]);
             }
         }
     }

@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SShapeShift
 {
-    [Question("What was the initial shape in {0}?", TwoColumns4Answers, Type = AnswerType.SymbolsFont)]
+    [Question("What was the initial shape in {0}?", TwoColumns4Answers, AnswerType = InfoType.SymbolsFont)]
     [AnswerGenerator.Strings('A', 'P')]
     InitialShape
 }

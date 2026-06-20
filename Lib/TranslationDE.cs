@@ -192,7 +192,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [S123Game.DProfile] = new()
                 {
-                    // English: the 1, 2, 3 Game with this opponent avatar
+                    // English: the 1, 2, 3 Game with this opponent avatar (+ extra)
                     Discriminator = "dem 1-2-3-Spiel mit diesem Gegner-Avatar",
                 },
                 [S123Game.DName] = new()
@@ -378,6 +378,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Was war bei {0} das {1}e Zielsymbol?",
                 },
             },
+            Discriminators = new()
+            {
+                [S3DTunnels.Discriminator] = new()
+                {
+                    // English: the 3D Tunnels whose {0} goal node was this (+ extra)
+                    // Example: the 3D Tunnels whose first goal node was this (+ extra)
+                    Discriminator = "den 3D-Tunneln, deren {0}s Zielsymbol das hier war,",
+                },
+            },
         },
 
         // 3N+1
@@ -414,6 +423,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} goal node in {0}?
                     // Example: What was the first goal node in 4D Tunnels?
                     Question = "Was war bei {0} der {1}e Zielpunkt?",
+                },
+            },
+            Discriminators = new()
+            {
+                [S4DTunnels.Discriminator] = new()
+                {
+                    // English: the 4D Tunnels whose {0} goal node was this (+ extra)
+                    // Example: the 4D Tunnels whose first goal node was this (+ extra)
+                    Discriminator = "den 4D-Tunneln, deren {0}s Zielsymbol das hier war,",
                 },
             },
         },
@@ -513,7 +531,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [S9Ball.QPositions] = new()
                 {
-                    // English: What was the number of this ball in {0}? (+ sprite)
+                    // English: What was the number of this ball in {0}? (+ extra)
                     Question = "Welche Zahl war bei {0} auf dieser Kugel?",
                 },
                 [S9Ball.QNumbers] = new()
@@ -527,8 +545,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [S9Ball.Discriminator] = new()
                 {
-                    // English: the 9-Ball where ball {0} was here
-                    // Example: the 9-Ball where ball 2 was here
+                    // English: the 9-Ball where ball {0} was here (+ extra)
+                    // Example: the 9-Ball where ball 2 was here (+ extra)
                     Discriminator = "dem 9-Ball, bei dem Kugel {0} hier war,",
                 },
             },
@@ -742,8 +760,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SAlcoholicRampage.DMercenaries] = new()
                 {
-                    // English: the Alcoholic Rampage where the {0} mercenary was this
-                    // Example: the Alcoholic Rampage where the first mercenary was this
+                    // English: the Alcoholic Rampage where the {0} mercenary was this (+ extra)
+                    // Example: the Alcoholic Rampage where the first mercenary was this (+ extra)
                     Discriminator = "dem Amoksauf, bei dem dieser Söldner der {0}e war,",
                 },
             },
@@ -876,8 +894,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SAlgorithmia.DPositions] = new()
                 {
-                    // English: the Algorithmia where this was the {0} position
-                    // Example: the Algorithmia where this was the starting position
+                    // English: the Algorithmia where this was the {0} position (+ extra)
+                    // Example: the Algorithmia where this was the starting position (+ extra)
                     Discriminator = "dem Algorithmia, bei dem {0} hier war,",
                     Arguments = new()
                     {
@@ -1003,16 +1021,35 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SAlphaBits.DisplayedCharacters] = new()
                 {
-                    // English: What character was displayed on the {1} screen on the {2} in {0}?
-                    // Example: What character was displayed on the top screen on the left in Alpha-Bits?
-                    Question = "Welches Zeichen wurde bei {0} im {1} {2} Display angezeigt?",
+                    // English: What character was displayed on the {1} screen in {0}?
+                    // Example: What character was displayed on the top-left screen in Alpha-Bits?
+                    Question = "Welches Zeichen war bei {0} auf dem {1} Display?",
                     Arguments = new()
                     {
-                        ["top"] = "oberen",
-                        ["middle"] = "mittleren",
-                        ["bottom"] = "unteren",
-                        ["left"] = "linken",
-                        ["right"] = "rechten",
+                        ["top-left"] = "oberen linken",
+                        ["middle-left"] = "mittleren linken",
+                        ["bottom-left"] = "unteren linken",
+                        ["top-right"] = "oberen rechten",
+                        ["middle-right"] = "mittleren rechten",
+                        ["bottom-right"] = "unteren rechten",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SAlphaBits.Discriminator] = new()
+                {
+                    // English: the Alpha-Bits whose {0} screen showed this (+ extra)
+                    // Example: the Alpha-Bits whose top-left screen showed this (+ extra)
+                    Discriminator = "dem Alpha-Bits, bei dem dieses Zeichen {0} erschien,",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "oben links",
+                        ["middle-left"] = "mittig links",
+                        ["bottom-left"] = "unten links",
+                        ["top-right"] = "oben rechts",
+                        ["middle-right"] = "mittig rechts",
+                        ["bottom-right"] = "unten rechts",
                     },
                 },
             },
@@ -1232,7 +1269,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SAzureButton.DCard] = new()
                 {
-                    // English: the Azure Button that had this card in Stage 1
+                    // English: the Azure Button that had this card in Stage 1 (+ extra)
                     Discriminator = "dem Azurfarbenen Knopf, bei dem in Schritt 1 diese Karte vorkam,",
                 },
                 [SAzureButton.DM] = new()
@@ -1309,12 +1346,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SBamboozledAgain.ButtonText] = new()
                 {
-                    // English: What text was initially shown on this button in {0}? (+ sprite)
+                    // English: What text was initially shown on this button in {0}? (+ extra)
                     Question = "Welcher Text war bei {0} am Anfang auf diesem Knopf?",
                 },
                 [SBamboozledAgain.ButtonColor] = new()
                 {
-                    // English: What was the initial color of this button in {0}? (+ sprite)
+                    // English: What was the initial color of this button in {0}? (+ extra)
                     Question = "Welche Farbe hatte bei {0} am Anfang dieser Knopf?",
                     Answers = new()
                     {
@@ -1595,7 +1632,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SBeans.Colors] = new()
                 {
-                    // English: What was this bean in {0}? (+ sprite)
+                    // English: What was this bean in {0}? (+ extra)
                     Question = "Was war bei {0} diese Bohne?",
                     Answers = new()
                     {
@@ -2374,7 +2411,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SBorderedKeys.BorderColor] = new()
                 {
-                    // English: What was this key’s border color when it was pressed in {0}? (+ sprite)
+                    // English: What was this key’s border color when it was pressed in {0}? (+ extra)
                     Question = "Was war beim Druck auf diesen Knopf bei {0} die Randfarbe?",
                     Answers = new()
                     {
@@ -2388,12 +2425,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SBorderedKeys.Digit] = new()
                 {
-                    // English: What was the digit displayed when this key was pressed in {0}? (+ sprite)
+                    // English: What was the digit displayed when this key was pressed in {0}? (+ extra)
                     Question = "Was war beim Druck auf diesen Knopf bei {0} die angezeigte Ziffer?",
                 },
                 [SBorderedKeys.KeyColor] = new()
                 {
-                    // English: What was this key’s key color when it was pressed in {0}? (+ sprite)
+                    // English: What was this key’s key color when it was pressed in {0}? (+ extra)
                     Question = "Was war beim Druck auf diesen Knopf bei {0} die Knopffarbe?",
                     Answers = new()
                     {
@@ -2407,12 +2444,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SBorderedKeys.Label] = new()
                 {
-                    // English: What was this key’s label when it was pressed in {0}? (+ sprite)
+                    // English: What was this key’s label when it was pressed in {0}? (+ extra)
                     Question = "Was war beim Druck auf diesen Knopf bei {0} die Aufschrift?",
                 },
                 [SBorderedKeys.LabelColor] = new()
                 {
-                    // English: What was this key’s label color when it was pressed in {0}? (+ sprite)
+                    // English: What was this key’s label color when it was pressed in {0}? (+ extra)
                     Question = "Was war beim Druck auf diesen Knopf bei {0} die Aufschriftfarbe?",
                     Answers = new()
                     {
@@ -2939,7 +2976,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SCARPS.Cell] = new()
                 {
-                    // English: What color was this cell initially in {0}? (+ sprite)
+                    // English: What color was this cell initially in {0}? (+ extra)
                     Question = "Welche Farbe hatte diese Zelle bei {0} am Anfang?",
                     Answers = new()
                     {
@@ -3434,7 +3471,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SColorBraille.Color] = new()
                 {
-                    // English: What color was this dot in {0}? (+ sprite)
+                    // English: What color was this dot in {0}? (+ extra)
                     Question = "Welche Farbe hatte dieser Punkt bei {0}?",
                     Answers = new()
                     {
@@ -3780,8 +3817,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SColouredCubes.Colours] = new()
                 {
-                    // English: What was the colour of this {1} in the {2} stage of {0}? (+ sprite)
-                    // Example: What was the colour of this cube in the first stage of Coloured Cubes? (+ sprite)
+                    // English: What was the colour of this {1} in the {2} stage of {0}? (+ extra)
+                    // Example: What was the colour of this cube in the first stage of Coloured Cubes? (+ extra)
                     Question = "Welche Farbe hatte {1} bei {0} in der {2}en Stufe?",
                     Arguments = new()
                     {
@@ -3895,7 +3932,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SConcentration.StartingDigit] = new()
                 {
-                    // English: What number began here in {0}? (+ sprite)
+                    // English: What number began here in {0}? (+ extra)
                     Question = "Welche Zahl war bei {0} am Anfang hier?",
                 },
             },
@@ -3924,7 +3961,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SConditionalButtons.Colors] = new()
                 {
-                    // English: What was the color of this button in {0}? (+ sprite)
+                    // English: What was the color of this button in {0}? (+ extra)
                     Question = "Welche Farbe hatte bei {0} diese Taste?",
                     Answers = new()
                     {
@@ -3958,12 +3995,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SConnectedMonitors.Number] = new()
                 {
-                    // English: What number was initially displayed on this screen in {0}? (+ sprite)
+                    // English: What number was initially displayed on this screen in {0}? (+ extra)
                     Question = "Welche Zahl war bei {0} anfänglich auf diesem Monitor zu sehen?",
                 },
                 [SConnectedMonitors.SingleIndicator] = new()
                 {
-                    // English: What colour was the indicator on this screen in {0}? (+ sprite)
+                    // English: What colour was the indicator on this screen in {0}? (+ extra)
                     Question = "Welche Farbe hatte bei {0} der Indikator auf diesem Monitor?",
                     Answers = new()
                     {
@@ -3977,8 +4014,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SConnectedMonitors.OrdinalIndicator] = new()
                 {
-                    // English: What colour was the {1} indicator on this screen in {0}? (+ sprite)
-                    // Example: What colour was the first indicator on this screen in Connected Monitors? (+ sprite)
+                    // English: What colour was the {1} indicator on this screen in {0}? (+ extra)
+                    // Example: What colour was the first indicator on this screen in Connected Monitors? (+ extra)
                     Question = "Welche Farbe hatte bei {0} der {1}e Indikator auf diesem Monitor?",
                     Answers = new()
                     {
@@ -5102,7 +5139,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SDisorderedKeys.MissingInfo] = new()
                 {
-                    // English: What was the missing information for this key in {0}? (+ sprite)
+                    // English: What was the missing information for this key in {0}? (+ extra)
                     Question = "Welche Information fehlte bei {0} auf diesem Knopf?",
                     Answers = new()
                     {
@@ -5113,7 +5150,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SDisorderedKeys.UnrevealedKeyColor] = new()
                 {
-                    // English: What was the unrevealed key color for this key in {0}? (+ sprite)
+                    // English: What was the unrevealed key color for this key in {0}? (+ extra)
                     Question = "Was war bei {0} die unaufgedeckte Knopffarbe dieses Knopfes?",
                     Answers = new()
                     {
@@ -5127,7 +5164,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SDisorderedKeys.UnrevealedLabelColor] = new()
                 {
-                    // English: What was the unrevealed label color for this key in {0}? (+ sprite)
+                    // English: What was the unrevealed label color for this key in {0}? (+ extra)
                     Question = "Was war bei {0} die unaufgedeckte Aufschriftfarbe dieses Knopfes?",
                     Answers = new()
                     {
@@ -5141,12 +5178,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SDisorderedKeys.UnrevealedKeyLabel] = new()
                 {
-                    // English: What was the unrevealed label for this key in {0}? (+ sprite)
+                    // English: What was the unrevealed label for this key in {0}? (+ extra)
                     Question = "Was war bei {0} die unaufgedeckte Aufschrift dieses Knopfes?",
                 },
                 [SDisorderedKeys.RevealedKeyColor] = new()
                 {
-                    // English: What was the revealed key color for this key in {0}? (+ sprite)
+                    // English: What was the revealed key color for this key in {0}? (+ extra)
                     Question = "Was war bei {0} die aufgedeckte Knopffarbe dieses Knopfes?",
                     Answers = new()
                     {
@@ -5160,7 +5197,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SDisorderedKeys.RevealedLabelColor] = new()
                 {
-                    // English: What was the revealed label color for this key in {0}? (+ sprite)
+                    // English: What was the revealed label color for this key in {0}? (+ extra)
                     Question = "Was war bei {0} die aufgedeckte Aufschriftfarbe dieses Knopfes?",
                     Answers = new()
                     {
@@ -5174,7 +5211,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SDisorderedKeys.RevealedLabel] = new()
                 {
-                    // English: What was the revealed label for this key in {0}? (+ sprite)
+                    // English: What was the revealed label for this key in {0}? (+ extra)
                     Question = "Was war bei {0} die aufgedeckte Aufschrift dieses Knopfes?",
                 },
             },
@@ -5632,7 +5669,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SElderFuthark.Discriminator] = new()
                 {
-                    // English: the Elder Futhark that had this rune on it
+                    // English: the Elder Futhark that had this rune on it (+ extra)
                     Discriminator = "dem Elder Futhark mit dieser Rune",
                 },
             },
@@ -6175,12 +6212,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SFaultyButtons.ReferredToThisButton] = new()
                 {
-                    // English: Which button referred to this button in {0}? (+ sprite)
+                    // English: Which button referred to this button in {0}? (+ extra)
                     Question = "Welcher Knopf nahm bei {0} Bezug auf diesen Knopf?",
                 },
                 [SFaultyButtons.ThisButtonReferredTo] = new()
                 {
-                    // English: Which button did this button refer to in {0}? (+ sprite)
+                    // English: Which button did this button refer to in {0}? (+ extra)
                     Question = "Auf welchen Knopf nahm bei {0} dieser Knopf Bezug?",
                 },
             },
@@ -8033,8 +8070,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SHinges.Discriminator] = new()
                 {
-                    // English: the Hinges where this hinge was initally {0}
-                    // Example: the Hinges where this hinge was initally present
+                    // English: the Hinges where this hinge was initally {0} (+ extra)
+                    // Example: the Hinges where this hinge was initally present (+ extra)
                     Discriminator = "den Scharnieren, bei denen dieses Scharnier anfänglich {0},",
                     Arguments = new()
                     {
@@ -8076,7 +8113,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SHolographicMemory.InitialGrid] = new()
                 {
-                    // English: Which side did this symbol appear in {0}? (+ sprite)
+                    // English: Which side did this symbol appear in {0}? (+ extra)
                     Question = "Auf welcher Seite tauchte dieses Symbol bei {0} auf?",
                     Answers = new()
                     {
@@ -8760,7 +8797,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SJuxtacoloredSquares.ColorsByPosition] = new()
                 {
-                    // English: What was the color of this square in {0}? (+ sprite)
+                    // English: What was the color of this square in {0}? (+ extra)
                     Question = "Welche Farbe hatte bei {0} dieses Feld?",
                     Answers = new()
                     {
@@ -8943,8 +8980,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SKeypadSequence.Labels] = new()
                 {
-                    // English: What was this key’s label on the {1} panel in {0}? (+ sprite)
-                    // Example: What was this key’s label on the first panel in Keypad Sequence? (+ sprite)
+                    // English: What was this key’s label on the {1} panel in {0}? (+ extra)
+                    // Example: What was this key’s label on the first panel in Keypad Sequence? (+ extra)
                     Question = "Was stand bei {0} im {1}en Panel auf dieser Taste?",
                 },
             },
@@ -9232,7 +9269,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SLabyrinth.PortalStage] = new()
                 {
-                    // English: In which layer was this portal in {0}? (+ sprite)
+                    // English: In which layer was this portal in {0}? (+ extra)
                     Question = "Auf welcher Ebene war bei {0} dieses Portal?",
                     Answers = new()
                     {
@@ -10243,7 +10280,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SMathEm.Color] = new()
                 {
-                    // English: What was the color of this tile before the shuffle on {0}? (+ sprite)
+                    // English: What was the color of this tile before the shuffle on {0}? (+ extra)
                     Question = "Welche Farbe hatte dieser Spielstein bei {0} vor dem Mischen?",
                     Answers = new()
                     {
@@ -10255,7 +10292,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SMathEm.Label] = new()
                 {
-                    // English: What was the design on this tile before the shuffle on {0}? (+ sprite)
+                    // English: What was the design on this tile before the shuffle on {0}? (+ extra)
                     Question = "Welches Design hatte dieser Spielstein bei {0} vor dem Mischen?",
                 },
             },
@@ -10543,7 +10580,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SMazeseeker.Cell] = new()
                 {
-                    // English: How many walls surrounded this cell in {0}? (+ sprite)
+                    // English: How many walls surrounded this cell in {0}? (+ extra)
                     Question = "Wie viele Wände umgaben bei {0} diese Zelle?",
                 },
                 [SMazeseeker.Start] = new()
@@ -11647,10 +11684,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SNeutralization.Color] = new()
+                [SNeutralization.QColor] = new()
                 {
                     // English: What was the acid’s color in {0}?
-                    Question = "Welche Farbe hatte bei {0} die Säure?",
+                    Question = "Welche Farbe hatte die Säure bei {0}?",
                     Answers = new()
                     {
                         ["Yellow"] = "Gelb",
@@ -11659,10 +11696,32 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Blue"] = "Blau",
                     },
                 },
-                [SNeutralization.Volume] = new()
+                [SNeutralization.QVolume] = new()
                 {
                     // English: What was the acid’s volume in {0}?
-                    Question = "Welches Volumen hatte bei {0} die Säure?",
+                    Question = "Welches Volumen hatte die Säure bei {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SNeutralization.DColor] = new()
+                {
+                    // English: the Neutralization whose acid color was {0}
+                    // Example: the Neutralization whose acid color was yellow
+                    Discriminator = "der Neutralisierung, bei der die Farbe {0} war",
+                    Arguments = new()
+                    {
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["red"] = "rot",
+                        ["blue"] = "blau",
+                    },
+                },
+                [SNeutralization.DVolume] = new()
+                {
+                    // English: the Neutralization whose acid volume was {0}
+                    // Example: the Neutralization whose acid volume was 5
+                    Discriminator = "der Neutralisierung, bei der das Volumen {0} war",
                 },
             },
         },
@@ -12979,8 +13038,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SOnlyConnect.DHieroglyphs] = new()
                 {
-                    // English: the Only Connect where this hieroglyph was in the {0}
-                    // Example: the Only Connect where this hieroglyph was in the top left
+                    // English: the Only Connect where this hieroglyph was in the {0} (+ extra)
+                    // Example: the Only Connect where this hieroglyph was in the top left (+ extra)
                     Discriminator = "dem Only Connect, bei dem diese Hieroglyphe {0} war,",
                     Arguments = new()
                     {
@@ -13076,8 +13135,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SOrderedKeys.Colors] = new()
                 {
-                    // English: What color was this key in the {1} stage of {0}? (+ sprite)
-                    // Example: What color was this key in the first stage of Ordered Keys? (+ sprite)
+                    // English: What color was this key in the {1} stage of {0}? (+ extra)
+                    // Example: What color was this key in the first stage of Ordered Keys? (+ extra)
                     Question = "Welche Farbe hatte bei {0} diese Taste in der {1}en Stufe?",
                     Answers = new()
                     {
@@ -13091,14 +13150,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SOrderedKeys.Labels] = new()
                 {
-                    // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
-                    // Example: What was the label of this key in the first stage of Ordered Keys? (+ sprite)
+                    // English: What was the label of this key in the {1} stage of {0}? (+ extra)
+                    // Example: What was the label of this key in the first stage of Ordered Keys? (+ extra)
                     Question = "Welche Aufschrift hatte bei {0} diese Taste in der {1}en Stufe?",
                 },
                 [SOrderedKeys.LabelColors] = new()
                 {
-                    // English: What color was the label of this key in the {1} stage of {0}? (+ sprite)
-                    // Example: What color was the label of this key in the first stage of Ordered Keys? (+ sprite)
+                    // English: What color was the label of this key in the {1} stage of {0}? (+ extra)
+                    // Example: What color was the label of this key in the first stage of Ordered Keys? (+ extra)
                     Question = "Welche Farbe hatte bei {0} die Aufschrift dieser Taste in der {1}en Stufe?",
                     Answers = new()
                     {
@@ -14704,8 +14763,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SReorderedKeys.KeyColor] = new()
                 {
-                    // English: What color was this key in the {1} stage of {0}? (+ sprite)
-                    // Example: What color was this key in the first stage of Reordered Keys? (+ sprite)
+                    // English: What color was this key in the {1} stage of {0}? (+ extra)
+                    // Example: What color was this key in the first stage of Reordered Keys? (+ extra)
                     Question = "Welche Farbe hatte bei {0} diese Taste in der {1}en Stufe?",
                     Answers = new()
                     {
@@ -14719,8 +14778,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SReorderedKeys.LabelColor] = new()
                 {
-                    // English: What color was the label of this key in the {1} stage of {0}? (+ sprite)
-                    // Example: What color was the label of this key in the first stage of Reordered Keys? (+ sprite)
+                    // English: What color was the label of this key in the {1} stage of {0}? (+ extra)
+                    // Example: What color was the label of this key in the first stage of Reordered Keys? (+ extra)
                     Question = "Welche Farbe hatte bei {0} die Aufschrift dieser Taste in der {1}en Stufe?",
                     Answers = new()
                     {
@@ -14734,8 +14793,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SReorderedKeys.Label] = new()
                 {
-                    // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
-                    // Example: What was the label of this key in the first stage of Reordered Keys? (+ sprite)
+                    // English: What was the label of this key in the {1} stage of {0}? (+ extra)
+                    // Example: What was the label of this key in the first stage of Reordered Keys? (+ extra)
                     Question = "Welche Aufschrift hatte bei {0} diese Taste in der {1}en Stufe?",
                 },
             },
@@ -15066,8 +15125,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SRPSJudging.DGesture] = new()
                 {
-                    // English: the RPS Judging where this was the {0} team’s gesture in the {1} round
-                    // Example: the RPS Judging where this was the blue team’s gesture in the first round
+                    // English: the RPS Judging where this was the {0} team’s gesture in the {1} round (+ extra)
+                    // Example: the RPS Judging where this was the blue team’s gesture in the first round (+ extra)
                     Discriminator = "dem SSP-Richter, bei dem {0} diese Geste in der {1}en Runde zeigte,",
                     Arguments = new()
                     {
@@ -16286,7 +16345,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SSimonSignals.ShapeToColor] = new()
                 {
-                    // English: What color was the arrow with this shape in {0}? (+ sprite)
+                    // English: What color was the arrow with this shape in {0}? (+ extra)
                     Question = "Welche Farbe hatte bei {0} der Pfeil mit dieser Form?",
                     Answers = new()
                     {
@@ -16298,7 +16357,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SSimonSignals.ShapeToRotations] = new()
                 {
-                    // English: How many directions did the arrow with this shape have in {0}? (+ sprite)
+                    // English: How many directions did the arrow with this shape have in {0}? (+ extra)
                     Question = "Wie viele Richtungen hatte bei {0} der Pfeil mit dieser Form?",
                 },
                 [SSimonSignals.RotationsToColor] = new()
@@ -16763,7 +16822,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SSimonSubdivides.Button] = new()
                 {
-                    // English: What color was the button at this position in {0}? (+ sprite)
+                    // English: What color was the button at this position in {0}? (+ extra)
                     Question = "Welche Farbe hatte bei {0} diese Taste?",
                     Answers = new()
                     {
@@ -16915,7 +16974,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SSkewers.Color] = new()
                 {
-                    // English: What color was this gem in {0}? (+ sprite)
+                    // English: What color was this gem in {0}? (+ extra)
                     Question = "Welche Farbe hatte bei {0} dieser Edelstein?",
                     Answers = new()
                     {
@@ -17725,7 +17784,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SSuitsAndColours.Colour] = new()
                 {
-                    // English: What was the colour of this cell in {0}? (+ sprite)
+                    // English: What was the colour of this cell in {0}? (+ extra)
                     Question = "Welche Farbe hatte diese Zelle bei {0}?",
                     Answers = new()
                     {
@@ -17737,7 +17796,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SSuitsAndColours.Suit] = new()
                 {
-                    // English: What was the suit of this cell in {0}? (+ sprite)
+                    // English: What was the suit of this cell in {0}? (+ extra)
                     Question = "Welche Spielkartenfarbe hatte diese Zelle bei {0}?",
                     Answers = new()
                     {
@@ -18481,20 +18540,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [STicTacToe.DButton] = new()
                 {
-                    // English: the Tic Tac Toe where the {0} button was {1}
-                    // Example: the Tic Tac Toe where the top-left button was 1
-                    Discriminator = "dem Tic-Tac-Toe, bei dem die {0} Taste {1} zeigte,",
+                    // English: the Tic Tac Toe where this was on the {0} button (+ extra)
+                    // Example: the Tic Tac Toe where this was on the top-left button (+ extra)
+                    Discriminator = "dem Tic-Tac-Toe, bei dem das hier auf der {0} Taste war,",
                     Arguments = new()
                     {
-                        ["top-left"] = "obere linke",
-                        ["top-middle"] = "obere mittlere",
-                        ["top-right"] = "obere rechte",
-                        ["middle-left"] = "mittlere linke",
-                        ["middle-center"] = "mittige",
-                        ["middle-right"] = "mittlere rechte",
-                        ["bottom-left"] = "untere linke",
-                        ["bottom-middle"] = "untere mittlere",
-                        ["bottom-right"] = "untere rechte",
+                        ["top-left"] = "oberen linken",
+                        ["top-middle"] = "oberen mittleren",
+                        ["top-right"] = "oberen rechten",
+                        ["middle-left"] = "mittleren linken",
+                        ["middle-center"] = "mittigen",
+                        ["middle-right"] = "mittleren rechten",
+                        ["bottom-left"] = "unteren linken",
+                        ["bottom-middle"] = "unteren mittleren",
+                        ["bottom-right"] = "unteren rechten",
                     },
                 },
             },
@@ -18787,7 +18846,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [STwodoku.GridPositions] = new()
                 {
-                    // English: What was in this grid position in {0}? (+ sprite)
+                    // English: What was in this grid position in {0}? (+ extra)
                     Question = "Was war bei {0} an dieser Stelle im Gitter?",
                 },
             },
@@ -19239,20 +19298,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SUnorderedKeys.KeyColor] = new()
                 {
-                    // English: What color was this key in the {1} stage of {0}? (+ sprite)
-                    // Example: What color was this key in the first stage of Unordered Keys? (+ sprite)
+                    // English: What color was this key in the {1} stage of {0}? (+ extra)
+                    // Example: What color was this key in the first stage of Unordered Keys? (+ extra)
                     Question = "Welche Farbe hatte diese Taste in der {1}en Stufe von {0}?",
                 },
                 [SUnorderedKeys.LabelColor] = new()
                 {
-                    // English: What color was the label of this key in the {1} stage of {0}? (+ sprite)
-                    // Example: What color was the label of this key in the first stage of Unordered Keys? (+ sprite)
+                    // English: What color was the label of this key in the {1} stage of {0}? (+ extra)
+                    // Example: What color was the label of this key in the first stage of Unordered Keys? (+ extra)
                     Question = "Welche Farbe hatte die Aufschrift dieser Taste in der {1}en Stufe von {0}?",
                 },
                 [SUnorderedKeys.Label] = new()
                 {
-                    // English: What was the label of this key in the {1} stage of {0}? (+ sprite)
-                    // Example: What was the label of this key in the first stage of Unordered Keys? (+ sprite)
+                    // English: What was the label of this key in the {1} stage of {0}? (+ extra)
+                    // Example: What was the label of this key in the first stage of Unordered Keys? (+ extra)
                     Question = "Welche Aufschrift hatte diese Taste in der {1}en Stufe von {0}?",
                 },
             },
@@ -19291,7 +19350,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SUnpleasantSquares.Color] = new()
                 {
-                    // English: What was the color of this square in {0}? (+ sprite)
+                    // English: What was the color of this square in {0}? (+ extra)
                     Question = "Welche Farbe hatte dieses Quadrat bei {0}?",
                     Answers = new()
                     {

@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonShapes
 {
-    [Question("What was the shape submitted at the end of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the shape submitted at the end of {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Polyominoes(minCellCount: 2, maxCellCount: 5, maxWidth: 3, maxHeight: 3, requireSingleStrokePath: true)]
     SubmittedShape
 }

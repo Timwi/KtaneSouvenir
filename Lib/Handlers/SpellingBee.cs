@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSpellingBee
 {
-    [Question("What word was asked to be spelled in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "SpellingBeeAudio")]
+    [Question("What word was asked to be spelled in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Audio, AudioFieldName = "SpellingBeeAudio")]
     Word
 }
 

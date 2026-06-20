@@ -4,11 +4,11 @@ using static Souvenir.AnswerLayout;
 
 public enum SFaultyButtons
 {
-    [Question("Which button referred to this button in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
+    [Question("Which button referred to this button in {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     ReferredToThisButton,
 
-    [Question("Which button did this button refer to in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
+    [Question("Which button did this button refer to in {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     ThisButtonReferredTo
 }
@@ -28,8 +28,8 @@ public partial class SouvenirModule
         {
             var thisButton = new Coord(4, 4, pos);
             var buttonRefersTo = new Coord(4, 4, referredButtons[pos]);
-            yield return question(SFaultyButtons.ThisButtonReferredTo, questionSprite: Sprites.GenerateGridSprite(thisButton)).Answers(buttonRefersTo);
-            yield return question(SFaultyButtons.ReferredToThisButton, questionSprite: Sprites.GenerateGridSprite(buttonRefersTo)).Answers(thisButton);
+            yield return question(SFaultyButtons.ThisButtonReferredTo, questionExtra: Sprites.GenerateGridSprite(thisButton)).Answers(buttonRefersTo);
+            yield return question(SFaultyButtons.ReferredToThisButton, questionExtra: Sprites.GenerateGridSprite(buttonRefersTo)).Answers(thisButton);
         }
     }
 }

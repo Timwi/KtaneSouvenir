@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDoubleListening
 {
-    [Question("What clip was played in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "ListeningAudio")]
+    [Question("What clip was played in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Audio, AudioFieldName = "ListeningAudio")]
     Sounds
 }
 

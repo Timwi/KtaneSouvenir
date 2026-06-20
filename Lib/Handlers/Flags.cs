@@ -11,10 +11,10 @@ public enum SFlags
     [AnswerGenerator.Integers(1, 7)]
     DisplayedNumber,
 
-    [Question("What was the main country flag in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "FlagsSprites")]
+    [Question("What was the main country flag in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "FlagsSprites")]
     MainCountry,
 
-    [Question("Which of these country flags was shown, but not the main country flag, in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "FlagsSprites")]
+    [Question("Which of these country flags was shown, but not the main country flag, in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "FlagsSprites")]
     Countries
 }
 

@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SValves
 {
-    [Question("What was the initial state of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "ValvesSprites")]
+    [Question("What was the initial state of {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "ValvesSprites")]
     InitialState
 }
 

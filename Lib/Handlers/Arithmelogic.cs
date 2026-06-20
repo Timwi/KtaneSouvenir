@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SArithmelogic
 {
-    [Question("What was the symbol on the submit button in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "ArithmelogicSprites")]
+    [Question("What was the symbol on the submit button in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "ArithmelogicSprites")]
     Submit
 }
 

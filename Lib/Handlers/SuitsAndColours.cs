@@ -5,10 +5,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SSuitsAndColours
 {
-    [Question("What was the colour of this cell in {0}?", TwoColumns4Answers, "yellow", "green", "orange", "red", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the colour of this cell in {0}?", TwoColumns4Answers, "yellow", "green", "orange", "red", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     Colour,
 
-    [Question("What was the suit of this cell in {0}?", TwoColumns4Answers, "spades", "hearts", "clubs", "diamonds", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the suit of this cell in {0}?", TwoColumns4Answers, "spades", "hearts", "clubs", "diamonds", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     Suit
 }
 
@@ -28,8 +28,8 @@ public partial class SouvenirModule
         for (var i = 0; i < 9; i++)
         {
             var coordinate = new Coord(3, 3, i);
-            yield return question(SSuitsAndColours.Colour, questionSprite: Sprites.GenerateGridSprite(coordinate)).Answers(colours[correctColourIndices[i]]);
-            yield return question(SSuitsAndColours.Suit, questionSprite: Sprites.GenerateGridSprite(coordinate)).Answers(suits[correctSuitIndices[i]]);
+            yield return question(SSuitsAndColours.Colour, questionExtra: Sprites.GenerateGridSprite(coordinate)).Answers(colours[correctColourIndices[i]]);
+            yield return question(SSuitsAndColours.Suit, questionExtra: Sprites.GenerateGridSprite(coordinate)).Answers(suits[correctSuitIndices[i]]);
         }
     }
 }

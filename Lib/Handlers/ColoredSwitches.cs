@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SColoredSwitches
 {
-    [Question("What was the initial position of the switches in {0}?", ThreeColumns6Answers, Type = AnswerType.SymbolsFont)]
+    [Question("What was the initial position of the switches in {0}?", ThreeColumns6Answers, AnswerType = InfoType.SymbolsFont)]
     [AnswerGenerator.Strings(5, 'Q', 'R')]
     InitialPosition
 }

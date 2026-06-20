@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SPatternCube
 {
-    [Question("Which symbol was highlighted in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which symbol was highlighted in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     HighlightedSymbol
 }
 

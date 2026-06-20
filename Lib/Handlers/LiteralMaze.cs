@@ -25,6 +25,6 @@ public partial class SouvenirModule
         if (mazeString.Any(ch => ch - 'a' < 0 && ch - 'a' >= cleartext.Length))
             throw new AbandonModuleException($"‘mazeString’ ({mazeString}) contains unexpected character (expected a–{(char) ('a' + cleartext.Length - 1)}).");
         for (var cell = 0; cell < 16; cell++)
-            yield return question(SLiteralMaze.Letter, questionSprite: Sprites.GenerateGridSprite(4, 4, cell)).Answers(cleartext[mazeString[cell] - 'a'].ToString());
+            yield return question(SLiteralMaze.Letter, questionExtra: Sprites.GenerateGridSprite(4, 4, cell)).Answers(cleartext[mazeString[cell] - 'a'].ToString());
     }
 }

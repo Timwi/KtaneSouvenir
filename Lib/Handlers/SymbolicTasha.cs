@@ -9,7 +9,7 @@ public enum SSymbolicTasha
     [Question("Which button flashed {1} in the final sequence of {0}?", TwoColumns4Answers, "Pink", "Green", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     ColorFlashes,
 
-    [Question("Which symbol was on the {1} button in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "SymbolicTashaSprites", Arguments = ["blue", "green", "yellow", "pink"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which symbol was on the {1} button in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "SymbolicTashaSprites", Arguments = ["blue", "green", "yellow", "pink"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Symbols
 }
 

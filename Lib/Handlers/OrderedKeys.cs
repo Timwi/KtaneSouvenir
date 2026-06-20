@@ -6,13 +6,13 @@ using static Souvenir.AnswerLayout;
 
 public enum SOrderedKeys
 {
-    [Question("What color was this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, QuestionExtraType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Colors,
 
-    [Question("What was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", QuestionExtraType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Labels,
 
-    [Question("What color was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, QuestionExtraType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     LabelColors
 }
 
@@ -45,9 +45,9 @@ public partial class SouvenirModule
         for (var stage = 0; stage < 3; stage++)
             for (var key = 0; key < 6; key++)
             {
-                yield return question(SOrderedKeys.Colors, args: [Ordinal(stage + 1)], questionSprite: OrderedKeysSprites[key]).Answers(colors[moduleData[stage][key][0]]);
-                yield return question(SOrderedKeys.Labels, args: [Ordinal(stage + 1)], questionSprite: OrderedKeysSprites[key]).Answers((moduleData[stage][key][3] + 1).ToString());
-                yield return question(SOrderedKeys.LabelColors, args: [Ordinal(stage + 1)], questionSprite: OrderedKeysSprites[key]).Answers(colors[moduleData[stage][key][1]]);
+                yield return question(SOrderedKeys.Colors, args: [Ordinal(stage + 1)], questionExtra: OrderedKeysSprites[key]).Answers(colors[moduleData[stage][key][0]]);
+                yield return question(SOrderedKeys.Labels, args: [Ordinal(stage + 1)], questionExtra: OrderedKeysSprites[key]).Answers((moduleData[stage][key][3] + 1).ToString());
+                yield return question(SOrderedKeys.LabelColors, args: [Ordinal(stage + 1)], questionExtra: OrderedKeysSprites[key]).Answers(colors[moduleData[stage][key][1]]);
             }
     }
 }

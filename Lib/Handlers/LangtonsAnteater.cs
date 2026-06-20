@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLangtonsAnteater
 {
-    [Question("Which of these squares was initially {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["black", "white"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which of these squares was initially {1} in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, Arguments = ["black", "white"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Grid(5, 5)]
     InitialState
 }

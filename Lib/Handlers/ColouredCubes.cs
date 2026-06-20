@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SColouredCubes
 {
-    [Question("What was the colour of this {1} in the {2} stage of {0}?", ThreeColumns6Answers, "Black", "Indigo", "Blue", "Forest", "Teal", "Azure", "Green", "Jade", "Cyan", "Maroon", "Plum", "Violet", "Olive", "Grey", "Maya", "Lime", "Mint", "Aqua", "Red", "Rose", "Magenta", "Orange", "Salmon", "Pink", "Yellow", "Cream", "White", Arguments = ["cube", QandA.Ordinal, "stage light", QandA.Ordinal], ArgumentGroupSize = 2, UsesQuestionSprite = true, TranslateAnswers = true, TranslateArguments = [true, false])]
+    [Question("What was the colour of this {1} in the {2} stage of {0}?", ThreeColumns6Answers, "Black", "Indigo", "Blue", "Forest", "Teal", "Azure", "Green", "Jade", "Cyan", "Maroon", "Plum", "Violet", "Olive", "Grey", "Maya", "Lime", "Mint", "Aqua", "Red", "Rose", "Magenta", "Orange", "Salmon", "Pink", "Yellow", "Cream", "White", Arguments = ["cube", QandA.Ordinal, "stage light", QandA.Ordinal], ArgumentGroupSize = 2, QuestionExtraType = InfoType.Sprites, TranslateAnswers = true, TranslateArguments = [true, false])]
     Colours
 }
 
@@ -56,10 +56,10 @@ public partial class SouvenirModule
         for (var stage = 0; stage < 3; stage++)
         {
             for (var ix = 0; ix < 9; ix++)
-                yield return question(SColouredCubes.Colours, args: ["cube", Ordinal(stage + 1)], questionSprite: Sprites.GenerateGridSprite(3, 3, ix)).Answers(cubeColours[stage, ix], preferredWrong: allCubeColours);
+                yield return question(SColouredCubes.Colours, args: ["cube", Ordinal(stage + 1)], questionExtra: Sprites.GenerateGridSprite(3, 3, ix)).Answers(cubeColours[stage, ix], preferredWrong: allCubeColours);
             if (stage < 2)
                 for (var ix = 0; ix < 3; ix++)
-                    yield return question(SColouredCubes.Colours, args: ["stage light", Ordinal(stage + 1)], questionSprite: Sprites.GenerateGridSprite(1, 3, ix)).Answers(stageLightColours[stage, ix], preferredWrong: allStageLightColours);
+                    yield return question(SColouredCubes.Colours, args: ["stage light", Ordinal(stage + 1)], questionExtra: Sprites.GenerateGridSprite(1, 3, ix)).Answers(stageLightColours[stage, ix], preferredWrong: allStageLightColours);
         }
     }
 }

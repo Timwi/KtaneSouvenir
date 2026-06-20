@@ -9,7 +9,7 @@ public enum SOffKeys
     [Question("Which of these keys played at an incorrect pitch in {0}?", ThreeColumns6Answers, "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B")]
     IncorrectPitch,
 
-    [Question("Which of these runes was displayed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "OffKeysSprites")]
+    [Question("Which of these runes was displayed in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "OffKeysSprites")]
     Runes
 }
 

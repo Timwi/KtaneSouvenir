@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SAffineCycle
 {
-    [Question("Which direction was the {1} dial pointing in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleEightSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which direction was the {1} dial pointing in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "CycleModuleEightSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DialDirections,
 
     [Question("What letter was written on the {1} dial in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]

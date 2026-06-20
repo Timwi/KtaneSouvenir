@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMaroonButton
 {
-    [Question("What was A in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was A in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     A
 }
 

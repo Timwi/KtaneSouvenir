@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SColorBraille
 {
-    [Question("What color was this dot in {0}?", ThreeColumns6Answers, "Black", "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow", "White", TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("What color was this dot in {0}?", ThreeColumns6Answers, "Black", "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow", "White", TranslateAnswers = true, QuestionExtraType = InfoType.Sprites)]
     Color
 }
 
@@ -23,7 +23,7 @@ public partial class SouvenirModule
         var colorNames = SColorBraille.Color.GetAnswers();
 
         for (var ix = 0; ix < 5 * 6; ix++)
-            yield return question(SColorBraille.Color, questionSprite: Sprites.GenerateCirclesSprite(5 * 2, 3, 1 << ix, 20, 5, outline: true, vertical: true))
+            yield return question(SColorBraille.Color, questionExtra: Sprites.GenerateCirclesSprite(5 * 2, 3, 1 << ix, 20, 5, outline: true, vertical: true))
                 .Answers(colorNames[colorIxs[ix]]);
     }
 }

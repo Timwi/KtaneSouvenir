@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonSmiles
 {
-    [Question("What sound did the {1} button press make in {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.Audio, AudioFieldName = "SimonSmilesAudio", AudioSizeMultiplier = 6)]
+    [Question("What sound did the {1} button press make in {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, AnswerType = InfoType.Audio, AudioFieldName = "SimonSmilesAudio", AudioSizeMultiplier = 6)]
     Sounds
 }
 

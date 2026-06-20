@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLadderLottery
 {
-    [Question("Which light was on in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "LadderLotterySprites")]
+    [Question("Which light was on in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "LadderLotterySprites")]
     LightOn
 }
 

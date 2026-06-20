@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCharacterSlots
 {
-    [Question("Who was displayed in the {1} slot in the {2} stage of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("Who was displayed in the {1} slot in the {2} stage of {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     DisplayedCharacters
 }
 

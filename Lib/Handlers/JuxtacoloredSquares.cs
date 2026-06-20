@@ -5,10 +5,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SJuxtacoloredSquares
 {
-    [Question("What was the color of this square in {0}?", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange", "Cyan", "Purple", "Chestnut", "Brown", "Mauve", "Azure", "Jade", "Forest", "Gray", "Black", TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("What was the color of this square in {0}?", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange", "Cyan", "Purple", "Chestnut", "Brown", "Mauve", "Azure", "Jade", "Forest", "Gray", "Black", TranslateAnswers = true, QuestionExtraType = InfoType.Sprites)]
     ColorsByPosition,
 
-    [Question("Which square was {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["red", "blue", "yellow", "green", "magenta", "orange", "cyan", "purple", "chestnut", "brown", "mauve", "azure", "jade", "forest", "gray", "black"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which square was {1} in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, Arguments = ["red", "blue", "yellow", "green", "magenta", "orange", "cyan", "purple", "chestnut", "brown", "mauve", "azure", "jade", "forest", "gray", "black"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Grid(4, 4)]
     PositionsByColor
 }
@@ -43,7 +43,7 @@ public partial class SouvenirModule
             if (colorName == "DarkBlue")
                 colorName = "Blue";
             var coordinate = new Coord(4, 4, pos);
-            yield return question(SJuxtacoloredSquares.ColorsByPosition, questionSprite: Sprites.GenerateGridSprite(coordinate)).Answers(colorName);
+            yield return question(SJuxtacoloredSquares.ColorsByPosition, questionExtra: Sprites.GenerateGridSprite(coordinate)).Answers(colorName);
             yield return question(SJuxtacoloredSquares.PositionsByColor, args: [colorName.ToLowerInvariant()]).Answers(coordinate);
         }
     }

@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum S21
 {
-    [Question("What was the displayed number in {0}?", ThreeColumns6Answers, Type = AnswerType.SixtyFourFont, ExampleAnswers = ["A0A3", "K1I1", "3000", "83F1", "ABCD", "1234"])]
+    [Question("What was the displayed number in {0}?", ThreeColumns6Answers, AnswerType = InfoType.SixtyFourFont, ExampleAnswers = ["A0A3", "K1I1", "3000", "83F1", "ABCD", "1234"])]
     DisplayedNumber
 }
 

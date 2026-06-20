@@ -21,11 +21,11 @@ public sealed class TextAnswerSet(string[] answers, int correctIndex, QuestionAt
             mesh.gameObject.SetActive(true);
 
             mesh.text = i < answers.Length ? answers[i] : "•";
-            mesh.font = qAttr.Type == AnswerType.DynamicFont ? info.Font : souvenir.Fonts[(int) qAttr.Type];
+            mesh.font = qAttr.AnswerType == InfoType.DynamicFont ? info.Font : souvenir.Fonts[(int) qAttr.AnswerType];
             mesh.fontSize = qAttr.FontSize;
             mesh.characterSize = qAttr.CharacterSize;
             mesh.GetComponent<MeshRenderer>().material = souvenir.FontMaterial;
-            mesh.GetComponent<MeshRenderer>().material.mainTexture = qAttr.Type == AnswerType.DynamicFont ? info.FontTexture : souvenir.FontTextures[(int) qAttr.Type];
+            mesh.GetComponent<MeshRenderer>().material.mainTexture = qAttr.AnswerType == InfoType.DynamicFont ? info.FontTexture : souvenir.FontTextures[(int) qAttr.AnswerType];
 
             // Determine size of the answer and if it’s too long, shrink it horizontally to make it fit
             var origRotation = mesh.transform.localRotation;

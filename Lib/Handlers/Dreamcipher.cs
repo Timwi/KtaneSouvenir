@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDreamcipher
 {
-    [Question("What was the {1} displayed glyph in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} displayed glyph in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Glyphs,
 
     [Question("What was the initial binary string in {0}?", OneColumn4Answers)]

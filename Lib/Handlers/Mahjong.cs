@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMahjong
 {
-    [Question("Which tile was shown in the bottom-left of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "MahjongSprites")]
+    [Question("Which tile was shown in the bottom-left of {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "MahjongSprites")]
     CountingTile
 }
 

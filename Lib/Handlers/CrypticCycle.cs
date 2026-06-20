@@ -5,10 +5,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SCrypticCycle
 {
-    [Question("Which direction was the {1} dial pointing in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleCrypticSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which direction was the {1} dial pointing in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "CycleModuleCrypticSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DialDirections,
 
-    [Question("What letter was written on the {1} dial in {0}?", ThreeColumns6Answers, Type = AnswerType.BoozleglyphFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What letter was written on the {1} dial in {0}?", ThreeColumns6Answers, AnswerType = InfoType.BoozleglyphFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()[]{}<>")]
     DialLabels
 }

@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SEncryptedEquations
 {
-    [Question("Which shape was the {1} operand in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "EncryptedEquationsSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("Which shape was the {1} operand in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "EncryptedEquationsSprites", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Shapes
 }
 

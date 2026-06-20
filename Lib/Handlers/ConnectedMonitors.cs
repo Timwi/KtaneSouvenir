@@ -7,14 +7,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SConnectedMonitors
 {
-    [Question("What number was initially displayed on this screen in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What number was initially displayed on this screen in {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites)]
     [AnswerGenerator.Integers(0, 99)]
     Number,
 
-    [Question("What colour was the indicator on this screen in {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What colour was the indicator on this screen in {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     SingleIndicator,
 
-    [Question("What colour was the {1} indicator on this screen in {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What colour was the {1} indicator on this screen in {0}?", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", QuestionExtraType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     OrdinalIndicator
 }
 
@@ -39,7 +39,7 @@ public partial class SouvenirModule
         PropertyInfo<object> colorProp = null;
         for (var ix = 0; ix < monitors.Count; ix++)
         {
-            yield return question(SConnectedMonitors.Number, questionSprite: ConnectedMonitorsSprites[ix]).Answers(displays[ix].ToString());
+            yield return question(SConnectedMonitors.Number, questionExtra: ConnectedMonitorsSprites[ix]).Answers(displays[ix].ToString());
             var inds = indsProp.GetFrom(monitors[ix], validator: v => v.Count is > 3 or < 0 ? $"Bad indicator count {v.Count} (Monitor {ix})" : null);
             for (var indIx = 0; indIx < inds.Count; indIx++)
             {
@@ -47,7 +47,7 @@ public partial class SouvenirModule
                 yield return question(
                         inds.Count == 1 ? SConnectedMonitors.SingleIndicator : SConnectedMonitors.OrdinalIndicator,
                         args: [Ordinal(indIx + 1)],
-                        questionSprite: ConnectedMonitorsSprites[ix])
+                        questionExtra: ConnectedMonitorsSprites[ix])
                     .Answers(colorProp.GetFrom(inds[indIx], validator: v => (int) v is < 0 or > 5 ? $"Bad indicator color {v} (Monitor {ix}) (Indicator {indIx})" : null).ToString());
             }
         }

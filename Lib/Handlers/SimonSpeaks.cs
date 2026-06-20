@@ -8,7 +8,7 @@ public enum SSimonSpeaks
     [Question("Which bubble flashed first in {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
     Positions,
 
-    [Question("Which bubble flashed second in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "SimonSpeaksSprites")]
+    [Question("Which bubble flashed second in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "SimonSpeaksSprites")]
     Shapes,
 
     [Question("Which language was the bubble that flashed third in {0} in?", TwoColumns4Answers, "English", "Danish", "Dutch", "Esperanto", "Finnish", "French", "German", "Hungarian", "Italian", TranslateAnswers = true)]

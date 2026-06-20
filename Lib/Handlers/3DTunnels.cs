@@ -6,16 +6,18 @@ using static Souvenir.AnswerLayout;
 
 public enum S3DTunnels
 {
-    [Question("What was the {1} goal node in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, Type = AnswerType.SymbolsFont)]
+    [Question("What was the {1} goal node in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, AnswerType = InfoType.SymbolsFont)]
     [AnswerGenerator.Strings("a-z.")]
-    TargetNode
+    TargetNode,
+
+    [Discriminator("the 3D Tunnels whose {0} goal node was this", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, QuestionExtraType = InfoType.SymbolsFont)]
+    Discriminator
 }
 
 public partial class SouvenirModule
 {
     [Handler("3dTunnels", "3D Tunnels", typeof(S3DTunnels), "Timwi")]
     [ManualQuestion("What were the goal symbols?")]
-    [NoDiscriminator]   // unless we want to turn the symbols from the font into sprites
     private IEnumerator<SouvenirInstruction> Process3DTunnels(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeDTunnels");
@@ -27,6 +29,9 @@ public partial class SouvenirModule
             .Select(tn => symbols[tn].ToString())
             .ToArray();
         for (var ix = 0; ix < targetNodeNames.Length; ix++)
-            yield return question(S3DTunnels.TargetNode, args: [Ordinal(ix + 1)]).Answers(targetNodeNames[ix], preferredWrong: targetNodeNames);
+        {
+            yield return question(S3DTunnels.TargetNode, args: [Ordinal(ix + 1)]).AvoidDiscriminators($"target-{ix}").Answers(targetNodeNames[ix], preferredWrong: targetNodeNames);
+            yield return new Discriminator(S3DTunnels.Discriminator, $"target-{ix}", targetNodeNames[ix], args: [Ordinal(ix + 1)], questionExtra: targetNodeNames[ix]);
+        }
     }
 }

@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SWalkingCube
 {
-    [Question("Which of these cells was part of the cube’s path in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Which of these cells was part of the cube’s path in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     Path
 }

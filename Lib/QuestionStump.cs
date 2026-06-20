@@ -33,7 +33,7 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir, str
         return new(this, new CoordAnswerStump(correct, preferredWrong, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray()));
     }
 
-    public abstract QuestionBase MakeQuestion(string moduleFormat, Sprite questionSpriteFromDiscriminator, float questionSpriteRotationFromDiscriminator);
+    public abstract QuestionBase MakeQuestion(string moduleFormat, QuestionExtra questionExtraFromDiscriminator);
 
     public QuestionStump AvoidDiscriminators(params string[] discriminatorIds) => AvoidDiscriminators((IEnumerable<string>) discriminatorIds);
     public QuestionStump AvoidDiscriminators(IEnumerable<string> discriminatorIds)
@@ -52,6 +52,10 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir, str
     protected string FormattedQuestion(string moduleFormat)
     {
         var attr = EnumValue.GetQuestionAttribute();
+
+        if ((Args == null ? 0 : Args.Length) != attr.ArgumentGroupSize)
+            throw new InvalidOperationException($"The handler for {EnumValue.GetType().Name}.{EnumValue} provided {Args.Length} arguments but I expected {attr.ArgumentGroupSize}.");
+
         var allFormatArgs = new object[Args != null ? Args.Length + 1 : 1];
         allFormatArgs[0] = moduleFormat;
 

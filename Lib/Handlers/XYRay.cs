@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SXYRay
 {
-    [Question("Which shape was scanned by {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "XYRaySprites")]
+    [Question("Which shape was scanned by {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "XYRaySprites")]
     Shapes
 }
 

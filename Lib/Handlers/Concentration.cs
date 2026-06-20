@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SConcentration
 {
-    [Question("What number began here in {0}?", ThreeColumns6Answers, UsesQuestionSprite = true)]
+    [Question("What number began here in {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites)]
     [AnswerGenerator.Integers(1, 15)]
     StartingDigit,
 
@@ -41,7 +41,7 @@ public partial class SouvenirModule
         yield return WaitForUnignoredModules;
 
         foreach (var ix in swappedPositions)
-            yield return question(SConcentration.StartingDigit, questionSprite: Sprites.GenerateGridSprite(3, 5, ix)).AvoidDiscriminators($"pos-{ix}").Answers((stage[ix] + 1).ToString());
+            yield return question(SConcentration.StartingDigit, questionExtra: Sprites.GenerateGridSprite(3, 5, ix)).AvoidDiscriminators($"pos-{ix}").Answers((stage[ix] + 1).ToString());
         for (var ix = 0; ix < 15; ix++)
             yield return new Discriminator(SConcentration.Discriminator, $"pos-{ix}", stage[ix], args: [Ordinal(ix + 1), (stage[ix] + 1).ToString()]) { Priority = swappedPositions.Contains(ix) ? 0 : 1 };
     }

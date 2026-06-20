@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SAMessage
 {
-    [Question("What was the initial message in {0}?", TwoColumns4Answers, Type = AnswerType.AMessageFont, FontSize = 560, CharacterSize = 0.125f)]
+    [Question("What was the initial message in {0}?", TwoColumns4Answers, AnswerType = InfoType.AMessageFont, FontSize = 560, CharacterSize = 0.125f)]
     [AnswerGenerator.AMessage]
     AMessage
 }

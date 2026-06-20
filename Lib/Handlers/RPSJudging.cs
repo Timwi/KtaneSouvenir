@@ -6,10 +6,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SRPSJudging
 {
-    [Question("What was the {2} team’s gesture in the {1} round of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "blue", QandA.Ordinal, "red"], ArgumentGroupSize = 2, TranslateArguments = [false, true], Type = AnswerType.Sprites)]
+    [Question("What was the {2} team’s gesture in the {1} round of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, "blue", QandA.Ordinal, "red"], ArgumentGroupSize = 2, TranslateArguments = [false, true], AnswerType = InfoType.Sprites)]
     QGesture,
 
-    [Discriminator("the RPS Judging where this was the {0} team’s gesture in the {1} round", UsesQuestionSprite = true, Arguments = ["blue", QandA.Ordinal, "red", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the RPS Judging where this was the {0} team’s gesture in the {1} round", QuestionExtraType = InfoType.Sprites, Arguments = ["blue", QandA.Ordinal, "red", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DGesture,
 }
 
@@ -37,9 +37,9 @@ public partial class SouvenirModule
         for (var stage = 0; stage < leftDisplays.Count; stage++)
         {
             yield return new Discriminator(SRPSJudging.DGesture, $"blue-{stage}", leftDisplays[stage],
-                args: ["blue", Ordinal(stage + 1)], questionSprite: leftSprites[leftDisplays[stage]], avoidAnswers: [leftSprites[leftDisplays[stage]], rightSprites[leftDisplays[stage]]]);
+                args: ["blue", Ordinal(stage + 1)], questionExtra: leftSprites[leftDisplays[stage]], avoidAnswers: [leftSprites[leftDisplays[stage]], rightSprites[leftDisplays[stage]]]);
             yield return new Discriminator(SRPSJudging.DGesture, $"red-{stage}", rightDisplays[stage],
-                args: ["red", Ordinal(stage + 1)], questionSprite: rightSprites[rightDisplays[stage]], avoidAnswers: [leftSprites[rightDisplays[stage]], rightSprites[rightDisplays[stage]]]);
+                args: ["red", Ordinal(stage + 1)], questionExtra: rightSprites[rightDisplays[stage]], avoidAnswers: [leftSprites[rightDisplays[stage]], rightSprites[rightDisplays[stage]]]);
 
             yield return question(SRPSJudging.QGesture, args: [Ordinal(stage + 1), "blue"]).AvoidDiscriminators($"blue-{stage}")
                 .Answers(leftSprites[leftDisplays[stage]], preferredWrong: usedLeftSprites, all: leftSprites);

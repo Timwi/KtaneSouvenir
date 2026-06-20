@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SConditionalButtons
 {
-    [Question("What was the color of this button in {0}?", ThreeColumns6Answers, "black", "blue", "dark green", "light green", "orange", "pink", "purple", "red", "white", "yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What was the color of this button in {0}?", ThreeColumns6Answers, "black", "blue", "dark green", "light green", "orange", "pink", "purple", "red", "white", "yellow", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     Colors
 }
 
@@ -26,6 +26,6 @@ public partial class SouvenirModule
         }
         yield return WaitForSolve;
         for (var ix = 0; ix < buttonColors.Count; ix++)
-            yield return question(SConditionalButtons.Colors, questionSprite: Sprites.GenerateGridSprite(new Coord(3, 2, ix))).Answers(buttonColors[ix]);
+            yield return question(SConditionalButtons.Colors, questionExtra: Sprites.GenerateGridSprite(new Coord(3, 2, ix))).Answers(buttonColors[ix]);
     }
 }

@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotColoredSquares
 {
-    [Question("What was the position of the square you initially pressed in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the position of the square you initially pressed in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(4, 4)]
     InitialPosition
 }

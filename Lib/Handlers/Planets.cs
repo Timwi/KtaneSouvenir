@@ -9,7 +9,7 @@ public enum SPlanets
     [Question("What was the color of the {1} strip (from the top) in {0}?", ThreeColumns6Answers, "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Strips,
 
-    [Question("What was the planet shown in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "PlanetsSprites")]
+    [Question("What was the planet shown in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "PlanetsSprites")]
     Planet
 }
 

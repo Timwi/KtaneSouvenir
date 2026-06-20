@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSync125_3
 {
-    [Question("What was displayed on the screen in the {1} stage of {0}?", TwoColumns4Answers, Type = AnswerType.DynamicFont, ExampleAnswers = ["İ'ms'", "ăĠ'n'", "kğ'i", "kĞ'p'", "ăut'", "ăġ'r", "ăġ'm", "ărs", "kğp'", "kğk"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was displayed on the screen in the {1} stage of {0}?", TwoColumns4Answers, AnswerType = InfoType.DynamicFont, ExampleAnswers = ["İ'ms'", "ăĠ'n'", "kğ'i", "kĞ'p'", "ăut'", "ăġ'r", "ăġ'm", "ărs", "kğp'", "kğk"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Word
 }
 

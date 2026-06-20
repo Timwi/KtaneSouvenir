@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SMathEm
 {
-    [Question("What was the color of this tile before the shuffle on {0}?", TwoColumns4Answers, "White", "Bronze", "Silver", "Gold", TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("What was the color of this tile before the shuffle on {0}?", TwoColumns4Answers, "White", "Bronze", "Silver", "Gold", TranslateAnswers = true, QuestionExtraType = InfoType.Sprites)]
     Color,
 
-    [Question("What was the design on this tile before the shuffle on {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Type = AnswerType.Sprites)]
+    [Question("What was the design on this tile before the shuffle on {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites, AnswerType = InfoType.Sprites)]
     Label
 }
 
@@ -37,9 +37,9 @@ public partial class SouvenirModule
 
         for (var tileIx = 0; tileIx < 16; tileIx++)
         {
-            yield return question(SMathEm.Color, questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx)))
+            yield return question(SMathEm.Color, questionExtra: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx)))
                 .Answers(colorNames[props[initialArrangement[tileIx], 1]]);
-            yield return question(SMathEm.Label, questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx)))
+            yield return question(SMathEm.Label, questionExtra: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx)))
                 .Answers(displayedMarkings[tileIx], preferredWrong: displayedMarkings, all: sprites, xStretch: 1.5f);
         }
 

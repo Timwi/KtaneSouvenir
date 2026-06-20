@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSkewers
 {
-    [Question("What color was this gem in {0}?", ThreeColumns6Answers, "Black", "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("What color was this gem in {0}?", ThreeColumns6Answers, "Black", "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     Color
 }
 
@@ -21,6 +21,6 @@ public partial class SouvenirModule
 
         var color = GetListField<int>(comp, "GemColors").Get(expectedLength: 16, validator: v => v is < 0 or > 7 ? "Out of range [0, 7]" : null);
         for (var i = 0; i < color.Count; i++)
-            yield return question(SSkewers.Color, questionSprite: Sprites.GenerateGridSprite(4, 4, i)).Answers(SSkewers.Color.GetAnswers()[color[i]]);
+            yield return question(SSkewers.Color, questionExtra: Sprites.GenerateGridSprite(4, 4, i)).Answers(SSkewers.Color.GetAnswers()[color[i]]);
     }
 }

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SKanji
 {
-    [Question("What was the displayed word in the {1} stage of {0}?", TwoColumns4Answers, Type = AnswerType.JapaneseFont, ExampleAnswers = ["ばくはつ", "でんき", "でんしゃ", "でんわ"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the displayed word in the {1} stage of {0}?", TwoColumns4Answers, AnswerType = InfoType.JapaneseFont, ExampleAnswers = ["ばくはつ", "でんき", "でんしゃ", "でんわ"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayedWords
 }
 

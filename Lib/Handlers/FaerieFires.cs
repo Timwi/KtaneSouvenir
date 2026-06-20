@@ -10,10 +10,10 @@ public enum SFaerieFires
     [Question("What color was the {1} faerie in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Cyan", "Magenta", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Color,
 
-    [Question("What pitch did the {1} faerie sing in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What pitch did the {1} faerie sing in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     PitchOrdinal,
 
-    [Question("What pitch did the {1} faerie sing in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8, Arguments = ["red", "green", "blue", "yellow", "cyan", "magenta"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What pitch did the {1} faerie sing in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8, Arguments = ["red", "green", "blue", "yellow", "cyan", "magenta"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     PitchColor
 }
 

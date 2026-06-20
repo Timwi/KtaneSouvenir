@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SUncoloredSwitches
 {
-    [Question("What was the initial state of the switches in {0}?", ThreeColumns6Answers, Type = AnswerType.SymbolsFont)]
+    [Question("What was the initial state of the switches in {0}?", ThreeColumns6Answers, AnswerType = InfoType.SymbolsFont)]
     [AnswerGenerator.Strings(5, 'Q', 'R')]
     InitialState,
 

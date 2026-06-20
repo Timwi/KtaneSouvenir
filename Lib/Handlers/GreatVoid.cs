@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SGreatVoid
 {
-    [Question("What was the {1} symbol in {0}?", ThreeColumns6Answers, Type = AnswerType.DynamicFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} symbol in {0}?", ThreeColumns6Answers, AnswerType = InfoType.DynamicFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 6)]
     Symbol,
 

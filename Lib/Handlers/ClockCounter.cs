@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SClockCounter
 {
-    [Question("Which arrow was shown in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "ClockCounterSprites")]
+    [Question("Which arrow was shown in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "ClockCounterSprites")]
     Arrows
 }
 

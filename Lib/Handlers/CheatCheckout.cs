@@ -8,7 +8,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCheatCheckout
 {
-    [Question("What was the cryptocurrency of {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the cryptocurrency of {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     Currency,
 
     [Question("Which website got hacked in {0}?", OneColumn4Answers, "repost.com", "pointercat.com", "usb.os", "color.org", "ktane.timwi.de", "lol.gg", "velvet.ss", "watch.tv", "onion.co", "flybird.tv", "sellcoin.org", "collection.com", "razor.pt", "checkout.kt", "crunch.bg", "locco.pt", "plant.tr", "cartoon.com", "blogsite.co", "voila.lc", "ktane.gov", "loli.co", "anime.st", "medicalsite.co", "recoil.pt", "numerical.ss", "isight.com", "symbolic.co", "grocery.st", "galaxydeliver.com", "vilesight.ei", "random.site")]

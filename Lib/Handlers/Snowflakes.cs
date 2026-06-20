@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSnowflakes
 {
-    [Question("Which snowflake was on the {1} button of {0}?", ThreeColumns6Answers, Type = AnswerType.SnowflakesFont, FontSize = 400, CharacterSize = 0.2f, Arguments = ["top", "right", "bottom", "left"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which snowflake was on the {1} button of {0}?", ThreeColumns6Answers, AnswerType = InfoType.SnowflakesFont, FontSize = 400, CharacterSize = 0.2f, Arguments = ["top", "right", "bottom", "left"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Strings("A-Za-z")]
     DisplayedSnowflakes
 }

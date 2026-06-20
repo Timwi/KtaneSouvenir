@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotTheScrew
 {
-    [Question("What was the initial position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the initial position in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(6, 4)]
     InitialPosition
 }

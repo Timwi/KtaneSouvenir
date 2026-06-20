@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SAlgorithmia
 {
-    [Question("Which position was the {1} position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which position was the {1} position in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Grid(4, 4)]
     QPositions,
 
@@ -16,7 +16,7 @@ public enum SAlgorithmia
     [AnswerGenerator.Integers(0, 99, "00")]
     QSeed,
 
-    [Discriminator("the Algorithmia where this was the {0} position", UsesQuestionSprite = true, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Algorithmia where this was the {0} position", QuestionExtraType = InfoType.Sprites, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DPositions,
 
     [Discriminator("the Algorithmia whose colored bulb was {0}", Arguments = ["red", "green", "blue", "cyan", "yellow", "magenta"], ArgumentGroupSize = 1, TranslateArguments = [true])]
@@ -58,8 +58,8 @@ public partial class SouvenirModule
         yield return question(SAlgorithmia.QColor).AvoidDiscriminators(SAlgorithmia.DColor).Answers(color);
         yield return question(SAlgorithmia.QSeed).AvoidDiscriminators(SAlgorithmia.DSeed).Answers(seedVals.Select(x => x.ToString("00")).ToArray());
 
-        yield return new Discriminator(SAlgorithmia.DPositions, "start", startingPos, args: ["starting"], questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, startingPos)));
-        yield return new Discriminator(SAlgorithmia.DPositions, "goal", goalPos, args: ["goal"], questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, goalPos)));
+        yield return new Discriminator(SAlgorithmia.DPositions, "start", startingPos, args: ["starting"], questionExtra: Sprites.GenerateGridSprite(new Coord(4, 4, startingPos)));
+        yield return new Discriminator(SAlgorithmia.DPositions, "goal", goalPos, args: ["goal"], questionExtra: Sprites.GenerateGridSprite(new Coord(4, 4, goalPos)));
         yield return new Discriminator(SAlgorithmia.DColor, "color", color, args: [color.ToLowerInvariant()]);
 
         foreach (var val in seedVals.Distinct())

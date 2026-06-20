@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SEmoji
 {
-    [Question("What was the {1} emoji in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the {1} emoji in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, Arguments = ["left", "right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Emoji
 }
 

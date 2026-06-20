@@ -13,16 +13,16 @@ public enum SAzureButton
     [Question("What was the {1} direction in the {2} non-decoy arrow in {0}?", TwoColumns4Answers, "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     QNonDecoyArrowDirection,
 
-    [Question("What was T in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
+    [Question("What was T in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "AzureButtonSprites")]
     QT,
 
-    [Question("Which of these cards was shown in Stage 1, but not T, in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
+    [Question("Which of these cards was shown in Stage 1, but not T, in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "AzureButtonSprites")]
     QNotT,
 
     [Question("What was M in {0}?", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9")]
     QM,
 
-    [Discriminator("the Azure Button that had this card in Stage 1", UsesQuestionSprite = true)]
+    [Discriminator("the Azure Button that had this card in Stage 1", QuestionExtraType = InfoType.Sprites)]
     DCard,
 
     [Discriminator("the Azure Button where M was {0}", Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
@@ -57,7 +57,7 @@ public partial class SouvenirModule
         var dirNames = new[] { "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west" };
 
         foreach (var card in cards)
-            yield return new Discriminator(SAzureButton.DCard, $"card{card}", questionSprite: AzureButtonSprites[card]);
+            yield return new Discriminator(SAzureButton.DCard, $"card{card}", questionExtra: AzureButtonSprites[card]);
 
         yield return new Discriminator(SAzureButton.DM, "m", m, [m.ToString()]);
 

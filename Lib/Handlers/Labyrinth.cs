@@ -6,11 +6,11 @@ using static Souvenir.AnswerLayout;
 
 public enum SLabyrinth
 {
-    [Question("Where was one of the portals in layer {1} in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateArguments = [true], Arguments = ["1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)"], ArgumentGroupSize = 1)]
+    [Question("Where was one of the portals in layer {1} in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, TranslateArguments = [true], Arguments = ["1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)"], ArgumentGroupSize = 1)]
     [AnswerGenerator.Grid(6, 7)]
     PortalLocations,
 
-    [Question("In which layer was this portal in {0}?", TwoColumns4Answers, "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)", TranslateAnswers = true, UsesQuestionSprite = true)]
+    [Question("In which layer was this portal in {0}?", TwoColumns4Answers, "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)", TranslateAnswers = true, QuestionExtraType = InfoType.Sprites)]
     PortalStage
 }
 
@@ -53,7 +53,7 @@ public partial class SouvenirModule
                     correct.Add(args[i / 2]); // Integer division gives layer #
             if (correct.Distinct().Count() > 2)
                 continue; // Don't have a question with less than 4 answers
-            yield return question(SLabyrinth.PortalStage, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 7, p))).Answers(correct.Distinct().ToArray());
+            yield return question(SLabyrinth.PortalStage, questionExtra: Sprites.GenerateGridSprite(new Coord(6, 7, p))).Answers(correct.Distinct().ToArray());
         }
     }
 }

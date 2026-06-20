@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SGadgetronVendor
 {
-    [Question("What was your current weapon in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was your current weapon in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     CurrentWeapon,
 
-    [Question("What was the weapon up for sale in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What was the weapon up for sale in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     WeaponForSale
 }
 

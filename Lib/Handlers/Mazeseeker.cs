@@ -5,14 +5,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SMazeseeker
 {
-    [Question("How many walls surrounded this cell in {0}?", TwoColumns4Answers, "0", "1", "2", "3", UsesQuestionSprite = true)]
+    [Question("How many walls surrounded this cell in {0}?", TwoColumns4Answers, "0", "1", "2", "3", QuestionExtraType = InfoType.Sprites)]
     Cell,
 
-    [Question("Where was the start in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Where was the start in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Start,
 
-    [Question("Where was the goal in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("Where was the goal in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Grid(6, 6)]
     Goal
 }
@@ -33,7 +33,7 @@ public partial class SouvenirModule
         var goalRow = GetField<int>(comp, "GoalRow").Get();
         var goalColumn = GetField<int>(comp, "GoalColumn").Get();
         for (var i = 0; i < 36; i++)
-            yield return question(SMazeseeker.Cell, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 6, i))).Answers(nums[i / 6, i % 6].ToString());
+            yield return question(SMazeseeker.Cell, questionExtra: Sprites.GenerateGridSprite(new Coord(6, 6, i))).Answers(nums[i / 6, i % 6].ToString());
         yield return question(SMazeseeker.Start).Answers(new Coord(6, 6, startColumn, startRow));
         yield return question(SMazeseeker.Goal).Answers(new Coord(6, 6, goalColumn, goalRow));
     }

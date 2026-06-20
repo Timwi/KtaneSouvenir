@@ -12,7 +12,7 @@ public sealed class DiscriminatorAttribute(string discriminatorText) : Attribute
     public bool[] TranslateArguments { get; set; }
     public string[] TranslatableStrings { get; set; }
     public bool ReferenceDocumentation { get; set; }
-    public bool UsesQuestionSprite { get; set; }
+    public InfoType QuestionExtraType { get; set; }
 
     public Enum EnumValue { get; internal set; }
     public HandlerAttribute Handler { get; internal set; }

@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SObjectShows
 {
-    [Question("Which of these was a contestant, but not the winner, on {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "ObjectShowsSprites")]
+    [Question("Which of these was a contestant, but not the winner, on {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "ObjectShowsSprites")]
     Contestants
 }
 

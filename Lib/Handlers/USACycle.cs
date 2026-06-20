@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SUSACycle
 {
-    [Question("Which state was displayed in {0}?", TwoColumns4Answers, Type = AnswerType.Sprites)]
+    [Question("Which state was displayed in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites)]
     Displayed
 }
 

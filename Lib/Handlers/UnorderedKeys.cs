@@ -6,13 +6,13 @@ using static Souvenir.AnswerLayout;
 
 public enum SUnorderedKeys
 {
-    [Question("What color was this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", QuestionExtraType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     KeyColor,
 
-    [Question("What color was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What color was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", QuestionExtraType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     LabelColor,
 
-    [Question("What was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, UsesQuestionSprite = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the label of this key in the {1} stage of {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(1, 6)]
     Label
 }
@@ -55,9 +55,9 @@ public partial class SouvenirModule
             for (var keyIx = 0; keyIx < stages[stageIx].Length; keyIx++)
                 if (stages[stageIx][keyIx] != null)
                 {
-                    yield return question(SUnorderedKeys.KeyColor, args: [Ordinal(stageIx + 1)], questionSprite: OrderedKeysSprites[keyIx]).Answers(colors[stages[stageIx][keyIx][0]]);
-                    yield return question(SUnorderedKeys.LabelColor, args: [Ordinal(stageIx + 1)], questionSprite: OrderedKeysSprites[keyIx]).Answers(colors[stages[stageIx][keyIx][1]]);
-                    yield return question(SUnorderedKeys.Label, args: [Ordinal(stageIx + 1)], questionSprite: OrderedKeysSprites[keyIx]).Answers((stages[stageIx][keyIx][2] + 1).ToString());
+                    yield return question(SUnorderedKeys.KeyColor, args: [Ordinal(stageIx + 1)], questionExtra: OrderedKeysSprites[keyIx]).Answers(colors[stages[stageIx][keyIx][0]]);
+                    yield return question(SUnorderedKeys.LabelColor, args: [Ordinal(stageIx + 1)], questionExtra: OrderedKeysSprites[keyIx]).Answers(colors[stages[stageIx][keyIx][1]]);
+                    yield return question(SUnorderedKeys.Label, args: [Ordinal(stageIx + 1)], questionExtra: OrderedKeysSprites[keyIx]).Answers((stages[stageIx][keyIx][2] + 1).ToString());
                 }
     }
 }

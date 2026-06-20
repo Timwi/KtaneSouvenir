@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SHinges
 {
-    [Question("Which of these hinges was initially {1} {0}?", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "HingesSprites", Arguments = ["present on", "absent from"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Which of these hinges was initially {1} {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "HingesSprites", Arguments = ["present on", "absent from"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Initial,
 
-    [Discriminator("the Hinges where this hinge was initally {0}", UsesQuestionSprite = true, Arguments = ["present", "absent"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Hinges where this hinge was initally {0}", QuestionExtraType = InfoType.Sprites, Arguments = ["present", "absent"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Discriminator
 }
 
@@ -30,7 +30,7 @@ public partial class SouvenirModule
             var present = initialHingesStatus[pos] == 1;
             (present ? presentHinges : absentHinges).Add(HingesSprites[pos]);
             if ((pos, present) is ( < 4, true) or (4, _) or ( > 4, false))
-                yield return new Discriminator(SHinges.Discriminator, $"hinge{pos}", present, args: [present ? "present" : "absent"], questionSprite: HingesSprites[pos], avoidAnswers: [HingesSprites[pos]]);
+                yield return new Discriminator(SHinges.Discriminator, $"hinge{pos}", present, args: [present ? "present" : "absent"], questionExtra: HingesSprites[pos], avoidAnswers: [HingesSprites[pos]]);
         }
 
         yield return WaitForSolve;

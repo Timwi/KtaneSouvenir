@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCRule
 {
-    [Question("Which cell was pre-filled at the start of {0}?", TwoColumns4Answers, Type = AnswerType.Sprites)]
+    [Question("Which cell was pre-filled at the start of {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites)]
     Prefilled
 }
 

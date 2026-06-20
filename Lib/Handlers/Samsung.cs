@@ -24,10 +24,10 @@ public enum SSamsung
     [Question("What was the starting symbol for Photomath in {0}?", ThreeColumns6Answers, "Σ", "ℝ", "≜", "!", "δ", "∞", "⋰", "∝", "∴", "¬")]
     PhotomathStartSymbol,
 
-    [Question("What song was played by Spotify in {0}?", TwoColumns4Answers, Type = AnswerType.Audio, ForeignAudioID = "theSamsung")]
+    [Question("What song was played by Spotify in {0}?", TwoColumns4Answers, AnswerType = InfoType.Audio, ForeignAudioID = "theSamsung")]
     SpotifySong,
 
-    [Question("What Braille pattern was shown by Discord in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [Question("What Braille pattern was shown by Discord in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     [AnswerGenerator.Circles(2, 3, 20, 20, SuppressEmpty = true)]
     DiscordPattern
 }

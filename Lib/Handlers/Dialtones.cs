@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SDialtones
 {
-    [Question("What dialtones were heard in {0}?", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
+    [Question("What dialtones were heard in {0}?", OneColumn4Answers, AnswerType = InfoType.Audio, ForeignAudioID = Sounds.Generated)]
     Dialtones
 }
 

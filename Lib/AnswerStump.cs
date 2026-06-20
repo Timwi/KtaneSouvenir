@@ -9,7 +9,7 @@ namespace Souvenir;
 public abstract class AnswerStump
 {
     public abstract AnswerSet GenerateAnswerSet(QuestionStump questionStump, SouvenirModule souvenir);
-    protected abstract AnswerType[] acceptableTypes { get; }
+    protected abstract InfoType[] acceptableTypes { get; }
     public abstract object[] CorrectAnswers { get; }
     public abstract override string ToString();
 }
@@ -32,9 +32,9 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
             Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question} has no SouvenirQuestionAttribute.");
             return null;
         }
-        if (!acceptableTypes.Contains(attr.Type))
+        if (!acceptableTypes.Contains(attr.AnswerType))
         {
-            Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: The module handler for {questionStump.HandlerAttribute.ModuleName} attempted to generate Question {question.GetType().Name}.{question} (type={attr.Type}) but used the wrong answer type.");
+            Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: The module handler for {questionStump.HandlerAttribute.ModuleName} attempted to generate Question {question.GetType().Name}.{question} (type={attr.AnswerType}) but used the wrong answer type.");
             return null;
         }
 

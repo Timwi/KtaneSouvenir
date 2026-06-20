@@ -1,17 +1,31 @@
 ﻿using System;
-using UnityEngine;
 
 namespace Souvenir;
 
-public class TextQuestionStump(Enum enumValue, SouvenirModule souvenir, string[] args, Sprite questionSprite, float questionSpriteRotation) : QuestionStump(enumValue, souvenir, args)
+public class TextQuestionStump : QuestionStump
 {
-    public Sprite QuestionSprite { get; } = questionSprite;
-    public float QuestionSpriteRotation { get; } = questionSpriteRotation;
+    public QuestionExtra QuestionExtra { get; }
 
-    public override QuestionBase MakeQuestion(string moduleFormat, Sprite questionSpriteFromDiscriminator, float questionSpriteRotationFromDiscriminator) =>
-        new TextQuestion(FormattedQuestion(moduleFormat), EnumValue.GetQuestionAttribute().Layout,
-            questionSpriteFromDiscriminator ?? QuestionSprite,
-            questionSpriteFromDiscriminator == null ? QuestionSpriteRotation : questionSpriteRotationFromDiscriminator);
+    public TextQuestionStump(Enum enumValue, SouvenirModule souvenir, string[] args, QuestionExtra questionExtra) : base(enumValue, souvenir, args)
+    {
+        var type = Ut.GetQuestionAttribute(enumValue).QuestionExtraType;
+        if (!(type switch
+        {
+            InfoType.None => questionExtra == null,
+            InfoType.Audio => false,
+            InfoType.Sprites => questionExtra is QuestionExtraSprite,
+            InfoType.DynamicFont => questionExtra is QuestionExtraText { Text: not null, Font: not null, FontTexture: not null },
+            _ => questionExtra is QuestionExtraText { Text: not null, Font: null, FontTexture: null }
+        }))
+            throw new InvalidOperationException($"A question ({enumValue.GetType().Name}.{enumValue}) was constructed where the question extra ({(questionExtra == null ? "null" : questionExtra.GetType())}) does not match the QuestionExtraType on the attribute ({type}).");
 
-    public override string ToString() => $"{base.ToString()}{(QuestionSprite == null ? "" : $" question sprite={QuestionSprite.name}{(QuestionSpriteRotation != 0 ? $" (rot {QuestionSpriteRotation})" : "")}")}";
+        QuestionExtra = questionExtra;
+    }
+
+    public override QuestionBase MakeQuestion(string moduleFormat, QuestionExtra questionExtraFromDiscriminator) => new TextQuestion(
+        question: FormattedQuestion(moduleFormat),
+        layout: QuestionAttribute.Layout,
+        questionExtra: questionExtraFromDiscriminator ?? QuestionExtra?.Uplift(Souvenir, QuestionAttribute.QuestionExtraType));
+
+    public override string ToString() => $"{base.ToString()}{(QuestionExtra == null ? "" : $", {QuestionExtra}")}";
 }

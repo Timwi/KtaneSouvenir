@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMazeSwap
 {
-    [Question("Where was the {1} position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("Where was the {1} position in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, Arguments = ["starting", "goal"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Grid(6, 6)]
     Position
 }

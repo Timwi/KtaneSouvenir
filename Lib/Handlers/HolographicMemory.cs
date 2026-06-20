@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SHolographicMemory
 {
-    [Question("Which side did this symbol appear in {0}?", TwoColumns2Answers, "Light", "Dark", UsesQuestionSprite = true, TranslateAnswers = true)]
+    [Question("Which side did this symbol appear in {0}?", TwoColumns2Answers, "Light", "Dark", QuestionExtraType = InfoType.Sprites, TranslateAnswers = true)]
     InitialGrid
 }
 
@@ -28,6 +28,6 @@ public partial class SouvenirModule
         for (var side = 0; side < 2; side++)
             for (var row = 0; row < 4; row++)
                 for (var col = 0; col < 4; col++)
-                    yield return question(SHolographicMemory.InitialGrid, questionSprite: sprites[symbolSelected[16 * side + 4 * row + col]]).Answers(side == 0 ? "Light" : "Dark");
+                    yield return question(SHolographicMemory.InitialGrid, questionExtra: sprites[symbolSelected[16 * side + 4 * row + col]]).Answers(side == 0 ? "Light" : "Dark");
     }
 }

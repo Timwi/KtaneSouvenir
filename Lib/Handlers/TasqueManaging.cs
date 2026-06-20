@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum STasqueManaging
 {
-    [Question("Where was the starting position in {0}?", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "TasqueManagingSprites")]
+    [Question("Where was the starting position in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "TasqueManagingSprites")]
     StartingPos
 }
 

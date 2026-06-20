@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SEeBgnillepS
 {
-    [Question("What word was asked to be spelled in {0}?", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "eeBgnillepSAudio")]
+    [Question("What word was asked to be spelled in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Audio, AudioFieldName = "eeBgnillepSAudio")]
     [ReverseQuestionGimmick]
     Word
 }
