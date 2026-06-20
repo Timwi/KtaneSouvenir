@@ -13127,18 +13127,20 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Phosphorescence
         [typeof(SPhosphorescence)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "燐光",
             ManualQuestions = new()
             {
-                ["What were the button presses and the offset?"] = "押したボタンとオフセットは？",
+                ["What colors were the buttons?"] = "What colors were the buttons?",
+                ["What was the offset?"] = "What was the offset?",
+                ["What was the decrypted word?"] = "What was the decrypted word?",
             },
             Questions = new()
             {
-                [SPhosphorescence.ButtonPresses] = new()
+                [SPhosphorescence.ButtonColors] = new()
                 {
-                    // English: What was the {1} button press in {0}?
-                    // Example: What was the first button press in Phosphorescence?
-                    Question = "{0}の{1}番目に押したボタンは？",
+                    // English: Which color was present on a button in {0}?
+                    Question = "Which color was present on a button in {0}?",
                     Answers = new()
                     {
                         ["Azure"] = "空",
@@ -13173,6 +13175,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the offset in {0}?
                     Question = "{0}のオフセットは？",
+                },
+                [SPhosphorescence.Word] = new()
+                {
+                    // English: What was the decrypted word in {0}?
+                    Question = "What was the decrypted word in {0}?",
                 },
             },
         },
@@ -17229,18 +17236,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SSugarSkulls.Skull] = new()
-                {
-                    // English: What skull was shown on the {1} square in {0}?
-                    // Example: What skull was shown on the top square in Sugar Skulls?
-                    Question = "{0}にて{1}の位置に表示された骸骨は？",
-                    Arguments = new()
-                    {
-                        ["top"] = "上",
-                        ["bottom-left"] = "左下",
-                        ["bottom-right"] = "右下",
-                    },
-                },
                 [SSugarSkulls.Availability] = new()
                 {
                     // English: Which skull {1} present in {0}?

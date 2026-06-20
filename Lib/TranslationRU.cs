@@ -13248,15 +13248,16 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the button presses and the offset?"] = "Какие кнопки были нажаты и какое было смещение?",
+                ["What colors were the buttons?"] = "What colors were the buttons?",
+                ["What was the offset?"] = "What was the offset?",
+                ["What was the decrypted word?"] = "What was the decrypted word?",
             },
             Questions = new()
             {
-                [SPhosphorescence.ButtonPresses] = new()
+                [SPhosphorescence.ButtonColors] = new()
                 {
-                    // English: What was the {1} button press in {0}?
-                    // Example: What was the first button press in Phosphorescence?
-                    Question = "Какая была {1}-я нажатая кнопка {0}?",
+                    // English: Which color was present on a button in {0}?
+                    Question = "Which color was present on a button in {0}?",
                     Answers = new()
                     {
                         ["Azure"] = "Azure",
@@ -13291,6 +13292,11 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the offset in {0}?
                     Question = "Какое было смещение {0}?",
+                },
+                [SPhosphorescence.Word] = new()
+                {
+                    // English: What was the decrypted word in {0}?
+                    Question = "What was the decrypted word in {0}?",
                 },
             },
         },
@@ -17322,18 +17328,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SSugarSkulls.Skull] = new()
-                {
-                    // English: What skull was shown on the {1} square in {0}?
-                    // Example: What skull was shown on the top square in Sugar Skulls?
-                    Question = "Какой череп был показан на {1} квадрате {0}?",
-                    Arguments = new()
-                    {
-                        ["top"] = "верхнем",
-                        ["bottom-left"] = "нижнем левом",
-                        ["bottom-right"] = "нижнем правом",
-                    },
-                },
                 [SSugarSkulls.Availability] = new()
                 {
                     // English: Which skull {1} present in {0}?
