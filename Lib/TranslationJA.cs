@@ -347,6 +347,24 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // 3 LEDs
+        [typeof(S3LEDs)] = new()
+        {
+            ModuleName = "3つのLED",
+            ManualQuestions = new()
+            {
+                ["What was the initial state of the LEDs?"] = "LEDの初期配置は？",
+            },
+            Questions = new()
+            {
+                [S3LEDs.InitialState] = new()
+                {
+                    // English: What was the initial state of the LEDs in {0}?
+                    Question = "{0}の初期のLEDの状態は？",
+                },
+            },
+        },
+
         // 3N+1
         [typeof(S3NPlus1)] = new()
         {
@@ -1174,6 +1192,24 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on ASCII Maze?
                     Question = "{0}の{1}番目に表示された文字は？",
+                },
+            },
+        },
+
+        // Audio Morse
+        [typeof(SAudioMorse)] = new()
+        {
+            ModuleName = "音声モールス",
+            ManualQuestions = new()
+            {
+                ["What was the Morse code?"] = "モールス信号は？",
+            },
+            Questions = new()
+            {
+                [SAudioMorse.Sound] = new()
+                {
+                    // English: What was signaled in {0}?
+                    Question = "{0}で送信されたものは？",
                 },
             },
         },

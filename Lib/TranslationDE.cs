@@ -389,6 +389,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 3 LEDs
+        [typeof(S3LEDs)] = new()
+        {
+            ManualQuestions = new()
+            {
+                ["What was the initial state of the LEDs?"] = "Wie sahen die LEDs am Anfang aus?",
+            },
+            Questions = new()
+            {
+                [S3LEDs.InitialState] = new()
+                {
+                    // English: What was the initial state of the LEDs in {0}?
+                    Question = "Was war bei {0} der Anfangszustand?",
+                },
+            },
+        },
+
         // 3N+1
         [typeof(S3NPlus1)] = new()
         {
@@ -1218,6 +1235,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on ASCII Maze?
                     Question = "Was war bei {0} das {1}e angezeigte Zeichen?",
+                },
+            },
+        },
+
+        // Audio Morse
+        [typeof(SAudioMorse)] = new()
+        {
+            ModuleName = "Audio-Morse",
+            ManualQuestions = new()
+            {
+                ["What was the Morse code?"] = "Was war der Morsecode?",
+            },
+            Questions = new()
+            {
+                [SAudioMorse.Sound] = new()
+                {
+                    // English: What was signaled in {0}?
+                    Question = "Was war bei {0} zu hören?",
                 },
             },
         },

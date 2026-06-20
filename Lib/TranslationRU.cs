@@ -429,6 +429,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // 3 LEDs
+        [typeof(S3LEDs)] = new()
+        {
+            ManualQuestions = new()
+            {
+                ["What was the initial state of the LEDs?"] = "Какое было исходное состояние у светодиодов?",
+            },
+            Questions = new()
+            {
+                [S3LEDs.InitialState] = new()
+                {
+                    // English: What was the initial state of the LEDs in {0}?
+                    Question = "Какое было исходное состояние у {0}?",
+                    Conjugation = Conjugation.GenitivePlural,
+                },
+            },
+        },
+
         // 3N+1
         [typeof(S3NPlus1)] = new()
         {
@@ -1265,6 +1283,23 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the {1} character displayed on {0}?
                     // Example: What was the first character displayed on ASCII Maze?
                     Question = "Какой был {1}-й символ, отображённый {0}?",
+                },
+            },
+        },
+
+        // Audio Morse
+        [typeof(SAudioMorse)] = new()
+        {
+            ManualQuestions = new()
+            {
+                ["What was the Morse code?"] = "Что было передано по Морзе?",
+            },
+            Questions = new()
+            {
+                [SAudioMorse.Sound] = new()
+                {
+                    // English: What was signaled in {0}?
+                    Question = "Что было в сигнале {0}?",
                 },
             },
         },
