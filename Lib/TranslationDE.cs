@@ -1619,34 +1619,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Beans
-        [typeof(SBeans)] = new()
-        {
-            ModuleName = "Bohnen",
-            ManualQuestions = new()
-            {
-                ["What color were the eaten beans?"] = "Welche Farbe hatten die gegessenen Bohnen?",
-                ["Which beans were wobbling?"] = "Welche Bohnen haben gewackelt?",
-            },
-            Questions = new()
-            {
-                [SBeans.Colors] = new()
-                {
-                    // English: What was this bean in {0}? (+ extra)
-                    Question = "Was war bei {0} diese Bohne?",
-                    Answers = new()
-                    {
-                        ["Wobbly Orange"] = "Orange wackelnd",
-                        ["Wobbly Yellow"] = "Gelb wackelnd",
-                        ["Wobbly Green"] = "Grün wackelnd",
-                        ["Not Wobbly Orange"] = "Orange nicht wackelnd",
-                        ["Not Wobbly Yellow"] = "Gelb nicht wackelnd",
-                        ["Not Wobbly Green"] = "Grün nicht wackelnd",
-                    },
-                },
-            },
-        },
-
         // Bean Sprouts
         [typeof(SBeanSprouts)] = new()
         {
@@ -4185,24 +4157,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["middle"] = "mittleren",
                         ["bottom"] = "unteren",
                     },
-                },
-            },
-        },
-
-        // Cosmic
-        [typeof(SCosmic)] = new()
-        {
-            ModuleName = "Kosmik",
-            ManualQuestions = new()
-            {
-                ["What was the number initially shown?"] = "Welche Zahl war am Anfang auf dem Display?",
-            },
-            Questions = new()
-            {
-                [SCosmic.Number] = new()
-                {
-                    // English: What was the number initially shown in {0}?
-                    Question = "What was the number initially shown in {0}?",
                 },
             },
         },
@@ -7691,23 +7645,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Green"] = "Grün",
                         ["Yellow"] = "Gelb",
                     },
-                },
-            },
-        },
-
-        // h
-        [typeof(SH)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was the transmitted letter?"] = "Welcher Buchstabe wurde übermittelt?",
-            },
-            Questions = new()
-            {
-                [SH.Letter] = new()
-                {
-                    // English: What was the transmitted letter in {0}?
-                    Question = "Was war bei {0} der übermittelte Buchstabe?",
                 },
             },
         },
@@ -12736,26 +12673,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Numbered Buttons
-        [typeof(SNumberedButtons)] = new()
-        {
-            ModuleName = "Nummerierte Knöpfe",
-            ModuleNameDative = "Nummerierten Knöpfen",
-            Gender = Gender.Plural,
-            ManualQuestions = new()
-            {
-                ["Which numbers were correctly pressed?"] = "Welche Zahlen wurden korrekt eingegeben?",
-            },
-            Questions = new()
-            {
-                [SNumberedButtons.Buttons] = new()
-                {
-                    // English: Which number was correctly pressed on {0}?
-                    Question = "Welche Zahl wurde bei {0} korrekt gedrückt?",
-                },
-            },
-        },
-
         // The Number Game
         [typeof(SNumberGame)] = new()
         {
@@ -14305,24 +14222,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which number was shown in {0}?
                     Question = "Welche Zahl wurde bei {0} angezeigt?",
-                },
-            },
-        },
-
-        // Quaver
-        [typeof(SQuaver)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was each sequence’s answer?"] = "Welche Folge hatte welche Lösung?",
-            },
-            Questions = new()
-            {
-                [SQuaver.Arrows] = new()
-                {
-                    // English: What was the {1} sequence’s answer in {0}?
-                    // Example: What was the first sequence’s answer in Quaver?
-                    Question = "Was war bei {0} die Lösung zur {1}en Sequenz?",
                 },
             },
         },

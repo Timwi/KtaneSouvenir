@@ -36,17 +36,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Morse          │  Identity Parade       │  Object Shows             │  Simon Sings            │
     Colored Squares      │  IPA                   │  Only Connect             │  Simon Sounds           │
 
-## Implemented by Anonymous (102)
+## Implemented by Anonymous (101)
 
-    ↻↺                         │  Color One Two            │  Hidden Value, The       │  Number Game, The           │  Smash, Marry, Kill
-    ❖                          │  Coloured Cylinder        │  HyperForget             │  One Links To All           │  Starstruck
-    0                          │  Concentration            │  KayMazey Talk           │  Pentabutton, The           │  Stroop’s Test
-    1, 2, 3 Game, The          │  Connected Monitors       │  Keypad Maze             │  Pickup Identification      │  Subbly Jubbly
-    21                         │  Dialtones                │  Keypad Sequence         │  Pointless Machines         │  SUSadmin
-    A Message                  │  Divided Squares          │  Kooky Keypad            │  Prison Break               │  TAC
-    Amusement Parks            │  Doofenshmirtz Evil Inc.  │  Kugelblitz              │  Puzzling Hexabuttons       │  Thirty Dollar Module
-    Bean Sprouts               │  Double Arrows            │  Labyrinth, The          │  Q & A                      │  Tribal Council
-    Beans                      │  Double Listening         │  Maroon Button, The      │  Quantum Passwords          │  Unordered Keys
+    ↻↺                         │  Coloured Cylinder        │  HyperForget             │  One Links To All           │  Starstruck
+    ❖                          │  Concentration            │  KayMazey Talk           │  Pentabutton, The           │  Stroop’s Test
+    0                          │  Connected Monitors       │  Keypad Maze             │  Pickup Identification      │  Subbly Jubbly
+    1, 2, 3 Game, The          │  Dialtones                │  Keypad Sequence         │  Pointless Machines         │  SUSadmin
+    21                         │  Divided Squares          │  Kooky Keypad            │  Prison Break               │  TAC
+    A Message                  │  Doofenshmirtz Evil Inc.  │  Kugelblitz              │  Puzzling Hexabuttons       │  Thirty Dollar Module
+    Amusement Parks            │  Double Arrows            │  Labyrinth, The          │  Q & A                      │  Tribal Council
+    Bean Sprouts               │  Double Listening         │  Maroon Button, The      │  Quantum Passwords          │  Unordered Keys
     Big Bean                   │  Double Screen            │  Maze Swap               │  Quantum Ternary Converter  │  Updog
     Blindfolded Yahtzee        │  Emoji                    │  Module Maneuvers        │  Quiplash                   │  Variety
     Blinking Notes             │  Faerie Fires             │  Money Game              │  Red Button’t               │  Walking Cube
@@ -59,6 +58,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     CA-RPS                     │  Halli Galli              │  Not Password            │  Simon Subdivides           │
     Chinese Remainder Theorem  │  hexOrbits                │  Not Red Arrows          │  Simon Swizzles             │
     Coffee Beans               │  Hickory Dickory Dock     │  Not The Plunger Button  │  Skewers                    │
+    Color One Two              │  Hidden Value, The        │  Number Game, The        │  Smash, Marry, Kill         │
 
 ## Implemented by Quinn Wuest (62)
 
@@ -90,26 +90,26 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Keypads         │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
     Cursed Double-Oh      │  Forget Me Now      │  Mad Memory            │  Safety Square          │
 
-## Implemented by Hawker (37)
+## Implemented by Hawker (36)
 
-    3N+1                     │  DetoNATO              │  Garnet Thief, The  │  Module Movements                   │  Subway
-    Arena, The               │  Dimension Disruption  │  Girlfriend         │  RGB Sequences                      │  Suits and Colours
-    Bar Charts               │  Disordered Keys       │  h                  │  Robot Programming                  │  UNO!
-    Book of Mario            │  Earthbound            │  High Score, The    │  Scrutiny Squares                   │  Valves
-    Bordered Keys            │  Error Codes           │  Kuro               │  Sign Language                      │  Weakest Link, The
-    Character Slots          │  Find The Date         │  Ladder Lottery     │  Simon Serves                       │
-    Conditional Buttons      │  Flavor Text EX        │  LED Grid           │  Sonic & Knuckles                   │
-    Customer Identification  │  Garfield Kart         │  Mixometer          │  Spongebob Birthday Identification  │
+    3N+1                     │  DetoNATO              │  Garnet Thief, The  │  RGB Sequences                      │  Suits and Colours
+    Arena, The               │  Dimension Disruption  │  Girlfriend         │  Robot Programming                  │  UNO!
+    Bar Charts               │  Disordered Keys       │  High Score, The    │  Scrutiny Squares                   │  Valves
+    Book of Mario            │  Earthbound            │  Kuro               │  Sign Language                      │  Weakest Link, The
+    Bordered Keys            │  Error Codes           │  Ladder Lottery     │  Simon Serves                       │
+    Character Slots          │  Find The Date         │  LED Grid           │  Sonic & Knuckles                   │
+    Conditional Buttons      │  Flavor Text EX        │  Mixometer          │  Spongebob Birthday Identification  │
+    Customer Identification  │  Garfield Kart         │  Module Movements   │  Subway                             │
 
-## Implemented by BigCrunch22 (33)
+## Implemented by BigCrunch22 (32)
 
-    1000 Words      │  Dumb Waiters   │  Numbers                │  State of Aggregation    │  Violet Cipher
-    Alphabet Tiles  │  Gray Cipher    │  Orange Cipher          │  Subscribe to Pewdiepie  │  What’s on Second
-    Binary          │  Green Cipher   │  Red Cipher             │  Sugar Skulls            │  White Cipher
-    Black Cipher    │  Grocery Store  │  Roger                  │  Switching Maze          │  Working Title
-    Blue Cipher     │  Hold Ups       │  Sequencyclopedia, The  │  Topsy Turvy             │  Yellow Cipher
-    Cosmic          │  Indigo Cipher  │  Shifting Maze          │  Ultimate Cipher         │
+    1000 Words      │  Gray Cipher    │  Orange Cipher          │  Subscribe to Pewdiepie  │  What’s on Second
+    Alphabet Tiles  │  Green Cipher   │  Red Cipher             │  Sugar Skulls            │  White Cipher
+    Binary          │  Grocery Store  │  Roger                  │  Switching Maze          │  Working Title
+    Black Cipher    │  Hold Ups       │  Sequencyclopedia, The  │  Topsy Turvy             │  Yellow Cipher
+    Blue Cipher     │  Indigo Cipher  │  Shifting Maze          │  Ultimate Cipher         │
     Deaf Alley      │  Matrix, The    │  Stars                  │  V                       │
+    Dumb Waiters    │  Numbers        │  State of Aggregation   │  Violet Cipher           │
 
 ## Implemented by luisdiogo98 (31)
 
@@ -168,11 +168,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     ƎNA Cipher                       │  Holographic Memory   │  Multiverse Hotline, The  │  Painting Cube        │  Undertunneling
     French Republican Calendar, The  │  Missing Letter, The  │  Off-White Cipher         │  Pattern Recognition  │  X-Rotor
 
-## Implemented by Emik (9)
-
-    1D Chess  │  hexOS  │  Octadecayotton, The  │  Phosphorescence   │  Quaver
-    Coinage   │  Linq   │  Palindromes          │  Placeholder Talk  │
-
 ## Implemented by GhostSalt (9)
 
     Entry Number Four  │  Game of Life Cruel   │  Mazeseeker     │  Puzzle Identification  │  Xenocryst, The
@@ -182,6 +177,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     Abyss           │  Flashing Arrows  │  Pie Flash         │  Quick Arithmetic  │  WhoOF
     Color Addition  │  Homophones       │  Prime Encryption  │  Who’s on Morse    │
+
+## Implemented by Emik (8)
+
+    1D Chess  │  hexOS  │  Octadecayotton, The  │  Phosphorescence
+    Coinage   │  Linq   │  Palindromes          │  Placeholder Talk
 
 ## Implemented by NickLatkovich (8)
 
@@ -198,11 +198,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     DNA Mutation   │  Lime Arrows           │  Scorching Alchemist  │  UFO Satellites
     Giants Cipher  │  Noise Identification  │  Toxic Crystals       │
 
-## Implemented by Eltrick (6)
-
-    Critters        │  Infinite Loop  │  Numbered Buttons
-    Factoring Maze  │  Interpunct     │  Password Destroyer
-
 ## Others
 
     MODULE                   │  IMPLEMENTED BY
@@ -214,12 +209,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Catchphrase              │  GoodHood
     Colour Flash             │  LotsOfS
     Crazy Hamburger          │  noting3548
+    Critters                 │  Eltrick
     Digit String             │  GoodHood
     Elder Futhark            │  Goofy
+    Factoring Maze           │  Eltrick
     Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris
     Gryphons                 │  JerryEris
+    Infinite Loop            │  Eltrick
     Inner Connections        │  Brawlboxgaming
+    Interpunct               │  Eltrick
     Long Words               │  GoodHood
     Mahjong                  │  River
     Main Page                │  ObjectsCountries
@@ -228,6 +227,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Module Maze              │  River
     Old AI                   │  noting3548
     Order Picking            │  Brawlboxgaming
+    Password Destroyer       │  Eltrick
     Placement Roulette       │  Brawlboxgaming
     Planets                  │  KingSlendy
     Raiding Temples          │  GoodHood
