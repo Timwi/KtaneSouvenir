@@ -918,6 +918,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 048b15908940cb44abde9e57a9f0ee2b, type: 3}
   - {fileID: 21300000, guid: fbe753db8439d4c4ca8a6a08f8824976, type: 3}
   - {fileID: 21300000, guid: 1b91fb895cfd2ae40b7b726ea366d682, type: 3}
+  ThreeLEDsSprites:
+  - {fileID: 21300000, guid: 064838fa90ed05440b65adf5982b1cd9, type: 3}
+  - {fileID: 21300000, guid: 0c22fdd6f3a56c4428c3b11b9ef27438, type: 3}
+  - {fileID: 21300000, guid: d73532253af46754886867bfc3aaf031, type: 3}
+  - {fileID: 21300000, guid: bc53010d5acd4ee4abd2cf55e6f3ee64, type: 3}
+  - {fileID: 21300000, guid: f3bed63ed8f680e4aa59636129f26318, type: 3}
+  - {fileID: 21300000, guid: b623346699649d5428264aea3f31c5ec, type: 3}
+  - {fileID: 21300000, guid: 55330924da497ef4288e42dbb7397cf5, type: 3}
+  - {fileID: 21300000, guid: 0b04ac2273faf334d87e251baab4c482, type: 3}
   ValvesSprites:
   - {fileID: 21300000, guid: c016fab76049d8542b96918f6e46c327, type: 3}
   - {fileID: 21300002, guid: c016fab76049d8542b96918f6e46c327, type: 3}
@@ -1155,6 +1164,9 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 4b8702113456acd4db82e9ae3396f97a, type: 3}
   - {fileID: 2800000, guid: 99ad550484939fc44aad4eb6f2ce9213, type: 3}
   - {fileID: 2800000, guid: eb94ab5fc22f354468ebd52eacad8c0e, type: 3}
+  AudioMorseAudio:
+  - {fileID: 8300000, guid: 74a85dd94a2a2d940ae4b0ea6f2034c2, type: 3}
+  - {fileID: 8300000, guid: a39d3f7c32295774ba6fd77d06ae646e, type: 3}
   DialtonesAudio:
   - {fileID: 8300000, guid: 8217b72a65c27bb46a983703cd0b5b3c, type: 3}
   - {fileID: 8300000, guid: bc5ff403583bee44ca9fee4f6744442c, type: 3}

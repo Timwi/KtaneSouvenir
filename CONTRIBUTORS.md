@@ -36,15 +36,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Morse          │  Identity Parade       │  Object Shows             │  Simon Sings            │
     Colored Squares      │  IPA                   │  Only Connect             │  Simon Sounds           │
 
-## Implemented by Anonymous (101)
+## Implemented by Anonymous (102)
 
-    ↻↺                         │  Coloured Cylinder        │  HyperForget             │  One Links To All           │  Starstruck
-    ❖                          │  Concentration            │  KayMazey Talk           │  Pentabutton, The           │  Stroop’s Test
-    0                          │  Connected Monitors       │  Keypad Maze             │  Pickup Identification      │  Subbly Jubbly
-    1, 2, 3 Game, The          │  Dialtones                │  Keypad Sequence         │  Pointless Machines         │  SUSadmin
-    21                         │  Divided Squares          │  Kooky Keypad            │  Prison Break               │  TAC
-    A Message                  │  Doofenshmirtz Evil Inc.  │  Kugelblitz              │  Puzzling Hexabuttons       │  Thirty Dollar Module
-    Amusement Parks            │  Double Arrows            │  Labyrinth, The          │  Q & A                      │  Tribal Council
+    ↻↺                         │  Color One Two            │  Hidden Value, The       │  Number Game, The           │  Smash, Marry, Kill
+    ❖                          │  Coloured Cylinder        │  HyperForget             │  One Links To All           │  Starstruck
+    0                          │  Concentration            │  KayMazey Talk           │  Pentabutton, The           │  Stroop’s Test
+    1, 2, 3 Game, The          │  Connected Monitors       │  Keypad Maze             │  Pickup Identification      │  Subbly Jubbly
+    21                         │  Dialtones                │  Keypad Sequence         │  Pointless Machines         │  SUSadmin
+    A Message                  │  Divided Squares          │  Kooky Keypad            │  Prison Break               │  TAC
+    Amusement Parks            │  Doofenshmirtz Evil Inc.  │  Kugelblitz              │  Puzzling Hexabuttons       │  Thirty Dollar Module
+    Audio Morse                │  Double Arrows            │  Labyrinth, The          │  Q & A                      │  Tribal Council
     Bean Sprouts               │  Double Listening         │  Maroon Button, The      │  Quantum Passwords          │  Unordered Keys
     Big Bean                   │  Double Screen            │  Maze Swap               │  Quantum Ternary Converter  │  Updog
     Blindfolded Yahtzee        │  Emoji                    │  Module Maneuvers        │  Quiplash                   │  Variety
@@ -58,23 +59,22 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     CA-RPS                     │  Halli Galli              │  Not Password            │  Simon Subdivides           │
     Chinese Remainder Theorem  │  hexOrbits                │  Not Red Arrows          │  Simon Swizzles             │
     Coffee Beans               │  Hickory Dickory Dock     │  Not The Plunger Button  │  Skewers                    │
-    Color One Two              │  Hidden Value, The        │  Number Game, The        │  Smash, Marry, Kill         │
 
-## Implemented by Quinn Wuest (62)
+## Implemented by Quinn Wuest (63)
 
-    .--/---/..-.       │  Double Digits             │  Neptune               │  Parity               │  Spelling Bee
-    4D Tunnels         │  eeB gnillepS              │  Nim                   │  Quadrants            │  Synapse Says
-    Adventure Game     │  English Entries           │  Not Colored Switches  │  Reverse Morse        │  Triple Term
-    Alcoholic Rampage  │  Épelle-moi Ça             │  Not Connection Check  │  RGB Encryption       │  Uncolour Flash
-    Ángel Hernández    │  Guess Who?                │  Not Coordinates       │  Robo-Scanner         │  Unown Cipher
-    Bamboozled Again   │  Horrible Memory           │  Not Morsematics       │  Rule of Three        │  Unpleasant Squares
-    Big Circle         │  Hunting                   │  Not Murder            │  Scramboozled Eggain  │  Varicolour Flash
-    Bulb, The          │  Ingredients               │  Not Number Pad        │  Simon Said           │  Who’s on Gas
-    Caesar Psycho      │  Jewel Vault, The          │  Not Perspective Pegs  │  Simon Selects        │  Word Count
-    Cheep Checkout     │  Letter Math               │  Not The Bulb          │  Simon Shuffles       │  xobekuJ ehT
-    Coordination       │  Match Refereeing          │  Not X01               │  Simultaneous Simons  │
-    Cyan Button, The   │  Mystic Square             │  Off Keys              │  Slow Math            │
-    Denial Displays    │  Navigation Determination  │  Papa’s Pizzeria       │  Small Talk           │
+    .--/---/..-.       │  Denial Displays   │  Navigation Determination  │  Papa’s Pizzeria      │  Small Talk
+    3 LEDs             │  Double Digits     │  Neptune                   │  Parity               │  Spelling Bee
+    4D Tunnels         │  eeB gnillepS      │  Nim                       │  Quadrants            │  Synapse Says
+    Adventure Game     │  English Entries   │  Not Colored Switches      │  Reverse Morse        │  Triple Term
+    Alcoholic Rampage  │  Épelle-moi Ça     │  Not Connection Check      │  RGB Encryption       │  Uncolour Flash
+    Ángel Hernández    │  Guess Who?        │  Not Coordinates           │  Robo-Scanner         │  Unown Cipher
+    Bamboozled Again   │  Horrible Memory   │  Not Morsematics           │  Rule of Three        │  Unpleasant Squares
+    Big Circle         │  Hunting           │  Not Murder                │  Scramboozled Eggain  │  Varicolour Flash
+    Bulb, The          │  Ingredients       │  Not Number Pad            │  Simon Said           │  Who’s on Gas
+    Caesar Psycho      │  Jewel Vault, The  │  Not Perspective Pegs      │  Simon Selects        │  Word Count
+    Cheep Checkout     │  Letter Math       │  Not The Bulb              │  Simon Shuffles       │  xobekuJ ehT
+    Coordination       │  Match Refereeing  │  Not X01                   │  Simultaneous Simons  │
+    Cyan Button, The   │  Mystic Square     │  Off Keys                  │  Slow Math            │
 
 ## Implemented by Kuro (54)
 

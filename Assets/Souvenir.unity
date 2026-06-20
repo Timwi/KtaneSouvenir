@@ -354,7 +354,7 @@ Prefab:
         type: 2}
       propertyPath: AudioClips.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 1e1be9a6a9d6bfc4ca89fa7ac85917ae, type: 3}
+      objectReference: {fileID: 8300000, guid: a39d3f7c32295774ba6fd77d06ae646e, type: 3}
     - target: {fileID: 114848120511536268, guid: 8814ea52310d2614a9feda02ec355ae4,
         type: 2}
       propertyPath: AudioClips.Array.data[2]
@@ -409,7 +409,7 @@ Prefab:
         type: 2}
       propertyPath: AudioClips.Array.data[12]
       value: 
-      objectReference: {fileID: 8300000, guid: 1e1be9a6a9d6bfc4ca89fa7ac85917ae, type: 3}
+      objectReference: {fileID: 8300000, guid: 74a85dd94a2a2d940ae4b0ea6f2034c2, type: 3}
     - target: {fileID: 114848120511536268, guid: 8814ea52310d2614a9feda02ec355ae4,
         type: 2}
       propertyPath: AudioClips.Array.data[13]
