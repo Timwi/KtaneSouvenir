@@ -1668,34 +1668,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Beans
-        [typeof(SBeans)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What color were the eaten beans?"] = "Каких цветов были съеденные бобы?",
-                ["Which beans were wobbling?"] = "Какие бобы были Wobbly?",
-            },
-            Questions = new()
-            {
-                [SBeans.Colors] = new()
-                {
-                    // English: What was this bean in {0}? (+ extra)
-                    Question = "Каким был данный боб {0}?",
-                    Answers = new()
-                    {
-                        ["Wobbly Orange"] = "Wobbly Orange",
-                        ["Wobbly Yellow"] = "Wobbly Yellow",
-                        ["Wobbly Green"] = "Wobbly Green",
-                        ["Not Wobbly Orange"] = "Not Wobbly Orange",
-                        ["Not Wobbly Yellow"] = "Not Wobbly Yellow",
-                        ["Not Wobbly Green"] = "Not Wobbly Green",
-                    },
-                },
-            },
-        },
-
         // Bean Sprouts
         [typeof(SBeanSprouts)] = new()
         {
@@ -4212,23 +4184,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["middle"] = "middle",
                         ["bottom"] = "bottom",
                     },
-                },
-            },
-        },
-
-        // Cosmic
-        [typeof(SCosmic)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was the number initially shown?"] = "Какое было исходное число?",
-            },
-            Questions = new()
-            {
-                [SCosmic.Number] = new()
-                {
-                    // English: What was the number initially shown in {0}?
-                    Question = "Какое число было изначально показано {0}?",
                 },
             },
         },
@@ -7604,23 +7559,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Green"] = "Зелёный",
                         ["Yellow"] = "Жёлтый",
                     },
-                },
-            },
-        },
-
-        // h
-        [typeof(SH)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was the transmitted letter?"] = "Какая буква передавалась модулем?",
-            },
-            Questions = new()
-            {
-                [SH.Letter] = new()
-                {
-                    // English: What was the transmitted letter in {0}?
-                    Question = "Какая буква передавалась в \"{0}\"?",
                 },
             },
         },
@@ -12530,23 +12468,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Numbered Buttons
-        [typeof(SNumberedButtons)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["Which numbers were correctly pressed?"] = "Какие правильные числа были нажаты?",
-            },
-            Questions = new()
-            {
-                [SNumberedButtons.Buttons] = new()
-                {
-                    // English: Which number was correctly pressed on {0}?
-                    Question = "Какое было правильно нажатое число {0}?",
-                },
-            },
-        },
-
         // The Number Game
         [typeof(SNumberGame)] = new()
         {
@@ -14060,24 +13981,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: Which number was shown in {0}?
                     Question = "Какое число было показано {0}?",
-                },
-            },
-        },
-
-        // Quaver
-        [typeof(SQuaver)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was each sequence’s answer?"] = "Какой был ответ к каждой последовательности?",
-            },
-            Questions = new()
-            {
-                [SQuaver.Arrows] = new()
-                {
-                    // English: What was the {1} sequence’s answer in {0}?
-                    // Example: What was the first sequence’s answer in Quaver?
-                    Question = "Какой был {1}-й ответ последовательности {0}?",
                 },
             },
         },

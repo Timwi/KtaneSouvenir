@@ -1569,34 +1569,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Beans
-        [typeof(SBeans)] = new()
-        {
-            ModuleName = "豆",
-            ManualQuestions = new()
-            {
-                ["What color were the eaten beans?"] = "食べた豆の色は？",
-                ["Which beans were wobbling?"] = "どの豆が揺れていた？",
-            },
-            Questions = new()
-            {
-                [SBeans.Colors] = new()
-                {
-                    // English: What was this bean in {0}? (+ extra)
-                    Question = "{0}のこの豆はどんな豆だった？",
-                    Answers = new()
-                    {
-                        ["Wobbly Orange"] = "揺れオレンジ",
-                        ["Wobbly Yellow"] = "揺れ黄",
-                        ["Wobbly Green"] = "揺れ緑",
-                        ["Not Wobbly Orange"] = "静止オレンジ",
-                        ["Not Wobbly Yellow"] = "静止黄",
-                        ["Not Wobbly Green"] = "静止緑",
-                    },
-                },
-            },
-        },
-
         // Bean Sprouts
         [typeof(SBeanSprouts)] = new()
         {
@@ -4086,24 +4058,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["middle"] = "middle",
                         ["bottom"] = "bottom",
                     },
-                },
-            },
-        },
-
-        // Cosmic
-        [typeof(SCosmic)] = new()
-        {
-            ModuleName = "宇宙",
-            ManualQuestions = new()
-            {
-                ["What was the number initially shown?"] = "最初に表示された番号は？",
-            },
-            Questions = new()
-            {
-                [SCosmic.Number] = new()
-                {
-                    // English: What was the number initially shown in {0}?
-                    Question = "{0}の最初に表示された番号は？",
                 },
             },
         },
@@ -7492,24 +7446,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Green"] = "緑",
                         ["Yellow"] = "黄",
                     },
-                },
-            },
-        },
-
-        // h
-        [typeof(SH)] = new()
-        {
-            ModuleName = "H",
-            ManualQuestions = new()
-            {
-                ["What was the transmitted letter?"] = "送信した英字は？",
-            },
-            Questions = new()
-            {
-                [SH.Letter] = new()
-                {
-                    // English: What was the transmitted letter in {0}?
-                    Question = "{0}で送信した英字は？",
                 },
             },
         },
@@ -12423,24 +12359,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Numbered Buttons
-        [typeof(SNumberedButtons)] = new()
-        {
-            ModuleName = "番号ボタン",
-            ManualQuestions = new()
-            {
-                ["Which numbers were correctly pressed?"] = "正しく押したのはどの数字？",
-            },
-            Questions = new()
-            {
-                [SNumberedButtons.Buttons] = new()
-                {
-                    // English: Which number was correctly pressed on {0}?
-                    Question = "{0}で正しく押された番号は？",
-                },
-            },
-        },
-
         // The Number Game
         [typeof(SNumberGame)] = new()
         {
@@ -13948,24 +13866,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which number was shown in {0}?
                     Question = "{0}に表示された数字は？",
-                },
-            },
-        },
-
-        // Quaver
-        [typeof(SQuaver)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What was each sequence’s answer?"] = "シーケンスの回答は？",
-            },
-            Questions = new()
-            {
-                [SQuaver.Arrows] = new()
-                {
-                    // English: What was the {1} sequence’s answer in {0}?
-                    // Example: What was the first sequence’s answer in Quaver?
-                    Question = "{0}の{1}番目のシークエンスの回答は？",
                 },
             },
         },
