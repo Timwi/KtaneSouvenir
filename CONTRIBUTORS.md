@@ -121,14 +121,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Ultracube, The      │
     Decolored Squares         │  iPhone, The         │  Pie                │  USA Maze            │
 
-## Implemented by Espik (28)
+## Implemented by Espik (29)
 
-    100 Levels of Defusal  │  Directional Button  │  Hyperlink, The          │  Samsung, The          │  Unfair Cipher
-    Blockbusters           │  Dreamcipher         │  Not Who’s on First      │  Simon Stages          │  Unfair’s Cruel Revenge
-    Boolean Wires          │  Encrypted Morse     │  Pixel Cipher            │  Sorting               │  Unfair’s Revenge
-    Calendar               │  Etterna             │  Reformed Role Reversal  │  Thinking Wires        │  Unicode
-    Challenge & Contact    │  Exoplanets          │  Regular Crazy Talk      │  Thirty One            │
-    Coffeebucks            │  Hexabutton, The     │  Role Reversal           │  Tricky Tetris Pieces  │
+    100 Levels of Defusal  │  Directional Button  │  Hyperlink, The          │  Role Reversal   │  Tricky Tetris Pieces
+    Blockbusters           │  Dreamcipher         │  Not Who’s on First      │  Samsung, The    │  Unfair Cipher
+    Boolean Wires          │  Encrypted Morse     │  Phosphorescence         │  Simon Stages    │  Unfair’s Cruel Revenge
+    Calendar               │  Etterna             │  Pixel Cipher            │  Sorting         │  Unfair’s Revenge
+    Challenge & Contact    │  Exoplanets          │  Reformed Role Reversal  │  Thinking Wires  │  Unicode
+    Coffeebucks            │  Hexabutton, The     │  Regular Crazy Talk      │  Thirty One      │
 
 ## Implemented by tandyCake (26)
 
@@ -178,15 +178,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Abyss           │  Flashing Arrows  │  Pie Flash         │  Quick Arithmetic  │  WhoOF
     Color Addition  │  Homophones       │  Prime Encryption  │  Who’s on Morse    │
 
-## Implemented by Emik (8)
-
-    1D Chess  │  hexOS  │  Octadecayotton, The  │  Phosphorescence
-    Coinage   │  Linq   │  Palindromes          │  Placeholder Talk
-
 ## Implemented by NickLatkovich (8)
 
     Alfa-Bravo    │  Character Codes      │  Eight          │  Stability
     Binary Shift  │  Colors Maximization  │  Space Traders  │  Sysadmin
+
+## Implemented by Emik (7)
+
+    1D Chess  │  hexOS  │  Octadecayotton, The  │  Placeholder Talk
+    Coinage   │  Linq   │  Palindromes          │
 
 ## Implemented by Marksam (7)
 

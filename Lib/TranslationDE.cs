@@ -13471,19 +13471,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Phosphorescence
         [typeof(SPhosphorescence)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Phosphoreszenz",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What were the button presses and the offset?"] = "Was waren die Tasteneingaben und das Offset?",
+                ["What colors were the buttons?"] = "What colors were the buttons?",
+                ["What was the offset?"] = "What was the offset?",
+                ["What was the decrypted word?"] = "What was the decrypted word?",
             },
             Questions = new()
             {
-                [SPhosphorescence.ButtonPresses] = new()
+                [SPhosphorescence.ButtonColors] = new()
                 {
-                    // English: What was the {1} button press in {0}?
-                    // Example: What was the first button press in Phosphorescence?
-                    Question = "Was war bei {0} die {1}e Eingabe?",
+                    // English: Which color was present on a button in {0}?
+                    Question = "Which color was present on a button in {0}?",
                     Answers = new()
                     {
                         ["Azure"] = "Azure",
@@ -13498,7 +13500,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Jade"] = "Jade",
                         ["Kiwi"] = "Kiwi",
                         ["Lime"] = "Lime",
-                        ["Magenta"] = "Rosa",
+                        ["Magenta"] = "Magenta",
                         ["Navy"] = "Navy",
                         ["Orange"] = "Orange",
                         ["Purple"] = "Purple",
@@ -13518,6 +13520,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the offset in {0}?
                     Question = "Was war bei {0} das Offset?",
+                },
+                [SPhosphorescence.Word] = new()
+                {
+                    // English: What was the decrypted word in {0}?
+                    Question = "What was the decrypted word in {0}?",
                 },
             },
         },
@@ -17646,18 +17653,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SSugarSkulls.Skull] = new()
-                {
-                    // English: What skull was shown on the {1} square in {0}?
-                    // Example: What skull was shown on the top square in Sugar Skulls?
-                    Question = "Welcher Schädel war bei {0} auf dem {1} Feld?",
-                    Arguments = new()
-                    {
-                        ["top"] = "oberen",
-                        ["bottom-left"] = "unteren linken",
-                        ["bottom-right"] = "unteren rechten",
-                    },
-                },
                 [SSugarSkulls.Availability] = new()
                 {
                     // English: Which skull {1} present in {0}?

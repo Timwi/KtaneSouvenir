@@ -14,6 +14,7 @@ public partial class SouvenirModule
 {
     [Handler("EncryptedMorse", "Encrypted Morse", typeof(SEncryptedMorse), "Espik")]
     [ManualQuestion("What was the received key?")]
+    [NoDiscriminator]   // We have to ask about the key in full since the module's answer can be deduced with only some of the characters
     private IEnumerator<SouvenirInstruction> ProcessEncryptedMorse(ModuleData module)
     {
         var comp = GetComponent(module, "EncryptedMorseModule");
