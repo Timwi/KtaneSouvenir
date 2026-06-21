@@ -6576,8 +6576,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Vergiss Jede Farbe",
             ManualQuestions = new()
             {
-                ["What were the large display’s, gear’s, and nixies’ numbers in each stage?"] = "What were the large display’s, gear’s, and nixies’ numbers in each stage?",
-                ["What were the cylinders’ and gear’s colors in each stage?"] = "What were the cylinders’ and gear’s colors in each stage?",
+                ["What were the large display’s, gear’s, and nixies’ numbers in each stage?"] = "Welches Display, Zahnrad und Nixieröhre zeigte in welcher Stufe welche Zahlen?",
+                ["What were the cylinders’ and gear’s colors in each stage?"] = "Welcher Zylinder und welches Zahnrad hatte in welcher Stufe welche Farbe?",
             },
             Questions = new()
             {
@@ -6585,7 +6585,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What colors were the cylinders during the {1} stage of {0}?
                     // Example: What colors were the cylinders during the first stage of Forget Any Color?
-                    Question = "Welche Farben hatten bei {0} die Zylinder in der {1}en Stufe?",
+                    Question = "Welche Farben hatten die Zylinder bei {0} in der {1}en Stufe?",
                     // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
@@ -6607,40 +6607,40 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the gear during the {1} stage of {0}?
                     // Example: What color was the gear during the first stage of Forget Any Color?
-                    Question = "What color was the gear during the {1} stage of {0}?",
+                    Question = "Welche Farbe hatte das Zahnrad bei {0} in der {1}en Stufe?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Cyan"] = "Cyan",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
-                        ["White"] = "White",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Cyan"] = "Türkis",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
+                        ["White"] = "Weiß",
                     },
                 },
                 [SForgetAnyColor.QGearNumber] = new()
                 {
                     // English: What number was on the gear during the {1} stage of {0}?
                     // Example: What number was on the gear during the first stage of Forget Any Color?
-                    Question = "What number was on the gear during the {1} stage of {0}?",
+                    Question = "Welche Zahl war bei {0} in der {1}en Stufe auf dem Zahnrad?",
                 },
                 [SForgetAnyColor.QLargeDisplay] = new()
                 {
                     // English: What number was on the large display during the {1} stage of {0}?
                     // Example: What number was on the large display during the first stage of Forget Any Color?
-                    Question = "What number was on the large display during the {1} stage of {0}?",
+                    Question = "Welche Zahl war bei {0} in der {1}en Stufe auf dem großen Display?",
                 },
                 [SForgetAnyColor.QNixieNumber] = new()
                 {
                     // English: What number was on the {2} nixie during the {1} stage of {0}?
                     // Example: What number was on the left nixie during the first stage of Forget Any Color?
-                    Question = "What number was on the {2} nixie during the {1} stage of {0}?",
+                    Question = "Welche Zahl erschien bei {0} in der {1}en Stufe auf der {2} Nixieröhre?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "linken",
+                        ["right"] = "rechten",
                     },
                 },
             },
@@ -13605,21 +13605,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Phosphorescence
         [typeof(SPhosphorescence)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Phosphoreszenz",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What colors were the buttons?"] = "What colors were the buttons?",
-                ["What was the offset?"] = "What was the offset?",
-                ["What was the decrypted word?"] = "What was the decrypted word?",
+                ["What colors were the buttons?"] = "Welche Taste hatte welche Farbe?",
+                ["What was the offset?"] = "Was war das Offset?",
+                ["What was the decrypted word?"] = "Welches Wort wurde entschlüsselt?",
             },
             Questions = new()
             {
                 [SPhosphorescence.ButtonColors] = new()
                 {
                     // English: Which color was present on a button in {0}?
-                    Question = "Which color was present on a button in {0}?",
+                    Question = "Welche Farbe kam bei {0} auf einer Taste vor?",
                     Answers = new()
                     {
                         ["Azure"] = "Azure",
@@ -13658,7 +13657,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SPhosphorescence.Word] = new()
                 {
                     // English: What was the decrypted word in {0}?
-                    Question = "What was the decrypted word in {0}?",
+                    Question = "Welches Wort wurde bei {0} entschlüsselt?",
                 },
             },
         },

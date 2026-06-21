@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SMulticoloredSwitches
@@ -37,5 +38,15 @@ public partial class SouvenirModule
             for (var cycle = 0; cycle < 2; cycle++)
                 for (var led = 0; led < 5; led++)
                     yield return question(SMulticoloredSwitches.LedColor, args: [Ordinal(led + 1), upDown == 0 ? "top" : "bottom", cycle == 0 ? "lit" : "unlit"]).Answers(colorNames[colorChars.IndexOf((upDown == 0 ? upColors : downColors)[led][cycle])]);
+
+        // Remove the color-blind indicators
+        // The 11th indicator is for the tiny LED, so we don’t need to remove that one
+        var cbIndicators = GetArrayField<TextMesh>(comp, "LEDsCBIndicator", isPublic: true).Get(expectedLength: 11);
+        for (var indicatorIx = 0; indicatorIx < 10; indicatorIx++)
+        {
+            var indicator = cbIndicators[indicatorIx];
+            yield return new WaitForSeconds(.1f);
+            indicator.gameObject.SetActive(false);
+        }
     }
 }
