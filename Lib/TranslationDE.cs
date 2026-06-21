@@ -6572,7 +6572,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Forget Any Color
         [typeof(SForgetAnyColor)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Vergiss Jede Farbe",
             ManualQuestions = new()
             {
@@ -6656,40 +6655,40 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget Any Color whose gear color in the {1} stage was {0}
                     // Example: the Forget Any Color whose gear color in the first stage was red
-                    Discriminator = "the Forget Any Color whose gear color in the {1} stage was {0}",
+                    Discriminator = "dem Vergiss Jede Farbe, in dessen {1}er Stufe die Zahnradfarbe {0} war,",
                     Arguments = new()
                     {
-                        ["red"] = "red",
+                        ["red"] = "rot",
                         ["orange"] = "orange",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["cyan"] = "cyan",
-                        ["blue"] = "blue",
-                        ["purple"] = "purple",
-                        ["white"] = "white",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["cyan"] = "türkis",
+                        ["blue"] = "blau",
+                        ["purple"] = "lila",
+                        ["white"] = "weiß",
                     },
                 },
                 [SForgetAnyColor.DGearNumber] = new()
                 {
                     // English: the Forget Any Color whose gear number in the {1} stage was {0}
                     // Example: the Forget Any Color whose gear number in the first stage was 0
-                    Discriminator = "the Forget Any Color whose gear number in the {1} stage was {0}",
+                    Discriminator = "dem Vergiss Jede Farbe, in dessen {1}er Stufe die Zahnradzahl {0} war,",
                 },
                 [SForgetAnyColor.DLargeDisplay] = new()
                 {
                     // English: the Forget Any Color which had {0} on its large display in the {1} stage
                     // Example: the Forget Any Color which had 1 on its large display in the first stage
-                    Discriminator = "the Forget Any Color which had {0} on its large display in the {1} stage",
+                    Discriminator = "dem Vergiss Jede Farbe, in dessen {1}er Stufe {0} auf dem großen Display stand,",
                 },
                 [SForgetAnyColor.DNixieNumber] = new()
                 {
                     // English: the Forget Any Color which had {0} on its {2} nixie the {1} stage
                     // Example: the Forget Any Color which had 0 on its left nixie the first stage
-                    Discriminator = "the Forget Any Color which had {0} on its {2} nixie the {1} stage",
+                    Discriminator = "dem Vergiss Jede Farbe, in dessen {1}er Stufe auf der {2} Nixieröhre eine {0} war,",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["right"] = "right",
+                        ["left"] = "linken",
+                        ["right"] = "rechten",
                     },
                 },
             },

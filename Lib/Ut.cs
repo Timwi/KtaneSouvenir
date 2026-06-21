@@ -508,9 +508,22 @@ public static class Ut
             }
     }
 
+    private static string stringifyMultidimensionalArray(Array array)
+    {
+        int[] dims = new int[array.Rank];
+        IEnumerable<string> GetDimension(int dim)
+        {
+            var len = array.GetLength(dim);
+            for (dims[dim] = 0; dims[dim] < len; dims[dim]++)
+                yield return dim == array.Rank - 1 ? array.GetValue(dims).Stringify() : $"[{GetDimension(dim + 1).JoinString(", ")}]";
+        }
+        return $"[{GetDimension(0).JoinString(", ")}]";
+    }
+
     public static string Stringify(this object value) => value switch
     {
         null => "null",
+        Array arr when arr.Rank > 1 => stringifyMultidimensionalArray(arr),
         ICollection list => $"[{list.Cast<object>().Select(Stringify).JoinString(", ")}]",
         int i => i.ToString(),
         double d => d.ToString(),
@@ -518,6 +531,7 @@ public static class Ut
         bool b => b ? "true" : "false",
         string s => $"“{s}”",
         Sprite spr => $"Sprite ({spr.name})",
+        Texture tex => $"Texture ({tex.name})",
         AudioClip audio => $"Audio ({audio.name})",
         object o when o.GetType().IsGenericType && o.GetType().GetGenericTypeDefinition() == typeof(KeyValuePair<,>) => $"[{o.GetFieldValue<object>("key").Stringify()}] = {o.GetFieldValue<object>("value").Stringify()}",
         _ => $"{{{value.GetType().FullName}|{value}}}"

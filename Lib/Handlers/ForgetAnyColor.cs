@@ -58,97 +58,85 @@ public partial class SouvenirModule
 
         var fldStage = GetIntField(init, "stage");
         var fldAnimatingStage = GetField<bool>(coroutine, "animating");
-        var foundStage = -1;
 
         var fldCurrentStage = GetIntField(init, "currentStage");
         var fldModulesPerStage = GetStaticField<int>(init.GetType(), "modulesPerStage");
         var fldFinalStage = GetIntField(init, "finalStage");
-        
-        var fldCylinders = GetField<Array>(init, "cylinders");
-        var fldDisplayText = GetField<TextMesh>(comp, "DisplayText", isPublic: true);
-        var fldGearText = GetField<TextMesh>(comp, "GearText", isPublic: true);
-        var fldNixieTexts = GetArrayField<TextMesh>(comp, "NixieTexts", isPublic: true);
+
+        var displayText = GetField<TextMesh>(comp, "DisplayText", isPublic: true).Get();
+        var gearText = GetField<TextMesh>(comp, "GearText", isPublic: true).Get();
+        var nixieTexts = GetArrayField<TextMesh>(comp, "NixieTexts", isPublic: true).Get(expectedLength: 2);
+        var coloredObjects = GetArrayField<Renderer>(comp, "ColoredObjects", isPublic: true).Get(expectedLength: 4);    // 3 cylinders + 1 gear LED
+        var colorTextures = GetArrayField<Texture>(comp, "ColorTextures", isPublic: true).Get(expectedLength: 9);   // 8 colors + Gray
 
         yield return WaitForActivate;
-        yield return null; // Wait one extra frame to ensure that maxStage has been set.
-
-        if (GetIntField(init, "maxStage").Get() == 0)
-            yield return legitimatelyNoQuestion(module, "There were no stages.");
+        yield return null; // Wait one extra frame to ensure that all information has been set.
 
         var myDisplayTexts = new List<string>();
         var myGearTexts = new List<string>();
-        var myGearColors = new List<string>();
+        var myGearColors = new List<char>();
         var myLeftNixieTexts = new List<string>();
         var myRightNixieTexts = new List<string>();
+        var myCylinderColors = new List<int[]>();
 
         // Acts as both WaitForUnignoredModules and WaitForSolve. Forget Any Color has a chance to solve before all its unignored modules.
+        var foundStage = -1;
         while (!_noUnignoredModulesLeft && module.Unsolved)
         {
-            if (foundStage != fldStage.Get())
+            var thisStage = fldStage.Get();
+            if (thisStage != foundStage)
             {
-                foundStage = fldStage.Get();
-                if (!(fldCurrentStage.Get() / fldModulesPerStage.Get() == fldFinalStage.Get() / fldModulesPerStage.Get()))
+                if (thisStage != foundStage + 1)
+                    throw new AbandonModuleException($"Expected to find stage {foundStage + 1} but got {thisStage}.");
+                foundStage = thisStage;
+
+                // This is the condition that determines if Forget Any Color switches into solution mode (i.e., no more stages)
+                if (fldCurrentStage.Get() / fldModulesPerStage.Get() != fldFinalStage.Get() / fldModulesPerStage.Get())
                 {
                     while (fldAnimatingStage.Get())
                         yield return null;
 
-                    var foundNixieTexts = fldNixieTexts.Get(expectedLength: 2);
-
-                    myDisplayTexts.Add(fldDisplayText.Get().text);
-                    myGearTexts.Add(fldGearText.Get().text.Last().ToString());
-                    myGearColors.Add(fldGearText.Get().text.First().ToString());
-                    myLeftNixieTexts.Add(foundNixieTexts[0].text);
-                    myRightNixieTexts.Add(foundNixieTexts[1].text);
+                    myDisplayTexts.Add(displayText.text);
+                    myGearTexts.Add(gearText.text.Last().ToString());
+                    myGearColors.Add(gearText.text.First());
+                    myLeftNixieTexts.Add(nixieTexts[0].text);
+                    myRightNixieTexts.Add(nixieTexts[1].text);
+                    myCylinderColors.Add(coloredObjects.Take(3).Select(obj => Array.IndexOf(colorTextures, obj.sharedMaterial.mainTexture)).ToArray());
+                    if (myCylinderColors.Last().Any(v => !(v is >= 0 and < 8)))
+                        throw new AbandonModuleException($"Unexpected cylinder colors: got {myCylinderColors.Last().Stringify()}; expected 0–8 (textures: {coloredObjects.Take(3).Select(obj => obj.sharedMaterial.mainTexture).ToArray().Stringify()})");
                 }
             }
-            
+
             yield return null;
         }
 
-        var totalStages = myDisplayTexts.Count();
-
-        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" }
+        var translatedColorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" }
             .Select(str => TranslateQuestionString(SForgetAnyColor.QCylinder, str)).ToArray();
         var cylinderFormatter = TranslateQuestionString(SForgetAnyColor.QCylinder, "{0}, {1}, {2}");
 
-        var myCylinders = fldCylinders.Get(v =>
-        {
-            if (v.Rank != 2 || v.GetLength(1) != 3)
-                return $"expected an N×3 2D array";
-            for (var i = 0; i < v.GetLength(0); i++)
-                for (var j = 0; j < v.GetLength(1); j++)
-                    if ((int) v.GetValue(i, j) is int w && (w < 0 || w >= colorNames.Length))
-                        return $"index [{i}, {j}] is {w}, expected 0–{colorNames.Length - 1}";
-            return null;
-        });
+        string getCylinders(int stage) => string.Format(cylinderFormatter,
+            Enumerable.Range(0, 3).Select(ix => translatedColorNames[myCylinderColors[stage][ix]]).ToArray());
 
-        string getCylinders(Array cylinders, int stage) => string.Format(cylinderFormatter,
-            Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(stage, ix)]).ToArray());
-
-        var preferredCylinders = new HashSet<string>();
+        var preferredCylinders = new HashSet<string>(myCylinderColors.Select((_, stage) => getCylinders(stage)));
         while (preferredCylinders.Count < 7)
-            preferredCylinders.Add(string.Format(cylinderFormatter, colorNames.PickRandom(), colorNames.PickRandom(), colorNames.PickRandom()));
+            preferredCylinders.Add(string.Format(cylinderFormatter, translatedColorNames.PickRandom(), translatedColorNames.PickRandom(), translatedColorNames.PickRandom()));
 
-        string getColorName(string letter)
+        string getColorName(char letter) => letter switch
         {
-            return letter switch
-            {
-                "R" => "Red",
-                "O" => "Orange",
-                "Y" => "Yellow",
-                "G" => "Green",
-                "C" => "Cyan",
-                "B" => "Blue",
-                "P" => "Purple",
-                "W" => "White",
-                _ => "Gray",
-            };
-        }
+            'R' => "Red",
+            'O' => "Orange",
+            'Y' => "Yellow",
+            'G' => "Green",
+            'C' => "Cyan",
+            'B' => "Blue",
+            'P' => "Purple",
+            'W' => "White",
+            _ => throw new AbandonModuleException($"Expected gear color to be one of ROYGCBPW, got “{letter}”")
+        };
 
-        for (var stage = 0; stage < totalStages; stage++)
+        for (var stage = 0; stage < myDisplayTexts.Count; stage++)
         {
-            //Debug.Log($"Stage={stage}, myCylinders={myCylinders.GetLength(0)}, {myCylinders.GetLength(1)}");
-            var correctCylinders = getCylinders(myCylinders, stage);
+            var correctCylinders = getCylinders(stage);
 
             yield return question(SForgetAnyColor.QCylinder, args: [Ordinal(stage + 1)]).AvoidDiscriminators($"cylinder-{stage}").Answers(correctCylinders, preferredWrong: preferredCylinders.ToArray());
             yield return question(SForgetAnyColor.QGearColor, args: [Ordinal(stage + 1)]).AvoidDiscriminators($"gearcolor-{stage}").Answers(getColorName(myGearColors[stage]));
