@@ -6477,8 +6477,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What colors were the cylinders in each stage?"] = "Каких цветов были цилиндры на каждом этапе?",
-                ["Which figure was used in each stage?"] = "Какая строка была применена на каждом этапе?",
+                ["What were the large display’s, gear’s, and nixies’ numbers in each stage?"] = "What were the large display’s, gear’s, and nixies’ numbers in each stage?",
+                ["What were the cylinders’ and gear’s colors in each stage?"] = "What were the cylinders’ and gear’s colors in each stage?",
             },
             Questions = new()
             {
@@ -6505,12 +6505,45 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["R"] = "П",
                     },
                 },
-                [SForgetAnyColor.QFigure] = new()
+                [SForgetAnyColor.QGearColor] = new()
                 {
-                    // English: Which figure was used during the {1} stage of {0}?
-                    // Example: Which figure was used during the first stage of Forget Any Color?
-                    Question = "Which figure was used during the {1} stage of {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
+                    // English: What color was the gear during the {1} stage of {0}?
+                    // Example: What color was the gear during the first stage of Forget Any Color?
+                    Question = "What color was the gear during the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Cyan"] = "Cyan",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["White"] = "White",
+                    },
+                },
+                [SForgetAnyColor.QGearNumber] = new()
+                {
+                    // English: What number was on the gear during the {1} stage of {0}?
+                    // Example: What number was on the gear during the first stage of Forget Any Color?
+                    Question = "What number was on the gear during the {1} stage of {0}?",
+                },
+                [SForgetAnyColor.QLargeDisplay] = new()
+                {
+                    // English: What number was on the large display during the {1} stage of {0}?
+                    // Example: What number was on the large display during the first stage of Forget Any Color?
+                    Question = "What number was on the large display during the {1} stage of {0}?",
+                },
+                [SForgetAnyColor.QNixieNumber] = new()
+                {
+                    // English: What number was on the {2} nixie during the {1} stage of {0}?
+                    // Example: What number was on the left nixie during the first stage of Forget Any Color?
+                    Question = "What number was on the {2} nixie during the {1} stage of {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
                 },
             },
             Discriminators = new()
@@ -6521,11 +6554,45 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // Example: the Forget Any Color whose cylinders in the first stage were Orange, Yellow, Green
                     Discriminator = "Forget Any Color, где цвета цилиндров на {1}-м этапе были: {0}",
                 },
-                [SForgetAnyColor.DFigure] = new()
+                [SForgetAnyColor.DGearColor] = new()
                 {
-                    // English: the Forget Any Color which used figure {0} in the {1} stage
-                    // Example: the Forget Any Color which used figure LLLMR in the first stage
-                    Discriminator = "Forget Any Color, где на {1}-м этапе была применена строка {0}",
+                    // English: the Forget Any Color whose gear color in the {1} stage was {0}
+                    // Example: the Forget Any Color whose gear color in the first stage was red
+                    Discriminator = "the Forget Any Color whose gear color in the {1} stage was {0}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["orange"] = "orange",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["blue"] = "blue",
+                        ["purple"] = "purple",
+                        ["white"] = "white",
+                    },
+                },
+                [SForgetAnyColor.DGearNumber] = new()
+                {
+                    // English: the Forget Any Color whose gear number in the {1} stage was {0}
+                    // Example: the Forget Any Color whose gear number in the first stage was 0
+                    Discriminator = "the Forget Any Color whose gear number in the {1} stage was {0}",
+                },
+                [SForgetAnyColor.DLargeDisplay] = new()
+                {
+                    // English: the Forget Any Color which had {0} on its large display in the {1} stage
+                    // Example: the Forget Any Color which had 1 on its large display in the first stage
+                    Discriminator = "the Forget Any Color which had {0} on its large display in the {1} stage",
+                },
+                [SForgetAnyColor.DNixieNumber] = new()
+                {
+                    // English: the Forget Any Color which had {0} on its {2} nixie the {1} stage
+                    // Example: the Forget Any Color which had 0 on its left nixie the first stage
+                    Discriminator = "the Forget Any Color which had {0} on its {2} nixie the {1} stage",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
                 },
             },
         },

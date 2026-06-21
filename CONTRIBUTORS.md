@@ -76,19 +76,19 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coordination       │  Match Refereeing  │  Not X01                   │  Simultaneous Simons  │
     Cyan Button, The   │  Mystic Square     │  Off Keys                  │  Slow Math            │
 
-## Implemented by Kuro (54)
+## Implemented by Kuro (53)
 
-    ...?                  │  Double Expert      │  Forget The Colors     │  Master Tapes           │  Simon Smothers
-    64                    │  Duck, The          │  Forget This           │  Memory Wires           │  Simon Stacks
-    Alphabet Numbers      │  Encrypted Dice     │  Gadgetron Vendor      │  Not Colored Squares    │  Snowflakes
-    Blinkstop             │  Faulty Buttons     │  Hinges                │  Old Fogey              │  Tea Set, The
-    Broken Guitar Chords  │  Five Letter Words  │  Juxtacolored Squares  │  Orientation Hypercube  │  Technical Keypad
-    Burger Alarm          │  FizzBuzz           │  Kanji                 │  Periodic Words         │  Tetriamonds
-    Character Shift       │  Follow Me          │  Keywords              │  Procedural Maze        │  Tip Toe
-    Coloured Cubes        │  Forget Any Color   │  Know Your Way         │  Question Mark          │  Triamonds
-    Cruel Binary          │  Forget Everything  │  Langton’s Anteater    │  Quiz Buzz              │  Warning Signs
-    Cruel Keypads         │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
-    Cursed Double-Oh      │  Forget Me Now      │  Mad Memory            │  Safety Square          │
+    ...?                  │  Double Expert      │  Forget This           │  Memory Wires           │  Simon Stacks
+    64                    │  Duck, The          │  Gadgetron Vendor      │  Not Colored Squares    │  Snowflakes
+    Alphabet Numbers      │  Encrypted Dice     │  Hinges                │  Old Fogey              │  Tea Set, The
+    Blinkstop             │  Faulty Buttons     │  Juxtacolored Squares  │  Orientation Hypercube  │  Technical Keypad
+    Broken Guitar Chords  │  Five Letter Words  │  Kanji                 │  Periodic Words         │  Tetriamonds
+    Burger Alarm          │  FizzBuzz           │  Keywords              │  Procedural Maze        │  Tip Toe
+    Character Shift       │  Follow Me          │  Know Your Way         │  Question Mark          │  Triamonds
+    Coloured Cubes        │  Forget Everything  │  Langton’s Anteater    │  Quiz Buzz              │  Warning Signs
+    Cruel Binary          │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
+    Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
+    Cursed Double-Oh      │  Forget The Colors  │  Master Tapes          │  Simon Smothers         │
 
 ## Implemented by Hawker (36)
 
@@ -121,14 +121,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Ultracube, The      │
     Decolored Squares         │  iPhone, The         │  Pie                │  USA Maze            │
 
-## Implemented by Espik (29)
+## Implemented by Espik (30)
 
-    100 Levels of Defusal  │  Directional Button  │  Hyperlink, The          │  Role Reversal   │  Tricky Tetris Pieces
-    Blockbusters           │  Dreamcipher         │  Not Who’s on First      │  Samsung, The    │  Unfair Cipher
-    Boolean Wires          │  Encrypted Morse     │  Phosphorescence         │  Simon Stages    │  Unfair’s Cruel Revenge
-    Calendar               │  Etterna             │  Pixel Cipher            │  Sorting         │  Unfair’s Revenge
-    Challenge & Contact    │  Exoplanets          │  Reformed Role Reversal  │  Thinking Wires  │  Unicode
-    Coffeebucks            │  Hexabutton, The     │  Regular Crazy Talk      │  Thirty One      │
+    100 Levels of Defusal  │  Directional Button  │  Hexabutton, The         │  Regular Crazy Talk  │  Thirty One
+    Blockbusters           │  Dreamcipher         │  Hyperlink, The          │  Role Reversal       │  Tricky Tetris Pieces
+    Boolean Wires          │  Encrypted Morse     │  Not Who’s on First      │  Samsung, The        │  Unfair Cipher
+    Calendar               │  Etterna             │  Phosphorescence         │  Simon Stages        │  Unfair’s Cruel Revenge
+    Challenge & Contact    │  Exoplanets          │  Pixel Cipher            │  Sorting             │  Unfair’s Revenge
+    Coffeebucks            │  Forget Any Color    │  Reformed Role Reversal  │  Thinking Wires      │  Unicode
 
 ## Implemented by tandyCake (26)
 
