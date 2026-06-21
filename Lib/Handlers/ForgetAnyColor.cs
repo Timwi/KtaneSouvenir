@@ -110,6 +110,9 @@ public partial class SouvenirModule
             yield return null;
         }
 
+        if (myDisplayTexts.Count == 0)
+            yield return legitimatelyNoQuestion(module, "There were no stages.");
+
         var translatedColorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" }
             .Select(str => TranslateQuestionString(SForgetAnyColor.QCylinder, str)).ToArray();
         var cylinderFormatter = TranslateQuestionString(SForgetAnyColor.QCylinder, "{0}, {1}, {2}");
