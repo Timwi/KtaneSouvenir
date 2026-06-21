@@ -1072,6 +1072,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Ángel Hernández
         [typeof(SAngelHernandez)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アンヘル・エルナンデス",
             ManualQuestions = new()
             {
@@ -1086,11 +1087,21 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     Question = "{0}のステージ{1}で、点字で表示されていた英字は？",
                 },
             },
+            Discriminators = new()
+            {
+                [SAngelHernandez.Discriminator] = new()
+                {
+                    // English: the Ángel Hernández where the {0}-stage letter was {1}
+                    // Example: the Ángel Hernández where the first-stage letter was A
+                    Discriminator = "the Ángel Hernández where the {0}-stage letter was {1}?",
+                },
+            },
         },
 
         // The Arena
         [typeof(SArena)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アリーナ",
             ManualQuestions = new()
             {
@@ -1100,20 +1111,41 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SArena.Damage] = new()
+                [SArena.QDamage] = new()
                 {
                     // English: What was the maximum weapon damage of the attack phase in {0}?
                     Question = "{0}の攻撃フェーズにおける最大ダメージ数は？",
                 },
-                [SArena.Enemies] = new()
+                [SArena.QEnemies] = new()
                 {
                     // English: Which enemy was present in the defend phase of {0}?
                     Question = "{0}の防御フェーズで現れた敵は？",
                 },
-                [SArena.Numbers] = new()
+                [SArena.QNumbers] = new()
                 {
                     // English: Which was a number present in the grab phase of {0}?
                     Question = "{0}の獲得フェーズで現れた数字は？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SArena.DDamage] = new()
+                {
+                    // English: the Arena where the maximum weapon damage of the attack phase was {0}
+                    // Example: the Arena where the maximum weapon damage of the attack phase was 1
+                    Discriminator = "the Arena where the maximum weapon damage of the attack phase was {0}",
+                },
+                [SArena.DEnemies] = new()
+                {
+                    // English: the Arena which had {0} in the defend phase
+                    // Example: the Arena which had Bat in the defend phase
+                    Discriminator = "the Arena which had {0} in the defend phase",
+                },
+                [SArena.DNumbers] = new()
+                {
+                    // English: the Arena which had a {0} in the grab phase
+                    // Example: the Arena which had a 10 in the grab phase
+                    Discriminator = "the Arena which had a {0} in the grab phase",
                 },
             },
         },

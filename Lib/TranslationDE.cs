@@ -384,7 +384,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the 3D Tunnels whose {0} goal node was this (+ extra)
                     // Example: the 3D Tunnels whose first goal node was this (+ extra)
-                    Discriminator = "den 3D-Tunneln, deren {0}s Zielsymbol das hier war,",
+                    Discriminator = "den 3D-Tunneln, deren {0}es Zielsymbol das hier war,",
                 },
             },
         },
@@ -448,7 +448,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the 4D Tunnels whose {0} goal node was this (+ extra)
                     // Example: the 4D Tunnels whose first goal node was this (+ extra)
-                    Discriminator = "den 4D-Tunneln, deren {0}s Zielsymbol das hier war,",
+                    Discriminator = "den 4D-Tunneln, deren {0}es Zielsymbol das hier war,",
                 },
             },
         },
@@ -1126,6 +1126,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welcher Buchstabe wurde im {1}en Schritt von {0} durch die erhöhten Knöpfe dargestellt?",
                 },
             },
+            Discriminators = new()
+            {
+                [SAngelHernandez.Discriminator] = new()
+                {
+                    // English: the Ángel Hernández where the {0}-stage letter was {1}
+                    // Example: the Ángel Hernández where the first-stage letter was A
+                    Discriminator = "dem Ángel Hernández, dessen Buchstabe in der {0}en Stufe {1} war,",
+                },
+            },
         },
 
         // The Arena
@@ -1143,20 +1152,41 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SArena.Damage] = new()
+                [SArena.QDamage] = new()
                 {
                     // English: What was the maximum weapon damage of the attack phase in {0}?
                     Question = "Was war bei {0} in der Angriffsphase der maximale Waffenschaden?",
                 },
-                [SArena.Enemies] = new()
+                [SArena.QEnemies] = new()
                 {
                     // English: Which enemy was present in the defend phase of {0}?
                     Question = "Welcher Gegner war bei {0} in der Verteidigungsphase anwesend?",
                 },
-                [SArena.Numbers] = new()
+                [SArena.QNumbers] = new()
                 {
                     // English: Which was a number present in the grab phase of {0}?
                     Question = "Welche Zahl war bei {0} in der Sammelphase dabei?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SArena.DDamage] = new()
+                {
+                    // English: the Arena where the maximum weapon damage of the attack phase was {0}
+                    // Example: the Arena where the maximum weapon damage of the attack phase was 1
+                    Discriminator = "der Arena, deren maximaler Waffenschaden in der Angriffsphase {0} war,",
+                },
+                [SArena.DEnemies] = new()
+                {
+                    // English: the Arena which had {0} in the defend phase
+                    // Example: the Arena which had Bat in the defend phase
+                    Discriminator = "der Arena, bei der {0} in der Verteidigungsphase vorkam,",
+                },
+                [SArena.DNumbers] = new()
+                {
+                    // English: the Arena which had a {0} in the grab phase
+                    // Example: the Arena which had a 10 in the grab phase
+                    Discriminator = "der Arena, bei der eine {0} in der Sammelphase vorkam,",
                 },
             },
         },

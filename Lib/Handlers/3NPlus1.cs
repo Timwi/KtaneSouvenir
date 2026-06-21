@@ -15,6 +15,7 @@ public partial class SouvenirModule
 {
     [Handler("threeNPlusOne", "3N+1", typeof(S3NPlus1), "Hawker")]
     [ManualQuestion("What number was initially displayed?")]
+    [NoDiscriminator]
     private IEnumerator<SouvenirInstruction> Process3NPlus1(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeNPlusOneScript");

@@ -57,8 +57,8 @@ public class QuestionExtraText(string text, Font font, Texture fontTexture) : Qu
             [0.1476, 1.258],
             [0.306, 1.3442],
             [0.442, 1.3442],
-            [0.443, 1.6 - (1.668 / .125 * souv.QuestionExtraTextRenderer.bounds.size.x)],
-            [0.8, 1.6 - (1.668 / .125 * souv.QuestionExtraTextRenderer.bounds.size.x)],
+            [0.443, 1.568 - (1.668 / .125 * souv.QuestionExtraTextRenderer.bounds.size.x)],
+            [0.8, 1.568 - (1.668 / .125 * souv.QuestionExtraTextRenderer.bounds.size.x)],
             [0.81, 1.668]);
     }
 
