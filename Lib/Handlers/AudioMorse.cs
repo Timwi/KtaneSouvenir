@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 using Rnd = UnityEngine.Random;
 
@@ -58,6 +59,13 @@ public partial class SouvenirModule
         }).ToArray();
 
         yield return WaitForSolve;
+
+        // Turn off the LEDs
+        var leds = GetArrayField<Renderer>(comp, "LEDs", isPublic: true).Get(expectedLength: 2);
+        var ledMaterials = GetArrayField<Material>(comp, "LEDMat", isPublic: true).Get(expectedLength: 2);
+        for (var i = 0; i < leds.Length; i++)
+            leds[i].material = ledMaterials[0]; // off
+
         yield return question(SAudioMorse.Sound).Answers(clips[0], all: clips);
     }
 }

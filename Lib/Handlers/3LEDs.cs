@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum S3LEDs
@@ -19,7 +19,13 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "ThreeLEDsScript");
         yield return WaitForSolve;
 
+        var lights = GetArrayField<Light>(comp, "lights", isPublic: true).Get(expectedLength: 3);
+
         int value = GetArrayField<bool>(comp, "initialStates").Get(expectedLength: 3).Aggregate(0, (a, b) => (a << 1) | (b ? 1 : 0));
         yield return question(S3LEDs.InitialState).Answers(ThreeLEDsSprites[value], preferredWrong: ThreeLEDsSprites);
+
+        // Turn off the LEDs
+        foreach (var light in lights)
+            light.enabled = false;
     }
 }
