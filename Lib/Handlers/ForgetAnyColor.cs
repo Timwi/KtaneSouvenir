@@ -56,10 +56,13 @@ public partial class SouvenirModule
         var init = GetField<object>(comp, "init").Get();
         var coroutine = GetField<object>(init, "coroutine").Get();
 
-        var fldCurrentStage = GetIntField(init, "stage");
+        var fldStage = GetIntField(init, "stage");
         var fldAnimatingStage = GetField<bool>(coroutine, "animating");
-        var fldMaxStage = GetIntField(init, "maxStage");
         var foundStage = -1;
+
+        var fldCurrentStage = GetIntField(init, "currentStage");
+        var fldModulesPerStage = GetStaticField<int>(init.GetType(), "modulesPerStage");
+        var fldFinalStage = GetIntField(init, "finalStage");
         
         var fldCylinders = GetField<Array>(init, "cylinders");
         var fldDisplayText = GetField<TextMesh>(comp, "DisplayText", isPublic: true);
@@ -69,7 +72,7 @@ public partial class SouvenirModule
         yield return WaitForActivate;
         yield return null; // Wait one extra frame to ensure that maxStage has been set.
 
-        if (fldMaxStage.Get() == 0)
+        if (GetIntField(init, "maxStage").Get() == 0)
             yield return legitimatelyNoQuestion(module, "There were no stages.");
 
         var myDisplayTexts = new List<string>();
@@ -81,10 +84,10 @@ public partial class SouvenirModule
         // Acts as both WaitForUnignoredModules and WaitForSolve. Forget Any Color has a chance to solve before all its unignored modules.
         while (!_noUnignoredModulesLeft && module.Unsolved)
         {
-            if (foundStage != fldCurrentStage.Get())
+            if (foundStage != fldStage.Get())
             {
-                foundStage = fldCurrentStage.Get();
-                if (foundStage != fldMaxStage.Get())
+                foundStage = fldStage.Get();
+                if (!(fldCurrentStage.Get() / fldModulesPerStage.Get() == fldFinalStage.Get() / fldModulesPerStage.Get()))
                 {
                     while (fldAnimatingStage.Get())
                         yield return null;
@@ -102,14 +105,16 @@ public partial class SouvenirModule
             yield return null;
         }
 
+        var totalStages = myDisplayTexts.Count();
+
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" }
             .Select(str => TranslateQuestionString(SForgetAnyColor.QCylinder, str)).ToArray();
         var cylinderFormatter = TranslateQuestionString(SForgetAnyColor.QCylinder, "{0}, {1}, {2}");
 
         var myCylinders = fldCylinders.Get(v =>
         {
-            if (v.Rank != 2 || v.GetLength(0) != fldMaxStage.Get() + 1 || v.GetLength(1) != 3)
-                return $"expected a {fldMaxStage.Get() + 1}×3 2D array";
+            if (v.Rank != 2 || v.GetLength(1) != 3)
+                return $"expected an N×3 2D array";
             for (var i = 0; i < v.GetLength(0); i++)
                 for (var j = 0; j < v.GetLength(1); j++)
                     if ((int) v.GetValue(i, j) is int w && (w < 0 || w >= colorNames.Length))
@@ -140,8 +145,9 @@ public partial class SouvenirModule
             };
         }
 
-        for (var stage = 0; stage < fldMaxStage.Get(); stage++)
+        for (var stage = 0; stage < totalStages; stage++)
         {
+            //Debug.Log($"Stage={stage}, myCylinders={myCylinders.GetLength(0)}, {myCylinders.GetLength(1)}");
             var correctCylinders = getCylinders(myCylinders, stage);
 
             yield return question(SForgetAnyColor.QCylinder, args: [Ordinal(stage + 1)]).AvoidDiscriminators($"cylinder-{stage}").Answers(correctCylinders, preferredWrong: preferredCylinders.ToArray());
