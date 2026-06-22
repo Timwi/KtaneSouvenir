@@ -6,14 +6,6 @@ using static Souvenir.AnswerLayout;
 
 public enum SForgetsUltimateShowdown
 {
-    [Question("What was the {1} digit of the answer in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    [AnswerGenerator.Integers(0, 9)]
-    Answer,
-
-    [Question("What was the {1} digit of the bottom number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    [AnswerGenerator.Integers(0, 9)]
-    Bottom,
-
     [Question("What was the {1} digit of the initial number in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Initial,
@@ -26,8 +18,6 @@ public partial class SouvenirModule
 {
     [Handler("ForgetsUltimateShowdownModule", "Forget’s Ultimate Showdown", typeof(SForgetsUltimateShowdown), "Marksam")]
     [ManualQuestion("What was the initial number?")]
-    [ManualQuestion("What was the bottom number?")]
-    [ManualQuestion("What was the answer?")]
     [ManualQuestion("What were the encryption methods used?")]
     private IEnumerator<SouvenirInstruction> ProcessForgetsUltimateShowdown(ModuleData module)
     {
@@ -39,14 +29,10 @@ public partial class SouvenirModule
         if (methods.Count != 4)
             throw new AbandonModuleException($"‘methods’ had an invalid length: {methods.Count}, expected 4");
 
-        var answer = GetField<string>(comp, "_answer").Get();
         var initial = GetField<string>(comp, "_initialNumber").Get();
-        var bottom = GetField<string>(comp, "_bottomNumber").Get();
         var methodNames = methods.Cast<object>().Select(x => GetProperty<string>(x, "Name", isPublic: true).Get()).ToList();
         for (var i = 0; i < 12; i++)
         {
-            yield return question(SForgetsUltimateShowdown.Answer, args: [Ordinal(i + 1)]).Answers(answer[i].ToString());
-            yield return question(SForgetsUltimateShowdown.Bottom, args: [Ordinal(i + 1)]).Answers(bottom[i].ToString());
             yield return question(SForgetsUltimateShowdown.Initial, args: [Ordinal(i + 1)]).Answers(initial[i].ToString());
         }
         for (var i = 0; i < 4; i++)

@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SInterpunct
 {
-    [Question("What was the symbol displayed in the {1} stage of {0}?", ThreeColumns6Answers, "(", ",", ">", "/", "}", "]", "_", "-", "\"", "|", "»", ":", ".", "{", "<", "”", "«", "`", "[", "?", ")", "!", "\\", "'", ";", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the symbol displayed in the {1} stage of {0}?", ThreeColumns6Answers, ExampleAnswers = ["(", ",", ">", "/", "}", "]", "_", "-", "\"", "|", "»", ":", ".", "{", "<", "”", "«", "`", "[", "?", ")", "!", "\\", "'", ";"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Display
 }
 
@@ -18,6 +18,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "InterpunctScript");
         var fldDisplay = GetField<string>(comp, "displaySymbol");
         var fldStage = GetIntField(comp, "stage");
+
+        var featuredSymbols = GetArrayField<string>(comp, "symbols").Get(expectedLength: 25);
 
         var currentStage = 0;
         var texts = new string[3];
@@ -37,6 +39,6 @@ public partial class SouvenirModule
         }
 
         for (var i = 0; i < 3; i++)
-            yield return question(SInterpunct.Display, args: [Ordinal(i + 1)]).Answers(texts[i]);
+            yield return question(SInterpunct.Display, args: [Ordinal(i + 1)]).Answers(texts[i], all: featuredSymbols);
     }
 }

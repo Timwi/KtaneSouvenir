@@ -10,10 +10,7 @@ public enum SSmallCircle
     Shift,
 
     [Question("Which wedge made the different noise in the beginning of {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true)]
-    Wedge,
-
-    [Question("Which color was {1} in the solution to {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    Solution
+    Wedge
 }
 
 public partial class SouvenirModule
@@ -21,7 +18,6 @@ public partial class SouvenirModule
     [Handler("smallCircle", "Small Circle", typeof(SSmallCircle), "TasThiluna")]
     [ManualQuestion("How much did the sequence shift by?")]
     [ManualQuestion("Which wedge made the different noise in the beginning?")]
-    [ManualQuestion("Which colors were in the solution?")]
     private IEnumerator<SouvenirInstruction> ProcessSmallCircle(ModuleData module)
     {
         var comp = GetComponent(module, "smallCircle");
@@ -29,11 +25,8 @@ public partial class SouvenirModule
 
         var shift = GetField<int>(comp, "shift").Get();
         var tableColor = GetField<int>(comp, "tableColor").Get();
-        var solution = GetArrayField<int>(comp, "solution").Get();
         var colorNames = GetStaticField<string[]>(comp.GetType(), "colorNames").Get().Select(x => x[0].ToString().ToUpperInvariant() + x.Substring(1)).ToArray();
         yield return question(SSmallCircle.Shift).Answers(shift.ToString());
         yield return question(SSmallCircle.Wedge).Answers(colorNames[tableColor]);
-        for (var i = 0; i < 3; i++)
-            yield return question(SSmallCircle.Solution, args: [Ordinal(i + 1)]).Answers(colorNames[solution[i]]);
     }
 }

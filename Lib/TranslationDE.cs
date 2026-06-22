@@ -6834,24 +6834,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What was the initial number?"] = "Was war die Zahl am Anfang?",
-                ["What was the bottom number?"] = "Was war die Zahl unten?",
-                ["What was the answer?"] = "Was war die Lösung?",
                 ["What were the encryption methods used?"] = "Welche Verschlüsselungsmethoden kamen zum Einsatz?",
             },
             Questions = new()
             {
-                [SForgetsUltimateShowdown.Answer] = new()
-                {
-                    // English: What was the {1} digit of the answer in {0}?
-                    // Example: What was the first digit of the answer in Forget’s Ultimate Showdown?
-                    Question = "Was war bei {0} die {1}e Ziffer in der Lösung?",
-                },
-                [SForgetsUltimateShowdown.Bottom] = new()
-                {
-                    // English: What was the {1} digit of the bottom number in {0}?
-                    // Example: What was the first digit of the bottom number in Forget’s Ultimate Showdown?
-                    Question = "Was war bei {0} die {1}e Ziffer in der unteren Zahl?",
-                },
                 [SForgetsUltimateShowdown.Initial] = new()
                 {
                     // English: What was the {1} digit of the initial number in {0}?
@@ -17144,7 +17130,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 ["How much did the sequence shift by?"] = "Um wie viele Stellen verschob sich die Folge?",
                 ["Which wedge made the different noise in the beginning?"] = "Welcher Sektor löste am Anfang das abweichende Geräusch aus?",
-                ["Which colors were in the solution?"] = "Welche Farben kamen in der Lösung vor?",
             },
             Questions = new()
             {
@@ -17157,23 +17142,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which wedge made the different noise in the beginning of {0}?
                     Question = "Welcher Sektor machte bei {0} am Anfang ein abweichendes Geräusch?",
-                    Answers = new()
-                    {
-                        ["Red"] = "Rot",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Gelb",
-                        ["Green"] = "Grün",
-                        ["Blue"] = "Blau",
-                        ["Magenta"] = "Rosa",
-                        ["White"] = "Weiß",
-                        ["Black"] = "Schwarz",
-                    },
-                },
-                [SSmallCircle.Solution] = new()
-                {
-                    // English: Which color was {1} in the solution to {0}?
-                    // Example: Which color was first in the solution to Small Circle?
-                    Question = "Welche Farbe war bei {0} die {1}e in der Lösung?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",

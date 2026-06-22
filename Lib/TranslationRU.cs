@@ -6775,26 +6775,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What was the initial number?"] = "Какое было исходное число?",
-                ["What was the bottom number?"] = "Какое число было снизу?",
-                ["What was the answer?"] = "Какой был ответ?",
                 ["What were the encryption methods used?"] = "Какие методы шифрования были использованы?",
             },
             Questions = new()
             {
-                [SForgetsUltimateShowdown.Answer] = new()
-                {
-                    // English: What was the {1} digit of the answer in {0}?
-                    // Example: What was the first digit of the answer in Forget’s Ultimate Showdown?
-                    Question = "Какая была {1}-я цифра финального кода {0}?",
-                    Conjugation = Conjugation.в_PrepositiveFeminine,
-                },
-                [SForgetsUltimateShowdown.Bottom] = new()
-                {
-                    // English: What was the {1} digit of the bottom number in {0}?
-                    // Example: What was the first digit of the bottom number in Forget’s Ultimate Showdown?
-                    Question = "Какая была {1}-я цифра нижнего числа {0}?",
-                    Conjugation = Conjugation.в_PrepositiveFeminine,
-                },
                 [SForgetsUltimateShowdown.Initial] = new()
                 {
                     // English: What was the {1} digit of the initial number in {0}?
@@ -16831,7 +16815,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 ["How much did the sequence shift by?"] = "На сколько сместилась последовательность?",
                 ["Which wedge made the different noise in the beginning?"] = "Какой сегмент звучал иначе в начале?",
-                ["Which colors were in the solution?"] = "Какие цвета были в решении?",
             },
             Questions = new()
             {
@@ -16845,24 +16828,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: Which wedge made the different noise in the beginning of {0}?
                     Question = "Какой сегмент {0} издал другой звук в начале?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                    Answers = new()
-                    {
-                        ["Red"] = "Red",
-                        ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Magenta"] = "Magenta",
-                        ["White"] = "White",
-                        ["Black"] = "Black",
-                    },
-                },
-                [SSmallCircle.Solution] = new()
-                {
-                    // English: Which color was {1} in the solution to {0}?
-                    // Example: Which color was first in the solution to Small Circle?
-                    Question = "Какой цвет был {1}-м в решении на {0}?",
                     Conjugation = Conjugation.PrepositiveMascNeuter,
                     Answers = new()
                     {

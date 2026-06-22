@@ -6668,24 +6668,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What was the initial number?"] = "最初の数字は？",
-                ["What was the bottom number?"] = "下部の数字は？",
-                ["What was the answer?"] = "答えは？",
                 ["What were the encryption methods used?"] = "使用されている暗号方式は？",
             },
             Questions = new()
             {
-                [SForgetsUltimateShowdown.Answer] = new()
-                {
-                    // English: What was the {1} digit of the answer in {0}?
-                    // Example: What was the first digit of the answer in Forget’s Ultimate Showdown?
-                    Question = "{0}の答えの{1}桁目は？",
-                },
-                [SForgetsUltimateShowdown.Bottom] = new()
-                {
-                    // English: What was the {1} digit of the bottom number in {0}?
-                    // Example: What was the first digit of the bottom number in Forget’s Ultimate Showdown?
-                    Question = "{0}の下側の数字の{1}桁目は？",
-                },
                 [SForgetsUltimateShowdown.Initial] = new()
                 {
                     // English: What was the {1} digit of the initial number in {0}?
@@ -16738,7 +16724,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 ["How much did the sequence shift by?"] = "シーケンスはどのくらいずれた？",
                 ["Which wedge made the different noise in the beginning?"] = "最初に違う音がしたのは、どの部分？",
-                ["Which colors were in the solution?"] = "回答はどの色？",
             },
             Questions = new()
             {
@@ -16751,23 +16736,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which wedge made the different noise in the beginning of {0}?
                     Question = "{0}の初期時点で音が違っていたのは？",
-                    Answers = new()
-                    {
-                        ["Red"] = "赤",
-                        ["Orange"] = "オレンジ",
-                        ["Yellow"] = "黄",
-                        ["Green"] = "緑",
-                        ["Blue"] = "青",
-                        ["Magenta"] = "マゼンタ",
-                        ["White"] = "白",
-                        ["Black"] = "黒",
-                    },
-                },
-                [SSmallCircle.Solution] = new()
-                {
-                    // English: Which color was {1} in the solution to {0}?
-                    // Example: Which color was first in the solution to Small Circle?
-                    Question = "{0}の解除シークエンスの{1}番目の色は？",
                     Answers = new()
                     {
                         ["Red"] = "赤",
