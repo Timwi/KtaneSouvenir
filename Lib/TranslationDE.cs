@@ -16851,6 +16851,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Subdivides
         [typeof(SSimonSubdivides)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Simon Teilt",
             ManualQuestions = new()
             {
@@ -20560,6 +20561,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Xenocryst
         [typeof(SXenocryst)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Der Xenokrist",
             ModuleNameDative = "Xenokrist",
             Gender = Gender.Masculine,
@@ -20575,6 +20577,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} flash in {0}?
                     // Example: What was the color of the first flash in The Xenocryst?
                     Question = "Welche Farbe ist bei {0} als {1}e aufgeleuchtet?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Indigo"] = "Indigo",
+                        ["Violet"] = "Violet",
+                    },
                 },
             },
         },

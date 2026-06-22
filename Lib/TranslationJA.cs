@@ -20094,6 +20094,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Xenocryst
         [typeof(SXenocryst)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ゼノクリスト",
             ManualQuestions = new()
             {
@@ -20106,6 +20107,16 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the color of the {1} flash in {0}?
                     // Example: What was the color of the first flash in The Xenocryst?
                     Question = "{0}の{1}番目の点滅の色は？",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Indigo"] = "Indigo",
+                        ["Violet"] = "Violet",
+                    },
                 },
             },
         },

@@ -20208,6 +20208,16 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the color of the {1} flash in {0}?
                     // Example: What was the color of the first flash in The Xenocryst?
                     Question = "Какого цвета была {1}-я вспышка {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Indigo"] = "Indigo",
+                        ["Violet"] = "Violet",
+                    },
                 },
             },
         },

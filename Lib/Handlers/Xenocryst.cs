@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SXenocryst
 {
-    [Question("What was the color of the {1} flash in {0}?", ThreeColumns6Answers, ExampleAnswers = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the color of the {1} flash in {0}?", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Question
 }
 
@@ -20,8 +20,8 @@ public partial class SouvenirModule
 
         var flashes = GetArrayField<int>(comp, "Outputs").Get();
 
-        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
+        var colorNames = SXenocryst.Question.GetAnswers();
         for (var i = 0; i < 10; i++)
-            yield return question(SXenocryst.Question, args: [Ordinal(i + 1)]).Answers(colorNames[flashes[i]], preferredWrong: colorNames);
+            yield return question(SXenocryst.Question, args: [Ordinal(i + 1)]).Answers(colorNames[flashes[i]]);
     }
 }
