@@ -4316,7 +4316,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Creation
         [typeof(SCreation)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Schöpfung",
             ManualQuestions = new()
             {
@@ -4327,7 +4326,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SCreation.Weather] = new()
                 {
                     // English: What were the weather conditions on the first day in {0}?
-                    Question = "What were the weather conditions on the first day in {0}?",
+                    Question = "Wie war bei {0} das Wetter am ersten Tag?",
                 },
             },
         },
@@ -16819,7 +16818,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Subdivides
         [typeof(SSimonSubdivides)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Simon Teilt",
             ManualQuestions = new()
             {
@@ -16833,10 +16831,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Farbe hatte bei {0} diese Taste?",
                     Answers = new()
                     {
-                        ["Blue"] = "Blue",
-                        ["Green"] = "Green",
-                        ["Red"] = "Red",
-                        ["Violet"] = "Violet",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Red"] = "Rot",
+                        ["Violet"] = "Violett",
                     },
                 },
             },
@@ -20511,7 +20509,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Xenocryst
         [typeof(SXenocryst)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Der Xenokrist",
             ModuleNameDative = "Xenokrist",
             Gender = Gender.Masculine,
@@ -20526,16 +20523,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the {1} flash in {0}?
                     // Example: What was the color of the first flash in The Xenocryst?
-                    Question = "Welche Farbe ist bei {0} als {1}e aufgeleuchtet?",
+                    Question = "Welche Farbe leuchtete bei {0} als {1}e auf?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
                         ["Indigo"] = "Indigo",
-                        ["Violet"] = "Violet",
+                        ["Violet"] = "Violett",
                     },
                 },
             },
