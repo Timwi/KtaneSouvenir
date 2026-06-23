@@ -387,6 +387,12 @@ MonoBehaviour:
   - {fileID: 21300016, guid: 71add09c931529c4cac7c15048ec2170, type: 3}
   - {fileID: 21300034, guid: 71add09c931529c4cac7c15048ec2170, type: 3}
   - {fileID: 21300052, guid: 71add09c931529c4cac7c15048ec2170, type: 3}
+  CreationSprites:
+  - {fileID: 21300000, guid: 88cb77879f9892e41a61c695f6c78d55, type: 3}
+  - {fileID: 21300000, guid: 6c2255639de28f64a9923f674ec0afd6, type: 3}
+  - {fileID: 21300000, guid: 0b85409fb407359488b669ee0312d4ba, type: 3}
+  - {fileID: 21300000, guid: b6c31b903cde2d4479b43388a7a02168, type: 3}
+  - {fileID: 21300000, guid: 2fe599a4c80df4048a05655aefdc3302, type: 3}
   ClockCounterSprites:
   - {fileID: 21300000, guid: 6b71221f28945c84d82769d235e0b922, type: 3}
   - {fileID: 21300000, guid: 76ef004e0ce07164c88e142b92ba9492, type: 3}
@@ -555,6 +561,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2b18b579da6f455428ec5fb0134151b3, type: 3}
   - {fileID: 21300000, guid: 227832fbd4de6234bad6da4c4ef4d42d, type: 3}
   - {fileID: 21300000, guid: e467e01e7aaf451479e114e425539d52, type: 3}
+  FreeParkingSprites:
+  - {fileID: 21300000, guid: 58219fab2239d204fbb7e74118332830, type: 3}
+  - {fileID: 21300000, guid: 4a4ab0ddc7f35834788f9439aff9854c, type: 3}
+  - {fileID: 21300000, guid: 91e55cc42065a554fb7b202a75fdbe03, type: 3}
+  - {fileID: 21300000, guid: 818eeb1aac2fd524bbfe6e81dbedb547, type: 3}
+  - {fileID: 21300000, guid: 0d2916a8ae9d1614f96abd39298b3cf6, type: 3}
+  - {fileID: 21300000, guid: e5fe242566f9f73418e6d0286c8607c1, type: 3}
+  - {fileID: 21300000, guid: 7c62a29f961383c4c882c5f6ed33f1dc, type: 3}
   FuseBoxColorSprites:
   - {fileID: 21300000, guid: 6d84b885e2726bc4388a01ce8e211c2e, type: 3}
   - {fileID: 21300000, guid: ef44838cc585dec41a1e39cbd4b272e9, type: 3}
@@ -663,11 +677,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d78c6506e60866940ad3c605a40b1dda, type: 3}
   - {fileID: 21300000, guid: 94f212e305de6af46bd2ca78e7a222d7, type: 3}
   - {fileID: 21300000, guid: af24bd193306d204ca8c8947e0fb5656, type: 3}
-  MemorySprites:
-  - {fileID: 21300000, guid: 2bc6d2f63c3eff24db9134ea6f8fed9a, type: 3}
-  - {fileID: 21300000, guid: ee2284820dc8664468b4e5b3e680dfbb, type: 3}
-  - {fileID: 21300000, guid: ee84d6b32aab06b429c196fdd4a7b679, type: 3}
-  - {fileID: 21300000, guid: 78ef3eb6ed9dc9c4eb776cd71a9f3dcb, type: 3}
   MorseWarSprites:
   - {fileID: 21300000, guid: 91451960521165348b267e8c07de3ad0, type: 3}
   - {fileID: 21300000, guid: 780b2a6e03a949b4f872c24abc09f31d, type: 3}

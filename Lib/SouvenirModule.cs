@@ -31,6 +31,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] ArithmelogicSprites;
     public Sprite[] AudioSprites;
     public Sprite[] AzureButtonSprites;
+    public Sprite[] CreationSprites;
     public Sprite[] ClockCounterSprites;
     public Sprite[] ConnectedMonitorsSprites;
     public Sprite[] CycleModuleThreeSprites;
@@ -42,6 +43,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] EncryptedEquationsSprites;
     public Sprite[] ExampleSprites;
     public Sprite[] FlagsSprites;
+    public Sprite[] FreeParkingSprites;
     public Sprite[] FuseBoxColorSprites;
     public Sprite[] FuseBoxArrowSprites;
     public Sprite[] HingesSprites;
@@ -49,7 +51,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] KeypadSprites;
     public Sprite[] LadderLotterySprites;
     public Sprite[] MahjongSprites;
-    public Sprite[] MemorySprites;
     public Sprite[] MorseWarSprites;
     public Sprite[] NineBallSprites;
     public Sprite[] NonverbalSimonSprites;

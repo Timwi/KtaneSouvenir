@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SModuleMovements
 {
-    [Question("What was the {1} module shown in {0}?", OneColumn4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequence", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes And Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} module shown in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     Display
 }
 
@@ -18,10 +19,10 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "moduleMovements");
         var fldStageNum = GetIntField(comp, "stageNumber");
-        var fldDisplay = GetField<SpriteRenderer>(comp, "display", isPublic: true);
+        var fldModuleNum = GetIntField(comp, "moduleNum");
         var currentStage = -1;
-        var answers = new string[3];
-        var moduleNames = GetArrayField<string>(comp, "modules", true).Get();
+        var answers = new Sprite[3];
+        var allSprites = GetArrayField<Sprite>(comp, "sprites", isPublic: true).Get(expectedLength: 23).TranslateSprites(400).ToArray();
 
         while (module.Unsolved)
         {
@@ -29,12 +30,12 @@ public partial class SouvenirModule
             if (currentStage != nextStage)
             {
                 currentStage = nextStage;
-                answers[currentStage] = fldDisplay.Get().sprite.name;
+                answers[currentStage] = allSprites[fldModuleNum.Get()];
             }
             yield return null;
         }
 
         for (var i = 0; i < 2; i++) // We don't ask about the third stage since it stays on the module
-            yield return question(SModuleMovements.Display, args: [Ordinal(i + 1)]).Answers(answers[i], preferredWrong: answers);
+            yield return question(SModuleMovements.Display, args: [Ordinal(i + 1)]).Answers(answers[i], all: allSprites);
     }
 }

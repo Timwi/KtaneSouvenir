@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SMonsplodeFight
 {
-    [Question("Which creature was displayed in {0}?", TwoColumns4Answers, "Caadarim", "Buhar", "Melbor", "Lanaluff", "Bob", "Mountoise", "Aluga", "Nibs", "Zapra", "Zenlad", "Vellarim", "Ukkens", "Lugirit", "Flaurim", "Myrchat", "Clondar", "Gloorim", "Docsplode", "Magmy", "Pouse", "Asteran", "Violan", "Percy", "Cutie Pie")]
+    [Question("Which creature was displayed in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     Creature,
 
     [Question("Which one of these moves {1} selectable in {0}?", TwoColumns4Answers, "Tic", "Tac", "Toe", "Hollow Gaze", "Splash", "Heavy Rain", "Fountain", "Candle", "Torchlight", "Flame Spear", "Tangle", "Grass Blade", "Ivy Spikes", "Spectre", "Boo", "Battery Power", "Zap", "Double Zap", "Shock", "High Voltage", "Dark Portal", "Last Word", "Void", "Boom", "Fiery Soul", "Stretch", "Shrink", "Appearify", "Sendify", "Freak Out", "Glyph", "Bug Spray", "Bedrock", "Earthquake", "Cave In", "Toxic Waste", "Venom Fang", "Countdown", "Finale", "Sidestep", Arguments = ["was", "was not"], ArgumentGroupSize = 1, TranslateArguments = [true])]
@@ -32,9 +32,10 @@ public partial class SouvenirModule
         var movesData = GetField<object>(comp, "MD", isPublic: true).Get();
         var buttons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true).Get(expectedLength: 4);
         var creatureNames = GetArrayField<string>(creatureData, "names", isPublic: true).Get();
+        var creatureSprites = GetArrayField<Sprite>(creatureData, "sprites", isPublic: true).Get().TranslateSprites(3000).ToArray();
         var moveNames = GetArrayField<string>(movesData, "names", isPublic: true).Get();
 
-        string displayedCreature = null;
+        Sprite displayedCreature = null;
         string[] displayedMoves = null;
         var finished = false;
 
@@ -44,7 +45,7 @@ public partial class SouvenirModule
             buttons[i].OnInteract = delegate
             {
                 // Before processing the button push, get the creature and moves
-                string curCreatureName = null;
+                Sprite curCreatureSprite = null;
                 string[] curMoveNames = null;
 
                 var creatureID = fldCreatureID.Get();
@@ -62,7 +63,7 @@ public partial class SouvenirModule
                         Debug.Log($"<Souvenir #{_moduleId}> Monsplode, Fight!: Unexpected move IDs: {(moveIDs == null ? null : "[" + moveIDs.JoinString(", ") + "]")}; moves names are: [{moveNames.Select(mn => mn == null ? "null" : '"' + mn + '"').JoinString(", ")}]");
                     else
                     {
-                        curCreatureName = creatureNames[creatureID];
+                        curCreatureSprite = creatureSprites[creatureID];
                         curMoveNames = moveIDs.Select(mid => moveNames[mid].Replace("\r", "").Replace("\n", " ")).ToArray();
                     }
                 }
@@ -76,7 +77,7 @@ public partial class SouvenirModule
                     displayedMoves = null;
                     finished = true;
                 }
-                else if (curCreatureName == null || curMoveNames == null)
+                else if (curCreatureSprite == null || curMoveNames == null)
                 {
                     Debug.Log($"<Souvenir #{_moduleId}> Monsplode, Fight!: Abandoning due to error above.");
                     // Set these to null to signal that something went wrong and we need to abort
@@ -90,9 +91,9 @@ public partial class SouvenirModule
                     if (!fldRevive.Get())
                         finished = true;
 
-                    if (curCreatureName != null && curMoveNames != null)
+                    if (curCreatureSprite != null && curMoveNames != null)
                     {
-                        displayedCreature = curCreatureName;
+                        displayedCreature = curCreatureSprite;
                         displayedMoves = curMoveNames;
                     }
                 }
@@ -111,7 +112,7 @@ public partial class SouvenirModule
         if (displayedCreature == null || displayedMoves == null)
             yield break;
 
-        yield return question(SMonsplodeFight.Creature).Answers(displayedCreature);
+        yield return question(SMonsplodeFight.Creature).Answers(displayedCreature, all: creatureSprites);
         yield return question(SMonsplodeFight.Move, args: ["was"]).Answers(displayedMoves);
         yield return question(SMonsplodeFight.Move, args: ["was not"]).Answers(SMonsplodeFight.Move.GetAnswers().Except(displayedMoves).ToArray());
     }

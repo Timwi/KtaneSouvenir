@@ -4338,6 +4338,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Creation
         [typeof(SCreation)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Творения",
             ManualModuleName = "Творение",
             ManualQuestions = new()
@@ -4348,18 +4349,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SCreation.Weather] = new()
                 {
-                    // English: What were the weather conditions on the {1} day in {0}?
-                    // Example: What were the weather conditions on the first day in Creation?
-                    Question = "Какая погода была на {1}-м дне {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
-                    Answers = new()
-                    {
-                        ["Clear"] = "Ясно",
-                        ["Heat Wave"] = "Жара",
-                        ["Meteor Shower"] = "Метеор. дождь",
-                        ["Rain"] = "Дождь",
-                        ["Windy"] = "Ветер",
-                    },
+                    // English: What were the weather conditions on the first day in {0}?
+                    Question = "What were the weather conditions on the first day in {0}?",
                 },
             },
         },
@@ -7024,16 +7015,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the player token in {0}?
                     Question = "Какой был жетон игрока {0}?",
-                    Answers = new()
-                    {
-                        ["Dog"] = "Dog",
-                        ["Wheelbarrow"] = "Wheelbarrow",
-                        ["Cat"] = "Cat",
-                        ["Iron"] = "Iron",
-                        ["Top Hat"] = "Top Hat",
-                        ["Car"] = "Car",
-                        ["Battleship"] = "Battleship",
-                    },
                 },
             },
         },

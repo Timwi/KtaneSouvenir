@@ -4217,6 +4217,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Creation
         [typeof(SCreation)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "クリエーション",
             ManualQuestions = new()
             {
@@ -4226,17 +4227,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SCreation.Weather] = new()
                 {
-                    // English: What were the weather conditions on the {1} day in {0}?
-                    // Example: What were the weather conditions on the first day in Creation?
-                    Question = "{0}の{1}日目における天気は？",
-                    Answers = new()
-                    {
-                        ["Clear"] = "晴れ",
-                        ["Heat Wave"] = "猛暑",
-                        ["Meteor Shower"] = "流星群",
-                        ["Rain"] = "雨",
-                        ["Windy"] = "強風",
-                    },
+                    // English: What were the weather conditions on the first day in {0}?
+                    Question = "What were the weather conditions on the first day in {0}?",
                 },
             },
         },
@@ -6911,16 +6903,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the player token in {0}?
                     Question = "{0}のプレイヤーのコマは？",
-                    Answers = new()
-                    {
-                        ["Dog"] = "犬",
-                        ["Wheelbarrow"] = "手押し車",
-                        ["Cat"] = "猫",
-                        ["Iron"] = "アイロン",
-                        ["Top Hat"] = "帽子",
-                        ["Car"] = "車",
-                        ["Battleship"] = "軍艦",
-                    },
                 },
             },
         },

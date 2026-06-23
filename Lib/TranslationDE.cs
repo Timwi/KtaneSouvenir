@@ -4316,6 +4316,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Creation
         [typeof(SCreation)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Schöpfung",
             ManualQuestions = new()
             {
@@ -4325,17 +4326,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SCreation.Weather] = new()
                 {
-                    // English: What were the weather conditions on the {1} day in {0}?
-                    // Example: What were the weather conditions on the first day in Creation?
-                    Question = "Was waren die Wetterbedingungen am {1} Tag in {0}?",
-                    Answers = new()
-                    {
-                        ["Clear"] = "Wolkenlos",
-                        ["Heat Wave"] = "Hitzewelle",
-                        ["Meteor Shower"] = "Meteorschauer",
-                        ["Rain"] = "Regen",
-                        ["Windy"] = "Wind",
-                    },
+                    // English: What were the weather conditions on the first day in {0}?
+                    Question = "What were the weather conditions on the first day in {0}?",
                 },
             },
         },
@@ -7076,16 +7068,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the player token in {0}?
                     Question = "Was war bei {0} die Spielfigur?",
-                    Answers = new()
-                    {
-                        ["Dog"] = "Hund",
-                        ["Wheelbarrow"] = "Schubkarre",
-                        ["Cat"] = "Katze",
-                        ["Iron"] = "Bügeleisen",
-                        ["Top Hat"] = "Zylinderhut",
-                        ["Car"] = "Auto",
-                        ["Battleship"] = "Schlachtschiff",
-                    },
                 },
             },
         },
