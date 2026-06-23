@@ -4338,7 +4338,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Creation
         [typeof(SCreation)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Творения",
             ManualModuleName = "Творение",
             ManualQuestions = new()
@@ -4350,7 +4349,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 [SCreation.Weather] = new()
                 {
                     // English: What were the weather conditions on the first day in {0}?
-                    Question = "What were the weather conditions on the first day in {0}?",
+                    Question = "Какая погода была на 1-м дне {0}?",
                 },
             },
         },

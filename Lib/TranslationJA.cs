@@ -4217,7 +4217,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Creation
         [typeof(SCreation)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "クリエーション",
             ManualQuestions = new()
             {
@@ -4228,7 +4227,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SCreation.Weather] = new()
                 {
                     // English: What were the weather conditions on the first day in {0}?
-                    Question = "What were the weather conditions on the first day in {0}?",
+                    Question = "{0}の1日目における天気は？",
                 },
             },
         },
