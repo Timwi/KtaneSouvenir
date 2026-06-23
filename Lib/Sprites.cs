@@ -287,10 +287,15 @@ public static class Sprites
         return sprite;
     }
 
+    private static Dictionary<(Sprite, float?, string, Vector2?), Sprite> _translatedSpritesCache = [];
     public static Sprite TranslateSprite(this Sprite sprite, float? pixelsPerUnit = null, string name = null, Vector2? pivot = null)
     {
-        var newSprite = Sprite.Create((sprite ?? throw new ArgumentNullException(nameof(sprite))).texture, sprite.rect, pivot ?? new Vector2(0, .5f), pixelsPerUnit ?? sprite.pixelsPerUnit);
-        newSprite.name = name ?? sprite.name;
+        if (!_translatedSpritesCache.TryGetValue((sprite, pixelsPerUnit, name, pivot), out var newSprite))
+        {
+            newSprite = Sprite.Create((sprite ?? throw new ArgumentNullException(nameof(sprite))).texture, sprite.rect, pivot ?? new Vector2(0, .5f), pixelsPerUnit ?? sprite.pixelsPerUnit);
+            newSprite.name = name ?? sprite.name;
+            _translatedSpritesCache[(sprite, pixelsPerUnit, name, pivot)] = newSprite;
+        }
         return newSprite;
     }
 
@@ -300,10 +305,15 @@ public static class Sprites
     public static IEnumerable<Sprite> TranslateSpritesScaled(this IEnumerable<Sprite> sprites, float pixelsPerUnitMultiplier = 1f) =>
         (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, spr.pixelsPerUnit * pixelsPerUnitMultiplier));
 
+    private static Dictionary<(Texture2D, float?, Vector2?), Sprite> _toSpriteCache = [];
     public static Sprite ToSprite(this Texture2D texture, float? pixelsPerUnit = null, Vector2? pivot = null)
     {
-        var newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), pivot ?? new Vector2(0, .5f), pixelsPerUnit ?? texture.height * (60f / 17));
-        newSprite.name = texture.name;
+        if (!_toSpriteCache.TryGetValue((texture, pixelsPerUnit, pivot), out var newSprite))
+        {
+            newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), pivot ?? new Vector2(0, .5f), pixelsPerUnit ?? texture.height * (60f / 17));
+            newSprite.name = texture.name;
+            _toSpriteCache[(texture, pixelsPerUnit, pivot)] = newSprite;
+        }
         return newSprite;
     }
 

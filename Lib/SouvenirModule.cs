@@ -377,7 +377,7 @@ public partial class SouvenirModule : MonoBehaviour
                     }
                 }
 
-                for (var i = 0; i < Fonts.Length; i++)
+                for (var i = 1; i < Fonts.Length; i++)  // 0 is None/DefaultFont
                     if (Fonts[i] != null && ((InfoType) i).ToString() != Fonts[i].name)
                         Debug.LogError($"Error: Font #{i} ({Fonts[i].name}) does not match InfoType enum value #{i} ({(InfoType) i})");
                 foreach (var enumValue in (InfoType[]) Enum.GetValues(typeof(InfoType)))
