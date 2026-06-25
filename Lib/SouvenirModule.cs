@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -388,12 +388,12 @@ public partial class SouvenirModule : MonoBehaviour
                 _exampleModules = Ut.ModuleHandlers.Values.ToArray();
                 setExampleModule(0);
 
-                setAnswerHandler(0, _ => { _showIntros = false; setExampleModule(_curExampleModule + 1); });
-                setAnswerHandler(1, _ => { _showIntros = true; showIntro(_curIntro + 1); });
-                setAnswerHandler(2, _ => { _showIntros = false; setExampleQuestion(_curExampleQuestion + 1); });
-                setAnswerHandler(3, _ => { _showIntros = false; _curExampleQuestionArgument = (_curExampleQuestionArgument + 1) % (_exampleQuestionArguments?.Length ?? 1); showExampleQuestion(); });
-                setAnswerHandler(4, _ => { _showIntros = false; setExampleDiscriminator(_curExampleDiscriminator + 1); });
-                setAnswerHandler(5, _ => { _showIntros = false; _curExampleDiscriminatorArgument = (_curExampleDiscriminatorArgument + 1) % (_exampleDiscriminatorArguments?.Length ?? 1); showExampleQuestion(); });
+                setAnswerHandler(0, _ => setExampleModule(_curExampleModule + 1));
+                setAnswerHandler(1, _ => showIntro(_curIntro + 1));
+                setAnswerHandler(2, _ => setExampleQuestion(_curExampleQuestion + 1));
+                setAnswerHandler(3, _ => setNextExampleQuestionArgument());
+                setAnswerHandler(4, _ => setExampleDiscriminator(_curExampleDiscriminator + 1));
+                setAnswerHandler(5, _ => setNextExampleDiscriminatorArgument());
             }
             else
             {
@@ -408,8 +408,21 @@ public partial class SouvenirModule : MonoBehaviour
         Sprites.ColorBlit ??= ColorBlitMaterial;
     }
 
+    private void setNextExampleQuestionArgument()
+    {
+        _curExampleQuestionArgument = (_curExampleQuestionArgument + 1) % (_exampleQuestionArguments?.Length ?? 1);
+        showExampleQuestion();
+    }
+
+    private void setNextExampleDiscriminatorArgument()
+    {
+        _curExampleDiscriminatorArgument = (_curExampleDiscriminatorArgument + 1) % (_exampleDiscriminatorArguments?.Length ?? 1);
+        showExampleQuestion();
+    }
+
     private void showIntro(int index)
     {
+        _showIntros = true;
         var intros = _translation?.IntroTexts ?? _intros;
         _curIntro = (index % intros.Length + intros.Length) % intros.Length;
         disappear();
@@ -474,6 +487,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private void showExampleQuestion()
     {
+        _showIntros = false;
         var hAttr = _exampleModules[_curExampleModule];
         var qAttr = _exampleQuestions[_curExampleQuestion];
         var questionExtraType = InfoType.None;
@@ -1237,6 +1251,12 @@ public partial class SouvenirModule : MonoBehaviour
                 yield break;
             }
 
+            if ((m = Regex.Match(command, @"^\s*ss\s+(.*?)\s*$")).Success)
+            {
+                yield return TakeScreenshots(m.Groups[1].Value);
+                yield break;
+            }
+
             if ((m = Regex.Match(command, $@"^\s*lang (en|{TranslationInfo.AllTranslations.Keys.JoinString("|")})\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)).Success)
             {
                 _translation = m.Groups[1].Value.Equals("en", StringComparison.InvariantCultureIgnoreCase) ? null : TranslationInfo.AllTranslations[m.Groups[1].Value.ToLowerInvariant()];
@@ -1321,6 +1341,53 @@ public partial class SouvenirModule : MonoBehaviour
             (_currentQuestion.Answers is not AudioAnswerSet || _currentQuestion.Answers is AudioAnswerSet { _selected: var sel } && sel == number - 1))
             yield return "awardpoints 1";
         yield return new[] { Answers[number - 1] };
+    }
+
+    private IEnumerator TakeScreenshots(string folder)
+    {
+        var cam = Camera.main;
+
+        // Set the background color of the camera
+        cam.backgroundColor = new Color(0, 0, 0, 0);
+
+        for (var mIx = 0; mIx < _exampleModules.Length; mIx++)
+        {
+            setExampleModule(mIx);
+
+            for (var qIx = 0; qIx < _exampleQuestions.Length; qIx++)
+            {
+                setExampleQuestion(qIx);
+
+                for (var dIx = 0; dIx < _exampleDiscriminators.Length; dIx++)
+                {
+                    setExampleDiscriminator(dIx);
+
+                    // Get a temporary render texture and render the camera
+                    cam.targetTexture = RenderTexture.GetTemporary(width: 512, height: 512, depthBuffer: 24);
+                    cam.Render();
+
+                    // Activate the temporary render texture
+                    RenderTexture previouslyActiveRenderTexture = RenderTexture.active;
+                    RenderTexture.active = cam.targetTexture;
+
+                    // Extract the image into a new texture without mipmaps
+                    Texture2D texture = new Texture2D(cam.targetTexture.width, cam.targetTexture.height, TextureFormat.ARGB32, false);
+                    texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
+                    texture.Apply(false);
+
+                    // Reactivate the previously active render texture
+                    RenderTexture.active = previouslyActiveRenderTexture;
+
+                    // Clean up after ourselves
+                    cam.targetTexture = null;
+                    RenderTexture.ReleaseTemporary(cam.targetTexture);
+
+                    // Return the texture
+                    File.WriteAllBytes(Path.Combine(folder, $"{_exampleModules[mIx].ModuleId}-{qIx}-{dIx}.png"), texture.EncodeToPNG());
+                    yield return null;
+                }
+            }
+        }
     }
 
     private IEnumerator TwitchHandleForcedSolve()
