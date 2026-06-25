@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SReversePolishNotation
 {
-    [Question("What character was used in the {1} round of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What character was used in the {1} round of {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("A-G0-9")]
     Character
 }

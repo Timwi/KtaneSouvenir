@@ -5,19 +5,19 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotMurder
 {
-    [Question("What room was {1} in initially on {0}?", TwoColumns4Answers, "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study", TranslateAnswers = true, Arguments = ["Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What room was {1} in initially on {0}?", TwoColumns4Answers, "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study", Arguments = ["Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White"], ArgumentGroupSize = 1)]
     Room,
 
-    [Question("What weapon did {1} possess initially on {0}?", TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner", TranslateAnswers = true, Arguments = ["Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What weapon did {1} possess initially on {0}?", TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner", Arguments = ["Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White"], ArgumentGroupSize = 1)]
     Weapon,
 
     [Discriminator("the Not Murder where {0} was present", Arguments = ["he", "she"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Present,
 
-    [Discriminator("the Not Murder where {0} initially held the {1}", Arguments = ["he", "Candlestick", "he", "Dagger", "she", "Lead Pipe", "she", "Revolver"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    [Discriminator("the Not Murder where {0} initially held the {1}", Arguments = ["he", "Candlestick", "he", "Dagger", "she", "Lead Pipe", "she", "Revolver"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     InitialWeapon,
 
-    [Discriminator("the Not Murder where {0} started in the {1}", Arguments = ["he", "Ballroom", "he", "Billiard Room", "she", "Conservatory", "she", "Dining Room"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
+    [Discriminator("the Not Murder where {0} started in the {1}", Arguments = ["he", "Ballroom", "he", "Billiard Room", "she", "Conservatory", "she", "Dining Room"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     InitialRoom
 }
 

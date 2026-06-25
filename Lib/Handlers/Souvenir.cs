@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSouvenir
 {
-    [Question("What was the first module asked about in the other Souvenir on this bomb?", OneColumn4Answers, ExampleAnswers = ["Probing", "Microcontroller", "Third Base", "Kudosudoku", "Quintuples", "3D Tunnels", "Uncolored Squares", "Pattern Cube", "Synonyms", "The Moon", "Human Resources", "Algebra"])]
+    [Question("What was the first module asked about in the other Souvenir on this bomb?", OneColumn4Answers, ExampleAnswers = ["Probing", "Third Base", "Kudosudoku", "Quintuples", "3D Tunnels", "Uncolored Squares", "Pattern Cube", "Synonyms", "Human Resources", "Algebra"])]
     FirstQuestion,
 
     [Discriminator("Souvenir")]

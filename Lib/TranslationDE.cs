@@ -11385,15 +11385,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["a suspect but not the murderer"] = "ein Tatverdächtiger, aber nicht der Mörder",
                         ["not a suspect"] = "kein Tatverdächtiger",
                     },
-                    Answers = new()
-                    {
-                        ["Miss Scarlett"] = "Miss Scarlett",
-                        ["Professor Plum"] = "Professor Plum",
-                        ["Mrs Peacock"] = "Mrs Peacock",
-                        ["Reverend Green"] = "Reverend Green",
-                        ["Colonel Mustard"] = "Colonel Mustard",
-                        ["Mrs White"] = "Mrs White",
-                    },
                 },
                 [SMurder.Weapon] = new()
                 {
@@ -11405,32 +11396,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["a potential weapon but not the murder weapon"] = "vorhanden aber nicht die Tatwaffe",
                         ["not a potential weapon"] = "nicht vorhanden",
                     },
-                    Answers = new()
-                    {
-                        ["Candlestick"] = "Kerzenleuchter",
-                        ["Dagger"] = "Dolch",
-                        ["Lead Pipe"] = "Bleirohr",
-                        ["Revolver"] = "Pistole",
-                        ["Rope"] = "Seil",
-                        ["Spanner"] = "Rohrzange",
-                    },
                 },
                 [SMurder.BodyFound] = new()
                 {
                     // English: Where was the body found in {0}?
                     Question = "Wo wurde bei {0} die Leiche gefunden?",
-                    Answers = new()
-                    {
-                        ["Dining Room"] = "Esszimmer",
-                        ["Study"] = "Arbeitszimmer",
-                        ["Kitchen"] = "Küche",
-                        ["Lounge"] = "Salon",
-                        ["Billiard Room"] = "Billard-Zimmer",
-                        ["Conservatory"] = "Wintergarten",
-                        ["Ballroom"] = "Musikzimmer",
-                        ["Hall"] = "Halle",
-                        ["Library"] = "Bibliothek",
-                    },
                 },
             },
         },
@@ -12129,51 +12099,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What room was {1} in initially on {0}?
                     // Example: What room was Miss Scarlett in initially on Not Murder?
                     Question = "In welchem Zimmer war {1} bei {0} am Anfang?",
-                    Arguments = new()
-                    {
-                        ["Miss Scarlett"] = "Miss Scarlett",
-                        ["Colonel Mustard"] = "Colonel Mustard",
-                        ["Reverend Green"] = "Reverend Green",
-                        ["Mrs Peacock"] = "Mrs Peacock",
-                        ["Professor Plum"] = "Professor Plum",
-                        ["Mrs White"] = "Mrs White",
-                    },
-                    Answers = new()
-                    {
-                        ["Ballroom"] = "Musikzimmer",
-                        ["Billiard Room"] = "Billardzimmer",
-                        ["Conservatory"] = "Wintergarten",
-                        ["Dining Room"] = "Speisezimmer",
-                        ["Hall"] = "Halle",
-                        ["Kitchen"] = "Küche",
-                        ["Library"] = "Bibliothek",
-                        ["Lounge"] = "Salon",
-                        ["Study"] = "Arbeitszimmer",
-                    },
                 },
                 [SNotMurder.Weapon] = new()
                 {
                     // English: What weapon did {1} possess initially on {0}?
                     // Example: What weapon did Miss Scarlett possess initially on Not Murder?
                     Question = "Welche Waffe hatte {1} bei {0} am Anfang?",
-                    Arguments = new()
-                    {
-                        ["Miss Scarlett"] = "Miss Scarlett",
-                        ["Colonel Mustard"] = "Colonel Mustard",
-                        ["Reverend Green"] = "Reverend Green",
-                        ["Mrs Peacock"] = "Mrs Peacock",
-                        ["Professor Plum"] = "Professor Plum",
-                        ["Mrs White"] = "Mrs White",
-                    },
-                    Answers = new()
-                    {
-                        ["Candlestick"] = "Kerzenleuchter",
-                        ["Dagger"] = "Dolch",
-                        ["Lead Pipe"] = "Bleirohr",
-                        ["Revolver"] = "Pistole",
-                        ["Rope"] = "Seil",
-                        ["Spanner"] = "Rohrzange",
-                    },
                 },
             },
             Discriminators = new()
@@ -12198,10 +12129,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     {
                         ["he"] = "er",
                         ["she"] = "sie",
-                        ["Candlestick"] = "den Kerzenleuchter",
-                        ["Dagger"] = "den Dolch",
-                        ["Lead Pipe"] = "das Bleirohr",
-                        ["Revolver"] = "die Pistole",
                     },
                 },
                 [SNotMurder.InitialRoom] = new()
@@ -12213,10 +12140,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     {
                         ["he"] = "er",
                         ["she"] = "sie",
-                        ["Ballroom"] = "Musikzimmer",
-                        ["Billiard Room"] = "Billardzimmer",
-                        ["Conservatory"] = "Wintergarten",
-                        ["Dining Room"] = "Speisezimmer",
                     },
                 },
             },
@@ -18741,6 +18664,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Tricky Tetris Pieces
         [typeof(STrickyTetrisPieces)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Trickreiche Tetris-Teile",
             ModuleNameDative = "Trickreichen Tetris-Teile",
             Gender = Gender.Plural,
@@ -18760,6 +18684,67 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the second color palette the pieces converted to in {0}?
                     Question = "Was war bei {0} die zweite Farbpalette, in die sich die Teile verwandelten?",
+                    Answers = new()
+                    {
+                        ["Level 0"] = "Level 0",
+                        ["Level 1"] = "Level 1",
+                        ["Level 2"] = "Level 2",
+                        ["Level 3"] = "Level 3",
+                        ["Level 4"] = "Level 4",
+                        ["Level 5"] = "Level 5",
+                        ["Level 6"] = "Level 6",
+                        ["Level 7"] = "Level 7",
+                        ["Level 8"] = "Level 8",
+                        ["Level 9"] = "Level 9",
+                        ["Watermelon"] = "Watermelon",
+                        ["Neon Night"] = "Neon Night",
+                        ["Glowing Spaghetti"] = "Glowing Spaghetti",
+                        ["Lychee"] = "Lychee",
+                        ["Lychee Milk Tea"] = "Lychee Milk Tea",
+                        ["Red Velvet Cake"] = "Red Velvet Cake",
+                        ["Dusk"] = "Dusk",
+                        ["Bubble Gum"] = "Bubble Gum",
+                        ["Charcoal"] = "Charcoal",
+                        ["Week-Old Bubble Gum"] = "Week-Old Bubble Gum",
+                        ["Salmon"] = "Salmon",
+                        ["Australian Outback"] = "Australian Outback",
+                        ["Stardew Valley Sunset"] = "Stardew Valley Sunset",
+                        ["Pastel"] = "Pastel",
+                        ["Squid"] = "Squid",
+                        ["Lime Factory"] = "Lime Factory",
+                        ["Pomegranate"] = "Pomegranate",
+                        ["Radium"] = "Radium",
+                        ["Nuclear Christmas"] = "Nuclear Christmas",
+                        ["Glass Blowing Studio"] = "Glass Blowing Studio",
+                        ["Regular Christmas"] = "Regular Christmas",
+                        ["Saloon"] = "Saloon",
+                        ["Lava Pools"] = "Lava Pools",
+                        ["Sewage"] = "Sewage",
+                        ["Lime Factory After Hours"] = "Lime Factory After Hours",
+                        ["Blackpink"] = "Blackpink",
+                        ["Non-Glowing Spaghetti"] = "Non-Glowing Spaghetti",
+                        ["Willy Wonka"] = "Willy Wonka",
+                        ["Greeeeeeen"] = "Greeeeeeen",
+                        ["Cherry Limeade"] = "Cherry Limeade",
+                        ["Arctic Forest"] = "Arctic Forest",
+                        ["Peach Smoothie"] = "Peach Smoothie",
+                        ["Los Angeles Smog"] = "Los Angeles Smog",
+                        ["Internship at Marie Curie's Lab"] = "Internship at Marie Curie's Lab",
+                        ["Burnt Spaghetti"] = "Burnt Spaghetti",
+                        ["Burnt Key Lime Pie"] = "Burnt Key Lime Pie",
+                        ["Aquamarine"] = "Aquamarine",
+                        ["Vaporwave"] = "Vaporwave",
+                        ["Sour Patch Watermelon"] = "Sour Patch Watermelon",
+                        ["Mexico according to Hollywood"] = "Mexico according to Hollywood",
+                        ["Christmas but Green with Envy"] = "Christmas but Green with Envy",
+                        ["Prairie"] = "Prairie",
+                        ["Sea Kelp"] = "Sea Kelp",
+                        ["Mossy Cobblestone"] = "Mossy Cobblestone",
+                        ["Blueberry Factory After Hours"] = "Blueberry Factory After Hours",
+                        ["50 Shades of Blue"] = "50 Shades of Blue",
+                        ["Quarantine Hair Dye"] = "Quarantine Hair Dye",
+                        ["RED"] = "RED",
+                    },
                 },
             },
         },

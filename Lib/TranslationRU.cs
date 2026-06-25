@@ -11213,15 +11213,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["a suspect but not the murderer"] = "не являлся убийцей, но был среди подозреваемых",
                         ["not a suspect"] = "не был подозреваемым",
                     },
-                    Answers = new()
-                    {
-                        ["Miss Scarlett"] = "Miss Scarlett",
-                        ["Professor Plum"] = "Professor Plum",
-                        ["Mrs Peacock"] = "Mrs Peacock",
-                        ["Reverend Green"] = "Reverend Green",
-                        ["Colonel Mustard"] = "Colonel Mustard",
-                        ["Mrs White"] = "Mrs White",
-                    },
                 },
                 [SMurder.Weapon] = new()
                 {
@@ -11233,32 +11224,11 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["a potential weapon but not the murder weapon"] = "Какое орудие было найдено, но не являлось орудием убийства",
                         ["not a potential weapon"] = "Какого орудия не было среди найденных возможных орудий",
                     },
-                    Answers = new()
-                    {
-                        ["Candlestick"] = "Candlestick",
-                        ["Dagger"] = "Dagger",
-                        ["Lead Pipe"] = "Lead Pipe",
-                        ["Revolver"] = "Revolver",
-                        ["Rope"] = "Rope",
-                        ["Spanner"] = "Spanner",
-                    },
                 },
                 [SMurder.BodyFound] = new()
                 {
                     // English: Where was the body found in {0}?
                     Question = "Где было найдено тело {0}?",
-                    Answers = new()
-                    {
-                        ["Dining Room"] = "Dining Room",
-                        ["Study"] = "Study",
-                        ["Kitchen"] = "Kitchen",
-                        ["Lounge"] = "Lounge",
-                        ["Billiard Room"] = "Billiard Room",
-                        ["Conservatory"] = "Conservatory",
-                        ["Ballroom"] = "Ballroom",
-                        ["Hall"] = "Hall",
-                        ["Library"] = "Library",
-                    },
                 },
             },
         },
@@ -11944,51 +11914,12 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What room was {1} in initially on {0}?
                     // Example: What room was Miss Scarlett in initially on Not Murder?
                     Question = "В какой комнате изначально находился(-ась) {1} {0}?",
-                    Arguments = new()
-                    {
-                        ["Miss Scarlett"] = "Miss Scarlett",
-                        ["Colonel Mustard"] = "Colonel Mustard",
-                        ["Reverend Green"] = "Reverend Green",
-                        ["Mrs Peacock"] = "Mrs Peacock",
-                        ["Professor Plum"] = "Professor Plum",
-                        ["Mrs White"] = "Mrs White",
-                    },
-                    Answers = new()
-                    {
-                        ["Ballroom"] = "Ballroom",
-                        ["Billiard Room"] = "Billiard Room",
-                        ["Conservatory"] = "Conservatory",
-                        ["Dining Room"] = "Dining Room",
-                        ["Hall"] = "Hall",
-                        ["Kitchen"] = "Kitchen",
-                        ["Library"] = "Library",
-                        ["Lounge"] = "Lounge",
-                        ["Study"] = "Study",
-                    },
                 },
                 [SNotMurder.Weapon] = new()
                 {
                     // English: What weapon did {1} possess initially on {0}?
                     // Example: What weapon did Miss Scarlett possess initially on Not Murder?
                     Question = "Каким орудием изначально обладал(-а) {1} {0}?",
-                    Arguments = new()
-                    {
-                        ["Miss Scarlett"] = "Miss Scarlett",
-                        ["Colonel Mustard"] = "Colonel Mustard",
-                        ["Reverend Green"] = "Reverend Green",
-                        ["Mrs Peacock"] = "Mrs Peacock",
-                        ["Professor Plum"] = "Professor Plum",
-                        ["Mrs White"] = "Mrs White",
-                    },
-                    Answers = new()
-                    {
-                        ["Candlestick"] = "Candlestick",
-                        ["Dagger"] = "Dagger",
-                        ["Lead Pipe"] = "Lead Pipe",
-                        ["Revolver"] = "Revolver",
-                        ["Rope"] = "Rope",
-                        ["Spanner"] = "Spanner",
-                    },
                 },
             },
             Discriminators = new()
@@ -12013,10 +11944,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     {
                         ["he"] = "he",
                         ["she"] = "she",
-                        ["Candlestick"] = "Candlestick",
-                        ["Dagger"] = "Dagger",
-                        ["Lead Pipe"] = "Lead Pipe",
-                        ["Revolver"] = "Revolver",
                     },
                 },
                 [SNotMurder.InitialRoom] = new()
@@ -12028,10 +11955,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     {
                         ["he"] = "he",
                         ["she"] = "she",
-                        ["Ballroom"] = "Ballroom",
-                        ["Billiard Room"] = "Billiard Room",
-                        ["Conservatory"] = "Conservatory",
-                        ["Dining Room"] = "Dining Room",
                     },
                 },
             },
@@ -18424,6 +18347,67 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the second color palette the pieces converted to in {0}?
                     Question = "What was the second color palette the pieces converted to in {0}?",
+                    Answers = new()
+                    {
+                        ["Level 0"] = "Level 0",
+                        ["Level 1"] = "Level 1",
+                        ["Level 2"] = "Level 2",
+                        ["Level 3"] = "Level 3",
+                        ["Level 4"] = "Level 4",
+                        ["Level 5"] = "Level 5",
+                        ["Level 6"] = "Level 6",
+                        ["Level 7"] = "Level 7",
+                        ["Level 8"] = "Level 8",
+                        ["Level 9"] = "Level 9",
+                        ["Watermelon"] = "Watermelon",
+                        ["Neon Night"] = "Neon Night",
+                        ["Glowing Spaghetti"] = "Glowing Spaghetti",
+                        ["Lychee"] = "Lychee",
+                        ["Lychee Milk Tea"] = "Lychee Milk Tea",
+                        ["Red Velvet Cake"] = "Red Velvet Cake",
+                        ["Dusk"] = "Dusk",
+                        ["Bubble Gum"] = "Bubble Gum",
+                        ["Charcoal"] = "Charcoal",
+                        ["Week-Old Bubble Gum"] = "Week-Old Bubble Gum",
+                        ["Salmon"] = "Salmon",
+                        ["Australian Outback"] = "Australian Outback",
+                        ["Stardew Valley Sunset"] = "Stardew Valley Sunset",
+                        ["Pastel"] = "Pastel",
+                        ["Squid"] = "Squid",
+                        ["Lime Factory"] = "Lime Factory",
+                        ["Pomegranate"] = "Pomegranate",
+                        ["Radium"] = "Radium",
+                        ["Nuclear Christmas"] = "Nuclear Christmas",
+                        ["Glass Blowing Studio"] = "Glass Blowing Studio",
+                        ["Regular Christmas"] = "Regular Christmas",
+                        ["Saloon"] = "Saloon",
+                        ["Lava Pools"] = "Lava Pools",
+                        ["Sewage"] = "Sewage",
+                        ["Lime Factory After Hours"] = "Lime Factory After Hours",
+                        ["Blackpink"] = "Blackpink",
+                        ["Non-Glowing Spaghetti"] = "Non-Glowing Spaghetti",
+                        ["Willy Wonka"] = "Willy Wonka",
+                        ["Greeeeeeen"] = "Greeeeeeen",
+                        ["Cherry Limeade"] = "Cherry Limeade",
+                        ["Arctic Forest"] = "Arctic Forest",
+                        ["Peach Smoothie"] = "Peach Smoothie",
+                        ["Los Angeles Smog"] = "Los Angeles Smog",
+                        ["Internship at Marie Curie's Lab"] = "Internship at Marie Curie's Lab",
+                        ["Burnt Spaghetti"] = "Burnt Spaghetti",
+                        ["Burnt Key Lime Pie"] = "Burnt Key Lime Pie",
+                        ["Aquamarine"] = "Aquamarine",
+                        ["Vaporwave"] = "Vaporwave",
+                        ["Sour Patch Watermelon"] = "Sour Patch Watermelon",
+                        ["Mexico according to Hollywood"] = "Mexico according to Hollywood",
+                        ["Christmas but Green with Envy"] = "Christmas but Green with Envy",
+                        ["Prairie"] = "Prairie",
+                        ["Sea Kelp"] = "Sea Kelp",
+                        ["Mossy Cobblestone"] = "Mossy Cobblestone",
+                        ["Blueberry Factory After Hours"] = "Blueberry Factory After Hours",
+                        ["50 Shades of Blue"] = "50 Shades of Blue",
+                        ["Quarantine Hair Dye"] = "Quarantine Hair Dye",
+                        ["RED"] = "RED",
+                    },
                 },
             },
         },

@@ -24,6 +24,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
         var request = GetField<string>(comp, "request").Get(x => Regex.IsMatch(x, @"^[0-7]{3}[ACQBJMSD]$") ? null : "Unexpected order number.");
         for (var i = 0; i < 4; i++)
-            yield return question(i == 3 ? SPapasPizzeria.Letter : SPapasPizzeria.Digit, args: [Ordinal(i + 1)]).Answers(request[i].ToString());
+            if (i == 3)
+                yield return question(SPapasPizzeria.Letter).Answers(request[i].ToString());
+
+            else
+                yield return question(SPapasPizzeria.Digit, args: [Ordinal(i + 1)]).Answers(request[i].ToString());
     }
 }

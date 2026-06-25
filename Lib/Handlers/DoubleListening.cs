@@ -14,6 +14,7 @@ public partial class SouvenirModule
 {
     [Handler("doubleListening", "Double Listening", typeof(SDoubleListening), "Anonymous")]
     [ManualQuestion("What sounds played?")]
+    [NoDiscriminator]   // If the player knew both of the potential sounds, the answer could be reverse-engineered
     private IEnumerator<SouvenirInstruction> ProcessDoubleListening(ModuleData module)
     {
         var comp = GetComponent(module, "doubleListeningScript");
