@@ -2185,6 +2185,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SBlueButton.DOther] = new()
                 {
                     // English: the Blue Button where {0} was {1}
+                    // Example: the Blue Button where E was 0
                     Discriminator = "dem Blauen Knopf, bei dem {0} {1} war,",
                 },
             },

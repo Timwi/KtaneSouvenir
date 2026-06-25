@@ -1097,7 +1097,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What character was displayed on the {1} screen in {0}?
                     // Example: What character was displayed on the top-left screen in Alpha-Bits?
-                    Question = "Какой символ был на {1}-м экране {2} {0}?",
+                    Question = "What character was displayed on the {1} screen in {0}?",
                     Arguments = new()
                     {
                         ["top-left"] = "top-left",
@@ -2234,6 +2234,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 [SBlueButton.DOther] = new()
                 {
                     // English: the Blue Button where {0} was {1}
+                    // Example: the Blue Button where E was 0
                     Discriminator = "the Blue Button where {0} was {1}",
                 },
             },
@@ -2508,7 +2509,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 [SBorderedKeys.Digit] = new()
                 {
                     // English: What was the digit displayed when this key was pressed in {0}? (+ extra)
-                    Question = "Какая цифра отображалась на дисплее, когда вы нажали {1}-ю клавишу {0}?",
+                    Question = "What was the digit displayed when this key was pressed in {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
                 },
                 [SBorderedKeys.KeyColor] = new()
@@ -7724,7 +7725,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was {1} of {0} when it was held?
                     // Example: What was the color of The Hexabutton when it was held?
-                    Question = "What was the color of {0} when it was held?",
+                    Question = "What was {1} of {0} when it was held?",
                     Arguments = new()
                     {
                         ["the color"] = "the color",
@@ -11721,13 +11722,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was {1} in the displayed word sequence in {0}?
                     // Example: What was first in the displayed word sequence in Not Colour Flash?
-                    Question = "What was the initial word on {0}?",
+                    Question = "What was {1} in the displayed word sequence in {0}?",
                 },
                 [SNotColourFlash.InitialColour] = new()
                 {
                     // English: What was {1} in the displayed colour sequence in {0}?
                     // Example: What was first in the displayed colour sequence in Not Colour Flash?
-                    Question = "What was the initial colour of the word on {0}?",
+                    Question = "What was {1} in the displayed colour sequence in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",
@@ -12695,7 +12696,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 [SOffKeys.Runes] = new()
                 {
                     // English: Which of these runes was displayed in {0}?
-                    Question = "Which of these runes was displayed in {0]?",
+                    Question = "Which of these runes was displayed in {0}?",
                 },
             },
         },
@@ -18388,7 +18389,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the {1} name in {0}?
                     // Example: What was the northeast name in Tribal Council?
-                    Question = "Who was your closest ally in {0}?",
+                    Question = "What was the {1} name in {0}?",
                     Arguments = new()
                     {
                         ["northeast"] = "northeast",
@@ -18720,7 +18721,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the {1} in the {2} position of the “{3}” sequence of {0}?
                     // Example: What was the word in the first position of the “YES” sequence of Uncolour Flash?
-                    Question = "What was the {1} displayed in the {2} sequence of {0}?",
+                    Question = "What was the {1} in the {2} position of the “{3}” sequence of {0}?",
                     Arguments = new()
                     {
                         ["word"] = "word",

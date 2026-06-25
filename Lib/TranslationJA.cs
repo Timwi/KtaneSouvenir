@@ -2130,6 +2130,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SBlueButton.DOther] = new()
                 {
                     // English: the Blue Button where {0} was {1}
+                    // Example: the Blue Button where E was 0
                     Discriminator = "{0}が{1}だった青色ボタン",
                 },
             },

@@ -54,10 +54,15 @@ public static class Program
             Console.WriteLine(e.Message);
             return 1;
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine($"UNKNOWN(1,1): error SOUV9999: {e.Message} ({e.GetType().FullName}) Translation stuff has NOT been updated.");
-            Console.WriteLine(e.StackTrace);
+            var e = ex;
+            while (e != null)
+            {
+                Console.WriteLine($"UNKNOWN(1,1): error SOUV9999: {e.Message} ({e.GetType().FullName}) Translation stuff has NOT been updated.");
+                Console.WriteLine(e.StackTrace);
+                e = e.InnerException;
+            }
             return 1;
         }
         return 0;

@@ -35,7 +35,7 @@ public enum SBlueButton
     [Discriminator("the Blue Button where Q was {0}", Arguments = ["Blue", "Green", "Cyan", "Red", "Magenta", "Yellow"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DQ,
 
-    [Discriminator("the Blue Button where {0} was {1}")]
+    [Discriminator("the Blue Button where {0} was {1}", Arguments = ["E", "0", "F", "1", "G", "2", "H", "3", "M", "4", "N", "7", "P", "♠♥♣", "X", "5"], ArgumentGroupSize = 2)]
     DOther
 }
 
