@@ -125,9 +125,10 @@ Coordinates,
 ```
 
 The important bit is the `TranslateArguments = [false, true]`. It needs to follow these rules:
-* The number of booleans in the array must match the `ArgumentGroupSize` (which in turn also matches the number of `{1}`, `{2}`, etc., not counting the `{0}`).
+* The number of booleans in the array must match the `ArgumentGroupSize`.
+  * (For a question, this matches the number of `{1}`, `{2}`, etc., not counting the `{0}`. For a discriminator, it does include the `{0}`.)
 * Specify `true` for each argument that you want translatable. In this example, the first boolean being `false` means that `X`/`Y`/`Z` are not translatable, while the second boolean being `true` means that `red`/`yellow`/`blue` are translatable.
-* Use `TranslateAnswers = true` if you need the answers to be translatable. This only works if there is a full list of answers (not an `ExampleAnswers` array).
+* Use `TranslateAnswers = true` if you need the *answers* to be translatable. This only works if there is a full list of answers (not an `ExampleAnswers` array).
 
 ## Testing translations
 
@@ -166,11 +167,11 @@ Alternatively, you can find `Souvenir-settings.txt` in the `mod-settings` folder
 
 - `"{0}{1}{2}{3}{4}{5}{6}"` is used to combine the colors together to describe which particles were present. Absent particles will become nothing, while present ones will become the translation of `"R"`, `"O"`, `"Y"`, `"G"`, `"B"`, `"I"`, or `"V"`, which stand for the colors.
 - `"None"` is used as the answer when no particles were present.
-- `"R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"` is used to generate answers for red, blue, and green Kugelblitzes. Each placeholder will be filled in with a single-digit number.
+- `"R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"` is used to generate answers with numbers (red, blue, and green Kugelblitzes). Each placeholder will be filled in with a single-digit number.
 
 ## Module Maneuvers
 
-`"{0}, {1}"` is used to construct answers, e.g. `1, -2`
+`"{0}, {1}"` is used to construct answers, e.g. `1, -2`.
 
 ## Mssngv Wls
 
@@ -178,7 +179,7 @@ In line with the theming of the module, this question is formatted like the “m
 
 For this purpose, a translatable string is provided in which you can specify the vowels of your language.
 
-If this is not applicable in your language, feel free to translate `["AEIOU"]` as `""` (i.e. empty string). However, if you have a cool idea on doing something kinda similar, but don’t know how to implement it, please talk to Timwi and we’ll work something out!
+If this is not applicable in your language, feel free to translate `"AEIOU"` as `""` (i.e. empty string). However, if you have a cool idea on doing something kinda similar, but don’t know how to implement it, please talk to Timwi and we’ll work something out!
 
 ## Variety
 
