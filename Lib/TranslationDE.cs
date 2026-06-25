@@ -15057,12 +15057,26 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the color of the {1} robot in {0}?
                     // Example: What was the color of the first robot in Robot Programming?
                     Question = "Welche Farbe hatte der {1}e Roboter bei {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Red"] = "Rot",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
                 [SRobotProgramming.Shape] = new()
                 {
                     // English: What was the shape of the {1} robot in {0}?
                     // Example: What was the shape of the first robot in Robot Programming?
                     Question = "Welche Form hatte der {1}e Roboter bei {0}?",
+                    Answers = new()
+                    {
+                        ["Triangle"] = "Dreieck",
+                        ["Square"] = "Quadrat",
+                        ["Hexagon"] = "Sechseck",
+                        ["Circle"] = "Kreis",
+                    },
                 },
             },
         },
@@ -19276,12 +19290,30 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What color was this key in the {1} stage of {0}? (+ extra)
                     // Example: What color was this key in the first stage of Unordered Keys? (+ extra)
                     Question = "Welche Farbe hatte diese Taste in der {1}en Stufe von {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Rosa",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
                 [SUnorderedKeys.LabelColor] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}? (+ extra)
                     // Example: What color was the label of this key in the first stage of Unordered Keys? (+ extra)
                     Question = "Welche Farbe hatte die Aufschrift dieser Taste in der {1}en Stufe von {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Rosa",
+                        ["Yellow"] = "Gelb",
+                    },
                 },
                 [SUnorderedKeys.Label] = new()
                 {

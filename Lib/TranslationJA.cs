@@ -14669,6 +14669,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Robot Programming
         [typeof(SRobotProgramming)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ロボットプログラミング",
             ManualQuestions = new()
             {
@@ -14681,12 +14682,26 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the color of the {1} robot in {0}?
                     // Example: What was the color of the first robot in Robot Programming?
                     Question = "{0}の{1}番目のロボットの色は？",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SRobotProgramming.Shape] = new()
                 {
                     // English: What was the shape of the {1} robot in {0}?
                     // Example: What was the shape of the first robot in Robot Programming?
                     Question = "{0}の{1}番目のロボットの形は？",
+                    Answers = new()
+                    {
+                        ["Triangle"] = "Triangle",
+                        ["Square"] = "Square",
+                        ["Hexagon"] = "Hexagon",
+                        ["Circle"] = "Circle",
+                    },
                 },
             },
         },
@@ -18819,6 +18834,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Unordered Keys
         [typeof(SUnorderedKeys)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "順番無し音板",
             ManualQuestions = new()
             {
@@ -18831,12 +18847,30 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What color was this key in the {1} stage of {0}? (+ extra)
                     // Example: What color was this key in the first stage of Unordered Keys? (+ extra)
                     Question = "{0}のステージ{1}におけるこの音板の色は？",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SUnorderedKeys.LabelColor] = new()
                 {
                     // English: What color was the label of this key in the {1} stage of {0}? (+ extra)
                     // Example: What color was the label of this key in the first stage of Unordered Keys? (+ extra)
                     Question = "{0}のステージ{1}におけるこの音板のラベルの色は？",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SUnorderedKeys.Label] = new()
                 {

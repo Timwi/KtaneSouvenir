@@ -14773,6 +14773,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Robot Programming
         [typeof(SRobotProgramming)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the shapes and colors of the robots?"] = "Каких форм и цветов были роботы?",
@@ -14784,12 +14785,26 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the color of the {1} robot in {0}?
                     // Example: What was the color of the first robot in Robot Programming?
                     Question = "Какого цвета был {1}-й робот {0}?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SRobotProgramming.Shape] = new()
                 {
                     // English: What was the shape of the {1} robot in {0}?
                     // Example: What was the shape of the first robot in Robot Programming?
                     Question = "Какой формы был {1}-й робот {0}?",
+                    Answers = new()
+                    {
+                        ["Triangle"] = "Triangle",
+                        ["Square"] = "Square",
+                        ["Hexagon"] = "Hexagon",
+                        ["Circle"] = "Circle",
+                    },
                 },
             },
         },
@@ -18908,6 +18923,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Unordered Keys
         [typeof(SUnorderedKeys)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the labels, their colors, and the colors of the keys in each stage?"] = "Какие были надписи, их цвета и цвета клавиш на каждом этапе?",
@@ -18920,6 +18936,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // Example: What color was this key in the first stage of Unordered Keys? (+ extra)
                     Question = "Какого цвета была эта клавиша на {1}-м этапе {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SUnorderedKeys.LabelColor] = new()
                 {
@@ -18927,6 +18952,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // Example: What color was the label of this key in the first stage of Unordered Keys? (+ extra)
                     Question = "Какого цвета была надпись на этой клавише на {1}-м этапе {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["Yellow"] = "Yellow",
+                    },
                 },
                 [SUnorderedKeys.Label] = new()
                 {

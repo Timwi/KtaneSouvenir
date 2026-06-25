@@ -117,10 +117,10 @@ Each **discriminator** has an entry containing the following properties:
 
 ## What if an argument or an answer is missing and can’t be translated
 
-The translation tool (the one that automatically populates the translation file when you compile `SouvenirLib.dll`) will only include strings that are explicitly marked as translatable. This marking is done in the `[SouvenirQuestion(...)]`/`[SouvenirDiscriminator(...)]` attribute. Let’s take *Rule Of Three* as an example:
+The translation tool (the one that automatically populates the translation file when you compile `SouvenirLib.dll`) will only include strings that are explicitly marked as translatable. This marking is done in the source file for the relevant module handler. Let’s take *Rule Of Three* as an example; in the source file `Handlers/RuleOfThree.cs` we look for the `[Question(...)]`/`[Discriminator(...)]` attribute:
 
 ```cs
-[SouvenirQuestion("What was the {1} coordinate of the {2} vertex in {0}?", ThreeColumns6Answers, Arguments = ["X", "red", "Y", "yellow", "Z", "blue"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+[Question("What was the {1} coordinate of the {2} vertex in {0}?", ThreeColumns6Answers, Arguments = ["X", "red", "Y", "yellow", "Z", "blue"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
 Coordinates,
 ```
 
