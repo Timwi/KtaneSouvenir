@@ -3453,7 +3453,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Horizontal"] = "Горизонтальное",
                         ["Vertical"] = "Вертикальное",
                         ["Diagonal"] = "Диагональное",
-                        ["Nothing"] = "Никакое",
                     },
                 },
             },
@@ -7237,6 +7236,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Ghost Movement
         [typeof(SGhostMovement)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["Where were Pac-Man and the ghosts?"] = "Где был Pac-Man и призраки?",
@@ -7248,6 +7248,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: Where was {1} in {0}?
                     // Example: Where was Inky in Ghost Movement?
                     Question = "Где был {1} {0}?",
+                    Arguments = new()
+                    {
+                        ["Inky"] = "Inky",
+                        ["Blinky"] = "Blinky",
+                        ["Pinky"] = "Pinky",
+                        ["Clyde"] = "Clyde",
+                        ["Pac-Man"] = "Pac-Man",
+                    },
                 },
             },
         },
@@ -7803,6 +7811,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     {
                         ["fast"] = "fast",
                         ["slow"] = "slow",
+                    },
+                    Answers = new()
+                    {
+                        ["Square"] = "Square",
+                        ["Pentagon"] = "Pentagon",
+                        ["Hexagon"] = "Hexagon",
+                        ["Heptagon"] = "Heptagon",
                     },
                 },
             },

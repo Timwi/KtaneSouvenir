@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCoffeeBeans
 {
-    [Question("What was the {1} movement in {0}?", TwoColumns4Answers, "Horizontal", "Vertical", "Diagonal", "Nothing", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the {1} movement in {0}?", OneColumn3Answers, "Horizontal", "Vertical", "Diagonal", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     Movements
 }
 

@@ -3341,7 +3341,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Horizontal"] = "水平",
                         ["Vertical"] = "垂直",
                         ["Diagonal"] = "対角",
-                        ["Nothing"] = "無し",
                     },
                 },
             },
@@ -7132,6 +7131,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: Where was {1} in {0}?
                     // Example: Where was Inky in Ghost Movement?
                     Question = "{0}で{1}はどこにいた？",
+                    Arguments = new()
+                    {
+                        ["Inky"] = "Inky",
+                        ["Blinky"] = "Blinky",
+                        ["Pinky"] = "Pinky",
+                        ["Clyde"] = "Clyde",
+                        ["Pac-Man"] = "Pac-Man",
+                    },
                 },
             },
         },
@@ -7692,6 +7699,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     {
                         ["fast"] = "速い",
                         ["slow"] = "遅い",
+                    },
+                    Answers = new()
+                    {
+                        ["Square"] = "Square",
+                        ["Pentagon"] = "Pentagon",
+                        ["Hexagon"] = "Hexagon",
+                        ["Heptagon"] = "Heptagon",
                     },
                 },
             },

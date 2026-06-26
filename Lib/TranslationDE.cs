@@ -3416,7 +3416,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Horizontal"] = "Horizontal",
                         ["Vertical"] = "Vertikal",
                         ["Diagonal"] = "Diagonal",
-                        ["Nothing"] = "Keine",
                     },
                 },
             },
@@ -7307,6 +7306,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: Where was {1} in {0}?
                     // Example: Where was Inky in Ghost Movement?
                     Question = "Wo war {1} bei {0}?",
+                    Arguments = new()
+                    {
+                        ["Inky"] = "Inky",
+                        ["Blinky"] = "Blinky",
+                        ["Pinky"] = "Pinky",
+                        ["Clyde"] = "Clyde",
+                        ["Pac-Man"] = "Pac-Man",
+                    },
                 },
             },
         },
@@ -7871,6 +7878,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // hexOrbits
         [typeof(SHexOrbits)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What shapes were displayed?"] = "Welche Formen waren auf dem Display?",
@@ -7886,6 +7894,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     {
                         ["fast"] = "schnellere",
                         ["slow"] = "langsamere",
+                    },
+                    Answers = new()
+                    {
+                        ["Square"] = "Square",
+                        ["Pentagon"] = "Pentagon",
+                        ["Hexagon"] = "Hexagon",
+                        ["Heptagon"] = "Heptagon",
                     },
                 },
             },
