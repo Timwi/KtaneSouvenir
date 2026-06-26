@@ -7878,7 +7878,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // hexOrbits
         [typeof(SHexOrbits)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What shapes were displayed?"] = "Welche Formen waren auf dem Display?",
@@ -7897,10 +7896,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     },
                     Answers = new()
                     {
-                        ["Square"] = "Square",
-                        ["Pentagon"] = "Pentagon",
-                        ["Hexagon"] = "Hexagon",
-                        ["Heptagon"] = "Heptagon",
+                        ["Square"] = "Quadrat",
+                        ["Pentagon"] = "Fünfeck",
+                        ["Hexagon"] = "Sechseck",
+                        ["Heptagon"] = "Siebeneck",
                     },
                 },
             },
@@ -18679,7 +18678,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Tricky Tetris Pieces
         [typeof(STrickyTetrisPieces)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Trickreiche Tetris-Teile",
             ModuleNameDative = "Trickreichen Tetris-Teile",
             Gender = Gender.Plural,
