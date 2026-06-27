@@ -345,6 +345,25 @@ public static class AnswerGenerator
     }
 
     /// <summary>
+    ///     Generates sprites in which circles are arranged in a rectilinear grid.</summary>
+    /// <param name="length">
+    ///     Specifies the number of circles per row.</param>
+    /// <param name="radius">
+    ///     Specifies the radius of each circle, in pixels.</param>
+    /// <param name="gap">
+    ///     Specifies the gap between circles, in pixels.</param>
+    public class StackedSequences(int length, int radius, int gap) : AnswerGeneratorAttribute<Sprite>
+    {
+        public override IEnumerable<Sprite> GetAnswers(SouvenirModule module)
+        {
+            while (true)
+                yield return Sprites.GenerateStackedSequencesSprite(length, Enumerable.Range(0, 6).Select(x => Random.Range(0, 3)).ToArray(), radius, gap);
+        }
+
+        public override int Count => length;
+    }
+
+    /// <summary>
     ///     An answer generator that generates answers based on ordinal.</summary>
     /// <example>
     ///     <code>

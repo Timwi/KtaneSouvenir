@@ -12798,6 +12798,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Octadecayotton
         [typeof(SOctadecayotton)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Der Oktadekayotton",
             ModuleNameDative = "Oktadekayotton",
             Gender = Gender.Masculine,
@@ -12811,8 +12812,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SOctadecayotton.Sphere] = new()
                 {
-                    // English: What was the starting sphere in {0}?
-                    Question = "Was war bei {0} die Startkugel?",
+                    // English: What were the positive axes of the starting sphere in {0}?
+                    Question = "What were the positive axes of the starting sphere in {0}?",
+                    // Refer to translations.md to understand the weird strings
+                    Additional = new()
+                    {
+                        ["none"] = "keine",
+                    },
                 },
                 [SOctadecayotton.Rotations] = new()
                 {
@@ -17426,19 +17432,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Stacked Sequences
         [typeof(SStackedSequences)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Gestapelte Folgen",
             ModuleNameDative = "Gestapelten Folgen",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the lengths of the sequences?"] = "Wie lang waren die Folgen?",
+                ["What flashes appeared in the combined sequence?"] = "What flashes appeared in the combined sequence?",
             },
             Questions = new()
             {
-                [SStackedSequences.Question] = new()
+                [SStackedSequences.SequenceParts] = new()
                 {
-                    // English: Which of these is the length of a sequence in {0}?
-                    Question = "Welche Folgenlänge kam bei {0} vor?",
+                    // English: Which of these flashes appeared in the combined sequence in {0}?
+                    Question = "Which of these flashes appeared in the combined sequence in {0}?",
                 },
             },
         },

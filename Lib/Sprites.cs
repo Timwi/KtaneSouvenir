@@ -97,6 +97,52 @@ public static class Sprites
         return sprite;
     }
 
+    public static Sprite GenerateStackedSequencesSprite(int length, int[] circleFills, int radius, int gap)
+    {
+        var textureWidth = length * radius * 2 + (length - 1) * gap;
+        var textureHeight = radius * 2;
+        var key = $"{length}:{circleFills.JoinString()}:{radius}:{gap}";
+
+        // If the sprite is not cached, create it
+        if (!_circleSpriteCache.TryGetValue(key, out var sprite))
+        {
+            // Create the base of the texture
+            var tx = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
+            tx.SetPixels32(Ut.NewArray(textureWidth * textureHeight, pixel =>
+            {
+                var x = pixel % textureWidth;
+                var y = textureHeight - 1 - (pixel / textureWidth);
+
+                if (x % (2 * radius + gap) > 2 * radius || y % (2 * radius + gap) > 2 * radius)
+                    goto black;
+
+                var dotX = x / (2 * radius + gap);
+                var dotY = y / (2 * radius + gap);
+
+                if (IsPointInAnnulus(x, y, radius, radius - 5, gap, dotX, dotY))
+                    return new Color32(0xFF, 0xF8, 0xDD, 0xFF);
+
+                if (IsPointInCircle(x, y, radius, gap, dotX, dotY))
+                    switch (circleFills[dotX])
+                    {
+                        case 1: return new Color32(0xFF, 0xF8, 0xDD, 0x7F);
+                        case 2: return new Color32(0xFF, 0xF8, 0xDD, 0xFF);
+                    }
+
+                black:
+                return new Color32(0x00, 0x00, 0x00, 0x00);
+            }));
+            tx.Apply();
+            tx.wrapMode = TextureWrapMode.Clamp;
+            tx.filterMode = FilterMode.Point;
+
+            sprite = Sprite.Create(tx, new Rect(0, 0, textureWidth, textureHeight), new Vector2(0, .5f), textureHeight * (60f / 10));
+            sprite.name = $"Circles {key}";
+            _circleSpriteCache.Add(key, sprite);
+        }
+        return sprite;
+    }
+
     public static Sprite GenerateGridSprite(Coord coord)
     {
         var key = $"{coord.Width}:{coord.Height}:{coord.Index}";

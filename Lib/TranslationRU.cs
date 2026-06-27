@@ -12602,8 +12602,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SOctadecayotton.Sphere] = new()
                 {
-                    // English: What was the starting sphere in {0}?
-                    Question = "Какая была начальная сфера {0}?",
+                    // English: What were the positive axes of the starting sphere in {0}?
+                    Question = "What were the positive axes of the starting sphere in {0}?",
+                    // Refer to translations.md to understand the weird strings
+                    Additional = new()
+                    {
+                        ["none"] = "none",
+                    },
                 },
                 [SOctadecayotton.Rotations] = new()
                 {
@@ -17119,16 +17124,17 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Stacked Sequences
         [typeof(SStackedSequences)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the lengths of the sequences?"] = "Какие длины были у последовательностей?",
+                ["What flashes appeared in the combined sequence?"] = "What flashes appeared in the combined sequence?",
             },
             Questions = new()
             {
-                [SStackedSequences.Question] = new()
+                [SStackedSequences.SequenceParts] = new()
                 {
-                    // English: Which of these is the length of a sequence in {0}?
-                    Question = "Который ответ является длиной последовательности {0}?",
+                    // English: Which of these flashes appeared in the combined sequence in {0}?
+                    Question = "Which of these flashes appeared in the combined sequence in {0}?",
                 },
             },
         },

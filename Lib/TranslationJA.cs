@@ -12485,6 +12485,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Octadecayotton
         [typeof(SOctadecayotton)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "9次元超立方体",
             ManualQuestions = new()
             {
@@ -12495,8 +12496,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SOctadecayotton.Sphere] = new()
                 {
-                    // English: What was the starting sphere in {0}?
-                    Question = "{0}のスタートボールは？",
+                    // English: What were the positive axes of the starting sphere in {0}?
+                    Question = "What were the positive axes of the starting sphere in {0}?",
+                    // Refer to translations.md to understand the weird strings
+                    Additional = new()
+                    {
+                        ["none"] = "none",
+                    },
                 },
                 [SOctadecayotton.Rotations] = new()
                 {
@@ -17025,14 +17031,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the lengths of the sequences?"] = "シーケンスの長さは？",
+                ["What flashes appeared in the combined sequence?"] = "What flashes appeared in the combined sequence?",
             },
             Questions = new()
             {
-                [SStackedSequences.Question] = new()
+                [SStackedSequences.SequenceParts] = new()
                 {
-                    // English: Which of these is the length of a sequence in {0}?
-                    Question = "{0}のシークエンスの長さは？",
+                    // English: Which of these flashes appeared in the combined sequence in {0}?
+                    Question = "Which of these flashes appeared in the combined sequence in {0}?",
                 },
             },
         },

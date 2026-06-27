@@ -101,6 +101,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Conditional Buttons      │  Flavor Text EX        │  Mixometer          │  Spongebob Birthday Identification  │
     Customer Identification  │  Garfield Kart         │  Module Movements   │  Subway                             │
 
+## Implemented by Espik (33)
+
+    100 Levels of Defusal  │  Dreamcipher       │  Not Who’s on First      │  Simon Stages          │  Unfair Cipher
+    Blockbusters           │  Encrypted Morse   │  Phosphorescence         │  Simon Supports        │  Unfair’s Cruel Revenge
+    Boolean Wires          │  Etterna           │  Pixel Cipher            │  Sorting               │  Unfair’s Revenge
+    Calendar               │  Exoplanets        │  Reformed Role Reversal  │  Stacked Sequences     │  Unicode
+    Challenge & Contact    │  Forget Any Color  │  Regular Crazy Talk      │  Thinking Wires        │  XmORse Code
+    Coffeebucks            │  Hexabutton, The   │  Role Reversal           │  Thirty One            │
+    Directional Button     │  Hyperlink, The    │  Samsung, The            │  Tricky Tetris Pieces  │
+
 ## Implemented by BigCrunch22 (32)
 
     1000 Words      │  Gray Cipher    │  Orange Cipher          │  Subscribe to Pewdiepie  │  What’s on Second
@@ -110,16 +120,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Blue Cipher     │  Indigo Cipher  │  Shifting Maze          │  Ultimate Cipher         │
     Deaf Alley      │  Matrix, The    │  Stars                  │  V                       │
     Dumb Waiters    │  Numbers        │  State of Aggregation   │  Violet Cipher           │
-
-## Implemented by Espik (32)
-
-    100 Levels of Defusal  │  Dreamcipher       │  Not Who’s on First      │  Simon Stages          │  Unfair’s Cruel Revenge
-    Blockbusters           │  Encrypted Morse   │  Phosphorescence         │  Simon Supports        │  Unfair’s Revenge
-    Boolean Wires          │  Etterna           │  Pixel Cipher            │  Sorting               │  Unicode
-    Calendar               │  Exoplanets        │  Reformed Role Reversal  │  Thinking Wires        │  XmORse Code
-    Challenge & Contact    │  Forget Any Color  │  Regular Crazy Talk      │  Thirty One            │
-    Coffeebucks            │  Hexabutton, The   │  Role Reversal           │  Tricky Tetris Pieces  │
-    Directional Button     │  Hyperlink, The    │  Samsung, The            │  Unfair Cipher         │
 
 ## Implemented by luisdiogo98 (31)
 
@@ -168,15 +168,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     ƎNA Cipher                       │  Holographic Memory   │  Multiverse Hotline, The  │  Painting Cube        │  Undertunneling
     French Republican Calendar, The  │  Missing Letter, The  │  Off-White Cipher         │  Pattern Recognition  │  X-Rotor
 
-## Implemented by GhostSalt (9)
-
-    Entry Number Four  │  Game of Life Cruel   │  Mazeseeker     │  Puzzle Identification  │  Xenocryst, The
-    Entry Number One   │  Maze Identification  │  Not The Screw  │  Stacked Sequences      │
-
 ## Implemented by VFlyer (9)
 
     Abyss           │  Flashing Arrows  │  Pie Flash         │  Quick Arithmetic  │  WhoOF
     Color Addition  │  Homophones       │  Prime Encryption  │  Who’s on Morse    │
+
+## Implemented by GhostSalt (8)
+
+    Entry Number Four  │  Game of Life Cruel   │  Mazeseeker     │  Puzzle Identification
+    Entry Number One   │  Maze Identification  │  Not The Screw  │  Xenocryst, The
 
 ## Implemented by NickLatkovich (8)
 
