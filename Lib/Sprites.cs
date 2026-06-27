@@ -11,8 +11,7 @@ public static class Sprites
 {
     public static Material ColorBlit { set; get; }
 
-    private static readonly Dictionary<string, Sprite> _circleSpriteCache = [];
-    private static readonly Dictionary<string, Sprite> _gridSpriteCache = [];
+    private static readonly Dictionary<string, Sprite> _spriteCache = [];
     private static readonly Dictionary<AudioClip, Sprite> _audioSpriteCache = [];
 
     private static bool IsPointInCircle(int pixelX, int pixelY, int radius, int gap, int dotX, int dotY)
@@ -60,10 +59,10 @@ public static class Sprites
 
         var textureWidth = width * radius * 2 + (width - 1) * gap;
         var textureHeight = height * radius * 2 + (height - 1) * gap;
-        var key = $"{width}:{height}:{circlesPresent}:{radius}:{gap}:{outline}";
+        var key = $"Circles:{width}:{height}:{circlesPresent}:{radius}:{gap}:{outline}";
 
         // If the sprite is not cached, create it
-        if (!_circleSpriteCache.TryGetValue(key, out var sprite))
+        if (!_spriteCache.TryGetValue(key, out var sprite))
         {
             // Create the base of the texture
             var tx = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
@@ -91,8 +90,8 @@ public static class Sprites
             tx.filterMode = FilterMode.Point;
 
             sprite = Sprite.Create(tx, new Rect(0, 0, textureWidth, textureHeight), new Vector2(0, .5f), textureHeight * (60f / 17));
-            sprite.name = $"Circles {key}";
-            _circleSpriteCache.Add(key, sprite);
+            sprite.name = key;
+            _spriteCache.Add(key, sprite);
         }
         return sprite;
     }
@@ -101,10 +100,10 @@ public static class Sprites
     {
         var textureWidth = length * radius * 2 + (length - 1) * gap;
         var textureHeight = radius * 2;
-        var key = $"{length}:{circleFills.JoinString()}:{radius}:{gap}";
+        var key = $"Stacked Sequences:{length}:{circleFills.JoinString()}:{radius}:{gap}";
 
         // If the sprite is not cached, create it
-        if (!_circleSpriteCache.TryGetValue(key, out var sprite))
+        if (!_spriteCache.TryGetValue(key, out var sprite))
         {
             // Create the base of the texture
             var tx = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
@@ -137,16 +136,16 @@ public static class Sprites
             tx.filterMode = FilterMode.Point;
 
             sprite = Sprite.Create(tx, new Rect(0, 0, textureWidth, textureHeight), new Vector2(0, .5f), textureHeight * (60f / 10));
-            sprite.name = $"Circles {key}";
-            _circleSpriteCache.Add(key, sprite);
+            sprite.name = key;
+            _spriteCache.Add(key, sprite);
         }
         return sprite;
     }
 
     public static Sprite GenerateGridSprite(Coord coord)
     {
-        var key = $"{coord.Width}:{coord.Height}:{coord.Index}";
-        if (!_gridSpriteCache.TryGetValue(key, out var sprite))
+        var key = $"Grid:{coord.Width}:{coord.Height}:{coord.Index}";
+        if (!_spriteCache.TryGetValue(key, out var sprite))
         {
             var tw = 4 * coord.Width + 1;
             var th = 4 * coord.Height + 1;
@@ -160,7 +159,7 @@ public static class Sprites
 
             sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(0, .5f), th * (60f / 17));
             sprite.name = coord.ToString();
-            _gridSpriteCache[key] = sprite;
+            _spriteCache[key] = sprite;
         }
         return sprite;
     }
@@ -169,8 +168,8 @@ public static class Sprites
 
     public static Sprite GenerateGridSprite(string spriteKey, int tw, int th, (int x, int y)[] squares, int highlightedCell, string spriteName, float? pixelsPerUnit = null)
     {
-        var key = $"{spriteKey}:{highlightedCell}";
-        if (!_gridSpriteCache.TryGetValue(key, out var sprite))
+        var key = $"Grid:{spriteKey}:{highlightedCell}";
+        if (!_spriteCache.TryGetValue(key, out var sprite))
         {
             var tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
             var pixels = Ut.NewArray(tw * th, _ => new Color32(0xFF, 0xF8, 0xDD, 0x00));
@@ -191,7 +190,7 @@ public static class Sprites
 
             sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(0, .5f), pixelsPerUnit ?? th * (60f / 17));
             sprite.name = spriteName;
-            _gridSpriteCache.Add(key, sprite);
+            _spriteCache.Add(key, sprite);
         }
         return sprite;
     }
@@ -265,7 +264,7 @@ public static class Sprites
         var normalizedIndices = normalizedCells.Select(c => c.x + normalizedWidth * c.y).OrderBy(i => i).ToArray();
 
         var key = $"{spriteKey}:{normalizedWidth}:{normalizedIndices.JoinString(",")}";
-        if (_gridSpriteCache.TryGetValue(key, out var sprite))
+        if (_spriteCache.TryGetValue(key, out var sprite))
             return sprite;
 
         const int cellSize = 5;
@@ -329,7 +328,7 @@ public static class Sprites
 
         sprite = Sprite.Create(tx, new Rect(0, 0, txWidth, txHeight), new Vector2(0, 0.5f), 60f);
         sprite.name = spriteName;
-        _gridSpriteCache.Add(key, sprite);
+        _spriteCache.Add(key, sprite);
         return sprite;
     }
 
