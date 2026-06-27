@@ -1155,6 +1155,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Amusement Parks
         [typeof(SAmusementParks)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["Which rides were available?"] = "Какие аттракционы были доступны?",
@@ -1163,8 +1164,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SAmusementParks.Rides] = new()
                 {
-                    // English: Which ride was available in {0}?
-                    Question = "Какой аттракцион был доступен {0}?",
+                    // English: Which ride was available, but not selected, in {0}?
+                    Question = "Which ride was available, but not selected, in {0}?",
                 },
             },
         },
@@ -7811,13 +7812,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     {
                         ["fast"] = "fast",
                         ["slow"] = "slow",
-                    },
-                    Answers = new()
-                    {
-                        ["Square"] = "Square",
-                        ["Pentagon"] = "Pentagon",
-                        ["Hexagon"] = "Hexagon",
-                        ["Heptagon"] = "Heptagon",
                     },
                 },
             },
@@ -16496,25 +16490,33 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the 3 topics?"] = "Какие были 3 темы рассуждений?",
+                ["What tie colors flashed for each topic?"] = "What tie colors flashed for each topic?",
             },
             Questions = new()
             {
-                [SSimonSupports.Topics] = new()
+                [SSimonSupports.Flashes] = new()
                 {
-                    // English: What was the {1} topic in {0}?
-                    // Example: What was the first topic in Simon Supports?
-                    Question = "Какая была {1}-я тема в {0}?",
+                    // English: Which tie color {2} for the {1} topic in {0}?
+                    // Example: Which tie color flashed for the first topic in Simon Supports?
+                    Question = "Which tie color {2} for the {1} topic in {0}?",
+                    Arguments = new()
+                    {
+                        ["flashed"] = "flashed",
+                        ["did not flash"] = "did not flash",
+                    },
                     Answers = new()
                     {
-                        ["Boss"] = "Boss",
-                        ["Cruel"] = "Cruel",
-                        ["Faulty"] = "Faulty",
-                        ["Lookalike"] = "Lookalike",
-                        ["Puzzle"] = "Puzzle",
-                        ["Simon"] = "Simon",
-                        ["Time-Based"] = "Time-Based",
-                        ["Translated"] = "Translated",
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Orange"] = "Orange",
+                        ["Magenta"] = "Magenta",
+                        ["Green"] = "Green",
+                        ["Pink"] = "Pink",
+                        ["Lime"] = "Lime",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                        ["none"] = "none",
                     },
                 },
             },
@@ -20209,23 +20211,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // XmORse Code
         [typeof(SXmORseCode)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the displayed letters?"] = "Какие буквы были показаны?",
-                ["What word did you decrypt?"] = "Какое слово было расшифровано?",
+                ["What numbers were transmitted?"] = "What numbers were transmitted?",
             },
             Questions = new()
             {
-                [SXmORseCode.Word] = new()
+                [SXmORseCode.FlashedNumbers] = new()
                 {
-                    // English: What word did you decrypt in {0}?
-                    Question = "Какое слово вы расшифровали {0}?",
-                },
-                [SXmORseCode.DisplayedLetters] = new()
-                {
-                    // English: What was the {1} displayed letter (in reading order) in {0}?
-                    // Example: What was the first displayed letter (in reading order) in XmORse Code?
-                    Question = "Какая была {1}-я показанная буква (в порядке чтения) {0}?",
+                    // English: What number was transmitted by the {1} displayed letter in {0}?
+                    // Example: What number was transmitted by the first displayed letter in XmORse Code?
+                    Question = "What number was transmitted by the {1} displayed letter in {0}?",
                 },
             },
         },

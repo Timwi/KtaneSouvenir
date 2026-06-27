@@ -42,7 +42,11 @@ public partial class SouvenirModule
                 while (wrongPositions.Take(i - 1).Contains(wrongPositions[i]));
         }
         yield return question(SOctadecayotton.Sphere).Answers(sphere, preferredWrong: wrongPositions);
-        for (var i = 0; i < rotations.Length; i++)
-            yield return question(SOctadecayotton.Rotations, args: [Ordinal(i + 1)]).Answers(rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrong: Enumerable.Range(1, 10).Select(n => new[] { "X", "Y", "Z", "W", "U", "V", "R", "S", "T", "O", "P", "Q", "L", "M", "M", "I", "J", "K", "F", "G", "H", "C", "D", "E", "A", "B", "XX" }.Take(dimension).ToArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray());
+
+        if (rotations.Length > 1 || rotations[0] != "") // If there are no rotations, the variable has a list of length 1 with just "". This stops that question from being asked.
+        {
+            for (var i = 0; i < rotations.Length; i++)
+                yield return question(SOctadecayotton.Rotations, args: [Ordinal(i + 1)]).Answers(rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrong: Enumerable.Range(1, 10).Select(n => new[] { "X", "Y", "Z", "W", "U", "V", "R", "S", "T", "O", "P", "Q", "L", "M", "M", "I", "J", "K", "F", "G", "H", "C", "D", "E", "A", "B", "XX" }.Take(dimension).ToArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray());
+        }
     }
 }

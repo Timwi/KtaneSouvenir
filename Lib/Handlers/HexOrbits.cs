@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SHexOrbits
 {
-    [Question("What was the {1} shape for the {2} display in {0}?", TwoColumns4Answers, "Square", "Pentagon", "Hexagon", "Heptagon", Arguments = ["fast", QandA.Ordinal, "slow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateAnswers = true, TranslateArguments = [true, false])]
+    [Question("What was the {1} shape for the {2} display in {0}?", TwoColumns4Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "HexOrbitsSprites", Arguments = ["fast", QandA.Ordinal, "slow", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     Shape
 }
 
@@ -19,11 +19,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var stages = GetArrayField<int>(comp, "stageValues").Get(expectedLength: 5, validator: v => v is < 0 or > 15 ? $"Bad stage value {v}" : null);
-        var shapes = new[] { "Square", "Pentagon", "Hexagon", "Heptagon" };
         for (var i = 0; i < 4; i++)
         {
-            yield return question(SHexOrbits.Shape, args: ["slow", Ordinal(i + 1)]).Answers(shapes[stages[i] / 4]);
-            yield return question(SHexOrbits.Shape, args: ["fast", Ordinal(i + 1)]).Answers(shapes[stages[i] % 4]);
+            yield return question(SHexOrbits.Shape, args: ["slow", Ordinal(i + 1)]).Answers(HexOrbitsSprites[stages[i] / 4]);
+            yield return question(SHexOrbits.Shape, args: ["fast", Ordinal(i + 1)]).Answers(HexOrbitsSprites[stages[i] % 4]);
         }
     }
 }

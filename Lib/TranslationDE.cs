@@ -1094,6 +1094,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Amusement Parks
         [typeof(SAmusementParks)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Freizeitparks",
             Gender = Gender.Plural,
             ManualQuestions = new()
@@ -1104,8 +1105,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SAmusementParks.Rides] = new()
                 {
-                    // English: Which ride was available in {0}?
-                    Question = "Welche Attraktion wurde bei {0} angeboten?",
+                    // English: Which ride was available, but not selected, in {0}?
+                    Question = "Which ride was available, but not selected, in {0}?",
                 },
             },
         },
@@ -7893,13 +7894,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     {
                         ["fast"] = "schnellere",
                         ["slow"] = "langsamere",
-                    },
-                    Answers = new()
-                    {
-                        ["Square"] = "Quadrat",
-                        ["Pentagon"] = "Fünfeck",
-                        ["Hexagon"] = "Sechseck",
-                        ["Heptagon"] = "Siebeneck",
                     },
                 },
             },
@@ -16795,28 +16789,37 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Supports
         [typeof(SSimonSupports)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Simon Unterstützt",
             ManualQuestions = new()
             {
-                ["What were the 3 topics?"] = "Wie lauteten die drei Themen?",
+                ["What tie colors flashed for each topic?"] = "What tie colors flashed for each topic?",
             },
             Questions = new()
             {
-                [SSimonSupports.Topics] = new()
+                [SSimonSupports.Flashes] = new()
                 {
-                    // English: What was the {1} topic in {0}?
-                    // Example: What was the first topic in Simon Supports?
-                    Question = "Welches Thema kam bei {0} als {1}es vor?",
+                    // English: Which tie color {2} for the {1} topic in {0}?
+                    // Example: Which tie color flashed for the first topic in Simon Supports?
+                    Question = "Which tie color {2} for the {1} topic in {0}?",
+                    Arguments = new()
+                    {
+                        ["flashed"] = "flashed",
+                        ["did not flash"] = "did not flash",
+                    },
                     Answers = new()
                     {
-                        ["Boss"] = "Boss",
-                        ["Cruel"] = "Höllisch",
-                        ["Faulty"] = "Fehlerhaft",
-                        ["Lookalike"] = "Doppelgänger",
-                        ["Puzzle"] = "Rätsel",
-                        ["Simon"] = "Simon",
-                        ["Time-Based"] = "Zeit-basiert",
-                        ["Translated"] = "Übersetzt",
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Orange"] = "Orange",
+                        ["Magenta"] = "Magenta",
+                        ["Green"] = "Green",
+                        ["Pink"] = "Pink",
+                        ["Lime"] = "Lime",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                        ["none"] = "none",
                     },
                 },
             },
@@ -20572,25 +20575,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // XmORse Code
         [typeof(SXmORseCode)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "XmORsezeichen",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the displayed letters?"] = "Welche Buchstaben kamen vor?",
-                ["What word did you decrypt?"] = "Welches Wort wurde entziffert?",
+                ["What numbers were transmitted?"] = "What numbers were transmitted?",
             },
             Questions = new()
             {
-                [SXmORseCode.Word] = new()
+                [SXmORseCode.FlashedNumbers] = new()
                 {
-                    // English: What word did you decrypt in {0}?
-                    Question = "Welches Wort wurde bei {0} entschlüsselt?",
-                },
-                [SXmORseCode.DisplayedLetters] = new()
-                {
-                    // English: What was the {1} displayed letter (in reading order) in {0}?
-                    // Example: What was the first displayed letter (in reading order) in XmORse Code?
-                    Question = "Welcher Buchstabe war bei {0} der {1}e (in Leserichtung)?",
+                    // English: What number was transmitted by the {1} displayed letter in {0}?
+                    // Example: What number was transmitted by the first displayed letter in XmORse Code?
+                    Question = "What number was transmitted by the {1} displayed letter in {0}?",
                 },
             },
         },

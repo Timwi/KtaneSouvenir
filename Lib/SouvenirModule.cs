@@ -46,6 +46,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] FreeParkingSprites;
     public Sprite[] FuseBoxColorSprites;
     public Sprite[] FuseBoxArrowSprites;
+    public Sprite[] HexOrbitsSprites;
     public Sprite[] HingesSprites;
     public Sprite[] HuntingSprites;
     public Sprite[] KeypadSprites;

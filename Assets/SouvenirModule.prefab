@@ -579,6 +579,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e92021215dbffbd4fa18a260aea003a7, type: 3}
   - {fileID: 21300000, guid: 3d76df8f821e6cc42b4341d5de69cd93, type: 3}
   - {fileID: 21300000, guid: ac6edbfba55ef114a820af06760767f6, type: 3}
+  HexOrbitsSprites:
+  - {fileID: 21300000, guid: 3f13bf1924c39fa4f80d77ca582209a8, type: 3}
+  - {fileID: 21300000, guid: 0801b45e463fbf54ab671d3cf4728e74, type: 3}
+  - {fileID: 21300000, guid: ab43efe13e4ba9e41b252ad0275c9bdb, type: 3}
+  - {fileID: 21300000, guid: 3e3a709c1dbaea04f995f17c48eb1f5c, type: 3}
   HingesSprites:
   - {fileID: 21300000, guid: 220c963295e5c544ba9d8dc2ea137e12, type: 3}
   - {fileID: 21300000, guid: b102fc4e9dc13ba4784454551e8607d6, type: 3}

@@ -1054,6 +1054,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Amusement Parks
         [typeof(SAmusementParks)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "遊園地",
             ManualQuestions = new()
             {
@@ -1063,8 +1064,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SAmusementParks.Rides] = new()
                 {
-                    // English: Which ride was available in {0}?
-                    Question = "{0}で利用可能だったアトラクションは？",
+                    // English: Which ride was available, but not selected, in {0}?
+                    Question = "Which ride was available, but not selected, in {0}?",
                 },
             },
         },
@@ -7699,13 +7700,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     {
                         ["fast"] = "速い",
                         ["slow"] = "遅い",
-                    },
-                    Answers = new()
-                    {
-                        ["Square"] = "Square",
-                        ["Pentagon"] = "Pentagon",
-                        ["Hexagon"] = "Hexagon",
-                        ["Heptagon"] = "Heptagon",
                     },
                 },
             },
@@ -16397,28 +16391,37 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Simon Supports
         [typeof(SSimonSupports)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "サイモンの支持",
             ManualQuestions = new()
             {
-                ["What were the 3 topics?"] = "3つのトピックは？",
+                ["What tie colors flashed for each topic?"] = "What tie colors flashed for each topic?",
             },
             Questions = new()
             {
-                [SSimonSupports.Topics] = new()
+                [SSimonSupports.Flashes] = new()
                 {
-                    // English: What was the {1} topic in {0}?
-                    // Example: What was the first topic in Simon Supports?
-                    Question = "{0}の{1}番目のトピックは？",
+                    // English: Which tie color {2} for the {1} topic in {0}?
+                    // Example: Which tie color flashed for the first topic in Simon Supports?
+                    Question = "Which tie color {2} for the {1} topic in {0}?",
+                    Arguments = new()
+                    {
+                        ["flashed"] = "flashed",
+                        ["did not flash"] = "did not flash",
+                    },
                     Answers = new()
                     {
-                        ["Boss"] = "ボス",
-                        ["Cruel"] = "残忍",
-                        ["Faulty"] = "欠陥",
-                        ["Lookalike"] = "類似",
-                        ["Puzzle"] = "パズル",
-                        ["Simon"] = "サイモン",
-                        ["Time-Based"] = "時間依存",
-                        ["Translated"] = "翻訳",
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Orange"] = "Orange",
+                        ["Magenta"] = "Magenta",
+                        ["Green"] = "Green",
+                        ["Pink"] = "Pink",
+                        ["Lime"] = "Lime",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                        ["none"] = "none",
                     },
                 },
             },
@@ -20106,24 +20109,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // XmORse Code
         [typeof(SXmORseCode)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Xモールス信号",
             ManualQuestions = new()
             {
-                ["What were the displayed letters?"] = "ディスプレーの文字は？",
-                ["What word did you decrypt?"] = "解読した単語は？",
+                ["What numbers were transmitted?"] = "What numbers were transmitted?",
             },
             Questions = new()
             {
-                [SXmORseCode.Word] = new()
+                [SXmORseCode.FlashedNumbers] = new()
                 {
-                    // English: What word did you decrypt in {0}?
-                    Question = "{0}で解読した単語は？",
-                },
-                [SXmORseCode.DisplayedLetters] = new()
-                {
-                    // English: What was the {1} displayed letter (in reading order) in {0}?
-                    // Example: What was the first displayed letter (in reading order) in XmORse Code?
-                    Question = "{0}で表示された単語の{1}番目の位置(読み順)にある英字は？",
+                    // English: What number was transmitted by the {1} displayed letter in {0}?
+                    // Example: What number was transmitted by the first displayed letter in XmORse Code?
+                    Question = "What number was transmitted by the {1} displayed letter in {0}?",
                 },
             },
         },

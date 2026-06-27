@@ -111,6 +111,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Deaf Alley      │  Matrix, The    │  Stars                  │  V                       │
     Dumb Waiters    │  Numbers        │  State of Aggregation   │  Violet Cipher           │
 
+## Implemented by Espik (32)
+
+    100 Levels of Defusal  │  Dreamcipher       │  Not Who’s on First      │  Simon Stages          │  Unfair’s Cruel Revenge
+    Blockbusters           │  Encrypted Morse   │  Phosphorescence         │  Simon Supports        │  Unfair’s Revenge
+    Boolean Wires          │  Etterna           │  Pixel Cipher            │  Sorting               │  Unicode
+    Calendar               │  Exoplanets        │  Reformed Role Reversal  │  Thinking Wires        │  XmORse Code
+    Challenge & Contact    │  Forget Any Color  │  Regular Crazy Talk      │  Thirty One            │
+    Coffeebucks            │  Hexabutton, The   │  Role Reversal           │  Tricky Tetris Pieces  │
+    Directional Button     │  Hyperlink, The    │  Samsung, The            │  Unfair Cipher         │
+
 ## Implemented by luisdiogo98 (31)
 
     Accumulation              │  Discolored Squares  │  LEGOs              │  Retirement          │  Varicolored Squares
@@ -121,23 +131,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Ultracube, The      │
     Decolored Squares         │  iPhone, The         │  Pie                │  USA Maze            │
 
-## Implemented by Espik (30)
+## Implemented by tandyCake (25)
 
-    100 Levels of Defusal  │  Directional Button  │  Hexabutton, The         │  Regular Crazy Talk  │  Thirty One
-    Blockbusters           │  Dreamcipher         │  Hyperlink, The          │  Role Reversal       │  Tricky Tetris Pieces
-    Boolean Wires          │  Encrypted Morse     │  Not Who’s on First      │  Samsung, The        │  Unfair Cipher
-    Calendar               │  Etterna             │  Phosphorescence         │  Simon Stages        │  Unfair’s Cruel Revenge
-    Challenge & Contact    │  Exoplanets          │  Pixel Cipher            │  Sorting             │  Unfair’s Revenge
-    Coffeebucks            │  Forget Any Color    │  Reformed Role Reversal  │  Thinking Wires      │  Unicode
-
-## Implemented by tandyCake (26)
-
-    Algorithmia           │  Keypad Magnified  │  Name Codes       │  Shogi Identification  │  Touch Transmission
-    Breakfast Egg         │  Ladders           │  Not Piano Keys   │  Simon Shapes          │  USA Cycle
-    Digisibility          │  LEDs              │  Not Text Field   │  Simon Supports        │
-    Flyswatting           │  Math ’em          │  Not Word Search  │  Stupid Slots          │
-    Forget Me             │  Metamorse         │  Numpath          │  Superparsing          │
-    Kanye Encounter, The  │  M-Seq             │  Red Herring      │  Tasque Managing       │
+    Algorithmia    │  Kanye Encounter, The  │  Metamorse       │  Not Word Search       │  Stupid Slots
+    Breakfast Egg  │  Keypad Magnified      │  M-Seq           │  Numpath               │  Superparsing
+    Digisibility   │  Ladders               │  Name Codes      │  Red Herring           │  Tasque Managing
+    Flyswatting    │  LEDs                  │  Not Piano Keys  │  Shogi Identification  │  Touch Transmission
+    Forget Me      │  Math ’em              │  Not Text Field  │  Simon Shapes          │  USA Cycle
 
 ## Implemented by TasThiluna (20)
 
@@ -238,5 +238,4 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Simon Sends              │  EternityShack
     Simon Stops              │  JerryEris
     Wavetapping              │  KingSlendy
-    XmORse Code              │  shortc1rcuit
 

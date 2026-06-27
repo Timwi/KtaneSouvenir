@@ -10,7 +10,7 @@ public enum S123Game
     [Question("What was the opponent avatar in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
     QProfile,
 
-    [Question("What was the opponent name in {0}?", ThreeColumns6Answers, "Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu", "Yuram")]
+    [Question("What was the opponent name in {0}?", TwoColumns4Answers, "Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu", "Yuram")]
     QName,
 
     [Discriminator("the 1, 2, 3 Game with this opponent avatar", QuestionExtraType = InfoType.Sprites)]
