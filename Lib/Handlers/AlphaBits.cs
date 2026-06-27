@@ -11,7 +11,7 @@ public enum SAlphaBits
     [AnswerGenerator.Strings("0-9A-V")]
     DisplayedCharacters,
 
-    [Discriminator("the Alpha-Bits whose {0} screen showed this", Arguments = ["top-left", "middle-left", "bottom-left", "top-right", "middle-right", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true], QuestionExtraType = InfoType.Sprites)]
+    [Discriminator("the Alpha-Bits whose {0} screen showed this", Arguments = ["top-left", "middle-left", "bottom-left", "top-right", "middle-right", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true], QuestionExtraType = InfoType.DynamicFont)]
     Discriminator
 }
 
