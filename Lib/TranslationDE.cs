@@ -1094,7 +1094,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Amusement Parks
         [typeof(SAmusementParks)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Freizeitparks",
             Gender = Gender.Plural,
             ManualQuestions = new()
@@ -1106,7 +1105,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SAmusementParks.Rides] = new()
                 {
                     // English: Which ride was available, but not selected, in {0}?
-                    Question = "Which ride was available, but not selected, in {0}?",
+                    Question = "Welche Attraktion war bei {0} im Angebot, aber nicht ausgewählt?",
                 },
             },
         },
@@ -12798,7 +12797,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Octadecayotton
         [typeof(SOctadecayotton)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Der Oktadekayotton",
             ModuleNameDative = "Oktadekayotton",
             Gender = Gender.Masculine,
@@ -12813,7 +12811,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SOctadecayotton.Sphere] = new()
                 {
                     // English: What were the positive axes of the starting sphere in {0}?
-                    Question = "What were the positive axes of the starting sphere in {0}?",
+                    Question = "Welche Achsen waren bei {0} bei der Anfangskugel positiv?",
                     // Refer to translations.md to understand the weird strings
                     Additional = new()
                     {
@@ -16795,11 +16793,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Supports
         [typeof(SSimonSupports)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Simon Unterstützt",
             ManualQuestions = new()
             {
-                ["What tie colors flashed for each topic?"] = "What tie colors flashed for each topic?",
+                ["What tie colors flashed for each topic?"] = "Welche Krawattenfarben leuchteten für welches Thema auf?",
             },
             Questions = new()
             {
@@ -16807,25 +16804,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which tie color {2} for the {1} topic in {0}?
                     // Example: Which tie color flashed for the first topic in Simon Supports?
-                    Question = "Which tie color {2} for the {1} topic in {0}?",
+                    Question = "Welche Krawattenfarbe leuchtete bei {0} für das {1}e Thema {2}?",
                     Arguments = new()
                     {
-                        ["flashed"] = "flashed",
-                        ["did not flash"] = "did not flash",
+                        ["flashed"] = "auf",
+                        ["did not flash"] = "nicht auf",
                     },
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Blue"] = "Blue",
-                        ["Yellow"] = "Yellow",
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
                         ["Orange"] = "Orange",
-                        ["Magenta"] = "Magenta",
-                        ["Green"] = "Green",
+                        ["Magenta"] = "Rosa",
+                        ["Green"] = "Grün",
                         ["Pink"] = "Pink",
-                        ["Lime"] = "Lime",
-                        ["Cyan"] = "Cyan",
-                        ["White"] = "White",
-                        ["none"] = "none",
+                        ["Lime"] = "Limette",
+                        ["Cyan"] = "Türkis",
+                        ["White"] = "Weiß",
+                        ["none"] = "keine",
                     },
                 },
             },
@@ -17432,20 +17429,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Stacked Sequences
         [typeof(SStackedSequences)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Gestapelte Folgen",
             ModuleNameDative = "Gestapelten Folgen",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What flashes appeared in the combined sequence?"] = "What flashes appeared in the combined sequence?",
+                ["What flashes appeared in the combined sequence?"] = "Welche Signale kamen in der kombinierten Folge vor?",
             },
             Questions = new()
             {
                 [SStackedSequences.SequenceParts] = new()
                 {
                     // English: Which of these flashes appeared in the combined sequence in {0}?
-                    Question = "Which of these flashes appeared in the combined sequence in {0}?",
+                    Question = "Welche dieser Signale kamen bei {0} in der kombinierten Folge vor?",
                 },
             },
         },
@@ -20582,12 +20578,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // XmORse Code
         [typeof(SXmORseCode)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "XmORsezeichen",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What numbers were transmitted?"] = "What numbers were transmitted?",
+                ["What numbers were transmitted?"] = "Welche Zahlen wurden übermittelt?",
             },
             Questions = new()
             {
@@ -20595,7 +20590,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What number was transmitted by the {1} displayed letter in {0}?
                     // Example: What number was transmitted by the first displayed letter in XmORse Code?
-                    Question = "What number was transmitted by the {1} displayed letter in {0}?",
+                    Question = "Welche Zahl wurde bei {0} vom {1}en Buchstaben übermittelt?",
                 },
             },
         },

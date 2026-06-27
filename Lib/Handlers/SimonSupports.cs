@@ -23,24 +23,15 @@ public partial class SouvenirModule
         var allColors = SSimonSupports.Flashes.GetAnswers().Take(10).ToArray();
         var selectedColorIndicies = GetArrayField<int>(comp, "col").Get(expectedLength: 10).Take(5).ToArray();
         var selectedColors = selectedColorIndicies.Select(ix => allColors[ix]).ToArray();
-
-        var selectedAndNone = new string[6];
-        for (var i = 0; i < selectedColors.Length; i++)
-            selectedAndNone[i] = selectedColors[i];
-
-        selectedAndNone[5] = "none";
+        var selectedAndNone = selectedColors.Concat(["none"]).ToArray();
 
         var topicsByColor = GetArrayField<List<int>>(comp, "flashes").Get(expectedLength: 5);
-        var colorsByTopic = new List<string>[3].Select(x => new List<string>()).ToArray();
+        var colorsByTopic = Ut.NewArray(3, _ => new List<string>());
 
-        for (var i = 0; i < colorsByTopic.Length; i++)
-        {
-            for (var j = 0; j < topicsByColor.Length; j++)
-            {
-                if (topicsByColor[j].Contains(i))
-                    colorsByTopic[i].Add(selectedColors[j]);
-            }
-        }
+        for (var topic = 0; topic < colorsByTopic.Length; topic++)
+            for (var color = 0; color < topicsByColor.Length; color++)
+                if (topicsByColor[color].Contains(topic))
+                    colorsByTopic[topic].Add(selectedColors[color]);
 
         for (var i = 0; i < colorsByTopic.Length; i++)
         {

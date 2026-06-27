@@ -30,6 +30,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         GetField<SpriteRenderer>(comp, "Players", isPublic: true).Get().gameObject.SetActive(false);
+        GetArrayField<SpriteRenderer>(comp, "LastPlayed", isPublic: true).Get(expectedLength: 2)[0].gameObject.SetActive(false);
 
         var sprites = GetArrayField<Sprite>(comp, "PlayersSprites", isPublic: true).Get(expectedLength: 12).TranslateSprites(1666).ToArray();
         var names = GetArrayField<string>(comp, "Names").Get(expectedLength: 13);
