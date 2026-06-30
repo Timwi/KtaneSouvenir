@@ -35,7 +35,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         yield return question(SNotMurder.FirstSuspect).Answers(SNotMurder.FirstSuspect.GetAnswers()[dispinfo[0][0]]);
-        yield return question(SNotMurder.FirstWeapon).Answers(SNotMurder.FirstWeapon.GetAnswers()[turns[0][0][0]]);
-        yield return question(SNotMurder.FirstRoom).Answers(SNotMurder.FirstRoom.GetAnswers()[turns[0][0][1]]);
+        yield return question(SNotMurder.FirstWeapon).Answers(SNotMurder.FirstWeapon.GetAnswers()[turns[0][0][1]]);
+        yield return question(SNotMurder.FirstRoom).Answers(SNotMurder.FirstRoom.GetAnswers()[turns[0][0][0]]);
     }
 }
