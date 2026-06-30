@@ -12059,12 +12059,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not Morsematics
         [typeof(SNotMorsematics)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Morsematik Mal Anders",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What were the transmitted letters?"] = "What were the transmitted letters?",
+                ["What were the transmitted letters?"] = "Welche Buchstaben wurden übermittelt?",
             },
             Questions = new()
             {
@@ -12072,7 +12071,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} transmitted letter in {0}?
                     // Example: What was the first transmitted letter in Not Morsematics?
-                    Question = "What was the {1} transmitted letter in {0}?",
+                    Question = "Welcher Buchstabe wurde bei {0} als {1}er übermittelt?",
                 },
             },
         },
@@ -12080,29 +12079,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not Murder
         [typeof(SNotMurder)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Mord Mal Anders",
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["What were the first suspect, weapon, and room in the sequence?"] = "What were the first suspect, weapon, and room in the sequence?",
+                ["What were the first suspect, weapon, and room in the sequence?"] = "Mit welcher Verdachtsperson, Waffe und Örtlichkeit fing es an?",
             },
             Questions = new()
             {
                 [SNotMurder.FirstSuspect] = new()
                 {
                     // English: Who was the first suspect in the sequence in {0}?
-                    Question = "Who was the first suspect in the sequence in {0}?",
+                    Question = "Wer war bei {0} die erste Verdachtsperson?",
                 },
                 [SNotMurder.FirstWeapon] = new()
                 {
                     // English: What was the first weapon in the sequence in {0}?
-                    Question = "What was the first weapon in the sequence in {0}?",
+                    Question = "Was war bei {0} die erste Waffe?",
                 },
                 [SNotMurder.FirstRoom] = new()
                 {
                     // English: What was the first room in the sequence in {0}?
-                    Question = "What was the first room in the sequence in {0}?",
+                    Question = "Was war bei {0} die erste Örtlichkeit?",
                 },
             },
         },
