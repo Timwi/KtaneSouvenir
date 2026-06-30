@@ -11732,7 +11732,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What were the flashing symbols?"] = "Какие символы были переданы вспышками?",
-                ["What were the button values?"] = "Какие значения были у каждой кнопки?",
             },
             Questions = new()
             {
@@ -11741,19 +11740,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What symbol flashed on the {1} button in {0}?
                     // Example: What symbol flashed on the top left button in Not Connection Check?
                     Question = "Какой символ мигал на {1} кнопке {0}?",
-                    Arguments = new()
-                    {
-                        ["top left"] = "верхней левой",
-                        ["top right"] = "верхней правой",
-                        ["bottom left"] = "нижней левой",
-                        ["bottom right"] = "нижней правой",
-                    },
-                },
-                [SNotConnectionCheck.Values] = new()
-                {
-                    // English: What was the value of the {1} button in {0}?
-                    // Example: What was the value of the top left button in Not Connection Check?
-                    Question = "Какое было значение {1} кнопки {0}?",
                     Arguments = new()
                     {
                         ["top left"] = "верхней левой",
@@ -11893,16 +11879,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Not Morsematics
         [typeof(SNotMorsematics)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the transmitted word?"] = "Какое слово было передано?",
+                ["What were the transmitted letters?"] = "What were the transmitted letters?",
             },
             Questions = new()
             {
-                [SNotMorsematics.Word] = new()
+                [SNotMorsematics.Letter] = new()
                 {
-                    // English: What was the transmitted word on {0}?
-                    Question = "Какое слово было передано {0}?",
+                    // English: What was the {1} transmitted letter in {0}?
+                    // Example: What was the first transmitted letter in Not Morsematics?
+                    Question = "What was the {1} transmitted letter in {0}?",
                 },
             },
         },
@@ -11913,58 +11901,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What room were the suspects in initially?"] = "Какое было исходное положение подозреваемых?",
-                ["What weapons did the suspects possess initially?"] = "Какое исходное оружие было у какого подозреваемого?",
+                ["What were the first suspect, weapon, and room in the sequence?"] = "What were the first suspect, weapon, and room in the sequence?",
             },
             Questions = new()
             {
-                [SNotMurder.Room] = new()
+                [SNotMurder.FirstSuspect] = new()
                 {
-                    // English: What room was {1} in initially on {0}?
-                    // Example: What room was Miss Scarlett in initially on Not Murder?
-                    Question = "В какой комнате изначально находился(-ась) {1} {0}?",
+                    // English: Who was the first suspect in the sequence in {0}?
+                    Question = "Who was the first suspect in the sequence in {0}?",
                 },
-                [SNotMurder.Weapon] = new()
+                [SNotMurder.FirstWeapon] = new()
                 {
-                    // English: What weapon did {1} possess initially on {0}?
-                    // Example: What weapon did Miss Scarlett possess initially on Not Murder?
-                    Question = "Каким орудием изначально обладал(-а) {1} {0}?",
+                    // English: What was the first weapon in the sequence in {0}?
+                    Question = "What was the first weapon in the sequence in {0}?",
                 },
-            },
-            Discriminators = new()
-            {
-                [SNotMurder.Present] = new()
+                [SNotMurder.FirstRoom] = new()
                 {
-                    // English: the Not Murder where {0} was present
-                    // Example: the Not Murder where he was present
-                    Discriminator = "the Not Murder where {0} was present",
-                    Arguments = new()
-                    {
-                        ["he"] = "he",
-                        ["she"] = "she",
-                    },
-                },
-                [SNotMurder.InitialWeapon] = new()
-                {
-                    // English: the Not Murder where {0} initially held the {1}
-                    // Example: the Not Murder where he initially held the Candlestick
-                    Discriminator = "the Not Murder where {0} initially held the {1}",
-                    Arguments = new()
-                    {
-                        ["he"] = "he",
-                        ["she"] = "she",
-                    },
-                },
-                [SNotMurder.InitialRoom] = new()
-                {
-                    // English: the Not Murder where {0} started in the {1}
-                    // Example: the Not Murder where he started in the Ballroom
-                    Discriminator = "the Not Murder where {0} started in the {1}",
-                    Arguments = new()
-                    {
-                        ["he"] = "he",
-                        ["she"] = "she",
-                    },
+                    // English: What was the first room in the sequence in {0}?
+                    Question = "What was the first room in the sequence in {0}?",
                 },
             },
         },
@@ -20100,31 +20054,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     {
                         ["present"] = "присутствовало",
                         ["not present"] = "отсутствовало",
-                    },
-                    Answers = new()
-                    {
-                        ["Cat"] = "Cat",
-                        ["Wolf"] = "Wolf",
-                        ["Rabbit"] = "Rabbit",
-                        ["Berry"] = "Berry",
-                        ["Fish"] = "Fish",
-                        ["Dog"] = "Dog",
-                        ["Duck"] = "Duck",
-                        ["Goat"] = "Goat",
-                        ["Fox"] = "Fox",
-                        ["Grass"] = "Grass",
-                        ["Rice"] = "Rice",
-                        ["Mouse"] = "Mouse",
-                        ["Bear"] = "Bear",
-                        ["Cabbage"] = "Cabbage",
-                        ["Chicken"] = "Chicken",
-                        ["Goose"] = "Goose",
-                        ["Corn"] = "Corn",
-                        ["Carrot"] = "Carrot",
-                        ["Horse"] = "Horse",
-                        ["Earthworm"] = "Earthworm",
-                        ["Kiwi"] = "Kiwi",
-                        ["Seeds"] = "Seeds",
                     },
                 },
             },

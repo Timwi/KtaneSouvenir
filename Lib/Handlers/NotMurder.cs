@@ -5,27 +5,20 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotMurder
 {
-    [Question("What room was {1} in initially on {0}?", TwoColumns4Answers, "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study", Arguments = ["Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White"], ArgumentGroupSize = 1)]
-    Room,
+    [Question("Who was the first suspect in the sequence in {0}?", TwoColumns4Answers, "Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White")]
+    FirstSuspect,
 
-    [Question("What weapon did {1} possess initially on {0}?", TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner", Arguments = ["Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White"], ArgumentGroupSize = 1)]
-    Weapon,
+    [Question("What was the first weapon in the sequence in {0}?", TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner")]
+    FirstWeapon,
 
-    [Discriminator("the Not Murder where {0} was present", Arguments = ["he", "she"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    Present,
-
-    [Discriminator("the Not Murder where {0} initially held the {1}", Arguments = ["he", "Candlestick", "he", "Dagger", "she", "Lead Pipe", "she", "Revolver"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
-    InitialWeapon,
-
-    [Discriminator("the Not Murder where {0} started in the {1}", Arguments = ["he", "Ballroom", "he", "Billiard Room", "she", "Conservatory", "she", "Dining Room"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
-    InitialRoom
+    [Question("What was the first room in the sequence in {0}?", TwoColumns4Answers, "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study")]
+    FirstRoom
 }
 
 public partial class SouvenirModule
 {
-    [Handler("notMurder", "Not Murder", typeof(SNotMurder), "Quinn Wuest")]
-    [ManualQuestion("What room were the suspects in initially?")]
-    [ManualQuestion("What weapons did the suspects possess initially?")]
+    [Handler("notMurder", "Not Murder", typeof(SNotMurder), "Espik")]
+    [ManualQuestion("What were the first suspect, weapon, and room in the sequence?")]
     private IEnumerator<SouvenirInstruction> ProcessNotMurder(ModuleData module)
     {
         while (!_isActivated)
@@ -41,25 +34,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var suspectNames = new[] { "Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White" };
-        var weaponNames = new[] { "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner" };
-        var roomNames = new[] { "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study" };
-        var suspectIsFemale = new[] { true, false, false, true, false, true };
-
-        for (var i = 0; i < 5; i++)
-        {
-            var suspect = dispinfo[0][i];
-            var initialRoom = turns[0][i][0];
-            var initialWeapon = turns[0][i][1];
-
-            yield return new Discriminator(SNotMurder.Present, $"present{suspect}", args: [suspectIsFemale[suspect] ? "he" : "she"]);
-            yield return new Discriminator(SNotMurder.InitialWeapon, $"weapon{suspect}", initialWeapon, args: [suspectIsFemale[suspect] ? "he" : "she", weaponNames[initialWeapon]]);
-            yield return new Discriminator(SNotMurder.InitialRoom, $"room{suspect}", initialRoom, args: [suspectIsFemale[suspect] ? "he" : "she", roomNames[initialRoom]]);
-
-            var avoidDiscriminators = Enumerable.Range(0, 5).Except([i]).SelectMany(i => new[] { $"present{i}", $"weapon{i}", $"room{i}" }).ToArray();
-
-            yield return question(SNotMurder.Room, args: [suspectNames[suspect]]).AvoidDiscriminators(avoidDiscriminators.Concat([$"room{i}"])).Answers(roomNames[initialRoom]);
-            yield return question(SNotMurder.Weapon, args: [suspectNames[suspect]]).AvoidDiscriminators(avoidDiscriminators.Concat([$"weapon{i}"])).Answers(weaponNames[initialWeapon]);
-        }
+        yield return question(SNotMurder.FirstSuspect).Answers(SNotMurder.FirstSuspect.GetAnswers()[dispinfo[0][0]]);
+        yield return question(SNotMurder.FirstWeapon).Answers(SNotMurder.FirstWeapon.GetAnswers()[turns[0][0][0]]);
+        yield return question(SNotMurder.FirstRoom).Answers(SNotMurder.FirstRoom.GetAnswers()[turns[0][0][1]]);
     }
 }

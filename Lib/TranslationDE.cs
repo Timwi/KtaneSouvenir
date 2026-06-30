@@ -11911,7 +11911,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What were the flashing symbols?"] = "Welche Symbole wurden übermittelt?",
-                ["What were the button values?"] = "Welche Werte hatten die Tasten?",
             },
             Questions = new()
             {
@@ -11926,19 +11925,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["top right"] = "oberen rechten",
                         ["bottom left"] = "unteren linken",
                         ["bottom right"] = "unteren rechten",
-                    },
-                },
-                [SNotConnectionCheck.Values] = new()
-                {
-                    // English: What was the value of the {1} button in {0}?
-                    // Example: What was the value of the top left button in Not Connection Check?
-                    Question = "Welchen Wert hatte bei {0} die {1} Taste?",
-                    Arguments = new()
-                    {
-                        ["top left"] = "obere linke",
-                        ["top right"] = "obere rechte",
-                        ["bottom left"] = "untere linke",
-                        ["bottom right"] = "untere rechte",
                     },
                 },
             },
@@ -12073,18 +12059,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not Morsematics
         [typeof(SNotMorsematics)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Morsematik Mal Anders",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the transmitted word?"] = "Welches Wort wurde übermittelt?",
+                ["What were the transmitted letters?"] = "What were the transmitted letters?",
             },
             Questions = new()
             {
-                [SNotMorsematics.Word] = new()
+                [SNotMorsematics.Letter] = new()
                 {
-                    // English: What was the transmitted word on {0}?
-                    Question = "Was war bei {0} das übertragene Wort?",
+                    // English: What was the {1} transmitted letter in {0}?
+                    // Example: What was the first transmitted letter in Not Morsematics?
+                    Question = "What was the {1} transmitted letter in {0}?",
                 },
             },
         },
@@ -12092,62 +12080,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not Murder
         [typeof(SNotMurder)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Mord Mal Anders",
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["What room were the suspects in initially?"] = "Welche Verdachtsperson war am Anfang in welchem Raum?",
-                ["What weapons did the suspects possess initially?"] = "Welche Verdachtsperson hatte am Anfang welche Waffe?",
+                ["What were the first suspect, weapon, and room in the sequence?"] = "What were the first suspect, weapon, and room in the sequence?",
             },
             Questions = new()
             {
-                [SNotMurder.Room] = new()
+                [SNotMurder.FirstSuspect] = new()
                 {
-                    // English: What room was {1} in initially on {0}?
-                    // Example: What room was Miss Scarlett in initially on Not Murder?
-                    Question = "In welchem Zimmer war {1} bei {0} am Anfang?",
+                    // English: Who was the first suspect in the sequence in {0}?
+                    Question = "Who was the first suspect in the sequence in {0}?",
                 },
-                [SNotMurder.Weapon] = new()
+                [SNotMurder.FirstWeapon] = new()
                 {
-                    // English: What weapon did {1} possess initially on {0}?
-                    // Example: What weapon did Miss Scarlett possess initially on Not Murder?
-                    Question = "Welche Waffe hatte {1} bei {0} am Anfang?",
+                    // English: What was the first weapon in the sequence in {0}?
+                    Question = "What was the first weapon in the sequence in {0}?",
                 },
-            },
-            Discriminators = new()
-            {
-                [SNotMurder.Present] = new()
+                [SNotMurder.FirstRoom] = new()
                 {
-                    // English: the Not Murder where {0} was present
-                    // Example: the Not Murder where he was present
-                    Discriminator = "dem Mord Mal Anders, bei dem {0} anwesend war,",
-                    Arguments = new()
-                    {
-                        ["he"] = "er",
-                        ["she"] = "sie",
-                    },
-                },
-                [SNotMurder.InitialWeapon] = new()
-                {
-                    // English: the Not Murder where {0} initially held the {1}
-                    // Example: the Not Murder where he initially held the Candlestick
-                    Discriminator = "dem Mord Mal Anders, bei dem {0} am Anfang {1} hatte,",
-                    Arguments = new()
-                    {
-                        ["he"] = "er",
-                        ["she"] = "sie",
-                    },
-                },
-                [SNotMurder.InitialRoom] = new()
-                {
-                    // English: the Not Murder where {0} started in the {1}
-                    // Example: the Not Murder where he started in the Ballroom
-                    Discriminator = "dem Mord Mal Anders, bei dem {0} im {1} anfing,",
-                    Arguments = new()
-                    {
-                        ["he"] = "er",
-                        ["she"] = "sie",
-                    },
+                    // English: What was the first room in the sequence in {0}?
+                    Question = "What was the first room in the sequence in {0}?",
                 },
             },
         },
@@ -20458,31 +20413,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     {
                         ["present"] = "vor",
                         ["not present"] = "nicht vor",
-                    },
-                    Answers = new()
-                    {
-                        ["Cat"] = "Katze",
-                        ["Wolf"] = "Wolf",
-                        ["Rabbit"] = "Kaninchen",
-                        ["Berry"] = "Beere",
-                        ["Fish"] = "Fisch",
-                        ["Dog"] = "Hund",
-                        ["Duck"] = "Ente",
-                        ["Goat"] = "Ziege",
-                        ["Fox"] = "Fuchs",
-                        ["Grass"] = "Gras",
-                        ["Rice"] = "Reis",
-                        ["Mouse"] = "Maus",
-                        ["Bear"] = "Bär",
-                        ["Cabbage"] = "Kohl",
-                        ["Chicken"] = "Huhn",
-                        ["Goose"] = "Gans",
-                        ["Corn"] = "Mais",
-                        ["Carrot"] = "Möhre",
-                        ["Horse"] = "Pferd",
-                        ["Earthworm"] = "Regenwurm",
-                        ["Kiwi"] = "Kiwi",
-                        ["Seeds"] = "Samen",
                     },
                 },
             },

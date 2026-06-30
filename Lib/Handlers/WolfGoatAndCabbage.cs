@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SWolfGoatAndCabbage
 {
-    [Question("Which of these was {1} on {0}?", ThreeColumns6Answers, "Cat", "Wolf", "Rabbit", "Berry", "Fish", "Dog", "Duck", "Goat", "Fox", "Grass", "Rice", "Mouse", "Bear", "Cabbage", "Chicken", "Goose", "Corn", "Carrot", "Horse", "Earthworm", "Kiwi", "Seeds", Arguments = ["present", "not present"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslateAnswers = true)]
+    [Question("Which of these was {1} on {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "WolfGoatAndCabbageSprites", Arguments = ["present", "not present"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Animals
 }
 
@@ -24,8 +24,9 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var allAnimals = SWolfGoatAndCabbage.Animals.GetAnswers();
+        var presentAnimalSprites = animalsPresent.Select(txt => WolfGoatAndCabbageSprites.First(spr => spr.name == txt)).ToArray();
+
         foreach (var present in new[] { false, true })
-            yield return question(SWolfGoatAndCabbage.Animals, args: [present ? "present" : "not present"]).Answers(present ? animalsPresent : allAnimals.Except(animalsPresent).ToArray(), preferredWrong: present ? allAnimals : animalsPresent);
+            yield return question(SWolfGoatAndCabbage.Animals, args: [present ? "present" : "not present"]).Answers(present ? presentAnimalSprites : WolfGoatAndCabbageSprites.Except(presentAnimalSprites).ToArray(), all: WolfGoatAndCabbageSprites);
     }
 }

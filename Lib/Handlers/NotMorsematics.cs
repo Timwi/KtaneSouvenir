@@ -1,30 +1,27 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
 
 public enum SNotMorsematics
 {
-    [Question("What was the transmitted word on {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABORT", "AFTER", "AGONY", "ALIGN", "AMONG", "AMBER", "ANGST", "AZURE", "BAKER", "BAYOU", "BEACH", "BLACK", "BOGUS", "BOXES", "BRASH", "BUDGE", "CABLE", "CAULK", "CHIEF", "CLOVE", "CODEX", "CRAZE", "CRISP", "CRUEL"])]
-    Word
+    [Question("What was the {1} transmitted letter in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [AnswerGenerator.Strings('A', 'Z')]
+    Letter
 }
 
 public partial class SouvenirModule
 {
-    [Handler("notMorsematics", "Not Morsematics", typeof(SNotMorsematics), "Quinn Wuest")]
-    [ManualQuestion("What was the transmitted word?")]
+    [Handler("notMorsematics", "Not Morsematics", typeof(SNotMorsematics), "Espik")]
+    [ManualQuestion("What were the transmitted letters?")]
     private IEnumerator<SouvenirInstruction> ProcessNotMorsematics(ModuleData module)
     {
         var comp = GetComponent(module, "NMorScript");
         yield return WaitForSolve;
 
-        var word = GetArrayField<string>(comp, "word").Get(expectedLength: 2);
-        var wordList = GetArrayField<string>(comp, "keywords").Get();
-
-        var wordLower = word[0].Substring(0, 1) + word[0].Substring(1).ToLowerInvariant();
-        var wordListLower = Enumerable.Range(0, wordList.Length).Select(word => wordList[word].Substring(0, 1) + wordList[word].Substring(1).ToLowerInvariant()).ToArray();
-
-        yield return question(SNotMorsematics.Word).Answers(wordLower, preferredWrong: wordListLower);
+        var letters = GetArrayField<string>(comp, "word").Get(expectedLength: 2)[1];
+        
+        for (var i = 0; i < letters.Length; i++)
+            yield return question(SNotMorsematics.Letter, args: [Ordinal(i + 1)]).Answers(letters[i].ToString());
     }
 }

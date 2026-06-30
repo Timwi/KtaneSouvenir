@@ -7,17 +7,13 @@ using static Souvenir.AnswerLayout;
 public enum SNotConnectionCheck
 {
     [Question("What symbol flashed on the {1} button in {0}?", ThreeColumns6Answers, "+", "-", ".", ":", "/", "_", "=", ",", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    Flashes,
-
-    [Question("What was the value of the {1} button in {0}?", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", Arguments = ["top left", "top right", "bottom left", "bottom right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    Values
+    Flashes
 }
 
 public partial class SouvenirModule
 {
     [Handler("notConnectionCheck", "Not Connection Check", typeof(SNotConnectionCheck), "Quinn Wuest")]
     [ManualQuestion("What were the flashing symbols?")]
-    [ManualQuestion("What were the button values?")]
     private IEnumerator<SouvenirInstruction> ProcessNotConnectionCheck(ModuleData module)
     {
         var comp = GetComponent(module, "NCCScript");
@@ -30,11 +26,5 @@ public partial class SouvenirModule
         var puncMarks = Enumerable.Range(0, ops.Length).Select(i => puncMarkNames[ops[i]]).ToArray();
         for (var p = 0; p < 4; p++)
             yield return question(SNotConnectionCheck.Flashes, args: [positions[p]]).Answers(puncMarks[p]);
-
-        // Values
-        var outputs = GetArrayField<int>(comp, "outputs").Get();
-        var vals = Enumerable.Range(0, outputs.Length).Select(i => outputs[i].ToString()).ToArray();
-        for (var p = 0; p < 4; p++)
-            yield return question(SNotConnectionCheck.Values, args: [positions[p]]).Answers(vals[p], preferredWrong: Enumerable.Range(1, 9).Select(i => i.ToString()).ToArray());
     }
 }

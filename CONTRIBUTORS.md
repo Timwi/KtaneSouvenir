@@ -60,21 +60,21 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Remainder Theorem  │  hexOrbits                │  Not Red Arrows          │  Simon Swizzles             │
     Coffee Beans               │  Hickory Dickory Dock     │  Not The Plunger Button  │  Skewers                    │
 
-## Implemented by Quinn Wuest (63)
+## Implemented by Quinn Wuest (61)
 
-    .--/---/..-.       │  Denial Displays   │  Navigation Determination  │  Papa’s Pizzeria      │  Small Talk
-    3 LEDs             │  Double Digits     │  Neptune                   │  Parity               │  Spelling Bee
-    4D Tunnels         │  eeB gnillepS      │  Nim                       │  Quadrants            │  Synapse Says
-    Adventure Game     │  English Entries   │  Not Colored Switches      │  Reverse Morse        │  Triple Term
-    Alcoholic Rampage  │  Épelle-moi Ça     │  Not Connection Check      │  RGB Encryption       │  Uncolour Flash
-    Ángel Hernández    │  Guess Who?        │  Not Coordinates           │  Robo-Scanner         │  Unown Cipher
-    Bamboozled Again   │  Horrible Memory   │  Not Morsematics           │  Rule of Three        │  Unpleasant Squares
-    Big Circle         │  Hunting           │  Not Murder                │  Scramboozled Eggain  │  Varicolour Flash
-    Bulb, The          │  Ingredients       │  Not Number Pad            │  Simon Said           │  Who’s on Gas
-    Caesar Psycho      │  Jewel Vault, The  │  Not Perspective Pegs      │  Simon Selects        │  Word Count
-    Cheep Checkout     │  Letter Math       │  Not The Bulb              │  Simon Shuffles       │  xobekuJ ehT
-    Coordination       │  Match Refereeing  │  Not X01                   │  Simultaneous Simons  │
-    Cyan Button, The   │  Mystic Square     │  Off Keys                  │  Slow Math            │
+    .--/---/..-.       │  Denial Displays   │  Navigation Determination  │  Quadrants            │  Synapse Says
+    3 LEDs             │  Double Digits     │  Neptune                   │  Reverse Morse        │  Triple Term
+    4D Tunnels         │  eeB gnillepS      │  Nim                       │  RGB Encryption       │  Uncolour Flash
+    Adventure Game     │  English Entries   │  Not Colored Switches      │  Robo-Scanner         │  Unown Cipher
+    Alcoholic Rampage  │  Épelle-moi Ça     │  Not Connection Check      │  Rule of Three        │  Unpleasant Squares
+    Ángel Hernández    │  Guess Who?        │  Not Coordinates           │  Scramboozled Eggain  │  Varicolour Flash
+    Bamboozled Again   │  Horrible Memory   │  Not Number Pad            │  Simon Said           │  Who’s on Gas
+    Big Circle         │  Hunting           │  Not Perspective Pegs      │  Simon Selects        │  Word Count
+    Bulb, The          │  Ingredients       │  Not The Bulb              │  Simon Shuffles       │  xobekuJ ehT
+    Caesar Psycho      │  Jewel Vault, The  │  Not X01                   │  Simultaneous Simons  │
+    Cheep Checkout     │  Letter Math       │  Off Keys                  │  Slow Math            │
+    Coordination       │  Match Refereeing  │  Papa’s Pizzeria           │  Small Talk           │
+    Cyan Button, The   │  Mystic Square     │  Parity                    │  Spelling Bee         │
 
 ## Implemented by Kuro (53)
 
@@ -101,15 +101,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Conditional Buttons      │  Flavor Text EX        │  Mixometer          │  Spongebob Birthday Identification  │
     Customer Identification  │  Garfield Kart         │  Module Movements   │  Subway                             │
 
-## Implemented by Espik (33)
+## Implemented by Espik (35)
 
-    100 Levels of Defusal  │  Dreamcipher       │  Not Who’s on First      │  Simon Stages          │  Unfair Cipher
-    Blockbusters           │  Encrypted Morse   │  Phosphorescence         │  Simon Supports        │  Unfair’s Cruel Revenge
-    Boolean Wires          │  Etterna           │  Pixel Cipher            │  Sorting               │  Unfair’s Revenge
-    Calendar               │  Exoplanets        │  Reformed Role Reversal  │  Stacked Sequences     │  Unicode
-    Challenge & Contact    │  Forget Any Color  │  Regular Crazy Talk      │  Thinking Wires        │  XmORse Code
-    Coffeebucks            │  Hexabutton, The   │  Role Reversal           │  Thirty One            │
-    Directional Button     │  Hyperlink, The    │  Samsung, The            │  Tricky Tetris Pieces  │
+    100 Levels of Defusal  │  Dreamcipher       │  Not Morsematics         │  Role Reversal      │  Thirty One
+    Blockbusters           │  Encrypted Morse   │  Not Murder              │  Samsung, The       │  Tricky Tetris Pieces
+    Boolean Wires          │  Etterna           │  Not Who’s on First      │  Simon Stages       │  Unfair Cipher
+    Calendar               │  Exoplanets        │  Phosphorescence         │  Simon Supports     │  Unfair’s Cruel Revenge
+    Challenge & Contact    │  Forget Any Color  │  Pixel Cipher            │  Sorting            │  Unfair’s Revenge
+    Coffeebucks            │  Hexabutton, The   │  Reformed Role Reversal  │  Stacked Sequences  │  Unicode
+    Directional Button     │  Hyperlink, The    │  Regular Crazy Talk      │  Thinking Wires     │  XmORse Code
 
 ## Implemented by BigCrunch22 (32)
 

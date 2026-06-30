@@ -10,10 +10,10 @@ public enum SSkyrim
     [Question("Which race was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Nord", "Khajiit", "Breton", "Argonian", "Dunmer", "Altmer", "Redguard", "Orc", "Imperial", TranslateAnswers = true)]
     Race,
 
-    [Question("Which weapon was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Axe of Whiterun", "Dawnbreaker", "Windshear", "Blade of Woe", "Firiniel’s End", "Bow of the Hunt", "Volendrung", "Chillrend", "Mace of Molag Bal", TranslateAnswers = true)]
+    [Question("Which weapon was selectable, but not the solution, in {0}?", OneColumn4Answers, "Axe of Whiterun", "Dawnbreaker", "Windshear", "Blade of Woe", "Firiniel’s End", "Bow of the Hunt", "Volendrung", "Chillrend", "Mace of Molag Bal", TranslateAnswers = true)]
     Weapon,
 
-    [Question("Which enemy was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Alduin", "Blood Dragon", "Cave Bear", "Dragon Priest", "Draugr", "Draugr Overlord", "Frost Troll", "Frostbite Spider", "Mudcrab", TranslateAnswers = true)]
+    [Question("Which enemy was selectable, but not the solution, in {0}?", OneColumn4Answers, "Alduin", "Blood Dragon", "Cave Bear", "Dragon Priest", "Draugr", "Draugr Overlord", "Frost Troll", "Frostbite Spider", "Mudcrab", TranslateAnswers = true)]
     Enemy,
 
     [Question("Which city was selectable, but not the solution, in {0}?", TwoColumns4Answers, "Dawnstar", "Ivarstead", "Markarth", "Riverwood", "Rorikstead", "Solitude", "Whiterun", "Windhelm", "Winterhold", TranslateAnswers = true)]
