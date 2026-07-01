@@ -161,72 +161,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // 1D Chess
-        [typeof(S1DChess)] = new()
-        {
-            ModuleName = "1Dチェス",
-            ManualQuestions = new()
-            {
-                ["What were your and Rustmate’s moves?"] = "あなたとRustmateの動きはどうだった？",
-            },
-            Questions = new()
-            {
-                [S1DChess.Moves] = new()
-                {
-                    // English: What was {1} in {0}?
-                    // Example: What was your first move in 1D Chess?
-                    Question = "{0}で{1}はどれだったか？",
-                    Arguments = new()
-                    {
-                        ["your first move"] = "あなたの最初の移動",
-                        ["Rustmate’s first move"] = "Rustmateの最初の移動",
-                        ["your second move"] = "あなたの2回目の移動",
-                        ["Rustmate’s second move"] = "Rustmateの2回目の移動",
-                        ["your third move"] = "あなたの3回目の移動",
-                        ["Rustmate’s third move"] = "Rustmateの3回目の移動",
-                        ["your fourth move"] = "あなたの4回目の移動",
-                        ["Rustmate’s fourth move"] = "Rustmateの4回目の移動",
-                        ["your fifth move"] = "あなたの5回目の移動",
-                        ["Rustmate’s fifth move"] = "Rustmateの5回目の移動",
-                        ["your sixth move"] = "あなたの6回目の移動",
-                        ["Rustmate’s sixth move"] = "Rustmateの6回目の移動",
-                        ["your seventh move"] = "あなたの7回目の移動",
-                        ["Rustmate’s seventh move"] = "Rustmateの7回目の移動",
-                        ["your eighth move"] = "あなたの8回目の移動",
-                        ["Rustmate’s eighth move"] = "Rustmateの8回目の移動",
-                    },
-                },
-            },
-            Discriminators = new()
-            {
-                [S1DChess.Discriminator] = new()
-                {
-                    // English: the 1D Chess where {1} was {0}
-                    // Example: the 1D Chess where your first move was B a→c
-                    Discriminator = "{0}が{1}だった1Dチェス",
-                    Arguments = new()
-                    {
-                        ["your first move"] = "あなたの最初の移動",
-                        ["Rustmate’s first move"] = "Rustmateの最初の移動",
-                        ["your second move"] = "あなたの2回目の移動",
-                        ["Rustmate’s second move"] = "Rustmateの2回目の移動",
-                        ["your third move"] = "あなたの3回目の移動",
-                        ["Rustmate’s third move"] = "Rustmateの3回目の移動",
-                        ["your fourth move"] = "あなたの4回目の移動",
-                        ["Rustmate’s fourth move"] = "Rustmateの4回目の移動",
-                        ["your fifth move"] = "あなたの5回目の移動",
-                        ["Rustmate’s fifth move"] = "Rustmateの5回目の移動",
-                        ["your sixth move"] = "あなたの6回目の移動",
-                        ["Rustmate’s sixth move"] = "Rustmateの6回目の移動",
-                        ["your seventh move"] = "あなたの7回目の移動",
-                        ["Rustmate’s seventh move"] = "Rustmateの7回目の移動",
-                        ["your eighth move"] = "あなたの8回目の移動",
-                        ["Rustmate’s eighth move"] = "Rustmateの8回目の移動",
-                    },
-                },
-            },
-        },
-
         // 21
         [typeof(S21)] = new()
         {
@@ -1621,46 +1555,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Bronson Extract"] = "ブロンソンエキス",
                         ["Karmotrine"] = "カルモトリン",
                         ["Powdered Delta"] = "デルタパウダー",
-                    },
-                },
-            },
-        },
-
-        // Bean Sprouts
-        [typeof(SBeanSprouts)] = new()
-        {
-            ModuleName = "もやし",
-            ManualQuestions = new()
-            {
-                ["What colors were the eaten sprouts?"] = "食べたもやしの色は？",
-                ["Where were the eaten beans?"] = "食べた豆の位置は？",
-            },
-            Questions = new()
-            {
-                [SBeanSprouts.Colors] = new()
-                {
-                    // English: What was sprout {1} in {0}?
-                    // Example: What was sprout 1 in Bean Sprouts?
-                    Question = "{0}の{1}番目のもやしは？",
-                    Answers = new()
-                    {
-                        ["Raw"] = "生",
-                        ["Cooked"] = "調理済み",
-                        ["Burnt"] = "焦げている",
-                        ["Fake"] = "偽物",
-                    },
-                },
-                [SBeanSprouts.Beans] = new()
-                {
-                    // English: What bean was on sprout {1} in {0}?
-                    // Example: What bean was on sprout 1 in Bean Sprouts?
-                    Question = "{0}の{1}番目のもやしの豆は？",
-                    Answers = new()
-                    {
-                        ["Left"] = "左",
-                        ["Right"] = "右",
-                        ["None"] = "無し",
-                        ["Both"] = "両方",
                     },
                 },
             },
@@ -3354,24 +3248,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the last customer’s preferred size in {0}?
                     Question = "{0}で最後に来た客のサイズの好みは？",
-                },
-            },
-        },
-
-        // Coinage
-        [typeof(SCoinage)] = new()
-        {
-            ModuleName = "大量コイン",
-            ManualQuestions = new()
-            {
-                ["Which coin was flipped?"] = "どのコインが裏返された？",
-            },
-            Questions = new()
-            {
-                [SCoinage.Flip] = new()
-                {
-                    // English: Which coin was flipped in {0}?
-                    Question = "{0}で裏返したコインは？",
                 },
             },
         },
@@ -5898,24 +5774,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["clockwise"] = "時計回り",
                         ["counterclockwise"] = "反時計回り",
                     },
-                },
-            },
-        },
-
-        // Factoring Maze
-        [typeof(SFactoringMaze)] = new()
-        {
-            ModuleName = "因数迷路",
-            ManualQuestions = new()
-            {
-                ["What were the prime numbers used?"] = "どの素数を使用した？",
-            },
-            Questions = new()
-            {
-                [SFactoringMaze.ChosenPrimes] = new()
-                {
-                    // English: What was one of the prime numbers chosen in {0}?
-                    Question = "{0}で選ばれた素因数の一つにあるのはどれ？",
                 },
             },
         },
@@ -11120,30 +10978,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What digit was initially in the center in {0}?
                     Question = "{0}の初期状態の中央の数字は？",
-                },
-            },
-        },
-
-        // Name Codes
-        [typeof(SNameCodes)] = new()
-        {
-            ModuleName = "名前コード",
-            ManualQuestions = new()
-            {
-                ["What were the left and right indices?"] = "左右の指標は？",
-            },
-            Questions = new()
-            {
-                [SNameCodes.Indices] = new()
-                {
-                    // English: What was the {1} index in {0}?
-                    // Example: What was the left index in Name Codes?
-                    Question = "{0}の{1}のインデックスは？",
-                    Arguments = new()
-                    {
-                        ["left"] = "左",
-                        ["right"] = "右",
-                    },
                 },
             },
         },

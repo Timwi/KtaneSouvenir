@@ -204,72 +204,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // 1D Chess
-        [typeof(S1DChess)] = new()
-        {
-            ModuleName = "1D-Schach",
-            ManualQuestions = new()
-            {
-                ["What were your and Rustmate’s moves?"] = "Welche Züge haben der Spieler und Rustmate gemacht?",
-            },
-            Questions = new()
-            {
-                [S1DChess.Moves] = new()
-                {
-                    // English: What was {1} in {0}?
-                    // Example: What was your first move in 1D Chess?
-                    Question = "Was war bei {0} {1}?",
-                    Arguments = new()
-                    {
-                        ["your first move"] = "dein erster Zug",
-                        ["Rustmate’s first move"] = "Rustmates erster Zug",
-                        ["your second move"] = "dein zweiter Zug",
-                        ["Rustmate’s second move"] = "Rustmates zweiter Zug",
-                        ["your third move"] = "dein dritter Zug",
-                        ["Rustmate’s third move"] = "Rustmates dritter Zug",
-                        ["your fourth move"] = "dein vierter Zug",
-                        ["Rustmate’s fourth move"] = "Rustmates vierter Zug",
-                        ["your fifth move"] = "dein fünfter Zug",
-                        ["Rustmate’s fifth move"] = "Rustmates fünfter Zug",
-                        ["your sixth move"] = "dein sechster Zug",
-                        ["Rustmate’s sixth move"] = "Rustmates sechster Zug",
-                        ["your seventh move"] = "dein siebter Zug",
-                        ["Rustmate’s seventh move"] = "Rustmates siebter Zug",
-                        ["your eighth move"] = "dein achter Zug",
-                        ["Rustmate’s eighth move"] = "Rustmates achter Zug",
-                    },
-                },
-            },
-            Discriminators = new()
-            {
-                [S1DChess.Discriminator] = new()
-                {
-                    // English: the 1D Chess where {1} was {0}
-                    // Example: the 1D Chess where your first move was B a→c
-                    Discriminator = "dem 1D-Schach, bei dem {1} {0} war,",
-                    Arguments = new()
-                    {
-                        ["your first move"] = "dein erster Zug",
-                        ["Rustmate’s first move"] = "Rustmates erster Zug",
-                        ["your second move"] = "dein zweiter Zug",
-                        ["Rustmate’s second move"] = "Rustmates zweiter Zug",
-                        ["your third move"] = "dein dritter Zug",
-                        ["Rustmate’s third move"] = "Rustmates dritter Zug",
-                        ["your fourth move"] = "dein vierter Zug",
-                        ["Rustmate’s fourth move"] = "Rustmates vierter Zug",
-                        ["your fifth move"] = "dein fünfter Zug",
-                        ["Rustmate’s fifth move"] = "Rustmates fünfter Zug",
-                        ["your sixth move"] = "dein sechster Zug",
-                        ["Rustmate’s sixth move"] = "Rustmates sechster Zug",
-                        ["your seventh move"] = "dein siebter Zug",
-                        ["Rustmate’s seventh move"] = "Rustmates siebter Zug",
-                        ["your eighth move"] = "dein achter Zug",
-                        ["Rustmate’s eighth move"] = "Rustmates achter Zug",
-                    },
-                },
-            },
-        },
-
         // 21
         [typeof(S21)] = new()
         {
@@ -1679,46 +1613,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Bronson Extract"] = "Bronson-Extrakt",
                         ["Karmotrine"] = "Karmotrin",
                         ["Powdered Delta"] = "Puderdelta",
-                    },
-                },
-            },
-        },
-
-        // Bean Sprouts
-        [typeof(SBeanSprouts)] = new()
-        {
-            ModuleName = "Bohnensprossen",
-            ManualQuestions = new()
-            {
-                ["What colors were the eaten sprouts?"] = "Welche Farbe hatten die gegessenen Sprosse?",
-                ["Where were the eaten beans?"] = "Wo befanden sich die gegessenen Bohnen?",
-            },
-            Questions = new()
-            {
-                [SBeanSprouts.Colors] = new()
-                {
-                    // English: What was sprout {1} in {0}?
-                    // Example: What was sprout 1 in Bean Sprouts?
-                    Question = "Was war bei {0} der Spross {1}?",
-                    Answers = new()
-                    {
-                        ["Raw"] = "Roh",
-                        ["Cooked"] = "Gekocht",
-                        ["Burnt"] = "Angebrannt",
-                        ["Fake"] = "Falsch",
-                    },
-                },
-                [SBeanSprouts.Beans] = new()
-                {
-                    // English: What bean was on sprout {1} in {0}?
-                    // Example: What bean was on sprout 1 in Bean Sprouts?
-                    Question = "Welche Bohne war bei {0} auf Spross {1}?",
-                    Answers = new()
-                    {
-                        ["Left"] = "Die linke",
-                        ["Right"] = "Die rechte",
-                        ["None"] = "Keine",
-                        ["Both"] = "Beide",
                     },
                 },
             },
@@ -3449,25 +3343,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the last customer’s preferred size in {0}?
                     Question = "Was war bei {0} beim letzten Kunden die bevorzugte Größe?",
-                },
-            },
-        },
-
-        // Coinage
-        [typeof(SCoinage)] = new()
-        {
-            ModuleName = "Münzerei",
-            Gender = Gender.Feminine,
-            ManualQuestions = new()
-            {
-                ["Which coin was flipped?"] = "Welche Münze war umgekehrt?",
-            },
-            Questions = new()
-            {
-                [SCoinage.Flip] = new()
-                {
-                    // English: Which coin was flipped in {0}?
-                    Question = "Welche Münze wurde bei {0} umgedreht?",
                 },
             },
         },
@@ -6085,24 +5960,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["clockwise"] = "Im Uhrzeigersinn",
                         ["counterclockwise"] = "Gegen den Uhrzeigersinn",
                     },
-                },
-            },
-        },
-
-        // Factoring Maze
-        [typeof(SFactoringMaze)] = new()
-        {
-            ModuleName = "Faktorlabyrinth",
-            ManualQuestions = new()
-            {
-                ["What were the prime numbers used?"] = "Welche Primzahlen kamen zum Einsatz?",
-            },
-            Questions = new()
-            {
-                [SFactoringMaze.ChosenPrimes] = new()
-                {
-                    // English: What was one of the prime numbers chosen in {0}?
-                    Question = "Welche Primzahl kam bei {0} zum Einsatz?",
                 },
             },
         },
@@ -11449,31 +11306,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What digit was initially in the center in {0}?
                     Question = "Welche Ziffer war bei {0} am Anfang in der Mitte?",
-                },
-            },
-        },
-
-        // Name Codes
-        [typeof(SNameCodes)] = new()
-        {
-            ModuleName = "Namenscodes",
-            Gender = Gender.Plural,
-            ManualQuestions = new()
-            {
-                ["What were the left and right indices?"] = "Wie weit war der Links- und Rechtsschritt?",
-            },
-            Questions = new()
-            {
-                [SNameCodes.Indices] = new()
-                {
-                    // English: What was the {1} index in {0}?
-                    // Example: What was the left index in Name Codes?
-                    Question = "Was war bei {0} der {1}?",
-                    Arguments = new()
-                    {
-                        ["left"] = "Linkschritt",
-                        ["right"] = "Rechtsschritt",
-                    },
                 },
             },
         },

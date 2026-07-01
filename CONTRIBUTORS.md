@@ -36,17 +36,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Morse          │  Identity Parade       │  Object Shows             │  Simon Sings            │
     Colored Squares      │  IPA                   │  Only Connect             │  Simon Sounds           │
 
-## Implemented by Anonymous (102)
+## Implemented by Anonymous (101)
 
-    ↻↺                         │  Color One Two            │  Hidden Value, The       │  Number Game, The           │  Smash, Marry, Kill
-    ❖                          │  Coloured Cylinder        │  HyperForget             │  One Links To All           │  Starstruck
-    0                          │  Concentration            │  KayMazey Talk           │  Pentabutton, The           │  Stroop’s Test
-    1, 2, 3 Game, The          │  Connected Monitors       │  Keypad Maze             │  Pickup Identification      │  Subbly Jubbly
-    21                         │  Dialtones                │  Keypad Sequence         │  Pointless Machines         │  SUSadmin
-    A Message                  │  Divided Squares          │  Kooky Keypad            │  Prison Break               │  TAC
-    Amusement Parks            │  Doofenshmirtz Evil Inc.  │  Kugelblitz              │  Puzzling Hexabuttons       │  Thirty Dollar Module
-    Audio Morse                │  Double Arrows            │  Labyrinth, The          │  Q & A                      │  Tribal Council
-    Bean Sprouts               │  Double Listening         │  Maroon Button, The      │  Quantum Passwords          │  Unordered Keys
+    ↻↺                         │  Coloured Cylinder        │  HyperForget             │  One Links To All           │  Starstruck
+    ❖                          │  Concentration            │  KayMazey Talk           │  Pentabutton, The           │  Stroop’s Test
+    0                          │  Connected Monitors       │  Keypad Maze             │  Pickup Identification      │  Subbly Jubbly
+    1, 2, 3 Game, The          │  Dialtones                │  Keypad Sequence         │  Pointless Machines         │  SUSadmin
+    21                         │  Divided Squares          │  Kooky Keypad            │  Prison Break               │  TAC
+    A Message                  │  Doofenshmirtz Evil Inc.  │  Kugelblitz              │  Puzzling Hexabuttons       │  Thirty Dollar Module
+    Amusement Parks            │  Double Arrows            │  Labyrinth, The          │  Q & A                      │  Tribal Council
+    Audio Morse                │  Double Listening         │  Maroon Button, The      │  Quantum Passwords          │  Unordered Keys
     Big Bean                   │  Double Screen            │  Maze Swap               │  Quantum Ternary Converter  │  Updog
     Blindfolded Yahtzee        │  Emoji                    │  Module Maneuvers        │  Quiplash                   │  Variety
     Blinking Notes             │  Faerie Fires             │  Money Game              │  Red Button’t               │  Walking Cube
@@ -59,6 +58,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     CA-RPS                     │  Halli Galli              │  Not Password            │  Simon Subdivides           │
     Chinese Remainder Theorem  │  hexOrbits                │  Not Red Arrows          │  Simon Swizzles             │
     Coffee Beans               │  Hickory Dickory Dock     │  Not The Plunger Button  │  Skewers                    │
+    Color One Two              │  Hidden Value, The        │  Number Game, The        │  Smash, Marry, Kill         │
 
 ## Implemented by Quinn Wuest (61)
 
@@ -131,13 +131,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Ultracube, The      │
     Decolored Squares         │  iPhone, The         │  Pie                │  USA Maze            │
 
-## Implemented by tandyCake (25)
+## Implemented by tandyCake (24)
 
-    Algorithmia    │  Kanye Encounter, The  │  Metamorse       │  Not Word Search       │  Stupid Slots
-    Breakfast Egg  │  Keypad Magnified      │  M-Seq           │  Numpath               │  Superparsing
-    Digisibility   │  Ladders               │  Name Codes      │  Red Herring           │  Tasque Managing
-    Flyswatting    │  LEDs                  │  Not Piano Keys  │  Shogi Identification  │  Touch Transmission
-    Forget Me      │  Math ’em              │  Not Text Field  │  Simon Shapes          │  USA Cycle
+    Algorithmia    │  Kanye Encounter, The  │  Metamorse        │  Numpath               │  Superparsing
+    Breakfast Egg  │  Keypad Magnified      │  M-Seq            │  Red Herring           │  Tasque Managing
+    Digisibility   │  Ladders               │  Not Piano Keys   │  Shogi Identification  │  Touch Transmission
+    Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Shapes          │  USA Cycle
+    Forget Me      │  Math ’em              │  Not Word Search  │  Stupid Slots          │
 
 ## Implemented by TasThiluna (20)
 
@@ -183,11 +183,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Alfa-Bravo    │  Character Codes      │  Eight          │  Stability
     Binary Shift  │  Colors Maximization  │  Space Traders  │  Sysadmin
 
-## Implemented by Emik (7)
-
-    1D Chess  │  hexOS  │  Octadecayotton, The  │  Placeholder Talk
-    Coinage   │  Linq   │  Palindromes          │
-
 ## Implemented by Marksam (7)
 
     Brown Cipher                │  Great Void, The  │  Mashematics  │  Wolf, Goat, and Cabbage
@@ -212,22 +207,26 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Critters                 │  Eltrick
     Digit String             │  GoodHood
     Elder Futhark            │  Goofy
-    Factoring Maze           │  Eltrick
     Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris
     Gryphons                 │  JerryEris
+    hexOS                    │  Emik
     Infinite Loop            │  Eltrick
     Inner Connections        │  Brawlboxgaming
     Interpunct               │  Eltrick
+    Linq                     │  Emik
     Long Words               │  GoodHood
     Mahjong                  │  River
     Main Page                │  ObjectsCountries
     Metapuzzle               │  GoodHood
     Minsk Metro              │  rand06
     Module Maze              │  River
+    Octadecayotton, The      │  Emik
     Old AI                   │  noting3548
     Order Picking            │  Brawlboxgaming
+    Palindromes              │  Emik
     Password Destroyer       │  Eltrick
+    Placeholder Talk         │  Emik
     Placement Roulette       │  Brawlboxgaming
     Planets                  │  KingSlendy
     Raiding Temples          │  GoodHood

@@ -245,72 +245,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // 1D Chess
-        [typeof(S1DChess)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What were your and Rustmate’s moves?"] = "Какие были ходы у вас и Rustmate?",
-            },
-            Questions = new()
-            {
-                [S1DChess.Moves] = new()
-                {
-                    // English: What was {1} in {0}?
-                    // Example: What was your first move in 1D Chess?
-                    Question = "Каким был {1} {0}?",
-                    Arguments = new()
-                    {
-                        ["your first move"] = "ваш 1-й ход",
-                        ["Rustmate’s first move"] = "1-й ход Rustmate",
-                        ["your second move"] = "ваш 2-й ход",
-                        ["Rustmate’s second move"] = "2-й ход Rustmate",
-                        ["your third move"] = "ваш 3-й ход",
-                        ["Rustmate’s third move"] = "3-й ход Rustmate",
-                        ["your fourth move"] = "ваш 4-й ход",
-                        ["Rustmate’s fourth move"] = "4-й ход Rustmate",
-                        ["your fifth move"] = "ваш 5-й ход",
-                        ["Rustmate’s fifth move"] = "5-й ход Rustmate",
-                        ["your sixth move"] = "ваш 6-й ход",
-                        ["Rustmate’s sixth move"] = "6-й ход Rustmate",
-                        ["your seventh move"] = "ваш 7-й ход",
-                        ["Rustmate’s seventh move"] = "7-й ход Rustmate",
-                        ["your eighth move"] = "ваш 8-й ход",
-                        ["Rustmate’s eighth move"] = "8-й ход Rustmate",
-                    },
-                },
-            },
-            Discriminators = new()
-            {
-                [S1DChess.Discriminator] = new()
-                {
-                    // English: the 1D Chess where {1} was {0}
-                    // Example: the 1D Chess where your first move was B a→c
-                    Discriminator = "the 1D Chess where {1} was {0}",
-                    Arguments = new()
-                    {
-                        ["your first move"] = "your first move",
-                        ["Rustmate’s first move"] = "Rustmate’s first move",
-                        ["your second move"] = "your second move",
-                        ["Rustmate’s second move"] = "Rustmate’s second move",
-                        ["your third move"] = "your third move",
-                        ["Rustmate’s third move"] = "Rustmate’s third move",
-                        ["your fourth move"] = "your fourth move",
-                        ["Rustmate’s fourth move"] = "Rustmate’s fourth move",
-                        ["your fifth move"] = "your fifth move",
-                        ["Rustmate’s fifth move"] = "Rustmate’s fifth move",
-                        ["your sixth move"] = "your sixth move",
-                        ["Rustmate’s sixth move"] = "Rustmate’s sixth move",
-                        ["your seventh move"] = "your seventh move",
-                        ["Rustmate’s seventh move"] = "Rustmate’s seventh move",
-                        ["your eighth move"] = "your eighth move",
-                        ["Rustmate’s eighth move"] = "Rustmate’s eighth move",
-                    },
-                },
-            },
-        },
-
         // 21
         [typeof(S21)] = new()
         {
@@ -1735,46 +1669,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Bronson Extract"] = "Bronson Extract",
                         ["Karmotrine"] = "Karmotrine",
                         ["Powdered Delta"] = "Powdered Delta",
-                    },
-                },
-            },
-        },
-
-        // Bean Sprouts
-        [typeof(SBeanSprouts)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What colors were the eaten sprouts?"] = "Каких цветов были съеденные ростки?",
-                ["Where were the eaten beans?"] = "Где были съеденные бобы?",
-            },
-            Questions = new()
-            {
-                [SBeanSprouts.Colors] = new()
-                {
-                    // English: What was sprout {1} in {0}?
-                    // Example: What was sprout 1 in Bean Sprouts?
-                    Question = "Каким был росток {1} {0}?",
-                    Answers = new()
-                    {
-                        ["Raw"] = "Raw",
-                        ["Cooked"] = "Cooked",
-                        ["Burnt"] = "Burnt",
-                        ["Fake"] = "Fake",
-                    },
-                },
-                [SBeanSprouts.Beans] = new()
-                {
-                    // English: What bean was on sprout {1} in {0}?
-                    // Example: What bean was on sprout 1 in Bean Sprouts?
-                    Question = "Какой боб был на {1}-м ростке {0}?",
-                    Answers = new()
-                    {
-                        ["Left"] = "Левый",
-                        ["Right"] = "Правый",
-                        ["None"] = "Никакой",
-                        ["Both"] = "Оба",
                     },
                 },
             },
@@ -3488,23 +3382,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the last customer’s preferred size in {0}?
                     Question = "What was the last customer's preferred size in {0}?",
-                },
-            },
-        },
-
-        // Coinage
-        [typeof(SCoinage)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["Which coin was flipped?"] = "Какая монета была подкинута?",
-            },
-            Questions = new()
-            {
-                [SCoinage.Flip] = new()
-                {
-                    // English: Which coin was flipped in {0}?
-                    Question = "Какая монета была перевёрнута {0}?",
                 },
             },
         },
@@ -6046,23 +5923,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["clockwise"] = "clockwise",
                         ["counterclockwise"] = "counterclockwise",
                     },
-                },
-            },
-        },
-
-        // Factoring Maze
-        [typeof(SFactoringMaze)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What were the prime numbers used?"] = "Какие простые числа были использованы?",
-            },
-            Questions = new()
-            {
-                [SFactoringMaze.ChosenPrimes] = new()
-                {
-                    // English: What was one of the prime numbers chosen in {0}?
-                    Question = "Какое из простых чисел было выбрано {0}?",
                 },
             },
         },
@@ -11278,29 +11138,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What digit was initially in the center in {0}?
                     Question = "What digit was initially in the center in {0}?",
-                },
-            },
-        },
-
-        // Name Codes
-        [typeof(SNameCodes)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What were the left and right indices?"] = "Какие индексы были слева и справа?",
-            },
-            Questions = new()
-            {
-                [SNameCodes.Indices] = new()
-                {
-                    // English: What was the {1} index in {0}?
-                    // Example: What was the left index in Name Codes?
-                    Question = "Какой был {1} индекс {0}?",
-                    Arguments = new()
-                    {
-                        ["left"] = "левый",
-                        ["right"] = "правый",
-                    },
                 },
             },
         },
