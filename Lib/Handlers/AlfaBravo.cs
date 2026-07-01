@@ -29,9 +29,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "AlfaBravoModule");
         yield return WaitForSolve;
 
-        if (GetProperty<bool>(comp, "forceSolved", true).Get())
-            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
-
         var pressedLetter = GetProperty<char>(comp, "souvenirPressedLetter", true).Get();
         if (pressedLetter != 0)
             yield return question(SAlfaBravo.PressedLetter).Answers(pressedLetter.ToString());

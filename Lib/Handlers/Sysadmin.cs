@@ -19,9 +19,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "SysadminModule");
         yield return WaitForSolve;
 
-        if (GetProperty<bool>(comp, "forceSolved", true).Get())
-            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
-
         var fixedErrorCodes = GetProperty<HashSet<string>>(comp, "fixedErrorCodes", true).Get();
         if (fixedErrorCodes.Count == 0)
             yield return legitimatelyNoQuestion(module, "There are no errors to ask about.");

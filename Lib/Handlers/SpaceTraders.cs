@@ -18,8 +18,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "SpaceTradersModule");
         yield return WaitForSolve;
 
-        if (GetProperty<bool>(comp, "forceSolved", true).Get())
-            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
         if (GetProperty<int>(comp, "maxPossibleTaxAmount", true).Get() < 4)
             yield return legitimatelyNoQuestion(module, "All paths from the solar system are too short.");
 

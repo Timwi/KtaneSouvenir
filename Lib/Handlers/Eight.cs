@@ -35,9 +35,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "EightModule");
         yield return WaitForSolve;
 
-        if (GetProperty<bool>(comp, "forceSolved", true).Get())
-            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
-
         yield return question(SEight.LastSmallDisplayDigit).Answers(GetProperty<int>(comp, "souvenirLastStageDigit", true).Get().ToString());
         yield return question(SEight.LastBrokenDigitPosition).Answers((GetProperty<int>(comp, "souvenirLastBrokenDigitPosition", true).Get() + 1).ToString());
         yield return question(SEight.LastResultingDigits).Answers(GetProperty<int>(comp, "souvenirLastResultingDigits", true).Get().ToString(), preferredWrong: GetProperty<HashSet<int>>(comp, "souvenirPossibleLastResultingDigits", true).Get().Select(n => n.ToString().PadLeft(2, '0')).ToArray());

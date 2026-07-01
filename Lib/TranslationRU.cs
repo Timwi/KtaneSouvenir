@@ -3864,6 +3864,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Colors Maximization
         [typeof(SColorsMaximization)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["How many buttons were there of each color?"] = "Сколько было кнопок каждого цвета?",
@@ -3880,6 +3881,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["red"] = "красных",
                         ["green"] = "зелёных",
                         ["blue"] = "синих",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["white"] = "white",
                     },
                 },
             },

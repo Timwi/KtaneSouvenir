@@ -3714,6 +3714,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Colors Maximization
         [typeof(SColorsMaximization)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "最大色",
             ManualQuestions = new()
             {
@@ -3731,6 +3732,9 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["red"] = "赤",
                         ["green"] = "緑",
                         ["blue"] = "青",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["white"] = "white",
                     },
                 },
             },

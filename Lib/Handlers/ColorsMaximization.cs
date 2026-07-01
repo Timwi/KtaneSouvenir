@@ -7,7 +7,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SColorsMaximization
 {
-    [Question("How many buttons were {1} in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("How many buttons were {1} in {0}?", ThreeColumns6Answers, Arguments = ["red", "green", "blue", "magenta", "yellow", "white"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     [AnswerGenerator.Integers(0, 11)]
     ColorCount
 }
@@ -21,13 +21,10 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "ColorsMaximizationModule");
         yield return WaitForSolve;
 
-        if (GetProperty<bool>(comp, "forceSolved", true).Get())
-            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
-
         var colorNameDic = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorNames", true).Get();
         var colorNames = colorNameDic.Values.ToArray();
         var allColors = GetStaticField<Color[]>(comp.GetType(), "allColors").Get();
         foreach (var color in allColors)
-            yield return question(SColorsMaximization.ColorCount, args: [colorNameDic[color]]).Answers(GetField<Dictionary<Color, int>>(comp, "countOfColor").Get()[color].ToString());
+            yield return question(SColorsMaximization.ColorCount, args: [colorNameDic[color].ToLowerInvariant()]).Answers(GetField<Dictionary<Color, int>>(comp, "countOfColor").Get()[color].ToString());
     }
 }

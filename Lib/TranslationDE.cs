@@ -3817,6 +3817,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Colors Maximization
         [typeof(SColorsMaximization)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Farbmaximierung",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -3835,6 +3836,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["red"] = "rot",
                         ["green"] = "grün",
                         ["blue"] = "blau",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["white"] = "white",
                     },
                 },
             },

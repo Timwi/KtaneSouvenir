@@ -26,9 +26,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "BinaryShiftModule");
         yield return WaitForSolve;
 
-        if (GetProperty<bool>(comp, "forceSolved", true).Get())
-            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
-
         var allPositions = new[] { "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right" };
         for (var position = 0; position < 9; position++)
         {
