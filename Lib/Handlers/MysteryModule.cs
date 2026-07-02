@@ -39,22 +39,23 @@ public partial class SouvenirModule
         if (mystifiedModule == Module)
             _avoidQuestions++;
 
-        IEnumerator CheckFailsafeSolve()
+        // Detect if Mystery Module was solved by using the failsafe button
+        var failsafeWasUsed = false;
+        var failsafeOldInteract = failsafeButton.OnInteract;
+        failsafeButton.OnInteract = delegate
         {
-            yield return null;
+            var ret = failsafeOldInteract();
             if (!module.Unsolved)
-                yield return legitimatelyNoQuestion(module, "The failswitch was used.");
-        }
-
-        failsafeButton.OnInteract += delegate ()
-        {
-            StartCoroutine(CheckFailsafeSolve());
-            return false;
+                failsafeWasUsed = true;
+            return ret;
         };
 
         try
         {
             yield return WaitForSolve;
+
+            if (failsafeWasUsed)
+                yield return legitimatelyNoQuestion(module, "The failswitch was used.");
 
             // Do not ask questions during the solve animation, since Mystery Module modifies the scaling of this module.
             while (fldAnimating.Get())

@@ -27,8 +27,7 @@ public partial class SouvenirModule
         var positionArr = GetArrayField<int>(comp, "pos").Get(expectedLength: 4);
         var doubleOhGrid = GetField<int[,]>(comp, "dogrid").Get();
 
-        var globalPosition = (((positionArr[0] * 3) + positionArr[2]) * 9) + (positionArr[1] * 3) + positionArr[3];
-        var shape = doubleOhGrid[globalPosition / 9, globalPosition % 9];
+        var shape = doubleOhGrid[positionArr[0] * 3 + positionArr[2], positionArr[1] * 3 + positionArr[3]];
 
         yield return WaitForSolve;
 
