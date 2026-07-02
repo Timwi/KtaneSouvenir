@@ -26,7 +26,7 @@ public partial class SouvenirModule
         for (var i = 0; i < morseSnippets.Length; i++)
         {
             morseSnippets[i] = Enumerable.Range(i, 7).Select(x => selectedMorse[x % selectedMorse.Length]).JoinString();
-            morseSnippets[i] = morseSnippets[i][0] + " " + morseSnippets[i][1] + " " + morseSnippets[i][2] + " " + morseSnippets[i][3] + " " + morseSnippets[i][4] + " " + morseSnippets[i][5] + " " + morseSnippets[i][6];
+            morseSnippets[i] = morseSnippets[i].JoinString(" ");
         }
 
         yield return question(SInfiniteLoop.Morse).Answers(morseSnippets);
