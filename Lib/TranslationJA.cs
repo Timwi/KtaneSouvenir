@@ -690,27 +690,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "アルファブラボー",
             ManualQuestions = new()
             {
-                ["What final letter was pressed?"] = "最後にどの文字を押した？",
-                ["What letters were to the left and right of the final one?"] = "押した文字の左右にあった文字は？",
                 ["What was the last digit on the small display?"] = "小さなディスプレーの最後の数字は？",
             },
             Questions = new()
             {
-                [SAlfaBravo.PressedLetter] = new()
-                {
-                    // English: Which letter was pressed in {0}?
-                    Question = "{0}でどの文字を押した？",
-                },
-                [SAlfaBravo.LeftPressedLetter] = new()
-                {
-                    // English: Which letter was to the left of the pressed one in {0}?
-                    Question = "{0}で押した文字の左にあった文字は？",
-                },
-                [SAlfaBravo.RightPressedLetter] = new()
-                {
-                    // English: Which letter was to the right of the pressed one in {0}?
-                    Question = "{0}で押した文字の右にあった文字は？",
-                },
                 [SAlfaBravo.Digit] = new()
                 {
                     // English: What was the last digit on the small display in {0}?
@@ -4719,17 +4702,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Dialtones
         [typeof(SDialtones)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "ダイヤル音声",
             ManualQuestions = new()
             {
-                ["Which tones played?"] = "再生されたトーンは？",
+                ["What was the received word?"] = "What was the received word?",
             },
             Questions = new()
             {
-                [SDialtones.Dialtones] = new()
+                [SDialtones.Word] = new()
                 {
-                    // English: What dialtones were heard in {0}?
-                    Question = "{0}で聞こえたダイヤルトーンは？",
+                    // English: What was the received word in {0}?
+                    Question = "What was the received word in {0}?",
                 },
             },
         },
@@ -5333,7 +5317,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 ["What was the last digit on the small display?"] = "小さなディスプレーの最後の数字は？",
                 ["What was the position of the last broken digit?"] = "最後に破壊された数字の位置は？",
-                ["What were the last resulting digits?"] = "最後の結果の値は？",
                 ["What was the last displayed number?"] = "最後に表示された数字は？",
             },
             Questions = new()
@@ -5347,11 +5330,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the position of the last broken digit in {0}?
                     Question = "{0}の最後に壊された桁の位置は？",
-                },
-                [SEight.LastResultingDigits] = new()
-                {
-                    // English: What were the last resulting digits in {0}?
-                    Question = "{0}の最終的な数字は？",
                 },
                 [SEight.LastDisplayedNumber] = new()
                 {
@@ -8241,17 +8219,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Infinite Loop
         [typeof(SInfiniteLoop)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "無限ループ",
             ManualQuestions = new()
             {
-                ["What was the selected word?"] = "選ばれた言葉は？",
+                ["What was the Morse code?"] = "What was the Morse code?",
             },
             Questions = new()
             {
-                [SInfiniteLoop.SelectedWord] = new()
+                [SInfiniteLoop.Morse] = new()
                 {
-                    // English: What was the selected word in {0}?
-                    Question = "{0}で選択された単語は？",
+                    // English: Which of these sequences was transmitted in {0}?
+                    Question = "Which of these sequences was transmitted in {0}?",
                 },
             },
         },
@@ -11430,17 +11409,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Not Coordinates
         [typeof(SNotCoordinates)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "偽座標",
             ManualQuestions = new()
             {
-                ["What were the vertices of the square?"] = "正方形の頂点は？",
+                ["What was the initial shape in the second stage?"] = "What was the initial shape in the second stage?",
             },
             Questions = new()
             {
-                [SNotCoordinates.SquareCoords] = new()
+                [SNotCoordinates.InitialShape] = new()
                 {
-                    // English: Which coordinate was part of the square in {0}?
-                    Question = "{0}の正方形の一部に含まれた座標は？",
+                    // English: What was the initial shape in the second stage of {0}?
+                    Question = "What was the initial shape in the second stage of {0}?",
                 },
             },
         },

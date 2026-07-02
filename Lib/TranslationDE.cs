@@ -741,27 +741,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             ManualQuestions = new()
             {
-                ["What final letter was pressed?"] = "Welcher Buchstabe wurde am Ende eingegeben?",
-                ["What letters were to the left and right of the final one?"] = "Welche Buchstaben waren links und rechts vom letzten?",
                 ["What was the last digit on the small display?"] = "Welche Ziffer war zuletzt auf dem kleinen Display?",
             },
             Questions = new()
             {
-                [SAlfaBravo.PressedLetter] = new()
-                {
-                    // English: Which letter was pressed in {0}?
-                    Question = "Welcher Buchstabe wurde bei {0} eingegeben?",
-                },
-                [SAlfaBravo.LeftPressedLetter] = new()
-                {
-                    // English: Which letter was to the left of the pressed one in {0}?
-                    Question = "Welcher Buchstabe war bei {0} links vom eingegebenen?",
-                },
-                [SAlfaBravo.RightPressedLetter] = new()
-                {
-                    // English: Which letter was to the right of the pressed one in {0}?
-                    Question = "Welcher Buchstabe war bei {0} rechts vom eingegebenen?",
-                },
                 [SAlfaBravo.Digit] = new()
                 {
                     // English: What was the last digit on the small display in {0}?
@@ -4875,18 +4858,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Dialtones
         [typeof(SDialtones)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Freizeichen",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["Which tones played?"] = "Welche Töne waren zu hören?",
+                ["What was the received word?"] = "What was the received word?",
             },
             Questions = new()
             {
-                [SDialtones.Dialtones] = new()
+                [SDialtones.Word] = new()
                 {
-                    // English: What dialtones were heard in {0}?
-                    Question = "Welches Freizeichen war bei {0} zu hören?",
+                    // English: What was the received word in {0}?
+                    Question = "What was the received word in {0}?",
                 },
             },
         },
@@ -5508,7 +5492,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 ["What was the last digit on the small display?"] = "Welche Ziffer war zuletzt auf dem kleinen Display?",
                 ["What was the position of the last broken digit?"] = "An welcher Stelle war die letzte kaputte Ziffer?",
-                ["What were the last resulting digits?"] = "Was waren die letzten Ergebnisziffern?",
                 ["What was the last displayed number?"] = "Welche Zahl war zuletzt auf dem Display?",
             },
             Questions = new()
@@ -5522,11 +5505,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the position of the last broken digit in {0}?
                     Question = "An welcher Stelle war bei {0} die letzte kaputte Ziffer?",
-                },
-                [SEight.LastResultingDigits] = new()
-                {
-                    // English: What were the last resulting digits in {0}?
-                    Question = "Was waren bei {0} die letzten Ergebnisziffern?",
                 },
                 [SEight.LastDisplayedNumber] = new()
                 {
@@ -8496,18 +8474,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Infinite Loop
         [typeof(SInfiniteLoop)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Endlosschleife",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the selected word?"] = "Was war das ausgewählte Wort?",
+                ["What was the Morse code?"] = "What was the Morse code?",
             },
             Questions = new()
             {
-                [SInfiniteLoop.SelectedWord] = new()
+                [SInfiniteLoop.Morse] = new()
                 {
-                    // English: What was the selected word in {0}?
-                    Question = "Was war bei {0} das ausgewählte Wort?",
+                    // English: Which of these sequences was transmitted in {0}?
+                    Question = "Which of these sequences was transmitted in {0}?",
                 },
             },
         },
@@ -11769,18 +11748,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not Coordinates
         [typeof(SNotCoordinates)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Koordinaten Mal Anders",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the vertices of the square?"] = "Wie lauteten die Eckpunkte des Quadrats?",
+                ["What was the initial shape in the second stage?"] = "What was the initial shape in the second stage?",
             },
             Questions = new()
             {
-                [SNotCoordinates.SquareCoords] = new()
+                [SNotCoordinates.InitialShape] = new()
                 {
-                    // English: Which coordinate was part of the square in {0}?
-                    Question = "Welche Koordinate war bei {0} Teil des Quadrats?",
+                    // English: What was the initial shape in the second stage of {0}?
+                    Question = "What was the initial shape in the second stage of {0}?",
                 },
             },
         },

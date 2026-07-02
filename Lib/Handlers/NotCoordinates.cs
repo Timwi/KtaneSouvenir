@@ -6,24 +6,32 @@ using static Souvenir.AnswerLayout;
 
 public enum SNotCoordinates
 {
-    [Question("Which coordinate was part of the square in {0}?", OneColumn4Answers, ExampleAnswers = ["[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七"])]
-    SquareCoords
+    [Question("What was the initial shape in the second stage of {0}?", ThreeColumns6Answers, AnswerType = InfoType.SymbolsFont)]
+    [AnswerGenerator.Strings("\u00a1-\u00a9", "\u00aa-\u00b2")]
+    InitialShape
 }
 
 public partial class SouvenirModule
 {
-    [Handler("notCoordinates", "Not Coordinates", typeof(SNotCoordinates), "Quinn Wuest")]
-    [ManualQuestion("What were the vertices of the square?")]
+    [Handler("notCoordinates", "Not Coordinates", typeof(SNotCoordinates), "Espik")]
+    [ManualQuestion("What was the initial shape in the second stage?")]
     private IEnumerator<SouvenirInstruction> ProcessNotCoordinates(ModuleData module)
     {
         var comp = GetComponent(module, "NCooScript");
+        var fldCoordsSubmitted = GetArrayField<bool>(comp, "gud");
+
+        // Waits for stage 2
+        while (!fldCoordsSubmitted.Get(expectedLength: 3).All(x => x == true))
+            yield return null;
+
+        var positionArr = GetArrayField<int>(comp, "pos").Get(expectedLength: 4);
+        var doubleOhGrid = GetField<int[,]>(comp, "dogrid").Get();
+
+        var globalPosition = (((positionArr[0] * 3) + positionArr[2]) * 9) + (positionArr[1] * 3) + positionArr[3];
+        var shape = doubleOhGrid[globalPosition / 9, globalPosition % 9];
+
         yield return WaitForSolve;
 
-        // Step 1: Finding square
-        var disp = GetListField<string>(comp, "disp").Get(minLength: 3);
-        var seq = GetArrayField<List<int>>(comp, "seq").Get(expectedLength: 2, validator: i => i.Count < 3 ? "expected length at least 3" : null);
-        var answers = seq[0].Take(3).Select(coord => disp[seq[1].IndexOf(coord)]).ToArray();
-
-        yield return question(SNotCoordinates.SquareCoords).Answers(answers, preferredWrong: disp.ToArray());
+        yield return question(SNotCoordinates.InitialShape).Answers($"{(char) (0xa1 + (shape / 10))}{(char) (0xaa + (shape % 10))}");
     }
 }

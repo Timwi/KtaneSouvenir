@@ -60,21 +60,20 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coffee Beans               │  Hickory Dickory Dock     │  Not The Plunger Button  │  Skewers                    │
     Color One Two              │  Hidden Value, The        │  Number Game, The        │  Smash, Marry, Kill         │
 
-## Implemented by Quinn Wuest (61)
+## Implemented by Quinn Wuest (60)
 
-    .--/---/..-.       │  Denial Displays   │  Navigation Determination  │  Quadrants            │  Synapse Says
-    3 LEDs             │  Double Digits     │  Neptune                   │  Reverse Morse        │  Triple Term
-    4D Tunnels         │  eeB gnillepS      │  Nim                       │  RGB Encryption       │  Uncolour Flash
-    Adventure Game     │  English Entries   │  Not Colored Switches      │  Robo-Scanner         │  Unown Cipher
-    Alcoholic Rampage  │  Épelle-moi Ça     │  Not Connection Check      │  Rule of Three        │  Unpleasant Squares
-    Ángel Hernández    │  Guess Who?        │  Not Coordinates           │  Scramboozled Eggain  │  Varicolour Flash
-    Bamboozled Again   │  Horrible Memory   │  Not Number Pad            │  Simon Said           │  Who’s on Gas
-    Big Circle         │  Hunting           │  Not Perspective Pegs      │  Simon Selects        │  Word Count
-    Bulb, The          │  Ingredients       │  Not The Bulb              │  Simon Shuffles       │  xobekuJ ehT
-    Caesar Psycho      │  Jewel Vault, The  │  Not X01                   │  Simultaneous Simons  │
-    Cheep Checkout     │  Letter Math       │  Off Keys                  │  Slow Math            │
-    Coordination       │  Match Refereeing  │  Papa’s Pizzeria           │  Small Talk           │
-    Cyan Button, The   │  Mystic Square     │  Parity                    │  Spelling Bee         │
+    .--/---/..-.       │  Cyan Button, The  │  Match Refereeing          │  Papa’s Pizzeria      │  Slow Math
+    3 LEDs             │  Denial Displays   │  Mystic Square             │  Parity               │  Small Talk
+    4D Tunnels         │  Double Digits     │  Navigation Determination  │  Quadrants            │  Spelling Bee
+    Adventure Game     │  eeB gnillepS      │  Neptune                   │  Reverse Morse        │  Synapse Says
+    Alcoholic Rampage  │  English Entries   │  Nim                       │  RGB Encryption       │  Triple Term
+    Ángel Hernández    │  Épelle-moi Ça     │  Not Colored Switches      │  Robo-Scanner         │  Uncolour Flash
+    Bamboozled Again   │  Guess Who?        │  Not Connection Check      │  Rule of Three        │  Unown Cipher
+    Big Circle         │  Horrible Memory   │  Not Number Pad            │  Scramboozled Eggain  │  Unpleasant Squares
+    Bulb, The          │  Hunting           │  Not Perspective Pegs      │  Simon Said           │  Varicolour Flash
+    Caesar Psycho      │  Ingredients       │  Not The Bulb              │  Simon Selects        │  Who’s on Gas
+    Cheep Checkout     │  Jewel Vault, The  │  Not X01                   │  Simon Shuffles       │  Word Count
+    Coordination       │  Letter Math       │  Off Keys                  │  Simultaneous Simons  │  xobekuJ ehT
 
 ## Implemented by Kuro (53)
 
@@ -90,6 +89,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
     Cursed Double-Oh      │  Forget The Colors  │  Master Tapes          │  Simon Smothers         │
 
+## Implemented by Espik (37)
+
+    100 Levels of Defusal  │  Encrypted Morse   │  Not Morsematics         │  Samsung, The          │  Unfair Cipher
+    Blockbusters           │  Etterna           │  Not Murder              │  Simon Stages          │  Unfair’s Cruel Revenge
+    Boolean Wires          │  Exoplanets        │  Not Who’s on First      │  Simon Supports        │  Unfair’s Revenge
+    Calendar               │  Forget Any Color  │  Phosphorescence         │  Sorting               │  Unicode
+    Challenge & Contact    │  Hexabutton, The   │  Pixel Cipher            │  Stacked Sequences     │  XmORse Code
+    Coffeebucks            │  Hyperlink, The    │  Reformed Role Reversal  │  Thinking Wires        │
+    Directional Button     │  Infinite Loop     │  Regular Crazy Talk      │  Thirty One            │
+    Dreamcipher            │  Not Coordinates   │  Role Reversal           │  Tricky Tetris Pieces  │
+
 ## Implemented by Hawker (36)
 
     3N+1                     │  DetoNATO              │  Garnet Thief, The  │  RGB Sequences                      │  Suits and Colours
@@ -100,16 +110,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Character Slots          │  Find The Date         │  LED Grid           │  Sonic & Knuckles                   │
     Conditional Buttons      │  Flavor Text EX        │  Mixometer          │  Spongebob Birthday Identification  │
     Customer Identification  │  Garfield Kart         │  Module Movements   │  Subway                             │
-
-## Implemented by Espik (35)
-
-    100 Levels of Defusal  │  Dreamcipher       │  Not Morsematics         │  Role Reversal      │  Thirty One
-    Blockbusters           │  Encrypted Morse   │  Not Murder              │  Samsung, The       │  Tricky Tetris Pieces
-    Boolean Wires          │  Etterna           │  Not Who’s on First      │  Simon Stages       │  Unfair Cipher
-    Calendar               │  Exoplanets        │  Phosphorescence         │  Simon Supports     │  Unfair’s Cruel Revenge
-    Challenge & Contact    │  Forget Any Color  │  Pixel Cipher            │  Sorting            │  Unfair’s Revenge
-    Coffeebucks            │  Hexabutton, The   │  Reformed Role Reversal  │  Stacked Sequences  │  Unicode
-    Directional Button     │  Hyperlink, The    │  Regular Crazy Talk      │  Thinking Wires     │  XmORse Code
 
 ## Implemented by BigCrunch22 (32)
 
@@ -211,7 +211,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Functions                │  JerryEris
     Gryphons                 │  JerryEris
     hexOS                    │  Emik
-    Infinite Loop            │  Eltrick
     Inner Connections        │  Brawlboxgaming
     Interpunct               │  Eltrick
     Linq                     │  Emik

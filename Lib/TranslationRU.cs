@@ -794,27 +794,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         {
             ManualQuestions = new()
             {
-                ["What final letter was pressed?"] = "Какая буква была нажата последней?",
-                ["What letters were to the left and right of the final one?"] = "Какие буквы были слева и справа от последней нажатой?",
                 ["What was the last digit on the small display?"] = "Какая последняя цифра была на маленьком экране?",
             },
             Questions = new()
             {
-                [SAlfaBravo.PressedLetter] = new()
-                {
-                    // English: Which letter was pressed in {0}?
-                    Question = "Какая буква была нажата {0}?",
-                },
-                [SAlfaBravo.LeftPressedLetter] = new()
-                {
-                    // English: Which letter was to the left of the pressed one in {0}?
-                    Question = "Какая буква была слева от нажатой {0}?",
-                },
-                [SAlfaBravo.RightPressedLetter] = new()
-                {
-                    // English: Which letter was to the right of the pressed one in {0}?
-                    Question = "Какая буква была справа от нажатой {0}?",
-                },
                 [SAlfaBravo.Digit] = new()
                 {
                     // English: What was the last digit on the small display in {0}?
@@ -4875,16 +4858,17 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Dialtones
         [typeof(SDialtones)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which tones played?"] = "Какие тональные сигналы были проиграны?",
+                ["What was the received word?"] = "What was the received word?",
             },
             Questions = new()
             {
-                [SDialtones.Dialtones] = new()
+                [SDialtones.Word] = new()
                 {
-                    // English: What dialtones were heard in {0}?
-                    Question = "Какие тональные сигналы играли {0}?",
+                    // English: What was the received word in {0}?
+                    Question = "What was the received word in {0}?",
                 },
             },
         },
@@ -5487,7 +5471,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 ["What was the last digit on the small display?"] = "Какая была последняя цифра на маленьком экране?",
                 ["What was the position of the last broken digit?"] = "Какая была позиция у последней сломанной цифры?",
-                ["What were the last resulting digits?"] = "Какие были две итоговые последние цифры?",
                 ["What was the last displayed number?"] = "Какое было последнее показанное число?",
             },
             Questions = new()
@@ -5501,11 +5484,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the position of the last broken digit in {0}?
                     Question = "Какая была позиция последней сломанной цифры {0}?",
-                },
-                [SEight.LastResultingDigits] = new()
-                {
-                    // English: What were the last resulting digits in {0}?
-                    Question = "Какие были посление цифры перед отправкой {0}?",
                 },
                 [SEight.LastDisplayedNumber] = new()
                 {
@@ -8401,16 +8379,17 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Infinite Loop
         [typeof(SInfiniteLoop)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the selected word?"] = "Какое слово было выбрано?",
+                ["What was the Morse code?"] = "What was the Morse code?",
             },
             Questions = new()
             {
-                [SInfiniteLoop.SelectedWord] = new()
+                [SInfiniteLoop.Morse] = new()
                 {
-                    // English: What was the selected word in {0}?
-                    Question = "Какое слово было выбрано {0}?",
+                    // English: Which of these sequences was transmitted in {0}?
+                    Question = "Which of these sequences was transmitted in {0}?",
                 },
             },
         },
@@ -11595,16 +11574,17 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Not Coordinates
         [typeof(SNotCoordinates)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the vertices of the square?"] = "Какие были вершины у квадрата?",
+                ["What was the initial shape in the second stage?"] = "What was the initial shape in the second stage?",
             },
             Questions = new()
             {
-                [SNotCoordinates.SquareCoords] = new()
+                [SNotCoordinates.InitialShape] = new()
                 {
-                    // English: Which coordinate was part of the square in {0}?
-                    Question = "Какая координата была частью квадрата {0}?",
+                    // English: What was the initial shape in the second stage of {0}?
+                    Question = "What was the initial shape in the second stage of {0}?",
                 },
             },
         },

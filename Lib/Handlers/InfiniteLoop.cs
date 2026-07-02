@@ -1,24 +1,34 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
 
 public enum SInfiniteLoop
 {
-    [Question("What was the selected word in {0}?", TwoColumns4Answers, "anchor", "axions", "brutal", "bunker", "ceased", "cypher", "demote", "devoid", "ejects", "expend", "fixate", "fondly", "geyser", "guitar", "hexing", "hybrid", "incite", "inject", "jacked", "jigsaw", "kayaks", "komodo", "lazuli", "logjam", "maimed", "musket", "nebula", "nuking", "overdo", "oblong", "photon", "probed", "quartz", "quebec", "refute", "regime", "sierra", "swerve", "tenacy", "thymes", "ultima", "utopia", "valved", "viable", "wither", "wrench", "xenons", "xylose", "yanked", "yellow", "zigged", "zodiac")]
-    SelectedWord
+    [Question("Which of these sequences was transmitted in {0}?", OneColumn4Answers)]
+    [AnswerGenerator.Strings("●▬", " ", "●▬", " ", "●▬", " ", "●▬", " ", "●▬", " ", "●▬", " ", "●▬")]
+    Morse
 }
 
 public partial class SouvenirModule
 {
-    [Handler("InfiniteLoop", "Infinite Loop", typeof(SInfiniteLoop), "Eltrick")]
-    [ManualQuestion("What was the selected word?")]
+    [Handler("InfiniteLoop", "Infinite Loop", typeof(SInfiniteLoop), "Espik")]
+    [ManualQuestion("What was the Morse code?")]
     private IEnumerator<SouvenirInstruction> ProcessInfiniteLoop(ModuleData module)
     {
         var comp = GetComponent(module, "InfiniteLoop");
         yield return WaitForSolve;
 
-        var selectedWord = GetField<string>(comp, "SelectedWord").Get();
-        yield return question(SInfiniteLoop.SelectedWord).Answers(selectedWord);
+        var selectedMorse = GetField<string>(comp, "MorseVersion").Get().Replace(".", "●").Replace("-", "▬");
+        var morseSnippets = new string[selectedMorse.Length];
+
+        for (var i = 0; i < morseSnippets.Length; i++)
+        {
+            morseSnippets[i] = Enumerable.Range(i, 7).Select(x => selectedMorse[x % selectedMorse.Length]).JoinString();
+            morseSnippets[i] = morseSnippets[i][0] + " " + morseSnippets[i][1] + " " + morseSnippets[i][2] + " " + morseSnippets[i][3] + " " + morseSnippets[i][4] + " " + morseSnippets[i][5] + " " + morseSnippets[i][6];
+        }
+
+        yield return question(SInfiniteLoop.Morse).Answers(morseSnippets);
     }
 }

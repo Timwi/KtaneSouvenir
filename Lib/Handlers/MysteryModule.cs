@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 using static Souvenir.AnswerLayout;
@@ -21,6 +22,8 @@ public partial class SouvenirModule
         var fldAnimating = GetField<bool>(comp, "animating");
         var fldFailsolve = GetField<bool>(comp, "failsolve");
 
+        var failsafeButton = GetField<KMSelectable>(comp, "Failswitch", isPublic: true).Get();
+
         while (fldKeyModules.Get(nullAllowed: true) == null && !fldFailsolve.Get())
             yield return null;
         while (fldMystifiedModule.Get(nullAllowed: true) == null && !fldFailsolve.Get())
@@ -35,6 +38,19 @@ public partial class SouvenirModule
         // Do not ask questions while Souvenir is hidden by Mystery Module.
         if (mystifiedModule == Module)
             _avoidQuestions++;
+
+        IEnumerator CheckFailsafeSolve()
+        {
+            yield return null;
+            if (!module.Unsolved)
+                yield return legitimatelyNoQuestion(module, "The failswitch was used.");
+        }
+
+        failsafeButton.OnInteract += delegate ()
+        {
+            StartCoroutine(CheckFailsafeSolve());
+            return false;
+        };
 
         try
         {
