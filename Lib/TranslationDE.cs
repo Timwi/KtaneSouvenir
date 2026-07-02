@@ -3675,7 +3675,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Colors Maximization
         [typeof(SColorsMaximization)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Farbmaximierung",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -3688,15 +3687,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: How many buttons were {1} in {0}?
                     // Example: How many buttons were red in Colors Maximization?
-                    Question = "Wie viele Tasten war bei {0} {1}?",
+                    Question = "Wie viele Tasten waren bei {0} {1}?",
                     Arguments = new()
                     {
                         ["red"] = "rot",
                         ["green"] = "grün",
                         ["blue"] = "blau",
-                        ["magenta"] = "magenta",
-                        ["yellow"] = "yellow",
-                        ["white"] = "white",
+                        ["magenta"] = "rosa",
+                        ["yellow"] = "gelb",
+                        ["white"] = "weiß",
                     },
                 },
             },
@@ -4858,19 +4857,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Dialtones
         [typeof(SDialtones)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Freizeichen",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What was the received word?"] = "What was the received word?",
+                ["What was the received word?"] = "Welches Wort wurde übermittelt?",
             },
             Questions = new()
             {
                 [SDialtones.Word] = new()
                 {
                     // English: What was the received word in {0}?
-                    Question = "What was the received word in {0}?",
+                    Question = "Welches Wort wurde bei {0} übermittelt?",
                 },
             },
         },
@@ -8474,19 +8472,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Infinite Loop
         [typeof(SInfiniteLoop)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Endlosschleife",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the Morse code?"] = "What was the Morse code?",
+                ["What was the Morse code?"] = "Was war der Morsecode?",
             },
             Questions = new()
             {
                 [SInfiniteLoop.Morse] = new()
                 {
                     // English: Which of these sequences was transmitted in {0}?
-                    Question = "Which of these sequences was transmitted in {0}?",
+                    Question = "Welche dieser Signalfolgen kam bei {0} vor?",
                 },
             },
         },
@@ -11748,19 +11745,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not Coordinates
         [typeof(SNotCoordinates)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Koordinaten Mal Anders",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What was the initial shape in the second stage?"] = "What was the initial shape in the second stage?",
+                ["What was the initial shape in the second stage?"] = "Welche Form erschien am Anfang der zweiten Stufe?",
             },
             Questions = new()
             {
                 [SNotCoordinates.InitialShape] = new()
                 {
                     // English: What was the initial shape in the second stage of {0}?
-                    Question = "What was the initial shape in the second stage of {0}?",
+                    Question = "Welche Form erschien bei {0} am Anfang der zweiten Stufe?",
                 },
             },
         },
