@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SEeBgnillepS
 {
-    [Question("What word was asked to be spelled in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Audio, AudioFieldName = "eeBgnillepSAudio")]
+    [Question("What word was asked to be spelled in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Audio, ForeignAudioID = "eebgnilleps")]
     [ReverseQuestionGimmick]
     Word
 }
@@ -18,11 +17,11 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessEeBgnillepS(ModuleData module)
     {
         var comp = GetComponent(module, "tpircSeeBgnillepS");
-        var wordList = new[] { "accommodation", "acquiesce", "antediluvian", "appoggiatura", "autochthonous", "bouillabaisse", "bourgeoisie", "chauffeur", "chiaroscurist", "cholmondeley", "chrematistic", "chrysanthemum", "cnemidophorous", "conscientious", "courtoisie", "cymotrichous", "daquiri", "demitasse", "elucubrate", "embarrass",  "eudaemonic", "euonym", "featherstonehaugh", "feuilleton", "fluorescent", "foudroyant", "gnocchi", "idiosyncracy", "irascible", "kierkagaardian",  "laodicean", "liaison", "logorrhea", "mainwaring", "malfeasance", "manoeuvre", "memento", "milquetoast", "minuscule", "odontalgia",  "onomatopoeia", "paraphernalia", "pharaoh", "playwright", "pococurante", "precocious", "privilege", "prospicience", "psittaceous", "psoriasis",  "pterodactyl", "questionnaire", "rhythm", "sacreligious", "scherenschnitte", "sergeant", "smaragdine", "stromuhr", "succedaneum", "surveillance",  "taaffeite", "unconscious", "ursprache", "vengeance", "vivisepulture", "wednesday", "withhold", "worcestershire", "xanthosis", "ytterbium"};
+        var audioClips = GetArrayField<AudioClip>(comp, "sdrow", isPublic: true).Get(expectedLength: 70);
 
         yield return WaitForSolve;
-        var word = Array.IndexOf(wordList, GetField<string>(comp, "drowyek").Get().ToLowerInvariant());
+        var wordIx = GetField<int>(comp, "modnar").Get(v => v < 0 || v >= audioClips.Length ? $"expected range 0–{audioClips.Length - 1}" : null);
 
-        yield return question(SEeBgnillepS.Word).Answers(eeBgnillepSAudio[word], preferredWrong: eeBgnillepSAudio);
+        yield return question(SEeBgnillepS.Word).Answers(audioClips[wordIx], all: audioClips);
     }
 }

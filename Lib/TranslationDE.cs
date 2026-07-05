@@ -5340,22 +5340,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Dragon Energy
         [typeof(SDragonEnergy)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Drachen-Energie",
+            Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the indicator color?"] = "What was the indicator color?",
+                ["What was the indicator color?"] = "Welche Farbe hatte der Indikator?",
             },
             Questions = new()
             {
                 [SDragonEnergy.IndColor] = new()
                 {
                     // English: What color was the indicator in {0}?
-                    Question = "What color was the indicator in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der Indikator?",
                     Answers = new()
                     {
                         ["Orange"] = "Orange",
-                        ["Cyan"] = "Cyan",
-                        ["Purple"] = "Purple",
+                        ["Cyan"] = "Türkis",
+                        ["Purple"] = "Lila",
                     },
                 },
             },
@@ -6173,18 +6174,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Finite Automata
         [typeof(SFiniteAutomata)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Endliche Automaten",
+            ModuleNameDative = "Endlichen Automaten",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the relevant regular expressions?"] = "What were the relevant regular expressions?",
+                ["What were the relevant regexes?"] = "Welche Regexes waren relevant?",
             },
             Questions = new()
             {
                 [SFiniteAutomata.Expressions] = new()
                 {
-                    // English: What was the displayed expression for index {1} in {0}?
-                    // Example: What was the displayed expression for index 0 in Finite Automata?
-                    Question = "What was the displayed expression for index {1} in {0}?",
+                    // English: What was the displayed regex for index {1} in {0}?
+                    // Example: What was the displayed regex for index 0 in Finite Automata?
+                    Question = "Welche Regex wurde bei {0} für Index {1} angezeigt?",
                 },
             },
         },
@@ -6376,11 +6379,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Following Orders
         [typeof(SFollowingOrders)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Befehle Befolgen",
             ManualQuestions = new()
             {
-                ["What was the last sequence of shouts?"] = "What was the last sequence of shouts?",
-                ["What was the starting position?"] = "What was the starting position?",
+                ["What was the last sequence of shouts?"] = "Was war die letzte Schreifolge?",
+                ["What was the starting position?"] = "Was war die Startposition?",
             },
             Questions = new()
             {
@@ -6388,12 +6391,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} shout in the last sequence of shouts in {0}?
                     // Example: What was the first shout in the last sequence of shouts in Following Orders?
-                    Question = "What was the {1} shout in the last sequence of shouts in {0}?",
+                    Question = "Was war bei {0} der {1}e Schrei in der letzten Schreifolge?",
                 },
                 [SFollowingOrders.Start] = new()
                 {
                     // English: What was the starting position in {0}?
-                    Question = "What was the starting position in {0}?",
+                    Question = "Was war bei {0} die Startposition?",
                 },
             },
         },
@@ -13683,11 +13686,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Playfair Cipher
         [typeof(SPlayfairCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Playfair-Geheimschrift",
+            Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the encrypted message?"] = "What was the encrypted message?",
-                ["What color was the screen?"] = "What color was the screen?",
+                ["What was the encrypted message?"] = "Welche verschlüsselte Nachricht war auf dem Display?",
+                ["What color was the screen?"] = "Welche Farbe hatte das Display?",
             },
             Questions = new()
             {
@@ -13695,18 +13699,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} letter of the encrypted message in {0}?
                     // Example: What was the first letter of the encrypted message in Playfair Cipher?
-                    Question = "What was the {1} letter of the encrypted message in {0}?",
+                    Question = "Was war bei {0} der {1}e Buchstabe der verschlüsselten Nachricht?",
                 },
                 [SPlayfairCipher.ScreenColor] = new()
                 {
                     // English: What color was the screen in {0}?
-                    Question = "What color was the screen in {0}?",
+                    Question = "Welche Farbe bei {0} hatte das Display?",
                     Answers = new()
                     {
-                        ["Magenta"] = "Magenta",
-                        ["Blue"] = "Blue",
+                        ["Magenta"] = "Rosa",
+                        ["Blue"] = "Blau",
                         ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
+                        ["Yellow"] = "Gelb",
                     },
                 },
             },
@@ -17650,17 +17654,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Swan
         [typeof(SSwan)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Der Schwan",
+            ModuleNameDative = "Schwan",
+            Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["How many times was the system reset?"] = "How many times was the system reset?",
+                ["How many times was the system reset?"] = "Wie oft wurde das System zurückgesetzt?",
             },
             Questions = new()
             {
                 [SSwan.Resets] = new()
                 {
                     // English: How many times was the system reset in {0}?
-                    Question = "How many times was the system reset in {0}?",
+                    Question = "Wie oft wurde bei {0} das System zurückgesetzt?",
                 },
             },
         },
@@ -17755,24 +17761,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Pink"] = "Pink",
                         ["Brown"] = "Braun",
                     },
-                },
-            },
-        },
-
-        // X-Ray
-        [typeof(SXRay)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What symbols were scanned?"] = "What symbols were scanned?",
-            },
-            Questions = new()
-            {
-                [SXRay.Symbol] = new()
-                {
-                    // English: Which symbol was scanned in {0}?
-                    Question = "Which symbol was scanned in {0}?",
                 },
             },
         },
@@ -17917,23 +17905,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Synchronization
         [typeof(SSynchronization)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Synchronisation",
+            Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["Where was the fastest light?"] = "Where was the fastest light?",
-                ["What was the speed of the middle light?"] = "What was the speed of the middle light?",
+                ["Where was the fastest light?"] = "Wo war die am schnellsten blinkende LED?",
+                ["What was the speed rating of the center light?"] = "Was war der Geschwindigkeitsgrad der mittleren LED?",
             },
             Questions = new()
             {
                 [SSynchronization.FastestLight] = new()
                 {
                     // English: Which position initially had the fastest light in {0}?
-                    Question = "Which position initially had the fastest light in {0}?",
+                    Question = "Wo war bei {0} am Anfang die am schnellsten blinkende LED?",
                 },
-                [SSynchronization.MiddleSpeed] = new()
+                [SSynchronization.CenterSpeed] = new()
                 {
-                    // English: What was the initial speed of the middle light in {0}?
-                    Question = "What was the initial speed of the middle light in {0}?",
+                    // English: What was the initial speed rating of the center light in {0}?
+                    Question = "Was war bei {0} der anfängliche Geschwindigkeitsgrad der mittleren LED?",
                 },
             },
         },
@@ -18774,17 +18763,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // T-Words
         [typeof(STWords)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "T-Wörter",
+            ModuleNameDative = "T-Wörtern",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the words?"] = "What were the words?",
+                ["What were the words?"] = "Welche Wörter kamen vor?",
             },
             Questions = new()
             {
                 [STWords.Words] = new()
                 {
                     // English: Which word was present in {0}?
-                    Question = "Which word was present in {0}?",
+                    Question = "Welches Wort kam bei {0} vor?",
                 },
             },
         },
@@ -20531,9 +20522,28 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // X-Ray
+        [typeof(SXRay)] = new()
+        {
+            ModuleName = "Röntgen",
+            ManualQuestions = new()
+            {
+                ["What symbols were scanned?"] = "Welche Symbole wurden gescant?",
+            },
+            Questions = new()
+            {
+                [SXRay.Symbol] = new()
+                {
+                    // English: Which symbol was scanned in {0}?
+                    Question = "Welche Symbole wurden bei {0} gescant?",
+                },
+            },
+        },
+
         // X-Ring
         [typeof(SXRing)] = new()
         {
+            ModuleName = "Röntgen-Ring",
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
@@ -20552,6 +20562,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // X-Rotor
         [typeof(SXRotor)] = new()
         {
+            ModuleName = "Röntgen-Rotor",
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
@@ -20570,7 +20581,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // XY-Ray
         [typeof(SXYRay)] = new()
         {
-            ModuleName = "XY-Scanner",
+            ModuleName = "2D-Röntgen",
             ManualQuestions = new()
             {
                 ["What were the scanned shapes?"] = "Welche Formen wurden gescannt?",

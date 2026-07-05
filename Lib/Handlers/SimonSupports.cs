@@ -21,8 +21,8 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var allColors = SSimonSupports.Flashes.GetAnswers().Take(10).ToArray();
-        var selectedColorIndicies = GetArrayField<int>(comp, "col").Get(expectedLength: 10).Take(5).ToArray();
-        var selectedColors = selectedColorIndicies.Select(ix => allColors[ix]).ToArray();
+        var selectedColorIndices = GetArrayField<int>(comp, "col").Get(expectedLength: 10).Take(5).ToArray();
+        var selectedColors = selectedColorIndices.Select(ix => allColors[ix]).ToArray();
         var selectedAndNone = selectedColors.Concat(["none"]).ToArray();
 
         var topicsByColor = GetArrayField<List<int>>(comp, "flashes").Get(expectedLength: 5);

@@ -87,13 +87,10 @@ public partial class SouvenirModule : MonoBehaviour
 
     public AudioClip[] AudioMorseAudio;
     public AudioClip[] DialtonesAudio;
-    public AudioClip[] eeBgnillepSAudio;
     public AudioClip[] ExampleAudio;
     public AudioClip[] FaerieFiresAudio;
-    public AudioClip[] FollowingOrdersAudio;
     public AudioClip[] ListeningAudio;
     public AudioClip[] SimonSmilesAudio;
-    public AudioClip[] SpellingBeeAudio;
 
     private readonly List<UnityEngine.Object> _unityObjectsToDestroyLater = [];
 

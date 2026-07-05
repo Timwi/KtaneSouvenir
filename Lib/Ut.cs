@@ -524,7 +524,7 @@ public static class Ut
     {
         null => "null",
         Array arr when arr.Rank > 1 => stringifyMultidimensionalArray(arr),
-        ICollection list => $"[{list.Cast<object>().Select(Stringify).JoinString(", ")}]",
+        IEnumerable list and not string => $"[{list.Cast<object>().Select(Stringify).JoinString(", ")}]",
         int i => i.ToString(),
         double d => d.ToString(),
         float f => f.ToString(),

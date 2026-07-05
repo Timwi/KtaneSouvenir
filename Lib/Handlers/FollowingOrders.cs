@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SFollowingOrders
 {
-    [Question("What was the {1} shout in the last sequence of shouts in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, AudioFieldName = "FollowingOrdersAudio", AnswerType = InfoType.Audio)]
+    [Question("What was the {1} shout in the last sequence of shouts in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, ForeignAudioID = "FollowingOrders", AnswerType = InfoType.Audio)]
     Shouts,
 
     [Question("What was the starting position in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
@@ -58,6 +58,11 @@ public partial class SouvenirModule
             return false;
         };
 
+        var sounds = "FollowingOrders_Child_Down,FollowingOrders_Child_Left,FollowingOrders_Child_Right,FollowingOrders_Child_Up,FollowingOrders_Female_Down,FollowingOrders_Female_Left,FollowingOrders_Female_Right,FollowingOrders_Female_Up,FollowingOrders_Male_Down,FollowingOrders_Male_Left,FollowingOrders_Male_Right,FollowingOrders_Male_Up"
+            .Split(',')
+            .Select(soundName => Sounds.GetForeignClip("FollowingOrders", soundName))
+            .ToArray();
+
         yield return WaitForSolve;
 
         yield return question(SFollowingOrders.Start).Answers(new Coord(5, 5, foundStartPos));
@@ -76,9 +81,9 @@ public partial class SouvenirModule
             for (var i = 0; i < 5; i++)
                 if (shoutsPresent[i])
                 {
-                    var wholeShout = voices[i] + directions[i];
-                    yield return question(SFollowingOrders.Shouts, args: [Ordinal(i + 1)]).Answers(FollowingOrdersAudio.First(x => x.name == wholeShout), all: FollowingOrdersAudio);
+                    var wholeShout = $"FollowingOrders_{voices[i]}_{directions[i]}";
+                    yield return question(SFollowingOrders.Shouts, args: [Ordinal(i + 1)]).Answers(sounds.First(snd => snd.name == wholeShout), all: sounds);
                 }
-        } 
+        }
     }
 }

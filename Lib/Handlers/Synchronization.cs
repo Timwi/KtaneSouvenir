@@ -9,16 +9,16 @@ public enum SSynchronization
     [AnswerGenerator.Grid(3, 3)]
     FastestLight,
 
-    [Question("What was the initial speed of the middle light in {0}?", ThreeColumns6Answers)]
+    [Question("What was the initial speed rating of the center light in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(0, 5)]
-    MiddleSpeed
+    CenterSpeed
 }
 
 public partial class SouvenirModule
 {
     [Handler("SynchronizationModule", "Synchronization", typeof(SSynchronization), "Espik")]
     [ManualQuestion("Where was the fastest light?")]
-    [ManualQuestion("What was the speed of the middle light?")]
+    [ManualQuestion("What was the speed rating of the center light?")]
     private IEnumerator<SouvenirInstruction> ProcessSynchronization(ModuleData module)
     {
         var comp = GetComponent(module, "SynchronizationModule");
@@ -35,6 +35,6 @@ public partial class SouvenirModule
             }
 
         yield return question(SSynchronization.FastestLight).Answers(new Coord(3, 3, fastestLight));
-        yield return question(SSynchronization.MiddleSpeed).Answers(initialSpeeds[4].ToString());
+        yield return question(SSynchronization.CenterSpeed).Answers(initialSpeeds[4].ToString());
     }
 }

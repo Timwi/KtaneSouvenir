@@ -15,7 +15,7 @@ public partial class SouvenirModule
 {
     [Handler("XRayModule", "X-Ray", typeof(SXRay), "Espik")]
     [ManualQuestion("What symbols were scanned?")]
-    private IEnumerator<SouvenirInstruction> ProcessSXRay(ModuleData module)
+    private IEnumerator<SouvenirInstruction> ProcessXRay(ModuleData module)
     {
         var comp = GetComponent(module, "XRayModule");
         yield return WaitForSolve;
@@ -33,36 +33,41 @@ public partial class SouvenirModule
         var fldSymbolIndex = GetProperty<int>(symbolsCol[0], "Index", isPublic: true);
         var fldSymbolFlipped = GetProperty<bool>(symbolsCol[0], "Flipped", isPublic: true);
 
-        var indeciesCol = symbolsCol.Cast<object>().Select(x => fldSymbolIndex.GetFrom(x)).ToArray();
+        var indicesCol = symbolsCol.Cast<object>().Select(x => fldSymbolIndex.GetFrom(x)).ToArray();
         var flippedCol = symbolsCol.Cast<object>().Select(x => fldSymbolFlipped.GetFrom(x)).ToArray();
 
-        var indeciesRow = symbolsRow.Cast<object>().Select(x => fldSymbolIndex.GetFrom(x)).ToArray();
-        var indecies3x3 = symbols3x3.Cast<object>().Select(x => fldSymbolIndex.GetFrom(x)).ToArray();
+        var indicesRow = symbolsRow.Cast<object>().Select(x => fldSymbolIndex.GetFrom(x)).ToArray();
+        var indices3x3 = symbols3x3.Cast<object>().Select(x => fldSymbolIndex.GetFrom(x)).ToArray();
 
         var chosenSprites = new HashSet<Sprite>();
         var availableSprites = new HashSet<Sprite>();
+        var flippedSprites = new Sprite[XRaySprites.Length];
 
-        for (var i = 0; i < indeciesCol.Length; i++)
+        for (var i = 0; i < indicesCol.Length; i++)
         {
-            var foundSprite = XRaySprites[indeciesCol[i]];
+            var foundSprite = XRaySprites[indicesCol[i]];
 
             if (flippedCol[i])
             {
-                // rotate the sprite
+                var flippedSprite = Sprite.Create(foundSprite.texture, foundSprite.rect, new Vector2(0, .5f), foundSprite.pixelsPerUnit);
+                // Hacky way to communicate to Souvenir to display a sprite vertically flipped
+                flippedSprite.name = $"Souvenir_FlipY_{foundSprite.name}";
+                flippedSprites[indicesCol[i]] = flippedSprite;
+                availableSprites.Add(flippedSprite);
             }
-
-            availableSprites.Add(foundSprite);
+            else
+                availableSprites.Add(foundSprite);
         }
 
-        for (var i = 0; i < indeciesRow.Length; i++)
-            availableSprites.Add(XRaySprites[indeciesRow[i]]);
+        for (var i = 0; i < indicesRow.Length; i++)
+            availableSprites.Add(XRaySprites[indicesRow[i]]);
 
-        for (var i = 0; i < indecies3x3.Length; i++)
-            availableSprites.Add(XRaySprites[indecies3x3[i]]);
+        for (var i = 0; i < indices3x3.Length; i++)
+            availableSprites.Add(XRaySprites[indices3x3[i]]);
 
-        chosenSprites.Add(flippedCol[indexCol] ? XRaySprites[indeciesCol[indexCol]] : XRaySprites[indeciesCol[indexCol]]); // Rotate the sprite in the first option
-        chosenSprites.Add(XRaySprites[indeciesRow[indexRow]]);
-        chosenSprites.Add(XRaySprites[indecies3x3[index3x3]]);
+        chosenSprites.Add((flippedCol[indexCol] ? flippedSprites : XRaySprites)[indicesCol[indexCol]]);
+        chosenSprites.Add(XRaySprites[indicesRow[indexRow]]);
+        chosenSprites.Add(XRaySprites[indices3x3[index3x3]]);
 
         yield return question(SXRay.Symbol).Answers(chosenSprites.ToArray(), all: availableSprites.ToArray());
     }

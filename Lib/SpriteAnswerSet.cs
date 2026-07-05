@@ -23,7 +23,9 @@ public class SpriteAnswerSet(AnswerLayout layout, Sprite[] answers, int correctI
             var spriteRenderer = souvenir.Answers[i].transform.Find("SpriteHolder").GetComponent<SpriteRenderer>();
             spriteRenderer.gameObject.SetActive(i < _answers.Length);
             spriteRenderer.sprite = i < _answers.Length ? _answers[i] : null;
-            spriteRenderer.transform.localScale = new Vector3(20 * xStretch, 20, 1);
+
+            // Just for X-Ray, implement a hacky way to get a sprite to show up vertically flipped: give it a name starting with “Souvenir_FlipY_”
+            spriteRenderer.transform.localScale = new Vector3(20 * xStretch, spriteRenderer.sprite?.name?.StartsWith("Souvenir_FlipY_") ?? false ? -20 : 20, 1);
         }
     }
 }

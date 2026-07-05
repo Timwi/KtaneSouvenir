@@ -6135,14 +6135,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the relevant regular expressions?"] = "What were the relevant regular expressions?",
+                ["What were the relevant regexes?"] = "What were the relevant regexes?",
             },
             Questions = new()
             {
                 [SFiniteAutomata.Expressions] = new()
                 {
-                    // English: What was the displayed expression for index {1} in {0}?
-                    // Example: What was the displayed expression for index 0 in Finite Automata?
+                    // English: What was the displayed regex for index {1} in {0}?
+                    // Example: What was the displayed regex for index 0 in Finite Automata?
                     Question = "What was the displayed expression for index {1} in {0}?",
                 },
             },
@@ -17455,24 +17455,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // X-Ray
-        [typeof(SXRay)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What symbols were scanned?"] = "What symbols were scanned?",
-            },
-            Questions = new()
-            {
-                [SXRay.Symbol] = new()
-                {
-                    // English: Which symbol was scanned in {0}?
-                    Question = "Which symbol was scanned in {0}?",
-                },
-            },
-        },
-
         // Symbol Cycle
         [typeof(SSymbolCycle)] = new()
         {
@@ -17615,7 +17597,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["Where was the fastest light?"] = "Where was the fastest light?",
-                ["What was the speed of the middle light?"] = "What was the speed of the middle light?",
+                ["What was the speed rating of the center light?"] = "What was the speed rating of the center light?",
             },
             Questions = new()
             {
@@ -17624,9 +17606,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: Which position initially had the fastest light in {0}?
                     Question = "Which position initially had the fastest light in {0}?",
                 },
-                [SSynchronization.MiddleSpeed] = new()
+                [SSynchronization.CenterSpeed] = new()
                 {
-                    // English: What was the initial speed of the middle light in {0}?
+                    // English: What was the initial speed rating of the center light in {0}?
                     Question = "What was the initial speed of the middle light in {0}?",
                 },
             },
@@ -20174,6 +20156,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What song was played on {0}?
                     Question = "Какая песня звучала {0}?",
+                },
+            },
+        },
+
+        // X-Ray
+        [typeof(SXRay)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What symbols were scanned?"] = "What symbols were scanned?",
+            },
+            Questions = new()
+            {
+                [SXRay.Symbol] = new()
+                {
+                    // English: Which symbol was scanned in {0}?
+                    Question = "Which symbol was scanned in {0}?",
                 },
             },
         },

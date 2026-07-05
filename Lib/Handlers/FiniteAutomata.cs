@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SFiniteAutomata
 {
-    [Question("What was the displayed expression for index {1} in {0}?", OneColumn4Answers, ExampleAnswers = ["(b|a|a(a*|b))*(aaab)*", "((b|ε)(b|a)b*|b|a)*", "(ε|a|b)b(ε|b|aba*)", "((b*|a)aa|b)a(aba|(ab)*)", "aaba*(b(a(a|b*))*)*"], Arguments = ["0", "1", "2", "3", "4"], ArgumentGroupSize = 1)]
+    [Question("What was the displayed regex for index {1} in {0}?", OneColumn4Answers, ExampleAnswers = ["(b|a|a(a*|b))*(aaab)*", "((b|ε)(b|a)b*|b|a)*", "(ε|a|b)b(ε|b|aba*)", "((b*|a)aa|b)a(aba|(ab)*)", "aaba*(b(a(a|b*))*)*"], Arguments = ["0", "1", "2", "3", "4"], ArgumentGroupSize = 1)]
     Expressions
 }
 
 public partial class SouvenirModule
 {
     [Handler("FiniteAutomataModule", "Finite Automata", typeof(SFiniteAutomata), "Espik")]
-    [ManualQuestion("What were the relevant regular expressions?")]
+    [ManualQuestion("What were the relevant regexes?")]
     private IEnumerator<SouvenirInstruction> ProcessFiniteAutomata(ModuleData module)
     {
         var comp = GetComponent(module, "FiniteAutomataModule");
