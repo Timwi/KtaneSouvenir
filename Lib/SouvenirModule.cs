@@ -75,6 +75,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] ThreeLEDsSprites;
     public Sprite[] ValvesSprites;
     public Sprite[] WarningSignsSprites;
+    public Sprite[] XRaySprites;
     public Sprite[] XRingSprites;
     public Sprite[] XRotorSprites;
     public Sprite[] XYRaySprites;
@@ -89,6 +90,7 @@ public partial class SouvenirModule : MonoBehaviour
     public AudioClip[] eeBgnillepSAudio;
     public AudioClip[] ExampleAudio;
     public AudioClip[] FaerieFiresAudio;
+    public AudioClip[] FollowingOrdersAudio;
     public AudioClip[] ListeningAudio;
     public AudioClip[] SimonSmilesAudio;
     public AudioClip[] SpellingBeeAudio;

@@ -89,16 +89,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
     Cursed Double-Oh      │  Forget The Colors  │  Master Tapes          │  Simon Smothers         │
 
-## Implemented by Espik (37)
+## Implemented by Espik (45)
 
-    100 Levels of Defusal  │  Encrypted Morse   │  Not Morsematics         │  Samsung, The          │  Unfair Cipher
-    Blockbusters           │  Etterna           │  Not Murder              │  Simon Stages          │  Unfair’s Cruel Revenge
-    Boolean Wires          │  Exoplanets        │  Not Who’s on First      │  Simon Supports        │  Unfair’s Revenge
-    Calendar               │  Forget Any Color  │  Phosphorescence         │  Sorting               │  Unicode
-    Challenge & Contact    │  Hexabutton, The   │  Pixel Cipher            │  Stacked Sequences     │  XmORse Code
-    Coffeebucks            │  Hyperlink, The    │  Reformed Role Reversal  │  Thinking Wires        │
-    Directional Button     │  Infinite Loop     │  Regular Crazy Talk      │  Thirty One            │
-    Dreamcipher            │  Not Coordinates   │  Role Reversal           │  Tricky Tetris Pieces  │
+    100 Levels of Defusal  │  Encrypted Morse   │  Not Coordinates         │  Role Reversal      │  Thirty One
+    Blockbusters           │  Etterna           │  Not Morsematics         │  Samsung, The       │  Tricky Tetris Pieces
+    Boolean Wires          │  Exoplanets        │  Not Murder              │  Simon Stages       │  T-Words
+    Calendar               │  Finite Automata   │  Not Who’s on First      │  Simon Supports     │  Unfair Cipher
+    Challenge & Contact    │  Following Orders  │  Phosphorescence         │  Sorting            │  Unfair’s Cruel Revenge
+    Coffeebucks            │  Forget Any Color  │  Pixel Cipher            │  Stacked Sequences  │  Unfair’s Revenge
+    Directional Button     │  Hexabutton, The   │  Playfair Cipher         │  Swan, The          │  Unicode
+    Dragon Energy          │  Hyperlink, The    │  Reformed Role Reversal  │  Synchronization    │  XmORse Code
+    Dreamcipher            │  Infinite Loop     │  Regular Crazy Talk      │  Thinking Wires     │  X-Ray
 
 ## Implemented by Hawker (36)
 

@@ -5169,6 +5169,30 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // Dragon Energy
+        [typeof(SDragonEnergy)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the indicator color?"] = "What was the indicator color?",
+            },
+            Questions = new()
+            {
+                [SDragonEnergy.IndColor] = new()
+                {
+                    // English: What color was the indicator in {0}?
+                    Question = "What color was the indicator in {0}?",
+                    Answers = new()
+                    {
+                        ["Orange"] = "Orange",
+                        ["Cyan"] = "Cyan",
+                        ["Purple"] = "Purple",
+                    },
+                },
+            },
+        },
+
         // Dr. Doctor
         [typeof(SDrDoctor)] = new()
         {
@@ -5956,6 +5980,25 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // Finite Automata
+        [typeof(SFiniteAutomata)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the relevant regular expressions?"] = "What were the relevant regular expressions?",
+            },
+            Questions = new()
+            {
+                [SFiniteAutomata.Expressions] = new()
+                {
+                    // English: What was the displayed expression for index {1} in {0}?
+                    // Example: What was the displayed expression for index 0 in Finite Automata?
+                    Question = "What was the displayed expression for index {1} in {0}?",
+                },
+            },
+        },
+
         // Five Letter Words
         [typeof(SFiveLetterWords)] = new()
         {
@@ -6129,6 +6172,31 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Which fly was present, but not in the solution in {0}?
                     Question = "{0}に存在したが、答えに含まれていないハエは？",
+                },
+            },
+        },
+
+        // Following Orders
+        [typeof(SFollowingOrders)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the last sequence of shouts?"] = "What was the last sequence of shouts?",
+                ["What was the starting position?"] = "What was the starting position?",
+            },
+            Questions = new()
+            {
+                [SFollowingOrders.Shouts] = new()
+                {
+                    // English: What was the {1} shout in the last sequence of shouts in {0}?
+                    // Example: What was the first shout in the last sequence of shouts in Following Orders?
+                    Question = "What was the {1} shout in the last sequence of shouts in {0}?",
+                },
+                [SFollowingOrders.Start] = new()
+                {
+                    // English: What was the starting position in {0}?
+                    Question = "What was the starting position in {0}?",
                 },
             },
         },
@@ -13223,6 +13291,38 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // Playfair Cipher
+        [typeof(SPlayfairCipher)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the encrypted message?"] = "What was the encrypted message?",
+                ["What color was the screen?"] = "What color was the screen?",
+            },
+            Questions = new()
+            {
+                [SPlayfairCipher.Letters] = new()
+                {
+                    // English: What was the {1} letter of the encrypted message in {0}?
+                    // Example: What was the first letter of the encrypted message in Playfair Cipher?
+                    Question = "What was the {1} letter of the encrypted message in {0}?",
+                },
+                [SPlayfairCipher.ScreenColor] = new()
+                {
+                    // English: What color was the screen in {0}?
+                    Question = "What color was the screen in {0}?",
+                    Answers = new()
+                    {
+                        ["Magenta"] = "Magenta",
+                        ["Blue"] = "Blue",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                    },
+                },
+            },
+        },
+
         // Playfair Cycle
         [typeof(SPlayfairCycle)] = new()
         {
@@ -17080,6 +17180,24 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // The Swan
+        [typeof(SSwan)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["How many times was the system reset?"] = "How many times was the system reset?",
+            },
+            Questions = new()
+            {
+                [SSwan.Resets] = new()
+                {
+                    // English: How many times was the system reset in {0}?
+                    Question = "How many times was the system reset in {0}?",
+                },
+            },
+        },
+
         // The Switch
         [typeof(SSwitch)] = new()
         {
@@ -17166,6 +17284,24 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Pink"] = "ピンク",
                         ["Brown"] = "茶",
                     },
+                },
+            },
+        },
+
+        // X-Ray
+        [typeof(SXRay)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What symbols were scanned?"] = "What symbols were scanned?",
+            },
+            Questions = new()
+            {
+                [SXRay.Symbol] = new()
+                {
+                    // English: Which symbol was scanned in {0}?
+                    Question = "Which symbol was scanned in {0}?",
                 },
             },
         },
@@ -17300,6 +17436,30 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was displayed on the screen in the {1} stage of {0}?
                     // Example: What was displayed on the screen in the first stage of SYNC-125 [3]?
                     Question = "{0}にてステージ{1}でディスプレーに表示されたものは？",
+                },
+            },
+        },
+
+        // Synchronization
+        [typeof(SSynchronization)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Where was the fastest light?"] = "Where was the fastest light?",
+                ["What was the speed of the middle light?"] = "What was the speed of the middle light?",
+            },
+            Questions = new()
+            {
+                [SSynchronization.FastestLight] = new()
+                {
+                    // English: Which position initially had the fastest light in {0}?
+                    Question = "Which position initially had the fastest light in {0}?",
+                },
+                [SSynchronization.MiddleSpeed] = new()
+                {
+                    // English: What was the initial speed of the middle light in {0}?
+                    Question = "What was the initial speed of the middle light in {0}?",
                 },
             },
         },
@@ -18117,6 +18277,24 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was in this grid position in {0}? (+ extra)
                     Question = "{0}のこのマスにあったものは？",
+                },
+            },
+        },
+
+        // T-Words
+        [typeof(STWords)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the words?"] = "What were the words?",
+            },
+            Questions = new()
+            {
+                [STWords.Words] = new()
+                {
+                    // English: Which word was present in {0}?
+                    Question = "Which word was present in {0}?",
                 },
             },
         },
