@@ -53,8 +53,8 @@ public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir, str
     {
         var attr = EnumValue.GetQuestionAttribute();
 
-        if ((Args == null ? 0 : Args.Length) != attr.ArgumentGroupSize)
-            throw new InvalidOperationException($"The handler for {EnumValue.GetType().Name}.{EnumValue} provided {Args.Length} arguments but I expected {attr.ArgumentGroupSize}.");
+        if ((Args?.Length ?? 0) != attr.ArgumentGroupSize)
+            throw new InvalidOperationException($"The handler for {EnumValue.GetType().Name}.{EnumValue} provided {Args?.Length ?? 0} arguments but I expected {attr.ArgumentGroupSize}.");
 
         var allFormatArgs = new object[Args != null ? Args.Length + 1 : 1];
         allFormatArgs[0] = moduleFormat;

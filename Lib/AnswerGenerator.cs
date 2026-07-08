@@ -675,4 +675,25 @@ public static class AnswerGenerator
             }
         }
     }
+
+    public class MisorderedKeys : AnswerGeneratorAttribute<string>
+    {
+        public MisorderedKeys()
+        {
+        }
+
+        public override IEnumerable<string> GetAnswers(SouvenirModule module)
+        {
+            while (true)
+            {
+                var len = Random.Range(1, 7);
+                var s = "";
+                for (var j = 0; j < len; j++)
+                    s += Random.Range(1, 7);
+                yield return s;
+            }
+        }
+
+        public override int Count => 55986;
+    }
 }

@@ -10730,6 +10730,60 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Misordered Keys
+        [typeof(SMisorderedKeys)] = new()
+        {
+            ModuleName = "Verordnete Tasten",
+            ModuleNameDative = "Verordneten Tasten",
+            Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the labels, their colors, and the colors of the keys?"] = "Welche Taste hatte welche Farbe, Aufschrift und Aufschriftfarbe?",
+                ["Which key was K?"] = "Welche Taste war K?",
+            },
+            Questions = new()
+            {
+                [SMisorderedKeys.Colors] = new()
+                {
+                    // English: What color was this key in {0}? (+ extra)
+                    Question = "Welche Farbe hatte bei {0} diese Taste?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Rosa",
+                    },
+                },
+                [SMisorderedKeys.Labels] = new()
+                {
+                    // English: What was the label of this key in {0}? (+ extra)
+                    Question = "Welche Aufschrift hatte bei {0} diese Taste?",
+                },
+                [SMisorderedKeys.LabelColors] = new()
+                {
+                    // English: What color was the label of this key in {0}? (+ extra)
+                    Question = "Welche Farbe hatte bei {0} die Aufschrift dieser Taste?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Rosa",
+                    },
+                },
+                [SMisorderedKeys.K] = new()
+                {
+                    // English: Which key was K in {0}?
+                    Question = "Welche Taste war bei {0} K?",
+                },
+            },
+        },
+
         // The Missing Letter
         [typeof(SMissingLetter)] = new()
         {
@@ -14349,6 +14403,92 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["orange"] = "orange",
                         ["purple"] = "lila",
                         ["white"] = "weiß",
+                    },
+                },
+            },
+        },
+
+        // Recorded Keys
+        [typeof(SRecordedKeys)] = new()
+        {
+            ModuleName = "Geflötete Tasten",
+            ModuleNameDative = "Geflöteten Tasten",
+            Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the labels, their colors, and the colors of the keys in each stage used to calculate both A and B?"] = "In welcher Stufe zur Berechnung von A und B hatte welche Taste welche Farbe, Aufschrift und Aufschriftfarbe?",
+                ["Which sounds were played by the keys in each stage used to calculate A?"] = "In welcher Stufe zur Berechnung von A spielte welche Taste welchen Ton ab?",
+            },
+            Questions = new()
+            {
+                [SRecordedKeys.AColors] = new()
+                {
+                    // English: What color was this key when calculating the value of A used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What color was this key when calculating the value of A used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "Welche Farbe hatte bei {0} diese Taste bei der Berechnung von A für die {1}e Stufe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Rosa",
+                    },
+                },
+                [SRecordedKeys.ALabels] = new()
+                {
+                    // English: What was the label of this key when calculating the value of A used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What was the label of this key when calculating the value of A used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "Welche Aufschrift hatte bei {0} diese Taste bei der Berechnung von A für die {1}e Stufe?",
+                },
+                [SRecordedKeys.ALabelColors] = new()
+                {
+                    // English: What color was the label of this key when calculating the value of A used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What color was the label of this key when calculating the value of A used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "Welche Farbe hatte bei {0} die Aufschrift dieser Taste bei der Berechnung von A für die {1}e Stufe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Green"] = "Grün",
+                        ["Yellow"] = "Gelb",
+                        ["Cyan"] = "Türkis",
+                        ["Magenta"] = "Rosa",
+                    },
+                },
+                [SRecordedKeys.ASounds] = new()
+                {
+                    // English: Which sound was played by this key when calculating the value of A used to solve the {1} stage of {0}? (+ extra)
+                    // Example: Which sound was played by this key when calculating the value of A used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "Welcher Ton wurde bei {0} von dieser Taste bei der Berechnung von A für die {1}e Stufe abgespielt?",
+                },
+                [SRecordedKeys.BColors] = new()
+                {
+                    // English: What color was this key when calculating the value of B used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What color was this key when calculating the value of B used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "Welche Farbe hatte bei {0} diese Taste bei der Berechnung von B für die {1}e Stufe?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Schwarz",
+                        ["White"] = "Weiß",
+                    },
+                },
+                [SRecordedKeys.BLabels] = new()
+                {
+                    // English: What was the label of this key when calculating the value of B used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What was the label of this key when calculating the value of B used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "Welche Aufschrift hatte bei {0} diese Taste bei der Berechnung von B für die {1}e Stufe?",
+                },
+                [SRecordedKeys.BLabelColors] = new()
+                {
+                    // English: What color was the label of this key when calculating the value of B used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What color was the label of this key when calculating the value of B used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "Welche Farbe hatte bei {0} die Aufschrift dieser Taste bei der Berechnung von B für die {1}e Stufe?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Schwarz",
+                        ["White"] = "Weiß",
                     },
                 },
             },

@@ -10418,6 +10418,58 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // Misordered Keys
+        [typeof(SMisorderedKeys)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the labels, their colors, and the colors of the keys?"] = "What were the labels, their colors, and the colors of the keys?",
+                ["Which key was K?"] = "Which key was K?",
+            },
+            Questions = new()
+            {
+                [SMisorderedKeys.Colors] = new()
+                {
+                    // English: What color was this key in {0}? (+ extra)
+                    Question = "What color was this key in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                    },
+                },
+                [SMisorderedKeys.Labels] = new()
+                {
+                    // English: What was the label of this key in {0}? (+ extra)
+                    Question = "What was the label of this key in {0}?",
+                },
+                [SMisorderedKeys.LabelColors] = new()
+                {
+                    // English: What color was the label of this key in {0}? (+ extra)
+                    Question = "What color was the label of this key in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                    },
+                },
+                [SMisorderedKeys.K] = new()
+                {
+                    // English: Which key was K in {0}?
+                    Question = "Which key was K in {0}?",
+                },
+            },
+        },
+
         // The Missing Letter
         [typeof(SMissingLetter)] = new()
         {
@@ -13936,6 +13988,90 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["orange"] = "オレンジ",
                         ["purple"] = "紫",
                         ["white"] = "白",
+                    },
+                },
+            },
+        },
+
+        // Recorded Keys
+        [typeof(SRecordedKeys)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the labels, their colors, and the colors of the keys in each stage used to calculate both A and B?"] = "What were the labels, their colors, and the colors of the keys in each stage used to calculate both A and B?",
+                ["Which sounds were played by the keys in each stage used to calculate A?"] = "Which sounds were played by the keys in each stage used to calculate A?",
+            },
+            Questions = new()
+            {
+                [SRecordedKeys.AColors] = new()
+                {
+                    // English: What color was this key when calculating the value of A used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What color was this key when calculating the value of A used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "What color was this key when calculating the value of A used to solve the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                    },
+                },
+                [SRecordedKeys.ALabels] = new()
+                {
+                    // English: What was the label of this key when calculating the value of A used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What was the label of this key when calculating the value of A used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "What was the label of this key when calculating the value of A used to solve the {1} stage of {0}?",
+                },
+                [SRecordedKeys.ALabelColors] = new()
+                {
+                    // English: What color was the label of this key when calculating the value of A used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What color was the label of this key when calculating the value of A used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "What color was the label of this key when calculating the value of A used to solve the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Green"] = "Green",
+                        ["Yellow"] = "Yellow",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                    },
+                },
+                [SRecordedKeys.ASounds] = new()
+                {
+                    // English: Which sound was played by this key when calculating the value of A used to solve the {1} stage of {0}? (+ extra)
+                    // Example: Which sound was played by this key when calculating the value of A used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "Which sound was played by this key when calculating the value of A used to solve the {1} stage of {0}?",
+                },
+                [SRecordedKeys.BColors] = new()
+                {
+                    // English: What color was this key when calculating the value of B used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What color was this key when calculating the value of B used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "What color was this key when calculating the value of B used to solve the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Black",
+                        ["White"] = "White",
+                    },
+                },
+                [SRecordedKeys.BLabels] = new()
+                {
+                    // English: What was the label of this key when calculating the value of B used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What was the label of this key when calculating the value of B used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "What was the label of this key when calculating the value of B used to solve the {1} stage of {0}?",
+                },
+                [SRecordedKeys.BLabelColors] = new()
+                {
+                    // English: What color was the label of this key when calculating the value of B used to solve the {1} stage of {0}? (+ extra)
+                    // Example: What color was the label of this key when calculating the value of B used to solve the first stage of Recorded Keys? (+ extra)
+                    Question = "What color was the label of this key when calculating the value of B used to solve the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Black",
+                        ["White"] = "White",
                     },
                 },
             },
