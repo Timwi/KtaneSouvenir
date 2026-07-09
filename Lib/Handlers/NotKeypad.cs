@@ -32,7 +32,7 @@ public partial class SouvenirModule
         for (var stage = 0; stage < colours.Length; stage++)
         {
             yield return question(SNotKeypad.Color, args: [Ordinal(stage + 1)]).Answers(strings[(int) colours.GetValue(stage) - 1]);
-            yield return question(SNotKeypad.Symbol, args: [Ordinal(stage + 1)]).Answers(KeypadSprites[(int) symbols.GetValue(buttons[stage])], preferredWrong: sprites);
+            yield return question(SNotKeypad.Symbol, args: [Ordinal(stage + 1)]).Answers(KeypadSprites[(int) symbols.GetValue(buttons[stage])], all: sprites);
         }
     }
 }

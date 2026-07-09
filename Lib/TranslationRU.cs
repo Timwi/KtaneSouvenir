@@ -875,6 +875,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the color of the colored bulb in {0}?
                     Question = "Какого цвета была цветная лампочка {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
                 [SAlgorithmia.QSeed] = new()
                 {
@@ -2866,6 +2875,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Caesar Psycho
         [typeof(SCaesarPsycho)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What text and color were on the top display in each stage?"] = "Какие текст и цвет были на верхнем экране на каждом этапе?",
@@ -2882,6 +2892,16 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What color was the text on the top display in the second stage of {0}?
                     Question = "Какого цвета был текст на верхнем экране на втором этапе {0}?",
+                    Answers = new()
+                    {
+                        ["white"] = "white",
+                        ["red"] = "red",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["violet"] = "violet",
+                    },
                 },
             },
         },
@@ -4282,7 +4302,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Yellow"] = "Жёлтый",
                         ["Pink"] = "Розовый",
                         ["Blue"] = "Синий",
-                        ["White"] = "Белый",
                     },
                 },
             },
@@ -8336,6 +8355,17 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the {1} shape used in {0}?
                     // Example: What was the first shape used in Identification Crisis?
                     Question = "Какая была {1}-я фигура {0}?",
+                    Answers = new()
+                    {
+                        ["Circle"] = "Circle",
+                        ["Square"] = "Square",
+                        ["Diamond"] = "Diamond",
+                        ["Heart"] = "Heart",
+                        ["Star"] = "Star",
+                        ["Triangle"] = "Triangle",
+                        ["Pentagon"] = "Pentagon",
+                        ["Hexagon"] = "Hexagon",
+                    },
                 },
                 [SIdentificationCrisis.Dataset] = new()
                 {
@@ -14354,6 +14384,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Red Herring
         [typeof(SRedHerring)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was the first color flashed?"] = "Какой цвет мигал первым?",
@@ -14364,6 +14395,13 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the first color flashed by {0}?
                     Question = "Какой был первый мигающий цвет {0}?",
+                    Answers = new()
+                    {
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Orange"] = "Orange",
+                    },
                 },
             },
         },
@@ -17625,7 +17663,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SSymbolicCoordinates.ymbols] = new()
+                [SSymbolicCoordinates.Symbols] = new()
                 {
                     // English: What was the {1} symbol in the {2} stage of {0}?
                     // Example: What was the left symbol in the first stage of Symbolic Coordinates?

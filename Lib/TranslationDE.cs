@@ -794,6 +794,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Algorithmia
         [typeof(SAlgorithmia)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the starting and goal positions?"] = "Wo war die Start- und Zielposition?",
@@ -817,6 +818,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the colored bulb in {0}?
                     Question = "Welche Farbe hatte die gefärbte Glühlampe bei {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
                 [SAlgorithmia.QSeed] = new()
                 {
@@ -2818,6 +2828,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Caesar Psycho
         [typeof(SCaesarPsycho)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Cäsar-Psycho",
             Gender = Gender.Masculine,
             ManualQuestions = new()
@@ -2836,6 +2847,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What color was the text on the top display in the second stage of {0}?
                     Question = "Welche Farbe hatte bei {0} in der {1}en Stufe der Text auf dem oberen Display?",
+                    Answers = new()
+                    {
+                        ["white"] = "white",
+                        ["red"] = "red",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["violet"] = "violet",
+                    },
                 },
             },
         },
@@ -4254,7 +4275,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Yellow"] = "Gelb",
                         ["Pink"] = "Pink",
                         ["Blue"] = "Blau",
-                        ["White"] = "Weiß",
                     },
                 },
             },
@@ -8416,6 +8436,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Identification Crisis
         [typeof(SIdentificationCrisis)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Identifikationskrise",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -8429,6 +8450,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} shape used in {0}?
                     // Example: What was the first shape used in Identification Crisis?
                     Question = "Was war bei {0} die {1} verwendete Form?",
+                    Answers = new()
+                    {
+                        ["Circle"] = "Circle",
+                        ["Square"] = "Square",
+                        ["Diamond"] = "Diamond",
+                        ["Heart"] = "Heart",
+                        ["Star"] = "Star",
+                        ["Triangle"] = "Triangle",
+                        ["Pentagon"] = "Pentagon",
+                        ["Hexagon"] = "Hexagon",
+                    },
                 },
                 [SIdentificationCrisis.Dataset] = new()
                 {
@@ -14604,6 +14636,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Red Herring
         [typeof(SRedHerring)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Roter Hering",
             ModuleNameDative = "Roten Hering",
             Gender = Gender.Masculine,
@@ -14617,6 +14650,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the first color flashed by {0}?
                     Question = "Welche Farbe leuchtete bei {0} zuerst auf?",
+                    Answers = new()
+                    {
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Orange"] = "Orange",
+                    },
                 },
             },
         },
@@ -17941,7 +17981,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SSymbolicCoordinates.ymbols] = new()
+                [SSymbolicCoordinates.Symbols] = new()
                 {
                     // English: What was the {1} symbol in the {2} stage of {0}?
                     // Example: What was the left symbol in the first stage of Symbolic Coordinates?

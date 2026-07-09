@@ -27,6 +27,6 @@ public partial class SouvenirModule
         var usedColorNames = usedColors.Select(i => colorNames[i]).ToArray();
         
         for (var stage = 0; stage < 2; stage++)
-            yield return question(SWavetapping.Colors, args: [Ordinal(stage + 1)]).Answers(colorNames[stageColors[stage]], preferredWrong: usedColorNames);
+            yield return question(SWavetapping.Colors, args: [Ordinal(stage + 1)]).Answers(colorNames[stageColors[stage]], all: usedColorNames);
     }
 }

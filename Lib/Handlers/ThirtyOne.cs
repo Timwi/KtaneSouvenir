@@ -53,7 +53,9 @@ public partial class SouvenirModule
         {
             if (!cardScreenObject.activeSelf)
             {
-                yield return new WaitForSeconds(1.0f);
+                while (!cardScreenObject.activeSelf)
+                    yield return null;
+
                 StartCoroutine(RetriveCard());
             }
 

@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SStability
 {
-    [Question("What was the color of the {1} lit LED in {0}?", OneColumn3Answers, "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("What was the color of the {1} lit LED in {0}?", ThreeColumns3Answers, "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     LedColors,
 
     [Question("What was the identification number in {0}?", ThreeColumns6Answers)]

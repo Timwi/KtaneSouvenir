@@ -9,7 +9,7 @@ public enum SAlgorithmia
     [AnswerGenerator.Grid(4, 4)]
     QPositions,
 
-    [Question("What was the color of the colored bulb in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Yellow", "Magenta")]
+    [Question("What was the color of the colored bulb in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Yellow", "Magenta", TranslateAnswers = true)]
     QColor,
 
     [Question("Which number was present in the seed in {0}?", ThreeColumns6Answers)]

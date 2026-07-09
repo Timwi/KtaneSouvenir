@@ -41,8 +41,11 @@ public partial class SouvenirModule
         var monsplodeIds = new[] { fldMonsplode.Get(0, monsplodeNames.Length - 1) }.Concat(deck.Select(card => fldMonsplode.GetFrom(card, 0, monsplodeNames.Length - 1))).ToArray();
         var monsplodes = monsplodeIds.Select(mn => monsplodeNames[mn]).ToArray();
         var printVersions = new[] { fldPrintChar.Get() + "" + fldPrintDigit.Get() }.Concat(deck.Select(card => fldPrintChar.GetFrom(card) + "" + fldPrintDigit.GetFrom(card))).ToArray();
-        
-        yield return question(SMonsplodeTradingCards.CardsAny).Answers([monsplodes[1], monsplodes[2], monsplodes[3]], preferredWrong: monsplodeNames);
+
+        var fakePrints = new[] { "A1", "B2", "C3", "D4", "E5", "F6", "G7", "H8", "I9" };
+        if (!Enumerable.Range(1, 3).Any(x => fakePrints.Contains(printVersions[x])))
+            yield return question(SMonsplodeTradingCards.CardsAny).Answers([monsplodes[1], monsplodes[2], monsplodes[3]], preferredWrong: monsplodeNames);
+
         yield return question(SMonsplodeTradingCards.PrintVersionsAny).Answers([printVersions[1], printVersions[2], printVersions[3]], preferredWrong: printVersions);
     }
 }

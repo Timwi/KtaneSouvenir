@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SCritters
 {
-    [Question("What was the color in {0}?", TwoColumns4Answers, "Yellow", "Pink", "Blue", "White", TranslateAnswers = true)]
+    [Question("What was the color in {0}?", ThreeColumns3Answers, "Yellow", "Pink", "Blue", TranslateAnswers = true)]
     Color
 }
 

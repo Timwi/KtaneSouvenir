@@ -11,7 +11,7 @@ public enum SCaesarPsycho
     [AnswerGenerator.Strings("5*A-Z")]
     ScreenTexts,
 
-    [Question("What color was the text on the top display in the second stage of {0}?", ThreeColumns6Answers, "white", "red", "magenta", "yellow", "green", "cyan", "violet")]
+    [Question("What color was the text on the top display in the second stage of {0}?", ThreeColumns6Answers, "white", "red", "magenta", "yellow", "green", "cyan", "violet", TranslateAnswers = true)]
     ScreenColor
 }
 

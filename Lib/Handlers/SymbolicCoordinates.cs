@@ -8,7 +8,7 @@ using static Souvenir.AnswerLayout;
 public enum SSymbolicCoordinates
 {
     [Question("What was the {1} symbol in the {2} stage of {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "SymbolicCoordinatesSprites", TranslateArguments = [true, false], Arguments = ["left", QandA.Ordinal, "middle", QandA.Ordinal, "right", QandA.Ordinal], ArgumentGroupSize = 2)]
-    ymbols
+    Symbols
 }
 
 public partial class SouvenirModule
@@ -44,7 +44,7 @@ public partial class SouvenirModule
         var position = new[] { "left", "middle", "right" };
         for (var stage = 0; stage < stageLetters.Length; stage++)
             for (var pos = 0; pos < stageLetters[stage].Length; pos++)
-                yield return question(SSymbolicCoordinates.ymbols, args: [position[pos], Ordinal(stage + 1)])
+                yield return question(SSymbolicCoordinates.Symbols, args: [position[pos], Ordinal(stage + 1)])
                     .Answers(SymbolicCoordinatesSprites["ACELP".IndexOf(stageLetters[stage][pos], StringComparison.Ordinal)], preferredWrong: SymbolicCoordinatesSprites);
     }
 }

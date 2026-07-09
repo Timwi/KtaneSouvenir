@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SRedHerring
 {
-    [Question("What was the first color flashed by {0}?", TwoColumns4Answers, "Green", "Blue", "Purple", "Orange")]
+    [Question("What was the first color flashed by {0}?", TwoColumns4Answers, "Green", "Blue", "Purple", "Orange", TranslateAnswers = true)]
     FirstFlash
 }
 

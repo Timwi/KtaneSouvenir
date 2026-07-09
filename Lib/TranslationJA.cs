@@ -743,6 +743,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Algorithmia
         [typeof(SAlgorithmia)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "アルゴリズム",
             ManualQuestions = new()
             {
@@ -767,6 +768,15 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the color of the colored bulb in {0}?
                     Question = "{0}の色付き電球の色は？",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                    },
                 },
                 [SAlgorithmia.QSeed] = new()
                 {
@@ -2733,6 +2743,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Caesar Psycho
         [typeof(SCaesarPsycho)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "カエサルサイコ",
             ManualQuestions = new()
             {
@@ -2750,6 +2761,16 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What color was the text on the top display in the second stage of {0}?
                     Question = "{0}のステージ2における上のディスプレーに表示された単語の色は？",
+                    Answers = new()
+                    {
+                        ["white"] = "white",
+                        ["red"] = "red",
+                        ["magenta"] = "magenta",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["violet"] = "violet",
+                    },
                 },
             },
         },
@@ -4129,7 +4150,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Yellow"] = "黄",
                         ["Pink"] = "ピンク",
                         ["Blue"] = "青",
-                        ["White"] = "白",
                     },
                 },
             },
@@ -8163,6 +8183,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Identification Crisis
         [typeof(SIdentificationCrisis)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "識別危機",
             ManualQuestions = new()
             {
@@ -8175,6 +8196,17 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the {1} shape used in {0}?
                     // Example: What was the first shape used in Identification Crisis?
                     Question = "{0}で使用された{1}番目の図形は？",
+                    Answers = new()
+                    {
+                        ["Circle"] = "Circle",
+                        ["Square"] = "Square",
+                        ["Diamond"] = "Diamond",
+                        ["Heart"] = "Heart",
+                        ["Star"] = "Star",
+                        ["Triangle"] = "Triangle",
+                        ["Pentagon"] = "Pentagon",
+                        ["Hexagon"] = "Hexagon",
+                    },
                 },
                 [SIdentificationCrisis.Dataset] = new()
                 {
@@ -14180,6 +14212,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Red Herring
         [typeof(SRedHerring)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "レッドヘリング",
             ManualQuestions = new()
             {
@@ -14191,6 +14224,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What was the first color flashed by {0}?
                     Question = "{0}において、最初に点滅した色は？",
+                    Answers = new()
+                    {
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Purple"] = "Purple",
+                        ["Orange"] = "Orange",
+                    },
                 },
             },
         },
@@ -17458,7 +17498,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SSymbolicCoordinates.ymbols] = new()
+                [SSymbolicCoordinates.Symbols] = new()
                 {
                     // English: What was the {1} symbol in the {2} stage of {0}?
                     // Example: What was the left symbol in the first stage of Symbolic Coordinates?
