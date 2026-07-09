@@ -794,7 +794,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Algorithmia
         [typeof(SAlgorithmia)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the starting and goal positions?"] = "Wo war die Start- und Zielposition?",
@@ -820,12 +819,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Farbe hatte die gefärbte Glühlampe bei {0}?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Cyan"] = "Cyan",
-                        ["Yellow"] = "Yellow",
-                        ["Magenta"] = "Magenta",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Cyan"] = "Türkis",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Rosa",
                     },
                 },
                 [SAlgorithmia.QSeed] = new()
@@ -2828,7 +2827,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Caesar Psycho
         [typeof(SCaesarPsycho)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Cäsar-Psycho",
             Gender = Gender.Masculine,
             ManualQuestions = new()
@@ -2849,13 +2847,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Farbe hatte bei {0} in der {1}en Stufe der Text auf dem oberen Display?",
                     Answers = new()
                     {
-                        ["white"] = "white",
-                        ["red"] = "red",
-                        ["magenta"] = "magenta",
-                        ["yellow"] = "yellow",
-                        ["green"] = "green",
-                        ["cyan"] = "cyan",
-                        ["violet"] = "violet",
+                        ["white"] = "weiß",
+                        ["red"] = "rot",
+                        ["magenta"] = "rosa",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["cyan"] = "türkis",
+                        ["violet"] = "violett",
                     },
                 },
             },
@@ -8444,7 +8442,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Identification Crisis
         [typeof(SIdentificationCrisis)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Identifikationskrise",
             Gender = Gender.Feminine,
             ManualQuestions = new()
@@ -8460,14 +8457,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Was war bei {0} die {1} verwendete Form?",
                     Answers = new()
                     {
-                        ["Circle"] = "Circle",
-                        ["Square"] = "Square",
-                        ["Diamond"] = "Diamond",
-                        ["Heart"] = "Heart",
-                        ["Star"] = "Star",
-                        ["Triangle"] = "Triangle",
-                        ["Pentagon"] = "Pentagon",
-                        ["Hexagon"] = "Hexagon",
+                        ["Circle"] = "Kreis",
+                        ["Square"] = "Quadrat",
+                        ["Diamond"] = "Diamant",
+                        ["Heart"] = "Herz",
+                        ["Star"] = "Stern",
+                        ["Triangle"] = "Dreieck",
+                        ["Pentagon"] = "Fünfeck",
+                        ["Hexagon"] = "Sechseck",
                     },
                 },
                 [SIdentificationCrisis.Dataset] = new()
@@ -14644,7 +14641,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Red Herring
         [typeof(SRedHerring)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Roter Hering",
             ModuleNameDative = "Roten Hering",
             Gender = Gender.Masculine,
@@ -14660,9 +14656,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Farbe leuchtete bei {0} zuerst auf?",
                     Answers = new()
                     {
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
-                        ["Purple"] = "Purple",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Purple"] = "Lila",
                         ["Orange"] = "Orange",
                     },
                 },

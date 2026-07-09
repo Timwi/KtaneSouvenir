@@ -36,18 +36,15 @@ public partial class SouvenirModule
 
         yield return WaitForActivate;
 
-        IEnumerator RetriveCard()
+        void RetrieveCard()
         {
-            yield return null;
-
             var stage = fldStageCounter.Get();
             var rank = ranks[fldCurrentRank.Get() - 1];
             var suit = suits[fldCurrentSuit.Get()];
-
             cards[stage] = rank + suit;
         }
 
-        StartCoroutine(RetriveCard());
+        RetrieveCard();
 
         while (!module.IsSolved)
         {
@@ -56,7 +53,8 @@ public partial class SouvenirModule
                 while (!cardScreenObject.activeSelf)
                     yield return null;
 
-                StartCoroutine(RetriveCard());
+                yield return null;
+                RetrieveCard();
             }
 
             yield return null;
