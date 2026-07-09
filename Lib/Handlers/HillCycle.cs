@@ -23,5 +23,6 @@ public partial class SouvenirModule
     [ManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessHillCycle(ModuleData module) => processSpeakingEvilCycle(
         module, "HillCycleScript", SHillCycle.DialDirections, SHillCycle.DialLabels, SHillCycle.LabelDiscriminator,
+        ltr => new Discriminator(SHillCycle.LabelDiscriminator, $"ltr-{ltr}", args: [ltr.ToString()]),
         answerSprites: CycleModuleFiveSprites, all: CycleModuleFiveSprites);
 }

@@ -14,7 +14,7 @@ public partial class SouvenirModule
 
     // Used by Speakingevil’s Cycle modules
     private IEnumerator<SouvenirInstruction> processSpeakingEvilCycle(ModuleData module, string componentName,
-        Enum rotQ, Enum labelQ, Enum labelDiscriminator, Func<Component, string> getDialLabels = null, Sprite[] answerSprites = null, Sprite[] all = null)
+        Enum rotQ, Enum labelQ, Enum labelDiscriminator, Func<char, Discriminator> makeDiscriminator, Func<Component, string> getDialLabels = null, Sprite[] answerSprites = null, Sprite[] all = null)
     {
         var comp = GetComponent(module, componentName);
         yield return WaitForSolve;
@@ -27,9 +27,8 @@ public partial class SouvenirModule
             yield return question(rotQ, args: [Ordinal(dial + 1)]).Answers((answerSprites ?? CycleModuleEightSprites)[rotComp[0][dial]], all: all ?? CycleModuleEightSprites);
             yield return question(labelQ, args: [Ordinal(dial + 1)]).AvoidDiscriminators(labelDiscriminator).Answers(dialLabels[dial].ToString());
         }
-        if (labelDiscriminator != null)
-            foreach (var ltr in dialLabels.Distinct())
-                yield return new Discriminator(labelDiscriminator, $"ltr-{ltr}", args: [ltr.ToString()]);
+        foreach (var ltr in dialLabels.Distinct())
+            yield return makeDiscriminator(ltr);
     }
 
     // Used by the World Mazes modules (currently: USA Maze, DACH Maze)

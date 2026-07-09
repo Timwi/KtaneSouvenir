@@ -10,7 +10,10 @@ public enum SCrypticCycle
 
     [Question("What letter was written on the {1} dial in {0}?", ThreeColumns6Answers, AnswerType = InfoType.BoozleglyphFont, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Strings("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()[]{}<>")]
-    DialLabels
+    DialLabels,
+
+    [Discriminator("the Cryptic Cycle that had this letter on a dial", QuestionExtraType = InfoType.BoozleglyphFont)]
+    LabelDiscriminator
 }
 
 public partial class SouvenirModule
@@ -19,6 +22,7 @@ public partial class SouvenirModule
     [ManualQuestion("Which direction were the dials pointing?")]
     [ManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessCrypticCycle(ModuleData module) => processSpeakingEvilCycle(
-        module, "CrypticCycleScript", SCrypticCycle.DialDirections, SCrypticCycle.DialLabels, null,
+        module, "CrypticCycleScript", SCrypticCycle.DialDirections, SCrypticCycle.DialLabels, SCrypticCycle.LabelDiscriminator,
+        ltr => new Discriminator(SCrypticCycle.LabelDiscriminator, $"ltr-{ltr}", questionExtra: ltr.ToString()),
         answerSprites: CycleModuleCrypticSprites, all: CycleModuleCrypticSprites);
 }

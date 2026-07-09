@@ -4229,6 +4229,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Cryptic Cycle
         [typeof(SCrypticCycle)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "暗号サイクル",
             ManualQuestions = new()
             {
@@ -4248,6 +4249,14 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What letter was written on the {1} dial in {0}?
                     // Example: What letter was written on the first dial in Cryptic Cycle?
                     Question = "{0}で{1}のダイヤルに書かれていた文字は？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SCrypticCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Cryptic Cycle that had this letter on a dial (+ extra)
+                    Discriminator = "the Cryptic Cycle that had this letter on a dial",
                 },
             },
         },

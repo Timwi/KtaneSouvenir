@@ -22,5 +22,6 @@ public partial class SouvenirModule
     [ManualQuestion("Which direction were the dials pointing?")]
     [ManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessPigpenCycle(ModuleData module) => processSpeakingEvilCycle(
-        module, "PigpenCycleScript", SPigpenCycle.DialDirections, SPigpenCycle.DialLabels, SPigpenCycle.LabelDiscriminator);
+        module, "PigpenCycleScript", SPigpenCycle.DialDirections, SPigpenCycle.DialLabels, SPigpenCycle.LabelDiscriminator,
+        ltr => new Discriminator(SPigpenCycle.LabelDiscriminator, $"ltr-{ltr}", args: [ltr.ToString()]));
 }

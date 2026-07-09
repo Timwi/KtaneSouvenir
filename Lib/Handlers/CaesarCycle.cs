@@ -22,5 +22,6 @@ public partial class SouvenirModule
     [ManualQuestion("Which direction were the dials pointing?")]
     [ManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessCaesarCycle(ModuleData module) => processSpeakingEvilCycle(
-        module, "CaesarCycleScript", SCaesarCycle.DialDirections, SCaesarCycle.DialLabels, SCaesarCycle.LabelDiscriminator);
+        module, "CaesarCycleScript", SCaesarCycle.DialDirections, SCaesarCycle.DialLabels, SCaesarCycle.LabelDiscriminator,
+        ltr => new Discriminator(SCaesarCycle.LabelDiscriminator, $"ltr-{ltr}", args: [ltr.ToString()]));
 }

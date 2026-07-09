@@ -24,5 +24,6 @@ public partial class SouvenirModule
     [ManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessAffineCycle(ModuleData module) => processSpeakingEvilCycle(
         module, "AffineCycleScript", SAffineCycle.DialDirections, SAffineCycle.DialLabels, SAffineCycle.LabelDiscriminator,
+        ltr => new Discriminator(SAffineCycle.LabelDiscriminator, $"ltr-{ltr}", args: [ltr.ToString()]),
         all: Enumerable.Range(0, 8).Except([6]).Select(x => CycleModuleEightSprites[x]).ToArray());
 }

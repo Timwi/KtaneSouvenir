@@ -23,5 +23,6 @@ public partial class SouvenirModule
     [ManualQuestion("What was written on each dial?")]
     private IEnumerator<SouvenirInstruction> ProcessJumbleCycle(ModuleData module) => processSpeakingEvilCycle(
         module, "JumbleCycleScript", SJumbleCycle.DialDirections, SJumbleCycle.DialLabels, SJumbleCycle.LabelDiscriminator,
+        ltr => new Discriminator(SJumbleCycle.LabelDiscriminator, $"ltr-{ltr}", args: [ltr.ToString()]),
         getDialLabels: comp => GetArrayField<string[]>(comp, "ciphertext").Get()[0][4]);
 }

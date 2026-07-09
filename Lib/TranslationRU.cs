@@ -4404,6 +4404,14 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     Question = "What letter was written on the {1} dial in {0}?",
                 },
             },
+            Discriminators = new()
+            {
+                [SCrypticCycle.LabelDiscriminator] = new()
+                {
+                    // English: the Cryptic Cycle that had this letter on a dial (+ extra)
+                    Discriminator = "the Cryptic Cycle that had this letter on a dial",
+                },
+            },
         },
 
         // Cryptic Keypad
