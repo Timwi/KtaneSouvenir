@@ -10,8 +10,11 @@ public enum SUpdog
     [Question("What was the text on {0}?", ThreeColumns6Answers, "dog", "DOG", "dawg", "DAWG", "doge", "DOGE", "dag", "DAG", "dogg", "DOGG", "dage", "DAGE")]
     Word,
 
-    [Question("What was the {1} color in the sequence on {0}?", ThreeColumns6Answers, "Red", "Yellow", "Orange", "Green", "Blue", "Purple", TranslateArguments = [true], TranslateAnswers = true, Arguments = ["first", "last"], ArgumentGroupSize = 1)]
-    Color
+    [Question("What was the {1} color in the sequence on {0}?", ThreeColumns6Answers, "Red", "Yellow", "Orange", "Green", "Blue", "Purple", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    Color1,
+
+    [Question("What was the {1} color in the sequence on {0}?", ThreeColumns3Answers, "Red", "Green", "Blue", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    Color2
 }
 
 public partial class SouvenirModule
@@ -37,11 +40,10 @@ public partial class SouvenirModule
             _ => throw new AbandonModuleException($"Unexpected color: {c.r}, {c.g}, {c.b}"),
         };
 
-        var firstCol = colorName(colors[0]);
-        var lastCol = colorName(colors[6]);
-
         yield return question(SUpdog.Word).Answers(word);
-        yield return question(SUpdog.Color, args: ["first"]).Answers(firstCol);
-        yield return question(SUpdog.Color, args: ["last"]).Answers(lastCol);
+        yield return question(SUpdog.Color1, args: [Ordinal(1)]).Answers(colorName(colors[0]));
+        yield return question(SUpdog.Color2, args: [Ordinal(2)]).Answers(colorName(colors[2]));
+        yield return question(SUpdog.Color2, args: [Ordinal(3)]).Answers(colorName(colors[4]));
+        yield return question(SUpdog.Color1, args: [Ordinal(4)]).Answers(colorName(colors[6]));
     }
 }

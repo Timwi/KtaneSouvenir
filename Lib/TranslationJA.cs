@@ -1321,6 +1321,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // Example: What was the first decrypted text on the display in Bamboozled Again?
                     Question = "{0}のディスプレーで{1}番目の解読したテキストは？",
                 },
+                [SBamboozledAgain.DisplayTexts3] = new()
+                {
+                    // English: What was the {1} decrypted text on the display in {0}?
+                    // Example: What was the first decrypted text on the display in Bamboozled Again?
+                    Question = "{0}のディスプレーで{1}番目の解読したテキストは？",
+                },
                 [SBamboozledAgain.DisplayColor] = new()
                 {
                     // English: What color was the {1} text on the display in {0}?
@@ -9281,6 +9287,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Light Bulbs
         [typeof(SLightBulbs)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "電球セット",
             ManualQuestions = new()
             {
@@ -9288,7 +9295,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SLightBulbs.Colors] = new()
+                [SLightBulbs.OuterBulb] = new()
                 {
                     // English: What was the color of the {1} bulb in {0}?
                     // Example: What was the color of the left bulb in Light Bulbs?
@@ -9308,6 +9315,16 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Purple"] = "紫",
                         ["Cyan"] = "シアン",
                         ["Magenta"] = "マゼンタ",
+                    },
+                },
+                [SLightBulbs.CenterBulb] = new()
+                {
+                    // English: What was the color of the center bulb in {0}?
+                    Question = "What was the color of the center bulb in {0}?",
+                    Answers = new()
+                    {
+                        ["Gray"] = "Gray",
+                        ["White"] = "White",
                     },
                 },
             },
@@ -18978,6 +18995,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Updog
         [typeof(SUpdog)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "うざいイヌ",
             ManualQuestions = new()
             {
@@ -18991,16 +19009,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: What was the text on {0}?
                     Question = "{0}のテキストは？",
                 },
-                [SUpdog.Color] = new()
+                [SUpdog.Color1] = new()
                 {
                     // English: What was the {1} color in the sequence on {0}?
                     // Example: What was the first color in the sequence on Updog?
                     Question = "{0}のシーケンスにおける{1}の色は？",
-                    Arguments = new()
-                    {
-                        ["first"] = "最初",
-                        ["last"] = "最後",
-                    },
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -19009,6 +19022,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Green"] = "緑",
                         ["Blue"] = "青",
                         ["Purple"] = "紫",
+                    },
+                },
+                [SUpdog.Color2] = new()
+                {
+                    // English: What was the {1} color in the sequence on {0}?
+                    // Example: What was the first color in the sequence on Updog?
+                    Question = "What was the {1} color in the sequence on {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
                     },
                 },
             },

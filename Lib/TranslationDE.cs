@@ -1375,6 +1375,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // Example: What was the first decrypted text on the display in Bamboozled Again?
                     Question = "Was war bei {0} der {1}e Text auf dem Display, aber entschlüsselt?",
                 },
+                [SBamboozledAgain.DisplayTexts3] = new()
+                {
+                    // English: What was the {1} decrypted text on the display in {0}?
+                    // Example: What was the first decrypted text on the display in Bamboozled Again?
+                    Question = "Was war bei {0} der {1}e Text auf dem Display, aber entschlüsselt?",
+                },
                 [SBamboozledAgain.DisplayColor] = new()
                 {
                     // English: What color was the {1} text on the display in {0}?
@@ -9561,6 +9567,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Light Bulbs
         [typeof(SLightBulbs)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Glühlampen",
             Gender = Gender.Plural,
             ManualQuestions = new()
@@ -9569,7 +9576,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SLightBulbs.Colors] = new()
+                [SLightBulbs.OuterBulb] = new()
                 {
                     // English: What was the color of the {1} bulb in {0}?
                     // Example: What was the color of the left bulb in Light Bulbs?
@@ -9589,6 +9596,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Purple"] = "Lila",
                         ["Cyan"] = "Türkis",
                         ["Magenta"] = "Rosa",
+                    },
+                },
+                [SLightBulbs.CenterBulb] = new()
+                {
+                    // English: What was the color of the center bulb in {0}?
+                    Question = "What was the color of the center bulb in {0}?",
+                    Answers = new()
+                    {
+                        ["Gray"] = "Gray",
+                        ["White"] = "White",
                     },
                 },
             },
@@ -19497,6 +19514,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Updog
         [typeof(SUpdog)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was the displayed word?"] = "Welches Wort war auf dem Display?",
@@ -19509,16 +19527,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the text on {0}?
                     Question = "Wie lautete bei {0} der Text?",
                 },
-                [SUpdog.Color] = new()
+                [SUpdog.Color1] = new()
                 {
                     // English: What was the {1} color in the sequence on {0}?
                     // Example: What was the first color in the sequence on Updog?
                     Question = "Was war bei {0} die {1} Farbe in der Farbsequenz?",
-                    Arguments = new()
-                    {
-                        ["first"] = "erste",
-                        ["last"] = "letzte",
-                    },
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -19527,6 +19540,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Green"] = "Grün",
                         ["Blue"] = "Blau",
                         ["Purple"] = "Lila",
+                    },
+                },
+                [SUpdog.Color2] = new()
+                {
+                    // English: What was the {1} color in the sequence on {0}?
+                    // Example: What was the first color in the sequence on Updog?
+                    Question = "What was the {1} color in the sequence on {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
                     },
                 },
             },

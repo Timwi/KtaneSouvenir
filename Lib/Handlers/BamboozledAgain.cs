@@ -17,8 +17,11 @@ public enum SBamboozledAgain
     [Question("What was the {1} decrypted text on the display in {0}?", TwoColumns4Answers, "THE LETTER", "ONE LETTER", "THE COLOUR", "ONE COLOUR", "THE PHRASE", "ONE PHRASE", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayTexts1,
 
-    [Question("What was the {1} decrypted text on the display in {0}?", TwoColumns4Answers, "ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "QUEBEC", "TANGO", "WHISKEY", "VICTOR", "YANKEE", "ECHO ECHO", "E THEN E", "ALPHA PAPA", "PAPA ALPHA", "PAPHA ALPA", "T GOLF", "TANGOLF", "WHISKEE", "WHISKY", "CHARLIE C", "C CHARLIE", "YANGO", "DELTA NEXT", "CUEBEQ", "MILO", "KI LO", "HI-LO", "VVICTOR", "VICTORR", "LIME BRAVO", "BLUE BRAVO", "G IN JADE", "G IN ROSE", "BLUE IN RED", "YES BUT NO", "COLOUR", "MESSAGE", "CIPHER", "BUTTON", "TWO BUTTONS", "SIX BUTTONS", "I GIVE UP", "ONE ELEVEN", "ONE ONE ONE", "THREE ONES", "WHAT?", "THIS?", "THAT?", "BLUE!", "ECHO!", "BLANK", "BLANK?!", "NOTHING", "YELLOW TEXT", "BLACK TEXT?", "QUOTE V", "END QUOTE", "\"QUOTE K\"", "IN RED", "ORANGE", "IN YELLOW", "LIME", "IN GREEN", "JADE", "IN CYAN", "AZURE", "IN BLUE", "VIOLET", "IN MAGENTA", "ROSE", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} decrypted text on the display in {0}?", TwoColumns2Answers, "THEN", "NEXT", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayTexts2,
+
+    [Question("What was the {1} decrypted text on the display in {0}?", TwoColumns4Answers, "ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "QUEBEC", "TANGO", "WHISKEY", "VICTOR", "YANKEE", "ECHO ECHO", "E THEN E", "ALPHA PAPA", "PAPA ALPHA", "PAPHA ALPA", "T GOLF", "TANGOLF", "WHISKEE", "WHISKY", "CHARLIE C", "C CHARLIE", "YANGO", "DELTA NEXT", "CUEBEQ", "MILO", "KI LO", "HI-LO", "VVICTOR", "VICTORR", "LIME BRAVO", "BLUE BRAVO", "G IN JADE", "G IN ROSE", "BLUE IN RED", "YES BUT NO", "COLOUR", "MESSAGE", "CIPHER", "BUTTON", "TWO BUTTONS", "SIX BUTTONS", "I GIVE UP", "ONE ELEVEN", "ONE ONE ONE", "THREE ONES", "WHAT?", "THIS?", "THAT?", "BLUE!", "ECHO!", "BLANK", "BLANK?!", "NOTHING", "YELLOW TEXT", "BLACK TEXT?", "QUOTE V", "END QUOTE", "\"QUOTE K\"", "IN RED", "ORANGE", "IN YELLOW", "LIME", "IN GREEN", "JADE", "IN CYAN", "AZURE", "IN BLUE", "VIOLET", "IN MAGENTA", "ROSE", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    DisplayTexts3,
 
     [Question("What color was the {1} text on the display in {0}?", TwoColumns4Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     DisplayColor
@@ -65,6 +68,7 @@ public partial class SouvenirModule
         displayTexts[0] = displayTexts[0].Select(str => Regex.Replace(str, "#", " ")).ToArray();
 
         var firstRowTexts = displayTexts[0].Where((item, index) => index is 0 or 2 or 4).ToArray();
+        var middleTwoTexts = displayTexts[0].Where((item, index) => index is 1 or 3).ToArray();
         var lastThreeTexts = displayTexts[0].Where((item, index) => index is > 4 and < 8).ToArray();
         var color = new string[14] { "White", "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Grey", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose" };
         var displayColors = colorIndex.Select(index => color[index]).ToArray();
@@ -78,8 +82,11 @@ public partial class SouvenirModule
         for (var index = 0; index < firstRowTexts.Length; index++)
             yield return question(SBamboozledAgain.DisplayTexts1, args: [Ordinal(2 * index + 1)])
                 .Answers(firstRowTexts[index], preferredWrong: firstRowTexts.Except([firstRowTexts[index]]).ToArray());
+        for (var index = 0; index < middleTwoTexts.Length; index++)
+            yield return question(SBamboozledAgain.DisplayTexts2, args: [Ordinal(2 * index + 2)])
+                .Answers(middleTwoTexts[index]);
         for (var index = 0; index < lastThreeTexts.Length; index++)
-            yield return question(SBamboozledAgain.DisplayTexts2, args: [Ordinal(index + 6)])
+            yield return question(SBamboozledAgain.DisplayTexts3, args: [Ordinal(index + 6)])
                 .Answers(lastThreeTexts[index], preferredWrong: lastThreeTexts.Except([lastThreeTexts[index]]).ToArray());
         for (var index = 0; index < displayColors.Length; index++)
             yield return question(SBamboozledAgain.DisplayColor, args: [Ordinal(index + 1)])
