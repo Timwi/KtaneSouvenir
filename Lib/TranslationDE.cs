@@ -9567,7 +9567,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Light Bulbs
         [typeof(SLightBulbs)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Glühlampen",
             Gender = Gender.Plural,
             ManualQuestions = new()
@@ -9601,11 +9600,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SLightBulbs.CenterBulb] = new()
                 {
                     // English: What was the color of the center bulb in {0}?
-                    Question = "What was the color of the center bulb in {0}?",
+                    Question = "Welche Farbe hatte bei {0} die mittlere Glühlampe?",
                     Answers = new()
                     {
-                        ["Gray"] = "Gray",
-                        ["White"] = "White",
+                        ["Gray"] = "Grau",
+                        ["White"] = "Weiß",
                     },
                 },
             },
@@ -19514,7 +19513,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Updog
         [typeof(SUpdog)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was the displayed word?"] = "Welches Wort war auf dem Display?",
@@ -19546,12 +19544,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} color in the sequence on {0}?
                     // Example: What was the first color in the sequence on Updog?
-                    Question = "What was the {1} color in the sequence on {0}?",
+                    Question = "Was war bei {0} die {1} Farbe in der Farbsequenz?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
                     },
                 },
             },
