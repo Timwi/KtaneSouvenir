@@ -16504,6 +16504,37 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simon’s On First
+        [typeof(SSimonsOnFirst)] = new()
+        {
+            ModuleName = "Simon Steht Kopf",
+            Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["Which colours flashed?"] = "Welche Farben sind aufgeleuchtet?",
+            },
+            Questions = new()
+            {
+                [SSimonsOnFirst.FlashingColours] = new()
+                {
+                    // English: Which colour flashed {1} in the final sequence in {0}?
+                    // Example: Which colour flashed first in the final sequence in Simon’s On First?
+                    Question = "Welche Farbe ist bei {0} als {1}e aufgeleuchtet?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Blue"] = "Blau",
+                        ["Light green"] = "Hellgrün",
+                        ["Dark green"] = "Dunkelgrün",
+                        ["Orange"] = "Orange",
+                        ["Pink"] = "Pink",
+                        ["Purple"] = "Lila",
+                        ["Yellow"] = "Gelb",
+                    },
+                },
+            },
+        },
+
         // Simon Sounds
         [typeof(SSimonSounds)] = new()
         {
@@ -18757,14 +18788,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Welche Farbe hatte bei {0} das als {1}es pulsierende Dreieck?",
                     Answers = new()
                     {
-                        ["black"] = "Schwarz",
-                        ["red"] = "Rot",
-                        ["green"] = "Grün",
-                        ["yellow"] = "Gelb",
-                        ["blue"] = "Blau",
-                        ["magenta"] = "Rosa",
-                        ["cyan"] = "Türkis",
-                        ["white"] = "Weiß",
+                        ["black"] = "schwarz",
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["yellow"] = "gelb",
+                        ["blue"] = "blau",
+                        ["magenta"] = "rosa",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
                     },
                 },
             },

@@ -16208,6 +16208,36 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Simon’s On First
+        [typeof(SSimonsOnFirst)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which colours flashed?"] = "Which colours flashed?",
+            },
+            Questions = new()
+            {
+                [SSimonsOnFirst.FlashingColours] = new()
+                {
+                    // English: Which colour flashed {1} in the final sequence in {0}?
+                    // Example: Which colour flashed first in the final sequence in Simon’s On First?
+                    Question = "Which colour flashed {1} in the final sequence in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Blue"] = "Blue",
+                        ["Light green"] = "Light green",
+                        ["Dark green"] = "Dark green",
+                        ["Orange"] = "Orange",
+                        ["Pink"] = "Pink",
+                        ["Purple"] = "Purple",
+                        ["Yellow"] = "Yellow",
+                    },
+                },
+            },
+        },
+
         // Simon Sounds
         [typeof(SSimonSounds)] = new()
         {
