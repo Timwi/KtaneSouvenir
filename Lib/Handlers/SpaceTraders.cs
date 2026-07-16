@@ -5,7 +5,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SSpaceTraders
 {
-    [Question("What was the maximum tax amount per vessel in {0}?", ThreeColumns6Answers, "0 GCr", "1 GCr", "2 GCr", "3 GCr", "4 GCr", "5 GCr")]
+    [Question("What was the maximum tax amount per vessel in {0}?", ThreeColumns6Answers, "0 GCr", "1 GCr", "2 GCr", "3 GCr", "4 GCr", "5 GCr", "6 GCr", "7 GCr", "8 GCr", "9 GCr")]
     MaxTax
 }
 
