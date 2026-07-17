@@ -23,7 +23,8 @@ public enum SDigitalDials
 public partial class SouvenirModule
 {
     [Handler("digitalDials", "Digital Dials", typeof(SDigitalDials), "Timwi")]
-    [ManualQuestion("What numbers were on the display when the dials were in their initial calculated positions?")]
+    [ManualQuestion("What numbers were on the displays when the dials were in their initial calculated positions?")]
+    [ManualQuestion("What number was on the large display?")]
     private IEnumerator<SouvenirInstruction> ProcessDigitalDials(ModuleData module)
     {
         var comp = GetComponent(module, "digitalDials");

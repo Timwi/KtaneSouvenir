@@ -3652,6 +3652,173 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Colorful Dials
+        [typeof(SColorfulDials)] = new()
+        {
+            ModuleName = "Bunte Regler",
+            ModuleNameDative = "Bunten Reglern",
+            Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the numbers and their colors on the displays when the dials were in their initial calculated configurations?"] = "Welche Zahl war auf welchem Display, während die Regler in der berechneten Anfangskonfiguration waren, und in welchen Farben?",
+                ["What was each digit and its color on the large display?"] = "Welche Ziffern waren auf dem großen Display und in welcher Farbe?",
+                ["What order was the color strip?"] = "In welcher Reihenfolge war der Farbstreifen?",
+            },
+            Questions = new()
+            {
+                [SColorfulDials.QNumber] = new()
+                {
+                    // English: What number was on the {1} display when the dials were in their initial calculated configurations in {0}?
+                    // Example: What number was on the left display when the dials were in their initial calculated configurations in Colorful Dials?
+                    Question = "Welche Zahl war bei {0} auf dem {1} Display, während die Regler in der berechneten Anfangskonfiguration waren?",
+                    Arguments = new()
+                    {
+                        ["left"] = "linken",
+                        ["middle"] = "mittleren",
+                        ["right"] = "rechten",
+                    },
+                },
+                [SColorfulDials.QColor] = new()
+                {
+                    // English: What color was the number on the {1} display when the dials were in their initial calculated configurations in {0}?
+                    // Example: What color was the number on the left display when the dials were in their initial calculated configurations in Colorful Dials?
+                    Question = "Welche Farbe hatte bei {0} die Zahl auf dem {1} Display, während die Regler in der berechneten Anfangskonfiguration waren?",
+                    Arguments = new()
+                    {
+                        ["left"] = "linken",
+                        ["middle"] = "mittleren",
+                        ["right"] = "rechten",
+                    },
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["orange"] = "orange",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["cyan"] = "türkis",
+                        ["blue"] = "blau",
+                        ["magenta"] = "rosa",
+                        ["purple"] = "lila",
+                    },
+                },
+                [SColorfulDials.QLargeDisplayDigit] = new()
+                {
+                    // English: What was the {1} digit on the large display in {0}?
+                    // Example: What was the first digit on the large display in Colorful Dials?
+                    Question = "Was war bei {0} die {1}e Ziffer auf dem großen Display?",
+                },
+                [SColorfulDials.QLargeDisplayColor] = new()
+                {
+                    // English: What color was the {1} digit on the large display in {0}?
+                    // Example: What color was the first digit on the large display in Colorful Dials?
+                    Question = "Welche Farbe hatte bei {0} die {1}e Ziffer auf dem großen Display?",
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["orange"] = "orange",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["cyan"] = "türkis",
+                        ["blue"] = "blau",
+                        ["magenta"] = "rosa",
+                        ["purple"] = "lila",
+                    },
+                },
+                [SColorfulDials.QColorOrder] = new()
+                {
+                    // English: Which color was {1} in the color strip in {0}?
+                    // Example: Which color was first in the color strip in Colorful Dials?
+                    Question = "Welche Farbe war bei {0} in dem Farbstreifen die {1}e?",
+                    Answers = new()
+                    {
+                        ["red"] = "rot",
+                        ["orange"] = "orange",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["cyan"] = "türkis",
+                        ["blue"] = "blau",
+                        ["magenta"] = "rosa",
+                        ["purple"] = "lila",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SColorfulDials.DNumber] = new()
+                {
+                    // English: the Colorful Dials where {0} was on the {1} display when the dials were in their initial calculated configurations
+                    // Example: the Colorful Dials where 47 was on the left display when the dials were in their initial calculated configurations
+                    Discriminator = "den Bunten Reglern, bei denen {0} auf dem {1} Display stand, während die Regler in der berechneten Anfangskonfiguration waren,",
+                    Arguments = new()
+                    {
+                        ["left"] = "linken",
+                        ["middle"] = "mittleren",
+                        ["right"] = "rechten",
+                    },
+                },
+                [SColorfulDials.DColor] = new()
+                {
+                    // English: the Colorful Dials where the number on the {1} display when the dials were in their initial calculated configurations was {0}
+                    // Example: the Colorful Dials where the number on the left display when the dials were in their initial calculated configurations was red
+                    Discriminator = "den Bunten Reglern, bei denen die Zahl auf dem {1} Display {0} war, während die Regler in der berechneten Anfangskonfiguration waren,",
+                    Arguments = new()
+                    {
+                        ["red"] = "rot",
+                        ["orange"] = "orange",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["cyan"] = "türkis",
+                        ["blue"] = "blau",
+                        ["magenta"] = "rosa",
+                        ["purple"] = "lila",
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                    },
+                },
+                [SColorfulDials.DLargeDisplayDigit] = new()
+                {
+                    // English: the Colorful Dials where the {0} digit on the large display was {1}
+                    // Example: the Colorful Dials where the first digit on the large display was 4
+                    Discriminator = "den Bunten Reglern, bei denen die {0}e Ziffer auf dem großen Display eine {1} war,",
+                },
+                [SColorfulDials.DLargeDisplayColor] = new()
+                {
+                    // English: the Colorful Dials where the {0} digit on the large display was {1}
+                    // Example: the Colorful Dials where the first digit on the large display was red
+                    Discriminator = "den Bunten Reglern, bei denen die {0}e Ziffer auf dem großen Display {1} war,",
+                    Arguments = new()
+                    {
+                        ["red"] = "rot",
+                        ["orange"] = "orange",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["cyan"] = "türkis",
+                        ["blue"] = "blau",
+                        ["magenta"] = "rosa",
+                        ["purple"] = "lila",
+                    },
+                },
+                [SColorfulDials.DColorOrder] = new()
+                {
+                    // English: the Colorful Dials where {0} was {1} in the color strip
+                    // Example: the Colorful Dials where red was first in the color strip
+                    Discriminator = "den Bunten Reglern, bei denen die {0}e Farbe auf dem Farbstreifen {1} war,",
+                    Arguments = new()
+                    {
+                        ["red"] = "rot",
+                        ["orange"] = "orange",
+                        ["yellow"] = "gelb",
+                        ["green"] = "grün",
+                        ["cyan"] = "türkis",
+                        ["blue"] = "blau",
+                        ["magenta"] = "rosa",
+                        ["purple"] = "lila",
+                    },
+                },
+            },
+        },
+
         // Color Morse
         [typeof(SColorMorse)] = new()
         {
@@ -4954,7 +5121,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What numbers were on the display when the dials were in their initial calculated positions?"] = "Welche Zahlen waren auf den Displays, während die Regler auf der berechneten Anfangsposition waren?",
+                ["What numbers were on the displays when the dials were in their initial calculated positions?"] = "Welche Zahlen waren auf den Displays, während die Regler in der berechneten Anfangsposition waren?",
+                ["What number was on the large display?"] = "Welche Zahl war auf dem großen Display?",
             },
             Questions = new()
             {
@@ -4962,7 +5130,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What number was on the {1} display when the dials were in their initial calculated positions in {0}?
                     // Example: What number was on the left display when the dials were in their initial calculated positions in Digital Dials?
-                    Question = "Welche Zahl war bei {0} auf dem {1} Display, während die Regler auf der berechneten Anfangsposition waren?",
+                    Question = "Welche Zahl war bei {0} auf dem {1} Display, während die Regler in der berechneten Anfangsposition waren?",
                     Arguments = new()
                     {
                         ["left"] = "linken",
@@ -4982,7 +5150,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Digital Dials where {0} was on the {1} display when the dials were in their initial calculated positions
                     // Example: the Digital Dials where 47 was on the left display when the dials were in their initial calculated positions
-                    Discriminator = "den Ziffernreglern, bei denen {0} auf dem {1} Display stand, während die Regler auf der berechneten Anfangsposition waren,",
+                    Discriminator = "den Ziffernreglern, bei denen {0} auf dem {1} Display stand, während die Regler in der berechneten Anfangsposition waren,",
                     Arguments = new()
                     {
                         ["left"] = "linken",
@@ -4994,7 +5162,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Digital Dials where {0} was on the large display
                     // Example: the Digital Dials where 417 was on the large display
-                    Discriminator = "den Ziffernreglern, bei denen {0} auf dem großen Display stand",
+                    Discriminator = "den Ziffernreglern, bei denen {0} auf dem großen Display stand,",
                 },
             },
         },

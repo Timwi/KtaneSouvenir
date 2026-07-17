@@ -523,13 +523,14 @@ public static class Ut
     public static string Stringify(this object value) => value switch
     {
         null => "null",
-        Array arr when arr.Rank > 1 => stringifyMultidimensionalArray(arr),
-        IEnumerable list and not string => $"[{list.Cast<object>().Select(Stringify).JoinString(", ")}]",
+        string s => $"“{s}”",
         int i => i.ToString(),
         double d => d.ToString(),
         float f => f.ToString(),
         bool b => b ? "true" : "false",
-        string s => $"“{s}”",
+
+        Array arr => stringifyMultidimensionalArray(arr),
+        IEnumerable list => $"[{list.Cast<object>().Select(Stringify).JoinString(", ")}]",
         Sprite spr => $"Sprite ({spr.name})",
         Texture tex => $"Texture ({tex.name})",
         AudioClip audio => $"Audio ({audio.name})",
