@@ -7,10 +7,10 @@ using static Souvenir.AnswerLayout;
 
 public enum SAzureButton
 {
-    [Question("What was the {1} direction in the decoy arrow in {0}?", TwoColumns4Answers, "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} direction in the decoy arrow in {0}?", TwoColumns4Answers, "up", "up-right", "right", "down-right", "down", "down-left", "left", "up-left", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     QDecoyArrowDirection,
 
-    [Question("What was the {1} direction in the {2} non-decoy arrow in {0}?", TwoColumns4Answers, "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the {1} direction in the {2} non-decoy arrow in {0}?", TwoColumns4Answers, "up", "up-right", "right", "down-right", "down", "down-left", "left", "up-left", Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2, TranslateAnswers = true)]
     QNonDecoyArrowDirection,
 
     [Question("What was T in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "AzureButtonSprites")]
@@ -28,10 +28,10 @@ public enum SAzureButton
     [Discriminator("the Azure Button where M was {0}", Arguments = ["1", "2", "3", "4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
     DM,
 
-    [Discriminator("the Azure Button where the decoy arrow went {0} at some point", Arguments = ["north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Azure Button where the decoy arrow went {0} at some point", Arguments = ["up", "up-right", "right", "down-right", "down", "down-left", "left", "up-left"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DDecoyArrowDirection,
 
-    [Discriminator("the Azure Button where the {1} non-decoy arrow went {0} at some point", Arguments = ["north", QandA.Ordinal, "north-east", QandA.Ordinal, "east", QandA.Ordinal, "south-east", QandA.Ordinal, "south", QandA.Ordinal, "south-west", QandA.Ordinal, "west", QandA.Ordinal, "north-west", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Azure Button where the {1} non-decoy arrow went {0} at some point", Arguments = ["up", QandA.Ordinal, "up-right", QandA.Ordinal, "right", QandA.Ordinal, "down-right", QandA.Ordinal, "down", QandA.Ordinal, "down-left", QandA.Ordinal, "left", QandA.Ordinal, "up-left", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     DNonDecoyArrowDirection,
 }
 
@@ -54,7 +54,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var dirNames = new[] { "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west" };
+        var dirNames = new[] { "up", "up-right", "right", "down-right", "down", "down-left", "left", "up-left" };
 
         foreach (var card in cards)
             yield return new Discriminator(SAzureButton.DCard, $"card{card}", questionExtra: AzureButtonSprites[card]);
