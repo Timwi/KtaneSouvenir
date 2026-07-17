@@ -6,14 +6,14 @@ using static Souvenir.AnswerLayout;
 
 public enum SSimonsOnFirst
 {
-    [Question("Which colour flashed {1} in the final sequence in {0}?", TwoColumns4Answers, "Red", "Blue", "Light green", "Dark green", "Orange", "Pink", "Purple", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
+    [Question("Which colour was added in the {1} stage in {0}?", TwoColumns4Answers, "Red", "Blue", "Light green", "Dark green", "Orange", "Pink", "Purple", "Yellow", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
     FlashingColours
 }
 
 public partial class SouvenirModule
 {
     [Handler("simonsOnFirst", "Simon’s On First", typeof(SSimonsOnFirst), "Timwi")]
-    [ManualQuestion("Which colours flashed?")]
+    [ManualQuestion("Which colours were added in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessSimonsOnFirst(ModuleData module)
     {
         var comp = GetComponent(module, "SimonsOnFirstScript");
@@ -25,7 +25,9 @@ public partial class SouvenirModule
         var allFlashedColors = Enumerable.Range(0, 9).Select(ix => buttonColors[flashingButtons[ix]]).Distinct().Select(ix => colorNames[ix]).ToArray();
         yield return WaitForSolve;
 
-        for (var ix = 0; ix < 9; ix++)
-            yield return question(SSimonsOnFirst.FlashingColours, args: [Ordinal(ix + 1)]).Answers(colorNames[buttonColors[flashingButtons[ix]]], preferredWrong: allFlashedColors);
+        for (var ix = 0; ix < 3; ix++)
+            yield return question(SSimonsOnFirst.FlashingColours, args: [Ordinal(ix + 1)]).Answers(
+                correct: flashingButtons.Skip(3 * ix).Take(3).Select(btn => colorNames[buttonColors[btn]]).ToArray(),
+                preferredWrong: allFlashedColors);
     }
 }
