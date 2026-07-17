@@ -16,7 +16,7 @@ public enum SDigitalDials
     [Discriminator("the Digital Dials where {0} was on the {1} display when the dials were in their initial calculated positions", Arguments = ["47", "left", "82", "middle", "69", "right"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     DNumber,
 
-    [Discriminator("the Digital Dials where {0} was on the large display", Arguments = ["47", "82", "69"], ArgumentGroupSize = 1)]
+    [Discriminator("the Digital Dials where {0} was on the large display", Arguments = ["417", "832", "679"], ArgumentGroupSize = 1)]
     DLargeDisplay
 }
 

@@ -4949,10 +4949,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Digital Dials
         [typeof(SDigitalDials)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Ziffernregler",
+            ModuleNameDative = "Ziffernreglern",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What numbers were on the display when the dials were in their initial calculated positions?"] = "What numbers were on the display when the dials were in their initial calculated positions?",
+                ["What numbers were on the display when the dials were in their initial calculated positions?"] = "Welche Zahlen waren auf den Displays, während die Regler auf der berechneten Anfangsposition waren?",
             },
             Questions = new()
             {
@@ -4960,18 +4962,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What number was on the {1} display when the dials were in their initial calculated positions in {0}?
                     // Example: What number was on the left display when the dials were in their initial calculated positions in Digital Dials?
-                    Question = "What number was on the {1} display when the dials were in their initial calculated positions in {0}?",
+                    Question = "Welche Zahl war bei {0} auf dem {1} Display, während die Regler auf der berechneten Anfangsposition waren?",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["middle"] = "middle",
-                        ["right"] = "right",
+                        ["left"] = "linken",
+                        ["middle"] = "mittleren",
+                        ["right"] = "rechten",
                     },
                 },
                 [SDigitalDials.QLargeDisplay] = new()
                 {
                     // English: What number was on the large display in {0}?
-                    Question = "What number was on the large display in {0}?",
+                    Question = "Welche Zahl war bei {0} auf dem großen Display?",
                 },
             },
             Discriminators = new()
@@ -4980,19 +4982,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Digital Dials where {0} was on the {1} display when the dials were in their initial calculated positions
                     // Example: the Digital Dials where 47 was on the left display when the dials were in their initial calculated positions
-                    Discriminator = "the Digital Dials where {0} was on the {1} display when the dials were in their initial calculated positions",
+                    Discriminator = "den Ziffernreglern, bei denen {0} auf dem {1} Display stand, während die Regler auf der berechneten Anfangsposition waren,",
                     Arguments = new()
                     {
-                        ["left"] = "left",
-                        ["middle"] = "middle",
-                        ["right"] = "right",
+                        ["left"] = "linken",
+                        ["middle"] = "mittleren",
+                        ["right"] = "rechten",
                     },
                 },
                 [SDigitalDials.DLargeDisplay] = new()
                 {
                     // English: the Digital Dials where {0} was on the large display
-                    // Example: the Digital Dials where 47 was on the large display
-                    Discriminator = "the Digital Dials where {0} was on the large display",
+                    // Example: the Digital Dials where 417 was on the large display
+                    Discriminator = "den Ziffernreglern, bei denen {0} auf dem großen Display stand",
                 },
             },
         },

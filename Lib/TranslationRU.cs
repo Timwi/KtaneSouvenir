@@ -4989,7 +4989,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 [SDigitalDials.DLargeDisplay] = new()
                 {
                     // English: the Digital Dials where {0} was on the large display
-                    // Example: the Digital Dials where 47 was on the large display
+                    // Example: the Digital Dials where 417 was on the large display
                     Discriminator = "the Digital Dials where {0} was on the large display",
                 },
             },
