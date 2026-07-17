@@ -1284,12 +1284,34 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the {1} direction in the decoy arrow in {0}?
                     // Example: What was the first direction in the decoy arrow in The Azure Button?
                     Question = "Какое было {1}-е направление у стрелки-ловушки {0}?",
+                    Answers = new()
+                    {
+                        ["up"] = "up",
+                        ["up-right"] = "up-right",
+                        ["right"] = "right",
+                        ["down-right"] = "down-right",
+                        ["down"] = "down",
+                        ["down-left"] = "down-left",
+                        ["left"] = "left",
+                        ["up-left"] = "up-left",
+                    },
                 },
                 [SAzureButton.QNonDecoyArrowDirection] = new()
                 {
                     // English: What was the {1} direction in the {2} non-decoy arrow in {0}?
                     // Example: What was the first direction in the first non-decoy arrow in The Azure Button?
                     Question = "Какое было {1}-е направление у {2}-й стрелки (не ловушки) {0}?",
+                    Answers = new()
+                    {
+                        ["up"] = "up",
+                        ["up-right"] = "up-right",
+                        ["right"] = "right",
+                        ["down-right"] = "down-right",
+                        ["down"] = "down",
+                        ["down-left"] = "down-left",
+                        ["left"] = "left",
+                        ["up-left"] = "up-left",
+                    },
                 },
                 [SAzureButton.QT] = new()
                 {
@@ -1323,35 +1345,35 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 [SAzureButton.DDecoyArrowDirection] = new()
                 {
                     // English: the Azure Button where the decoy arrow went {0} at some point
-                    // Example: the Azure Button where the decoy arrow went north at some point
+                    // Example: the Azure Button where the decoy arrow went up at some point
                     Discriminator = "the Azure Button where the decoy arrow went {0} at some point",
                     Arguments = new()
                     {
-                        ["north"] = "north",
-                        ["north-east"] = "north-east",
-                        ["east"] = "east",
-                        ["south-east"] = "south-east",
-                        ["south"] = "south",
-                        ["south-west"] = "south-west",
-                        ["west"] = "west",
-                        ["north-west"] = "north-west",
+                        ["up"] = "up",
+                        ["up-right"] = "up-right",
+                        ["right"] = "right",
+                        ["down-right"] = "down-right",
+                        ["down"] = "down",
+                        ["down-left"] = "down-left",
+                        ["left"] = "left",
+                        ["up-left"] = "up-left",
                     },
                 },
                 [SAzureButton.DNonDecoyArrowDirection] = new()
                 {
                     // English: the Azure Button where the {1} non-decoy arrow went {0} at some point
-                    // Example: the Azure Button where the first non-decoy arrow went north at some point
+                    // Example: the Azure Button where the first non-decoy arrow went up at some point
                     Discriminator = "the Azure Button where the {1} non-decoy arrow went {0} at some point",
                     Arguments = new()
                     {
-                        ["north"] = "north",
-                        ["north-east"] = "north-east",
-                        ["east"] = "east",
-                        ["south-east"] = "south-east",
-                        ["south"] = "south",
-                        ["south-west"] = "south-west",
-                        ["west"] = "west",
-                        ["north-west"] = "north-west",
+                        ["up"] = "up",
+                        ["up-right"] = "up-right",
+                        ["right"] = "right",
+                        ["down-right"] = "down-right",
+                        ["down"] = "down",
+                        ["down-left"] = "down-left",
+                        ["left"] = "left",
+                        ["up-left"] = "up-left",
                     },
                 },
             },
@@ -1724,8 +1746,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Binary
         [typeof(SBinary)] = new()
         {
-            ModuleName = "Двоичных светодиодах",
-            ManualModuleName = "Двоичные светодиоды",
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What word was displayed?"] = "Какое слово было показано?",
@@ -4919,6 +4940,57 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the number on the {1} button in {0}?
                     // Example: What was the number on the first button in Digisibility?
                     Question = "Какое число было на {1}-й кнопке {0}?",
+                },
+            },
+        },
+
+        // Digital Dials
+        [typeof(SDigitalDials)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What numbers were on the display when the dials were in their initial calculated positions?"] = "What numbers were on the display when the dials were in their initial calculated positions?",
+            },
+            Questions = new()
+            {
+                [SDigitalDials.QNumber] = new()
+                {
+                    // English: What number was on the {1} display when the dials were in their initial calculated positions in {0}?
+                    // Example: What number was on the left display when the dials were in their initial calculated positions in Digital Dials?
+                    Question = "What number was on the {1} display when the dials were in their initial calculated positions in {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                    },
+                },
+                [SDigitalDials.QLargeDisplay] = new()
+                {
+                    // English: What number was on the large display in {0}?
+                    Question = "What number was on the large display in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SDigitalDials.DNumber] = new()
+                {
+                    // English: the Digital Dials where {0} was on the {1} display when the dials were in their initial calculated positions
+                    // Example: the Digital Dials where 47 was on the left display when the dials were in their initial calculated positions
+                    Discriminator = "the Digital Dials where {0} was on the {1} display when the dials were in their initial calculated positions",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                    },
+                },
+                [SDigitalDials.DLargeDisplay] = new()
+                {
+                    // English: the Digital Dials where {0} was on the large display
+                    // Example: the Digital Dials where 47 was on the large display
+                    Discriminator = "the Digital Dials where {0} was on the large display",
                 },
             },
         },
@@ -16214,15 +16286,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which colours flashed?"] = "Which colours flashed?",
+                ["Which colours were added in each stage?"] = "Which colours were added in each stage?",
             },
             Questions = new()
             {
                 [SSimonsOnFirst.FlashingColours] = new()
                 {
-                    // English: Which colour flashed {1} in the final sequence in {0}?
-                    // Example: Which colour flashed first in the final sequence in Simon’s On First?
-                    Question = "Which colour flashed {1} in the final sequence in {0}?",
+                    // English: Which colour was added in the {1} stage in {0}?
+                    // Example: Which colour was added in the first stage in Simon’s On First?
+                    Question = "Which colour was added in the {1} stage in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Red",

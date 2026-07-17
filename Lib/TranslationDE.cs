@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace Souvenir;
 
+// (?<!\[)(?<!\[")(?<=")(?!,\s)(?!\] =)[^"]*(?=")
+
 public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
 {
     public sealed class TranslationInfo_de : TranslationInfo<QuestionTranslationInfo>
@@ -1233,12 +1235,34 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: What was the {1} direction in the decoy arrow in {0}?
                     // Example: What was the first direction in the decoy arrow in The Azure Button?
                     Question = "Was war bei {0} die {1}e Richtung im ungenutzten Pfeil?",
+                    Answers = new()
+                    {
+                        ["up"] = "hoch",
+                        ["up-right"] = "hoch-rechts",
+                        ["right"] = "rechts",
+                        ["down-right"] = "runter-rechts",
+                        ["down"] = "runter",
+                        ["down-left"] = "runter-links",
+                        ["left"] = "links",
+                        ["up-left"] = "hoch-links",
+                    },
                 },
                 [SAzureButton.QNonDecoyArrowDirection] = new()
                 {
                     // English: What was the {1} direction in the {2} non-decoy arrow in {0}?
                     // Example: What was the first direction in the first non-decoy arrow in The Azure Button?
                     Question = "Was war bei {0} die {1}e Richtung im {2}en genutzten Pfeil?",
+                    Answers = new()
+                    {
+                        ["up"] = "hoch",
+                        ["up-right"] = "hoch-rechts",
+                        ["right"] = "rechts",
+                        ["down-right"] = "runter-rechts",
+                        ["down"] = "runter",
+                        ["down-left"] = "runter-links",
+                        ["left"] = "links",
+                        ["up-left"] = "hoch-links",
+                    },
                 },
                 [SAzureButton.QT] = new()
                 {
@@ -1272,35 +1296,35 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SAzureButton.DDecoyArrowDirection] = new()
                 {
                     // English: the Azure Button where the decoy arrow went {0} at some point
-                    // Example: the Azure Button where the decoy arrow went north at some point
+                    // Example: the Azure Button where the decoy arrow went up at some point
                     Discriminator = "dem Azurfarbenen Knopf, dessen ungenutzter Pfeil einmal nach {0} ging",
                     Arguments = new()
                     {
-                        ["north"] = "Norden",
-                        ["north-east"] = "Nordosten",
-                        ["east"] = "Osten",
-                        ["south-east"] = "Südosten",
-                        ["south"] = "Süden",
-                        ["south-west"] = "Südwesten",
-                        ["west"] = "Westen",
-                        ["north-west"] = "Nordwesten",
+                        ["up"] = "up",
+                        ["up-right"] = "up-right",
+                        ["right"] = "right",
+                        ["down-right"] = "down-right",
+                        ["down"] = "down",
+                        ["down-left"] = "down-left",
+                        ["left"] = "left",
+                        ["up-left"] = "up-left",
                     },
                 },
                 [SAzureButton.DNonDecoyArrowDirection] = new()
                 {
                     // English: the Azure Button where the {1} non-decoy arrow went {0} at some point
-                    // Example: the Azure Button where the first non-decoy arrow went north at some point
+                    // Example: the Azure Button where the first non-decoy arrow went up at some point
                     Discriminator = "dem Azurfarbenen Knopf, dessen {1}er genutzter Pfeil einmal nach {0} ging",
                     Arguments = new()
                     {
-                        ["north"] = "Norden",
-                        ["north-east"] = "Nordosten",
-                        ["east"] = "Osten",
-                        ["south-east"] = "Südosten",
-                        ["south"] = "Süden",
-                        ["south-west"] = "Südwesten",
-                        ["west"] = "Westen",
-                        ["north-west"] = "Nordwesten",
+                        ["up"] = "up",
+                        ["up-right"] = "up-right",
+                        ["right"] = "right",
+                        ["down-right"] = "down-right",
+                        ["down"] = "down",
+                        ["down-left"] = "down-left",
+                        ["left"] = "left",
+                        ["up-left"] = "up-left",
                     },
                 },
             },
@@ -1671,8 +1695,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Binary
         [typeof(SBinary)] = new()
         {
-            ModuleName = "Binär-LEDs",
-            Gender = Gender.Plural,
+            ModuleName = "Binär",
             ManualQuestions = new()
             {
                 ["What word was displayed?"] = "Welches Wort war auf dem Display?",
@@ -2810,7 +2833,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Caesar Cycle?
-                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SCaesarCycle.DialLabels] = new()
                 {
@@ -4378,7 +4401,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Cryptic Cycle?
-                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SCrypticCycle.DialLabels] = new()
                 {
@@ -4923,6 +4946,57 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Digital Dials
+        [typeof(SDigitalDials)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What numbers were on the display when the dials were in their initial calculated positions?"] = "What numbers were on the display when the dials were in their initial calculated positions?",
+            },
+            Questions = new()
+            {
+                [SDigitalDials.QNumber] = new()
+                {
+                    // English: What number was on the {1} display when the dials were in their initial calculated positions in {0}?
+                    // Example: What number was on the left display when the dials were in their initial calculated positions in Digital Dials?
+                    Question = "What number was on the {1} display when the dials were in their initial calculated positions in {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                    },
+                },
+                [SDigitalDials.QLargeDisplay] = new()
+                {
+                    // English: What number was on the large display in {0}?
+                    Question = "What number was on the large display in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SDigitalDials.DNumber] = new()
+                {
+                    // English: the Digital Dials where {0} was on the {1} display when the dials were in their initial calculated positions
+                    // Example: the Digital Dials where 47 was on the left display when the dials were in their initial calculated positions
+                    Discriminator = "the Digital Dials where {0} was on the {1} display when the dials were in their initial calculated positions",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                    },
+                },
+                [SDigitalDials.DLargeDisplay] = new()
+                {
+                    // English: the Digital Dials where {0} was on the large display
+                    // Example: the Digital Dials where 47 was on the large display
+                    Discriminator = "the Digital Dials where {0} was on the large display",
+                },
+            },
+        },
+
         // Digit String
         [typeof(SDigitString)] = new()
         {
@@ -5171,13 +5245,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the letter of the {1} given nucleotide in {0}?
                     // Example: What was the letter of the first given nucleotide in DNA Mutation?
-                    Question = "What was the letter of the {1} given nucleotide in {0}?",
+                    Question = "Welcher Buchstabe stand bei {0} auf dem {1}en vorgegebenen Nukleotid?",
                 },
                 [SDNAMutation.NucleotideColor] = new()
                 {
                     // English: What was the color of the {1} given nucleotide in {0}?
                     // Example: What was the color of the first given nucleotide in DNA Mutation?
-                    Question = "What was the color of the {1} given nucleotide in {0}?",
+                    Question = "Welche Farbe hatte bei {0} das {1}e vorgegebene Nukleotid?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -5190,7 +5264,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the {1} given DNA strand in {0}?
                     // Example: What was the color of the first given DNA strand in DNA Mutation?
-                    Question = "What was the color of the {1} given DNA strand in {0}?",
+                    Question = "Welche Farbe hatte bei {0} der {1}e vorgegebene DNA-Strang?",
                     Answers = new()
                     {
                         ["Green"] = "Grün",
@@ -7645,7 +7719,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Did {1} flash “YES” in {0}?
                     // Example: Did Red flash “YES” in Guess Who??
-                    Question = "Ist bei {0} “JA” in {1} vorgekommen?",
+                    Question = "Ist bei {0} „YES“ in {1} vorgekommen?",
                     Arguments = new()
                     {
                         ["Red"] = "Rot",
@@ -8007,7 +8081,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Hill Cycle?
-                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SHillCycle.DialLabels] = new()
                 {
@@ -8759,7 +8833,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Jumble Cycle?
-                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SJumbleCycle.DialLabels] = new()
                 {
@@ -13601,7 +13675,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Pigpen Cycle?
-                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SPigpenCycle.DialLabels] = new()
                 {
@@ -13839,7 +13913,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Playfair Cycle?
-                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SPlayfairCycle.DialLabels] = new()
                 {
@@ -16508,18 +16582,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [typeof(SSimonsOnFirst)] = new()
         {
             ModuleName = "Simon Steht Kopf",
-            Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["Which colours flashed?"] = "Welche Farben sind aufgeleuchtet?",
+                ["Which colours were added in each stage?"] = "Welche Farben kamen in welcher Stufe hinzu?",
             },
             Questions = new()
             {
                 [SSimonsOnFirst.FlashingColours] = new()
                 {
-                    // English: Which colour flashed {1} in the final sequence in {0}?
-                    // Example: Which colour flashed first in the final sequence in Simon’s On First?
-                    Question = "Welche Farbe ist bei {0} als {1}e aufgeleuchtet?",
+                    // English: Which colour was added in the {1} stage in {0}?
+                    // Example: Which colour was added in the first stage in Simon’s On First?
+                    Question = "Welche Farbe kam bei {0} in der {1}en Stufe hinzu?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -19089,7 +19162,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which direction was the {1} dial pointing in {0}?
                     // Example: Which direction was the first dial pointing in Ultimate Cycle?
-                    Question = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                    Question = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
                 },
                 [SUltimateCycle.DialLabels] = new()
                 {
@@ -19560,7 +19633,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} color in the sequence on {0}?
                     // Example: What was the first color in the sequence on Updog?
-                    Question = "Was war bei {0} die {1} Farbe in der Farbsequenz?",
+                    Question = "Was war bei {0} die {1}e Farbe in der Farbsequenz?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -19575,7 +19648,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} color in the sequence on {0}?
                     // Example: What was the first color in the sequence on Updog?
-                    Question = "Was war bei {0} die {1} Farbe in der Farbsequenz?",
+                    Question = "Was war bei {0} die {1}e Farbe in der Farbsequenz?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -20582,7 +20655,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: How many {1} wires were there in {0}?
                     // Example: How many red wires were there in Wire Sequence?
-                    Question = "Wie viele {1}e Drähte gab es bei {0}?",
+                    Question = "Wie viele {1} Drähte gab es bei {0}?",
                     Arguments = new()
                     {
                         ["red"] = "roten",
@@ -20597,7 +20670,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Wire Sequence that had {0} {1}
                     // Example: the Wire Sequence that had 1 red wire
-                    Discriminator = "see Drahtfolge mit {0} {1}",
+                    Discriminator = "der Drahtfolge mit {0} {1}",
                     Arguments = new()
                     {
                         ["red wire"] = "roten Draht",
