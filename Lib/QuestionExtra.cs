@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Souvenir;
 
@@ -25,13 +24,13 @@ public class QuestionExtraSprite(Sprite sprite, float spriteRotation) : Question
         souv.QuestionSprite.gameObject.SetActive(true);
 
         return Ut.NewArray<double[]>(
-            [0, 1.1896],
-            [0.0712, 1.258],
-            [0.1476, 1.258],
-            [0.306, 1.3442],
-            [0.443, 1.668],
-            [0.549, 1.668],
-            [0.55, 1.6 - .874 * Sprite.rect.width / Sprite.pixelsPerUnit]);
+            [0, 0.6418705035971224],
+            [0.03841726618705037, 0.6787769784172663],
+            [0.07964028776978418, 0.6787769784172663],
+            [0.16510791366906477, 0.7252877697841729],
+            [0.23902877697841732, 0.9],
+            [0.2962230215827339, 0.9],
+            [0.29676258992805765, 0.85 - 0.47 * Sprite.rect.width / Sprite.pixelsPerUnit]);
     }
 
     public override string ToString() => $"sprite={Sprite.name}{(SpriteRotation != 0 ? $" (rot {SpriteRotation})" : "")}";
@@ -52,14 +51,14 @@ public class QuestionExtraText(string text, Font font, Texture fontTexture) : Qu
         souv.QuestionExtraText.gameObject.SetActive(true);
 
         return Ut.NewArray<double[]>(
-            [0, 1.1896],
-            [0.0712, 1.258],
-            [0.1476, 1.258],
-            [0.306, 1.3442],
-            [0.442, 1.3442],
-            [0.443, 1.568 - (1.668 / .125 * souv.QuestionExtraTextRenderer.bounds.size.x)],
-            [0.8, 1.568 - (1.668 / .125 * souv.QuestionExtraTextRenderer.bounds.size.x)],
-            [0.81, 1.668]);
+            [0, 0.6418705035971224],
+            [0.03841726618705037, 0.6787769784172663],
+            [0.07964028776978418, 0.6787769784172663],
+            [0.16510791366906477, 0.7252877697841729],
+            [0.23848920863309356, 0.7252877697841729],
+            [0.23902877697841732, 0.85 - souv.QuestionExtraTextRenderer.bounds.size.x / souv.SurfaceSizeFactor],
+            [0.4316546762589929, 0.85 - souv.QuestionExtraTextRenderer.bounds.size.x / souv.SurfaceSizeFactor],
+            [0.43705035971223033, 0.9]);
     }
 
     public override string ToString() => $"extra=“{Text}”{(Font == null ? "" : $" ({Font.name})")}";

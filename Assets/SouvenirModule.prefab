@@ -2573,7 +2573,7 @@ Transform:
   m_GameObject: {fileID: 1300581303950132}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.074, y: 0.0101, z: 0.036}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 474250}
   m_RootOrder: 8
@@ -3003,7 +3003,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: edec0bd11fc2be845a7a59acd3a9731d, type: 3}
+  - {fileID: 2100000, guid: a65721da45c2a2c46ac3275b535150ca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4130,7 +4130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShaderNames:
-  - GUI/Text Shader
+  - GUI/KT 3D Text
 --- !u!114 &114000014135153358
 MonoBehaviour:
   m_ObjectHideFlags: 1

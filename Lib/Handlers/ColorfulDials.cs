@@ -12,7 +12,6 @@ public enum SColorfulDials
     QNumber,
 
     [Question("What color was the number on the {1} display when the dials were in their initial calculated configurations in {0}?", ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "magenta", "purple", Arguments = ["left", "middle", "right"], ArgumentGroupSize = 1, TranslateArguments = [true], TranslateAnswers = true)]
-    [AnswerGenerator.Integers(0, 99, "00")]
     QColor,
 
     [Question("What was the {1} digit on the large display in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
@@ -84,19 +83,12 @@ public partial class SouvenirModule
         // Calculate the “initial calculated configurations” of the dials because those are not stored in fields
         var dialAns = Ut.NewArray(3, dial =>
         {
-            Debug.Log($"♦ 1");
             var cardinal = cardinalChart[mainScreen[dial].color][Array.IndexOf(colorStripOrder, mainScreen[dial].color)];
-            Debug.Log($"♦ 2");
             var numTimes = 1 + dialNumColors[dial].Count(v => v == mainScreen[dial].color);
-            Debug.Log($"♦ 3");
             var startRow = colorGrid.IndexOf(row => row.Contains(mainScreen[dial]));
-            Debug.Log($"♦ 4");
             var row = ((startRow + (cardinal.Contains('N') ? -1 : cardinal.Contains('S') ? 1 : 0) * numTimes) % 8 + 8) % 8;
-            Debug.Log($"♦ 5");
             var col = ((Array.IndexOf(colorGrid[startRow], mainScreen[dial]) + (cardinal.Contains('W') ? -1 : cardinal.Contains('E') ? 1 : 0) * numTimes) % 10 + 10) % 10;
-            Debug.Log($"♦ 6");
             var (initialDigit, initialColor) = colorGrid[row][col];
-            Debug.Log($"♦ 7");
             return (number: dialValues[dial][initialColor][initialDigit], color: Array.IndexOf(colorList, dialValColors[dial][initialColor][initialDigit]));
         });
 

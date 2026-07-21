@@ -17,7 +17,7 @@ using Rnd = UnityEngine.Random;
 /// </summary>
 public partial class SouvenirModule : MonoBehaviour
 {
-    private const string _version = "8.8";
+    private const string _version = "9.0";
 
     #region Fields
     public KMBombInfo Bomb;
@@ -244,8 +244,10 @@ public partial class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Souvenir’s own module logic
-    private void Start()
+    private IEnumerator Start()
     {
+        disappear();
+        yield return null;
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
@@ -290,13 +292,13 @@ public partial class SouvenirModule : MonoBehaviour
 
         var origRotation = SurfaceRenderer.transform.rotation;
         SurfaceRenderer.transform.eulerAngles = new Vector3(0, 180, 0);
-        SurfaceSizeFactor = SurfaceRenderer.bounds.size.x / (2 * .834) * .9;
+        SurfaceSizeFactor = SurfaceRenderer.bounds.size.x;
         SurfaceRenderer.transform.rotation = origRotation;
 
         disappear();
         WarningIcon.SetActive(false);
 
-        SetWordWrappedText((_translation?.IntroTexts ?? _intros).PickRandom(), 1.75);
+        SetWordWrappedText((_translation?.IntroTexts ?? _intros).PickRandom(), 0.94);
 
         if (transform.parent != null && !Application.isEditor)
         {
@@ -531,7 +533,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         QuestionBase question = qAttr.IsEntireQuestionSprite
             ? new SpriteQuestion(questionText, SymbolicCoordinatesSprites[0])
-            : new TextQuestion(questionText, qAttr.Layout, questionExtra: null);
+            : new TextQuestion(questionText, qAttr.Layout, questionExtra: questionExtra);
 
         AnswerSet answerSet;
         switch (qAttr.AnswerType)
@@ -737,12 +739,12 @@ public partial class SouvenirModule : MonoBehaviour
 
     private static readonly double[][] _acceptableWidthsWithoutQuestionExtra = Ut.NewArray<double[]>(
         // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
-        [0, 1.1896],
-        [0.0712, 1.258],
-        [0.1476, 1.258],
-        [0.306, 1.3442],
-        [0.3888, 1.4958],
-        [0.443, 1.668]);
+        [0, 0.6418705035971224],
+        [0.03841726618705037, 0.6787769784172663],
+        [0.07964028776978418, 0.6787769784172663],
+        [0.16510791366906477, 0.7252877697841729],
+        [0.20978417266187052, 0.807086330935252],
+        [0.23902877697841732, 0.9]);
 
     public void SetWordWrappedText(string text, double desiredHeightFactor, double[][] acceptableWidths = null)
     {
@@ -1031,12 +1033,22 @@ public partial class SouvenirModule : MonoBehaviour
                         // If this is false, the solve-count discriminator was picked and ‘moduleFormat’ will default to it later
                         if (discrs?.Concat(hAttr.IsBossModule ? [] : [null]).PickRandom() is { } discr && discr.EnumValue.GetDiscriminatorAttribute() is var dAttr)
                         {
-                            moduleFormat = string.Format(
-                                TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText),
-                                (discr.Arguments ?? discr.ArgumentsFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? [])
-                                    .Select<string, object>((arg, ix) => Snip(dAttr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg))
-                                    .ToArray());
-                            questionExtraFromDiscriminator = discr.QuestionExtra?.Uplift(this, dAttr.QuestionExtraType);
+                            var discrFormatString = TranslateDiscriminator(discr.EnumValue, dAttr.DiscriminatorText);
+                            var discrFormatArguments = (discr.Arguments ?? discr.ArgumentsFromQuestion?.Invoke(q.QuestionStump.EnumValue) ?? [])
+                                .Select<string, object>((arg, ix) => Snip(dAttr.TranslateArguments?[ix] == true ? TranslateDiscriminatorArgument(discr.EnumValue, arg) : arg))
+                                .ToArray();
+                            try
+                            {
+                                moduleFormat = string.Format(discrFormatString, discrFormatArguments);
+                                questionExtraFromDiscriminator = discr.QuestionExtra?.Uplift(this, dAttr.QuestionExtraType);
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.Log($"‹Souvenir #{_moduleId}› Error in discriminator {discr.EnumValue.GetType()}.{discr.EnumValue} while trying to format: {discrFormatString.Stringify()}, {discrFormatArguments.Stringify()}");
+                                moduleFormat = null;
+                                questionExtraFromDiscriminator = null;
+                                _showWarning = true;
+                            }
                         }
                     }
 
