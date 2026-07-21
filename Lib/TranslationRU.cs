@@ -15377,6 +15377,115 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Scalar Dials
+        [typeof(SScalarDials)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the notes on the displays and their colors when the dials were in their initial calculated positions?"] = "What were the notes on the displays and their colors when the dials were in their initial calculated positions?",
+                ["What were the notes on the large display?"] = "What were the notes on the large display?",
+                ["Which scales were played by each dial?"] = "Which scales were played by each dial?",
+            },
+            Questions = new()
+            {
+                [SScalarDials.QNote] = new()
+                {
+                    // English: What note was on the {1} display when the dials were in their initial calculated positions in {0}?
+                    // Example: What note was on the left display when the dials were in their initial calculated positions in Scalar Dials?
+                    Question = "What note was on the {1} display when the dials were in their initial calculated positions in {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                    },
+                },
+                [SScalarDials.QColor] = new()
+                {
+                    // English: What color was the {1} display when the dials were in their initial calculated positions in {0}?
+                    // Example: What color was the left display when the dials were in their initial calculated positions in Scalar Dials?
+                    Question = "What color was the {1} display when the dials were in their initial calculated positions in {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                    },
+                    Answers = new()
+                    {
+                        ["White"] = "White",
+                        ["Black"] = "Black",
+                    },
+                },
+                [SScalarDials.QLargeDisplayNote] = new()
+                {
+                    // English: What was the {1} note on the large display in {0}?
+                    // Example: What was the first note on the large display in Scalar Dials?
+                    Question = "What was the {1} note on the large display in {0}?",
+                },
+                [SScalarDials.QScale] = new()
+                {
+                    // English: Which major scale was played by the {1} dial in {0}?
+                    // Example: Which major scale was played by the left dial in Scalar Dials?
+                    Question = "Which major scale was played by the {1} dial in {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SScalarDials.DNote] = new()
+                {
+                    // English: the Scalar Dials where this note was on the {0} display when the dials were in their initial calculated positions (+ extra)
+                    // Example: the Scalar Dials where this note was on the left display when the dials were in their initial calculated positions (+ extra)
+                    Discriminator = "the Scalar Dials where this note was on the {0} display when the dials were in their initial calculated positions",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                    },
+                },
+                [SScalarDials.DColor] = new()
+                {
+                    // English: the Scalar Dials where the {0} display was {1} when the dials were in their initial calculated positions
+                    // Example: the Scalar Dials where the left display was white when the dials were in their initial calculated positions
+                    Discriminator = "the Scalar Dials where the {0} display was {1} when the dials were in their initial calculated positions",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                        ["white"] = "white",
+                        ["black"] = "black",
+                    },
+                },
+                [SScalarDials.DLargeDisplayNote] = new()
+                {
+                    // English: the Scalar Dials where this was the {0} note on the large display (+ extra)
+                    // Example: the Scalar Dials where this was the first note on the large display (+ extra)
+                    Discriminator = "the Scalar Dials where this was the {0} note on the large display",
+                },
+                [SScalarDials.DScale] = new()
+                {
+                    // English: the Scalar Dials whose {1} dial played the {0} major scale
+                    // Example: the Scalar Dials whose left dial played the C major scale
+                    Discriminator = "the Scalar Dials whose {1} dial played the {0} major scale",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["middle"] = "middle",
+                        ["right"] = "right",
+                    },
+                },
+            },
+        },
+
         // Scavenger Hunt
         [typeof(SScavengerHunt)] = new()
         {

@@ -15656,6 +15656,117 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Scalar Dials
+        [typeof(SScalarDials)] = new()
+        {
+            ModuleName = "Tonleiterregler",
+            ModuleNameDative = "Tonleiterreglern",
+            Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the notes on the displays and their colors when the dials were in their initial calculated positions?"] = "Welche Noten waren auf welchem Display und welche Farbe hatte welches Display, während die Regler in der berechneten Anfangsposition waren?",
+                ["What were the notes on the large display?"] = "Welche Noten war auf dem großen Display?",
+                ["Which scales were played by each dial?"] = "Welche Tonleiter wurde von welchem Regler abgespielt?",
+            },
+            Questions = new()
+            {
+                [SScalarDials.QNote] = new()
+                {
+                    // English: What note was on the {1} display when the dials were in their initial calculated positions in {0}?
+                    // Example: What note was on the left display when the dials were in their initial calculated positions in Scalar Dials?
+                    Question = "Welche Note war bei {0} auf dem {1} Display, während die Regler in der berechneten Anfangsposition waren?",
+                    Arguments = new()
+                    {
+                        ["left"] = "linken",
+                        ["middle"] = "mittleren",
+                        ["right"] = "rechten",
+                    },
+                },
+                [SScalarDials.QColor] = new()
+                {
+                    // English: What color was the {1} display when the dials were in their initial calculated positions in {0}?
+                    // Example: What color was the left display when the dials were in their initial calculated positions in Scalar Dials?
+                    Question = "Welche Farbe hatte bei {0} das {1} Display, während die Regler in der berechneten Anfangsposition waren?",
+                    Arguments = new()
+                    {
+                        ["left"] = "linke",
+                        ["middle"] = "mittlere",
+                        ["right"] = "rechte",
+                    },
+                    Answers = new()
+                    {
+                        ["White"] = "Weiß",
+                        ["Black"] = "Schwarz",
+                    },
+                },
+                [SScalarDials.QLargeDisplayNote] = new()
+                {
+                    // English: What was the {1} note on the large display in {0}?
+                    // Example: What was the first note on the large display in Scalar Dials?
+                    Question = "Was war bei {0} die {1}e Note auf dem großen Display?",
+                },
+                [SScalarDials.QScale] = new()
+                {
+                    // English: Which major scale was played by the {1} dial in {0}?
+                    // Example: Which major scale was played by the left dial in Scalar Dials?
+                    Question = "Welche Tonleiter wurde bei {0} vom {1} Regler abgespielt?",
+                    Arguments = new()
+                    {
+                        ["left"] = "linken",
+                        ["middle"] = "mittleren",
+                        ["right"] = "rechten",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SScalarDials.DNote] = new()
+                {
+                    // English: the Scalar Dials where this note was on the {0} display when the dials were in their initial calculated positions (+ extra)
+                    // Example: the Scalar Dials where this note was on the left display when the dials were in their initial calculated positions (+ extra)
+                    Discriminator = "den Tonleiterreglern, bei denen diese Note auf dem {0} Display stand, während die Regler in der berechneten Anfangskonfiguration waren,",
+                    Arguments = new()
+                    {
+                        ["left"] = "linken",
+                        ["middle"] = "mittleren",
+                        ["right"] = "rechten",
+                    },
+                },
+                [SScalarDials.DColor] = new()
+                {
+                    // English: the Scalar Dials where the {0} display was {1} when the dials were in their initial calculated positions
+                    // Example: the Scalar Dials where the left display was white when the dials were in their initial calculated positions
+                    Discriminator = "den Tonleiterreglern, bei denen das {0} Display {1} war, während die Regler in der berechneten Anfangskonfiguration waren,",
+                    Arguments = new()
+                    {
+                        ["left"] = "linke",
+                        ["middle"] = "mittlere",
+                        ["right"] = "rechte",
+                        ["white"] = "weiß",
+                        ["black"] = "schwarz",
+                    },
+                },
+                [SScalarDials.DLargeDisplayNote] = new()
+                {
+                    // English: the Scalar Dials where this was the {0} note on the large display (+ extra)
+                    // Example: the Scalar Dials where this was the first note on the large display (+ extra)
+                    Discriminator = "den Tonleiterreglern, bei denen dies die {0}e Note auf dem großen Display war,",
+                },
+                [SScalarDials.DScale] = new()
+                {
+                    // English: the Scalar Dials whose {1} dial played the {0} major scale
+                    // Example: the Scalar Dials whose left dial played the C major scale
+                    Discriminator = "den Tonleiterreglern, deren {0}er Regler die {1}-Dur-Tonleiter abspielte,",
+                    Arguments = new()
+                    {
+                        ["left"] = "linker",
+                        ["middle"] = "mittlerer",
+                        ["right"] = "rechter",
+                    },
+                },
+            },
+        },
+
         // Scavenger Hunt
         [typeof(SScavengerHunt)] = new()
         {
