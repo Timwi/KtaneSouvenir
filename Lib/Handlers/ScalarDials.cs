@@ -84,7 +84,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var posNames = new[] { "left", "middle", "right" };
-        var colorNames = new[] { "White", "Black" };
 
         // Use only wrong answers with the same clef
         var allAnswers = noteTexts.SelectMany(arr => arr.Select(note => $"{clef}!'{note}!")).ToArray();

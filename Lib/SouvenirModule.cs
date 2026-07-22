@@ -1045,6 +1045,8 @@ public partial class SouvenirModule : MonoBehaviour
                             catch (Exception e)
                             {
                                 Debug.Log($"‹Souvenir #{_moduleId}› Error in discriminator {discr.EnumValue.GetType()}.{discr.EnumValue} while trying to format: {discrFormatString.Stringify()}, {discrFormatArguments.Stringify()}");
+                                Debug.Log($"‹Souvenir #{_moduleId}› {e.Message} ({e.GetType().FullName})");
+                                Debug.Log(e.StackTrace);
                                 moduleFormat = null;
                                 questionExtraFromDiscriminator = null;
                                 _showWarning = true;

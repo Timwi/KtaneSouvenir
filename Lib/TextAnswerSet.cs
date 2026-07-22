@@ -34,13 +34,13 @@ public sealed class TextAnswerSet(string[] answers, int correctIndex, QuestionAt
             var bounds = mesh.GetComponent<Renderer>().bounds.size;
             var fac = _layout switch
             {
-                AnswerLayout.OneColumn2Answers => 1.5 * souvenir.SurfaceSizeFactor,
-                AnswerLayout.OneColumn3Answers => 1.5 * souvenir.SurfaceSizeFactor,
-                AnswerLayout.OneColumn4Answers => 1.5 * souvenir.SurfaceSizeFactor,
-                AnswerLayout.ThreeColumns3Answers => .45 * souvenir.SurfaceSizeFactor,
-                AnswerLayout.ThreeColumns6Answers => .45 * souvenir.SurfaceSizeFactor,
-                AnswerLayout.TwoColumns2Answers => .7 * souvenir.SurfaceSizeFactor,
-                AnswerLayout.TwoColumns4Answers => .7 * souvenir.SurfaceSizeFactor,
+                AnswerLayout.OneColumn2Answers => 0.8 * souvenir.SurfaceSizeFactor,
+                AnswerLayout.OneColumn3Answers => 0.8 * souvenir.SurfaceSizeFactor,
+                AnswerLayout.OneColumn4Answers => 0.8 * souvenir.SurfaceSizeFactor,
+                AnswerLayout.ThreeColumns3Answers => 0.24 * souvenir.SurfaceSizeFactor,
+                AnswerLayout.ThreeColumns6Answers => 0.24 * souvenir.SurfaceSizeFactor,
+                AnswerLayout.TwoColumns2Answers => 0.38 * souvenir.SurfaceSizeFactor,
+                AnswerLayout.TwoColumns4Answers => 0.38 * souvenir.SurfaceSizeFactor,
                 _ => throw new InvalidOperationException("Invalid AnswerLayout.")
             };
             if (bounds.x > fac)
