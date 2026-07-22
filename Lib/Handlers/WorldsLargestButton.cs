@@ -11,11 +11,11 @@ public enum SWorldsLargestButton
     [Question("What color was {0} before it was held for step 1?", ThreeColumns6Answers, "Blue", "Yellow", "Magenta", "Purple", "Cyan", "White", "Gray", "Brown", TranslateAnswers = true)]
     QColorBefore,
 
-    [Question("What color was {0} after it was held for step 1?", ThreeColumns6Answers, "Blue", "Yellow", "Magenta", "Purple", "Cyan", "White", "Gray", "Brown", TranslateAnswers = true)]
-    QColorAfter,
+    [Question("What color was {0} while it was held for step 1?", ThreeColumns6Answers, "Blue", "Yellow", "Magenta", "Purple", "Cyan", "White", "Gray", "Brown", TranslateAnswers = true)]
+    QColorWhile,
 
-    [Question("Which color was among the colors {0} flashed after it was held for step 1?", ThreeColumns6Answers, "Blue", "Yellow", "Magenta", "Purple", "Cyan", "White", "Gray", "Brown", TranslateAnswers = true)]
-    QColorsAfter,
+    [Question("Which color was among the colors {0} flashed while it was held for step 1?", ThreeColumns6Answers, "Blue", "Yellow", "Magenta", "Purple", "Cyan", "White", "Gray", "Brown", TranslateAnswers = true)]
+    QColorsWhile,
 
     [Discriminator("the World’s Largest Button that said “{0}”", Arguments = ["Hold", "Press", "Tap", "Release", "Abort", "Detonate", "Run", "Large", "Button", "Big", "Listen", "Thick", "Literally Blank", "Explode", "Strike", "Solve", " ", "Blank", "Something", "World"], ArgumentGroupSize = 1)]
     DLabel,
@@ -23,17 +23,17 @@ public enum SWorldsLargestButton
     [Discriminator("the World’s Largest Button whose color was {0} before it was held for step 1", Arguments = ["Blue", "Yellow", "Magenta", "Purple", "Cyan", "White", "Gray", "Brown"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DColorBefore,
 
-    [Discriminator("the World’s Largest Button that was {0} after it was held for step 1", Arguments = ["blue", "yellow", "magenta", "purple", "cyan", "white", "gray", "brown"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    DColorAfter,
+    [Discriminator("the World’s Largest Button that was {0} while it was held for step 1", Arguments = ["blue", "yellow", "magenta", "purple", "cyan", "white", "gray", "brown"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    DColorWhile,
 
-    [Discriminator("the World’s Largest Button that flashed {0} after it was held for step 1", Arguments = ["blue", "yellow", "magenta", "purple", "cyan", "white", "gray", "brown"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    DColorsAfter
+    [Discriminator("the World’s Largest Button that flashed {0} while it was held for step 1", Arguments = ["blue", "yellow", "magenta", "purple", "cyan", "white", "gray", "brown"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    DColorsWhile
 }
 
 public partial class SouvenirModule
 {
     [Handler("WorldsLargestButton", "World’s Largest Button", typeof(SWorldsLargestButton), "Timwi", AddThe = true)]
-    [ManualQuestion("What color(s) was the button before and after it was held for step 1?")]
+    [ManualQuestion("What color(s) was the button before and while it was held for step 1?")]
     [ManualQuestion("What label was on the button?")]
     private IEnumerator<SouvenirInstruction> ProcessWorldsLargestButton(ModuleData module)
     {
@@ -95,14 +95,14 @@ public partial class SouvenirModule
         yield return question(SWorldsLargestButton.QColorBefore).AvoidDiscriminators(SWorldsLargestButton.DColorBefore).Answers(colorNames[colorIndex]);
         if (!wasAlertMode && !twoColorsFlash)
         {
-            yield return question(SWorldsLargestButton.QColorAfter).AvoidDiscriminators(SWorldsLargestButton.DColorAfter).Answers(colorNames[newColorIndex]);
-            yield return new Discriminator(SWorldsLargestButton.DColorAfter, $"ca-{newColorIndex}", args: [colorNames[newColorIndex]]);
+            yield return question(SWorldsLargestButton.QColorWhile).AvoidDiscriminators(SWorldsLargestButton.DColorWhile).Answers(colorNames[newColorIndex]);
+            yield return new Discriminator(SWorldsLargestButton.DColorWhile, $"ca-{newColorIndex}", args: [colorNames[newColorIndex]]);
         }
         else if (!wasAlertMode && twoColorsFlash)
         {
-            yield return question(SWorldsLargestButton.QColorsAfter).AvoidDiscriminators(SWorldsLargestButton.DColorsAfter).Answers([colorNames[newColorIndex], colorNames[newColor2Index]]);
-            yield return new Discriminator(SWorldsLargestButton.DColorsAfter, $"ca2-{newColorIndex}", args: [colorNames[newColorIndex].ToLowerInvariant()]);
-            yield return new Discriminator(SWorldsLargestButton.DColorsAfter, $"ca2-{newColor2Index}", args: [colorNames[newColor2Index].ToLowerInvariant()]);
+            yield return question(SWorldsLargestButton.QColorsWhile).AvoidDiscriminators(SWorldsLargestButton.DColorsWhile).Answers([colorNames[newColorIndex], colorNames[newColor2Index]]);
+            yield return new Discriminator(SWorldsLargestButton.DColorsWhile, $"ca2-{newColorIndex}", args: [colorNames[newColorIndex].ToLowerInvariant()]);
+            yield return new Discriminator(SWorldsLargestButton.DColorsWhile, $"ca2-{newColor2Index}", args: [colorNames[newColor2Index].ToLowerInvariant()]);
         }
     }
 }

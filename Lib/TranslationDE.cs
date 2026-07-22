@@ -21035,7 +21035,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What color(s) was the button before and after it was held for step 1?"] = "Welche Farbe(n) hatte die Taste vor und nach dem Gedrückthalten für Schritt 1?",
+                ["What color(s) was the button before and while it was held for step 1?"] = "Welche Farbe(n) hatte die Taste vorm und beim Gedrückthalten für Schritt 1?",
                 ["What label was on the button?"] = "Was stand auf der Taste?",
             },
             Questions = new()
@@ -21048,7 +21048,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SWorldsLargestButton.QColorBefore] = new()
                 {
                     // English: What color was {0} before it was held for step 1?
-                    Question = "Welche Farbe hatte die Taste bei {0} vor dem Gedrückthalten für Schritt 1?",
+                    Question = "Welche Farbe hatte die Taste bei {0} vorm Gedrückthalten für Schritt 1?",
                     Answers = new()
                     {
                         ["Blue"] = "Blau",
@@ -21061,10 +21061,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Brown"] = "Braun",
                     },
                 },
-                [SWorldsLargestButton.QColorAfter] = new()
+                [SWorldsLargestButton.QColorWhile] = new()
                 {
-                    // English: What color was {0} after it was held for step 1?
-                    Question = "Welche Farbe hatte die Taste bei {0} nach dem Gedrückthalten für Schritt 1?",
+                    // English: What color was {0} while it was held for step 1?
+                    Question = "Welche Farbe hatte die Taste bei {0} beim Gedrückthalten für Schritt 1?",
                     Answers = new()
                     {
                         ["Blue"] = "Blau",
@@ -21077,10 +21077,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Brown"] = "Braun",
                     },
                 },
-                [SWorldsLargestButton.QColorsAfter] = new()
+                [SWorldsLargestButton.QColorsWhile] = new()
                 {
-                    // English: Which color was among the colors {0} flashed after it was held for step 1?
-                    Question = "Welche Farbe leuchtete bei {0} nach dem Gedrückthalten für Schritt 1 auf?",
+                    // English: Which color was among the colors {0} flashed while it was held for step 1?
+                    Question = "Welche Farbe leuchtete bei {0} beim Gedrückthalten für Schritt 1 auf?",
                     Answers = new()
                     {
                         ["Blue"] = "Blau",
@@ -21106,7 +21106,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the World’s Largest Button whose color was {0} before it was held for step 1
                     // Example: the World’s Largest Button whose color was Blue before it was held for step 1
-                    Discriminator = "der Der Welten Größte Taste, die vor dem Gedrückthalten für Schritt 1 {0} war,",
+                    Discriminator = "der Der Welten Größte Taste, die vorm Gedrückthalten für Schritt 1 {0} war,",
                     Arguments = new()
                     {
                         ["Blue"] = "Blau",
@@ -21119,11 +21119,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Brown"] = "Braun",
                     },
                 },
-                [SWorldsLargestButton.DColorAfter] = new()
+                [SWorldsLargestButton.DColorWhile] = new()
                 {
-                    // English: the World’s Largest Button that was {0} after it was held for step 1
-                    // Example: the World’s Largest Button that was blue after it was held for step 1
-                    Discriminator = "der Der Welten Größte Taste, die nach dem Gedrückthalten für Schritt 1 {0} war,",
+                    // English: the World’s Largest Button that was {0} while it was held for step 1
+                    // Example: the World’s Largest Button that was blue while it was held for step 1
+                    Discriminator = "der Der Welten Größte Taste, die beim Gedrückthalten für Schritt 1 {0} war,",
                     Arguments = new()
                     {
                         ["blue"] = "blau",
@@ -21136,11 +21136,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["brown"] = "braun",
                     },
                 },
-                [SWorldsLargestButton.DColorsAfter] = new()
+                [SWorldsLargestButton.DColorsWhile] = new()
                 {
-                    // English: the World’s Largest Button that flashed {0} after it was held for step 1
-                    // Example: the World’s Largest Button that flashed blue after it was held for step 1
-                    Discriminator = "der Der Welten Größte Taste, die nach dem Gedrückthalten für Schritt 1 u.a. {0} aufleuchtete,",
+                    // English: the World’s Largest Button that flashed {0} while it was held for step 1
+                    // Example: the World’s Largest Button that flashed blue while it was held for step 1
+                    Discriminator = "der Der Welten Größte Taste, die beim Gedrückthalten für Schritt 1 u.a. {0} aufleuchtete,",
                     Arguments = new()
                     {
                         ["blue"] = "blau",

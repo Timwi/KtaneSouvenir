@@ -20666,7 +20666,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What color(s) was the button before and after it was held for step 1?"] = "What color(s) was the button before and after it was held for step 1?",
+                ["What color(s) was the button before and while it was held for step 1?"] = "What color(s) was the button before and while it was held for step 1?",
                 ["What label was on the button?"] = "What label was on the button?",
             },
             Questions = new()
@@ -20692,9 +20692,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Brown"] = "Brown",
                     },
                 },
-                [SWorldsLargestButton.QColorAfter] = new()
+                [SWorldsLargestButton.QColorWhile] = new()
                 {
-                    // English: What color was {0} after it was held for step 1?
+                    // English: What color was {0} while it was held for step 1?
                     Question = "What color was {0} after it was held for step 1?",
                     Answers = new()
                     {
@@ -20708,9 +20708,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Brown"] = "Brown",
                     },
                 },
-                [SWorldsLargestButton.QColorsAfter] = new()
+                [SWorldsLargestButton.QColorsWhile] = new()
                 {
-                    // English: Which color was among the colors {0} flashed after it was held for step 1?
+                    // English: Which color was among the colors {0} flashed while it was held for step 1?
                     Question = "Which color was among the colors {0} flashed after it was held for step 1?",
                     Answers = new()
                     {
@@ -20750,10 +20750,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Brown"] = "Brown",
                     },
                 },
-                [SWorldsLargestButton.DColorAfter] = new()
+                [SWorldsLargestButton.DColorWhile] = new()
                 {
-                    // English: the World’s Largest Button that was {0} after it was held for step 1
-                    // Example: the World’s Largest Button that was blue after it was held for step 1
+                    // English: the World’s Largest Button that was {0} while it was held for step 1
+                    // Example: the World’s Largest Button that was blue while it was held for step 1
                     Discriminator = "the World’s Largest Button that was {0} after it was held for step 1",
                     Arguments = new()
                     {
@@ -20767,10 +20767,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["brown"] = "brown",
                     },
                 },
-                [SWorldsLargestButton.DColorsAfter] = new()
+                [SWorldsLargestButton.DColorsWhile] = new()
                 {
-                    // English: the World’s Largest Button that flashed {0} after it was held for step 1
-                    // Example: the World’s Largest Button that flashed blue after it was held for step 1
+                    // English: the World’s Largest Button that flashed {0} while it was held for step 1
+                    // Example: the World’s Largest Button that flashed blue while it was held for step 1
                     Discriminator = "the World’s Largest Button that flashed {0} after it was held for step 1",
                     Arguments = new()
                     {
