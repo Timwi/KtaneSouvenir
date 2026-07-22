@@ -20660,6 +20660,133 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // The World’s Largest Button
+        [typeof(SWorldsLargestButton)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What color(s) was the button before and after it was held for step 1?"] = "What color(s) was the button before and after it was held for step 1?",
+                ["What label was on the button?"] = "What label was on the button?",
+            },
+            Questions = new()
+            {
+                [SWorldsLargestButton.QLabel] = new()
+                {
+                    // English: What label was on {0}?
+                    Question = "What label was on {0}?",
+                },
+                [SWorldsLargestButton.QColorBefore] = new()
+                {
+                    // English: What color was {0} before it was held for step 1?
+                    Question = "What color was {0} before it was held for step 1?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["Purple"] = "Purple",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                        ["Gray"] = "Gray",
+                        ["Brown"] = "Brown",
+                    },
+                },
+                [SWorldsLargestButton.QColorAfter] = new()
+                {
+                    // English: What color was {0} after it was held for step 1?
+                    Question = "What color was {0} after it was held for step 1?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["Purple"] = "Purple",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                        ["Gray"] = "Gray",
+                        ["Brown"] = "Brown",
+                    },
+                },
+                [SWorldsLargestButton.QColorsAfter] = new()
+                {
+                    // English: Which color was among the colors {0} flashed after it was held for step 1?
+                    Question = "Which color was among the colors {0} flashed after it was held for step 1?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["Purple"] = "Purple",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                        ["Gray"] = "Gray",
+                        ["Brown"] = "Brown",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SWorldsLargestButton.DLabel] = new()
+                {
+                    // English: the World’s Largest Button that said “{0}”
+                    // Example: the World’s Largest Button that said “Hold”
+                    Discriminator = "the World’s Largest Button that said “{0}”",
+                },
+                [SWorldsLargestButton.DColorBefore] = new()
+                {
+                    // English: the World’s Largest Button whose color was {0} before it was held for step 1
+                    // Example: the World’s Largest Button whose color was Blue before it was held for step 1
+                    Discriminator = "the World’s Largest Button whose color was {0} before it was held for step 1",
+                    Arguments = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["Purple"] = "Purple",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                        ["Gray"] = "Gray",
+                        ["Brown"] = "Brown",
+                    },
+                },
+                [SWorldsLargestButton.DColorAfter] = new()
+                {
+                    // English: the World’s Largest Button that was {0} after it was held for step 1
+                    // Example: the World’s Largest Button that was blue after it was held for step 1
+                    Discriminator = "the World’s Largest Button that was {0} after it was held for step 1",
+                    Arguments = new()
+                    {
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                        ["magenta"] = "magenta",
+                        ["purple"] = "purple",
+                        ["cyan"] = "cyan",
+                        ["white"] = "white",
+                        ["gray"] = "gray",
+                        ["brown"] = "brown",
+                    },
+                },
+                [SWorldsLargestButton.DColorsAfter] = new()
+                {
+                    // English: the World’s Largest Button that flashed {0} after it was held for step 1
+                    // Example: the World’s Largest Button that flashed blue after it was held for step 1
+                    Discriminator = "the World’s Largest Button that flashed {0} after it was held for step 1",
+                    Arguments = new()
+                    {
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                        ["magenta"] = "magenta",
+                        ["purple"] = "purple",
+                        ["cyan"] = "cyan",
+                        ["white"] = "white",
+                        ["gray"] = "gray",
+                        ["brown"] = "brown",
+                    },
+                },
+            },
+        },
+
         // Wumbo
         [typeof(SWumbo)] = new()
         {

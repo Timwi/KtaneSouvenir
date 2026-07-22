@@ -21027,6 +21027,135 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // The World’s Largest Button
+        [typeof(SWorldsLargestButton)] = new()
+        {
+            ModuleName = "Der Welten Größter Taste",
+            ModuleNameDative = "Der Welten Größte Taste",
+            Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What color(s) was the button before and after it was held for step 1?"] = "Welche Farbe(n) hatte die Taste vor und nach dem Gedrückthalten für Schritt 1?",
+                ["What label was on the button?"] = "Was stand auf der Taste?",
+            },
+            Questions = new()
+            {
+                [SWorldsLargestButton.QLabel] = new()
+                {
+                    // English: What label was on {0}?
+                    Question = "Was stand auf der Taste bei {0}?",
+                },
+                [SWorldsLargestButton.QColorBefore] = new()
+                {
+                    // English: What color was {0} before it was held for step 1?
+                    Question = "Welche Farbe hatte die Taste bei {0} vor dem Gedrückthalten für Schritt 1?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Rosa",
+                        ["Purple"] = "Lila",
+                        ["Cyan"] = "Türkis",
+                        ["White"] = "Weiß",
+                        ["Gray"] = "Grau",
+                        ["Brown"] = "Braun",
+                    },
+                },
+                [SWorldsLargestButton.QColorAfter] = new()
+                {
+                    // English: What color was {0} after it was held for step 1?
+                    Question = "Welche Farbe hatte die Taste bei {0} nach dem Gedrückthalten für Schritt 1?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Rosa",
+                        ["Purple"] = "Lila",
+                        ["Cyan"] = "Türkis",
+                        ["White"] = "Weiß",
+                        ["Gray"] = "Grau",
+                        ["Brown"] = "Braun",
+                    },
+                },
+                [SWorldsLargestButton.QColorsAfter] = new()
+                {
+                    // English: Which color was among the colors {0} flashed after it was held for step 1?
+                    Question = "Welche Farbe leuchtete bei {0} nach dem Gedrückthalten für Schritt 1 auf?",
+                    Answers = new()
+                    {
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Rosa",
+                        ["Purple"] = "Lila",
+                        ["Cyan"] = "Türkis",
+                        ["White"] = "Weiß",
+                        ["Gray"] = "Grau",
+                        ["Brown"] = "Braun",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SWorldsLargestButton.DLabel] = new()
+                {
+                    // English: the World’s Largest Button that said “{0}”
+                    // Example: the World’s Largest Button that said “Hold”
+                    Discriminator = "der Der Welten Größte Taste, auf der “{0}” stand,",
+                },
+                [SWorldsLargestButton.DColorBefore] = new()
+                {
+                    // English: the World’s Largest Button whose color was {0} before it was held for step 1
+                    // Example: the World’s Largest Button whose color was Blue before it was held for step 1
+                    Discriminator = "der Der Welten Größte Taste, die vor dem Gedrückthalten für Schritt 1 {0} war,",
+                    Arguments = new()
+                    {
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Rosa",
+                        ["Purple"] = "Lila",
+                        ["Cyan"] = "Türkis",
+                        ["White"] = "Weiß",
+                        ["Gray"] = "Grau",
+                        ["Brown"] = "Braun",
+                    },
+                },
+                [SWorldsLargestButton.DColorAfter] = new()
+                {
+                    // English: the World’s Largest Button that was {0} after it was held for step 1
+                    // Example: the World’s Largest Button that was blue after it was held for step 1
+                    Discriminator = "der Der Welten Größte Taste, die nach dem Gedrückthalten für Schritt 1 {0} war,",
+                    Arguments = new()
+                    {
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
+                        ["magenta"] = "rosa",
+                        ["purple"] = "lila",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
+                        ["gray"] = "grau",
+                        ["brown"] = "braun",
+                    },
+                },
+                [SWorldsLargestButton.DColorsAfter] = new()
+                {
+                    // English: the World’s Largest Button that flashed {0} after it was held for step 1
+                    // Example: the World’s Largest Button that flashed blue after it was held for step 1
+                    Discriminator = "der Der Welten Größte Taste, die nach dem Gedrückthalten für Schritt 1 u.a. {0} aufleuchtete,",
+                    Arguments = new()
+                    {
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
+                        ["magenta"] = "rosa",
+                        ["purple"] = "lila",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
+                        ["gray"] = "grau",
+                        ["brown"] = "braun",
+                    },
+                },
+            },
+        },
+
         // Wumbo
         [typeof(SWumbo)] = new()
         {

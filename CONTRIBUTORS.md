@@ -3,7 +3,7 @@
 The following is a list of modules supported by Souvenir, and the fine people who have contributed their effort to make it happen:
 
 
-## Implemented by Timwi (154)
+## Implemented by Timwi (155)
 
     3D Maze              │  Colorful Dials        │  Jumble Cycle             │  Orientation Cube       │  Simon Sounds
     3D Tunnels           │  Coordinates           │  Klaxon, The              │  Partial Derivatives    │  Simon Speaks
@@ -31,11 +31,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cheat Checkout       │  Glitched Button, The  │  Murder                   │  Silly Slots            │  Vcrcs
     Chess                │  Gray Button, The      │  Mystery Module           │  Silo Authorization     │  Visual Impairment
     Chord Qualities      │  Green Button, The     │  Navinums                 │  Simon Samples          │  Wire, The
-    Color Braille        │  Hexamaze              │  Navy Button, The         │  Simon Screams          │  Yahtzee
-    Color Decoding       │  Hill Cycle            │  Neutralization           │  Simon Shouts           │  Yellow Button, The
-    Color Morse          │  Human Resources       │  Not X-Ray                │  Simon Shrieks          │  Yellow Huffman Cipher
-    Colored Squares      │  Identity Parade       │  Object Shows             │  Simon Signals          │  Zero, Zero
-    Colored Switches     │  IPA                   │  Only Connect             │  Simon Sings            │
+    Color Braille        │  Hexamaze              │  Navy Button, The         │  Simon Screams          │  World’s Largest Button, The
+    Color Decoding       │  Hill Cycle            │  Neutralization           │  Simon Shouts           │  Yahtzee
+    Color Morse          │  Human Resources       │  Not X-Ray                │  Simon Shrieks          │  Yellow Button, The
+    Colored Squares      │  Identity Parade       │  Object Shows             │  Simon Signals          │  Yellow Huffman Cipher
+    Colored Switches     │  IPA                   │  Only Connect             │  Simon Sings            │  Zero, Zero
 
 ## Implemented by Anonymous (101)
 
