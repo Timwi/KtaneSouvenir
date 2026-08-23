@@ -15161,6 +15161,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // RGB Sequences
         [typeof(SRGBSequences)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "RGB-Folgen",
             Gender = Gender.Plural,
             ManualQuestions = new()
@@ -15171,9 +15172,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SRGBSequences.Display] = new()
                 {
-                    // English: What was the color of the {1} LED in {0}?
-                    // Example: What was the color of the first LED in RGB Sequences?
-                    Question = "Welche Farbe hatte bei {0} die {1}e LED?",
+                    // English: What color was the LED at index {1} in {0}?
+                    // Example: What color was the LED at index 0 in RGB Sequences?
+                    Question = "What color was the LED at index {1} in {0}?",
                     Answers = new()
                     {
                         ["Black"] = "Schwarz",

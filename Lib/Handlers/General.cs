@@ -206,6 +206,43 @@ public partial class SouvenirModule
                     .AvoidDiscriminators($"{page}-{screen}")
                     .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(["1-2", "1-6"])));
 
+            // Blue Cipher, Page 1, Screen 2: only digits 1-3
+            else if (question.Equals(SBlueCipher.QScreen) && page == 0 && screen == 1)
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings("6*1-3")));
+
+            // Blue Cipher, Page 1, Screen 3: only digits 1-9
+            else if (question.Equals(SBlueCipher.QScreen) && page == 0 && screen == 2)
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings("6*1-9")));
+
+            // White Cipher, Page 1, Screen 2: only digits 0-8
+            else if (question.Equals(SWhiteCipher.QScreen) && page == 0 && screen == 1)
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, '0', '8')));
+
+            // Yellow Cipher, Page 1, Screens 2-3 and Page 2, Screen 1: only digits 1-8
+            else if (question.Equals(SYellowCipher.QScreen) && ((page == 0 && screen == 1) || (page == 0 && screen == 2) || (page == 1 && screen == 0)))
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
+                    .Answers(text, preferredWrong: generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, '1', '8')));
+
+            // Gray Cipher, Page 1, Screen 3: Digits 1–2, 1-3, 1–4 1–5, or 1-6 in some order
+            else if (question.Equals(SGrayCipher.QScreen) && page == 0 && screen == 2)
+                yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])
+                    .AvoidDiscriminators($"{page}-{screen}")
+                    .Answers(text, preferredWrong: generateWrongAnswersFnc(text, () => Rnd.Range(0, 5) switch
+                    {
+                        0 => "12".ToCharArray().Shuffle().JoinString(),
+                        1 => "123".ToCharArray().Shuffle().JoinString(),
+                        2 => "1234".ToCharArray().Shuffle().JoinString(),
+                        3 => "12345".ToCharArray().Shuffle().JoinString(),
+                        _ => "123456".ToCharArray().Shuffle().JoinString()
+                    }));
+
             // Yellow Cipher special case: 8-5-7-20
             else if (Regex.IsMatch(text, @"^\d+-\d+-\d+-\d+$"))
                 yield return this.question(question, args: [screenNames[screen], (page + 1).ToString()])

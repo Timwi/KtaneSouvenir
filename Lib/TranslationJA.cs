@@ -14731,6 +14731,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // RGB Sequences
         [typeof(SRGBSequences)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "RGBシークエンス",
             ManualQuestions = new()
             {
@@ -14740,9 +14741,9 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SRGBSequences.Display] = new()
                 {
-                    // English: What was the color of the {1} LED in {0}?
-                    // Example: What was the color of the first LED in RGB Sequences?
-                    Question = "{0}の{1}番目のLEDの色は？",
+                    // English: What color was the LED at index {1} in {0}?
+                    // Example: What color was the LED at index 0 in RGB Sequences?
+                    Question = "What color was the LED at index {1} in {0}?",
                     Answers = new()
                     {
                         ["Black"] = "黒",

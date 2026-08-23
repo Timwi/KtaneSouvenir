@@ -14907,9 +14907,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SRGBSequences.Display] = new()
                 {
-                    // English: What was the color of the {1} LED in {0}?
-                    // Example: What was the color of the first LED in RGB Sequences?
-                    Question = "Какой был цвет {1}-го светодиода {0}?",
+                    // English: What color was the LED at index {1} in {0}?
+                    // Example: What color was the LED at index 0 in RGB Sequences?
+                    Question = "What color was the LED at index {1} in {0}?",
                     Answers = new()
                     {
                         ["Black"] = "Black",
