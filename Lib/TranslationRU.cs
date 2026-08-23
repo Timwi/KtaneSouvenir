@@ -10309,24 +10309,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // Mashematics
-        [typeof(SMashematics)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["What were the numbers in the equation?"] = "Какие числа были в уравнении?",
-            },
-            Questions = new()
-            {
-                [SMashematics.Calculation] = new()
-                {
-                    // English: What was the {1} number in the equation on {0}?
-                    // Example: What was the first number in the equation on Mashematics?
-                    Question = "Какое было {1}-е число в уравнении {0}?",
-                },
-            },
-        },
-
         // Master Tapes
         [typeof(SMasterTapes)] = new()
         {
@@ -15117,24 +15099,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
-        // The Rule
-        [typeof(SRule)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What was the rule number?"] = "What was the rule number?",
-            },
-            Questions = new()
-            {
-                [SRule.Number] = new()
-                {
-                    // English: What was the rule number in {0}?
-                    Question = "Какой был номер правила {0}?",
-                },
-            },
-        },
-
         // Rule of Three
         [typeof(SRuleOfThree)] = new()
         {
@@ -17268,24 +17232,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: Smash, Marry, Kill
                     Discriminator = "Smash, Marry, Kill",
-                },
-            },
-        },
-
-        // Snooker
-        [typeof(SSnooker)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["How many reds were there initially?"] = "Сколько изначально было красных шаров?",
-            },
-            Questions = new()
-            {
-                [SSnooker.Reds] = new()
-                {
-                    // English: How many red balls were there at the start of {0}?
-                    Question = "Сколько красных шаров было в начале {0}?",
-                    Conjugation = Conjugation.GenitiveMascNeuter,
                 },
             },
         },

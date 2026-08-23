@@ -142,12 +142,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Shapes          │  USA Cycle
     Forget Me      │  Math ’em              │  Not Word Search  │  Stupid Slots          │
 
-## Implemented by TasThiluna (20)
+## Implemented by TasThiluna (18)
 
-    3D Tap Code         │  Encryption Bingo       │  M&Ms              │  More Code       │  Simon’s Star
-    Bakery              │  Hidden Colors          │  M&Ns              │  Ordered Keys    │  Small Circle
-    Bamboozling Button  │  Identification Crisis  │  Mister Softee     │  Rainbow Arrows  │  Snooker
-    Chinese Counting    │  LED Math               │  Module Listening  │  Rule, The       │  Tenpins
+    3D Tap Code         │  Encryption Bingo       │  M&Ms              │  More Code       │  Small Circle
+    Bakery              │  Hidden Colors          │  M&Ns              │  Ordered Keys    │  Tenpins
+    Bamboozling Button  │  Identification Crisis  │  Mister Softee     │  Rainbow Arrows  │
+    Chinese Counting    │  LED Math               │  Module Listening  │  Simon’s Star    │
 
 ## Implemented by kavinkul (14)
 
@@ -186,15 +186,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Alfa-Bravo    │  Character Codes      │  Eight          │  Stability
     Binary Shift  │  Colors Maximization  │  Space Traders  │  Sysadmin
 
-## Implemented by Marksam (7)
+## Implemented by Marksam (6)
 
-    Brown Cipher                │  Great Void, The  │  Mashematics  │  Wolf, Goat, and Cabbage
-    Forget’s Ultimate Showdown  │  Lombax Cubes     │  UltraStores  │
+    Brown Cipher                │  Great Void, The  │  UltraStores
+    Forget’s Ultimate Showdown  │  Lombax Cubes     │  Wolf, Goat, and Cabbage
 
-## Implemented by thunder725 (7)
+## Implemented by thunder725 (6)
 
-    DNA Mutation   │  Lime Arrows           │  Scorching Alchemist  │  UFO Satellites
-    Giants Cipher  │  Noise Identification  │  Toxic Crystals       │
+    DNA Mutation   │  Lime Arrows          │  Toxic Crystals
+    Giants Cipher  │  Scorching Alchemist  │  UFO Satellites
 
 ## Others
 

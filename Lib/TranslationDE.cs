@@ -10459,26 +10459,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // Mashematics
-        [typeof(SMashematics)] = new()
-        {
-            ModuleName = "Mathe-Marterei",
-            Gender = Gender.Feminine,
-            ManualQuestions = new()
-            {
-                ["What were the numbers in the equation?"] = "Welche Zahlen kamen in der Rechenaufgabe vor?",
-            },
-            Questions = new()
-            {
-                [SMashematics.Calculation] = new()
-                {
-                    // English: What was the {1} number in the equation on {0}?
-                    // Example: What was the first number in the equation on Mashematics?
-                    Question = "Was war bei {0} die {1}e Zahl in der Gleichung?",
-                },
-            },
-        },
-
         // Master Tapes
         [typeof(SMasterTapes)] = new()
         {
@@ -15386,27 +15366,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
-        // The Rule
-        [typeof(SRule)] = new()
-        {
-            ModuleName = "Die Regel",
-            ModuleNameDative = "Regel",
-            Gender = Gender.Feminine,
-            ManualModuleName = "Die\uE001Regel",
-            ManualQuestions = new()
-            {
-                ["What was the rule number?"] = "Welche Nummer hatte die Regel?",
-            },
-            Questions = new()
-            {
-                [SRule.Number] = new()
-                {
-                    // English: What was the rule number in {0}?
-                    Question = "Was war bei {0} die Regelnummer?",
-                },
-            },
-        },
-
         // Rule of Three
         [typeof(SRuleOfThree)] = new()
         {
@@ -17578,23 +17537,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Smash, Marry, Kill
                     Discriminator = "Smash, Marry, Kill",
-                },
-            },
-        },
-
-        // Snooker
-        [typeof(SSnooker)] = new()
-        {
-            ManualQuestions = new()
-            {
-                ["How many reds were there initially?"] = "Wie viele Roten gab es am Anfang?",
-            },
-            Questions = new()
-            {
-                [SSnooker.Reds] = new()
-                {
-                    // English: How many red balls were there at the start of {0}?
-                    Question = "Wie viele rote Kugeln waren bei {0} am Anfang auf dem Tisch?",
                 },
             },
         },

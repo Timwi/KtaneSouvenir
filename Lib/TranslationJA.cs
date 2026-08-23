@@ -10157,25 +10157,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // Mashematics
-        [typeof(SMashematics)] = new()
-        {
-            ModuleName = "連打算数",
-            ManualQuestions = new()
-            {
-                ["What were the numbers in the equation?"] = "方程式内の数字は？",
-            },
-            Questions = new()
-            {
-                [SMashematics.Calculation] = new()
-                {
-                    // English: What was the {1} number in the equation on {0}?
-                    // Example: What was the first number in the equation on Mashematics?
-                    Question = "{0}の方程式にあった{1}番目の数字は？",
-                },
-            },
-        },
-
         // Master Tapes
         [typeof(SMasterTapes)] = new()
         {
@@ -14951,24 +14932,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
-        // The Rule
-        [typeof(SRule)] = new()
-        {
-            ModuleName = "ザ・ルール",
-            ManualQuestions = new()
-            {
-                ["What was the rule number?"] = "ルール値は？",
-            },
-            Questions = new()
-            {
-                [SRule.Number] = new()
-                {
-                    // English: What was the rule number in {0}?
-                    Question = "{0}のルール番号は？",
-                },
-            },
-        },
-
         // Rule of Three
         [typeof(SRuleOfThree)] = new()
         {
@@ -17109,24 +17072,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: Smash, Marry, Kill
                     Discriminator = "SMASH・MARRY・KILL",
-                },
-            },
-        },
-
-        // Snooker
-        [typeof(SSnooker)] = new()
-        {
-            ModuleName = "スヌーカー",
-            ManualQuestions = new()
-            {
-                ["How many reds were there initially?"] = "最初に赤いボールはいくつあった？",
-            },
-            Questions = new()
-            {
-                [SSnooker.Reds] = new()
-                {
-                    // English: How many red balls were there at the start of {0}?
-                    Question = "{0}の開始時点での赤いボールの数は？",
                 },
             },
         },
