@@ -6707,9 +6707,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Blue"] = "синий",
                         ["Purple"] = "фиолетовый",
                         ["White"] = "белый",
-                        ["L"] = "Л",
-                        ["M"] = "Ц",
-                        ["R"] = "П",
                     },
                 },
                 [SForgetAnyColor.QGearColor] = new()

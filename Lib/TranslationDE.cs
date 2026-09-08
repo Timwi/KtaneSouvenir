@@ -6772,9 +6772,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Blue"] = "Blau",
                         ["Purple"] = "Lila",
                         ["White"] = "Weiß",
-                        ["L"] = "L",
-                        ["M"] = "M",
-                        ["R"] = "R",
                     },
                 },
                 [SForgetAnyColor.QGearColor] = new()
