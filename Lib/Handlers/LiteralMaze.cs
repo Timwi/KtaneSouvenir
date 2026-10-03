@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SLiteralMaze
 {
-    [Question("Which letter was in this position in {0}?", ThreeColumns6Answers)]
+    [Question("Which letter was in this position in {0}?", ThreeColumns6Answers, QuestionExtraType = InfoType.Sprites)]
     [AnswerGenerator.Strings('A', 'Z')]
     Letter
 }

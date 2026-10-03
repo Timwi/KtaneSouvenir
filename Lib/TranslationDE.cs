@@ -9957,7 +9957,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SLiteralMaze.Letter] = new()
                 {
-                    // English: Which letter was in this position in {0}?
+                    // English: Which letter was in this position in {0}? (+ extra)
                     Question = "Welcher Buchstabe war bei {0} an dieser Stelle?",
                 },
             },

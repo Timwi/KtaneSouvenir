@@ -9819,7 +9819,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SLiteralMaze.Letter] = new()
                 {
-                    // English: Which letter was in this position in {0}?
+                    // English: Which letter was in this position in {0}? (+ extra)
                     Question = "Which letter was in this position in {0}?",
                 },
             },

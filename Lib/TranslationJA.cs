@@ -9670,7 +9670,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SLiteralMaze.Letter] = new()
                 {
-                    // English: Which letter was in this position in {0}?
+                    // English: Which letter was in this position in {0}? (+ extra)
                     Question = "{0}のこの位置にあった英字は？",
                 },
             },
