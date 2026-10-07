@@ -27,10 +27,10 @@ public partial class SouvenirModule
 
         var morseToNumber = new Dictionary<string, string>()
         {
-            ["....-"] = "1",
-            ["...--"] = "2",
-            ["..---"] = "3",
-            [".----"] = "4",
+            ["....-"] = "4",
+            ["...--"] = "3",
+            ["..---"] = "2",
+            [".----"] = "1",
         };
 
         for (var i = 0; i < 5; i++)
