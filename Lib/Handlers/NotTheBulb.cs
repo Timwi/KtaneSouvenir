@@ -20,6 +20,8 @@ public partial class SouvenirModule
 {
     [Handler("notTheBulb", "Not The Bulb", typeof(SNotTheBulb), "Quinn Wuest")]
     [ManualQuestion("What was the transmitted word?")]
+    [ManualQuestion("What color was the bulb?")]
+    [ManualQuestion("What was the screw cap's material?")]
     private IEnumerator<SouvenirInstruction> ProcessNotTheBulb(ModuleData module)
     {
         var comp = GetComponent(module, "NtBScript");
