@@ -217,6 +217,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Inner Connections        │  Brawlboxgaming
     Interpunct               │  Eltrick
     Linq                     │  Emik
+    Listening Piano Keys     │  MykiiVT
     Long Words               │  GoodHood
     Mahjong                  │  River
     Main Page                │  ObjectsCountries

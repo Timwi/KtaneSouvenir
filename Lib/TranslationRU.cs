@@ -9804,6 +9804,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Listening Piano Keys
+        [typeof(SListeningPianoKeys)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the correctly submitted tune?"] = "What was the correctly submitted tune?",
+            },
+            Questions = new()
+            {
+                [SListeningPianoKeys.Sound] = new()
+                {
+                    // English: What was the correctly submitted tune in {0}?
+                    Question = "What was the correctly submitted tune in {0}?",
+                },
+            },
+        },
+
         // Literal Maze
         [typeof(SLiteralMaze)] = new()
         {
