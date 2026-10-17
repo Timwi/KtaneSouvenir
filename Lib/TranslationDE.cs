@@ -9944,17 +9944,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Listening Piano Keys
         [typeof(SListeningPianoKeys)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Klavier-Zuhören",
             ManualQuestions = new()
             {
-                ["What was the correctly submitted tune?"] = "What was the correctly submitted tune?",
+                ["What was the correctly submitted tune?"] = "Welche Melodie wurde korrekt gespielt?",
             },
             Questions = new()
             {
                 [SListeningPianoKeys.Sound] = new()
                 {
                     // English: What was the correctly submitted tune in {0}?
-                    Question = "What was the correctly submitted tune in {0}?",
+                    Question = "Welche Melodie wurde bei {0} korrekt gespielt?",
                 },
             },
         },
@@ -12610,6 +12610,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What was the transmitted word?"] = "Welches Wort wurde übermittelt?",
+                ["What color was the bulb?"] = "Welche Farbe hatte die Glühlampe?",
+                ["What was the screw cap’s material?"] = "Welches Material hatte der Schraubsockel?",
             },
             Questions = new()
             {
@@ -12635,7 +12637,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SNotTheBulb.ScrewCap] = new()
                 {
                     // English: What was the material of the screw cap on {0}?
-                    Question = "Welches Material hatte der Schraubverschluss bei {0}?",
+                    Question = "Welches Material hatte der Schraubsockel bei {0}?",
                     Answers = new()
                     {
                         ["Copper"] = "Kupfer",

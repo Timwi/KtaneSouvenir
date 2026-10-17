@@ -12416,9 +12416,12 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Not The Bulb
         [typeof(SNotTheBulb)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was the transmitted word?"] = "Какое слово было передано модулем?",
+                ["What color was the bulb?"] = "What color was the bulb?",
+                ["What was the screw cap’s material?"] = "What was the screw cap’s material?",
             },
             Questions = new()
             {

@@ -12260,10 +12260,13 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Not The Bulb
         [typeof(SNotTheBulb)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "偽電球",
             ManualQuestions = new()
             {
                 ["What was the transmitted word?"] = "送信された単語は？",
+                ["What color was the bulb?"] = "What color was the bulb?",
+                ["What was the screw cap’s material?"] = "What was the screw cap’s material?",
             },
             Questions = new()
             {
