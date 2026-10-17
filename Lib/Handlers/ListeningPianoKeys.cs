@@ -18,27 +18,21 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "listeningPianoScript");
         var noteSounds = GetArrayField<AudioClip>(comp, "PianoSounds", true).Get(expectedLength: 12);
-        
+
         yield return WaitForSolve;
-        
+
         var answers = GetArrayField<int[]>(comp, "SouvenirList", true).Get();
-        AudioClip[] clips = new AudioClip[6];
-        float delay;
-        List<Sounds.AudioPosition> inputList = new List<Sounds.AudioPosition>();
+        var namesList = GetArrayField<string>(comp, "SouvenirNamesList", true).Get();
+        var moduleId = GetField<int>(comp, "moduleId", true).Get();
+        var clips = new AudioClip[6];
 
-        for (int i = 0; i < 6; i++)
+        for (var i = 0; i < 6; i++)
         {
-            delay = 60f / answers[i][0];
-            inputList = new List<Sounds.AudioPosition>();
-
-            for(int j = 1; j < answers[i].Length; j++)
-            {
+            var inputList = new List<Sounds.AudioPosition>();
+            for (var j = 1; j < answers[i].Length; j++)
                 if (answers[i][j] != -1)
-                {
-                    inputList.Add(new Sounds.AudioPosition((noteSounds[answers[i][j]]), ((j) * delay)));
-                }
-            }
-            clips[i] = Sounds.Combine($"{GetArrayField<string>(comp, "SouvenirNamesList", true).Get()[i]}_{GetField<int>(comp, "moduleId", true).Get()}", inputList.ToArray());
+                    inputList.Add(new Sounds.AudioPosition(noteSounds[answers[i][j]], j * (60f / answers[i][0])));
+            clips[i] = Sounds.Combine($"{namesList[i]}_{moduleId}", inputList.ToArray());
         }
         yield return question(SListeningPianoKeys.Sound).Answers(clips[0], all: clips);
     }
