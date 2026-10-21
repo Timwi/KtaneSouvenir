@@ -238,5 +238,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Shapes And Bombs         │  KingSlendy
     Simon Sends              │  EternityShack
     Simon Stops              │  JerryEris
+    Tau                      │  Infusion
     Wavetapping              │  KingSlendy
 

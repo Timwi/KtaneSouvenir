@@ -18631,6 +18631,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Tau
+        [typeof(STau)] = new()
+        {
+            ManualQuestions = new()
+            {
+                ["What were the letters shown?"] = "Welche Buchstaben kamen vor?",
+            },
+            Questions = new()
+            {
+                [STau.Letters] = new()
+                {
+                    // English: What was the {1} letter of the display in {0}?
+                    // Example: What was the first letter of the display in Tau?
+                    Question = "Was war bei {0} der {1}e Buchstabe?",
+                },
+            },
+        },
+
         // The Tea Set
         [typeof(STeaSet)] = new()
         {
