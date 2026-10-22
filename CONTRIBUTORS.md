@@ -213,6 +213,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris
     Gryphons                 │  JerryEris
+    Heptabutton, The         │  Infusion
     hexOS                    │  Emik
     Inner Connections        │  Brawlboxgaming
     Interpunct               │  Eltrick

@@ -7902,6 +7902,106 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // The Heptabutton
+        [typeof(SHeptabutton)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the label of the button?"] = "What was the label of the button?",
+                ["What was the color of the button in each stage?"] = "What was the color of the button in each stage?",
+            },
+            Questions = new()
+            {
+                [SHeptabutton.QLabel] = new()
+                {
+                    // English: What was the label of the button in {0}?
+                    Question = "What was the label of the button in {0}?",
+                },
+                [SHeptabutton.QColor] = new()
+                {
+                    // English: What color was the button in the {1} stage of {0}?
+                    // Example: What color was the button in the first stage of The Heptabutton?
+                    Question = "What color was the button in the {1} stage of {0}?",
+                    Answers = new()
+                    {
+                        ["Aqua"] = "Aqua",
+                        ["Azure"] = "Azure",
+                        ["Black"] = "Black",
+                        ["Blue"] = "Blue",
+                        ["Cream"] = "Cream",
+                        ["Cyan"] = "Cyan",
+                        ["Forest"] = "Forest",
+                        ["Gray"] = "Gray",
+                        ["Green"] = "Green",
+                        ["Indigo"] = "Indigo",
+                        ["Jade"] = "Jade",
+                        ["Lime"] = "Lime",
+                        ["Magenta"] = "Magenta",
+                        ["Maroon"] = "Maroon",
+                        ["Maya"] = "Maya",
+                        ["Mint"] = "Mint",
+                        ["Olive"] = "Olive",
+                        ["Orange"] = "Orange",
+                        ["Pink"] = "Pink",
+                        ["Plum"] = "Plum",
+                        ["Red"] = "Red",
+                        ["Rose"] = "Rose",
+                        ["Salmon"] = "Salmon",
+                        ["Teal"] = "Teal",
+                        ["Violet"] = "Violet",
+                        ["White"] = "White",
+                        ["Yellow"] = "Yellow",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SHeptabutton.DLabel] = new()
+                {
+                    // English: the Heptabutton that was labeled {0}
+                    // Example: the Heptabutton that was labeled PUSH
+                    Discriminator = "the Heptabutton that was labeled {0}",
+                },
+                [SHeptabutton.DColor] = new()
+                {
+                    // English: the Heptabutton that was colored {0} in the {1} stage
+                    // Example: the Heptabutton that was colored aqua in the first stage
+                    Discriminator = "the Heptabutton that was colored {0} in the {1} stage",
+                    Arguments = new()
+                    {
+                        ["aqua"] = "aqua",
+                        ["azure"] = "azure",
+                        ["black"] = "black",
+                        ["blue"] = "blue",
+                        ["cream"] = "cream",
+                        ["cyan"] = "cyan",
+                        ["forest"] = "forest",
+                        ["gray"] = "gray",
+                        ["green"] = "green",
+                        ["indigo"] = "indigo",
+                        ["jade"] = "jade",
+                        ["lime"] = "lime",
+                        ["magenta"] = "magenta",
+                        ["maroon"] = "maroon",
+                        ["maya"] = "maya",
+                        ["mint"] = "mint",
+                        ["olive"] = "olive",
+                        ["orange"] = "orange",
+                        ["pink"] = "pink",
+                        ["plum"] = "plum",
+                        ["red"] = "red",
+                        ["rose"] = "rose",
+                        ["salmon"] = "salmon",
+                        ["teal"] = "teal",
+                        ["violet"] = "violet",
+                        ["white"] = "white",
+                        ["yellow"] = "yellow",
+                    },
+                },
+            },
+        },
+
         // Hereditary Base Notation
         [typeof(SHereditaryBaseNotation)] = new()
         {

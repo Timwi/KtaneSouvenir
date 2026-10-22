@@ -3944,7 +3944,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["Indigo"] = "Indigo",
                         ["Blue"] = "Blau",
                         ["Forest"] = "Waldgrün",
-                        ["Teal"] = "Dunkeltürkis",
+                        ["Teal"] = "Blaugrün",
                         ["Azure"] = "Azur",
                         ["Green"] = "Grün",
                         ["Jade"] = "Jade",
@@ -7982,6 +7982,109 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What were the relevant counts in {0}?
                     Question = "Was waren die maßgeblichen Anzahlen bei {0}?",
+                },
+            },
+        },
+
+        // The Heptabutton
+        [typeof(SHeptabutton)] = new()
+        {
+            ModuleName = "Der Heptaknopf",
+            ModuleNameDative = "Heptaknopf",
+            Gender = Gender.Masculine,
+            ManualModuleName = "Der\uE001Heptaknopf",
+            ManualQuestions = new()
+            {
+                ["What was the label of the button?"] = "Was stand auf dem Knopf?",
+                ["What was the color of the button in each stage?"] = "Welche Farbe hatte der Knopf in welcher Stufe?",
+            },
+            Questions = new()
+            {
+                [SHeptabutton.QLabel] = new()
+                {
+                    // English: What was the label of the button in {0}?
+                    Question = "Was stand bei {0} auf dem Knopf?",
+                },
+                [SHeptabutton.QColor] = new()
+                {
+                    // English: What color was the button in the {1} stage of {0}?
+                    // Example: What color was the button in the first stage of The Heptabutton?
+                    Question = "Welche Farbe hatte der Knopf bei {0} in der {1}en Stufe?",
+                    Answers = new()
+                    {
+                        ["Aqua"] = "Aquamarin",
+                        ["Azure"] = "Azur",
+                        ["Black"] = "Schwarz",
+                        ["Blue"] = "Blau",
+                        ["Cream"] = "Kreme",
+                        ["Cyan"] = "Türkis",
+                        ["Forest"] = "Waldgrün",
+                        ["Gray"] = "Grau",
+                        ["Green"] = "Grün",
+                        ["Indigo"] = "Indigo",
+                        ["Jade"] = "Jade",
+                        ["Lime"] = "Limette",
+                        ["Magenta"] = "Rosa",
+                        ["Maroon"] = "Kastanie",
+                        ["Maya"] = "Maya",
+                        ["Mint"] = "Minze",
+                        ["Olive"] = "Olive",
+                        ["Orange"] = "Orange",
+                        ["Pink"] = "Pink",
+                        ["Plum"] = "Pflaume",
+                        ["Red"] = "Rot",
+                        ["Rose"] = "Rosé",
+                        ["Salmon"] = "Lachs",
+                        ["Teal"] = "Blaugrün",
+                        ["Violet"] = "Violett",
+                        ["White"] = "Weiß",
+                        ["Yellow"] = "Gelb",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SHeptabutton.DLabel] = new()
+                {
+                    // English: the Heptabutton that was labeled {0}
+                    // Example: the Heptabutton that was labeled PUSH
+                    Discriminator = "dem Heptaknopf mit der Aufschrift {0}",
+                },
+                [SHeptabutton.DColor] = new()
+                {
+                    // English: the Heptabutton that was colored {0} in the {1} stage
+                    // Example: the Heptabutton that was colored aqua in the first stage
+                    Discriminator = "dem Heptaknopf, der in Stufe {1} {0} war,",
+                    Arguments = new()
+                    {
+                        ["aqua"] = "aquamarin",
+                        ["azure"] = "azurfarben",
+                        ["black"] = "schwarz",
+                        ["blue"] = "blau",
+                        ["cream"] = "kremfarben",
+                        ["cyan"] = "türkis",
+                        ["forest"] = "waldgrün",
+                        ["gray"] = "grau",
+                        ["green"] = "grün",
+                        ["indigo"] = "indigofarben",
+                        ["jade"] = "jadefarben",
+                        ["lime"] = "limettfarben",
+                        ["magenta"] = "rosa",
+                        ["maroon"] = "kastanienfarben",
+                        ["maya"] = "mayafarben",
+                        ["mint"] = "minzfarben",
+                        ["olive"] = "olivgrün",
+                        ["orange"] = "orange",
+                        ["pink"] = "pink",
+                        ["plum"] = "pflaumenfarben",
+                        ["red"] = "rot",
+                        ["rose"] = "rosé",
+                        ["salmon"] = "lachsfarben",
+                        ["teal"] = "blaugrün",
+                        ["violet"] = "violett",
+                        ["white"] = "weiß",
+                        ["yellow"] = "gelb",
+                    },
                 },
             },
         },
