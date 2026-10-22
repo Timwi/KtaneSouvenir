@@ -7411,6 +7411,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Geometry Dash
+        [typeof(SGeometryDash)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which level was featured?"] = "Which level was featured?",
+            },
+            Questions = new()
+            {
+                [SGeometryDash.Level] = new()
+                {
+                    // English: Which level was featured in {0}?
+                    Question = "Which level was featured in {0}?",
+                },
+            },
+        },
+
         // Ghost Movement
         [typeof(SGhostMovement)] = new()
         {
@@ -9800,24 +9818,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What clip was played in {0}?
                     Question = "Какой звук был воспроизведён {0}?",
-                },
-            },
-        },
-
-        // Listening Piano Keys
-        [typeof(SListeningPianoKeys)] = new()
-        {
-            NeedsTranslation = true,
-            ManualQuestions = new()
-            {
-                ["What was the correctly submitted tune?"] = "What was the correctly submitted tune?",
-            },
-            Questions = new()
-            {
-                [SListeningPianoKeys.Sound] = new()
-                {
-                    // English: What was the correctly submitted tune in {0}?
-                    Question = "What was the correctly submitted tune in {0}?",
                 },
             },
         },

@@ -7471,6 +7471,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Geometry Dash
+        [typeof(SGeometryDash)] = new()
+        {
+            ManualQuestions = new()
+            {
+                ["Which level was featured?"] = "Welches Level kam vor?",
+            },
+            Questions = new()
+            {
+                [SGeometryDash.Level] = new()
+                {
+                    // English: Which level was featured in {0}?
+                    Question = "Welches Level kam bei {0} vor?",
+                },
+            },
+        },
+
         // Ghost Movement
         [typeof(SGhostMovement)] = new()
         {
@@ -9937,24 +9954,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What clip was played in {0}?
                     Question = "Welches Geräusch kam bei {0} vor?",
-                },
-            },
-        },
-
-        // Listening Piano Keys
-        [typeof(SListeningPianoKeys)] = new()
-        {
-            ModuleName = "Klavier-Zuhören",
-            ManualQuestions = new()
-            {
-                ["What was the correctly submitted tune?"] = "Welche Melodie wurde korrekt gespielt?",
-            },
-            Questions = new()
-            {
-                [SListeningPianoKeys.Sound] = new()
-                {
-                    // English: What was the correctly submitted tune in {0}?
-                    Question = "Welche Melodie wurde bei {0} korrekt gespielt?",
                 },
             },
         },
