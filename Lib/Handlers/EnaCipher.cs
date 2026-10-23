@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
@@ -14,7 +14,16 @@ public enum SEnaCipher
 
     [Question("What was the encrypted word in {0}?", TwoColumns4Answers)]
     [AnswerGenerator.Strings(6, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
-    EncryptedAnswer
+    EncryptedAnswer,
+
+    [Discriminator("the ƎNA Cipher that had {0} as the {1} keyword", Arguments = ["AMBUSH", QandA.Ordinal, "BANZAI", QandA.Ordinal, "BIGGER", QandA.Ordinal, "GAMBLE", QandA.Ordinal, "KETOSE", QandA.Ordinal, "OCULUS", QandA.Ordinal, "SCRAMS", QandA.Ordinal, "SENSOR", QandA.Ordinal, "YEANED", QandA.Ordinal, "YOUTHS", QandA.Ordinal], ArgumentGroupSize = 2)]
+    DKeywordAnswer,
+
+    [Discriminator("the ƎNA Cipher that had {0} as the transposition key", Arguments = ["123456", "234561", "345612", "456123", "561234", "432165", "321654", "216543", "165432", "654321"], ArgumentGroupSize = 1)]
+    DExtAnswer,
+
+    [Discriminator("the ƎNA Cipher that had {0} as the encrypted word", Arguments = ["AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS"], ArgumentGroupSize = 1)]
+    DEncryptedAnswer
 }
 
 public partial class SouvenirModule
@@ -35,9 +44,14 @@ public partial class SouvenirModule
         var allWordsObj = Activator.CreateInstance(allWordsType);
         var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 6);
 
-        yield return question(SEnaCipher.KeywordAnswer, args: [Ordinal(1)]).Answers(keywords[0], preferredWrong: allWords[keywords[0].Length - 3].ToArray());
-        yield return question(SEnaCipher.KeywordAnswer, args: [Ordinal(2)]).Answers(keywords[1], preferredWrong: allWords[keywords[1].Length - 3].ToArray());
-        yield return question(SEnaCipher.ExtAnswer).Answers(extNumbers);
-        yield return question(SEnaCipher.EncryptedAnswer).Answers(encryptedWord);
+        yield return new Discriminator(SEnaCipher.DKeywordAnswer, $"keyword{0}", keywords[0], args: [keywords[0], Ordinal(1)]);
+        yield return new Discriminator(SEnaCipher.DKeywordAnswer, $"keyword{1}", keywords[1], args: [keywords[1], Ordinal(2)]);
+        yield return new Discriminator(SEnaCipher.DExtAnswer,$"ext", extNumbers, args: [extNumbers]);
+        yield return new Discriminator(SEnaCipher.DEncryptedAnswer,$"encrypted", encryptedWord, args: [encryptedWord]);
+
+        yield return question(SEnaCipher.KeywordAnswer, args: [Ordinal(1)]).AvoidDiscriminators($"keyword{0}").Answers(keywords[0], preferredWrong: allWords[keywords[0].Length - 3].ToArray());
+        yield return question(SEnaCipher.KeywordAnswer, args: [Ordinal(2)]).AvoidDiscriminators($"keyword{1}").Answers(keywords[1], preferredWrong: allWords[keywords[1].Length - 3].ToArray());
+        yield return question(SEnaCipher.ExtAnswer).AvoidDiscriminators(SEnaCipher.DExtAnswer).Answers(extNumbers);
+        yield return question(SEnaCipher.EncryptedAnswer).AvoidDiscriminators(SEnaCipher.DEncryptedAnswer).Answers(encryptedWord);
     }
 }
