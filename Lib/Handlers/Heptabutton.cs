@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Souvenir;
 using UnityEngine;
 using static Souvenir.AnswerLayout;
@@ -52,7 +52,7 @@ public partial class SouvenirModule
 		for (var i = 0; i < 7; i++)
 		{
 			yield return new Discriminator(SHeptabutton.DColor, $"color{i}", allColors[i], args: [colors[allColors[i]].ToLowerInvariant(), Ordinal(i + 1)]);
-			yield return question(SHeptabutton.QColor, args: [Ordinal(i + 1)]).AvoidDiscriminators(SHeptabutton.DColor).Answers(colors[allColors[i]].ToString());
+			yield return question(SHeptabutton.QColor, args: [Ordinal(i + 1)]).AvoidDiscriminators($"color{i}").Answers(colors[allColors[i]].ToString());
 		}
 	}
 }
