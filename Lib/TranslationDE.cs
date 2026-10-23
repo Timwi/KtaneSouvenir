@@ -5875,21 +5875,42 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SEnaCipher.KeywordAnswer] = new()
+                [SEnaCipher.QKeywordAnswer] = new()
                 {
                     // English: What was the {1} keyword in {0}?
                     // Example: What was the first keyword in ƎNA Cipher?
                     Question = "Was war bei {0} das {1}e Schlüsselwort?",
                 },
-                [SEnaCipher.ExtAnswer] = new()
+                [SEnaCipher.QExtAnswer] = new()
                 {
                     // English: What was the transposition key in {0}?
                     Question = "Was war bei {0} der Transpositionsschlüssel?",
                 },
-                [SEnaCipher.EncryptedAnswer] = new()
+                [SEnaCipher.QEncryptedAnswer] = new()
                 {
                     // English: What was the encrypted word in {0}?
                     Question = "Was war bei {0} das verschlüsselte Wort?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SEnaCipher.DKeywordAnswer] = new()
+                {
+                    // English: the ƎNA Cipher that had {0} as the {1} keyword
+                    // Example: the ƎNA Cipher that had AMBUSH as the first keyword
+                    Discriminator = "der ƎNA-Geheimschrift, deren {1}es Schlüsselwort {0} war,",
+                },
+                [SEnaCipher.DExtAnswer] = new()
+                {
+                    // English: the ƎNA Cipher that had {0} as the transposition key
+                    // Example: the ƎNA Cipher that had 123456 as the transposition key
+                    Discriminator = "der ƎNA-Geheimschrift, deren Transpositionsschlüssel {0} war,",
+                },
+                [SEnaCipher.DEncryptedAnswer] = new()
+                {
+                    // English: the ƎNA Cipher that had {0} as the encrypted word
+                    // Example: the ƎNA Cipher that had AMBUSH as the encrypted word
+                    Discriminator = "der ƎNA-Geheimschrift, deren verschlüsseltes Wort {0} war,",
                 },
             },
         },
@@ -13131,20 +13152,41 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SOffWhiteCipher.TopDisplay] = new()
+                [SOffWhiteCipher.QTopDisplay] = new()
                 {
                     // English: What was on the top display in {0}?
                     Question = "Was stand bei {0} auf dem oberen Display?",
                 },
-                [SOffWhiteCipher.MiddleDisplay] = new()
+                [SOffWhiteCipher.QMiddleDisplay] = new()
                 {
                     // English: What was on the middle display in {0}?
                     Question = "Was stand bei {0} auf dem mittleren Display?",
                 },
-                [SOffWhiteCipher.BottomDisplay] = new()
+                [SOffWhiteCipher.QBottomDisplay] = new()
                 {
                     // English: What was on the bottom display in {0}?
                     Question = "Was stand bei {0} auf dem unteren Display?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SOffWhiteCipher.DTopDisplay] = new()
+                {
+                    // English: the Off-White Cipher that had {0} on the top display
+                    // Example: the Off-White Cipher that had AMBUSH on the top display
+                    Discriminator = "der Eierschalengeheimschrift, auf deren oberem Display {0} stand,",
+                },
+                [SOffWhiteCipher.DMiddleDisplay] = new()
+                {
+                    // English: the Off-White Cipher that had {0} on the middle display
+                    // Example: the Off-White Cipher that had ABCD on the middle display
+                    Discriminator = "der Eierschalengeheimschrift, auf deren mittlerem Display {0} stand,",
+                },
+                [SOffWhiteCipher.DBottomDisplay] = new()
+                {
+                    // English: the Off-White Cipher that had {0} on the bottom display
+                    // Example: the Off-White Cipher that had 000 on the bottom display
+                    Discriminator = "der Eierschalengeheimschrift, auf deren unterem Display {0} stand,",
                 },
             },
         },

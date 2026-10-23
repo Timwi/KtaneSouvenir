@@ -5840,27 +5840,49 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // ƎNA Cipher
         [typeof(SEnaCipher)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the keyword, the transposition key and the encrypted word?"] = "Какое было ключевое слово, ключ транспозиции и зашифрованное слово?",
             },
             Questions = new()
             {
-                [SEnaCipher.KeywordAnswer] = new()
+                [SEnaCipher.QKeywordAnswer] = new()
                 {
                     // English: What was the {1} keyword in {0}?
                     // Example: What was the first keyword in ƎNA Cipher?
                     Question = "Какое было {1}-е ключевое слово {0}?",
                 },
-                [SEnaCipher.ExtAnswer] = new()
+                [SEnaCipher.QExtAnswer] = new()
                 {
                     // English: What was the transposition key in {0}?
                     Question = "Какой был ключ перестановки {0}?",
                 },
-                [SEnaCipher.EncryptedAnswer] = new()
+                [SEnaCipher.QEncryptedAnswer] = new()
                 {
                     // English: What was the encrypted word in {0}?
                     Question = "Какое слово было зашифрованно {0}",
+                },
+            },
+            Discriminators = new()
+            {
+                [SEnaCipher.DKeywordAnswer] = new()
+                {
+                    // English: the ƎNA Cipher that had {0} as the {1} keyword
+                    // Example: the ƎNA Cipher that had AMBUSH as the first keyword
+                    Discriminator = "the ƎNA Cipher that had {0} as the {1} keyword",
+                },
+                [SEnaCipher.DExtAnswer] = new()
+                {
+                    // English: the ƎNA Cipher that had {0} as the transposition key
+                    // Example: the ƎNA Cipher that had 123456 as the transposition key
+                    Discriminator = "the ƎNA Cipher that had {0} as the transposition key",
+                },
+                [SEnaCipher.DEncryptedAnswer] = new()
+                {
+                    // English: the ƎNA Cipher that had {0} as the encrypted word
+                    // Example: the ƎNA Cipher that had AMBUSH as the encrypted word
+                    Discriminator = "the ƎNA Cipher that had {0} as the encrypted word",
                 },
             },
         },
@@ -12921,20 +12943,41 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SOffWhiteCipher.TopDisplay] = new()
+                [SOffWhiteCipher.QTopDisplay] = new()
                 {
                     // English: What was on the top display in {0}?
                     Question = "What was on the top display in {0}?",
                 },
-                [SOffWhiteCipher.MiddleDisplay] = new()
+                [SOffWhiteCipher.QMiddleDisplay] = new()
                 {
                     // English: What was on the middle display in {0}?
                     Question = "What was on the middle display in {0}?",
                 },
-                [SOffWhiteCipher.BottomDisplay] = new()
+                [SOffWhiteCipher.QBottomDisplay] = new()
                 {
                     // English: What was on the bottom display in {0}?
                     Question = "What was on the bottom display in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SOffWhiteCipher.DTopDisplay] = new()
+                {
+                    // English: the Off-White Cipher that had {0} on the top display
+                    // Example: the Off-White Cipher that had AMBUSH on the top display
+                    Discriminator = "the Off-White Cipher that had {0} on the top display",
+                },
+                [SOffWhiteCipher.DMiddleDisplay] = new()
+                {
+                    // English: the Off-White Cipher that had {0} on the middle display
+                    // Example: the Off-White Cipher that had ABCD on the middle display
+                    Discriminator = "the Off-White Cipher that had {0} on the middle display",
+                },
+                [SOffWhiteCipher.DBottomDisplay] = new()
+                {
+                    // English: the Off-White Cipher that had {0} on the bottom display
+                    // Example: the Off-White Cipher that had 000 on the bottom display
+                    Discriminator = "the Off-White Cipher that had {0} on the bottom display",
                 },
             },
         },
