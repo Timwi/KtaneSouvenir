@@ -12191,6 +12191,48 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Not Memory
+        [typeof(SNotMemory)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What digit was on the upside-down display?"] = "What digit was on the upside-down display?",
+                ["How many LEDs were lit?"] = "How many LEDs were lit?",
+            },
+            Questions = new()
+            {
+                [SNotMemory.QLitLeds] = new()
+                {
+                    // English: How many LEDs were lit in {0}?
+                    Question = "How many LEDs were lit in {0}?",
+                },
+                [SNotMemory.QDisplayedDigit] = new()
+                {
+                    // English: Which digit was on the upside-down display in {0}?
+                    Question = "Which digit was on the upside-down display in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SNotMemory.DLitLeds] = new()
+                {
+                    // English: the Not Memory with {0}
+                    // Example: the Not Memory with no lit LEDs
+                    Discriminator = "the Not Memory with {0}",
+                    Arguments = new()
+                    {
+                        ["no lit LEDs"] = "no lit LEDs",
+                        ["one lit LED"] = "one lit LED",
+                        ["two lit LEDs"] = "two lit LEDs",
+                        ["three lit LEDs"] = "three lit LEDs",
+                        ["four lit LEDs"] = "four lit LEDs",
+                        ["five lit LEDs"] = "five lit LEDs",
+                    },
+                },
+            },
+        },
+
         // Not Morse Code
         [typeof(SNotMorseCode)] = new()
         {
@@ -15803,6 +15845,79 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // Example: What equation was shown in the first stage of S.E.T. Theory?
                     Question = "Какое уравнение было показано на {1}-м этапе {0}?",
                     Conjugation = Conjugation.GenitiveMascNeuter,
+                },
+            },
+        },
+
+        // Seven Choose Four
+        [typeof(SSevenChooseFour)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What letters were flashed in Morse and Tap code?"] = "What letters were flashed in Morse and Tap code?",
+                ["What color sequence was flashed?"] = "What color sequence was flashed?",
+                ["How many times did the number-key LED flash?"] = "How many times did the number-key LED flash?",
+            },
+            Questions = new()
+            {
+                [SSevenChooseFour.QFlashedLetter] = new()
+                {
+                    // English: Which letter was flashed as {1} in {0}?
+                    // Example: Which letter was flashed as Morse code in Seven Choose Four?
+                    Question = "Which letter was flashed as {1} in {0}?",
+                    Arguments = new()
+                    {
+                        ["Morse code"] = "Morse code",
+                        ["Tap code"] = "Tap code",
+                    },
+                },
+                [SSevenChooseFour.QColorSequence] = new()
+                {
+                    // English: Which color was flashed {1} in the color sequence in {0}?
+                    // Example: Which color was flashed first in the color sequence in Seven Choose Four?
+                    Question = "Which color was flashed {1} in the color sequence in {0}?",
+                },
+                [SSevenChooseFour.QNumberKey] = new()
+                {
+                    // English: How many times did the number-key LED flash in {0}?
+                    Question = "How many times did the number-key LED flash in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SSevenChooseFour.DFlashedLetter] = new()
+                {
+                    // English: the Seven Choose Four whose {1} letter was {0}
+                    // Example: the Seven Choose Four whose Morse code letter was A
+                    Discriminator = "the Seven Choose Four whose {1} letter was {0}",
+                    Arguments = new()
+                    {
+                        ["Morse code"] = "Morse code",
+                        ["Tap code"] = "Tap code",
+                    },
+                },
+                [SSevenChooseFour.DColorSequence] = new()
+                {
+                    // English: the Seven Choose Four whose {1} color in the color sequence was {0}
+                    // Example: the Seven Choose Four whose first color in the color sequence was Blue
+                    Discriminator = "the Seven Choose Four whose {1} color in the color sequence was {0}",
+                    Arguments = new()
+                    {
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Green"] = "Green",
+                        ["Magenta"] = "Magenta",
+                        ["Red"] = "Red",
+                        ["Yellow"] = "Yellow",
+                        ["White"] = "White",
+                    },
+                },
+                [SSevenChooseFour.DNumberKey] = new()
+                {
+                    // English: the Seven Choose Four whose number-key LED flashed {0} times
+                    // Example: the Seven Choose Four whose number-key LED flashed 1 times
+                    Discriminator = "the Seven Choose Four whose number-key LED flashed {0} times",
                 },
             },
         },
