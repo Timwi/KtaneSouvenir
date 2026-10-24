@@ -14565,8 +14565,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SPuzzlingHexabuttons.Letter] = new()
                 {
-                    // English: What letter was displayed on the {1} hexabutton when submitting in {0}?
-                    // Example: What letter was displayed on the top-left hexabutton when submitting in Puzzling Hexabuttons?
+                    // English: What letter was displayed on the {1} button when submitting in {0}?
+                    // Example: What letter was displayed on the top-left button when submitting in Puzzling Hexabuttons?
                     Question = "What letter was displayed on the {1} hexabutton when submitting in {0}?",
                     Arguments = new()
                     {

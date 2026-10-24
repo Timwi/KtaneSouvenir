@@ -8316,10 +8316,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Hexabutton
         [typeof(SHexabutton)] = new()
         {
-            ModuleName = "Der Hexaknopf",
-            ModuleNameDative = "Hexaknopf",
-            Gender = Gender.Masculine,
-            ManualModuleName = "Der\uE001Hexaknopf",
+            ModuleName = "Die Hexataste",
+            ModuleNameDative = "Hexataste",
+            Gender = Gender.Feminine,
+            ManualModuleName = "Die\uE001Hexataste",
             ManualQuestions = new()
             {
                 ["What color was the button when held?"] = "Welche Farbe hatte die Taste beim Gedrückthalten?",
@@ -14791,8 +14791,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Puzzling Hexabuttons
         [typeof(SPuzzlingHexabuttons)] = new()
         {
-            ModuleName = "Rätselhafte Hexaknöpfe",
-            ModuleNameDative = "Rätselhaften Hexaknöpfen",
+            ModuleName = "Rätselhafte Hexatasten",
+            ModuleNameDative = "Rätselhaften Hexatasten",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
@@ -14802,9 +14802,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SPuzzlingHexabuttons.Letter] = new()
                 {
-                    // English: What letter was displayed on the {1} hexabutton when submitting in {0}?
-                    // Example: What letter was displayed on the top-left hexabutton when submitting in Puzzling Hexabuttons?
-                    Question = "Welcher Buchstabe stand bei {0} im Eingabemodus auf dem {1} Hexaknopf?",
+                    // English: What letter was displayed on the {1} button when submitting in {0}?
+                    // Example: What letter was displayed on the top-left button when submitting in Puzzling Hexabuttons?
+                    Question = "Welcher Buchstabe stand bei {0} im Eingabemodus auf der {1} Taste?",
                     Arguments = new()
                     {
                         ["top-left"] = "oberen linken",
