@@ -190,6 +190,19 @@ There are a few different ways to create a question that uses sprites or audio c
 	* In the `[Question(...)]` attribute, use `Type = AnswerType.Sprites`/`Type = AnswerType.Audio` and specify either `SpriteFieldName = "..."` or `AudioFieldName = "..."` (insert the name of the new field you just added).
 	* Now you can simply use these sprites/audio clips in your call to `.Answers(...)`.
 
+## The translation files are throwing errors
+
+This happens in the following scenario:
+
+* Imagine you added a `SMyModule.MyQuestion` and you built the project. The translation tool automatically added entries for `SMyModule.MyQuestion`.
+* Now you decided it should be called `SMyModule.MyOtherQuestion` instead. The translation files still contain a reference to `SMyModule.MyQuestion`, so the source code doesn’t compile.
+
+There are three ways to fix this:
+
+* Change it back to `SMyModule.MyQuestion` and then use a renaming feature (e.g. F2 or Ctrl+R,R in Visual Studio) to change it to `SMyModule.MyOtherQuestion`, which changes the references too.
+* Change it back to `SMyModule.MyQuestion`, add a `[Remove]` attribute to it, then build. This will cause the translation tool to remove it from the translation files. Then you can change it to `SMyModule.MyOtherQuestion` before you build again.
+* Go through the error messages and manually remove the blocks that reference the old name from the translation files.
+
 ## Testing in-game and submitting
 
 When you are done, you need to test your new Souvenir support, and then submit the changes to me (Timwi). To do so, follow these steps.
