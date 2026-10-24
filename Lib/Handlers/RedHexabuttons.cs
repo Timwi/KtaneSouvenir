@@ -7,11 +7,11 @@ using static Souvenir.AnswerLayout;
 
 public enum SRedHexabuttons
 {
-    [Question("What was the letter heard when pressing the center hexabutton in {0}?", ThreeColumns6Answers)]
+    [Question("What was the letter heard when pressing the center button in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings('A', 'Z')]
     QLetter,
 
-    [Question("What was the number heard when pressing the center hexabutton in {0}?", ThreeColumns6Answers)]
+    [Question("What was the number heard when pressing the center button in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 6)]
     QNumber,
     
@@ -25,7 +25,7 @@ public enum SRedHexabuttons
 public partial class SouvenirModule
 {
     [Handler("redHexabuttons", "Red Hexabuttons", typeof(SRedHexabuttons), "Infusion")]
-    [ManualQuestion("What was the letter/number heard when pressing the center hexabutton?")]
+    [ManualQuestion("What was the letter/number heard when pressing the center button?")]
     private IEnumerator<SouvenirInstruction> ProcessRedHexabuttons(ModuleData module)
     {
         var comp = GetComponent(module, "redHexabuttons");

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using UnityEngine;
 using Souvenir;
 
 using static Souvenir.AnswerLayout;
@@ -41,12 +40,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var fldPages = GetArrayField<string[]>(comp, "pages").Get(expectedLength: 2);
-        var screens = new string[6];
 
+        var screens = new string[6];
         for (int i = 0; i < 6; i++)
-        {
             screens[i] = fldPages[i / 3][i % 3];
-        }
 
         var possibleWords = GetArrayField<List<string>>(Activator.CreateInstance(data), "_allWords").Get();
 
@@ -64,7 +61,7 @@ public partial class SouvenirModule
                     case 1: screenPosition = "middle"; break;
                     case 2: screenPosition = "bottom"; break;
                 }
-                if (possibleWords.SelectMany(x => x).ToArray().Contains(text))
+                if (possibleWords.Any(words => words.Contains(text)))
                     preferredWrongAnswers = possibleWords.SelectMany(x => x).ToArray();
                 else if (Regex.IsMatch(text, @"^[A-Z]{6}$"))
                     preferredWrongAnswers = generateWrongAnswers(text, new AnswerGenerator.Strings(text.Length, 'A', 'Z'));

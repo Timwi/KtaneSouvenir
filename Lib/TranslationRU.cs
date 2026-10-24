@@ -583,6 +583,40 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Accelerando
+        [typeof(SAccelerando)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which numbers and letters were paired with each other?"] = "Which numbers and letters were paired with each other?",
+            },
+            Questions = new()
+            {
+                [SAccelerando.QNumbersWithLetters] = new()
+                {
+                    // English: Which number was paired with the letter {1} in {0}?
+                    // Example: Which number was paired with the letter A in Accelerando?
+                    Question = "Which number was paired with the letter {1} in {0}?",
+                },
+                [SAccelerando.QLettersWithNumbers] = new()
+                {
+                    // English: Which letter was paired with the number {1} in {0}?
+                    // Example: Which letter was paired with the number 1 in Accelerando?
+                    Question = "Which letter was paired with the number {1} in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SAccelerando.DNumberLetterPairs] = new()
+                {
+                    // English: the Accelerando where the number {0} was paired with the letter {1}
+                    // Example: the Accelerando where the number 1 was paired with the letter A
+                    Discriminator = "the Accelerando where the number {0} was paired with the letter {1}",
+                },
+            },
+        },
+
         // Accumulation
         [typeof(SAccumulation)] = new()
         {
@@ -2651,6 +2685,34 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["middle"] = "middle",
                         ["bottom"] = "bottom",
                     },
+                },
+            },
+        },
+
+        // Brown Hexabuttons
+        [typeof(SBrownHexabuttons)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the code heard when pressing the center button?"] = "What was the code heard when pressing the center button?",
+            },
+            Questions = new()
+            {
+                [SBrownHexabuttons.QString] = new()
+                {
+                    // English: What was the {1} letter heard when pressing the center button in {0}?
+                    // Example: What was the first letter heard when pressing the center button in Brown Hexabuttons?
+                    Question = "What was the {1} letter heard when pressing the center button in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SBrownHexabuttons.DString] = new()
+                {
+                    // English: the Brown Hexabuttons where the {0} letter heard was {1}
+                    // Example: the Brown Hexabuttons where the first letter heard was A
+                    Discriminator = "the Brown Hexabuttons where the {0} letter heard was {1}",
                 },
             },
         },
@@ -6325,6 +6387,40 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Faulty Accelerando
+        [typeof(SFaultyAccelerando)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which numbers and letters were paired with each other?"] = "Which numbers and letters were paired with each other?",
+            },
+            Questions = new()
+            {
+                [SFaultyAccelerando.QNumbersWithLetters] = new()
+                {
+                    // English: Which number was paired with the letter {1} in {0}?
+                    // Example: Which number was paired with the letter A in Faulty Accelerando?
+                    Question = "Which number was paired with the letter {1} in {0}?",
+                },
+                [SFaultyAccelerando.QLettersWithNumbers] = new()
+                {
+                    // English: Which letter was paired with the number {1} in {0}?
+                    // Example: Which letter was paired with the number 1 in Faulty Accelerando?
+                    Question = "Which letter was paired with the number {1} in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SFaultyAccelerando.DNumberLetterPairs] = new()
+                {
+                    // English: the Faulty Accelerando where the number {0} was paired with the letter {1}
+                    // Example: the Faulty Accelerando where the number 1 was paired with the letter A
+                    Discriminator = "the Faulty Accelerando where the number {0} was paired with the letter {1}",
+                },
+            },
+        },
+
         // Faulty Buttons
         [typeof(SFaultyButtons)] = new()
         {
@@ -7281,6 +7377,46 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Fur Cipher
+        [typeof(SFurCipher)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was on each screen?"] = "What was on each screen?",
+            },
+            Questions = new()
+            {
+                [SFurCipher.QScreen] = new()
+                {
+                    // English: What was on the {1} screen on page {2} in {0}?
+                    // Example: What was on the top screen on page 1 in Fur Cipher?
+                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SFurCipher.DScreen] = new()
+                {
+                    // English: the Fur Cipher that had {0} on the {1} screen on page {2}
+                    // Example: the Fur Cipher that had AMBUSH on the top screen on page 1
+                    Discriminator = "the Fur Cipher that had {0} on the {1} screen on page {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["middle"] = "middle",
+                        ["bottom"] = "bottom",
+                    },
+                },
+            },
+        },
+
         // The Fuse Box
         [typeof(SFuseBox)] = new()
         {
@@ -7639,6 +7775,52 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["top"] = "top",
                         ["middle"] = "middle",
                         ["bottom"] = "bottom",
+                    },
+                },
+            },
+        },
+
+        // Gray Hexabuttons
+        [typeof(SGrayHexabuttons)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the values shown when pressing each of the outer buttons?"] = "What were the values shown when pressing each of the outer buttons?",
+            },
+            Questions = new()
+            {
+                [SGrayHexabuttons.QValues] = new()
+                {
+                    // English: What was the value shown when pressing the {1} button in {0}?
+                    // Example: What was the value shown when pressing the top-left button in Gray Hexabuttons?
+                    Question = "What was the value shown when pressing the {1} hexabutton in {0}?",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-right"] = "bottom-right",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SGrayHexabuttons.DValues] = new()
+                {
+                    // English: the Gray Hexabuttons where the {0} button showed the value ⁠{1}
+                    // Example: the Gray Hexabuttons where the top-left button showed the value ⁠-7
+                    Discriminator = "the Gray Hexabuttons where the {0} hexabutton showed the value ⁠{1}",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-right"] = "bottom-right",
                     },
                 },
             },
@@ -9807,6 +9989,34 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["left"] = "левом",
                         ["right"] = "правом",
                     },
+                },
+            },
+        },
+
+        // Levenshtein Distance
+        [typeof(SLevenshteinDistance)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the words displayed?"] = "What were the words displayed?",
+            },
+            Questions = new()
+            {
+                [SLevenshteinDistance.QDisplays] = new()
+                {
+                    // English: What was the word in the {1} display of {0}?
+                    // Example: What was the word in the first display of Levenshtein Distance?
+                    Question = "What was the word in the {1} display of {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SLevenshteinDistance.DDisplays] = new()
+                {
+                    // English: the Levenshtein Distance that had {0} in the {1} display
+                    // Example: the Levenshtein Distance that had ABSENT in the first display
+                    Discriminator = "the Levenshtein Distance that had {0} in the {1} display",
                 },
             },
         },
@@ -14272,6 +14482,34 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Purple Hexabuttons
+        [typeof(SPurpleHexabuttons)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the string of numbers heard when pressing the center button?"] = "What was the string of numbers heard when pressing the center button?",
+            },
+            Questions = new()
+            {
+                [SPurpleHexabuttons.QString] = new()
+                {
+                    // English: What was the {1} number heard when pressing the center button in {0}?
+                    // Example: What was the first number heard when pressing the center button in Purple Hexabuttons?
+                    Question = "What was the {1} number heard when pressing the center button in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SPurpleHexabuttons.DString] = new()
+                {
+                    // English: the Purple Hexabuttons where the {0} number heard was {1}
+                    // Example: the Purple Hexabuttons where the first number heard was 1
+                    Discriminator = "the Purple Hexabuttons where the {0} number heard was {1}",
+                },
+            },
+        },
+
         // Puzzle Identification
         [typeof(SPuzzleIdentification)] = new()
         {
@@ -14830,6 +15068,44 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Purple"] = "Purple",
                         ["Orange"] = "Orange",
                     },
+                },
+            },
+        },
+
+        // Red Hexabuttons
+        [typeof(SRedHexabuttons)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the letter/number heard when pressing the center button?"] = "What was the letter/number heard when pressing the center button?",
+            },
+            Questions = new()
+            {
+                [SRedHexabuttons.QLetter] = new()
+                {
+                    // English: What was the letter heard when pressing the center button in {0}?
+                    Question = "What was the letter heard when pressing the center button in {0}?",
+                },
+                [SRedHexabuttons.QNumber] = new()
+                {
+                    // English: What was the number heard when pressing the center button in {0}?
+                    Question = "What was the number heard when pressing the center button in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SRedHexabuttons.DLetter] = new()
+                {
+                    // English: the Red Hexabuttons where the letter {0} was heard
+                    // Example: the Red Hexabuttons where the letter A was heard
+                    Discriminator = "the Red Hexabuttons where the letter {0} was heard",
+                },
+                [SRedHexabuttons.DNumber] = new()
+                {
+                    // English: the Red Hexabuttons where the number {0} was heard
+                    // Example: the Red Hexabuttons where the number 1 was heard
+                    Discriminator = "the Red Hexabuttons where the number {0} was heard",
                 },
             },
         },
@@ -17228,6 +17504,44 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Simple Hexabuttons
+        [typeof(SSimpleHexabuttons)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the number/letter heard when pressing the center button?"] = "What was the number/letter heard when pressing the center button?",
+            },
+            Questions = new()
+            {
+                [SSimpleHexabuttons.QNumber] = new()
+                {
+                    // English: What was the number heard when pressing the center button in {0}?
+                    Question = "What was the number heard when pressing the center hexabutton in {0}?",
+                },
+                [SSimpleHexabuttons.QLetter] = new()
+                {
+                    // English: What was the letter heard when pressing the center button in {0}?
+                    Question = "What was the letter heard when pressing the center hexabutton in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SSimpleHexabuttons.DNumber] = new()
+                {
+                    // English: the Simple Hexabuttons where the number {0} was heard
+                    // Example: the Simple Hexabuttons where the number 1 was heard
+                    Discriminator = "the Simple Hexabuttons where the number {0} was heard",
+                },
+                [SSimpleHexabuttons.DLetter] = new()
+                {
+                    // English: the Simple Hexabuttons where the letter {0} was heard
+                    // Example: the Simple Hexabuttons where the letter A was heard
+                    Discriminator = "the Simple Hexabuttons where the letter {0} was heard",
+                },
+            },
+        },
+
         // Simply Simon
         [typeof(SSimplySimon)] = new()
         {
@@ -17654,6 +17968,66 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the maximum tax amount per vessel in {0}?
                     Question = "Какой был максимальный налог за каждое судно {0}?",
+                },
+            },
+        },
+
+        // Spangled Stars
+        [typeof(SSpangledStars)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the colors of the top three stars?"] = "What were the colors of the top three stars?",
+                ["What were the flashed letters?"] = "What were the flashed letters?",
+            },
+            Questions = new()
+            {
+                [SSpangledStars.QTopStars] = new()
+                {
+                    // English: Which of these colors appeared among the top three stars in {0}?
+                    Question = "Which of these colors appeared in the top three stars in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Indigo"] = "Indigo",
+                        ["Violet"] = "Violet",
+                    },
+                },
+                [SSpangledStars.QFlashedLetters] = new()
+                {
+                    // English: What was the {1} flashed letter in {0}?
+                    // Example: What was the first flashed letter in Spangled Stars?
+                    Question = "What was the {1} flashed letter in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SSpangledStars.DTopStars] = new()
+                {
+                    // English: the Spangled Stars that had {0} among the top three stars
+                    // Example: the Spangled Stars that had a red star among the top three stars
+                    Discriminator = "the Spangled Stars that had {0} among the top three stars",
+                    Arguments = new()
+                    {
+                        ["a red star"] = "a red star",
+                        ["an orange star"] = "an orange star",
+                        ["a yellow star"] = "a yellow star",
+                        ["a green star"] = "a green star",
+                        ["a blue star"] = "a blue star",
+                        ["an indigo star"] = "an indigo star",
+                        ["a violet star"] = "a violet star",
+                    },
+                },
+                [SSpangledStars.DFlashedLetters] = new()
+                {
+                    // English: the Spangled Stars where {0} was the {1} letter flashed
+                    // Example: the Spangled Stars where A was the first letter flashed
+                    Discriminator = "the Spangled Stars where {0} was the {1} letter flashed",
                 },
             },
         },
@@ -18577,11 +18951,20 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [STau.Letters] = new()
+                [STau.QLetters] = new()
                 {
                     // English: What was the {1} letter of the display in {0}?
                     // Example: What was the first letter of the display in Tau?
                     Question = "What was the {1} letter of the display in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [STau.DLetters] = new()
+                {
+                    // English: the Tau whose {0} letter was {1}
+                    // Example: the Tau whose first letter was T
+                    Discriminator = "the Tau whose {0} letter was {1}",
                 },
             },
         },
@@ -20841,6 +21224,34 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["present"] = "присутствовало",
                         ["not present"] = "отсутствовало",
                     },
+                },
+            },
+        },
+
+        // Wonder Cipher
+        [typeof(SWonderCipher)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the initial message?"] = "What was the initial message?",
+            },
+            Questions = new()
+            {
+                [SWonderCipher.QInitialMessage] = new()
+                {
+                    // English: What was the {1} character in the initial message in {0}?
+                    // Example: What was the first character in the initial message in Wonder Cipher?
+                    Question = "What was the {1} character in the initial message in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SWonderCipher.DInitialMessage] = new()
+                {
+                    // English: the Wonder Cipher that had {0} as the {1} character
+                    // Example: the Wonder Cipher that had 0 as the first character
+                    Discriminator = "the Wonder Cipher that had {0} as the {1} character",
                 },
             },
         },

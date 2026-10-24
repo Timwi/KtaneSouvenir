@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
 public enum SPurpleHexabuttons
 {
-    [Question("What was the {1} number heard when pressing the center hexabutton in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What was the {1} number heard when pressing the center button in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     QString,
 
@@ -18,7 +16,7 @@ public enum SPurpleHexabuttons
 public partial class SouvenirModule
 {
     [Handler("purpleHexabuttons", "Purple Hexabuttons", typeof(SPurpleHexabuttons), "Infusion")]
-    [ManualQuestion("What was the string of numbers heard when pressing the center hexabutton?")]
+    [ManualQuestion("What was the string of numbers heard when pressing the center button?")]
     private IEnumerator<SouvenirInstruction> ProcessPurpleHexabuttons(ModuleData module)
     {
         var comp = GetComponent(module, "purpleHexabuttons");

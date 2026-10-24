@@ -161,6 +161,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Maze         │  Not Maze        │  Not the Button    │  Who’s on First  │
     Memory       │  Not Morse Code  │  Perspective Pegs  │  Wire Ordering   │
 
+## Implemented by Infusion (13)
+
+    Accelerando         │  Fur Cipher        │  Levenshtein Distance  │  Simple Hexabuttons  │  Wonder Cipher
+    Brown Hexabuttons   │  Gray Hexabuttons  │  Purple Hexabuttons    │  Spangled Stars      │
+    Faulty Accelerando  │  Heptabutton, The  │  Red Hexabuttons       │  Tau                 │
+
 ## Implemented by CaitSith2 (10)
 
     Creation  │  Ice Cream       │  Morse-A-Maze  │  Symbol Cycle          │  Text Field
@@ -213,7 +219,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris
     Gryphons                 │  JerryEris
-    Heptabutton, The         │  Infusion
     hexOS                    │  Emik
     Inner Connections        │  Brawlboxgaming
     Interpunct               │  Eltrick
@@ -239,6 +244,5 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Shapes And Bombs         │  KingSlendy
     Simon Sends              │  EternityShack
     Simon Stops              │  JerryEris
-    Tau                      │  Infusion
     Wavetapping              │  KingSlendy
 

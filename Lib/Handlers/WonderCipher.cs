@@ -23,7 +23,8 @@ public partial class SouvenirModule
 
         var fldMessage = GetField<string>(comp, "givenText").Get();
 
-        for (var i = 0; i < 20; i++) {
+        for (var i = 0; i < 20; i++)
+        {
             yield return new Discriminator(SWonderCipher.DInitialMessage, $"initial{i}", fldMessage[i], args: [fldMessage[i].ToString(), Ordinal(i + 1)]);
             yield return question(SWonderCipher.QInitialMessage, args: [Ordinal(i + 1)]).AvoidDiscriminators($"initial{i}").Answers(fldMessage[i].ToString());
         }
