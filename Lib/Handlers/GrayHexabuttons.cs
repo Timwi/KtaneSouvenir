@@ -9,7 +9,7 @@ public enum SGrayHexabuttons
     [AnswerGenerator.Integers(-11, 18)]
     QValues,
 
-    [Discriminator("the Gray Hexabuttons where the {0} button showed the value \u2060{1}", TranslateArguments = [true, false], Arguments = ["top-left", "-7", "top-right", "-2", "middle-left", "3", "middle-right", "8", "bottom-left", "13", "bottom-right", "18"], ArgumentGroupSize = 2)]
+    [Discriminator("the Gray Hexabuttons where the {0} button showed the value {1}", TranslateArguments = [true, false], Arguments = ["top-left", "-7", "top-right", "-2", "middle-left", "3", "middle-right", "8", "bottom-left", "13", "bottom-right", "18"], ArgumentGroupSize = 2)]
     DValues
 }
 

@@ -1,20 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
 public enum SRedHexabuttons
 {
-    [Question("What was the letter heard when pressing the center button in {0}?", ThreeColumns6Answers)]
+    [Question("What was the letter heard in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Strings('A', 'Z')]
     QLetter,
 
-    [Question("What was the number heard when pressing the center button in {0}?", ThreeColumns6Answers)]
+    [Question("What was the number heard in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(1, 6)]
     QNumber,
-    
+
     [Discriminator("the Red Hexabuttons where the letter {0} was heard", Arguments = ["A", "B", "C", "D", "E", "F"], ArgumentGroupSize = 1)]
     DLetter,
 
@@ -25,7 +23,7 @@ public enum SRedHexabuttons
 public partial class SouvenirModule
 {
     [Handler("redHexabuttons", "Red Hexabuttons", typeof(SRedHexabuttons), "Infusion")]
-    [ManualQuestion("What was the letter/number heard when pressing the center button?")]
+    [ManualQuestion("What was the letter/number heard?")]
     private IEnumerator<SouvenirInstruction> ProcessRedHexabuttons(ModuleData module)
     {
         var comp = GetComponent(module, "redHexabuttons");

@@ -537,10 +537,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Accelerando
         [typeof(SAccelerando)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["Which numbers and letters were paired with each other?"] = "Which numbers and letters were paired with each other?",
+                ["Which numbers and letters were paired with each other?"] = "Welche Zahlen waren mit welchen Buchstaben assoziiert?",
             },
             Questions = new()
             {
@@ -548,13 +547,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which number was paired with the letter {1} in {0}?
                     // Example: Which number was paired with the letter A in Accelerando?
-                    Question = "Which number was paired with the letter {1} in {0}?",
+                    Question = "Welche Zahl war bei {0} mit dem Buchstaben {1} assoziiert?",
                 },
                 [SAccelerando.QLettersWithNumbers] = new()
                 {
                     // English: Which letter was paired with the number {1} in {0}?
                     // Example: Which letter was paired with the number 1 in Accelerando?
-                    Question = "Which letter was paired with the number {1} in {0}?",
+                    Question = "Welcher Buchstabe war bei {0} mit der Zahl {1} assoziiert?",
                 },
             },
             Discriminators = new()
@@ -563,7 +562,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Accelerando where the number {0} was paired with the letter {1}
                     // Example: the Accelerando where the number 1 was paired with the letter A
-                    Discriminator = "the Accelerando where the number {0} was paired with the letter {1}",
+                    Discriminator = "dem Accelerando, bei dem die Zahl {0} mit dem Buchstaben {1} assoziiert war,",
                 },
             },
         },
@@ -2641,18 +2640,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Brown Hexabuttons
         [typeof(SBrownHexabuttons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Braune Hexatasten",
+            ModuleNameDative = "Braunen Hexatasten",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What was the code heard when pressing the center button?"] = "What was the code heard when pressing the center button?",
+                ["What was the code heard?"] = "Welcher Code war zu hören?",
             },
             Questions = new()
             {
                 [SBrownHexabuttons.QString] = new()
                 {
-                    // English: What was the {1} letter heard when pressing the center button in {0}?
-                    // Example: What was the first letter heard when pressing the center button in Brown Hexabuttons?
-                    Question = "What was the {1} letter heard when pressing the center button in {0}?",
+                    // English: What was the {1} letter heard in {0}?
+                    // Example: What was the first letter heard in Brown Hexabuttons?
+                    Question = "Was war bei {0} der {1}e Buchstabe im Code?",
                 },
             },
             Discriminators = new()
@@ -2661,7 +2662,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Brown Hexabuttons where the {0} letter heard was {1}
                     // Example: the Brown Hexabuttons where the first letter heard was A
-                    Discriminator = "the Brown Hexabuttons where the {0} letter heard was {1}",
+                    Discriminator = "den Braunen Hexatasten, deren {0}er Buchstabe im Code {1} war,",
                 },
             },
         },
@@ -6432,10 +6433,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Faulty Accelerando
         [typeof(SFaultyAccelerando)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Accelerando Mit Macke",
             ManualQuestions = new()
             {
-                ["Which numbers and letters were paired with each other?"] = "Which numbers and letters were paired with each other?",
+                ["Which numbers and letters were paired with each other?"] = "Welche Zahlen waren mit welchen Buchstaben assoziiert?",
             },
             Questions = new()
             {
@@ -6443,13 +6444,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: Which number was paired with the letter {1} in {0}?
                     // Example: Which number was paired with the letter A in Faulty Accelerando?
-                    Question = "Which number was paired with the letter {1} in {0}?",
+                    Question = "Welche Zahl war bei {0} mit dem Buchstaben {1} assoziiert?",
                 },
                 [SFaultyAccelerando.QLettersWithNumbers] = new()
                 {
                     // English: Which letter was paired with the number {1} in {0}?
                     // Example: Which letter was paired with the number 1 in Faulty Accelerando?
-                    Question = "Which letter was paired with the number {1} in {0}?",
+                    Question = "Welcher Buchstabe war bei {0} mit der Zahl {1} assoziiert?",
                 },
             },
             Discriminators = new()
@@ -6458,7 +6459,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Faulty Accelerando where the number {0} was paired with the letter {1}
                     // Example: the Faulty Accelerando where the number 1 was paired with the letter A
-                    Discriminator = "the Faulty Accelerando where the number {0} was paired with the letter {1}",
+                    Discriminator = "dem Accelerando Mit Macke, bei dem die Zahl {0} mit dem Buchstaben {1} assoziiert war,",
                 },
             },
         },
@@ -7435,10 +7436,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Fur Cipher
         [typeof(SFurCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Fur-Geheimschrift",
+            Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was on each screen?"] = "What was on each screen?",
+                ["What was on each screen?"] = "Was stand auf den Displays?",
             },
             Questions = new()
             {
@@ -7446,12 +7448,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was on the {1} screen on page {2} in {0}?
                     // Example: What was on the top screen on page 1 in Fur Cipher?
-                    Question = "What was on the {1} screen on page {2} in {0}?",
+                    Question = "Was stand bei {0} auf dem {1} Display auf Seite {2}?",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -7461,12 +7463,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Fur Cipher that had {0} on the {1} screen on page {2}
                     // Example: the Fur Cipher that had AMBUSH on the top screen on page 1
-                    Discriminator = "the Fur Cipher that had {0} on the {1} screen on page {2}",
+                    Discriminator = "der Fur-Geheimschrift, bei der auf dem {1} Display auf Seite {2} {0} stand,",
                     Arguments = new()
                     {
-                        ["top"] = "top",
-                        ["middle"] = "middle",
-                        ["bottom"] = "bottom",
+                        ["top"] = "oberen",
+                        ["middle"] = "mittleren",
+                        ["bottom"] = "unteren",
                     },
                 },
             },
@@ -7854,10 +7856,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Gray Hexabuttons
         [typeof(SGrayHexabuttons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Graue Hexatasten",
+            ModuleNameDative = "Grauen Hexatasten",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the values shown when pressing each of the outer buttons?"] = "What were the values shown when pressing each of the outer buttons?",
+                ["What were the values shown when pressing each of the outer buttons?"] = "Welche Werte erschienen bei Druck auf welche äußere Taste?",
             },
             Questions = new()
             {
@@ -7865,15 +7869,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the value shown when pressing the {1} button in {0}?
                     // Example: What was the value shown when pressing the top-left button in Gray Hexabuttons?
-                    Question = "What was the value shown when pressing the {1} hexabutton in {0}?",
+                    Question = "Welcher Wert erschien bei {0} bei Druck auf die {1} Taste?",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "obere linke",
+                        ["top-right"] = "obere rechte",
+                        ["middle-left"] = "mittlere linke",
+                        ["middle-right"] = "mittlere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
                     },
                 },
             },
@@ -7881,17 +7885,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SGrayHexabuttons.DValues] = new()
                 {
-                    // English: the Gray Hexabuttons where the {0} button showed the value ⁠{1}
-                    // Example: the Gray Hexabuttons where the top-left button showed the value ⁠-7
-                    Discriminator = "the Gray Hexabuttons where the {0} hexabutton showed the value ⁠{1}",
+                    // English: the Gray Hexabuttons where the {0} button showed the value {1}
+                    // Example: the Gray Hexabuttons where the top-left button showed the value -7
+                    Discriminator = "den Grauen Hexatasten, deren {0} Taste {1} anzeigte,",
                     Arguments = new()
                     {
-                        ["top-left"] = "top-left",
-                        ["top-right"] = "top-right",
-                        ["middle-left"] = "middle-left",
-                        ["middle-right"] = "middle-right",
-                        ["bottom-left"] = "bottom-left",
-                        ["bottom-right"] = "bottom-right",
+                        ["top-left"] = "obere linke",
+                        ["top-right"] = "obere rechte",
+                        ["middle-left"] = "mittlere linke",
+                        ["middle-right"] = "mittlere rechte",
+                        ["bottom-left"] = "untere linke",
+                        ["bottom-right"] = "untere rechte",
                     },
                 },
             },
@@ -10131,10 +10135,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Levenshtein Distance
         [typeof(SLevenshteinDistance)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Levenshtein-Distanz",
+            Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What were the words displayed?"] = "What were the words displayed?",
+                ["What were the words displayed?"] = "Welche Wörter kamen vor?",
             },
             Questions = new()
             {
@@ -10142,7 +10147,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the word in the {1} display of {0}?
                     // Example: What was the word in the first display of Levenshtein Distance?
-                    Question = "What was the word in the {1} display of {0}?",
+                    Question = "Welches Wort stand bei {0} auf dem {1}en Display?",
                 },
             },
             Discriminators = new()
@@ -10151,7 +10156,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Levenshtein Distance that had {0} in the {1} display
                     // Example: the Levenshtein Distance that had ABSENT in the first display
-                    Discriminator = "the Levenshtein Distance that had {0} in the {1} display",
+                    Discriminator = "der Levenshtein-Distanz, auf dessen {1}em Display {0} stand,",
                 },
             },
         },
@@ -14715,18 +14720,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Purple Hexabuttons
         [typeof(SPurpleHexabuttons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Lila Hexatasten",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What was the string of numbers heard when pressing the center button?"] = "What was the string of numbers heard when pressing the center button?",
+                ["What was the string of numbers heard?"] = "Welche Zahlenfolge war zu hören?",
             },
             Questions = new()
             {
                 [SPurpleHexabuttons.QString] = new()
                 {
-                    // English: What was the {1} number heard when pressing the center button in {0}?
-                    // Example: What was the first number heard when pressing the center button in Purple Hexabuttons?
-                    Question = "What was the {1} number heard when pressing the center button in {0}?",
+                    // English: What was the {1} number heard in {0}?
+                    // Example: What was the first number heard in Purple Hexabuttons?
+                    Question = "Was war bei {0} die {1}e Zahl in der Zahlenfolge?",
                 },
             },
             Discriminators = new()
@@ -14735,7 +14741,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Purple Hexabuttons where the {0} number heard was {1}
                     // Example: the Purple Hexabuttons where the first number heard was 1
-                    Discriminator = "the Purple Hexabuttons where the {0} number heard was {1}",
+                    Discriminator = "den Lila Hexatasten, bei denen die {0}e Zahl in der Zahlenfolge {1} war,",
                 },
             },
         },
@@ -15330,22 +15336,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Red Hexabuttons
         [typeof(SRedHexabuttons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Rote Hexatasten",
+            ModuleNameDative = "Roten Hexatasten",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What was the letter/number heard when pressing the center button?"] = "What was the letter/number heard when pressing the center button?",
+                ["What was the letter/number heard?"] = "Welche Zahl/welcher Buchstabe war zu hören?",
             },
             Questions = new()
             {
                 [SRedHexabuttons.QLetter] = new()
                 {
-                    // English: What was the letter heard when pressing the center button in {0}?
-                    Question = "What was the letter heard when pressing the center button in {0}?",
+                    // English: What was the letter heard in {0}?
+                    Question = "Welcher Buchstabe war bei {0} zu hören?",
                 },
                 [SRedHexabuttons.QNumber] = new()
                 {
-                    // English: What was the number heard when pressing the center button in {0}?
-                    Question = "What was the number heard when pressing the center button in {0}?",
+                    // English: What was the number heard in {0}?
+                    Question = "Welche Zahl war bei {0} zu hören?",
                 },
             },
             Discriminators = new()
@@ -15354,13 +15362,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Red Hexabuttons where the letter {0} was heard
                     // Example: the Red Hexabuttons where the letter A was heard
-                    Discriminator = "the Red Hexabuttons where the letter {0} was heard",
+                    Discriminator = "den Roten Hexatasten, bei denen der Buchstabe {0} zu hören war,",
                 },
                 [SRedHexabuttons.DNumber] = new()
                 {
                     // English: the Red Hexabuttons where the number {0} was heard
                     // Example: the Red Hexabuttons where the number 1 was heard
-                    Discriminator = "the Red Hexabuttons where the number {0} was heard",
+                    Discriminator = "den Roten Hexatasten, bei denen die Zahl {0} zu hören war,",
                 },
             },
         },
@@ -17806,22 +17814,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simple Hexabuttons
         [typeof(SSimpleHexabuttons)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Einfache Hexatasten",
+            ModuleNameDative = "Einfachen Hexatasten",
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What was the number/letter heard when pressing the center button?"] = "What was the number/letter heard when pressing the center button?",
+                ["What was the number/letter heard?"] = "Welcher Buchstabe/welche Zahl war zu hören?",
             },
             Questions = new()
             {
                 [SSimpleHexabuttons.QNumber] = new()
                 {
-                    // English: What was the number heard when pressing the center button in {0}?
-                    Question = "What was the number heard when pressing the center hexabutton in {0}?",
+                    // English: What was the number heard in {0}?
+                    Question = "Welche Zahl war bei {0} zu hören?",
                 },
                 [SSimpleHexabuttons.QLetter] = new()
                 {
-                    // English: What was the letter heard when pressing the center button in {0}?
-                    Question = "What was the letter heard when pressing the center hexabutton in {0}?",
+                    // English: What was the letter heard in {0}?
+                    Question = "Welcher Buchstabe war bei {0} zu hören?",
                 },
             },
             Discriminators = new()
@@ -17830,13 +17840,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Simple Hexabuttons where the number {0} was heard
                     // Example: the Simple Hexabuttons where the number 1 was heard
-                    Discriminator = "the Simple Hexabuttons where the number {0} was heard",
+                    Discriminator = "den Einfachen Hexatasten, bei denen die Zahl {0} zu hören war,",
                 },
                 [SSimpleHexabuttons.DLetter] = new()
                 {
                     // English: the Simple Hexabuttons where the letter {0} was heard
                     // Example: the Simple Hexabuttons where the letter A was heard
-                    Discriminator = "the Simple Hexabuttons where the letter {0} was heard",
+                    Discriminator = "den Einfachen Hexatasten, bei denen der Buchstabe {0} zu hören war,",
                 },
             },
         },
@@ -18278,34 +18288,34 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Spangled Stars
         [typeof(SSpangledStars)] = new()
         {
-            NeedsTranslation = true,
+            Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the colors of the top three stars?"] = "What were the colors of the top three stars?",
-                ["What were the flashed letters?"] = "What were the flashed letters?",
+                ["What were the colors of the top three stars?"] = "Welche Farben hatten die oberen drei Sterne?",
+                ["What were the flashed letters?"] = "Welche Buchstaben leuchteten auf?",
             },
             Questions = new()
             {
                 [SSpangledStars.QTopStars] = new()
                 {
                     // English: Which of these colors appeared among the top three stars in {0}?
-                    Question = "Which of these colors appeared in the top three stars in {0}?",
+                    Question = "Welche Farbe kam bei {0} unter den oberen drei Sternen vor?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
+                        ["Red"] = "Rot",
                         ["Orange"] = "Orange",
-                        ["Yellow"] = "Yellow",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Gelb",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
                         ["Indigo"] = "Indigo",
-                        ["Violet"] = "Violet",
+                        ["Violet"] = "Violett",
                     },
                 },
                 [SSpangledStars.QFlashedLetters] = new()
                 {
                     // English: What was the {1} flashed letter in {0}?
                     // Example: What was the first flashed letter in Spangled Stars?
-                    Question = "What was the {1} flashed letter in {0}?",
+                    Question = "Welcher Buchstabe ist bei {0} als {1}er erschienen?",
                 },
             },
             Discriminators = new()
@@ -18314,23 +18324,23 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Spangled Stars that had {0} among the top three stars
                     // Example: the Spangled Stars that had a red star among the top three stars
-                    Discriminator = "the Spangled Stars that had {0} among the top three stars",
+                    Discriminator = "den Spangled Stars, bei denen {0} unter den oberen drei Sternen vorkam,",
                     Arguments = new()
                     {
-                        ["a red star"] = "a red star",
-                        ["an orange star"] = "an orange star",
-                        ["a yellow star"] = "a yellow star",
-                        ["a green star"] = "a green star",
-                        ["a blue star"] = "a blue star",
-                        ["an indigo star"] = "an indigo star",
-                        ["a violet star"] = "a violet star",
+                        ["a red star"] = "ein roter Stern",
+                        ["an orange star"] = "ein orangener Stern",
+                        ["a yellow star"] = "ein gelber Stern",
+                        ["a green star"] = "ein grüner Stern",
+                        ["a blue star"] = "ein blauer Stern",
+                        ["an indigo star"] = "ein indigofarbener Stern",
+                        ["a violet star"] = "ein violetter Stern",
                     },
                 },
                 [SSpangledStars.DFlashedLetters] = new()
                 {
                     // English: the Spangled Stars where {0} was the {1} letter flashed
                     // Example: the Spangled Stars where A was the first letter flashed
-                    Discriminator = "the Spangled Stars where {0} was the {1} letter flashed",
+                    Discriminator = "den Spangled Stars, bei denen {0} als {1}er Buchstabe erschien,",
                 },
             },
         },
@@ -19268,7 +19278,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Tau
         [typeof(STau)] = new()
         {
-            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What were the letters shown?"] = "Welche Buchstaben kamen vor?",
@@ -19288,7 +19297,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Tau whose {0} letter was {1}
                     // Example: the Tau whose first letter was T
-                    Discriminator = "the Tau whose {0} letter was {1}",
+                    Discriminator = "dem Tau, dessen {0}er Buchstabe {1} war,",
                 },
             },
         },
@@ -21593,10 +21602,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Wonder Cipher
         [typeof(SWonderCipher)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Wunder-Geheimschrift",
+            Gender = Gender.Feminine,
             ManualQuestions = new()
             {
-                ["What was the initial message?"] = "What was the initial message?",
+                ["What was the initial message?"] = "Was war die Botschaft am Anfang?",
             },
             Questions = new()
             {
@@ -21604,7 +21614,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the {1} character in the initial message in {0}?
                     // Example: What was the first character in the initial message in Wonder Cipher?
-                    Question = "What was the {1} character in the initial message in {0}?",
+                    Question = "Was war bei {0} das {1}e Zeichen in der Botschaft am Anfang?",
                 },
             },
             Discriminators = new()
@@ -21613,7 +21623,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Wonder Cipher that had {0} as the {1} character
                     // Example: the Wonder Cipher that had 0 as the first character
-                    Discriminator = "the Wonder Cipher that had {0} as the {1} character",
+                    Discriminator = "der Wunder-Geheimschrift, deren {1}es Zeichen {0} war,",
                 },
             },
         },

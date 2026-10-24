@@ -2695,15 +2695,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the code heard when pressing the center button?"] = "What was the code heard when pressing the center button?",
+                ["What was the code heard?"] = "What was the code heard?",
             },
             Questions = new()
             {
                 [SBrownHexabuttons.QString] = new()
                 {
-                    // English: What was the {1} letter heard when pressing the center button in {0}?
-                    // Example: What was the first letter heard when pressing the center button in Brown Hexabuttons?
-                    Question = "What was the {1} letter heard when pressing the center button in {0}?",
+                    // English: What was the {1} letter heard in {0}?
+                    // Example: What was the first letter heard in Brown Hexabuttons?
+                    Question = "What was the {1} letter heard in {0}?",
                 },
             },
             Discriminators = new()
@@ -7810,8 +7810,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SGrayHexabuttons.DValues] = new()
                 {
-                    // English: the Gray Hexabuttons where the {0} button showed the value ⁠{1}
-                    // Example: the Gray Hexabuttons where the top-left button showed the value ⁠-7
+                    // English: the Gray Hexabuttons where the {0} button showed the value {1}
+                    // Example: the Gray Hexabuttons where the top-left button showed the value -7
                     Discriminator = "the Gray Hexabuttons where the {0} hexabutton showed the value ⁠{1}",
                     Arguments = new()
                     {
@@ -14488,15 +14488,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the string of numbers heard when pressing the center button?"] = "What was the string of numbers heard when pressing the center button?",
+                ["What was the string of numbers heard?"] = "What was the string of numbers heard?",
             },
             Questions = new()
             {
                 [SPurpleHexabuttons.QString] = new()
                 {
-                    // English: What was the {1} number heard when pressing the center button in {0}?
-                    // Example: What was the first number heard when pressing the center button in Purple Hexabuttons?
-                    Question = "What was the {1} number heard when pressing the center button in {0}?",
+                    // English: What was the {1} number heard in {0}?
+                    // Example: What was the first number heard in Purple Hexabuttons?
+                    Question = "What was the {1} number heard in {0}?",
                 },
             },
             Discriminators = new()
@@ -15078,19 +15078,19 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the letter/number heard when pressing the center button?"] = "What was the letter/number heard when pressing the center button?",
+                ["What was the letter/number heard?"] = "What was the letter/number heard?",
             },
             Questions = new()
             {
                 [SRedHexabuttons.QLetter] = new()
                 {
-                    // English: What was the letter heard when pressing the center button in {0}?
-                    Question = "What was the letter heard when pressing the center button in {0}?",
+                    // English: What was the letter heard in {0}?
+                    Question = "What was the letter heard in {0}?",
                 },
                 [SRedHexabuttons.QNumber] = new()
                 {
-                    // English: What was the number heard when pressing the center button in {0}?
-                    Question = "What was the number heard when pressing the center button in {0}?",
+                    // English: What was the number heard in {0}?
+                    Question = "What was the number heard in {0}?",
                 },
             },
             Discriminators = new()
@@ -17510,18 +17510,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the number/letter heard when pressing the center button?"] = "What was the number/letter heard when pressing the center button?",
+                ["What was the number/letter heard?"] = "What was the number/letter heard?",
             },
             Questions = new()
             {
                 [SSimpleHexabuttons.QNumber] = new()
                 {
-                    // English: What was the number heard when pressing the center button in {0}?
+                    // English: What was the number heard in {0}?
                     Question = "What was the number heard when pressing the center hexabutton in {0}?",
                 },
                 [SSimpleHexabuttons.QLetter] = new()
                 {
-                    // English: What was the letter heard when pressing the center button in {0}?
+                    // English: What was the letter heard in {0}?
                     Question = "What was the letter heard when pressing the center hexabutton in {0}?",
                 },
             },
