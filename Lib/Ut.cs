@@ -409,7 +409,7 @@ public static class Ut
             {
                 // Discover the extent of the spaces.
                 numSpaces = 0;
-                while (numSpaces + i < text.Length && isWrappableAfter(text, numSpaces + i) && text[numSpaces + i] != '\n')
+                while (numSpaces + i < text.Length && isWrappableAfter(text, numSpaces + i, whitespaceOnly: true) && text[numSpaces + i] != '\n')
                     numSpaces++;
                 i += numSpaces;
 
@@ -426,7 +426,7 @@ public static class Ut
             yield return sb.ToString();
     }
 
-    private static bool isWrappableAfter(string txt, int index) => txt[index] switch
+    private static bool isWrappableAfter(string txt, int index, bool whitespaceOnly = false) => txt[index] switch
     {
         // Return false for all the whitespace characters that should NOT be wrappable
         // NO-BREAK SPACE and NARROW NO-BREAK SPACE
@@ -436,7 +436,7 @@ public static class Ut
         // ZERO WIDTH SPACE
         '\u200b' => true,
         // Regular hyphen
-        '-' => true,
+        '-' => !whitespaceOnly,
 
         // Apart from the above exceptions, wrap at whitespace characters.
         _ => char.IsWhiteSpace(txt, index),
