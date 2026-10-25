@@ -149,6 +149,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Bamboozling Button  │  Identification Crisis  │  Mister Softee     │  Rainbow Arrows  │
     Chinese Counting    │  LED Math               │  Module Listening  │  Simon’s Star    │
 
+## Implemented by Infusion (17)
+
+    Accelerando         │  Gray Hexabuttons      │  Not Green Arrows    │  Simple Hexabuttons  │  Wonder Cipher
+    Brown Hexabuttons   │  Heptabutton, The      │  Orange Hexabuttons  │  Spangled Stars      │
+    Faulty Accelerando  │  Lettered Hexabuttons  │  Purple Hexabuttons  │  Tau                 │
+    Fur Cipher          │  Levenshtein Distance  │  Red Hexabuttons     │  White Hexabuttons   │
+
 ## Implemented by kavinkul (14)
 
     Blue Arrows      │  Green Arrows              │  Purple Arrows  │  Simon Simons       │  Vectors
@@ -160,12 +167,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Button, The  │  Not Keypad      │  Not Simaze        │  Simon Says      │  Wire Sequence
     Maze         │  Not Maze        │  Not the Button    │  Who’s on First  │
     Memory       │  Not Morse Code  │  Perspective Pegs  │  Wire Ordering   │
-
-## Implemented by Infusion (13)
-
-    Accelerando         │  Fur Cipher        │  Levenshtein Distance  │  Simple Hexabuttons  │  Wonder Cipher
-    Brown Hexabuttons   │  Gray Hexabuttons  │  Purple Hexabuttons    │  Spangled Stars      │
-    Faulty Accelerando  │  Heptabutton, The  │  Red Hexabuttons       │  Tau                 │
 
 ## Implemented by CaitSith2 (10)
 

@@ -9970,6 +9970,34 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Lettered Hexabuttons
+        [typeof(SLetteredHexabuttons)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the number heard?"] = "What was the number heard?",
+            },
+            Questions = new()
+            {
+                [SLetteredHexabuttons.QNumber] = new()
+                {
+                    // English: What was the {1} digit heard in {0}?
+                    // Example: What was the first digit heard in Lettered Hexabuttons?
+                    Question = "What was the {1} digit heard in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SLetteredHexabuttons.DNumber] = new()
+                {
+                    // English: the Lettered Hexabuttons where the {0} digit heard was {1}
+                    // Example: the Lettered Hexabuttons where the first digit heard was 1
+                    Discriminator = "the Lettered Hexabuttons where the {0} digit heard was {1}",
+                },
+            },
+        },
+
         // Letter Math
         [typeof(SLetterMath)] = new()
         {
@@ -12340,6 +12368,34 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Not Green Arrows
+        [typeof(SNotGreenArrows)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the letters shown?"] = "What were the letters shown?",
+            },
+            Questions = new()
+            {
+                [SNotGreenArrows.QLetters] = new()
+                {
+                    // English: What was the {1} letter of the display in {0}?
+                    // Example: What was the first letter of the display in Not Green Arrows?
+                    Question = "What was the {1} letter of the display in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SNotGreenArrows.DLetters] = new()
+                {
+                    // English: the Not Green Arrows whose {0} letter was {1}
+                    // Example: the Not Green Arrows whose first letter was G
+                    Discriminator = "the Not Green Arrows whose {0} letter was {1}",
+                },
+            },
+        },
+
         // Not Keypad
         [typeof(SNotKeypad)] = new()
         {
@@ -13422,6 +13478,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["middle"] = "middle",
                         ["bottom"] = "bottom",
                     },
+                },
+            },
+        },
+
+        // Orange Hexabuttons
+        [typeof(SOrangeHexabuttons)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the cipher used?"] = "What was the cipher used?",
+            },
+            Questions = new()
+            {
+                [SOrangeHexabuttons.QCipher] = new()
+                {
+                    // English: What was the cipher used in {0}?
+                    Question = "What was the cipher used in {0}?",
                 },
             },
         },
@@ -16416,27 +16490,49 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Silo Authorization
         [typeof(SSiloAuthorization)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the message type, encrypted message, and received authorization code?"] = "Какой был тип сообщения, зашифрованное сообщение и полученные код авторизации?",
+                ["What were the message type, encrypted message, and received authentication code?"] = "Какой был тип сообщения, зашифрованное сообщение и полученные код авторизации?",
             },
             Questions = new()
             {
-                [SSiloAuthorization.MessageType] = new()
+                [SSiloAuthorization.QMessageType] = new()
                 {
                     // English: What was the message type in {0}?
                     Question = "Какой был тип сообщения {0}?",
                 },
-                [SSiloAuthorization.EncryptedMessage] = new()
+                [SSiloAuthorization.QEncryptedMessage] = new()
                 {
                     // English: What was the {1} part of the encrypted message in {0}?
                     // Example: What was the first part of the encrypted message in Silo Authorization?
                     Question = "Какая была {1}-я часть зашифрованного сообщения {0}?",
                 },
-                [SSiloAuthorization.AuthCode] = new()
+                [SSiloAuthorization.QAuthCode] = new()
                 {
                     // English: What was the received authentication code in {0}?
                     Question = "Какой код авторизации был получен {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SSiloAuthorization.DMessageType] = new()
+                {
+                    // English: the Silo Authorization where the message type was {0}
+                    // Example: the Silo Authorization where the message type was Red-Alpha
+                    Discriminator = "the Silo Authorization where the message type was {0}",
+                },
+                [SSiloAuthorization.DEncryptedMessage] = new()
+                {
+                    // English: the Silo Authorization where the {0} part of the encrypted message was {1}
+                    // Example: the Silo Authorization where the first part of the encrypted message was A1B2
+                    Discriminator = "the Silo Authorization where the {0} part of the encrypted message was {1}",
+                },
+                [SSiloAuthorization.DAuthCode] = new()
+                {
+                    // English: the Silo Authorization where the received authentication code was {0}
+                    // Example: the Silo Authorization where the received authentication code was 1234
+                    Discriminator = "the Silo Authorization where the received authentication code was {0}",
                 },
             },
         },
@@ -20962,6 +21058,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["middle"] = "middle",
                         ["bottom"] = "bottom",
                     },
+                },
+            },
+        },
+
+        // White Hexabuttons
+        [typeof(SWhiteHexabuttons)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the color of the center button?"] = "What was the color of the center button?",
+            },
+            Questions = new()
+            {
+                [SWhiteHexabuttons.QCenter] = new()
+                {
+                    // English: What was the color of the center button in {0}?
+                    Question = "What was the color of the center button in {0}?",
                 },
             },
         },

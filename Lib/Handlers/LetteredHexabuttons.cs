@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Souvenir;
-using UnityEngine;
 
 using static Souvenir.AnswerLayout;
 
@@ -24,11 +23,11 @@ public partial class SouvenirModule
         var message = GetArrayField<string>(comp, "voiceMessage").Get();
 
         yield return WaitForSolve;
-        
+
         for (var i = 0; i < 5; i++)
         {
-            yield return new Discriminator(SLetteredHexabuttons.DNumber, $"digit{i}", message[i], args: [Ordinal(i + 1), message[i].ToString()]);
-            yield return question(SLetteredHexabuttons.QNumber, args: [Ordinal(i + 1)]).AvoidDiscriminators($"digit{i}").Answers(message[i].ToString());
+            yield return new Discriminator(SLetteredHexabuttons.DNumber, $"digit{i}", message[i], args: [Ordinal(i + 1), message[i]]);
+            yield return question(SLetteredHexabuttons.QNumber, args: [Ordinal(i + 1)]).AvoidDiscriminators($"digit{i}").Answers(message[i]);
         }
     }
 }
