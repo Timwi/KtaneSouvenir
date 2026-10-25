@@ -10175,18 +10175,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SLevenshteinDistance.QDisplays] = new()
                 {
-                    // English: What was the word in the {1} display of {0}?
-                    // Example: What was the word in the first display of Levenshtein Distance?
-                    Question = "Welches Wort stand bei {0} auf dem {1}en Display?",
-                },
-            },
-            Discriminators = new()
-            {
-                [SLevenshteinDistance.DDisplays] = new()
-                {
-                    // English: the Levenshtein Distance that had {0} in the {1} display
-                    // Example: the Levenshtein Distance that had ABSENT in the first display
-                    Discriminator = "der Levenshtein-Distanz, auf dessen {1}em Display {0} stand,",
+                    // English: Which of these words was displayed in {0}?
+                    Question = "Welches Wort kam bei {0} vor?",
                 },
             },
         },

@@ -9883,18 +9883,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SLevenshteinDistance.QDisplays] = new()
                 {
-                    // English: What was the word in the {1} display of {0}?
-                    // Example: What was the word in the first display of Levenshtein Distance?
-                    Question = "What was the word in the {1} display of {0}?",
-                },
-            },
-            Discriminators = new()
-            {
-                [SLevenshteinDistance.DDisplays] = new()
-                {
-                    // English: the Levenshtein Distance that had {0} in the {1} display
-                    // Example: the Levenshtein Distance that had ABSENT in the first display
-                    Discriminator = "the Levenshtein Distance that had {0} in the {1} display",
+                    // English: Which of these words was displayed in {0}?
+                    Question = "Which of these words was displayed in {0}?",
                 },
             },
         },
