@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Souvenir;
 using static Souvenir.AnswerLayout;
 
 public enum SLevenshteinDistance
 {
-	[Question("What was the word in the {1} display of {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABSENT", "BALANCE", "CAMPAIGN", "DEAD", "EXACT", "FEBRUARY"], Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
-    QDisplays,
-
-    [Discriminator("the Levenshtein Distance that had {0} in the {1} display", Arguments = ["ABSENT", QandA.Ordinal, "BALANCE", QandA.Ordinal, "CAMPAIGN", QandA.Ordinal, "DEAD", QandA.Ordinal, "EXACT", QandA.Ordinal, "FEBRUARY", QandA.Ordinal], ArgumentGroupSize = 2)]
-    DDisplays
+	[Question("Which of these words was displayed in {0}?", ThreeColumns6Answers, ExampleAnswers = ["ABSENT", "BALANCE", "CAMPAIGN", "DEAD", "EXACT", "FEBRUARY"])]
+    QDisplays
 }
 
 public partial class SouvenirModule
@@ -25,8 +22,7 @@ public partial class SouvenirModule
 
         for (var i = 0; i < 2; i++)
         {
-            yield return new Discriminator(SLevenshteinDistance.DDisplays, $"display{i}", fldWordIndices[i], args: [possibleWords[fldWordIndices[i]], Ordinal(i + 1)]);
-            yield return question(SLevenshteinDistance.QDisplays, args: [Ordinal(i + 1)]).AvoidDiscriminators($"display{i}").Answers(possibleWords[fldWordIndices[i]], preferredWrong: possibleWords);
+            yield return question(SLevenshteinDistance.QDisplays).Answers(possibleWords[fldWordIndices[i]], preferredWrong: possibleWords);
         }
     }
 }
