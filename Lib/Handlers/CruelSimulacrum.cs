@@ -8,29 +8,29 @@ using static Souvenir.AnswerLayout;
 
 public enum SCruelSimulacrum
 {
-    [Question("What colour was the starting prompt in {0}?", ThreeColumns6Answers, allAnswers: ["Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "White"], TranslateAnswers = true)]
+    [Question("What colour was the starting prompt in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "White", TranslateAnswers = true)]
     StartingPrompt,
 
-    [Question("What colour was the {1} blob in {0}?", ThreeColumns6Answers, allAnswers: ["Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "White"], TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [Question("What colour was the {1} blob in {0}?", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "White", TranslateAnswers = true, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     BlobColour,
 
     [Question("Which LED was {1} in the {2} LED set in {0}?", ThreeColumns3Answers, Arguments = ["white", QandA.Ordinal, "grey", QandA.Ordinal, "black", QandA.Ordinal], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
     [AnswerGenerator.Strings('A', 'C')]
     LedColour,
 
-    [Question("What was the {1} light movement of the {2} sequence in {0}?", OneColumn3Answers, allAnswers: ["Clockwise", "Counter-Clockwise", "Flip"], TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Question("What was the {1} light movement of the {2} sequence in {0}?", OneColumn3Answers, "Clockwise", "Counter-clockwise", "Flip", TranslateAnswers = true, Arguments = [QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 2)]
     LightMovements,
 
-    [Discriminator("the Cruel Simulacrum where the starting prompt was {0}", Arguments = ["Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "White"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Cruel Simulacrum where the starting prompt was {0}", Arguments = ["red", "green", "blue", "yellow", "magenta", "cyan", "white"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     StartingPromptDiscriminator,
 
-    [Discriminator("the Cruel Simulacrum where the {0} blob was {1}", Arguments = [QandA.Ordinal, "Red", QandA.Ordinal, "Green", QandA.Ordinal, "Blue", QandA.Ordinal, "Yellow", QandA.Ordinal, "Magenta", QandA.Ordinal, "Cyan", QandA.Ordinal, "White"], ArgumentGroupSize = 2, TranslateArguments = [true, false])]
+    [Discriminator("the Cruel Simulacrum where the {0} blob was {1}", Arguments = [QandA.Ordinal, "red", QandA.Ordinal, "green", QandA.Ordinal, "blue", QandA.Ordinal, "yellow", QandA.Ordinal, "magenta", QandA.Ordinal, "cyan", QandA.Ordinal, "white"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     BlobColourDiscriminator,
 
-    [Discriminator("the Cruel Simulacrum where the {0} LED of the {1} LED set was {2}", Arguments = ["white", QandA.Ordinal, "A", "grey", QandA.Ordinal, "B", "black", QandA.Ordinal, "C"], ArgumentGroupSize = 3, TranslateArguments = [false, false, true])]
+    [Discriminator("the Cruel Simulacrum where LED {2} of the {1} LED set was {0}", Arguments = ["white", QandA.Ordinal, "A", "grey", QandA.Ordinal, "B", "black", QandA.Ordinal, "C"], ArgumentGroupSize = 3, TranslateArguments = [true, false, false])]
     LedColourDiscriminator,
 
-    [Discriminator("the Cruel Simulacrum where the {0} light movement of the {1} sequence was {2}", Arguments = [QandA.Ordinal, QandA.Ordinal, "Clockwise", QandA.Ordinal, QandA.Ordinal, "Counter-Clockwise", QandA.Ordinal, QandA.Ordinal, "Flip",], ArgumentGroupSize = 3, TranslateArguments = [false, false, true])]
+    [Discriminator("the Cruel Simulacrum where the {0} light movement of the {1} sequence was {2}", Arguments = [QandA.Ordinal, QandA.Ordinal, "clockwise", QandA.Ordinal, QandA.Ordinal, "counter-clockwise", QandA.Ordinal, QandA.Ordinal, "flip"], ArgumentGroupSize = 3, TranslateArguments = [false, false, true])]
     LightMovementsDiscriminator
 }
 
@@ -58,9 +58,9 @@ public partial class SouvenirModule
         var lightMovementsPerStage = GetField<IList[]>(comp, "LightMovementsPerStage")
             .Get(validator: v => v.Length != 3 ? "expected array of length 3" : null);
 
-        for (int stage = 0; stage < 3; stage ++)
+        for (int stage = 0; stage < 3; stage++)
         {
-            for (int led = 0; led < 3; led ++)
+            for (int led = 0; led < 3; led++)
             {
                 string ledName = ledsPerStage[stage][led].ToString();
                 string colour = led == 0 ? "white" : led == 1 ? "grey" : "black";
@@ -77,7 +77,7 @@ public partial class SouvenirModule
                 yield return question(SCruelSimulacrum.StartingPrompt)
                     .AvoidDiscriminators([SCruelSimulacrum.StartingPromptDiscriminator])
                     .Answers(coloursPerStage[0].ToString());
-                
+
                 yield return new Discriminator(SCruelSimulacrum.StartingPromptDiscriminator, "startPrompt",
                     coloursPerStage[0].ToString(), args: [coloursPerStage[0].ToString()]);
             }

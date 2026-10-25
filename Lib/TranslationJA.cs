@@ -4464,6 +4464,136 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // Cruel Simulacrum
+        [typeof(SCruelSimulacrum)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the colour of the prompt?"] = "What was the colour of the prompt?",
+                ["What were the colours of the blobs?"] = "What were the colours of the blobs?",
+                ["What were the colour of each LED?"] = "What were the colour of each LED?",
+                ["What were the light movements?"] = "What were the light movements?",
+            },
+            Questions = new()
+            {
+                [SCruelSimulacrum.StartingPrompt] = new()
+                {
+                    // English: What colour was the starting prompt in {0}?
+                    Question = "What colour was the starting prompt in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                    },
+                },
+                [SCruelSimulacrum.BlobColour] = new()
+                {
+                    // English: What colour was the {1} blob in {0}?
+                    // Example: What colour was the first blob in Cruel Simulacrum?
+                    Question = "What colour was the {1} blob in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                    },
+                },
+                [SCruelSimulacrum.LedColour] = new()
+                {
+                    // English: Which LED was {1} in the {2} LED set in {0}?
+                    // Example: Which LED was white in the first LED set in Cruel Simulacrum?
+                    Question = "Which LED was {1} in the {2} LED set in {0}?",
+                    Arguments = new()
+                    {
+                        ["white"] = "white",
+                        ["grey"] = "grey",
+                        ["black"] = "black",
+                    },
+                },
+                [SCruelSimulacrum.LightMovements] = new()
+                {
+                    // English: What was the {1} light movement of the {2} sequence in {0}?
+                    // Example: What was the first light movement of the first sequence in Cruel Simulacrum?
+                    Question = "What was the {1} light movement of the {2} sequence in {0}?",
+                    Answers = new()
+                    {
+                        ["Clockwise"] = "Clockwise",
+                        ["Counter-clockwise"] = "Counter-clockwise",
+                        ["Flip"] = "Flip",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCruelSimulacrum.StartingPromptDiscriminator] = new()
+                {
+                    // English: the Cruel Simulacrum where the starting prompt was {0}
+                    // Example: the Cruel Simulacrum where the starting prompt was red
+                    Discriminator = "the Cruel Simulacrum where the starting prompt was {0}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "cyan",
+                        ["white"] = "white",
+                    },
+                },
+                [SCruelSimulacrum.BlobColourDiscriminator] = new()
+                {
+                    // English: the Cruel Simulacrum where the {0} blob was {1}
+                    // Example: the Cruel Simulacrum where the first blob was red
+                    Discriminator = "the Cruel Simulacrum where the {0} blob was {1}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "cyan",
+                        ["white"] = "white",
+                    },
+                },
+                [SCruelSimulacrum.LedColourDiscriminator] = new()
+                {
+                    // English: the Cruel Simulacrum where LED {2} of the {1} LED set was {0}
+                    // Example: the Cruel Simulacrum where LED A of the first LED set was white
+                    Discriminator = "the Cruel Simulacrum where the {0} LED of the {1} LED set was {2}",
+                    Arguments = new()
+                    {
+                        ["white"] = "white",
+                        ["grey"] = "grey",
+                        ["black"] = "black",
+                    },
+                },
+                [SCruelSimulacrum.LightMovementsDiscriminator] = new()
+                {
+                    // English: the Cruel Simulacrum where the {0} light movement of the {1} sequence was {2}
+                    // Example: the Cruel Simulacrum where the first light movement of the first sequence was clockwise
+                    Discriminator = "the Cruel Simulacrum where the {0} light movement of the {1} sequence was {2}",
+                    Arguments = new()
+                    {
+                        ["clockwise"] = "clockwise",
+                        ["counter-clockwise"] = "counter-clockwise",
+                        ["flip"] = "flip",
+                    },
+                },
+            },
+        },
+
         // The cRule
         [typeof(SCRule)] = new()
         {

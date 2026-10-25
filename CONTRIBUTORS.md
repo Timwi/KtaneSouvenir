@@ -193,15 +193,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Alfa-Bravo    │  Character Codes      │  Eight          │  Stability
     Binary Shift  │  Colors Maximization  │  Space Traders  │  Sysadmin
 
+## Implemented by thunder725 (7)
+
+    Cruel Simulacrum  │  Giants Cipher  │  Scorching Alchemist  │  UFO Satellites
+    DNA Mutation      │  Lime Arrows    │  Toxic Crystals       │
+
 ## Implemented by Marksam (6)
 
     Brown Cipher                │  Great Void, The  │  UltraStores
     Forget’s Ultimate Showdown  │  Lombax Cubes     │  Wolf, Goat, and Cabbage
-
-## Implemented by thunder725 (6)
-
-    DNA Mutation   │  Lime Arrows          │  Toxic Crystals
-    Giants Cipher  │  Scorching Alchemist  │  UFO Satellites
 
 ## Others
 

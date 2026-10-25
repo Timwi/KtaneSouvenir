@@ -4593,6 +4593,137 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cruel Simulacrum
+        [typeof(SCruelSimulacrum)] = new()
+        {
+            ModuleName = "Höllisches Scheinbild",
+            ModuleNameDative = "Höllischen Scheinbild",
+            ManualQuestions = new()
+            {
+                ["What was the colour of the prompt?"] = "Welche Farbe hatte die Vorgabe?",
+                ["What were the colours of the blobs?"] = "Welche Farben hatten die Klumpen?",
+                ["What were the colour of each LED?"] = "Welche LED hatte welche Farbe?",
+                ["What were the light movements?"] = "Wie hat sich das Licht bewegt?",
+            },
+            Questions = new()
+            {
+                [SCruelSimulacrum.StartingPrompt] = new()
+                {
+                    // English: What colour was the starting prompt in {0}?
+                    Question = "Welche Farbe hatte bei {0} die erste Vorgabe?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Rosa",
+                        ["Cyan"] = "Türkis",
+                        ["White"] = "Weiß",
+                    },
+                },
+                [SCruelSimulacrum.BlobColour] = new()
+                {
+                    // English: What colour was the {1} blob in {0}?
+                    // Example: What colour was the first blob in Cruel Simulacrum?
+                    Question = "Welche Farbe hatte bei {0} der {1}e Klumpen?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
+                        ["Yellow"] = "Gelb",
+                        ["Magenta"] = "Rosa",
+                        ["Cyan"] = "Türkis",
+                        ["White"] = "Weiß",
+                    },
+                },
+                [SCruelSimulacrum.LedColour] = new()
+                {
+                    // English: Which LED was {1} in the {2} LED set in {0}?
+                    // Example: Which LED was white in the first LED set in Cruel Simulacrum?
+                    Question = "Welche LED war bei {0} im {2}en LED-Satz {1}?",
+                    Arguments = new()
+                    {
+                        ["white"] = "weiß",
+                        ["grey"] = "grau",
+                        ["black"] = "schwarz",
+                    },
+                },
+                [SCruelSimulacrum.LightMovements] = new()
+                {
+                    // English: What was the {1} light movement of the {2} sequence in {0}?
+                    // Example: What was the first light movement of the first sequence in Cruel Simulacrum?
+                    Question = "Was war bei {0} die {1}e Lichtbewegung in der {2}en Sequenz?",
+                    Answers = new()
+                    {
+                        ["Clockwise"] = "Im Uhrzeigersinn",
+                        ["Counter-clockwise"] = "Gegen den Uhrzeigersinn",
+                        ["Flip"] = "Hin und her",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SCruelSimulacrum.StartingPromptDiscriminator] = new()
+                {
+                    // English: the Cruel Simulacrum where the starting prompt was {0}
+                    // Example: the Cruel Simulacrum where the starting prompt was red
+                    Discriminator = "dem Höllischen Scheinbild, dessen erste Vorgabe {0} war,",
+                    Arguments = new()
+                    {
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
+                        ["magenta"] = "rosa",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
+                    },
+                },
+                [SCruelSimulacrum.BlobColourDiscriminator] = new()
+                {
+                    // English: the Cruel Simulacrum where the {0} blob was {1}
+                    // Example: the Cruel Simulacrum where the first blob was red
+                    Discriminator = "dem Höllischen Scheinbild, dessen {0}er Klumpen {1} war,",
+                    Arguments = new()
+                    {
+                        ["red"] = "rot",
+                        ["green"] = "grün",
+                        ["blue"] = "blau",
+                        ["yellow"] = "gelb",
+                        ["magenta"] = "rosa",
+                        ["cyan"] = "türkis",
+                        ["white"] = "weiß",
+                    },
+                },
+                [SCruelSimulacrum.LedColourDiscriminator] = new()
+                {
+                    // English: the Cruel Simulacrum where LED {2} of the {1} LED set was {0}
+                    // Example: the Cruel Simulacrum where LED A of the first LED set was white
+                    Discriminator = "dem Höllischen Scheinbild, bei dem LED {2} im {1}en LED-Satz {0} war,",
+                    Arguments = new()
+                    {
+                        ["white"] = "weiß",
+                        ["grey"] = "grau",
+                        ["black"] = "schwarz",
+                    },
+                },
+                [SCruelSimulacrum.LightMovementsDiscriminator] = new()
+                {
+                    // English: the Cruel Simulacrum where the {0} light movement of the {1} sequence was {2}
+                    // Example: the Cruel Simulacrum where the first light movement of the first sequence was clockwise
+                    Discriminator = "dem Höllischen Scheinbild, dessen {0}e Lichtbewegung in der {1}en Sequenz {2} verlief,",
+                    Arguments = new()
+                    {
+                        ["clockwise"] = "im Uhrzeigersinn",
+                        ["counter-clockwise"] = "gegen den Uhrzeigersinn",
+                        ["flip"] = "hin und her",
+                    },
+                },
+            },
+        },
+
         // The cRule
         [typeof(SCRule)] = new()
         {
