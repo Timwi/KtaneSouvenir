@@ -31,12 +31,12 @@ public partial class SouvenirModule
 
         var pairs = fldPairs.Get(validator: v => v.Count != 20 ? "expected length 20" : null);
         var fldNumber = GetField<int>(pairs[0], "Number", isPublic: true);
-        var fldLetter = GetField<char>(pairs[0], "Letter", isPublic: true);
+        var fldLetter = GetField<string>(pairs[0], "Letter", isPublic: true);
 
         for (var i = 0; i < 20; i++)
         {
             var number = fldNumber.GetFrom(pairs[i], validator: i => i < 1 || i > 20 ? "expected range 1–20" : null).ToString();
-            var letter = fldLetter.GetFrom(pairs[i], validator: ch => ch < 'A' || ch > 'Z' ? "expected letter A–Z" : null).ToString();
+            var letter = fldLetter.GetFrom(pairs[i], validator: ch => ch.Length != 1 ? "expected length 1" : ch[0] < 'A' || ch[0] > 'Z' ? "expected letter A–Z" : null);
             yield return new Discriminator(SFaultyAccelerando.DNumberLetterPairs, $"pair{i}", pairs[i], args: [number, letter]);
             yield return question(SFaultyAccelerando.QNumbersWithLetters, args: [letter]).AvoidDiscriminators($"pair{i}").Answers(number);
             yield return question(SFaultyAccelerando.QLettersWithNumbers, args: [number]).AvoidDiscriminators($"pair{i}").Answers(letter);
