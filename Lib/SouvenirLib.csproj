@@ -14,7 +14,7 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin/</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -23,12 +23,11 @@
     <Configurations>Release</Configurations>
   </PropertyGroup>
   <PropertyGroup>
-    <GameFolder Condition="'$(GameFolder)' == '' AND '$(OS)' == 'Windows_NT'">C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\</GameFolder>
+    <GameFolder Condition="'$(GameFolder)' == '' AND '$(OS)' == 'Windows_NT'">C:/Program Files (x86)/Steam/steamapps/common/Keep Talking and Nobody Explodes/</GameFolder>
     <GameFolder Condition="'$(GameFolder)' == '' AND '$(OS)' != 'Windows_NT' AND '$(KTANE_GAME_FOLDER)' != ''">$(KTANE_GAME_FOLDER)</GameFolder>
-    <ManagedFolder Condition="'$(OS)' == 'Windows_NT'">ktane_Data\Managed</ManagedFolder>
-    <ManagedFolder Condition="'$(OS)' != 'Windows_NT'">Keep Talking and Nobody Explodes.app/Contents/Resources/Data/Managed</ManagedFolder>
-    <SouvenirPostBuildTool Condition="'$(OS)' == 'Windows_NT'">..\PostBuildTool\bin\Release\net4.8\SouvenirPostBuildTool.exe</SouvenirPostBuildTool>
-    <SouvenirPostBuildTool Condition="'$(OS)' != 'Windows_NT'">..\PostBuildTool\bin\Release\net4.8\SouvenirPostBuildTool</SouvenirPostBuildTool>
+    <ManagedFolder>ktane_Data/Managed</ManagedFolder>
+    <SouvenirPostBuildTool Condition="'$(OS)' == 'Windows_NT'">..\PostBuildTool\bin\Release\net10.0\SouvenirPostBuildTool.exe</SouvenirPostBuildTool>
+    <SouvenirPostBuildTool Condition="'$(OS)' != 'Windows_NT'">dotnet ../PostBuildTool/bin/Release/net10.0/SouvenirPostBuildTool.dll</SouvenirPostBuildTool>
     <SouvenirPostBuildToolExtraArguments></SouvenirPostBuildToolExtraArguments>
   </PropertyGroup>
   <ItemGroup>
@@ -42,63 +41,63 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="KMFramework">
-      <HintPath>..\Assets\Plugins\Managed\KMFramework.dll</HintPath>
+      <HintPath>../Assets/Plugins/Managed/KMFramework.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Assets\Plugins\Managed\Newtonsoft.Json.dll</HintPath>
+      <HintPath>../Assets/Plugins/Managed/Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AudioModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.AudioModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.ParticleSystemModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.PhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.UI.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.UnityWebRequestModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>$(GameFolder)$(ManagedFolder)\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <HintPath>$(GameFolder)$(ManagedFolder)/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -109,8 +108,8 @@
     <ItemGroup>
       <SouvenirDlls Include="$(TargetDir)*.dll" />
     </ItemGroup>
-    <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot; &quot;$(GameFolder)$(ManagedFolder)&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t $(SouvenirPostBuildToolExtraArguments)" />
-    <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(ProjectDir)..\\Assets\\Plugins\\Managed" />
-    <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(GameFolder)mods\\Souvenir" />
+    <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot; &quot;$(GameFolder)$(ManagedFolder)&quot; -c &quot;$(ProjectDir)../CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)../data.json&quot; -t $(SouvenirPostBuildToolExtraArguments)" />
+    <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(ProjectDir)../Assets/Plugins/Managed" />
+    <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(GameFolder)mods/Souvenir" />
   </Target>
 </Project>

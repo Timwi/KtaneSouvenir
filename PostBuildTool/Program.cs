@@ -599,8 +599,7 @@ public static class Program
     ///     backslash escapes.</summary>
     private static string CLiteralEscape(this string value)
     {
-        if (value == null)
-            throw new ArgumentNullException(nameof(value));
+        ArgumentNullException.ThrowIfNull(value);
 
         var result = new StringBuilder(value.Length + value.Length / 2);
 
