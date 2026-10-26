@@ -7551,6 +7551,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Functions
         [typeof(SFunctions)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
                 ["What was the last digit of the first query result?"] = "Какая последняя цифра была у результата первого запроса?",
@@ -7558,25 +7559,46 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
             Questions = new()
             {
-                [SFunctions.LastDigit] = new()
+                [SFunctions.QNumber] = new()
                 {
-                    // English: What was the last digit of your first query’s result in {0}?
-                    Question = "Какая была последняя цифра результата вашего первого запроса {0}?",
+                    // English: What number was to the {1} of the displayed letter in {0}?
+                    // Example: What number was to the left of the displayed letter in Functions?
+                    Question = "Какое число было {1} от отображённой буквы {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "слева",
+                        ["right"] = "справа",
+                    },
                 },
-                [SFunctions.LeftNumber] = new()
-                {
-                    // English: What number was to the left of the displayed letter in {0}?
-                    Question = "Какое число было слева от отображённой буквы {0}?",
-                },
-                [SFunctions.Letter] = new()
+                [SFunctions.QLetter] = new()
                 {
                     // English: What letter was displayed in {0}?
                     Question = "Какая буква была отображена {0}?",
                 },
-                [SFunctions.RightNumber] = new()
+                [SFunctions.QLastDigit] = new()
                 {
-                    // English: What number was to the right of the displayed letter in {0}?
-                    Question = "Какое число было справа от отображённой буквы {0}?",
+                    // English: What was the last digit of your first query’s result in {0}?
+                    Question = "Какая была последняя цифра результата вашего первого запроса {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SFunctions.DNumber] = new()
+                {
+                    // English: the Functions whose {1} number was {0}
+                    // Example: the Functions whose left number was 123
+                    Discriminator = "the Functions whose {1} number was {0}",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
+                },
+                [SFunctions.DLetter] = new()
+                {
+                    // English: the Functions whose letter was {0}
+                    // Example: the Functions whose letter was A
+                    Discriminator = "the Functions whose letter was {0}",
                 },
             },
         },
@@ -10697,6 +10719,55 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["display"] = "присутствовала",
                         ["not display"] = "отсутствовала",
                     },
+                },
+            },
+        },
+
+        // Malfunctions
+        [typeof(SMalfunctions)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the numbers and letter shown at the bottom?"] = "What were the numbers and letter shown at the bottom?",
+            },
+            Questions = new()
+            {
+                [SMalfunctions.QNumber] = new()
+                {
+                    // English: What number was to the {1} of the displayed letter in {0}?
+                    // Example: What number was to the left of the displayed letter in Malfunctions?
+                    Question = "What number was to the left of the displayed letter in {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
+                },
+                [SMalfunctions.QLetter] = new()
+                {
+                    // English: What letter was displayed in {0}?
+                    Question = "What letter was displayed in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SMalfunctions.DNumber] = new()
+                {
+                    // English: the Malfunctions whose {1} number was {0}
+                    // Example: the Malfunctions whose left number was 123
+                    Discriminator = "the Malfunctions whose {1} number was {0}",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
+                },
+                [SMalfunctions.DLetter] = new()
+                {
+                    // English: the Malfunctions whose letter was {0}
+                    // Example: the Malfunctions whose letter was A
+                    Discriminator = "the Malfunctions whose letter was {0}",
                 },
             },
         },

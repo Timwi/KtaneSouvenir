@@ -7328,6 +7328,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Functions
         [typeof(SFunctions)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "関数",
             ManualQuestions = new()
             {
@@ -7336,25 +7337,46 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Questions = new()
             {
-                [SFunctions.LastDigit] = new()
+                [SFunctions.QNumber] = new()
                 {
-                    // English: What was the last digit of your first query’s result in {0}?
-                    Question = "{0}の最初の問い合わせ結果の下一桁は？",
+                    // English: What number was to the {1} of the displayed letter in {0}?
+                    // Example: What number was to the left of the displayed letter in Functions?
+                    Question = "{0}で英字の{1}隣のディスプレーに表示された数字は？",
+                    Arguments = new()
+                    {
+                        ["left"] = "左",
+                        ["right"] = "右",
+                    },
                 },
-                [SFunctions.LeftNumber] = new()
-                {
-                    // English: What number was to the left of the displayed letter in {0}?
-                    Question = "{0}で英字の左隣のディスプレーに表示された数字は？",
-                },
-                [SFunctions.Letter] = new()
+                [SFunctions.QLetter] = new()
                 {
                     // English: What letter was displayed in {0}?
                     Question = "{0}に表示された英字は？",
                 },
-                [SFunctions.RightNumber] = new()
+                [SFunctions.QLastDigit] = new()
                 {
-                    // English: What number was to the right of the displayed letter in {0}?
-                    Question = "{0}で英字の右隣のディスプレーに表示された数字は？",
+                    // English: What was the last digit of your first query’s result in {0}?
+                    Question = "{0}の最初の問い合わせ結果の下一桁は？",
+                },
+            },
+            Discriminators = new()
+            {
+                [SFunctions.DNumber] = new()
+                {
+                    // English: the Functions whose {1} number was {0}
+                    // Example: the Functions whose left number was 123
+                    Discriminator = "the Functions whose {1} number was {0}",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
+                },
+                [SFunctions.DLetter] = new()
+                {
+                    // English: the Functions whose letter was {0}
+                    // Example: the Functions whose letter was A
+                    Discriminator = "the Functions whose letter was {0}",
                 },
             },
         },
@@ -10468,6 +10490,55 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["display"] = "た",
                         ["not display"] = "なかった",
                     },
+                },
+            },
+        },
+
+        // Malfunctions
+        [typeof(SMalfunctions)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the numbers and letter shown at the bottom?"] = "What were the numbers and letter shown at the bottom?",
+            },
+            Questions = new()
+            {
+                [SMalfunctions.QNumber] = new()
+                {
+                    // English: What number was to the {1} of the displayed letter in {0}?
+                    // Example: What number was to the left of the displayed letter in Malfunctions?
+                    Question = "What number was to the left of the displayed letter in {0}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
+                },
+                [SMalfunctions.QLetter] = new()
+                {
+                    // English: What letter was displayed in {0}?
+                    Question = "What letter was displayed in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SMalfunctions.DNumber] = new()
+                {
+                    // English: the Malfunctions whose {1} number was {0}
+                    // Example: the Malfunctions whose left number was 123
+                    Discriminator = "the Malfunctions whose {1} number was {0}",
+                    Arguments = new()
+                    {
+                        ["left"] = "left",
+                        ["right"] = "right",
+                    },
+                },
+                [SMalfunctions.DLetter] = new()
+                {
+                    // English: the Malfunctions whose letter was {0}
+                    // Example: the Malfunctions whose letter was A
+                    Discriminator = "the Malfunctions whose letter was {0}",
                 },
             },
         },

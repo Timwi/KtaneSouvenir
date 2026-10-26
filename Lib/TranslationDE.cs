@@ -7541,25 +7541,46 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Questions = new()
             {
-                [SFunctions.LastDigit] = new()
+                [SFunctions.QNumber] = new()
                 {
-                    // English: What was the last digit of your first query’s result in {0}?
-                    Question = "Was war bei {0} die letzte Ziffer des ersten Abfrageergebnisses?",
+                    // English: What number was to the {1} of the displayed letter in {0}?
+                    // Example: What number was to the left of the displayed letter in Functions?
+                    Question = "Welche Zahl war bei {0} {1} vom Buchstaben?",
+                    Arguments = new()
+                    {
+                        ["left"] = "links",
+                        ["right"] = "rechts",
+                    },
                 },
-                [SFunctions.LeftNumber] = new()
-                {
-                    // English: What number was to the left of the displayed letter in {0}?
-                    Question = "Welche Zahl war bei {0} links vom Buchstaben?",
-                },
-                [SFunctions.Letter] = new()
+                [SFunctions.QLetter] = new()
                 {
                     // English: What letter was displayed in {0}?
                     Question = "Welcher Buchstabe war bei {0} auf dem Display?",
                 },
-                [SFunctions.RightNumber] = new()
+                [SFunctions.QLastDigit] = new()
                 {
-                    // English: What number was to the right of the displayed letter in {0}?
-                    Question = "Welche Zahl war bei {0} rechts vom Buchstaben?",
+                    // English: What was the last digit of your first query’s result in {0}?
+                    Question = "Was war bei {0} die letzte Ziffer des ersten Abfrageergebnisses?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SFunctions.DNumber] = new()
+                {
+                    // English: the Functions whose {1} number was {0}
+                    // Example: the Functions whose left number was 123
+                    Discriminator = "den Funktionen, deren {1} Zahl {0} war,",
+                    Arguments = new()
+                    {
+                        ["left"] = "linke",
+                        ["right"] = "rechte",
+                    },
+                },
+                [SFunctions.DLetter] = new()
+                {
+                    // English: the Functions whose letter was {0}
+                    // Example: the Functions whose letter was A
+                    Discriminator = "den Funktionen, deren Buchstabe {0} war,",
                 },
             },
         },
@@ -10773,6 +10794,57 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["display"] = "vor",
                         ["not display"] = "nicht vor",
                     },
+                },
+            },
+        },
+
+        // Malfunctions
+        [typeof(SMalfunctions)] = new()
+        {
+            NeedsTranslation = true,
+            ModuleName = "Fehlfunktionen",
+            Gender = Gender.Plural,
+            ManualQuestions = new()
+            {
+                ["What were the numbers and letter shown at the bottom?"] = "Welche Zahlen und welcher Buchstabe standen unten?",
+            },
+            Questions = new()
+            {
+                [SMalfunctions.QNumber] = new()
+                {
+                    // English: What number was to the {1} of the displayed letter in {0}?
+                    // Example: What number was to the left of the displayed letter in Malfunctions?
+                    Question = "Welche Zahl war bei {0} {1} vom Buchstaben?",
+                    Arguments = new()
+                    {
+                        ["left"] = "links",
+                        ["right"] = "rechts",
+                    },
+                },
+                [SMalfunctions.QLetter] = new()
+                {
+                    // English: What letter was displayed in {0}?
+                    Question = "Welcher Buchstabe war bei {0} auf dem Display?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SMalfunctions.DNumber] = new()
+                {
+                    // English: the Malfunctions whose {1} number was {0}
+                    // Example: the Malfunctions whose left number was 123
+                    Discriminator = "den Fehlfunktionen, deren {1} Zahl {0} war,",
+                    Arguments = new()
+                    {
+                        ["left"] = "linke",
+                        ["right"] = "rechte",
+                    },
+                },
+                [SMalfunctions.DLetter] = new()
+                {
+                    // English: the Malfunctions whose letter was {0}
+                    // Example: the Malfunctions whose letter was A
+                    Discriminator = "den Fehlfunktionen, deren Buchstabe {0} war,",
                 },
             },
         },
