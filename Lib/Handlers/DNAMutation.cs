@@ -11,8 +11,17 @@ public enum SDNAMutation
     NucleotideColor,
 
     [Question("What was the color of the {1} given DNA strand in {0}?", TwoColumns4Answers, "Green", "Red", "Yellow", "Blue", Arguments = [QandA.Ordinal], ArgumentGroupSize = 1, TranslateAnswers = true)]
-    StrandColor
-}
+    StrandColor,
+
+    [Discriminator("the DNA Mutation where the {0} given nucleotide was {1}", Arguments = [QandA.Ordinal, "G", QandA.Ordinal, "C", QandA.Ordinal, "A", QandA.Ordinal, "T"], ArgumentGroupSize = 2)]
+    LetterDiscriminator,
+
+    [Discriminator("the DNA Mutation where the {0} given nucleotide was {1}", Arguments = [QandA.Ordinal, "green", QandA.Ordinal, "yellow", QandA.Ordinal, "red", QandA.Ordinal, "blue"], ArgumentGroupSize = 2)]
+    NucleotideColorDiscriminator,
+
+    [Discriminator("the DNA Mutation where the {0} given DNA strand was {1}", Arguments = [QandA.Ordinal, "green", QandA.Ordinal, "yellow", QandA.Ordinal, "red", QandA.Ordinal, "blue"], ArgumentGroupSize = 2)]
+    StrandColorDiscriminator
+}   
 
 public partial class SouvenirModule
 {
@@ -35,9 +44,22 @@ public partial class SouvenirModule
 
         for (var i = 0; i < 9; i++)
         {
-            yield return question(SDNAMutation.Letter, args: [Ordinal(i + 1)]).Answers(letters[answerChemicals[i]]);
-            yield return question(SDNAMutation.NucleotideColor, args: [Ordinal(i + 1)]).Answers(nucleotideColors[answerNucleotideColor[i]]);
-            yield return question(SDNAMutation.StrandColor, args: [Ordinal(i + 1)]).Answers(strandColors[answerStrandColor[i]]);
+            yield return question(SDNAMutation.Letter, args: [Ordinal(i + 1)])
+                .AvoidDiscriminators(SDNAMutation.LetterDiscriminator)
+                .Answers(letters[answerChemicals[i]]);
+            yield return question(SDNAMutation.NucleotideColor, args: [Ordinal(i + 1)])
+                .AvoidDiscriminators(SDNAMutation.NucleotideColorDiscriminator)
+                .Answers(nucleotideColors[answerNucleotideColor[i]]);
+            yield return question(SDNAMutation.StrandColor, args: [Ordinal(i + 1)])
+                .AvoidDiscriminators(SDNAMutation.StrandColorDiscriminator)
+                .Answers(strandColors[answerStrandColor[i]]);
+
+            yield return new Discriminator(SDNAMutation.LetterDiscriminator, $"letter_{i}", value: letters[answerChemicals[i]],
+                args: [Ordinal(i + 1), letters[answerChemicals[i]]]);
+            yield return new Discriminator(SDNAMutation.NucleotideColorDiscriminator, $"nuclColor_{i}", value: nucleotideColors[answerNucleotideColor[i]],
+                args: [Ordinal(i + 1), nucleotideColors[answerNucleotideColor[i]].ToLower()]);
+            yield return new Discriminator(SDNAMutation.StrandColorDiscriminator, $"strandColor_{i}", value: strandColors[answerStrandColor[i]],
+                args: [Ordinal(i + 1), strandColors[answerStrandColor[i]].ToLower()]);
         }
     }
 }
