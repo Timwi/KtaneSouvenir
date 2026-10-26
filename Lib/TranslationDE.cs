@@ -10801,12 +10801,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Malfunctions
         [typeof(SMalfunctions)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Fehlfunktionen",
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What were the numbers and letter shown at the bottom?"] = "Welche Zahlen und welcher Buchstabe standen unten?",
+                ["What were the numbers and letter shown at the top?"] = "Welche Zahlen und welcher Buchstabe standen oben?",
             },
             Questions = new()
             {

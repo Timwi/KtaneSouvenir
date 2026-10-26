@@ -10729,7 +10729,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the numbers and letter shown at the bottom?"] = "What were the numbers and letter shown at the bottom?",
+                ["What were the numbers and letter shown at the top?"] = "What were the numbers and letter shown at the top?",
             },
             Questions = new()
             {

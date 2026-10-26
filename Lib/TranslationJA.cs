@@ -10500,7 +10500,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were the numbers and letter shown at the bottom?"] = "What were the numbers and letter shown at the bottom?",
+                ["What were the numbers and letter shown at the top?"] = "What were the numbers and letter shown at the top?",
             },
             Questions = new()
             {

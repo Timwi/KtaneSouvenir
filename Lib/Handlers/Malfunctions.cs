@@ -22,7 +22,7 @@ public enum SMalfunctions
 public partial class SouvenirModule
 {
     [Handler("malfunctions", "Malfunctions", typeof(SMalfunctions), "Timwi")]
-    [ManualQuestion("What were the numbers and letter shown at the bottom?")]
+    [ManualQuestion("What were the numbers and letter shown at the top?")]
     private IEnumerator<SouvenirInstruction> ProcessMalfunctions(ModuleData module)
     {
         var comp = GetComponent(module, "malfunctions");
