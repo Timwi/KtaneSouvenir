@@ -2030,6 +2030,135 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Black Hexabuttons
+        [typeof(SBlackHexabuttons)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the characters transmitted by each of the outer buttons?"] = "What were the characters transmitted by each of the outer buttons?",
+            },
+            Questions = new()
+            {
+                [SBlackHexabuttons.QCharacters] = new()
+                {
+                    // English: What was the character transmitted by the {1} button in {0}?
+                    // Example: What was the character transmitted by the top-left button in Black Hexabuttons?
+                    Question = "What was the character transmitted by the {1} button in {0}?",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-right"] = "bottom-right",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBlackHexabuttons.DCharacters] = new()
+                {
+                    // English: the Black Hexabuttons where the {0} button transmitted the character {1}
+                    // Example: the Black Hexabuttons where the top-left button transmitted the character B
+                    Discriminator = "the Black Hexabuttons where the {0} button transmitted the character {1}",
+                    Arguments = new()
+                    {
+                        ["top-left"] = "top-left",
+                        ["top-right"] = "top-right",
+                        ["middle-left"] = "middle-left",
+                        ["middle-right"] = "middle-right",
+                        ["bottom-left"] = "bottom-left",
+                        ["bottom-right"] = "bottom-right",
+                    },
+                },
+            },
+        },
+
+        // Blind Arrows
+        [typeof(SBlindArrows)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the colors of the LEDs in the first two stages?"] = "What were the colors of the LEDs in the first two stages?",
+                ["What was the position of the arrow in the first two stages?"] = "What was the position of the arrow in the first two stages?",
+                ["What was the direction of the arrow in the first two stages?"] = "What was the direction of the arrow in the first two stages?",
+            },
+            Questions = new()
+            {
+                [SBlindArrows.QLEDs] = new()
+                {
+                    // English: What was the color of the {1} LED in the {2} stage of {0}?
+                    // Example: What was the color of the top LED in the first stage of Blind Arrows?
+                    Question = "What was the color of the {1} LED in the {2} stage of {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["right"] = "right",
+                    },
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Black"] = "Black",
+                        ["Orange"] = "Orange",
+                        ["Yellow"] = "Yellow",
+                        ["Green"] = "Green",
+                        ["Cyan"] = "Cyan",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                    },
+                },
+                [SBlindArrows.QPositions] = new()
+                {
+                    // English: What was the position of the arrow in the {1} stage of {0}?
+                    // Example: What was the position of the arrow in the first stage of Blind Arrows?
+                    Question = "What was the position of the arrow in the {1} stage of {0}?",
+                },
+                [SBlindArrows.QDirections] = new()
+                {
+                    // English: What was the direction of the arrow in the {1} stage of {0}?
+                    // Example: What was the direction of the arrow in the first stage of Blind Arrows?
+                    Question = "What was the direction of the arrow in the {1} stage of {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SBlindArrows.DLEDs] = new()
+                {
+                    // English: the Blind Arrows where the color of the {0} LED in the {1} stage was {2}
+                    // Example: the Blind Arrows where the color of the top LED in the first stage was red
+                    Discriminator = "the Blind Arrows where the color of the {0} LED in the {1} stage was {2}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["right"] = "right",
+                        ["red"] = "red",
+                        ["black"] = "black",
+                        ["orange"] = "orange",
+                        ["yellow"] = "yellow",
+                        ["green"] = "green",
+                        ["cyan"] = "cyan",
+                        ["magenta"] = "magenta",
+                        ["white"] = "white",
+                    },
+                },
+                [SBlindArrows.DPositions] = new()
+                {
+                    // English: the Blind Arrows where the arrow in the {0} stage was here (+ extra)
+                    // Example: the Blind Arrows where the arrow in the first stage was here (+ extra)
+                    Discriminator = "the Blind Arrows where the arrow in the {0} stage was here",
+                },
+                [SBlindArrows.DDirections] = new()
+                {
+                    // English: the Blind Arrows where the arrow in the {0} stage was {1}
+                    // Example: the Blind Arrows where the arrow in the first stage was ↗
+                    Discriminator = "the Blind Arrows where the arrow in the {0} stage was {1}",
+                },
+            },
+        },
+
         // Blindfolded Yahtzee
         [typeof(SBlindfoldedYahtzee)] = new()
         {
@@ -11488,6 +11617,136 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: What was the second word written by the original ghost in {0}?
                     Question = "Какое было второе слово, написанное оригинальным призраком на {0}?",
                     Conjugation = Conjugation.PrepositiveMascNeuter,
+                },
+            },
+        },
+
+        // Misery Squares
+        [typeof(SMiserySquares)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the colors in the given sequence?"] = "What were the colors in the given sequence?",
+            },
+            Questions = new()
+            {
+                [SMiserySquares.QSequence] = new()
+                {
+                    // English: What was the {1} color of the given sequence in {0}?
+                    // Example: What was the first color of the given sequence in Misery Squares?
+                    Question = "What was the {1} color of the given sequence in {0}?",
+                    Answers = new()
+                    {
+                        ["Black"] = "Black",
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["Cyan"] = "Cyan",
+                        ["White"] = "White",
+                        ["Orange"] = "Orange",
+                        ["Brown"] = "Brown",
+                        ["Gray"] = "Gray",
+                        ["Purple"] = "Purple",
+                        ["Indigo"] = "Indigo",
+                        ["Teal"] = "Teal",
+                        ["Lime"] = "Lime",
+                        ["Opal"] = "Opal",
+                        ["Olive"] = "Olive",
+                        ["Moonstone"] = "Moonstone",
+                        ["Menthol"] = "Menthol",
+                        ["Peru"] = "Peru",
+                        ["Phlox"] = "Phlox",
+                        ["Pistachio"] = "Pistachio",
+                        ["Rackley"] = "Rackley",
+                        ["Quincy"] = "Quincy",
+                        ["Rust"] = "Rust",
+                        ["Sapphire"] = "Sapphire",
+                        ["Tulip"] = "Tulip",
+                        ["Tomato"] = "Tomato",
+                        ["Toolbox"] = "Toolbox",
+                        ["Water"] = "Water",
+                        ["Wine"] = "Wine",
+                        ["Watermelon"] = "Watermelon",
+                        ["Zinnwaldite"] = "Zinnwaldite",
+                        ["Iceberg"] = "Iceberg",
+                        ["Ultramarine"] = "Ultramarine",
+                        ["Tan"] = "Tan",
+                        ["Shampoo"] = "Shampoo",
+                        ["Salem"] = "Salem",
+                        ["Ruby"] = "Ruby",
+                        ["Pear"] = "Pear",
+                        ["Oxley"] = "Oxley",
+                        ["Lanzones"] = "Lanzones",
+                        ["Kobi"] = "Kobi",
+                        ["Garnet"] = "Garnet",
+                        ["Azure"] = "Azure",
+                        ["Bisque"] = "Bisque",
+                        ["Artichoke"] = "Artichoke",
+                        ["Amber"] = "Amber",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SMiserySquares.DSequence] = new()
+                {
+                    // English: the Misery Squares whose {0} color given was {1}
+                    // Example: the Misery Squares whose first color given was black
+                    Discriminator = "the Misery Squares whose {0} color given was {1}",
+                    Arguments = new()
+                    {
+                        ["black"] = "black",
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                        ["magenta"] = "magenta",
+                        ["cyan"] = "cyan",
+                        ["white"] = "white",
+                        ["orange"] = "orange",
+                        ["brown"] = "brown",
+                        ["gray"] = "gray",
+                        ["purple"] = "purple",
+                        ["indigo"] = "indigo",
+                        ["teal"] = "teal",
+                        ["lime"] = "lime",
+                        ["opal"] = "opal",
+                        ["olive"] = "olive",
+                        ["moonstone"] = "moonstone",
+                        ["menthol"] = "menthol",
+                        ["peru"] = "peru",
+                        ["phlox"] = "phlox",
+                        ["pistachio"] = "pistachio",
+                        ["rackley"] = "rackley",
+                        ["quincy"] = "quincy",
+                        ["rust"] = "rust",
+                        ["sapphire"] = "sapphire",
+                        ["tulip"] = "tulip",
+                        ["tomato"] = "tomato",
+                        ["toolbox"] = "toolbox",
+                        ["water"] = "water",
+                        ["wine"] = "wine",
+                        ["watermelon"] = "watermelon",
+                        ["zinnwaldite"] = "zinnwaldite",
+                        ["iceberg"] = "iceberg",
+                        ["ultramarine"] = "ultramarine",
+                        ["tan"] = "tan",
+                        ["shampoo"] = "shampoo",
+                        ["salem"] = "salem",
+                        ["ruby"] = "ruby",
+                        ["pear"] = "pear",
+                        ["oxley"] = "oxley",
+                        ["lanzones"] = "lanzones",
+                        ["kobi"] = "kobi",
+                        ["garnet"] = "garnet",
+                        ["azure"] = "azure",
+                        ["bisque"] = "bisque",
+                        ["artichoke"] = "artichoke",
+                        ["amber"] = "amber",
+                    },
                 },
             },
         },
@@ -21495,6 +21754,40 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: the Wire whose displayed number was {0}
                     // Example: the Wire whose displayed number was 0
                     Discriminator = "the Wire whose displayed number was {0}",
+                },
+            },
+        },
+
+        // Wire Association
+        [typeof(SWireAssociation)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which letter was associated with which number?"] = "Which letter was associated with which number?",
+            },
+            Questions = new()
+            {
+                [SWireAssociation.NumberToLetter] = new()
+                {
+                    // English: Which letter was wire {1} in {0}?
+                    // Example: Which letter was wire 1 in Wire Association?
+                    Question = "Which letter was wire {1} in {0}?",
+                },
+                [SWireAssociation.LetterToNumber] = new()
+                {
+                    // English: Which number was wire {1} in {0}?
+                    // Example: Which number was wire A in Wire Association?
+                    Question = "Which number was wire {1} in {0}?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SWireAssociation.Discriminator] = new()
+                {
+                    // English: the Wire Association in which wire {0} was {1}
+                    // Example: the Wire Association in which wire A was 1
+                    Discriminator = "the Wire Association in which wire {0} was {1}",
                 },
             },
         },

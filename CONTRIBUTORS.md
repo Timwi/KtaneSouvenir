@@ -3,7 +3,7 @@
 The following is a list of modules supported by Souvenir, and the fine people who have contributed their effort to make it happen:
 
 
-## Implemented by Timwi (161)
+## Implemented by Timwi (162)
 
     3D Maze              │  Coordinates           │  Klaxon, The              │  Partial Derivatives    │  Simon States
     3D Tunnels           │  Coral Cipher          │  Kudosudoku               │  Pattern Cube           │  Simon’s On First
@@ -28,13 +28,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Caesar Cycle         │  Forest Cipher         │  Morsematics              │  Seven Choose Four      │  Uncolored Switches
     Calendar             │  Functions             │  Mouse In The Maze        │  Shape Shift            │  Vcrcs
     Cartinese            │  Gamepad, The          │  Multicolored Switches    │  Shifted Maze           │  Visual Impairment
-    Cheap Checkout       │  Geometry Dash         │  Murder                   │  Silly Slots            │  Wire, The
-    Cheat Checkout       │  Glitched Button, The  │  Mystery Module           │  Silo Authorization     │  World’s Largest Button, The
-    Chess                │  Gray Button, The      │  Navinums                 │  Simon Samples          │  Yahtzee
-    Chord Qualities      │  Green Button, The     │  Navy Button, The         │  Simon Screams          │  Yellow Button, The
-    Color Braille        │  Hexamaze              │  Neutralization           │  Simon Shouts           │  Yellow Huffman Cipher
-    Color Decoding       │  Hill Cycle            │  Not Memory               │  Simon Shrieks          │  Zero, Zero
-    Color Morse          │  Human Resources       │  Not X-Ray                │  Simon Signals          │
+    Cheap Checkout       │  Geometry Dash         │  Murder                   │  Silly Slots            │  Wire Association
+    Cheat Checkout       │  Glitched Button, The  │  Mystery Module           │  Silo Authorization     │  Wire, The
+    Chess                │  Gray Button, The      │  Navinums                 │  Simon Samples          │  World’s Largest Button, The
+    Chord Qualities      │  Green Button, The     │  Navy Button, The         │  Simon Screams          │  Yahtzee
+    Color Braille        │  Hexamaze              │  Neutralization           │  Simon Shouts           │  Yellow Button, The
+    Color Decoding       │  Hill Cycle            │  Not Memory               │  Simon Shrieks          │  Yellow Huffman Cipher
+    Color Morse          │  Human Resources       │  Not X-Ray                │  Simon Signals          │  Zero, Zero
     Colored Squares      │  Identity Parade       │  Object Shows             │  Simon Sings            │
     Colored Switches     │  IPA                   │  Only Connect             │  Simon Sounds           │
     Colorful Dials       │  Jumble Cycle          │  Orientation Cube         │  Simon Speaks           │
@@ -143,19 +143,19 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Shapes          │  USA Cycle
     Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
 
+## Implemented by Infusion (20)
+
+    Accelerando        │  Faulty Accelerando  │  Lettered Hexabuttons  │  Orange Hexabuttons  │  Spangled Stars
+    Black Hexabuttons  │  Fur Cipher          │  Levenshtein Distance  │  Purple Hexabuttons  │  Tau
+    Blind Arrows       │  Gray Hexabuttons    │  Misery Squares        │  Red Hexabuttons     │  White Hexabuttons
+    Brown Hexabuttons  │  Heptabutton, The    │  Not Green Arrows      │  Simple Hexabuttons  │  Wonder Cipher
+
 ## Implemented by TasThiluna (18)
 
     3D Tap Code         │  Encryption Bingo       │  M&Ms              │  More Code       │  Small Circle
     Bakery              │  Hidden Colors          │  M&Ns              │  Ordered Keys    │  Tenpins
     Bamboozling Button  │  Identification Crisis  │  Mister Softee     │  Rainbow Arrows  │
     Chinese Counting    │  LED Math               │  Module Listening  │  Simon’s Star    │
-
-## Implemented by Infusion (17)
-
-    Accelerando         │  Gray Hexabuttons      │  Not Green Arrows    │  Simple Hexabuttons  │  Wonder Cipher
-    Brown Hexabuttons   │  Heptabutton, The      │  Orange Hexabuttons  │  Spangled Stars      │
-    Faulty Accelerando  │  Lettered Hexabuttons  │  Purple Hexabuttons  │  Tau                 │
-    Fur Cipher          │  Levenshtein Distance  │  Red Hexabuttons     │  White Hexabuttons   │
 
 ## Implemented by kavinkul (14)
 
