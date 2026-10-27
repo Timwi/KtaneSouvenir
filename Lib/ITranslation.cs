@@ -15,5 +15,6 @@ public interface ITranslation
     DiscriminatorTranslationInfo TranslateDiscriminator(Enum enumValue);
 
     bool TranslateManualQuestions { get; }
-    object ManualQuestionSortBy(TranslationInfo info, string originalModuleName);
+    string ManualQuestionSortBy(TranslationInfo info, string originalModuleName);
+    string ManualQuestionSortCulture { get; }
 }

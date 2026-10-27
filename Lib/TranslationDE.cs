@@ -32,7 +32,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         : _translations.Get(qAttr.Handler.EnumType)?.ModuleName ?? qAttr.Handler.ModuleNameWithThe;
 
     public override bool TranslateManualQuestions => true;
-    public override object ManualQuestionSortBy(TranslationInfo_de info, string originalModuleName) =>
+    public override string ManualQuestionSortCulture => "de-DE";
+    public override string ManualQuestionSortBy(TranslationInfo_de info, string originalModuleName) =>
         info == null ? originalModuleName.Replace("“", "") :
         info.ManualModuleName == null ? (info.ModuleName ?? originalModuleName).Replace("“", "") :
         info.ManualModuleName.IndexOf('\uE001') is { } p and not -1 ? info.ManualModuleName.Substring(p + 1) :

@@ -90,8 +90,9 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
 
     public override string Ordinal(int number) => number.ToString();
     public override bool TranslateManualQuestions => true;
-    public override object ManualQuestionSortBy(TranslationInfo<QuestionTranslationInfo_ru> info, string originalModuleName) =>
-        (info?.ManualModuleName == null, info?.ManualModuleName ?? originalModuleName);
+    public override string ManualQuestionSortCulture => "ru-RU";
+    public override string ManualQuestionSortBy(TranslationInfo<QuestionTranslationInfo_ru> info, string originalModuleName) =>
+        $"{(info?.ManualModuleName == null ? "А" : "Б")} {info?.ManualModuleName ?? originalModuleName}";
 
     // CODE TO IMPORT TRANSLATIONS FROM SPREADSHEET
     // https://docs.google.com/spreadsheets/d/1wlGwFawhhpeFPc3ncuptM-jrwr1agFJXexmGs8ydgPM

@@ -13,7 +13,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
     public override int DefaultFontIndex => 8;
     public override float LineSpacing => 0.7f;
     public override bool TranslateManualQuestions => true;
-    public override object ManualQuestionSortBy(TranslationInfo<QuestionTranslationInfo> info, string originalModuleName) => originalModuleName;
+    public override string ManualQuestionSortBy(TranslationInfo<QuestionTranslationInfo> info, string originalModuleName) => originalModuleName;
 
     protected override Dictionary<Type, TranslationInfo<QuestionTranslationInfo>> _translations => new()
     {

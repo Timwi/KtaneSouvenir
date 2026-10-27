@@ -10,8 +10,9 @@ public abstract class TranslationBase<T> : ITranslation where T : TranslationInf
     public virtual int DefaultFontIndex => 0;
     public virtual float LineSpacing => 0.525f;
     public virtual bool TranslateManualQuestions => false;
-    public object ManualQuestionSortBy(TranslationInfo info, string originalModuleName) => ManualQuestionSortBy((T) info, originalModuleName);
-    public virtual object ManualQuestionSortBy(T info, string originalModuleName) => info?.ManualModuleName ?? info?.ModuleName;
+    public string ManualQuestionSortBy(TranslationInfo info, string originalModuleName) => ManualQuestionSortBy((T) info, originalModuleName);
+    public virtual string ManualQuestionSortBy(T info, string originalModuleName) => info?.ManualModuleName ?? info?.ModuleName;
+    public virtual string ManualQuestionSortCulture => "en-US";
 
     public virtual string FormatModuleName(QuestionAttribute qAttr, bool addSolveCount, int numSolved) =>
         addSolveCount ? $"the {qAttr.Handler.ModuleName} you solved {Ordinal(numSolved)}" : qAttr.Handler.ModuleNameWithThe;

@@ -99,6 +99,7 @@ public static class Program
         var fldTranslateManualQuestions = translationType.GetProperty("TranslateManualQuestions", BindingFlags.Public | BindingFlags.Instance);
         var mthTranslateModule = translationType.GetMethod("TranslateModule", BindingFlags.Public | BindingFlags.Instance, null, [typeof(Type)], null);
         var mthManualQuestionSortBy = translationType.GetMethod("ManualQuestionSortBy", BindingFlags.Public | BindingFlags.Instance);
+        var propManualQuestionSortCulture = translationType.GetProperty("ManualQuestionSortCulture", BindingFlags.Public | BindingFlags.Instance);
 
         var translationInfoType = assembly.GetType("Souvenir.TranslationInfo");
         var fldManualQuestions = translationInfoType.GetField("ManualQuestions", BindingFlags.Public | BindingFlags.Instance);
@@ -144,9 +145,15 @@ public static class Program
 
         foreach (var (lang, qs) in questions)
         {
+            var culture = lang == "en" ? "en-US" : (string) propManualQuestionSortCulture.GetValue(languages[lang]);
+            var stringComparer = StringComparer.Create(CultureInfo.GetCultureInfo(culture), CompareOptions.IgnoreCase | CompareOptions.IgnoreSymbols);
+            var qsSorted = lang == "en"
+                ? qs.OrderBy(tup => tup.name, stringComparer)
+                : qs.OrderBy(tup => (string) mthManualQuestionSortBy.Invoke(languages[lang], [tup.translationObject, tup.name]), stringComparer);
+
             File.WriteAllText(Path.Combine(folderpath, $"SouvenirData{(lang == "en" ? "" : $".{lang}")}.js"), $"""
                 let SouvenirModuleData = [
-                {qs.OrderBy(tup => lang == "en" ? tup.name : mthManualQuestionSortBy.Invoke(languages[lang], [tup.translationObject, tup.name])).Select(tup =>
+                {qsSorted.Select(tup =>
                     {
                         var englishName = (tup.the ? "The " : "") + tup.name.Replace("'", "’");
                         return $"\t{{ {(lang == "en" ? "" : $"original: {englishName.JsEscape()},\t")}name: {(tup.translated ?? englishName).JsEscape()},\tid: {tup.id.JsEscape()},\tquestions: [{tup.questions.Select(q => q.JsEscape()).JoinString(", ")}] }},";
