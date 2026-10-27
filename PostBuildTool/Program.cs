@@ -387,6 +387,13 @@ public static class Program
                         needsTranslation = true;
                 }
 
+                void ThrowError(object enumValue, string code, string msg)
+                {
+                    var sourceFile = Path.GetFullPath(Path.Combine(sourcePath, "Handlers", $"{enumType.Name.Substring(1)}.cs"));
+                    var lineNumber = File.Exists(sourceFile) ? File.ReadLines(sourceFile).IndexOf(line => Regex.IsMatch(line, $@"^\s*{Regex.Escape(enumValue.ToString())}\s*,?\s*$")) : -1;
+                    throw new SouvenirErrorException($"{sourceFile}({(lineNumber == -1 ? 1 : lineNumber + 1)},1): error {code}: {enumValue.GetType().Name}.{enumValue} {msg}");
+                }
+
                 // for each QUESTION...
                 foreach (var (enumValue, qAttr, _) in questionsAndDiscriminators.Where(tup => tup.qAttr != null))
                 {
@@ -405,8 +412,13 @@ public static class Program
                     {
                         var extra = propQQuestionExtraType.GetValue(qAttr).ToString() == "None" ? "" : $@" (+ extra)";
                         sb.AppendLine($@"{indent()}// English: {propQQuestionText.GetValue(qAttr)}{extra}");
-                        if (propQArguments.GetValue(qAttr) is string[] args)
-                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) propQQuestionText.GetValue(qAttr), [((bool) propAddThe.GetValue(handler) ? "The " : "") + propModuleName.GetValue(handler), .. processString(args.Take((int) propQArgumentGroupSize.GetValue(qAttr)))])}{extra}");
+                        if (propQArguments.GetValue(qAttr) is string[] { Length: var argLen and > 0 } args
+                                && propQArgumentGroupSize.GetValue(qAttr) is int argGroupSize)
+                        {
+                            if (argGroupSize == 0 || argLen % argGroupSize != 0)
+                                ThrowError(enumValue, "SOUV0008", "length of Arguments is not divisible by ArgumentGroupSize.");
+                            sb.AppendLine($@"{indent()}// Example: {string.Format((string) propQQuestionText.GetValue(qAttr), [((bool) propAddThe.GetValue(handler) ? "The " : "") + propModuleName.GetValue(handler), .. processString(args.Take(argGroupSize))])}{extra}");
+                        }
                     }
                     sb.AppendLine($@"{indent()}Question = ""{(alreadyQuestionText ?? (string) propQQuestionText.GetValue(qAttr)).CLiteralEscape()}"",");
 
@@ -438,20 +450,11 @@ public static class Program
                             && propQTranslateArguments.GetValue(qAttr) is bool[] trArgs
                             && trArgs.Contains(true))
                     {
-                        (string code, string msg) error = default;
-                        if (len % groupSize != 0)
-                            error = ("SOUV0002", "length of Arguments is not divisible by ArgumentGroupSize.");
                         if (trArgs.Length != groupSize)
-                            error = ("SOUV0003", "length of TranslateArguments is not equal to ArgumentGroupSize.");
+                            ThrowError(enumValue, "SOUV0003", "length of TranslateArguments is not equal to ArgumentGroupSize.");
                         var argValues = Regex.Matches((string) propQQuestionText.GetValue(qAttr), @"\{(\d+)[:\}]").Cast<Match>().Select(m => int.Parse(m.Groups[1].Value)).ToHashSet();
                         if (argValues.Any(v => v < 0 || v > groupSize))
-                            error = ("SOUV0004", "interpolation holes do not match ArgumentGroupSize.");
-                        if (error.msg != null)
-                        {
-                            var sourceFile = Path.GetFullPath(Path.Combine(sourcePath, "Handlers", $"{enumType.Name.Substring(1)}.cs"));
-                            var lineNumber = File.Exists(sourceFile) ? File.ReadLines(sourceFile).IndexOf(line => Regex.IsMatch(line, $@"^\s*{Regex.Escape(enumValue.ToString())}\s*,?\s*$")) : -1;
-                            throw new SouvenirErrorException($"{sourceFile}({(lineNumber == -1 ? 1 : lineNumber + 1)},1): error {error.code}: {enumValue.GetType().Name}.{enumValue} {error.msg}");
-                        }
+                            ThrowError(enumValue, "SOUV0004", "interpolation holes do not match ArgumentGroupSize.");
                         AddDictionary("Arguments", Enumerable.Range(0, groupSize).Where(ix => trArgs[ix]).SelectMany(ix => Enumerable.Range(0, origArguments.Length / groupSize).Select(jx => origArguments[jx * groupSize + ix])).Distinct(), alreadyQuestion == null ? null : (Dictionary<string, string>) fldArguments.GetValue(alreadyQuestion));
                     }
                     if (propQAllAnswers.GetValue(qAttr) is string[] { Length: > 0 } origAnswers && (bool) propQTranslateAnswers.GetValue(qAttr))
@@ -486,8 +489,14 @@ public static class Program
 
                         var extra = propDQuestionExtraType.GetValue(dAttr).ToString() == "None" ? "" : $@" (+ extra)";
                         sb.AppendLine($@"{indent()}// English: {propDDiscriminatorText.GetValue(dAttr)}{extra}");
-                        if (propDArguments.GetValue(dAttr) is string[] args)
+                        if (propDArguments.GetValue(dAttr) is string[] { Length: var argLen and > 0 } args
+                                && propDArgumentGroupSize.GetValue(dAttr) is int argGroupSize)
+                        {
+                            if (argGroupSize == 0 || argLen % argGroupSize != 0)
+                                ThrowError(enumValue, "SOUV0009", "length of Arguments is not divisible by ArgumentGroupSize.");
                             sb.AppendLine($@"{indent()}// Example: {string.Format((string) propDDiscriminatorText.GetValue(dAttr), processString(args.Take((int) propDArgumentGroupSize.GetValue(dAttr))).ToArray())}{extra}");
+                        }
+
                         sb.AppendLine($@"{indent()}Discriminator = ""{((alreadyDiscriminator == null ? null : (string) fldDiscriminator.GetValue(alreadyDiscriminator)) ?? (string) propDDiscriminatorText.GetValue(dAttr)).CLiteralEscape()}"",");
 
                         if ((bool) propDReferenceDocumentation.GetValue(dAttr) || propDTranslatableStrings.GetValue(dAttr) is string[] { Length: > 0 })
@@ -498,20 +507,13 @@ public static class Program
                                 && propDTranslateArguments.GetValue(dAttr) is bool[] trArgs
                                 && trArgs.Contains(true))
                         {
-                            (string code, string msg) error = default;
                             if (len % groupSize != 0)
-                                error = ("SOUV0005", "length of Arguments is not divisible by ArgumentGroupSize.");
+                                ThrowError(enumValue, "SOUV0005", "length of Arguments is not divisible by ArgumentGroupSize.");
                             if (trArgs.Length != groupSize)
-                                error = ("SOUV0006", "length of TranslateArguments is not equal to ArgumentGroupSize.");
+                                ThrowError(enumValue, "SOUV0006", "length of TranslateArguments is not equal to ArgumentGroupSize.");
                             var argValues = Regex.Matches((string) propDDiscriminatorText.GetValue(dAttr), @"\{(\d+)[:\}]").Cast<Match>().Select(m => int.Parse(m.Groups[1].Value)).ToHashSet();
                             if (argValues.Any(v => v < 0 || v >= groupSize))
-                                error = ("SOUV0007", "interpolation holes do not match ArgumentGroupSize.");
-                            if (error.msg != null)
-                            {
-                                var sourceFile = Path.GetFullPath(Path.Combine(sourcePath, "Handlers", $"{enumType.Name.Substring(1)}.cs"));
-                                var lineNumber = File.Exists(sourceFile) ? File.ReadLines(sourceFile).IndexOf(line => Regex.IsMatch(line, $@"^\s*{Regex.Escape(enumValue.ToString())}\s*,?\s*$")) : -1;
-                                throw new SouvenirErrorException($"{sourceFile}({(lineNumber == -1 ? 1 : lineNumber + 1)},1): error {error.code}: {enumValue.GetType().Name}.{enumValue} {error.msg}");
-                            }
+                                ThrowError(enumValue, "SOUV0007", "interpolation holes do not match ArgumentGroupSize.");
 
                             AddDictionary("Arguments", Enumerable.Range(0, groupSize).Where(ix => trArgs[ix]).SelectMany(ix => Enumerable.Range(0, origArguments.Length / groupSize).Select(jx => origArguments[jx * groupSize + ix])).Distinct(), alreadyDiscriminator == null ? null : (Dictionary<string, string>) fldDArguments.GetValue(alreadyDiscriminator));
                         }
