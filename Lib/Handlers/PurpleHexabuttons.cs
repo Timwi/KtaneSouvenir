@@ -9,7 +9,7 @@ public enum SPurpleHexabuttons
     [AnswerGenerator.Integers(0, 9)]
     QString,
 
-    [Discriminator("the Purple Hexabuttons where the {0} number heard was {1}", Arguments = [QandA.Ordinal, "1", QandA.Ordinal, "2", QandA.Ordinal, "3", QandA.Ordinal, "4", QandA.Ordinal, "5", QandA.Ordinal, "6", QandA.Ordinal], ArgumentGroupSize = 2)]
+    [Discriminator("the Purple Hexabuttons where the {0} number heard was {1}", Arguments = [QandA.Ordinal, "1", QandA.Ordinal, "2", QandA.Ordinal, "3", QandA.Ordinal, "4", QandA.Ordinal, "5", QandA.Ordinal, "6"], ArgumentGroupSize = 2)]
     DString
 }
 

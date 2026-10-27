@@ -22,14 +22,14 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "blackHexabuttons");
         var transmissions = GetArrayField<string>(comp, "blackMorse").Get(expectedLength: 6);
+        yield return WaitForSolve;
+
         var positions = new string[6] { "top-left", "top-right", "middle-left", "middle-right", "bottom-left", "bottom-right" };
         var morse = new string[36] { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----." };
 
-        yield return WaitForSolve;
-
         for (var i = 0; i < 6; i++)
         {
-            var answer = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"[Array.IndexOf(morse, transmissions[i].ToString())].ToString();
+            var answer = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"[Array.IndexOf(morse, transmissions[i])].ToString();
             yield return new Discriminator(SBlackHexabuttons.DCharacters, $"character{i}", transmissions[i], args: [positions[i], answer]);
             yield return question(SBlackHexabuttons.QCharacters, args: [positions[i]]).AvoidDiscriminators($"character{i}").Answers(answer);
         }
