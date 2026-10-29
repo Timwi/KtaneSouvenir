@@ -7851,6 +7851,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Gray Button
         [typeof(SGrayButton)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "灰色ボタン",
             ManualQuestions = new()
             {
@@ -7861,13 +7862,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 [SGrayButton.Coordinates] = new()
                 {
                     // English: What was the {1} coordinate on the display in {0}?
-                    // Example: What was the horizontal coordinate on the display in The Gray Button?
-                    Question = "{0}のディスプレー上に表示された{1}の座標は？",
-                    Arguments = new()
-                    {
-                        ["horizontal"] = "段",
-                        ["vertical"] = "列",
-                    },
+                    // Example: What was the first coordinate on the display in The Gray Button?
+                    Question = "What was the {1} coordinate on the display in {0}?",
                 },
             },
         },

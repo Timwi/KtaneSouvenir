@@ -8086,13 +8086,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SGrayButton.Coordinates] = new()
                 {
                     // English: What was the {1} coordinate on the display in {0}?
-                    // Example: What was the horizontal coordinate on the display in The Gray Button?
-                    Question = "Was war bei {0} die {1} Koordinate auf dem Display?",
-                    Arguments = new()
-                    {
-                        ["horizontal"] = "horizontale",
-                        ["vertical"] = "vertikale",
-                    },
+                    // Example: What was the first coordinate on the display in The Gray Button?
+                    Question = "Was war bei {0} die {1}e Koordinate auf dem Display?",
                 },
             },
         },

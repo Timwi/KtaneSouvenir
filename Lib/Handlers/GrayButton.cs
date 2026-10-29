@@ -6,7 +6,7 @@ using static Souvenir.AnswerLayout;
 
 public enum SGrayButton
 {
-    [Question("What was the {1} coordinate on the display in {0}?", ThreeColumns6Answers, Arguments = ["horizontal", "vertical"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Question("What was the {1} coordinate on the display in {0}?", ThreeColumns6Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
     [AnswerGenerator.Integers(0, 9)]
     Coordinates
 }
@@ -25,7 +25,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"Unexpected text on Gray Button display: {text.text}");
 
         yield return WaitForSolve;
-        yield return question(SGrayButton.Coordinates, args: ["horizontal"]).Answers(m.Groups[1].Value);
-        yield return question(SGrayButton.Coordinates, args: ["vertical"]).Answers(m.Groups[2].Value);
+        yield return question(SGrayButton.Coordinates, args: [Ordinal(1)]).Answers(m.Groups[1].Value);
+        yield return question(SGrayButton.Coordinates, args: [Ordinal(2)]).Answers(m.Groups[2].Value);
     }
 }
