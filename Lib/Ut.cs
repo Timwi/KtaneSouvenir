@@ -752,4 +752,40 @@ public static class Ut
         match = Regex.Match(input, pattern, options);
         return match.Success;
     }
+
+    /// <summary>
+    ///     Executes the specified function with the specified argument.</summary>
+    /// <typeparam name="TSource">
+    ///     Type of the argument to the function.</typeparam>
+    /// <typeparam name="TResult">
+    ///     Type of the result of the function.</typeparam>
+    /// <param name="source">
+    ///     The argument to the function.</param>
+    /// <param name="func">
+    ///     The function to execute.</param>
+    /// <returns>
+    ///     The result of the function.</returns>
+    public static TResult Apply<TSource, TResult>(this TSource source, Func<TSource, TResult> func)
+    {
+        if (func == null)
+            throw new ArgumentNullException(nameof(func));
+        return func(source);
+    }
+
+    /// <summary>
+    ///     Executes the specified action with the specified argument.</summary>
+    /// <typeparam name="TSource">
+    ///     Type of the argument to the action.</typeparam>
+    /// <param name="source">
+    ///     The argument to the action.</param>
+    /// <param name="action">
+    ///     The action to execute.</param>
+    /// <returns>
+    ///     The result of the function.</returns>
+    public static void Apply<TSource>(this TSource source, Action<TSource> action)
+    {
+        if (action == null)
+            throw new ArgumentNullException(nameof(action));
+        action(source);
+    }
 }

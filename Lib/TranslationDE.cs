@@ -18458,6 +18458,113 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // SixTen
+        [typeof(SSixTen)] = new()
+        {
+            ManualQuestions = new()
+            {
+                ["What were the cycle delays and directions (vertical and each channel)?"] = "In welche Richtung und mit welcher Verzögerung verlief der Zyklus (vertikal und jeder Farbkanal)?",
+            },
+            Questions = new()
+            {
+                [SSixTen.QVCycleDelay] = new()
+                {
+                    // English: What was the vertical cycle delay in {0}?
+                    Question = "Mit welcher Verzögerung verlief bei {0} der vertikale Zyklus?",
+                },
+                [SSixTen.QHCycleDelay] = new()
+                {
+                    // English: What was the horizontal cycle delay of the {1} channel in {0}?
+                    // Example: What was the horizontal cycle delay of the red channel in SixTen?
+                    Question = "Was war bei {0} die horizontale Verzögerung um {1}-Kanal?",
+                    Arguments = new()
+                    {
+                        ["red"] = "Rot",
+                        ["green"] = "Grün",
+                        ["blue"] = "Blau",
+                    },
+                },
+                [SSixTen.QVCycleDirection] = new()
+                {
+                    // English: What was the vertical cycle direction in {0}?
+                    Question = "In welche Richtung verlief bei {0} der vertikale Zyklus?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Hoch",
+                        ["Down"] = "Runter",
+                    },
+                },
+                [SSixTen.QHCycleDirection] = new()
+                {
+                    // English: Which channels cycled {1} in {0}?
+                    // Example: Which channels cycled left in SixTen?
+                    Question = "Welche Farbkanäle verliefen bei {0} nach {1}?",
+                    Arguments = new()
+                    {
+                        ["left"] = "links",
+                        ["right"] = "rechts",
+                    },
+                    Answers = new()
+                    {
+                        ["none"] = "keine",
+                        ["red"] = "Rot",
+                        ["green"] = "Grün",
+                        ["blue"] = "Blau",
+                        ["red and green"] = "Rot und Grün",
+                        ["red and blue"] = "Rot und Blau",
+                        ["green and blue"] = "Grün und Blau",
+                        ["all of them"] = "alle",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SSixTen.DVCycleDelay] = new()
+                {
+                    // English: the SixTen whose vertical cycle delay was {0}
+                    // Example: the SixTen whose vertical cycle delay was 1
+                    Discriminator = "dem SixTen, dessen vertikaler Zyklus mit der Verzögerung {0} verlief,",
+                },
+                [SSixTen.DHCycleDelay] = new()
+                {
+                    // English: the SixTen whose {1} channel had a horizontal cycle delay of {0}
+                    // Example: the SixTen whose red channel had a horizontal cycle delay of 1
+                    Discriminator = "dem SixTen, dessen {1}-Kanal mit der Verzögerung {0} verlief,",
+                    Arguments = new()
+                    {
+                        ["red"] = "Rot",
+                        ["green"] = "Grün",
+                        ["blue"] = "Blau",
+                    },
+                },
+                [SSixTen.DVCycleDirection] = new()
+                {
+                    // English: the SixTen that vertically cycled {0}
+                    // Example: the SixTen that vertically cycled up
+                    Discriminator = "dem SixTen, dessen vertikaler Zyklus nach {0} verlief,",
+                    Arguments = new()
+                    {
+                        ["up"] = "oben",
+                        ["down"] = "unten",
+                    },
+                },
+                [SSixTen.DHCycleDirection] = new()
+                {
+                    // English: the SixTen whose {0} channel cycled {1}
+                    // Example: the SixTen whose red channel cycled left
+                    Discriminator = "dem SixTen, dessen {0}-Kanal nach {1} verlief,",
+                    Arguments = new()
+                    {
+                        ["red"] = "Rot",
+                        ["green"] = "Grün",
+                        ["blue"] = "Blau",
+                        ["left"] = "links",
+                        ["right"] = "rechts",
+                    },
+                },
+            },
+        },
+
         // Skewed Slots
         [typeof(SSkewedSlots)] = new()
         {
