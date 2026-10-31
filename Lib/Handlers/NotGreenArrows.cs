@@ -20,9 +20,10 @@ public partial class SouvenirModule
 	private IEnumerator<SouvenirInstruction> ProcessNotGreenArrows(ModuleData module)
     {
         var comp = GetComponent(module, "NotGreenArrowsScript");
-        var letters = GetField<string>(comp, "displayedLetters").Get();
 
         yield return WaitForSolve;
+
+        var letters = GetField<string>(comp, "displayedLetters").Get();
 
         for (var i = 0; i < 3; i++)
         {
