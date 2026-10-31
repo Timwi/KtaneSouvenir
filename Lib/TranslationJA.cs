@@ -5333,6 +5333,103 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
         },
 
+        // Digital Grid
+        [typeof(SDigitalGrid)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the colors and digits in each square?"] = "What were the colors and digits in each square?",
+            },
+            Questions = new()
+            {
+                [SDigitalGrid.QDigit] = new()
+                {
+                    // English: What digit was on this square in {0}? (+ extra)
+                    Question = "What digit was on this square in {0}?",
+                },
+                [SDigitalGrid.QColor] = new()
+                {
+                    // English: What color was this square in {0}? (+ extra)
+                    Question = "What color was this square in {0}?",
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Cyan"] = "Cyan",
+                        ["Yellow"] = "Yellow",
+                        ["Magenta"] = "Magenta",
+                        ["White"] = "White",
+                    },
+                },
+                [SDigitalGrid.QSpecific] = new()
+                {
+                    // English: Which square was {1} and had {2} on it in {0}?
+                    // Example: Which square was red and had a 0 on it in Digital Grid?
+                    Question = "Which square was {1} and had {2} on it in {0}?",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["yellow"] = "yellow",
+                        ["magenta"] = "magenta",
+                        ["white"] = "white",
+                        ["a 0"] = "a 0",
+                        ["a 1"] = "a 1",
+                        ["a 2"] = "a 2",
+                        ["a 3"] = "a 3",
+                        ["a 4"] = "a 4",
+                        ["a 5"] = "a 5",
+                        ["a 6"] = "a 6",
+                        ["a 7"] = "a 7",
+                        ["an 8"] = "an 8",
+                        ["a 9"] = "a 9",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SDigitalGrid.DDigit] = new()
+                {
+                    // English: the Digital Grid where this square had {0} on it (+ extra)
+                    // Example: the Digital Grid where this square had a 0 on it (+ extra)
+                    Discriminator = "the Digital Grid where this square had {0} on it",
+                    Arguments = new()
+                    {
+                        ["a 0"] = "a 0",
+                        ["a 1"] = "a 1",
+                        ["a 2"] = "a 2",
+                        ["a 3"] = "a 3",
+                        ["a 4"] = "a 4",
+                        ["a 5"] = "a 5",
+                        ["a 6"] = "a 6",
+                        ["a 7"] = "a 7",
+                        ["an 8"] = "an 8",
+                        ["a 9"] = "a 9",
+                    },
+                },
+                [SDigitalGrid.DColor] = new()
+                {
+                    // English: the Digital Grid where this square was {0} (+ extra)
+                    // Example: the Digital Grid where this square was red (+ extra)
+                    Discriminator = "the Digital Grid where this square was {0}",
+                    Arguments = new()
+                    {
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["cyan"] = "cyan",
+                        ["yellow"] = "yellow",
+                        ["magenta"] = "magenta",
+                        ["white"] = "white",
+                    },
+                },
+            },
+        },
+
         // Digit String
         [typeof(SDigitString)] = new()
         {
