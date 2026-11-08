@@ -18502,6 +18502,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Simpleton’t
+        [typeof(SSimpletont)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the flashed binary numbers?"] = "What were the flashed binary numbers?",
+            },
+            Questions = new()
+            {
+                [SSimpletont.Flashes] = new()
+                {
+                    // English: Which of these binary numbers flashed in {0}?
+                    Question = "Which of these binary numbers flashed in {0}?",
+                },
+            },
+        },
+
         // Simply Simon
         [typeof(SSimplySimon)] = new()
         {

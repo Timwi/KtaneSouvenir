@@ -143,12 +143,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Shapes          │  USA Cycle
     Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
 
-## Implemented by Infusion (20)
+## Implemented by Infusion (21)
 
-    Accelerando        │  Faulty Accelerando  │  Lettered Hexabuttons  │  Orange Hexabuttons  │  Spangled Stars
-    Black Hexabuttons  │  Fur Cipher          │  Levenshtein Distance  │  Purple Hexabuttons  │  Tau
-    Blind Arrows       │  Gray Hexabuttons    │  Misery Squares        │  Red Hexabuttons     │  White Hexabuttons
-    Brown Hexabuttons  │  Heptabutton, The    │  Not Green Arrows      │  Simple Hexabuttons  │  Wonder Cipher
+    Accelerando         │  Fur Cipher            │  Misery Squares      │  Simple Hexabuttons  │  Wonder Cipher
+    Black Hexabuttons   │  Gray Hexabuttons      │  Not Green Arrows    │  Simpleton’t         │
+    Blind Arrows        │  Heptabutton, The      │  Orange Hexabuttons  │  Spangled Stars      │
+    Brown Hexabuttons   │  Lettered Hexabuttons  │  Purple Hexabuttons  │  Tau                 │
+    Faulty Accelerando  │  Levenshtein Distance  │  Red Hexabuttons     │  White Hexabuttons   │
 
 ## Implemented by TasThiluna (18)
 
