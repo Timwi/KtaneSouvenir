@@ -18271,6 +18271,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     Question = "Which of these binary numbers flashed in {0}?",
                 },
             },
+            Discriminators = new()
+            {
+                [SSimpletont.Discriminator] = new()
+                {
+                    // English: the Simpleton’t that also flashed {0}
+                    // Example: the Simpleton’t that also flashed 000000
+                    Discriminator = "the Simpleton’t that also flashed {0}",
+                },
+            },
         },
 
         // Simply Simon

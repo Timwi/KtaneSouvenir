@@ -18505,17 +18505,27 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simpleton’t
         [typeof(SSimpletont)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "Keinfaltspinsel",
+            Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["What were the flashed binary numbers?"] = "What were the flashed binary numbers?",
+                ["What were the flashed binary numbers?"] = "Welche Binärzahlen leuchteten auf?",
             },
             Questions = new()
             {
                 [SSimpletont.Flashes] = new()
                 {
                     // English: Which of these binary numbers flashed in {0}?
-                    Question = "Which of these binary numbers flashed in {0}?",
+                    Question = "Welche Binärzahl leuchtete bei {0} auf?",
+                },
+            },
+            Discriminators = new()
+            {
+                [SSimpletont.Discriminator] = new()
+                {
+                    // English: the Simpleton’t that also flashed {0}
+                    // Example: the Simpleton’t that also flashed 000000
+                    Discriminator = "dem Keinfaltspinsel, bei dem auch {0} aufleuchtete,",
                 },
             },
         },

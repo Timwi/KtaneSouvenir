@@ -18040,6 +18040,15 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     Question = "Which of these binary numbers flashed in {0}?",
                 },
             },
+            Discriminators = new()
+            {
+                [SSimpletont.Discriminator] = new()
+                {
+                    // English: the Simpleton’t that also flashed {0}
+                    // Example: the Simpleton’t that also flashed 000000
+                    Discriminator = "the Simpleton’t that also flashed {0}",
+                },
+            },
         },
 
         // Simply Simon
