@@ -29,6 +29,7 @@
     <SouvenirPostBuildTool Condition="'$(OS)' == 'Windows_NT'">..\PostBuildTool\bin\Release\net10.0\SouvenirPostBuildTool.exe</SouvenirPostBuildTool>
     <SouvenirPostBuildTool Condition="'$(OS)' != 'Windows_NT'">dotnet ../PostBuildTool/bin/Release/net10.0/SouvenirPostBuildTool.dll</SouvenirPostBuildTool>
     <SouvenirPostBuildToolExtraArguments></SouvenirPostBuildToolExtraArguments>
+    <SouvenirPostBuildExtra></SouvenirPostBuildExtra>
   </PropertyGroup>
   <ItemGroup>
     <None Include="SouvenirLib.csproj.user" />
@@ -109,6 +110,7 @@
       <SouvenirDlls Include="$(TargetDir)*.dll" />
     </ItemGroup>
     <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot; &quot;$(GameFolder)$(ManagedFolder)&quot; -c &quot;$(ProjectDir)../CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)../data.json&quot; -t $(SouvenirPostBuildToolExtraArguments)" />
+    <Exec Condition="'$(SouvenirPostBuildExtra)' != ''" Command="$(SouvenirPostBuildExtra)" />
     <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(ProjectDir)../Assets/Plugins/Managed" />
     <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(GameFolder)mods/Souvenir" />
   </Target>
