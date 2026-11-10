@@ -12,7 +12,7 @@ public enum SPunctuationMarks
 
 public partial class SouvenirModule
 {
-    [Handler("punctuationMarks", "...?", typeof(SPunctuationMarks), "Kuro")]
+    [Handler("punctuationMarks", "...?", typeof(SPunctuationMarks), "Kuro", jsonFileName: "...Q")]
     [ManualQuestion("What was the displayed number?")]
     private IEnumerator<SouvenirInstruction> ProcessPunctuationMarks(ModuleData module)
     {

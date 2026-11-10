@@ -16,12 +16,21 @@ public static class Program
 {
     private static int Main(string[] args)
     {
+        try { Console.OutputEncoding = Encoding.UTF8; }
+        catch { }
+
         CommandLineOptions opt;
         try { opt = CommandLineParser.Parse<CommandLineOptions>(args); }
         catch (CommandLineParseException cpe)
         {
             cpe.WriteUsageInfoToConsole();
             return 1;
+        }
+
+        if (opt.JsFile_OBSOLETE != null)
+        {
+            Console.WriteLine(@"The -j switch is obsolete. Please update your .csproj.user file as follows: change “-j <path>\HTML\js\Modules” to “-k <path>”.");
+            return 2;
         }
 
         try
@@ -36,8 +45,8 @@ public static class Program
             if (opt.ContributorsFile != null)
                 DoContributorStuff(opt.ContributorsFile, assembly);
 
-            if (opt.JsFile != null)
-                DoManualQuestionsStuff(opt.JsFile, assembly);
+            if (opt.KtaneContentFolder != null)
+                DoKtaneContentStuff(opt.KtaneContentFolder, assembly, opt.SourceFolder);
 
             Dictionary<string, string> translationStats = null;
             if (opt.DoTranslations)
@@ -88,7 +97,7 @@ public static class Program
         }
     }
 
-    private static void DoManualQuestionsStuff(string folderpath, Assembly assembly)
+    private static void DoKtaneContentStuff(string ktaneContentFolder, Assembly assembly, string sourcePath)
     {
         var questions = new Dictionary<string, List<(object translationObject, bool the, string name, string translated, string id, List<string> questions)>>() { ["en"] = [] };
 
@@ -110,12 +119,20 @@ public static class Program
         var handlerAttrType = assembly.GetType("Souvenir.HandlerAttribute");
         var propModuleId = handlerAttrType.GetProperty("ModuleId", BindingFlags.Public | BindingFlags.Instance, null, typeof(string), [], null);
         var propModuleName = handlerAttrType.GetProperty("ModuleName", BindingFlags.Public | BindingFlags.Instance, null, typeof(string), [], null);
+        var propJsonFileName = handlerAttrType.GetProperty("JsonFileName", BindingFlags.Public | BindingFlags.Instance, null, typeof(string), [], null);
         var propEnumType = handlerAttrType.GetProperty("EnumType", BindingFlags.Public | BindingFlags.Instance, null, typeof(Type), [], null);
         var propAddThe = handlerAttrType.GetProperty("AddThe", BindingFlags.Public | BindingFlags.Instance, null, typeof(bool), [], null);
 
         foreach (DictionaryEntry language in languages)
             if ((bool) fldTranslateManualQuestions.GetValue(language.Value))
                 questions[(string) language.Key] = [];
+
+        var prevSupportedModules = File.ReadLines(Path.Combine(ktaneContentFolder, "HTML", "js", "Modules", "SouvenirData.js"))
+            .Select(line => line.RegexMatch(@"name: ""([^""]*)"",\tid:", out var m) ? m.Groups[1].Value : null)
+            .Where(m => m != null)
+            .ToArray();
+
+        var supportedModules = new HashSet<string>();
 
         foreach (var handlerMethod in assembly.GetType("SouvenirModule").GetMethods(BindingFlags.NonPublic | BindingFlags.Instance))
         {
@@ -125,7 +142,25 @@ public static class Program
             var manualQuestions = new List<string>();
             foreach (var questionAttr in handlerMethod.GetCustomAttributes(questionAttrType))
                 manualQuestions.Add((string) propQuestionText.GetValue(questionAttr));
-            questions["en"].Add((null, (bool) propAddThe.GetValue(handlerAttr), (string) propModuleName.GetValue(handlerAttr), null, (string) propModuleId.GetValue(handlerAttr), manualQuestions));
+            var addThe = (bool) propAddThe.GetValue(handlerAttr);
+            var moduleNameWithoutThe = (string) propModuleName.GetValue(handlerAttr);
+            questions["en"].Add((null, addThe, moduleNameWithoutThe, null, (string) propModuleId.GetValue(handlerAttr), manualQuestions));
+            var moduleName = addThe ? $"The {moduleNameWithoutThe}" : moduleNameWithoutThe;
+            supportedModules.Add(moduleName);
+            var moduleJsonPath = Path.Combine(ktaneContentFolder, "JSON", $"{(string) propJsonFileName.GetValue(handlerAttr) ?? moduleName.Replace("’", "'")}.json");
+            if (!File.Exists(moduleJsonPath))
+            {
+                var sourceFile = Path.GetFullPath(Path.Combine(sourcePath, "Handlers", $"{((Type) propEnumType.GetValue(handlerAttr)).Name.Substring(1)}.cs"));
+                var lineNumber = File.Exists(sourceFile) ? File.ReadLines(sourceFile).IndexOf(line => Regex.IsMatch(line, @"^\s*\[Handler(?:Attribute)?\s*\(")) : -1;
+                throw new SouvenirErrorException($"{sourceFile}({(lineNumber == -1 ? 1 : lineNumber + 1)},1): error SOUV0010: File “{moduleJsonPath}” does not exist. Use “jsonFileName:” on the [Handler(...)] attribute if the JSON file name differs from the module name.");
+            }
+            else
+            {
+                var json = JsonDict.Parse(File.ReadAllText(moduleJsonPath));
+                json["Souvenir"] = new JsonDict { ["Status"] = "Supported" };
+                File.WriteAllText(moduleJsonPath, json.ToStringIndented());
+            }
+
             foreach (DictionaryEntry language in languages)
                 if ((bool) fldTranslateManualQuestions.GetValue(language.Value))
                 {
@@ -151,7 +186,7 @@ public static class Program
                 ? qs.OrderBy(tup => tup.name, stringComparer)
                 : qs.OrderBy(tup => (string) mthManualQuestionSortBy.Invoke(languages[lang], [tup.translationObject, tup.name]), stringComparer);
 
-            File.WriteAllText(Path.Combine(folderpath, $"SouvenirData{(lang == "en" ? "" : $".{lang}")}.js"), $"""
+            File.WriteAllText(Path.Combine(ktaneContentFolder, "HTML", "js", "Modules", $"SouvenirData{(lang == "en" ? "" : $".{lang}")}.js"), $"""
                 let SouvenirModuleData = [
                 {qsSorted.Select(tup =>
                     {
@@ -160,6 +195,16 @@ public static class Program
                     }).JoinString("\n")}
                 ];
                 """);
+        }
+
+        foreach (var moduleName in prevSupportedModules.Except(supportedModules))
+        {
+            var moduleJsonPath = Path.Combine(ktaneContentFolder, "JSON", $"{moduleName}.json");
+            if (!File.Exists(moduleJsonPath))
+                continue;
+            var json = JsonDict.Parse(File.ReadAllText(moduleJsonPath));
+            json["Souvenir"] = new JsonDict { ["Status"] = "NotACandidate" };
+            File.WriteAllText(moduleJsonPath, json.ToStringIndented());
         }
     }
 

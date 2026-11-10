@@ -4,10 +4,11 @@ using System.Reflection;
 namespace Souvenir;
 
 [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
-public sealed class HandlerAttribute(string moduleId, string moduleName, Type enumType, string contributor) : Attribute
+public sealed class HandlerAttribute(string moduleId, string moduleName, Type enumType, string contributor, string jsonFileName = null) : Attribute
 {
     public string ModuleId { get; } = moduleId;
     public string ModuleName { get; } = moduleName;
+    public string JsonFileName { get; } = jsonFileName;
     public Type EnumType { get; } = enumType;
     public string Contributor { get; } = contributor;
 

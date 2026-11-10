@@ -11,7 +11,7 @@ public enum SGuessWho
 
 public partial class SouvenirModule
 {
-    [Handler("GuessWho", "Guess Who?", typeof(SGuessWho), "Quinn Wuest")]
+    [Handler("GuessWho", "Guess Who?", typeof(SGuessWho), "Quinn Wuest", jsonFileName: "Guess Who")]
     [ManualQuestion("Which colors flashed “YES”?")]
     private IEnumerator<SouvenirInstruction> ProcessGuessWho(ModuleData module)
     {

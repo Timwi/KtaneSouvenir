@@ -84,7 +84,7 @@ Here’s how to fully update Souvenir (both workshop and repo manual):
   <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
       <ProjectView>ProjectFiles</ProjectView>
-      <SouvenirPostBuildToolExtraArguments>-j C:\PathToKtaneContent\HTML\js\Modules</SouvenirPostBuildToolExtraArguments>
+      <SouvenirPostBuildToolExtraArguments>-k C:\PathToKtaneContent</SouvenirPostBuildToolExtraArguments>
     </PropertyGroup>
   </Project>
   ```

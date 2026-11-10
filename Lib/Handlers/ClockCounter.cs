@@ -12,7 +12,7 @@ public enum SClockCounter
 
 public partial class SouvenirModule
 {
-    [Handler("clockCounter", "↻↺", typeof(SClockCounter), "Anonymous")]
+    [Handler("clockCounter", "↻↺", typeof(SClockCounter), "Anonymous", jsonFileName: "ClockCounterclock")]
     [ManualQuestion("Which arrows were shown?")]
     private IEnumerator<SouvenirInstruction> ProcessClockCounter(ModuleData module)
     {

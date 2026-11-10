@@ -22,8 +22,11 @@ internal class CommandLineOptions
     [Option("-d", "--data"), Documentation("Specifies the path and filename to the data.json file to be updated.")]
     public string DataFile = null;
 
-    [Option("-j", "--js"), Documentation("If specified, generates the SouvenirData.js file (and its translations) used by the Souvenir manual.")]
-    public string JsFile = null;
+    [Option("-j", "--js"), Undocumented]
+    public string JsFile_OBSOLETE = null;
+
+    [Option("-k", "--ktanecontent"), Documentation("If specified, generates the SouvenirData.js file (and its translations) used by the Souvenir manual and updates all the JSON files for Souvenir-supported modules to mark them accordingly.")]
+    public string KtaneContentFolder = null;
 
     [Option("-f", "--find-discriminators"), Documentation("If specified, the tool will list modules that do not have a discriminator and are not marked with the [NoDiscriminator] attribute.")]
     public bool FindDiscriminators = false;

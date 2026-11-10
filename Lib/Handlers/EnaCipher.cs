@@ -28,7 +28,7 @@ public enum SEnaCipher
 
 public partial class SouvenirModule
 {
-    [Handler("enaCipher", "ƎNA Cipher", typeof(SEnaCipher), "KiloBites")]
+    [Handler("enaCipher", "ƎNA Cipher", typeof(SEnaCipher), "KiloBites", jsonFileName: "ENA Cipher")]
     [ManualQuestion("What were the keyword, the transposition key and the encrypted word?")]
     private IEnumerator<SouvenirInstruction> ProcessEnaCipher(ModuleData module)
     {

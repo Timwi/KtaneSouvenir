@@ -13,7 +13,7 @@ public enum SNonverbalSimon
 
 public partial class SouvenirModule
 {
-    [Handler("nonverbalSimon", "❖", typeof(SNonverbalSimon), "Anonymous")]
+    [Handler("nonverbalSimon", "❖", typeof(SNonverbalSimon), "Anonymous", jsonFileName: "Nonverbal Simon")]
     [ManualQuestion("What were the flashes?")]
     private IEnumerator<SouvenirInstruction> ProcessNonverbalSimon(ModuleData module)
     {

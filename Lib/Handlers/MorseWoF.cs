@@ -13,7 +13,7 @@ public enum SMorseWoF
 
 public partial class SouvenirModule
 {
-    [Handler("morseWoF", ".--/---/..-.", typeof(SMorseWoF), "Quinn Wuest")]
+    [Handler("morseWoF", ".--/---/..-.", typeof(SMorseWoF), "Quinn Wuest", jsonFileName: "MorseWoF")]
     [ManualQuestion("What were the display words?")]
     private IEnumerator<SouvenirInstruction> ProcessMorseWoF(ModuleData module)
     {
