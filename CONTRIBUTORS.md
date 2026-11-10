@@ -218,6 +218,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Crazy Hamburger          │  noting3548
     Critters                 │  Eltrick
     Digit String             │  GoodHood
+    Dysfunctions             │  LivreVerte
     Elder Futhark            │  Goofy
     Fast Playfair Cipher     │  Dani was here
     Gryphons                 │  JerryEris

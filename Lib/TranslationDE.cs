@@ -6167,6 +6167,36 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Dysfunctions
+        [typeof(SDysfunctions)] = new()
+        {
+            ModuleName = "Dysfunktion",
+            Gender = Gender.Feminine,
+            ManualQuestions = new()
+            {
+                ["What were the factors and restrictions?"] = "Welche Faktoren und Einschränkungen kamen vor?",
+            },
+            Questions = new()
+            {
+                [SDysfunctions.Factors] = new()
+                {
+                    // English: What was the {1} factor in {0}?
+                    // Example: What was the first factor in Dysfunctions?
+                    Question = "Was war bei {0} der {1}e Faktor?",
+                },
+                [SDysfunctions.DigitRestriction] = new()
+                {
+                    // English: What was the digit restriction in {0}?
+                    Question = "Was war bei {0} die Zifferneinschränkung?",
+                },
+                [SDysfunctions.DivisibilityRestriction] = new()
+                {
+                    // English: What was the divisibility restriction in {0}?
+                    Question = "Was war bei {0} die Teilbarkeitseinschränkung?",
+                },
+            },
+        },
+
         // Earthbound
         [typeof(SEarthbound)] = new()
         {

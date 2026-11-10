@@ -6210,6 +6210,35 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Dysfunctions
+        [typeof(SDysfunctions)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the factors and restrictions?"] = "What were the factors and restrictions?",
+            },
+            Questions = new()
+            {
+                [SDysfunctions.Factors] = new()
+                {
+                    // English: What was the {1} factor in {0}?
+                    // Example: What was the first factor in Dysfunctions?
+                    Question = "What was the {1} factor in {0}?",
+                },
+                [SDysfunctions.DigitRestriction] = new()
+                {
+                    // English: What was the digit restriction in {0}?
+                    Question = "What was the digit restriction in {0}?",
+                },
+                [SDysfunctions.DivisibilityRestriction] = new()
+                {
+                    // English: What was the divisibility restriction in {0}?
+                    Question = "What was the divisibility restriction in {0}?",
+                },
+            },
+        },
+
         // Earthbound
         [typeof(SEarthbound)] = new()
         {
