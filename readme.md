@@ -33,7 +33,7 @@ The following vanilla modules are supported by Souvenir: The Button, Maze, Memor
 ## Building
 
 - In Unity, build Souvenir without a separate assembly (keyboard: F7; menu: “Keep Talking ModKit” → “Build AssetBundle (no assembly)”).
-- To make this possible, the compiled binary `SouvenirLib.dll` is included in the git repo. Any changes to the source code (in `Lib/`) require a rebuild in Visual Studio, which automatically copies that DLL to the right place for Unity to find it.
+- To make this possible, the compiled binary `SouvenirLib.dll` is included in the git repo. If you make any changes to the source code (in `Lib/`), you need to rebuild the DLL. In Visual Studio, you can do so by selecting *Build* → *Build Solution*. In other environments, including Visual Studio Code, you can call `dotnet build` from the command-line (but make sure you’re inside the `Lib` folder).
 
 ## Translations
 

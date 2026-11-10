@@ -11,7 +11,7 @@ To begin, do the following:
 
 You only need to do this once as long as you keep that local copy of Souvenir there.
 
-Just be aware that keeping the local copy of Souvenir means that you will not automatically receive changes from the Steam Workshop. If you wish to actually play the game (as opposed to just testing stuff), you should delete the local mod and re-subscribe to the Workshop version. Then you will have to do the above steps again the next time you want to make changes to Souvenir.
+Just be aware that keeping the local copy of Souvenir means that you will not automatically receive changes from the Steam Workshop. If you wish to actually play the game (as opposed to just testing stuff), and you are not confident that your local copy is fully up to date, you should delete the local mod and re-subscribe to the Workshop version. Then you will have to do the above steps again the next time you want to make changes to Souvenir.
 
 ## Create a new source file for the module
 
