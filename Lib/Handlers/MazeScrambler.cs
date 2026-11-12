@@ -5,31 +5,31 @@ using static Souvenir.AnswerLayout;
 
 public enum SMazeScrambler
 {
-    [Question("What was the starting position on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
+    [Question("Where was the starting position on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
     QStart,
 
-    [Question("What was the goal on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
+    [Question("Where was the goal on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
     QGoal,
 
-    [Question("Which of these positions was a maze marking on {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
+    [Question("Which of these positions had a maze marking in the {0}?", TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
     QIndicators,
 
-    [Discriminator("the Maze Scramber where the starting position was at the {0}", Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Maze Scramber where the starting position was {0}", Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DStart,
 
-    [Discriminator("the Maze Scramber where the goal was at the {0}", Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Maze Scramber where the goal was {0}", Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DGoal,
 
-    [Discriminator("the Maze Scramber with a maze marking at the {0}", Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
+    [Discriminator("the Maze Scramber with a maze marking in the {0}", Arguments = ["top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DIndicators,
 }
 
 public partial class SouvenirModule
 {
     [Handler("MazeScrambler", "Maze Scrambler", typeof(SMazeScrambler), "luisdiogo98")]
-    [ManualQuestion("What was the starting position?")]
-    [ManualQuestion("What was the goal position?")]
-    [ManualQuestion("Which positions were the maze markings?")]
+    [ManualQuestion("Where was the starting position?")]
+    [ManualQuestion("Where was the goal position?")]
+    [ManualQuestion("Where were the maze markings?")]
     private IEnumerator<SouvenirInstruction> ProcessMazeScrambler(ModuleData module)
     {
         var comp = GetComponent(module, "MazeScrambler");

@@ -11397,8 +11397,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SMazematics.Value] = new()
                 {
-                    // English: Which was the {1} value in {0}?
-                    // Example: Which was the initial value in Mazematics?
+                    // English: What was the {1} value in {0}?
+                    // Example: What was the initial value in Mazematics?
                     Question = "Какая была {1} величина {0}?",
                     Arguments = new()
                     {
@@ -11415,15 +11415,15 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the starting position?"] = "Где была начальная позиция?",
-                ["What was the goal position?"] = "Где была цель?",
-                ["Which positions were the maze markings?"] = "Где были обозначения лабиринта?",
+                ["Where was the starting position?"] = "Где была начальная позиция?",
+                ["Where was the goal position?"] = "Где была цель?",
+                ["Where were the maze markings?"] = "Где были обозначения лабиринта?",
             },
             Questions = new()
             {
                 [SMazeScrambler.QStart] = new()
                 {
-                    // English: What was the starting position on {0}?
+                    // English: Where was the starting position on {0}?
                     Question = "Какая была начальная позиция {0}?",
                     Answers = new()
                     {
@@ -11440,7 +11440,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SMazeScrambler.QGoal] = new()
                 {
-                    // English: What was the goal on {0}?
+                    // English: Where was the goal on {0}?
                     Question = "Где была цель {0}?",
                     Answers = new()
                     {
@@ -11457,7 +11457,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SMazeScrambler.QIndicators] = new()
                 {
-                    // English: Which of these positions was a maze marking on {0}?
+                    // English: Which of these positions had a maze marking in the {0}?
                     Question = "На какой позиции было обозначение лабиринта {0}?",
                     Answers = new()
                     {
@@ -11477,8 +11477,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             {
                 [SMazeScrambler.DStart] = new()
                 {
-                    // English: the Maze Scramber where the starting position was at the {0}
-                    // Example: the Maze Scramber where the starting position was at the top-left
+                    // English: the Maze Scramber where the starting position was {0}
+                    // Example: the Maze Scramber where the starting position was top-left
                     Discriminator = "the Maze Scramber where the starting position was at the {0}",
                     Arguments = new()
                     {
@@ -11495,8 +11495,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SMazeScrambler.DGoal] = new()
                 {
-                    // English: the Maze Scramber where the goal was at the {0}
-                    // Example: the Maze Scramber where the goal was at the top-left
+                    // English: the Maze Scramber where the goal was {0}
+                    // Example: the Maze Scramber where the goal was top-left
                     Discriminator = "the Maze Scramber where the goal was at the {0}",
                     Arguments = new()
                     {
@@ -11513,8 +11513,8 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 },
                 [SMazeScrambler.DIndicators] = new()
                 {
-                    // English: the Maze Scramber with a maze marking at the {0}
-                    // Example: the Maze Scramber with a maze marking at the top-left
+                    // English: the Maze Scramber with a maze marking in the {0}
+                    // Example: the Maze Scramber with a maze marking in the top-left
                     Discriminator = "the Maze Scramber where a maze marking was at the {0}",
                     Arguments = new()
                     {

@@ -11491,8 +11491,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SMazematics.Value] = new()
                 {
-                    // English: Which was the {1} value in {0}?
-                    // Example: Which was the initial value in Mazematics?
+                    // English: What was the {1} value in {0}?
+                    // Example: What was the initial value in Mazematics?
                     Question = "Was war bei {0} der {1}?",
                     Arguments = new()
                     {
@@ -11510,15 +11510,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Masculine,
             ManualQuestions = new()
             {
-                ["What was the starting position?"] = "Wo war die Startposition?",
-                ["What was the goal position?"] = "Wo war die Zielposition?",
-                ["Which positions were the maze markings?"] = "Wo waren die Markierungen?",
+                ["Where was the starting position?"] = "Wo war die Startposition?",
+                ["Where was the goal position?"] = "Wo war die Zielposition?",
+                ["Where were the maze markings?"] = "Wo waren die Markierungen?",
             },
             Questions = new()
             {
                 [SMazeScrambler.QStart] = new()
                 {
-                    // English: What was the starting position on {0}?
+                    // English: Where was the starting position on {0}?
                     Question = "Wo war bei {0} die Startposition?",
                     Answers = new()
                     {
@@ -11535,7 +11535,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SMazeScrambler.QGoal] = new()
                 {
-                    // English: What was the goal on {0}?
+                    // English: Where was the goal on {0}?
                     Question = "Wo war bei {0} das Ziel?",
                     Answers = new()
                     {
@@ -11552,7 +11552,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SMazeScrambler.QIndicators] = new()
                 {
-                    // English: Which of these positions was a maze marking on {0}?
+                    // English: Which of these positions had a maze marking in the {0}?
                     Question = "An welcher dieser Stellen war bei {0} eine Markierung?",
                     Answers = new()
                     {
@@ -11572,8 +11572,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             {
                 [SMazeScrambler.DStart] = new()
                 {
-                    // English: the Maze Scramber where the starting position was at the {0}
-                    // Example: the Maze Scramber where the starting position was at the top-left
+                    // English: the Maze Scramber where the starting position was {0}
+                    // Example: the Maze Scramber where the starting position was top-left
                     Discriminator = "dem Labyrinth-Schüttler, dessen Startposition {0} war,",
                     Arguments = new()
                     {
@@ -11590,8 +11590,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SMazeScrambler.DGoal] = new()
                 {
-                    // English: the Maze Scramber where the goal was at the {0}
-                    // Example: the Maze Scramber where the goal was at the top-left
+                    // English: the Maze Scramber where the goal was {0}
+                    // Example: the Maze Scramber where the goal was top-left
                     Discriminator = "dem Labyrinth-Schüttler, dessen Ziel {0} war,",
                     Arguments = new()
                     {
@@ -11608,8 +11608,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 },
                 [SMazeScrambler.DIndicators] = new()
                 {
-                    // English: the Maze Scramber with a maze marking at the {0}
-                    // Example: the Maze Scramber with a maze marking at the top-left
+                    // English: the Maze Scramber with a maze marking in the {0}
+                    // Example: the Maze Scramber with a maze marking in the top-left
                     Discriminator = "dem Labyrinth-Schüttler, der {0} eine Markierung hatte,",
                     Arguments = new()
                     {

@@ -11169,8 +11169,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SMazematics.Value] = new()
                 {
-                    // English: Which was the {1} value in {0}?
-                    // Example: Which was the initial value in Mazematics?
+                    // English: What was the {1} value in {0}?
+                    // Example: What was the initial value in Mazematics?
                     Question = "{0}の{1}値は？",
                     Arguments = new()
                     {
@@ -11187,15 +11187,15 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "迷路スクランブラー",
             ManualQuestions = new()
             {
-                ["What was the starting position?"] = "開始位置は？",
-                ["What was the goal position?"] = "ゴールの位置は？",
-                ["Which positions were the maze markings?"] = "迷路のマークはどの位置にあった？",
+                ["Where was the starting position?"] = "開始位置は？",
+                ["Where was the goal position?"] = "ゴールの位置は？",
+                ["Where were the maze markings?"] = "迷路のマークはどの位置にあった？",
             },
             Questions = new()
             {
                 [SMazeScrambler.QStart] = new()
                 {
-                    // English: What was the starting position on {0}?
+                    // English: Where was the starting position on {0}?
                     Question = "{0}の開始位置は？",
                     Answers = new()
                     {
@@ -11212,7 +11212,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SMazeScrambler.QGoal] = new()
                 {
-                    // English: What was the goal on {0}?
+                    // English: Where was the goal on {0}?
                     Question = "{0}のゴール位置は？",
                     Answers = new()
                     {
@@ -11229,7 +11229,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SMazeScrambler.QIndicators] = new()
                 {
-                    // English: Which of these positions was a maze marking on {0}?
+                    // English: Which of these positions had a maze marking in the {0}?
                     Question = "{0}の迷路を求めるマークの位置はどれ？",
                     Answers = new()
                     {
@@ -11249,8 +11249,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             {
                 [SMazeScrambler.DStart] = new()
                 {
-                    // English: the Maze Scramber where the starting position was at the {0}
-                    // Example: the Maze Scramber where the starting position was at the top-left
+                    // English: the Maze Scramber where the starting position was {0}
+                    // Example: the Maze Scramber where the starting position was top-left
                     Discriminator = "開始地点が{0}だった迷路スクランブラー",
                     Arguments = new()
                     {
@@ -11267,8 +11267,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SMazeScrambler.DGoal] = new()
                 {
-                    // English: the Maze Scramber where the goal was at the {0}
-                    // Example: the Maze Scramber where the goal was at the top-left
+                    // English: the Maze Scramber where the goal was {0}
+                    // Example: the Maze Scramber where the goal was top-left
                     Discriminator = "ゴールが{0}だった迷路スクランブラー",
                     Arguments = new()
                     {
@@ -11285,8 +11285,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SMazeScrambler.DIndicators] = new()
                 {
-                    // English: the Maze Scramber with a maze marking at the {0}
-                    // Example: the Maze Scramber with a maze marking at the top-left
+                    // English: the Maze Scramber with a maze marking in the {0}
+                    // Example: the Maze Scramber with a maze marking in the top-left
                     Discriminator = "迷路特定用のマークが{0}にあった迷路スクランブラー",
                     Arguments = new()
                     {
