@@ -2,6 +2,7 @@
 using System.Linq;
 using Souvenir;
 using static Souvenir.AnswerLayout;
+using Rnd = UnityEngine.Random;
 
 public enum SMisorderedKeys
 {
@@ -17,6 +18,33 @@ public enum SMisorderedKeys
 
     [Question("Which key was K in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "OrderedKeysSprites")]
     K
+}
+
+namespace Souvenir
+{
+    static partial class AnswerGenerator
+    {
+        public class MisorderedKeys : AnswerGeneratorAttribute<string>
+        {
+            public MisorderedKeys()
+            {
+            }
+
+            public override IEnumerable<string> GetAnswers(SouvenirModule module)
+            {
+                while (true)
+                {
+                    var len = Rnd.Range(1, 7);
+                    var s = "";
+                    for (var j = 0; j < len; j++)
+                        s += Rnd.Range(1, 7);
+                    yield return s;
+                }
+            }
+
+            public override int Count => 55986;
+        }
+    }
 }
 
 public partial class SouvenirModule

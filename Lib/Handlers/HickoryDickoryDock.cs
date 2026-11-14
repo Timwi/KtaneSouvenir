@@ -5,6 +5,7 @@ using System.Linq;
 using Souvenir;
 using UnityEngine;
 using static Souvenir.AnswerLayout;
+using Rnd = UnityEngine.Random;
 
 public enum SHickoryDickoryDock
 {
@@ -14,6 +15,23 @@ public enum SHickoryDickoryDock
 
     [Discriminator("the Hickory Dickory Dock which showed {0} when it struck {1}", Arguments = ["1:30", "2:00"], ArgumentGroupSize = 2)]
     Discriminator
+}
+
+namespace Souvenir
+{
+    static partial class AnswerGenerator
+    {
+        public sealed class HickoryDickoryDock : AnswerGeneratorAttribute<string>
+        {
+            private static readonly int[] _minutes = [0, 7, 15, 22, 30, 37, 45, 52];
+            public override IEnumerable<string> GetAnswers(SouvenirModule module)
+            {
+                while (true)
+                    yield return $"{Rnd.Range(1, 13)}:{_minutes.PickRandom():00}";
+            }
+            public override int Count => 8 * 12;
+        }
+    }
 }
 
 public partial class SouvenirModule
