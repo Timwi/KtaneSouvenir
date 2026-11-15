@@ -10,32 +10,16 @@ using Rnd = UnityEngine.Random;
 public enum SHickoryDickoryDock
 {
     [Question("What time was shown when the clock struck {1} on {0}?", ThreeColumns6Answers, Arguments = ["1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00"], ArgumentGroupSize = 1)]
-    [AnswerGenerator.HickoryDickoryDock]
     Time,
 
     [Discriminator("the Hickory Dickory Dock which showed {0} when it struck {1}", Arguments = ["1:30", "2:00"], ArgumentGroupSize = 2)]
     Discriminator
 }
 
-namespace Souvenir
-{
-    static partial class AnswerGenerator
-    {
-        public sealed class HickoryDickoryDock : AnswerGeneratorAttribute<string>
-        {
-            private static readonly int[] _minutes = [0, 7, 15, 22, 30, 37, 45, 52];
-            public override IEnumerable<string> GetAnswers(SouvenirModule module)
-            {
-                while (true)
-                    yield return $"{Rnd.Range(1, 13)}:{_minutes.PickRandom():00}";
-            }
-            public override int Count => 8 * 12;
-        }
-    }
-}
-
 public partial class SouvenirModule
 {
+    private static readonly int[] _hickoryDickoryDock_minutes = [0, 7, 15, 22, 30, 37, 45, 52];
+
     [Handler("hickoryDickoryDockModule", "Hickory Dickory Dock", typeof(SHickoryDickoryDock), "Anonymous", IsBossModule = true)]
     [ManualQuestion("What times were shown when the clock struck?")]
     private IEnumerator<SouvenirInstruction> ProcessHickoryDickoryDock(ModuleData module)
@@ -68,12 +52,18 @@ public partial class SouvenirModule
             stages[c - 1] = (h + 1, Array.IndexOf(validMinutes, m));
         }
 
+        static IEnumerable<string> AnswerGenerator()
+        {
+            while (true)
+                yield return $"{Rnd.Range(1, 13)}:{_hickoryDickoryDock_minutes.PickRandom():00}";
+        }
+
         for (var c = 0; c < stages.Length; c++)
             if (stages[c] is not (0, 0))
             {
                 var struck = $"{c + 1}:00";
                 var time = $"{stages[c].h}:{minuteValues[stages[c].m]:00}";
-                yield return question(SHickoryDickoryDock.Time, args: [struck]).Answers(time);
+                yield return question(SHickoryDickoryDock.Time, args: [struck]).Answers(time, answerGenerator: AnswerGenerator());
                 yield return new Discriminator(SHickoryDickoryDock.Discriminator, $"stage{c}", time, args: [time, struck]);
             }
     }

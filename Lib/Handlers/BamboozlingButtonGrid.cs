@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -8,7 +9,6 @@ using Rnd = UnityEngine.Random;
 public enum SBamboozlingButtonGrid
 {
     [Question("What was shown on the {1} display in the {2} step of the cycle in the {3} stage in {0}?", OneColumn4Answers, Arguments = ["top", QandA.Ordinal, QandA.Ordinal, "right", QandA.Ordinal, QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [true, false, false])]
-    [AnswerGenerator.BamboozlingButtonGrid]
     QLabel,
     [Discriminator("the Bamboozling Button Grid that showed {0} on the {1} display in the {2} stage", Arguments = ["MISSPELT NOVEMBAR", "top", QandA.Ordinal, "THE LETTER ROMYO", "right", QandA.Ordinal], ArgumentGroupSize = 3, TranslateArguments = [false, true, false])]
     DLabel,
@@ -19,32 +19,19 @@ public enum SBamboozlingButtonGrid
     DLabelColor
 }
 
-namespace Souvenir
-{
-    static partial class AnswerGenerator
-    {
-        public class BamboozlingButtonGrid : AnswerGeneratorAttribute<string>
-        {
-            public static readonly string[] _prepend = ["", "THE LETTER ", "THE WORD ", "MISSPELT "];
-            public static readonly string[] _alph = [
-                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-                "ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "FOXTROT", "GOLF", "HOTEL", "INDIA", "JULIET", "KILO", "LIMA", "MIKE", "NOVEMBER", "OSCAR", "PAPA", "QUEBEC", "ROMEO", "SIERRA", "TANGO", "UNIFORM", "VICTOR", "WHISKEY", "XRAY", "YANKEE", "ZULU",
-                "ALFHA", "BRAVOH", "CHARLEE", "DELLTA", "EKO", "FOKSTROT", "GOLPH", "HOATEL", "INDYA", "JOOLIET", "KEYLO", "LEEMA", "MYKE", "NOBEMVER", "OSCAH", "PAPPA", "QEUBEC", "ROMIO", "SCIERA", "TANKO", "YUNIFORM", "VICKTOR", "WISKEY", "EKSRAY", "YANKIE", "ZOOLU", "ALPA", "BRAVOE", "CHARLY", "DELTER", "ECOH", "FOXCHROT", "GOLLF", "HOTELL", "INDEA", "JULYET", "KEELO", "LEYMA", "MAIK", "NOVEBMER", "OZCAR", "PAPHA", "QUEBECK", "REOMO", "SIARRA", "TONGO", "UNIPHORM", "VICTAH", "WHISKEE", "XRAE", "YANGKEE", "ZULOO", "ALEPH", "BRAHVO", "CHAALIE", "TELTA", "ECCO", "FOXTROY", "COLF", "OHTEL", "INDIR", "GULIET", "CHILO", "LEMA", "MIC", "NOVEMBAR", "OSKAR", "PAHPAH", "CUEBEC", "ROMYO", "SEERRA", "DANGO", "UNUFORM", "VITCOR", "WHISCEY", "XREI", "YANKY", "ZULLU", "ALPHER", "BRUHVO", "SHARLIE", "OELTA", "EGHO", "POXTROT", "EOLF", "HOTLE", "NDIA", "JULLIET", "QUILO", "LIA", "MIXE", "NOVENBER", "OSSCAR", "FAFA", "QUEBEQ", "RHOMEO", "SYERRA", "TNGO", "UNIFROM", "VICTUR", "VVHISKEY", "XARRAY", "IANKEE", "ZUWU", "AELLFHAH", "BERRARVO", "TCHAALEY", "DERLEDEH", "EQUEAUX", "PHAWXTRT", "GAULTH", "HOUGHTEL", "YNNDEYER", "DGEULIRT", "QUEELOWE", "LEIGHMUR", "MISQUE", "NOUGHVMB", "AUSQUE", "PARGHPEH", "KWUBBECH", "ROAMEEOH", "CYERHA", "TAENGKOW", "EUNIFAWM", "VYCHTOUR", "UISSQUAY", "ECHSREIH", "EANGQUI", "ZOUGHLEW"
-            ];
-
-            public override IEnumerable<string> GetAnswers(SouvenirModule module)
-            {
-                while (true)
-                    yield return _prepend[Rnd.Range(0, _prepend.Length)] + _alph[Rnd.Range(0, _alph.Length)];
-            }
-
-            public override int Count => _prepend.Length * _alph.Length;
-        }
-    }
-}
-
 public partial class SouvenirModule
 {
+    public static readonly string[] _bamboozlingButtonGrid_prefixes = ["", "THE LETTER ", "THE WORD ", "MISSPELT "];
+    public static readonly string[] _bamboozlingButtonGrid_suffixes = [
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        "ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "FOXTROT", "GOLF", "HOTEL", "INDIA", "JULIET", "KILO", "LIMA", "MIKE", "NOVEMBER", "OSCAR", "PAPA", "QUEBEC", "ROMEO", "SIERRA", "TANGO", "UNIFORM", "VICTOR", "WHISKEY", "XRAY", "YANKEE", "ZULU",
+        "ALFHA", "BRAVOH", "CHARLEE", "DELLTA", "EKO", "FOKSTROT", "GOLPH", "HOATEL", "INDYA", "JOOLIET", "KEYLO", "LEEMA", "MYKE", "NOBEMVER", "OSCAH", "PAPPA", "QEUBEC", "ROMIO", "SCIERA", "TANKO", "YUNIFORM", "VICKTOR", "WISKEY", "EKSRAY", "YANKIE", "ZOOLU",
+        "ALPA", "BRAVOE", "CHARLY", "DELTER", "ECOH", "FOXCHROT", "GOLLF", "HOTELL", "INDEA", "JULYET", "KEELO", "LEYMA", "MAIK", "NOVEBMER", "OZCAR", "PAPHA", "QUEBECK", "REOMO", "SIARRA", "TONGO", "UNIPHORM", "VICTAH", "WHISKEE", "XRAE", "YANGKEE", "ZULOO",
+        "ALEPH", "BRAHVO", "CHAALIE", "TELTA", "ECCO", "FOXTROY", "COLF", "OHTEL", "INDIR", "GULIET", "CHILO", "LEMA", "MIC", "NOVEMBAR", "OSKAR", "PAHPAH", "CUEBEC", "ROMYO", "SEERRA", "DANGO", "UNUFORM", "VITCOR", "WHISCEY", "XREI", "YANKY", "ZULLU",
+        "ALPHER", "BRUHVO", "SHARLIE", "OELTA", "EGHO", "POXTROT", "EOLF", "HOTLE", "NDIA", "JULLIET", "QUILO", "LIA", "MIXE", "NOVENBER", "OSSCAR", "FAFA", "QUEBEQ", "RHOMEO", "SYERRA", "TNGO", "UNIFROM", "VICTUR", "VVHISKEY", "XARRAY", "IANKEE", "ZUWU",
+        "AELLFHAH", "BERRARVO", "TCHAALEY", "DERLEDEH", "EQUEAUX", "PHAWXTRT", "GAULTH", "HOUGHTEL", "YNNDEYER", "DGEULIRT", "QUEELOWE", "LEIGHMUR", "MISQUE", "NOUGHVMB", "AUSQUE", "PARGHPEH", "KWUBBECH", "ROAMEEOH", "CYERHA", "TAENGKOW", "EUNIFAWM", "VYCHTOUR", "UISSQUAY", "ECHSREIH", "EANGQUI", "ZOUGHLEW"
+    ];
+
     [Handler("bamboozlingButtonGrid", "Bamboozling Button Grid", typeof(SBamboozlingButtonGrid), "Timwi")]
     [ManualQuestion("What was on the displays and in what color in each step of the cycle in each stage?")]
     private IEnumerator<SouvenirInstruction> ProcessBamboozlingButtonGrid(ModuleData module)
@@ -91,9 +78,24 @@ public partial class SouvenirModule
             {
                 for (var cycle = 0; cycle < 4; cycle++)
                 {
+                    var correctLabelAnswer = dispTexts[stage][disp][cycle];
+                    var correctLabelPrefix = _bamboozlingButtonGrid_prefixes.Last(correctLabelAnswer.StartsWith);
+                    var correctLabelSuffixIx = Array.IndexOf(_bamboozlingButtonGrid_suffixes, correctLabelAnswer.Substring(correctLabelPrefix.Length));
+                    IEnumerable<string> AnswerGenerator()
+                    {
+                        while (true)
+                        {
+                            var prefix = _bamboozlingButtonGrid_prefixes[Rnd.Range(0, _bamboozlingButtonGrid_prefixes.Length)];
+                            var suffixIx = Rnd.Range(0, _bamboozlingButtonGrid_suffixes.Length);
+                            if (suffixIx >= 2 * 26 && correctLabelSuffixIx >= 2 * 26 && suffixIx % 26 == correctLabelSuffixIx % 26 && prefix == correctLabelPrefix)
+                                continue;
+                            yield return prefix + _bamboozlingButtonGrid_suffixes[suffixIx];
+                        }
+                    }
+
                     yield return question(SBamboozlingButtonGrid.QLabel, args: [dispNames[disp], Ordinal(cycle + 1), Ordinal(stage + 1)])
                         .AvoidDiscriminators(SBamboozlingButtonGrid.DLabel)
-                        .Answers(dispTexts[stage][disp][cycle]);
+                        .Answers(correctLabelAnswer, answerGenerator: AnswerGenerator());
                     yield return question(SBamboozlingButtonGrid.QLabelColor, args: [dispNames[disp], Ordinal(cycle + 1), Ordinal(stage + 1)])
                         .AvoidDiscriminators(SBamboozlingButtonGrid.DLabelColor)
                         .Answers(dispColorNames[dispColors[stage][disp][cycle]]);

@@ -14,11 +14,12 @@ public abstract class AnswerStump
     public abstract override string ToString();
 }
 
-public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) : AnswerStump
+public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all, IEnumerable<T> answerGenerator) : AnswerStump
 {
     public T[] Correct { get; } = correct;
     public T[] PreferredWrong { get; } = preferredWrong;
     public T[] All { get; } = all;
+    public IEnumerable<T> AnswerGenerator = answerGenerator;
 
     public override object[] CorrectAnswers => Correct?.Cast<object>().ToArray();
 
@@ -60,7 +61,7 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
         }
 
         var answers = new List<T>(attr.NumAnswers);
-        if (allAnswers == null && attr.AnswerGenerators == null)
+        if (allAnswers == null && attr.AnswerGenerators == null && AnswerGenerator == null)
         {
             if (PreferredWrong == null || PreferredWrong.Length == 0)
             {
@@ -76,11 +77,14 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all) :
                 answers.AddRange(allAnswers.Except(Correct).Distinct());
             if (answers.Count <= attr.NumAnswers - 1)
             {
-                if (attr.AnswerGenerators?.FirstOrDefault() is AnswerGeneratorAttribute<T>)
-                    answers.AddRange(attr.AnswerGenerators.OfType<AnswerGeneratorAttribute<T>>().GetAnswers(souvenir).Except(answers.Concat(Correct)).Distinct().Take(attr.NumAnswers - 1 - answers.Count));
+                var ansGen = AnswerGenerator ?? attr.AnswerGenerators.OfType<AnswerGeneratorAttribute<T>>().GetAnswers(souvenir);
+                if (ansGen != null)
+                    answers.AddRange(ansGen.Except(answers.Concat(Correct)).Distinct().Take(attr.NumAnswers - 1 - answers.Count));
                 if (answers.Count == 0 && (PreferredWrong == null || PreferredWrong.Length == 0))
                 {
-                    Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: Question {question.GetType().Name}.{question}’s answer generator did not generate any answers.");
+                    Debug.LogError($"[Souvenir #{souvenir._moduleId}] Abandoning {question.GetHandlerAttribute().ModuleNameWithThe} because: {(ansGen == null
+                        ? $"Question {question.GetType().Name}.{question} does not have an answer generator."
+                        : $"Question {question.GetType().Name}.{question}’s answer generator did not generate any answers.")}");
                     return null;
                 }
             }

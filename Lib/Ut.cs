@@ -645,7 +645,7 @@ public static class Ut
     }
 
     public static IEnumerable<T> GetAnswers<T>(this IEnumerable<AnswerGeneratorAttribute<T>> generators, SouvenirModule souv) =>
-        generators.ToArray() is var arr ? arr.Length is 1 ? arr[0].GetAnswers(souv) : arr.UnionAnswers(souv) : null;
+        generators.ToArray() is var arr ? arr.Length is 0 ? null : arr.Length is 1 ? arr[0].GetAnswers(souv) : arr.UnionAnswers(souv) : null;
     private static IEnumerable<T> UnionAnswers<T>(this IEnumerable<AnswerGeneratorAttribute<T>> generators, SouvenirModule souv)
     {
         var iterators = generators.Select(g => g.GetAnswers(souv).GetEnumerator()).ToList();

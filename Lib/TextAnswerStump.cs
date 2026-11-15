@@ -1,8 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Souvenir;
 
-public class TextAnswerStump(string[] correct, string[] preferredWrong, string[] all, TextAnswerInfo info) : AnswerStump<string>(correct, preferredWrong, all)
+public class TextAnswerStump(string[] correct, string[] preferredWrong, string[] all, TextAnswerInfo info, IEnumerable<string> answerGenerator) : AnswerStump<string>(correct, preferredWrong, all, answerGenerator)
 {
     public TextAnswerInfo Info { get; } = info;
     protected static readonly InfoType[] _textAnswerTypes = Ut.GetEnumValues<InfoType>().Where(a => a is InfoType.DynamicFont or >= 0).ToArray();

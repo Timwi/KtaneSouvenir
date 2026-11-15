@@ -10,7 +10,6 @@ public enum SMisorderedKeys
     Colors,
 
     [Question("What was the label of this key in {0}?", ThreeColumns6Answers, ExampleAnswers = ["41", "434", "63265", "4431", "116", "6346", "41523", "4", "665", "52123", "4", "41"], QuestionExtraType = InfoType.Sprites)]
-    [AnswerGenerator.MisorderedKeys]
     Labels,
 
     [Question("What color was the label of this key in {0}?", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, QuestionExtraType = InfoType.Sprites)]
@@ -18,33 +17,6 @@ public enum SMisorderedKeys
 
     [Question("Which key was K in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites, SpriteFieldName = "OrderedKeysSprites")]
     K
-}
-
-namespace Souvenir
-{
-    static partial class AnswerGenerator
-    {
-        public class MisorderedKeys : AnswerGeneratorAttribute<string>
-        {
-            public MisorderedKeys()
-            {
-            }
-
-            public override IEnumerable<string> GetAnswers(SouvenirModule module)
-            {
-                while (true)
-                {
-                    var len = Rnd.Range(1, 7);
-                    var s = "";
-                    for (var j = 0; j < len; j++)
-                        s += Rnd.Range(1, 7);
-                    yield return s;
-                }
-            }
-
-            public override int Count => 55986;
-        }
-    }
 }
 
 public partial class SouvenirModule
@@ -78,11 +50,23 @@ public partial class SouvenirModule
             yield return null;
         }
 
+        static IEnumerable<string> AnswerGenerator()
+        {
+            while (true)
+            {
+                var len = Rnd.Range(1, 7);
+                var s = "";
+                for (var j = 0; j < len; j++)
+                    s += Rnd.Range(1, 7);
+                yield return s;
+            }
+        }
+
         var colors = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
         for (var key = 0; key < 6; key++)
         {
             yield return question(SMisorderedKeys.Colors, questionExtra: OrderedKeysSprites[key]).Answers(colors[info[key][0]]);
-            yield return question(SMisorderedKeys.Labels, questionExtra: OrderedKeysSprites[key]).Answers(labelList[key].JoinString());
+            yield return question(SMisorderedKeys.Labels, questionExtra: OrderedKeysSprites[key]).Answers(labelList[key].JoinString(), answerGenerator: AnswerGenerator());
             yield return question(SMisorderedKeys.LabelColors, questionExtra: OrderedKeysSprites[key]).Answers(colors[info[key][1]]);
         }
         yield return question(SMisorderedKeys.K).Answers(OrderedKeysSprites[blackKey], all: OrderedKeysSprites);

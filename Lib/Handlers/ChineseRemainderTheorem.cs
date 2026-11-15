@@ -7,27 +7,7 @@ using static Souvenir.AnswerLayout;
 public enum SChineseRemainderTheorem
 {
     [Question("Which equation was used in {0}?", ThreeColumns6Answers)]
-    [AnswerGenerator.ChineseRemainderTheorem]
     Equations
-}
-
-namespace Souvenir
-{
-    public static partial class AnswerGenerator
-    {
-        public sealed class ChineseRemainderTheorem : AnswerGeneratorAttribute<string>
-        {
-            public override IEnumerable<string> GetAnswers(SouvenirModule module)
-            {
-                while (true)
-                {
-                    var m = Random.Range(2, 51);
-                    yield return $"N % {m} = {Random.Range(0, m)}";
-                }
-            }
-            public override int Count => 1225;
-        }
-    }
 }
 
 public partial class SouvenirModule
@@ -70,6 +50,15 @@ public partial class SouvenirModule
             .Where((_, i) => !remove.Contains(i))
             .ToArray();
 
-        yield return question(SChineseRemainderTheorem.Equations).Answers(right);
+        static IEnumerable<string> AnswerGenerator()
+        {
+            while (true)
+            {
+                var m = Random.Range(2, 51);
+                yield return $"N % {m} = {Random.Range(0, m)}";
+            }
+        }
+
+        yield return question(SChineseRemainderTheorem.Equations).Answers(right, answerGenerator: AnswerGenerator());
     }
 }

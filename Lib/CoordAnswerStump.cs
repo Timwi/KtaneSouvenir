@@ -1,6 +1,8 @@
-﻿namespace Souvenir;
+﻿using System.Collections.Generic;
 
-public class CoordAnswerStump(Coord[] correct, Coord[] preferredWrong, Coord[] all) : AnswerStump<Coord>(correct, preferredWrong, all)
+namespace Souvenir;
+
+public class CoordAnswerStump(Coord[] correct, Coord[] preferredWrong, Coord[] all, IEnumerable<Coord> answerGenerator = null) : AnswerStump<Coord>(correct, preferredWrong, all, answerGenerator)
 {
     protected override InfoType[] acceptableTypes => [InfoType.Sprites];
     protected override AnswerSet MakeAnswerSet(Coord[] answers, int correctIndex, QuestionAttribute qAttr, SouvenirModule souvenir) => new CoordAnswerSet(qAttr.Layout, answers, correctIndex);
