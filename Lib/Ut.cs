@@ -538,6 +538,11 @@ public static class Ut
         _ => $"{{{value.GetType().FullName}|{value}}}"
     };
 
+    public static string Dump(this object value) => value == null ? "<null>" : value.GetType()
+        .GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
+        .Select(field => $"{(field.IsPublic ? "P" : "")}{(field.IsStatic ? "S" : "")}\t{field.Name}\t{field.GetValue(value).Stringify()}\t{field.FieldType.FullName}")
+        .JoinString("\n");
+
     public static void UpdateChildren(this KMSelectable selectable, int childRowLength, params KMSelectable[] children)
     {
         selectable.Children = children;
