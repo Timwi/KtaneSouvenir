@@ -877,6 +877,17 @@ public partial class SouvenirModule : MonoBehaviour
         _activeProcessors.Add(module.ModuleDisplayName);
         var questions = new List<QandAStump>();
 
+        if (!typeof(IEnumerator<SouvenirInstruction>).IsAssignableFrom(hAttr.Method.ReturnType))
+        {
+            Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because: method {hAttr.Method} has the wrong return type (should be IEnumerator<SouvenirInstruction>).");
+            yield break;
+        }
+        if (!hAttr.Method.GetParameters().Select(p => p.ParameterType).SequenceEqual([typeof(ModuleData)]))
+        {
+            Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because: method {hAttr.Method} has the wrong parameter types (should be [ModuleData]).");
+            yield break;
+        }
+
         try
         {
             // Unfortunately C# doesn’t allow ‘yield return’ inside of a ‘try’ block with a ‘catch’ clause,
