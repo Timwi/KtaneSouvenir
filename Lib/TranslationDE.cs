@@ -12725,6 +12725,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Name Changer
+        [typeof(SNameChanger)] = new()
+        {
+            ModuleName = "Namenswechsler",
+            Gender = Gender.Masculine,
+            ManualQuestions = new()
+            {
+                ["What was the starting word?"] = "Was war das Anfangswort?",
+            },
+            Questions = new()
+            {
+                [SNameChanger.InitialWord] = new()
+                {
+                    // English: What was the starting word in {0}?
+                    Question = "Was war bei {0} das Anfangswort?",
+                },
+            },
+        },
+
         // Naming Conventions
         [typeof(SNamingConventions)] = new()
         {

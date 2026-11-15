@@ -12611,6 +12611,24 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Name Changer
+        [typeof(SNameChanger)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was the starting word?"] = "What was the starting word?",
+            },
+            Questions = new()
+            {
+                [SNameChanger.InitialWord] = new()
+                {
+                    // English: What was the starting word in {0}?
+                    Question = "What was the starting word in {0}?",
+                },
+            },
+        },
+
         // Naming Conventions
         [typeof(SNamingConventions)] = new()
         {
