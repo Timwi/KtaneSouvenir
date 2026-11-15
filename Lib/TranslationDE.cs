@@ -1545,6 +1545,80 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Bamboozling Button Grid
+        [typeof(SBamboozlingButtonGrid)] = new()
+        {
+            ModuleName = "Wieder Übers Tastenfeld Gehauen",
+            ManualQuestions = new()
+            {
+                ["What was on the displays and in what color in each step of the cycle in each stage?"] = "Was stand in welcher Farbe in welchem Schritt der Folge in welcher Stufe auf welchem Display?",
+            },
+            Questions = new()
+            {
+                [SBamboozlingButtonGrid.QLabel] = new()
+                {
+                    // English: What was shown on the {1} display in the {2} step of the cycle in the {3} stage in {0}?
+                    // Example: What was shown on the top display in the first step of the cycle in the first stage in Bamboozling Button Grid?
+                    Question = "Was war bei {0} auf dem {1} Display im {2}en Schritt der Folge in der {3}en Stufe?",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["right"] = "rechten",
+                    },
+                },
+                [SBamboozlingButtonGrid.QLabelColor] = new()
+                {
+                    // English: What was the color of the {1} display in the {2} step of the cycle in the {3} stage in {0}?
+                    // Example: What was the color of the top display in the first step of the cycle in the first stage in Bamboozling Button Grid?
+                    Question = "Welche Farbe hatte bei {0} das {1} Display im {2}en Schritt der Folge in der {3}en Stufe?",
+                    Arguments = new()
+                    {
+                        ["top"] = "obere",
+                        ["right"] = "rechte",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBamboozlingButtonGrid.DLabel] = new()
+                {
+                    // English: the Bamboozling Button Grid that showed {0} on the {1} display in the {2} stage
+                    // Example: the Bamboozling Button Grid that showed MISSPELT NOVEMBAR on the top display in the first stage
+                    Discriminator = "dem Wieder Übers Tastenfeld Gehauen, bei dem {0} auf dem {1} Display in der {2}en Stufe stand,",
+                    Arguments = new()
+                    {
+                        ["top"] = "oberen",
+                        ["right"] = "rechten",
+                    },
+                },
+                [SBamboozlingButtonGrid.DLabelColor] = new()
+                {
+                    // English: the Bamboozling Button Grid where the {0} display was sometimes {1} in the {2} stage
+                    // Example: the Bamboozling Button Grid where the top display was sometimes white in the first stage
+                    Discriminator = "dem Wieder Übers Tastenfeld Gehauen, bei dem das {0} Display in der {2}en Stufe manchmal {1} war,",
+                    Arguments = new()
+                    {
+                        ["top"] = "obere",
+                        ["right"] = "rechte",
+                        ["white"] = "weiß",
+                        ["red"] = "rot",
+                        ["orange"] = "orange",
+                        ["yellow"] = "gelb",
+                        ["lime"] = "limette",
+                        ["green"] = "grün",
+                        ["jade"] = "jade",
+                        ["grey"] = "grau",
+                        ["cyan"] = "türkis",
+                        ["azure"] = "azur",
+                        ["blue"] = "blau",
+                        ["violet"] = "violett",
+                        ["magenta"] = "rosa",
+                        ["rose"] = "rosé",
+                    },
+                },
+            },
+        },
+
         // Bar Charts
         [typeof(SBarCharts)] = new()
         {

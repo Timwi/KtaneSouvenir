@@ -1675,6 +1675,80 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Bamboozling Button Grid
+        [typeof(SBamboozlingButtonGrid)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What was on the displays and in what color in each step of the cycle in each stage?"] = "What was on the displays and in what color in each step of the cycle in each stage?",
+            },
+            Questions = new()
+            {
+                [SBamboozlingButtonGrid.QLabel] = new()
+                {
+                    // English: What was shown on the {1} display in the {2} step of the cycle in the {3} stage in {0}?
+                    // Example: What was shown on the top display in the first step of the cycle in the first stage in Bamboozling Button Grid?
+                    Question = "What was shown on the {1} display in the {2} step of the cycle in the {3} stage in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["right"] = "right",
+                    },
+                },
+                [SBamboozlingButtonGrid.QLabelColor] = new()
+                {
+                    // English: What was the color of the {1} display in the {2} step of the cycle in the {3} stage in {0}?
+                    // Example: What was the color of the top display in the first step of the cycle in the first stage in Bamboozling Button Grid?
+                    Question = "What was the color of the {1} display in the {2} step of the cycle in the {3} stage in {0}?",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["right"] = "right",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SBamboozlingButtonGrid.DLabel] = new()
+                {
+                    // English: the Bamboozling Button Grid that showed {0} on the {1} display in the {2} stage
+                    // Example: the Bamboozling Button Grid that showed MISSPELT NOVEMBAR on the top display in the first stage
+                    Discriminator = "the Bamboozling Button Grid that showed {0} on the {1} screen",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["right"] = "right",
+                    },
+                },
+                [SBamboozlingButtonGrid.DLabelColor] = new()
+                {
+                    // English: the Bamboozling Button Grid where the {0} display was sometimes {1} in the {2} stage
+                    // Example: the Bamboozling Button Grid where the top display was sometimes white in the first stage
+                    Discriminator = "the Bamboozling Button Grid where the {0} screen was sometimes {1}",
+                    Arguments = new()
+                    {
+                        ["top"] = "top",
+                        ["right"] = "right",
+                        ["white"] = "white",
+                        ["red"] = "red",
+                        ["orange"] = "orange",
+                        ["yellow"] = "yellow",
+                        ["lime"] = "lime",
+                        ["green"] = "green",
+                        ["jade"] = "jade",
+                        ["grey"] = "grey",
+                        ["cyan"] = "cyan",
+                        ["azure"] = "azure",
+                        ["blue"] = "blue",
+                        ["violet"] = "violet",
+                        ["magenta"] = "magenta",
+                        ["rose"] = "rose",
+                    },
+                },
+            },
+        },
+
         // Bar Charts
         [typeof(SBarCharts)] = new()
         {
