@@ -1765,7 +1765,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["What were the initial numbers?"] = "初期値は？",
-                ["What number was selected at each stage?"] = "各ステージで選択した数字は？",
             },
             Questions = new()
             {
@@ -1775,42 +1774,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // Example: What was the top-left initial number in Binary Shift?
                     Question = "{0}の{1}の初期値は？",
                     Arguments = new()
-                    {
-                        ["top-left"] = "左上",
-                        ["top-middle"] = "上",
-                        ["top-right"] = "右上",
-                        ["left-middle"] = "左",
-                        ["center"] = "中央",
-                        ["right-middle"] = "右",
-                        ["bottom-left"] = "左下",
-                        ["bottom-middle"] = "下",
-                        ["bottom-right"] = "右下",
-                    },
-                },
-                [SBinaryShift.SelectedNumberPossition] = new()
-                {
-                    // English: What number was selected at stage {1} in {0}?
-                    // Example: What number was selected at stage 0 in Binary Shift?
-                    Question = "{0}でステージ{1}で選択した数字は？",
-                    Answers = new()
-                    {
-                        ["top-left"] = "左上",
-                        ["top-middle"] = "上",
-                        ["top-right"] = "右上",
-                        ["left-middle"] = "左",
-                        ["center"] = "中央",
-                        ["right-middle"] = "右",
-                        ["bottom-left"] = "左下",
-                        ["bottom-middle"] = "下",
-                        ["bottom-right"] = "右下",
-                    },
-                },
-                [SBinaryShift.NotSelectedNumberPossition] = new()
-                {
-                    // English: What number was not selected at stage {1} in {0}?
-                    // Example: What number was not selected at stage 0 in Binary Shift?
-                    Question = "{0}でステージ{1}で選択していない数字は？",
-                    Answers = new()
                     {
                         ["top-left"] = "左上",
                         ["top-middle"] = "上",
@@ -7661,7 +7624,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "関数",
             ManualQuestions = new()
             {
-                ["What was the last digit of the first query result?"] = "最初のクエリの結果の下一桁は？",
                 ["What were the numbers and letter shown at the bottom?"] = "下部に表示された数字と英字は？",
             },
             Questions = new()
@@ -7681,11 +7643,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 {
                     // English: What letter was displayed in {0}?
                     Question = "{0}に表示された英字は？",
-                },
-                [SFunctions.QLastDigit] = new()
-                {
-                    // English: What was the last digit of your first query’s result in {0}?
-                    Question = "{0}の最初の問い合わせ結果の下一桁は？",
                 },
             },
             Discriminators = new()
@@ -13553,19 +13510,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Not X-Ray
         [typeof(SNotXRay)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "偽レントゲン",
             ManualQuestions = new()
             {
-                ["What table were we in?"] = "どの表にいる？",
-                ["Which button went which direction?"] = "どのボタンがどの方向に向かっている？",
-                ["What was the scanner color?"] = "スキャナーの色は？",
+                ["What did the scanner color change to?"] = "What did the scanner color change to?",
+                ["What was the goal symbol?"] = "What was the goal symbol?",
             },
             Questions = new()
             {
                 [SNotXRay.ScannerColor] = new()
                 {
-                    // English: What was the scanner color in {0}?
-                    Question = "{0}のスキャナーの色は？",
+                    // English: What did the scanner color change to in {0}?
+                    Question = "What did the scanner color change to in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "赤",
@@ -13574,36 +13531,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["White"] = "白",
                     },
                 },
-                [SNotXRay.Table] = new()
+                [SNotXRay.GoalSymbol] = new()
                 {
-                    // English: What table were we in in {0} (numbered 1–8 in reading order in the manual)?
-                    Question = "{0}で使用した表は(マニュアルの読み順で1-8)？",
-                },
-                [SNotXRay.Directions] = new()
-                {
-                    // English: What direction was button {1} in {0}?
-                    // Example: What direction was button 1 in Not X-Ray?
-                    Question = "{0}のボタン{1}の方向は？",
-                    Answers = new()
-                    {
-                        ["Up"] = "上",
-                        ["Right"] = "右",
-                        ["Down"] = "下",
-                        ["Left"] = "左",
-                    },
-                },
-                [SNotXRay.Buttons] = new()
-                {
-                    // English: Which button went {1} in {0}?
-                    // Example: Which button went up in Not X-Ray?
-                    Question = "{0}で{1}方向のボタンは？",
-                    Arguments = new()
-                    {
-                        ["up"] = "下",
-                        ["right"] = "右",
-                        ["down"] = "下",
-                        ["left"] = "左",
-                    },
+                    // English: What was the goal symbol in {0}?
+                    Question = "What was the goal symbol in {0}?",
                 },
             },
         },

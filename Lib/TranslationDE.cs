@@ -1825,7 +1825,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["What were the initial numbers?"] = "Was waren die Zahlen am Anfang?",
-                ["What number was selected at each stage?"] = "Welche Zahl wurde in welchem Schritt ausgewählt?",
             },
             Questions = new()
             {
@@ -1845,42 +1844,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["bottom-left"] = "untere linke",
                         ["bottom-middle"] = "untere mittlere",
                         ["bottom-right"] = "untere rechte",
-                    },
-                },
-                [SBinaryShift.SelectedNumberPossition] = new()
-                {
-                    // English: What number was selected at stage {1} in {0}?
-                    // Example: What number was selected at stage 0 in Binary Shift?
-                    Question = "Welche Zahl wurde bei {0} in Schritt {1} ausgewählt?",
-                    Answers = new()
-                    {
-                        ["top-left"] = "oben links",
-                        ["top-middle"] = "oben Mitte",
-                        ["top-right"] = "oben rechts",
-                        ["left-middle"] = "Mitte links",
-                        ["center"] = "Mitte Mitte",
-                        ["right-middle"] = "Mitte rechts",
-                        ["bottom-left"] = "unten links",
-                        ["bottom-middle"] = "unten Mitte",
-                        ["bottom-right"] = "unten rechts",
-                    },
-                },
-                [SBinaryShift.NotSelectedNumberPossition] = new()
-                {
-                    // English: What number was not selected at stage {1} in {0}?
-                    // Example: What number was not selected at stage 0 in Binary Shift?
-                    Question = "Welche Zahl wurde bei {0} in Schritt {1} nicht ausgewählt?",
-                    Answers = new()
-                    {
-                        ["top-left"] = "oben links",
-                        ["top-middle"] = "oben Mitte",
-                        ["top-right"] = "oben rechts",
-                        ["left-middle"] = "Mitte links",
-                        ["center"] = "Mitte Mitte",
-                        ["right-middle"] = "Mitte rechts",
-                        ["bottom-left"] = "unten links",
-                        ["bottom-middle"] = "unten Mitte",
-                        ["bottom-right"] = "unten rechts",
                     },
                 },
             },
@@ -7871,7 +7834,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             Gender = Gender.Plural,
             ManualQuestions = new()
             {
-                ["What was the last digit of the first query result?"] = "Was war die letzte Ziffer des ersten Anfrageergebnisses?",
                 ["What were the numbers and letter shown at the bottom?"] = "Welche Zahlen und welcher Buchstabe standen unten?",
             },
             Questions = new()
@@ -7891,11 +7853,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What letter was displayed in {0}?
                     Question = "Welcher Buchstabe war bei {0} auf dem Display?",
-                },
-                [SFunctions.QLastDigit] = new()
-                {
-                    // English: What was the last digit of your first query’s result in {0}?
-                    Question = "Was war bei {0} die letzte Ziffer des ersten Abfrageergebnisses?",
                 },
             },
             Discriminators = new()
@@ -13927,19 +13884,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not X-Ray
         [typeof(SNotXRay)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Röntgen Mal Anders",
             ManualQuestions = new()
             {
-                ["What table were we in?"] = "Welches Labyrinth kam zum Einsatz?",
-                ["Which button went which direction?"] = "Welche Taste ging in welche Richtung?",
-                ["What was the scanner color?"] = "Welche Farbe hatte der Scanner?",
+                ["What did the scanner color change to?"] = "What did the scanner color change to?",
+                ["What was the goal symbol?"] = "What was the goal symbol?",
             },
             Questions = new()
             {
                 [SNotXRay.ScannerColor] = new()
                 {
-                    // English: What was the scanner color in {0}?
-                    Question = "Welche Farbe hatte bei {0} der Scanner?",
+                    // English: What did the scanner color change to in {0}?
+                    Question = "What did the scanner color change to in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -13948,36 +13905,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                         ["White"] = "Weiß",
                     },
                 },
-                [SNotXRay.Table] = new()
+                [SNotXRay.GoalSymbol] = new()
                 {
-                    // English: What table were we in in {0} (numbered 1–8 in reading order in the manual)?
-                    Question = "In welchem Diagramm befanden wir uns bei {0} (im Handbuch von 1 bis 8 in Lesereihenfolge nummeriert)?",
-                },
-                [SNotXRay.Directions] = new()
-                {
-                    // English: What direction was button {1} in {0}?
-                    // Example: What direction was button 1 in Not X-Ray?
-                    Question = "Mit welcher Richtung war Taste {1} bei {0} assoziiert?",
-                    Answers = new()
-                    {
-                        ["Up"] = "Hoch",
-                        ["Right"] = "Rechts",
-                        ["Down"] = "Runter",
-                        ["Left"] = "Links",
-                    },
-                },
-                [SNotXRay.Buttons] = new()
-                {
-                    // English: Which button went {1} in {0}?
-                    // Example: Which button went up in Not X-Ray?
-                    Question = "Welche Taste ging bei {0} nach {1}?",
-                    Arguments = new()
-                    {
-                        ["up"] = "oben",
-                        ["right"] = "rechts",
-                        ["down"] = "unten",
-                        ["left"] = "links",
-                    },
+                    // English: What was the goal symbol in {0}?
+                    Question = "What was the goal symbol in {0}?",
                 },
             },
         },

@@ -1955,7 +1955,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["What were the initial numbers?"] = "Какие были начальные числа?",
-                ["What number was selected at each stage?"] = "Какое число было выбрано на каждом этапе?",
             },
             Questions = new()
             {
@@ -1975,42 +1974,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["bottom-left"] = "снизу слева",
                         ["bottom-middle"] = "снизу посередине",
                         ["bottom-right"] = "снизу справа",
-                    },
-                },
-                [SBinaryShift.SelectedNumberPossition] = new()
-                {
-                    // English: What number was selected at stage {1} in {0}?
-                    // Example: What number was selected at stage 0 in Binary Shift?
-                    Question = "Какое число было выбрано на {1}-м этапе {0}?",
-                    Answers = new()
-                    {
-                        ["top-left"] = "Сверху слева",
-                        ["top-middle"] = "Сверху посередине",
-                        ["top-right"] = "Сверху справа",
-                        ["left-middle"] = "Посередине слева",
-                        ["center"] = "В центре",
-                        ["right-middle"] = "Посередине справа",
-                        ["bottom-left"] = "Снизу слева",
-                        ["bottom-middle"] = "Снизу посередине",
-                        ["bottom-right"] = "Снизу справа",
-                    },
-                },
-                [SBinaryShift.NotSelectedNumberPossition] = new()
-                {
-                    // English: What number was not selected at stage {1} in {0}?
-                    // Example: What number was not selected at stage 0 in Binary Shift?
-                    Question = "Какое число не было выбрано на {1}-м этапе {0}?",
-                    Answers = new()
-                    {
-                        ["top-left"] = "Сверху слева",
-                        ["top-middle"] = "Сверху посередине",
-                        ["top-right"] = "Сверху справа",
-                        ["left-middle"] = "Посередине слева",
-                        ["center"] = "В центре",
-                        ["right-middle"] = "Посередине справа",
-                        ["bottom-left"] = "Снизу слева",
-                        ["bottom-middle"] = "Снизу посередине",
-                        ["bottom-right"] = "Снизу справа",
                     },
                 },
             },
@@ -7884,7 +7847,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the last digit of the first query result?"] = "Какая последняя цифра была у результата первого запроса?",
                 ["What were the numbers and letter shown at the bottom?"] = "Какие числа и буквы были показаны снизу?",
             },
             Questions = new()
@@ -7904,11 +7866,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What letter was displayed in {0}?
                     Question = "Какая буква была отображена {0}?",
-                },
-                [SFunctions.QLastDigit] = new()
-                {
-                    // English: What was the last digit of your first query’s result in {0}?
-                    Question = "Какая была последняя цифра результата вашего первого запроса {0}?",
                 },
             },
             Discriminators = new()
@@ -13787,18 +13744,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Not X-Ray
         [typeof(SNotXRay)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What table were we in?"] = "В какой таблице вы находились?",
-                ["Which button went which direction?"] = "Какие кнопки отвечали за какое направление?",
-                ["What was the scanner color?"] = "Какой был цвет сканера?",
+                ["What did the scanner color change to?"] = "What did the scanner color change to?",
+                ["What was the goal symbol?"] = "What was the goal symbol?",
             },
             Questions = new()
             {
                 [SNotXRay.ScannerColor] = new()
                 {
-                    // English: What was the scanner color in {0}?
-                    Question = "Какой был цвет сканера {0}?",
+                    // English: What did the scanner color change to in {0}?
+                    Question = "What did the scanner color change to in {0}?",
                     Answers = new()
                     {
                         ["Red"] = "Красный",
@@ -13807,36 +13764,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["White"] = "Белый",
                     },
                 },
-                [SNotXRay.Table] = new()
+                [SNotXRay.GoalSymbol] = new()
                 {
-                    // English: What table were we in in {0} (numbered 1–8 in reading order in the manual)?
-                    Question = "В какой таблице вы находились {0} (пронумерованных от 1 до 8 в порядке чтения в инструкции)?",
-                },
-                [SNotXRay.Directions] = new()
-                {
-                    // English: What direction was button {1} in {0}?
-                    // Example: What direction was button 1 in Not X-Ray?
-                    Question = "За какое направление отвечала кнопка \"{1}\" {0}?",
-                    Answers = new()
-                    {
-                        ["Up"] = "Вверх",
-                        ["Right"] = "Вправо",
-                        ["Down"] = "Вних",
-                        ["Left"] = "Влево",
-                    },
-                },
-                [SNotXRay.Buttons] = new()
-                {
-                    // English: Which button went {1} in {0}?
-                    // Example: Which button went up in Not X-Ray?
-                    Question = "Какая кнопка отвечала за направление \"{1}\" {0}?",
-                    Arguments = new()
-                    {
-                        ["up"] = "вверх",
-                        ["right"] = "вправо",
-                        ["down"] = "вниз",
-                        ["left"] = "влево",
-                    },
+                    // English: What was the goal symbol in {0}?
+                    Question = "What was the goal symbol in {0}?",
                 },
             },
         },
