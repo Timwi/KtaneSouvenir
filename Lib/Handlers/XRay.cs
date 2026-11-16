@@ -13,6 +13,22 @@ public enum SXRay
 
 public partial class SouvenirModule
 {
+    // This code will cache flipped X-Ray sprites to avoid duplication.
+    // This is also used by NotXRay.cs.
+    private static Sprite[] _xRay_flippedSprites = null;
+    private Sprite GetFlippedXRaySprite(int index)
+    {
+        _xRay_flippedSprites ??= new Sprite[XRaySprites.Length];
+        if (_xRay_flippedSprites[index] == null)
+        {
+            var flippedSprite = Sprite.Create(XRaySprites[index].texture, XRaySprites[index].rect, new Vector2(0, .5f), XRaySprites[index].pixelsPerUnit);
+            // Hacky way to communicate to Souvenir to display a sprite vertically flipped
+            flippedSprite.name = $"Souvenir_FlipY_{XRaySprites[index].name}";
+            _xRay_flippedSprites[index] = flippedSprite;
+        }
+        return _xRay_flippedSprites[index];
+    }
+
     [Handler("XRayModule", "X-Ray", typeof(SXRay), "Espik")]
     [ManualQuestion("What symbols were scanned?")]
     private IEnumerator<SouvenirInstruction> ProcessXRay(ModuleData module)
@@ -49,9 +65,7 @@ public partial class SouvenirModule
 
             if (flippedCol[i])
             {
-                var flippedSprite = Sprite.Create(foundSprite.texture, foundSprite.rect, new Vector2(0, .5f), foundSprite.pixelsPerUnit);
-                // Hacky way to communicate to Souvenir to display a sprite vertically flipped
-                flippedSprite.name = $"Souvenir_FlipY_{foundSprite.name}";
+                var flippedSprite = GetFlippedXRaySprite(indicesCol[i]);
                 flippedSprites[indicesCol[i]] = flippedSprite;
                 availableSprites.Add(flippedSprite);
             }
