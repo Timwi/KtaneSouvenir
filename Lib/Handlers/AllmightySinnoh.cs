@@ -8,7 +8,7 @@ public enum SAllmightySinnoh
     [Question("Which plate was initially marked by {1} in {0}?", ThreeColumns6Answers, "Blank", "Fist", "Sky", "Toxic", "Earth", "Stone", "Insect", "Spooky", "Flame", "Splash", "Iron", "Meadow", "Zap", "Mind", "Icicle", "Draco", "Dread", "Pixie", TranslateAnswers = true, Arguments = ["time", "space", "antimatter"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     Marks,
 
-    [Discriminator("the Allmighty Sinnoh where the {0} Plate was initially marked by {1}", ArgumentGroupSize = 2, Arguments = ["Blank", "time", "Fist", "time", "Sky", "time", "Toxic", "time", "Earth", "space", "Stone", "space", "Insect", "space", "Spooky", "space", "Flame", "space", "Splash", "space", "Iron", "antimatter", "Meadow", "antimatter", "Zap", "antimatter", "Mind", "antimatter", "Icicle", "antimatter", "Draco", "antimatter", "Dread", "antimatter", "Pixie", "antimatter"])]
+    [Discriminator("the Allmighty Sinnoh where the {0} Plate was initially marked by {1}", ArgumentGroupSize = 2, Arguments = ["Blank", "time", "Fist", "time", "Sky", "time", "Toxic", "time", "Earth", "space", "Stone", "space", "Insect", "space", "Spooky", "space", "Flame", "space", "Splash", "space", "Iron", "antimatter", "Meadow", "antimatter", "Zap", "antimatter", "Mind", "antimatter", "Icicle", "antimatter", "Draco", "antimatter", "Dread", "antimatter", "Pixie", "antimatter"], TranslateArguments = [true, true])]
     MarksDiscriminator
 }
 

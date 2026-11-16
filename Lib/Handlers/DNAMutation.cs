@@ -16,12 +16,12 @@ public enum SDNAMutation
     [Discriminator("the DNA Mutation where the {0} given nucleotide was {1}", Arguments = [QandA.Ordinal, "G", QandA.Ordinal, "C", QandA.Ordinal, "A", QandA.Ordinal, "T"], ArgumentGroupSize = 2)]
     LetterDiscriminator,
 
-    [Discriminator("the DNA Mutation where the {0} given nucleotide was {1}", Arguments = [QandA.Ordinal, "green", QandA.Ordinal, "yellow", QandA.Ordinal, "red", QandA.Ordinal, "blue"], ArgumentGroupSize = 2)]
+    [Discriminator("the DNA Mutation where the {0} given nucleotide was {1}", Arguments = [QandA.Ordinal, "green", QandA.Ordinal, "yellow", QandA.Ordinal, "red", QandA.Ordinal, "blue"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     NucleotideColorDiscriminator,
 
-    [Discriminator("the DNA Mutation where the {0} given DNA strand was {1}", Arguments = [QandA.Ordinal, "green", QandA.Ordinal, "yellow", QandA.Ordinal, "red", QandA.Ordinal, "blue"], ArgumentGroupSize = 2)]
+    [Discriminator("the DNA Mutation where the {0} given DNA strand was {1}", Arguments = [QandA.Ordinal, "green", QandA.Ordinal, "yellow", QandA.Ordinal, "red", QandA.Ordinal, "blue"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     StrandColorDiscriminator
-}   
+}
 
 public partial class SouvenirModule
 {

@@ -1038,6 +1038,85 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             },
         },
 
+        // Allmighty Sinnoh
+        [typeof(SAllmightySinnoh)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which plates were initially marked?"] = "Which plates were initially marked?",
+            },
+            Questions = new()
+            {
+                [SAllmightySinnoh.Marks] = new()
+                {
+                    // English: Which plate was initially marked by {1} in {0}?
+                    // Example: Which plate was initially marked by time in Allmighty Sinnoh?
+                    Question = "Which plate was initially marked by {1} in {0}?",
+                    Arguments = new()
+                    {
+                        ["time"] = "time",
+                        ["space"] = "space",
+                        ["antimatter"] = "antimatter",
+                    },
+                    Answers = new()
+                    {
+                        ["Blank"] = "Blank",
+                        ["Fist"] = "Fist",
+                        ["Sky"] = "Sky",
+                        ["Toxic"] = "Toxic",
+                        ["Earth"] = "Earth",
+                        ["Stone"] = "Stone",
+                        ["Insect"] = "Insect",
+                        ["Spooky"] = "Spooky",
+                        ["Flame"] = "Flame",
+                        ["Splash"] = "Splash",
+                        ["Iron"] = "Iron",
+                        ["Meadow"] = "Meadow",
+                        ["Zap"] = "Zap",
+                        ["Mind"] = "Mind",
+                        ["Icicle"] = "Icicle",
+                        ["Draco"] = "Draco",
+                        ["Dread"] = "Dread",
+                        ["Pixie"] = "Pixie",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SAllmightySinnoh.MarksDiscriminator] = new()
+                {
+                    // English: the Allmighty Sinnoh where the {0} Plate was initially marked by {1}
+                    // Example: the Allmighty Sinnoh where the Blank Plate was initially marked by time
+                    Discriminator = "the Allmighty Sinnoh where the {0} Plate was initially marked by {1}",
+                    Arguments = new()
+                    {
+                        ["Blank"] = "Blank",
+                        ["Fist"] = "Fist",
+                        ["Sky"] = "Sky",
+                        ["Toxic"] = "Toxic",
+                        ["Earth"] = "Earth",
+                        ["Stone"] = "Stone",
+                        ["Insect"] = "Insect",
+                        ["Spooky"] = "Spooky",
+                        ["Flame"] = "Flame",
+                        ["Splash"] = "Splash",
+                        ["Iron"] = "Iron",
+                        ["Meadow"] = "Meadow",
+                        ["Zap"] = "Zap",
+                        ["Mind"] = "Mind",
+                        ["Icicle"] = "Icicle",
+                        ["Draco"] = "Draco",
+                        ["Dread"] = "Dread",
+                        ["Pixie"] = "Pixie",
+                        ["time"] = "time",
+                        ["space"] = "space",
+                        ["antimatter"] = "antimatter",
+                    },
+                },
+            },
+        },
+
         // Alphabetical Ruling
         [typeof(SAlphabeticalRuling)] = new()
         {
@@ -5966,6 +6045,41 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     },
                 },
             },
+            Discriminators = new()
+            {
+                [SDNAMutation.LetterDiscriminator] = new()
+                {
+                    // English: the DNA Mutation where the {0} given nucleotide was {1}
+                    // Example: the DNA Mutation where the first given nucleotide was G
+                    Discriminator = "the DNA Mutation where the {0} given nucleotide was {1}",
+                },
+                [SDNAMutation.NucleotideColorDiscriminator] = new()
+                {
+                    // English: the DNA Mutation where the {0} given nucleotide was {1}
+                    // Example: the DNA Mutation where the first given nucleotide was green
+                    Discriminator = "the DNA Mutation where the {0} given nucleotide was {1}",
+                    Arguments = new()
+                    {
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                    },
+                },
+                [SDNAMutation.StrandColorDiscriminator] = new()
+                {
+                    // English: the DNA Mutation where the {0} given DNA strand was {1}
+                    // Example: the DNA Mutation where the first given DNA strand was green
+                    Discriminator = "the DNA Mutation where the {0} given DNA strand was {1}",
+                    Arguments = new()
+                    {
+                        ["green"] = "green",
+                        ["yellow"] = "yellow",
+                        ["red"] = "red",
+                        ["blue"] = "blue",
+                    },
+                },
+            },
         },
 
         // Doofenshmirtz Evil Inc.
@@ -8158,6 +8272,116 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                 {
                     // English: What was the language sung in {0}?
                     Question = "На каком языке была песня {0}?",
+                },
+            },
+        },
+
+        // Glass Cactus
+        [typeof(SGlassCactus)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["Which direction was the breeze rotating?"] = "Which direction was the breeze rotating?",
+                ["What were the breeze's movements?"] = "What were the breeze's movements?",
+                ["Which colour was the least/most and second-least/most present?"] = "Which colour was the least/most and second-least/most present?",
+            },
+            Questions = new()
+            {
+                [SGlassCactus.ClockDirection] = new()
+                {
+                    // English: Which direction was the breeze rotating in {0}?
+                    Question = "Which direction was the breeze rotating in {0}?",
+                    Answers = new()
+                    {
+                        ["Clockwise"] = "Clockwise",
+                        ["Counter-Clockwise"] = "Counter-Clockwise",
+                    },
+                },
+                [SGlassCactus.BreezeMovements] = new()
+                {
+                    // English: What was the {1} breeze movement in {0}?
+                    // Example: What was the first breeze movement in Glass Cactus?
+                    Question = "What was the {1} breeze movement in {0}?",
+                    Answers = new()
+                    {
+                        ["Up"] = "Up",
+                        ["Up-Right"] = "Up-Right",
+                        ["Up-Left"] = "Up-Left",
+                        ["Right"] = "Right",
+                        ["Left"] = "Left",
+                        ["Down"] = "Down",
+                        ["Down-Right"] = "Down-Right",
+                        ["Down-Left"] = "Down-Left",
+                    },
+                },
+                [SGlassCactus.ColourOccurrence] = new()
+                {
+                    // English: Which colour was the {1} present in {0}?
+                    // Example: Which colour was the most present in Glass Cactus?
+                    Question = "Which colour was the {1} present in {0}?",
+                    Arguments = new()
+                    {
+                        ["most"] = "most",
+                        ["second-most"] = "second-most",
+                        ["second-least"] = "second-least",
+                        ["least"] = "least",
+                    },
+                    Answers = new()
+                    {
+                        ["Red"] = "Red",
+                        ["Green"] = "Green",
+                        ["Blue"] = "Blue",
+                        ["Yellow"] = "Yellow",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [SGlassCactus.ClockDirectionDiscriminator] = new()
+                {
+                    // English: the Glass Cactus where the breeze rotated {0}
+                    // Example: the Glass Cactus where the breeze rotated clockwise
+                    Discriminator = "the Glass Cactus where the breeze rotated {0}",
+                    Arguments = new()
+                    {
+                        ["clockwise"] = "clockwise",
+                        ["counter-clockwise"] = "counter-clockwise",
+                    },
+                },
+                [SGlassCactus.BreezeMovementsDiscriminator] = new()
+                {
+                    // English: the Glass Cactus where the {0} breeze movement was {1}
+                    // Example: the Glass Cactus where the first breeze movement was up
+                    Discriminator = "the Glass Cactus where the {0} breeze movement was {1}",
+                    Arguments = new()
+                    {
+                        ["up"] = "up",
+                        ["up-right"] = "up-right",
+                        ["up-left"] = "up-left",
+                        ["right"] = "right",
+                        ["left"] = "left",
+                        ["down"] = "down",
+                        ["down-right"] = "down-right",
+                        ["down-left"] = "down-left",
+                    },
+                },
+                [SGlassCactus.ColourOccurrenceDiscriminator] = new()
+                {
+                    // English: the Glass Cactus where the {0} present colour was {1}
+                    // Example: the Glass Cactus where the most present colour was red
+                    Discriminator = "the Glass Cactus where the {0} present colour was {1}",
+                    Arguments = new()
+                    {
+                        ["most"] = "most",
+                        ["second-most"] = "second-most",
+                        ["second-least"] = "second-least",
+                        ["least"] = "least",
+                        ["red"] = "red",
+                        ["green"] = "green",
+                        ["blue"] = "blue",
+                        ["yellow"] = "yellow",
+                    },
                 },
             },
         },

@@ -31,7 +31,7 @@ public partial class SouvenirModule
     [Handler("GlassCactus", "Glass Cactus", typeof(SGlassCactus), "thunder725")]
     [ManualQuestion("Which direction was the breeze rotating?")]
     [ManualQuestion("What were the breeze's movements?")]
-    [ManualQuestion("Which colour was the least/most present?")]
+    [ManualQuestion("Which colour was the least/most and second-least/most present?")]
     private IEnumerator<SouvenirInstruction> ProcessGlassCactus(ModuleData module)
     {
         var comp = GetComponent(module, "GlassCactus");
