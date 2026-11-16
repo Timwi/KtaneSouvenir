@@ -14,16 +14,16 @@ public enum SGlassCactus
     BreezeMovements,
 
     [Question("Which colour was the {1} present in {0}?", TwoColumns4Answers, "Red", "Green", "Blue", "Yellow", TranslateAnswers = true, Arguments = ["most", "second-most", "second-least", "least"], ArgumentGroupSize = 1, TranslateArguments = [true])]
-    ColourOccurence,
+    ColourOccurrence,
 
     [Discriminator("the Glass Cactus where the breeze rotated {0}", Arguments = ["clockwise", "counter-clockwise"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     ClockDirectionDiscriminator,
 
-    [Discriminator("the Glass Cactus where the {0} breeze movement was {1}", Arguments = [QandA.Ordinal, "up", QandA.Ordinal,  "up-right", QandA.Ordinal, "up-left", QandA.Ordinal, "right", QandA.Ordinal, "left", QandA.Ordinal, "down", QandA.Ordinal, "down-right", QandA.Ordinal, "down-left"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
+    [Discriminator("the Glass Cactus where the {0} breeze movement was {1}", Arguments = [QandA.Ordinal, "up", QandA.Ordinal, "up-right", QandA.Ordinal, "up-left", QandA.Ordinal, "right", QandA.Ordinal, "left", QandA.Ordinal, "down", QandA.Ordinal, "down-right", QandA.Ordinal, "down-left"], ArgumentGroupSize = 2, TranslateArguments = [false, true])]
     BreezeMovementsDiscriminator,
 
     [Discriminator("the Glass Cactus where the {0} present colour was {1}", Arguments = ["most", "red", "second-most", "green", "second-least", "blue", "least", "yellow"], ArgumentGroupSize = 2, TranslateArguments = [true, true])]
-    ColourOccurenceDiscriminator
+    ColourOccurrenceDiscriminator
 }
 
 public partial class SouvenirModule
@@ -38,15 +38,11 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-
-
-        string clockDirection = GetField<Enum>(comp, "selectedBreezeRotation")
-            .Get(validator: x => x.ToString() == "Clockwise" ? null : 
-                x.ToString() == "CounterClockwise" ? null : 
-                "Expected Clockwise or CounterClockwise")
+        var clockDirection = GetField<Enum>(comp, "selectedBreezeRotation")
+            .Get(validator: x => x.ToString() is "Clockwise" or "CounterClockwise" ? null : "Expected Clockwise or CounterClockwise")
             .ToString();
-        if (clockDirection == "CounterClockwise") { clockDirection = "Counter-Clockwise"; }
-
+        if (clockDirection == "CounterClockwise")
+            clockDirection = "Counter-Clockwise";
 
         yield return question(SGlassCactus.ClockDirection)
             .AvoidDiscriminators([SGlassCactus.ClockDirectionDiscriminator])
@@ -54,14 +50,12 @@ public partial class SouvenirModule
 
         yield return new Discriminator(SGlassCactus.ClockDirectionDiscriminator, "clockDir", clockDirection, [clockDirection]);
 
+        var breezeMovements = GetField<IList>(comp, "breezeMovementSequence").Get(validator: v => v.Count != 5 ? "Expected length 5" : null);
 
-        IList breezeMovements = GetField<IList>(comp, "breezeMovementSequence")
-            .Get(validator: v => v.Count != 5 ? "Expected List of length 5" : null);
-
-        for (int i = 0; i  < breezeMovements.Count; i++)
+        for (var i = 0; i < breezeMovements.Count; i++)
         {
-            string _movement = breezeMovements[i].ToString();
-            switch(_movement)
+            var _movement = breezeMovements[i].ToString();
+            switch (_movement)
             {
                 case "UpLeft": _movement = "Up-Left"; break;
                 case "UpRight": _movement = "Up-Right"; break;
@@ -70,60 +64,50 @@ public partial class SouvenirModule
             }
 
             yield return question(SGlassCactus.BreezeMovements, args: [Ordinal(i + 1)])
-                .AvoidDiscriminators([$"Breeze{i}"])
+                .AvoidDiscriminators($"breeze{i}")
                 .Answers(_movement);
 
-            yield return new Discriminator(SGlassCactus.BreezeMovementsDiscriminator, $"Breeze{i}", _movement, [Ordinal(i + 1), _movement.ToLower()]);
+            yield return new Discriminator(SGlassCactus.BreezeMovementsDiscriminator, $"breeze{i}", _movement, [Ordinal(i + 1), _movement.ToLower()]);
         }
 
+        // Which occurrence Most / Second-Most / Second-Least / Least is asked (and becomes Souvenir-allowed) depends on Rule Seed
+        var firstAllowedOccurrenceEnum = GetField<Enum>(comp, "firstColourOccurrenceRule")
+            .Get(validator: x => x.ToString() is "Least" or "SecondLeast" or "SecondMost" or "Most" ? null : "Expected Least, SecondLeast, SecondMost or Most.");
+        var secondAllowedOccurrenceEnum = GetField<Enum>(comp, "secondColourOccurrenceRule")
+            .Get(validator: x => x.ToString() is "Least" or "SecondLeast" or "SecondMost" or "Most" ? null : "Expected Least, SecondLeast, SecondMost or Most.");
+        var coloursPerOccurrence = GetField<IDictionary>(comp, "colourOccurrenceHierarchy")
+            .Get(validator: x => x.Count != 4 ? "Expected 4 entries in the dictionary" : null);
 
-        // Which occurence Most / Second-Most / Second-Least / Least is asked (and becomes Souvenir-allowed) depends on Rule Seed
-        Enum firstAllowedOccurenceEnum = GetField<Enum>(comp, "firstColourOccurenceRule")
-            .Get(validator: x => x.ToString() == "Least" ? null :
-            x.ToString() == "SecondLeast" ? null :
-            x.ToString() == "SecondMost" ? null :
-            x.ToString() == "Most" ? null : "Expected Least, SecondLeast, SecondMost or Most.");
-        Enum secondAllowedOccurenceEnum = GetField<Enum>(comp, "secondColourOccurenceRule")
-            .Get(validator: x => x.ToString() == "Least" ? null :
-            x.ToString() == "SecondLeast" ? null :
-            x.ToString() == "SecondMost" ? null :
-            x.ToString() == "Most" ? null : "Expected Least, SecondLeast, SecondMost or Most.");
-        IDictionary coloursPerOccurence = GetField<IDictionary>(comp, "colourOccurenceHierarchy")
-            .Get(validator: x => x.Count != 4 ? "Expected 4 entries in the Dictionary" : null);
-        
-        string firstOccurenceColour = coloursPerOccurence[firstAllowedOccurenceEnum].ToString();
-        string secondOccurenceColour = coloursPerOccurence[secondAllowedOccurenceEnum].ToString();
+        var firstOccurrenceColour = coloursPerOccurrence[firstAllowedOccurrenceEnum].ToString();
+        var secondOccurrenceColour = coloursPerOccurrence[secondAllowedOccurrenceEnum].ToString();
 
-        string firstAllowedOccurence = firstAllowedOccurenceEnum.ToString();
-        string secondAllowedOccurence = secondAllowedOccurenceEnum.ToString();
+        var firstAllowedOccurrence = firstAllowedOccurrenceEnum.ToString();
+        var secondAllowedOccurrence = secondAllowedOccurrenceEnum.ToString();
 
-        if (firstOccurenceColour == "Red" || firstOccurenceColour == "Green" || firstOccurenceColour == "Blue" || firstOccurenceColour == "Yellow")
+        if (firstOccurrenceColour is "Red" or "Green" or "Blue" or "Yellow")
         {
-            if (firstAllowedOccurence == "SecondLeast") { firstAllowedOccurence = "Second-Least"; }
-            else if (firstAllowedOccurence == "SecondMost") { firstAllowedOccurence = "Second-Most"; }
+            if (firstAllowedOccurrence == "SecondLeast")
+                firstAllowedOccurrence = "Second-Least";
+            else if (firstAllowedOccurrence == "SecondMost")
+                firstAllowedOccurrence = "Second-Most";
 
-            firstAllowedOccurence = firstAllowedOccurence.ToLower();
+            firstAllowedOccurrence = firstAllowedOccurrence.ToLowerInvariant();
 
-            yield return question(SGlassCactus.ColourOccurence, args: [firstAllowedOccurence])
-                .AvoidDiscriminators(["firstOccurence"])
-                .Answers(firstOccurenceColour);
-
-            yield return new Discriminator(SGlassCactus.ColourOccurenceDiscriminator, "firstOccurence", firstOccurenceColour, [firstAllowedOccurence, firstOccurenceColour.ToLower()]);
+            yield return question(SGlassCactus.ColourOccurrence, args: [firstAllowedOccurrence]).AvoidDiscriminators("firstOccurrence").Answers(firstOccurrenceColour);
+            yield return new Discriminator(SGlassCactus.ColourOccurrenceDiscriminator, "firstOccurrence", firstOccurrenceColour, [firstAllowedOccurrence, firstOccurrenceColour.ToLower()]);
         }
 
-
-        if (secondOccurenceColour == "Red" || secondOccurenceColour == "Green" || secondOccurenceColour == "Blue" || secondOccurenceColour == "Yellow")
+        if (secondOccurrenceColour is "Red" or "Green" or "Blue" or "Yellow")
         {
-            if (secondAllowedOccurence == "SecondLeast") { secondAllowedOccurence = "Second-Least"; }
-            else if (secondAllowedOccurence == "SecondMost") { secondAllowedOccurence = "Second-Most"; }
+            if (secondAllowedOccurrence == "SecondLeast")
+                secondAllowedOccurrence = "Second-Least";
+            else if (secondAllowedOccurrence == "SecondMost")
+                secondAllowedOccurrence = "Second-Most";
 
-            secondAllowedOccurence = secondAllowedOccurence.ToLower();
+            secondAllowedOccurrence = secondAllowedOccurrence.ToLowerInvariant();
 
-            yield return question(SGlassCactus.ColourOccurence, args: [secondAllowedOccurence])
-                .AvoidDiscriminators(["secondOccurence"])
-                .Answers(secondOccurenceColour);
-
-            yield return new Discriminator(SGlassCactus.ColourOccurenceDiscriminator, "secondOccurence", secondOccurenceColour, [secondAllowedOccurence, secondOccurenceColour.ToLower()]);
+            yield return question(SGlassCactus.ColourOccurrence, args: [secondAllowedOccurrence]).AvoidDiscriminators("secondOccurrence").Answers(secondOccurrenceColour);
+            yield return new Discriminator(SGlassCactus.ColourOccurrenceDiscriminator, "secondOccurrence", secondOccurrenceColour, [secondAllowedOccurrence, secondOccurrenceColour.ToLower()]);
         }
 
     }

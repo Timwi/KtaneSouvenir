@@ -180,6 +180,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     ƎNA Cipher                       │  Holographic Memory   │  Multiverse Hotline, The  │  Painting Cube        │  Undertunneling
     French Republican Calendar, The  │  Missing Letter, The  │  Off-White Cipher         │  Pattern Recognition  │  X-Rotor
 
+## Implemented by thunder725 (9)
+
+    Allmighty Sinnoh  │  DNA Mutation   │  Glass Cactus  │  Scorching Alchemist  │  UFO Satellites
+    Cruel Simulacrum  │  Giants Cipher  │  Lime Arrows   │  Toxic Crystals       │
+
 ## Implemented by VFlyer (9)
 
     Abyss           │  Flashing Arrows  │  Pie Flash         │  Quick Arithmetic  │  WhoOF
@@ -194,11 +199,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     Alfa-Bravo    │  Character Codes      │  Eight          │  Stability
     Binary Shift  │  Colors Maximization  │  Space Traders  │  Sysadmin
-
-## Implemented by thunder725 (7)
-
-    Cruel Simulacrum  │  Giants Cipher  │  Scorching Alchemist  │  UFO Satellites
-    DNA Mutation      │  Lime Arrows    │  Toxic Crystals       │
 
 ## Implemented by Marksam (6)
 
