@@ -13884,19 +13884,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Not X-Ray
         [typeof(SNotXRay)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Röntgen Mal Anders",
             ManualQuestions = new()
             {
-                ["What did the scanner color change to?"] = "What did the scanner color change to?",
-                ["What was the goal symbol?"] = "What was the goal symbol?",
+                ["What did the scanner color change to?"] = "Zu welcher Farbe hat der Scanner gewechselt?",
+                ["What was the goal symbol?"] = "Was war das Zielsymbol?",
             },
             Questions = new()
             {
                 [SNotXRay.ScannerColor] = new()
                 {
                     // English: What did the scanner color change to in {0}?
-                    Question = "What did the scanner color change to in {0}?",
+                    Question = "Zu welcher Farbe hat der Scanner bei {0} gewechselt?",
                     Answers = new()
                     {
                         ["Red"] = "Rot",
@@ -13908,7 +13907,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SNotXRay.GoalSymbol] = new()
                 {
                     // English: What was the goal symbol in {0}?
-                    Question = "What was the goal symbol in {0}?",
+                    Question = "Was war bei {0} das Zielsymbol?",
                 },
             },
         },
