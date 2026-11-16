@@ -77,7 +77,7 @@ public abstract class AnswerStump<T>(T[] correct, T[] preferredWrong, T[] all, I
                 answers.AddRange(allAnswers.Except(Correct).Distinct());
             if (answers.Count <= attr.NumAnswers - 1)
             {
-                var ansGen = AnswerGenerator ?? attr.AnswerGenerators.OfType<AnswerGeneratorAttribute<T>>().GetAnswers(souvenir);
+                var ansGen = AnswerGenerator ?? attr.AnswerGenerators?.OfType<AnswerGeneratorAttribute<T>>().GetAnswers(souvenir);
                 if (ansGen != null)
                     answers.AddRange(ansGen.Except(answers.Concat(Correct)).Distinct().Take(attr.NumAnswers - 1 - answers.Count));
                 if (answers.Count == 0 && (PreferredWrong == null || PreferredWrong.Length == 0))
