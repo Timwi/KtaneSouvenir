@@ -16,7 +16,10 @@ public enum SNavyButton
     DGreekLettersNV,
 
     [Discriminator("the Navy Button that had an {0} on it", Arguments = ["Α", "Ε", "Η", "Ι", "Ο", "Υ", "Ω", "α", "ε", "η", "ι", "ο", "υ", "ω"], ArgumentGroupSize = 1)]
-    DGreekLettersV
+    DGreekLettersV,
+
+    [Discriminator("the Navy Button that had the number {0} in the sequence", Arguments = ["1", "2", "3"], ArgumentGroupSize = 1)]
+    DNumbers
 }
 
 public partial class SouvenirModule
@@ -39,14 +42,17 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        // Questions
+        yield return question(SNavyButton.QGreekLetters).AvoidDiscriminators(SNavyButton.DGreekLettersV, SNavyButton.DGreekLettersNV)
+            .Answers(hasGreekLetters.Select(ix => "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"[ix].ToString()).ToArray());
+        yield return question(SNavyButton.QNumbers).AvoidDiscriminators(SNavyButton.DNumbers).Answers(seqNumbers.Select(ix => ix.ToString()).ToArray());
+        
+        // Discriminators
         for (var grLtrIx = 0; grLtrIx < allGreekLetters.Length; grLtrIx++)
             yield return new Discriminator(
                 vowelGreekLetters.Contains(allGreekLetters[grLtrIx]) ? SNavyButton.DGreekLettersV : SNavyButton.DGreekLettersNV,
                 $"ltr-{allGreekLetters[grLtrIx]}", args: [allGreekLetters[grLtrIx].ToString()]);
-
-        yield return question(SNavyButton.QGreekLetters).AvoidDiscriminators(SNavyButton.DGreekLettersV, SNavyButton.DGreekLettersNV)
-            .Answers(hasGreekLetters.Select(ix => "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"[ix].ToString()).ToArray());
-
-        yield return question(SNavyButton.QNumbers).Answers(seqNumbers.Select(ix => ix.ToString()).ToArray());
+        foreach (var n in seqNumbers.Distinct())
+            yield return new Discriminator(SNavyButton.DNumbers, $"num-{n}", args: [n.ToString()]);
     }
 }

@@ -1311,6 +1311,18 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: the Azure Button that had this card (+ extra)
                     Discriminator = "the Azure Button that had this card",
                 },
+                [SAzureButton.DNumber] = new()
+                {
+                    // English: the Azure Button that had the number {0}
+                    // Example: the Azure Button that had the number 1
+                    Discriminator = "the Azure Button that had the number {0}",
+                },
+                [SAzureButton.DArrow] = new()
+                {
+                    // English: the Azure Button that had the arrow {0}
+                    // Example: the Azure Button that had the arrow ↑↑↑
+                    Discriminator = "the Azure Button that had the arrow {0}",
+                },
             },
         },
 
@@ -2173,7 +2185,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 ["What were N and Q?"] = "What were N and Q?",
                 ["What were the polyominoes in C?"] = "What were the polyominoes in C?",
                 ["What were the equations?"] = "What were the equations?",
-                ["What were the fillings of the sorted suits?"] = "What were the fillings of the sorted suits?",
+                ["What were the fillings of the suits (after sorting)?"] = "What were the fillings of the suits (after sorting)?",
             },
             Questions = new()
             {
@@ -12650,6 +12662,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: the Navy Button that had an {0} on it
                     // Example: the Navy Button that had an Α on it
                     Discriminator = "{0}が書かれたNavy Button",
+                },
+                [SNavyButton.DNumbers] = new()
+                {
+                    // English: the Navy Button that had the number {0} in the sequence
+                    // Example: the Navy Button that had the number 1 in the sequence
+                    Discriminator = "the Navy Button that had the number {0} in the sequence",
                 },
             },
         },

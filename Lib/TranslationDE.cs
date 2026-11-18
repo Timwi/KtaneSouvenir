@@ -1330,15 +1330,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Azure Button
         [typeof(SAzureButton)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Der Azurfarbene Knopf",
             ModuleNameDative = "Azurfarbenen Knopf",
             Gender = Gender.Masculine,
             ManualModuleName = "Der\uE001Azurfarbene Knopf",
             ManualQuestions = new()
             {
-                ["What were the displayed cards?"] = "What were the displayed cards?",
-                ["What were the numbers in the sequence?"] = "What were the numbers in the sequence?",
+                ["What were the displayed cards?"] = "Welche Karten waren zu sehen?",
+                ["What were the numbers in the sequence?"] = "Welche Zahlen kamen in der Zahlenfolge vor?",
                 ["What were the arrows?"] = "Welche Pfeile kamen vor?",
             },
             Questions = new()
@@ -1346,17 +1345,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SAzureButton.QCard] = new()
                 {
                     // English: Which of these cards was shown in {0}?
-                    Question = "Which of these cards was shown in {0}?",
+                    Question = "Welche Karte kam bei {0} vor?",
                 },
                 [SAzureButton.QNumber] = new()
                 {
                     // English: Which of these numbers was shown in {0}?
-                    Question = "Which of these numbers was shown in {0}?",
+                    Question = "Welche Zahl kam bei {0} vor?",
                 },
                 [SAzureButton.QArrow] = new()
                 {
                     // English: Which of these arrows was shown in {0}?
-                    Question = "Which of these arrows was shown in {0}?",
+                    Question = "Welcher Pfeil kam bei {0} vor?",
                 },
             },
             Discriminators = new()
@@ -1364,7 +1363,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SAzureButton.DCard] = new()
                 {
                     // English: the Azure Button that had this card (+ extra)
-                    Discriminator = "the Azure Button that had this card",
+                    Discriminator = "dem Azurfarbenen Knopf, der diese Karte hatte,",
+                },
+                [SAzureButton.DNumber] = new()
+                {
+                    // English: the Azure Button that had the number {0}
+                    // Example: the Azure Button that had the number 1
+                    Discriminator = "dem Azurfarbenen Knopf, bei dem die Zahl {0} vorkam,",
+                },
+                [SAzureButton.DArrow] = new()
+                {
+                    // English: the Azure Button that had the arrow {0}
+                    // Example: the Azure Button that had the arrow ↑↑↑
+                    Discriminator = "dem Azurfarbenen Knopf, bei dem der Pfeil {0} vorkam,",
                 },
             },
         },
@@ -2233,17 +2244,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Blue Button
         [typeof(SBlueButton)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Der Blaue Knopf",
             ModuleNameDative = "Blauen Knopf",
             Gender = Gender.Masculine,
             ManualModuleName = "Der\uE001Blaue Knopf",
             ManualQuestions = new()
             {
-                ["What were N and Q?"] = "What were N and Q?",
-                ["What were the polyominoes in C?"] = "What were the polyominoes in C?",
-                ["What were the equations?"] = "What were the equations?",
-                ["What were the fillings of the sorted suits?"] = "What were the fillings of the sorted suits?",
+                ["What were N and Q?"] = "Was waren N und Q?",
+                ["What were the polyominoes in C?"] = "Welche Polyominos kamen in C vor?",
+                ["What were the equations?"] = "Welche Gleichungen kamen vor?",
+                ["What were the fillings of the suits (after sorting)?"] = "Welche Kartenfarbe hatte welche Füllung (nach dem Umsortieren)?",
             },
             Questions = new()
             {
@@ -2270,17 +2280,17 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the filling of the {1} suit (after sorting) in {0}?
                     // Example: What was the filling of the first suit (after sorting) in The Blue Button?
-                    Question = "What was the filling of the {1} sorted suit in {0}?",
+                    Question = "Was war bei {0} die Füllung der {1}en Kartenfarbe (nach dem Umsortieren)?",
                 },
                 [SBlueButton.Equation] = new()
                 {
                     // English: Which equation was displayed in {0}?
-                    Question = "Which equation was displayed in {0}?",
+                    Question = "Welche Gleichung kam bei {0} vor?",
                 },
                 [SBlueButton.Polyomino] = new()
                 {
                     // English: Which polyomino was part of C in {0}?
-                    Question = "Which polyomino was part of C in {0}?",
+                    Question = "Welches Polyomino kam bei {0} in der Folge C vor?",
                 },
             },
             Discriminators = new()
@@ -2289,13 +2299,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Blue Button where N was {0}
                     // Example: the Blue Button where N was 4
-                    Discriminator = "the Blue Button where N was {0}",
+                    Discriminator = "dem Blauen Knopf, bei dem N {0} war,",
                 },
                 [SBlueButton.DQ] = new()
                 {
                     // English: the Blue Button where Q was {0}
                     // Example: the Blue Button where Q was Blue
-                    Discriminator = "der Blaue Knopf, bei dem Q {0} war,",
+                    Discriminator = "dem Blauen Knopf, bei dem Q {0} war,",
                     Arguments = new()
                     {
                         ["Blue"] = "Blau",
@@ -12963,7 +12973,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The Navy Button
         [typeof(SNavyButton)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Der Königsblaue Knopf",
             ModuleNameDative = "Königsblauen Knopf",
             Gender = Gender.Masculine,
@@ -12971,7 +12980,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ManualQuestions = new()
             {
                 ["Which Greek letters appeared?"] = "Welche griechischen Buchstaben kamen vor?",
-                ["What numbers appeared in the sequence?"] = "What numbers appeared in the sequence?",
+                ["What numbers appeared in the sequence?"] = "Welche Zahlen kamen in der Zahlenfolge vor?",
             },
             Questions = new()
             {
@@ -12983,7 +12992,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SNavyButton.QNumbers] = new()
                 {
                     // English: Which number appeared in the sequence on {0}?
-                    Question = "Which number appeared in the sequence on {0}?",
+                    Question = "Welche Zahl kam bei {0} in der Zahlenfolge vor?",
                 },
             },
             Discriminators = new()
@@ -12999,6 +13008,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     // English: the Navy Button that had an {0} on it
                     // Example: the Navy Button that had an Α on it
                     Discriminator = "dem Königsblauen Knopf, bei dem ein {0} vorkam,",
+                },
+                [SNavyButton.DNumbers] = new()
+                {
+                    // English: the Navy Button that had the number {0} in the sequence
+                    // Example: the Navy Button that had the number 1 in the sequence
+                    Discriminator = "dem Königsblauen Knopf, bei dem {0} in der Zahlenfolge vorkam,",
                 },
             },
         },
@@ -17924,11 +17939,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Shapes
         [typeof(SSimonShapes)] = new()
         {
-            NeedsTranslation = true,
             ModuleName = "Simon Formt",
             ManualQuestions = new()
             {
-                ["What were the positions of each flash in each stage?"] = "What were the positions of each flash in each stage?",
+                ["What were the positions of each flash in each stage?"] = "Welche Tasten haben in welcher Stufe aufgeleuchtet?",
             },
             Questions = new()
             {
@@ -17936,7 +17950,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What position was the {2} flash in the {1} stage of {0}?
                     // Example: What position was the first flash in the first stage of Simon Shapes?
-                    Question = "What position was the {2} flash in the {1} stage of {0}?",
+                    Question = "Welche Taste hat bei {0} in der {1}en Stufe als {2}e aufgeleuchtet?",
                 },
             },
         },

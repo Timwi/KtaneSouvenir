@@ -16,10 +16,17 @@ public enum SAzureButton
     QNumber,
 
     [Question("Which of these arrows was shown in {0}?", TwoColumns4Answers, ExampleAnswers = ["↑↑↑", "↗↗↗", "→→→", "↘↘↘", "↓↓↓", "↙↙↙", "←←←", "↖↖↖"])]
-    QArrow, // Currently pending custom graphics
+    [AnswerGenerator.Strings("←↖↑↗→↘↓↙", "←↖↑↗→↘↓↙", "←↖↑↗→↘↓↙")]
+    QArrow,
 
     [Discriminator("the Azure Button that had this card", QuestionExtraType = InfoType.Sprites)]
     DCard,
+
+    [Discriminator("the Azure Button that had the number {0}", Arguments = ["1", "2", "3"], ArgumentGroupSize = 1)]
+    DNumber,
+
+    [Discriminator("the Azure Button that had the arrow {0}", Arguments = ["↑↑↑", "↗↗↗", "→→→", "↘↘↘", "↓↓↓", "↙↙↙", "←←←", "↖↖↖"], ArgumentGroupSize = 1)]
+    DArrow,
 }
 
 public partial class SouvenirModule
@@ -35,42 +42,26 @@ public partial class SouvenirModule
         var offset = GetField<int>(comp, "_offset").Get(v => Math.Abs(v) is >= 1 and <= 9 ? null : "value out of range 1–9 (or -1–-9)");
         var numbers = cards.Take(6).Select(x => x + offset).ToArray();
         var puzzle = GetField<object>(comp, "_puzzle").Get();
-        var arrows = GetField<Array>(puzzle, "Arrows", isPublic: true).Get(a => a.Length != 5 ? "expected length 5" : null);
-        var fldArrowDirections = GetProperty<int[]>(arrows.GetValue(0), "Directions", isPublic: true);
-        var arrowDirections = Enumerable.Range(0, 5).Select(arrowIx => fldArrowDirections.GetFrom(arrows.GetValue(arrowIx), validator: ar => ar.Length != 3 ? "expected length 3" : null)).ToArray();
+        var arrowsRaw = GetField<Array>(puzzle, "Arrows", isPublic: true).Get(a => a.Length != 5 ? "expected length 5" : null);
+        var fldArrowDirections = GetProperty<int[]>(arrowsRaw.GetValue(0), "Directions", isPublic: true);
+        var arrows = Enumerable.Range(0, 5)
+            .Select(arrowIx => fldArrowDirections.GetFrom(arrowsRaw.GetValue(arrowIx), validator: ar => ar.Length != 3 ? "expected length 3" : null).Select(dir => "↑↗→↘↓↙←↖"[dir]).JoinString())
+            .ToArray();
 
         yield return WaitForSolve;
 
-        var dirArrows = new[] { "↑", "↗", "→", "↘", "↓", "↙", "←", "↖" };
-
-        foreach (var card in cards)
-            yield return new Discriminator(SAzureButton.DCard, $"card{card}", questionExtra: AzureButtonSprites[card]);
-
+        // Questions
         var preferredWrongAnswers = cards.Select(c => AzureButtonSprites[c]).ToArray();
         yield return question(SAzureButton.QCard).AvoidDiscriminators(SAzureButton.DCard).Answers(cards.Select(c => AzureButtonSprites[c]).ToArray(), preferredWrong: preferredWrongAnswers);
-        yield return question(SAzureButton.QNumber).Answers(numbers.Select(x => x.ToString()).ToArray());
+        yield return question(SAzureButton.QNumber).AvoidDiscriminators(SAzureButton.DNumber).Answers(numbers.Select(x => x.ToString()).ToArray());
+        yield return question(SAzureButton.QArrow).AvoidDiscriminators(SAzureButton.DArrow).Answers(arrows);
 
-        var arrowAnswers = new List<string>();
-        var prefWrongArrows = new HashSet<string>();
-        for (var arrowIx = 0; arrowIx < 5; arrowIx++)
-        {
-            var arrowStr = "";
-            for (var dirIx = 0; dirIx < 3; dirIx++)
-                arrowStr += dirArrows[arrowDirections[arrowIx][dirIx]];
-
-            arrowAnswers.Add(arrowStr);
-            prefWrongArrows.Add(arrowStr);
-        }
-
-        for (var i = 0; i < 12; i++)
-        {
-            var arrowStr = "";
-            for (var pos = 0; pos < 3; pos++)
-                arrowStr += dirArrows[Rnd.Range(0, dirArrows.Length)];
-
-            prefWrongArrows.Add(arrowStr);
-        }
-
-        yield return question(SAzureButton.QArrow).Answers(arrowAnswers.ToArray(), all: prefWrongArrows.ToArray());
+        // Discriminators
+        foreach (var card in cards.Distinct())
+            yield return new Discriminator(SAzureButton.DCard, $"card-{card}", questionExtra: AzureButtonSprites[card]);
+        foreach (var number in numbers.Distinct())
+            yield return new Discriminator(SAzureButton.DNumber, $"num-{number}", args: [number.ToString()]);
+        foreach (var arrow in arrows.Distinct())
+            yield return new Discriminator(SAzureButton.DArrow, $"arrow-{arrow}", args: [arrow]);
     }
 }

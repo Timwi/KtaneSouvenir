@@ -37,7 +37,7 @@ public partial class SouvenirModule
     [ManualQuestion("What were N and Q?")]
     [ManualQuestion("What were the polyominoes in C?")]
     [ManualQuestion("What were the equations?")]
-    [ManualQuestion("What were the fillings of the sorted suits?")]
+    [ManualQuestion("What were the fillings of the suits (after sorting)?")]
     private IEnumerator<SouvenirInstruction> ProcessBlueButton(ModuleData module)
     {
         var comp = GetComponent(module, "BlueButtonScript");
