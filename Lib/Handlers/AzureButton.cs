@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
-using Rnd = UnityEngine.Random;
 
 using static Souvenir.AnswerLayout;
 
@@ -51,8 +50,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         // Questions
-        var preferredWrongAnswers = cards.Select(c => AzureButtonSprites[c]).ToArray();
-        yield return question(SAzureButton.QCard).AvoidDiscriminators(SAzureButton.DCard).Answers(cards.Select(c => AzureButtonSprites[c]).ToArray(), preferredWrong: preferredWrongAnswers);
+        yield return question(SAzureButton.QCard).AvoidDiscriminators(SAzureButton.DCard).Answers(cards.Select(c => AzureButtonSprites[c]).ToArray());
         yield return question(SAzureButton.QNumber).AvoidDiscriminators(SAzureButton.DNumber).Answers(numbers.Select(x => x.ToString()).ToArray());
         yield return question(SAzureButton.QArrow).AvoidDiscriminators(SAzureButton.DArrow).Answers(arrows);
 
