@@ -17785,16 +17785,18 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
         // Simon Shapes
         [typeof(SSimonShapes)] = new()
         {
+            NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What was the shape submitted at the end?"] = "Какая фигура была введена в конце?",
+                ["What were the positions of each flash in each stage?"] = "What were the positions of each flash in each stage?",
             },
             Questions = new()
             {
-                [SSimonShapes.SubmittedShape] = new()
+                [SSimonShapes.PositionFlash] = new()
                 {
-                    // English: What was the shape submitted at the end of {0}?
-                    Question = "Какая фигура была введена в конце {0}?",
+                    // English: What position was the {2} flash in the {1} stage of {0}?
+                    // Example: What position was the first flash in the first stage of Simon Shapes?
+                    Question = "What position was the {2} flash in the {1} stage of {0}?",
                 },
             },
         },

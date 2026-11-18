@@ -92,17 +92,18 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
     Cursed Double-Oh      │  Forget The Colors  │  Master Tapes          │  Simon Smothers         │
 
-## Implemented by Espik (45)
+## Implemented by Espik (46)
 
-    100 Levels of Defusal  │  Etterna           │  Not Morsematics         │  Role Reversal      │  Thinking Wires
-    Blockbusters           │  Exoplanets        │  Not Murder              │  Samsung, The       │  Thirty One
-    Boolean Wires          │  Finite Automata   │  Not Who’s on First      │  Simon Stages       │  Tricky Tetris Pieces
-    Challenge & Contact    │  Following Orders  │  Not X-Ray               │  Simon Supports     │  Unfair Cipher
-    Coffeebucks            │  Forget Any Color  │  Phosphorescence         │  Sorting            │  Unfair’s Cruel Revenge
-    Directional Button     │  Hexabutton, The   │  Pixel Cipher            │  Stacked Sequences  │  Unfair’s Revenge
-    Dragon Energy          │  Hyperlink, The    │  Playfair Cipher         │  Swan, The          │  Unicode
-    Dreamcipher            │  Infinite Loop     │  Reformed Role Reversal  │  Synchronization    │  X-Ray
-    Encrypted Morse        │  Not Coordinates   │  Regular Crazy Talk      │  T-Words            │  XmORse Code
+    100 Levels of Defusal  │  Exoplanets        │  Not Who’s on First      │  Simon Stages          │  Unfair Cipher
+    Blockbusters           │  Finite Automata   │  Not X-Ray               │  Simon Supports        │  Unfair’s Cruel Revenge
+    Boolean Wires          │  Following Orders  │  Phosphorescence         │  Sorting               │  Unfair’s Revenge
+    Challenge & Contact    │  Forget Any Color  │  Pixel Cipher            │  Stacked Sequences     │  Unicode
+    Coffeebucks            │  Hexabutton, The   │  Playfair Cipher         │  Swan, The             │  X-Ray
+    Directional Button     │  Hyperlink, The    │  Reformed Role Reversal  │  Synchronization       │  XmORse Code
+    Dragon Energy          │  Infinite Loop     │  Regular Crazy Talk      │  T-Words               │
+    Dreamcipher            │  Not Coordinates   │  Role Reversal           │  Thinking Wires        │
+    Encrypted Morse        │  Not Morsematics   │  Samsung, The            │  Thirty One            │
+    Etterna                │  Not Murder        │  Simon Shapes            │  Tricky Tetris Pieces  │
 
 ## Implemented by Hawker (36)
 
@@ -135,13 +136,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Deck of Many Things, The  │  Hypercube, The      │  Necronomicon, The  │  Ultracube, The      │
     Decolored Squares         │  iPhone, The         │  Pie                │  USA Maze            │
 
-## Implemented by tandyCake (24)
+## Implemented by tandyCake (23)
 
-    Algorithmia    │  Kanye Encounter, The  │  Math ’em         │  Numpath               │  Superparsing
-    Breakfast Egg  │  Keypad Magnified      │  Metamorse        │  Red Herring           │  Tasque Managing
-    Digisibility   │  Ladders               │  Not Piano Keys   │  Shogi Identification  │  Touch Transmission
-    Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Shapes          │  USA Cycle
-    Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
+    Algorithmia    │  Kanye Encounter, The  │  Math ’em         │  Numpath               │  Tasque Managing
+    Breakfast Egg  │  Keypad Magnified      │  Metamorse        │  Red Herring           │  Touch Transmission
+    Digisibility   │  Ladders               │  Not Piano Keys   │  Shogi Identification  │  USA Cycle
+    Flyswatting    │  LEDs                  │  Not Text Field   │  Stupid Slots          │
+    Forget Me      │  M-Seq                 │  Not Word Search  │  Superparsing          │
 
 ## Implemented by Infusion (21)
 

@@ -18021,17 +18021,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Simon Shapes
         [typeof(SSimonShapes)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "Simon Formt",
             ManualQuestions = new()
             {
-                ["What was the shape submitted at the end?"] = "Welche Form wurde am Ende eingegeben?",
+                ["What were the positions of each flash in each stage?"] = "What were the positions of each flash in each stage?",
             },
             Questions = new()
             {
-                [SSimonShapes.SubmittedShape] = new()
+                [SSimonShapes.PositionFlash] = new()
                 {
-                    // English: What was the shape submitted at the end of {0}?
-                    Question = "Welche Form wurde bei {0} am Ende eingegeben?",
+                    // English: What position was the {2} flash in the {1} stage of {0}?
+                    // Example: What position was the first flash in the first stage of Simon Shapes?
+                    Question = "What position was the {2} flash in the {1} stage of {0}?",
                 },
             },
         },

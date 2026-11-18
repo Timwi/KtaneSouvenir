@@ -17548,17 +17548,19 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // Simon Shapes
         [typeof(SSimonShapes)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "サイモンの形状",
             ManualQuestions = new()
             {
-                ["What was the shape submitted at the end?"] = "最終的に送信した図形は？",
+                ["What were the positions of each flash in each stage?"] = "What were the positions of each flash in each stage?",
             },
             Questions = new()
             {
-                [SSimonShapes.SubmittedShape] = new()
+                [SSimonShapes.PositionFlash] = new()
                 {
-                    // English: What was the shape submitted at the end of {0}?
-                    Question = "{0}で最終的に送信した図形は？",
+                    // English: What position was the {2} flash in the {1} stage of {0}?
+                    // Example: What position was the first flash in the first stage of Simon Shapes?
+                    Question = "What position was the {2} flash in the {1} stage of {0}?",
                 },
             },
         },
