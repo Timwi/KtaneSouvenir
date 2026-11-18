@@ -1461,108 +1461,34 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were T and the other displayed cards?"] = "What were T and the other displayed cards?",
-                ["What was M?"] = "What was M?",
+                ["What were the displayed cards?"] = "What were the displayed cards?",
+                ["What were the numbers in the sequence?"] = "What were the numbers in the sequence?",
                 ["What were the arrows?"] = "What were the arrows?",
             },
             Questions = new()
             {
-                [SAzureButton.QDecoyArrowDirection] = new()
+                [SAzureButton.QCard] = new()
                 {
-                    // English: What was the {1} direction in the decoy arrow in {0}?
-                    // Example: What was the first direction in the decoy arrow in The Azure Button?
-                    Question = "Какое было {1}-е направление у стрелки-ловушки {0}?",
-                    Answers = new()
-                    {
-                        ["up"] = "up",
-                        ["up-right"] = "up-right",
-                        ["right"] = "right",
-                        ["down-right"] = "down-right",
-                        ["down"] = "down",
-                        ["down-left"] = "down-left",
-                        ["left"] = "left",
-                        ["up-left"] = "up-left",
-                    },
+                    // English: Which of these cards was shown in {0}?
+                    Question = "Which of these cards was shown in {0}?",
                 },
-                [SAzureButton.QNonDecoyArrowDirection] = new()
+                [SAzureButton.QNumber] = new()
                 {
-                    // English: What was the {1} direction in the {2} non-decoy arrow in {0}?
-                    // Example: What was the first direction in the first non-decoy arrow in The Azure Button?
-                    Question = "Какое было {1}-е направление у {2}-й стрелки (не ловушки) {0}?",
-                    Answers = new()
-                    {
-                        ["up"] = "up",
-                        ["up-right"] = "up-right",
-                        ["right"] = "right",
-                        ["down-right"] = "down-right",
-                        ["down"] = "down",
-                        ["down-left"] = "down-left",
-                        ["left"] = "left",
-                        ["up-left"] = "up-left",
-                    },
+                    // English: Which of these numbers was shown in {0}?
+                    Question = "Which of these numbers was shown in {0}?",
                 },
-                [SAzureButton.QT] = new()
+                [SAzureButton.QArrow] = new()
                 {
-                    // English: What was T in {0}?
-                    Question = "Какое была карта T {0}?",
-                },
-                [SAzureButton.QNotT] = new()
-                {
-                    // English: Which of these cards was shown in Stage 1, but not T, in {0}?
-                    Question = "Какая из этих карт была показана на первом этапе (но не T) {0}?",
-                },
-                [SAzureButton.QM] = new()
-                {
-                    // English: What was M in {0}?
-                    Question = "Какое значение было у M {0}?",
+                    // English: Which of these arrows was shown in {0}?
+                    Question = "Which of these arrows was shown in {0}?",
                 },
             },
             Discriminators = new()
             {
                 [SAzureButton.DCard] = new()
                 {
-                    // English: the Azure Button that had this card in Stage 1 (+ extra)
-                    Discriminator = "the Azure Button that had this card in Stage 1",
-                },
-                [SAzureButton.DM] = new()
-                {
-                    // English: the Azure Button where M was {0}
-                    // Example: the Azure Button where M was 1
-                    Discriminator = "the Azure Button where M was {0}",
-                },
-                [SAzureButton.DDecoyArrowDirection] = new()
-                {
-                    // English: the Azure Button where the decoy arrow went {0} at some point
-                    // Example: the Azure Button where the decoy arrow went up at some point
-                    Discriminator = "the Azure Button where the decoy arrow went {0} at some point",
-                    Arguments = new()
-                    {
-                        ["up"] = "up",
-                        ["up-right"] = "up-right",
-                        ["right"] = "right",
-                        ["down-right"] = "down-right",
-                        ["down"] = "down",
-                        ["down-left"] = "down-left",
-                        ["left"] = "left",
-                        ["up-left"] = "up-left",
-                    },
-                },
-                [SAzureButton.DNonDecoyArrowDirection] = new()
-                {
-                    // English: the Azure Button where the {1} non-decoy arrow went {0} at some point
-                    // Example: the Azure Button where the first non-decoy arrow went up at some point
-                    Discriminator = "the Azure Button where the {1} non-decoy arrow went {0} at some point",
-                    Arguments = new()
-                    {
-                        ["up"] = "up",
-                        ["up-right"] = "up-right",
-                        ["right"] = "right",
-                        ["down-right"] = "down-right",
-                        ["down"] = "down",
-                        ["down-left"] = "down-left",
-                        ["left"] = "left",
-                        ["up-left"] = "up-left",
-                    },
+                    // English: the Azure Button that had this card (+ extra)
+                    Discriminator = "the Azure Button that had this card",
                 },
             },
         },
@@ -2433,39 +2359,17 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             NeedsTranslation = true,
             ManualQuestions = new()
             {
-                ["What were D, E, F, G, H, M, N, P, Q, and X?"] = "What were D, E, F, G, H, M, N, P, Q, and X?",
+                ["What were N and Q?"] = "What were N and Q?",
+                ["What were the polyominoes in C?"] = "What were the polyominoes in C?",
+                ["What were the equations?"] = "What were the equations?",
+                ["What were the fillings of the sorted suits?"] = "What were the fillings of the sorted suits?",
             },
             Questions = new()
             {
-                [SBlueButton.D] = new()
-                {
-                    // English: What was D in {0}?
-                    Question = "Какое значение было у D на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                },
-                [SBlueButton.EFGH] = new()
-                {
-                    // English: What was {1} in {0}?
-                    // Example: What was E in The Blue Button?
-                    Question = "Какое значение было у {1} на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                },
-                [SBlueButton.M] = new()
-                {
-                    // English: What was M in {0}?
-                    Question = "Какое значение было у M на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                },
                 [SBlueButton.N] = new()
                 {
                     // English: What was N in {0}?
                     Question = "Какое значение было у N на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                },
-                [SBlueButton.P] = new()
-                {
-                    // English: What was P in {0}?
-                    Question = "Какое значение было у P на {0}?",
                     Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
                 [SBlueButton.Q] = new()
@@ -2483,11 +2387,21 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Yellow"] = "Yellow",
                     },
                 },
-                [SBlueButton.X] = new()
+                [SBlueButton.Suit] = new()
                 {
-                    // English: What was X in {0}?
-                    Question = "Какое значение было у X на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
+                    // English: What was the filling of the {1} sorted suit in {0}?
+                    // Example: What was the filling of the first sorted suit in The Blue Button?
+                    Question = "What was the filling of the {1} sorted suit in {0}?",
+                },
+                [SBlueButton.Equation] = new()
+                {
+                    // English: Which equation was displayed in {0}?
+                    Question = "Which equation was displayed in {0}?",
+                },
+                [SBlueButton.Polyomino] = new()
+                {
+                    // English: Which polyomino was part of C in {0}?
+                    Question = "Which polyomino was part of C in {0}?",
                 },
             },
             Discriminators = new()
@@ -2507,11 +2421,11 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                         ["Yellow"] = "Yellow",
                     },
                 },
-                [SBlueButton.DOther] = new()
+                [SBlueButton.DN] = new()
                 {
-                    // English: the Blue Button where {0} was {1}
-                    // Example: the Blue Button where E was 0
-                    Discriminator = "the Blue Button where {0} was {1}",
+                    // English: the Blue Button where N was {0}
+                    // Example: the Blue Button where N was 4
+                    Discriminator = "the Blue Button where N was {0}",
                 },
             },
         },
@@ -12932,7 +12846,7 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
             ManualQuestions = new()
             {
                 ["Which Greek letters appeared?"] = "Which Greek letters appeared?",
-                ["What were the coordinates and value of the given?"] = "What were the coordinates and value of the given?",
+                ["What numbers appeared in the sequence?"] = "What numbers appeared in the sequence?",
             },
             Questions = new()
             {
@@ -12942,18 +12856,10 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     Question = "Какая греческая буква (с учётом регистра) появилась на {0}?",
                     Conjugation = Conjugation.PrepositiveMascNeuter,
                 },
-                [SNavyButton.QGiven] = new()
+                [SNavyButton.QNumbers] = new()
                 {
-                    // English: What was the {1} of the given in {0}?
-                    // Example: What was the (0-indexed) column of the given in The Navy Button?
-                    Question = "{1} (с индексом 0) на {0}?",
-                    Conjugation = Conjugation.PrepositiveMascNeuter,
-                    Arguments = new()
-                    {
-                        ["(0-indexed) column"] = "(0-indexed) column",
-                        ["(0-indexed) row"] = "(0-indexed) row",
-                        ["value"] = "Какое значение было указано",
-                    },
+                    // English: Which number appeared in the sequence on {0}?
+                    Question = "Which number appeared in the sequence on {0}?",
                 },
             },
             Discriminators = new()
@@ -12969,18 +12875,6 @@ public class Translation_ru : TranslationBase<TranslationInfo<Translation_ru.Que
                     // English: the Navy Button that had an {0} on it
                     // Example: the Navy Button that had an Α on it
                     Discriminator = "the Navy Button that had an {0} on it",
-                },
-                [SNavyButton.DGiven] = new()
-                {
-                    // English: the Navy Button where the {0} of the given was {1}
-                    // Example: the Navy Button where the (0-indexed) column of the given was 1
-                    Discriminator = "the Navy Button where the {0} of the given was {1}",
-                    Arguments = new()
-                    {
-                        ["(0-indexed) column"] = "(0-indexed) column",
-                        ["(0-indexed) row"] = "(0-indexed) row",
-                        ["value"] = "value",
-                    },
                 },
             },
         },

@@ -1,92 +1,87 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using static Souvenir.AnswerLayout;
+using Rnd = UnityEngine.Random;
 
 public enum SBlueButton
 {
-    [Question("What was D in {0}?", TwoColumns4Answers)]
-    [AnswerGenerator.Integers(1, 4)]
-    D,
-
-    [Question("What was {1} in {0}?", TwoColumns4Answers, Arguments = ["E", "F", "G", "H"], ArgumentGroupSize = 1)]
-    [AnswerGenerator.Integers(0, 3)]
-    EFGH,
-
-    [Question("What was M in {0}?", ThreeColumns6Answers)]
-    [AnswerGenerator.Integers(1, 9)]
-    M,
-
     [Question("What was N in {0}?", ThreeColumns6Answers)]
     [AnswerGenerator.Integers(4, 9)]
     N,
 
-    [Question("What was P in {0}?", ThreeColumns6Answers, "♠♥♣", "♠♣♥", "♥♠♣", "♥♣♠", "♣♠♥", "♣♥♠")]
-    P,
-
     [Question("What was Q in {0}?", ThreeColumns6Answers, "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow", TranslateAnswers = true)]
     Q,
 
-    [Question("What was X in {0}?", TwoColumns4Answers)]
-    [AnswerGenerator.Integers(1, 5)]
-    X,
+    [Question("What was the filling of the {1} sorted suit in {0}?", TwoColumns4Answers, Arguments = [QandA.Ordinal], ArgumentGroupSize = 1)]
+    [AnswerGenerator.Integers(0, 3)] // Currently pending custom graphics
+    Suit,
+
+    [Question("Which equation was displayed in {0}?", TwoColumns4Answers, ExampleAnswers = ["11 + 11 = 2", "89 + 89 = 187", "11 - 11 = -9", "89 - 11 = 87", "3 × 3 = 0", "9 × 9 = 90"])]
+    Equation,
+
+    [Question("Which polyomino was part of C in {0}?", ThreeColumns6Answers, AnswerType = InfoType.Sprites)]
+    [AnswerGenerator.Polyominoes(minCellCount: 2, maxCellCount: 5, maxWidth: 3, maxHeight: 3, requireSingleStrokePath: true)]
+    Polyomino, // Implementation not finished
 
     [Discriminator("the Blue Button where Q was {0}", Arguments = ["Blue", "Green", "Cyan", "Red", "Magenta", "Yellow"], ArgumentGroupSize = 1, TranslateArguments = [true])]
     DQ,
 
-    [Discriminator("the Blue Button where {0} was {1}", Arguments = ["E", "0", "F", "1", "G", "2", "H", "3", "M", "4", "N", "7", "P", "♠♥♣", "X", "5"], ArgumentGroupSize = 2)]
-    DOther
+    [Discriminator("the Blue Button where N was {0}", Arguments = ["4", "5", "6", "7", "8", "9"], ArgumentGroupSize = 1)]
+    DN
 }
 
 public partial class SouvenirModule
 {
     [Handler("BlueButtonModule", "Blue Button", typeof(SBlueButton), "Timwi", AddThe = true)]
-    [ManualQuestion("What were D, E, F, G, H, M, N, P, Q, and X?")]
+    [ManualQuestion("What were N and Q?")]
+    [ManualQuestion("What were the polyominoes in C?")]
+    [ManualQuestion("What were the equations?")]
+    [ManualQuestion("What were the fillings of the sorted suits?")]
     private IEnumerator<SouvenirInstruction> ProcessBlueButton(ModuleData module)
     {
         var comp = GetComponent(module, "BlueButtonScript");
 
-        var suitsGoal = GetArrayField<int>(comp, "_suitsGoal").Get(expectedLength: 4);
         var colorStageColors = GetArrayField<int>(comp, "_colorStageColors").Get();
         var jumps = GetArrayField<int>(comp, "_jumps").Get(expectedLength: 4, validator: v => v is < 0 or >= 4 ? "expected range 0–3" : null);
-        var equationOffsets = GetArrayField<int>(comp, "_equationOffsets").Get(expectedLength: 4);
+        var equations = GetArrayField<string>(comp, "_equations").Get(expectedLength: 4);
+
+        var polyominoes = GetField<IList>(comp, "_polyominoSequence").Get();
+        var propPoly = GetProperty<object>(polyominoes[0], "Polyomino", isPublic: true);
+
+        var polyObjArray = polyominoes.Cast<object>().Select(x => propPoly.GetFrom(x)).ToArray();
+        var fldPolyWidth = GetField<int>(polyObjArray[0], "_w");
+        var fldPolyHeight = GetField<int>(polyObjArray[0], "_h");
+        var fldPolyBoolArr = GetArrayField<bool>(polyObjArray[0], "_arr");
 
         var colorNames = new[] { "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow" };
 
-        var valD = Array.IndexOf(suitsGoal, 3) + 1; // 1–4
-        var valE = jumps[0];    // 0–3
-        var valF = jumps[1];    // 0–3
-        var valG = jumps[2];    // 0–3
-        var valH = jumps[3];    // 0–3
-        var valM = equationOffsets[3];  // 1–9
         var valN = colorStageColors.Length; // 4–9
-        var valP = suitsGoal.Where(s => s != 3).Select(s => "♠♥♣"[s]).JoinString(); // permutation of ♠♥♣
         var valQ = colorStageColors[3]; // 0–5, color
-        var valX = equationOffsets[2];  // 1–5
 
-        yield return new Discriminator(SBlueButton.DOther, "D", valD, ["D", valD.ToString()]);
-        yield return new Discriminator(SBlueButton.DOther, "E", valE, ["E", valE.ToString()]);
-        yield return new Discriminator(SBlueButton.DOther, "F", valF, ["F", valF.ToString()]);
-        yield return new Discriminator(SBlueButton.DOther, "G", valG, ["G", valG.ToString()]);
-        yield return new Discriminator(SBlueButton.DOther, "H", valH, ["H", valH.ToString()]);
-        yield return new Discriminator(SBlueButton.DOther, "M", valM, ["M", valM.ToString()]);
-        yield return new Discriminator(SBlueButton.DOther, "N", valN, ["N", valN.ToString()]);
-        yield return new Discriminator(SBlueButton.DOther, "P", valP, ["P", valP]);
+        yield return new Discriminator(SBlueButton.DN, "N", valN, [valN.ToString()]);
         yield return new Discriminator(SBlueButton.DQ, "Q", valQ, [colorNames[valQ]]);
-        yield return new Discriminator(SBlueButton.DOther, "X", valX, ["X", valX.ToString()]);
 
         yield return WaitForSolve;
 
-        yield return question(SBlueButton.EFGH, args: ["E"]).AvoidDiscriminators("E").Answers(valE.ToString());
-        yield return question(SBlueButton.EFGH, args: ["F"]).AvoidDiscriminators("F").Answers(valF.ToString());
-        yield return question(SBlueButton.EFGH, args: ["G"]).AvoidDiscriminators("G").Answers(valG.ToString());
-        yield return question(SBlueButton.EFGH, args: ["H"]).AvoidDiscriminators("H").Answers(valH.ToString());
-        yield return question(SBlueButton.D).AvoidDiscriminators("D").Answers(valD.ToString());
-        yield return question(SBlueButton.M).AvoidDiscriminators("M").Answers(valM.ToString());
         yield return question(SBlueButton.N).AvoidDiscriminators("N").Answers(valN.ToString());
-        yield return question(SBlueButton.P).AvoidDiscriminators("P").Answers(valP);
         yield return question(SBlueButton.Q).AvoidDiscriminators("Q").Answers(colorNames[valQ]);
-        yield return question(SBlueButton.X).AvoidDiscriminators("X").Answers(valX.ToString());
+
+        for (var i = 0; i < jumps.Length; i++)
+            yield return question(SBlueButton.Suit, args: [Ordinal(i + 1)]).Answers(jumps[i].ToString());
+
+        var wrongEquations = new HashSet<string>();
+        foreach (var e in equations)
+            wrongEquations.Add(e);
+
+        var equationGenMethod = GetMethod<string>(comp, "GenerateEquation", 1);
+        for (var i = 0; i < 12; i++)
+        {
+            var offsetParam = Rnd.Range(1, 10) * (Rnd.Range(0, 2) == 1 ? -1 : 1);
+            wrongEquations.Add(equationGenMethod.Invoke([offsetParam]));
+        }
+        yield return question(SBlueButton.Equation).Answers(equations, all: wrongEquations.ToArray());
     }
 }

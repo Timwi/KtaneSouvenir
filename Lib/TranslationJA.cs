@@ -1282,108 +1282,34 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ModuleName = "空色ボタン",
             ManualQuestions = new()
             {
-                ["What were T and the other displayed cards?"] = "Tとその他の表示されたカードは？",
-                ["What was M?"] = "Mは？",
+                ["What were the displayed cards?"] = "What were the displayed cards?",
+                ["What were the numbers in the sequence?"] = "What were the numbers in the sequence?",
                 ["What were the arrows?"] = "矢印のシーケンスは？",
             },
             Questions = new()
             {
-                [SAzureButton.QDecoyArrowDirection] = new()
+                [SAzureButton.QCard] = new()
                 {
-                    // English: What was the {1} direction in the decoy arrow in {0}?
-                    // Example: What was the first direction in the decoy arrow in The Azure Button?
-                    Question = "{0}の囮の矢印が{1}番目に示した方向は？",
-                    Answers = new()
-                    {
-                        ["up"] = "up",
-                        ["up-right"] = "up-right",
-                        ["right"] = "right",
-                        ["down-right"] = "down-right",
-                        ["down"] = "down",
-                        ["down-left"] = "down-left",
-                        ["left"] = "left",
-                        ["up-left"] = "up-left",
-                    },
+                    // English: Which of these cards was shown in {0}?
+                    Question = "Which of these cards was shown in {0}?",
                 },
-                [SAzureButton.QNonDecoyArrowDirection] = new()
+                [SAzureButton.QNumber] = new()
                 {
-                    // English: What was the {1} direction in the {2} non-decoy arrow in {0}?
-                    // Example: What was the first direction in the first non-decoy arrow in The Azure Button?
-                    Question = "{0}の囮ではない{2}番目の矢印が{1}番目に示した方向は？",
-                    Answers = new()
-                    {
-                        ["up"] = "up",
-                        ["up-right"] = "up-right",
-                        ["right"] = "right",
-                        ["down-right"] = "down-right",
-                        ["down"] = "down",
-                        ["down-left"] = "down-left",
-                        ["left"] = "left",
-                        ["up-left"] = "up-left",
-                    },
+                    // English: Which of these numbers was shown in {0}?
+                    Question = "Which of these numbers was shown in {0}?",
                 },
-                [SAzureButton.QT] = new()
+                [SAzureButton.QArrow] = new()
                 {
-                    // English: What was T in {0}?
-                    Question = "{0}のTはどれ？",
-                },
-                [SAzureButton.QNotT] = new()
-                {
-                    // English: Which of these cards was shown in Stage 1, but not T, in {0}?
-                    Question = "{0}のステージ1で表示されたT以外のカードに含まれるのは？",
-                },
-                [SAzureButton.QM] = new()
-                {
-                    // English: What was M in {0}?
-                    Question = "{0}のMは？",
+                    // English: Which of these arrows was shown in {0}?
+                    Question = "Which of these arrows was shown in {0}?",
                 },
             },
             Discriminators = new()
             {
                 [SAzureButton.DCard] = new()
                 {
-                    // English: the Azure Button that had this card in Stage 1 (+ extra)
-                    Discriminator = "ステージ1でこのカードがあった空色ボタン",
-                },
-                [SAzureButton.DM] = new()
-                {
-                    // English: the Azure Button where M was {0}
-                    // Example: the Azure Button where M was 1
-                    Discriminator = "Mが{0}だった空色ボタン",
-                },
-                [SAzureButton.DDecoyArrowDirection] = new()
-                {
-                    // English: the Azure Button where the decoy arrow went {0} at some point
-                    // Example: the Azure Button where the decoy arrow went up at some point
-                    Discriminator = "ある時点で囮の矢印が{0}を指していた空色ボタン",
-                    Arguments = new()
-                    {
-                        ["up"] = "up",
-                        ["up-right"] = "up-right",
-                        ["right"] = "right",
-                        ["down-right"] = "down-right",
-                        ["down"] = "down",
-                        ["down-left"] = "down-left",
-                        ["left"] = "left",
-                        ["up-left"] = "up-left",
-                    },
-                },
-                [SAzureButton.DNonDecoyArrowDirection] = new()
-                {
-                    // English: the Azure Button where the {1} non-decoy arrow went {0} at some point
-                    // Example: the Azure Button where the first non-decoy arrow went up at some point
-                    Discriminator = "ある時点で囮ではない{1}番目の矢印が{0}を指していた空色ボタン",
-                    Arguments = new()
-                    {
-                        ["up"] = "up",
-                        ["up-right"] = "up-right",
-                        ["right"] = "right",
-                        ["down-right"] = "down-right",
-                        ["down"] = "down",
-                        ["down-left"] = "down-left",
-                        ["left"] = "left",
-                        ["up-left"] = "up-left",
-                    },
+                    // English: the Azure Button that had this card (+ extra)
+                    Discriminator = "the Azure Button that had this card",
                 },
             },
         },
@@ -2240,38 +2166,21 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
         // The Blue Button
         [typeof(SBlueButton)] = new()
         {
+            NeedsTranslation = true,
             ModuleName = "青色ボタン",
             ManualQuestions = new()
             {
-                ["What were D, E, F, G, H, M, N, P, Q, and X?"] = "D、E、F、G、H、M、N、P、Q、Xの中身は？",
+                ["What were N and Q?"] = "What were N and Q?",
+                ["What were the polyominoes in C?"] = "What were the polyominoes in C?",
+                ["What were the equations?"] = "What were the equations?",
+                ["What were the fillings of the sorted suits?"] = "What were the fillings of the sorted suits?",
             },
             Questions = new()
             {
-                [SBlueButton.D] = new()
-                {
-                    // English: What was D in {0}?
-                    Question = "{0}のDはどれだったか？",
-                },
-                [SBlueButton.EFGH] = new()
-                {
-                    // English: What was {1} in {0}?
-                    // Example: What was E in The Blue Button?
-                    Question = "{0}の{1}はどれだったか？",
-                },
-                [SBlueButton.M] = new()
-                {
-                    // English: What was M in {0}?
-                    Question = "{0}のMはどれだったか？",
-                },
                 [SBlueButton.N] = new()
                 {
                     // English: What was N in {0}?
                     Question = "{0}のNはどれだったか？",
-                },
-                [SBlueButton.P] = new()
-                {
-                    // English: What was P in {0}?
-                    Question = "{0}のPはどれだったか？",
                 },
                 [SBlueButton.Q] = new()
                 {
@@ -2287,10 +2196,21 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Yellow"] = "黄",
                     },
                 },
-                [SBlueButton.X] = new()
+                [SBlueButton.Suit] = new()
                 {
-                    // English: What was X in {0}?
-                    Question = "{0}のXはどれだったか？",
+                    // English: What was the filling of the {1} sorted suit in {0}?
+                    // Example: What was the filling of the first sorted suit in The Blue Button?
+                    Question = "What was the filling of the {1} sorted suit in {0}?",
+                },
+                [SBlueButton.Equation] = new()
+                {
+                    // English: Which equation was displayed in {0}?
+                    Question = "Which equation was displayed in {0}?",
+                },
+                [SBlueButton.Polyomino] = new()
+                {
+                    // English: Which polyomino was part of C in {0}?
+                    Question = "Which polyomino was part of C in {0}?",
                 },
             },
             Discriminators = new()
@@ -2310,11 +2230,11 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Yellow"] = "黄",
                     },
                 },
-                [SBlueButton.DOther] = new()
+                [SBlueButton.DN] = new()
                 {
-                    // English: the Blue Button where {0} was {1}
-                    // Example: the Blue Button where E was 0
-                    Discriminator = "{0}が{1}だった青色ボタン",
+                    // English: the Blue Button where N was {0}
+                    // Example: the Blue Button where N was 4
+                    Discriminator = "the Blue Button where N was {0}",
                 },
             },
         },
@@ -12702,7 +12622,7 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             ManualQuestions = new()
             {
                 ["Which Greek letters appeared?"] = "どのギリシャ文字が現れた？",
-                ["What were the coordinates and value of the given?"] = "座標とそれから得られる値は？",
+                ["What numbers appeared in the sequence?"] = "What numbers appeared in the sequence?",
             },
             Questions = new()
             {
@@ -12711,17 +12631,10 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: Which Greek letter appeared on {0} (case-sensitive)?
                     Question = "{0}に表示されたギリシャ文字は(大文字小文字区別あり)？",
                 },
-                [SNavyButton.QGiven] = new()
+                [SNavyButton.QNumbers] = new()
                 {
-                    // English: What was the {1} of the given in {0}?
-                    // Example: What was the (0-indexed) column of the given in The Navy Button?
-                    Question = "{0}で得られた{1}は？",
-                    Arguments = new()
-                    {
-                        ["(0-indexed) column"] = "列(0から開始)",
-                        ["(0-indexed) row"] = "段(0から開始)",
-                        ["value"] = "値",
-                    },
+                    // English: Which number appeared in the sequence on {0}?
+                    Question = "Which number appeared in the sequence on {0}?",
                 },
             },
             Discriminators = new()
@@ -12737,18 +12650,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                     // English: the Navy Button that had an {0} on it
                     // Example: the Navy Button that had an Α on it
                     Discriminator = "{0}が書かれたNavy Button",
-                },
-                [SNavyButton.DGiven] = new()
-                {
-                    // English: the Navy Button where the {0} of the given was {1}
-                    // Example: the Navy Button where the (0-indexed) column of the given was 1
-                    Discriminator = "{0}が{1}であったNavy Button",
-                    Arguments = new()
-                    {
-                        ["(0-indexed) column"] = "列(0から開始)",
-                        ["(0-indexed) row"] = "段(0から開始)",
-                        ["value"] = "値",
-                    },
                 },
             },
         },
