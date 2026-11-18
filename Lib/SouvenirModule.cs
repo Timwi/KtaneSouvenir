@@ -31,6 +31,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] ArithmelogicSprites;
     public Sprite[] AudioSprites;
     public Sprite[] AzureButtonSprites;
+    public Sprite[] BlueButtonSprites;
     public Sprite[] CreationSprites;
     public Sprite[] ClockCounterSprites;
     public Sprite[] ConnectedMonitorsSprites;
@@ -368,11 +369,6 @@ public partial class SouvenirModule : MonoBehaviour
                             case InfoType.Audio:
                                 if (qAttr.AnswerGenerators != null)
                                     Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} (type {qAttr.AnswerType}) uses an answer generator. This is not supported for audio questions.");
-                                break;
-
-                            default:
-                                if ((qAttr.AllAnswers == null || qAttr.AllAnswers.Length == 0) && (qAttr.ExampleAnswers == null || qAttr.ExampleAnswers.Length == 0) && (qAttr.AnswerGenerators is null || qAttr.AnswerGenerators.All(g => g is not AnswerGeneratorAttribute<string>)))
-                                    Debug.LogError($"<Souvenir #{_moduleId}> Question {qs} has no answers. Specify either AllAnswers (if it’s a reasonable-sized, fixed finite set), or ExampleAnswers (if it’s generated at runtime and passed to allAnswers in makeQuestion()), or add an answer generator (e.g. [AnswerGenerator.Integers(0, 9999)]).");
                                 break;
                         }
                     }

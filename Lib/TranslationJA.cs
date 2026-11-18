@@ -2198,8 +2198,8 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                 },
                 [SBlueButton.Suit] = new()
                 {
-                    // English: What was the filling of the {1} sorted suit in {0}?
-                    // Example: What was the filling of the first sorted suit in The Blue Button?
+                    // English: What was the filling of the {1} suit (after sorting) in {0}?
+                    // Example: What was the filling of the first suit (after sorting) in The Blue Button?
                     Question = "What was the filling of the {1} sorted suit in {0}?",
                 },
                 [SBlueButton.Equation] = new()
@@ -2215,6 +2215,12 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
             },
             Discriminators = new()
             {
+                [SBlueButton.DN] = new()
+                {
+                    // English: the Blue Button where N was {0}
+                    // Example: the Blue Button where N was 4
+                    Discriminator = "the Blue Button where N was {0}",
+                },
                 [SBlueButton.DQ] = new()
                 {
                     // English: the Blue Button where Q was {0}
@@ -2229,12 +2235,6 @@ public class Translation_ja : TranslationBase<TranslationInfo<QuestionTranslatio
                         ["Magenta"] = "マゼンタ",
                         ["Yellow"] = "黄",
                     },
-                },
-                [SBlueButton.DN] = new()
-                {
-                    // English: the Blue Button where N was {0}
-                    // Example: the Blue Button where N was 4
-                    Discriminator = "the Blue Button where N was {0}",
                 },
             },
         },

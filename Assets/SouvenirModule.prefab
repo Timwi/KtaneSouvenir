@@ -387,6 +387,11 @@ MonoBehaviour:
   - {fileID: 21300016, guid: 71add09c931529c4cac7c15048ec2170, type: 3}
   - {fileID: 21300034, guid: 71add09c931529c4cac7c15048ec2170, type: 3}
   - {fileID: 21300052, guid: 71add09c931529c4cac7c15048ec2170, type: 3}
+  BlueButtonSprites:
+  - {fileID: 21300080, guid: 37daec66572f85f49890dafcb90a859e, type: 3}
+  - {fileID: 21300078, guid: 37daec66572f85f49890dafcb90a859e, type: 3}
+  - {fileID: 21300076, guid: 37daec66572f85f49890dafcb90a859e, type: 3}
+  - {fileID: 21300074, guid: 37daec66572f85f49890dafcb90a859e, type: 3}
   CreationSprites:
   - {fileID: 21300000, guid: 88cb77879f9892e41a61c695f6c78d55, type: 3}
   - {fileID: 21300000, guid: 6c2255639de28f64a9923f674ec0afd6, type: 3}

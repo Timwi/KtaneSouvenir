@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Souvenir;
+using UnityEngine;
 using static Souvenir.AnswerLayout;
 
 public enum SSimonShapes
@@ -18,7 +19,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "SimonShapesScript");
         yield return WaitForSolve;
 
-        var allFlashes = GetListField<List<int>>(comp, "_flashes").Get();
+        var allFlashes = GetListField<List<int>>(comp, "_flashes").Get(minLength: 2, maxLength: 5, validator: v => v.Count is >= 2 and <= 5 ? null : "expected count 2–5");
 
         for (var stage = 0; stage < allFlashes.Count; stage++)
             for (var flash = 0; flash < allFlashes[stage].Count; flash++)
