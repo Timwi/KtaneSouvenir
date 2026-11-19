@@ -1393,7 +1393,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SBakery.Items] = new()
                 {
                     // English: Which menu item was present in {0}?
-                    Question = "Was stand bei {0} auf dem Menü angeboten?",
+                    Question = "Was stand bei {0} auf dem Menü?",
                 },
             },
         },
@@ -2019,7 +2019,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was the color of the {1} LED in the {2} stage of {0}?
                     // Example: What was the color of the top LED in the first stage of Blind Arrows?
-                    Question = "Welche Farbe hatte bei {0} die {1} LED in der {2}en Stufen?",
+                    Question = "Welche Farbe hatte bei {0} die {1} LED in der {2}en Stufe?",
                     Arguments = new()
                     {
                         ["top"] = "obere",
@@ -2489,7 +2489,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SBoobTube.Word] = new()
                 {
                     // English: Which word was shown on {0}?
-                    Question = "Welches Word war bei {0} zu sehen?",
+                    Question = "Welches Wort war bei {0} zu sehen?",
                 },
             },
         },
@@ -3116,7 +3116,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SCaesarPsycho.ScreenColor] = new()
                 {
                     // English: What color was the text on the top display in the second stage of {0}?
-                    Question = "Welche Farbe hatte bei {0} in der {1}en Stufe der Text auf dem oberen Display?",
+                    Question = "Welche Farbe hatte bei {0} der Text auf dem oberen Display in der zweiten Stufe?",
                     Answers = new()
                     {
                         ["white"] = "weiß",
@@ -7729,7 +7729,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the Forget The Colors which had {0} cylinder in stage {1}
                     // Example: the Forget The Colors which had a red cylinder in stage 1
-                    Discriminator = "dem Vergiss Die Farben, bei dem in Stufe {1} ein {2} Zylinder vorkam,",
+                    Discriminator = "dem Vergiss Die Farben, bei dem in Stufe {1} ein {0} Zylinder vorkam,",
                     Arguments = new()
                     {
                         ["a red"] = "roter",
@@ -19930,7 +19930,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: How many symbols were cycling on the {1} screen in {0}?
                     // Example: How many symbols were cycling on the left screen in Symbol Cycle?
-                    Question = "Aus wie vielen Symbole bestand bei {0} der Zyklus auf dem {1} Display?",
+                    Question = "Aus wie vielen Symbolen bestand bei {0} der Zyklus auf dem {1} Display?",
                     Arguments = new()
                     {
                         ["left"] = "linken",
@@ -20047,7 +20047,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: What was displayed on the screen in the {1} stage of {0}?
                     // Example: What was displayed on the screen in the first stage of SYNC-125 [3]?
-                    Question = "What was displayed on the screen in stage {1} of {0}?",
+                    Question = "Was war bei {0} in der {1}en Stufe auf dem Display?",
                 },
             },
         },
@@ -21722,12 +21722,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                     Question = "Was war bei {0} das {1}e Zielwort?",
                     Answers = new()
                     {
-                        ["Red"] = "Red",
-                        ["Green"] = "Green",
-                        ["Blue"] = "Blue",
+                        ["Red"] = "Rot",
+                        ["Green"] = "Grün",
+                        ["Blue"] = "Blau",
                         ["Magenta"] = "Rosa",
-                        ["Yellow"] = "Yellow",
-                        ["White"] = "White",
+                        ["Yellow"] = "Gelb",
+                        ["White"] = "Weiß",
                     },
                 },
                 [SVaricolourFlash.Colors] = new()
@@ -22706,8 +22706,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // The World’s Largest Button
         [typeof(SWorldsLargestButton)] = new()
         {
-            ModuleName = "Der Welten Größter Taste",
-            ModuleNameDative = "Der Welten Größte Taste",
+            ModuleName = "Der Welten Größte Taste",
+            ModuleNameDative = "Der Welten Größter Taste",
             Gender = Gender.Feminine,
             ManualQuestions = new()
             {
@@ -22925,14 +22925,14 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Röntgen",
             ManualQuestions = new()
             {
-                ["What symbols were scanned?"] = "Welche Symbole wurden gescant?",
+                ["What symbols were scanned?"] = "Welche Symbole wurden gescannt?",
             },
             Questions = new()
             {
                 [SXRay.Symbol] = new()
                 {
                     // English: Which symbol was scanned in {0}?
-                    Question = "Welche Symbole wurden bei {0} gescant?",
+                    Question = "Welches Symbol wurde bei {0} gescannt?",
                 },
             },
         },
@@ -22988,7 +22988,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 [SXYRay.Shapes] = new()
                 {
                     // English: Which shape was scanned by {0}?
-                    Question = "Welcher Körper wurde bei {0} gescannt?",
+                    Question = "Welche Form wurde bei {0} gescannt?",
                 },
             },
         },
