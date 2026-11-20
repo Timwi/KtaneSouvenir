@@ -14,9 +14,9 @@ public partial class SouvenirModule
     private IEnumerator<SouvenirInstruction> ProcessNameChanger(ModuleData module)
     {
         var comp = GetComponent(module, "NameChanger");
+        yield return WaitForSolve;
         var words = SNameChanger.InitialWord.GetAnswers();
         var startingWord = GetIntField(comp, "startingWord").Get(min: 0, max: words.Length - 1);
-        yield return WaitForSolve;
         yield return question(SNameChanger.InitialWord).Answers(words[startingWord]);
     }
 }
