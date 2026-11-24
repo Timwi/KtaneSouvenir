@@ -936,6 +936,12 @@ public partial class SouvenirModule : MonoBehaviour
                             _showWarning = true;
                             yield break;
                         }
+                        if (!hAttr.EnumType.IsAssignableFrom(d.Discriminator.EnumValue.GetType()))
+                        {
+                            Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because the module’s enum type is {hAttr.EnumType} but the handler generated a discriminator using enum type {d.Discriminator.EnumValue.GetType()}.");
+                            _showWarning = true;
+                            yield break;
+                        }
                         info.Discriminators.AddSafe(module, d.Discriminator.Id, d.Discriminator);
                         _lastGeneratedQuestionTime = Time.time;
                         yield return null;
@@ -951,6 +957,18 @@ public partial class SouvenirModule : MonoBehaviour
                             q.Stump.AnswerStump is not TextAnswerStump { Info: { Font: not null, FontTexture: not null } })
                         {
                             Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because the question {q.Stump.QuestionStump.EnumValue.GetType().Name}.{q.Stump.QuestionStump.EnumValue} is marked as using a dynamic font, but no font or font texture was specified. You must provide both a font and a font texture by passing a {nameof(TextAnswerInfo)} object.");
+                            _showWarning = true;
+                            yield break;
+                        }
+                        if (!hAttr.EnumType.IsAssignableFrom(q.Stump.QuestionStump.EnumValue.GetType()))
+                        {
+                            Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because the module’s enum type is {hAttr.EnumType} but the handler generated a question using enum type {q.Stump.QuestionStump.EnumValue.GetType()}.");
+                            _showWarning = true;
+                            yield break;
+                        }
+                        if (q.Stump.QuestionStump.DiscriminatorsToAvoid is { } discrToAvoid && discrToAvoid.Any(discr => !hAttr.EnumType.IsAssignableFrom(discr.GetType())))
+                        {
+                            Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because the module’s enum type is {hAttr.EnumType} but the handler generated a question that specifies to avoid a discriminator of enum types [{discrToAvoid.Select(e => e.GetType()).Distinct().JoinString(", ")}].");
                             _showWarning = true;
                             yield break;
                         }
