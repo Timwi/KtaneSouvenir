@@ -224,6 +224,63 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // 3Der Maze
+        [typeof(S3DerMaze)] = new()
+        {
+            NeedsTranslation = true,
+            ManualQuestions = new()
+            {
+                ["What were the markings?"] = "What were the markings?",
+                ["What was the direction?"] = "What was the direction?",
+            },
+            Questions = new()
+            {
+                [S3DerMaze.QMarkings] = new()
+                {
+                    // English: What were the markings in {0}?
+                    Question = "What were the markings in {0}?",
+                },
+                [S3DerMaze.QBearing] = new()
+                {
+                    // English: What was the direction in {0}?
+                    Question = "What was the cardinal direction in {0}?",
+                    Answers = new()
+                    {
+                        ["North"] = "North",
+                        ["South"] = "South",
+                        ["West"] = "West",
+                        ["East"] = "East",
+                        ["Up"] = "Up",
+                        ["Down"] = "Down",
+                    },
+                },
+            },
+            Discriminators = new()
+            {
+                [S3DerMaze.DMarkings] = new()
+                {
+                    // English: the 3Der Maze whose markings were {0}
+                    // Example: the 3Der Maze whose markings were ABC
+                    Discriminator = "the 3Der Maze whose markings were {0}",
+                },
+                [S3DerMaze.DBearing] = new()
+                {
+                    // English: the 3Der Maze whose direction was {0}
+                    // Example: the 3Der Maze whose direction was North
+                    Discriminator = "the 3Der Maze whose cardinal direction was {0}",
+                    Arguments = new()
+                    {
+                        ["North"] = "North",
+                        ["South"] = "South",
+                        ["West"] = "West",
+                        ["East"] = "East",
+                        ["Up"] = "Up",
+                        ["Down"] = "Down",
+                    },
+                },
+            },
+        },
+
         // 3D Maze
         [typeof(S3DMaze)] = new()
         {

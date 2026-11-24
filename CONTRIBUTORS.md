@@ -210,6 +210,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     MODULE                   │  IMPLEMENTED BY
     ═════════════════════════╪══════════════════
+    3Der Maze                │  MykiiVT
     A Letter                 │  Sierra
     Arithmelogic             │  JerryEris
     Barcode Cipher           │  Brawlboxgaming
