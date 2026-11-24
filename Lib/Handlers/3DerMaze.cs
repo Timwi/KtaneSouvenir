@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Souvenir;
 using static Souvenir.AnswerLayout;
 
@@ -34,7 +33,7 @@ public partial class SouvenirModule
         var correctMarkings = $"{map[0]}{map[1]}{map[2]}";
 
         yield return WaitForSolve;
-        var cardinal = new[] {"North", "East", "South", "West", "Up", "Down"}[Array.IndexOf(new[]{"N", "E", "S", "W", "U", "D"}, map[3].ToString())];
+        var cardinal = new[] { "North", "East", "South", "West", "Up", "Down" }[Array.IndexOf(["N", "E", "S", "W", "U", "D"], map[3].ToString())];
         yield return new Discriminator(S3DerMaze.DMarkings, "markings", correctMarkings, args: [correctMarkings]);
         yield return new Discriminator(S3DerMaze.DBearing, "cardinal", cardinal, args: [cardinal]);
         yield return question(S3DerMaze.QMarkings).AvoidDiscriminators(S3DerMaze.DMarkings).Answers(correctMarkings);

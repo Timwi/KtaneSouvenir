@@ -227,31 +227,31 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // 3Der Maze
         [typeof(S3DerMaze)] = new()
         {
-            NeedsTranslation = true,
+            ModuleName = "3Der-Labyrinth",
             ManualQuestions = new()
             {
-                ["What were the markings?"] = "What were the markings?",
-                ["What was the direction?"] = "What was the direction?",
+                ["What were the markings?"] = "Was waren die Markierungen?",
+                ["What was the direction?"] = "Was war die Zielrichtung?",
             },
             Questions = new()
             {
                 [S3DerMaze.QMarkings] = new()
                 {
                     // English: What were the markings in {0}?
-                    Question = "What were the markings in {0}?",
+                    Question = "Was waren bei {0} die Markierungen?",
                 },
                 [S3DerMaze.QBearing] = new()
                 {
                     // English: What was the direction in {0}?
-                    Question = "What was the cardinal direction in {0}?",
+                    Question = "Was war bei {0} die Zielrichtung?",
                     Answers = new()
                     {
-                        ["North"] = "North",
-                        ["South"] = "South",
-                        ["West"] = "West",
-                        ["East"] = "East",
-                        ["Up"] = "Up",
-                        ["Down"] = "Down",
+                        ["North"] = "Norden",
+                        ["South"] = "Süden",
+                        ["West"] = "Westen",
+                        ["East"] = "Osten",
+                        ["Up"] = "Hoch",
+                        ["Down"] = "Runter",
                     },
                 },
             },
@@ -261,21 +261,21 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 {
                     // English: the 3Der Maze whose markings were {0}
                     // Example: the 3Der Maze whose markings were ABC
-                    Discriminator = "the 3Der Maze whose markings were {0}",
+                    Discriminator = "dem 3Der-Labyrinth, dessen Markierungen {0} waren,",
                 },
                 [S3DerMaze.DBearing] = new()
                 {
                     // English: the 3Der Maze whose direction was {0}
                     // Example: the 3Der Maze whose direction was North
-                    Discriminator = "the 3Der Maze whose cardinal direction was {0}",
+                    Discriminator = "dem 3Der-Labyrinth, dessen Zielrichtung {0} war,",
                     Arguments = new()
                     {
-                        ["North"] = "North",
-                        ["South"] = "South",
-                        ["West"] = "West",
-                        ["East"] = "East",
-                        ["Up"] = "Up",
-                        ["Down"] = "Down",
+                        ["North"] = "Norden",
+                        ["South"] = "Süden",
+                        ["West"] = "Westen",
+                        ["East"] = "Osten",
+                        ["Up"] = "Hoch",
+                        ["Down"] = "Runter",
                     },
                 },
             },
